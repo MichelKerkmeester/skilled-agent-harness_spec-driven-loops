@@ -50,7 +50,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Scout the 5 cli skills' `references/`+`assets/` for H2 divider gaps (`/tmp/divider_scout.py`)
-- [x] T002 Confirm the sk-doc divider rule against `sk-prompt-small-model/assets/cli_prompt_quality_card.md` and `sk-doc/assets/template_rules.json`
+- [x] T002 Confirm the sk-doc divider rule against `sk-prompt-models/assets/cli_prompt_quality_card.md` and `sk-doc/assets/template_rules.json`
 <!-- /ANCHOR:phase-1 -->
 
 ---

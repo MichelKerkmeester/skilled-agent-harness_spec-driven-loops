@@ -1,9 +1,9 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: DONE. Renamed 5 markdown + 2 JSON files in sk-prompt-small-model dash to underscore and repaired all live references; the four model-profile filenames stay dashed; drift guard and strict validate green."
+description: "Status: DONE. Renamed 5 markdown + 2 JSON files in sk-prompt-models dash to underscore and repaired all live references; the four model-profile filenames stay dashed; drift guard and strict validate green."
 trigger_phrases:
   - "filename underscore alignment status"
-  - "sk-prompt-small-model rename done"
+  - "sk-prompt-models rename done"
   - "model_profiles.json renamed"
   - "impl summary core"
 importance_tier: "normal"
@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/assets/per_model_budgets.json"
-      - ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/per_model_budgets.json"
+      - ".opencode/skills/sk-prompt-models/references/pattern_index.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-> **Status: DONE.** `sk-prompt-small-model`'s dash-named documentation and asset files now follow the house underscore convention, with every live inbound reference repaired. The four `references/models/<id>.md` profiles were deliberately left dashed because a pre-commit drift guard derives their path from the dashed model id.
+> **Status: DONE.** `sk-prompt-models`'s dash-named documentation and asset files now follow the house underscore convention, with every live inbound reference repaired. The four `references/models/<id>.md` profiles were deliberately left dashed because a pre-commit drift guard derives their path from the dashed model id.
 
 ### Renamed: 5 markdown + 2 JSON (git mv, history preserved)
 
@@ -75,9 +75,9 @@ The skill's own files (`SKILL.md`, `README.md`, `description.json`, `graph-metad
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `sk-prompt-small-model/assets/*` + `references/*` (7 targets) | Renamed | Dash to underscore via `git mv` |
-| `sk-prompt-small-model/{SKILL.md,README.md,description.json,graph-metadata.json}` | Modified | Inbound references repointed |
-| `sk-prompt-small-model/references/**` (renamed + `_index.md` + 4 model profiles) | Modified | Cross-links repointed to new names |
+| `sk-prompt-models/assets/*` + `references/*` (7 targets) | Renamed | Dash to underscore via `git mv` |
+| `sk-prompt-models/{SKILL.md,README.md,description.json,graph-metadata.json}` | Modified | Inbound references repointed |
+| `sk-prompt-models/references/**` (renamed + `_index.md` + 4 model profiles) | Modified | Cross-links repointed to new names |
 | `cli-opencode/**` (SKILL.md, references, assets, playbooks) | Modified | Cross-skill references repointed (path-qualified for the context-budget collision) |
 | `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md` | Modified | `model_profiles.json` references |
 | `.opencode/scripts/git-hooks/pre-commit` | Modified | `pattern_index.md` hint string |
@@ -91,7 +91,7 @@ The skill's own files (`SKILL.md`, `README.md`, `description.json`, `graph-metad
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Discovery first: the full reference inventory was mapped, and opening `check-prompt-quality-card-sync.sh` confirmed it computes `references/models/<id>.md` from the dashed model id, which is the reason the four model-profile files are excluded. Then `git mv` renamed the 7 targets. A single controlled pass rewrote references: the 6 globally-unique filenames were replaced by full filename token across the live file list (extension-anchored, so model ids and prose are never touched), and `context-budget.md` was handled path-qualified (`sk-prompt-small-model/references/context-budget.md`) plus two targeted same-skill link edits, leaving cli-opencode's own `context-budget.md` and the links to it intact. The closing gate is the card-sync drift guard, a live-wiring stale-reference grep, JSON validity checks, and strict `validate.sh` on this phase.
+Discovery first: the full reference inventory was mapped, and opening `check-prompt-quality-card-sync.sh` confirmed it computes `references/models/<id>.md` from the dashed model id, which is the reason the four model-profile files are excluded. Then `git mv` renamed the 7 targets. A single controlled pass rewrote references: the 6 globally-unique filenames were replaced by full filename token across the live file list (extension-anchored, so model ids and prose are never touched), and `context-budget.md` was handled path-qualified (`sk-prompt-models/references/context-budget.md`) plus two targeted same-skill link edits, leaving cli-opencode's own `context-budget.md` and the links to it intact. The closing gate is the card-sync drift guard, a live-wiring stale-reference grep, JSON validity checks, and strict `validate.sh` on this phase.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -129,6 +129,6 @@ Discovery first: the full reference inventory was mapped, and opening `check-pro
 ## Known Limitations
 
 1. **Historical and archived references were intentionally not updated.** ~293 spec-doc references (across `z_archive`, 026, 027, 152, 154) and changelog entries still name the old dash filenames. This was the user's chosen scope (point-in-time records), not an oversight.
-2. **cli-opencode's own `context-budget.md` keeps its dash.** This phase is scoped to `sk-prompt-small-model` filenames; aligning cli-opencode's own filenames would be a separate change. References from it to the sk-prompt-small-model canonical were repointed correctly.
+2. **cli-opencode's own `context-budget.md` keeps its dash.** This phase is scoped to `sk-prompt-models` filenames; aligning cli-opencode's own filenames would be a separate change. References from it to the sk-prompt-models canonical were repointed correctly.
 3. **The four model-profile filenames remain dashed by contract.** They mirror external model ids enforced by the drift guard; this is intentional, and a future change would require also teaching the guard a dash/underscore translation.
 <!-- /ANCHOR:limitations -->

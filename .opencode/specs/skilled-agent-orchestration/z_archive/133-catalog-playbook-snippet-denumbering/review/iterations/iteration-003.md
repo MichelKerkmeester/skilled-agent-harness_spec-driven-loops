@@ -16,6 +16,6 @@
 | P2 | TEMPLATE_EXAMPLE | `.opencode/skills/sk-git/assets/pr_template.md` | `./screenshots/after.png` | no | Suppress from link checking; same code block as ref ./screenshots/before.png |
 | P2 | TEMPLATE_EXAMPLE | `.opencode/skills/sk-git/assets/pr_template.md` | `./screenshots/mobile.png` | no | Suppress from link checking; same code block as ref ./screenshots/before.png |
 | P2 | TEMPLATE_EXAMPLE | `.opencode/skills/sk-git/assets/pr_template.md` | `./docs/migration.md` | no | Suppress from link checking; inside a code block showing example migration guide reference |
-| P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | `../models/_index.md` | no | Replace ../models/_index.md with ./models/_index.md |
+| P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/sk-prompt-models/references/pattern-index.md` | `../models/_index.md` | no | Replace ../models/_index.md with ./models/_index.md |
 
 Review verdict: CONDITIONAL

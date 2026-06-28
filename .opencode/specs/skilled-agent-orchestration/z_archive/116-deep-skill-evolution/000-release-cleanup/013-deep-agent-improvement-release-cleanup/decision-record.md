@@ -57,7 +57,7 @@ The phase-5 deep-research loop needs to surface logic gaps a single-pass dispatc
 ### Constraints
 
 - Mac dispatch discipline forbids batching iterations; each iter runs one at a time with SIGKILL between (devin + `/tmp/devin-*` preserved per operator rule `feedback_proactive_orphan_cleanup`).
-- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and `sk-prompt-small-model`.
+- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and `sk-prompt-models`.
 - "Use a specific CLI executor only when explicitly requested" (`feedback_cli_executor_only_when_requested`) — do not substitute a different CLI on advisor hints.
 <!-- /ANCHOR:adr-001-context -->
 

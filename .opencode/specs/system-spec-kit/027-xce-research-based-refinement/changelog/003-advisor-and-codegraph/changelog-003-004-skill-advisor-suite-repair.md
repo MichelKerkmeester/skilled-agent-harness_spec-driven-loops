@@ -81,4 +81,4 @@ The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests fail
 ### Follow-Ups
 
 - One advisory WEIGHT-PARITY warning remains in the graph validator for `mcp-figma -> mcp-code-mode` (source `depends_on` 0.45 vs reciprocal `prerequisite_for` 0.7). It is advisory only and does not gate validation; matching it downward would breach the `prerequisite_for` [0.7,1.0] band, so the minimal symmetric addition was chosen and the source weight left untouched.
-- Pre-existing WEIGHT-BAND warnings on `deep-loop-workflows`, `mcp-figma`, and `sk-prompt-small-model` predate this packet; they are advisory and non-gating and were intentionally not touched.
+- Pre-existing WEIGHT-BAND warnings on `deep-loop-workflows`, `mcp-figma`, and `sk-prompt-models` predate this packet; they are advisory and non-gating and were intentionally not touched.

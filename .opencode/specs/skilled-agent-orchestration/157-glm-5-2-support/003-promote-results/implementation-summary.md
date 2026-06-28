@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Packet core complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "glm-support-003-promote-results"
@@ -53,9 +53,9 @@ The benchmark-008 verdict is now the registry truth. `glm-5.2.recommended_framew
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modified | `glm-5.2.recommended_frameworks` → COSTAR/TIDD-EC/avoid-RCAF, evidence benchmark 008, status empirical; weakness line updated |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Modified | §1/§3/§4/§5 rewritten to COSTAR + benchmark 008; §5 scaffold converted CRAFT→COSTAR |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Modified | glm-5.2 row → COSTAR empirical |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modified | `glm-5.2.recommended_frameworks` → COSTAR/TIDD-EC/avoid-RCAF, evidence benchmark 008, status empirical; weakness line updated |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Modified | §1/§3/§4/§5 rewritten to COSTAR + benchmark 008; §5 scaffold converted CRAFT→COSTAR |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modified | glm-5.2 row → COSTAR empirical |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | glm-5.2 row → COSTAR + lean (empirical, benchmark 008) |
 <!-- /ANCHOR:what-built -->
 

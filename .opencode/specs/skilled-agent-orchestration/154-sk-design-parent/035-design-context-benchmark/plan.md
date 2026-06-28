@@ -65,7 +65,7 @@ Two tracks run in parallel. Track 1: a single cli-codex gpt-5.5 @ high agent exe
 <!-- ANCHOR:phases -->
 ## IMPLEMENTATION PHASES
 
-1. **Setup** — consult sk-prompt-small-model for both recipes; smoke-test both transports; create the `031` packet + run dirs.
+1. **Setup** — consult sk-prompt-models for both recipes; smoke-test both transports; create the `031` packet + run dirs.
 2. **Run (parallel)** — launch Track 1 (review loop) and Track 2 (4 A/B runs) as concurrent background jobs.
 3. **Score + synthesize** — score the 4 runs on the rubric (independently recomputing contrast); read the review report; write the benchmark matrix + combined verdict.
 4. **Finalize** — author the wrapper docs; strict-validate.
@@ -85,7 +85,7 @@ The benchmark IS the test (empirical A/B). Verification is evidence-based: indep
 ## DEPENDENCIES
 
 - 029/030 deliverables + the live contract (review target + benchmark condition B).
-- `sk-prompt-small-model` recipes; `cli-opencode` mechanics.
+- `sk-prompt-models` recipes; `cli-opencode` mechanics.
 - `codex` (gpt-5.5) for the review; Kimi/MiniMax transports for the benchmark.
 <!-- /ANCHOR:dependencies -->
 

@@ -294,7 +294,7 @@ The body is identical across all three; only the frontmatter format differs. The
 
 1. **Treat every executor seat as a read-only analyzer.** The host writes all state (iteration files, coverage-graph, the merged report). Sub-agents must never write the merged report.
 2. **Carry the full lineage prompt contract to every seat**: gather-subject + scope/slice + known-context + output schema. A seat told only "analyze" returns generic noise.
-3. **Apply each model's prompt framework via `sk-prompt-small-model`** (e.g. MiMo → COSTAR, MiniMax → TIDD-EC) using the lineage `promptFramework` field.
+3. **Apply each model's prompt framework via `sk-prompt-models`** (e.g. MiMo → COSTAR, MiniMax → TIDD-EC) using the lineage `promptFramework` field.
 4. **Verify every cited `file:symbol` against the code graph** before it enters the report; label anything unverified. A stale reference is worse than omission.
 5. **Honor the cli-* skill contracts for dispatch** (model id form, `</dev/null` for opencode, omit top-level `--agent`). Read the relevant `cli-X/SKILL.md` before composing any CLI prompt.
 6. **Ship pointers + signatures, not source bodies.** Context rot begins when full source is pasted into reports.
@@ -387,7 +387,7 @@ References are organized into subfolder families (`guides/ protocol/ convergence
 
 **Pairs with**:
 - `deep-loop-runtime` — coverage-graph (`loop_type='context'`), convergence script, parallel seat dispatch, executor config.
-- `sk-prompt-small-model` — per-model prompt framing for the heterogeneous pool.
+- `sk-prompt-models` — per-model prompt framing for the heterogeneous pool.
 - `cli-opencode` / `cli-codex` / `cli-claude-code` — CLI seat dispatch contracts.
 - `system-code-graph` — frontier seeding + reference verification.
 - `/speckit:plan` and `/speckit:implement` — downstream consumers of the Context Report.
@@ -432,4 +432,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/reduce-state.cjs` — the agreement-weighted context reducer; run it from the repository root with a spec-folder argument.
 
-Related skills: `deep-research` for outward/web investigation (sibling loop whose structure this mirrors), `deep-review` for code audit, `deep-loop-runtime` for shared executor and coverage-graph infrastructure, `sk-prompt-small-model` for per-model prompt framing, and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `deep-research` for outward/web investigation (sibling loop whose structure this mirrors), `deep-review` for code audit, `deep-loop-runtime` for shared executor and coverage-graph infrastructure, `sk-prompt-models` for per-model prompt framing, and `system-spec-kit` when packet documentation or memory continuity applies.

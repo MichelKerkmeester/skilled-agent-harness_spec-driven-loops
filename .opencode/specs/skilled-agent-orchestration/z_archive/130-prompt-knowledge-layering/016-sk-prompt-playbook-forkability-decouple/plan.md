@@ -76,7 +76,7 @@ structural validator.
 Audit, then reframe-to-own-surface plus repoint, then verify.
 
 ### Key Components
-- **Forkability audit**: grep the playbook for sk-prompt-small-model / cli_prompt_quality_card / cli-* and classify hard vs soft deps.
+- **Forkability audit**: grep the playbook for sk-prompt-models / cli_prompt_quality_card / cli-* and classify hard vs soft deps.
 - **Reframe**: SP-023 -> inline CLEAR pass; SP-024 -> escalate to @prompt-improver, both anchored on sk-prompt's own docs.
 - **Repoint/remove**: SP-019/021/025/026 source-ref rows; root playbook prose.
 - **Verification**: token grep, `rg` resolution, `validate_document.py`.
@@ -102,7 +102,7 @@ Audit finds refs, reframe/repoint removes them, verification confirms zero remai
 - [x] Version bump 2.1.2.0 -> 2.1.3.0 + changelog
 
 ### Phase 3: Verification
-- [x] Token grep across the playbook: 0 for sk-prompt-small-model / cli_prompt_quality_card / cli-*
+- [x] Token grep across the playbook: 0 for sk-prompt-models / cli_prompt_quality_card / cli-*
 - [x] All rg targets point only at sk-prompt/; SP-023/024 targets resolve (33 CLEAR matches; 4 escalation terms)
 - [x] validate_document.py VALID on root + 6 feature files
 - [x] validate.sh --recursive --strict exit 0; card-sync guard green

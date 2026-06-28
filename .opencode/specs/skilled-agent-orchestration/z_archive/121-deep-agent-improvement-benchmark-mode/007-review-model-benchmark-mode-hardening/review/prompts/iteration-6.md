@@ -19,7 +19,7 @@ Mode: review
 Dimension: traceability
 Review Target: session 120+121 authored work: deep-agent-improvement model-benchmark mode build (121/003) + MiniMax integration (120). 29-file curated scope (see below).
 
-This iteration focus: D3 Traceability (second model) — cross-check 120 skill edits (cli-opencode SKILL.md, sk-prompt model-profiles.json, sk-prompt-small-model) against the MiniMax integration claims; verify slugs/context-length/variant guidance are internally consistent and match the research. Cross-check iteration-005.md.
+This iteration focus: D3 Traceability (second model) — cross-check 120 skill edits (cli-opencode SKILL.md, sk-prompt model-profiles.json, sk-prompt-models) against the MiniMax integration claims; verify slugs/context-length/variant guidance are internally consistent and match the research. Cross-check iteration-005.md.
 Review Scope Files: 
 - .opencode/skills/cli-opencode/SKILL.md
 - .opencode/skills/cli-opencode/assets/prompt_quality_card.md
@@ -43,8 +43,8 @@ Review Scope Files:
 - .opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs
 - .opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts
 - .opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts
-- .opencode/skills/sk-prompt-small-model/SKILL.md
-- .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+- .opencode/skills/sk-prompt-models/SKILL.md
+- .opencode/skills/sk-prompt-models/references/pattern-index.md
 - .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
 - .opencode/skills/sk-prompt/assets/model-profiles.json
 - .opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector/decision-record.md

@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-06-07T14:29:02Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "README confirmed current and valid"
-    next_safe_action: "Begin phase 019 (sk-prompt-small-model README)"
+    next_safe_action: "Begin phase 019 (sk-prompt-models README)"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/README.md"

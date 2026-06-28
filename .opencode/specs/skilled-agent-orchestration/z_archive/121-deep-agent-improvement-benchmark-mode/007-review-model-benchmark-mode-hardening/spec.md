@@ -67,7 +67,7 @@ Produce a converged `review/review-report.md` (P0/P1/P2 findings + verdict) from
 ## 3. SCOPE
 
 ### In Scope
-- Review the 29-file curated scope: 16 deep-agent-improvement script files (the build), 10 skill-edit files (cli-opencode / sk-prompt / sk-prompt-small-model MiniMax integration), and 3 key authored docs (121/001 decision-record, 121/002 research.md, 121/003 spec.md)
+- Review the 29-file curated scope: 16 deep-agent-improvement script files (the build), 10 skill-edit files (cli-opencode / sk-prompt / sk-prompt-models MiniMax integration), and 3 key authored docs (121/001 decision-record, 121/002 research.md, 121/003 spec.md)
 - Four dimensions: correctness, security, traceability, maintainability
 - 10 iterations, alternating executors (odd → gpt-5.5; even → MiniMax M2.7)
 

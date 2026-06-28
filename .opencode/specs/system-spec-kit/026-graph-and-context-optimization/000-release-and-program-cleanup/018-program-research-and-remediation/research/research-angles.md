@@ -49,7 +49,7 @@ Open, falsifiable research questions spawned by the closed 026 program. Each is 
 34. Convergence detection: is the 0.10 threshold well-calibrated, or do loops stop too early or too late?
 35. Cross-model research diversity (meta, tested by this very run): do MiMo, DeepSeek, and MiniMax surface different findings or converge?
 
-## G. Prompt toolkit (130/131, sk-prompt-small-model)
+## G. Prompt toolkit (130/131, sk-prompt-models)
 36. Per-model prompt-craft frameworks (RCAF/COSTAR/TIDD-EC): which are empirically validated vs convention defaults, and which lack any benchmark?
 37. sk-prompt forkability: is the hub-to-cli seam truly decoupled, or are there residual cross-refs that would break an extraction?
 38. Open-model cost/quality frontier via cli-opencode: DeepSeek vs MiniMax vs MiMo on a standardized task suite, per task class.

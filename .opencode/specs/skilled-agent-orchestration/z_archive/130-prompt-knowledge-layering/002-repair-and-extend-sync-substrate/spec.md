@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.
+This is **Phase 2** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub specification.
 
 **Scope Boundary**: The sync script and the one broken path reference. No cli-* card content is thinned in this phase (that is Phase 006 work).
 

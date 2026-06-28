@@ -43,8 +43,8 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -66,7 +66,7 @@
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+        "path": ".opencode/skills/sk-prompt-models/graph-metadata.json",
         "source": "derived"
       },
       {

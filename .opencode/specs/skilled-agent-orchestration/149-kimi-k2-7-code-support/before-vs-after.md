@@ -22,7 +22,7 @@ Kimi K2.7 Code existed as a provider capability, but the framework did not treat
 
 **After**
 
-`kimi-k2.7-code` was added to `sk-prompt-small-model/assets/model-profiles.json`, with live provider facts from `opencode models kimi-for-coding`: slug `kimi-for-coding/k2p7`, context 262144, output 32768 and display name `Kimi K2.7 Code`. The new profile landed at `sk-prompt-small-model/references/models/kimi-k2.7-code.md`. `sk-prompt-small-model/SKILL.md` gained frontmatter, keywords, triggers, aliases and the §3 dispatch row. `kimi` now resolves to `kimi-k2.7-code`, with `kimi-k2.7`, `kimi-for-coding` and `k2p7` also present. `kimi-k2.6` stayed available but moved to historical status.
+`kimi-k2.7-code` was added to `sk-prompt-models/assets/model-profiles.json`, with live provider facts from `opencode models kimi-for-coding`: slug `kimi-for-coding/k2p7`, context 262144, output 32768 and display name `Kimi K2.7 Code`. The new profile landed at `sk-prompt-models/references/models/kimi-k2.7-code.md`. `sk-prompt-models/SKILL.md` gained frontmatter, keywords, triggers, aliases and the §3 dispatch row. `kimi` now resolves to `kimi-k2.7-code`, with `kimi-k2.7`, `kimi-for-coding` and `k2p7` also present. `kimi-k2.6` stayed available but moved to historical status.
 
 **Impact**
 
@@ -82,11 +82,11 @@ The result clearly separates `rcaf` from the perfect tier, but it does not stati
 
 **Before**
 
-`sk-prompt-small-model` mixed dash-named documentation and asset files with a house underscore convention. The Kimi work touched enough of that surface that the inconsistency became part of the maintenance cost. At the same time, the model-profile files could not simply be renamed, because their dashed paths derive from external model ids.
+`sk-prompt-models` mixed dash-named documentation and asset files with a house underscore convention. The Kimi work touched enough of that surface that the inconsistency became part of the maintenance cost. At the same time, the model-profile files could not simply be renamed, because their dashed paths derive from external model ids.
 
 **After**
 
-Seven `sk-prompt-small-model` targets moved from dash names to underscore names, including the JSON assets now named `model_profiles.json` and `per_model_budgets.json`. Every live inbound reference was repaired across `sk-prompt-small-model`, `cli-opencode`, `cli-claude-code`, `cli-codex`, the root `README.md`, the pre-commit hook hint and packet metadata. The drift guard `json.load` path changed to `model_profiles.json`.
+Seven `sk-prompt-models` targets moved from dash names to underscore names, including the JSON assets now named `model_profiles.json` and `per_model_budgets.json`. Every live inbound reference was repaired across `sk-prompt-models`, `cli-opencode`, `cli-claude-code`, `cli-codex`, the root `README.md`, the pre-commit hook hint and packet metadata. The drift guard `json.load` path changed to `model_profiles.json`.
 
 The four model-profile files stayed dashed, and that was intentional. `check-prompt-quality-card-sync.sh` couples those filenames to the dashed model ids, and the guard confirmed all four still resolve.
 

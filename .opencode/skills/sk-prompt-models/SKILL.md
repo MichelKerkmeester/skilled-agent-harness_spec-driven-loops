@@ -1,5 +1,5 @@
 ---
-name: sk-prompt-small-model
+name: sk-prompt-models
 description: Per-model prompt-craft hub for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro + GLM-5.2 via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model_profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
 allowed-tools: []
 version: 0.8.0.0
@@ -188,7 +188,7 @@ invocation loads the right profile.
 
 ### Hub Workflow
 
-1. **Discover** — The advisor surfaces `sk-prompt-small-model` alongside the relevant CLI skill when an operator names a small model or pattern.
+1. **Discover** — The advisor surfaces `sk-prompt-models` alongside the relevant CLI skill when an operator names a small model or pattern.
 2. **Read the profile** — Open `references/models/<id>.md` for that model's prompt-craft: framework (primary + fallback), pre-planning density, scaffold shape, gotchas — mirrored from `model_profiles.json`.
 3. **Apply MECHANICS + dispatch** — Follow `references/pattern_index.md` to the owning `cli-X` for flags/wrappers/budgets/permissions; the prompt-craft (here) and mechanics (`cli-X`) combine in the executor's prompt-pack.
 
@@ -203,7 +203,7 @@ invocation loads the right profile.
 | GLM-5.2 | `cli-opencode` → zai-coding-plan (zai-coding-plan) | active (single path; Z.AI GLM Coding Plan) |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 
-Canonical source: `sk-prompt-small-model/assets/model_profiles.json` (each entry's `executors` array enumerates the paths above).
+Canonical source: `sk-prompt-models/assets/model_profiles.json` (each entry's `executors` array enumerates the paths above).
 
 ### Ownership Boundary
 
@@ -220,7 +220,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 ### ALWAYS
 
 1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 300 LOC (the §2 smart-router pseudocode is the bulk; everything else stays terse), `references/models/_index.md` ≤ 100 LOC, and `pattern_index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
-2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model_profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
+2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-models/assets/model_profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern_index.md` are contracts; broken links and missing rows erode trust.
 5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2 active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
@@ -236,7 +236,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 
 1. A model becomes dispatchable from a NEW executor with conflicting MECHANICS (different flags/wrappers than the existing path). Resolve the mechanics in the owning `cli-X` first; the profile only records prompt-craft, so it must not arbitrate flag conflicts.
 2. A profile would need to RESTATE executor flags to be usable. That belongs in `cli-X` — escalate to add/extend the executor reference, then link to it.
-3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `sk-prompt-small-model/assets/model_profiles.json` first, then add the profile + index row.
+3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `sk-prompt-models/assets/model_profiles.json` first, then add the profile + index row.
 
 ---
 
@@ -258,7 +258,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 - [`cli-opencode/references/permissions-matrix.md`](../cli-opencode/references/permissions-matrix.md) — Structured permissions schema
 - [`cli-opencode/assets/permissions-matrix.schema.json`](../cli-opencode/assets/permissions-matrix.schema.json) — JSON Schema for permission rules
 - [`cli-opencode/assets/prompt_templates.md`](../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
-- [`sk-prompt-small-model/assets/model_profiles.json`](./assets/model_profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
+- [`sk-prompt-models/assets/model_profiles.json`](./assets/model_profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
 - [`assets/cli_prompt_quality_card.md`](./assets/cli_prompt_quality_card.md) — Canonical cross-CLI prompt quality card (owned by this hub); generic framework definitions live in `sk-prompt`
 
 ### Reference Loading Notes
@@ -270,7 +270,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 ### Skill Boundary Map
 
 ```text
-sk-prompt-small-model (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model_profiles.json)
+sk-prompt-models (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model_profiles.json)
     |
     +-- cli-opencode                ← owns MECHANICS: DeepSeek/Kimi/MiniMax/MiMo flags + permissions
     +-- sk-prompt                   ← owns generic framework definitions

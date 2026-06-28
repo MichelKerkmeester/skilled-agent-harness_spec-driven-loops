@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -55,7 +55,7 @@ _memory:
 > Map the rename set and confirm the drift-guard coupling, then rename.
 
 - [x] T001 Map the 7 rename targets and every live inbound reference; confirm `check-prompt-quality-card-sync.sh` couples model-profile filenames to the dashed model id
-- [x] T002 `git mv` the 5 markdown files dash to underscore (sk-prompt-small-model assets + references)
+- [x] T002 `git mv` the 5 markdown files dash to underscore (sk-prompt-models assets + references)
 - [x] T003 [P] `git mv` the 2 JSON assets to `model_profiles.json` and `per_model_budgets.json`
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,7 +67,7 @@ _memory:
 > Repair every live reference.
 
 - [x] T004 Replace the 6 unique filenames across the live file list (extension-anchored)
-- [x] T005 Path-qualified replace for `sk-prompt-small-model/references/context-budget.md`; two targeted same-skill link edits (SKILL.md, pattern_index.md); leave cli-opencode's own file
+- [x] T005 Path-qualified replace for `sk-prompt-models/references/context-budget.md`; two targeted same-skill link edits (SKILL.md, pattern_index.md); leave cli-opencode's own file
 - [x] T006 Update the functional drift-guard `json.load` path to `model_profiles.json` (check-prompt-quality-card-sync.sh)
 - [x] T007 Reconcile parent 154 phase map (phase-5 row) and `children_ids` (graph-metadata.json)
 <!-- /ANCHOR:phase-2 -->

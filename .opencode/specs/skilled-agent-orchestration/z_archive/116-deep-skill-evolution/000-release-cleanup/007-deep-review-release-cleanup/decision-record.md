@@ -58,7 +58,7 @@ The phase-5 deep-research loop needs to surface logic gaps not visible at planni
 ### Constraints
 
 - Mac dispatch discipline forbids batching iterations; each iter runs one at a time with SIGKILL between (per `feedback_deep_loop_iter_one_at_a_time`).
-- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and the small-model dispatch rule (`sk-prompt-small-model`).
+- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and the small-model dispatch rule (`sk-prompt-models`).
 - Single-model convergence has weaker cross-validation than the sibling 002 split; phase-2 audit + phase-4 human review provide independent safety nets.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -544,7 +544,7 @@ Per the explicit out-of-scope list in `validation-report.md` §7:
 
 ### Implementation
 
-Phase 5 task ledger T080 through T119 unblocked. Pre-flight: verify `cli-devin` binary present, verify SWE-1.6 model reachable, read `cli-devin/SKILL.md` + `sk-prompt-small-model/SKILL.md` + `sk-prompt/SKILL.md` per the CLI dispatch rule and small-model dispatch rule (CLAUDE.md §1).
+Phase 5 task ledger T080 through T119 unblocked. Pre-flight: verify `cli-devin` binary present, verify SWE-1.6 model reachable, read `cli-devin/SKILL.md` + `sk-prompt-models/SKILL.md` + `sk-prompt/SKILL.md` per the CLI dispatch rule and small-model dispatch rule (CLAUDE.md §1).
 <!-- /ANCHOR:adr-006 -->
 
 ---

@@ -48,7 +48,7 @@ Remediation of the residual 210 is **optional pre-existing debt**, not a release
 | sk-code checklists → `references/<lang>/…` missing surface-marker dir + wrong `../` depth (e.g. `references/config/…` → `references/opencode/config/…`) | ~50 | ✅ fixed (deterministic surface + depth resolver) |
 | agent docs `persist-artifacts.js` → `.cjs` (`ai-council.md` ×2 + ~30 occurrences in deep-ai-council docs) | ~30 | ✅ fixed |
 | `agents/code.md` (+ `.claude/`) → archived `059-agent-implement-code/decision-record.md` | 2 | ✅ repointed to `z_archive/` |
-| sk-prompt-small-model / cli-opencode / deep-ai-council wrong `../` depth to sibling refs | ~30 | ✅ fixed |
+| sk-prompt-models / cli-opencode / deep-ai-council wrong `../` depth to sibling refs | ~30 | ✅ fixed |
 | catalog/playbook root → renamed snippets (e.g. `005-ai-council-multi-strategy.md` → `multi-ai-council-multi-strategy.md`) | 8 | ✅ repointed (token-overlap ≥0.6, same category dir) |
 | catalog/playbook root → removed/deprecated snippets (no replacement exists) | 84 | ⏳ deferred (see §8 — content-removal decision) |
 

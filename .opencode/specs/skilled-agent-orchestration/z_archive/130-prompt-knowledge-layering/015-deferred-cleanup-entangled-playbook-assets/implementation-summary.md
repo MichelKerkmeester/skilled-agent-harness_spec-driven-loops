@@ -60,14 +60,14 @@ the same value twice) that I first suspected was lossy. The README settles it: D
 modes (`auto`/`dangerous`), so the dedup is correct, and I fixed the matching version-drift wording
 from "3-tier risk taxonomy" to "2 permission modes." `cli-devin/quota-fallback.md` repoints
 `model-profiles.json` from a path that does not exist (`sk-prompt/assets/`) to the real one
-(`sk-prompt-small-model/assets/`). `cli-opencode/cli_reference.md` adds a benchmark-confirmed
+(`sk-prompt-models/assets/`). `cli-opencode/cli_reference.md` adds a benchmark-confirmed
 MiniMax-M3 row. All three keep the dividers 014 applied.
 
 ### Playbook card paths repointed
 
 The sk-prompt manual-testing-playbook pointed at `cli_prompt_quality_card.md` in its old sk-prompt
 location in 9 places, including two `rg` commands that would have found nothing after the phase-013
-move. All 9 now resolve to `sk-prompt-small-model/assets/cli_prompt_quality_card.md`.
+move. All 9 now resolve to `sk-prompt-models/assets/cli_prompt_quality_card.md`.
 
 ### Asset leading dividers removed
 

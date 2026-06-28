@@ -86,7 +86,7 @@ Remove every Gemini host-runtime and Gemini-model reference outside `specs/**` s
 - Delete the `hooks/gemini/` subsystem in system-spec-kit `mcp_server` and remove `gemini-cli` from the `RuntimeId` union and detection in `lib/runtime-detection.ts`; update `hooks/index.ts`, `hooks/README.md`, the runtime fixtures, and the runtime/hook test suites.
 - Remove `gemini-cli` from system-code-graph `mcp_server/lib/runtime-detection.ts` and its test.
 - Delete the `hooks/gemini/` subsystem in system-skill-advisor with its test and two Gemini docs; de-index the feature catalog (37 to 36) and manual testing playbook (46 to 45) including the enforcing vitest.
-- Remove `gemini-flash` from the deep-loop-runtime fallback router and test, the sk-prompt-small-model model-profiles/per-model-budgets/refs, and the cli-devin quota-fallback doc.
+- Remove `gemini-flash` from the deep-loop-runtime fallback router and test, the sk-prompt-models model-profiles/per-model-budgets/refs, and the cli-devin quota-fallback doc.
 - Remove Gemini from the system-skill-advisor runtime-VALUE surface: the canonical tuple in `advisor-runtime-values.ts`, `metrics.ts`, the tool schemas, the plugin bridge, the Python advisor script, the parity/observability/plugin-bridge tests, and the bench.
 - Remove the Gemini docs-comment token from `shared/gate-3-classifier.ts` (provably behavior-neutral) and Gemini references from the spec-kit script and extractor surfaces with their tests.
 - Update deep-loop-runtime, deep-improvement, sk-doc, the session-cleanup plugin, and cli-devin code/docs that named Gemini as a runtime or fan-out executor.

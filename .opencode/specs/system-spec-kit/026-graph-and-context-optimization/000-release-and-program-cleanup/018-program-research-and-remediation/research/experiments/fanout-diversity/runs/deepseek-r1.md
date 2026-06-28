@@ -85,7 +85,7 @@ Let me verify several key claims across the investigations before composing the 
 
 **Findings:**
 
-1. The `enhances` edge type lives in the SQLite `skill_edges` table with a weight band of `[0.3, 0.7]` at `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:136-142`. Edges originate from per-skill `graph-metadata.json` declarations (e.g., `cli-devin/graph-metadata.json:8-14` declares it enhances `sk-prompt-small-model`). [HIGH]
+1. The `enhances` edge type lives in the SQLite `skill_edges` table with a weight band of `[0.3, 0.7]` at `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:136-142`. Edges originate from per-skill `graph-metadata.json` declarations (e.g., `cli-devin/graph-metadata.json:8-14` declares it enhances `sk-prompt-models`). [HIGH]
 
 2. The propagation tool `skill_graph_propagate_enhances` is registered at `.opencode/skills/system-skill-advisor/mcp_server/tools/skill-graph-tools.ts:66-83` and dispatched through `.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts:35-74`. It is gated behind `requireTrustedCaller` (line 40) with a workspace-escape guard (line 49-53). [HIGH]
 
@@ -113,7 +113,7 @@ Let me verify several key claims across the investigations before composing the 
 
 2. Of the 7 subsystem targets, only `skill-advisor` is `mutates`-class; the other 6 are `read-only`. All rebuild operations are routed to `/doctor:update`. [HIGH]
 
-3. **17 of 21 skills** have no `/doctor` target. The uncovered skills are: `sk-git`, `sk-code`, `sk-code-review`, `sk-doc`, `sk-prompt`, `sk-prompt-small-model`, `cli-claude-code`, `cli-codex`, `cli-devin`, `cli-opencode`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`, `mcp-chrome-devtools`, `mcp-click-up`, `mcp-code-mode`. [HIGH]
+3. **17 of 21 skills** have no `/doctor` target. The uncovered skills are: `sk-git`, `sk-code`, `sk-code-review`, `sk-doc`, `sk-prompt`, `sk-prompt-models`, `cli-claude-code`, `cli-codex`, `cli-devin`, `cli-opencode`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`, `mcp-chrome-devtools`, `mcp-click-up`, `mcp-code-mode`. [HIGH]
 
 4. Only **4 of 21 skills** have even a standalone `doctor.sh` script (not wired into the `/doctor` router): `system-spec-kit/scripts/doctor.sh`, `system-code-graph/scripts/doctor.sh`, `system-skill-advisor/scripts/doctor.sh`, `mcp-code-mode/scripts/doctor.sh`. These check dist existence and native-module imports only. [HIGH]
 

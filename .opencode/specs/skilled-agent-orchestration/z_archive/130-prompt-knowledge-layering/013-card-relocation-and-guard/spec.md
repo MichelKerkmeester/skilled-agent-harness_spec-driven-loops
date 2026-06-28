@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: card-relocation-and-guard"
-description: "Relocate the canonical cli_prompt_quality_card.md from sk-prompt to the sk-prompt-small-model hub, repoint ~15 consumer references, fix the card's own links, and update the sync guard's canonical path."
+description: "Relocate the canonical cli_prompt_quality_card.md from sk-prompt to the sk-prompt-models hub, repoint ~15 consumer references, fix the card's own links, and update the sync guard's canonical path."
 trigger_phrases:
   - "card relocation"
   - "canonical card hub"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Validate then commit phase 013"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -58,7 +58,7 @@ _memory:
 
 Phase 13 (final) of spec 130. The canonical CLI quality card lived in `sk-prompt`, which is meant
 to be a forkable, generic framework engine. The card is CLI-dispatch-specific, so it moves to the
-`sk-prompt-small-model` hub. This phase reverses what phase 009 pointed at sk-prompt and rewrites
+`sk-prompt-models` hub. This phase reverses what phase 009 pointed at sk-prompt and rewrites
 (does not discard) the sync guard 009 built.
 
 **Scope boundary**: the card file (git rename), the ~15 consumer references, the card's own
@@ -86,7 +86,7 @@ the hub, with every consumer + the card's own links + the guard repointed and st
 ## 3. SCOPE
 
 ### In Scope
-- `git mv` `sk-prompt/assets/cli_prompt_quality_card.md` → `sk-prompt-small-model/assets/cli_prompt_quality_card.md`.
+- `git mv` `sk-prompt/assets/cli_prompt_quality_card.md` → `sk-prompt-models/assets/cli_prompt_quality_card.md`.
 - Repoint ~15 consumer refs (5 cli SKILL.md, 5 cli cards, hub SKILL.md, `cli-devin/references/context-budget.md`).
 - Fix the card's own outbound links (framework defs → `../../sk-prompt/references/`).
 - Clean `sk-prompt/graph-metadata.json` of the card (enhance_when, key_files, entities, source_docs).

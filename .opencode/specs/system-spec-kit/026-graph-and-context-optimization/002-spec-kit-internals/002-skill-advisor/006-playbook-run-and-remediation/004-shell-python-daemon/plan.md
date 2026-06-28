@@ -100,7 +100,7 @@ Findings recorded, not remediated.
 
 ### Phase 1: Setup
 - [x] Assign waves per operator direction (maximize delegation)
-- [x] Read SK skills (cli-devin, cli-opencode, sk-prompt-small-model) per CLI-dispatch mandate
+- [x] Read SK skills (cli-devin, cli-opencode, sk-prompt-models) per CLI-dispatch mandate
 - [x] Compose RCAF + pre-planned prompt files per executor
 
 ### Phase 2: Core Implementation

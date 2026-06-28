@@ -148,7 +148,7 @@ _memory:
 - [ ] T080 Verify `devin` binary present + license valid; smoke-test passes
 - [ ] T081 Sweep `/tmp/devin-*` + `/tmp/deep-research-*` orphans pre-dispatch
 - [ ] T082 Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule per ADR-002 + CLAUDE.md mandate)
-- [ ] T083 Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule per CLAUDE.md mandate)
+- [ ] T083 Read `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule per CLAUDE.md mandate)
 - [ ] T084 Read `.opencode/skills/deep-research/SKILL.md` for `/deep:start-research-loop` command contract
 - [ ] T085 Compose iteration prompt-pack from spec.md + findings/audit-findings (summary) + validation/validation-report (summary) + research question
 - [ ] T086 Iter 1: `/deep:start-research-loop :auto` with cli-devin SWE-1.6 — output to `research/iterations/iter-01-cli-devin.json`

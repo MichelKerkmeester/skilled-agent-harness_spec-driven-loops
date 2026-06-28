@@ -161,7 +161,7 @@ SKILL.md `version: 1.2.2.0` should be `version: 1.6.0.0` to match latest changel
 ## Step 5: Reverse Check — Recent Commits vs Changelog
 
 Recent commits touching deep-agent-improvement:
-- `e40c454235` feat(renames): ship 007 sk-prompt-small-model + 115 sk-ai-council/ai-council arcs
+- `e40c454235` feat(renames): ship 007 sk-prompt-models + 115 sk-ai-council/ai-council arcs
 - `656542344e` chore(workspace): commit autonomous overnight 016 parallel work + session artifacts
 - `5232a21c0d` refactor(006): refine 17 skill READMEs via cli-devin (zero §1 tables, zero em dashes)
 - `9150e9c6b9` 111 W3.B: renumber 008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction -> 006-system-skill-advisor-extraction
@@ -172,7 +172,7 @@ Recent commits touching deep-agent-improvement:
 - `b296404961` → covered by v1.6.0.0 changelog ✓
 - `81894a5b27` → changelog authoring commit, not a feature change ✓
 - `5232a21c0d` → README refinement, likely minor, no changelog required ✓
-- `e40c454235` → sk-prompt-small-model work, may not require DAI changelog ✓
+- `e40c454235` → sk-prompt-models work, may not require DAI changelog ✓
 
 **Finding**: No missing changelog entries for recent substantive changes.
 

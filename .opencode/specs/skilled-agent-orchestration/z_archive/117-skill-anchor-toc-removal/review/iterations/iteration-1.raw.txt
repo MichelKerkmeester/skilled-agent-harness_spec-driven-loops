@@ -1129,7 +1129,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-HYYJDv8k' (errno=Operation
 .opencode/skills/sk-doc/scripts/tests/test_validator.py
 .opencode/skills/sk-git/README.md
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skills/sk-prompt-small-model/README.md
+.opencode/skills/sk-prompt-models/README.md
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/system-code-graph/ARCHITECTURE.md
@@ -2445,7 +2445,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-v7hGywJr' (errno=Operation
 .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/sk-git/README.md
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skills/sk-prompt-small-model/README.md
+.opencode/skills/sk-prompt-models/README.md
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/system-code-graph/ARCHITECTURE.md
@@ -3255,7 +3255,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-0WDzHYmB' (errno=Operation
 .opencode/skills/sk-doc/references/readme_creation.md @@ -190,13 +190 @@ Numbered subsections appear inside Feature sections (3.1, 3.2 at H3 and 3.1.1, 3 -## TABLE OF CONTENTS
 .opencode/skills/sk-git/README.md @@ -18,3 +17,0 @@ trigger_phrases: -## TABLE OF CONTENTS
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md @@ -23,19 +22,0 @@ Canonical package artifacts: -## TABLE OF CONTENTS
-.opencode/skills/sk-prompt-small-model/README.md @@ -16,17 +15,0 @@ A thin sentinel skill that gives operators one discoverable entry point for smal -## TABLE OF CONTENTS
+.opencode/skills/sk-prompt-models/README.md @@ -16,17 +15,0 @@ A thin sentinel skill that gives operators one discoverable entry point for smal -## TABLE OF CONTENTS
 .opencode/skills/sk-prompt/README.md @@ -19,19 +18,0 @@ trigger_phrases: -## TABLE OF CONTENTS
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md @@ -29,20 +28,0 @@ Canonical package artifacts: -## TABLE OF CONTENTS
 .opencode/skills/system-code-graph/ARCHITECTURE.md @@ -17,14 +16,0 @@ importance_tier: "important" -## TABLE OF CONTENTS

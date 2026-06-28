@@ -49,7 +49,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Cross-check cli-devin permission-mode count against `cli-devin/README.md` (2 modes)
-- [x] T002 Confirm `sk-prompt-small-model/assets/model-profiles.json` exists and the old `sk-prompt/assets/` path does not
+- [x] T002 Confirm `sk-prompt-models/assets/model-profiles.json` exists and the old `sk-prompt/assets/` path does not
 - [x] T003 Enumerate the 9 dangling playbook card paths and the 6 asset leading dividers
 <!-- /ANCHOR:phase-1 -->
 

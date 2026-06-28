@@ -3,13 +3,13 @@
     "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
     "edits": [
       {
-        "old": "03--model-presets/013-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md",
-        "new": "03--model-presets/deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md",
+        "old": "03--model-presets/013-deepseek-v4-via-sk-prompt-models-and-sk-prompt.md",
+        "new": "03--model-presets/deepseek-v4-via-sk-prompt-models-and-sk-prompt.md",
         "count": 1
       },
       {
-        "old": "03--model-presets/012-swe16-via-sk-prompt-small-model-and-sk-prompt.md",
-        "new": "03--model-presets/swe16-via-sk-prompt-small-model-and-sk-prompt.md",
+        "old": "03--model-presets/012-swe16-via-sk-prompt-models-and-sk-prompt.md",
+        "new": "03--model-presets/swe16-via-sk-prompt-models-and-sk-prompt.md",
         "count": 1
       },
       {
@@ -240,21 +240,21 @@
     ]
   },
   {
-    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/012-swe16-via-sk-prompt-small-model-and-sk-prompt.md",
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/012-swe16-via-sk-prompt-models-and-sk-prompt.md",
     "edits": [
       {
-        "old": "03--model-presets/012-swe16-via-sk-prompt-small-model-and-sk-prompt.md",
-        "new": "03--model-presets/swe16-via-sk-prompt-small-model-and-sk-prompt.md",
+        "old": "03--model-presets/012-swe16-via-sk-prompt-models-and-sk-prompt.md",
+        "new": "03--model-presets/swe16-via-sk-prompt-models-and-sk-prompt.md",
         "count": 1
       }
     ]
   },
   {
-    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/013-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md",
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/013-deepseek-v4-via-sk-prompt-models-and-sk-prompt.md",
     "edits": [
       {
-        "old": "03--model-presets/013-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md",
-        "new": "03--model-presets/deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md",
+        "old": "03--model-presets/013-deepseek-v4-via-sk-prompt-models-and-sk-prompt.md",
+        "new": "03--model-presets/deepseek-v4-via-sk-prompt-models-and-sk-prompt.md",
         "count": 1
       }
     ]

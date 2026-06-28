@@ -92,7 +92,7 @@ Sequential phase pipeline with one blocking human-approval gate (phase 4 → 5).
 - **Target skill**: `.opencode/skills/deep-agent-improvement/` — read in phase 2 audit, surgically edited where deviations found, README rewritten in phase 3, version bumped at end of phase 3.
 - **Schemas**: 4 JSON Schemas (audit-finding, changelog-entry, validation-report, iteration-output) that gate every state-file write across phases 2-5.
 - **Validator**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` — exit 0 at every phase boundary.
-- **Dispatcher (phase 5)**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning) and `.opencode/skills/sk-prompt-small-model/SKILL.md`; mixed-executor breadth/adjudication/synthesis split per `deep-agent-improvement/references/mixed_executor_methodology.md`.
+- **Dispatcher (phase 5)**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning) and `.opencode/skills/sk-prompt-models/SKILL.md`; mixed-executor breadth/adjudication/synthesis split per `deep-agent-improvement/references/mixed_executor_methodology.md`.
 
 ### Data Flow
 
@@ -191,7 +191,7 @@ Required inventories:
 
 #### Step 5a: 10 iterations (one at a time, SIGKILL between)
 
-- [ ] Read `.opencode/skills/cli-devin/SKILL.md` + `.opencode/skills/sk-prompt-small-model/SKILL.md` (CLI + small-model dispatch rules).
+- [ ] Read `.opencode/skills/cli-devin/SKILL.md` + `.opencode/skills/sk-prompt-models/SKILL.md` (CLI + small-model dispatch rules).
 - [ ] Read `deep-agent-improvement/references/mixed_executor_methodology.md` for the breadth/adjudication/synthesis split.
 - [ ] Iters 1-6: `cli-devin --model swe-1.6` (RCAF) — breadth exploration.
 - [ ] Iter 7: `cli-devin --model swe-1.6` — adjudication / false-positive filter pass.

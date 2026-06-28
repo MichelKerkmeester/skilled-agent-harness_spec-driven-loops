@@ -26,7 +26,7 @@ The spec-folder gate runs via `bash .../validate.sh <spec-folder> --strict` and 
 The active `pre-commit` hook runs five gates [SOURCE: file:.git/hooks/pre-commit]:
 - doc-model-refs drift (advisory, non-blocking) — only checks that docs cite canonical model names from `registry.ts`.
 - comment-hygiene (blocking) — code comments only.
-- prompt-knowledge card-sync (blocking) — fires only for `cli-*`, `sk-prompt`, `sk-prompt-small-model` paths.
+- prompt-knowledge card-sync (blocking) — fires only for `cli-*`, `sk-prompt`, `sk-prompt-models` paths.
 - MCP mutation-class (blocking) — fires only for `mcp-*` install/doctor scripts.
 - tool-ownership map (blocking) — MCP TOOL_DEFINITIONS only.
 

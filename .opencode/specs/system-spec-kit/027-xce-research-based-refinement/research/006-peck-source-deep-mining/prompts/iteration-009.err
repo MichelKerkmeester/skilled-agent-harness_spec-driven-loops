@@ -16,8 +16,8 @@
 [0m✱ [0mGlob "**/deep-research-state.jsonl"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 5 matches[0m
 [0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/benchmarks/models.json[90m [offset=1, limit=260][0m
 [0m→ [0mRead .opencode/skills/cli-opencode/SKILL.md[90m [offset=1, limit=260][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=300][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/assets/model-profiles.json[90m [offset=1, limit=360][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/assets/model-profiles.json[90m [offset=1, limit=360][0m
 [0m→ [0mRead .opencode/skills/sk-code-review/SKILL.md[90m [offset=1, limit=260][0m
 [0m✱ [0mGrep "(executor|model|cli-opencode|small model|variant|severity|review|cheap|cost|quota|provider)"[90m in .opencode/commands · 406 matches[0m
 [0m→ [0mRead .claude/skills/deep-review/SKILL.md[90m [offset=1, limit=320][0m
@@ -37,7 +37,7 @@
 [0m→ [0mRead .opencode/commands/deep/start-review-loop.md[90m [offset=1, limit=260][0m
 [0m→ [0mRead .opencode/skills/sk-code-review/references/review_core.md[90m [offset=1, limit=220][0m
 [0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts[90m [offset=188, limit=105][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/assets/model-profiles.json[90m [offset=360, limit=115][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/assets/model-profiles.json[90m [offset=360, limit=115][0m
 [0m→ [0mRead .opencode/skills/cli-opencode/SKILL.md[90m [offset=245, limit=75][0m
 [0m→ [0mRead .opencode/skills/sk-code-review/SKILL.md[90m [offset=261, limit=245][0m
 [0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/deep-research-state.jsonl[90m [offset=1, limit=80][0m

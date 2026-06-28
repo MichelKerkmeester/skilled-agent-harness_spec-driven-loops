@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-004-discriminating-bakeoff"

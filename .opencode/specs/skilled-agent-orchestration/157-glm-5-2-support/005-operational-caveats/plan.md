@@ -40,7 +40,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown profile + JSON registry |
-| **Framework** | sk-prompt-small-model profile + cli-opencode |
+| **Framework** | sk-prompt-models profile + cli-opencode |
 | **Storage** | None (file-based) |
 | **Testing** | Card-sync guard, JSON parse |
 

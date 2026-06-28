@@ -1,5 +1,5 @@
 ---
-title: sk-prompt-small-model
+title: sk-prompt-models
 description: Per-model prompt-craft hub for small-model dispatch. Look up a model's prompt framework, scaffold and gotchas here, then apply the executor mechanics from cli-opencode.
 trigger_phrases:
   - "small model prompt"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 0.8.0.14
 ---
 
-# sk-prompt-small-model
+# sk-prompt-models
 
 > Before you dispatch any small model, read that model's prompt-craft profile here. The right framework, scaffold and gotchas live in one place. The executor mechanics live in cli-opencode. Each stays clean.
 
@@ -37,7 +37,7 @@ Mixing that prompt-craft with executor mechanics (binary flags, invocation wrapp
 
 ### What It Does
 
-`sk-prompt-small-model` is the per-model prompt-craft hub for small-model dispatch. It owns one prompt-craft profile per active model in `references/models/`, indexed by `references/models/_index.md`. Each profile records the model's primary and fallback framework, its pre-planning density, a tuned scaffold and a gotchas table. The profiles mirror `assets/model_profiles.json`, the registry that is the source of truth for context length, executors, quota pools and recommended frameworks.
+`sk-prompt-models` is the per-model prompt-craft hub for small-model dispatch. It owns one prompt-craft profile per active model in `references/models/`, indexed by `references/models/_index.md`. Each profile records the model's primary and fallback framework, its pre-planning density, a tuned scaffold and a gotchas table. The profiles mirror `assets/model_profiles.json`, the registry that is the source of truth for context length, executors, quota pools and recommended frameworks.
 
 The hub carries no tools and no runtime code. It is reached when the skill advisor co-surfaces it alongside `cli-opencode`. You read the profile here for the prompt-craft, then follow `references/pattern_index.md` to the executor mechanics in `cli-opencode`.
 
@@ -52,14 +52,14 @@ The hub carries no tools and no runtime code. It is reached when the skill advis
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "dispatch mimo-v2.5-pro through cli-opencode" --threshold 0.8
 
 # Or read the runtime instructions
-Read(".opencode/skills/sk-prompt-small-model/SKILL.md")
+Read(".opencode/skills/sk-prompt-models/SKILL.md")
 ```
 
 **Step 2: Pick the model.** Open `references/models/_index.md`. It is a thin table: model id, primary framework, fallback, density and status. Find the row for your model.
 
 **Step 3: Read the profile.** Load `references/models/<id>.md`. It gives you the framework (primary and fallback), the pre-planning density, the scaffold shape and the gotchas table. Apply those when you build the prompt.
 
-**Step 4: Cross to the executor.** Open `references/pattern_index.md`. It locates each mechanic (context budget, output verification, quota fallback, permissions schema) by path in `sk-prompt-small-model` or `cli-opencode`. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
+**Step 4: Cross to the executor.** Open `references/pattern_index.md`. It locates each mechanic (context budget, output verification, quota fallback, permissions schema) by path in `sk-prompt-models` or `cli-opencode`. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
 
 ---
 
@@ -114,7 +114,7 @@ This split keeps each side clean. Change a framework assignment in the profile a
 
 ### When To Use This Skill
 
-Reach for `sk-prompt-small-model` before you dispatch any small model through `cli-opencode`. Reach for it when you need to know which framework a model wants or what its gotchas are. Reach for it when you are authoring a prompt-pack and need the scaffold shape.
+Reach for `sk-prompt-models` before you dispatch any small model through `cli-opencode`. Reach for it when you need to know which framework a model wants or what its gotchas are. Reach for it when you are authoring a prompt-pack and need the scaffold shape.
 
 Skip it for frontier models (Opus, Sonnet, gpt-5.5). Those are out of scope. Skip it when you are looking for binary flags or invocation wrappers. Those live in `cli-opencode`, not here.
 
@@ -124,12 +124,12 @@ Four skills own the small-model dispatch workflow. Each owns one layer and none 
 
 | Skill | What it owns |
 |---|---|
-| `sk-prompt-small-model` (this skill) | Per-model prompt-craft profiles and the model registry data |
+| `sk-prompt-models` (this skill) | Per-model prompt-craft profiles and the model registry data |
 | `sk-prompt` | The generic framework definitions (the seven-framework set and CLEAR scoring) |
 | `cli-opencode` | Executor mechanics for all active models: flags, wrappers, the permissions schema and budget propagation |
 | `system-spec-kit` | Runtime TypeScript helpers used by the executors |
 
-`sk-prompt-small-model` enhances `cli-opencode` (weight 0.8), so the advisor surfaces this hub next to that executor. The generic framework definitions live in `sk-prompt`. The profiles choose from that set but never restate the definitions. This three-way split means you pick the framework from here, the definition from `sk-prompt` and the mechanics from `cli-opencode`. Each layer changes independently.
+`sk-prompt-models` enhances `cli-opencode` (weight 0.8), so the advisor surfaces this hub next to that executor. The generic framework definitions live in `sk-prompt`. The profiles choose from that set but never restate the definitions. This three-way split means you pick the framework from here, the definition from `sk-prompt` and the mechanics from `cli-opencode`. Each layer changes independently.
 
 ---
 
@@ -176,8 +176,8 @@ The model index and registry record benchmark-backed framework assignments for M
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-small-model/README.md --type readme` reports zero issues |
-| SKILL.md structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-small-model/SKILL.md --type skill` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-models/README.md --type readme` reports zero issues |
+| SKILL.md structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-models/SKILL.md --type skill` reports zero issues |
 | Profile mirror check | Diff each profile's framework block against its `model_profiles.json` row |
 | Benchmarks | Review the MiniMax benchmark 003, MiMo benchmark 004 and Kimi benchmark 007 evidence cited by `references/models/_index.md` and `assets/model_profiles.json` |
 

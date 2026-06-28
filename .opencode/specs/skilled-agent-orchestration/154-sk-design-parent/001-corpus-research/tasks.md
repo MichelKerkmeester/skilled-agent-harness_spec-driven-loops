@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm MiMo + Kimi opencode model ids (`sk-prompt-small-model/references/models/`)
+- [x] T001 Confirm MiMo + Kimi opencode model ids (`sk-prompt-models/references/models/`)
 - [x] T002 Confirm `~/.claude-account2` is authenticated for the Opus lineage
 - [x] T003 Write `research/deep-research-fanout-config.json` with per-lineage `iterations` 20/15/8/7
 <!-- /ANCHOR:phase-1 -->

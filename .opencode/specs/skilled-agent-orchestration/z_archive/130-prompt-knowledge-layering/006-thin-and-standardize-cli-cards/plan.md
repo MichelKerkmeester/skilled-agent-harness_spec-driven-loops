@@ -76,7 +76,7 @@ Documentation delegation — each CLI card retains executor-specific dispatch me
 ### Key Components
 - **Canonical card** (`sk-prompt/assets/cli_prompt_quality_card.md`): owns the framework table, CLEAR scoring, and 3-tier precedence rule
 - **Delegating mirrors** (5 CLI `references/prompt_quality_card.md` files): own executor dispatch mechanics; link to canonical card for everything else
-- **Hub profiles** (`sk-prompt-small-model/references/models/`): own per-model prompt-craft overrides (framework preference, token budget, output-verification contract)
+- **Hub profiles** (`sk-prompt-models/references/models/`): own per-model prompt-craft overrides (framework preference, token budget, output-verification contract)
 
 ### Data Flow
 Executor dispatch consults local card for mechanics -> card links to canonical for framework selection -> canonical links to hub profile for per-model overrides. No duplication at any layer.

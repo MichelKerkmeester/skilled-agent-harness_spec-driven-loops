@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Phase 19: sk-prompt-small-model Frontmatter Alignment"
-description: "Apply the canonical reference/asset frontmatter contract to sk-prompt-small-model (0/12 references and 0/2 assets carry the detailed block today)."
+title: "Feature Specification: Phase 19: sk-prompt-models Frontmatter Alignment"
+description: "Apply the canonical reference/asset frontmatter contract to sk-prompt-models (0/12 references and 0/2 assets carry the detailed block today)."
 trigger_phrases:
-  - "sk-prompt-small-model frontmatter alignment"
-  - "sk-prompt-small-model reference frontmatter"
+  - "sk-prompt-models frontmatter alignment"
+  - "sk-prompt-models reference frontmatter"
   - "skill frontmatter standardization"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models"
     last_updated_at: "2026-06-11T13:10:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 14 docs normalized and verified"
@@ -18,14 +18,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/019-sk-prompt-small-model"
+      session_id: "scaffold-scaffold/019-sk-prompt-models"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 19: sk-prompt-small-model Frontmatter Alignment
+# Feature Specification: Phase 19: sk-prompt-models Frontmatter Alignment
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,7 +47,7 @@ FAILURE MODES:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-06-11 |
-| **Branch** | `scaffold/019-sk-prompt-small-model` |
+| **Branch** | `scaffold/019-sk-prompt-models` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 19 of 22 |
 | **Predecessor** | 018-sk-prompt |
@@ -62,13 +62,13 @@ FAILURE MODES:
 
 This is **Phase 19** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.
 
-**Scope Boundary**: Frontmatter blocks of `.opencode/skills/sk-prompt-small-model/references/**/*.md` and `.opencode/skills/sk-prompt-small-model/assets/**/*.md` only. No body-content, SKILL.md, feature_catalog, or graph-metadata.json changes.
+**Scope Boundary**: Frontmatter blocks of `.opencode/skills/sk-prompt-models/references/**/*.md` and `.opencode/skills/sk-prompt-models/assets/**/*.md` only. No body-content, SKILL.md, feature_catalog, or graph-metadata.json changes.
 
 **Dependencies**:
 - 001-frontmatter-benefit-investigation must be complete and the operator must have fixed the canonical frontmatter contract it recommends.
 
 **Deliverables**:
-- Every sk-prompt-small-model reference/asset doc conforms to the canonical contract; zero drift between guidance and practice for this skill.
+- Every sk-prompt-models reference/asset doc conforms to the canonical contract; zero drift between guidance and practice for this skill.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -80,10 +80,10 @@ This is **Phase 19** of the Skill reference and asset frontmatter alignment acro
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-sk-prompt-small-model reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (trigger_phrases, importance_tier, contextType), while the rest carry title+description only. The investigation phase (001) showed no runtime consumes the detailed block on these doc types, so the variance is pure drift.
+sk-prompt-models reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (trigger_phrases, importance_tier, contextType), while the rest carry title+description only. The investigation phase (001) showed no runtime consumes the detailed block on these doc types, so the variance is pure drift.
 
 ### Purpose
-All 12 reference and 2 asset docs in sk-prompt-small-model carry exactly the canonical frontmatter contract decided after 001, with no leftover unconsumed fields.
+All 12 reference and 2 asset docs in sk-prompt-models carry exactly the canonical frontmatter contract decided after 001, with no leftover unconsumed fields.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -92,8 +92,8 @@ All 12 reference and 2 asset docs in sk-prompt-small-model carry exactly the can
 ## 3. SCOPE
 
 ### In Scope
-- Frontmatter normalization for `.opencode/skills/sk-prompt-small-model/references/**/*.md` (12 docs, 0 with detailed block)
-- Frontmatter normalization for `.opencode/skills/sk-prompt-small-model/assets/**/*.md` (2 docs, 0 with detailed block)
+- Frontmatter normalization for `.opencode/skills/sk-prompt-models/references/**/*.md` (12 docs, 0 with detailed block)
+- Frontmatter normalization for `.opencode/skills/sk-prompt-models/assets/**/*.md` (2 docs, 0 with detailed block)
 - Adding the minimal contract to any doc missing frontmatter entirely
 
 ### Out of Scope
@@ -105,8 +105,8 @@ All 12 reference and 2 asset docs in sk-prompt-small-model carry exactly the can
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/references/**/*.md` | Modify | Normalize frontmatter to canonical contract |
-| `.opencode/skills/sk-prompt-small-model/assets/**/*.md` | Modify | Normalize frontmatter to canonical contract |
+| `.opencode/skills/sk-prompt-models/references/**/*.md` | Modify | Normalize frontmatter to canonical contract |
+| `.opencode/skills/sk-prompt-models/assets/**/*.md` | Modify | Normalize frontmatter to canonical contract |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +118,7 @@ All 12 reference and 2 asset docs in sk-prompt-small-model carry exactly the can
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every sk-prompt-small-model references/assets md file conforms to the canonical frontmatter contract | Sweep script reports 0 nonconforming files for sk-prompt-small-model |
+| REQ-001 | Every sk-prompt-models references/assets md file conforms to the canonical frontmatter contract | Sweep script reports 0 nonconforming files for sk-prompt-models |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -132,8 +132,8 @@ All 12 reference and 2 asset docs in sk-prompt-small-model carry exactly the can
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 0 of 14 sk-prompt-small-model reference/asset docs deviate from the canonical contract
-- **SC-002**: Frontmatter sweep for sk-prompt-small-model matches the repo-wide inventory expectations recorded in 001
+- **SC-001**: 0 of 14 sk-prompt-models reference/asset docs deviate from the canonical contract
+- **SC-002**: Frontmatter sweep for sk-prompt-models matches the repo-wide inventory expectations recorded in 001
 <!-- /ANCHOR:success-criteria -->
 
 ---

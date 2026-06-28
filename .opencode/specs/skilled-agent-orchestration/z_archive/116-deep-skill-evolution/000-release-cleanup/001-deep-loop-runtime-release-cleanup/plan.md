@@ -95,7 +95,7 @@ Sequential phase pipeline with one blocking human-approval gate (phase 4 → 5).
 - **Schemas**: 4 JSON Schemas (audit-finding, changelog-entry, validation-report, iteration-output) — gate every state-file write across phases 2/4/5. Copied verbatim from sibling 002.
 - **Validator**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` — exit 0 at every phase boundary.
 - **Phase-2 auxiliary dispatcher**: `cli-opencode --model deepseek/deepseek-v4-pro --variant high` for bulk artifact-vs-template diff work (per CLAUDE.md small-model dispatch matrix + user delegation rule).
-- **Phase-5 dispatcher**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning) and `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch matrix).
+- **Phase-5 dispatcher**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning) and `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch matrix).
 
 ### Data Flow
 
@@ -144,7 +144,7 @@ Required inventories:
 - Path references: `rg -F` every file path mentioned in any audited artifact under `.opencode/skills/deep-loop-runtime/` to confirm targets exist.
 - MCP tool names: `rg "mcp__" .opencode/skills/deep-loop-runtime/` — every name must resolve to a registered tool in `opencode.json`.
 - HVR rule applicability: scan every audited prose paragraph against banned-words / banned-phrase lists from `hvr_rules.md`.
-- Cross-system targets named in README rewrite: `deep-research`, `deep-review`, `deep-ai-council`, `system-spec-kit`, `sk-prompt`, `sk-prompt-small-model`, `cli-devin`, `cli-opencode`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/deep:ask-ai-council`.
+- Cross-system targets named in README rewrite: `deep-research`, `deep-review`, `deep-ai-council`, `system-spec-kit`, `sk-prompt`, `sk-prompt-models`, `cli-devin`, `cli-opencode`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/deep:ask-ai-council`.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -211,7 +211,7 @@ Required inventories:
 #### Step 5a: 10 iterations (one at a time, SIGKILL between)
 
 - [ ] Read `.opencode/skills/cli-devin/SKILL.md` (mandatory CLI dispatch rule per ADR-002).
-- [ ] Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (mandatory small-model dispatch rule).
+- [ ] Read `.opencode/skills/sk-prompt-models/SKILL.md` (mandatory small-model dispatch rule).
 - [ ] Smoke-test `devin` binary; sweep `/tmp/devin-*` pre-dispatch.
 - [ ] Compose iteration prompt-pack from spec.md + audit-findings (summary) + validation-report (summary) + research question.
 - [ ] Iters 1-10: `/deep:start-research-loop :auto` with cli-devin SWE-1.6 executor (RCAF + CLEAR + medium-density pre-planning).
@@ -275,7 +275,7 @@ Required inventories:
 | `sk-doc` templates | Internal | Green | All phases blocked |
 | `hvr_rules.md` | Internal | Green | Phase 3 HVR scoring blocked |
 | `.opencode/skills/cli-devin/SKILL.md` | Internal | Green | Phase 5 dispatch invalid without it (CLAUDE.md CLI dispatch rule) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Internal | Green | Phase 5 small-model dispatch invalid without it |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Internal | Green | Phase 5 small-model dispatch invalid without it |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -442,5 +442,5 @@ ADR-006 is added at phase 4 → 5 transition recording explicit human approval. 
 - **Implementation Summary**: `implementation-summary.md` (post-implementation)
 - **Sibling Plan**: `../002-deep-research/plan.md` (structural template; differs on toolchain split)
 - **CLI dispatch contract**: `.opencode/skills/cli-devin/SKILL.md` (mandatory pre-read per ADR-002 for phase 5)
-- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-small-model/SKILL.md` (mandatory pre-read per ADR-002 for phase 5)
+- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-models/SKILL.md` (mandatory pre-read per ADR-002 for phase 5)
 - **Phase-2 auxiliary dispatcher**: `.opencode/skills/cli-opencode/SKILL.md` (deepseek/deepseek-v4-pro direct API routing)

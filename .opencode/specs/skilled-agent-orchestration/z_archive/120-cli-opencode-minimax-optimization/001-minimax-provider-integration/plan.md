@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: MiniMax 2.7 direct-API provider integration"
-description: "Mirror the existing deepseek direct-API provider pattern to wire minimax into cli-opencode docs, append a minimax-2.7 registry entry, and surface it via the sk-prompt-small-model sentinel."
+description: "Mirror the existing deepseek direct-API provider pattern to wire minimax into cli-opencode docs, append a minimax-2.7 registry entry, and surface it via the sk-prompt-models sentinel."
 trigger_phrases:
   - "minimax provider plan"
   - "minimax-2.7 integration plan"
@@ -39,12 +39,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown skill docs + JSON registry |
-| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-small-model) |
+| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-models) |
 | **Storage** | `sk-prompt/assets/model-profiles.json` (shared small-model registry) |
 | **Testing** | `jq` JSON validation + `rg` grep checks + spec-kit `validate.sh --strict` |
 
 ### Overview
-Add MiniMax 2.7 as a direct-API provider by mirroring the existing `deepseek` provider pattern. Touches 5 files: cli-opencode SKILL.md + cli_reference.md (provider docs), sk-prompt model-profiles.json (registry entry), and the sk-prompt-small-model sentinel SKILL.md + graph-metadata.json (discovery). No code/runtime changes — config + documentation only.
+Add MiniMax 2.7 as a direct-API provider by mirroring the existing `deepseek` provider pattern. Touches 5 files: cli-opencode SKILL.md + cli_reference.md (provider docs), sk-prompt model-profiles.json (registry entry), and the sk-prompt-models sentinel SKILL.md + graph-metadata.json (discovery). No code/runtime changes — config + documentation only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -74,7 +74,7 @@ Mirror existing provider — replicate the `deepseek` direct-API provider's docu
 ### Key Components
 - **cli-opencode provider docs**: SKILL.md §3/§4 + cli_reference.md §4/§5 declare auth pre-flight, login shape, model-selection row, `--variant` behavior
 - **Shared registry**: `model-profiles.json` `executors[]` entry that the fallback router reads (executor/provider/quota_pool)
-- **Sentinel**: `sk-prompt-small-model` SKILL.md description + graph-metadata trigger phrases for discovery
+- **Sentinel**: `sk-prompt-models` SKILL.md description + graph-metadata trigger phrases for discovery
 
 ### Data Flow
 A caller selects `--model minimax/minimax-2.7`; cli-opencode runs auth pre-flight against `opencode providers list`; on success dispatches through the MiniMax.io direct API using `MINIMAX_API_KEY`. The registry entry lets the fallback router treat `minimax-api` as its own quota pool.
@@ -94,7 +94,7 @@ This phase edits a shared schema file (`model-profiles.json`) consumed by the fa
 | `sk-prompt/assets/model-profiles.json` | Producer — registry of model→executor paths | update (append `minimax-2.7`, bump version) | `jq` parse + entry shape matches `deepseek-v4-pro` |
 | `system-spec-kit/.../fallback-router.ts` | Consumer — reads `primary_quota_pool`/`fallback_target` | unchanged (new pool `minimax-api`, fail-fast `fallback_target: null`) | `rg -n "quota_pool\|fallback_target" fallback-router.ts` confirms it reads, not enumerates |
 | `cli-opencode` SKILL.md + cli_reference.md | Docs — provider auth + model selection | update (mirror `deepseek` rows) | `rg -n "minimax"` shows new rows |
-| `sk-prompt-small-model` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + trigger phrases) | `rg -n "minimax"` shows entries |
+| `sk-prompt-models` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + trigger phrases) | `rg -n "minimax"` shows entries |
 
 Required inventories:
 - Same-class producers: `rg -n '"provider"|"quota_pool"' .opencode/skills/sk-prompt/assets/model-profiles.json`.
@@ -116,7 +116,7 @@ Required inventories:
 - [ ] Add `minimax` rows to cli_reference.md §4 (auth pre-flight + login) and §5 (model selection + `--variant`)
 - [ ] Add `minimax` to cli-opencode SKILL.md §3/§4
 - [ ] Append `minimax-2.7` entry to model-profiles.json + bump `version` to 1.2
-- [ ] Update sk-prompt-small-model SKILL.md description + graph-metadata.json trigger phrases
+- [ ] Update sk-prompt-models SKILL.md description + graph-metadata.json trigger phrases
 
 ### Phase 3: Verification
 - [ ] `jq .` on model-profiles.json passes

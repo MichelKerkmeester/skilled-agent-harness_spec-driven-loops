@@ -59,7 +59,7 @@ GLM-5.2 is the **flagship long-horizon coding** model in the rotation — Z.AI p
 **Avoid:** RCAF (objectively weakest on strict validators — benchmark 008)
 **Pre-planning density:** LEAN
 
-These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) entry `glm-5.2` (the DATA source of truth). See `../../../sk-prompt/references/patterns_evaluation.md` for the generic COSTAR / TIDD-EC / RCAF definitions — this profile records the per-model choice and rationale only.
+These choices mirror `recommended_frameworks` in [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) entry `glm-5.2` (the DATA source of truth). See `../../../sk-prompt/references/patterns_evaluation.md` for the generic COSTAR / TIDD-EC / RCAF definitions — this profile records the per-model choice and rationale only.
 
 **Why COSTAR for GLM-5.2 (empirical, benchmark 008):** On invalid-dominant strict validators, four frameworks tied at perfect correctness — COSTAR, TIDD-EC, CIDI, RACE — while RCAF was the measured-weakest (correctness 0.976, the only sub-perfect framework, plus the worst format adherence at 0.889). Among the perfect tier, COSTAR is the safest default: it is the **most token-efficient** (13 median output words vs TIDD-EC 38, CIDI/RACE 94) AND the most cross-validated pick — it is also the empirical winner for kimi-k2.7-code (benchmark 007) and MiMo-V2.5-Pro (benchmark 004), two comparable strong coding models. COSTAR frames by objective + output-shape rather than guardrails, which fits a strong model that does not need heavy scaffolding. TIDD-EC (fallback) tied on correctness and is the 2nd-most token-efficient. **Avoid RCAF** — it was the only framework to miss strict-validator edges and had the weakest format adherence. The trust verdict was a TIE among the perfect tier (top-pair COSTAR vs TIDD-EC, margin 0, 90% CI [0,0]), so this is "best-of-tied + corroborated", not a decisive single winner.
 
@@ -81,7 +81,7 @@ These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-mode
 | 4 | race | 1.000 | 1.000 | 94 |
 | 5 | rcaf | 0.976 | 0.889 | 85 |
 
-**Trust verdict: TIE on correctness** — the four perfect frameworks cannot be statistically separated (top-pair COSTAR vs TIDD-EC margin 0, 90% CI [0,0]). But the structure is actionable: **`rcaf` is objectively the weakest** — it was the only framework to miss strict-validator cases and had the worst format adherence — so it is avoided for this model, and the default sits in the perfect tier (COSTAR; see §3 for why COSTAR over the equally-correct TIDD-EC/RACE/CIDI). 1 of 45 dispatches was a transient infra failure (exit -1, `dispatch_failed`) and was excluded from scoring; the affected framework (costar) was perfect on its 8 valid dispatches. Outputs: `sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`). Do not carry scores from sibling models — contexts and providers differ; the cross-model COSTAR agreement is corroboration, not transfer.
+**Trust verdict: TIE on correctness** — the four perfect frameworks cannot be statistically separated (top-pair COSTAR vs TIDD-EC margin 0, 90% CI [0,0]). But the structure is actionable: **`rcaf` is objectively the weakest** — it was the only framework to miss strict-validator cases and had the worst format adherence — so it is avoided for this model, and the default sits in the perfect tier (COSTAR; see §3 for why COSTAR over the equally-correct TIDD-EC/RACE/CIDI). 1 of 45 dispatches was a transient infra failure (exit -1, `dispatch_failed`) and was excluded from scoring; the affected framework (costar) was perfect on its 8 valid dispatches. Outputs: `sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`). Do not carry scores from sibling models — contexts and providers differ; the cross-model COSTAR agreement is corroboration, not transfer.
 
 ---
 
@@ -131,7 +131,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -157,7 +157,7 @@ Model-specific capability fields and flags are sourced from the `glm-5.2` entry 
 
 ## 7. SEE ALSO
 
-- [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
+- [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, TIDD-EC, RCAF, full library).
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Z.AI GLM Coding Plan); non-TTY rule, permissions, model-selection guidance.
 - [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.

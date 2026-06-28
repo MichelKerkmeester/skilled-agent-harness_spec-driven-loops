@@ -340,7 +340,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-small-model/assets/`, or a CLI-agnostic system-spec-kit reference?",
+      "text": "Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-models/assets/`, or a CLI-agnostic system-spec-kit reference?",
       "addedAtIteration": 26,
       "source": "iteration-markdown"
     },

@@ -529,11 +529,11 @@
       "id": "q26",
       "band": "paraphrase",
       "prompt": "dispatch this to a small model like kimi for the cheap pass",
-      "gold": "sk-prompt-small-model",
+      "gold": "sk-prompt-models",
       "top": {
-        "baseline": "sk-prompt-small-model",
-        "rrf": "sk-prompt-small-model",
-        "rrf_guard": "sk-prompt-small-model"
+        "baseline": "sk-prompt-models",
+        "rrf": "sk-prompt-models",
+        "rrf_guard": "sk-prompt-models"
       }
     },
     {

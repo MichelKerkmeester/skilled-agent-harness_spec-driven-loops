@@ -61,7 +61,7 @@ _memory:
 - [x] T003 Launch `/deep:start-research-loop:auto` (`--spec-folder` this folder, `--executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast --max-iterations=10`)
 - [x] T004 Monitor iterations to convergence or 10 (ran all 10; ratio 0.92 → 0.12)
 - [x] T005 Synthesize `research.md` (17 sections) + `resource-map.md`
-- [x] T006 Extract follow-on delta list (sk-prompt-small-model + cli-opencode edits)
+- [x] T006 Extract follow-on delta list (sk-prompt-models + cli-opencode edits)
 <!-- /ANCHOR:phase-2 -->
 
 ---

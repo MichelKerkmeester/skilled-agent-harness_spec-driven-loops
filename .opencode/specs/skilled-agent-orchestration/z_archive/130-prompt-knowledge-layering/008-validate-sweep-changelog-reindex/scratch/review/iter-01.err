@@ -1,23 +1,23 @@
 [0m
 > build · gpt-5.5-fast
 [0m
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"You are a rigorous, skeptical senior architect reviewing a COMPLETED refactor (a 3-layer prompt-knowledge architecture) in this repo. Do NOT modify any files — review only.\n\nWhat changed: (1) .opencode/skills/sk-prompt owns framework craft + assets/model-profiles.json which gained a recommended_frameworks field on 8 small models; (2) .opencode/skills/sk-prompt-small-model became the per-model prompt-craft HUB with references/models/<id>.md profiles (6 fixed sections each) for minimax-m3, mimo-v2.5-pro, minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1; (3) the 5 cli-*/assets/prompt_quality_card.md were thinned to delegate the framework table + CLEAR to .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md, and all 5 cli-*/SKILL.md carry an identical 3-tier precedence rule.\n\nReview ITERATION 1 — ARCHITECTURE COHERENCE: read sk-prompt-small-model/SKILL.md, its references/models/_index.md, sk-prompt/assets/cli_prompt_quality_card.md, and 2-3 profiles. Assess: is the 3-layer ownership boundary clean and consistent? Any concept owned in two places, or orphaned? Does the data (model-profiles.json recommended_frameworks) stay consistent with the prose profiles? Is the hub philosophy coherent end to end?\n\nOutput STRICTLY as findings: lines prefixed [P0]/[P1]/[P2] with file:line and a concrete one-line fix. If a thing is sound, you may note [OK] briefly. End with a one-line VERDICT (PASS / CONDITIONAL / FAIL).","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"You are a rigorous, skeptical senior architect reviewing a COMPLETED refactor (a 3-layer prompt-knowledge architecture) in this repo. Do NOT modify any files — review only.\n\nWhat changed: (1) .opencode/skills/sk-prompt owns framework craft + assets/model-profiles.json which gained a recommended_frameworks field on 8 small models; (2) .opencode/skills/sk-prompt-models became the per-model prompt-craft HUB with references/models/<id>.md profiles (6 fixed sections each) for minimax-m3, mimo-v2.5-pro, minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1; (3) the 5 cli-*/assets/prompt_quality_card.md were thinned to delegate the framework table + CLEAR to .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md, and all 5 cli-*/SKILL.md carry an identical 3-tier precedence rule.\n\nReview ITERATION 1 — ARCHITECTURE COHERENCE: read sk-prompt-models/SKILL.md, its references/models/_index.md, sk-prompt/assets/cli_prompt_quality_card.md, and 2-3 profiles. Assess: is the 3-layer ownership boundary clean and consistent? Any concept owned in two places, or orphaned? Does the data (model-profiles.json recommended_frameworks) stay consistent with the prose profiles? Is the hub philosophy coherent end to end?\n\nOutput STRICTLY as findings: lines prefixed [P0]/[P1]/[P2] with file:line and a concrete one-line fix. If a thing is sound, you may note [OK] briefly. End with a one-line VERDICT (PASS / CONDITIONAL / FAIL).","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m→ [0mSkill "sk-code-review"
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=2200][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=2200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=1, limit=2200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/_index.md[90m [offset=1, limit=2200][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=2200][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=2200][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=1, limit=1200][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=1, limit=1200][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md[90m [offset=1, limit=1200][0m
-[0m✱ [0mGrep "^## [1-6]\.|\*\*Primary:\*\*|\*\*Fallback:\*\*|\*\*Avoid:\*\*|recommended_frameworks|Dispatch Gotchas|Non-TTY|opencode run|devin --|--variant|--agent"[90m in .opencode/skills/sk-prompt-small-model/references/models · 135 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/minimax-m3.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/swe-1.6.md[90m [offset=1, limit=1200][0m
+[0m✱ [0mGrep "^## [1-6]\.|\*\*Primary:\*\*|\*\*Fallback:\*\*|\*\*Avoid:\*\*|recommended_frameworks|Dispatch Gotchas|Non-TTY|opencode run|devin --|--variant|--agent"[90m in .opencode/skills/sk-prompt-models/references/models · 135 matches[0m
 [0m✱ [0mGrep "Prompt-Composition Precedence|Tier 1|Tier 2|Tier 3|cli_prompt_quality_card|framework selection table|CLEAR"[90m in .opencode/skills · 35 matches[0m
-[0m✱ [0mGlob ".opencode/skills/sk-prompt-small-model/references/models/*.md"[90m in . · 9 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt-models/references/models/*.md"[90m in . · 9 matches[0m
 [0m✱ [0mGlob ".opencode/skills/cli-*/assets/prompt_quality_card.md"[90m in . · 5 matches[0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md[90m [offset=1, limit=180][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md[90m [offset=1, limit=170][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=1, limit=180][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md[90m [offset=1, limit=170][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/minimax-2.7.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/qwen3.6.md[90m [offset=1, limit=170][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/glm-5.1.md[90m [offset=1, limit=170][0m
 [0m→ [0mRead .opencode/skills/cli-opencode/assets/prompt_quality_card.md[90m [offset=1, limit=80][0m
 [0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=80][0m
 [0m✱ [0mGrep "3-tier precedence|Tier 1|Tier 2|Tier 3|fast path|model override|deep path|cli_prompt_quality_card"[90m in .opencode/skills · 14 matches[0m

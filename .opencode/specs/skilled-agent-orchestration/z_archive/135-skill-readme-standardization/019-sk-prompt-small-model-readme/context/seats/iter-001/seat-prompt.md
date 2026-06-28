@@ -1,8 +1,8 @@
-Spec folder: skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file, and do not run the skill. Return findings as your final assistant message only.
+Spec folder: skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file, and do not run the skill. Return findings as your final assistant message only.
 
 Role: You are a documentation analyst gathering an accurate factual map of one skill so its README can be rewritten.
 
-Context: The skill lives at `.opencode/skills/sk-prompt-small-model/`. Read its `SKILL.md` in full, its current `README.md`, and the files under `references/` (including `references/models/`), `assets/` and `benchmarks/`. Stay within that skill directory. This skill is the per-model prompt-craft hub for small-model dispatch: it owns the per-model prompt-craft profiles in `references/models/` (framework, scaffold, gotchas, mirroring `model-profiles.json`), while executor mechanics (binary flags, invocation wrappers) live in `cli-devin` and `cli-opencode`. Note the sibling skills `cli-devin`, `cli-opencode` and `sk-prompt` only to describe boundaries.
+Context: The skill lives at `.opencode/skills/sk-prompt-models/`. Read its `SKILL.md` in full, its current `README.md`, and the files under `references/` (including `references/models/`), `assets/` and `benchmarks/`. Stay within that skill directory. This skill is the per-model prompt-craft hub for small-model dispatch: it owns the per-model prompt-craft profiles in `references/models/` (framework, scaffold, gotchas, mirroring `model-profiles.json`), while executor mechanics (binary flags, invocation wrappers) live in `cli-devin` and `cli-opencode`. Note the sibling skills `cli-devin`, `cli-opencode` and `sk-prompt` only to describe boundaries.
 
 Action: Produce a factual map for a README rewrite. Report under exactly these eight headings:
 

@@ -44,7 +44,7 @@ _memory:
 | **Testing** | Manual read-back + validate.sh --strict |
 
 ### Overview
-This phase inserted an identical 3-tier prompt-composition precedence block into all 5 cli-* SKILL.md files so that every dispatch context observes the same decision order: fast path, hub-profile model override, and sk-prompt deep path. The cli-devin bespoke mandate was narrowed to coexist with the hub lookup, the sk-prompt-small-model canonical card's dead Mirror Sync section was replaced with a duplication-guard description, and the pattern-index.md rows for MiniMax and MiMo were repointed to hub profile files.
+This phase inserted an identical 3-tier prompt-composition precedence block into all 5 cli-* SKILL.md files so that every dispatch context observes the same decision order: fast path, hub-profile model override, and sk-prompt deep path. The cli-devin bespoke mandate was narrowed to coexist with the hub lookup, the sk-prompt-models canonical card's dead Mirror Sync section was replaced with a duplication-guard description, and the pattern-index.md rows for MiniMax and MiMo were repointed to hub profile files.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -74,11 +74,11 @@ Documentation-only edit pass — no runtime code changes.
 ### Key Components
 - **3-tier precedence block**: The shared Markdown block inserted into each cli-* SKILL.md. Defines fast path, model-override (hub), and deep-path tiers in fixed order.
 - **cli-devin mandate reconciliation**: Narrowing of the "MUST compose through sk-prompt" language so it defers to the hub profile when one exists.
-- **Duplication-guard description**: Replacement text in sk-prompt-small-model SKILL.md that states the hub profile is the single source of truth.
+- **Duplication-guard description**: Replacement text in sk-prompt-models SKILL.md that states the hub profile is the single source of truth.
 - **pattern-index.md hub repoint**: Row-level edits that replace fragmented framework-note references with canonical hub profile paths.
 
 ### Data Flow
-Callers read a cli-* SKILL.md to determine prompt-composition rules. The 3-tier block in each file directs them to the sk-prompt-small-model hub at tier 2, which holds the per-model profile. The pattern-index.md serves as a quick-reference lookup that now resolves to the same hub profiles.
+Callers read a cli-* SKILL.md to determine prompt-composition rules. The 3-tier block in each file directs them to the sk-prompt-models hub at tier 2, which holds the per-model profile. The pattern-index.md serves as a quick-reference lookup that now resolves to the same hub profiles.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -94,8 +94,8 @@ Callers read a cli-* SKILL.md to determine prompt-composition rules. The 3-tier 
 | cli-codex/SKILL.md | Defines dispatch rules for Codex | Insert 3-tier block | Read-back after edit |
 | cli-gemini/SKILL.md | Defines dispatch rules for Gemini | Insert 3-tier block | Read-back after edit |
 | cli-devin/references/prompt_templates.md | Holds bespoke compose mandate | Reconcile to 3-tier rule | Read-back after edit |
-| sk-prompt-small-model/SKILL.md | Canonical hub card | Replace Mirror Sync with duplication-guard | Grep for "Mirror Sync" returns empty |
-| sk-prompt-small-model/references/pattern-index.md | Quick-reference index | Repoint MiniMax/MiMo rows; update cli-opencode cell | Read-back after edit |
+| sk-prompt-models/SKILL.md | Canonical hub card | Replace Mirror Sync with duplication-guard | Grep for "Mirror Sync" returns empty |
+| sk-prompt-models/references/pattern-index.md | Quick-reference index | Repoint MiniMax/MiMo rows; update cli-opencode cell | Read-back after edit |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -105,14 +105,14 @@ Callers read a cli-* SKILL.md to determine prompt-composition rules. The 3-tier 
 
 ### Phase 1: Setup
 - [x] Read all 5 cli-* SKILL.md files and prompt_templates.md to locate insertion points and existing guidance
-- [x] Read sk-prompt-small-model SKILL.md and pattern-index.md to locate Mirror Sync section and hub-profile row targets
+- [x] Read sk-prompt-models SKILL.md and pattern-index.md to locate Mirror Sync section and hub-profile row targets
 
 ### Phase 2: Core Implementation
 - [x] Insert identical 3-tier precedence block into cli-devin/SKILL.md and reconcile mandate
 - [x] Insert identical 3-tier precedence block into cli-opencode/SKILL.md and update ownership cell
 - [x] Insert identical 3-tier precedence block into cli-claude-code, cli-codex, cli-gemini SKILL.md files
 - [x] Reconcile cli-devin/references/prompt_templates.md
-- [x] Replace stale Mirror Sync section in sk-prompt-small-model SKILL.md with duplication-guard
+- [x] Replace stale Mirror Sync section in sk-prompt-models SKILL.md with duplication-guard
 - [x] Repoint pattern-index.md rows and update cli-opencode ownership cell
 
 ### Phase 3: Verification
@@ -139,7 +139,7 @@ Callers read a cli-* SKILL.md to determine prompt-composition rules. The 3-tier 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 006 — thinned cli-* cards | Internal | Green | Baseline for insertion points |
-| sk-prompt-small-model hub profiles (references/models/) | Internal | Green | Required for valid pattern-index repoint |
+| sk-prompt-models hub profiles (references/models/) | Internal | Green | Required for valid pattern-index repoint |
 <!-- /ANCHOR:dependencies -->
 
 ---

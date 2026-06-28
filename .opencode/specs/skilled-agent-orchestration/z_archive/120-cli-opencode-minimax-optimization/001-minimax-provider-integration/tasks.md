@@ -63,7 +63,7 @@ _memory:
 - [x] T005 Add `minimax \| minimax/minimax-2.7` row to cli_reference.md §5 model-selection + `--variant` matrix
 - [x] T006 Add `minimax` to cli-opencode SKILL.md §3/§4 (`.opencode/skills/cli-opencode/SKILL.md`)
 - [x] T007 Append `minimax-2.7` entry + bump `version` to 1.2 (`.opencode/skills/sk-prompt/assets/model-profiles.json`)
-- [x] T008 [P] Update sentinel description + trigger phrases (`.opencode/skills/sk-prompt-small-model/SKILL.md` + `graph-metadata.json`)
+- [x] T008 [P] Update sentinel description + trigger phrases (`.opencode/skills/sk-prompt-models/SKILL.md` + `graph-metadata.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

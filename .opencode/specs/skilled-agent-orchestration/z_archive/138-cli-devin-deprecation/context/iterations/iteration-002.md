@@ -18,6 +18,6 @@
 - No `*.vitest.ts` for executor-config/executor-audit reference cli-devin (grep clean).
 
 ## Decision/Gap
-- swe-1.6 confirmed cognition-exclusive at the runtime level too. Resolution still pending (iter 4 will check sk-prompt-small-model + any cli-opencode path).
+- swe-1.6 confirmed cognition-exclusive at the runtime level too. Resolution still pending (iter 4 will check sk-prompt-models + any cli-opencode path).
 
 new-agreement-eligible=4 (3 verified + 1 new file) → **CONTINUE**.

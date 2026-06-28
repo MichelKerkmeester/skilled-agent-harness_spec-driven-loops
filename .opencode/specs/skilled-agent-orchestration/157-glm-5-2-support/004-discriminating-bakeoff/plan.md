@@ -41,7 +41,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | JSON benchmark profile + deep-loop model-benchmark machinery |
 | **Framework** | `/deep:model-benchmark` lane |
-| **Storage** | Run outputs under `sk-prompt-small-model/benchmarks/<run-label>/` |
+| **Storage** | Run outputs under `sk-prompt-models/benchmarks/<run-label>/` |
 | **Testing** | Correctness gate must separate (not uniform 1.0) |
 
 ### Overview

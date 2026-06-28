@@ -400,7 +400,7 @@ external_anchors:
     role: "playbook standards"
   - path: ".opencode/skills/cli-devin/SKILL.md"
     role: "phase-5 RCAF + medium-density dispatch rule (read before dispatch)"
-  - path: ".opencode/skills/sk-prompt-small-model/SKILL.md"
+  - path: ".opencode/skills/sk-prompt-models/SKILL.md"
     role: "phase-5 small-model dispatch sentinel"
   - path: ".opencode/skills/sk-code/references/opencode"
     role: "code standards for scripts bug-scan"

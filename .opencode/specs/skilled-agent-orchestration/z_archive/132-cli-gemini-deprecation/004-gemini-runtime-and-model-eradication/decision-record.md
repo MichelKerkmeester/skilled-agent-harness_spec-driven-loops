@@ -394,7 +394,7 @@ Release-history changelogs across ten components named Gemini and carried runtim
 <!-- ANCHOR:adr-004-impl -->
 ### Implementation
 
-**What changes**: Edit changelogs under `.opencode/changelog/{agent-orchestration,system-spec-kit,deep-ai-council,deep-improvement,deep-research,deep-review,cli-*,sk-doc,sk-prompt-small-model}/**` and top-level `PUBLIC_RELEASE.md`; reconcile runtime/mirror counts.
+**What changes**: Edit changelogs under `.opencode/changelog/{agent-orchestration,system-spec-kit,deep-ai-council,deep-improvement,deep-research,deep-review,cli-*,sk-doc,sk-prompt-models}/**` and top-level `PUBLIC_RELEASE.md`; reconcile runtime/mirror counts.
 
 **How to roll back**: Revert the changelog and `PUBLIC_RELEASE.md` edits from git.
 <!-- /ANCHOR:adr-004-impl -->

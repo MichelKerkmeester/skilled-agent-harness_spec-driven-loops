@@ -1,38 +1,38 @@
 [0m
 > build · gpt-5.5-fast
 [0m
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet per deep-review findings.\n\nFix ONLY these file(s): the 6 non-priority profiles under .opencode/skills/sk-prompt-small-model/references/models/: deepseek-v4-pro.md, kimi-k2.6.md, qwen3.6.md, glm-5.1.md, minimax-2.7.md, swe-1.6.md. Make ONLY the described changes; NO deletes of files; NO other files. Each profile makes comparative/quantitative claims NOT backed by model-profiles.json recommended_frameworks (which for these is mostly rcaf/medium/default-unverified, fallback null, avoid [], benchmark null). Read .opencode/skills/sk-prompt/assets/model-profiles.json for each model's actual recommended_frameworks. Then FIX: swe-1.6 §2 lists BUILD as a tertiary + an avoid list absent from JSON (fallback is \"star\", avoid []) -> either remove BUILD/avoid or clearly mark them as profile-level guidance not in the registry data; deepseek-v4-pro claims \"RCAF outperforms RACE/TIDD-EC\" + \"TIDD-EC overhead/no measured gain\" with benchmark null -> rephrase to \"registry default; no model-specific benchmark\"; kimi-k2.6 \"TIDD-EC/COSTAR irrelevant\" -> soften to registry-backed; qwen3.6 \"80% general-purpose framework\" -> remove the unsourced percentage; glm-5.1 \"plain Role+Action\" fallback while JSON fallback null -> remove the fallback wording; minimax-2.7 \"RACE scores lower\" (JSON only has TIDD-EC+RCAF scores) + invented \"15+ fixtures threshold\" -> remove RACE from scored comparison and the fixture-count, or cite packet 120/003 if verifiable. RULE: no claim may assert a number/comparison absent from model-profiles.json UNLESS attributed to a benchmark packet (120/003) that actually contains it. Also: in EACH profile's §5 Dispatch Gotchas, ensure it frames the flags as model-specific facts sourced from model-profiles.json with the full invocation wrapper living in cli-X (link), NOT owning the wrapper here. Preserve each file's H1 + 6-section structure.\n\nReport which specific edits you made per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet per deep-review findings.\n\nFix ONLY these file(s): the 6 non-priority profiles under .opencode/skills/sk-prompt-models/references/models/: deepseek-v4-pro.md, kimi-k2.6.md, qwen3.6.md, glm-5.1.md, minimax-2.7.md, swe-1.6.md. Make ONLY the described changes; NO deletes of files; NO other files. Each profile makes comparative/quantitative claims NOT backed by model-profiles.json recommended_frameworks (which for these is mostly rcaf/medium/default-unverified, fallback null, avoid [], benchmark null). Read .opencode/skills/sk-prompt/assets/model-profiles.json for each model's actual recommended_frameworks. Then FIX: swe-1.6 §2 lists BUILD as a tertiary + an avoid list absent from JSON (fallback is \"star\", avoid []) -> either remove BUILD/avoid or clearly mark them as profile-level guidance not in the registry data; deepseek-v4-pro claims \"RCAF outperforms RACE/TIDD-EC\" + \"TIDD-EC overhead/no measured gain\" with benchmark null -> rephrase to \"registry default; no model-specific benchmark\"; kimi-k2.6 \"TIDD-EC/COSTAR irrelevant\" -> soften to registry-backed; qwen3.6 \"80% general-purpose framework\" -> remove the unsourced percentage; glm-5.1 \"plain Role+Action\" fallback while JSON fallback null -> remove the fallback wording; minimax-2.7 \"RACE scores lower\" (JSON only has TIDD-EC+RCAF scores) + invented \"15+ fixtures threshold\" -> remove RACE from scored comparison and the fixture-count, or cite packet 120/003 if verifiable. RULE: no claim may assert a number/comparison absent from model-profiles.json UNLESS attributed to a benchmark packet (120/003) that actually contains it. Also: in EACH profile's §5 Dispatch Gotchas, ensure it frames the flags as model-specific facts sourced from model-profiles.json with the full invocation wrapper living in cli-X (link), NOT owning the wrapper here. Preserve each file's H1 + 6-section structure.\n\nReport which specific edits you made per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m→ [0mSkill "system-spec-kit"
 [0m→ [0mSkill "customize-opencode"
-[0m→ [0mSkill "sk-prompt-small-model"
+[0m→ [0mSkill "sk-prompt-models"
 [0m→ [0mSkill "sk-doc"
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/qwen3.6.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/glm-5.1.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/minimax-2.7.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/swe-1.6.md[90m [offset=1, limit=2000][0m
 [0m✗ [0mPatch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md:
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-models/references/models/swe-1.6.md:
 Framework choices mirror `recommended_frameworks` exactly: RCAF primary, STAR fallback,
 medium pre-planning, empty registry `avoid` list. BUILD and the strict-bundle wording
 caution are profile-level cli-devin guidance, not registry data.
 [0m% [0mPatch 5 files
 [0m% [0mPatch 1 file
-[0m✱ [0mGrep "outperforms|irrelevant|80 ?%|80 %|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-small-model/references/models · 2 matches[0m
-[0m✱ [0mGrep "Source of truth for model-specific capability fields and flags|Model-specific capability fields and flags|Full invocation wrappers|Full dispatch wrappers|executor-owned invocation wrapper"[90m in .opencode/skills/sk-prompt-small-model/references/models · 10 matches[0m
+[0m✱ [0mGrep "outperforms|irrelevant|80 ?%|80 %|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-models/references/models · 2 matches[0m
+[0m✱ [0mGrep "Source of truth for model-specific capability fields and flags|Model-specific capability fields and flags|Full invocation wrappers|Full dispatch wrappers|executor-owned invocation wrapper"[90m in .opencode/skills/sk-prompt-models/references/models · 10 matches[0m
 [0m% [0mPatch 2 files
-[0m✱ [0mGrep "outperforms|irrelevant|80 ?%|80 %|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-small-model/references/models · 1 match[0m
-[0m✱ [0mGrep "^# |^## "[90m in .opencode/skills/sk-prompt-small-model/references/models · 65 matches[0m
-[0m✱ [0mGrep "opencode run|devin --prompt-file|gtimeout -k|--message"[90m in .opencode/skills/sk-prompt-small-model/references/models · 3 matches[0m
-[0m✱ [0mGrep "BUILD|avoid|fallback|benchmark|null|score|fixture"[90m in .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md · 23 matches[0m
+[0m✱ [0mGrep "outperforms|irrelevant|80 ?%|80 %|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-models/references/models · 1 match[0m
+[0m✱ [0mGrep "^# |^## "[90m in .opencode/skills/sk-prompt-models/references/models · 65 matches[0m
+[0m✱ [0mGrep "opencode run|devin --prompt-file|gtimeout -k|--message"[90m in .opencode/skills/sk-prompt-models/references/models · 3 matches[0m
+[0m✱ [0mGrep "BUILD|avoid|fallback|benchmark|null|score|fixture"[90m in .opencode/skills/sk-prompt-models/references/models/swe-1.6.md · 23 matches[0m
 [0m% [0mPatch 3 files
-[0m✱ [0mGrep "outperforms|irrelevant|80 ?% general|80 % general|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-small-model/references/models · 0 matches[0m
-[0m✱ [0mGrep "opencode run|devin --prompt-file|gtimeout -k|--message"[90m in .opencode/skills/sk-prompt-small-model/references/models · 0 matches[0m
-[0m✱ [0mGrep "^## [1-6]\. "[90m in .opencode/skills/sk-prompt-small-model/references/models · 36 matches[0m
+[0m✱ [0mGrep "outperforms|irrelevant|80 ?% general|80 % general|Role \+ Action|RACE\) score|15\+|Tertiary|no measured gain|fallback to plain"[90m in .opencode/skills/sk-prompt-models/references/models · 0 matches[0m
+[0m✱ [0mGrep "opencode run|devin --prompt-file|gtimeout -k|--message"[90m in .opencode/skills/sk-prompt-models/references/models · 0 matches[0m
+[0m✱ [0mGrep "^## [1-6]\. "[90m in .opencode/skills/sk-prompt-models/references/models · 36 matches[0m
 [0m
-[0m$ [0mgit diff -- .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md .opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md .opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md
+[0m$ [0mgit diff -- .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md .opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md .opencode/skills/sk-prompt-models/references/models/qwen3.6.md .opencode/skills/sk-prompt-models/references/models/glm-5.1.md .opencode/skills/sk-prompt-models/references/models/minimax-2.7.md .opencode/skills/sk-prompt-models/references/models/swe-1.6.md
 (no output)
 [0m
 [0m$ [0mgit status --short
@@ -61,8 +61,8 @@ M .claude/settings.local.json
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
  M .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
- M .opencode/skills/sk-prompt-small-model/SKILL.md
- M .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+ M .opencode/skills/sk-prompt-models/SKILL.md
+ M .opencode/skills/sk-prompt-models/references/pattern-index.md
  M .opencode/skills/sk-prompt/SKILL.md
  M .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
  M .opencode/skills/sk-prompt/assets/model-profiles.json
@@ -162,8 +162,8 @@ M .claude/settings.local.json
 ?? .opencode/skills/deep-improvement/changelog/v1.12.0.0.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/MODES.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/tests/README.md
-?? .opencode/skills/sk-prompt-small-model/changelog/v0.5.0.0.md
-?? .opencode/skills/sk-prompt-small-model/references/models/
+?? .opencode/skills/sk-prompt-models/changelog/v0.5.0.0.md
+?? .opencode/skills/sk-prompt-models/references/models/
 ?? .opencode/skills/sk-prompt/changelog/v1.4.0.0.md
 ?? .opencode/skills/system-skill-advisor/changelog/v0.4.0.md
 ?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-mimo-v25pro-high.json
@@ -181,12 +181,12 @@ M .claude/settings.local.json
 ?? .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/
 ?? .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review-opus-claude2/
 [0m
-[0m$ [0mgit diff --no-index -- /dev/null .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md
-diff --git a/.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md b/.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md
+[0m$ [0mgit diff --no-index -- /dev/null .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md
+diff --git a/.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md b/.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md
 new file mode 100644
 index 0000000000..9b5a7ad5b0
 --- /dev/null
-+++ b/.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md
++++ b/.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md
 @@ -0,0 +1,153 @@
 +---
 +title: "DeepSeek-v4-Pro Prompt-Craft Profile"
@@ -335,20 +335,20 @@ index 0000000000..9b5a7ad5b0
 +
 +- [`../../../sk-prompt/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 +- [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
-+- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
++- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-models hub workflow and dispatch matrix
 +- [`../pattern-index.md`](../pattern-index.md) — Executor-owned MECHANICS (context budget, output verification, quota fallback)
 +- [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor card for cognition-pro path; non-TTY rules, timeout flags, `--agent` semantics
 +- [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for deepseek-api + opencode-go paths; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 +- **Sibling profiles (same RCAF/medium convention):** [`swe-1.6.md`](./swe-1.6.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md), [`glm-5.1.md`](./glm-5.1.md)
 +- **Empirical contrast:** [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium) and [`minimax-2.7.md`](./minimax-2.7.md) (TIDD-EC + dense — benchmark 120/003)
 [0m
-[0m$ [0mgit status --short -- .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md .opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md .opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md
-?? .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md
-?? .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md
-?? .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md
-?? .opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md
-?? .opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md
-?? .opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md
+[0m$ [0mgit status --short -- .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md .opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md .opencode/skills/sk-prompt-models/references/models/qwen3.6.md .opencode/skills/sk-prompt-models/references/models/glm-5.1.md .opencode/skills/sk-prompt-models/references/models/minimax-2.7.md .opencode/skills/sk-prompt-models/references/models/swe-1.6.md
+?? .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md
+?? .opencode/skills/sk-prompt-models/references/models/glm-5.1.md
+?? .opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md
+?? .opencode/skills/sk-prompt-models/references/models/minimax-2.7.md
+?? .opencode/skills/sk-prompt-models/references/models/qwen3.6.md
+?? .opencode/skills/sk-prompt-models/references/models/swe-1.6.md
 [0m
 [0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering[90m [offset=1, limit=200][0m
 [0m
@@ -565,13 +565,13 @@ optional arguments:
                         130 for skills, 110 for commands. Hard cap is fixed at
                         1536 (Claude Code internal limit).
 [0m
-[0m$ [0mpython3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-prompt-small-model --json
+[0m$ [0mpython3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-prompt-models --json
 {
   "valid": true,
   "message": "Skill is valid!",
   "warnings": [
     "Description is 440 chars, exceeds soft target of 130. Project total budget is ~5,600 chars (default 8,000 minus built-ins); trim per .opencode/skills/sk-doc/assets/frontmatter_templates.md \u00a7 'Description Budget & Trim Style'."
   ],
-  "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-small-model"
+  "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-models"
 }
 [0m

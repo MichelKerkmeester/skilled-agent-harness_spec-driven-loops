@@ -40,7 +40,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown skill docs + JSON registry (`model-profiles.json`) |
-| **Framework** | spec-kit phase parent; sk-prompt / sk-prompt-small-model / cli-* skills |
+| **Framework** | spec-kit phase parent; sk-prompt / sk-prompt-models / cli-* skills |
 | **Storage** | Files on disk; no DB writes in this phase |
 | **Testing** | Design review; the contracts are exercised by phases 002-008 + validate.sh |
 
@@ -74,7 +74,7 @@ Layered ownership — one owner per knowledge concept (see spec.md §8).
 
 ### Key Components
 - **sk-prompt**: framework craft + `model-profiles.json` DATA (incl. new `recommended_frameworks`).
-- **sk-prompt-small-model**: per-model prompt-craft prose hub (`references/models/<id>.md`).
+- **sk-prompt-models**: per-model prompt-craft prose hub (`references/models/<id>.md`).
 - **cli-***: executor mechanics + thin cards that delegate upward.
 
 ### Data Flow

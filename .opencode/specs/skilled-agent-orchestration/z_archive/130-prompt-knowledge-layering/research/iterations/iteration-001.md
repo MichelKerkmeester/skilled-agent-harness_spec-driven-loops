@@ -25,9 +25,9 @@ NEW-INFO: high (first pass).
 ---
 ## Full report (from account-2 plan file)
 
-# Deep-Research Iteration 1 — sk-prompt-small-model HUB ⇄ cli-* executor boundary
+# Deep-Research Iteration 1 — sk-prompt-models HUB ⇄ cli-* executor boundary
 
-**Question:** How to further refine, structure, and connect `sk-prompt-small-model` (the per-model prompt-craft HUB) and the five `cli-*` executor skills — the hub⇄executor boundary, delegation/precedence rules, per-model profiles, and interconnection.
+**Question:** How to further refine, structure, and connect `sk-prompt-models` (the per-model prompt-craft HUB) and the five `cli-*` executor skills — the hub⇄executor boundary, delegation/precedence rules, per-model profiles, and interconnection.
 
 **Evidence provenance:** Items marked ✅VERIFIED were read directly this iteration. Items marked ⚠️SUBAGENT came from Explore sub-agents whose detailed quotes proved partly unreliable (line numbers / card structure) — treat as leads to confirm, not facts. The central precedence-drift finding is ✅VERIFIED across all 5 SKILL.md files.
 
@@ -38,13 +38,13 @@ NEW-INFO: high (first pass).
 **3-layer architecture (specs 130 → 131 → 133, all Complete):**
 
 - **Layer 1 — `sk-prompt`** = framework engine. Owns the 7 frameworks, DEPTH, CLEAR, and the **canonical** card `sk-prompt/assets/cli_prompt_quality_card.md`. Model-agnostic / forkable (spec 131 evacuated `model-profiles.json` + benchmarks out of it). ✅VERIFIED card; ⚠️SUBAGENT spec history.
-- **Layer 2 — `sk-prompt-small-model`** = per-model prompt-craft HUB. Owns `assets/model-profiles.json` (registry; each model carries an `executors[]` array of executor+provider+quota_pool), `references/models/<id>.md` (8 active profiles), `references/models/_index.md`, `references/pattern-index.md`, `README.md`, and `benchmarks/`. ✅VERIFIED pattern-index + benchmarks dir; ⚠️SUBAGENT profile internals.
+- **Layer 2 — `sk-prompt-models`** = per-model prompt-craft HUB. Owns `assets/model-profiles.json` (registry; each model carries an `executors[]` array of executor+provider+quota_pool), `references/models/<id>.md` (8 active profiles), `references/models/_index.md`, `references/pattern-index.md`, `README.md`, and `benchmarks/`. ✅VERIFIED pattern-index + benchmarks dir; ⚠️SUBAGENT profile internals.
 - **Layer 3 — `cli-*`** (opencode, devin, codex, gemini, claude-code) = executor mechanics + a **thin** `assets/prompt_quality_card.md` that delegates the framework table + CLEAR to the canonical card, plus a 3-tier precedence rule restated in each `SKILL.md`.
 
 **The precedence contract (the spine of the whole system), ✅VERIFIED:**
 
 - Canonical 3-tier rule: `sk-prompt/assets/cli_prompt_quality_card.md:68-96`. Tier 1 = fast path (build from canonical card); Tier 2 = model override (a per-model profile OVERRIDES cross-model defaults — stated model-agnostically as "the executor's model-craft hub", `:75-76`); Tier 3 = escalate to `@prompt-improver`, triggers at `:79-85`.
-- **Tier 2 is restated identically in all 5** SKILL.md files: `cli-opencode:314`, `cli-devin:367`, `cli-codex:356`, `cli-gemini:309`, `cli-claude-code:350`. All name `../sk-prompt-small-model/references/models/<id>.md` + `model-profiles.json recommended_frameworks`. This is the clean hub link.
+- **Tier 2 is restated identically in all 5** SKILL.md files: `cli-opencode:314`, `cli-devin:367`, `cli-codex:356`, `cli-gemini:309`, `cli-claude-code:350`. All name `../sk-prompt-models/references/models/<id>.md` + `model-profiles.json recommended_frameworks`. This is the clean hub link.
 - **Tier 3 has drifted** (see Gaps §1).
 
 **Model → executor binding, ✅VERIFIED registry exists / ⚠️SUBAGENT field detail:**
@@ -91,7 +91,7 @@ Each executor states the rule in (a) the canonical card, (b) its own card, and (
 The registry `executors[]` array is the authoritative model→executor map, but: (a) per-model profiles point to executor files via a generic "See Also" rather than stating their concrete dispatch path(s) mirroring `executors[]`; and (b) nothing reconciles what each cli-* card *claims* to dispatch against the registry. A model added to `executors[]` for cli-opencode, or a model dropped from a card, drifts silently.
 
 **7. Frontier executors link to an empty target. ✅VERIFIED.**
-cli-codex/gemini/claude-code cards' §Related point to `../../sk-prompt-small-model/references/models/` but dispatch no profiled model and have no profile there (`cli-codex card:28`, `cli-claude-code card:44`). The link is currently noise; the `haiku`/`gemini-flash` registry stubs are unresolved (profile-less).
+cli-codex/gemini/claude-code cards' §Related point to `../../sk-prompt-models/references/models/` but dispatch no profiled model and have no profile there (`cli-codex card:28`, `cli-claude-code card:44`). The link is currently noise; the `haiku`/`gemini-flash` registry stubs are unresolved (profile-less).
 
 **8. Minor: cli-claude-code card re-states failure patterns. ✅VERIFIED.**
 `cli-claude-code card:34-40` (§4 Failure Patterns) partially duplicates canonical card §6 (`:100-108`) — small content the thin card could delegate.

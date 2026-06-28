@@ -247,7 +247,7 @@ const LINEAGE_LABEL_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
  * - `count`: number of replicas of THIS config to run (e.g. 5x the same model).
  * - `iterations`: per-lineage max-iterations override; null = packet default.
  * - `promptFramework`: optional per-model prompt framing key (e.g. "costar",
- *   "tidd-ec") resolved against sk-prompt-small-model when a consumer renders the
+ *   "tidd-ec") resolved against sk-prompt-models when a consumer renders the
  *   lineage prompt. null = consumer default. Loop-type-agnostic and optional, so
  *   research/review lineages that omit it are unaffected.
  */

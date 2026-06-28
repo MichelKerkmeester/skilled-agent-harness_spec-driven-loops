@@ -53,7 +53,7 @@
  {"id":"D5-A7","dim":"D5","corpus":"local","angle":"the advisor + co-surface graph edge don't cross the boundary — the parent must pre-resolve and bake the sk-design bundle into the dispatch"},
  {"id":"D5-A8","dim":"D5","corpus":"local","angle":"proof-of-application return path unparsed — a design failure_type in the agent-io result enum + a post-dispatch validator"},
  {"id":"D5-A9","dim":"D5","corpus":"local","angle":"multi-hop decay parent->CLI child->od inner generation agent — the brief+manifest must survive two boundaries into od run start --message"},
- {"id":"D5-A10","dim":"D5","corpus":"local","angle":"small-model design-blindness — fuse the sk-prompt-small-model profile with the design contract (a design-task scaffold per model profile)"},
+ {"id":"D5-A10","dim":"D5","corpus":"local","angle":"small-model design-blindness — fuse the sk-prompt-models profile with the design contract (a design-task scaffold per model profile)"},
  {"id":"D5-A11","dim":"D5","corpus":"local","angle":"AGENTS.md has no cross-CLI design-dispatch row — add the boundary-case routing rule"},
  {"id":"D5-A12","dim":"D5","corpus":"local","angle":"deterministic boundary checks as the silent-pass backstop — parent re-runs contrast_check.py + anti-slop sweep on returned artifacts"}
 ] }

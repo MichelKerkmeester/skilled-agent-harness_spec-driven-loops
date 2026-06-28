@@ -35,7 +35,7 @@ The orchestrator pre-verified the central architecture-vs-gap question: ADR-001 
 
 ### Orchestrator-side ground-truth pre-pass (5 reads + 2 composite Bash sweeps)
 
-1. Read `cli-devin/SKILL.md` (lines 1-200) + `sk-prompt-small-model/SKILL.md` (lines 1-120) to confirm SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
+1. Read `cli-devin/SKILL.md` (lines 1-200) + `sk-prompt-models/SKILL.md` (lines 1-120) to confirm SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
 2. Read `research/deep-research-config.json` (iterationCount=6), `research/deep-research-strategy.md` §4 iter 7 focus, full `deep-research-state.jsonl` (7 records: init + 6 iters), `research/iterations/iteration-006.md` (verify DR-029 + DR-033 framing not re-reportable), `iteration-002.md` (verify DR-016 scope = graph-metadata fields), `iteration-003.md` (verify DR-017/DR-018 scope = integration_points.md), `iteration-004.md` (verify catalog/playbook 17-entry confirmation — iter-4 noted catalog↔playbook agreement but did NOT flag the council omission as a finding), `iteration-005.md` (verify sub-README surface, not catalog/playbook).
 3. Read `.opencode/skills/deep-loop-runtime/SKILL.md` full (266 LOC) — confirmed §3.5 lines 142-153 explicitly document council primitives as in-scope.
 4. Read `.opencode/skills/deep-loop-runtime/README.md` lines 190-270 — confirmed §3.5 (L196-208), L79 feature row, L247 file-tree, L417 FAQ all document council as in-scope.

@@ -157,7 +157,7 @@ Improve the `sk-design` design family AND design the enforcement that guarantees
 - What exact syntax should represent optional Code Mode reference lookups without confusing them with the Playwright extraction backend? (iteration 25)
 - Should `toolSurface` live directly beside `backendKind` in `mode-registry.json`, or should `mode-registry.json` remain identity-only and generate a sibling `tool-policy.json`? (iteration 25)
 - Should `Task` be allowed for `reference-base` packets in all command surfaces, or should direct `/design:*` commands use a stricter mutation-free subset when `Task` is unavailable? (iteration 25)
-- Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-small-model/assets/`, or a CLI-agnostic system-spec-kit reference? (iteration 26)
+- Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-models/assets/`, or a CLI-agnostic system-spec-kit reference? (iteration 26)
 - Should a missing boundary proof cap the existing D1-intra score or become a separate hard gate before any D1/D2/D3 scoring? (iteration 26)
 - Should `cli-codex` and `cli-claude-code` gain design-specific templates directly, or should their generic templates link to one shared boundary asset to avoid drift? (iteration 26)
 - Should `provided_context_hash` hash the exact prompt slice, the on-disk file contents, or both? (iteration 26)

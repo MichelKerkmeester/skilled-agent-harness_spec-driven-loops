@@ -34,7 +34,7 @@ The strategy named three targets: phase 118 ADRs, phase 117 council ruling, and 
 ### Orchestrator-side ground-truth pre-pass (6 reads + 3 composite Bash sweeps)
 
 1. **`cli-devin/SKILL.md` (full 482 LOC)** — confirmed SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
-2. **`sk-prompt-small-model/SKILL.md` (full 228 LOC)** — confirmed sentinel routing anchor; no executor-specific rules to import.
+2. **`sk-prompt-models/SKILL.md` (full 228 LOC)** — confirmed sentinel routing anchor; no executor-specific rules to import.
 3. **`research/deep-research-config.json`** — iterationCount=8, executor=cli-devin/swe-1.6, timeout=1500.
 4. **`research/deep-research-strategy.md` §4 iter 9** — cross-arc references focus + non-goals + ADR-004 LOG_ONLY.
 5. **`research/deep-research-state.jsonl` (9 records: init + 8 iters)** — prior trail [11, 5, 8, 2, 2, 4, 1, 2], all 8 at 1.00 newInfoRatio.

@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-minimax-token-plan-provider"
@@ -75,10 +75,10 @@ The shared registry gains a `minimax-m3` entry (token-plan default, `fallback_ta
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modified | MiniMax dispatch template → `minimax-coding-plan/MiniMax-M3-highspeed` |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | Per-model override slugs |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modified | Trigger phrases |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Description, activation/keyword triggers, dispatch matrix |
-| `.opencode/skills/sk-prompt-small-model/description.json` | Modified | Description + keywords + trigger example |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modified | Ownership-boundary provider row |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modified | Trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Description, activation/keyword triggers, dispatch matrix |
+| `.opencode/skills/sk-prompt-models/description.json` | Modified | Description + keywords + trigger example |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modified | Ownership-boundary provider row |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modified | Trigger phrases |
 | `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md` | Modified | MiniMax mentions |
 | `.opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Modified | Fallback default model → `minimax-coding-plan/MiniMax-M2.7-highspeed` (Fix 2) |
 | `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | Modified | Fixture model id → token-plan slug; assertion keys off `label`, unaffected (Fix 2) |

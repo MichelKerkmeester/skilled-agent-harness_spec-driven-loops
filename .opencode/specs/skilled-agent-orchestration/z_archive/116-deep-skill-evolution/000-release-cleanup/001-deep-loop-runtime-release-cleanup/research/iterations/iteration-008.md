@@ -36,7 +36,7 @@ Per the secondary focus (ADR-004 LOG_ONLY): any defect in `coverage-graph-db.ts`
 ### Orchestrator-side ground-truth pre-pass (5 direct file reads + 1 grep sweep)
 
 1. **`cli-devin/SKILL.md` (full 482 LOC)** — confirmed SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
-2. **`sk-prompt-small-model/SKILL.md` (full 228 LOC)** — confirmed small-model routing anchor; pattern-index is in `cli-devin/references/`.
+2. **`sk-prompt-models/SKILL.md` (full 228 LOC)** — confirmed small-model routing anchor; pattern-index is in `cli-devin/references/`.
 3. **`research/deep-research-config.json`** — iterationCount=7, executor=cli-devin/swe-1.6, timeout=1500.
 4. **`research/deep-research-strategy.md` §4 iter 8 + §1 charter §2 non-goals** — focus + SC-007 invariant + ADR-004 LOG_ONLY.
 5. **`research/deep-research-state.jsonl` (8 records: init + 7 iters)** — prior trail [11, 5, 8, 2, 2, 4, 1], all 7 at 1.00 newInfoRatio.

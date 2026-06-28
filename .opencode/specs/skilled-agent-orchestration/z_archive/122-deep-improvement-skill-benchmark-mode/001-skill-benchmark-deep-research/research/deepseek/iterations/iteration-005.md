@@ -26,7 +26,7 @@ RQ6: exhaustive rename surface map + SAFE ORDERING for `deep-agent-improvement` 
 
 9. **Read** `system-skill-advisor/graph-metadata.json` — the enhances edge with target `deep-agent-improvement` that must be updated. [SOURCE: .opencode/skills/system-skill-advisor/graph-metadata.json:70-73]
 
-10. **Read** `sk-prompt-small-model/SKILL.md` to inventory cross-skill references. No explicit `deep-agent-improvement` reference was found in the body text at lines 1-229; the sentinel's graph-metadata.json may carry auto-inferred edges but the SKILL.md text itself does not directly name `deep-agent-improvement`. [SOURCE: .opencode/skills/sk-prompt-small-model/SKILL.md:1-229]
+10. **Read** `sk-prompt-models/SKILL.md` to inventory cross-skill references. No explicit `deep-agent-improvement` reference was found in the body text at lines 1-229; the sentinel's graph-metadata.json may carry auto-inferred edges but the SKILL.md text itself does not directly name `deep-agent-improvement`. [SOURCE: .opencode/skills/sk-prompt-models/SKILL.md:1-229]
 
 11. **Read** `AGENTS.md` to confirm the agent routing entry. [SOURCE: AGENTS.md:349]
 
@@ -164,7 +164,7 @@ Prior iterations established that Lane C's benchmark harness resolves the skill 
 
 **OQ-DEEPSEEK-I5-02**: Should the `deep-model-benchmark` alias group also be renamed (e.g., to `deep-benchmark` or kept as-is) when `deep-agent-improvement` becomes `deep-improvement`? The current architecture describes Lane B as "a MODE of the deep-agent-improvement skill" — after rename, this becomes "a MODE of the deep-improvement skill." If the model-benchmark alias group keeps its old name, it introduces naming asymmetry (the skill is `deep-improvement` but one of its lanes is `deep-model-benchmark`). If renamed, it introduces more surface edits. Decision belongs to Phase 002 decision-record.
 
-**OQ-DEEPSEEK-I5-03**: What is the exact relationship between `sk-prompt-small-model`'s `graph-metadata.json` enhances edges and the rename? The SKILL.md body does not explicitly name `deep-agent-improvement`, but the advisor's auto-inference may have created an enhances edge. This edge should be checked after `advisor_rebuild` runs post-rename. If present, it may auto-correct; if not, it's a non-issue.
+**OQ-DEEPSEEK-I5-03**: What is the exact relationship between `sk-prompt-models`'s `graph-metadata.json` enhances edges and the rename? The SKILL.md body does not explicitly name `deep-agent-improvement`, but the advisor's auto-inference may have created an enhances edge. This edge should be checked after `advisor_rebuild` runs post-rename. If present, it may auto-correct; if not, it's a non-issue.
 
 **OQ-DEEPSEEK-I5-04**: Should the `/deep:start-agent-improvement-loop` command verb be renamed to `/deep:start-improvement-loop`? The Phase 002 spec currently states "command verbs are NOT renamed unless Phase 001 shows a reason." This research finds that keeping the agent-improvement command verb under the new `deep-improvement` skill creates a mild naming asymmetry but is not a functional problem — the command verb describes what the lane does (improve agents), which is still accurate. The rename impact is zero if the verb is kept, and ~4 file renames + ~20 command-bodies edits if changed. Recommendation: keep the verb unchanged, document the asymmetry explicitly in Phase 002 decision-record.
 

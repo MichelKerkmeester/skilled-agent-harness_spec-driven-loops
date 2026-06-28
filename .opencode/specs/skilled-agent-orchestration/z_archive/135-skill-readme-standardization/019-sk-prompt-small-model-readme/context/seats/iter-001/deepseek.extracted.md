@@ -3,7 +3,7 @@ Now I have all the data needed. Here is the factual map:
 ---
 
 ## 1. PURPOSE
-`sk-prompt-small-model` is the per-model prompt-craft knowledge hub for small-model dispatch, owning one prompt-craft profile (framework, scaffold, gotchas) per active model, plus the shared model registry `assets/model-profiles.json`.
+`sk-prompt-models` is the per-model prompt-craft knowledge hub for small-model dispatch, owning one prompt-craft profile (framework, scaffold, gotchas) per active model, plus the shared model registry `assets/model-profiles.json`.
 
 ## 2. PROBLEM
 Every small model (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3, MiMo-V2.5-Pro) responds differently to prompt frameworks — MiniMax wants guardrail-heavy TIDD-EC + dense pre-planning, while MiMo wants COSTAR + lean and regresses under TIDD-EC. Without a single, discoverable hub that maps each model to its empirically-tested framework, scaffold shape, and dispatch gotchas, operators either use wrong defaults (detuning output) or must search across five executor skill directories to find the right recipe. Separating prompt-craft (per-model profiles here) from executor mechanics (binary flags, invocation wrappers in `cli-devin`/`cli-opencode`) keeps each concern clean — when a flag changes, only the executor is touched; when a framework choice changes, only the profile is updated.

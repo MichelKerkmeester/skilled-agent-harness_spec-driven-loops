@@ -30,7 +30,7 @@ MiniMax currently has one active executor path: `cli-opencode` through provider 
 
 This mirrors Qwen's single-path behavior more than DeepSeek's multi-provider situation. DeepSeek has direct API and gateway surfaces; MiniMax in this packet only has the direct MiniMax.io path. A fallback to DeepSeek, Kimi, GLM, or Qwen would be a task-routing decision after operator approval, not automatic quota fallback.
 
-Concrete delta: document `minimax-api` as fail-fast by default in `cli-opencode` and `sk-prompt-small-model`; do not populate `fallback_target` unless a later packet verifies and adopts a separate-pool target.
+Concrete delta: document `minimax-api` as fail-fast by default in `cli-opencode` and `sk-prompt-models`; do not populate `fallback_target` unless a later packet verifies and adopts a separate-pool target.
 
 ### F3 - Fallback should be single-step and pool-aware, not preference-aware
 
@@ -72,7 +72,7 @@ Concrete delta: leave `permissions-matrix.schema.json` unchanged. Add examples o
 ## Questions Remaining
 
 - Q5: synthesize MiniMax routing heuristics versus DeepSeek, Qwen, Kimi, and GLM.
-- Q5: produce the final concrete file-level delta list across `sk-prompt-small-model`, `sk-prompt`, `cli-opencode`, and any 114 runtime tests/docs that should be extended.
+- Q5: produce the final concrete file-level delta list across `sk-prompt-models`, `sk-prompt`, `cli-opencode`, and any 114 runtime tests/docs that should be extended.
 - Q5: decide whether MiniMax should be a default candidate for cost-conscious iteration or remain explicit-only pending live latency and quality data.
 
 ## Next Focus

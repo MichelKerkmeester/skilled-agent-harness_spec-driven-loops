@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Verify hub scaffold from phase 4 is in place (`.opencode/skills/sk-prompt-small-model/references/models/`)
+- [x] T001 Verify hub scaffold from phase 4 is in place (`.opencode/skills/sk-prompt-models/references/models/`)
 - [x] T002 Read `model-profiles.json` entries for all 6 target models to extract framework data
 - [x] T003 [P] Confirm 6-section template structure from existing priority profiles (mimo-v2.5-pro, minimax-m3)
 <!-- /ANCHOR:phase-1 -->

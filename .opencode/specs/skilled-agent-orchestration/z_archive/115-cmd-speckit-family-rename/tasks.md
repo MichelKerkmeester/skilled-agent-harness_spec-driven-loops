@@ -43,7 +43,7 @@ _memory:
 
 - [x] T001 [P] Map command surface via 3 parallel Explore agents (claude/opencode/gemini/codex inventory)
 - [x] T002 Confirm scope via AskUserQuestion (slash commands only + changelog updates + dangerous mode)
-- [x] T003 Read cli-devin SKILL.md + sk-prompt-small-model SKILL.md (required pre-dispatch reading)
+- [x] T003 Read cli-devin SKILL.md + sk-prompt-models SKILL.md (required pre-dispatch reading)
 - [x] T004 Compose RCAF dispatch prompt with sequential_thinking + Gate 3 pre-answer (`/tmp/devin-prompt-speckit-rename.md`)
 <!-- /ANCHOR:phase-1 -->
 

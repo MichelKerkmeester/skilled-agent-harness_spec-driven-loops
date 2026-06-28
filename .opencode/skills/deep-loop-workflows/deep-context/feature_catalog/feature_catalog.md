@@ -24,7 +24,7 @@ Use this catalog as the canonical inventory for the live `deep-context` feature 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
 | Frontier seeding | 3 features | `deep_context_auto.yaml` phase_init, `code_graph_query`, `context.md` setup phase |
-| By-model parallel sweep | 4 features | `phase_loop` YAML, `multi-seat-dispatch.cjs`, `fanout-run.cjs`, `sk-prompt-small-model` |
+| By-model parallel sweep | 4 features | `phase_loop` YAML, `multi-seat-dispatch.cjs`, `fanout-run.cjs`, `sk-prompt-models` |
 | Agreement merge | 3 features | `phase_loop` step_merge_findings, `reduce-state.cjs`, `fanout-merge.cjs` |
 | Convergence detection | 4 features | `convergence.cjs`, `coverage-graph-signals.ts`, `convergence.md`, `phase_loop` step_check_convergence |
 | Context report synthesis | 3 features | `phase_synthesis` YAML, `context_report_template.md`, `generate-context.js` |
@@ -145,7 +145,7 @@ Applies the correct prompt framework to each seat's rendered prompt based on its
 
 #### Current Reality
 
-`step_render_seat_prompts` uses `sk-prompt-small-model` to apply per-seat prompt framing: MiMo seats use COSTAR, MiniMax and DeepSeek seats use TIDD-EC, native seats carry no framework wrapper. Each seat's rendered prompt is stored at `{prompt_dir}/iter-{NNN}/{seat.label}.md` and sourced verbatim as the CLI dispatch prompt body. The four-part lineage contract (gather-subject, shared current_focus, known-context, output schema) is mandatory in every seat prompt; a seat told only "analyze" returns generic noise.
+`step_render_seat_prompts` uses `sk-prompt-models` to apply per-seat prompt framing: MiMo seats use COSTAR, MiniMax and DeepSeek seats use TIDD-EC, native seats carry no framework wrapper. Each seat's rendered prompt is stored at `{prompt_dir}/iter-{NNN}/{seat.label}.md` and sourced verbatim as the CLI dispatch prompt body. The four-part lineage contract (gather-subject, shared current_focus, known-context, output schema) is mandatory in every seat prompt; a seat told only "analyze" returns generic noise.
 
 #### Source Files
 

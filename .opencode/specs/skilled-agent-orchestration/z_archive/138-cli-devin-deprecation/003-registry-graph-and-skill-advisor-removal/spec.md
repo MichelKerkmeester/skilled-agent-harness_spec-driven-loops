@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: registry-graph-and-skill-advisor-removal"
-description: "cli-devin had registry entries (sk-prompt-small-model model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata"
+description: "cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata"
 trigger_phrases:
   - "cli-devin deprecation phase 3"
   - "registry-graph-and-skill-advisor-removal"
@@ -75,7 +75,7 @@ This is **Phase 3** of the cli-devin deprecation specification. The verified, li
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-cli-devin had registry entries (sk-prompt-small-model model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON exports, skill-advisor docs + the 'devin' runtime enum + Devin hooks (.devin/hooks.v1.json + hooks/devin/ sources), and the swe-1.6 model was cli-devin-exclusive.
+cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON exports, skill-advisor docs + the 'devin' runtime enum + Devin hooks (.devin/hooks.v1.json + hooks/devin/ sources), and the swe-1.6 model was cli-devin-exclusive.
 
 ### Purpose
 Remove cli-devin/swe-1.6 from the model registry and skill-graph, remove the full Devin IDE-runtime hook surface, and leave the remaining models with valid executor paths.
@@ -99,8 +99,8 @@ Remove cli-devin/swe-1.6 from the model registry and skill-graph, remove the ful
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-prompt-small-model/assets/model-profiles.json` | Modify | swe-1.6 removed; cli-devin executor rows dropped |
-| `sk-prompt-small-model/{SKILL.md,graph-metadata.json,description.json,...}` | Modify | cli-devin/swe-1.6 removed |
+| `sk-prompt-models/assets/model-profiles.json` | Modify | swe-1.6 removed; cli-devin executor rows dropped |
+| `sk-prompt-models/{SKILL.md,graph-metadata.json,description.json,...}` | Modify | cli-devin/swe-1.6 removed |
 | `6 graph-metadata.json + 2 skill-graph.json` | Modify | cli-devin edges removed |
 | `.devin/hooks.v1.json + system-skill-advisor/hooks/devin/` | Delete | Devin IDE-runtime hooks removed |
 | `advisor-runtime-values.ts` | Modify | 'devin' runtime enum removed |

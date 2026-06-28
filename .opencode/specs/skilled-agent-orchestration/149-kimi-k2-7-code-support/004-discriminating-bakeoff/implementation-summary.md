@@ -18,10 +18,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/_index.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/references/models/_index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-004-discriminating-bakeoff"
@@ -76,7 +76,7 @@ The trust verdict is a **TIE on correctness**: the three perfect frameworks cann
 
 ### Promoted: the result into the registry and reference docs
 
-The orchestrator folded the separating result into `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json`: `kimi-k2.7-code.recommended_frameworks` now reads `primary: costar`, `fallback: tidd-ec`, `avoid: ["rcaf"]`, `preplanning_density: lean`, `status: empirical`, with evidence citing benchmark `007` (primary_score 1.0, confidence medium). Among the correctness-perfect tier, costar was chosen for cross-evidence robustness — it is also MiMo's empirical winner (benchmark 004) and was favored by run 006's judge — and tidd-ec is the fallback as the most token-efficient (25 vs 70 median words). The reference doc `references/models/kimi-k2.7-code.md` had §1/§3/§4/§5 rewritten to the costar default and the run-007 leaderboard, and the `_index.md` row flipped to empirical (benchmark 007).
+The orchestrator folded the separating result into `.opencode/skills/sk-prompt-models/assets/model-profiles.json`: `kimi-k2.7-code.recommended_frameworks` now reads `primary: costar`, `fallback: tidd-ec`, `avoid: ["rcaf"]`, `preplanning_density: lean`, `status: empirical`, with evidence citing benchmark `007` (primary_score 1.0, confidence medium). Among the correctness-perfect tier, costar was chosen for cross-evidence robustness — it is also MiMo's empirical winner (benchmark 004) and was favored by run 006's judge — and tidd-ec is the fallback as the most token-efficient (25 vs 70 median words). The reference doc `references/models/kimi-k2.7-code.md` had §1/§3/§4/§5 rewritten to the costar default and the run-007 leaderboard, and the `_index.md` row flipped to empirical (benchmark 007).
 
 ### Files Changed
 

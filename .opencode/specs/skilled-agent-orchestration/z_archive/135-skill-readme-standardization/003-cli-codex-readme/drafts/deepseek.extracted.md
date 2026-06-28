@@ -163,7 +163,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|
 | `sk-code` | Owns code standards and verification. cli-codex dispatches the work, sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Codex session back into the caller's spec folder. |
-| `sk-prompt-small-model` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for a profiled model. |
+| `sk-prompt-models` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for a profiled model. |
 
 ---
 

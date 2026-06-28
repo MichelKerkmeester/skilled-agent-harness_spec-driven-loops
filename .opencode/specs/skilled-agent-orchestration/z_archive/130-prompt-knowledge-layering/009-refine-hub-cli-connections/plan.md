@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Implement C3 STAR/fallback fix"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,7 +41,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown + JSON docs; one Bash guard script; git hook/CI config |
-| **Framework** | spec-kit skills (`sk-prompt`, `sk-prompt-small-model`, `cli-*`, `system-skill-advisor`) |
+| **Framework** | spec-kit skills (`sk-prompt`, `sk-prompt-models`, `cli-*`, `system-skill-advisor`) |
 | **Storage** | None (file edits) |
 | **Testing** | The extended `check-prompt-quality-card-sync.sh` guard + `grep` invariants + `validate.sh --strict` |
 
@@ -79,7 +79,7 @@ link.
 
 ### Key Components
 - **Canonical card** (`sk-prompt/assets/cli_prompt_quality_card.md`): the single home of the precedence rule + Tier-3 triggers.
-- **Hub** (`sk-prompt-small-model`): per-model profiles + registry + `_index.md` + pattern-index.
+- **Hub** (`sk-prompt-models`): per-model profiles + registry + `_index.md` + pattern-index.
 - **Executors** (`cli-*`): mechanics only; pointers for craft.
 - **Guard** (`check-prompt-quality-card-sync.sh`): the regression gate, extended + CI-wired.
 
@@ -98,7 +98,7 @@ Operator → `cli-*/SKILL.md` (mechanics + pointers) → canonical card (craft) 
 |---------|--------------|--------|--------------|
 | `sk-prompt/assets/cli_prompt_quality_card.md` | Canonical precedence + Tier-3 triggers (producer) | unchanged (it is correct) | grep: still the only enumeration |
 | `cli-*/SKILL.md` Tier-3 lines | Consumers that drifted (4/5) / restate (cli-devin) | update → pointer | grep: no enumeration remains |
-| `sk-prompt-small-model/SKILL.md` STAR list + checklist | Hub policy doc | update (C3, C8) | grep STAR; one checklist |
+| `sk-prompt-models/SKILL.md` STAR list + checklist | Hub policy doc | update (C3, C8) | grep STAR; one checklist |
 | `references/models/swe-1.6.md`, `_index.md` | Profile + index restating registry | update to match `fallback: null` | diff vs registry |
 | `cli-{opencode,devin}` cards + 4 cluster profiles | Navigability endpoints | add bidirectional links | round-trip grep |
 | `cli-opencode/graph-metadata.json` | Discovery triggers | add kimi/qwen/glm | advisor probe |
@@ -106,7 +106,7 @@ Operator → `cli-*/SKILL.md` (mechanics + pointers) → canonical card (craft) 
 
 Required inventories:
 - Precedence enumeration sites: `rg -n 'compliance.*(privacy|security)|stakeholder' .opencode/skills/cli-*/SKILL.md`.
-- STAR references: `rg -n 'STAR' .opencode/skills/sk-prompt-small-model`.
+- STAR references: `rg -n 'STAR' .opencode/skills/sk-prompt-models`.
 - Cluster link round-trip: `rg -n 'prompt_quality_card|models/(deepseek|kimi|qwen|glm)' .opencode/skills/cli-*/assets/prompt_quality_card.md`.
 - Invariant: every fact appears as an enumeration in exactly one file; every other mention is a link.
 <!-- /ANCHOR:affected-surfaces -->

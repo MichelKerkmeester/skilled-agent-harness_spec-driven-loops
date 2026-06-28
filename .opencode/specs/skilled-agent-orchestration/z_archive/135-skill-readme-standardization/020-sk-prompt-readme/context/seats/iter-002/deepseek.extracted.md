@@ -125,7 +125,7 @@ STEP 4: Scoring & Delivery (CLEAR scoring, verify 40+/50 threshold, deliver enha
 - **What if CLEAR can't reach 40 after all cycles?** After max iterations the skill delivers the best version with a scored transparency report and offers three options: accept, more context + retry, or framework switch. (depth_framework.md §5 Improvement Protocol caps at 3 iterations — `.opencode/skills/sk-prompt/references/depth_framework.md:398`)
 - **Does it modify my original intent?** No. Prototype and Test phases include an intent preservation check. Changes that alter core meaning are rolled back and flagged.
 
-**How it differs from sk-prompt-small-model:** `sk-prompt` is the general prompt-engineering engine with 7 frameworks, DEPTH, and CLEAR scoring for any AI prompt. `sk-prompt-small-model` is a per-model prompt-craft hub specifically for small-model dispatch (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, etc.) across `cli-devin` and `cli-opencode` — it owns per-model prompt-craft profiles in `references/models/` and deals with executor-specific mechanics. Not documented in `sk-prompt/`'s own files; sourced from the system-level available-skills listing.
+**How it differs from sk-prompt-models:** `sk-prompt` is the general prompt-engineering engine with 7 frameworks, DEPTH, and CLEAR scoring for any AI prompt. `sk-prompt-models` is a per-model prompt-craft hub specifically for small-model dispatch (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, etc.) across `cli-devin` and `cli-opencode` — it owns per-model prompt-craft profiles in `references/models/` and deals with executor-specific mechanics. Not documented in `sk-prompt/`'s own files; sourced from the system-level available-skills listing.
 
 ---
 

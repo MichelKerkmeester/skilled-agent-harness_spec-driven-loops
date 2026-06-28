@@ -58,8 +58,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Add the confirmed gotcha + mitigation to `glm-5.2.md` (§2/§5/§6) (`sk-prompt-small-model/references/models/glm-5.2.md`)
-- [x] T003 Add the gotcha to `model_profiles.json` weaknesses (`sk-prompt-small-model/assets/model_profiles.json`)
+- [x] T002 Add the confirmed gotcha + mitigation to `glm-5.2.md` (§2/§5/§6) (`sk-prompt-models/references/models/glm-5.2.md`)
+- [x] T003 Add the gotcha to `model_profiles.json` weaknesses (`sk-prompt-models/assets/model_profiles.json`)
 - [x] T004 Add the brief caveat to the GLM line in `cli-opencode/SKILL.md`
 <!-- /ANCHOR:phase-2 -->
 

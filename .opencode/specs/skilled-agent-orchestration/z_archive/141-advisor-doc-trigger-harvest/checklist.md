@@ -64,7 +64,7 @@ FAILURE MODES:
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks — `npm run build` (tsc -p tsconfig.build.json) green after every edit wave; `python3 -c "ast.parse(...)"` green for skill_advisor.py
-- [x] CHK-011 [P0] No console errors or warnings introduced — pilot runs emit only the pre-existing WEIGHT-BAND warning from sk-prompt-small-model metadata
+- [x] CHK-011 [P0] No console errors or warnings introduced — pilot runs emit only the pre-existing WEIGHT-BAND warning from sk-prompt-models metadata
 - [x] CHK-012 [P1] Error handling implemented — unreadable docs emit `DOC-READ-FAILED` and continue; missing skill_docs table on read-only DBs degrades to empty map; walker swallows unreadable dirs
 - [x] CHK-013 [P1] Code follows project patterns — opt-in flag matches the `=== 'true'` house convention; harvest mirrors the existing upsert/transaction style; evidence strings reuse the `prefix:` convention; comment hygiene respected (no spec-path/REQ-id comments)
 <!-- /ANCHOR:code-quality -->

@@ -54,14 +54,14 @@ _memory:
 
 This is **Phase 1** of the cli-devin deprecation specification. The verified, line-resolved edit list lives in ../context/context-report.md §2.
 
-**Scope Boundary**: Re-home 5 canonical assets from cli-devin to sk-prompt-small-model (references/ + assets/)
+**Scope Boundary**: Re-home 5 canonical assets from cli-devin to sk-prompt-models (references/ + assets/)
 
 **Dependencies**:
 - Predecessor phase None (first phase) complete
 
 **Deliverables**:
-- Re-home 5 canonical assets from cli-devin to sk-prompt-small-model (references/ + assets/)
-- Repoint consumers (cli-opencode sentinel + prompt_templates, sk-prompt-small-model SKILL.md + pattern-index)
+- Re-home 5 canonical assets from cli-devin to sk-prompt-models (references/ + assets/)
+- Repoint consumers (cli-opencode sentinel + prompt_templates, sk-prompt-models SKILL.md + pattern-index)
 - Patch check-prompt-quality-card-sync.sh (cli_cards + cli_skills) so deletion does not break CI
 
 **Changelog**:
@@ -74,10 +74,10 @@ This is **Phase 1** of the cli-devin deprecation specification. The verified, li
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fallback) that sk-prompt-small-model and cli-opencode reference as the source of truth, and two CI scripts referenced cli-devin paths. Deleting cli-devin without re-homing these orphans the canonical docs and breaks CI.
+The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fallback) that sk-prompt-models and cli-opencode reference as the source of truth, and two CI scripts referenced cli-devin paths. Deleting cli-devin without re-homing these orphans the canonical docs and breaks CI.
 
 ### Purpose
-Re-home the five canonical assets into sk-prompt-small-model, repoint every consumer, and patch the CI gate so the skill directory can later be deleted without dangling references or CI failure.
+Re-home the five canonical assets into sk-prompt-models, repoint every consumer, and patch the CI gate so the skill directory can later be deleted without dangling references or CI failure.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -86,8 +86,8 @@ Re-home the five canonical assets into sk-prompt-small-model, repoint every cons
 ## 3. SCOPE
 
 ### In Scope
-- Re-home 5 canonical assets from cli-devin to sk-prompt-small-model (references/ + assets/)
-- Repoint consumers (cli-opencode sentinel + prompt_templates, sk-prompt-small-model SKILL.md + pattern-index)
+- Re-home 5 canonical assets from cli-devin to sk-prompt-models (references/ + assets/)
+- Repoint consumers (cli-opencode sentinel + prompt_templates, sk-prompt-models SKILL.md + pattern-index)
 - Patch check-prompt-quality-card-sync.sh (cli_cards + cli_skills) so deletion does not break CI
 
 ### Out of Scope
@@ -98,9 +98,9 @@ Re-home the five canonical assets into sk-prompt-small-model, repoint every cons
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-prompt-small-model/references/context-budget.md` | Create | Re-homed canonical budget engine (swe-1.6 dropped) |
-| `sk-prompt-small-model/assets/per-model-budgets.json` | Create | Re-homed budgets (swe-1.6 dropped) |
-| `sk-prompt-small-model/references/{output-verification,quota-fallback}.md + assets/confidence-scoring-rubric.md` | Create | Re-homed canonical assets |
+| `sk-prompt-models/references/context-budget.md` | Create | Re-homed canonical budget engine (swe-1.6 dropped) |
+| `sk-prompt-models/assets/per-model-budgets.json` | Create | Re-homed budgets (swe-1.6 dropped) |
+| `sk-prompt-models/references/{output-verification,quota-fallback}.md + assets/confidence-scoring-rubric.md` | Create | Re-homed canonical assets |
 | `cli-opencode/references/context-budget.md` | Modify | Sentinel repointed to new canonical home |
 | `check-prompt-quality-card-sync.sh` | Modify | Removed cli-devin from cli_cards + cli_skills |
 <!-- /ANCHOR:scope -->
@@ -114,7 +114,7 @@ Re-home the five canonical assets into sk-prompt-small-model, repoint every cons
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 5 canonical assets exist at sk-prompt-small-model paths | Files present + jq-valid + coherent |
+| REQ-001 | All 5 canonical assets exist at sk-prompt-models paths | Files present + jq-valid + coherent |
 | REQ-002 | No consumer points at a cli-devin canonical path | grep of active consumers = 0 dead links |
 
 ### P1 - Required (complete OR user-approved deferral)

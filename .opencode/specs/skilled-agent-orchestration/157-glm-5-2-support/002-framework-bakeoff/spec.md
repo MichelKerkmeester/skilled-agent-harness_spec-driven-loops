@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/"
+      - ".opencode/skills/sk-prompt-models/benchmarks/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/002-framework-bakeoff"
@@ -75,7 +75,7 @@ This is **Phase 2** of the glm-5-2-support specification. It mirrors `149-kimi-k
 
 **Deliverables**:
 - A bakeoff profile at `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json`.
-- A completed run `<next>-glm-5.2-prompt-framework` with outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/<next>-glm-5.2-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`).
+- A completed run `<next>-glm-5.2-prompt-framework` with outputs under `.opencode/skills/sk-prompt-models/benchmarks/<next>-glm-5.2-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`).
 - A verdict (WINNER | TIE | INCONCLUSIVE) and per-framework leaderboard that Phase 003 promotes.
 
 **Changelog**:
@@ -116,7 +116,7 @@ Empirically determine glm-5.2's best prompt framework by running the model-bench
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json` | Create | Bakeoff profile cloned from `framework-bakeoff.json`, retargeted to glm-5.2 + strict validators |
-| `.opencode/skills/sk-prompt-small-model/benchmarks/<next>-glm-5.2-prompt-framework/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
+| `.opencode/skills/sk-prompt-models/benchmarks/<next>-glm-5.2-prompt-framework/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
 <!-- /ANCHOR:scope -->
 
 ---

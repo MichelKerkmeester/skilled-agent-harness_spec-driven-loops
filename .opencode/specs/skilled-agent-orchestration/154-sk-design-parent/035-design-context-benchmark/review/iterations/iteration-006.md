@@ -21,7 +21,7 @@ The intended new contract files passed the validator:
 - `design-foundations/assets/contrast_pair_inventory.md`.
 - The four new manual-test feature files.
 - `cli-opencode/assets/prompt_templates.md`.
-- `sk-prompt-small-model/references/models/minimax-m3.md`.
+- `sk-prompt-models/references/models/minimax-m3.md`.
 
 The active blocker remains that the actual changed `.opencode/skills` Markdown surface includes three modified reference docs that fail sk-doc validation. That makes the 030 "all files validate clean" claim too broad for the current worktree.
 

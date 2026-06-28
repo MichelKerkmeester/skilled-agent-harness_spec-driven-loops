@@ -196,7 +196,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-small-model is the canonical skill for per-model dispatch",
+    "causal_summary": "`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-models is the canonical skill for per-model dispatch",
     "created_at": "2026-06-05T12:47:32.531Z",
     "last_save_at": "2026-06-23T03:49:51.667Z",
     "save_lineage": "graph_only",

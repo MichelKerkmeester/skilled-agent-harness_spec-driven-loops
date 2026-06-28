@@ -223,7 +223,7 @@ User asked to test DeepSeek-v4-pro / MiMo-v2.5-pro / Kimi-k2.7-code on visual de
 - **PENDING:** the Open Design desktop app/daemon was down at adopt time, so the one-file OD overwrite of
   `maandfactuur-v4` is queued — push via `od files write` once the app is reopened. Local dist file is
   already the Kimi version.
-- **Skill findings recorded** (per research, the canonical home is `sk-prompt-small-model`; no change to
+- **Skill findings recorded** (per research, the canonical home is `sk-prompt-models`; no change to
   `sk-design-interface` or `cli-opencode`): a caveated illustration note added to each of the 3 model
   profiles (`references/models/*.md` §7) + their `model_profiles.json` strengths/weaknesses, explicitly
   marked **informal n=1**, pointing to `/deep:model-benchmark` as the path to canonical evidence.

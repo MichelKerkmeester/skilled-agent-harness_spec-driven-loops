@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Cover: MiniMax-2.7 context-budget defaults, output-verification recipe, prompt-quality/RCAF patterns, --variant/reasoning-effort mapping for the minimax provider, quota-pool + fallback wiring (minimax-api), permissions-matrix applicability, cost/latency profile, and routing heuristics vs deepseek/qwen/glm. Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-small-model and cli-opencode.
+- Topic: How can we improve/update sk-prompt-models and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Cover: MiniMax-2.7 context-budget defaults, output-verification recipe, prompt-quality/RCAF patterns, --variant/reasoning-effort mapping for the minimax provider, quota-pool + fallback wiring (minimax-api), permissions-matrix applicability, cost/latency profile, and routing heuristics vs deepseek/qwen/glm. Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-models and cli-opencode.
 - Started: 2026-05-28T08:59:28Z
 - Status: INITIALIZED
 - Iteration: 10 of 10
@@ -55,7 +55,7 @@ Reducer-generated observability surface for the active research packet.
 - [ ] Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?
 - [ ] Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?
 - [ ] Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?
-- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?
+- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-models` + `cli-opencode` follow?
 
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
@@ -65,7 +65,7 @@ Reducer-generated observability surface for the active research packet.
 - [ ] Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?
 - [ ] Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?
 - [ ] Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?
-- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?
+- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-models` + `cli-opencode` follow?
 
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->

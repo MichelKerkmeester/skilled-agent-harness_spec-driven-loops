@@ -270,9 +270,9 @@ Desired user-visible outcome: CLI seats are dispatched concurrently and read-onl
 Verify that `step_render_seat_prompts` applies per-seat prompt frameworks (MiMo → COSTAR, MiniMax/DeepSeek → TIDD-EC, native → none) and that the four-part lineage contract is mandatory in every rendered prompt.
 
 #### Scenario Contract
-Prompt: As a manual-testing orchestrator, validate the per-model prompt framework application for `deep-context` against the command entrypoint, auto YAML, SKILL.md, and sk-prompt-small-model references. Verify MiMo seats use COSTAR, DeepSeek and MiniMax seats use TIDD-EC, native seats carry no framework, and every seat prompt includes all four lineage contract fields. Return a concise verdict.
+Prompt: As a manual-testing orchestrator, validate the per-model prompt framework application for `deep-context` against the command entrypoint, auto YAML, SKILL.md, and sk-prompt-models references. Verify MiMo seats use COSTAR, DeepSeek and MiniMax seats use TIDD-EC, native seats carry no framework, and every seat prompt includes all four lineage contract fields. Return a concise verdict.
 
-Expected signals: SKILL.md ALWAYS rule 3 mandates `sk-prompt-small-model` per seat; `context.md` shows per-seat `promptFramework` field in the executor JSON schema; the four-part contract is documented in loop_protocol.md §5.
+Expected signals: SKILL.md ALWAYS rule 3 mandates `sk-prompt-models` per seat; `context.md` shows per-seat `promptFramework` field in the executor JSON schema; the four-part contract is documented in loop_protocol.md §5.
 
 Desired user-visible outcome: seat prompts are rendered with the correct model-specific framing before dispatch, ensuring small-model seats receive structured guidance rather than generic analysis instructions.
 

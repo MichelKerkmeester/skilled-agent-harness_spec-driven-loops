@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — sk-prompt-small-model ↔ cli-* prompt-knowledge architecture"
+title: "Resource Map — sk-prompt-models ↔ cli-* prompt-knowledge architecture"
 status: converged
 date: 2026-06-03
 ---
@@ -19,13 +19,13 @@ the consolidated remediation item (C1–C10) that affects it. Paths are relative
 | `sk-prompt/references/patterns_evaluation.md` | Generic framework definitions + CLEAR scoring. | canonical | — |
 | `sk-prompt/references/depth_framework.md` | DEPTH methodology. | canonical | — |
 
-## Layer 2 — `sk-prompt-small-model` (per-model hub)
+## Layer 2 — `sk-prompt-models` (per-model hub)
 
 | Path | Role | Status | Touched by |
 |------|------|--------|-----------|
-| `sk-prompt-small-model/assets/model-profiles.json` | **Canonical registry** — per-model `recommended_frameworks` (primary/fallback/avoid/density/status) + `executors[]`. The DATA source. **Do not move.** | canonical | C9 (completeness check) |
-| `sk-prompt-small-model/SKILL.md` | Hub front-door: dispatch matrix (`:112-123`), loading levels, ALWAYS/NEVER. `:150` lists STAR among sk-prompt frameworks (**phantom**); `§3 :131-133` holds a divergent new-provider checklist. | needs fix | **C3**, **C8** |
-| `sk-prompt-small-model/references/models/_index.md` | Always-loaded profile index. `:21` swe-1.6 row mis-columns `STAR fallback`. | needs fix | **C4** |
+| `sk-prompt-models/assets/model-profiles.json` | **Canonical registry** — per-model `recommended_frameworks` (primary/fallback/avoid/density/status) + `executors[]`. The DATA source. **Do not move.** | canonical | C9 (completeness check) |
+| `sk-prompt-models/SKILL.md` | Hub front-door: dispatch matrix (`:112-123`), loading levels, ALWAYS/NEVER. `:150` lists STAR among sk-prompt frameworks (**phantom**); `§3 :131-133` holds a divergent new-provider checklist. | needs fix | **C3**, **C8** |
+| `sk-prompt-models/references/models/_index.md` | Always-loaded profile index. `:21` swe-1.6 row mis-columns `STAR fallback`. | needs fix | **C4** |
 | `references/models/swe-1.6.md` | Gold-standard profile (correct mechanics deferral `:182-184`). But `:84` falsely says "registry names…STAR as fallback" (contradicts own `:40-41`). | needs fix | **C3** |
 | `references/models/minimax-m3.md` | Profile. `:124-135` embeds full `opencode run` wrapper (hub→mechanics leak). | needs fix | **C5** |
 | `references/models/mimo-v2.5-pro.md` | Profile. `:143-153` embeds full `opencode run` wrapper (hub→mechanics leak). | needs fix | **C5** |
@@ -35,7 +35,7 @@ the consolidated remediation item (C1–C10) that affects it. Paths are relative
 | `references/models/qwen3.6.md` | **Cluster** clone + **sole discovery orphan** (cli-opencode-exclusive, no trigger). | cluster | **C6**, **C7** |
 | `references/models/glm-5.1.md` | **Cluster** clone. Card↔profile dead-spot. | cluster | **C6** |
 | `references/pattern-index.md` | Pattern→location index + new-provider checklist `§4 (:66-77)` (omits profile/_index/matrix rows → zero-weight entries). | needs fix | **C8** |
-| `sk-prompt-small-model/graph-metadata.json` | Discovery metadata. minimax/mimo in `trigger_phrases` but missing from `intent_signals` + `enhances[].context`; `last_updated_at` frozen 2026-05-18. | needs fix | **C10** |
+| `sk-prompt-models/graph-metadata.json` | Discovery metadata. minimax/mimo in `trigger_phrases` but missing from `intent_signals` + `enhances[].context`; `last_updated_at` frozen 2026-05-18. | needs fix | **C10** |
 
 ## Layer 3 — `cli-*` executors (mechanics only)
 

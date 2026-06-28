@@ -141,7 +141,7 @@ _memory:
 
 - [ ] T080 Verify `devin` reachable + authenticated (`devin --print` smoke-test)
 - [ ] T081 Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule — mandatory before composing prompt)
-- [ ] T082 Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule for SWE-1.6)
+- [ ] T082 Read `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule for SWE-1.6)
 - [ ] T083 Confirm `schemas/iteration-output.schema.json` + convergence criteria defined BEFORE running (per phase-5 "define before running")
 - [ ] T084 Iter 1: `cli-devin --model swe-1.6` — output to `research/iterations/iter-01-cli-devin.json`
 - [ ] T085 Between-iter sweep: kill non-devin orphans + `/tmp` sweep; PRESERVE devin

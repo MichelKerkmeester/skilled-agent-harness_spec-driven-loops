@@ -10,8 +10,8 @@ Deprecate the `.opencode/skills/cli-devin` skill and remove all ACTIVE reference
 
 ## known-context
 - Direct precedent `132-cli-gemini-deprecation` (Level 3, shipped) scoped removal to "active, non-spec references" and left historical spec docs untouched. Follow that boundary.
-- cli-devin is a CLI executor option in the deep loops (`--executor=cli-devin`) and in `sk-prompt-small-model` model routing. It has 2 permission modes (not 3). `model-profiles.json` is the single source for model profiles.
-- Other active-wiring clusters (note any you encounter, don't fully map yet): model registry (sk-prompt-small-model), deep-loop `executor-config.ts`/`executor-audit.ts` + `deep_start-*-loop` YAMLs, agent rosters (.opencode/.claude/.codex), governance docs (AGENTS.md/CLAUDE.md/README.md), skill-graph edges.
+- cli-devin is a CLI executor option in the deep loops (`--executor=cli-devin`) and in `sk-prompt-models` model routing. It has 2 permission modes (not 3). `model-profiles.json` is the single source for model profiles.
+- Other active-wiring clusters (note any you encounter, don't fully map yet): model registry (sk-prompt-models), deep-loop `executor-config.ts`/`executor-audit.ts` + `deep_start-*-loop` YAMLs, agent rosters (.opencode/.claude/.codex), governance docs (AGENTS.md/CLAUDE.md/README.md), skill-graph edges.
 
 ## EMPHASIS (native-a)
 Prioritize COMPLETE enumeration of the skill's internal structure and everything it owns / exports / registers (files, sections, contracts, model profiles, permission modes, allowlists).

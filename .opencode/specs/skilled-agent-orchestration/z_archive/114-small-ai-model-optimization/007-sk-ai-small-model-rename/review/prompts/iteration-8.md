@@ -10,7 +10,7 @@ Iters 1-7 covered: correctness (0F), traceability (0F), security (0F+1 cannot-ve
 
 ### Pre-planning
 
-1. **Read** all 7 prior iter files at `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/review/iterations/iteration-{001..007}.md`. Build the full findings registry (P0/P1/P2 by ID).
+1. **Read** all 7 prior iter files at `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-models-rename/review/iterations/iteration-{001..007}.md`. Build the full findings registry (P0/P1/P2 by ID).
 
 2. **Re-compute newFindingsRatio**: for iters 1-7, what proportion of total findings in iter-N were ALSO present in iter-(N-1)? Sliding window of 3.
    - Iter 5→6→7 ratio: if H5-001 + H5-002 are re-verified PASS in iter-6, then iter-7 should show zero new findings under that hypothesis.

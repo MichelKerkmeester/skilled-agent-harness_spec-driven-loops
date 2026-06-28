@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/plan.md]"
-description: "Migrates model-profiles.json and six benchmark sub-phases into sk-prompt-small-model, strips sk-prompt of all small-model coupling, and locks deep-improvement model-benchmark routing to the hub — executed as a single sequenced migration with grep verification at each stage."
+title: "Implementation Plan: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/plan.md]"
+description: "Migrates model-profiles.json and six benchmark sub-phases into sk-prompt-models, strips sk-prompt of all small-model coupling, and locks deep-improvement model-benchmark routing to the hub — executed as a single sequenced migration with grep verification at each stage."
 trigger_phrases:
   - "model registry migration plan"
   - "sk-prompt forkable plan"
@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Spec complete — no further action required"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/benchmarks/"
       - ".opencode/skills/deep-improvement/commands/auto.yaml"
       - ".opencode/skills/deep-improvement/commands/confirm.yaml"
     session_dedup:
@@ -30,7 +30,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
+# Implementation Plan: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -50,7 +50,7 @@ _memory:
 
 ### Overview
 
-This migration consolidates the model registry and all benchmark run-data into `sk-prompt-small-model` as a single hub. The work proceeds in three sequenced phases: first, the registry and benchmark data are moved and all cross-references repointed; second, sk-prompt is stripped of every small-model coupling and deep-improvement routing is locked to hub-only; third, grep verification confirms no dangling references remain in any active surface.
+This migration consolidates the model registry and all benchmark run-data into `sk-prompt-models` as a single hub. The work proceeds in three sequenced phases: first, the registry and benchmark data are moved and all cross-references repointed; second, sk-prompt is stripped of every small-model coupling and deep-improvement routing is locked to hub-only; third, grep verification confirms no dangling references remain in any active surface.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -80,14 +80,14 @@ Hub consolidation: move authoritative data to a single owner, then repoint all c
 
 ### Key Components
 
-- **`sk-prompt-small-model/assets/model-profiles.json`**: Registry hub. Owns all 8 model profile entries. Canonical path for all downstream references.
-- **`sk-prompt-small-model/benchmarks/`**: Benchmark hub. Receives run-data from six migrated sub-phases and all future deep-improvement model-benchmark runs.
+- **`sk-prompt-models/assets/model-profiles.json`**: Registry hub. Owns all 8 model profile entries. Canonical path for all downstream references.
+- **`sk-prompt-models/benchmarks/`**: Benchmark hub. Receives run-data from six migrated sub-phases and all future deep-improvement model-benchmark runs.
 - **`sk-prompt/SKILL.md` + references**: Consumer surfaces stripped of registry pointers and small-model-specific content.
 - **`deep-improvement` SKILL.md + auto/confirm YAMLs**: Routing rules updated to write to hub exclusively.
 
 ### Data Flow
 
-Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL.md references) previously read from `sk-prompt/assets/model-profiles.json`. After migration all consumers read from `sk-prompt-small-model/assets/model-profiles.json`. Benchmark outputs previously defaulted to spec-local directories; after migration deep-improvement writes directly to `sk-prompt-small-model/benchmarks/{run_label}`.
+Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL.md references) previously read from `sk-prompt/assets/model-profiles.json`. After migration all consumers read from `sk-prompt-models/assets/model-profiles.json`. Benchmark outputs previously defaulted to spec-local directories; after migration deep-improvement writes directly to `sk-prompt-models/benchmarks/{run_label}`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -98,11 +98,11 @@ Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `sk-prompt/assets/model-profiles.json` | Producer (source registry) | Deleted; content moved to hub | `find . -name model-profiles.json` returns one result only |
-| `sk-prompt-small-model/assets/model-profiles.json` | New canonical producer | Created with full 8-profile registry | `node -e "require('./...')"` loads without error |
+| `sk-prompt-models/assets/model-profiles.json` | New canonical producer | Created with full 8-profile registry | `node -e "require('./...')"` loads without error |
 | `sk-prompt/references/model-profiles.md` | MD mirror of registry | Deleted outright | `find . -name model-profiles.md -path '*/sk-prompt/*'` returns zero |
 | `sk-prompt/SKILL.md` | Consumer of registry path + small-model content | Stripped of all small-model/registry refs | `rg 'model-profiles\|small.model\|Budget-Awareness' sk-prompt/` zero hits |
 | `sk-prompt/references/cli_prompt_quality_card.md` | Contained per-model-override note + Budget-Awareness section | Stripped | Grep clean |
-| `deep-improvement/SKILL.md` | Describes model-benchmark output location | Updated to hub-only | Cites `sk-prompt-small-model/benchmarks/` |
+| `deep-improvement/SKILL.md` | Describes model-benchmark output location | Updated to hub-only | Cites `sk-prompt-models/benchmarks/` |
 | `deep-improvement/commands/auto.yaml` | Defines output_dir for model-benchmark | Repointed to hub | `grep output_dir auto.yaml` shows hub path |
 | `deep-improvement/commands/confirm.yaml` | Defines output_dir for model-benchmark | Repointed to hub | `grep output_dir confirm.yaml` shows hub path |
 | Six spec sub-phase benchmark dirs | Contained run-data | Gutted to doc shell + BENCHMARK-RELOCATED.md | Each dir has `BENCHMARK-RELOCATED.md` |
@@ -116,8 +116,8 @@ Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL
 
 ### Phase 1: Setup
 
-- [x] Create `sk-prompt-small-model/assets/` directory if not present
-- [x] Create `sk-prompt-small-model/benchmarks/` hub directory
+- [x] Create `sk-prompt-models/assets/` directory if not present
+- [x] Create `sk-prompt-models/benchmarks/` hub directory
 - [x] Inventory all six benchmark sub-phases to confirm run-data locations
 
 ### Phase 2: Implementation
@@ -125,7 +125,7 @@ Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL
 - [x] Copy `model-profiles.json` to hub; delete from sk-prompt/assets/
 - [x] Delete `sk-prompt/references/model-profiles.md`
 - [x] Strip sk-prompt SKILL.md and cli_prompt_quality_card.md of all small-model/registry references; reword Tier-2 generically
-- [x] Move six benchmark sub-phases' run-data to `sk-prompt-small-model/benchmarks/<name>/`; write `BENCHMARK-RELOCATED.md` in each gutted sub-phase
+- [x] Move six benchmark sub-phases' run-data to `sk-prompt-models/benchmarks/<name>/`; write `BENCHMARK-RELOCATED.md` in each gutted sub-phase
 - [x] Repoint all ~121 cross-references from old to hub path (single path-swap)
 - [x] Update cli-opencode template benchmark-evidence citations to hub paths
 - [x] Update deep-improvement SKILL.md, auto.yaml, and confirm.yaml to hub-only routing
@@ -161,7 +161,7 @@ Registry consumers (deep-improvement .cjs scripts, cli-opencode templates, SKILL
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Six benchmark sub-phase directories accessible | Internal | Green | Cannot migrate run-data without access |
-| sk-prompt-small-model/assets/ writable | Internal | Green | Registry hub creation blocked |
+| sk-prompt-models/assets/ writable | Internal | Green | Registry hub creation blocked |
 | ~121 reference files in working tree | Internal | Green | Repoint operation blocked |
 <!-- /ANCHOR:dependencies -->
 

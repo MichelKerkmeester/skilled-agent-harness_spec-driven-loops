@@ -140,7 +140,7 @@ _memory:
 
 - [ ] T080 Verify `cli-devin` (`devin` binary) reachable and SWE-1.6 preset selectable
 - [ ] T081 Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule)
-- [ ] T082 Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule)
+- [ ] T082 Read `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule)
 - [ ] T083 Read `deep-agent-improvement/references/mixed_executor_methodology.md` (breadth/adjudication/synthesis split)
 - [ ] T084 Compose RCAF dispatch prompt (research target = deep-agent-improvement logic gaps; inputs = spec.md + audit-findings.jsonl)
 - [ ] T085 Iter 1: `cli-devin --model swe-1.6` (breadth) — output to `research/iterations/iter-01-cli-devin.json`

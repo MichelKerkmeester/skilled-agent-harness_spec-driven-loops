@@ -9,7 +9,7 @@ Establish MiniMax 2.7 API characteristics that determine downstream budget, veri
 - Read the deep-research strategy and current state log to confirm Q1 is the first focus and no previous iteration findings exist. [SOURCE: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/deep-research-strategy.md]
 - Searched official MiniMax API documentation for model overview, compatible API surfaces, rate limits, token-plan limits, pay-as-you-go pricing, tool use, prompt caching, and coding-tool setup.
 - Inspected the just-added local `cli-opencode` provider documentation and the shared small-model registry entry for `minimax-2.7`. [SOURCE: .opencode/skills/cli-opencode/references/cli_reference.md:150] [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:187]
-- Checked the 114 infrastructure extension points: model registry, context-budget mirror, pattern index, and permissions matrix. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:10] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:33] [SOURCE: .opencode/skills/cli-opencode/references/permissions-matrix.md:31]
+- Checked the 114 infrastructure extension points: model registry, context-budget mirror, pattern index, and permissions matrix. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:10] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:33] [SOURCE: .opencode/skills/cli-opencode/references/permissions-matrix.md:31]
 
 ## Findings
 
@@ -53,7 +53,7 @@ Official rate limits list M2.7/M2.7-highspeed at 500 RPM and 20,000,000 TPM for 
 
 The local registry correctly separates MiniMax into `primary_quota_pool: "minimax-api"` and has no fallback target yet. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:193] [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:200]
 
-Concrete delta: keep `quota_pool: "minimax-api"` and `fallback_target: null` until Q4 identifies a different-pool target. The 114 fallback invariant says no same-pool retry; MiniMax's highspeed sibling still appears to be the same MiniMax provider/pool, so it should be a deliberate user/model choice, not an automatic quota fallback. [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:39]
+Concrete delta: keep `quota_pool: "minimax-api"` and `fallback_target: null` until Q4 identifies a different-pool target. The 114 fallback invariant says no same-pool retry; MiniMax's highspeed sibling still appears to be the same MiniMax provider/pool, so it should be a deliberate user/model choice, not an automatic quota fallback. [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:39]
 
 ### F6 - `--variant` remains unverified; MiniMax API exposes reasoning support but not OpenCode variant mapping
 
@@ -75,9 +75,9 @@ Concrete delta: add a validation step to `cli-opencode` MiniMax docs: run `openc
 
 MiniMax usage tips recommend keeping task state visible in a single long context, splitting naturally phased tasks across windows, using structured tests/scripts, keeping system prompts concise when compression is available, and evaluating prompt changes against representative cases. [SOURCE: https://platform.minimax.io/docs/token-plan/prompting-best-practices#L413-L471]
 
-The 114 pattern index already points to the context-budget engine, output-verification pipeline, confidence scoring, and model registry rather than duplicating logic in `sk-prompt-small-model`. [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:35] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:48]
+The 114 pattern index already points to the context-budget engine, output-verification pipeline, confidence scoring, and model registry rather than duplicating logic in `sk-prompt-models`. [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:35] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:48]
 
-Concrete delta: update `sk-prompt-small-model` MiniMax guidance as a thin pointer: "Use the existing context-budget engine with a 204,800-token window; keep current plan/status/open questions in the retained working set; use the existing 4-stage verification pipeline; add MiniMax-specific checks for reasoning/tool-use continuity."
+Concrete delta: update `sk-prompt-models` MiniMax guidance as a thin pointer: "Use the existing context-budget engine with a 204,800-token window; keep current plan/status/open questions in the retained working set; use the existing 4-stage verification pipeline; add MiniMax-specific checks for reasoning/tool-use continuity."
 
 ## Sources Consulted
 
@@ -92,7 +92,7 @@ Concrete delta: update `sk-prompt-small-model` MiniMax guidance as a thin pointe
 - `.opencode/skills/sk-prompt/assets/model-profiles.json`
 - `.opencode/skills/cli-opencode/references/cli_reference.md`
 - `.opencode/skills/cli-opencode/references/context-budget.md`
-- `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`
+- `.opencode/skills/sk-prompt-models/references/pattern-index.md`
 - `.opencode/skills/cli-opencode/references/permissions-matrix.md`
 
 ## Questions Answered
@@ -106,7 +106,7 @@ Concrete delta: update `sk-prompt-small-model` MiniMax guidance as a thin pointe
 - Q2: Derive the MiniMax context-budget tuple and output-verification recipe from the confirmed 204,800-token window and interleaved-tool continuity requirement.
 - Q3: Define prompt-quality/RCAF patterns and a safe `--variant` policy, likely with an ablation recipe before any strong mapping claim.
 - Q4: Decide quota fallback behavior for `minimax-api`, including whether any different-pool fallback should target DeepSeek/Kimi/GLM.
-- Q5: Produce final routing heuristics and concrete deltas across `sk-prompt-small-model` and `cli-opencode`.
+- Q5: Produce final routing heuristics and concrete deltas across `sk-prompt-models` and `cli-opencode`.
 
 ## Assessment
 

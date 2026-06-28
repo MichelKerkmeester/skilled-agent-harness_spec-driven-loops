@@ -11,7 +11,7 @@ Deprecate `.opencode/skills/cli-devin`; remove all ACTIVE references. THIS itera
 5. VERIFY the deep-context/SKILL.md cli-devin discrepancy (iter1 said Pairs-with line ~391; iter8 said clean) — read the relevant section and resolve.
 
 ## known-context
-Iters 1-8 mapped: skill dir; runtime code (executor-config/audit/fanout-run/dispatch-model/profile-validator); 5 deep-loop YAMLs + 6 command docs; sk-prompt-small-model cluster; skill-graph+advisor+2 CI scripts; agents 3 runtimes; governance; cross-skill docs + constitutional; context-budget sentinel; deep-review constitutional rule. swe-1.6 = cli-devin-exclusive. This iteration finds what's LEFT, especially config/env/hook/CI surfaces.
+Iters 1-8 mapped: skill dir; runtime code (executor-config/audit/fanout-run/dispatch-model/profile-validator); 5 deep-loop YAMLs + 6 command docs; sk-prompt-models cluster; skill-graph+advisor+2 CI scripts; agents 3 runtimes; governance; cross-skill docs + constitutional; context-budget sentinel; deep-review constitutional rule. swe-1.6 = cli-devin-exclusive. This iteration finds what's LEFT, especially config/env/hook/CI surfaces.
 
 ## output schema — ONLY this JSON after BINDING lines
 ```json

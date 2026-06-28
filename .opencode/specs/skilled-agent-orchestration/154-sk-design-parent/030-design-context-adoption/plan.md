@@ -58,7 +58,7 @@ Implement the converged `029` research contract across the live design + dispatc
 Four task groups, file-disjoint:
 - **T-A** — `sk-design/shared/context_loading_contract.md` + `assets/context_loaded_card.md` + `assets/proof_of_application_card.md` (NEW).
 - **T-B** — hub `SKILL.md` bundle rule + interface/foundations/audit `SKILL.md` load-and-prove hooks + `design-foundations/assets/contrast_pair_inventory.md`.
-- **T-C** — `cli-opencode/assets/prompt_templates.md` design dispatch template + `sk-prompt-small-model/.../minimax-m3.md` Design-Task variant.
+- **T-C** — `cli-opencode/assets/prompt_templates.md` design dispatch template + `sk-prompt-models/.../minimax-m3.md` Design-Task variant.
 - **T-D** — four `manual_testing_playbook/` scenarios (one per miss) + index rows.
 
 Executor: cli-codex `gpt-5.5` @ reasoning `high`, `--sandbox workspace-write`, prompt via stdin. (`gpt-5.5-fast`/`-codex` unavailable on this ChatGPT-account Codex; `gpt-5.5` @ high used.) Each agent loads `sk-doc` + `sk-design`, cites research §15–16 + exact insertion points, and is bounded to an allowed-write list.
@@ -89,7 +89,7 @@ Documentary + structural: `validate_document.py` on every file; independent grep
 ## DEPENDENCIES
 
 - `029` converged research (the spec).
-- Live `sk-design` hub + five modes + shared register; `cli-opencode`; `sk-prompt-small-model`.
+- Live `sk-design` hub + five modes + shared register; `cli-opencode`; `sk-prompt-models`.
 - `sk-doc` (quality standards + validator).
 - `codex` CLI with a GPT-5.5-capable account.
 <!-- /ANCHOR:dependencies -->

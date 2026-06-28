@@ -1,15 +1,15 @@
 ---
-title: "Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model"
-description: "Second-pass rename shipped 2026-05-23 (re-applied from scratch after a stash-revert mid-session). Skill dir + frontmatter + 2 sibling reverse edges + 4 playbook FILE renames + 4 root markdown + 2 compiled mirrors + 3 memory files + historical sweep across 4 groups + symlink rotation + 007-path-component restore. validate.sh --strict PASSED 0/0; disambiguating PCRE residual sweep returns 0; advisor surfaces sk-prompt-small-model at confidence 0.95."
+title: "Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-models"
+description: "Second-pass rename shipped 2026-05-23 (re-applied from scratch after a stash-revert mid-session). Skill dir + frontmatter + 2 sibling reverse edges + 4 playbook FILE renames + 4 root markdown + 2 compiled mirrors + 3 memory files + historical sweep across 4 groups + symlink rotation + 007-path-component restore. validate.sh --strict PASSED 0/0; disambiguating PCRE residual sweep returns 0; advisor surfaces sk-prompt-models at confidence 0.95."
 trigger_phrases:
-  - "sk-prompt-small-model rename complete"
+  - "sk-prompt-models rename complete"
   - "phase 8 rename summary"
   - "skill rename 008 implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename"
     last_updated_at: "2026-05-23T13:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored implementation-summary.md (re-application post stash-revert)"
@@ -30,12 +30,12 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model
+# Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-models
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk-prompt-small-model`. Family stays `sk-util` (ADR-001). REWRITE-ALL historical-doc policy applied per user directive (ADR-002), sweeping every occurrence project-wide including phase-007's shipped spec docs. Aggregator symlink rotated. Compiled skill-graph regenerated; advisor surfaces new name at confidence 0.95. **Re-applied from scratch on 2026-05-23 after a mid-session stash-revert by an external workstream (spec_kit → speckit rename).**
+Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk-prompt-models`. Family stays `sk-util` (ADR-001). REWRITE-ALL historical-doc policy applied per user directive (ADR-002), sweeping every occurrence project-wide including phase-007's shipped spec docs. Aggregator symlink rotated. Compiled skill-graph regenerated; advisor surfaces new name at confidence 0.95. **Re-applied from scratch on 2026-05-23 after a mid-session stash-revert by an external workstream (spec_kit → speckit rename).**
 
 ---
 
@@ -44,7 +44,7 @@ Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk
 
 | Field | Value |
 |---|---|
-| Spec folder | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename/` |
+| Spec folder | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename/` |
 | Phase | 8 of 8 |
 | Predecessor | 007-sk-ai-small-model-rename (Complete 2026-05-21) |
 | Started | 2026-05-23 |
@@ -60,7 +60,7 @@ Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk
 ## What Was Built
 
 ### Renames (5 git mv operations — history preserved)
-- `.opencode/skills/sk-ai-small-model/` → `.opencode/skills/sk-prompt-small-model/`
+- `.opencode/skills/sk-ai-small-model/` → `.opencode/skills/sk-prompt-models/`
 - 4 manual playbook files (cli-devin/03--model-presets/005,006 + cli-opencode/07--prompt-templates/004,005)
 
 ### Content sweeps (~90 files)
@@ -73,7 +73,7 @@ Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk
 - 8b historical sweep: 007/, 131/scratch/115-arc-review/, 131/002-deep-review/001-complexity-research-synthesis/, deep-ai-council/v1.2.0.0.md, rename-pattern.md, 114/spec.md + description.json, 114/changelog/*.md, 131/001-ai-council/ scratch + tasks, 131/005-deep-agent-improvement iteration
 
 ### Files created
-- `.opencode/skills/sk-prompt-small-model/changelog/v0.4.0.0.md` — rename changelog
+- `.opencode/skills/sk-prompt-models/changelog/v0.4.0.0.md` — rename changelog
 - 008/* spec folder (6 docs: spec, plan, tasks, checklist, decision-record, implementation-summary + research/, scratch/)
 
 ### Files regenerated
@@ -81,10 +81,10 @@ Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk
 - `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json` (mirror swept manually since compiler only writes to scripts/)
 
 ### Symlink rotated
-- `.opencode/changelog/sk-ai-small-model` removed → `.opencode/changelog/sk-prompt-small-model` created (relative-path style, 21-symlink convention)
+- `.opencode/changelog/sk-ai-small-model` removed → `.opencode/changelog/sk-prompt-models` created (relative-path style, 21-symlink convention)
 
 ### Path-component restoration (deliberate)
-- Bucket 8 sed sweep corrupted `007-sk-ai-small-model-rename` path references to `007-sk-prompt-small-model-rename` in ~36 files (the folder NAME is immutable per spec-kit convention). Post-sweep restore step reverted these specific path-component references back to the original folder name. Final state: zero `007-sk-prompt-small-model-rename` path-component residuals.
+- Bucket 8 sed sweep corrupted `007-sk-ai-small-model-rename` path references to `007-sk-prompt-models-rename` in ~36 files (the folder NAME is immutable per spec-kit convention). Post-sweep restore step reverted these specific path-component references back to the original folder name. Final state: zero `007-sk-prompt-models-rename` path-component residuals.
 
 ### Files exempt from REWRITE-ALL (documented in spec.md §3 + decision-record.md D-008)
 - 008/* phase docs (active phase — references source name to maintain semantic meaning)
@@ -120,14 +120,14 @@ Pre-implementation cli-devin SWE-1.6 + DeepSeek-v4-pro context-gathering was ski
 
 ### Phase 5 — Historical Sweep (Bucket 8, REWRITE-ALL per ADR-002)
 - `find -exec sed -i ''` across 4 historical surface groups
-- Path-component restoration step: re-grep for `007-sk-prompt-small-model-rename` (corrupted path component) → restore to `007-sk-ai-small-model-rename` (immutable folder name) across ~36 files
+- Path-component restoration step: re-grep for `007-sk-prompt-models-rename` (corrupted path component) → restore to `007-sk-ai-small-model-rename` (immutable folder name) across ~36 files
 
 ### Phase 6 — Verification
 - `validate.sh --strict 008/` → exit 0, 0 errors, 0 warnings ✓
-- Disambiguating PCRE residual sweep `rg -PUl "(?<!/007-|114-007-|/sk-prompt-small-model/changelog/v0)sk-ai-small-model" --glob '!008/**' --glob '!sk-prompt-small-model/changelog/v0.*.md'` → 0 hits ✓
+- Disambiguating PCRE residual sweep `rg -PUl "(?<!/007-|114-007-|/sk-prompt-models/changelog/v0)sk-ai-small-model" --glob '!008/**' --glob '!sk-prompt-models/changelog/v0.*.md'` → 0 hits ✓
 - Underscore variant sweep → 0 hits ✓
 - `skill_graph_compiler.py` PASSED (23 skills, 6 families, 0 conflicts) ✓
-- Advisor live-check post-daemon-respawn: `sk-prompt-small-model` confidence **0.95**, top-2 ✓
+- Advisor live-check post-daemon-respawn: `sk-prompt-models` confidence **0.95**, top-2 ✓
 - Symlink `readlink` resolves correctly ✓
 <!-- /ANCHOR:how-delivered -->
 
@@ -157,18 +157,18 @@ Pre-implementation cli-devin SWE-1.6 + DeepSeek-v4-pro context-gathering was ski
 | Check | Method | Result |
 |---|---|---|
 | Spec folder strict validate | `bash validate.sh 008/ --strict` | exit 0, 0 errors, 0 warnings ✓ |
-| Skill body internal sweep | `rg "sk-ai-small-model" sk-prompt-small-model/` | 0 hits ✓ |
+| Skill body internal sweep | `rg "sk-ai-small-model" sk-prompt-models/` | 0 hits ✓ |
 | Compiled `skill-graph.json` | jq adjacency check | new name present, old absent, generated_at 2026-05-23T13:26:54 ✓ |
 | Compiled graph mirror | same for database/skill-graph.json | manually swept (compiler writes to scripts/ only); both clean ✓ |
-| Reverse `enhances` edges | jq | both cli-devin + cli-opencode → `["sk-prompt-small-model"]` ✓ |
-| Aggregator symlink | readlink | `../skills/sk-prompt-small-model/changelog` ✓ |
+| Reverse `enhances` edges | jq | both cli-devin + cli-opencode → `["sk-prompt-models"]` ✓ |
+| Aggregator symlink | readlink | `../skills/sk-prompt-models/changelog` ✓ |
 | Old aggregator gone | ls | "No such file" ✓ |
 | 4 playbook FILE renames | ls + rg | 4 files with new names; 0 hits on rg ✓ |
 | Memory dir | rg | 0 hits ✓ |
 | Disambiguating PCRE sweep | rg -PU | 0 name-only residuals outside documented exemptions ✓ |
 | Underscore variant | rg | 0 hits ✓ |
-| 007 path-component restore | rg | 0 `007-sk-prompt-small-model-rename` corruption ✓ |
-| Advisor live-check | skill_advisor.py | `sk-prompt-small-model` conf 0.95 top-2 ✓ |
+| 007 path-component restore | rg | 0 `007-sk-prompt-models-rename` corruption ✓ |
+| Advisor live-check | skill_advisor.py | `sk-prompt-models` conf 0.95 top-2 ✓ |
 
 ### Checklist verification
 
@@ -188,10 +188,10 @@ See `checklist.md` for per-item evidence rows.
 
 | Limitation | Severity | Mitigation |
 |---|---|---|
-| Working tree has 1087+ uncommitted changes (the operator's in-flight `spec_kit/` → `speckit/` rename + my Phase-008 work co-exist) | Medium | Both workstreams are uncommitted; the operator should commit Phase 008 separately from the speckit rename to keep the rename history clear. Suggested: `git add 008/* sk-prompt-small-model/* cli-{devin,opencode}/graph-metadata.json + the swept historical paths + symlink change` for a clean Phase 008 commit. |
+| Working tree has 1087+ uncommitted changes (the operator's in-flight `spec_kit/` → `speckit/` rename + my Phase-008 work co-exist) | Medium | Both workstreams are uncommitted; the operator should commit Phase 008 separately from the speckit rename to keep the rename history clear. Suggested: `git add 008/* sk-prompt-models/* cli-{devin,opencode}/graph-metadata.json + the swept historical paths + symlink change` for a clean Phase 008 commit. |
 | 3 git stashes in repo | Low | `stash@{2}: 008-revert-stash` contains the prior Phase-008 work that was reverted mid-session. Safe to drop after operator confirms current state matches expectations. |
 | WEIGHT-BAND warnings persist in system-rerank-sidecar + deep-loop-runtime | Low | Pre-existing soft warnings; compiler treats as non-blocking; not in scope for this packet. |
 | rename-pattern.md §7 worked-example was sed-swept but the narrative example body still describes phase-007's preserve-history pattern | Low | Sed kept the doc grep-clean but the worked-example narrative didn't get the phase-008 REWRITE-ALL pattern as a contrasting example. Follow-on packet could rewrite §7 to demonstrate both patterns side-by-side. |
-| Phase 007 shipped spec docs now describe a rename endpoint (`sk-prompt-small-model`) that did not exist in phase-007's actual timeline | None — by ADR-002 (deliberate) | Captured in decision-record.md ADR-002. Future readers consulting phase-007 docs without ADR-002 will misattribute the endpoint. |
+| Phase 007 shipped spec docs now describe a rename endpoint (`sk-prompt-models`) that did not exist in phase-007's actual timeline | None — by ADR-002 (deliberate) | Captured in decision-record.md ADR-002. Future readers consulting phase-007 docs without ADR-002 will misattribute the endpoint. |
 | `database/skill-graph.json` was manually sed-swept (compiler only writes to scripts/) | Low | Manual sweep matched scripts/ generation; both mirrors show identical adjacency content. Compiler-writes-to-database support could be added in a follow-on. |
 <!-- /ANCHOR:limitations -->

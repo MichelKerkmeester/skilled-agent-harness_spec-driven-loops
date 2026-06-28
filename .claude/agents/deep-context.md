@@ -183,7 +183,7 @@ WebFetch, Chrome DevTools, Write, Edit, Patch, Bash, and the Task tool are denie
 | Loop skill | `deep-loop-workflows` (context mode) | Owns the seat contract, convergence signals, and Context Report schema this seat feeds |
 | Runtime primitives | `deep-loop-runtime` | Owns coverage-graph (`loop_type='context'`), convergence script, and parallel seat dispatch the host uses |
 | Frontier + verification | `system-code-graph` | Source of slice anchors and `file:symbol` verification |
-| Prompt framing | `sk-prompt-small-model` | Per-model prompt framework applied to CLI seats; this seat receives an already-framed contract |
+| Prompt framing | `sk-prompt-models` | Per-model prompt framework applied to CLI seats; this seat receives an already-framed contract |
 | Downstream consumers | `/speckit:plan`, `/speckit:implement` | Consume the merged Context Report; never called back by this seat |
 
 ### Sibling Seats

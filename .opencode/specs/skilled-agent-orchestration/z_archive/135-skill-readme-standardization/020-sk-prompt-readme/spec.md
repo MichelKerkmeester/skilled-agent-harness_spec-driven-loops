@@ -44,7 +44,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 20 of 24 |
-| **Predecessor** | 019-sk-prompt-small-model-readme |
+| **Predecessor** | 019-sk-prompt-models-readme |
 | **Successor** | 021-system-code-graph-readme |
 | **Handoff Criteria** | README passes validate_document.py --type readme and HVR; paths verified; registry subset clarified |
 <!-- /ANCHOR:metadata -->

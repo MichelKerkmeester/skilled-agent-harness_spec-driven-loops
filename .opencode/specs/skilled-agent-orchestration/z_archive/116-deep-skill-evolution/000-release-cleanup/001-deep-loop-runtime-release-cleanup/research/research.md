@@ -66,7 +66,7 @@ Per ADR-002, executor = `cli-devin / swe-1.6 / permission-mode auto / timeout 15
 
 Each iter followed a consistent pattern:
 
-1. **Orchestrator-side ground-truth pre-pass** — read all 4 mandatory CLI/skill SKILL.md anchors (cli-devin, sk-prompt-small-model, sometimes sk-prompt + cli-opencode), build per-iter ground-truth tables (counts, path inventories, cross-arc citation lists), pre-flag high-confidence drift candidates.
+1. **Orchestrator-side ground-truth pre-pass** — read all 4 mandatory CLI/skill SKILL.md anchors (cli-devin, sk-prompt-models, sometimes sk-prompt + cli-opencode), build per-iter ground-truth tables (counts, path inventories, cross-arc citation lists), pre-flag high-confidence drift candidates.
 2. **RCAF prompt** per cli-devin SKILL.md §3 SWE-1.6 contract — medium-density 3-5 step pre-planning, ground-truth tables embedded, explicit DR-NNN no-re-report list, sequential_thinking ≥5 mandate, standard bundle-gate language.
 3. **Dispatch** via `gtimeout 1500 devin --print --prompt-file ... --model swe-1.6 --permission-mode auto -p > stdout 2> stderr </dev/null`.
 4. **Bundle gate** — orchestrator post-dispatch SC-007 invariant check + spot-check verbatim quotes + `rg -F` evidence cross-validation.
@@ -414,7 +414,7 @@ Operational saturation signal (`≤2 findings AND 0 P1+ for 2 consecutive iters`
 - **Skill under audit**: `.opencode/skills/deep-loop-runtime/` (SKILL.md, README.md, graph-metadata.json, changelog/*, references/*, feature_catalog/*, manual_testing_playbook/*)
 - **Authoritative ADR**: `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md` ADR-001 "Runtime Boundary Decision"
 - **Source-of-truth schema**: `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` L12-24 (node kinds), L96 (schema version), L130-149 (allow-lists)
-- **Executor profile**: `.opencode/skills/cli-devin/SKILL.md` §3 SWE-1.6 contract; `.opencode/skills/sk-prompt-small-model/SKILL.md` sentinel routing
+- **Executor profile**: `.opencode/skills/cli-devin/SKILL.md` §3 SWE-1.6 contract; `.opencode/skills/sk-prompt-models/SKILL.md` sentinel routing
 - **Phase-4 approval**: `decision-record.md` ADR-006 (2026-05-23, iteration budget = 10)
 - **Per-iter source iters**: iteration-001 through iteration-010
 <!-- /ANCHOR:references -->

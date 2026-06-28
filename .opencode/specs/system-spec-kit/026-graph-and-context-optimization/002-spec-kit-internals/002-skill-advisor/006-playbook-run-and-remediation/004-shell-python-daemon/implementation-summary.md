@@ -102,7 +102,7 @@ OP-001/002/003 are SKIP: all three need a disposable repo copy with an active da
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Waves were assigned per the operator's "maximize CLI delegation" choice. The three required CLI skills (cli-devin, cli-opencode, sk-prompt-small-model) were read before composing dispatch prompts, which used RCAF framing with medium-density pre-planning per the SWE-1.6 contract. OpenCode and Devin ran concurrently (one dispatch per quota pool, operator-authorized). All CLI evidence was read from each executor's RESULTS.md, the worktree was confirmed clean, and the two FAILs were reproduced locally in the full environment before being recorded.
+Waves were assigned per the operator's "maximize CLI delegation" choice. The three required CLI skills (cli-devin, cli-opencode, sk-prompt-models) were read before composing dispatch prompts, which used RCAF framing with medium-density pre-planning per the SWE-1.6 contract. OpenCode and Devin ran concurrently (one dispatch per quota pool, operator-authorized). All CLI evidence was read from each executor's RESULTS.md, the worktree was confirmed clean, and the two FAILs were reproduced locally in the full environment before being recorded.
 <!-- /ANCHOR:how-delivered -->
 
 ---

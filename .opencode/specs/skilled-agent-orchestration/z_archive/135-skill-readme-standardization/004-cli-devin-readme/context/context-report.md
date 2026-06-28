@@ -43,7 +43,7 @@ Trigger keywords: devin, devin cli, delegate to devin, swe-1.6, cloud handoff. F
 | GLM 5.1 | `glm-5.1` | Complex fallback for agentic / tool-use-heavy work. |
 | Kimi k2.6 | `kimi-k2.6` | Complex fallback for large-context work. Can hang ~25 min. |
 
-SWE-1.6 needs a caller-side pre-planning block (ordered steps plus acceptance criteria) because it is smaller; the contract is owned by `sk-prompt-small-model/references/models/swe-1.6.md`.
+SWE-1.6 needs a caller-side pre-planning block (ordered steps plus acceptance criteria) because it is smaller; the contract is owned by `sk-prompt-models/references/models/swe-1.6.md`.
 
 ## 6. KEY FILES (real)
 

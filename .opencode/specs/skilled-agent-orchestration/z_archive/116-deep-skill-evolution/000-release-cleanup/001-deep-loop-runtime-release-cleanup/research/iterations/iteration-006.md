@@ -33,7 +33,7 @@ Iter-5 self-critique flagged the description-drift class-of-bug at 3/7 (43%) pre
 
 ### Orchestrator-side ground-truth pre-pass (4 reads + 2 composite Bash sweeps)
 
-1. Read `cli-devin/SKILL.md` + `sk-prompt-small-model/SKILL.md` to verify SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
+1. Read `cli-devin/SKILL.md` + `sk-prompt-models/SKILL.md` to verify SWE-1.6 RCAF + medium-density pre-planning + standard bundle-gate contract.
 2. Read `research/deep-research-config.json` (iterationCount=5), `research/deep-research-strategy.md` (iter 6 focus), tail of `deep-research-state.jsonl` (last 3 records).
 3. Read `iteration-001.md`, `iteration-002.md`, `iteration-005.md` to confirm no re-report risk for DR-005 (`last_updated_at` stale) and DR-016 (council omissions in domains/key_topics/entities).
 4. Read `.opencode/skills/deep-loop-runtime/graph-metadata.json` (full 170 LOC).

@@ -1,10 +1,10 @@
 ---
 title: "Implementation Summary: model-hub-and-priority-profiles"
-description: "Phase 4 matured sk-prompt-small-model from a thin router into the per-model prompt-craft content hub: rewrote SKILL.md, authored _index.md, and delivered the two priority profiles (minimax-m3.md + mimo-v2.5-pro.md) following the fixed 6-section template."
+description: "Phase 4 matured sk-prompt-models from a thin router into the per-model prompt-craft content hub: rewrote SKILL.md, authored _index.md, and delivered the two priority profiles (minimax-m3.md + mimo-v2.5-pro.md) following the fixed 6-section template."
 trigger_phrases:
   - "model hub"
   - "priority profiles"
-  - "sk-prompt-small-model hub"
+  - "sk-prompt-models hub"
   - "minimax-m3 profile"
   - "mimo profile"
   - "small model prompt craft"
@@ -19,10 +19,10 @@ _memory:
     next_safe_action: "Proceed to phase 005-backfill-remaining-profiles"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/_index.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/references/models/_index.md"
+      - ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md"
+      - ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md"
     session_dedup:
       fingerprint: "sha256:920a4c16c23cc8b74bb3707be375f277e0f10452c73265af25d0c1fe90fff177"
       session_id: "phase-004-completion"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`sk-prompt-small-model` was a thin router with no per-model content. Phase 4 flipped it into the canonical prompt-craft hub for the entire small-model rotation: per-model prompt profiles now live here in `references/models/`, executor mechanics stay in `cli-devin`/`cli-opencode`, and the SKILL.md is the thin entry surface that ties them together. The two priority profiles — `minimax-m3.md` and `mimo-v2.5-pro.md` — are the first empirically-grounded profiles in the hub.
+`sk-prompt-models` was a thin router with no per-model content. Phase 4 flipped it into the canonical prompt-craft hub for the entire small-model rotation: per-model prompt profiles now live here in `references/models/`, executor mechanics stay in `cli-devin`/`cli-opencode`, and the SKILL.md is the thin entry surface that ties them together. The two priority profiles — `minimax-m3.md` and `mimo-v2.5-pro.md` — are the first empirically-grounded profiles in the hub.
 
 ### SKILL.md Rewrite (0.1.0 -> 0.2.0)
 
@@ -79,10 +79,10 @@ Full 6-section profile for MiMo-V2.5-Pro: identity (1M-token context, xiaomi-tok
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Rewrote to "Small-Model Prompt-Craft Hub"; flipped ALWAYS/NEVER rules; added dispatch matrix; bumped version 0.1.0 -> 0.2.0; kept at 199 LOC |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Created | Thin per-model index: framework primary/fallback, pre-planning density, status for all 8 active models |
-| `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md` | Created | Priority profile for MiniMax-M3: TIDD-EC + dense, carried from minimax-2.7 (120/003) |
-| `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md` | Created | Priority profile for MiMo-V2.5-Pro: COSTAR + lean, empirical (126/004, confidence high) |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Rewrote to "Small-Model Prompt-Craft Hub"; flipped ALWAYS/NEVER rules; added dispatch matrix; bumped version 0.1.0 -> 0.2.0; kept at 199 LOC |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Created | Thin per-model index: framework primary/fallback, pre-planning density, status for all 8 active models |
+| `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md` | Created | Priority profile for MiniMax-M3: TIDD-EC + dense, carried from minimax-2.7 (120/003) |
+| `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md` | Created | Priority profile for MiMo-V2.5-Pro: COSTAR + lean, empirical (126/004, confidence high) |
 <!-- /ANCHOR:what-built -->
 
 ---

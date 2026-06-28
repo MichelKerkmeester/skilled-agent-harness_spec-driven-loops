@@ -8,8 +8,8 @@
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/016-sk-code-readme/context/seats/iter-002/.opencode/skills/.advisor-state
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/017-sk-doc-readme/context/seats/iter-001/.opencode/skills/.advisor-state
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/017-sk-doc-readme/context/seats/iter-002/.opencode/skills/.advisor-state
-.opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-small-model-readme/context/seats/iter-001/.opencode/skills/.advisor-state
-.opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-small-model-readme/context/seats/iter-002/.opencode/skills/.advisor-state
+.opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-models-readme/context/seats/iter-001/.opencode/skills/.advisor-state
+.opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-models-readme/context/seats/iter-002/.opencode/skills/.advisor-state
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/020-sk-prompt-readme/context/seats/iter-001/.opencode/skills/.advisor-state
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/020-sk-prompt-readme/context/seats/iter-002/.opencode/skills/.advisor-state
 .opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/021-system-code-graph-readme/context/seats/iter-001/.opencode/skills/.advisor-state

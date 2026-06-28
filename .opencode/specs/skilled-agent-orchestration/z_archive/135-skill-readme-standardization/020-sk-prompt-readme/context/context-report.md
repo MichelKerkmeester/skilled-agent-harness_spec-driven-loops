@@ -46,7 +46,7 @@ CLEAR scores out of fifty: Correctness (10), Logic (10), Expression (15), Arrang
 
 ## 7. BOUNDARIES
 
-sk-prompt owns the generic framework definitions, the DEPTH methodology and the CLEAR rubric. It does not own the per-model dispatch choice: `sk-prompt-small-model` is the hub that chooses which of these frameworks a given small model wants and adds the model-specific scaffold and gotchas. It does not own executor mechanics either, which live in the cli-X skills. In short, sk-prompt defines what RCAF or TIDD-EC is and how to score a prompt; sk-prompt-small-model decides which one MiniMax or MiMo should use.
+sk-prompt owns the generic framework definitions, the DEPTH methodology and the CLEAR rubric. It does not own the per-model dispatch choice: `sk-prompt-models` is the hub that chooses which of these frameworks a given small model wants and adds the model-specific scaffold and gotchas. It does not own executor mechanics either, which live in the cli-X skills. In short, sk-prompt defines what RCAF or TIDD-EC is and how to score a prompt; sk-prompt-models decides which one MiniMax or MiMo should use.
 
 ## 8. TROUBLESHOOTING & FAQ MATERIAL
 
@@ -54,7 +54,7 @@ sk-prompt owns the generic framework definitions, the DEPTH methodology and the 
 - Wrong framework selected: an ambiguous task underscored its complexity. State the complexity or name the framework directly.
 - JSON output carried Markdown: the `$json` prefix was not used. Use the explicit prefix.
 - Too many rounds for a simple task: use `$short` for three rounds or `$raw` for none.
-- FAQ: how `$refine` differs from `$improve`, whether you can name a framework directly, what happens when CLEAR cannot reach forty, whether the skill changes your intent (no, it has an intent-preservation check), and how it differs from `sk-prompt-small-model`.
+- FAQ: how `$refine` differs from `$improve`, whether you can name a framework directly, what happens when CLEAR cannot reach forty, whether the skill changes your intent (no, it has an intent-preservation check), and how it differs from `sk-prompt-models`.
 
 ## 9. STALE FACTS
 

@@ -702,7 +702,7 @@ CommitDate: Tue May 26 11:55:15 2026 +0200
 .opencode/skills/sk-doc/scripts/tests/test_validator.py
 .opencode/skills/sk-git/README.md
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skills/sk-prompt-small-model/README.md
+.opencode/skills/sk-prompt-models/README.md
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/system-code-graph/ARCHITECTURE.md
@@ -5125,7 +5125,7 @@ exec
 .opencode/skills/system-spec-kit/templates/manifest/README.md:124:<!-- /ANCHOR:validation -->
 .opencode/skills/system-spec-kit/templates/manifest/README.md:128:<!-- ANCHOR:related -->
 .opencode/skills/system-spec-kit/templates/manifest/README.md:136:<!-- /ANCHOR:related -->
-.opencode/skills/sk-prompt-small-model/changelog/v0.1.0.0.md:13:The sentinel ships as a thin routing anchor: `SKILL.md` (≤ 200 LOC), `references/pattern-index.md` (≤ 100 LOC), `description.json` + `graph-metadata.json` with `enhances` edges (weight 0.5) to both `cli-devin` and `cli-opencode`, and a sk-doc-aligned `README.md`. No runtime logic, no scripts, no agent-config recipes — every pattern body lives in the owning executor skill. Operators reach the canonical pattern files through one Read of `references/pattern-index.md`.
+.opencode/skills/sk-prompt-models/changelog/v0.1.0.0.md:13:The sentinel ships as a thin routing anchor: `SKILL.md` (≤ 200 LOC), `references/pattern-index.md` (≤ 100 LOC), `description.json` + `graph-metadata.json` with `enhances` edges (weight 0.5) to both `cli-devin` and `cli-opencode`, and a sk-doc-aligned `README.md`. No runtime logic, no scripts, no agent-config recipes — every pattern body lives in the owning executor skill. Operators reach the canonical pattern files through one Read of `references/pattern-index.md`.
 .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:37:<!-- ANCHOR:summary -->
 .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:51:<!-- /ANCHOR:summary -->
 .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:55:<!-- ANCHOR:quality-gates -->

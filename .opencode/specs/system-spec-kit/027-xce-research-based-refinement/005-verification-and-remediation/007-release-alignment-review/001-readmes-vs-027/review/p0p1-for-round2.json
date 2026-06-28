@@ -1222,12 +1222,12 @@
   },
   {
     "severity": "P1",
-    "file": ".opencode/skills/sk-prompt-small-model/README.md",
+    "file": ".opencode/skills/sk-prompt-models/README.md",
     "line": 33,
     "title": "Small-model default framework claim misses Kimi",
     "stale_claim": "The overview says MiniMax uses TIDD-EC, MiMo uses COSTAR and the rest default to RCAF.",
     "current_truth": "Kimi-k2.7-code is active and uses COSTAR with TIDD-EC fallback while explicitly avoiding RCAF; only DeepSeek remains default-unverified RCAF.",
-    "evidence": ".opencode/skills/sk-prompt-small-model/references/models/_index.md:25-28",
+    "evidence": ".opencode/skills/sk-prompt-models/references/models/_index.md:25-28",
     "seat": "A14",
     "area": "sk-doc + sk-prompt + small-model"
   },
@@ -1282,7 +1282,7 @@
     "title": "Provider matrix omits Kimi K2.7",
     "stale_claim": "Seven providers are documented: `opencode-go`, `deepseek`, `minimax-coding-plan`, `minimax`, `xiaomi-token-plan-ams`, `xiaomi`, and `openai`.",
     "current_truth": "The active small-model registry includes Kimi For Coding via provider `kimi-for-coding` with live slug `kimi-for-coding/k2p7`, and the cli-opencode model reference lists it as a dispatchable model path.",
-    "evidence": ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json:3; .opencode/skills/sk-prompt-small-model/assets/model_profiles.json:58; .opencode/skills/cli-opencode/references/cli_reference.md:245",
+    "evidence": ".opencode/skills/sk-prompt-models/assets/model_profiles.json:3; .opencode/skills/sk-prompt-models/assets/model_profiles.json:58; .opencode/skills/cli-opencode/references/cli_reference.md:245",
     "seat": "A16",
     "area": "cli-* skills"
   },

@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/synthesis.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "glm-support-002-framework-bakeoff"
@@ -58,7 +58,7 @@ The empirical prompt-framework bakeoff for GLM-5.2 (run `008-glm-5.2-prompt-fram
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json` | Created | Bakeoff profile (5 harness frameworks, strict validators, glm-5.2 model, 3 samples/cell) |
-| `.opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/` | Created | Run outputs: results.json, aggregate.json, synthesis.md, sweep logs |
+| `.opencode/skills/sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/` | Created | Run outputs: results.json, aggregate.json, synthesis.md, sweep logs |
 | `002-framework-bakeoff/improvement/benchmark-run-pointer.json` | Created | Run provenance pointer |
 <!-- /ANCHOR:what-built -->
 

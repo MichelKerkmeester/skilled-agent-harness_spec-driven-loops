@@ -1,20 +1,20 @@
 ---
-title: "Implementation Summary: sk-prompt-small-model README"
-description: "The sk-prompt-small-model README now reads in the narrative voice and leads with the per-model prompt-craft hub and the craft-versus-mechanics split, with the wrong executor count and version corrected."
+title: "Implementation Summary: sk-prompt-models README"
+description: "The sk-prompt-models README now reads in the narrative voice and leads with the per-model prompt-craft hub and the craft-versus-mechanics split, with the wrong executor count and version corrected."
 trigger_phrases:
-  - "sk-prompt-small-model readme shipped"
+  - "sk-prompt-models readme shipped"
 importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme"
+    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped sk-prompt-small-model README; Batch D 5 of 6"
+    recent_action: "Shipped sk-prompt-models README; Batch D 5 of 6"
     next_safe_action: "Begin phase 020 (sk-prompt README)"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/README.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-019"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-sk-prompt-small-model-readme |
+| **Spec Folder** | 019-sk-prompt-models-readme |
 | **Completed** | 2026-06-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The sk-prompt-small-model README now opens with a human pitch and an at-a-glance table, explains the different-models-want-different-prompts problem before the mechanism, and leads with the distinctive value: a per-model prompt-craft hub where you look up a model's framework, scaffold and gotchas before dispatch, then apply the executor mechanics from cli-devin or cli-opencode. Craft lives here, mechanics live in the executor.
+The sk-prompt-models README now opens with a human pitch and an at-a-glance table, explains the different-models-want-different-prompts problem before the mechanism, and leads with the distinctive value: a per-model prompt-craft hub where you look up a model's framework, scaffold and gotchas before dispatch, then apply the executor mechanics from cli-devin or cli-opencode. Craft lives here, mechanics live in the executor.
 
 ### Narrative rewrite
 
@@ -61,7 +61,7 @@ The old README claimed prompt-craft cannot drift across "five executors". The hu
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/README.md` | Modified | Narrative-voice rewrite of the per-model prompt-craft hub README |
+| `.opencode/skills/sk-prompt-models/README.md` | Modified | Narrative-voice rewrite of the per-model prompt-craft hub README |
 <!-- /ANCHOR:what-built -->
 
 ---

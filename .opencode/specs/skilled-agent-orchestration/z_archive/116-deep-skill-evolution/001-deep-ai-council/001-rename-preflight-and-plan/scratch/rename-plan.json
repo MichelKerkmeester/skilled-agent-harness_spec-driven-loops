@@ -164,7 +164,7 @@
     ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-advise-completion.vitest.ts",
     ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
     ".opencode/specs/descriptions.json",
-    ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/changelog/changelog-114-007-sk-prompt-small-model-rename.md",
+    ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/changelog/changelog-114-007-sk-prompt-models-rename.md",
     ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/scratch/resource-map.md",
     ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/scratch/rg/rg-baseline-before-files.txt",
     ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/spec.md",

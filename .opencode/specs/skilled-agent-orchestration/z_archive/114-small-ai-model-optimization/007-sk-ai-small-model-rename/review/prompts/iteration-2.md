@@ -5,7 +5,7 @@ You are a senior deep-reviewer. Read-only audit. Cite EVIDENCE for every finding
 
 ## Context
 Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
-Target packet: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
+Target packet: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-models-rename/`
 Mode: **READ-ONLY**.
 
 Iter-1 finished with 0 findings (correctness dim). Now examining TRACEABILITY.

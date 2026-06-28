@@ -59,7 +59,7 @@
       "schemas/iteration-output.schema.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      ".opencode/skills/sk-prompt-models/SKILL.md"
     ],
     "entities": [
       {
@@ -155,7 +155,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {

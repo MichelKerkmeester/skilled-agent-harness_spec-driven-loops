@@ -12,7 +12,7 @@ The 028 run partitioned 50 angles across 3 model lanes (each angle answered by e
 
 ### Run matrix (6 serial dispatches)
 
-| Run | Model slug | Framework (per sk-prompt-small-model profile) | Flags |
+| Run | Model slug | Framework (per sk-prompt-models profile) | Flags |
 |---|---|---|---|
 | deepseek-r1, deepseek-r2 | `deepseek/deepseek-v4-pro` | RCAF, medium pre-plan | `--variant high --pure --format json` |
 | minimax-r1, minimax-r2 | `minimax-coding-plan/MiniMax-M3` | TIDD-EC, dense pre-plan | `--variant high --format json` |

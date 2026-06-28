@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 6: broad-scope-timeout-caveat"
-description: "Document Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation (read-cap + 1200s+ + omit --variant) across sk-prompt-small-model + cli-opencode; fix adjacent stale kimi-k2.6 references."
+description: "Document Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation (read-cap + 1200s+ + omit --variant) across sk-prompt-models + cli-opencode; fix adjacent stale kimi-k2.6 references."
 trigger_phrases:
   - "kimi k2.7 timeout caveat"
   - "kimi over-exploration broad scope"
@@ -62,7 +62,7 @@ Record the failure mode + the proven mitigation (hard read-cap in the prompt + 1
 ## 3. SCOPE
 
 ### In Scope
-- The over-exploration/timeout caveat + mitigation in `sk-prompt-small-model/references/models/kimi-k2.7-code.md` (§2, §5, §6) and `assets/model_profiles.json` (weaknesses).
+- The over-exploration/timeout caveat + mitigation in `sk-prompt-models/references/models/kimi-k2.7-code.md` (§2, §5, §6) and `assets/model_profiles.json` (weaknesses).
 - A brief operational caveat on the Kimi line in `cli-opencode/SKILL.md`.
 - Repair of stale `kimi-k2.6` references in `cli-opencode/references/{cli_reference.md, context-budget.md}`.
 
@@ -74,8 +74,8 @@ Record the failure mode + the proven mitigation (hard read-cap in the prompt + 1
 ### Files to Change
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Modify | §2/§5/§6 over-exploration caveat + mitigation |
-| `sk-prompt-small-model/assets/model_profiles.json` | Modify | weaknesses: over-exploration/timeout entry |
+| `sk-prompt-models/references/models/kimi-k2.7-code.md` | Modify | §2/§5/§6 over-exploration caveat + mitigation |
+| `sk-prompt-models/assets/model_profiles.json` | Modify | weaknesses: over-exploration/timeout entry |
 | `cli-opencode/SKILL.md` | Modify | Kimi line operational caveat |
 | `cli-opencode/references/cli_reference.md` | Modify | k2.6 row -> k2p7 |
 | `cli-opencode/references/context-budget.md` | Modify | k2.6 -> k2.7-code (262,144) + caveat |

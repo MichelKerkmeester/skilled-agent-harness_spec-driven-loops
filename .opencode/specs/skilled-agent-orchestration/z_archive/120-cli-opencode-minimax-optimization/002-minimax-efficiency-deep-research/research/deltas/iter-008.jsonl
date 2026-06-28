@@ -3,7 +3,7 @@
 {"type":"finding","id":"f-iter008-002","severity":"P1","label":"MiniMax routes for large evidence bundles and quota isolation, but Qwen remains the better tight cheap edit route and DeepSeek remains the hard-reasoning default when budget fits.","iteration":8}
 {"type":"finding","id":"f-iter008-003","severity":"P1","label":"Cognition-Pro exhaustion must fail fast rather than silently substituting MiniMax; MiniMax can be offered only as an explicit separate-pool route.","iteration":8}
 {"type":"finding","id":"f-iter008-004","severity":"P2","label":"The cross-CLI quality card needs a compact routing table spanning DeepSeek, Qwen, Kimi, GLM, and MiniMax, plus Budget Awareness updates for glm-5.1 and minimax-2.7.","iteration":8}
-{"type":"invariant","id":"inv-iter008-001","label":"sk-prompt-small-model remains a sentinel; MiniMax pattern bodies live in cli-opencode, cli-devin, or sk-prompt canonical files.","iteration":8}
+{"type":"invariant","id":"inv-iter008-001","label":"sk-prompt-models remains a sentinel; MiniMax pattern bodies live in cli-opencode, cli-devin, or sk-prompt canonical files.","iteration":8}
 {"type":"invariant","id":"inv-iter008-002","label":"MiniMax direct provider omits --variant by default until live ablation proves accepted and beneficial behavior.","iteration":8}
 {"type":"observation","id":"obs-iter008-001","packet":"120/002","classification":"real","label":"Current pattern-index.md has 14 rows and a four-column row format suitable for link-only MiniMax additions.","iteration":8}
 {"type":"observation","id":"obs-iter008-002","packet":"120/002","classification":"real","label":"Current cli_prompt_quality_card.md Budget Awareness omits glm-5.1 and minimax-2.7, so the quality-card routing delta should update that list.","iteration":8}

@@ -107,7 +107,7 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 | `.opencode/skills/sk-doc/references/feature_catalog_creation.md` | Cited | OK | Feature catalog standards |
 | `.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md` | Cited | OK | Manual testing playbook standards |
 | `.opencode/skills/cli-devin/SKILL.md` | Cited | OK | Phase 5 RCAF + medium-density rule (mandatory pre-read per ADR-002) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Cited | OK | Small-model dispatch sentinel (mandatory pre-read per ADR-002) |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Cited | OK | Small-model dispatch sentinel (mandatory pre-read per ADR-002) |
 | `.opencode/skills/sk-prompt/SKILL.md` | Cited | OK | Prompt-composition skill (RCAF/CLEAR) |
 | `.opencode/skills/cli-opencode/SKILL.md` | Cited | OK | Auxiliary phase-2 dispatch provider routing |
 | `.opencode/skills/deep-research/SKILL.md` | Cited | OK | Phase 5a consumer of `/deep:start-research-loop`; consumes 4 scripts in deep-loop-runtime |

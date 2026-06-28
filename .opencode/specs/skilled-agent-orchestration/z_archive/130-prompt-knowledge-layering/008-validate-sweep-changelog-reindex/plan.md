@@ -88,7 +88,7 @@ Verification sweep — no new architecture introduced.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `sk-prompt/assets/model-profiles.json` | Data source — `recommended_frameworks` for 8 active models | Unchanged in this phase; read-only verification | `python3` field-presence check |
-| `sk-prompt-small-model/references/models/*.md` | Prose profiles — round-trip targets | Unchanged in this phase; read-only verification | `os.path.exists()` for all 8 paths |
+| `sk-prompt-models/references/models/*.md` | Prose profiles — round-trip targets | Unchanged in this phase; read-only verification | `os.path.exists()` for all 8 paths |
 | `cli-*/assets/prompt_quality_card.md` (5 files) | Executor cards — must NOT inline framework or CLEAR tables | Unchanged in this phase; read-only verification | `check-prompt-quality-card-sync.sh` |
 | `system-skill-advisor/mcp_server/scripts/skill-graph.json` | Advisor routing index | Reindex target | `skill_graph_compiler.py` run; mtime updated |
 | `008-validate-sweep-changelog-reindex/` spec docs | Phase completion record | Populated (this phase) | `validate.sh --strict` exits 0 |

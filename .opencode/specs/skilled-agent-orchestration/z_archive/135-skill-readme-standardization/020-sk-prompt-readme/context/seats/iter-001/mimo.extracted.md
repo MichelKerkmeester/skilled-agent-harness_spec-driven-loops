@@ -42,7 +42,7 @@ A vague prompt yields poor results because the model lacks context, role clarity
 
 ## 6. BOUNDARIES
 
-- **Does NOT own per-model dispatch:** `sk-prompt-small-model` (at `.opencode/skills/sk-prompt-small-model/`) owns per-model prompt-craft profiles, model-specific scaffolds, and dispatch mechanics for small models (SWE-1.6, DeepSeek, Kimi, Qwen, GLM, MiniMax, MiMo). It selects from `sk-prompt`'s framework set but makes its own dispatch and formatting decisions.
+- **Does NOT own per-model dispatch:** `sk-prompt-models` (at `.opencode/skills/sk-prompt-models/`) owns per-model prompt-craft profiles, model-specific scaffolds, and dispatch mechanics for small models (SWE-1.6, DeepSeek, Kimi, Qwen, GLM, MiniMax, MiMo). It selects from `sk-prompt`'s framework set but makes its own dispatch and formatting decisions.
 - **Does NOT own executor mechanics:** CLI invocation wrappers, binary flags, and provider routing live in `cli-devin`, `cli-opencode`, `cli-codex`, `cli-claude-code`.
 - **Does NOT own agent dispatch:** The `@prompt-improver` agent (defined in AGENTS.md) is the caller-facing surface; `sk-prompt` is the engine it loads. The skill defines the agent contract (Section 7 of SKILL.md) but does not control when the agent is dispatched.
 - **Owns:** All 7 generic framework definitions, the DEPTH methodology, CLEAR scoring, framework selection algorithm, format guides, and the `framework-registry.json` machine-readable registry.

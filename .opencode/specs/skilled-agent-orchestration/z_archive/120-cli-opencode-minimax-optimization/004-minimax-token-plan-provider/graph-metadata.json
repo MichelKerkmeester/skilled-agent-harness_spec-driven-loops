@@ -46,11 +46,11 @@
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/graph-metadata.json",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/description.json",
-      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/description.json",
+      ".opencode/skills/sk-prompt-models/graph-metadata.json",
       ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
-      ".opencode/skills/sk-prompt-small-model/README.md",
+      ".opencode/skills/sk-prompt-models/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -91,7 +91,7 @@
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/description.json",
+        "path": ".opencode/skills/sk-prompt-models/description.json",
         "source": "derived"
       },
       {
@@ -103,7 +103,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/README.md",
+        "path": ".opencode/skills/sk-prompt-models/README.md",
         "source": "derived"
       },
       {

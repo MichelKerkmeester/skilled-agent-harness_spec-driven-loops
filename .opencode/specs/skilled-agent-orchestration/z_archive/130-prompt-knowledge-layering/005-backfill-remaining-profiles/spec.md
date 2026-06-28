@@ -1,9 +1,9 @@
 ---
 title: "Feature Specification: Phase 5: backfill-remaining-profiles"
-description: "Author the 6 remaining per-model prompt-craft profiles for sk-prompt-small-model: minimax-2.7 (TIDD-EC empirical), swe-1.6 (RCAF + mandatory pre-planning contract), and deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 (RCAF/medium default-unverified). All profiles follow the canonical 6-section template."
+description: "Author the 6 remaining per-model prompt-craft profiles for sk-prompt-models: minimax-2.7 (TIDD-EC empirical), swe-1.6 (RCAF + mandatory pre-planning contract), and deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 (RCAF/medium default-unverified). All profiles follow the canonical 6-section template."
 trigger_phrases:
   - "backfill remaining profiles"
-  - "sk-prompt-small-model profiles"
+  - "sk-prompt-models profiles"
   - "small model profile phase 5"
   - "minimax-2.7 profile"
   - "swe-1.6 profile"
@@ -18,12 +18,12 @@ _memory:
     next_safe_action: "Proceed to phase 006-thin-and-standardize-cli-cards"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md"
+      - ".opencode/skills/sk-prompt-models/references/models/minimax-2.7.md"
+      - ".opencode/skills/sk-prompt-models/references/models/swe-1.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/qwen3.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.1.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "005-backfill-remaining-profiles"
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.
+This is **Phase 5** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub specification.
 
 **Scope Boundary**: Author the 6 remaining per-model profiles that were absent after phase 4 (priority profiles). No changes to the hub's SKILL.md, dispatch matrix, or executor mechanics — profile authoring only.
 
@@ -85,7 +85,7 @@ This is **Phase 5** of the Prompt-knowledge layering across CLI skills, sk-promp
 
 ### Problem Statement
 
-After phase 4, the sk-prompt-small-model hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six models in the active dispatch rotation: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1. Without these profiles, callers had no canonical source for framework selection, tuned template scaffolds, or per-model dispatch gotchas, forcing them to infer or guess.
+After phase 4, the sk-prompt-models hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six models in the active dispatch rotation: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1. Without these profiles, callers had no canonical source for framework selection, tuned template scaffolds, or per-model dispatch gotchas, forcing them to infer or guess.
 
 ### Purpose
 
@@ -114,12 +114,12 @@ Populate the hub by authoring all 6 remaining per-model profiles, giving every m
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md` | Create | TIDD-EC empirical profile; benchmark 120/003 evidence, TIDD-EC fill scaffold |
-| `.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md` | Create | RCAF + mandatory pre-planning contract; escalation rule, non-TTY rule |
-| `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md` | Create | RCAF/medium default-unverified; `--pure` flag note, 64k window |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md` | Create | RCAF/medium default-unverified; 200k large-context specialist, hang rate |
-| `.opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md` | Create | RCAF/medium default-unverified; 32k window constraints |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md` | Create | RCAF/medium default-unverified; dual-pool dispatch |
+| `.opencode/skills/sk-prompt-models/references/models/minimax-2.7.md` | Create | TIDD-EC empirical profile; benchmark 120/003 evidence, TIDD-EC fill scaffold |
+| `.opencode/skills/sk-prompt-models/references/models/swe-1.6.md` | Create | RCAF + mandatory pre-planning contract; escalation rule, non-TTY rule |
+| `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md` | Create | RCAF/medium default-unverified; `--pure` flag note, 64k window |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md` | Create | RCAF/medium default-unverified; 200k large-context specialist, hang rate |
+| `.opencode/skills/sk-prompt-models/references/models/qwen3.6.md` | Create | RCAF/medium default-unverified; 32k window constraints |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.1.md` | Create | RCAF/medium default-unverified; dual-pool dispatch |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,7 +131,7 @@ Populate the hub by authoring all 6 remaining per-model profiles, giving every m
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 6 profiles created at correct paths | `ls .opencode/skills/sk-prompt-small-model/references/models/` shows all 6 files |
+| REQ-001 | All 6 profiles created at correct paths | `ls .opencode/skills/sk-prompt-models/references/models/` shows all 6 files |
 | REQ-002 | Each profile has a valid H1 heading | Each file opens with `# <ModelName> Prompt-Craft Profile` |
 | REQ-003 | YAML frontmatter present with `model_id` and `status` | Each file has correct frontmatter; `model_id` matches `model-profiles.json` entry ID |
 | REQ-004 | Framework choices mirror `model-profiles.json` `recommended_frameworks` | Primary framework, fallback, and pre-planning density match the DATA source for each model |
@@ -151,7 +151,7 @@ Populate the hub by authoring all 6 remaining per-model profiles, giving every m
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 6 profile files exist at `.opencode/skills/sk-prompt-small-model/references/models/<model-id>.md`
+- **SC-001**: All 6 profile files exist at `.opencode/skills/sk-prompt-models/references/models/<model-id>.md`
 - **SC-002**: Every profile's `model_id` frontmatter value resolves to a matching entry in `model-profiles.json`
 - **SC-003**: The spec-kit validator exits 0 with `--strict` on this spec folder
 <!-- /ANCHOR:success-criteria -->

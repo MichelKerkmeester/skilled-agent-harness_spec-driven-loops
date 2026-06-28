@@ -62,7 +62,7 @@ No new P0 findings.
 |-------|--------|----------|
 | `spec_code` | FAIL | spec.md:127 requires generic dispatcher; loop-host.cjs:73 does not invoke it |
 | `checklist_evidence` | FAIL | TST-1 tests plan equality, not byte-identical state JSONL; scorer tests don't cover benchmark runner seam |
-| `skill_agent` | PASS | MiniMax docs internally consistent across cli-opencode, sk-prompt, sk-prompt-small-model |
+| `skill_agent` | PASS | MiniMax docs internally consistent across cli-opencode, sk-prompt, sk-prompt-models |
 
 ## Verdict: CONDITIONAL
 

@@ -3,7 +3,7 @@
 {"type":"finding","id":"f-iter002-002","severity":"P1","label":"70 percent of the confirmed MiniMax window yields 143360 dynamic prompt tokens and 61440 reserved tokens","iteration":2}
 {"type":"finding","id":"f-iter002-003","severity":"P1","label":"Interleaved tool continuity should protect the active complete assistant/tool/thinking round from mid-message truncation","iteration":2}
 {"type":"finding","id":"f-iter002-004","severity":"P2","label":"MiniMax should reuse the existing 4-stage output-verification pipeline plus a provider-specific continuity assertion","iteration":2}
-{"type":"invariant","id":"inv-iter002-001","label":"Do not duplicate the canonical cli-devin context-budget engine in cli-opencode or sk-prompt-small-model","iteration":2}
+{"type":"invariant","id":"inv-iter002-001","label":"Do not duplicate the canonical cli-devin context-budget engine in cli-opencode or sk-prompt-models","iteration":2}
 {"type":"invariant","id":"inv-iter002-002","label":"Use the canonical truncation marker [... truncated N tokens] and never infer hidden evidence","iteration":2}
 {"type":"observation","id":"obs-iter002-001","packet":"120/002","classification":"real","label":"cli-opencode context-budget.md is intentionally a mirror that points to cli-devin context-budget.md and per-model-budgets.json","iteration":2}
 {"type":"edge","id":"edge:minimax-budget-derived","relation":"DERIVES_BUDGET","source":"cap:context-204800","target":"budget:minimax-2.7-143360","iteration":2}

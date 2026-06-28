@@ -89,7 +89,7 @@
       "symbol": "dependency-order",
       "evidence": "synthesized",
       "editType": "ordering",
-      "notes": "P1 CI-gate: patch check-prompt-quality-card-sync.sh + re-home prompt_quality_card path BEFORE delete. P2 re-home context-budget.md(+per-model-budgets) canonical + update pointers. P3 runtime code (executor-config/audit/fanout-run/dispatch-model/profile-validator/advisor-runtime-values) + tests + 5 YAMLs + 6 cmd docs + agents(3rt) + sk-prompt-small-model cluster + run-deep-review-arc.sh + residuals. P4 remove graph edges + rebuild skill-graph.sqlite. P5 rm -rf cli-devin/ + validate.",
+      "notes": "P1 CI-gate: patch check-prompt-quality-card-sync.sh + re-home prompt_quality_card path BEFORE delete. P2 re-home context-budget.md(+per-model-budgets) canonical + update pointers. P3 runtime code (executor-config/audit/fanout-run/dispatch-model/profile-validator/advisor-runtime-values) + tests + 5 YAMLs + 6 cmd docs + agents(3rt) + sk-prompt-models cluster + run-deep-review-arc.sh + residuals. P4 remove graph edges + rebuild skill-graph.sqlite. P5 rm -rf cli-devin/ + validate.",
       "kind": "gap",
       "reuse": "order",
       "relevance": 1,

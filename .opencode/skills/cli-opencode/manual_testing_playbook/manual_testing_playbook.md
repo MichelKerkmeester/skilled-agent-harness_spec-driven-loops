@@ -620,25 +620,25 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 
 > **Feature File:** [CO-025](07--prompt-templates/template-applied-to-real-dispatch.md)
 
-### CO-035 | DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-small-model + sk-prompt (triple-skill flow)
+### CO-035 | DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-models + sk-prompt (triple-skill flow)
 
 #### Description
 
-Verify the small-model dispatch matrix surfaces both `sk-prompt-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the direct DeepSeek API (`deepseek/deepseek-v4-pro`). This is the production happy-path for DeepSeek work.
+Verify the small-model dispatch matrix surfaces both `sk-prompt-models` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the direct DeepSeek API (`deepseek/deepseek-v4-pro`). This is the production happy-path for DeepSeek work.
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode direct DeepSeek API path. Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model deepseek/deepseek-v4-pro --variant high and capture the output.`
+Prompt: `Consult sk-prompt-models for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode direct DeepSeek API path. Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model deepseek/deepseek-v4-pro --variant high and capture the output.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model deepseek/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
+Expected signals: Advisor returns `sk-prompt-models` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model deepseek/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
 
 Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the direct DeepSeek API path was consciously picked.
 
 #### Test Execution
 
-> **Feature File:** [CO-035](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-small-model.md)
+> **Feature File:** [CO-035](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
 
-### CO-036 | Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-small-model + sk-prompt
+### CO-036 | Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-models + sk-prompt
 
 #### Description
 
@@ -646,15 +646,15 @@ Verify the dispatch matrix for Kimi K2.7 Code via the direct Kimi For Coding pla
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt-small-model for the Kimi K2.7 dispatch matrix and pick the cli-opencode direct Kimi For Coding path (kimi-for-coding/k2p7). Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model kimi-for-coding/k2p7 --variant high.`
+Prompt: `Consult sk-prompt-models for the Kimi K2.7 dispatch matrix and pick the cli-opencode direct Kimi For Coding path (kimi-for-coding/k2p7). Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model kimi-for-coding/k2p7 --variant high.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model_profiles.json kimi-k2p7 entry shows the direct Kimi For Coding path. `opencode run --model kimi-for-coding/k2p7 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-models` + `cli-opencode` above threshold. model_profiles.json kimi-k2p7 entry shows the direct Kimi For Coding path. `opencode run --model kimi-for-coding/k2p7 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
 Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi K2.7's large-context advantage, dispatched via the direct Kimi For Coding plan with the matrix-consultation evidence trail.
 
 #### Test Execution
 
-> **Feature File:** [CO-036](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
+> **Feature File:** [CO-036](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
 
 ### CO-037 | MiniMax design dispatch carries context manifest and proof cards
 
@@ -666,7 +666,7 @@ Verify a MiniMax-M3 design/UI dispatch is not sent with thin generic context: th
 
 Prompt: `Use MiniMax-M3 to review a SaaS onboarding redesign direction. Dispatch it with the sk-design context manifest, register/dials, contrast-pair, pre-flight, and audit-evidence proof requirements.`
 
-Expected signals: Advisor or operator consults `sk-prompt-small-model` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context_loading_contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
+Expected signals: Advisor or operator consults `sk-prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context_loading_contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
 
 Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo loaded context and proof-of-application sections, rather than a generic design-review prompt that omits the manifest.
 
@@ -845,8 +845,8 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-023: [Prompt templates inventory (16 templates)](07--prompt-templates/templates-inventory.md)
 - CO-024: [CLEAR quality card 5-check](07--prompt-templates/clear-quality-card.md)
 - CO-025: [Template applied to a real dispatch](07--prompt-templates/template-applied-to-real-dispatch.md)
-- CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-small-model + sk-prompt](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-small-model.md)
-- CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-small-model + sk-prompt](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
+- CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-models + sk-prompt](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
+- CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-models + sk-prompt](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
 - CO-037: [MiniMax design dispatch carries context manifest and proof cards](07--prompt-templates/minimax-design-context-manifest.md)
 
 ### PARALLEL DETACHED

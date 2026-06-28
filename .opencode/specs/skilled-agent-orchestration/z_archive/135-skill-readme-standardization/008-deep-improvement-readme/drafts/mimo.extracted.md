@@ -117,7 +117,7 @@ Skip it for open-ended prompt rewrites across multiple agent families. Skip it f
 | `deep-context` | Maps existing code, integration points and conventions before planning. Read-only. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-context` first so seats start from shared facts. |
 
-`deep-improvement` is the one deep loop that can mutate. It does so only behind the promotion gate, and only on the canonical target. `system-spec-kit` owns the spec folder that candidates live in. The model-benchmark lane writes outputs into the `sk-prompt-small-model` benchmarks tree.
+`deep-improvement` is the one deep loop that can mutate. It does so only behind the promotion gate, and only on the canonical target. `system-spec-kit` owns the spec folder that candidates live in. The model-benchmark lane writes outputs into the `sk-prompt-models` benchmarks tree.
 
 ---
 

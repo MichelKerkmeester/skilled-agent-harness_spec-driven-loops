@@ -166,7 +166,7 @@ Graph guards: run convergence.cjs --loop-type context (evaluateContext)
 
 Each parallel sweep:
 1. Host picks the current focus (frontier slice set) — the SAME focus for every seat (by-model shared scope).
-2. Host renders each seat's prompt: gather-subject + scope/slice + known-context + output schema; applies the seat's `promptFramework` via `sk-prompt-small-model` (MiMo -> COSTAR, DeepSeek -> TIDD-EC; native seats carry no framework).
+2. Host renders each seat's prompt: gather-subject + scope/slice + known-context + output schema; applies the seat's `promptFramework` via `sk-prompt-models` (MiMo -> COSTAR, DeepSeek -> TIDD-EC; native seats carry no framework).
 3. Dispatch concurrently — native Task batch ‖ CLI pool — and barrier-join when all seats return.
 4. Each seat returns structured findings (reuse candidates, integration points, conventions, dependencies, gaps + self-scored relevance) to `seats/{label}/iter-NNN/`. Seats write nothing else.
 5. Host dedups by `unit_id`, unions attribution, sets agreement counts, applies the relevance gate, surfaces contradictions.

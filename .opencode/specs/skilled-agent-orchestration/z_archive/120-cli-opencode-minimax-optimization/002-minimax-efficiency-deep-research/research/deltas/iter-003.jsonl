@@ -3,9 +3,9 @@
 {"type":"finding","id":"f-iter003-002","severity":"P1","label":"Direct MiniMax dispatch should omit --variant by default until provider docs or live ablation prove a mapping","iteration":3}
 {"type":"finding","id":"f-iter003-003","severity":"P1","label":"MiniMax-M2.7-highspeed should be routed as a distinct model id if exposed, not inferred from --variant high","iteration":3}
 {"type":"finding","id":"f-iter003-004","severity":"P2","label":"MiniMax prompt quality guidance should emphasize visible task state, concise constraint rationale, exact file/model anchors, and active tool-round continuity","iteration":3}
-{"type":"finding","id":"f-iter003-005","severity":"P2","label":"sk-prompt-small-model should add only link-only pointers to cli-opencode-owned MiniMax prompt-quality and variant-ablation policy","iteration":3}
+{"type":"finding","id":"f-iter003-005","severity":"P2","label":"sk-prompt-models should add only link-only pointers to cli-opencode-owned MiniMax prompt-quality and variant-ablation policy","iteration":3}
 {"type":"invariant","id":"inv-iter003-001","label":"Do not assert that --variant high changes MiniMax reasoning without official docs or live ablation evidence","iteration":3}
-{"type":"invariant","id":"inv-iter003-002","label":"Do not duplicate prompt-quality bodies inside sk-prompt-small-model; it remains a thin sentinel and pattern index","iteration":3}
+{"type":"invariant","id":"inv-iter003-002","label":"Do not duplicate prompt-quality bodies inside sk-prompt-models; it remains a thin sentinel and pattern index","iteration":3}
 {"type":"observation","id":"obs-iter003-001","packet":"120/002","classification":"real","label":"OpenCode docs support provider/model variants generally but do not prove a MiniMax-specific built-in variant mapping","iteration":3}
 {"type":"observation","id":"obs-iter003-002","packet":"120/002","classification":"real","label":"MiniMax docs expose MiniMax-M2.7 and MiniMax-M2.7-highspeed as separate model IDs with the same context window and different speed profiles","iteration":3}
 {"type":"observation","id":"obs-iter003-003","packet":"120/002","classification":"real","label":"Local cli_reference.md already marks MiniMax --variant behavior as unverified in the phase-001 matrix row","iteration":3}

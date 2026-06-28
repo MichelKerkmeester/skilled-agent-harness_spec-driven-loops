@@ -154,7 +154,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt-small-model` | Owns the SWE-1.6 prompt-craft profile and pre-planning contract. Every SWE-1.6 dispatch must honor its framework and scaffold. |
+| `sk-prompt-models` | Owns the SWE-1.6 prompt-craft profile and pre-planning contract. Every SWE-1.6 dispatch must honor its framework and scaffold. |
 | `sk-code` | Owns code standards and verification. cli-devin dispatches the work, sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Devin session back into the caller's spec folder. |
 

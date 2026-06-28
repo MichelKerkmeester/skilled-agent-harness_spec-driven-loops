@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Design — 3-layer prompt-knowledge architecture + data contract"
-description: "Ratify Architecture A (sk-prompt-small-model as the per-model prompt-craft hub) and lock the recommended_frameworks data contract, the per-model profile template, and the single prompt-composition precedence rule that the remaining phases implement."
+description: "Ratify Architecture A (sk-prompt-models as the per-model prompt-craft hub) and lock the recommended_frameworks data contract, the per-model profile template, and the single prompt-composition precedence rule that the remaining phases implement."
 trigger_phrases:
   - "prompt knowledge architecture decision"
   - "recommended_frameworks schema"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,7 +28,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Prose home -> Architecture A (sk-prompt-small-model/references/models/)"
+      - "Prose home -> Architecture A (sk-prompt-models/references/models/)"
       - "Model scope -> all active small models at equal depth"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -62,7 +62,7 @@ _memory:
 
 This is **Phase 1** of the prompt-knowledge layering spec. It is design-only: it produces the contracts the other seven phases implement. No production skill files are modified in this phase.
 
-**Scope Boundary**: Author the architecture decision + three contracts (data schema, profile template, precedence rule). No edits to `sk-prompt`, `sk-prompt-small-model`, or `cli-*` source in this phase.
+**Scope Boundary**: Author the architecture decision + three contracts (data schema, profile template, precedence rule). No edits to `sk-prompt`, `sk-prompt-models`, or `cli-*` source in this phase.
 
 **Dependencies**:
 - Audit findings + the user's two locked decisions (Architecture A; all active small models at equal depth).
@@ -101,7 +101,7 @@ Produce the ratified 3-layer architecture and the three contracts so phases 002�
 - The prompt-composition precedence rule (definition only; wiring is phase 007).
 
 ### Out of Scope
-- Editing any `sk-prompt`, `sk-prompt-small-model`, or `cli-*` source file — that is phases 002–008.
+- Editing any `sk-prompt`, `sk-prompt-models`, or `cli-*` source file — that is phases 002–008.
 - Re-running benchmarks — existing 120/003 + 126/004 evidence is reused.
 
 ### Files to Change
@@ -148,7 +148,7 @@ Produce the ratified 3-layer architecture and the three contracts so phases 002�
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Maturing sk-prompt-small-model from router→hub re-bloats it | Med | SKILL.md stays thin-at-entry; per-model prose loads on-demand under references/models/ |
+| Risk | Maturing sk-prompt-models from router→hub re-bloats it | Med | SKILL.md stays thin-at-entry; per-model prose loads on-demand under references/models/ |
 | Risk | Carried-forward MiniMax M3 evidence presented as current | Low | `status: carried` in the schema makes inheritance explicit |
 | Dependency | Benchmark synthesis docs (120/003, 126/004) | Evidence rows cite them | Reused read-only; no re-benchmark |
 <!-- /ANCHOR:risks -->
@@ -165,14 +165,14 @@ Produce the ratified 3-layer architecture and the three contracts so phases 002�
 
 ## 8. ARCHITECTURE DECISION (ratified)
 
-**Decision: Architecture A — `sk-prompt-small-model` becomes the per-model prompt-craft content hub.**
+**Decision: Architecture A — `sk-prompt-models` becomes the per-model prompt-craft content hub.**
 
 Three layers, one owner per concept:
 
 | Layer | Owner | Owns |
 |-------|-------|------|
 | Framework craft (model-agnostic) | `sk-prompt` | 7 frameworks, DEPTH, CLEAR, canonical fast-path card, `model-profiles.json` DATA |
-| Per-model craft | `sk-prompt-small-model/references/models/<id>.md` | framework choice + scaffold + evidence + gotchas, per model |
+| Per-model craft | `sk-prompt-models/references/models/<id>.md` | framework choice + scaffold + evidence + gotchas, per model |
 | Executor mechanics | `cli-*` | binary flags, `--variant`/`--agent`, `</dev/null`, permissions, fallback |
 
 **Rationale:** Cleanest orthogonal split; fork-proof for models already dispatchable from two executors (deepseek-v4-pro, kimi-k2.6, glm-5.1 run via both cli-devin and cli-opencode); matches the user's instinct and CLAUDE.md's existing "canonical home for model specifics" language. The `recommended_frameworks` DATA stays in `sk-prompt/assets/model-profiles.json` (moving it would break ~15 backlinks for no functional gain).
@@ -181,7 +181,7 @@ Three layers, one owner per concept:
 - **B (prose local to each cli-X):** lowest disruption, best locality, but forks per-model craft across the two executors for the already-dual-executor models. Deferred-migration trap.
 - **C (prose inside sk-prompt next to the registry):** single hub without touching the sentinel, but grows `sk-prompt` past pure framework theory.
 
-**Cost accepted:** `sk-prompt-small-model`'s "stay thin / content lives in the executor" ALWAYS/NEVER rules are rewritten in phase 004 (SKILL.md stays short; the weight moves to on-demand `references/models/` files).
+**Cost accepted:** `sk-prompt-models`'s "stay thin / content lives in the executor" ALWAYS/NEVER rules are rewritten in phase 004 (SKILL.md stays short; the weight moves to on-demand `references/models/` files).
 
 ## 9. DATA CONTRACT — `recommended_frameworks` (added to each model entry)
 
@@ -200,7 +200,7 @@ Additive, optional object; sibling to the existing `capability` object. IDs refe
     "sample": "7-fixture rig, real MiniMax M2.7 runs",
     "confidence": "medium"              // low | medium | high
   },
-  "profile_ref": "sk-prompt-small-model/references/models/minimax-m3.md",
+  "profile_ref": "sk-prompt-models/references/models/minimax-m3.md",
   "carried_from": "minimax-2.7",        // optional; when a sibling's finding is inherited un-rebenchmarked
   "status": "carried"                   // empirical | carried | default-unverified
 }

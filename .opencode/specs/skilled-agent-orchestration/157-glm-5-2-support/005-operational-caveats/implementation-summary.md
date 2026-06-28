@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Packet complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -58,8 +58,8 @@ Also confirmed: dispatch cost is 0/null across all 45 cells (subscription billin
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Modified | §2 (avg wall-clock), §5 (timeout note), §6 (latency + transient-failure rows) |
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modified | weaknesses: latency-variance + transient-failure entries |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Modified | §2 (avg wall-clock), §5 (timeout note), §6 (latency + transient-failure rows) |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modified | weaknesses: latency-variance + transient-failure entries |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | GLM line operational caveat (latency 6–161s; ~1/45 transient failures) |
 <!-- /ANCHOR:what-built -->
 

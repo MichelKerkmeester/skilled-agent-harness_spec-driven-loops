@@ -127,7 +127,7 @@ D1 Correctness — second-executor pass with MiniMax should try to reproduce/con
 **120 skill edits (MiniMax integration):**
 - cli-opencode/{SKILL.md, assets/prompt_quality_card.md, assets/prompt_templates.md, changelog/v1.3.4.0.md, graph-metadata.json, references/cli_reference.md}
 - sk-prompt/assets/{cli_prompt_quality_card.md, model-profiles.json}
-- sk-prompt-small-model/{SKILL.md, references/pattern-index.md}
+- sk-prompt-models/{SKILL.md, references/pattern-index.md}
 
 **Authored design/research docs:**
 - 121/001 decision-record.md, 121/002 research/research.md, 121/003 spec.md
@@ -370,10 +370,10 @@ D1 Correctness — second-executor pass with MiniMax should try to reproduce/con
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `skill_agent`: PASS (unchanged from iter 7). MiniMax docs are internally consistent.
 
-### `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-small-model`. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-small-model`.
+### `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-models`. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-models`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-small-model`.
+- Do NOT retry: `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-models`.
 
 ### `spawned_cli_arg_injection`: PASS (ruled out). `dispatchReal` uses `execFileSync` with argv array; `buildSpawnSpec` constructs args safely. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `spawned_cli_arg_injection`: PASS (ruled out). `dispatchReal` uses `execFileSync` with argv array; `buildSpawnSpec` constructs args safely.
@@ -425,10 +425,10 @@ D1 Correctness — second-executor pass with MiniMax should try to reproduce/con
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: checklist_evidence: FAIL. TST-1 tests plan equality, not byte-identical state JSONL; scorer tests call the ported scorer directly but do not prove run-benchmark uses it.
 
-### feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-small-model dispatch matrix. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-small-model dispatch matrix.
+### feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-models dispatch matrix. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-models dispatch matrix.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-small-model dispatch matrix.
+- Do NOT retry: feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-models dispatch matrix.
 
 ### mode field persistence: PASS. score-candidate and run-benchmark include mode on success and infra_failure records. -- BLOCKED (iteration 5, 1 attempts)
 - What was tried: mode field persistence: PASS. score-candidate and run-benchmark include mode on success and infra_failure records.
@@ -445,10 +445,10 @@ D1 Correctness — second-executor pass with MiniMax should try to reproduce/con
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: playbook_capability: PASS for cli-opencode reference coverage of the minimax provider/model and variant caveat.
 
-### skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-small-model index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-small-model index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
+### skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-models index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-models index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-small-model index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
+- Do NOT retry: skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-models index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
 
 ### spec_code: FAIL. REQ-002 and REQ-004 overclaim active scorer and promotion behavior. -- BLOCKED (iteration 5, 1 attempts)
 - What was tried: spec_code: FAIL. REQ-002 and REQ-004 overclaim active scorer and promotion behavior.

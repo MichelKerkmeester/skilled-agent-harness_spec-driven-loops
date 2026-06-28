@@ -9,7 +9,7 @@
 - **Overall verdict: CONDITIONAL** — no release-blocking P0; genuine but non-blocking P1 correctness/security defects remain that warrant fix-before-promote. *(All since remediated — see §11.)*
 - **hasAdvisories: true** (11 active P2).
 - **Active findings (post-arbitration): P0 = 0 · P1 = 4 (3 unique after dedup) · P2 = 11.**
-- **Scope reviewed:** 29 curated files — the 121/003 model-benchmark build (loop-host.cjs, dispatch-model.cjs, the ported scorer/ tree, mode-field edits, two vitest suites) + the 120 MiniMax skill edits (cli-opencode, sk-prompt, sk-prompt-small-model) + 3 authored design/research/build docs.
+- **Scope reviewed:** 29 curated files — the 121/003 model-benchmark build (loop-host.cjs, dispatch-model.cjs, the ported scorer/ tree, mode-field edits, two vitest suites) + the 120 MiniMax skill edits (cli-opencode, sk-prompt, sk-prompt-models) + 3 authored design/research/build docs.
 - **Headline call:** the "model-benchmark route ships the dispatcher + 5-dim scorer as *available* but does not wire them into the default `run-benchmark` path" finding — raised as P1 by both gpt-5.5 and MiniMax — was **downgraded to P2 by the Opus arbiter** as an intended, spec-documented deferral (003 spec.md §7 + 002 research §10). REQ-003/REQ-004 require the dispatcher/scorer to be *decoupled and available*, which they are; defaulting run-benchmark to them is explicit opt-in follow-on work.
 
 ## 2. Planning Trigger

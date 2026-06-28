@@ -59,8 +59,8 @@ The final phase recorded the operational failure mode that matters when Kimi K2.
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Updated | §5 load-bearing read-cap and failure mode, §6 `variant_flag` caveat and §2 wall-clock observation. |
-| `sk-prompt-small-model/assets/model_profiles.json` | Updated | Added Kimi K2.7 Code weakness for over-exploration and timeout. |
+| `sk-prompt-models/references/models/kimi-k2.7-code.md` | Updated | §5 load-bearing read-cap and failure mode, §6 `variant_flag` caveat and §2 wall-clock observation. |
+| `sk-prompt-models/assets/model_profiles.json` | Updated | Added Kimi K2.7 Code weakness for over-exploration and timeout. |
 | `cli-opencode/SKILL.md` | Updated | Added operational caveat to the `kimi-for-coding/k2p7` line. |
 | `cli-opencode/references/cli_reference.md` | Updated | Changed `opencode-go/kimi-k2.6` row to `kimi-for-coding/k2p7`. |
 | `cli-opencode/references/context-budget.md` | Updated | Changed `kimi-k2.6` to `kimi-k2.7-code`, recorded 262,144 context, added caveat and fixed prose reference. |

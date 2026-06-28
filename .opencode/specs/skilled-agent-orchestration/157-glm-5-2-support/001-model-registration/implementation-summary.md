@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 1: model-registration"
-description: "GLM-5.2 is now a first-class small model across cli-opencode and sk-prompt-small-model via the Z.AI GLM Coding Plan (zai-coding-plan/glm-5.2)."
+description: "GLM-5.2 is now a first-class small model across cli-opencode and sk-prompt-models via the Z.AI GLM Coding Plan (zai-coding-plan/glm-5.2)."
 trigger_phrases:
   - "glm-5.2"
   - "zai-coding-plan"
@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-GLM-5.2 is now a first-class small model. You can dispatch it by slug (`zai-coding-plan/glm-5.2`) or by the `glm` / `zai` aliases, and the skill advisor routes GLM-5.2 prompt-framework questions to `sk-prompt-small-model` + `cli-opencode`. It runs on the Z.AI GLM Coding Plan subscription (provider `zai-coding-plan`), on a quota pool independent of the kimi / minimax / xiaomi pools, and supersedes the gateway-only `glm-5.1` that cli-opencode v1.3.15.0 removed when no direct provider existed.
+GLM-5.2 is now a first-class small model. You can dispatch it by slug (`zai-coding-plan/glm-5.2`) or by the `glm` / `zai` aliases, and the skill advisor routes GLM-5.2 prompt-framework questions to `sk-prompt-models` + `cli-opencode`. It runs on the Z.AI GLM Coding Plan subscription (provider `zai-coding-plan`), on a quota pool independent of the kimi / minimax / xiaomi pools, and supersedes the gateway-only `glm-5.1` that cli-opencode v1.3.15.0 removed when no direct provider existed.
 
 ### Register glm-5.2 across the small-model surfaces
 
@@ -65,12 +65,12 @@ The prior gateway-only `glm-5.1` left dead references behind. GLM-scoped reconci
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modified | Added the `glm-5.2` entry (1M context, capability block, CRAFT default-unverified); updated the registry description rotation line |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Created | New 7-section prompt-craft profile (CRAFT default-unverified, bakeoff pending) |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Modified | Added `glm-5.2` to the ACTIVE table |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Frontmatter, Keywords, activation + keyword triggers, MODEL_ALIASES (`glm`/`zai` → glm-5.2), §3 dispatch-matrix row, ALWAYS active-model set |
-| `.opencode/skills/sk-prompt-small-model/references/pattern_index.md` | Modified | §3 ownership-boundary line (+ GLM-5.2 via the Z.AI GLM Coding Plan) |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modified | enhances context + intent_signals + trigger_phrases for glm-5.2 / zai-coding-plan |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modified | Added the `glm-5.2` entry (1M context, capability block, CRAFT default-unverified); updated the registry description rotation line |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Created | New 7-section prompt-craft profile (CRAFT default-unverified, bakeoff pending) |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modified | Added `glm-5.2` to the ACTIVE table |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Frontmatter, Keywords, activation + keyword triggers, MODEL_ALIASES (`glm`/`zai` → glm-5.2), §3 dispatch-matrix row, ALWAYS active-model set |
+| `.opencode/skills/sk-prompt-models/references/pattern_index.md` | Modified | §3 ownership-boundary line (+ GLM-5.2 via the Z.AI GLM Coding Plan) |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modified | enhances context + intent_signals + trigger_phrases for glm-5.2 / zai-coding-plan |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | Keywords header, Model Selection paragraph (GLM-5.2 sentence), provider login list |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Modified | Provider table row, variant table row, login command shape |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | Dedicated glm-5.2 row; removed the dead glm-5.1 reference |
@@ -109,7 +109,7 @@ Discovery-first, then the canonical "Adopting a New Provider" checklist (pattern
 | Live smoke dispatch (`opencode run --model zai-coding-plan/glm-5.2 ... "Reply with exactly one word: pong"`) | PASS — returned "pong", exit 0 (default `build` agent) |
 | Card-sync guard (`check-prompt-quality-card-sync.sh .`) | PASS, exit 0 (CHECK 3 registry/profile/_index complete, CHECK 4 discoverability) — baseline was also PASS |
 | JSON parse (node) on all edited JSON | PASS — model_profiles.json + both graph-metadata.json parse clean |
-| Advisor routing probe (glm-5.2 / Z.AI prompt) | PASS — sk-prompt-small-model conf 0.95, cli-opencode conf 0.94 |
+| Advisor routing probe (glm-5.2 / Z.AI prompt) | PASS — sk-prompt-models conf 0.95, cli-opencode conf 0.94 |
 | Live facts (`opencode providers list`, `opencode models zai-coding-plan`, 2026-06-28) | PASS — provider zai-coding-plan authed; slug zai-coding-plan/glm-5.2 present |
 <!-- /ANCHOR:verification -->
 

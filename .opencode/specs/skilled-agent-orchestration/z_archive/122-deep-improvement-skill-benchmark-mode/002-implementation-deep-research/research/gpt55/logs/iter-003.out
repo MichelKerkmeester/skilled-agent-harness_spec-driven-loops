@@ -7348,14 +7348,14 @@ exec
 .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts:166:        skillId: skill.id,
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:4:  "skill_count": 21,
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:20:      "mcp-code-mode"
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:32:      "sk-prompt-small-model"
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:32:      "sk-prompt-models"
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:36:      "system-skill-advisor",
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:59:        "sk-prompt-small-model": 0.5
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:78:        "sk-prompt-small-model": 0.5
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:59:        "sk-prompt-models": 0.5
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:78:        "sk-prompt-models": 0.5
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:131:        "mcp-code-mode": 0.7
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:137:    "mcp-code-mode": {
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:151:        "system-skill-advisor": 0.7
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:190:    "sk-prompt-small-model": {
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:190:    "sk-prompt-models": {
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:207:    "system-skill-advisor": {
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:214:        "mcp-code-mode": 0.7,
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:296:      "deep-loop-runtime skill",
@@ -7370,7 +7370,7 @@ exec
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:411:      "update sk-code skill.md",
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:412:      "update the sk-code skill.md",
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:414:      "clarify the routing model",
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:436:    "sk-prompt-small-model": [
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:436:    "sk-prompt-models": [
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:437:      "small model",
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:438:      "small-model dispatch",
 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json:461:    "system-skill-advisor": [
@@ -9326,7 +9326,7 @@ exec
     40	- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
     41	- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
     42	- Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-    43	- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+    43	- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
     44	- Internal self-references inside the skill's own references/scripts/README.
     45	
     46	## 3. Approach

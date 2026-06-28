@@ -60,7 +60,7 @@ Run four independent research lineages in parallel — GPT-5.5×20, Opus-4.8×15
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] MiMo/Kimi opencode model ids confirmed from `sk-prompt-small-model/references/models/`
+- [ ] MiMo/Kimi opencode model ids confirmed from `sk-prompt-models/references/models/`
 - [ ] Second Claude account `~/.claude-account2` authenticated
 - [ ] Fan-out config written with per-lineage `iterations` set on every lineage
 

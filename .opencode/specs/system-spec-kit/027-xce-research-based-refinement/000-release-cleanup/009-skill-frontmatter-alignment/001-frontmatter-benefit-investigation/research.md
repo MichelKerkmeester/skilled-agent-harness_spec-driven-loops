@@ -72,7 +72,7 @@ Per-skill distribution of the detailed block (references with/total, assets with
 | sk-doc | 2/14 | 7/25 |
 | sk-git | 0/7 | 0/3 |
 | sk-prompt | 0/2 | 0/3 |
-| sk-prompt-small-model | 0/12 | 0/2 |
+| sk-prompt-models | 0/12 | 0/2 |
 | system-code-graph | 6/7 | — |
 | system-skill-advisor | 14/15 | — |
 | system-spec-kit | 2/41 | 0/4 |

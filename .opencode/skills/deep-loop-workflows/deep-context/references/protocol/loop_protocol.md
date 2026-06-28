@@ -69,7 +69,7 @@ From the target feature/query: extract anchors (paths, symbols, error strings, d
 ## 5. ONE ITERATION (PARALLEL SWEEP)
 
 1. Pick the current focus (frontier slice set for this iteration; by-model shared scope = all seats get the same focus).
-2. Render each seat's prompt with the mandatory contract: gather-subject + scope/slice + known-context + output schema; apply the seat's `promptFramework` via `sk-prompt-small-model`.
+2. Render each seat's prompt with the mandatory contract: gather-subject + scope/slice + known-context + output schema; apply the seat's `promptFramework` via `sk-prompt-models`.
 3. Dispatch concurrently:
    - **native seats** → parallel Task batch (`@deep-context` LEAF subagents).
    - **CLI seats** → `deep-loop-runtime/lib/council/multi-seat-dispatch.cjs` `dispatchCouncilSeats` + per-kind spawn (`scripts/fanout-run.cjs` `buildLineageCommand`).

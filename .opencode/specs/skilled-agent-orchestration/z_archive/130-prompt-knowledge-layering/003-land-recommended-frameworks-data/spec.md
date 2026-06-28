@@ -59,7 +59,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.
+This is **Phase 3** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub specification.
 
 **Scope Boundary**: Add the `recommended_frameworks` object to `model-profiles.json` (data layer) and rebuild `model-profiles.md` (prose layer). No changes to any other file.
 
@@ -102,7 +102,7 @@ Give every active model a machine-readable `recommended_frameworks` record that 
 ### Out of Scope
 - Changes to any other file — all other sk-prompt assets and references are unchanged in this phase
 - Running dedicated benchmarks to verify the five rcaf defaults — that is scoped to a later phase
-- Changes to cli-opencode, cli-devin, or sk-prompt-small-model dispatch logic — those pick up the data in later phases
+- Changes to cli-opencode, cli-devin, or sk-prompt-models dispatch logic — those pick up the data in later phases
 
 ### Files to Change
 

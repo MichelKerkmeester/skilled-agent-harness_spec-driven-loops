@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Packet core complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/003-promote-results"
@@ -111,8 +111,8 @@ Promote the phase-2 verdict into the registry and the glm-5.2 reference doc so d
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modify | `glm-5.2.recommended_frameworks`: set `primary`, `preplanning_density`, `evidence` (benchmark run-label, score, sample, confidence), `status: "empirical"` (or keep `default-unverified` on TIE/INCONCLUSIVE) |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Modify | Rewrite §3 (Recommended Framework) and §4 (Benchmark Evidence) to cite the phase-2 run |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modify | `glm-5.2.recommended_frameworks`: set `primary`, `preplanning_density`, `evidence` (benchmark run-label, score, sample, confidence), `status: "empirical"` (or keep `default-unverified` on TIE/INCONCLUSIVE) |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Modify | Rewrite §3 (Recommended Framework) and §4 (Benchmark Evidence) to cite the phase-2 run |
 <!-- /ANCHOR:scope -->
 
 ---

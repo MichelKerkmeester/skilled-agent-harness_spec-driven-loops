@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 1: model-registration"
-description: "Kimi K2.7 Code is now a first-class small model across cli-opencode and sk-prompt-small-model; kimi-k2.6 is retired in place."
+description: "Kimi K2.7 Code is now a first-class small model across cli-opencode and sk-prompt-models; kimi-k2.6 is retired in place."
 trigger_phrases:
   - "kimi-k2.7-code"
   - "kimi-for-coding"
@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff prompt-framework bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -63,7 +63,7 @@ Kimi K2.7 Code is now a first-class small model. You can dispatch it by slug (`k
 
 ### Register kimi-k2.7-code across the small-model surfaces
 
-You now get a complete registration: a model-profiles.json entry (context_length 262144, executor cli-opencode -> provider kimi-for-coding -> pool kimi-for-coding, a capability block with model_slug `kimi-for-coding/k2p7` plus `variant_status` accepted-unverified, and recommended_frameworks RCAF at default-unverified status), a 7-section prompt-craft profile, ACTIVE-table placement in `_index.md`, SKILL.md aliases and a §3 dispatch-matrix row, and routing graph metadata in both the sk-prompt-small-model and cli-opencode skills. The model is dispatchable, alias-resolvable, and advisor-routable.
+You now get a complete registration: a model-profiles.json entry (context_length 262144, executor cli-opencode -> provider kimi-for-coding -> pool kimi-for-coding, a capability block with model_slug `kimi-for-coding/k2p7` plus `variant_status` accepted-unverified, and recommended_frameworks RCAF at default-unverified status), a 7-section prompt-craft profile, ACTIVE-table placement in `_index.md`, SKILL.md aliases and a §3 dispatch-matrix row, and routing graph metadata in both the sk-prompt-models and cli-opencode skills. The model is dispatchable, alias-resolvable, and advisor-routable.
 
 ### Retire kimi-k2.6 in place
 
@@ -73,12 +73,12 @@ You now get a complete registration: a model-profiles.json entry (context_length
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` | Modified | Added the `kimi-k2.7-code` entry; retired `kimi-k2.6` (status historical, notes -> kimi-k2.7-code); updated the registry description rotation line |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Created | New 7-section prompt-craft profile (RCAF default-unverified, bakeoff pending) |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md` | Modified | Added a HISTORICAL banner (superseded by kimi-k2.7-code) |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Modified | Moved kimi-k2.7-code to the ACTIVE table, kimi-k2.6 to the Historical table |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Frontmatter, Keywords, activation + keyword triggers, MODEL_ALIASES (`kimi` -> kimi-k2.7-code, added kimi-k2.7 / kimi-for-coding / k2p7, kept kimi-k2.6), and §3 dispatch-matrix row |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modified | trigger_phrases + intent_signals + enhances-context for kimi-k2.7-code / kimi-for-coding |
+| `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Modified | Added the `kimi-k2.7-code` entry; retired `kimi-k2.6` (status historical, notes -> kimi-k2.7-code); updated the registry description rotation line |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md` | Created | New 7-section prompt-craft profile (RCAF default-unverified, bakeoff pending) |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md` | Modified | Added a HISTORICAL banner (superseded by kimi-k2.7-code) |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modified | Moved kimi-k2.7-code to the ACTIVE table, kimi-k2.6 to the Historical table |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Frontmatter, Keywords, activation + keyword triggers, MODEL_ALIASES (`kimi` -> kimi-k2.7-code, added kimi-k2.7 / kimi-for-coding / k2p7, kept kimi-k2.6), and §3 dispatch-matrix row |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modified | trigger_phrases + intent_signals + enhances-context for kimi-k2.7-code / kimi-for-coding |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modified | trigger_phrases + key_topics for kimi-k2.7-code / kimi-for-coding / kimi-for-coding/k2p7 |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | Added a Kimi For Coding line to the auth-login list and the `kimi-for-coding/k2p7` model to the Model Selection paragraph |
 <!-- /ANCHOR:what-built -->
@@ -127,7 +127,7 @@ Delivered by following the canonical "Adopting a New Provider" checklist (patter
 | Card-sync guard (`check-prompt-quality-card-sync.sh .`) | PASS, exit 0 (CHECK 1 tables-not-inlined, CHECK 2 tier-3 pointer-only, CHECK 3 registry/profile/_index complete, CHECK 4 discoverability) |
 | Live smoke dispatch (`opencode run --model kimi-for-coding/k2p7 ... "Reply with exactly one word: pong"`) | PASS, returned "pong", exit 0, cost 0 (subscription/Token-Plan path) |
 | JSON parse (node JSON.parse on all edited JSON) | PASS, all edited JSON files parse clean |
-| Advisor routing probe ("what prompt framework ... for kimi-k2.7-code via cli-opencode") | PASS, surfaces sk-prompt-small-model (conf 0.94) + cli-opencode (0.90) |
+| Advisor routing probe ("what prompt framework ... for kimi-k2.7-code via cli-opencode") | PASS, surfaces sk-prompt-models (conf 0.94) + cli-opencode (0.90) |
 | Live model facts (`opencode models kimi-for-coding`, 2026-06-15) | PASS, slug kimi-for-coding/k2p7, context 262144, output 32768; `--variant high` accepted (exit 0), effect benchmark-unverified |
 <!-- /ANCHOR:verification -->
 

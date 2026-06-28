@@ -72,7 +72,7 @@ _memory:
 
 ### Part B — cleanup (CLI-DEVIN executes, CLI-CODEX reviews)
 
-- [ ] T020 Part B0 pre-flight: Read cli-devin/SKILL.md + cli-codex/SKILL.md; consult sk-prompt-small-model
+- [ ] T020 Part B0 pre-flight: Read cli-devin/SKILL.md + cli-codex/SKILL.md; consult sk-prompt-models
 - [ ] T021 Commit/stash already-dirty working tree; confirm green baseline per skill
 - [ ] T022 Validation phase: deep-agent-improvement .cjs scripts (~5 sites)
 - [ ] T023 Validation phase: system-skill-advisor embedders + server + py (~7 sites)

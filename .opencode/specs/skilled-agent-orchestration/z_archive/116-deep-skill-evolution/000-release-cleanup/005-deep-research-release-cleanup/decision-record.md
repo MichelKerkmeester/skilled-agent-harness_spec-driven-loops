@@ -58,7 +58,7 @@ The phase-5 deep-research loop needs to surface logic gaps a single-model dispat
 
 - Mac dispatch discipline forbids batching iterations; each iter runs one at a time with SIGKILL between.
 - DeepSeek through cli-opencode requires the direct `deepseek/*` API key path (not opencode-go), per `cli-opencode/SKILL.md:240`.
-- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md:192` and `sk-prompt-small-model`.
+- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md:192` and `sk-prompt-models`.
 <!-- /ANCHOR:adr-001-context -->
 
 ---

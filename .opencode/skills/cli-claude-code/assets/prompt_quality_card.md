@@ -31,7 +31,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> ../../sk-prompt-small-model/assets/cli_prompt_quality_card.md  (deep theory: ../../sk-prompt/references/patterns_evaluation.md)
+-> ../../sk-prompt-models/assets/cli_prompt_quality_card.md  (deep theory: ../../sk-prompt/references/patterns_evaluation.md)
 
 ---
 
@@ -51,7 +51,7 @@ No per-model overrides today — Haiku is an unverified stub.
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in ../../sk-prompt-small-model/assets/cli_prompt_quality_card.md and restated in ../SKILL.md.
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in ../../sk-prompt-models/assets/cli_prompt_quality_card.md and restated in ../SKILL.md.
 
 Claude Code escalation example: if the task would otherwise need a long `claude -p` prompt plus `--permission-mode plan`, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first and then pass that result to Claude Code.
 
@@ -69,4 +69,4 @@ Claude Code escalation example: if the task would otherwise need a long `claude 
 
 ## 6. RELATED RESOURCES
 
--> ../../sk-prompt-small-model/assets/cli_prompt_quality_card.md · ./prompt_templates.md · ../SKILL.md · ../../sk-prompt-small-model/references/models/ (per-model profiles)
+-> ../../sk-prompt-models/assets/cli_prompt_quality_card.md · ./prompt_templates.md · ../SKILL.md · ../../sk-prompt-models/references/models/ (per-model profiles)

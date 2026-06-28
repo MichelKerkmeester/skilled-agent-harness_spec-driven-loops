@@ -41,7 +41,7 @@ Families confirmed by directory count: cli-* (4), deep-* (6), mcp-* (3), sk-* (6
 - `sk-doc`: Document quality that starts with structure, with a deterministic script that extracts and scores.
 - `sk-git`: Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline.
 - `sk-prompt`: Turn a vague ask into a structured prompt, auto-selected from seven frameworks.
-- `sk-prompt-small-model`: Before you dispatch any small model, read that model's prompt-craft profile here.
+- `sk-prompt-models`: Before you dispatch any small model, read that model's prompt-craft profile here.
 
 ### system-* (the runtime foundation, 3)
 - `system-code-graph`: The structural half of code intelligence. Answer what depends on what, and refuse on a stale graph.

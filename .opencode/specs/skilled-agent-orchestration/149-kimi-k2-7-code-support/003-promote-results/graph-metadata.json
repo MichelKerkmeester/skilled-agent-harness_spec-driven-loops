@@ -41,7 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+      ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
       "spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
       "plan.md",
@@ -52,7 +52,7 @@
       {
         "name": "kimi-k2.7-code.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
         "source": "derived"
       },
       {

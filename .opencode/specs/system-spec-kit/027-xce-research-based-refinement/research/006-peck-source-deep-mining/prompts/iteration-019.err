@@ -48,7 +48,7 @@
 [0m→ [0mRead .agents/skills/sk-code-review/SKILL.md[90m [offset=1, limit=260][0m
 [0m→ [0mRead .agents/skills/sk-code/SKILL.md[90m [offset=1, limit=260][0m
 [0m→ [0mRead .opencode/skills/cli-opencode/SKILL.md[90m [offset=1, limit=220][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=1, limit=220][0m
 [0m→ [0mRead .opencode/skills/deep-research/SKILL.md[90m [offset=1, limit=220][0m
 [0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=1, limit=260][0m
 [0m✱ [0mGrep "current-state|current state|product.md|constitutional|recurrence|promotion|standing-guidance|cap|reconsolidation|reflection"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 999 matches[0m

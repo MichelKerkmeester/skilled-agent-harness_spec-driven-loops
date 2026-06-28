@@ -18,7 +18,7 @@ case "$iter" in
  2) focus="RQ2 — design a credible HINT-FREE dispatch harness: run a realistic scenario against an AI and capture which references/assets it loaded plus its tool trace, WITHOUT leaking the expected answer/path. Resource-load instrumentation, held-out expected-resource keys, prompt-contamination avoidance.";;
  3) focus="RQ3 — score activation against the skill-advisor vs the in-SKILL.md smart router vs both as separate sub-scores; operational meaning of 'properly utilized'. PLUS RQ4 — scenario/fixture authoring (hand-authored vs generated-from-the-skill's-own-triggers) avoiding circularity.";;
  4) focus="RQ5 — the Skill Benchmark Report: rank bottlenecks and express concrete, actionable remediations a follow-up packet (or Lane A) can act on. Report shape, scoring rollup, remediation taxonomy.";;
- 5) focus="RQ6 — exhaustive rename surface + SAFE ORDERING for deep-agent-improvement -> deep-improvement (skill dir, SKILL.md, commands, agent + runtime mirrors .claude/.codex/.gemini, skill-advisor graph, descriptions.json, sentinel sk-prompt-small-model, root docs, internal refs); dangling-reference risks.";;
+ 5) focus="RQ6 — exhaustive rename surface + SAFE ORDERING for deep-agent-improvement -> deep-improvement (skill dir, SKILL.md, commands, agent + runtime mirrors .claude/.codex/.gemini, skill-advisor graph, descriptions.json, sentinel sk-prompt-models, root docs, internal refs); dangling-reference risks.";;
  *) focus="general synthesis";;
 esac
 

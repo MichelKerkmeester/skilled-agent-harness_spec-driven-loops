@@ -146,7 +146,7 @@ For the second pass, the settings-parity diagnosis was confirmed by reading the 
 ## Known Limitations
 
 1. **One advisory WEIGHT-PARITY warning remains in the graph validator** for `mcp-figma -> mcp-code-mode` (source `depends_on` 0.45 vs reciprocal `prerequisite_for` 0.7). It is advisory only and does not gate validation or any test. Tightening it would require changing the `mcp-figma` source weight, which is out of the minimal-symmetric-addition scope and would breach the `prerequisite_for` band if matched downward.
-2. **Pre-existing WEIGHT-BAND warnings** on `deep-loop-workflows`, `mcp-figma`, and `sk-prompt-small-model` predate this packet and are advisory; they were intentionally not touched (out of scope, non-gating).
+2. **Pre-existing WEIGHT-BAND warnings** on `deep-loop-workflows`, `mcp-figma`, and `sk-prompt-models` predate this packet and are advisory; they were intentionally not touched (out of scope, non-gating).
 <!-- /ANCHOR:limitations -->
 
 ---

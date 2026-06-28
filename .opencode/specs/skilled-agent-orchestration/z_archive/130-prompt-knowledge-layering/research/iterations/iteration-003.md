@@ -23,7 +23,7 @@ Full evidence-backed report is in `/Users/michelkerkmeester/.claude-account2/pla
 
 # Deep-Research Iteration 3 — Structural / Forward Lenses
 
-**Question:** Refine, structure, and connect `sk-prompt-small-model` + the 5 `cli-*` executor skills.
+**Question:** Refine, structure, and connect `sk-prompt-models` + the 5 `cli-*` executor skills.
 **This iteration:** NAVIGABILITY · DRY-vs-self-containment policy · hub entry-point · SCALING. Builds on iter 1-2 (drifts/leaks taken as given, not re-derived).
 
 **Method:** direct reads of the hub (`SKILL.md`, `references/pattern-index.md`, `references/models/_index.md`, `assets/model-profiles.json`, `graph-metadata.json`, `README.md`, 4 profiles), both cli cards, the canonical card, the relevant cli-`SKILL.md` precedence/forward-link blocks, and the sync guard. All claims carry `file:line`.
@@ -37,8 +37,8 @@ Path model = **cli-Y SKILL.md / card → hub profile (`references/models/X.md`) 
 ### Route 1 — `minimax-m3` via `cli-opencode` — **CLEAN, bidirectional (gold standard)**
 
 Forward:
-- `cli-opencode/SKILL.md:314` (ALWAYS rule 7.2): *"If the target model has a profile at `../sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model default…"* — generic but resolvable.
-- `cli-opencode/assets/prompt_quality_card.md:22`: `| MiniMax M3 (Token Plan default) | TIDD-EC + dense | ../../sk-prompt-small-model/references/models/minimax-m3.md |` — **direct per-model link**.
+- `cli-opencode/SKILL.md:314` (ALWAYS rule 7.2): *"If the target model has a profile at `../sk-prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default…"* — generic but resolvable.
+- `cli-opencode/assets/prompt_quality_card.md:22`: `| MiniMax M3 (Token Plan default) | TIDD-EC + dense | ../../sk-prompt-models/references/models/minimax-m3.md |` — **direct per-model link**.
 - Profile → registry: `minimax-m3.md:37-38` cites `model-profiles.json recommended_frameworks`; `minimax-m3.md:143` links `model-profiles.json#minimax-m3`.
 
 Return:
@@ -49,11 +49,11 @@ Verdict: **fully discoverable both ways.** Caveats are the *established* leaks, 
 ### Route 2 — `deepseek-v4-pro` via `cli-devin` **AND** `cli-opencode` — **DEAD-SPOT (card↔profile broken both directions on the opencode leg)**
 
 Via `cli-devin`:
-- Forward: `cli-devin/assets/prompt_quality_card.md:26`: `… deepseek-v4-pro … ../../sk-prompt-small-model/references/models/deepseek-v4-pro.md` — direct ✓. Also `cli-devin/SKILL.md:367` generic profile link ✓.
+- Forward: `cli-devin/assets/prompt_quality_card.md:26`: `… deepseek-v4-pro … ../../sk-prompt-models/references/models/deepseek-v4-pro.md` — direct ✓. Also `cli-devin/SKILL.md:367` generic profile link ✓.
 - Return: `deepseek-v4-pro.md:150` → `cli-devin/SKILL.md` ✓ — but **NOT** the cli-devin card.
 
 Via `cli-opencode`:
-- Forward: `cli-opencode/assets/prompt_quality_card.md:25`: `| deepseek-v4-pro / kimi-k2.6 / qwen3.6 / glm-5.1 | default RCAF | ../../sk-prompt-small-model/references/models/ |` — **directory-only pointer; no per-file anchor** (operator must guess `deepseek-v4-pro.md`). Ambiguous fork.
+- Forward: `cli-opencode/assets/prompt_quality_card.md:25`: `| deepseek-v4-pro / kimi-k2.6 / qwen3.6 / glm-5.1 | default RCAF | ../../sk-prompt-models/references/models/ |` — **directory-only pointer; no per-file anchor** (operator must guess `deepseek-v4-pro.md`). Ambiguous fork.
 - Return: `deepseek-v4-pro.md:151` → `cli-opencode/SKILL.md` ✓ — but **NOT** the cli-opencode card.
 
 Registry reconciliation is fine: `SKILL.md:115` matrix enumerates 3 paths; `model-profiles.json:56-78` `executors[]` lists exactly those 3; profile §5 (`:126`,`:146`) cites the registry.
@@ -63,8 +63,8 @@ Verdict: **the card↔profile link is missing in BOTH directions for the opencod
 ### Route 3 — `swe-1.6` via `cli-devin` — **CLEAN, bidirectional, best-wired**
 
 Forward (three independent forward links):
-- `cli-devin/assets/prompt_quality_card.md:23`: `| … swe-1.6 | auto | RCAF | ../../sk-prompt-small-model/references/models/swe-1.6.md |` ✓
-- `cli-devin/SKILL.md:191` (Default-Invocation contract) → `../sk-prompt-small-model/references/models/swe-1.6.md` ✓
+- `cli-devin/assets/prompt_quality_card.md:23`: `| … swe-1.6 | auto | RCAF | ../../sk-prompt-models/references/models/swe-1.6.md |` ✓
+- `cli-devin/SKILL.md:191` (Default-Invocation contract) → `../sk-prompt-models/references/models/swe-1.6.md` ✓
 - `cli-devin/SKILL.md:372` (ALWAYS rule 13 contract) → same profile ✓
 
 Return:
@@ -116,7 +116,7 @@ Applied to the two cases in question:
 
 ---
 
-## Hub entry-point assessment (`sk-prompt-small-model/SKILL.md`)
+## Hub entry-point assessment (`sk-prompt-models/SKILL.md`)
 
 **Strong as a front door:**
 - §1 WHEN TO USE (`:18-35`) — activation + keyword triggers, good discovery surface.

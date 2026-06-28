@@ -218,7 +218,7 @@
 .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/001-council-design/spec.md
 .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/001-council-design/tasks.md
 .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/spec.md
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/changelog/changelog-114-007-rename-sk-prompt-small-model.md
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/changelog/changelog-114-007-rename-sk-prompt-models.md
 .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/description.json
 .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/graph-metadata.json
 .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/implementation-summary.md

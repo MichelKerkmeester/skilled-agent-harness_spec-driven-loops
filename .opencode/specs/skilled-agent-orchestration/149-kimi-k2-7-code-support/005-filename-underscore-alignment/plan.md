@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: filename-underscore-alignment [template:level_1/plan.md]"
-description: "Rename sk-prompt-small-model dash-named docs/assets to underscores with git mv, repair live references in one controlled pass (path-qualified for the context-budget name collision), then verify with the drift guard and strict validate."
+description: "Rename sk-prompt-models dash-named docs/assets to underscores with git mv, repair live references in one controlled pass (path-qualified for the context-budget name collision), then verify with the drift guard and strict validate."
 trigger_phrases:
   - "filename underscore alignment plan"
   - "rename references update pass"
@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | Markdown + JSON docs; bash `git mv` + `sed` |
 | **Framework** | spec-kit phase folder; pre-commit drift guard (python in bash) |
-| **Storage** | Files in `.opencode/skills/sk-prompt-small-model` and cross-skill references |
+| **Storage** | Files in `.opencode/skills/sk-prompt-models` and cross-skill references |
 | **Testing** | `check-prompt-quality-card-sync.sh` + `validate.sh --strict` + live-wiring grep |
 
 ### Overview
@@ -84,7 +84,7 @@ Rename-and-repair. The renames are data; the reference updates keep every pointe
 ### Key Components
 - **Rename set**: 5 markdown (`confidence-scoring-rubric`, `context-budget`, `output-verification`, `pattern-index`, `quota-fallback`) + 2 JSON (`model-profiles`, `per-model-budgets`)
 - **6 globally-unique names**: replaced by full filename token across the live file list (extension-anchored to avoid matching model ids or prose)
-- **`context-budget` collision**: replaced only as the path-qualified `sk-prompt-small-model/references/context-budget.md`, plus two targeted same-skill relative links; cli-opencode's file and the links to it stay
+- **`context-budget` collision**: replaced only as the path-qualified `sk-prompt-models/references/context-budget.md`, plus two targeted same-skill relative links; cli-opencode's file and the links to it stay
 - **Functional consumer**: `check-prompt-quality-card-sync.sh:116` `json.load(... model_profiles.json)`
 
 ### Data Flow
@@ -102,7 +102,7 @@ Rename-and-repair. The renames are data; the reference updates keep every pointe
 
 ### Phase 2: Repair references
 - [x] Replace the 6 unique filenames across the live file list
-- [x] Path-qualified replace for `sk-prompt-small-model/references/context-budget.md`; two targeted same-skill link edits
+- [x] Path-qualified replace for `sk-prompt-models/references/context-budget.md`; two targeted same-skill link edits
 - [x] Update the functional drift-guard `json.load` path
 
 ### Phase 3: Verify

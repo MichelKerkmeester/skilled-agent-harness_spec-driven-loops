@@ -150,7 +150,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges an OpenCode dispatch back into the caller's spec folder. |
 | `sk-code` | Owns code standards and verification. cli-opencode dispatches the work, sk-code governs the quality of what comes back. |
-| `sk-prompt-small-model` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for a profiled small model. |
+| `sk-prompt-models` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for a profiled small model. |
 | `mcp-code-mode` | Provides external MCP tool access from within the dispatched session. |
 
 ---

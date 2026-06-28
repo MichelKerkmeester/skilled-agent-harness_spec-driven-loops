@@ -1,10 +1,10 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
-  "description": "sk-prompt-small-model reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models",
+  "description": "sk-prompt-models reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed",
   "keywords": [
-    "sk-prompt-small-model",
+    "sk-prompt-models",
     "reference",
     "asset",
     "frontmatter",
@@ -18,7 +18,7 @@
   ],
   "lastUpdated": "2026-06-23T03:49:57.027Z",
   "specId": "019",
-  "folderSlug": "sk-prompt-small-model",
+  "folderSlug": "sk-prompt-models",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",

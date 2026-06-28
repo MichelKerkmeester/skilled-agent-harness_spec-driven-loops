@@ -25,8 +25,8 @@ D3 Traceability. Checked whether the shipped 121/003 build matches the 001 decis
 - .opencode/skills/cli-opencode/assets/prompt_quality_card.md:54
 - .opencode/skills/cli-opencode/assets/prompt_templates.md:451
 - .opencode/skills/sk-prompt/assets/model-profiles.json:187
-- .opencode/skills/sk-prompt-small-model/SKILL.md:131
-- .opencode/skills/sk-prompt-small-model/references/pattern-index.md:49
+- .opencode/skills/sk-prompt-models/SKILL.md:131
+- .opencode/skills/sk-prompt-models/references/pattern-index.md:49
 
 ## Findings by Severity
 
@@ -68,8 +68,8 @@ None.
 ## Traceability Checks
 - spec_code: FAIL. REQ-002 and REQ-004 overclaim active scorer and promotion behavior.
 - checklist_evidence: FAIL. TST-1 tests plan equality, not byte-identical state JSONL; scorer tests call the ported scorer directly but do not prove run-benchmark uses it.
-- skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-small-model index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
-- feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-small-model dispatch matrix.
+- skill_agent: PASS for the MiniMax docs slice reviewed. cli-opencode cards/templates, model-profiles, and sk-prompt-models index all expose MiniMax M2.7, minimax-api quota pool, TIDD-EC + dense pre-plan, and the --variant caveat.
+- feature_catalog_code: PASS for MiniMax registry coverage in model-profiles.json and sk-prompt-models dispatch matrix.
 - playbook_capability: PASS for cli-opencode reference coverage of the minimax provider/model and variant caveat.
 - no loop.cjs discovery: PASS. The shipped loop-host.cjs honors the 002 discovery that there is no loop.cjs to modify.
 - mode field persistence: PASS. score-candidate and run-benchmark include mode on success and infra_failure records.

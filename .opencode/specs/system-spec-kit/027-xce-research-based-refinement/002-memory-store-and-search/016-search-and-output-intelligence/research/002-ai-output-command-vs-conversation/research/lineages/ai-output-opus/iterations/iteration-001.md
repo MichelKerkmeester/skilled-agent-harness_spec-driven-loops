@@ -43,7 +43,7 @@ That is a multi-step conditional-suppression task.
 - DeepSeek-v4-pro is the rotation's **DEPTH/reasoning escalation** model — "strongest
   reasoning depth in the opencode-go tier," rewards specificity and precise conditional
   framing. It evaluates the guard correctly and suppresses the ask-path.
-  [SOURCE: sk-prompt-small-model/references/models/deepseek-v4-pro.md:48,60]
+  [SOURCE: sk-prompt-models/references/models/deepseek-v4-pro.md:48,60]
 - Kimi K2.7 under `--command` "read the command's presentation asset but then asked the
   startup question … it did NOT bind `$ARGUMENTS`." Via a **direct** natural prompt it
   searched correctly. [SOURCE: grounding-evidence.md:15-18] → The model *can* search;

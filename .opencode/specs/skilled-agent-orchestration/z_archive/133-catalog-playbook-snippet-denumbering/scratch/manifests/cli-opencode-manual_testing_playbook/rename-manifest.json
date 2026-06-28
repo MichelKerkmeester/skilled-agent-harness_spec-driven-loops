@@ -100,12 +100,12 @@
     "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/template-applied-to-real-dispatch.md"
   },
   {
-    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md"
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-models.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-models.md"
   },
   {
-    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md"
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-models.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-models.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/028-parallel-detached-session.md",

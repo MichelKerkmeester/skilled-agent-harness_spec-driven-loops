@@ -28,7 +28,7 @@
       "evidence": ".opencode/skills/cli-devin/graph-metadata.json:6-34",
       "relevance": 1,
       "classification": "skill-internal",
-      "notes": "siblings=[cli-claude-code,cli-codex,cli-opencode], enhances=[sk-prompt-small-model]; reciprocal edges in those siblings must be pruned."
+      "notes": "siblings=[cli-claude-code,cli-codex,cli-opencode], enhances=[sk-prompt-models]; reciprocal edges in those siblings must be pruned."
     },
     {
       "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
@@ -58,7 +58,7 @@
       "evidence": ".opencode/skills/cli-devin/SKILL.md:250",
       "relevance": 0.9,
       "classification": "skill-internal",
-      "notes": "Pointer in sk-prompt-small-model SKILL.md §Related Resources (258-262) must be removed."
+      "notes": "Pointer in sk-prompt-models SKILL.md §Related Resources (258-262) must be removed."
     },
     {
       "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
@@ -201,17 +201,17 @@
       "notes": "Remove cli-devin skill section(942-944) + 'cli-devin and' from line 974."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "path": ".opencode/skills/sk-prompt-models/SKILL.md",
       "symbol": "desc/when-to-use/matrix/boundary/resources",
       "kind": "integration_point",
       "reuse": "remove",
-      "evidence": "sk-prompt-small-model/SKILL.md:3,12,21-22,51,103,132,186,203-207,237,258-262,274,281",
+      "evidence": "sk-prompt-models/SKILL.md:3,12,21-22,51,103,132,186,203-207,237,258-262,274,281",
       "relevance": 1,
       "classification": "active-wiring",
       "notes": "~9 edit sites incl. dispatch matrix rows for swe-1.6/deepseek/kimi/glm; swe-1.6 loses its ONLY executor (gap)."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "4 executor entries",
       "kind": "integration_point",
       "reuse": "remove",

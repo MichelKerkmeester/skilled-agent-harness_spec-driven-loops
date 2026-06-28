@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: backfill-remaining-profiles"
-description: "Author 6 remaining per-model prompt-craft profiles under sk-prompt-small-model/references/models/: minimax-2.7 (TIDD-EC empirical), swe-1.6 (RCAF + pre-planning contract), and deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 (RCAF/medium default-unverified). All follow the canonical 6-section template; framework choices mirror model-profiles.json."
+description: "Author 6 remaining per-model prompt-craft profiles under sk-prompt-models/references/models/: minimax-2.7 (TIDD-EC empirical), swe-1.6 (RCAF + pre-planning contract), and deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1 (RCAF/medium default-unverified). All follow the canonical 6-section template; framework choices mirror model-profiles.json."
 trigger_phrases:
   - "backfill profiles plan"
   - "small model profiles implementation plan"
@@ -38,13 +38,13 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown (documentation authoring) |
-| **Framework** | 6-section per-model profile template from sk-prompt-small-model hub |
-| **Storage** | File-based: `.opencode/skills/sk-prompt-small-model/references/models/` |
+| **Framework** | 6-section per-model profile template from sk-prompt-models hub |
+| **Storage** | File-based: `.opencode/skills/sk-prompt-models/references/models/` |
 | **Testing** | Manual validation: file presence, frontmatter, section count, round-trip check against `model-profiles.json` |
 
 ### Overview
 
-Phase 5 authored the 6 remaining per-model prompt-craft profiles that complete the sk-prompt-small-model model-craft hub. The approach was evidence-first: each profile mirrors `model-profiles.json` `recommended_frameworks` data for its model, then adds rationale, a tuned template scaffold, and per-model dispatch gotchas. One profile (minimax-2.7) is empirical, based on benchmark 120/003; the other five are default-unverified using the RCAF/medium convention default.
+Phase 5 authored the 6 remaining per-model prompt-craft profiles that complete the sk-prompt-models model-craft hub. The approach was evidence-first: each profile mirrors `model-profiles.json` `recommended_frameworks` data for its model, then adds rationale, a tuned template scaffold, and per-model dispatch gotchas. One profile (minimax-2.7) is empirical, based on benchmark 120/003; the other five are default-unverified using the RCAF/medium convention default.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -88,7 +88,7 @@ Documentation hub — per-model profile files following a fixed 6-section templa
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `sk-prompt-small-model/references/models/` | Profile directory | Added 6 new profile files | `ls` confirms all 6 files present |
+| `sk-prompt-models/references/models/` | Profile directory | Added 6 new profile files | `ls` confirms all 6 files present |
 | `sk-prompt/assets/model-profiles.json` | DATA source for framework choices | Unchanged (read-only for this phase) | No modifications; profiles mirror it |
 | `cli-devin`, `cli-opencode` SKILL.md | Executor mechanics owner | Unchanged | Referenced via See Also; not edited |
 <!-- /ANCHOR:affected-surfaces -->

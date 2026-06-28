@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "children_ids": [],
   "manual": {
@@ -11,21 +11,21 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-prompt-small-model frontmatter alignment",
-      "sk-prompt-small-model reference frontmatter",
+      "sk-prompt-models frontmatter alignment",
+      "sk-prompt-models reference frontmatter",
       "skill frontmatter standardization",
-      "sk-prompt-small-model frontmatter plan",
+      "sk-prompt-models frontmatter plan",
       "model profile frontmatter authoring",
       "small model doc contract plan",
-      "sk-prompt-small-model frontmatter tasks",
+      "sk-prompt-models frontmatter tasks",
       "model profile frontmatter tasks",
       "small model doc contract tasks",
-      "sk-prompt-small-model frontmatter summary",
+      "sk-prompt-models frontmatter summary",
       "model profile frontmatter complete",
       "small model doc contract evidence"
     ],
     "key_topics": [
-      "sk-prompt-small-model",
+      "sk-prompt-models",
       "frontmatter",
       "alignment",
       "reference",
@@ -41,8 +41,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
-      ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/sk-prompt-models/references/models/_index.md",
+      ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -52,13 +52,13 @@
       {
         "name": "_index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
         "source": "derived"
       },
       {
         "name": "cli_prompt_quality_card.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
+        "path": ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-prompt-small-model reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "causal_summary": "sk-prompt-models reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:37Z",
     "last_save_at": "2026-06-23T03:49:57.025Z",
     "save_lineage": "graph_only",

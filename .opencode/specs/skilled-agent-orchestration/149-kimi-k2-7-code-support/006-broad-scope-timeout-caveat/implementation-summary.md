@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: DONE. Documented Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-small-model + cli-opencode and repaired stale kimi-k2.6 references; card-sync guard + strict validate green."
+description: "Status: DONE. Documented Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-models + cli-opencode and repaired stale kimi-k2.6 references; card-sync guard + strict validate green."
 trigger_phrases:
   - "kimi k2.7 timeout caveat status"
   - "over-exploration mitigation done"
@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -57,8 +57,8 @@ _memory:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Modified | §5 load-bearing read-cap + failure mode; §6 `variant_flag` caveat; §2 wall-clock observation |
-| `sk-prompt-small-model/assets/model_profiles.json` | Modified | `kimi-k2.7-code` weaknesses: over-exploration/timeout entry |
+| `sk-prompt-models/references/models/kimi-k2.7-code.md` | Modified | §5 load-bearing read-cap + failure mode; §6 `variant_flag` caveat; §2 wall-clock observation |
+| `sk-prompt-models/assets/model_profiles.json` | Modified | `kimi-k2.7-code` weaknesses: over-exploration/timeout entry |
 | `cli-opencode/SKILL.md` | Modified | `kimi-for-coding/k2p7` line operational caveat |
 | `cli-opencode/references/cli_reference.md` | Modified | `opencode-go/kimi-k2.6` row → `kimi-for-coding/k2p7` |
 | `cli-opencode/references/context-budget.md` | Modified | `kimi-k2.6` → `kimi-k2.7-code` (262,144) + caveat; prose ref |

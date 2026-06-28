@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- context-budget.md + per-model-budgets.json re-homed to sk-prompt-small-model (swe-1.6 dropped)
+- context-budget.md + per-model-budgets.json re-homed to sk-prompt-models (swe-1.6 dropped)
 - output-verification.md + confidence-scoring-rubric.md + quota-fallback.md re-homed + de-cli-devin'd
 - cli-opencode sentinel + prompt_templates + SKILL.md + pattern-index repointed
 - check-prompt-quality-card-sync.sh cli_cards + cli_skills cleaned
@@ -65,7 +65,7 @@ Executed in a dependency-ordered wave of parallel file-cluster seats (by file ow
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- Re-home (not delete) the 5 canonical assets because sk-prompt-small-model + cli-opencode reference them as source-of-truth; target = sk-prompt-small-model/references|assets (D3).
+- Re-home (not delete) the 5 canonical assets because sk-prompt-models + cli-opencode reference them as source-of-truth; target = sk-prompt-models/references|assets (D3).
 <!-- /ANCHOR:decisions -->
 
 ---

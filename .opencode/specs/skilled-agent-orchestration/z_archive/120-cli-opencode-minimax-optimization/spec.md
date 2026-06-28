@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model"
-description: "Phase parent for MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model"
+title: "Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models"
+description: "Phase parent for MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models"
 trigger_phrases:
   - "120-cli-opencode-minimax-optimization"
   - "phase parent"
@@ -37,7 +37,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model
+# Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -65,7 +65,7 @@ _memory:
 cli-opencode currently supports two providers (`opencode-go` default, `deepseek` direct-API) and the shared small-model registry (`sk-prompt/assets/model-profiles.json`) covers SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 (+ two optional stubs). MiniMax 2.7 — reachable via the MiniMax.io direct API — is not a supported provider, is absent from the registry, and has no documented context-budget / output-verification / prompt-quality patterns. We cannot route to it, and we have no guidance for using it efficiently.
 
 ### Purpose
-Make MiniMax 2.7 a first-class, efficiently-used model in the cli-opencode dispatch path. Phase 001 wires the `minimax` direct-API provider into cli-opencode + the small-model registry + the `sk-prompt-small-model` sentinel. Phase 002 runs a deep-research loop to determine how to best use and maximize the efficiency of MiniMax 2.7 through that path, producing concrete deltas for `sk-prompt-small-model` and `cli-opencode`.
+Make MiniMax 2.7 a first-class, efficiently-used model in the cli-opencode dispatch path. Phase 001 wires the `minimax` direct-API provider into cli-opencode + the small-model registry + the `sk-prompt-models` sentinel. Phase 002 runs a deep-research loop to determine how to best use and maximize the efficiency of MiniMax 2.7 through that path, producing concrete deltas for `sk-prompt-models` and `cli-opencode`.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -77,7 +77,7 @@ Make MiniMax 2.7 a first-class, efficiently-used model in the cli-opencode dispa
 
 ### In Scope
 - Add the `minimax` direct-API provider (model `minimax-2.7`) to cli-opencode's supported models (phase 001)
-- Register MiniMax 2.7 in the shared small-model registry + surface it via the `sk-prompt-small-model` sentinel (phase 001)
+- Register MiniMax 2.7 in the shared small-model registry + surface it via the `sk-prompt-models` sentinel (phase 001)
 - Deep-research how to best use / maximize efficiency of MiniMax 2.7 via cli-opencode direct API, producing follow-on deltas (phase 002)
 
 ### Out of Scope
@@ -94,7 +94,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | 001 | Provider auth pre-flight + login template for `minimax` |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Modify | 001 | §4 auth pre-flight row + §5 model-selection + `--variant` matrix |
 | `.opencode/skills/sk-prompt/assets/model-profiles.json` | Modify | 001 | Append `minimax-2.7` registry entry (version bump) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` + `graph-metadata.json` | Modify | 001 | Sentinel description + MiniMax trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` + `graph-metadata.json` | Modify | 001 | Sentinel description + MiniMax trigger phrases |
 | `002-minimax-efficiency-deep-research/research/**` | Create | 002 | Deep-research loop state + `research.md` + `resource-map.md` |
 <!-- /ANCHOR:scope -->
 

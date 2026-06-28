@@ -19,7 +19,7 @@ This is a deep-research iteration — a read-only investigation whose deliverabl
 ---
 ## Full report (from account-2 plan file)
 
-# Deep-Research Iteration 4 — sk-prompt-small-model ⇄ cli-* executor seams
+# Deep-Research Iteration 4 — sk-prompt-models ⇄ cli-* executor seams
 
 **Scope:** four unexplored seams — (1) data↔prose round-trip fidelity across all 8 profiles, (2) the Layer-1 (sk-prompt engine) ↔ Layer-2 (hub) framework-ownership seam, (3) the discovery layer (advisor trigger/intent + enhances graph), (4) the default-unverified cluster's structural shape. Read-only; evidence is file:line. Builds on iter 1-3 (precedence drift, boundary leaks, 8/8 model⇄executor wiring, navigability dead-spot, R10 guardable-restatement, NF-1 checklist defect, stale graph-metadata) — does not re-derive them.
 
@@ -61,7 +61,7 @@ Layer 1 = `sk-prompt` (generic framework *definitions*); Layer 2 = hub (per-mode
 **(b) Down→up (sk-prompt naming a small model):** The **live engine surface is clean** — `patterns_evaluation.md` and `depth_framework.md` name zero rotation models (full grep of `sk-prompt/`: only one file matches). The single residue is **historical provenance**: `sk-prompt/changelog/v1.3.1.0.md:16,18,23,39` names `deepseek-v4-pro`, `kimi-k2.6`, `SWE-1.6` in a past-release record. The forkability claim ("small-model-clean sk-prompt") **holds for the engine**; the changelog is an immutable record, not a leak into live routing. Low concern — recommend leaving as-is (rewriting history is worse than the residue).
 
 **(c) Undefined framework ids — the STAR phantom.** sk-prompt defines **exactly 7** frameworks: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT (`patterns_evaluation.md:30-38`). Every id the *registry* uses (`rcaf/tidd-ec/costar/race`, plus `cidi` in mimo's avoid-list) **is defined.** Clean on the DATA side. But two **prose** surfaces cite STAR as if it were a canonical sk-prompt framework, and it is **defined nowhere in sk-prompt** (grep `\b(STAR|BUILD)\b` over `sk-prompt/` → only a changelog phrase "BUILD-dense claim"):
-- `sk-prompt-small-model/SKILL.md:150` (NEVER rule 2) — *"TIDD-EC, RCAF, COSTAR, RACE, **STAR**, etc. are defined once in `sk-prompt`."* STAR is not defined in sk-prompt at all → the rule misattributes STAR's definitional home.
+- `sk-prompt-models/SKILL.md:150` (NEVER rule 2) — *"TIDD-EC, RCAF, COSTAR, RACE, **STAR**, etc. are defined once in `sk-prompt`."* STAR is not defined in sk-prompt at all → the rule misattributes STAR's definitional home.
 - `_index.md:21` + `swe-1.6.md:83` (above) lean on the same phantom.
 
 **Root cause — "fallback" is overloaded.** STAR/BUILD are real **cli-devin task-shapes**, owned and documented there: `cli-devin/assets/prompt_quality_card.md:24-25` labels them **"profile fallback `STAR`" / "profile fallback `BUILD`"**, and `cli-devin/assets/prompt_templates.md:24` says "swap to STAR or BUILD". cli-devin's word "profile fallback" (a task-shape swap) collides with the registry field `recommended_frameworks.fallback` (a canonical-framework id). The hub inherited cli-devin's "fallback" vocabulary into a column/rule that means *registry framework id*, producing the phantom. swe-1.6.md's own §2/§6 get it right (`swe-1.6.md:210` "STAR and BUILD are cli-devin task-shapes and are NOT defined here") — the fix is to make the other three surfaces agree with §2.
@@ -91,7 +91,7 @@ Layer 1 = `sk-prompt` (generic framework *definitions*); Layer 2 = hub (per-mode
 
 **Minimal graph-metadata fix (two files, additive only — honors `SKILL.md:143` "keep triggers honest"):**
 - `cli-opencode/graph-metadata.json` `derived.trigger_phrases` += `deepseek`, `deepseek-v4`, `kimi`, `kimi-k2.6`, `qwen`, `qwen3.6`, `glm`, `glm-5.1` (these models genuinely dispatch via opencode-go). Bump `last_updated_at`.
-- `sk-prompt-small-model/graph-metadata.json` `intent_signals` + `derived.intent_signals` += `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro` (or `minimax`/`mimo`). Refresh the cli-opencode `enhances` context string to include MiniMax + MiMo; bump `last_updated_at` off `2026-05-18`.
+- `sk-prompt-models/graph-metadata.json` `intent_signals` + `derived.intent_signals` += `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro` (or `minimax`/`mimo`). Refresh the cli-opencode `enhances` context string to include MiniMax + MiMo; bump `last_updated_at` off `2026-05-18`.
 - Then re-index (`skill_advisor.py --force-refresh`, per `pattern-index.md:74`).
 
 ---
@@ -122,7 +122,7 @@ Layer 1 = `sk-prompt` (generic framework *definitions*); Layer 2 = hub (per-mode
 | **R16** | Kill the STAR phantom. `swe-1.6.md:83` → state `fallback: null`, STAR = cli-devin task-shape (not a registry fallback). `_index.md:21` → `RCAF; no registry fallback` (match the other default-unverified rows + JSON). `SKILL.md:150` → drop STAR from the "defined in sk-prompt" list or mark it "cli-devin task-shape." | **P1** | structural |
 | **R17** | Disambiguate "fallback" hub-wide: reserve it for the registry `recommended_frameworks.fallback` id; rename cli-devin task-shape swaps to "task-shape option" in hub surfaces. Add one glossary line to `_index.md` status legend. Root-cause fix for R16; pairs with iter-3 R10. | **P2** | structural |
 | **R18** | cli-opencode discovery: add `deepseek/deepseek-v4/kimi/kimi-k2.6/qwen/qwen3.6/glm/glm-5.1` to `cli-opencode/graph-metadata.json` `derived.trigger_phrases`; bump `last_updated_at`. Closes qwen3.6 hub-only gap + reveals the opencode-go alternate for the other three. | **P1** | structural |
-| **R19** | Hub intent parity: add `minimax-m3`/`minimax-2.7`/`mimo-v2.5-pro` (or `minimax`/`mimo`) to `sk-prompt-small-model/graph-metadata.json` `intent_signals` + `derived.intent_signals`. Extends iter-3's trigger-only fix to the intent channel. | **P2** | structural |
+| **R19** | Hub intent parity: add `minimax-m3`/`minimax-2.7`/`mimo-v2.5-pro` (or `minimax`/`mimo`) to `sk-prompt-models/graph-metadata.json` `intent_signals` + `derived.intent_signals`. Extends iter-3's trigger-only fix to the intent channel. | **P2** | structural |
 | **R20** | Refresh stale hub `enhances` context (`graph-metadata.json:17`) to include MiniMax + MiMo on the cli-opencode edge; bump `last_updated_at`/`created_at` off `2026-05-18`. Re-index advisor after R18-R20. | **P2** | cosmetic |
 | **R21** | Default-unverified cluster DRY: extract the shared RCAF+medium rationale to one `_default-unverified-contract.md` (or `_index.md` block) the four profiles link to; add a single cluster card-link block. Keep profiles individual. Converges with R18. | **P2** | structural |
 | **R22** | Down→up provenance residue (`sk-prompt/changelog/v1.3.1.0.md` names deepseek/kimi/swe-1.6): engine surface is clean; recommend **no change** (changelog is immutable history) — log as accepted, not remediated. | **P2** | cosmetic |

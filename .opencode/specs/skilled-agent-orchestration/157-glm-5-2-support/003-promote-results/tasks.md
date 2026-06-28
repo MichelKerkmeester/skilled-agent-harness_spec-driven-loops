@@ -57,8 +57,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Update `glm-5.2.recommended_frameworks` (primary, preplanning_density, evidence, status) from the verdict (`sk-prompt-small-model/assets/model_profiles.json`)
-- [x] T004 Rewrite §3 + §4 of `sk-prompt-small-model/references/models/glm-5.2.md` to cite the phase-2 run
+- [x] T003 Update `glm-5.2.recommended_frameworks` (primary, preplanning_density, evidence, status) from the verdict (`sk-prompt-models/assets/model_profiles.json`)
+- [x] T004 Rewrite §3 + §4 of `sk-prompt-models/references/models/glm-5.2.md` to cite the phase-2 run
 <!-- /ANCHOR:phase-2 -->
 
 ---

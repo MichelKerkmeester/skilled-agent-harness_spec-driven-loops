@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: model-registration"
-description: "Register GLM-5.2 as a first-class small model in cli-opencode and sk-prompt-small-model, discovering the live Z.AI Coding Plan provider id and GLM-5.2 slug first."
+description: "Register GLM-5.2 as a first-class small model in cli-opencode and sk-prompt-models, discovering the live Z.AI Coding Plan provider id and GLM-5.2 slug first."
 trigger_phrases:
   - "glm-5.2"
   - "z.ai coding plan"
@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -72,7 +72,7 @@ This is **Phase 1** of the glm-5-2-support specification. It mirrors `149-kimi-k
 
 **Dependencies**:
 - The Z.AI GLM Coding Plan provider is subscribed and (to be confirmed) authenticated in opencode — the auth list shows "Z.AI Coding Plan (api)".
-- The canonical "Adopting a New Provider" checklist in `sk-prompt-small-model/references/pattern_index.md` (§4, 9 steps).
+- The canonical "Adopting a New Provider" checklist in `sk-prompt-models/references/pattern_index.md` (§4, 9 steps).
 
 **Deliverables**:
 - Live provider id + GLM-5.2 slug + capability facts (context, output, billing) discovered and recorded.
@@ -93,7 +93,7 @@ This is **Phase 1** of the glm-5-2-support specification. It mirrors `149-kimi-k
 GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as "Z.AI Coding Plan (api)") is available to the operator but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name. The live provider id and model slug are not yet known to the skill docs and must be discovered before anything can reference them.
 
 ### Purpose
-Discover the live Z.AI provider id + GLM-5.2 slug, then register `glm-5.2` as a first-class small model across cli-opencode and sk-prompt-small-model so it is dispatchable, alias-resolvable, and advisor-routable while the card-sync guard stays green.
+Discover the live Z.AI provider id + GLM-5.2 slug, then register `glm-5.2` as a first-class small model across cli-opencode and sk-prompt-models so it is dispatchable, alias-resolvable, and advisor-routable while the card-sync guard stays green.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -117,12 +117,12 @@ Discover the live Z.AI provider id + GLM-5.2 slug, then register `glm-5.2` as a 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modify | Add the `glm-5.2` entry (capability block, executor → provider → pool, `recommended_frameworks` default-unverified); update the registry description rotation line |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Create | New per-model prompt-craft profile (default framework unverified, bakeoff pending) |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Modify | Add `glm-5.2` to the ACTIVE table |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modify | Frontmatter description, Keywords, activation + keyword triggers, MODEL_ALIASES, §3 Dispatch Matrix row |
-| `.opencode/skills/sk-prompt-small-model/references/pattern_index.md` | Modify | §3 ownership-boundary line (cli-opencode owns ... + GLM-5.2 via the Z.AI Coding Plan) |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modify | trigger_phrases + intent_signals for glm-5.2 / the Z.AI provider |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modify | Add the `glm-5.2` entry (capability block, executor → provider → pool, `recommended_frameworks` default-unverified); update the registry description rotation line |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Create | New per-model prompt-craft profile (default framework unverified, bakeoff pending) |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modify | Add `glm-5.2` to the ACTIVE table |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modify | Frontmatter description, Keywords, activation + keyword triggers, MODEL_ALIASES, §3 Dispatch Matrix row |
+| `.opencode/skills/sk-prompt-models/references/pattern_index.md` | Modify | §3 ownership-boundary line (cli-opencode owns ... + GLM-5.2 via the Z.AI Coding Plan) |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modify | trigger_phrases + intent_signals for glm-5.2 / the Z.AI provider |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | Keywords header, Provider Auth Pre-Flight grep, routing/decision rows, Model Selection paragraph, login-template list |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Modify | Provider table, model-selection examples, auth pre-flight grep, variant table |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | Model-selection table row linking to the new profile |
@@ -165,7 +165,7 @@ Discover the live Z.AI provider id + GLM-5.2 slug, then register `glm-5.2` as a 
 
 - **Given** the Z.AI Coding Plan provider is authed, **When** a smoke dispatch runs `opencode run --model <provider>/glm-5.2` with a one-word prompt, **Then** it returns "pong" at exit 0 with the billing model recorded.
 - **Given** the registration edits are saved, **When** `check-prompt-quality-card-sync.sh .` runs, **Then** all CHECKs pass and the guard exits 0.
-- **Given** a prompt naming GLM-5.2 / the Z.AI plan, **When** the advisor routing probe runs, **Then** it surfaces `sk-prompt-small-model` + `cli-opencode`.
+- **Given** a prompt naming GLM-5.2 / the Z.AI plan, **When** the advisor routing probe runs, **Then** it surfaces `sk-prompt-models` + `cli-opencode`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

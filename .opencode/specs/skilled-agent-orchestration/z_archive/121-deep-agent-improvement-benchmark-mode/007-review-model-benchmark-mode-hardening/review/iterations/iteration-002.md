@@ -18,7 +18,7 @@ D1 Correctness — second model pass (MiniMax M2.7). Reproduce and contest itera
 - `.opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/preplanning-regex.cjs:73` (stepHasAcceptance regex)
 - `.opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/hallucination-flag.cjs:83` (extractCliFlags regex)
 - `.opencode/skills/cli-opencode/SKILL.md:1-404` (full review)
-- `.opencode/skills/sk-prompt-small-model/SKILL.md:1-229` (full review)
+- `.opencode/skills/sk-prompt-models/SKILL.md:1-229` (full review)
 - `.opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts:50` (scorer integration)
 
 ## Findings by Severity
@@ -103,7 +103,7 @@ Reviewed the 120-authored MiniMax integration files for correctness issues:
 - `<dev/null` redirect requirement for non-interactive invocations is documented with the precise mechanism and position.
 - No logic errors found in the routing key derivation or resource loading level mapping.
 
-### sk-prompt-small-model/SKILL.md
+### sk-prompt-models/SKILL.md
 - Dispatch matrix table correctly maps `minimax/MiniMax-M2.7` to `cli-opencode → minimax (minimax-api)` — single active path.
 - Pattern ownership boundaries are clearly delineated; sentinel correctly stays thin.
 - No correctness issues found.

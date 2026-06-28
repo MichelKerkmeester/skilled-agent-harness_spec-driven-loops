@@ -35,7 +35,7 @@
     "prompt_framework": {
       "type": "string",
       "enum": ["RCAF", "STAR", "BUILD", "free-form"],
-      "description": "Framework used to compose the dispatch prompt (RCAF default for SWE-1.6 per cli-devin/SKILL.md + sk-prompt-small-model)"
+      "description": "Framework used to compose the dispatch prompt (RCAF default for SWE-1.6 per cli-devin/SKILL.md + sk-prompt-models)"
     },
     "started_at": {
       "type": "string",

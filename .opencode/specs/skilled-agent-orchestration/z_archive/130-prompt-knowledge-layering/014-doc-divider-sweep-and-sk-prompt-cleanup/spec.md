@@ -102,7 +102,7 @@ relocation so `sk-prompt/SKILL.md` is accurate and link-clean.
 - The 3 cli reference docs carrying unrelated pre-existing WIP content edits (left for owner review;
   dividers in them deferred to that commit) - scope lock on adjacent uncommitted work.
 - The sk-prompt manual-testing-playbook's dangling card paths - reported as a follow-up, not swept here.
-- Divider gaps in `sk-prompt` / `sk-prompt-small-model` docs - outside the user-named cli set.
+- Divider gaps in `sk-prompt` / `sk-prompt-models` docs - outside the user-named cli set.
 - Any H2 renumbering or casing changes in the cli docs - divider-only edit.
 
 ### Files to Change

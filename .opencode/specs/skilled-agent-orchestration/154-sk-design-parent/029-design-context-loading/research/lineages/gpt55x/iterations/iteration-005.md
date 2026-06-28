@@ -14,7 +14,7 @@ Convert reference requirements into enforceable gates that prevent repeat misses
 
 4. Audit gate: any audit or release-readiness claim must fill the evidence worksheet or equivalent compact fields before scoring. "Not assessed" must not become pass. The audit packet explicitly forbids accessibility claims without keyboard, focus, name, semantics and contrast evidence. [SOURCE: file:.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:62] [SOURCE: file:.opencode/skills/sk-design/design-audit/SKILL.md:321]
 
-5. Sub-agent gate: the parent prompt should require the child to echo a loaded-context card before work begins and a proof-of-application card at the end. For MiniMax-M3, this must be embedded inside TIDD-EC with dense pre-plan steps, because that is the model-specific scaffold. [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:95] [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:126]
+5. Sub-agent gate: the parent prompt should require the child to echo a loaded-context card before work begins and a proof-of-application card at the end. For MiniMax-M3, this must be embedded inside TIDD-EC with dense pre-plan steps, because that is the model-specific scaffold. [SOURCE: file:.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:95] [SOURCE: file:.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:126]
 
 ## Sources Consulted
 
@@ -24,7 +24,7 @@ Convert reference requirements into enforceable gates that prevent repeat misses
 - `.opencode/skills/sk-design/design-foundations/SKILL.md`
 - `.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md`
 - `.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md`
-- `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
 
 ## Assessment
 

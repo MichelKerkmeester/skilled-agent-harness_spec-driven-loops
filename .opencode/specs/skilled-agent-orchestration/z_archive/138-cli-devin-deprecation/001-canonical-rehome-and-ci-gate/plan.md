@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Re-home cli-devin's 5 canonical pattern assets into sk-prompt-small-model, repoint consumers, and patch the CI gate so deletion is safe. Verified line-resolved edit list: ../context/context-report.md §2.
+Re-home cli-devin's 5 canonical pattern assets into sk-prompt-models, repoint consumers, and patch the CI gate so deletion is safe. Verified line-resolved edit list: ../context/context-report.md §2.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -61,7 +61,7 @@ Surgical reference/edit removal across the cli-devin active-wiring surface; no n
 
 1. Re-home context-budget.md + per-model-budgets.json (swe-1.6 dropped)
 2. Re-home output-verification.md, confidence-scoring-rubric.md, quota-fallback.md
-3. Repoint cli-opencode sentinel + prompt_templates + sk-prompt-small-model SKILL.md + pattern-index
+3. Repoint cli-opencode sentinel + prompt_templates + sk-prompt-models SKILL.md + pattern-index
 4. Remove cli-devin from check-prompt-quality-card-sync.sh arrays
 <!-- /ANCHOR:phases -->
 
@@ -73,7 +73,7 @@ Surgical reference/edit removal across the cli-devin active-wiring surface; no n
 Verification command:
 
 ```bash
-bash .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh  # exit 0 (GUARD PASS); jq empty sk-prompt-small-model/assets/per-model-budgets.json
+bash .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh  # exit 0 (GUARD PASS); jq empty sk-prompt-models/assets/per-model-budgets.json
 ```
 <!-- /ANCHOR:testing -->
 

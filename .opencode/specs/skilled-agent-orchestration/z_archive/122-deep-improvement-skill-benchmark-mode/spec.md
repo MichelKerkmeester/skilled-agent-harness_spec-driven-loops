@@ -151,7 +151,7 @@ Working hypothesis for what Lane C measures. Phase 001 deep research validates, 
 
 ## 9. Risks
 
-- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-small-model`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
+- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-models`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
 - **Lane C measurement validity.** "Did the AI find the right asset unprompted" must be measured without leaking the answer into the prompt. Mitigation: hint-free dispatch harness + held-out expected-resource keys; this is a primary research question.
 - **Non-determinism.** AI routing varies run-to-run. Mitigation: repeatability runs + report variance, mirroring Lane B's stability evidence.
 - **Scope creep into remediation.** Easy to drift from "diagnose" to "fix". Mitigation: NG1 freezes Lane C as diagnostic.

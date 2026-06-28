@@ -18,7 +18,7 @@ test this session).
   repro is treated as DONE per `grounding-evidence.md`; new live runs are out of scope.
 - Implementing the command-contract fixes (research reports findings only; implementation
   is a separate follow-up packet).
-- Re-benchmarking per-model prompt frameworks (the `sk-prompt-small-model` profiles already
+- Re-benchmarking per-model prompt frameworks (the `sk-prompt-models` profiles already
   hold the empirical framework data; we consume, not re-measure).
 
 ### Stop Conditions
@@ -41,7 +41,7 @@ Verified inputs read at init (file-anchored):
   (§1 startup-question policy FIRST, §2 retrieval display, field-mapping table).
 - `.opencode/skills/cli-opencode/SKILL.md:269` — `--command` dispatch mechanics
   (`$ARGUMENTS` substitution; `"$@"` expansion inside `` !`…` `` injections).
-- `sk-prompt-small-model/references/models/{deepseek-v4-pro,kimi-k2.7-code,mimo-v2.5-pro}.md`
+- `sk-prompt-models/references/models/{deepseek-v4-pro,kimi-k2.7-code,mimo-v2.5-pro}.md`
   — per-model framework fit (RCAF / COSTAR / COSTAR) and instruction-following profiles.
 
 ---

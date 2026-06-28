@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff prompt-framework bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/pattern-index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-model-registration"
@@ -49,7 +49,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown + JSON config (skill metadata) |
-| **Framework** | sk-prompt-small-model + cli-opencode skill surfaces |
+| **Framework** | sk-prompt-models + cli-opencode skill surfaces |
 | **Storage** | None (file-based skill config and routing graph metadata) |
 | **Testing** | Card-sync guard shell, node JSON.parse, advisor routing probe, live smoke dispatch |
 
@@ -109,7 +109,7 @@ This is a registration change, not a bug fix or security-class change. The table
 | graph-metadata.json (x2) | Advisor routing graph (consumer) | Update: trigger_phrases / key_topics | Advisor re-index + routing probe surfaces both skills |
 
 Inventory used during implementation:
-- Same-class producers: `rg -n 'kimi-k2' .opencode/skills/sk-prompt-small-model .opencode/skills/cli-opencode` to find every Kimi reference touched.
+- Same-class producers: `rg -n 'kimi-k2' .opencode/skills/sk-prompt-models .opencode/skills/cli-opencode` to find every Kimi reference touched.
 - Consumers of the alias: confirmed the bare `kimi` alias resolves to kimi-k2.7-code after the repoint.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -132,7 +132,7 @@ Inventory used during implementation:
 ### Phase 3: Verification
 - [x] Live smoke dispatch returns "pong" at exit 0, cost 0
 - [x] Card-sync guard exit 0; all edited JSON parses clean
-- [x] Advisor re-indexed; routing probe surfaces sk-prompt-small-model + cli-opencode
+- [x] Advisor re-indexed; routing probe surfaces sk-prompt-models + cli-opencode
 <!-- /ANCHOR:phases -->
 
 ---

@@ -92,7 +92,7 @@ Sequential phase pipeline with one blocking human-approval gate (phase 4 → 5).
 - **Target skill**: `.opencode/skills/deep-ai-council/` — read in phase 2 audit, surgically edited where deviations found, README rewritten in phase 3, version bumped at end of phase 3.
 - **Schemas**: 4 JSON Schemas (audit-finding, changelog-entry, validation-report, iteration-output) that gate every state-file write across phases 2-5.
 - **Validator**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` — exit 0 at every phase boundary.
-- **Dispatcher (phase 5)**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning), consulted alongside `sk-prompt-small-model`. The deep-research loop itself is orchestrated by the native runtime (`/deep:start-research-loop` + `@deep-research`); cli-devin is the per-iteration executor inside that loop.
+- **Dispatcher (phase 5)**: `cli-devin --model swe-1.6` per `.opencode/skills/cli-devin/SKILL.md` (RCAF + CLEAR + medium-density pre-planning), consulted alongside `sk-prompt-models`. The deep-research loop itself is orchestrated by the native runtime (`/deep:start-research-loop` + `@deep-research`); cli-devin is the per-iteration executor inside that loop.
 
 ### Data Flow
 
@@ -191,7 +191,7 @@ Required inventories:
 #### Step 5a: 10 iterations (one at a time, devin-preserving sweep between)
 
 - [ ] Verify `devin` reachable + authenticated (`devin --print` smoke-test).
-- [ ] Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule) + `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule) before composing any prompt.
+- [ ] Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule) + `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule) before composing any prompt.
 - [ ] Define per-iteration output schema (`schemas/iteration-output.schema.json`) and convergence criteria (below) BEFORE running.
 - [ ] Iters 1-10: `cli-devin --model swe-1.6` (RCAF + CLEAR + medium-density pre-planning) → `research/iterations/iter-NN-cli-devin.json`.
 - [ ] Between each iter: kill `codex|opencode|deep-research-{runner,monitor}|gtimeout` orphans + `rm /tmp/{codex,deep-research,opencode,save-context}-*`; PRESERVE `devin --print` + `/tmp/devin-*` (per "kill for all except devin").
@@ -240,7 +240,7 @@ Required inventories:
 | `cli-devin` (`devin` binary) | External | Verify before phase 5 | Phase 5 blocked entirely |
 | `sk-doc` templates | Internal | Green | Phase 1/2/3/4 all blocked |
 | `hvr_rules.md` | Internal | Green | Phase 3 HVR scoring blocked |
-| `cli-devin/SKILL.md` + `sk-prompt-small-model/SKILL.md` | Internal | Green | Phase 5 prompt composition blocked (mandatory read) |
+| `cli-devin/SKILL.md` + `sk-prompt-models/SKILL.md` | Internal | Green | Phase 5 prompt composition blocked (mandatory read) |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Cover: MiniMax-2.7 context-budget defaults, output-verification recipe, prompt-quality/RCAF patterns, --variant/reasoning-effort mapping for the minimax provider, quota-pool + fallback wiring (minimax-api), permissions-matrix applicability, cost/latency profile, and routing heuristics vs deepseek/qwen/glm. Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-small-model and cli-opencode."
+title: "Resource Map — How can we improve/update sk-prompt-models and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Cover: MiniMax-2.7 context-budget defaults, output-verification recipe, prompt-quality/RCAF patterns, --variant/reasoning-effort mapping for the minimax provider, quota-pool + fallback wiring (minimax-api), permissions-matrix applicability, cost/latency profile, and routing heuristics vs deepseek/qwen/glm. Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-models and cli-opencode."
 description: "Auto-generated research resource map from convergence evidence."
 ---
 # Resource Map
@@ -38,8 +38,8 @@ description: "Auto-generated research resource map from convergence evidence."
 | .opencode/skills/cli-opencode/references/context-budget.md | Cited | OK | Citations=3; Iterations=3 |
 | .opencode/skills/cli-opencode/references/permissions-matrix.md | Cited | OK | Citations=2; Iterations=2 |
 | .opencode/skills/cli-opencode/SKILL.md | Cited | OK | Citations=3; Iterations=3 |
-| .opencode/skills/sk-prompt-small-model/references/pattern-index.md | Cited | OK | Citations=4; Iterations=4 |
-| .opencode/skills/sk-prompt-small-model/SKILL.md | Cited | OK | Citations=2; Iterations=2 |
+| .opencode/skills/sk-prompt-models/references/pattern-index.md | Cited | OK | Citations=4; Iterations=4 |
+| .opencode/skills/sk-prompt-models/SKILL.md | Cited | OK | Citations=2; Iterations=2 |
 | .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md | Cited | OK | Citations=3; Iterations=3 |
 | .opencode/skills/sk-prompt/assets/model-profiles.json | Cited | OK | Citations=4; Iterations=4 |
 

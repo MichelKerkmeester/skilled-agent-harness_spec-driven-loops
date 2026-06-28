@@ -56,7 +56,7 @@ This phase eradicated Gemini as a host runtime and as a model everywhere outside
 
 ### Wave 1: Architectural core
 
-All suites finished GREEN. In system-spec-kit `mcp_server`, the `hooks/gemini/` directory was DELETED and `gemini-cli` was removed from the `RuntimeId` union and detection in `lib/runtime-detection.ts`, with `hooks/index.ts`, `hooks/README.md`, `tests/fixtures/runtime-fixtures.ts`, and the `runtime-detection`, `cross-runtime-fallback`, `hook-session-start`, `hooks-reexport-parity`, and `hooks-shared-provenance` tests updated; the 5 suites passed (59 passed / 1 pre-existing copilot skip) and tsc was clean. system-code-graph `mcp_server` dropped `gemini-cli` from `lib/runtime-detection.ts` and its test (14/14 GREEN). system-skill-advisor DELETED its own `hooks/gemini/` subsystem with its test and two Gemini docs, and de-indexed its feature catalog (37 to 36) and manual testing playbook (46 to 45) including the enforcing vitest. Model references were cleared too: `gemini-flash` left the deep-loop-runtime fallback router and its test (8/8 GREEN), the sk-prompt-small-model `model-profiles.json` / `per-model-budgets.json` / refs, and the cli-devin `references/quota-fallback.md`.
+All suites finished GREEN. In system-spec-kit `mcp_server`, the `hooks/gemini/` directory was DELETED and `gemini-cli` was removed from the `RuntimeId` union and detection in `lib/runtime-detection.ts`, with `hooks/index.ts`, `hooks/README.md`, `tests/fixtures/runtime-fixtures.ts`, and the `runtime-detection`, `cross-runtime-fallback`, `hook-session-start`, `hooks-reexport-parity`, and `hooks-shared-provenance` tests updated; the 5 suites passed (59 passed / 1 pre-existing copilot skip) and tsc was clean. system-code-graph `mcp_server` dropped `gemini-cli` from `lib/runtime-detection.ts` and its test (14/14 GREEN). system-skill-advisor DELETED its own `hooks/gemini/` subsystem with its test and two Gemini docs, and de-indexed its feature catalog (37 to 36) and manual testing playbook (46 to 45) including the enforcing vitest. Model references were cleared too: `gemini-flash` left the deep-loop-runtime fallback router and its test (8/8 GREEN), the sk-prompt-models `model-profiles.json` / `per-model-budgets.json` / refs, and the cli-devin `references/quota-fallback.md`.
 
 ### Wave 2: Code and runtime-value
 
@@ -68,7 +68,7 @@ In system-spec-kit, four whole Gemini-runtime docs were DELETED (`feature_catalo
 
 ### Wave 4: Changelogs
 
-Forty-three changelog files were edited per operator direction (agent-orchestration ×9, system-spec-kit ×8, deep-ai-council ×4, deep-improvement ×5, deep-research ×6, deep-review ×4, cli-* ×5, sk-doc ×1, sk-prompt-small-model ×1) plus the top-level `PUBLIC_RELEASE.md`. The edits removed Gemini, reconciled runtime/mirror counts (e.g. 5 to 4, 4 to 3), and removed Gemini-only sections and rows.
+Forty-three changelog files were edited per operator direction (agent-orchestration ×9, system-spec-kit ×8, deep-ai-council ×4, deep-improvement ×5, deep-research ×6, deep-review ×4, cli-* ×5, sk-doc ×1, sk-prompt-models ×1) plus the top-level `PUBLIC_RELEASE.md`. The edits removed Gemini, reconciled runtime/mirror counts (e.g. 5 to 4, 4 to 3), and removed Gemini-only sections and rows.
 
 The canonical file inventory with per-file change types lives in `resource-map.md`.
 <!-- /ANCHOR:what-built -->

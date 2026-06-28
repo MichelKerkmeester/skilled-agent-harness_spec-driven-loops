@@ -4,7 +4,7 @@
 #                                      prompt-knowledge architecture
 # ====================================================================
 # Enforces "one home per fact" across sk-prompt (framework engine),
-# sk-prompt-small-model (per-model hub), and the 4 cli-* executors.
+# sk-prompt-models (per-model hub), and the 4 cli-* executors.
 # Four structural checks (no semantic/NLP matching — pointer presence,
 # table absence, registry completeness, trigger membership):
 #
@@ -24,7 +24,7 @@
 #             (prevents the model-unreachable-by-name class, e.g. qwen3.6).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md
+#   .opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md
 #   .opencode/skills/sk-prompt/references/patterns_evaluation.md
 #
 # Exit codes:
@@ -112,7 +112,7 @@ if python3 - <<'PY'
 import json, os, re, glob, sys
 
 ROOT = os.environ["ROOT"]
-H = f"{ROOT}/.opencode/skills/sk-prompt-small-model"
+H = f"{ROOT}/.opencode/skills/sk-prompt-models"
 reg = json.load(open(f"{H}/assets/model_profiles.json"))
 idx = open(f"{H}/references/models/_index.md").read()
 all_ids = {m["id"] for m in reg["models"]}

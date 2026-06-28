@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read cli-devin / cli-opencode / sk-prompt-small-model SKILL.md (CLI-dispatch mandate)
+- [x] T001 Read cli-devin / cli-opencode / sk-prompt-models SKILL.md (CLI-dispatch mandate)
 - [x] T002 Compose RCAF + pre-planned prompt files for both executors
 - [x] T003 [P] Probe devin auth + opencode providers (done in phase 001)
 <!-- /ANCHOR:phase-1 -->

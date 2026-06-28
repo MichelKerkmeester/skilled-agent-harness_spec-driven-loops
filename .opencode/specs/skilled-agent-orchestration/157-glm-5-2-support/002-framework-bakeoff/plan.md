@@ -40,7 +40,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | JSON benchmark profile + deep-loop model-benchmark machinery |
 | **Framework** | `/deep:model-benchmark` lane (deep-loop-workflows) |
-| **Storage** | Run outputs under `sk-prompt-small-model/benchmarks/<run-label>/` |
+| **Storage** | Run outputs under `sk-prompt-models/benchmarks/<run-label>/` |
 | **Testing** | The bakeoff IS the test; correctness gate + 5dim scorer + LLM judge |
 
 ### Overview
@@ -89,7 +89,7 @@ Consume the model-benchmark lane as-is. The profile is DATA; the command owns it
 
 ### Phase 1: Setup
 - [x] Re-verify the live glm-5.2 slug (`opencode models <provider>`)
-- [x] Pick the next free benchmark run number/label (`ls sk-prompt-small-model/benchmarks/`)
+- [x] Pick the next free benchmark run number/label (`ls sk-prompt-models/benchmarks/`)
 - [x] Clone `framework-bakeoff.json` → `glm-5.2-frameworks.json`; retarget model + frameworks (incl. `craft`) + strict fixtures
 
 ### Phase 2: Run

@@ -58,12 +58,12 @@
       "severity": "P1",
       "title": "MiniMax manual scenario weakens path-guard posture and contradicts model profile guidance",
       "evidence": [
-        ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:205",
-        ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:206",
+        ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md:205",
+        ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md:206",
         ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md:50"
       ],
       "fix": "Remove --dangerously-skip-permissions from the scenario, omit --variant for MiniMax unless the accepted behavior is verified, and keep the no---agent rule.",
-      "owner": "cli-opencode and sk-prompt-small-model owners"
+      "owner": "cli-opencode and sk-prompt-models owners"
     },
     {
       "id": "F-006",

@@ -325,7 +325,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:136:- **Scorer** = compare actual vs expected across R1–R5 → skill-benchmark dimensions; emit R6 report. Reuses the deterministic-checks + pluggable-grader shape of the Lane B 5-dim scorer.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:137:- **Mode** = `loop-host.cjs --mode=skill-benchmark`; every state record carries `mode: skill-benchmark`; reports carry a `scoringMethod`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:145:- **SC2.** Rename (Phase 003) leaves zero dangling `deep-agent-improvement` references where `deep-improvement` is intended; skill-advisor rebuild + validate are green; Lane A/B commands still run.
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:154:- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-small-model`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:154:- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-models`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:163:- Skill under change: `.opencode/skills/deep-agent-improvement/SKILL.md` (→ `deep-improvement`).
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:164:- Sibling packet (Lane B, template): `.opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:173:- OQ1. Exact scoring dimensions + weights for Lane C (R1–R5) and how to normalize across skills of different shapes.
@@ -2116,7 +2116,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:40:- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:41:- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:42:- Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:43:- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:43:- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:48:Use `git mv` for the directory to preserve history; then a tracked find-and-replace across the confirmed surface list; then advisor rebuild + validate. Agent-name decision (`@deep-agent-improvement` → `@deep-improvement`?) recorded explicitly in this phase's `decision-record.md`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:52:- Zero dangling `deep-agent-improvement` references where `deep-improvement` is intended (grep-clean, allowing intentional historical mentions in archives).
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:54:- Lane A (`/deep:start-agent-improvement-loop`) and Lane B (`/deep:start-model-benchmark-loop`) still run.
@@ -2466,7 +2466,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:5:{"type":"finding","id":"f-minimax-i5-04","label":"CLI command files body text and .codex/config.toml registration name the old skill; must update alongside mirror rename","iteration":5}
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:6:{"type":"finding","id":"f-minimax-i5-05","label":"deep-model-benchmark alias group may also need rename decision; must be explicitly decided in Phase 002 decision-record","iteration":5}
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:7:{"type":"finding","id":"f-minimax-i5-06","label":"description.json auto-regeneration requires explicit generate-context.js invocation post-git-mv; not automatic","iteration":5}
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:8:{"type":"finding","id":"f-minimax-i5-07","label":"sk-prompt-small-model SKILL.md cross-references deep-agent-improvement; must update during Phase 002","iteration":5}
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:8:{"type":"finding","id":"f-minimax-i5-07","label":"sk-prompt-models SKILL.md cross-references deep-agent-improvement; must update during Phase 002","iteration":5}
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:9:{"type":"finding","id":"f-minimax-i5-08","label":"HARD GATE: Lane C trace-normalization root changes with skill dir rename; building Lane C against old name then renaming requires full harness path rebuild. Option A (rename first) is strictly safer","iteration":5}
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/deltas/iter-005.jsonl:10:{"type":"finding","id":"f-minimax-i5-09","label":"Phase 002 freeze inventory step prevents dangling refs; generated/cache files (score caches, vitest results, benchmark outputs) need explicit four-column classification","iteration":5}
 .opencode/skills/deep-agent-improvement/feature_catalog/04--model-benchmark-mode/02-model-dispatcher.md:3:description: "Model-agnostic dispatcher that routes prompts across executor CLIs only on the model-benchmark path."
@@ -3249,7 +3249,7 @@ exec
 .opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-fixtures/README.md:51:- Update consuming tests when fixture shape changes.
 .opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-fixtures/README.md:67:python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-fixtures/README.md
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:1:# Iteration 005 — RQ6: Exhaustive Rename Surface + Safe Ordering (`deep-agent-improvement` → `deep-improvement`)
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:5:RQ6: Produce the **exhaustive rename surface** and a **safe execution ordering** for renaming the skill `deep-agent-improvement` → `deep-improvement`, covering: skill directory, `SKILL.md`, commands, agent + 4 runtime mirrors (`.opencode`/`.claude`/`.codex`/`.gemini`), the skill-advisor graph, `descriptions.json`, the `sk-prompt-small-model` sentinel chain, root docs, and internal cross-references. Identify **dangling-reference risks** and how to avoid them. Report only — no edits.
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:5:RQ6: Produce the **exhaustive rename surface** and a **safe execution ordering** for renaming the skill `deep-agent-improvement` → `deep-improvement`, covering: skill directory, `SKILL.md`, commands, agent + 4 runtime mirrors (`.opencode`/`.claude`/`.codex`/`.gemini`), the skill-advisor graph, `descriptions.json`, the `sk-prompt-models` sentinel chain, root docs, and internal cross-references. Identify **dangling-reference risks** and how to avoid them. Report only — no edits.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:9:1. Repo-wide exact-token census of `deep-agent-improvement` (count mode): **1063 occurrences across 200+ files** [SOURCE: Grep count, repo root].
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:10:2. Glob enumeration of the skill tree `**/deep-agent-improvement*/**` confirming the directory owns the dominant share of references (scripts, tests, feature_catalog, manual_testing_playbook, assets, changelog, references) [SOURCE: Glob `**/deep-agent-improvement*/**`].
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/opus/iterations/iteration-005.md:11:3. Targeted reads of skill-advisor scorer internals (`aliases.ts`, `skill_advisor.py`, `lanes/explicit.ts`), the advisor `skill-graph.json` / `graph-metadata.json`, the regression fixtures, and `SKILL.md` frontmatter. (These returned late within the session but DID return — findings below are now confirmed with concrete line numbers rather than inferred.)
@@ -10524,7 +10524,7 @@ exec
     29	      "sk-doc",
     30	      "sk-git",
     31	      "sk-prompt",
-    32	      "sk-prompt-small-model"
+    32	      "sk-prompt-models"
     33	    ],
     34	    "system": [
     35	      "system-code-graph",
@@ -10551,7 +10551,7 @@ exec
     56	    },
     57	    "cli-devin": {
     58	      "enhances": {
-    59	        "sk-prompt-small-model": 0.5
+    59	        "sk-prompt-models": 0.5
     60	      },
     61	      "siblings": {
     62	        "cli-claude-code": 0.5,
@@ -10570,7 +10570,7 @@ exec
     75	    },
     76	    "cli-opencode": {
     77	      "enhances": {
-    78	        "sk-prompt-small-model": 0.5
+    78	        "sk-prompt-models": 0.5
     79	      },
     80	      "siblings": {
     81	        "cli-claude-code": 0.5,
@@ -11289,7 +11289,7 @@ exec
     40	- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
     41	- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
     42	- Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-    43	- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+    43	- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
     44	- Internal self-references inside the skill's own references/scripts/README.
     45	
     46	## 3. Approach
@@ -15714,7 +15714,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:39:- `.opencode/skills/deep-agent-improvement/` → `.opencode/skills/deep-improvement/` (dir + `SKILL.md` `name:`/frontmatter/triggers/keywords).
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:40:- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:41:- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:43:- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:43:- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:48:Use `git mv` for the directory to preserve history; then a tracked find-and-replace across the confirmed surface list; then advisor rebuild + validate. Agent-name decision (`@deep-agent-improvement` → `@deep-improvement`?) recorded explicitly in this phase's `decision-record.md`.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:52:- Zero dangling `deep-agent-improvement` references where `deep-improvement` is intended (grep-clean, allowing intentional historical mentions in archives).
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement/spec.md:54:- Lane A (`/deep:start-agent-improvement-loop`) and Lane B (`/deep:start-model-benchmark-loop`) still run.
@@ -15732,7 +15732,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:91:- **NG4.** Renaming the per-lane command verbs unnecessarily (e.g. `/deep:start-agent-improvement-loop` stays — it still improves *agents*); only the **skill name** must change. Command/agent naming decisions are recorded explicitly in Phase 002.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:113:| **003** | `003-skill-rename-deep-improvement/` | Rename `deep-agent-improvement` → `deep-improvement` across all surfaces; advisor rebuild; no dangling refs. | 001, 002 |
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:145:- **SC2.** Rename (Phase 003) leaves zero dangling `deep-agent-improvement` references where `deep-improvement` is intended; skill-advisor rebuild + validate are green; Lane A/B commands still run.
-.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:154:- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-small-model`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:154:- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-models`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 003 touches anything.
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:163:- Skill under change: `.opencode/skills/deep-agent-improvement/SKILL.md` (→ `deep-improvement`).
 .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/spec.md:164:- Sibling packet (Lane B, template): `.opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/`.
 

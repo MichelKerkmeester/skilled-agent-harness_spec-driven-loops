@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json",
-      ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
+      ".opencode/skills/sk-prompt-models/references/models/_index.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -59,13 +59,13 @@
       {
         "name": "kimi-k2.7-code.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
         "source": "derived"
       },
       {
         "name": "_index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
         "source": "derived"
       },
       {

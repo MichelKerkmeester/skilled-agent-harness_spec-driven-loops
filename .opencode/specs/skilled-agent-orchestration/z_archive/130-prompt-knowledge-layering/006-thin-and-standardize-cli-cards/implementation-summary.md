@@ -60,7 +60,7 @@ Four CLI prompt-quality cards that each inlined the full framework table (rangin
 
 ### CLI card thinning (cli-opencode, cli-gemini, cli-codex, cli-claude-code)
 
-The four cards that inline-duplicated the framework table were each replaced with a delegating mirror. cli-opencode shrank from 96 to 37 lines, cli-gemini from 89 to 35, cli-codex from 90 to 28, and cli-claude-code from 90 to 44. Each mirror retains the executor-specific dispatch mechanics and cross-links to the canonical card for framework selection logic and CLEAR scoring. Per-model framework preferences are pointed at the hub profiles in sk-prompt-small-model.
+The four cards that inline-duplicated the framework table were each replaced with a delegating mirror. cli-opencode shrank from 96 to 37 lines, cli-gemini from 89 to 35, cli-codex from 90 to 28, and cli-claude-code from 90 to 44. Each mirror retains the executor-specific dispatch mechanics and cross-links to the canonical card for framework selection logic and CLEAR scoring. Per-model framework preferences are pointed at the hub profiles in sk-prompt-models.
 
 ### cli-devin semantic fork reconciliation (49 LOC)
 

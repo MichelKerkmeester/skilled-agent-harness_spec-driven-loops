@@ -2,7 +2,7 @@
 > build · gpt-5.5-fast
 [0m
 [0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Edit .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md only to fix taxonomy, mirror sync cli card count/list, and add mimo-v2.5-pro to small-model budget list. Spec folder pre-approved skilled-agent-orchestration/130-prompt-knowledge-layering.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true}}
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet per deep-review findings.\n\nFix ONLY these file(s): .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md. Make ONLY the described changes; NO deletes of files; NO other files. (1) The pre-planning-density note lists deepseek-v4-pro and kimi-k2.6 among \"frontier models\" — but those are active small-model-hub models (they have profiles in sk-prompt-small-model/references/models/). Fix the taxonomy: move deepseek-v4-pro/kimi-k2.6 into the small-model wording (or remove them from the frontier parenthetical). (2) The Mirror Sync section names only three cli cards — update to say all FIVE cli-* cards delegate here (or list all five). (3) The Budget Awareness small-model list is missing mimo-v2.5-pro — add it beside the other active small models.\n\nReport which specific edits you made per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet per deep-review findings.\n\nFix ONLY these file(s): .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md. Make ONLY the described changes; NO deletes of files; NO other files. (1) The pre-planning-density note lists deepseek-v4-pro and kimi-k2.6 among \"frontier models\" — but those are active small-model-hub models (they have profiles in sk-prompt-models/references/models/). Fix the taxonomy: move deepseek-v4-pro/kimi-k2.6 into the small-model wording (or remove them from the frontier parenthetical). (2) The Mirror Sync section names only three cli cards — update to say all FIVE cli-* cards delegate here (or list all five). (3) The Budget Awareness small-model list is missing mimo-v2.5-pro — add it beside the other active small models.\n\nReport which specific edits you made per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m→ [0mSkill "system-spec-kit"
 [0m→ [0mSkill "customize-opencode"
 [0m→ [0mSkill "sk-doc"
@@ -29,7 +29,7 @@ index bd25b49d92..76b8f64725 100644
  > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
  
 -> **Per-model framework overrides live in each executor's own card.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the executor card that dispatches the model (e.g. cli-opencode for MiniMax — Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed`). Check the executor's prompt-quality card before composing for a specific small model.
-+> **Per-model framework overrides live in the model-craft hub at `sk-prompt-small-model/references/models/<id>.md`.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the per-model profile file (e.g. MiniMax M3 → `sk-prompt-small-model/references/models/minimax-m3.md`). The underlying data — including `recommended_frameworks` — is stored in `sk-prompt/assets/model-profiles.json`. Check the profile before composing for a specific small model.
++> **Per-model framework overrides live in the model-craft hub at `sk-prompt-models/references/models/<id>.md`.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the per-model profile file (e.g. MiniMax M3 → `sk-prompt-models/references/models/minimax-m3.md`). The underlying data — including `recommended_frameworks` — is stored in `sk-prompt/assets/model-profiles.json`. Check the profile before composing for a specific small model.
  
  For per-model defaults, quota pools, and fallback targets, see `sk-prompt/assets/model-profiles.json`.
  
@@ -54,7 +54,7 @@ index bd25b49d92..76b8f64725 100644
 +Build the prompt directly from this canonical card. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
 +
 +**Tier 2 — Model override (mandatory when dispatching a profiled model)**
-+If the target model has a `recommended_frameworks` entry in `sk-prompt/assets/model-profiles.json` AND a profile at `sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model defaults from this card. The profile may prescribe a different framework, pre-planning density, or bundle-gate strictness than the table above. Read the profile before composing the prompt — skipping this step is the leading cause of underperformance on profiled small models.
++If the target model has a `recommended_frameworks` entry in `sk-prompt/assets/model-profiles.json` AND a profile at `sk-prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model defaults from this card. The profile may prescribe a different framework, pre-planning density, or bundle-gate strictness than the table above. Read the profile before composing the prompt — skipping this step is the leading cause of underperformance on profiled small models.
 +
 +**Tier 3 — Deep path (escalation)**
 +Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when ANY of the following are true:
@@ -110,8 +110,8 @@ index bd25b49d92..76b8f64725 100644
 .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
 .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
 .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
-.opencode/skills/sk-prompt-small-model/SKILL.md
-.opencode/skills/sk-prompt-small-model/references/pattern-index.md
+.opencode/skills/sk-prompt-models/SKILL.md
+.opencode/skills/sk-prompt-models/references/pattern-index.md
 .opencode/skills/sk-prompt/SKILL.md
 .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
 .opencode/skills/sk-prompt/assets/model-profiles.json

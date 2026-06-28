@@ -2,7 +2,7 @@ Spec folder: skilled-agent-orchestration/135-skill-readme-standardization/020-sk
 
 Role: You are a documentation analyst gathering an accurate factual map of one skill so its README can be rewritten.
 
-Context: The skill lives at `.opencode/skills/sk-prompt/`. Read its `SKILL.md` in full, its current `README.md`, and the files under `references/` and `assets/`. Stay within that skill directory. This skill is the prompt-engineering engine: it transforms vague inputs into structured prompts using seven frameworks with automatic selection, DEPTH thinking and CLEAR quality scoring. Note the sibling skills `sk-prompt-small-model` (the per-model dispatch hub) and the `@prompt-improver` agent only to describe boundaries.
+Context: The skill lives at `.opencode/skills/sk-prompt/`. Read its `SKILL.md` in full, its current `README.md`, and the files under `references/` and `assets/`. Stay within that skill directory. This skill is the prompt-engineering engine: it transforms vague inputs into structured prompts using seven frameworks with automatic selection, DEPTH thinking and CLEAR quality scoring. Note the sibling skills `sk-prompt-models` (the per-model dispatch hub) and the `@prompt-improver` agent only to describe boundaries.
 
 Action: Produce a factual map for a README rewrite. Report under exactly these eight headings:
 
@@ -11,7 +11,7 @@ Action: Produce a factual map for a README rewrite. Report under exactly these e
 3. MODES & CAPABILITIES — the seven frameworks and automatic selection, the DEPTH thinking methodology, the CLEAR scoring with its threshold, and the invocation modes (interactive, text, raw), each one line.
 4. INVOCATION — how it is triggered (the `/prompt` command, the `@prompt-improver` agent, the mode flags like `$raw` and `$text`), the workflow phases (framework selection, DEPTH processing, scoring), and what it outputs.
 5. KEY FILES — a table of the real files (path + one-line purpose): SKILL.md, `references/depth_framework.md`, `references/patterns_evaluation.md`, `assets/framework-registry.json`, the format guides.
-6. BOUNDARIES — what it does NOT own: the per-model dispatch choice (`sk-prompt-small-model`, which chooses from this engine's framework set), and any executor mechanics. Clarify that this skill owns the generic framework definitions.
+6. BOUNDARIES — what it does NOT own: the per-model dispatch choice (`sk-prompt-models`, which chooses from this engine's framework set), and any executor mechanics. Clarify that this skill owns the generic framework definitions.
 7. TROUBLESHOOTING & FAQ MATERIAL — common failure modes, gotchas (low CLEAR score, framework mis-selection), and the 2 to 4 questions a user actually asks.
 8. STALE FACTS — anything in the current README.md that is inaccurate versus SKILL.md and the real files (counts, paths, version, the framework list, the CLEAR threshold). Write "none found" if clean.
 

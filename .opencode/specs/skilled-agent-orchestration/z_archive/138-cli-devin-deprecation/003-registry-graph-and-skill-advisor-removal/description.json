@@ -1,12 +1,12 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
-  "description": "cli-devin had registry entries (sk-prompt-small-model model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2",
+  "description": "cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2",
   "keywords": [
     "cli-devin",
     "registry",
     "entries",
-    "sk-prompt-small-model",
+    "sk-prompt-models",
     "model-profiles",
     "skill",
     "graph-metadata",

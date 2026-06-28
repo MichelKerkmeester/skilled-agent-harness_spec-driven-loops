@@ -149,7 +149,7 @@ describe('secret scrubber', () => {
     });
 
     it('does not redact sk- prefixed skill slugs', () => {
-      const text = 'Route through sk-bartender-endpoint-interpreter and sk-prompt-small-model first.';
+      const text = 'Route through sk-bartender-endpoint-interpreter and sk-prompt-models first.';
       expect(scrubSecrets(text)).toBe(text);
     });
 

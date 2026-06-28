@@ -1,21 +1,21 @@
 ---
-title: "Feature Specification: sk-prompt-small-model README"
-description: "Rewrite the sk-prompt-small-model skill README in the narrative voice, leading with the per-model prompt-craft hub and the craft-versus-mechanics split."
+title: "Feature Specification: sk-prompt-models README"
+description: "Rewrite the sk-prompt-models skill README in the narrative voice, leading with the per-model prompt-craft hub and the craft-versus-mechanics split."
 trigger_phrases:
-  - "sk-prompt-small-model readme"
-  - "sk-prompt-small-model narrative rewrite"
+  - "sk-prompt-models readme"
+  - "sk-prompt-models narrative rewrite"
 importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme"
+    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped sk-prompt-small-model README via deep-context + dual-draft"
+    recent_action: "Shipped sk-prompt-models README via deep-context + dual-draft"
     next_safe_action: "Begin phase 020 (sk-prompt README)"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/README.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-019"
@@ -26,7 +26,7 @@ _memory:
       - "Corrected the 'five executors' claim (really cli-devin + cli-opencode + optional cli-claude-code); dropped version; framework map kept as a pattern not a pinned count; minimax-2.7 evidence corrected to historical"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: sk-prompt-small-model README
+# Feature Specification: sk-prompt-models README
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -56,11 +56,11 @@ _memory:
 
 This is **Phase 19**, the fifth skill in Batch D (sk-*).
 
-**Scope Boundary**: Only `.opencode/skills/sk-prompt-small-model/README.md`. No SKILL.md or behavior change.
+**Scope Boundary**: Only `.opencode/skills/sk-prompt-models/README.md`. No SKILL.md or behavior change.
 
 **Dependencies**: The narrative template (phase 001) and the deep-context gather in this folder's `context/`.
 
-**Deliverables**: A rewritten `sk-prompt-small-model/README.md` in the narrative voice.
+**Deliverables**: A rewritten `sk-prompt-models/README.md` in the narrative voice.
 
 **Changelog**: Refresh the matching ../changelog/ file when this phase closes.
 <!-- /ANCHOR:phase-context -->
@@ -72,7 +72,7 @@ This is **Phase 19**, the fifth skill in Batch D (sk-*).
 
 ### Problem Statement
 
-The sk-prompt-small-model README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong "five executors" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third). It does not lead with the distinctive value: a per-model prompt-craft hub that keeps the framework, scaffold and gotchas for each small model in one place and points at the executor for the mechanics.
+The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong "five executors" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third). It does not lead with the distinctive value: a per-model prompt-craft hub that keeps the framework, scaffold and gotchas for each small model in one place and points at the executor for the mechanics.
 
 ### Purpose
 
@@ -86,7 +86,7 @@ Rewrite the README in the narrative voice, grounded in a two-iteration deep-cont
 
 ### In Scope
 
-- Rewrite `sk-prompt-small-model/README.md` to the narrative skeleton; correct the executor count and drop the version.
+- Rewrite `sk-prompt-models/README.md` to the narrative skeleton; correct the executor count and drop the version.
 
 ### Out of Scope
 
@@ -96,7 +96,7 @@ Rewrite the README in the narrative voice, grounded in a two-iteration deep-cont
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/README.md` | Modify | Narrative-voice rewrite of the per-model prompt-craft hub README |
+| `.opencode/skills/sk-prompt-models/README.md` | Modify | Narrative-voice rewrite of the per-model prompt-craft hub README |
 <!-- /ANCHOR:scope -->
 
 ---

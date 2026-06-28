@@ -8,7 +8,7 @@ MiniMax 2.7 should be operated through cli-opencode as a **large-context (204,80
 
 ## 2. Research Question & Scope
 
-How can we improve/update `sk-prompt-small-model` and `cli-opencode` to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider — extending (not rebuilding) the 114 infrastructure, and outputting concrete file-level deltas. Out of scope: implementing the deltas, the opencode-go gateway path, and live auth setup.
+How can we improve/update `sk-prompt-models` and `cli-opencode` to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider — extending (not rebuilding) the 114 infrastructure, and outputting concrete file-level deltas. Out of scope: implementing the deltas, the opencode-go gateway path, and live auth setup.
 
 ## 3. Methodology
 
@@ -55,8 +55,8 @@ Prefer MiniMax-2.7 when: the task needs large retained evidence (100k+ token mul
 **P1**
 5. `cli-opencode/SKILL.md` — under `### Model Selection`, add the MiniMax direct-provider exception + compact task-shape routing table; preserve the default route. *(High)*
 6. `sk-prompt/assets/cli_prompt_quality_card.md` — replace Budget Awareness with the compact small-model routing table incl. MiniMax + fail-fast-on-exhausted-pool. *(High)*
-7. `sk-prompt-small-model/SKILL.md` — add MiniMax-2.7 to the dispatch matrix, expand the cli-opencode ownership row to include the MiniMax.io direct provider, update the required model set. *(High — keep sentinel thin)*
-8. `sk-prompt-small-model/references/pattern-index.md` — insert exactly three link-only MiniMax rows: context-budget adoption, direct-provider routing, prompt-quality/variant-ablation policy. *(High)*
+7. `sk-prompt-models/SKILL.md` — add MiniMax-2.7 to the dispatch matrix, expand the cli-opencode ownership row to include the MiniMax.io direct provider, update the required model set. *(High — keep sentinel thin)*
+8. `sk-prompt-models/references/pattern-index.md` — insert exactly three link-only MiniMax rows: context-budget adoption, direct-provider routing, prompt-quality/variant-ablation policy. *(High)*
 
 **P2**
 9. `cli-opencode/manual_testing_playbook/03--multi-provider/005-minimax-variant-ablation.md` (new, optional) — no-variant vs `--variant high` ablation recipe: three paired runs, separate stdout/stderr, timing, pass criteria. *(Medium — requires live MINIMAX_API_KEY)*
@@ -89,7 +89,7 @@ Prefer MiniMax-2.7 when: the task needs large retained evidence (100k+ token mul
 
 ## 14. Reusable 114 infrastructure leveraged
 
-model-profile registry, context-budget engine (+ cli-opencode mirror), 4-stage output-verification, quota-pool fallback router, structured permissions matrix, `sk-prompt-small-model` pattern-index — all reused without modification; MiniMax extends them.
+model-profile registry, context-budget engine (+ cli-opencode mirror), 4-stage output-verification, quota-pool fallback router, structured permissions matrix, `sk-prompt-models` pattern-index — all reused without modification; MiniMax extends them.
 
 ## 15. Open questions / next steps
 
@@ -102,7 +102,7 @@ Apply P0/P1 deltas in a follow-on implementation packet; add the P2 ablation pla
 - Per-iteration deltas: `research/deltas/iter-001.jsonl` … `iter-010.jsonl`
 - Phase 001 (provider wiring): `../001-minimax-provider-integration/`
 - 114 infrastructure: `skilled-agent-orchestration/114-small-ai-model-optimization/`
-- Key source files cited across iterations: `sk-prompt/assets/model-profiles.json`, `cli-devin/assets/per-model-budgets.json`, `cli-opencode/references/{context-budget.md,cli_reference.md}`, `cli-opencode/SKILL.md`, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt-small-model/{SKILL.md,references/pattern-index.md}`
+- Key source files cited across iterations: `sk-prompt/assets/model-profiles.json`, `cli-devin/assets/per-model-budgets.json`, `cli-opencode/references/{context-budget.md,cli_reference.md}`, `cli-opencode/SKILL.md`, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt-models/{SKILL.md,references/pattern-index.md}`
 <!-- /ANCHOR:references -->
 
 ## 17. Convergence Report

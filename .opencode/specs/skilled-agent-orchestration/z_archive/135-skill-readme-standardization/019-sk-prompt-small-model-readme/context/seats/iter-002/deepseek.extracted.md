@@ -10,7 +10,7 @@ Here is the full verification report:
 The advisor co-surfaces this skill alongside `cli-devin` or `cli-opencode` through `enhances` edges in `graph-metadata.json`, each weighted 0.5:
 
 ```json
-// .opencode/skills/sk-prompt-small-model/graph-metadata.json:8-19
+// .opencode/skills/sk-prompt-models/graph-metadata.json:8-19
 "enhances": [
   { "target": "cli-devin", "weight": 0.5, ... },
   { "target": "cli-opencode", "weight": 0.5, ... }
@@ -56,7 +56,7 @@ Every profile cites the registry as source: `mimo-v2.5-pro.md:58`: "These choice
 | `mimo-v2.5-pro` | `costar` | `race` | `["tidd-ec","cidi"]` | `lean` | empirical (benchmark 004) |
 | `haiku` | (none — no `recommended_frameworks` object) | — | — | — | optional-unverified |
 
-Source: `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json:5-476`.
+Source: `.opencode/skills/sk-prompt-models/assets/model-profiles.json:5-476`.
 
 **Prompt-craft versus mechanics ownership split (SKILL.md:214-216):**
 
@@ -71,15 +71,15 @@ Source: `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json:5-476
 | Confidence-scoring rubric | `cli-devin` |
 | Per-model budget defaults | `cli-devin` |
 | Quota-pool-aware fallback | `cli-devin` |
-| Model-profile registry | `sk-prompt-small-model` |
+| Model-profile registry | `sk-prompt-models` |
 | Bayesian tool scoring | `system-spec-kit` + `cli-devin` |
 | Fallback router | `system-spec-kit` |
 | Structured permissions schema | `cli-opencode` |
 | Structured permissions reference | `cli-opencode` |
 | Permissions gate runtime | `system-spec-kit` |
 | cli-opencode budget propagation | `cli-opencode` |
-| MiniMax-M3 prompt-framework guidance | `sk-prompt-small-model` |
-| MiMo-V2.5-Pro prompt-framework guidance | `sk-prompt-small-model` |
+| MiniMax-M3 prompt-framework guidance | `sk-prompt-models` |
+| MiMo-V2.5-Pro prompt-framework guidance | `sk-prompt-models` |
 
 ---
 
@@ -87,20 +87,20 @@ Source: `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json:5-476
 
 | File | One-line role |
 |---|---|
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Runtime entry point: smart router, dispatch matrix, rules, resource domains |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Thin per-model index: id → framework primary, fallback, density, status |
-| `.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md` | Prompt-craft profile: RCAF + medium pre-planning for SWE-1.6 |
-| `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md` | Prompt-craft profile: RCAF + medium pre-planning for DeepSeek-v4-pro |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md` | Prompt-craft profile: RCAF + medium pre-planning for Kimi-k2.6 |
-| `.opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md` | Prompt-craft profile: RCAF + medium pre-planning for Qwen3.6 |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md` | Prompt-craft profile: RCAF + medium pre-planning for GLM-5.1 |
-| `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md` | Prompt-craft profile: TIDD-EC + dense pre-planning for MiniMax-M3 |
-| `.opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md` | Historical profile: TIDD-EC + dense, benchmark 003 origin |
-| `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md` | Prompt-craft profile: COSTAR + lean pre-planning for MiMo-V2.5-Pro |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Index mapping each executor-owned mechanic to its canonical location + ship status |
-| `.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Canonical cross-CLI prompt quality card (framework selection, CLEAR, tiers) |
-| `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` | Unified model registry (DATA); each profile mirrors its `recommended_frameworks` |
-| `.opencode/skills/sk-prompt-small-model/benchmarks/` | Benchmark run data + synthesis (directories 002 through 005) |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Runtime entry point: smart router, dispatch matrix, rules, resource domains |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Thin per-model index: id → framework primary, fallback, density, status |
+| `.opencode/skills/sk-prompt-models/references/models/swe-1.6.md` | Prompt-craft profile: RCAF + medium pre-planning for SWE-1.6 |
+| `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md` | Prompt-craft profile: RCAF + medium pre-planning for DeepSeek-v4-pro |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md` | Prompt-craft profile: RCAF + medium pre-planning for Kimi-k2.6 |
+| `.opencode/skills/sk-prompt-models/references/models/qwen3.6.md` | Prompt-craft profile: RCAF + medium pre-planning for Qwen3.6 |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.1.md` | Prompt-craft profile: RCAF + medium pre-planning for GLM-5.1 |
+| `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md` | Prompt-craft profile: TIDD-EC + dense pre-planning for MiniMax-M3 |
+| `.opencode/skills/sk-prompt-models/references/models/minimax-2.7.md` | Historical profile: TIDD-EC + dense, benchmark 003 origin |
+| `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md` | Prompt-craft profile: COSTAR + lean pre-planning for MiMo-V2.5-Pro |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Index mapping each executor-owned mechanic to its canonical location + ship status |
+| `.opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md` | Canonical cross-CLI prompt quality card (framework selection, CLEAR, tiers) |
+| `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Unified model registry (DATA); each profile mirrors its `recommended_frameworks` |
+| `.opencode/skills/sk-prompt-models/benchmarks/` | Benchmark run data + synthesis (directories 002 through 005) |
 
 ---
 
@@ -108,15 +108,15 @@ Source: `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json:5-476
 
 **Documented lookup workflow (SKILL.md:193-197):**
 
-1. **Discover** — "The advisor surfaces `sk-prompt-small-model` alongside the relevant CLI skill when an operator names a small model or pattern."
+1. **Discover** — "The advisor surfaces `sk-prompt-models` alongside the relevant CLI skill when an operator names a small model or pattern."
 2. **Read the profile** — "Open `references/models/<id>.md` for that model's prompt-craft: framework (primary + fallback), pre-planning density, scaffold shape, gotchas — mirrored from `model-profiles.json`."
 3. **Apply MECHANICS + dispatch** — "Follow `references/pattern-index.md` to the owning `cli-X` for flags/wrappers/budgets/permissions; the prompt-craft (here) and mechanics (`cli-X`) combine in the executor's prompt-pack."
 
 **What `model-profiles.json` provides (SKILL.md:212):**
 
-> "Canonical source: `sk-prompt-small-model/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above)."
+> "Canonical source: `sk-prompt-models/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above)."
 
-The registry (`.opencode/skills/sk-prompt-small-model/assets/model-profiles.json`) provides per-model:
+The registry (`.opencode/skills/sk-prompt-models/assets/model-profiles.json`) provides per-model:
 - `context_length`, `tool_calling`, `chat_template`
 - `executors[]` array (executor, provider, quota_pool, status, notes)
 - `primary_quota_pool`, `fallback_target`, `free_tier`

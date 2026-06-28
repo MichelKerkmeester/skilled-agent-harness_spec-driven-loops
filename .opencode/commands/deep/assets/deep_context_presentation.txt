@@ -105,7 +105,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      and per-model prompt framing under each seat's `promptFramework`
 
    Per-model prompt framing:
-   - Each seat's optional `promptFramework` is resolved against `sk-prompt-small-model`
+   - Each seat's optional `promptFramework` is resolved against `sk-prompt-models`
      (MiMo -> COSTAR, MiniMax -> TIDD-EC, DeepSeek -> TIDD-EC). Native seats carry no framework.
    - cli dispatch honors the cli-* contracts (cli-opencode: closed stdin `</dev/null`,
      NO top-level `--agent`; model id form per the executor skill).
@@ -297,7 +297,7 @@ Key references:
 - Config shape + default pool: `deep-loop-workflows/deep-context/assets/deep_context_config.json`
 
 Shared runtime: `.opencode/skills/deep-loop-runtime/` (coverage-graph `loop_type='context'`, `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/fanout-run.cjs`, `lib/council/multi-seat-dispatch.cjs`).
-Per-model prompt framing: `.opencode/skills/sk-prompt-small-model/`.
+Per-model prompt framing: `.opencode/skills/sk-prompt-models/`.
 
 ### Key Differences (vs. siblings + one-shot context)
 

@@ -58,7 +58,7 @@ A single GPT-5.5 (reasoning xhigh) deep-research lineage, dispatched through the
 - **Executor**: `cli-codex` → `gpt-5.5` at reasoning effort `xhigh`. The requested `gpt-5.5-fast` / `gpt-5.5-codex` are unavailable on this ChatGPT-account Codex (verified 400 "model not supported"); plain `gpt-5.5` @ xhigh was used.
 - **Runner**: `deep-loop-runtime/scripts/fanout-run.cjs` with one cli-codex lineage (concurrency 1). The subprocess loads the deep-research SKILL and self-drives init → loop → synthesis into `research/lineages/gpt55x/`; the orchestrator then merges + promotes `research/research.md`.
 - **State**: externalized per the deep-research contract (config, state.jsonl, strategy, registry, dashboard, per-iteration files + deltas).
-- **Inputs (read-only)**: live `sk-design` hub + five mode packets + shared register, `cli-opencode`, `sk-prompt-small-model` (incl. the MiniMax-M3 profile), deep-loop-runtime fan-out + promotion-gate docs.
+- **Inputs (read-only)**: live `sk-design` hub + five mode packets + shared register, `cli-opencode`, `sk-prompt-models` (incl. the MiniMax-M3 profile), deep-loop-runtime fan-out + promotion-gate docs.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -85,7 +85,7 @@ This is a research phase with no runtime code. Verification is documentary: conf
 ## DEPENDENCIES
 
 - Live `sk-design` hub + five mode packets + shared register (read-only baseline).
-- `cli-opencode` + `sk-prompt-small-model` dispatch contracts (read-only).
+- `cli-opencode` + `sk-prompt-models` dispatch contracts (read-only).
 - `deep-loop-runtime` fan-out runner + `deep-loop-workflows/deep-research` workflow.
 - `codex` CLI with a GPT-5.5-capable account.
 <!-- /ANCHOR:dependencies -->

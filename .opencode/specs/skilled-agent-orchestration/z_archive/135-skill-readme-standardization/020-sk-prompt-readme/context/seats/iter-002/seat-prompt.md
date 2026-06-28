@@ -10,7 +10,7 @@ Action: Report under exactly these six headings, every claim cited to a real fil
 2. CAPABILITY ROSTER — the exact seven frameworks (named), the framework-selection logic, the DEPTH methodology phases (Discover, Engineer, Prototype, Test, Harmonize) with RICCE integration, and the CLEAR scoring dimensions and threshold, copied.
 3. KEY FILES — a table of the real files (path + one-line role): SKILL.md, `references/depth_framework.md`, `references/patterns_evaluation.md`, `assets/framework-registry.json`, each format guide.
 4. WORKFLOWS & OUTPUTS — the documented enhancement workflow (framework selection, DEPTH rounds, CLEAR scoring and the threshold gate) and what it produces, cited.
-5. TROUBLESHOOTING & FAQ — the concrete failure modes (CLEAR below threshold, wrong framework, raw mode skipping DEPTH) and the 3 to 5 questions a user most likely asks, with short grounded answers (including how it differs from sk-prompt-small-model).
+5. TROUBLESHOOTING & FAQ — the concrete failure modes (CLEAR below threshold, wrong framework, raw mode skipping DEPTH) and the 3 to 5 questions a user most likely asks, with short grounded answers (including how it differs from sk-prompt-models).
 6. STALE FACTS IN CURRENT README — list every claim in the current `README.md` that disagrees with `SKILL.md` or the real files (counts, paths, version, the framework list, the CLEAR threshold, the DEPTH round counts). Write "none found" if clean.
 
 Format: One structured markdown report under those six numbered headings. Cite real file paths verbatim. Mark anything unverifiable as UNKNOWN. No preamble.

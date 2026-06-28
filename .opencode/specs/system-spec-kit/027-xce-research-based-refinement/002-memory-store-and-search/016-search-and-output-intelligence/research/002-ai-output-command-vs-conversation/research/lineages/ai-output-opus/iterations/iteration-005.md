@@ -6,7 +6,7 @@ Consolidate the framework evidence and converge.
 
 ---
 
-## Per-model framework evidence (consumed from sk-prompt-small-model profiles)
+## Per-model framework evidence (consumed from sk-prompt-models profiles)
 
 | Model | Primary framework | Fallback | Avoid | Pre-plan | Evidence strength |
 | --- | --- | --- | --- | --- | --- |

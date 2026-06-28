@@ -15,7 +15,7 @@
     "trigger_phrases": [
       "model hub",
       "priority profiles",
-      "sk-prompt-small-model rewrite",
+      "sk-prompt-models rewrite",
       "minimax-m3 prompt profile",
       "mimo-v2.5 prompt profile",
       "small model content hub",
@@ -31,7 +31,7 @@
       "hub",
       "priority",
       "profiles",
-      "sk-prompt-small-model",
+      "sk-prompt-models",
       "rewrite",
       "minimax-m3",
       "prompt",
@@ -43,10 +43,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/references/models/_index.md",
+      ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md",
+      ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,25 +56,25 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {
         "name": "_index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
         "source": "derived"
       },
       {
         "name": "minimax-m3.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md",
         "source": "derived"
       },
       {
         "name": "mimo-v2.5-pro.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`sk-prompt-small-model` was a thin router with no per-model prompt-craft content",
+    "causal_summary": "`sk-prompt-models` was a thin router with no per-model prompt-craft content",
     "created_at": "2026-06-05T12:47:32.510Z",
     "last_save_at": "2026-06-23T03:49:51.592Z",
     "save_lineage": "graph_only",

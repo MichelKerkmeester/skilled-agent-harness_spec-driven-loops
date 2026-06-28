@@ -5,7 +5,7 @@
       "symbol": "SENTINEL -> cli-devin canonical",
       "evidence": "3,8,16,20,24,30,38,46,60,62,68,74",
       "editType": "re-home",
-      "notes": "[STRUCTURAL] entire file defers to cli-devin/references/context-budget.md as canonical. RE-HOME canonical content (to cli-opencode or sk-prompt-small-model) then re-author/remove sentinel. §4 deepseek/kimi/qwen window table must survive.",
+      "notes": "[STRUCTURAL] entire file defers to cli-devin/references/context-budget.md as canonical. RE-HOME canonical content (to cli-opencode or sk-prompt-models) then re-author/remove sentinel. §4 deepseek/kimi/qwen window table must survive.",
       "kind": "gap",
       "reuse": "decision",
       "relevance": 0.92,
@@ -253,7 +253,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
+      "path": ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
       "symbol": "'four cli-* cards'",
       "evidence": "117",
       "editType": "inline-edit",
@@ -265,7 +265,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "path": ".opencode/skills/sk-prompt-models/references/pattern-index.md",
       "symbol": "ownership rows + sentinel + new-model recipe",
       "evidence": "21,35-39,41,46,56,74",
       "editType": "inline-edit",
@@ -289,7 +289,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+      "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-models.md",
       "symbol": "2-path dispatch test",
       "evidence": "41-42,53,75",
       "editType": "update-or-leave",
@@ -301,7 +301,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+      "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-models.md",
       "symbol": "3-path dispatch test",
       "evidence": "14,18,54",
       "editType": "update-or-leave",

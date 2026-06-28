@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/decision-record.md]"
+title: "Decision Record: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/decision-record.md]"
 description: "Three ratified decisions: benchmarks migrated wholesale to the hub; model-profiles.md deleted outright; deep-improvement model-benchmark hub-only with no local override."
 trigger_phrases:
   - "model registry ADR"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-# Decision Record: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
+# Decision Record: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -63,9 +63,9 @@ Benchmark run-data (fixtures, profiles, synthesis) for six model/prompt evaluati
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Move all benchmark run-data wholesale to `sk-prompt-small-model/benchmarks/<name>/`, gut each sub-phase to a doc shell, and leave a `BENCHMARK-RELOCATED.md` pointer.
+**We chose**: Move all benchmark run-data wholesale to `sk-prompt-models/benchmarks/<name>/`, gut each sub-phase to a doc shell, and leave a `BENCHMARK-RELOCATED.md` pointer.
 
-**How it works**: Each of the six sub-phase directories retains only its spec-kit documentation (spec.md, plan.md, tasks.md, etc.) and a `BENCHMARK-RELOCATED.md` file that records the hub destination. The full run-data — fixtures, profiles, harness outputs, and synthesis — lives exclusively in `sk-prompt-small-model/benchmarks/`.
+**How it works**: Each of the six sub-phase directories retains only its spec-kit documentation (spec.md, plan.md, tasks.md, etc.) and a `BENCHMARK-RELOCATED.md` file that records the hub destination. The full run-data — fixtures, profiles, harness outputs, and synthesis — lives exclusively in `sk-prompt-models/benchmarks/`.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -126,7 +126,7 @@ Benchmark run-data (fixtures, profiles, synthesis) for six model/prompt evaluati
 
 **What changes**:
 - Six spec sub-phase benchmark dirs: content moved to hub, `BENCHMARK-RELOCATED.md` added
-- `sk-prompt-small-model/benchmarks/`: six new named subdirectories with migrated run-data
+- `sk-prompt-models/benchmarks/`: six new named subdirectories with migrated run-data
 
 **How to roll back**: `git mv` in reverse for each of the six sub-phase dirs; remove hub subdirs; delete `BENCHMARK-RELOCATED.md` files.
 <!-- /ANCHOR:adr-001-impl -->
@@ -164,7 +164,7 @@ Benchmark run-data (fixtures, profiles, synthesis) for six model/prompt evaluati
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Delete `model-profiles.md` outright; the JSON registry at `sk-prompt-small-model/assets/model-profiles.json` is the single source of truth.
+**We chose**: Delete `model-profiles.md` outright; the JSON registry at `sk-prompt-models/assets/model-profiles.json` is the single source of truth.
 
 **How it works**: The file is removed from the repository. Any consumer that previously used the MD for human-readable browsing uses the JSON directly or queries it with `node -e` or `jq`.
 <!-- /ANCHOR:adr-002-decision -->
@@ -262,7 +262,7 @@ deep-improvement has multiple operational modes: agent-improvement, prompt-impro
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: Lock deep-improvement model-benchmark output to `sk-prompt-small-model/benchmarks/{run_label}` exclusively, with no spec-local default and no per-invocation override.
+**We chose**: Lock deep-improvement model-benchmark output to `sk-prompt-models/benchmarks/{run_label}` exclusively, with no spec-local default and no per-invocation override.
 
 **How it works**: `auto.yaml` and `confirm.yaml` for the model-benchmark command set `output_dir` to the hub path. SKILL.md documents this as a hard routing rule. The .cjs harness scripts read `output_dir` from YAML and write there without modification.
 <!-- /ANCHOR:adr-003-decision -->
@@ -324,7 +324,7 @@ deep-improvement has multiple operational modes: agent-improvement, prompt-impro
 ### Implementation
 
 **What changes**:
-- `deep-improvement/commands/auto.yaml`: `output_dir` set to `sk-prompt-small-model/benchmarks/{run_label}`
+- `deep-improvement/commands/auto.yaml`: `output_dir` set to `sk-prompt-models/benchmarks/{run_label}`
 - `deep-improvement/commands/confirm.yaml`: same change
 - `deep-improvement/SKILL.md`: hub-only routing documented in model-benchmark section
 

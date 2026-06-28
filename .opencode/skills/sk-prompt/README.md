@@ -150,7 +150,7 @@ Reach for sk-prompt when a prompt you are about to send feels vague or unstructu
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt-small-model` | Decides which of sk-prompt's seven frameworks a given small model wants and adds model-specific scaffold and gotchas. sk-prompt owns the definitions and the rubric. `sk-prompt-small-model` owns the per-model mapping. |
+| `sk-prompt-models` | Decides which of sk-prompt's seven frameworks a given small model wants and adds model-specific scaffold and gotchas. sk-prompt owns the definitions and the rubric. `sk-prompt-models` owns the per-model mapping. |
 | `cli-claude-code` | Consumes the prompt quality card that sk-prompt produces and handles the executor mechanics. sk-prompt does not own invocation flags or dispatch rules. |
 | `cli-codex` | Same boundary as cli-claude-code. Consumes the prompt card, owns the mechanics. |
 | `cli-opencode` | Same boundary. Receives the enhanced prompt and runs the session. |
@@ -190,9 +190,9 @@ A: The skill delivers the highest-scoring version with an explicit escalation no
 
 A: No. An intent-preservation check runs during Prototype. The skill must preserve your stated goal, audience and constraints unless you explicitly ask it to broaden or narrow scope. Flagged assumptions appear in the transparency report so you can spot where inference filled a gap.
 
-**Q: How does this differ from `sk-prompt-small-model`?**
+**Q: How does this differ from `sk-prompt-models`?**
 
-A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR rubric. It answers "what is RCAF" and "how do I score a prompt." `sk-prompt-small-model` owns the per-model mapping. It answers "which framework should MiniMax use" and adds the model-specific scaffold and gotchas. When you dispatch to a small model, `sk-prompt-small-model` reads sk-prompt's framework set, picks the best fit for that model and layers on the prompt-craft profile.
+A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR rubric. It answers "what is RCAF" and "how do I score a prompt." `sk-prompt-models` owns the per-model mapping. It answers "which framework should MiniMax use" and adds the model-specific scaffold and gotchas. When you dispatch to a small model, `sk-prompt-models` reads sk-prompt's framework set, picks the best fit for that model and layers on the prompt-craft profile.
 
 ---
 

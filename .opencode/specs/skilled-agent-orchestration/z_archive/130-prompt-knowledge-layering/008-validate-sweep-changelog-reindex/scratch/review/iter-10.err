@@ -25,7 +25,7 @@
 [0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/graph-metadata.json[90m [offset=1, limit=120][0m
 [0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/implementation-summary.md[90m [offset=1, limit=320][0m
 [0m✱ [0mGlob ".opencode/skills/cli-*/**/prompt_quality_card.md"[90m in . · 5 matches[0m
-[0m✱ [0mGlob ".opencode/skills/sk-prompt-small-model/references/models/*.md"[90m in . · 9 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt-models/references/models/*.md"[90m in . · 9 matches[0m
 [0m
 [0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering" --recursive --strict
 Spec Folder Validation v3.0.0
@@ -217,18 +217,18 @@ Summary: Errors: 0  Warnings: 0
 
 RESULT: PASSED
 [0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/pattern-index.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/pattern-index.md[90m [offset=1, limit=220][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=220][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=500][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=220][0m
-[0m✱ [0mGrep "^## (1\. Identity|2\. Recommended Framework|3\. Benchmark Evidence|4\. Tuned Template Snippet|5\. Dispatch Gotchas|6\. See Also)|^model_id:|^status:|^last_benchmarked:"[90m in .opencode/skills/sk-prompt-small-model/references/models · 72 matches[0m
-[0m✱ [0mGrep "Prompt-composition precedence|3-tier|sk-prompt-small-model|Tier|Fast path|Model override|Deep path"[90m in .opencode/skills · 38 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/_index.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "^## (1\. Identity|2\. Recommended Framework|3\. Benchmark Evidence|4\. Tuned Template Snippet|5\. Dispatch Gotchas|6\. See Also)|^model_id:|^status:|^last_benchmarked:"[90m in .opencode/skills/sk-prompt-models/references/models · 72 matches[0m
+[0m✱ [0mGrep "Prompt-composition precedence|3-tier|sk-prompt-models|Tier|Fast path|Model override|Deep path"[90m in .opencode/skills · 38 matches[0m
 [0m→ [0mRead .opencode/skills/cli-opencode/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
 [0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
 [0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
 [0m→ [0mRead .opencode/skills/cli-claude-code/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
 [0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
-[0m✱ [0mGrep "Framework Selection Table|CLEAR 5-Question|STAR|BUILD|ATLAS|canonical|cli_prompt_quality_card|sk-prompt-small-model"[90m in .opencode/skills/cli-devin/assets · 18 matches[0m
+[0m✱ [0mGrep "Framework Selection Table|CLEAR 5-Question|STAR|BUILD|ATLAS|canonical|cli_prompt_quality_card|sk-prompt-models"[90m in .opencode/skills/cli-devin/assets · 18 matches[0m
 [0m
 [0m$ [0mbash ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
 PASS  cli-opencode/assets/prompt_quality_card.md
@@ -246,9 +246,9 @@ GUARD PASS — no cli-* card inlines the framework or CLEAR table
 [0m⚙ [0mmk_skill_advisor_skill_graph_status Unknown
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json[90m [offset=1, limit=80][0m
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json[90m [offset=1, limit=80][0m
-[0m✱ [0mGrep "sk-prompt|sk-prompt-small-model|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 1 match[0m
-[0m✱ [0mGrep "sk-prompt|sk-prompt-small-model|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/database · 49 matches[0m
-[0m✗ [0mGrep "framework|CLEAR|Prompt-Composition|Prompt construction|sk-prompt-small-model|recommended_frameworks|profile_ref" failed[90m in .opencode/skills/cli-*/SKILL.md[0m
+[0m✱ [0mGrep "sk-prompt|sk-prompt-models|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 1 match[0m
+[0m✱ [0mGrep "sk-prompt|sk-prompt-models|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/database · 49 matches[0m
+[0m✗ [0mGrep "framework|CLEAR|Prompt-Composition|Prompt construction|sk-prompt-models|recommended_frameworks|profile_ref" failed[90m in .opencode/skills/cli-*/SKILL.md[0m
 [91m[1mError: [0mNo such file or directory: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-*'
 [0m✱ [0mGrep "references/prompt_quality_card|assets/prompt_quality_card"[90m in .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering · 10 matches[0m
 [0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/changelog/*"[90m in . · 0 matches[0m

@@ -142,7 +142,7 @@ _memory:
 - [ ] T081 Verify `DEEPSEEK_API_KEY` env present and non-empty
 - [ ] T082 Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule)
 - [ ] T083 Read `.opencode/skills/cli-opencode/SKILL.md` (CLI dispatch rule)
-- [ ] T084 Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule)
+- [ ] T084 Read `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule)
 - [ ] T085 Iter 1: `cli-devin --model swe-1.6` — output to `research/iterations/iter-01-cli-devin.json`
 - [ ] T086 Between-iter cleanup: SIGKILL + /tmp sweep
 - [ ] T087 Iter 2: `cli-devin --model swe-1.6`

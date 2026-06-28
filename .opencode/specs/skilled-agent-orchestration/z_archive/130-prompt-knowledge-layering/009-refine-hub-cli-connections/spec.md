@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run validate --strict, then commit"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
@@ -65,7 +65,7 @@ architecture; this phase remediates the seam drift that the 5-iteration deep res
 for this phase — this spec does not restate it.
 
 **Scope Boundary**: documentation + JSON metadata + one guard shell script + its CI/hook wiring,
-across `sk-prompt`, `sk-prompt-small-model`, the five `cli-*` skills, and `system-skill-advisor`.
+across `sk-prompt`, `sk-prompt-models`, the five `cli-*` skills, and `system-skill-advisor`.
 No application code; no changes to `model-profiles.json` model data beyond the `swe-1.6` prose
 fix's mirror.
 
@@ -125,19 +125,19 @@ extend + CI-wire the guard so none of this can silently regress.
 
 | File Path | Change Type | C-item |
 |-----------|-------------|--------|
-| `sk-prompt-small-model/SKILL.md` | Modify | C3, C8 |
-| `sk-prompt-small-model/references/models/swe-1.6.md` | Modify | C3 |
-| `sk-prompt-small-model/references/models/_index.md` | Modify | C4 |
+| `sk-prompt-models/SKILL.md` | Modify | C3, C8 |
+| `sk-prompt-models/references/models/swe-1.6.md` | Modify | C3 |
+| `sk-prompt-models/references/models/_index.md` | Modify | C4 |
 | `cli-{opencode,codex,gemini,claude-code}/SKILL.md` | Modify | C1 |
 | `cli-devin/SKILL.md` | Modify | C1, C2 |
-| `sk-prompt-small-model/references/models/{mimo-v2.5-pro,minimax-m3}.md` | Modify | C5 |
-| `sk-prompt-small-model/references/models/{deepseek-v4-pro,kimi-k2.6,qwen3.6,glm-5.1}.md` | Modify | C6 |
+| `sk-prompt-models/references/models/{mimo-v2.5-pro,minimax-m3}.md` | Modify | C5 |
+| `sk-prompt-models/references/models/{deepseek-v4-pro,kimi-k2.6,qwen3.6,glm-5.1}.md` | Modify | C6 |
 | `cli-{opencode,devin}/assets/prompt_quality_card.md` | Modify | C6 |
 | `cli-opencode/graph-metadata.json` | Modify | C7 |
-| `sk-prompt-small-model/references/pattern-index.md` | Modify | C8 |
+| `sk-prompt-models/references/pattern-index.md` | Modify | C8 |
 | `system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh` | Modify | C9 |
 | CI/hook config | Modify | C9 |
-| `sk-prompt-small-model/graph-metadata.json` | Modify | C10 |
+| `sk-prompt-models/graph-metadata.json` | Modify | C10 |
 <!-- /ANCHOR:scope -->
 
 ---

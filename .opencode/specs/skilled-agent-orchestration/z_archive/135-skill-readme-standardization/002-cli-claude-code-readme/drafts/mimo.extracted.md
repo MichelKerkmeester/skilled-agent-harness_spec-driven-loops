@@ -164,7 +164,7 @@ If you are already inside one runtime, the corresponding cli-X skill refuses to 
 |---|---|
 | `sk-code` | Owns code standards and verification. cli-claude-code dispatches to Claude Code; sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback protocol (7-step extraction via `generate-context.js`) bridges Claude Code session context back into the caller's spec folder. |
-| `sk-prompt-small-model` | Owns per-model prompt-craft profiles. When dispatching to a profiled model, consult it before composing the prompt. |
+| `sk-prompt-models` | Owns per-model prompt-craft profiles. When dispatching to a profiled model, consult it before composing the prompt. |
 
 ---
 

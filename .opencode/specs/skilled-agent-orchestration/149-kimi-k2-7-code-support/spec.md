@@ -62,7 +62,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The small-model rotation needs Kimi K2.7 Code (the "Kimi For Coding" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class small model in the cli-opencode and sk-prompt-small-model surfaces. The older Kimi entry ran on a shared gateway and no longer reflects the dedicated coding-plan provider, and no profile yet records which prompt framework gets the best output from the new model.
+The small-model rotation needs Kimi K2.7 Code (the "Kimi For Coding" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class small model in the cli-opencode and sk-prompt-models surfaces. The older Kimi entry ran on a shared gateway and no longer reflects the dedicated coding-plan provider, and no profile yet records which prompt framework gets the best output from the new model.
 
 ### Purpose
 Make Kimi K2.7 Code a first-class, discoverable small model end to end: registered in the model profiles, dispatch matrix, aliases, and routing graph, then backed by an empirically chosen best prompt framework folded into its profile. Delivered across three serial phases so registration, measurement, and promotion stay independently verifiable.
@@ -77,7 +77,7 @@ Make Kimi K2.7 Code a first-class, discoverable small model end to end: register
 
 ### In Scope
 - Root purpose and child phase manifest for adding Kimi K2.7 Code to the small-model rotation
-- Registration of `kimi-k2.7-code` across cli-opencode and sk-prompt-small-model (phase 1)
+- Registration of `kimi-k2.7-code` across cli-opencode and sk-prompt-models (phase 1)
 - Empirical prompt-framework bakeoff to pick the best framework (phase 2)
 - Promotion of the bakeoff winner into the model profile (phase 3)
 - Per-phase implementation details in child folders
@@ -92,7 +92,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/sk-prompt-small-model/**` | Modify/Create | 1, 3 | Model profile, references, SKILL.md, aliases, graph metadata |
+| `.opencode/skills/sk-prompt-models/**` | Modify/Create | 1, 3 | Model profile, references, SKILL.md, aliases, graph metadata |
 | `.opencode/skills/cli-opencode/**` | Modify | 1 | Auth-login list, model selection, graph metadata |
 | `002-framework-bakeoff/` artifacts | Create | 2 | Bakeoff harness inputs, judged results |
 <!-- /ANCHOR:scope -->
@@ -110,7 +110,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 2 | 002-framework-bakeoff/ | 5-framework bakeoff (run 006); result: correctness-saturated TIE, no winner | Complete |
 | 3 | 003-promote-results/ | Fold the bakeoff finding (TIE, RCAF retained) into the registry + profile | Complete |
 | 4 | 004-discriminating-bakeoff/ | Strict-validator re-run (run 007); correctness separated, costar promoted, rcaf retired | Complete |
-| 5 | 005-filename-underscore-alignment/ | Align sk-prompt-small-model doc/asset filenames to the underscore convention and repair live references (the four model-profile filenames stay dashed by the drift-guard contract) | Complete |
+| 5 | 005-filename-underscore-alignment/ | Align sk-prompt-models doc/asset filenames to the underscore convention and repair live references (the four model-profile filenames stay dashed by the drift-guard contract) | Complete |
 | 6 | 006-broad-scope-timeout-caveat/ | Document k2.7 broad-scope over-exploration → 600s-timeout → 0-bytes failure mode + mitigation (read-cap + 1200s+ + omit `--variant`); repair stale `kimi-k2.6` cli-opencode refs | Complete |
 
 ### Phase Transition Rules

@@ -15,9 +15,9 @@
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=480][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=140][0m
 [0m✱ [0mGrep "frontier models|frontier|deepseek-v4-pro|kimi-k2\.6"[90m in .opencode/skills/sk-prompt/assets · 3 matches[0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=140][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md[90m [offset=1, limit=90][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/_index.md[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md[90m [offset=1, limit=90][0m
 [0m✱ [0mGrep "frontier models|frontier|deepseek-v4-pro|kimi-k2\.6"[90m in .opencode/skills · 4 matches[0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=481, limit=80][0m
 [0m✱ [0mGrep "(^|[^A-Za-z])(ADR|REQ|CHK)-?[0-9]+|specs/|\.opencode/specs|Phase [0-9]+|phase [0-9]+|Task [A-Z0-9]+|task [A-Z0-9]+"[90m in .opencode/skills/sk-prompt/assets · 0 matches[0m

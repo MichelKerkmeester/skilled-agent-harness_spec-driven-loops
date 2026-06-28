@@ -553,7 +553,7 @@ exec
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/115-cmd-speckit-family-rename/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime-release-cleanup/graph-metadata.json

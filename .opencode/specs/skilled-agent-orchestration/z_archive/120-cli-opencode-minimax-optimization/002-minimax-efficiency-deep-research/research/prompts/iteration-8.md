@@ -11,11 +11,11 @@ Segment: 1 | Iteration: 8 of 10
 Questions: 5/5 answered; hardening phase | Last focus: --variant ablation rig + output-verification recipe
 Last 2 ratios: 0.42 -> 0.36 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Next focus: Stress-test routing heuristics on concrete task scenarios; finalize the sk-prompt-small-model pattern-index rows + a routing decision table.
+Next focus: Stress-test routing heuristics on concrete task scenarios; finalize the sk-prompt-models pattern-index rows + a routing decision table.
 
-Research Topic: How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-small-model and cli-opencode.
+Research Topic: How can we improve/update sk-prompt-models and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-models and cli-opencode.
 Iteration: 8 of 10
-Focus Area: HARDENING: Stress-test the MiniMax-vs-others routing heuristics against concrete task scenarios (e.g. 180k-token multi-file review; tight cheap edit; cost-sensitive batch; Cognition-Pro-exhausted fallback). For each scenario name the model the heuristic picks and why. Then finalize the EXACT new rows for sk-prompt-small-model/references/pattern-index.md (which MiniMax patterns, pointing to which canonical files) and a compact routing decision table suitable for the cross-CLI quality card. Confirm the pattern-index format by reading the current pattern-index.md (14 rows).
+Focus Area: HARDENING: Stress-test the MiniMax-vs-others routing heuristics against concrete task scenarios (e.g. 180k-token multi-file review; tight cheap edit; cost-sensitive batch; Cognition-Pro-exhausted fallback). For each scenario name the model the heuristic picks and why. Then finalize the EXACT new rows for sk-prompt-models/references/pattern-index.md (which MiniMax patterns, pointing to which canonical files) and a compact routing decision table suitable for the cross-CLI quality card. Confirm the pattern-index format by reading the current pattern-index.md (14 rows).
 Remaining Key Questions: Hardening: routing-heuristic scenario stress-test; finalize pattern-index.md MiniMax rows + routing decision table. (All 5 primary questions answered.)
 Last 3 Iterations Summary: run 5: Q5 routing + consolidated deltas (0.50); run 6: validation/reconcile vs actual files (0.42); run 7: --variant ablation rig + output-verification recipe (0.36)
 

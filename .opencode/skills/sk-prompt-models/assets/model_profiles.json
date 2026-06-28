@@ -44,7 +44,7 @@
           "sample": "no model-specific benchmark",
           "confidence": "low"
         },
-        "profile_ref": "sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+        "profile_ref": "sk-prompt-models/references/models/deepseek-v4-pro.md",
         "status": "default-unverified"
       }
     },
@@ -104,7 +104,7 @@
           "sample": "5-framework bakeoff on invalid-dominant STRICT VALIDATORS (validate-ipv4 + validate-date + validate-semver), 6 samples/cell, throttled serial real kimi-for-coding/k2p7 dispatches. (The 4th fixture hard-roman-to-int was excluded - its run stalled under orchestration churn; the 3-fixture result is conclusive.) Unlike the saturated run 006, correctness SEPARATED here. Per-framework correctness (n=18): tidd-ec 1.0 = race 1.0 = costar 1.0 (perfect tier) > cidi 0.996 > rcaf 0.992. Trust verdict: TIE on correctness (the 3 perfect frameworks cannot be statistically separated, top-pair margin 0, 90% CI [0,0]). The actionable signal: rcaf (the former convention default) is objectively the WEAKEST - it produced strict-validator code that missed adversarial cases - so it is retired/avoided for this model. Among the perfect tier, costar is primary for cross-evidence robustness (also MiMo's empirical winner, benchmark 004; favored by run 006's judge); tidd-ec is the most token-efficient (25 vs costar 70 median words) and is the fallback. This objectively refutes run 006's subjective gpt-5.5 judge, which had wrongly ranked rcaf/race highest.",
           "confidence": "medium"
         },
-        "profile_ref": "sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+        "profile_ref": "sk-prompt-models/references/models/kimi-k2.7-code.md",
         "status": "empirical"
       }
     },
@@ -167,7 +167,7 @@
           "sample": "7-fixture rig, real MiniMax dispatches (benchmark run on M2.7; contract carried to M3)",
           "confidence": "medium"
         },
-        "profile_ref": "sk-prompt-small-model/references/models/minimax-m3.md",
+        "profile_ref": "sk-prompt-models/references/models/minimax-m3.md",
         "status": "empirical"
       }
     },
@@ -229,7 +229,7 @@
           "sample": "10/10 real MiMo-V2.5-Pro runs at --variant high",
           "confidence": "high"
         },
-        "profile_ref": "sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+        "profile_ref": "sk-prompt-models/references/models/mimo-v2.5-pro.md",
         "status": "empirical"
       }
     },
@@ -291,7 +291,7 @@
           "sample": "5-framework bakeoff on invalid-dominant STRICT VALIDATORS (validate-ipv4 + validate-date + validate-semver), 3 samples/cell, real zai-coding-plan/glm-5.2 dispatches graded by the deterministic hidden-test oracle (grader noop, no LLM-judge bias). Run status SEPARABLE: per-framework correctness costar 1.0 = tidd-ec 1.0 = cidi 1.0 = race 1.0 (perfect tier) > rcaf 0.976 (the ONLY sub-perfect framework; also worst format adherence 0.889). Trust verdict TIE on correctness among the perfect tier (top-pair costar vs tidd-ec, margin 0, 90% CI [0,0]). costar is primary as best-of-tied: perfect correctness + tersest output (13 median words vs tidd-ec 38, cidi/race 94) + cross-model corroboration (also the empirical winner for kimi benchmark 007 and mimo benchmark 004). tidd-ec fallback (perfect, 2nd-tersest). rcaf avoided (only correctness misses + worst format). NOTE: CRAFT (the phase-1 doc-guided default) is NOT in the harness framework registry [rcaf,race,cidi,tidd-ec,costar] so it could not be benchmarked; the empirical winner among the 5 supported frameworks replaces it. 1/45 dispatches was a transient infra failure (exit -1, excluded from scoring).",
           "confidence": "medium"
         },
-        "profile_ref": "sk-prompt-small-model/references/models/glm-5.2.md",
+        "profile_ref": "sk-prompt-models/references/models/glm-5.2.md",
         "status": "empirical"
       }
     },

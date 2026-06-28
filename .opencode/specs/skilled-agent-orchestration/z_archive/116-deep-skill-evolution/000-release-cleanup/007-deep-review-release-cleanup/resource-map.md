@@ -89,7 +89,7 @@ Pairs with `implementation-summary.md`, the summary narrates *what and why*. Thi
 | `.opencode/skills/sk-doc/references/feature_catalog_creation.md` | Cited | OK | Feature catalog standards |
 | `.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md` | Cited | OK | Playbook standards |
 | `.opencode/skills/cli-devin/SKILL.md` | Cited | OK | Phase 5 RCAF + medium-density rule (single executor per ADR-001) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Cited | OK | Small-model dispatch sentinel |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Cited | OK | Small-model dispatch sentinel |
 | `.opencode/skills/sk-prompt/SKILL.md` | Cited | OK | Prompt-composition skill (RCAF/CLEAR) |
 | `.opencode/skills/sk-code-review/SKILL.md` | Cited | OK | deep-review dispatches sk-code-review baseline per iteration |
 | `.opencode/specs/.../000-release-cleanup/002-deep-research/spec.md` | Cited | OK | Sibling pattern reference (shipped 2026-05-23) |

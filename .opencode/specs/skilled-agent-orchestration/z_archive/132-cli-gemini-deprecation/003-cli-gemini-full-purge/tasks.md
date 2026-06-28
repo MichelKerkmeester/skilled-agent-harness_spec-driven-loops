@@ -71,7 +71,7 @@ _memory:
 - [x] T011 Update system-spec-kit docs/playbooks (12 files) including feature catalogs, manual testing playbooks (with file-count self-check), `references/templates/template_guide.md`, and constitutional `cli-dispatch-skill-preload.md`. [EVIDENCE: playbook smoke count 5→3 files, F11 NA removed; constitutional sentence removed]
 - [x] T012 Update deep-research/deep-review docs (5 files): deep-research loop protocol; deep-review SKILL.md, loop protocol, executor-selection contract, feature catalog. [EVIDENCE: docs no longer list `cli-gemini` executor]
 - [x] T013 Rename mixed cross-CLI handbacks: sk-code-review `...cli-opencode-and-cli-gemini-handback.md`→`...-cli-codex-handback.md` (CR-018 kept, count 18) and sk-git `cli-gemini-and-cli-copilot-handback.md`→`cli-codex-and-cli-copilot-handback.md` (GIT-022 kept, count 22); update both indexes. [EVIDENCE: playbook counts unchanged at 18 and 22]
-- [x] T014 Edit ~13 release-history changelogs naming `cli-gemini` as an executor (operator-approved). [EVIDENCE: agent-orchestration, cli-devin, cli-opencode, deep-research, deep-review, sk-prompt-small-model, system-skill-advisor, system-spec-kit changelogs updated]
+- [x] T014 Edit ~13 release-history changelogs naming `cli-gemini` as an executor (operator-approved). [EVIDENCE: agent-orchestration, cli-devin, cli-opencode, deep-research, deep-review, sk-prompt-models, system-skill-advisor, system-spec-kit changelogs updated]
 <!-- /ANCHOR:phase-2 -->
 
 ---

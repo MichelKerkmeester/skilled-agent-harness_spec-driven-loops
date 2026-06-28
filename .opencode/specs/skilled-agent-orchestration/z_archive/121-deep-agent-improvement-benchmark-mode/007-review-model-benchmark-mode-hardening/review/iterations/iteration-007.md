@@ -19,7 +19,7 @@ D4 Maintainability - clarity, duplication, dead code, naming, error messages, te
 - `.opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts:55` - scorer shape/range test
 - `.opencode/skills/cli-opencode/SKILL.md:200` - MiniMax provider pre-flight
 - `.opencode/skills/cli-opencode/assets/prompt_templates.md:451` - MiniMax prompt template
-- `.opencode/skills/sk-prompt-small-model/references/pattern-index.md:49` - MiniMax pattern index
+- `.opencode/skills/sk-prompt-models/references/pattern-index.md:49` - MiniMax pattern index
 - `.opencode/skills/sk-prompt/assets/model-profiles.json:197` - MiniMax model profile
 - `.opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime/spec.md:125` - TST-1 acceptance claim
 - `.opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime/spec.md:166` - scorer-seam follow-on note
@@ -56,7 +56,7 @@ None new in this maintainability pass. The active P1s from prior iterations stil
 
 - `spec_code`: FAIL. Existing P1s remain: `run-benchmark.cjs` still bypasses the decoupled scorer (`spec.md:133`, `run-benchmark.cjs:114`), promotion still overclaims model-benchmark support, and det-check CLIs still use fixture JSON rather than explicit `--cwd`.
 - `checklist_evidence`: FAIL. TST-1 is still a plan equality test (`loop-host.vitest.ts:44-63`), not a byte-identical state JSONL run as claimed in `spec.md:125`. Scorer tests do not cover D2/D3/D5 behavior.
-- `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-small-model`.
+- `skill_agent`: PASS for the 120 MiniMax docs slice. MiniMax slug, direct provider, TIDD-EC + dense pre-plan, and variant caveat agree across `cli-opencode`, `sk-prompt`, and `sk-prompt-models`.
 - `feature_catalog_code`: PASS for MiniMax catalog consistency in `model-profiles.json` and the small-model pattern index.
 - `maintainability_test_quality`: FAIL due DR-007-P2-001 and the existing TST-1 evidence gap.
 - `backoff_testability`: ADVISORY due DR-007-P2-002.

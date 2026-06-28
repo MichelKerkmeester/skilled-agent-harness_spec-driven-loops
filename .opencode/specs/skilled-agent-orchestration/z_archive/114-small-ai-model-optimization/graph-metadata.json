@@ -11,7 +11,7 @@
     "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/005-model-profiles-and-fallback",
     "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/006-budget-pattern-propagation",
     "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
-    "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+    "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/008-sk-prompt-models-rename"
   ],
   "manual": {
     "depends_on": [],

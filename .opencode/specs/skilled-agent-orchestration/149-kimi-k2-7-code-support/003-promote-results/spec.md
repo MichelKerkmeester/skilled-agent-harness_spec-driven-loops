@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Card-sync guard + tree-wide strict validate close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-promote-results"
@@ -114,8 +114,8 @@ Promote the bakeoff-006 verdict into the registry and the kimi reference doc so 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` | Modify | `kimi-k2.7-code.recommended_frameworks`: set `primary`, `preplanning_density`, `evidence` (benchmark `006`, score, sample, confidence), `status: "empirical"` (or keep `default-unverified` on TIE/INCONCLUSIVE) |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Modify | Rewrite §3 (Recommended Framework) and §4 (Benchmark Evidence) to cite run `006` |
+| `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Modify | `kimi-k2.7-code.recommended_frameworks`: set `primary`, `preplanning_density`, `evidence` (benchmark `006`, score, sample, confidence), `status: "empirical"` (or keep `default-unverified` on TIE/INCONCLUSIVE) |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md` | Modify | Rewrite §3 (Recommended Framework) and §4 (Benchmark Evidence) to cite run `006` |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -84,7 +84,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The small-model rotation needs Kimi K2.7 Code (the \"Kimi For Coding\" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class small model in the cli-opencode and sk-prompt-small-model surfaces",
+    "causal_summary": "The small-model rotation needs Kimi K2.7 Code (the \"Kimi For Coding\" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class small model in the cli-opencode and sk-prompt-models surfaces",
     "created_at": "2026-06-15T09:21:00Z",
     "last_save_at": "2026-06-23T03:49:48.742Z",
     "save_lineage": "same_pass",

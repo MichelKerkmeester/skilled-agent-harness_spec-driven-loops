@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/"
+      - ".opencode/skills/sk-prompt-models/references/models/"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 8** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.
+This is **Phase 8** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub specification.
 
 **Scope Boundary**: Verification and documentation only. No new skill content is authored in this phase; all changes are to spec-folder docs, changelogs, and the skill-advisor index.
 
@@ -65,7 +65,7 @@ This is **Phase 8** of the Prompt-knowledge layering across CLI skills, sk-promp
 - Phases 001-007 complete and passing `validate.sh --strict` independently
 - `check-prompt-quality-card-sync.sh` present and covering all 5 cli-* cards
 - `model-profiles.json` carrying `recommended_frameworks` on all 8 active small models
-- `sk-prompt-small-model/references/models/` containing all 8 profile `.md` files
+- `sk-prompt-models/references/models/` containing all 8 profile `.md` files
 
 **Deliverables**:
 - `validate.sh --recursive --strict` on parent exits 0
@@ -140,7 +140,7 @@ Confirm that the entire 3-layer prompt-knowledge architecture is coherent: all s
 |----|-------------|---------------------|
 | REQ-005 | Per-skill changelog entries written | `130-prompt-knowledge-layering/changelog/` directory contains at least one changelog file per touched skill |
 | REQ-006 | Skill-advisor index reflects updated skill roles | `skill_graph_compiler.py` run; `skill-graph.json` mtime updated |
-| REQ-007 | Sentinel (`sk-prompt-small-model`) referenced in all 5 CLI SKILL.md files | `grep -c 'sk-prompt-small-model'` returns > 0 for each of cli-opencode, cli-devin, cli-claude-code, cli-codex, cli-gemini SKILL.md |
+| REQ-007 | Sentinel (`sk-prompt-models`) referenced in all 5 CLI SKILL.md files | `grep -c 'sk-prompt-models'` returns > 0 for each of cli-opencode, cli-devin, cli-claude-code, cli-codex, cli-gemini SKILL.md |
 | REQ-008 | Phase-008 spec-folder docs fully populated | No bracketed placeholders remain in spec.md, plan.md, tasks.md, implementation-summary.md |
 <!-- /ANCHOR:requirements -->
 
@@ -164,7 +164,7 @@ Confirm that the entire 3-layer prompt-knowledge architecture is coherent: all s
 |------|------|--------|------------|
 | Dependency | Phases 001-007 complete | Phase 8 cannot verify what was not built | Run phase 008 last; fail fast if any prior phase validate.sh returns non-0 |
 | Risk | Parent-level frontmatter issues fail recursive validate | Recursive run exits non-0 before child checks complete | Isolate child validate first; note parent issues separately |
-| Risk | skill-graph.json predates this packet and does not index sk-prompt* skills | Advisor routing for sk-prompt-small-model may be stale | Noted as known limitation; full reindex deferred to follow-on work |
+| Risk | skill-graph.json predates this packet and does not index sk-prompt* skills | Advisor routing for sk-prompt-models may be stale | Noted as known limitation; full reindex deferred to follow-on work |
 <!-- /ANCHOR:risks -->
 
 ---

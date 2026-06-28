@@ -78,7 +78,7 @@ This phase delivered **10 iterations** of the deep-research loop (iters 1-2 + 4-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[Tell the delivery story. What gave you confidence this works? Mention: strict validator exit 0 at every phase boundary, ajv schema validation on every JSONL write, path-reference sweeps via rg -F, MCP tool-name sweeps, HVR self-scoring on the rewritten README, advisor parity probe via skill_advisor.py, manual playbook spot-check. For phase 5: ONE iteration at a time, SIGKILL between, /tmp orphan sweep, mandatory cli-devin SKILL.md + sk-prompt-small-model SKILL.md pre-read per CLAUDE.md CLI dispatch rule, bundle gate per iter (grep + smoke-run).]
+[Tell the delivery story. What gave you confidence this works? Mention: strict validator exit 0 at every phase boundary, ajv schema validation on every JSONL write, path-reference sweeps via rg -F, MCP tool-name sweeps, HVR self-scoring on the rewritten README, advisor parity probe via skill_advisor.py, manual playbook spot-check. For phase 5: ONE iteration at a time, SIGKILL between, /tmp orphan sweep, mandatory cli-devin SKILL.md + sk-prompt-models SKILL.md pre-read per CLAUDE.md CLI dispatch rule, bundle gate per iter (grep + smoke-run).]
 <!-- /ANCHOR:how-delivered -->
 
 ---

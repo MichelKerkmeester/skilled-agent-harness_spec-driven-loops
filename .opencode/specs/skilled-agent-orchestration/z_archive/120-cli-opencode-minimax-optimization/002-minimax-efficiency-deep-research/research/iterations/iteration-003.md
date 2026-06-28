@@ -6,7 +6,7 @@ Define MiniMax 2.7 prompt-quality / RCAF guidance and a safe `--variant` mapping
 
 ## Actions Taken
 
-- Read the small-model sentinel and pattern index to confirm `sk-prompt-small-model` must stay link-only, with real prompt and provider guidance living in the owning executor docs. [SOURCE: .opencode/skills/sk-prompt-small-model/SKILL.md] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md]
+- Read the small-model sentinel and pattern index to confirm `sk-prompt-models` must stay link-only, with real prompt and provider guidance living in the owning executor docs. [SOURCE: .opencode/skills/sk-prompt-models/SKILL.md] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md]
 - Read the shared `sk-prompt` CLI quality card and the `cli-opencode` mirror card to map MiniMax guidance onto existing RCAF / CLEAR / medium-density pre-planning patterns. [SOURCE: .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_quality_card.md]
 - Inspected the phase-001 `cli-opencode` `--variant` matrix row, which already marks MiniMax variant behavior as unverified. [SOURCE: .opencode/skills/cli-opencode/references/cli_reference.md]
 - Checked current OpenCode model docs and MiniMax coding-tool/model docs. OpenCode documents provider/model variants generally, but the public docs do not prove a built-in MiniMax-specific `--variant high` mapping. MiniMax documents `MiniMax-M2.7-highspeed` as a separate model id, not as a variant flag effect. [SOURCE: https://dev.opencode.ai/docs/models/] [SOURCE: https://platform.minimax.io/docs/token-plan/other-tools] [SOURCE: https://platform.minimax.io/docs/guides/text-generation]
@@ -37,7 +37,7 @@ That maps cleanly onto the 114 budget/verification findings:
 - Explain why non-obvious constraints matter. This improves trade-off selection without inflating the prompt with generic warnings.
 - Preserve complete tool-call / tool-result / reasoning continuity for active MiniMax tool rounds; do not summarize the active round into text-only prose.
 
-Concrete delta: `cli-opencode/assets/prompt_quality_card.md` should say MiniMax prompts should prefer explicit repo/file anchors, current task state, and concise rationale for constraints. `sk-prompt-small-model/references/pattern-index.md` should add at most a pointer row to this OpenCode-owned MiniMax prompt-quality note.
+Concrete delta: `cli-opencode/assets/prompt_quality_card.md` should say MiniMax prompts should prefer explicit repo/file anchors, current task state, and concise rationale for constraints. `sk-prompt-models/references/pattern-index.md` should add at most a pointer row to this OpenCode-owned MiniMax prompt-quality note.
 
 ### F3 - The safe MiniMax `--variant` default is unset, not `high`
 
@@ -64,7 +64,7 @@ The ablation should be small, live, and falsifiable:
 4. Accept a MiniMax variant mapping only if OpenCode event metadata or provider payload options show a real MiniMax option change, or official OpenCode/MiniMax docs explicitly document the mapping.
 5. If no difference is proven, keep `--variant` unset for MiniMax and treat highspeed as a separate model selection.
 
-Concrete delta: add this recipe to `.opencode/skills/cli-opencode/references/cli_reference.md` near the MiniMax `--variant` row or as a short "MiniMax variant ablation" subsection. Add a pointer row in `sk-prompt-small-model/references/pattern-index.md`; do not duplicate the recipe in the sentinel.
+Concrete delta: add this recipe to `.opencode/skills/cli-opencode/references/cli_reference.md` near the MiniMax `--variant` row or as a short "MiniMax variant ablation" subsection. Add a pointer row in `sk-prompt-models/references/pattern-index.md`; do not duplicate the recipe in the sentinel.
 
 ### F5 - Concrete Q3 file-level deltas
 
@@ -73,8 +73,8 @@ Recommended Q3 deltas:
 1. `.opencode/skills/cli-opencode/references/cli_reference.md`: update the MiniMax variant row from "unverified" to "unverified; omit by default; highspeed is a separate model id if exposed"; add the ablation recipe above.
 2. `.opencode/skills/cli-opencode/assets/prompt_quality_card.md`: add MiniMax direct-API prompt guidance: RCAF default, CRISPE for research, medium-density pre-plan, concise constraint rationale, exact file/model anchors, and active tool-round continuity.
 3. `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`: update Budget Awareness to include `minimax-2.7`; keep shared guidance generic and point to `cli-opencode` for provider-specific MiniMax policy.
-4. `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: add a link-only row for "MiniMax prompt-quality / variant-ablation policy" owned by `cli-opencode`, pointing at `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`.
-5. `.opencode/skills/sk-prompt-small-model/SKILL.md`: no body change required unless the implementation wants the dispatch matrix status text to mention "variant mapping pending ablation." The sentinel already names MiniMax and should stay thin.
+4. `.opencode/skills/sk-prompt-models/references/pattern-index.md`: add a link-only row for "MiniMax prompt-quality / variant-ablation policy" owned by `cli-opencode`, pointing at `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`.
+5. `.opencode/skills/sk-prompt-models/SKILL.md`: no body change required unless the implementation wants the dispatch matrix status text to mention "variant mapping pending ablation." The sentinel already names MiniMax and should stay thin.
 
 ## Questions Answered
 

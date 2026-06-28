@@ -7,7 +7,7 @@ Harden the MiniMax-2.7 via `cli-opencode` recommendations before synthesis: enum
 ## Actions Taken
 
 1. Read the current iteration state log and iteration 8 artifacts to avoid duplicating previously settled rows and policies. [SOURCE: `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/deep-research-state.jsonl`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/iterations/iteration-008.md`]
-2. Rechecked live target shapes for `model-profiles.json`, `per-model-budgets.json`, `cli-opencode/references/context-budget.md`, `cli-opencode/SKILL.md`, `cli-opencode/references/cli_reference.md`, `sk-prompt/assets/cli_prompt_quality_card.md`, and `sk-prompt-small-model` index files. [SOURCE: `.opencode/skills/sk-prompt/assets/model-profiles.json`] [SOURCE: `.opencode/skills/cli-devin/assets/per-model-budgets.json`] [SOURCE: `.opencode/skills/cli-opencode/references/context-budget.md`] [SOURCE: `.opencode/skills/cli-opencode/SKILL.md`] [SOURCE: `.opencode/skills/cli-opencode/references/cli_reference.md`] [SOURCE: `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`] [SOURCE: `.opencode/skills/sk-prompt-small-model/SKILL.md`] [SOURCE: `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`]
+2. Rechecked live target shapes for `model-profiles.json`, `per-model-budgets.json`, `cli-opencode/references/context-budget.md`, `cli-opencode/SKILL.md`, `cli-opencode/references/cli_reference.md`, `sk-prompt/assets/cli_prompt_quality_card.md`, and `sk-prompt-models` index files. [SOURCE: `.opencode/skills/sk-prompt/assets/model-profiles.json`] [SOURCE: `.opencode/skills/cli-devin/assets/per-model-budgets.json`] [SOURCE: `.opencode/skills/cli-opencode/references/context-budget.md`] [SOURCE: `.opencode/skills/cli-opencode/SKILL.md`] [SOURCE: `.opencode/skills/cli-opencode/references/cli_reference.md`] [SOURCE: `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`] [SOURCE: `.opencode/skills/sk-prompt-models/SKILL.md`] [SOURCE: `.opencode/skills/sk-prompt-models/references/pattern-index.md`]
 3. Compared the current MiniMax direct-provider docs against the hardened policies from iterations 6-8: no duplicate registry entry, no default `--variant`, no silent fallback, no MiniMax-specific permission or verification fork.
 4. Converted the final recommendations into patch-ready replacement snippets and insertion blocks.
 
@@ -31,7 +31,7 @@ Do not duplicate the `minimax-2.7` registry entry or add second provider rows fo
 
 Do not add MiniMax-specific runtime branches for permissions, fallback, or output verification. Permissions are scope/operation based; fallback is registry driven; verification is output-shape driven.
 
-Do not add MiniMax-specific rows for generic permissions, fallback, or output verification to `sk-prompt-small-model/references/pattern-index.md`. The sentinel stays thin and link-only.
+Do not add MiniMax-specific rows for generic permissions, fallback, or output verification to `sk-prompt-models/references/pattern-index.md`. The sentinel stays thin and link-only.
 
 Do not make MiniMax the default `cli-opencode` model. Keep `opencode-go/deepseek-v4-pro --variant high` as the default and route MiniMax only when the task shape or user request warrants it.
 
@@ -173,7 +173,7 @@ Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen
 | Cognition/opencode-go pool exhausted and no configured separate fallback | Fail fast; ask before using direct MiniMax | Fallback is opt-in and same-pool retry is banned | Never silently substitute MiniMax. |
 ```
 
-### Finding 9: Exact patch text for `.opencode/skills/sk-prompt-small-model/SKILL.md`
+### Finding 9: Exact patch text for `.opencode/skills/sk-prompt-models/SKILL.md`
 
 Insert this row in the dispatch matrix after `GLM-5.1`.
 
@@ -193,7 +193,7 @@ In `ALWAYS` rule 5, replace the in-scope model list with:
 Honor the in-scope model set — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, and MiniMax-2.7 required; Haiku, Gemini Flash optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 ```
 
-### Finding 10: Exact patch text for `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`
+### Finding 10: Exact patch text for `.opencode/skills/sk-prompt-models/references/pattern-index.md`
 
 Insert these rows after the existing `sk-prompt budget awareness` row.
 

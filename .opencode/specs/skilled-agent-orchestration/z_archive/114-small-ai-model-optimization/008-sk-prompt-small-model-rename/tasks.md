@@ -1,12 +1,12 @@
 ---
-title: "Tasks: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model"
+title: "Tasks: Phase 8 — rename sk-ai-small-model → sk-prompt-models"
 description: "40 tasks across 3 canonical phases"
-trigger_phrases: ["phase 8 tasks", "sk-prompt-small-model tasks"]
+trigger_phrases: ["phase 8 tasks", "sk-prompt-models tasks"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored tasks.md"
@@ -24,7 +24,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Tasks: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model
+# Tasks: Phase 8 — rename sk-ai-small-model → sk-prompt-models
 
 ---
 

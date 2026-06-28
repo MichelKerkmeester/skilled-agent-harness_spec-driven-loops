@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/131-relocate-model-registry-and-benchmarks",
-  "description": "`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-small-model is the canonical skill for per-model dispatch",
+  "description": "`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-models is the canonical skill for per-model dispatch",
   "keywords": [
     "model-profiles",
     "json",
@@ -10,7 +10,7 @@
     "assets",
     "even",
     "though",
-    "sk-prompt-small-model",
+    "sk-prompt-models",
     "canonical",
     "skill",
     "per-model",

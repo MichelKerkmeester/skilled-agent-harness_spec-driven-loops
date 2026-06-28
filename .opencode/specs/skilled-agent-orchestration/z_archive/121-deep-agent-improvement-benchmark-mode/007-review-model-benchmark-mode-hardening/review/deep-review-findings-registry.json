@@ -1478,7 +1478,7 @@
         ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49"
       ],
       "bugClass": "minimax_catalog_trace",
       "disposition": "ruled_out",
@@ -1487,7 +1487,7 @@
         ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49"
       ],
       "reason": "direct/exact search found consistent model/provider/prompt-framework references"
     },
@@ -1499,7 +1499,7 @@
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "bugClass": "120_skill_edit_correctness",
       "disposition": "ruled_out",
@@ -1508,7 +1508,7 @@
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "reason": "direct search found no inconsistencies in slug, context_length, quota pool, prompt framework, or variant guidance"
     },
@@ -1519,11 +1519,11 @@
       "targetRefs": [
         ".opencode/skills/cli-opencode/graph-metadata.json:83",
         ".opencode/skills/cli-opencode/graph-metadata.json:10",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "bugClass": "cli-opencode_graph_metadata_consistency",
       "disposition": "ruled_out",
-      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-small-model dispatch matrix.",
+      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-models dispatch matrix.",
       "evidenceRefs": [
         ".opencode/skills/cli-opencode/graph-metadata.json:83",
         ".opencode/skills/cli-opencode/graph-metadata.json:84",
@@ -1560,7 +1560,7 @@
       "targetRefs": [
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
       ],
       "bugClass": "doc_consistency",
@@ -1569,7 +1569,7 @@
       "evidenceRefs": [
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
       ],
       "reason": "direct read found consistent names and ownership across the reviewed documentation"
@@ -1760,7 +1760,7 @@
         ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49"
       ],
       "bugClass": "minimax_catalog_trace",
       "disposition": "ruled_out",
@@ -1769,7 +1769,7 @@
         ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49"
       ],
       "proof": "direct/exact search found consistent model/provider/prompt-framework references"
     },
@@ -1781,7 +1781,7 @@
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "bugClass": "120_skill_edit_correctness",
       "disposition": "ruled_out",
@@ -1790,7 +1790,7 @@
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "proof": "direct search found no inconsistencies in slug, context_length, quota pool, prompt framework, or variant guidance"
     },
@@ -1801,11 +1801,11 @@
       "targetRefs": [
         ".opencode/skills/cli-opencode/graph-metadata.json:83",
         ".opencode/skills/cli-opencode/graph-metadata.json:10",
-        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+        ".opencode/skills/sk-prompt-models/SKILL.md:140"
       ],
       "bugClass": "cli-opencode_graph_metadata_consistency",
       "disposition": "ruled_out",
-      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-small-model dispatch matrix.",
+      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-models dispatch matrix.",
       "evidenceRefs": [
         ".opencode/skills/cli-opencode/graph-metadata.json:83",
         ".opencode/skills/cli-opencode/graph-metadata.json:84",
@@ -1842,7 +1842,7 @@
       "targetRefs": [
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
       ],
       "bugClass": "doc_consistency",
@@ -1851,7 +1851,7 @@
       "evidenceRefs": [
         ".opencode/skills/cli-opencode/SKILL.md:200",
         ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
-        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt-models/references/pattern-index.md:49",
         ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
       ],
       "proof": "direct read found consistent names and ownership across the reviewed documentation"

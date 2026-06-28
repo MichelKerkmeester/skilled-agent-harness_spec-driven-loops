@@ -8,12 +8,12 @@ description: Session tracking for deep research on best use / efficiency of Mini
 ## 1. OVERVIEW
 
 ### Purpose
-Persistent brain for this research session. Determine how to improve/update `sk-prompt-small-model` and `cli-opencode` to make best use and maximize efficiency of MiniMax 2.7 via the cli-opencode direct MiniMax.io API path, producing concrete file-level deltas.
+Persistent brain for this research session. Determine how to improve/update `sk-prompt-models` and `cli-opencode` to make best use and maximize efficiency of MiniMax 2.7 via the cli-opencode direct MiniMax.io API path, producing concrete file-level deltas.
 
 ---
 
 ## 2. TOPIC
-How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure (model-profiles.json, context-budget engine, output-verification pipeline, quota-fallback, permissions-matrix, pattern-index) rather than rebuilding it.
+How can we improve/update sk-prompt-models and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure (model-profiles.json, context-budget engine, output-verification pipeline, quota-fallback, permissions-matrix, pattern-index) rather than rebuilding it.
 
 ---
 
@@ -23,7 +23,7 @@ How can we improve/update sk-prompt-small-model and cli-opencode to make best us
 - [ ] Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?
 - [ ] Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?
 - [ ] Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?
-- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?
+- [ ] Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-models` + `cli-opencode` follow?
 
 <!-- /ANCHOR:key-questions -->
 
@@ -95,7 +95,7 @@ Q1: What are MiniMax 2.7's API characteristics (context window, reasoning/`--var
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
 - Phase 001 (this packet's sibling) just added the `minimax` direct-API provider to cli-opencode (`--model minimax/minimax-2.7`, `MINIMAX_API_KEY`, quota_pool `minimax-api`) and a `minimax-2.7` registry entry in `sk-prompt/assets/model-profiles.json` (v1.2) with `context_length`/`--variant` left unverified.
-- 114 (small-ai-model-optimization, complete) shipped reusable infra: model-profile registry, context-budget engine, 4-stage output-verification, quota-pool fallback router, structured permissions matrix, and the `sk-prompt-small-model` pattern-index.
+- 114 (small-ai-model-optimization, complete) shipped reusable infra: model-profile registry, context-budget engine, 4-stage output-verification, quota-pool fallback router, structured permissions matrix, and the `sk-prompt-models` pattern-index.
 - Spec Kit Memory MCP was disconnected this session, so no prior-context retrieval was available; Known Context is from direct repo reads only.
 
 ---

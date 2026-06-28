@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "skill_id": "sk-prompt-small-model",
+  "skill_id": "sk-prompt-models",
   "family": "sk-util",
   "category": "utility",
   "edges": {
@@ -109,14 +109,14 @@
       "route mimo-v2.5-pro"
     ],
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/references/pattern_index.md"
     ],
     "entities": [
       {
-        "name": "sk-prompt-small-model",
+        "name": "sk-prompt-models",
         "kind": "skill",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       }
     ],

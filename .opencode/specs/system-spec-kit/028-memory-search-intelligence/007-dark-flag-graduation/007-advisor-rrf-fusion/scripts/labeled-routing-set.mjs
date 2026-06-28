@@ -56,7 +56,7 @@ export const LABELED_ROUTING_SET = [
   { id: 'q23', band: 'paraphrase', prompt: 'mark the current task done in the work queue', skill: 'mcp-click-up' },
   { id: 'q24', band: 'paraphrase', prompt: 'gather codebase context across the repository before planning', skill: 'deep-loop-workflows' },
   { id: 'q25', band: 'paraphrase', prompt: 'run an mcp tool chain through code mode', skill: 'mcp-code-mode' },
-  { id: 'q26', band: 'paraphrase', prompt: 'dispatch this to a small model like kimi for the cheap pass', skill: 'sk-prompt-small-model' },
+  { id: 'q26', band: 'paraphrase', prompt: 'dispatch this to a small model like kimi for the cheap pass', skill: 'sk-prompt-models' },
   { id: 'q27', band: 'paraphrase', prompt: 'this interface looks templated, make the visual design more distinctive', skill: 'sk-design-interface' },
 
   // ---- hard band: multi-concept or near-tie, dominant-intent gold ----

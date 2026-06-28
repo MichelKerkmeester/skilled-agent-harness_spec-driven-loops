@@ -40,7 +40,7 @@ Rename the skill `deep-agent-improvement` to `deep-improvement` across every sur
 - Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
 - Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
 - Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
 - Internal self-references inside the skill's own references/scripts/README.
 
 ## 3. Approach

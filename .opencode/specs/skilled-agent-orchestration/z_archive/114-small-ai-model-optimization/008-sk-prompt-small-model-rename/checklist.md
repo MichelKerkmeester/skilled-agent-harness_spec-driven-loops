@@ -1,12 +1,12 @@
 ---
-title: "Verification Checklist: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model"
+title: "Verification Checklist: Phase 8 — rename sk-ai-small-model → sk-prompt-models"
 description: "ALL P0/P1 items verified with evidence 2026-05-23."
-trigger_phrases: ["rename verification 008", "sk-prompt-small-model checklist", "phase 8 verification"]
+trigger_phrases: ["rename verification 008", "sk-prompt-models checklist", "phase 8 verification"]
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename"
     last_updated_at: "2026-05-23T15:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Marked all P0+P1 with evidence"
@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model
+# Verification Checklist: Phase 8 — rename sk-ai-small-model → sk-prompt-models
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -57,12 +57,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] git mv skill dir succeeded [EVIDENCE: ls sk-ai-small-model returns no-such-file; sk-prompt-small-model present; git log --follow traces through 007 rename]
-- [x] CHK-011 [P0] SKILL.md frontmatter name = sk-prompt-small-model [EVIDENCE: grep ^name:]
-- [x] CHK-012 [P0] graph-metadata.json skill_id = sk-prompt-small-model; family stays sk-util [EVIDENCE: jq inspection]
-- [x] CHK-013 [P0] cli-devin reverse edge target = sk-prompt-small-model [EVIDENCE: jq returns ["sk-prompt-small-model"]]
-- [x] CHK-014 [P0] cli-opencode reverse edge target = sk-prompt-small-model [EVIDENCE: jq returns ["sk-prompt-small-model"]]
-- [x] CHK-015 [P0] Aggregator symlink rotated [EVIDENCE: readlink returns ../skills/sk-prompt-small-model/changelog; old symlink gone]
+- [x] CHK-010 [P0] git mv skill dir succeeded [EVIDENCE: ls sk-ai-small-model returns no-such-file; sk-prompt-models present; git log --follow traces through 007 rename]
+- [x] CHK-011 [P0] SKILL.md frontmatter name = sk-prompt-models [EVIDENCE: grep ^name:]
+- [x] CHK-012 [P0] graph-metadata.json skill_id = sk-prompt-models; family stays sk-util [EVIDENCE: jq inspection]
+- [x] CHK-013 [P0] cli-devin reverse edge target = sk-prompt-models [EVIDENCE: jq returns ["sk-prompt-models"]]
+- [x] CHK-014 [P0] cli-opencode reverse edge target = sk-prompt-models [EVIDENCE: jq returns ["sk-prompt-models"]]
+- [x] CHK-015 [P0] Aggregator symlink rotated [EVIDENCE: readlink returns ../skills/sk-prompt-models/changelog; old symlink gone]
 - [x] CHK-016 [P1] Skill body sections excl name/title/H1 byte-identical [EVIDENCE: sed literal substitution only]
 - [x] CHK-017 [P1] New v0.4.0.0.md changelog exists [EVIDENCE: file authored with full rename rationale + verification table]
 - [x] CHK-018 [P1] 4 playbook files renamed + 2 indexes updated [EVIDENCE: ls new filenames; rg returns 0 hits]
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Disambiguating PCRE2 rg sweep returns 0 name-only residuals outside exemptions [EVIDENCE: `rg -PUl "(?<!/007-|114-007-|/sk-prompt-small-model/changelog/v0)sk-ai-small-model" --glob '!008-sk-prompt-small-model-rename/**' --glob '!sk-prompt-small-model/changelog/v0.*.md'` returned 0]
+- [x] CHK-020 [P0] Disambiguating PCRE2 rg sweep returns 0 name-only residuals outside exemptions [EVIDENCE: `rg -PUl "(?<!/007-|114-007-|/sk-prompt-models/changelog/v0)sk-ai-small-model" --glob '!008-sk-prompt-models-rename/**' --glob '!sk-prompt-models/changelog/v0.*.md'` returned 0]
 - [x] CHK-021 [P0] Compiled skill-graph.json fresh; new name in adjacency, old absent [EVIDENCE: jq inspection on both scripts/ + database/ mirrors; 23 skills total]
-- [x] CHK-022 [P0] Advisor returns sk-prompt-small-model ≥0.7 [EVIDENCE: skill_advisor.py post-daemon-respawn returned sk-prompt-small-model conf 0.95 at rank 2]
+- [x] CHK-022 [P0] Advisor returns sk-prompt-models ≥0.7 [EVIDENCE: skill_advisor.py post-daemon-respawn returned sk-prompt-models conf 0.95 at rank 2]
 - [x] CHK-023 [P0] validate.sh --strict 008/ exit 0 [EVIDENCE: 0 errors, 0 warnings]
 - [x] CHK-024 [P1] skill_graph_compiler.py PASSED [EVIDENCE: "VALIDATION PASSED: all metadata files are valid"]
 - [x] CHK-025 [P1] git log --follow traces through both renames [EVIDENCE: git mv chain preserved Phase 002 → 007 → 008]
@@ -115,7 +115,7 @@ _memory:
 - [x] CHK-041 [P1] Inline comments N/A [EVIDENCE: no code]
 - [x] CHK-042 [P1] Root README updated [EVIDENCE: rg returns 0]
 - [x] CHK-043 [P1] AGENTS.md + CLAUDE.md updated [EVIDENCE: rg returns 0 on both]
-- [x] CHK-044 [P1] Auto-memory swept [EVIDENCE: rg returns 0 in memory dir; MEMORY.md line 9 reads sk-prompt-small-model]
+- [x] CHK-044 [P1] Auto-memory swept [EVIDENCE: rg returns 0 in memory dir; MEMORY.md line 9 reads sk-prompt-models]
 - [x] CHK-045 [P1] 114/spec.md PHASE MAP includes Phase 8 [EVIDENCE: create.sh auto-injected row]
 - [x] CHK-046 [P1] ADR-002 captures rewrite-all trade-off [EVIDENCE: decision-record.md ADR-002 §Decision + §Consequences]
 <!-- /ANCHOR:docs -->

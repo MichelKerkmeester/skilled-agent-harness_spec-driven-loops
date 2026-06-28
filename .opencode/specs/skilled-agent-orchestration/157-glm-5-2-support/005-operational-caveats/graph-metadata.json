@@ -36,8 +36,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md",
-      ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json",
+      ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+      ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
       ".opencode/skills/cli-opencode/SKILL.md",
       "spec.md",
       "plan.md",
@@ -48,13 +48,13 @@
       {
         "name": "glm-5.2.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
         "source": "derived"
       },
       {
         "name": "model_profiles.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json",
+        "path": ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
         "source": "derived"
       },
       {

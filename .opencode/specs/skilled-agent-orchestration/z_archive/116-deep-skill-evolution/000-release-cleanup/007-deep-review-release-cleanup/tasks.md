@@ -142,7 +142,7 @@ _memory:
 - [ ] T080 Verify `cli-devin` binary present (`which devin` or `devin --version`)
 - [ ] T081 Verify SWE-1.6 model is reachable via cli-devin
 - [ ] T082 Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule)
-- [ ] T083 Read `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule)
+- [ ] T083 Read `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule)
 - [ ] T084 Read `.opencode/skills/sk-prompt/SKILL.md` (RCAF + CLEAR composition)
 - [ ] T085 Iter 1: `cli-devin --model swe-1.6` — output to `research/iterations/iter-01-cli-devin.json`
 - [ ] T086 Between-iter cleanup: `pkill -9 -f devin` + sweep `/tmp/devin-*` and `/tmp/deep-research-*`

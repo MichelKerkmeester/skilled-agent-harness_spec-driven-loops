@@ -85,7 +85,7 @@ skill_reference:
     fanout_run_script: .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs
     fanout_merge_script: .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs
     council_dispatch: .opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs
-  prompt_framing: .opencode/skills/sk-prompt-small-model/SKILL.md
+  prompt_framing: .opencode/skills/sk-prompt-models/SKILL.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION (native seat)
@@ -390,8 +390,8 @@ workflow:
             3. known-context: prior_context_summary + already-confirmed reuse candidates (avoid re-finding)
             4. output schema: the structured-finding JSON the host expects (seat_output_schema below)
         prompt_framing:
-          rule: "Apply each seat's promptFramework via sk-prompt-small-model (MiMo→COSTAR, MiniMax/DeepSeek→TIDD-EC). Native seats use no framework wrapper."
-          loader: ".opencode/skills/sk-prompt-small-model/SKILL.md"
+          rule: "Apply each seat's promptFramework via sk-prompt-models (MiMo→COSTAR, MiniMax/DeepSeek→TIDD-EC). Native seats use no framework wrapper."
+          loader: ".opencode/skills/sk-prompt-models/SKILL.md"
         seat_output_schema: |
           { "findings": [ { "unit_id": "sha256(path:symbol:kind)", "path": "...", "symbol": "...",
             "kind": "reuse_candidate|integration_point|convention|dependency|gap",
@@ -457,7 +457,7 @@ workflow:
                 Each seat's one-shot prompt carries the four-part lineage contract from
                 step_render_seat_prompts (gather-subject {scope} + SHARED current_focus + known-context +
                 seat_output_schema) and instructs the seat to return ONLY the structured-finding JSON for
-                this single pass. Apply the seat's promptFramework via sk-prompt-small-model
+                this single pass. Apply the seat's promptFramework via sk-prompt-models
                 (MiMo→COSTAR, MiniMax/DeepSeek→TIDD-EC). Source the prompt body from the per-seat file
                 rendered at {state_paths.prompt_dir}/iter-{current_iteration}/{seat.label}.md.
             optional_autonomous_lineage_mode:

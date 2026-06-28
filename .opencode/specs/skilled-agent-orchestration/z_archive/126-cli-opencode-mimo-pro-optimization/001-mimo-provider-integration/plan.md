@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration"
-description: "Wire the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode docs, the shared small-model registry, and the sk-prompt-small-model sentinel, mirroring the MiniMax Token Plan wiring as an additive, explicitly-selectable model (no default change)."
+description: "Wire the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode docs, the shared small-model registry, and the sk-prompt-models sentinel, mirroring the MiniMax Token Plan wiring as an additive, explicitly-selectable model (no default change)."
 trigger_phrases:
   - "mimo provider integration plan"
   - "xiaomi-token-plan-ams plan"
@@ -39,7 +39,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown skill docs + JSON registry/metadata |
-| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-small-model) |
+| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-models) |
 | **Storage** | `sk-prompt/assets/model-profiles.json` (shared small-model registry) |
 | **Testing** | `jq` JSON validation + `rg` grep checks + spec-kit `validate.sh --strict` |
 
@@ -75,7 +75,7 @@ Additive, explicitly-selectable provider. `xiaomi-token-plan-ams` (Xiaomi Token 
 ### Key Components
 - **Shared registry** (`model-profiles.json`): a `mimo-v2.5-pro` entry (provider `xiaomi-token-plan-ams`, quota_pool `xiaomi-token-plan`, slug `xiaomi-token-plan-ams/mimo-v2.5-pro`, status `active`, `context_length: null`), optionally a free `opencode/mimo-v2.5-free` fallback path, an updated active-rotation description line, and a bumped `version`. The fallback router reads `executors[].quota_pool` + `primary_quota_pool` + `fallback_target` — the contract is unchanged.
 - **cli-opencode provider docs**: SKILL.md auth options + §4 pre-flight (detect `xiaomi-token-plan-ams`) + §5 model rows + `--variant` matrix + §6 `--agent` omission note + keyword header; cli_reference.md §4/§5; prompt_templates.md MiMo dispatch contract; prompt_quality_card.md per-model placeholder; graph-metadata.json trigger phrases; a new changelog version file.
-- **Sentinel + cards + metadata** (`sk-prompt-small-model`): SKILL.md activation + dispatch matrix row, description.json, pattern-index.md provider/dispatch row, README.md provider mention, graph-metadata.json trigger phrases — discovery surfaces so the advisor names MiMo.
+- **Sentinel + cards + metadata** (`sk-prompt-models`): SKILL.md activation + dispatch matrix row, description.json, pattern-index.md provider/dispatch row, README.md provider mention, graph-metadata.json trigger phrases — discovery surfaces so the advisor names MiMo.
 
 ### Data Flow
 A caller selects `--model xiaomi-token-plan-ams/mimo-v2.5-pro`; cli-opencode runs auth pre-flight against `opencode providers list` / `opencode models xiaomi-token-plan-ams`; on success it dispatches through the Xiaomi Token Plan (provider-managed endpoint, subscription quota pool `xiaomi-token-plan`), **omitting `--agent`** (on 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration or probing, the documented sibling is the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier). The default skill path (`opencode-go/deepseek-v4-pro`) is unaffected.
@@ -93,7 +93,7 @@ This phase edits a shared schema file (`model-profiles.json`) consumed by the fa
 | `sk-prompt/assets/model-profiles.json` | Producer — registry of model→executor paths | update (add `mimo-v2.5-pro`, optional `mimo-v2.5-free`, description + version bump) | `jq` parse + entry shape matches the `minimax-m3` model |
 | `system-spec-kit/.../fallback-router.ts` | Consumer — reads `primary_quota_pool`/`fallback_target`/`executors[].quota_pool` | unchanged (new pool `xiaomi-token-plan`, `fallback_target: null` unless a free entry is added) | `rg -n "quota_pool\|fallback_target" fallback-router.ts` confirms it reads, not enumerates |
 | `cli-opencode` SKILL.md + cli_reference.md | Docs — provider auth + model selection | update (add MiMo as an explicitly-selectable path) | `rg -n "xiaomi-token-plan-ams"` shows new rows |
-| `sk-prompt-small-model` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + triggers) | `rg -n "xiaomi-token-plan-ams\|mimo"` shows entries |
+| `sk-prompt-models` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + triggers) | `rg -n "xiaomi-token-plan-ams\|mimo"` shows entries |
 
 Required inventories:
 - Same-class producers: `rg -n '"provider"|"quota_pool"' .opencode/skills/sk-prompt/assets/model-profiles.json`.
@@ -117,7 +117,7 @@ Required inventories:
 - [ ] cli-opencode SKILL.md (auth options, pre-flight tree, login/setup mention, model selection, `--agent` omission caveat, keyword header)
 - [ ] cli-opencode assets (prompt_templates.md MiMo contract, prompt_quality_card.md per-model placeholder) + graph-metadata.json triggers
 - [ ] cli-opencode changelog: new `vX.Y.Z.0.md` version file for the MiMo addition
-- [ ] sk-prompt-small-model SKILL.md + description.json + pattern-index.md + README.md + graph-metadata.json triggers
+- [ ] sk-prompt-models SKILL.md + description.json + pattern-index.md + README.md + graph-metadata.json triggers
 
 ### Phase 3: Verification
 - [ ] `jq .` on model-profiles.json passes; both graph-metadata.json files valid JSON

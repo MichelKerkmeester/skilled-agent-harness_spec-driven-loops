@@ -216,7 +216,7 @@ Release-history changelogs across several components named `cli-gemini` as an ex
 <!-- ANCHOR:adr-002-impl -->
 ### Implementation
 
-**What changes**: Edit changelogs under `.opencode/changelog/{agent-orchestration,cli-devin,cli-opencode,deep-research,deep-review,sk-prompt-small-model,system-skill-advisor,system-spec-kit}/**` that name `cli-gemini` as an executor.
+**What changes**: Edit changelogs under `.opencode/changelog/{agent-orchestration,cli-devin,cli-opencode,deep-research,deep-review,sk-prompt-models,system-skill-advisor,system-spec-kit}/**` that name `cli-gemini` as an executor.
 
 **How to roll back**: Revert the changelog edits from git.
 <!-- /ANCHOR:adr-002-impl -->

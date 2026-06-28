@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/"
+      - ".opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-framework-bakeoff"
@@ -71,13 +71,13 @@ This is **Phase 2** of the kimi-k2-7-code-support specification.
 **Scope Boundary**: This phase owns the empirical prompt-framework bakeoff for `kimi-k2.7-code` only. It creates a benchmark profile and runs the deep-loop model-benchmark machinery to produce a verdict. It does NOT edit the registry or model reference doc; that promotion is Phase 003's job.
 
 **Dependencies**:
-- Phase 001 (model-registration) complete: `kimi-k2.7-code` is wired into `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` with framework RCAF marked `default-unverified`.
+- Phase 001 (model-registration) complete: `kimi-k2.7-code` is wired into `.opencode/skills/sk-prompt-models/assets/model-profiles.json` with framework RCAF marked `default-unverified`.
 - The deep-loop model-benchmark lane via `/deep:model-benchmark` and the canonical `framework-bakeoff.json` profile.
 - A live `kimi-for-coding/k2p7` slug (Kimi For Coding subscription pool) and a non-Kimi LLM judge for grading.
 
 **Deliverables**:
 - A bakeoff profile at `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json`.
-- A completed run `006-kimi-k2.7-prompt-framework` with outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`).
+- A completed run `006-kimi-k2.7-prompt-framework` with outputs under `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`).
 - A verdict (WINNER | TIE | INCONCLUSIVE) and per-framework leaderboard that Phase 003 promotes.
 
 **Changelog**:
@@ -116,7 +116,7 @@ Empirically determine kimi-k2.7-code's best prompt framework by running the mode
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json` | Create | Bakeoff profile cloned from `framework-bakeoff.json`, retargeted to kimi-k2.7-code + real fixtures |
-| `.opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
+| `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,7 +146,7 @@ Empirically determine kimi-k2.7-code's best prompt framework by running the mode
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Run `006-kimi-k2.7-prompt-framework` completes and writes `results.json`, `aggregate.json`, and `synthesis.md` under `.opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/`.
+- **SC-001**: Run `006-kimi-k2.7-prompt-framework` completes and writes `results.json`, `aggregate.json`, and `synthesis.md` under `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/`.
 - **SC-002**: The synthesis records a verdict (WINNER \| TIE \| INCONCLUSIVE) and a per-framework leaderboard that Phase 003 can promote without re-running the bakeoff.
 <!-- /ANCHOR:success-criteria -->
 

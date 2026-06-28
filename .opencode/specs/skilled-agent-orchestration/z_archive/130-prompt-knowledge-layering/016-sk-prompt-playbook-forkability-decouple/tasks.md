@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Audit the sk-prompt playbook for references to sk-prompt-small-model and cli-* skills (read-only)
+- [x] T001 Audit the sk-prompt playbook for references to sk-prompt-models and cli-* skills (read-only)
 - [x] T002 Confirm the hub has no playbook (move impractical) and sk-prompt's own docs hold the anchor content
 <!-- /ANCHOR:phase-1 -->
 
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Token grep across the playbook: 0 for sk-prompt-small-model / cli_prompt_quality_card / cli-*
+- [x] T009 Token grep across the playbook: 0 for sk-prompt-models / cli_prompt_quality_card / cli-*
 - [x] T010 [P] All rg targets point only at sk-prompt/; SP-023/024 targets resolve
 - [x] T011 [P] validate_document.py VALID on root + 6 feature files
 - [x] T012 validate.sh --recursive --strict exit 0; card-sync guard green

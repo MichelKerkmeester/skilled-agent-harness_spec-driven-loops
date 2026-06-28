@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 4: model-hub-and-priority-profiles"
-description: "Rewrite sk-prompt-small-model SKILL.md (hub architecture, version 0.2.0), create references/models/_index.md, and author the two priority profiles minimax-m3.md and mimo-v2.5-pro.md following the fixed 6-section template with empirical benchmark evidence."
+description: "Rewrite sk-prompt-models SKILL.md (hub architecture, version 0.2.0), create references/models/_index.md, and author the two priority profiles minimax-m3.md and mimo-v2.5-pro.md following the fixed 6-section template with empirical benchmark evidence."
 trigger_phrases:
   - "implementation plan"
   - "model hub plan"
@@ -39,12 +39,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown (skill documentation) |
-| **Framework** | sk-prompt-small-model hub architecture (Architecture A) |
-| **Storage** | File-based skill references under `.opencode/skills/sk-prompt-small-model/` |
+| **Framework** | sk-prompt-models hub architecture (Architecture A) |
+| **Storage** | File-based skill references under `.opencode/skills/sk-prompt-models/` |
 | **Testing** | Manual LOC count, section-presence check, validate.sh --strict |
 
 ### Overview
-Phase 4 matures `sk-prompt-small-model` from a thin router into the canonical per-model prompt-craft hub for the small-model rotation. The approach is documentation-only: rewrite SKILL.md to the hub architecture (Architecture A), create the model index, and author the two priority profiles (minimax-m3.md carrying benchmark 120/003 evidence, mimo-v2.5-pro.md with benchmark 126/004 empirical evidence). No runtime code is touched; executor mechanics stay in cli-devin/cli-opencode.
+Phase 4 matures `sk-prompt-models` from a thin router into the canonical per-model prompt-craft hub for the small-model rotation. The approach is documentation-only: rewrite SKILL.md to the hub architecture (Architecture A), create the model index, and author the two priority profiles (minimax-m3.md carrying benchmark 120/003 evidence, mimo-v2.5-pro.md with benchmark 126/004 empirical evidence). No runtime code is touched; executor mechanics stay in cli-devin/cli-opencode.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,7 +78,7 @@ Hub architecture (Architecture A): thin entry surface (SKILL.md) + on-demand per
 - **references/models/mimo-v2.5-pro.md**: Priority profile; COSTAR + lean; empirical from benchmark 126/004
 
 ### Data Flow
-Operator names a small model -> advisor surfaces sk-prompt-small-model via trigger phrases or enhances edges -> operator reads `_index.md` to pick the profile -> operator reads `<id>.md` for framework + scaffold + gotchas -> operator follows `pattern-index.md` to cli-X for executor mechanics -> prompt-craft and mechanics combine in the dispatch.
+Operator names a small model -> advisor surfaces sk-prompt-models via trigger phrases or enhances edges -> operator reads `_index.md` to pick the profile -> operator reads `<id>.md` for framework + scaffold + gotchas -> operator follows `pattern-index.md` to cli-X for executor mechanics -> prompt-craft and mechanics combine in the dispatch.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -88,7 +88,7 @@ Operator names a small model -> advisor surfaces sk-prompt-small-model via trigg
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `sk-prompt-small-model/SKILL.md` | Entry surface (thin router) | Rewritten to hub architecture; version 0.2.0 | `wc -l` = 199; title check; version check |
+| `sk-prompt-models/SKILL.md` | Entry surface (thin router) | Rewritten to hub architecture; version 0.2.0 | `wc -l` = 199; title check; version check |
 | `references/models/_index.md` | Did not exist | Created: 8-row index | File present; 8 rows confirmed |
 | `references/models/minimax-m3.md` | Did not exist | Created: full 6-section profile | All 6 sections present; status: carried; 120/003 cited |
 | `references/models/mimo-v2.5-pro.md` | Did not exist | Created: full 6-section profile | All 6 sections present; status: empirical; 126/004 cited |

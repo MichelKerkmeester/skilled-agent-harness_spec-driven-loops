@@ -32,7 +32,7 @@
     },
     {
       "id": "question-5-q5-what-routing-heuristics-should-decide-minimax-2-7-vs-deepseek-qwen-glm-and-wh",
-      "text": "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?",
+      "text": "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-models` + `cli-opencode` follow?",
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     }
@@ -43,7 +43,7 @@
     "Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?",
     "Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?",
     "Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?",
-    "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?"
+    "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-models` + `cli-opencode` follow?"
   ],
   "keyFindings": [
     {
@@ -65,8 +65,8 @@
       "sources": []
     },
     {
-      "id": "finding-2-8-opencode-skills-sk-prompt-small-model-references-pattern-index-md-no-new-pattern",
-      "text": "`.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: no new pattern row is needed. At most update ownership text to mention MiniMax under cli-opencode's executor surface; the pattern bodies already cover new-provider adoption. [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:66]",
+      "id": "finding-2-8-opencode-skills-sk-prompt-models-references-pattern-index-md-no-new-pattern",
+      "text": "`.opencode/skills/sk-prompt-models/references/pattern-index.md`: no new pattern row is needed. At most update ownership text to mention MiniMax under cli-opencode's executor surface; the pattern bodies already cover new-provider adoption. [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:66]",
       "addedAtIteration": 2,
       "sources": []
     },
@@ -107,14 +107,14 @@
       "sources": []
     },
     {
-      "id": "finding-3-21-opencode-skills-sk-prompt-small-model-references-pattern-index-md-add-a-link-onl",
-      "text": "`.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: add a link-only row for \"MiniMax prompt-quality / variant-ablation policy\" owned by `cli-opencode`, pointing at `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`.",
+      "id": "finding-3-21-opencode-skills-sk-prompt-models-references-pattern-index-md-add-a-link-onl",
+      "text": "`.opencode/skills/sk-prompt-models/references/pattern-index.md`: add a link-only row for \"MiniMax prompt-quality / variant-ablation policy\" owned by `cli-opencode`, pointing at `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`.",
       "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-3-22-opencode-skills-sk-prompt-small-model-skill-md-no-body-change-required-unless-th",
-      "text": "`.opencode/skills/sk-prompt-small-model/SKILL.md`: no body change required unless the implementation wants the dispatch matrix status text to mention \"variant mapping pending ablation.\" The sentinel already names MiniMax and should stay thin.",
+      "id": "finding-3-22-opencode-skills-sk-prompt-models-skill-md-no-body-change-required-unless-th",
+      "text": "`.opencode/skills/sk-prompt-models/SKILL.md`: no body change required unless the implementation wants the dispatch matrix status text to mention \"variant mapping pending ablation.\" The sentinel already names MiniMax and should stay thin.",
       "addedAtIteration": 3,
       "sources": []
     },
@@ -461,14 +461,14 @@
       "sources": []
     },
     {
-      "id": "finding-6-15-sk-prompt-small-model-references-pattern-index-md-only-add-a-link-only-minimax-p",
-      "text": "`sk-prompt-small-model/references/pattern-index.md`: only add a link-only MiniMax policy pointer if the cli-opencode prompt-quality note is implemented.",
+      "id": "finding-6-15-sk-prompt-models-references-pattern-index-md-only-add-a-link-only-minimax-p",
+      "text": "`sk-prompt-models/references/pattern-index.md`: only add a link-only MiniMax policy pointer if the cli-opencode prompt-quality note is implemented.",
       "addedAtIteration": 6,
       "sources": []
     },
     {
-      "id": "finding-6-14-sk-prompt-small-model-skill-md-add-minimax-to-the-dispatch-matrix-and-ownership-",
-      "text": "`sk-prompt-small-model/SKILL.md`: add MiniMax to the dispatch matrix and ownership text.",
+      "id": "finding-6-14-sk-prompt-models-skill-md-add-minimax-to-the-dispatch-matrix-and-ownership-",
+      "text": "`sk-prompt-models/SKILL.md`: add MiniMax to the dispatch matrix and ownership text.",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -497,8 +497,8 @@
       "sources": []
     },
     {
-      "id": "finding-6-8-leave-runtime-logic-out-of-sk-prompt-small-model-the-skill-remains-a-sentinel-in",
-      "text": "Leave runtime logic out of `sk-prompt-small-model`; the skill remains a sentinel/index.",
+      "id": "finding-6-8-leave-runtime-logic-out-of-sk-prompt-models-the-skill-remains-a-sentinel-in",
+      "text": "Leave runtime logic out of `sk-prompt-models`; the skill remains a sentinel/index.",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -647,14 +647,14 @@
       "sources": []
     },
     {
-      "id": "finding-8-10-sk-prompt-small-model-references-pattern-index-md-add-only-the-three-link-only-m",
-      "text": "`sk-prompt-small-model/references/pattern-index.md`: add only the three link-only MiniMax rows listed in Finding 1.",
+      "id": "finding-8-10-sk-prompt-models-references-pattern-index-md-add-only-the-three-link-only-m",
+      "text": "`sk-prompt-models/references/pattern-index.md`: add only the three link-only MiniMax rows listed in Finding 1.",
       "addedAtIteration": 8,
       "sources": []
     },
     {
-      "id": "finding-8-9-sk-prompt-small-model-skill-md-add-minimax-to-the-dispatch-matrix-and-cli-openco",
-      "text": "`sk-prompt-small-model/SKILL.md`: add MiniMax to the dispatch matrix and `cli-opencode` ownership row.",
+      "id": "finding-8-9-sk-prompt-models-skill-md-add-minimax-to-the-dispatch-matrix-and-cli-openco",
+      "text": "`sk-prompt-models/SKILL.md`: add MiniMax to the dispatch matrix and `cli-opencode` ownership row.",
       "addedAtIteration": 8,
       "sources": []
     },

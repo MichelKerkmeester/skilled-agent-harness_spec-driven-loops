@@ -66,7 +66,7 @@ _memory:
 - [x] T007 [P] cli-opencode assets: prompt_templates.md MiMo dispatch contract (framework TBD — benchmarked in 126/004) + prompt_quality_card.md per-model placeholder (`cli-opencode/assets/`) — Template 15 added + per-model override; both flagged framework-pending 126/004
 - [x] T008 [P] cli-opencode graph-metadata.json trigger phrases + key topics (MiMo / Xiaomi Token Plan) (`cli-opencode/graph-metadata.json`) — 7 trigger phrases + 3 key topics; jq-valid
 - [x] T009 cli-opencode changelog: create new `vX.Y.Z.0.md` version file documenting the MiMo addition (`cli-opencode/changelog/`) — `v1.3.5.0.md` created
-- [x] T010 sk-prompt-small-model: SKILL.md activation + dispatch matrix row + description.json + pattern-index.md provider/dispatch row + README.md provider mention + graph-metadata.json trigger phrases (`sk-prompt-small-model/`) — all 5 files updated; 5 trigger phrases; all JSON jq-valid
+- [x] T010 sk-prompt-models: SKILL.md activation + dispatch matrix row + description.json + pattern-index.md provider/dispatch row + README.md provider mention + graph-metadata.json trigger phrases (`sk-prompt-models/`) — all 5 files updated; 5 trigger phrases; all JSON jq-valid
 <!-- /ANCHOR:phase-2 -->
 
 ---

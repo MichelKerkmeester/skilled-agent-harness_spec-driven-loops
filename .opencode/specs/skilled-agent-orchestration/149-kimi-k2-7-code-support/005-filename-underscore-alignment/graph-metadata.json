@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-prompt-small-model filename underscore",
+      "sk-prompt-models filename underscore",
       "rename dash filenames to underscores",
       "filename-underscore-alignment phase",
       "model-profiles.json rename",
@@ -25,7 +25,7 @@
       "rename git mv reference update"
     ],
     "key_topics": [
-      "sk-prompt-small-model",
+      "sk-prompt-models",
       "filename",
       "underscore",
       "rename",

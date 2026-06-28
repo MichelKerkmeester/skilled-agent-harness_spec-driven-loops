@@ -2,13 +2,13 @@
 
 ## Focus
 
-Define routing heuristics for MiniMax 2.7 versus DeepSeek-v4-pro, Qwen3.6, Kimi-k2.6, and GLM-5.1, then consolidate Q1-Q4 into concrete follow-up deltas for `sk-prompt-small-model`, `sk-prompt`, and `cli-opencode`.
+Define routing heuristics for MiniMax 2.7 versus DeepSeek-v4-pro, Qwen3.6, Kimi-k2.6, and GLM-5.1, then consolidate Q1-Q4 into concrete follow-up deltas for `sk-prompt-models`, `sk-prompt`, and `cli-opencode`.
 
 ## Actions Taken
 
 - Read the current state log to preserve Q1-Q4 decisions: 204,800 context, 143,360 active budget, conservative MiniMax `--variant` policy, `minimax-api` quota isolation, null fallback target, and provider-neutral permissions. [SOURCE: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/deep-research-state.jsonl]
 - Read iteration 3 and 4 narratives to carry forward the MiniMax prompt-quality, variant-ablation, quota-pool, fallback, and permissions findings without re-opening settled questions. [SOURCE: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/iterations/iteration-003.md] [SOURCE: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research/research/iterations/iteration-004.md]
-- Inspected the existing 114 registry and budget surfaces to identify exact patch points: `model-profiles.json`, `per-model-budgets.json`, the canonical `cli-devin` context-budget reference, the `cli-opencode` context-budget mirror, the OpenCode CLI reference, and the small-model pattern index. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json] [SOURCE: .opencode/skills/cli-devin/assets/per-model-budgets.json] [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md]
+- Inspected the existing 114 registry and budget surfaces to identify exact patch points: `model-profiles.json`, `per-model-budgets.json`, the canonical `cli-devin` context-budget reference, the `cli-opencode` context-budget mirror, the OpenCode CLI reference, and the small-model pattern index. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json] [SOURCE: .opencode/skills/cli-devin/assets/per-model-budgets.json] [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md]
 - Checked official MiniMax and OpenCode docs for the remaining externally variable facts: MiniMax M2.7 and M2.7-highspeed both publish 204,800-token context windows, while OpenCode documents variants as provider/model-specific settings and does not prove a built-in MiniMax `--variant high` mapping. [SOURCE: https://platform.minimax.io/docs/guides/text-generation] [SOURCE: https://dev.opencode.ai/docs/models/]
 
 ## Findings
@@ -81,7 +81,7 @@ The only MiniMax-specific caveat is continuity: because MiniMax is being adopted
 - Add the iteration 3 ablation recipe near the variant section.
 - Keep the auth-preflight rule: if MiniMax was requested but not configured, ask for `opencode providers login minimax`; do not substitute silently.
 
-`.opencode/skills/sk-prompt-small-model/references/pattern-index.md`
+`.opencode/skills/sk-prompt-models/references/pattern-index.md`
 
 - Add a row for "MiniMax direct-provider routing heuristics" owned by `cli-opencode`, pointing to `../../cli-opencode/references/cli_reference.md`, shipped in packet `120/002`.
 - Add a row for "MiniMax context-budget adoption" owned by `cli-opencode` plus `cli-devin`, pointing to `../../cli-opencode/references/context-budget.md` and `../../cli-devin/assets/per-model-budgets.json`, shipped in `120/002`.

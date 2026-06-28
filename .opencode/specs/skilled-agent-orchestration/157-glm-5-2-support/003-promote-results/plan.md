@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | JSON registry + Markdown profile |
-| **Framework** | sk-prompt-small-model registry + card-sync guard |
+| **Framework** | sk-prompt-models registry + card-sync guard |
 | **Storage** | None (file-based) |
 | **Testing** | Card-sync guard, JSON parse, `validate.sh --strict` |
 

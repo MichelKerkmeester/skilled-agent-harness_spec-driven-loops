@@ -111,7 +111,7 @@ ESCALATION_NOTES: <remaining ambiguity/risk>
 2. **Can I name a framework?** — Yes. State it explicitly (e.g., "Use TIDD-EC"); skill skips auto-selection.
 3. **What if CLEAR stays below 40?** — After 3 improvement iterations, delivers best version with score flags and three options: accept, retry with context, switch framework.
 4. **Does it change my meaning?** — No. Prototype and Test phases include intent preservation check; changes that alter meaning are rolled back.
-5. **How does it differ from `sk-prompt-small-model`?** — Not explicitly addressed in any file. UNKNOWN from current contents.
+5. **How does it differ from `sk-prompt-models`?** — Not explicitly addressed in any file. UNKNOWN from current contents.
 
 ---
 

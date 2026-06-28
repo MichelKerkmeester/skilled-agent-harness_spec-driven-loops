@@ -13,13 +13,13 @@ version: 0.8.0.7
 
 # Quota-Pool-Aware Fallback
 
-> This reference was re-homed from cli-devin to sk-prompt-small-model as part of the cli-devin deprecation. Content is executor-agnostic.
+> This reference was re-homed from cli-devin to sk-prompt-models as part of the cli-devin deprecation. Content is executor-agnostic.
 
 ## Overview
 
 Phase 005 ships a quota-pool-aware fallback contract for the user's small-only model ecosystem.
 
-The fallback engine reads `sk-prompt-small-model/assets/model_profiles.json`.
+The fallback engine reads `sk-prompt-models/assets/model_profiles.json`.
 
 It uses these fields:
 
@@ -89,7 +89,7 @@ They decide whether fallback is allowed.
 Input:
 
 - `failedModelId`
-- parsed registry from `sk-prompt-small-model/assets/model_profiles.json`
+- parsed registry from `sk-prompt-models/assets/model_profiles.json`
 
 Output:
 
@@ -250,7 +250,7 @@ It is only relevant after the optional Haiku stub becomes active.
 
 1. Confirm Haiku is actually in the user's dispatch rotation.
 2. Confirm the exact executor and model id.
-3. Populate the `haiku` stub in `sk-prompt-small-model/assets/model_profiles.json`.
+3. Populate the `haiku` stub in `sk-prompt-models/assets/model_profiles.json`.
 4. Set `context_length` from current official/runtime information.
 5. Set `avg_iter_wall_clock_min` from a measured iteration.
 6. Change `status` from `optional-unverified` to `active`.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: card-relocation-and-guard"
-description: "Relocated the canonical cli_prompt_quality_card.md from sk-prompt to the sk-prompt-small-model hub, repointed ~15 consumer references plus the card's own links, cleaned sk-prompt's graph-metadata, and updated the sync guard's canonical path so sk-prompt is now a forkable generic engine."
+description: "Relocated the canonical cli_prompt_quality_card.md from sk-prompt to the sk-prompt-models hub, repointed ~15 consumer references plus the card's own links, cleaned sk-prompt's graph-metadata, and updated the sync guard's canonical path so sk-prompt is now a forkable generic engine."
 trigger_phrases:
   - "card relocation summary"
 importance_tier: "normal"
@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Validate, commit, push; spec 130 phases 010-013 complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ _memory:
 The CLI-dispatch quality card no longer sits inside the generic framework engine, and sk-prompt is now forkable.
 
 ### The card lives with the hub
-`cli_prompt_quality_card.md` moved (git rename) from `sk-prompt/assets/` to `sk-prompt-small-model/assets/`. The hub already owns the per-model profiles + registry, so the cross-CLI card belongs there. sk-prompt now carries only generic, fork-portable knowledge: the 7-framework definitions, CLEAR, DEPTH, format guides, and the framework registry.
+`cli_prompt_quality_card.md` moved (git rename) from `sk-prompt/assets/` to `sk-prompt-models/assets/`. The hub already owns the per-model profiles + registry, so the cross-CLI card belongs there. sk-prompt now carries only generic, fork-portable knowledge: the 7-framework definitions, CLEAR, DEPTH, format guides, and the framework registry.
 
 ### Everything that pointed at the card was repointed
 The five cli SKILL.md, the five cli cards, the hub SKILL.md, and `cli-devin/references/context-budget.md` (~15 references) now point at the hub. The card's own outbound links to the framework definitions were repointed to `../../sk-prompt/references/`. sk-prompt's `graph-metadata.json` was cleaned of the card (the `enhance_when` rule, the key_files entry, the entity, the source_docs entry).
@@ -61,9 +61,9 @@ The five cli SKILL.md, the five cli cards, the hub SKILL.md, and `cli-devin/refe
 ### Files Changed
 | File | Action | Purpose |
 |------|--------|---------|
-| `sk-prompt/assets/cli_prompt_quality_card.md` → `sk-prompt-small-model/assets/` | Renamed | Card relocated to the hub |
-| `sk-prompt-small-model/SKILL.md` | Modified | §5 card ref → local; version 0.7.2.0 |
-| `sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Modified | Own framework-def links → `../../sk-prompt/references/` |
+| `sk-prompt/assets/cli_prompt_quality_card.md` → `sk-prompt-models/assets/` | Renamed | Card relocated to the hub |
+| `sk-prompt-models/SKILL.md` | Modified | §5 card ref → local; version 0.7.2.0 |
+| `sk-prompt-models/assets/cli_prompt_quality_card.md` | Modified | Own framework-def links → `../../sk-prompt/references/` |
 | 5 cli SKILL.md + 5 cli cards + `cli-devin/references/context-budget.md` | Modified | Card pointer → the hub |
 | `sk-prompt/SKILL.md` + `graph-metadata.json` | Modified | Card removed; version 2.1.0.0; forkable-clean |
 | `system-skill-advisor/...check-prompt-quality-card-sync.sh` + `SKILL.md` | Modified | Canonical-path comment; version 0.6.0 |

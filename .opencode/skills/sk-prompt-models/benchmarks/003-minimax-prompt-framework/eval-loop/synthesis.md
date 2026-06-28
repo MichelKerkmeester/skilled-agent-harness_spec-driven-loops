@@ -46,6 +46,6 @@
 Apply to the **cli-opencode / MiniMax** dispatch path (NOT cli-devin):
 - `cli-opencode/assets/prompt_templates.md` — add a MiniMax M2.7 section using the **TIDD-EC** scaffold with **dense** pre-planning (Task / Instructions / Do's / Don'ts / Examples / Context + a 4-5 step pre-plan).
 - `cli-opencode/assets/prompt_quality_card.md` — mark TIDD-EC as the empirical default for `minimax/MiniMax-M2.7`; RCAF as fallback.
-- `sk-prompt-small-model/references/pattern-index.md` — add a MiniMax prompt-framework row → cli-opencode canonical location.
+- `sk-prompt-models/references/pattern-index.md` — add a MiniMax prompt-framework row → cli-opencode canonical location.
 - `sk-prompt/assets/cli_prompt_quality_card.md` — note MiniMax → TIDD-EC + dense pre-plan.
 - Config correction (carried from 120/002): slug `minimax/minimax-2.7` → `minimax/MiniMax-M2.7`; `context_length: 204800`.

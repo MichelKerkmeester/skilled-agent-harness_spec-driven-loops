@@ -50,7 +50,7 @@ FAILURE MODES:
 | **Branch** | `scaffold/020-system-code-graph` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 20 of 22 |
-| **Predecessor** | 019-sk-prompt-small-model |
+| **Predecessor** | 019-sk-prompt-models |
 | **Successor** | 021-system-skill-advisor |
 | **Handoff Criteria** | Coverage check green for the skill; routing smoke passes; packet docs validate strictly |
 <!-- /ANCHOR:metadata -->

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Card-sync guard + tree-wide strict validate close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-promote-results"

@@ -10,7 +10,7 @@ VERDICT: ADAPT. EFFORT: M. RISK: med. BLAST-RADIUS: deep-review setup docs/YAML 
 GAP: partial. Rubric exists; “cheap model because rubric carries rigor” does not. `.opencode/skills/sk-code-review/SKILL.md:282`, `.opencode/skills/sk-code-review/SKILL.md:286`.
 VERDICT: ADAPT. EFFORT: M. RISK: med. BLAST-RADIUS: review prompt-pack + executor recommendation.
 
-[F-009-03] spec-kit already has small-model dispatch infrastructure: cli-opencode defaults to low-cost DeepSeek high reasoning, and sk-prompt-small-model maintains active Qwen/GLM/MiniMax/MiMo executor profiles; this is plumbing, not a verification policy. spec-kit: `.opencode/skills/cli-opencode/SKILL.md:247`, `.opencode/skills/cli-opencode/SKILL.md:263`, `.opencode/skills/sk-prompt-small-model/SKILL.md:200`, `.opencode/skills/sk-prompt-small-model/SKILL.md:214`; peck: `external/peck-master/benchmarks/models.json:2`, `external/peck-master/benchmarks/models.json:7`, `external/peck-master/benchmarks/models.json:11`.
+[F-009-03] spec-kit already has small-model dispatch infrastructure: cli-opencode defaults to low-cost DeepSeek high reasoning, and sk-prompt-models maintains active Qwen/GLM/MiniMax/MiMo executor profiles; this is plumbing, not a verification policy. spec-kit: `.opencode/skills/cli-opencode/SKILL.md:247`, `.opencode/skills/cli-opencode/SKILL.md:263`, `.opencode/skills/sk-prompt-models/SKILL.md:200`, `.opencode/skills/sk-prompt-models/SKILL.md:214`; peck: `external/peck-master/benchmarks/models.json:2`, `external/peck-master/benchmarks/models.json:7`, `external/peck-master/benchmarks/models.json:11`.
 GAP: partial. “Run cheap review gates” is net-new as a default/recommended pattern; “can route small models” is already present. `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:850`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:866`.
 VERDICT: ADAPT. EFFORT: S/M. RISK: med. BLAST-RADIUS: command docs + suggested executor presets.
 
@@ -24,7 +24,7 @@ VERDICT: DEFER blanket default; ADAPT opt-in/benchmark-gated preset. EFFORT: M. 
 
 ### RULED_OUT
 
-- Not net-new: cli-opencode small/open model selection already exists. `.opencode/skills/cli-opencode/SKILL.md:263`, `.opencode/skills/sk-prompt-small-model/SKILL.md:202`.
+- Not net-new: cli-opencode small/open model selection already exists. `.opencode/skills/cli-opencode/SKILL.md:263`, `.opencode/skills/sk-prompt-models/SKILL.md:202`.
 - Not net-new: deep-review already supports non-native executors and cli-opencode variant mapping. `.opencode/commands/deep/start-review-loop.md:107`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:850`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:866`.
 - Not net-new: review rigor/evidence requirements already exist. `.opencode/skills/sk-code-review/references/review_core.md:30`, `.opencode/skills/sk-code-review/references/review_core.md:32`.
 
@@ -33,4 +33,4 @@ VERDICT: DEFER blanket default; ADAPT opt-in/benchmark-gated preset. EFFORT: M. 
 newInfoRatio: 0.48
 novelty: Net-new is the policy pattern: benchmark-gated cheap-model severity passes, not the small-model routing plumbing.
 status: complete
-sources: `external/peck-master/src/assets/agents/implementer.md:10`, `external/peck-master/src/assets/agents/acceptance-reviewer.md:10`, `external/peck-master/src/assets/agents/acceptance-reviewer.md:11`, `external/peck-master/src/assets/agents/code-reviewer.md:10`, `external/peck-master/src/assets/agents/code-reviewer.md:11`, `external/peck-master/src/assets/agents/planner.md:10`, `external/peck-master/benchmarks/models.json:2`, `.opencode/skills/cli-opencode/SKILL.md:247`, `.opencode/skills/sk-prompt-small-model/SKILL.md:200`, `.opencode/commands/deep/start-review-loop.md:107`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:74`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:850`
+sources: `external/peck-master/src/assets/agents/implementer.md:10`, `external/peck-master/src/assets/agents/acceptance-reviewer.md:10`, `external/peck-master/src/assets/agents/acceptance-reviewer.md:11`, `external/peck-master/src/assets/agents/code-reviewer.md:10`, `external/peck-master/src/assets/agents/code-reviewer.md:11`, `external/peck-master/src/assets/agents/planner.md:10`, `external/peck-master/benchmarks/models.json:2`, `.opencode/skills/cli-opencode/SKILL.md:247`, `.opencode/skills/sk-prompt-models/SKILL.md:200`, `.opencode/commands/deep/start-review-loop.md:107`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:74`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:850`

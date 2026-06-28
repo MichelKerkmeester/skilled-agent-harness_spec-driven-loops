@@ -65,7 +65,7 @@ _memory:
 - [x] T006 SKILL.md auth options + pre-flight tree + login template + model selection + override example (`cli-opencode/SKILL.md`)
 - [x] T007 [P] cli-opencode assets: prompt_templates.md MiniMax contract + prompt_quality_card.md (`cli-opencode/assets/`)
 - [x] T008 [P] cli-opencode graph-metadata.json trigger phrases (`cli-opencode/graph-metadata.json`)
-- [x] T009 sk-prompt-small-model: SKILL.md + description.json + pattern-index.md + graph-metadata.json (`sk-prompt-small-model/`)
+- [x] T009 sk-prompt-models: SKILL.md + description.json + pattern-index.md + graph-metadata.json (`sk-prompt-models/`)
 - [x] T010 [P] sk-prompt/assets/cli_prompt_quality_card.md MiniMax alignment (`sk-prompt/assets/cli_prompt_quality_card.md`)
 - [x] T015 [Fix 2] Update 003-benchmark `dispatch-model.cjs` fallback default + `executor-config.vitest.ts` fixture to the token-plan id (`deep-improvement/`, `deep-loop-runtime/`)
 <!-- /ANCHOR:phase-2 -->

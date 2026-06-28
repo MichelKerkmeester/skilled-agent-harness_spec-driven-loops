@@ -121,7 +121,7 @@ Devin runs four model presets. The skill defaults to SWE-1.6 for context gatheri
 | GLM 5.1 | `glm-5.1` | Complex fallback for agentic and tool-use-heavy work when DeepSeek v4 does not fit. |
 | Kimi k2.6 | `kimi-k2.6` | Complex fallback for large-context work. Can hang around 25 minutes on complex fixtures. |
 
-SWE-1.6 needs a caller-side pre-planning block (ordered steps with acceptance criteria) because it is smaller than the complex models. The contract lives in `sk-prompt-small-model/references/models/swe-1.6.md`.
+SWE-1.6 needs a caller-side pre-planning block (ordered steps with acceptance criteria) because it is smaller than the complex models. The contract lives in `sk-prompt-models/references/models/swe-1.6.md`.
 
 ### Local-to-Cloud Handoff
 
@@ -158,7 +158,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|
 | `sk-code` | Owns code standards and verification. cli-devin dispatches the work; sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Devin session back into the caller's spec folder. |
-| `sk-prompt-small-model` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for SWE-1.6 or any profiled model. |
+| `sk-prompt-models` | Owns per-model prompt-craft profiles. Consult it before composing a prompt for SWE-1.6 or any profiled model. |
 
 ---
 

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/pattern_index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/001-model-registration"
@@ -49,7 +49,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown + JSON config (skill metadata) |
-| **Framework** | sk-prompt-small-model + cli-opencode skill surfaces |
+| **Framework** | sk-prompt-models + cli-opencode skill surfaces |
 | **Storage** | None (file-based skill config and routing graph metadata) |
 | **Testing** | Card-sync guard shell, node JSON.parse, advisor routing probe, live smoke dispatch |
 
@@ -105,7 +105,7 @@ Skill-config registration. The two-tier prompt-knowledge layout keeps tables in 
 1. A request names GLM-5.2 (slug or alias).
 2. SKILL.md MODEL_ALIASES resolves the alias to the registry key `glm-5.2`.
 3. model_profiles.json supplies the executor/provider/pool and recommended frameworks.
-4. The skill advisor uses graph-metadata trigger_phrases/key_topics to route the request to sk-prompt-small-model + cli-opencode.
+4. The skill advisor uses graph-metadata trigger_phrases/key_topics to route the request to sk-prompt-models + cli-opencode.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -127,7 +127,7 @@ This is a registration change, not a bug fix. The table tracks the surfaces that
 | cli-opencode prompt_quality_card.md | Model-selection table | Add glm-5.2 row; reconcile legacy glm-5.1 row | card-sync (thin mirror invariant) |
 
 Inventory used during implementation:
-- Same-class producers: `rg -n 'glm-5\.|zai|z\.ai' .opencode/skills/sk-prompt-small-model .opencode/skills/cli-opencode` to find every existing GLM/Z.AI reference (incl. the legacy glm-5.1 row).
+- Same-class producers: `rg -n 'glm-5\.|zai|z\.ai' .opencode/skills/sk-prompt-models .opencode/skills/cli-opencode` to find every existing GLM/Z.AI reference (incl. the legacy glm-5.1 row).
 - Consumers of the alias: confirm a bare `glm` alias resolves to glm-5.2 after the edit.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -153,7 +153,7 @@ Inventory used during implementation:
 ### Phase 3: Verification
 - [ ] Live smoke dispatch returns "pong" at exit 0 (`opencode run --model <provider>/glm-5.2`); record billing/cost
 - [ ] Card-sync guard exit 0 (`check-prompt-quality-card-sync.sh .`); all edited JSON parses clean
-- [ ] Advisor re-indexed (`skill_advisor.py --force-refresh`); routing probe surfaces sk-prompt-small-model + cli-opencode
+- [ ] Advisor re-indexed (`skill_advisor.py --force-refresh`); routing probe surfaces sk-prompt-models + cli-opencode
 - [ ] Write implementation-summary.md and refresh continuity
 <!-- /ANCHOR:phases -->
 

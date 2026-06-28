@@ -15,7 +15,7 @@ The observed misses map cleanly to missing proof fields: no register proof, no f
 
 ## 2. Scope
 
-This lineage researched mechanism design only. It did not modify canonical `sk-design`, `cli-opencode`, `sk-prompt-small-model`, or deep-loop runtime files.
+This lineage researched mechanism design only. It did not modify canonical `sk-design`, `cli-opencode`, `sk-prompt-models`, or deep-loop runtime files.
 
 ## 3. Evidence Base
 
@@ -26,7 +26,7 @@ The strongest source cluster:
 - Interface mode: always loads register and dials, requires pre-flight pass before delivery. [SOURCE: file:.opencode/skills/sk-design/design-interface/SKILL.md:73] [SOURCE: file:.opencode/skills/sk-design/design-interface/SKILL.md:247]
 - Foundations mode: owns color, contrast, tokens, and static systems. [SOURCE: file:.opencode/skills/sk-design/design-foundations/SKILL.md:23] [SOURCE: file:.opencode/skills/sk-design/design-foundations/SKILL.md:270]
 - Audit mode: owns evidence-backed findings, severity, five-dimension score, and evidence limits. [SOURCE: file:.opencode/skills/sk-design/design-audit/SKILL.md:267] [SOURCE: file:.opencode/skills/sk-design/design-audit/references/audit_contract.md:61]
-- MiniMax-M3 profile: TIDD-EC plus dense pre-plan overrides generic CLI defaults. [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:56]
+- MiniMax-M3 profile: TIDD-EC plus dense pre-plan overrides generic CLI defaults. [SOURCE: file:.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:56]
 - Fan-out runtime: isolated lineages and merge attribution; promotion gates are separate. [SOURCE: file:.opencode/skills/deep-loop-runtime/SKILL.md:170] [SOURCE: file:.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/fanout-merge.md:21]
 
 ## 4. Diagnosis
@@ -148,11 +148,11 @@ Every dispatched agent doing design/UI work should receive:
 - Verification expectation.
 - "Do not claim ready/accessibility/release unless proof fields are complete."
 
-This aligns with `cli-opencode` requiring the spec folder in non-interactive dispatch and the CLI prompt card requiring clear task, constraints, output and verification. [SOURCE: file:.opencode/skills/cli-opencode/SKILL.md:318] [SOURCE: file:.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md:70]
+This aligns with `cli-opencode` requiring the spec folder in non-interactive dispatch and the CLI prompt card requiring clear task, constraints, output and verification. [SOURCE: file:.opencode/skills/cli-opencode/SKILL.md:318] [SOURCE: file:.opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md:70]
 
 ## 11. MiniMax-M3 Dispatch Contract
 
-MiniMax-M3 should not receive a generic frontier-model prompt. Its profile says TIDD-EC plus dense pre-planning is the primary contract, with RCAF fallback. [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:56]
+MiniMax-M3 should not receive a generic frontier-model prompt. Its profile says TIDD-EC plus dense pre-planning is the primary contract, with RCAF fallback. [SOURCE: file:.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:56]
 
 Recommended MiniMax-specific additions:
 
@@ -250,7 +250,7 @@ Proposed artifacts for a later implementation packet:
 | Interface-only routing for UI builds | Interface itself requires register, dials, real UI loop, pre-flight and quality floor. | [SOURCE: file:.opencode/skills/sk-design/design-interface/SKILL.md:247] | 1, 5 |
 | Late contrast audit | Contrast repair starts from actual foreground/background pairs and measured thresholds. | [SOURCE: file:.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md:60] | 2 |
 | Ad-hoc audit prose | Audit requires evidence labels, severity, scoring, impact, fix and owner. | [SOURCE: file:.opencode/skills/sk-design/design-audit/references/audit_contract.md:61] | 3 |
-| Thin MiniMax delegation | MiniMax-M3 has a profiled prompt contract that overrides generic defaults. | [SOURCE: file:.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md:87] | 4 |
+| Thin MiniMax delegation | MiniMax-M3 has a profiled prompt contract that overrides generic defaults. | [SOURCE: file:.opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md:87] | 4 |
 | Automatic adoption from lineage output | Fan-out merge preserves attribution; promotion/adoption needs separate gates. | [SOURCE: file:.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md:22] | 6 |
 
 ## 17. Open Questions
@@ -294,9 +294,9 @@ Two implementation details remain for a later packet:
 - `.opencode/skills/sk-design/design-audit/references/accessibility_performance.md`
 - `.opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md`
 - `.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md`
-- `.opencode/skills/sk-prompt-small-model/SKILL.md`
-- `.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`
-- `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/SKILL.md`
+- `.opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md`
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
 - `.opencode/skills/cli-opencode/SKILL.md`
 - `.opencode/skills/cli-opencode/assets/prompt_templates.md`
 - `.opencode/skills/deep-loop-runtime/SKILL.md`
@@ -315,6 +315,6 @@ This synthesis is grounded in inline `source:` markers throughout sections 3-14 
 - `.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md`
 - `.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md`
 - `.opencode/skills/sk-design/design-audit/references/audit_contract.md`
-- `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
 - `.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/fanout-merge.md`
 <!-- /ANCHOR:sources -->

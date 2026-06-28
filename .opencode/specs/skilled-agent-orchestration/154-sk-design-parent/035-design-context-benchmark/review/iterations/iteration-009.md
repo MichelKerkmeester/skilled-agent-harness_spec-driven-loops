@@ -13,7 +13,7 @@ Security and path-guard posture: check whether new dispatch guidance preserves m
 
 ### F-005 - P1 - MiniMax manual scenario weakens path-guard posture and contradicts model profile guidance
 
-Hypothesis confirmed. The MiniMax profile says `variant_status: "omitted-by-default-historically"` and to omit `--variant` until accepted behavior is verified at `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:205`. It also says not to pass `--agent` at `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:206`.
+Hypothesis confirmed. The MiniMax profile says `variant_status: "omitted-by-default-historically"` and to omit `--variant` until accepted behavior is verified at `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:205`. It also says not to pass `--agent` at `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:206`.
 
 The CO-037 manual test command uses `--variant high` and `--dangerously-skip-permissions` in the same live dispatch command at `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md:50`.
 

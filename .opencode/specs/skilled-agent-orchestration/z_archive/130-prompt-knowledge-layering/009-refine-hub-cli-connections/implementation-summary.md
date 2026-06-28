@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/scripts/git-hooks/pre-commit"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 3-layer prompt-knowledge architecture (sk-prompt → sk-prompt-small-model → cli-*) shipped in phases 001–008 had drifted at its seams. This phase closes the full C1–C10 backlog the 5-iteration deep research found, and — the keystone — makes the structure self-enforcing so it cannot drift again.
+The 3-layer prompt-knowledge architecture (sk-prompt → sk-prompt-models → cli-*) shipped in phases 001–008 had drifted at its seams. This phase closes the full C1–C10 backlog the 5-iteration deep research found, and — the keystone — makes the structure self-enforcing so it cannot drift again.
 
 ### The escalation rule is now pointer-only (C1, C2)
 All five `cli-*/SKILL.md` Tier-3 deep-path bullets are now byte-identical pointers to the canonical card; the inlined trigger list (which had drifted in 4 of 5, dropping "policy" and "or audience") is gone. cli-devin also drops its inline RCAF/STAR/BUILD framework-choice restatement, keeping the "OWNED by the profile" pointer.
@@ -73,15 +73,15 @@ The `mimo-v2.5-pro` and `minimax-m3` profiles drop their embedded `opencode run`
 | File | Action | Purpose |
 |------|--------|---------|
 | `cli-{opencode,codex,gemini,claude-code,devin}/SKILL.md` | Modified | C1: Tier-3 → canonical-card pointer (+ C2 in cli-devin); version bump |
-| `sk-prompt-small-model/SKILL.md` | Modified | C3 STAR relabel + C8 §3 pointer; version 0.6.1.0 |
-| `sk-prompt-small-model/references/models/swe-1.6.md` | Modified | C3: fallback=null prose; STAR template relabeled |
-| `sk-prompt-small-model/references/models/_index.md` | Modified | C4: swe-1.6 fallback column |
-| `sk-prompt-small-model/references/models/{mimo-v2.5-pro,minimax-m3}.md` | Modified | C5: wrapper → rule + pointer |
-| `sk-prompt-small-model/references/models/{deepseek-v4-pro,kimi-k2.6,qwen3.6,glm-5.1}.md` | Modified | C6: card↔profile back-links |
+| `sk-prompt-models/SKILL.md` | Modified | C3 STAR relabel + C8 §3 pointer; version 0.6.1.0 |
+| `sk-prompt-models/references/models/swe-1.6.md` | Modified | C3: fallback=null prose; STAR template relabeled |
+| `sk-prompt-models/references/models/_index.md` | Modified | C4: swe-1.6 fallback column |
+| `sk-prompt-models/references/models/{mimo-v2.5-pro,minimax-m3}.md` | Modified | C5: wrapper → rule + pointer |
+| `sk-prompt-models/references/models/{deepseek-v4-pro,kimi-k2.6,qwen3.6,glm-5.1}.md` | Modified | C6: card↔profile back-links |
 | `cli-opencode/assets/prompt_quality_card.md` | Modified | C6: per-model cluster links |
 | `cli-opencode/graph-metadata.json` | Modified | C7: deepseek/kimi/qwen/glm triggers |
-| `sk-prompt-small-model/references/pattern-index.md` | Modified | C8: canonical new-provider checklist |
-| `sk-prompt-small-model/graph-metadata.json` | Modified | C10: causal_summary/intent_signals/enhances/last_updated refresh |
+| `sk-prompt-models/references/pattern-index.md` | Modified | C8: canonical new-provider checklist |
+| `sk-prompt-models/graph-metadata.json` | Modified | C10: causal_summary/intent_signals/enhances/last_updated refresh |
 | `system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh` | Modified | C9: + CHECK 2/3/4 |
 | `.opencode/scripts/git-hooks/pre-commit` | Modified | C9: blocking card-sync gate |
 | `.github/workflows/prompt-card-sync.yml` | Created | C9: CI enforcement |

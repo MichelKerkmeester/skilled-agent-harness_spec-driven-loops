@@ -2,35 +2,35 @@ I’ll keep this read-only and verify links from each file’s own directory, th
 The review scope is narrow and read-only, but the file set spans multiple relative-depth roots. I’ll first enumerate the exact target files, then use a deterministic link-resolution pass and spot-read any suspect lines before reporting.
 I found the target files under `.opencode/skills/` only; no `.agents/skills/cli-*` or `.agents/skills/sk-prompt` copies are present for this scope. Next I’m resolving markdown links with line numbers and narrowing the `SKILL.md` checks to the stated precedence blocks.
 The `SKILL.md` precedence block in each CLI file starts at the “Prompt construction & model-craft” rule; for CLI Devin there are additional SWE-1.6 profile links outside that block, so I’ll keep the formal findings to the requested block scope unless the same target is also referenced inside scoped files.
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:144` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:144` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:145` `../../cli-opencode/assets/prompt_quality_card.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_quality_card.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:145` `../../cli-opencode/assets/prompt_quality_card.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_quality_card.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md:164` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md:164` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md:165` `../../cli-opencode/assets/prompt_quality_card.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_quality_card.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md:165` `../../cli-opencode/assets/prompt_quality_card.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_quality_card.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md:11` `../../../../cli-devin/SKILL.md` resolves to missing `.opencode/cli-devin/SKILL.md`; change to `../../../cli-devin/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md:11` `../../../../cli-devin/SKILL.md` resolves to missing `.opencode/cli-devin/SKILL.md`; change to `../../../cli-devin/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md:11` `../../../../cli-opencode/SKILL.md` resolves to missing `.opencode/cli-opencode/SKILL.md`; change to `../../../cli-opencode/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md:11` `../../../../cli-opencode/SKILL.md` resolves to missing `.opencode/cli-opencode/SKILL.md`; change to `../../../cli-opencode/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md:150` `../../../../cli-devin/SKILL.md` resolves to missing `.opencode/cli-devin/SKILL.md`; change to `../../../cli-devin/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md:150` `../../../../cli-devin/SKILL.md` resolves to missing `.opencode/cli-devin/SKILL.md`; change to `../../../cli-devin/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md:151` `../../../../cli-opencode/SKILL.md` resolves to missing `.opencode/cli-opencode/SKILL.md`; change to `../../../cli-opencode/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md:151` `../../../../cli-opencode/SKILL.md` resolves to missing `.opencode/cli-opencode/SKILL.md`; change to `../../../cli-opencode/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md:141` `../../cli-devin/SKILL.md` resolves to a missing `sk-prompt-small-model/cli-devin/...`; change to `../../../cli-devin/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md:141` `../../cli-devin/SKILL.md` resolves to a missing `sk-prompt-models/cli-devin/...`; change to `../../../cli-devin/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md:142` `../../cli-opencode/SKILL.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md:142` `../../cli-opencode/SKILL.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md:143` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md:143` `../../cli-opencode/assets/prompt_templates.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/assets/prompt_templates.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md:126` `../../cli-devin/SKILL.md` resolves to a missing `sk-prompt-small-model/cli-devin/...`; change to `../../../cli-devin/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/glm-5.1.md:126` `../../cli-devin/SKILL.md` resolves to a missing `sk-prompt-models/cli-devin/...`; change to `../../../cli-devin/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md:127` `../../cli-opencode/SKILL.md` resolves to a missing `sk-prompt-small-model/cli-opencode/...`; change to `../../../cli-opencode/SKILL.md`.
+[P0] `.opencode/skills/sk-prompt-models/references/models/glm-5.1.md:127` `../../cli-opencode/SKILL.md` resolves to a missing `sk-prompt-models/cli-opencode/...`; change to `../../../cli-opencode/SKILL.md`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/pattern-index.md:43` `../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts` does not exist; change to `../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`.
+[P0] `.opencode/skills/sk-prompt-models/references/pattern-index.md:43` `../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts` does not exist; change to `../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`.
 
-[P0] `.opencode/skills/sk-prompt-small-model/references/pattern-index.md:46` `../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts` does not exist; change to `../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`.
+[P0] `.opencode/skills/sk-prompt-models/references/pattern-index.md:46` `../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts` does not exist; change to `../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`.
 
 [OK] All checked `cli-*/assets/prompt_quality_card.md`, scoped `cli-*/SKILL.md` precedence-block links, and `sk-prompt/assets/cli_prompt_quality_card.md` relative markdown links resolved.
 

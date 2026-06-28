@@ -1,7 +1,7 @@
 {
   "findings": [
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "swe-1.6 executors[0]",
       "evidence": "10-18",
       "editType": "decision",
@@ -13,7 +13,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "deepseek-v4-pro cli-devin row",
       "evidence": "57-64",
       "editType": "delete-map-entry",
@@ -25,7 +25,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "kimi-k2.6 cli-devin row",
       "evidence": "117-123",
       "editType": "delete-map-entry",
@@ -37,7 +37,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "glm-5.1 cli-devin row",
       "evidence": "216-222",
       "editType": "delete-map-entry",
@@ -49,7 +49,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "path": ".opencode/skills/sk-prompt-models/SKILL.md",
       "symbol": "desc/when-use/aliases/matrix/boundary/resources/keywords",
       "evidence": "3,8,21-22,51,67,103,201-212,216,237,258-264,274,281",
       "editType": "multi inline+delete",
@@ -61,7 +61,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "path": ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "symbol": "enhances[0]/related_to[0]/causal_summary/trigger_phrases",
       "evidence": "9-13,27,128,+trigger_phrases",
       "editType": "delete-entry+inline",
@@ -73,7 +73,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/swe-1.6.md",
       "symbol": "entire file",
       "evidence": "1-244",
       "editType": "decision",
@@ -85,7 +85,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md",
       "symbol": "executor rows + cross-links",
       "evidence": "40,149,155,168,172",
       "editType": "inline-edit",
@@ -97,7 +97,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md",
       "symbol": "executor path A + cross-links",
       "evidence": "40,138,143,153,158",
       "editType": "inline-edit",
@@ -109,7 +109,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.1.md",
       "symbol": "executor row + cross-links",
       "evidence": "40,117,129,139",
       "editType": "inline-edit",
@@ -121,7 +121,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
       "symbol": "swe-1.6 ACTIVE row",
       "evidence": "20",
       "editType": "delete-map-entry",
@@ -133,7 +133,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "path": ".opencode/skills/sk-prompt-models/references/pattern-index.md",
       "symbol": "ownership row + adopt-provider step",
       "evidence": "56,75",
       "editType": "delete+inline",
@@ -145,7 +145,7 @@
       "verified": true
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/README.md",
+      "path": ".opencode/skills/sk-prompt-models/README.md",
       "symbol": "works-on/trigger_phrases/framework-map/boundary",
       "evidence": "7,25,90,128",
       "editType": "inline+delete",

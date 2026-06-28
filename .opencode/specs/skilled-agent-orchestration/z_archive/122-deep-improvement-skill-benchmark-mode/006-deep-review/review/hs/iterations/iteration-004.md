@@ -39,7 +39,7 @@ The following are **intentional legacy aliases** kept per design, confirmed corr
 | Codex registry | `.codex/config.toml:21–23` | ✅ `[agents.deep-improvement]` |
 | Lane B penalty target | `explicit.ts:130` | ✅ penalty to `deep-improvement` (not old alias) |
 | Command skill | `.opencode/commands/` | ✅ No `deep-agent-improvement` refs |
-| Sentinel | `sk-prompt-small-model/` | ✅ No refs |
+| Sentinel | `sk-prompt-models/` | ✅ No refs |
 | Runtime mirrors | 4 agent mirrors | ✅ All renamed |
 
 ---

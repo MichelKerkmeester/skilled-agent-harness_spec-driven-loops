@@ -51,7 +51,7 @@ The sk-prompt README now opens with a human pitch and an at-a-glance table, expl
 
 ### Narrative rewrite
 
-HOW IT WORKS covers framework selection (scoring against task characteristics), the DEPTH phases (Discover, Engineer, Prototype, Test, Harmonize), the CLEAR rubric (Correctness 10, Logic 10, Expression 15, Arrangement 10, Reusability 5, pass at 40 with per-dimension floors) and the operating modes (interactive, text, short, improve, refine, json, yaml, raw). INTEGRATION states the boundary with sk-prompt-small-model (which chooses which framework a small model wants) and the cli-X executors (mechanics). It is 220 lines and HVR-clean in prose.
+HOW IT WORKS covers framework selection (scoring against task characteristics), the DEPTH phases (Discover, Engineer, Prototype, Test, Harmonize), the CLEAR rubric (Correctness 10, Logic 10, Expression 15, Arrangement 10, Reusability 5, pass at 40 with per-dimension floors) and the operating modes (interactive, text, short, improve, refine, json, yaml, raw). INTEGRATION states the boundary with sk-prompt-models (which chooses which framework a small model wants) and the cli-X executors (mechanics). It is 220 lines and HVR-clean in prose.
 
 ### Corrections
 

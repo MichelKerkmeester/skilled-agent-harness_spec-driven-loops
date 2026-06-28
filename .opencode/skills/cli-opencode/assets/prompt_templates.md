@@ -50,7 +50,7 @@ Success criteria:
 - <list>
 
 Budget awareness:
-- Apply `../references/context-budget.md`; canonical semantics live in `../../sk-prompt-small-model/references/context_budget.md`.
+- Apply `../references/context-budget.md`; canonical semantics live in `../../sk-prompt-models/references/context_budget.md`.
 - When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
 - Treat truncation markers as intentional boundaries; do not infer missing evidence.
 
@@ -528,7 +528,7 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 - Acceptance criteria (what "done" means)
 ```
 
-**Why**: TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope/format drift more than RCAF's role anchor (0.767 vs 0.742), and MiniMax uses dense plan structure rather than being slowed by it (0.775 dense vs 0.767 medium) — the opposite of SWE-1.6. Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/synthesis.md`.
+**Why**: TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope/format drift more than RCAF's role anchor (0.767 vs 0.742), and MiniMax uses dense plan structure rather than being slowed by it (0.775 dense vs 0.767 medium) — the opposite of SWE-1.6. Evidence: `.opencode/skills/sk-prompt-models/benchmarks/003-minimax-prompt-framework/eval-loop/synthesis.md`.
 
 ---
 
@@ -562,7 +562,7 @@ opencode run \
 
 **Prompt scaffold (COSTAR — empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing — it ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
 
-**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe) and the Xiaomi Direct API; the default skill model stays `deepseek/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/004-mimo-prompt-framework/eval/synthesis.md`.
+**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe) and the Xiaomi Direct API; the default skill model stays `deepseek/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-models/benchmarks/004-mimo-prompt-framework/eval/synthesis.md`.
 
 ---
 
@@ -572,7 +572,7 @@ opencode run \
 **Agent:** `general`, `write`, or a design-capable leaf agent
 **Use case:** 1 or 3
 
-Use this for delegated UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. The dispatched agent must load `sk-design` with the right mode bundle before any design decision. For MiniMax-M3 or other small-model dispatches, pair this contract with the model profile variant in `../../sk-prompt-small-model/references/models/minimax-m3.md`.
+Use this for delegated UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. The dispatched agent must load `sk-design` with the right mode bundle before any design decision. For MiniMax-M3 or other small-model dispatches, pair this contract with the model profile variant in `../../sk-prompt-models/references/models/minimax-m3.md`.
 
 ```text
 You are dispatching a design/UI task through cli-opencode.

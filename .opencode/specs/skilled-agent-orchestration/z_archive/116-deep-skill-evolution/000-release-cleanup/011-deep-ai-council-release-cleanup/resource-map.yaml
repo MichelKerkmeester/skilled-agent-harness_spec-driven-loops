@@ -39,7 +39,7 @@ anchors:
   structural_anchor:  .opencode/skills/system-spec-kit/README.md       # section pattern (phase 3 README)
   hvr_rules:          .opencode/skills/sk-doc/references/global/hvr_rules.md
   cli_devin_skill:    .opencode/skills/cli-devin/SKILL.md              # phase 5 dispatch contract (mandatory read)
-  small_model_skill:  .opencode/skills/sk-prompt-small-model/SKILL.md  # phase 5 SWE-1.6 dispatch (mandatory read)
+  small_model_skill:  .opencode/skills/sk-prompt-models/SKILL.md  # phase 5 SWE-1.6 dispatch (mandatory read)
 
 summary:
   total_skill_artifacts: 101   # +1 FEATURE_CATALOG.md authored in phase 2 (AF-0002)

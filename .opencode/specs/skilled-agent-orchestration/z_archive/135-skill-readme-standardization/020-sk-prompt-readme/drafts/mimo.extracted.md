@@ -151,15 +151,15 @@ Reach for sk-prompt when you need to enhance a vague or under-specified prompt, 
 
 ### Boundaries With Sibling Skills
 
-sk-prompt owns the generic framework definitions, the DEPTH methodology and the CLEAR rubric. It does not own the per-model dispatch choice: `sk-prompt-small-model` decides which of these seven frameworks a given small model (MiniMax, MiMo, Kimi, Qwen and others) wants, and adds the model-specific scaffold and gotchas. The cli-X skills (`cli-codex`, `cli-claude-code`, `cli-devin`, `cli-opencode`) own the executor mechanics for invoking models from the terminal.
+sk-prompt owns the generic framework definitions, the DEPTH methodology and the CLEAR rubric. It does not own the per-model dispatch choice: `sk-prompt-models` decides which of these seven frameworks a given small model (MiniMax, MiMo, Kimi, Qwen and others) wants, and adds the model-specific scaffold and gotchas. The cli-X skills (`cli-codex`, `cli-claude-code`, `cli-devin`, `cli-opencode`) own the executor mechanics for invoking models from the terminal.
 
-In short: sk-prompt defines what RCAF or TIDD-EC is and how to score a prompt. `sk-prompt-small-model` decides which one a specific small model should use. The cli-X skills handle the actual dispatch.
+In short: sk-prompt defines what RCAF or TIDD-EC is and how to score a prompt. `sk-prompt-models` decides which one a specific small model should use. The cli-X skills handle the actual dispatch.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt-small-model` | Chooses which framework a small model wants and adds model-specific scaffolds |
+| `sk-prompt-models` | Chooses which framework a small model wants and adds model-specific scaffolds |
 | `sk-doc` | Owns documentation outputs; sk-prompt enhances the prompts that produce them |
 | `sk-code` | Owns code generation and tests; sk-prompt enhances the prompts that drive them |
 | `cli-codex` | Executor mechanics for Codex CLI dispatch |
@@ -197,9 +197,9 @@ A: The skill suggests three options: run an additional refinement round, switch 
 
 A: No. sk-prompt has an intent-preservation check. It restructures and enhances your prompt but flags any assumptions it made in the transparency report. You review and accept before sending.
 
-**Q: What is the difference between sk-prompt and sk-prompt-small-model?**
+**Q: What is the difference between sk-prompt and sk-prompt-models?**
 
-A: sk-prompt defines the seven frameworks, the DEPTH methodology and the CLEAR rubric. `sk-prompt-small-model` decides which of those frameworks a specific small model (like MiniMax or MiMo) should use and adds the model-specific scaffold and gotchas for dispatch.
+A: sk-prompt defines the seven frameworks, the DEPTH methodology and the CLEAR rubric. `sk-prompt-models` decides which of those frameworks a specific small model (like MiniMax or MiMo) should use and adds the model-specific scaffold and gotchas for dispatch.
 
 ---
 

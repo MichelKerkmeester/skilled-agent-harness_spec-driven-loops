@@ -44,7 +44,7 @@ This phase independently stress-tests the 029 research and the 030 context-loadi
 
 **Key Decisions**: observation-only (no edits to 029/030 or the live skills); the benchmark scores a fixed 6-criterion rubric per model×condition.
 
-**Critical Dependencies**: the 029/030 deliverables (review target), the live `sk-design`/`cli-opencode`/`sk-prompt-small-model` contract, and the Kimi/MiniMax transports.
+**Critical Dependencies**: the 029/030 deliverables (review target), the live `sk-design`/`cli-opencode`/`sk-prompt-models` contract, and the Kimi/MiniMax transports.
 <!-- /ANCHOR:executive-summary -->
 
 ---

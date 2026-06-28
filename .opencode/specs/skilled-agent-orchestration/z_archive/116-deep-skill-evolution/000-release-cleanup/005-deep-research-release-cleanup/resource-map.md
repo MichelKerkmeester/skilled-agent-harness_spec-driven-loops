@@ -90,7 +90,7 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 | `.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md` | Cited | OK | Playbook standards |
 | `.opencode/skills/cli-devin/SKILL.md` | Cited | OK | Phase 5 RCAF + medium-density rule (line 192) |
 | `.opencode/skills/cli-opencode/SKILL.md` | Cited | OK | Phase 5 deepseek provider routing (line 240) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Cited | OK | Small-model dispatch sentinel |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Cited | OK | Small-model dispatch sentinel |
 | `.opencode/skills/sk-prompt/SKILL.md` | Cited | OK | Prompt-composition skill (RCAF/CLEAR) |
 <!-- /ANCHOR:documents -->
 

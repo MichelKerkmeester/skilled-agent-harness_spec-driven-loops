@@ -60,7 +60,7 @@
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
       "spec.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
       ".opencode/skills/sk-prompt/SKILL.md",
       "research/iterations/iter-01-cli-devin.json"
     ],
@@ -170,7 +170,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {

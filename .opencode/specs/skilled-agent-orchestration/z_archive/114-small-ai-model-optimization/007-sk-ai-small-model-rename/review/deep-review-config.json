@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-models-rename",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename",
-  "artifactDir": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/review",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-models-rename",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-models-rename/review",
   "maxIterations": 109,
   "convergenceThreshold": 0.15,
   "convergenceConsecutive": 3,

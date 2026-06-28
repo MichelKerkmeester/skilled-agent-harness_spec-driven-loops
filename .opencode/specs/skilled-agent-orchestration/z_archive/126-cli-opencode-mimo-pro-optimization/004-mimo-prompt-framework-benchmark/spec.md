@@ -81,7 +81,7 @@ Benchmark candidate prompt frameworks (RCAF, RACE, CIDI, TIDD-EC, COSTAR) on rea
 - Stand up (or reuse) an eval rig with coding fixtures + a deterministic checks + grader harness, parameterized for the `xiaomi-token-plan-ams/mimo-v2.5-pro` dispatch.
 - Seed framework variants (RCAF/RACE/CIDI/TIDD-EC/COSTAR) + a small pre-planning-density hill-climb.
 - Run real MiMo dispatches (or a reduced-fixture subset for cost), score, and write `synthesis.md` with the ranking + winner + key findings + caveats.
-- Integrate the winner into `cli-opencode/assets/prompt_templates.md` (MiMo template), `prompt_quality_card.md` (per-model override), and `sk-prompt-small-model/references/pattern-index.md`.
+- Integrate the winner into `cli-opencode/assets/prompt_templates.md` (MiMo template), `prompt_quality_card.md` (per-model override), and `sk-prompt-models/references/pattern-index.md`.
 
 ### Out of Scope
 - Re-deriving the benchmark harness from scratch if Lane B / the `120/003` rig can be reused.
@@ -95,7 +95,7 @@ Benchmark candidate prompt frameworks (RCAF, RACE, CIDI, TIDD-EC, COSTAR) on rea
 | `004-.../eval-rig/**`, `eval-loop/**` | Create | Fixtures, variants, scorer, run state, `synthesis.md` |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modify | MiMo template → winning framework |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | MiMo per-model override → winning framework |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modify | MiMo prompt-framework row |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modify | MiMo prompt-framework row |
 | `.opencode/skills/sk-prompt/assets/model-profiles.json` | Modify | MiMo strengths note → responds best to <winner> |
 <!-- /ANCHOR:scope -->
 

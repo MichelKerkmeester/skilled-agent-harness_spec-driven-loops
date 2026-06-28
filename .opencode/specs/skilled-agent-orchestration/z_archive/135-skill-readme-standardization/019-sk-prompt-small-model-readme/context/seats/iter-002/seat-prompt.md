@@ -1,8 +1,8 @@
-Spec folder: skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
+Spec folder: skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
 
-Role: You are verifying exact facts about the `.opencode/skills/sk-prompt-small-model/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.
+Role: You are verifying exact facts about the `.opencode/skills/sk-prompt-models/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.
 
-Context: Read `.opencode/skills/sk-prompt-small-model/SKILL.md` in full, its current `README.md`, the `references/models/` profiles, `references/pattern-index.md`, `assets/cli_prompt_quality_card.md`, `assets/model-profiles.json` and the `benchmarks/` tree. Verify against real file contents, not memory. This skill is the per-model prompt-craft hub for small-model dispatch.
+Context: Read `.opencode/skills/sk-prompt-models/SKILL.md` in full, its current `README.md`, the `references/models/` profiles, `references/pattern-index.md`, `assets/cli_prompt_quality_card.md`, `assets/model-profiles.json` and the `benchmarks/` tree. Verify against real file contents, not memory. This skill is the per-model prompt-craft hub for small-model dispatch.
 
 Action: Report under exactly these six headings, every claim cited to a real file path:
 

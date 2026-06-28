@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Card-sync guard + tree-wide strict validate close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/_index.md"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/references/models/_index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/003-promote-results"
@@ -58,7 +58,7 @@ _memory:
 
 ### Built: promote the bakeoff-006 finding into the registry
 
-The phase edited the `kimi-k2.7-code.recommended_frameworks` block in `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json`: it **kept** `primary: "rcaf"` and `preplanning_density: "medium"`, **kept** `status: "default-unverified"` (NOT flipped to empirical, because the verdict was a saturated TIE — no framework won), and **populated** `evidence.benchmark = "006-kimi-k2.7-prompt-framework"` plus a `sample` string describing the TIE/saturation and the subjective secondary ranking. It then rewrote §1 Core Principle, §3 (Recommended Framework), and §4 (Benchmark Evidence) of `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md` to report the TIE/saturated result, the subjective secondary judge ranking with its caveat, and the conclusion that framework choice does not affect correctness for this model so RCAF is retained. The sibling `_index.md` status note was updated to "default-unverified (bakeoff 006: TIE, correctness-saturated)". Finally the parent `spec.md` phase map flipped phases 2 + 3 to Complete.
+The phase edited the `kimi-k2.7-code.recommended_frameworks` block in `.opencode/skills/sk-prompt-models/assets/model-profiles.json`: it **kept** `primary: "rcaf"` and `preplanning_density: "medium"`, **kept** `status: "default-unverified"` (NOT flipped to empirical, because the verdict was a saturated TIE — no framework won), and **populated** `evidence.benchmark = "006-kimi-k2.7-prompt-framework"` plus a `sample` string describing the TIE/saturation and the subjective secondary ranking. It then rewrote §1 Core Principle, §3 (Recommended Framework), and §4 (Benchmark Evidence) of `.opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md` to report the TIE/saturated result, the subjective secondary judge ranking with its caveat, and the conclusion that framework choice does not affect correctness for this model so RCAF is retained. The sibling `_index.md` status note was updated to "default-unverified (bakeoff 006: TIE, correctness-saturated)". Finally the parent `spec.md` phase map flipped phases 2 + 3 to Complete.
 
 ### Files Changed
 

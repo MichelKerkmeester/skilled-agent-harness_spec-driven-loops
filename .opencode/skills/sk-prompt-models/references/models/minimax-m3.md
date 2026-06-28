@@ -196,7 +196,7 @@ Output shape: a `<pre-plan>` block, then the Design Manifest, then the Context L
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
+Source of truth for capability fields: [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
@@ -216,8 +216,8 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 ## 7. SEE ALSO
 
-- [`../../../sk-prompt-small-model/assets/model_profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
+- [`../../../sk-prompt-models/assets/model_profiles.json#minimax-m3`](../../../sk-prompt-models/assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
 - [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
-- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow, dispatch matrix, escalation rules
+- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-models hub workflow, dispatch matrix, escalation rules

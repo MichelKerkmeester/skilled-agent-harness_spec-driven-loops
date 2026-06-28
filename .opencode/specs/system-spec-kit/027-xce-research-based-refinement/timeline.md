@@ -108,7 +108,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-18 15:10  born:2026-06-17  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
 2026-06-18 15:10  born:2026-06-16        005-verification-and-remediation/005-fresh-regression-remediation
 2026-06-18 15:10  born:2026-06-14        002-memory-store-and-search
-2026-06-18 15:10  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
+2026-06-18 15:10  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models
 2026-06-18 15:10  born:2026-06-11        000-release-cleanup/009-skill-frontmatter-alignment
 2026-06-18 15:10  born:2026-06-10        000-release-cleanup
 2026-06-18 10:24  born:??????????        005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server
@@ -326,7 +326,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` | impl | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog/002-memory-store-and-search/changelog-002-015-retrieval-gating-and-recall-recovery.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation` |  | [changelog-005-005-fresh-regression-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-005-fresh-regression-remediation-root.md) |
 | `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | [changelog-000-009-019-sk-prompt-small-model.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-small-model.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models` | impl | [changelog-000-009-019-sk-prompt-models.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-models.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
 | `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
 | `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server` |  | (none) |

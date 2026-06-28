@@ -47,10 +47,10 @@
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/cli-opencode/changelog/v1.3.5.0.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/description.json",
-      ".opencode/skills/sk-prompt-small-model/README.md",
-      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/description.json",
+      ".opencode/skills/sk-prompt-models/README.md",
+      ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -97,13 +97,13 @@
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/description.json",
+        "path": ".opencode/skills/sk-prompt-models/description.json",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/README.md",
+        "path": ".opencode/skills/sk-prompt-models/README.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-small-model` sentinel never names it",
+    "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-models` sentinel never names it",
     "created_at": "2026-06-01T20:21:29.317Z",
     "last_save_at": "2026-06-23T03:49:51.487Z",
     "save_lineage": "graph_only",

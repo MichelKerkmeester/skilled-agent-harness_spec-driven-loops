@@ -36,7 +36,7 @@ The skill is activated via Gate 2 skill routing when prompt-engineering intent i
 
 ## 6. BOUNDARIES
 
-This skill owns the **generic framework definitions** (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), the DEPTH methodology, and CLEAR scoring. It does **not** own per-model dispatch — that belongs to `sk-prompt-small-model`, which selects a model-specific framework subset, prompt scaffold, and model profile from this engine's library before handing off to a CLI executor. It does **not** own executor mechanics — the `cli-*` skills (claude-code, codex, devin, opencode) consume the output but handle their own binary invocation. It does **not** own code generation (use `sk-code`), documentation authoring (use `sk-doc`), or code review (use `sk-code-review`). The `@prompt-improver` agent is a leaf-only escalation surface that loads this skill's references; it does not own independent logic.
+This skill owns the **generic framework definitions** (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), the DEPTH methodology, and CLEAR scoring. It does **not** own per-model dispatch — that belongs to `sk-prompt-models`, which selects a model-specific framework subset, prompt scaffold, and model profile from this engine's library before handing off to a CLI executor. It does **not** own executor mechanics — the `cli-*` skills (claude-code, codex, devin, opencode) consume the output but handle their own binary invocation. It does **not** own code generation (use `sk-code`), documentation authoring (use `sk-doc`), or code review (use `sk-code-review`). The `@prompt-improver` agent is a leaf-only escalation surface that loads this skill's references; it does not own independent logic.
 
 ## 7. TROUBLESHOOTING & FAQ MATERIAL
 

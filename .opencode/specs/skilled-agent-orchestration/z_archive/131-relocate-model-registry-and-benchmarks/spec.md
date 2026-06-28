@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/spec.md]"
-description: "Relocates model-profiles.json and all benchmark run-data from scattered spec sub-phases into sk-prompt-small-model as a single authoritative hub, strips sk-prompt of small-model coupling so it can be forked as a generic framework engine, and routes deep-improvement model-benchmark outputs exclusively to the hub."
+title: "Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/spec.md]"
+description: "Relocates model-profiles.json and all benchmark run-data from scattered spec sub-phases into sk-prompt-models as a single authoritative hub, strips sk-prompt of small-model coupling so it can be forked as a generic framework engine, and routes deep-improvement model-benchmark outputs exclusively to the hub."
 trigger_phrases:
   - "relocate model registry"
   - "model-profiles.json hub"
@@ -19,8 +19,8 @@ _memory:
     next_safe_action: "Spec complete — no further action required"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/benchmarks/"
       - ".opencode/skills/deep-improvement/SKILL.md"
       - ".opencode/skills/sk-prompt/SKILL.md"
     session_dedup:
@@ -32,7 +32,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
+# Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -40,7 +40,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The model registry (`model-profiles.json`) and all historical benchmark run-data lived in multiple locations — primarily inside sk-prompt and across six spec sub-phase folders — creating fragmented, hard-to-maintain state. This work consolidates the registry into `sk-prompt-small-model/assets/`, moves all benchmark outputs to `sk-prompt-small-model/benchmarks/`, strips sk-prompt of every small-model reference so it becomes a generic forkable framework engine, and locks deep-improvement's model-benchmark command to write exclusively to the hub.
+The model registry (`model-profiles.json`) and all historical benchmark run-data lived in multiple locations — primarily inside sk-prompt and across six spec sub-phase folders — creating fragmented, hard-to-maintain state. This work consolidates the registry into `sk-prompt-models/assets/`, moves all benchmark outputs to `sk-prompt-models/benchmarks/`, strips sk-prompt of every small-model reference so it becomes a generic forkable framework engine, and locks deep-improvement's model-benchmark command to write exclusively to the hub.
 
 **Key Decisions**: Benchmarks migrated wholesale to the hub (no per-spec copies); `model-profiles.md` deleted outright (JSON is the single source of truth); deep-improvement hub-only with no local override.
 
@@ -66,11 +66,11 @@ The model registry (`model-profiles.json`) and all historical benchmark run-data
 
 ### Problem Statement
 
-`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-small-model is the canonical skill for per-model dispatch. Benchmark run-data (fixtures, profiles, synthesis) for six model/prompt evaluations were stored inside individual spec sub-phases, making them invisible to other sessions and impossible to cross-reference. sk-prompt contained per-model override notes, a Budget-Awareness small-model section, and a direct pointer to model-profiles.json, which prevented forking sk-prompt as a generic prompt-framework engine.
+`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-models is the canonical skill for per-model dispatch. Benchmark run-data (fixtures, profiles, synthesis) for six model/prompt evaluations were stored inside individual spec sub-phases, making them invisible to other sessions and impossible to cross-reference. sk-prompt contained per-model override notes, a Budget-Awareness small-model section, and a direct pointer to model-profiles.json, which prevented forking sk-prompt as a generic prompt-framework engine.
 
 ### Purpose
 
-Establish `sk-prompt-small-model` as the single authoritative hub for the model registry and all benchmark history, and make sk-prompt a model-agnostic forkable framework engine with no small-model coupling.
+Establish `sk-prompt-models` as the single authoritative hub for the model registry and all benchmark history, and make sk-prompt a model-agnostic forkable framework engine with no small-model coupling.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -80,32 +80,32 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 
 ### In Scope
 
-- Move `sk-prompt/assets/model-profiles.json` to `sk-prompt-small-model/assets/model-profiles.json`
+- Move `sk-prompt/assets/model-profiles.json` to `sk-prompt-models/assets/model-profiles.json`
 - Delete `sk-prompt/references/model-profiles.md` (markdown mirror of the JSON registry)
 - Strip sk-prompt of all small-model references: per-model override note, Budget-Awareness small-model section, model-profiles.json pointer, and Tier-2 reworded generically
-- Move six benchmark sub-phases' run-data/harness/synthesis to `sk-prompt-small-model/benchmarks/<name>/`; gut each sub-phase to a spec-kit doc shell plus `BENCHMARK-RELOCATED.md` pointer
+- Move six benchmark sub-phases' run-data/harness/synthesis to `sk-prompt-models/benchmarks/<name>/`; gut each sub-phase to a spec-kit doc shell plus `BENCHMARK-RELOCATED.md` pointer
 - Repoint all ~121 `model-profiles.json` references to the new hub path
 - Repoint cli-opencode template benchmark-evidence citations to hub paths
-- Route deep-improvement model-benchmark command outputs to `sk-prompt-small-model/benchmarks/{run_label}` (hub-only, no spec-local default, no override)
+- Route deep-improvement model-benchmark command outputs to `sk-prompt-models/benchmarks/{run_label}` (hub-only, no spec-local default, no override)
 
 ### Out of Scope
 
 - Changes to other deep-improvement modes (agent-improvement, prompt-improvement) — those remain spec-local
 - Changes to benchmark fixture content or scoring logic
 - Any new benchmark runs
-- sk-prompt-small-model SKILL.md narrative content (not a registry reference surface)
+- sk-prompt-models SKILL.md narrative content (not a registry reference surface)
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-prompt/assets/model-profiles.json` | Delete | Moved to sk-prompt-small-model hub |
-| `sk-prompt-small-model/assets/model-profiles.json` | Create | New canonical registry location |
+| `sk-prompt/assets/model-profiles.json` | Delete | Moved to sk-prompt-models hub |
+| `sk-prompt-models/assets/model-profiles.json` | Create | New canonical registry location |
 | `sk-prompt/references/model-profiles.md` | Delete | JSON is source of truth; MD mirror removed |
 | `sk-prompt/SKILL.md` | Modify | Strip all small-model/registry references |
 | `sk-prompt/references/cli_prompt_quality_card.md` | Modify | Remove per-model override note, Budget-Awareness section, model-profiles.json pointer |
 | `sk-prompt/references/framework-registry.json` | No change | Generic registry, untouched |
-| `sk-prompt-small-model/benchmarks/` | Create (dir) | Hub for all benchmark run-data |
+| `sk-prompt-models/benchmarks/` | Create (dir) | Hub for all benchmark run-data |
 | Six spec sub-phase benchmark dirs | Gut to shell + pointer | Run-data moved to hub |
 | `deep-improvement/SKILL.md` | Modify | Hub-only routing for model-benchmark |
 | `deep-improvement/commands/auto.yaml` | Modify | Hub-only output_dir |
@@ -122,11 +122,11 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `model-profiles.json` lives only in `sk-prompt-small-model/assets/` | `rg 'sk-prompt/assets/model-profiles' . --glob '*.md' --glob '*.json' --glob '*.yaml' --glob '*.cjs'` returns zero hits in active surfaces |
+| REQ-001 | `model-profiles.json` lives only in `sk-prompt-models/assets/` | `rg 'sk-prompt/assets/model-profiles' . --glob '*.md' --glob '*.json' --glob '*.yaml' --glob '*.cjs'` returns zero hits in active surfaces |
 | REQ-002 | sk-prompt is grep-clean of small-model references | `rg -r 'model-profiles\|small.model\|Budget-Awareness' .opencode/skills/sk-prompt/` returns zero hits (excluding changelog) |
 | REQ-003 | All 8/8 hub profile entries resolve in new location | `node -e "const p=require('./...hub-path...');console.log(Object.keys(p.models).length)"` outputs 8 |
 | REQ-004 | Six benchmark sub-phases gutted to doc shells with pointers | Each gutted sub-phase directory contains `BENCHMARK-RELOCATED.md` pointing to the hub path |
-| REQ-005 | deep-improvement model-benchmark writes to hub exclusively | `auto.yaml` and `confirm.yaml` output_dir is `sk-prompt-small-model/benchmarks/{run_label}`; no spec-local fallback |
+| REQ-005 | deep-improvement model-benchmark writes to hub exclusively | `auto.yaml` and `confirm.yaml` output_dir is `sk-prompt-models/benchmarks/{run_label}`; no spec-local fallback |
 | REQ-006 | All ~121 cross-references repointed | `rg 'sk-prompt/assets/model-profiles'` across full repo returns no hits in non-changelog files |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -134,7 +134,7 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-007 | cli-opencode template benchmark-evidence citations updated | Template files cite hub paths, not sub-phase paths |
-| REQ-008 | deep-improvement SKILL.md documents hub-only routing | SKILL.md explicitly states model-benchmark outputs go to `sk-prompt-small-model/benchmarks/` |
+| REQ-008 | deep-improvement SKILL.md documents hub-only routing | SKILL.md explicitly states model-benchmark outputs go to `sk-prompt-models/benchmarks/` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -143,9 +143,9 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `sk-prompt` contains zero references to `model-profiles`, small-model-specific overrides, or Budget-Awareness small-model sections (grep-clean excluding changelog)
-- **SC-002**: `sk-prompt-small-model/assets/model-profiles.json` exists with all 8 model profiles intact and resolving
+- **SC-002**: `sk-prompt-models/assets/model-profiles.json` exists with all 8 model profiles intact and resolving
 - **SC-003**: All six benchmark sub-phases have a `BENCHMARK-RELOCATED.md` pointer and their run-data exists at the hub
-- **SC-004**: deep-improvement model-benchmark command writes exclusively to `sk-prompt-small-model/benchmarks/{run_label}` in both auto and confirm modes
+- **SC-004**: deep-improvement model-benchmark command writes exclusively to `sk-prompt-models/benchmarks/{run_label}` in both auto and confirm modes
 - **SC-005**: No dangling cross-references to the old registry path in any active surface (SKILL.md, YAML, .cjs, .md, .json)
 <!-- /ANCHOR:success-criteria -->
 
@@ -218,10 +218,10 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 
 ### US-001: Model registry in one place (Priority: P0)
 
-**As a** skill author dispatching to small models, **I want** to find `model-profiles.json` in `sk-prompt-small-model/assets/` only, **so that** I never have to check two locations for the canonical model list.
+**As a** skill author dispatching to small models, **I want** to find `model-profiles.json` in `sk-prompt-models/assets/` only, **so that** I never have to check two locations for the canonical model list.
 
 **Acceptance Criteria**:
-1. Given I search the repo for `model-profiles.json`, When I run `find . -name model-profiles.json`, Then only `sk-prompt-small-model/assets/model-profiles.json` appears.
+1. Given I search the repo for `model-profiles.json`, When I run `find . -name model-profiles.json`, Then only `sk-prompt-models/assets/model-profiles.json` appears.
 
 ---
 
@@ -236,19 +236,19 @@ Establish `sk-prompt-small-model` as the single authoritative hub for the model 
 
 ### US-003: Benchmark outputs land in the hub automatically (Priority: P0)
 
-**As a** user running `/deep:start-model-benchmark-loop`, **I want** all outputs written to `sk-prompt-small-model/benchmarks/{run_label}`, **so that** every benchmark run is immediately discoverable from the hub without manual relocation.
+**As a** user running `/deep:start-model-benchmark-loop`, **I want** all outputs written to `sk-prompt-models/benchmarks/{run_label}`, **so that** every benchmark run is immediately discoverable from the hub without manual relocation.
 
 **Acceptance Criteria**:
-1. Given I trigger a model-benchmark run, When the run completes, Then the output directory is under `sk-prompt-small-model/benchmarks/` and no files are written to the spec folder.
+1. Given I trigger a model-benchmark run, When the run completes, Then the output directory is under `sk-prompt-models/benchmarks/` and no files are written to the spec folder.
 
 ---
 
 ### US-004: Historical benchmarks accessible from hub (Priority: P1)
 
-**As a** researcher comparing model performance across runs, **I want** all six historical benchmark datasets in `sk-prompt-small-model/benchmarks/`, **so that** I can compare runs without navigating individual spec sub-phase folders.
+**As a** researcher comparing model performance across runs, **I want** all six historical benchmark datasets in `sk-prompt-models/benchmarks/`, **so that** I can compare runs without navigating individual spec sub-phase folders.
 
 **Acceptance Criteria**:
-1. Given I list `sk-prompt-small-model/benchmarks/`, When I look for the six migrated runs, Then each has its full run-data (fixtures, profiles, synthesis).
+1. Given I list `sk-prompt-models/benchmarks/`, When I look for the six migrated runs, Then each has its full run-data (fixtures, profiles, synthesis).
 
 ---
 

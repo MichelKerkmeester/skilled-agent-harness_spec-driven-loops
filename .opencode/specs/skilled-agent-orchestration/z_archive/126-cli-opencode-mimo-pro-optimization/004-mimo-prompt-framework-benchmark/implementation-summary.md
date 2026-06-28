@@ -78,7 +78,7 @@ The COSTAR winner is now the documented MiMo default: a COSTAR scaffold in cli-o
 | `004/eval/**` | Created | Lean self-contained rig — `frameworks.cjs` (5 variants), `fixtures.cjs` (2 fixtures + hidden suites), `run-mimo-bench.cjs` + `extract.cjs` / `runner-child.cjs` / `runtests.cjs`, `runs/*.json`, `results.json`, `synthesis.md` |
 | `cli-opencode/assets/prompt_templates.md` | Modified | Template 15 — MiMo-V2.5-Pro COSTAR scaffold + lean-to-medium pre-planning |
 | `cli-opencode/assets/prompt_quality_card.md` | Modified | MiMo per-model override -> COSTAR default, RACE fallback, MiMo != MiniMax divergence |
-| `sk-prompt-small-model/references/pattern-index.md` | Modified | MiMo prompt-framework row -> cli-opencode canonical location |
+| `sk-prompt-models/references/pattern-index.md` | Modified | MiMo prompt-framework row -> cli-opencode canonical location |
 | `sk-prompt/assets/model-profiles.json` | Modified | `mimo-v2.5-pro` notes -> COSTAR/RACE-lean finding |
 <!-- /ANCHOR:what-built -->
 

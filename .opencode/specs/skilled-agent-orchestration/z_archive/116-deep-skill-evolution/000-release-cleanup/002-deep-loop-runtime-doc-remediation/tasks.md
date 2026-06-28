@@ -68,7 +68,7 @@ _memory:
 
 ### Batch A — Consolidated cleanup (one cli-devin SWE-1.6 RCAF dispatch)
 
-- [ ] T020 Read mandatory pre-flight: `cli-devin/SKILL.md`, `sk-prompt-small-model/SKILL.md`
+- [ ] T020 Read mandatory pre-flight: `cli-devin/SKILL.md`, `sk-prompt-models/SKILL.md`
 - [ ] T021 Compose `prompts/batch-a-prompt.md` (RCAF + medium-density pre-plan, ≤4 steps; paste replacement strings verbatim)
 - [ ] T022 Pre-flight: `pkill -9 -f "devin|codex|opencode"` + sweep `/tmp/devin-*`
 - [ ] T023 Dispatch `devin --print --prompt-file prompts/batch-a-prompt.md --model swe-1.6 --permission-mode auto -p </dev/null` → capture to `logs/batch-a-stdout.txt`

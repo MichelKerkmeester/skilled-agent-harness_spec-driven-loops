@@ -61,7 +61,7 @@ Register-first, a build/UI bundle rule, a pre-dispatch context manifest, four re
 - **Shared (new):** `sk-design/shared/context_loading_contract.md`; `shared/assets/context_loaded_card.md`; `shared/assets/proof_of_application_card.md`.
 - **Foundations (new):** `design-foundations/assets/contrast_pair_inventory.md`.
 - **Hub + mode hooks (edited):** `sk-design/SKILL.md` (build/UI bundle rule); `design-interface/SKILL.md` (register+dials+pre-flight load-and-prove loop + delegation note); `design-foundations/SKILL.md` (contrast-pair CONDITIONAL row); `design-audit/SKILL.md` (evidence-before-claim gate).
-- **Dispatch (edited):** `cli-opencode/assets/prompt_templates.md` (Template 16 — design/UI dispatch with manifest + both cards); `sk-prompt-small-model/references/models/minimax-m3.md` (Design-Task variant).
+- **Dispatch (edited):** `cli-opencode/assets/prompt_templates.md` (Template 16 — design/UI dispatch with manifest + both cards); `sk-prompt-models/references/models/minimax-m3.md` (Design-Task variant).
 - **Manual-test (new + index edits):** four scenarios — skipped register (interface), late contrast (foundations), ad-hoc audit (audit), thin small-model/design-dispatch (cli-opencode) — plus the four playbook index rows.
 - **Wrapper (new):** `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`.
 - **Not changed by this phase:** `system-spec-kit/changelog/v3.7.0.0.md` shows modified in the working tree but predates this phase (pre-existing 028 dirty state) — left untouched.

@@ -51,7 +51,7 @@ _memory:
 
 - [x] T001 Read all 5 cli-* SKILL.md files to identify existing composition guidance and insertion points
 - [x] T002 Read cli-devin/references/prompt_templates.md to understand the bespoke mandate scope
-- [x] T003 [P] Read sk-prompt-small-model SKILL.md and pattern-index.md to locate Mirror Sync section and hub-profile row targets
+- [x] T003 [P] Read sk-prompt-models SKILL.md and pattern-index.md to locate Mirror Sync section and hub-profile row targets
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,7 +65,7 @@ _memory:
 - [x] T007 [P] Insert identical 3-tier precedence block into cli-codex/SKILL.md
 - [x] T008 [P] Insert identical 3-tier precedence block into cli-gemini/SKILL.md
 - [x] T009 Reconcile cli-devin/references/prompt_templates.md mandate to honor swe-1.6 profile + 3-tier rule
-- [x] T010 Replace stale Mirror Sync section in sk-prompt-small-model/SKILL.md with duplication-guard description
+- [x] T010 Replace stale Mirror Sync section in sk-prompt-models/SKILL.md with duplication-guard description
 - [x] T011 Repoint pattern-index.md MiniMax and MiMo rows to hub profiles; update cli-opencode ownership cell
 <!-- /ANCHOR:phase-2 -->
 
@@ -75,7 +75,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T012 Read each cli-* SKILL.md after edit to confirm the 3-tier block is present and textually consistent
-- [x] T013 Confirm sk-prompt-small-model SKILL.md no longer contains Mirror Sync section
+- [x] T013 Confirm sk-prompt-models SKILL.md no longer contains Mirror Sync section
 - [x] T014 Confirm pattern-index.md rows reference hub profile paths correctly
 - [x] T015 Run validate.sh --strict on the 007 spec folder and confirm exit 0
 <!-- /ANCHOR:phase-3 -->

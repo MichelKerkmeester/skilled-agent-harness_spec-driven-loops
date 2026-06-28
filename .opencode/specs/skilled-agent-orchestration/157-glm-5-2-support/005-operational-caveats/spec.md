@@ -88,7 +88,7 @@ Capture confirmed GLM-5.2 dispatch gotchas + proven mitigations in the canonical
 ## 3. SCOPE
 
 ### In Scope
-- Confirmed gotcha(s) + mitigation in `sk-prompt-small-model/references/models/glm-5.2.md` (§2/§5/§6) and `assets/model_profiles.json` (weaknesses).
+- Confirmed gotcha(s) + mitigation in `sk-prompt-models/references/models/glm-5.2.md` (§2/§5/§6) and `assets/model_profiles.json` (weaknesses).
 - A brief operational caveat on the GLM line in `cli-opencode/SKILL.md` (and `cli_reference.md` if relevant).
 
 ### Out of Scope
@@ -99,8 +99,8 @@ Capture confirmed GLM-5.2 dispatch gotchas + proven mitigations in the canonical
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md` | Modify | §2/§5/§6 confirmed gotcha + mitigation |
-| `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` | Modify | weaknesses: the confirmed gotcha |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.2.md` | Modify | §2/§5/§6 confirmed gotcha + mitigation |
+| `.opencode/skills/sk-prompt-models/assets/model_profiles.json` | Modify | weaknesses: the confirmed gotcha |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | GLM line operational caveat |
 <!-- /ANCHOR:scope -->
 

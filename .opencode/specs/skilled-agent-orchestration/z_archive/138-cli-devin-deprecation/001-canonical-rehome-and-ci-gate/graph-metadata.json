@@ -188,7 +188,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fallback) that sk-prompt-small-model and cli-opencode reference as the source of truth, and two CI scripts referenced cli-devin paths",
+    "causal_summary": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fallback) that sk-prompt-models and cli-opencode reference as the source of truth, and two CI scripts referenced cli-devin paths",
     "created_at": "2026-06-08T16:10:27Z",
     "last_save_at": "2026-06-23T03:49:51.981Z",
     "save_lineage": "graph_only",

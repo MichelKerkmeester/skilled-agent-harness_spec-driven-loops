@@ -10,7 +10,7 @@ Derive the MiniMax 2.7 context-budget tuple and output-verification recipe from 
 - Read the canonical 114 context-budget reference and `per-model-budgets.json` to identify the fields MiniMax should reuse. [SOURCE: .opencode/skills/cli-devin/references/context-budget.md:25] [SOURCE: .opencode/skills/cli-devin/assets/per-model-budgets.json:4]
 - Read the cli-opencode context-budget mirror to verify it is intentionally link-only and should not duplicate the cli-devin engine. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:10] [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:16]
 - Read the output-verification reference to map MiniMax onto the existing compile, execute, smoke-test, and lint gates plus the research-output rubric. [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:31] [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:80]
-- Checked the registry and pattern index to name concrete file-level deltas without moving pattern ownership into `sk-prompt-small-model`. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:187] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:25]
+- Checked the registry and pattern index to name concrete file-level deltas without moving pattern ownership into `sk-prompt-models`. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:187] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:25]
 
 ## Findings
 
@@ -47,7 +47,7 @@ Concrete truncation policy: use the same `[... truncated N tokens]` marker; plac
 
 The cli-opencode context-budget file explicitly says the canonical semantics live in `cli-devin/references/context-budget.md` and `cli-devin/assets/per-model-budgets.json`; the mirror only records cli-opencode routing and model-window differences. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:10] [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:20]
 
-The MiniMax delta should therefore be link-only in `cli-opencode/references/context-budget.md`: add a row for `minimax-2.7` with a 204,800-token window, note that it slightly exceeds Kimi's current 200,000-token row, and add the message-boundary continuity caveat. Do not copy the full budget calculator or eviction table into cli-opencode. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:34] [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:62]
+The MiniMax delta should therefore be link-only in `cli-opencode/references/context-budget.md`: add a row for `minimax-2.7` with a 204,800-token window, note that it slightly exceeds Kimi's current 200,000-token row, and add the message-boundary continuity caveat. Do not copy the full budget calculator or eviction table into cli-opencode. [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:34] [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:62]
 
 ### F4 - The output-verification recipe is the existing 4-stage pipeline plus a MiniMax continuity check
 
@@ -67,7 +67,7 @@ Recommended Q2 deltas:
 2. `.opencode/skills/cli-opencode/references/context-budget.md`: add `minimax-2.7 | 204,800 | Direct MiniMax.io API; apply canonical 70% budget; preserve active interleaved tool/thinking message boundaries.` [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:36]
 3. `.opencode/skills/sk-prompt/assets/model-profiles.json`: set `context_length` for `minimax-2.7` to `204800`, and replace the unverified context wording with verified context plus remaining `--variant` uncertainty. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:187]
 4. `.opencode/skills/cli-devin/references/output-verification.md` or the cli-opencode MiniMax provider reference: add a short MiniMax-specific continuity note that reuses the existing verification pipeline and treats message-boundary preservation as an integration assertion. The better ownership choice is cli-opencode provider docs unless future automation needs this in the shared verifier. [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:201]
-5. `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: no new pattern row is needed. At most update ownership text to mention MiniMax under cli-opencode's executor surface; the pattern bodies already cover new-provider adoption. [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:66]
+5. `.opencode/skills/sk-prompt-models/references/pattern-index.md`: no new pattern row is needed. At most update ownership text to mention MiniMax under cli-opencode's executor surface; the pattern bodies already cover new-provider adoption. [SOURCE: .opencode/skills/sk-prompt-models/references/pattern-index.md:66]
 
 ## Questions Answered
 

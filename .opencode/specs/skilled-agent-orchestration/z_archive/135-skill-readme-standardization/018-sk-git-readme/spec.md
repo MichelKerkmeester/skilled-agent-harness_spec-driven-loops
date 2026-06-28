@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-06-07T14:29:02Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Confirmed sk-git README (golden example from phase 001) current and valid"
-    next_safe_action: "Begin phase 019 (sk-prompt-small-model README)"
+    next_safe_action: "Begin phase 019 (sk-prompt-models README)"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/README.md"
@@ -45,7 +45,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 24 |
 | **Predecessor** | 017-sk-doc-readme |
-| **Successor** | 019-sk-prompt-small-model-readme |
+| **Successor** | 019-sk-prompt-models-readme |
 | **Handoff Criteria** | README confirmed current: passes validate_document.py --type readme and HVR; all cited paths resolve |
 <!-- /ANCHOR:metadata -->
 

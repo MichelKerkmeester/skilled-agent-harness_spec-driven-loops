@@ -59,7 +59,7 @@ How to reliably prevent AI agents, dispatched sub-agents, and small models such 
 | Interface-only for UI builds | Interface success criteria already requires register, dials, quality floor and pre-flight context. | [SOURCE: file:.opencode/skills/sk-design/design-interface/SKILL.md:247] |
 | Late contrast audit | Contrast repair starts with actual pairs and measured thresholds. | [SOURCE: file:.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md:61] |
 | Ad-hoc audit prose | Audit requires evidence labels, severity, scoring and evidence limits. | [SOURCE: file:.opencode/skills/sk-design/design-audit/references/audit_contract.md:61] |
-| Thin MiniMax delegation | MiniMax profile requires TIDD-EC and dense pre-planning. | [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:56] |
+| Thin MiniMax delegation | MiniMax profile requires TIDD-EC and dense pre-planning. | [SOURCE: file:.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:56] |
 | Winner-by-vibes adoption | Promotion requires gated evidence and explicit approval before canonical mutation. | [SOURCE: file:.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md:22] |
 
 ## Next Focus

@@ -86,7 +86,7 @@ A single GPT-5.5 (reasoning xhigh) cli-codex deep-research lineage was dispatche
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **Mechanism design only** — investigate and recommend; change no live `sk-design`/`cli-opencode`/`sk-prompt-small-model` content. Every fix routes to a future build phase.
+- **Mechanism design only** — investigate and recommend; change no live `sk-design`/`cli-opencode`/`sk-prompt-models` content. Every fix routes to a future build phase.
 - **Single-lineage fan-out for a CLI executor** — used the shipped fan-out runner (the sanctioned path for cli-codex executors) so gpt-5.5 self-drives the whole loop, rather than the orchestrator driving codex per iteration.
 - **Executor substitution, flagged** — `gpt-5.5` @ xhigh stands in for the unavailable `gpt-5.5-fast`/`-codex` on this Codex auth.
 - **Ruled out**: interface-only routing for UI builds, late contrast audit, ad-hoc audit prose, thin small-model delegation, and automatic adoption from lineage output (see research/research.md §"Eliminated Alternatives").

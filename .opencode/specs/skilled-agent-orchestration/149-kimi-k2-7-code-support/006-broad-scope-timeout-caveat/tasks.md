@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/cli-opencode/references/context-budget.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

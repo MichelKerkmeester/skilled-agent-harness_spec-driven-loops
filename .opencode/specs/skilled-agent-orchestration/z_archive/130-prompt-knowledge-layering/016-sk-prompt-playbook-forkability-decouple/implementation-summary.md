@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-prompt-playbook-forkability-decouple"
-description: "The sk-prompt manual-testing-playbook no longer references sk-prompt-small-model or cli skills; two card-centric scenarios were reframed to test sk-prompt's own surface."
+description: "The sk-prompt manual-testing-playbook no longer references sk-prompt-models or cli skills; two card-centric scenarios were reframed to test sk-prompt's own surface."
 trigger_phrases:
   - "playbook decouple summary"
   - "forkability summary"
@@ -87,7 +87,7 @@ at `§7`, and the `cli-*` names in the wave-planning rules were genericized.
 A read-only forkability audit found the dependencies and classified them (hard `rg`/assertion vs
 soft source-ref). Because the hub has no playbook, moving the card-centric scenarios was
 impractical, so they were reframed to test sk-prompt's own observable behavior using sk-prompt's own
-docs as anchors. Verification: a token grep returns 0 for `sk-prompt-small-model`,
+docs as anchors. Verification: a token grep returns 0 for `sk-prompt-models`,
 `cli_prompt_quality_card`, and every `cli-*` skill; all 37 `rg` targets in the playbook point only at
 `sk-prompt/`; the reframed targets resolve (33 CLEAR matches, all 4 escalation terms); and
 `validate_document.py` reports VALID on the root playbook plus all six touched feature files.
@@ -113,7 +113,7 @@ docs as anchors. Verification: a token grep returns 0 for `sk-prompt-small-model
 
 | Check | Result |
 |-------|--------|
-| Token grep (sk-prompt-small-model / cli_prompt_quality_card / cli-*) | PASS, all 0 |
+| Token grep (sk-prompt-models / cli_prompt_quality_card / cli-*) | PASS, all 0 |
 | All rg targets point only at sk-prompt/ | PASS, 37/37 |
 | Reframed rg targets resolve | PASS, 33 CLEAR matches; 4 escalation terms |
 | `validate_document.py` on root + 6 feature files | PASS, all VALID |
@@ -127,5 +127,5 @@ docs as anchors. Verification: a token grep returns 0 for `sk-prompt-small-model
 ## Known Limitations
 
 1. **Filename slug retained.** `cli-card-five-question-fast-path.md` keeps its card-era slug; only the title and content were reframed. Renaming was skipped to avoid catalog-link churn.
-2. **Hub has no playbook.** The CLI card's own fast-path behavior is no longer tested anywhere; if that coverage is wanted, the hub (`sk-prompt-small-model`) needs its own playbook -- a separate follow-up, out of this phase's scope.
+2. **Hub has no playbook.** The CLI card's own fast-path behavior is no longer tested anywhere; if that coverage is wanted, the hub (`sk-prompt-models`) needs its own playbook -- a separate follow-up, out of this phase's scope.
 <!-- /ANCHOR:limitations -->

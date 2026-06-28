@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/004-minimax-token-plan-provider"
@@ -99,7 +99,7 @@ Make the **Token Plan** (`minimax-coding-plan`) the default MiniMax provider (`M
 - Retain the `minimax` provider as the Direct API (pay-per-token) alternative (`minimax-api` pool, `MINIMAX_API_KEY`).
 - Registry: add `minimax-m3` (default, token-plan, `fallback_target: minimax-2.7`); revise `minimax-2.7` to carry both the token-plan highspeed executor (`minimax-coding-plan`) and the direct-api executor (`minimax`); bump `version`.
 - Update cli-opencode auth pre-flight, login/setup templates, model-selection + `--variant` tables; record the `--agent` omission + version-drift caveat for MiniMax dispatches.
-- Update sentinel (`sk-prompt-small-model`), quality cards, and `graph-metadata.json` trigger phrases.
+- Update sentinel (`sk-prompt-models`), quality cards, and `graph-metadata.json` trigger phrases.
 
 ### Out of Scope
 - Live dispatch / credential setup — user runs `opencode auth login` in their own env.
@@ -117,11 +117,11 @@ Make the **Token Plan** (`minimax-coding-plan`) the default MiniMax provider (`M
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modify | MiniMax dispatch contract → `minimax-coding-plan/MiniMax-M3-highspeed` default |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | MiniMax mention alignment |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modify | Trigger phrases (token plan, coding plan, m3-highspeed) |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modify | Description, activation triggers, dispatch matrix |
-| `.opencode/skills/sk-prompt-small-model/description.json` | Modify | Description string alignment |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modify | Provider row alignment |
-| `.opencode/skills/sk-prompt-small-model/README.md` | Modify | Provider mention alignment |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modify | Trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modify | Description, activation triggers, dispatch matrix |
+| `.opencode/skills/sk-prompt-models/description.json` | Modify | Description string alignment |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modify | Provider row alignment |
+| `.opencode/skills/sk-prompt-models/README.md` | Modify | Provider mention alignment |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modify | Trigger phrases |
 | `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md` | Modify | MiniMax mention alignment |
 <!-- /ANCHOR:scope -->
 
@@ -143,7 +143,7 @@ Make the **Token Plan** (`minimax-coding-plan`) the default MiniMax provider (`M
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Token Plan setup is documented (no fabricated values) | SKILL.md/cli_reference.md show the Anthropic-compatible base URL (`https://api.minimax.io/anthropic/v1`, China variant noted) + `opencode auth login` path; the `--agent` omission + version-drift caveat is recorded |
-| REQ-005 | Sentinel + metadata aligned | `sk-prompt-small-model` SKILL.md/description.json/pattern-index/README name the Token Plan default + Direct API alt; both `graph-metadata.json` files carry token-plan/coding-plan trigger phrases |
+| REQ-005 | Sentinel + metadata aligned | `sk-prompt-models` SKILL.md/description.json/pattern-index/README name the Token Plan default + Direct API alt; both `graph-metadata.json` files carry token-plan/coding-plan trigger phrases |
 | REQ-006 | Quality cards aligned | `cli-opencode/assets/prompt_*` + `sk-prompt/assets/cli_prompt_quality_card.md` MiniMax mentions reflect `minimax-coding-plan/MiniMax-M3-highspeed` default |
 <!-- /ANCHOR:requirements -->
 

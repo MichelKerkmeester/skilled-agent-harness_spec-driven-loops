@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: MiniMax 2.7 efficiency deep-research"
-description: "Deep-research charter: how to best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API, producing concrete deltas for sk-prompt-small-model and cli-opencode."
+description: "Deep-research charter: how to best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API, producing concrete deltas for sk-prompt-models and cli-opencode."
 trigger_phrases:
   - "minimax efficiency deep research"
   - "minimax-2.7 best use research"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model specification.
+This is **Phase 2** of the MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models specification.
 
 **Scope Boundary**: Research + synthesis ONLY. The loop produces findings and a follow-on delta list; it does NOT implement the deltas (a later packet acts on `research.md`). Bounded mutations to this folder's `spec.md` findings fence are allowed per the deep-research contract.
 
@@ -65,7 +65,7 @@ This is **Phase 2** of the MiniMax 2.7 direct-API provider optimization for cli-
 
 **Deliverables**:
 - `research/research.md` (17-section consolidated output) + `research/resource-map.md`
-- Concrete delta list: proposed `sk-prompt-small-model` pattern-index rows + cli-opencode budget/verification/`--variant` recommendations for MiniMax 2.7
+- Concrete delta list: proposed `sk-prompt-models` pattern-index rows + cli-opencode budget/verification/`--variant` recommendations for MiniMax 2.7
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -80,7 +80,7 @@ This is **Phase 2** of the MiniMax 2.7 direct-API provider optimization for cli-
 After phase 001 wires the `minimax` provider, we still have no guidance for using MiniMax 2.7 efficiently through cli-opencode: no context-budget tuple, no output-verification recipe, no prompt-quality / `--variant` mapping, no routing heuristics vs the other small models. Without this, MiniMax 2.7 is selectable but not optimized.
 
 ### Purpose
-A converged research output (`research.md`) plus a concrete delta list that tells us exactly how to update `sk-prompt-small-model` and `cli-opencode` to make best use of MiniMax 2.7 via the direct API.
+A converged research output (`research.md`) plus a concrete delta list that tells us exactly how to update `sk-prompt-models` and `cli-opencode` to make best use of MiniMax 2.7 via the direct API.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -121,7 +121,7 @@ A converged research output (`research.md`) plus a concrete delta list that tell
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Capture an actionable delta list | `research.md` ends with concrete proposed edits to `sk-prompt-small-model` + `cli-opencode` for a follow-on packet |
+| REQ-003 | Capture an actionable delta list | `research.md` ends with concrete proposed edits to `sk-prompt-models` + `cli-opencode` for a follow-on packet |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -165,7 +165,7 @@ Deep-research loop complete: 10 iterations (cli-codex gpt-5.5 high/fast), stop r
 
 **Prioritized deltas for the follow-on packet** (full detail in research.md §10):
 - P0: `model-profiles.json` (context_length 204800); `per-model-budgets.json` (minimax row); `cli-opencode/references/context-budget.md` (window/active-budget table); `cli_reference.md` (`--variant` omit-by-default + direct-provider subsection).
-- P1: `cli-opencode/SKILL.md` routing table; `cli_prompt_quality_card.md` budget-awareness table; `sk-prompt-small-model/SKILL.md` dispatch matrix; `pattern-index.md` three link-only MiniMax rows.
+- P1: `cli-opencode/SKILL.md` routing table; `cli_prompt_quality_card.md` budget-awareness table; `sk-prompt-models/SKILL.md` dispatch matrix; `pattern-index.md` three link-only MiniMax rows.
 - P2 (optional, needs live key): `--variant` ablation playbook.
 
 **Runtime-deferred (needs `MINIMAX_API_KEY`):** exact slug casing, real `--variant` behavior, latency envelope, RPM/TPM error shapes, live pricing.

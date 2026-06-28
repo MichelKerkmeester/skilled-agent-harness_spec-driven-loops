@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: MiniMax 2.7 prompt-framework benchmark"
-description: "Benchmark prompt frameworks (RCAF/RACE/CIDI/TIDD-EC/COSTAR) against coding fixtures with real MiniMax M2.7 calls (reusing the 113 eval rig), pick the empirically-best framework, and integrate it into the cli-opencode / sk-prompt-small-model dispatch path."
+description: "Benchmark prompt frameworks (RCAF/RACE/CIDI/TIDD-EC/COSTAR) against coding fixtures with real MiniMax M2.7 calls (reusing the 113 eval rig), pick the empirically-best framework, and integrate it into the cli-opencode / sk-prompt-models dispatch path."
 trigger_phrases:
   - "minimax prompt framework benchmark"
   - "minimax eval rig"
@@ -110,7 +110,7 @@ Determine the empirically-best prompt framework for MiniMax M2.7 by running it a
 | `120/003/eval-rig/**` + `eval-loop/**` | Create | Ported rig + loop + new `dispatch-minimax.cjs` + variant seeds + state |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modify | MiniMax winning-framework section + per-model contract |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | MiniMax framework-selection row (empirical winner) |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modify | MiniMax prompt-framework row(s) |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modify | MiniMax prompt-framework row(s) |
 | `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md` | Modify | Cross-CLI MiniMax note |
 | `.opencode/skills/sk-prompt/assets/model-profiles.json` + `cli-opencode/{SKILL.md,references/cli_reference.md}` | Modify | Correct slug `minimax/minimax-2.7` → `minimax/MiniMax-M2.7`; set `context_length: 204800` |
 <!-- /ANCHOR:scope -->

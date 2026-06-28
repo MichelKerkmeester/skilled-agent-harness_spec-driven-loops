@@ -58,17 +58,17 @@ fi
 # When a prompt-knowledge surface is staged, run the 3-layer drift guard so
 # table inlining, Tier-3 escalation-rule drift, registry/profile/_index gaps
 # (zero-hub-weight entries), or models unreachable by name cannot silently
-# regress across sk-prompt / sk-prompt-small-model / cli-*.
+# regress across sk-prompt / sk-prompt-models / cli-*.
 # Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ...
 if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
   CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
   if [[ -f "$CARD_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
-       | grep -Eq '^\.opencode/skills/(cli-[a-z-]+/(SKILL\.md|assets/prompt_quality_card\.md|graph-metadata\.json)|sk-prompt/assets/cli_prompt_quality_card\.md|sk-prompt-small-model/)'; then
+       | grep -Eq '^\.opencode/skills/(cli-[a-z-]+/(SKILL\.md|assets/prompt_quality_card\.md|graph-metadata\.json)|sk-prompt/assets/cli_prompt_quality_card\.md|sk-prompt-models/)'; then
     if ! bash "$CARD_GUARD" "$REPO_ROOT"; then
       echo "" >&2
       echo "BLOCKED: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
       echo "Fix: keep each fact in its one canonical home and point to it; see" >&2
-      echo "     .opencode/skills/sk-prompt-small-model/references/pattern_index.md." >&2
+      echo "     .opencode/skills/sk-prompt-models/references/pattern_index.md." >&2
       echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
       exit 1
     fi

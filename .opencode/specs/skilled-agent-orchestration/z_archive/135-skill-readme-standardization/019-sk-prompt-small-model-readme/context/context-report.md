@@ -1,4 +1,4 @@
-# Context Report: sk-prompt-small-model README rewrite
+# Context Report: sk-prompt-models README rewrite
 
 Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both iterations converge with cited file:line evidence on the per-model profiles, the craft-versus-mechanics split, the four-way ownership map and the navigation chain. Both flag the same stale facts (version, and a wrong "five executors" claim).
 
@@ -6,7 +6,7 @@ Two-iteration by-model sweep (DeepSeek v4 Pro + MiMo v2.5 Pro, read-only). Both 
 
 ## 1. PURPOSE
 
-`sk-prompt-small-model` is the per-model prompt-craft hub for small-model dispatch. Before you send work to a small model through cli-devin or cli-opencode, you read that model's profile here for the right prompt framework, scaffold and gotchas, then apply the executor mechanics from the cli-X skill.
+`sk-prompt-models` is the per-model prompt-craft hub for small-model dispatch. Before you send work to a small model through cli-devin or cli-opencode, you read that model's profile here for the right prompt framework, scaffold and gotchas, then apply the executor mechanics from the cli-X skill.
 
 ## 2. PROBLEM
 
@@ -38,7 +38,7 @@ The skill carries no tools and no runtime code. It is reached when the advisor c
 ## 6. THE OWNERSHIP MAP (verified, SKILL.md:214-216)
 
 Four owners, no overlap:
-- `sk-prompt-small-model`: the per-model prompt-craft profiles and the model registry data.
+- `sk-prompt-models`: the per-model prompt-craft profiles and the model registry data.
 - `cli-devin`: the mechanics for SWE-1.6 plus DeepSeek, Kimi and GLM through its provider, with budget, verification and fallback engines.
 - `cli-opencode`: the mechanics for MiniMax and MiMo, with the flags, the permissions schema and budget propagation.
 - `sk-prompt`: the generic framework definitions (the closed seven-framework set and CLEAR scoring) that the profiles choose from but never restate.

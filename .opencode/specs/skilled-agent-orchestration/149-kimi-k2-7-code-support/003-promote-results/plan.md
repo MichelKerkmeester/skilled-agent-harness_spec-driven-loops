@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Card-sync guard + tree-wide strict validate close the packet"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | JSON registry edit + Markdown reference-doc edit |
-| **Framework** | sk-prompt-small-model registry + per-model profile docs |
+| **Framework** | sk-prompt-models registry + per-model profile docs |
 | **Storage** | `model-profiles.json` (DATA) and `references/models/kimi-k2.7-code.md` (mirror) |
 | **Testing** | `check-prompt-quality-card-sync.sh .` + `validate.sh --strict` |
 
@@ -106,7 +106,7 @@ This phase touches a shared-policy surface (the prompt-framework registry that o
 | Parent `spec.md` phase map + child statuses | Completion-state record | update on close | `validate.sh --strict` on parent |
 
 Required inventories:
-- Same-class producers: `rg -n 'recommended_frameworks' .opencode/skills/sk-prompt-small-model/assets/model-profiles.json` to confirm only the kimi entry changes.
+- Same-class producers: `rg -n 'recommended_frameworks' .opencode/skills/sk-prompt-models/assets/model-profiles.json` to confirm only the kimi entry changes.
 - Consumers of changed symbols: `rg -n 'kimi-k2.7-code|kimi-for-coding/k2p7' .opencode/skills --glob '*.md' --glob '*.json'` to find every doc that cites the kimi framework choice.
 - Matrix axes: verdict class (WINNER / TIE / INCONCLUSIVE) drives status (`empirical` vs `default-unverified`); each class has a defined registry outcome.
 - Algorithm invariant: the reference-doc §3/§4 framework choice MUST match `recommended_frameworks.primary` in the registry; the guard enforces this.

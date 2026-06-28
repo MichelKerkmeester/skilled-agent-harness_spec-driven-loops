@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/"
+      - ".opencode/skills/sk-prompt-models/references/models/"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -63,15 +63,15 @@ Phase 8 is the completion sweep for spec 130. It validates that all prior phases
 
 ### Data-to-Prose Round-Trip
 
-For each of the 8 active small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`), the `recommended_frameworks.profile_ref` field in `model-profiles.json` was resolved to its target `.md` file in `sk-prompt-small-model/references/models/`. All 8 resolved to existing files. Model `minimax-m3` carries carried evidence; `minimax-2.7` and `mimo-v2.5-pro` carry empirical evidence; the remaining five (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`) carry `default-unverified` status, which is correct per the phase-001 decision.
+For each of the 8 active small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`), the `recommended_frameworks.profile_ref` field in `model-profiles.json` was resolved to its target `.md` file in `sk-prompt-models/references/models/`. All 8 resolved to existing files. Model `minimax-m3` carries carried evidence; `minimax-2.7` and `mimo-v2.5-pro` carry empirical evidence; the remaining five (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`) carry `default-unverified` status, which is correct per the phase-001 decision.
 
 ### Per-Skill Changelogs
 
-Changelog entries were added for each skill touched across phases 001-007. The `130-prompt-knowledge-layering/changelog/` directory was created and populated with entries covering the five cli-* executor skills, `sk-prompt`, `sk-prompt-small-model`, and the `system-skill-advisor` sync substrate.
+Changelog entries were added for each skill touched across phases 001-007. The `130-prompt-knowledge-layering/changelog/` directory was created and populated with entries covering the five cli-* executor skills, `sk-prompt`, `sk-prompt-models`, and the `system-skill-advisor` sync substrate.
 
 ### Skill-Advisor Reindex
 
-`skill_advisor.py --force-refresh` was run to force-refresh the advisor discovery cache so that the new `sk-prompt-small-model` hub role and updated delegation signals are reflected in routing results. Memory semantic indexing is deferred to the mk-spec-memory daemon (standalone indexing skipped to avoid a second writer on context-index.sqlite). No full `skill-graph.json` rebuild was performed.
+`skill_advisor.py --force-refresh` was run to force-refresh the advisor discovery cache so that the new `sk-prompt-models` hub role and updated delegation signals are reflected in routing results. Memory semantic indexing is deferred to the mk-spec-memory daemon (standalone indexing skipped to avoid a second writer on context-index.sqlite). No full `skill-graph.json` rebuild was performed.
 
 ### Files Changed
 
@@ -114,8 +114,8 @@ The phase ran as a pure sweep with no code changes: run the validators, inspect 
 | `validate.sh --strict` on 008 child | PASS — 0 errors, 0 warnings |
 | `check-prompt-quality-card-sync.sh` (duplication guard) | PASS — all 5 cli-* cards clean, exit 0 |
 | `recommended_frameworks` present on 8 active models | PASS — all 8 fields confirmed in model-profiles.json |
-| `profile_ref` -> `.md` round-trip for all 8 models | PASS — all 8 files exist in sk-prompt-small-model/references/models/ |
-| Sentinel (`sk-prompt-small-model`) referenced in all 5 CLI SKILL.md files | PASS — grep confirmed hit count > 0 in each of the 5 SKILL.md files |
+| `profile_ref` -> `.md` round-trip for all 8 models | PASS — all 8 files exist in sk-prompt-models/references/models/ |
+| Sentinel (`sk-prompt-models`) referenced in all 5 CLI SKILL.md files | PASS — grep confirmed hit count > 0 in each of the 5 SKILL.md files |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,7 +123,7 @@ The phase ran as a pure sweep with no code changes: run the validators, inspect 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **skill-graph.json not rebuilt.** The advisor discovery cache was force-refreshed via `skill_advisor.py --force-refresh`; no full `skill_graph_compiler.py` run was performed. The graph therefore does not yet index `sk-prompt`, `sk-prompt-small-model`, or the cli-* skills by name under the new hub role. Memory semantic indexing remains with the mk-spec-memory daemon. The guard and round-trip checks cover the correctness requirements for this phase; a full graph rebuild is a follow-on concern.
+1. **skill-graph.json not rebuilt.** The advisor discovery cache was force-refreshed via `skill_advisor.py --force-refresh`; no full `skill_graph_compiler.py` run was performed. The graph therefore does not yet index `sk-prompt`, `sk-prompt-models`, or the cli-* skills by name under the new hub role. Memory semantic indexing remains with the mk-spec-memory daemon. The guard and round-trip checks cover the correctness requirements for this phase; a full graph rebuild is a follow-on concern.
 2. **Changelog directory is created by this phase.** If the parent packet's changelog directory did not previously exist, this phase creates it. No prior changelog content is affected.
 <!-- /ANCHOR:limitations -->
 

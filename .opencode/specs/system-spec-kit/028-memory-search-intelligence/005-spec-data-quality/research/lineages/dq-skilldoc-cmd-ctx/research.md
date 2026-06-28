@@ -52,7 +52,7 @@ Reader tags: R retrieval, A adherence, L logic. Timing: on-write (pre-commit), P
 | X4 | **Resource-map corpus freshness.** `resource_map_present`/coverage is a per-research-packet concept only; no corpus-level check asserts a packet's `resource-map.md` still matches on-disk files. | gov, L | scheduled | bypass | grep `resource_map_present` → packet scope only |
 | X5 | **Telemetry→refine loop (the one retrieval-class item).** Feed truncation/never-matched-signal telemetry back as queued doc-refinement actions. Inherits the parent's exact unblock: only a **prod-mode completeRecall@3** read can promote it. | R | scheduled | **pays** | parent truncation law; `confidence-truncation.ts:35` |
 
-> Negative knowledge: `prompt-card-sync.yml` already gates the prompt-craft card layer (sk-prompt / sk-prompt-small-model / cli-*: table inlining, Tier-3 escalation drift, registry/profile completeness). Context-engineering is NOT ungated wholesale; the surgical gaps are X1–X4 only.
+> Negative knowledge: `prompt-card-sync.yml` already gates the prompt-craft card layer (sk-prompt / sk-prompt-models / cli-*: table inlining, Tier-3 escalation drift, registry/profile completeness). Context-engineering is NOT ungated wholesale; the surgical gaps are X1–X4 only.
 
 ## 3. The Most-Automated Architecture
 

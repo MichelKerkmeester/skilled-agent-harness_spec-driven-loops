@@ -44,7 +44,7 @@ This build phase implements the converged recommendations of the sibling researc
 
 **Key Decisions**: reinforce existing mode language rather than duplicate it; keep changes additive (no router/anchor edits); defer per-mode executable auto-load of the contract to a later packet (research §17).
 
-**Critical Dependencies**: the live `sk-design` hub + five modes + shared register, `cli-opencode`, `sk-prompt-small-model` (MiniMax-M3 profile), and the `029` research as the spec.
+**Critical Dependencies**: the live `sk-design` hub + five modes + shared register, `cli-opencode`, `sk-prompt-models` (MiniMax-M3 profile), and the `029` research as the spec.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -86,7 +86,7 @@ Wire the research's enforceable contract into the live skills so the right conte
 ### In Scope
 - Shared: `context_loading_contract.md` + `assets/context_loaded_card.md` + `assets/proof_of_application_card.md`.
 - Hub + mode hooks: a build/UI bundle rule in `sk-design/SKILL.md`; reinforced load-and-prove loops in interface/foundations/audit SKILLs; `design-foundations/assets/contrast_pair_inventory.md`.
-- Dispatch: a design/UI dispatch template in `cli-opencode/assets/prompt_templates.md`; a Design-Task variant in `sk-prompt-small-model/.../minimax-m3.md`.
+- Dispatch: a design/UI dispatch template in `cli-opencode/assets/prompt_templates.md`; a Design-Task variant in `sk-prompt-models/.../minimax-m3.md`.
 - Manual-test scenarios for the four misses across four playbooks.
 
 ### Out of Scope
@@ -100,7 +100,7 @@ Wire the research's enforceable contract into the live skills so the right conte
 | `sk-design/shared/context_loading_contract.md` + 2 cards | Created | The contract + pre/post cards |
 | `sk-design/design-foundations/assets/contrast_pair_inventory.md` | Created | Contrast-pair worksheet |
 | `sk-design/SKILL.md`, interface/foundations/audit `SKILL.md` | Edited | Additive bundle rule + load-and-prove hooks |
-| `cli-opencode/assets/prompt_templates.md`, `sk-prompt-small-model/.../minimax-m3.md` | Edited | Design dispatch template + MiniMax-M3 variant |
+| `cli-opencode/assets/prompt_templates.md`, `sk-prompt-models/.../minimax-m3.md` | Edited | Design dispatch template + MiniMax-M3 variant |
 | 4 `manual_testing_playbook/` trees | Edited/Created | Four miss scenarios + index rows |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Created | Spec-folder wrapper |
 <!-- /ANCHOR:scope -->
@@ -160,4 +160,4 @@ Implementation complete. Deferred (research §17, by design): whether the contra
 
 - **Spec (research)**: `../029-design-context-loading/research/research.md`
 - **Sibling research→adoption precedent**: `../022-mifb-design-research/` → `../023-mifb-design-adoption/`
-- **Target skills**: `.opencode/skills/sk-design/`, `.opencode/skills/cli-opencode/`, `.opencode/skills/sk-prompt-small-model/`
+- **Target skills**: `.opencode/skills/sk-design/`, `.opencode/skills/cli-opencode/`, `.opencode/skills/sk-prompt-models/`

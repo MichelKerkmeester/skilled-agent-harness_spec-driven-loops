@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration [template:level_2/implementation-summary.md]"
-description: "Wired the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode, the shared small-model registry, and the sk-prompt-small-model sentinel as an explicitly-selectable MiMo path, mirroring the MiniMax Token Plan wiring; context_length and best framework left as honest placeholders pending phases 003 + 004."
+description: "Wired the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode, the shared small-model registry, and the sk-prompt-models sentinel as an explicitly-selectable MiMo path, mirroring the MiniMax Token Plan wiring; context_length and best framework left as honest placeholders pending phases 003 + 004."
 trigger_phrases:
   - "mimo provider integration summary"
   - "xiaomi-token-plan-ams shipped"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-126-001"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-MiMo-V2.5-Pro is now a first-class, explicitly-selectable cli-opencode model. The Xiaomi Token Plan (Europe) provider `xiaomi-token-plan-ams` and its model `xiaomi-token-plan-ams/mimo-v2.5-pro` are wired into the shared small-model registry, the cli-opencode skill, and the `sk-prompt-small-model` sentinel, exactly mirroring how MiniMax's Token Plan (`minimax-coding-plan`) was wired in packet 120. The skill default stays `opencode-go/deepseek-v4-pro`; MiMo is additive. Documentation, metadata, and the shared JSON registry only — no runtime code.
+MiMo-V2.5-Pro is now a first-class, explicitly-selectable cli-opencode model. The Xiaomi Token Plan (Europe) provider `xiaomi-token-plan-ams` and its model `xiaomi-token-plan-ams/mimo-v2.5-pro` are wired into the shared small-model registry, the cli-opencode skill, and the `sk-prompt-models` sentinel, exactly mirroring how MiniMax's Token Plan (`minimax-coding-plan`) was wired in packet 120. The skill default stays `opencode-go/deepseek-v4-pro`; MiMo is additive. Documentation, metadata, and the shared JSON registry only — no runtime code.
 
 ### MiMo registered in the shared registry
 
@@ -67,7 +67,7 @@ cli-opencode now treats `xiaomi-token-plan-ams` as a documented provider. The §
 
 ### Sentinel + metadata
 
-`sk-prompt-small-model` names MiMo across all five files (SKILL.md activation + dispatch matrix row, description.json keywords, pattern-index.md dispatch row, README.md provider note, graph-metadata.json trigger phrases). Both skills' graph-metadata gained MiMo/Xiaomi trigger phrases so the advisor surfaces the sentinel. The cli-opencode changelog `v1.3.5.0.md` records the addition (frontmatter version 1.3.4.0 to 1.3.5.0).
+`sk-prompt-models` names MiMo across all five files (SKILL.md activation + dispatch matrix row, description.json keywords, pattern-index.md dispatch row, README.md provider note, graph-metadata.json trigger phrases). Both skills' graph-metadata gained MiMo/Xiaomi trigger phrases so the advisor surfaces the sentinel. The cli-opencode changelog `v1.3.5.0.md` records the addition (frontmatter version 1.3.4.0 to 1.3.5.0).
 
 ### Files Changed
 
@@ -80,11 +80,11 @@ cli-opencode now treats `xiaomi-token-plan-ams` as a documented provider. The §
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | MiMo per-model override; framework pending 126/004 |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modified | 7 MiMo trigger phrases + 3 key topics |
 | `.opencode/skills/cli-opencode/changelog/v1.3.5.0.md` | Created | Version changelog for the MiMo addition |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Activation + dispatch matrix row |
-| `.opencode/skills/sk-prompt-small-model/description.json` | Modified | Description + keywords |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modified | MiMo dispatch row; framework pending 126/004 |
-| `.opencode/skills/sk-prompt-small-model/README.md` | Modified | Provider note |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modified | 5 MiMo trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Activation + dispatch matrix row |
+| `.opencode/skills/sk-prompt-models/description.json` | Modified | Description + keywords |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modified | MiMo dispatch row; framework pending 126/004 |
+| `.opencode/skills/sk-prompt-models/README.md` | Modified | Provider note |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modified | 5 MiMo trigger phrases |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -12,7 +12,7 @@ This iteration does not re-cover the prior D3 findings on live `ROUTED` declarat
 2. Read the shared context-loading contract, context card, proof card, and proof checker to separate "parent loaded it" from "child saw and applied it." [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:46] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:71] [SOURCE: .opencode/skills/sk-design/shared/assets/context_loaded_card.md:45] [SOURCE: .opencode/skills/sk-design/shared/assets/proof_of_application_card.md:15] [SOURCE: .opencode/skills/sk-design/shared/scripts/proof_check.py:47]
 3. Compared the generic Agent I/O evidence contract against the design-specific child-dispatch requirement. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md:20] [SOURCE: .opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md:25] [SOURCE: .opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md:170] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts:94]
 4. Checked the live benchmark prompt/parser/scorer and the skill-benchmark fixture contract to see where a boundary-proof lane could be enforced. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:18] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:66] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:243] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:188] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/skill_benchmark/scenario_authoring.md:22]
-5. Checked CLI dispatch surfaces for pre-load-by-construction support, especially small-model and design/UI dispatch templates. [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:569] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:575] [SOURCE: .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:130] [SOURCE: .opencode/skills/cli-codex/assets/prompt_templates.md:110]
+5. Checked CLI dispatch surfaces for pre-load-by-construction support, especially small-model and design/UI dispatch templates. [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:569] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:575] [SOURCE: .opencode/skills/sk-prompt-models/references/models/minimax-m3.md:130] [SOURCE: .opencode/skills/cli-codex/assets/prompt_templates.md:110]
 
 ## Findings
 
@@ -59,7 +59,7 @@ Severity: P1. Label: ENFORCEABLE.
 
 `cli-opencode` already has the right shape for pre-load-by-construction. Its design/UI dispatch template says the dispatched agent must load `sk-design` with the right mode bundle before any design decision, lists the exact context/proof files to read, requires the Context Loaded card before recommendations/code/findings, and requires the Proof Of Application card before readiness claims. [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:575] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:589] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:597] [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:621]
 
-Small-model craft also has a design-task variant for MiniMax-M3, adding the shared design-loading contract to the model-specific TIDD-EC scaffold. [SOURCE: .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:130] [SOURCE: .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:144] [SOURCE: .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:149] So there is a viable pre-load-by-construction path for at least one CLI family and one small-model profile.
+Small-model craft also has a design-task variant for MiniMax-M3, adding the shared design-loading contract to the model-specific TIDD-EC scaffold. [SOURCE: .opencode/skills/sk-prompt-models/references/models/minimax-m3.md:130] [SOURCE: .opencode/skills/sk-prompt-models/references/models/minimax-m3.md:144] [SOURCE: .opencode/skills/sk-prompt-models/references/models/minimax-m3.md:149] So there is a viable pre-load-by-construction path for at least one CLI family and one small-model profile.
 
 The gap is measurement. The live skill-benchmark prompt asks the model for `surface`, `subLanguage`, `resources`, `assets`, and `agent`; it does not ask for child-boundary proof, prompt-included design files, child cards, or parent validation. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:66] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:72] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs:243]
 
@@ -89,7 +89,7 @@ Severity: P2. Label: ENFORCEABLE for template presence; ADVISORY for arbitrary u
 
 `cli-opencode` has an explicit design/UI dispatch template. [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:569] The Codex CLI design-to-code template I read is a generic image-to-component prompt: it says to match an attached design and follow patterns in a file, but it does not name `sk-design`, the context manifest, or either proof card. [SOURCE: .opencode/skills/cli-codex/assets/prompt_templates.md:110] [SOURCE: .opencode/skills/cli-codex/assets/prompt_templates.md:117] The Claude Code template surface has schema-validated structured analysis examples, which could carry proof, but the checked structured templates are generic function/security/dependency schemas rather than design-boundary proof. [SOURCE: .opencode/skills/cli-claude-code/assets/prompt_templates.md:360] [SOURCE: .opencode/skills/cli-claude-code/assets/prompt_templates.md:376]
 
-Buildable recommendation: create one shared `design_dispatch_boundary.md` prompt asset under `sk-design/shared/` or `sk-prompt-small-model/assets/`, then make `cli-opencode`, `cli-codex`, and `cli-claude-code` reference it instead of each inventing their own design handoff. Add a parity checker that fails when a CLI prompt template supports design/UI dispatch without including the boundary proof fields, exact design-context files, and the no-memory-substitution rule.
+Buildable recommendation: create one shared `design_dispatch_boundary.md` prompt asset under `sk-design/shared/` or `sk-prompt-models/assets/`, then make `cli-opencode`, `cli-codex`, and `cli-claude-code` reference it instead of each inventing their own design handoff. Add a parity checker that fails when a CLI prompt template supports design/UI dispatch without including the boundary proof fields, exact design-context files, and the no-memory-substitution rule.
 
 ### Finding 5: The scorer has no first-failing stage for boundary proof
 
@@ -119,7 +119,7 @@ For `cli-opencode`, corroborate with `tool_use` reads when available. For `cli-c
 
 ## Questions Remaining
 
-- Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-small-model/assets/`, or a CLI-agnostic system-spec-kit reference?
+- Should the shared design boundary asset live under `sk-design/shared/`, `sk-prompt-models/assets/`, or a CLI-agnostic system-spec-kit reference?
 - Should `provided_context_hash` hash the exact prompt slice, the on-disk file contents, or both?
 - Should `cli-codex` and `cli-claude-code` gain design-specific templates directly, or should their generic templates link to one shared boundary asset to avoid drift?
 - Should a missing boundary proof cap the existing D1-intra score or become a separate hard gate before any D1/D2/D3 scoring?
@@ -149,7 +149,7 @@ D3-A10: fixture schema and scorer placement for the design boundary-proof lane. 
 - `.opencode/skills/cli-opencode/assets/prompt_templates.md`
 - `.opencode/skills/cli-codex/assets/prompt_templates.md`
 - `.opencode/skills/cli-claude-code/assets/prompt_templates.md`
-- `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
 
 ## Assessment
 

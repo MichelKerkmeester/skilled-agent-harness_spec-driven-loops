@@ -41,12 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json",
-      ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md",
-      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/references/pattern_index.md",
-      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
+      ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+      ".opencode/skills/sk-prompt-models/references/models/_index.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/references/pattern_index.md",
+      ".opencode/skills/sk-prompt-models/graph-metadata.json",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
@@ -60,37 +60,37 @@
       {
         "name": "model_profiles.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json",
+        "path": ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
         "source": "derived"
       },
       {
         "name": "glm-5.2.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.2.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
         "source": "derived"
       },
       {
         "name": "_index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {
         "name": "pattern_index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/pattern_index.md",
+        "path": ".opencode/skills/sk-prompt-models/references/pattern_index.md",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+        "path": ".opencode/skills/sk-prompt-models/graph-metadata.json",
         "source": "derived"
       },
       {

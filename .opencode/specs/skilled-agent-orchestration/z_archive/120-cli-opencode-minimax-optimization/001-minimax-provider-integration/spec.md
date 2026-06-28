@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: MiniMax 2.7 direct-API provider integration"
-description: "Add the MiniMax.io direct-API provider (model minimax-2.7) to cli-opencode's supported models and the shared small-model registry, surfaced via the sk-prompt-small-model sentinel."
+description: "Add the MiniMax.io direct-API provider (model minimax-2.7) to cli-opencode's supported models and the shared small-model registry, surfaced via the sk-prompt-models sentinel."
 trigger_phrases:
   - "minimax provider integration"
   - "minimax-2.7 cli-opencode"
@@ -54,18 +54,18 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model specification.
+This is **Phase 1** of the MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models specification.
 
 **Scope Boundary**: Provider wiring + registry entry + sentinel surfacing ONLY. No optimization-pattern files (context-budget, permissions-matrix, pattern-index) — those are phase-002 research outputs. No live auth.
 
 **Dependencies**:
 - Existing `deepseek` direct-API provider pattern in cli-opencode (the template to mirror)
-- 114's shared registry `sk-prompt/assets/model-profiles.json` + `sk-prompt-small-model` sentinel
+- 114's shared registry `sk-prompt/assets/model-profiles.json` + `sk-prompt-models` sentinel
 
 **Deliverables**:
 - `minimax` provider documented in cli-opencode SKILL.md + cli_reference.md (auth pre-flight, model selection, `--variant`)
 - `minimax-2.7` entry in `model-profiles.json` (registry version bumped)
-- MiniMax trigger phrases + sentinel description in `sk-prompt-small-model`
+- MiniMax trigger phrases + sentinel description in `sk-prompt-models`
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -77,7 +77,7 @@ This is **Phase 1** of the MiniMax 2.7 direct-API provider optimization for cli-
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry. MiniMax 2.7 (MiniMax.io direct API) therefore cannot be selected or routed through cli-opencode, and the `sk-prompt-small-model` sentinel does not surface it.
+cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry. MiniMax 2.7 (MiniMax.io direct API) therefore cannot be selected or routed through cli-opencode, and the `sk-prompt-models` sentinel does not surface it.
 
 ### Purpose
 MiniMax 2.7 is a selectable, documented model in the cli-opencode direct-API dispatch path, registered in the shared registry and discoverable via the sentinel.
@@ -91,7 +91,7 @@ MiniMax 2.7 is a selectable, documented model in the cli-opencode direct-API dis
 ### In Scope
 - Add `minimax` provider to cli-opencode auth pre-flight + model-selection docs (mirror `deepseek` direct-API pattern)
 - Append `minimax-2.7` to the shared small-model registry with the cli-opencode/minimax/minimax-api executor path
-- Surface MiniMax via the `sk-prompt-small-model` sentinel (description + trigger phrases)
+- Surface MiniMax via the `sk-prompt-models` sentinel (description + trigger phrases)
 
 ### Out of Scope
 - Optimization patterns (context-budget tuple, output-verification recipe, pattern-index rows) - these are phase-002 research outputs
@@ -105,8 +105,8 @@ MiniMax 2.7 is a selectable, documented model in the cli-opencode direct-API dis
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Modify | §4 auth pre-flight row + login shape; §5 model-selection row + `--variant` matrix row |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | Provider auth pre-flight + login template include `minimax` |
 | `.opencode/skills/sk-prompt/assets/model-profiles.json` | Modify | Append `minimax-2.7` entry; bump `version` to 1.2 |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modify | Sentinel description includes MiniMax + `minimax-api` path |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modify | Add MiniMax trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modify | Sentinel description includes MiniMax + `minimax-api` path |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modify | Add MiniMax trigger phrases |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,7 +125,7 @@ MiniMax 2.7 is a selectable, documented model in the cli-opencode direct-API dis
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Surface MiniMax via the `sk-prompt-small-model` sentinel | SKILL.md description names MiniMax + `minimax-api`; `graph-metadata.json` adds trigger phrases (`minimax`, `minimax-2.7`, `minimax-api`, `minimax.io`) |
+| REQ-003 | Surface MiniMax via the `sk-prompt-models` sentinel | SKILL.md description names MiniMax + `minimax-api`; `graph-metadata.json` adds trigger phrases (`minimax`, `minimax-2.7`, `minimax-api`, `minimax.io`) |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -661,7 +661,7 @@ Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 .opencode/skills/sk-doc/scripts/tests/test_validator.py
 .opencode/skills/sk-git/README.md
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skills/sk-prompt-small-model/README.md
+.opencode/skills/sk-prompt-models/README.md
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/system-code-graph/ARCHITECTURE.md
@@ -1564,7 +1564,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-Dq1bcJTm' (errno=Operation
 .opencode/skills/sk-doc/scripts/README.md
 .opencode/skills/sk-git/README.md
 .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skills/sk-prompt-small-model/README.md
+.opencode/skills/sk-prompt-models/README.md
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/system-code-graph/ARCHITECTURE.md

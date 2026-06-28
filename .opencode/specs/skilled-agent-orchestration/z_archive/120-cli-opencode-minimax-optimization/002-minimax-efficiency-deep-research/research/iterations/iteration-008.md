@@ -2,11 +2,11 @@
 
 ## Focus
 
-Stress-test the MiniMax-vs-other-small-model routing heuristics against concrete task scenarios, confirm the current `sk-prompt-small-model/references/pattern-index.md` format, and finalize the exact MiniMax rows plus a compact routing decision table for the cross-CLI quality card.
+Stress-test the MiniMax-vs-other-small-model routing heuristics against concrete task scenarios, confirm the current `sk-prompt-models/references/pattern-index.md` format, and finalize the exact MiniMax rows plus a compact routing decision table for the cross-CLI quality card.
 
 ## Actions Taken
 
-1. Read the current `sk-prompt-small-model/references/pattern-index.md`; it has 14 rows in a four-column table: `Pattern`, `Owner Skill`, `Canonical Location`, and `Shipped In`. [SOURCE: `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`]
+1. Read the current `sk-prompt-models/references/pattern-index.md`; it has 14 rows in a four-column table: `Pattern`, `Owner Skill`, `Canonical Location`, and `Shipped In`. [SOURCE: `.opencode/skills/sk-prompt-models/references/pattern-index.md`]
 2. Read the current `cli-opencode/references/context-budget.md`; it mirrors the canonical `cli-devin` budget pattern and currently lists DeepSeek, Kimi, and Qwen, but not MiniMax. [SOURCE: `.opencode/skills/cli-opencode/references/context-budget.md`]
 3. Read the cross-CLI quality card; its Budget Awareness list currently names `swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, and `qwen3.6`, but not `glm-5.1` or `minimax-2.7`. [SOURCE: `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`]
 4. Rechecked the live MiniMax model profile and `cli-opencode` provider docs; MiniMax exists as a single `cli-opencode` direct-provider path with `quota_pool: "minimax-api"` and `fallback_target: null`, while context length is still `null` in the file pending implementation. [SOURCE: `.opencode/skills/sk-prompt/assets/model-profiles.json`] [SOURCE: `.opencode/skills/cli-opencode/SKILL.md`] [SOURCE: `.opencode/skills/cli-opencode/references/cli_reference.md`]
@@ -68,8 +68,8 @@ Patch-ready implementation boundaries:
 - `cli-opencode/references/context-budget.md`: add MiniMax to the cli-opencode model-window table and add the tool-round continuity caveat.
 - `cli-opencode/references/cli_reference.md` and `cli-opencode/SKILL.md`: keep MiniMax explicit-request routing, but add the `--variant` exception and the routing heuristic table.
 - `sk-prompt/assets/cli_prompt_quality_card.md`: add `glm-5.1` and `minimax-2.7` to Budget Awareness and include the compact routing decision table above.
-- `sk-prompt-small-model/SKILL.md`: add MiniMax to the dispatch matrix and `cli-opencode` ownership row.
-- `sk-prompt-small-model/references/pattern-index.md`: add only the three link-only MiniMax rows listed in Finding 1.
+- `sk-prompt-models/SKILL.md`: add MiniMax to the dispatch matrix and `cli-opencode` ownership row.
+- `sk-prompt-models/references/pattern-index.md`: add only the three link-only MiniMax rows listed in Finding 1.
 
 ## Questions Answered
 
@@ -87,4 +87,4 @@ Patch-ready implementation boundaries:
 
 ## Next Focus
 
-Iteration 9 should produce the final implementation-ready synthesis: a minimal ordered patch plan with validation commands, stale-anchor handling, and a no-duplicate checklist for `model-profiles.json`, `per-model-budgets.json`, `cli-opencode`, `sk-prompt`, and `sk-prompt-small-model`.
+Iteration 9 should produce the final implementation-ready synthesis: a minimal ordered patch plan with validation commands, stale-anchor handling, and a no-duplicate checklist for `model-profiles.json`, `per-model-budgets.json`, `cli-opencode`, `sk-prompt`, and `sk-prompt-models`.

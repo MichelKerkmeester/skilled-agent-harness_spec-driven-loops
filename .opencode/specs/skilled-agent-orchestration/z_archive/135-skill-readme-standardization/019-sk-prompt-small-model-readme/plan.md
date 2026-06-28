@@ -1,20 +1,20 @@
 ---
-title: "Implementation Plan: sk-prompt-small-model README"
+title: "Implementation Plan: sk-prompt-models README"
 description: "Gather context with a two-iteration deep-context sweep, dual-draft with DeepSeek and MiMo, correct the executor count, then merge the narrative README."
 trigger_phrases:
-  - "sk-prompt-small-model readme plan"
+  - "sk-prompt-models readme plan"
 importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme"
+    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "README shipped and validated"
     next_safe_action: "Begin phase 020 (sk-prompt README)"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/README.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-019"
@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: sk-prompt-small-model README
+# Implementation Plan: sk-prompt-models README
 
 <!-- SPECKIT_LEVEL: 1 -->
 

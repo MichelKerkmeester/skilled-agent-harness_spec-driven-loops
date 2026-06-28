@@ -16,9 +16,9 @@
     "sampleCount": 45,
     "mock": false,
     "generated_at": "2026-06-28T12:55:05.375Z",
-    "resultsPath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/results.json",
-    "aggregatePath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/aggregate.json",
-    "synthesisPath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/synthesis.md"
+    "resultsPath": ".opencode/skills/sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/results.json",
+    "aggregatePath": ".opencode/skills/sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/aggregate.json",
+    "synthesisPath": ".opencode/skills/sk-prompt-models/benchmarks/008-glm-5.2-prompt-framework/synthesis.md"
   },
   "rowCount": 45,
   "verdict": {

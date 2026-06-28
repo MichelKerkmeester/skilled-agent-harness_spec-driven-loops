@@ -75,6 +75,6 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 - Spec: `spec.md` | Plan: `plan.md`
-- Parent: `../spec.md` | Pattern source: `../../114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
+- Parent: `../spec.md` | Pattern source: `../../114-small-ai-model-optimization/007-sk-prompt-models-rename/`
 - Memory: [[feedback_delete_not_archive_or_comment]], [[feedback_rename_grep_case_insensitive]]
 <!-- /ANCHOR:cross-refs -->

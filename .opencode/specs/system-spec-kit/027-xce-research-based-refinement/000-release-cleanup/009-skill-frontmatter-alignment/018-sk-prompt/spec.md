@@ -51,7 +51,7 @@ FAILURE MODES:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 22 |
 | **Predecessor** | 017-sk-git |
-| **Successor** | 019-sk-prompt-small-model |
+| **Successor** | 019-sk-prompt-models |
 | **Handoff Criteria** | Coverage check green for the skill; routing smoke passes; packet docs validate strictly |
 <!-- /ANCHOR:metadata -->
 

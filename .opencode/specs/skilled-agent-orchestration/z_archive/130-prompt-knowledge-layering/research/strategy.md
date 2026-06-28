@@ -1,6 +1,6 @@
-# Research Strategy — refining/structuring/connecting sk-prompt-small-model ↔ cli-* skills
+# Research Strategy — refining/structuring/connecting sk-prompt-models ↔ cli-* skills
 
-**Question:** How to further refine, structure, and connect `sk-prompt-small-model` and the 5 cli-* skills (cli-opencode, cli-devin, cli-codex, cli-gemini, cli-claude-code) — the model-craft hub ↔ executor-mechanics boundary, delegation/precedence, per-model profiles, and how they interconnect.
+**Question:** How to further refine, structure, and connect `sk-prompt-models` and the 5 cli-* skills (cli-opencode, cli-devin, cli-codex, cli-gemini, cli-claude-code) — the model-craft hub ↔ executor-mechanics boundary, delegation/precedence, per-model profiles, and how they interconnect.
 
 **Executor:** claude2 (separate Claude account, --permission-mode plan, read-only).
 **Iterations:** 5, accumulating. Convergence when an iteration adds little new (newInfoRatio low).

@@ -128,4 +128,4 @@ Once Step 5b is done:
 - **Config**: `deep-research-config.json` (this folder)
 - **Skill SKILL.md**: `.opencode/skills/deep-research/SKILL.md` (mandatory pre-read per CLAUDE.md CLI dispatch rule for cli-devin SWE-1.6)
 - **cli-devin SKILL.md**: `.opencode/skills/cli-devin/SKILL.md` (mandatory pre-read for SWE-1.6 RCAF + medium-density pre-planning)
-- **sk-prompt-small-model SKILL.md**: `.opencode/skills/sk-prompt-small-model/SKILL.md` (mandatory pre-read per small-model dispatch rule)
+- **sk-prompt-models SKILL.md**: `.opencode/skills/sk-prompt-models/SKILL.md` (mandatory pre-read per small-model dispatch rule)

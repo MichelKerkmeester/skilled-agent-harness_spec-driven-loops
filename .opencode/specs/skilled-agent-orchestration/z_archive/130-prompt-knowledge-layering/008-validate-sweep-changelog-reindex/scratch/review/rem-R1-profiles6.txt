@@ -21,5 +21,5 @@ Updated only the six requested profile files.
 
 **Verification**
 - `validate.sh .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering --strict`: passed for parent and all phase children.
-- `quick_validate.py .opencode/skills/sk-prompt-small-model --json`: valid, with one skill-description length warning outside the requested profile-file scope.
+- `quick_validate.py .opencode/skills/sk-prompt-models --json`: valid, with one skill-description length warning outside the requested profile-file scope.
 - Focused searches found no remaining targeted unsupported phrases or wrapper snippets in the six files.

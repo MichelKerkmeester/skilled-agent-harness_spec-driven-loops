@@ -1,5 +1,5 @@
 I’ll verify the packet context and skill routing first, then read the two target profiles plus their benchmark synthesis sources before editing only those profile files.
-SKILL ROUTING: `sk-prompt-small-model` matched at 0.95 confidence and owns the per-model profile sources; I’m loading that guidance before making the markdown edits.
+SKILL ROUTING: `sk-prompt-models` matched at 0.95 confidence and owns the per-model profile sources; I’m loading that guidance before making the markdown edits.
 I’ll now read the two profiles, the model index, `model-profiles.json`, and both synthesis documents to decide which §3 claims are actually supported.
 The synthesis docs support the core benchmark numbers, but a few profile phrasings overstate them: MiMo has 5 frameworks, not 6; the 2.4x claim applies to the hard fixture, not every run; and the synthesis does not show `--variant high` for the 10-run benchmark. I’m patching only the two requested profile files to align §2 with the registry and source §3 to `120/003` / `126/004`.
 The edit is applied to only the requested profiles. I’m now checking the diff, rereading the changed sections, and running packet validation before reporting outcomes.
@@ -8,8 +8,8 @@ The first validation invocation used the user’s shorthand path and the script 
 Verification passed: target diff has no whitespace errors, and strict validation passed for the actual packet path after rerunning with `.opencode/specs/...`.
 Updated only:
 
-- `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md`
-- `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md`
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md`
 
 **MiniMax-M3**
 Kept with `120/003` synthesis citation:

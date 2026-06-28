@@ -42,9 +42,9 @@ _memory:
 
 This phase ran a single GPT-5.5 (reasoning xhigh, cli-codex) deep-research lineage to answer one question: how do we reliably stop an AI agent — the main session, a dispatched sub-agent, or a small model like MiniMax-M3 — from missing or under-loading the relevant `sk-design` sub-skill context when it does design/UI build work? It is grounded in four real misses observed this session: a skipped register, a late foundations contrast check that surfaced a WCAG-AA P1 only at audit, an ad-hoc audit instead of the interface pre-flight card, and the thinnest context handed to a small model. The canonical deliverable is `research/research.md`. This phase changes no live skill content.
 
-**Key Decisions**: Treat the investigation as mechanism design only (no canonical `sk-design`/`cli-opencode`/`sk-prompt-small-model` edits); route every named fix to a future build phase.
+**Key Decisions**: Treat the investigation as mechanism design only (no canonical `sk-design`/`cli-opencode`/`sk-prompt-models` edits); route every named fix to a future build phase.
 
-**Critical Dependencies**: the live `sk-design` hub + five mode packets + shared register, the `cli-opencode` and `sk-prompt-small-model` dispatch contracts, and the deep-loop-runtime fan-out + promotion-gate precedent.
+**Critical Dependencies**: the live `sk-design` hub + five mode packets + shared register, the `cli-opencode` and `sk-prompt-models` dispatch contracts, and the deep-loop-runtime fan-out + promotion-gate precedent.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -91,7 +91,7 @@ Run a GPT-5.5-xhigh deep-research lineage that diagnoses why the misses happen a
 - The synthesis recorded in `research/research.md` plus this lean spec-folder wrapper.
 
 ### Out of Scope
-- Any edit to live `sk-design`, `cli-opencode`, `sk-prompt-small-model`, or deep-loop-runtime files. Research only.
+- Any edit to live `sk-design`, `cli-opencode`, `sk-prompt-models`, or deep-loop-runtime files. Research only.
 - Building any recommended contract, card, gate, or template (each routes to a future build phase).
 
 ### Files to Change
@@ -160,4 +160,4 @@ Run a GPT-5.5-xhigh deep-research lineage that diagnoses why the misses happen a
 
 - **Canonical deliverable**: `research/research.md`
 - **Sibling research precedent**: `../024-designer-skills-research/`, `../022-mifb-design-research/`
-- **Target skills**: `.opencode/skills/sk-design/`, `.opencode/skills/cli-opencode/`, `.opencode/skills/sk-prompt-small-model/`
+- **Target skills**: `.opencode/skills/sk-design/`, `.opencode/skills/cli-opencode/`, `.opencode/skills/sk-prompt-models/`

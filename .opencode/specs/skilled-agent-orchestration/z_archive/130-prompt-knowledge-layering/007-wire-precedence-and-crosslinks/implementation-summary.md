@@ -6,7 +6,7 @@ trigger_phrases:
   - "crosslinks"
   - "3-tier prompt composition"
   - "cli-* precedence block"
-  - "sk-prompt-small-model hub crosslink"
+  - "sk-prompt-models hub crosslink"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -23,8 +23,8 @@ _memory:
       - ".opencode/skills/cli-claude-code/SKILL.md"
       - ".opencode/skills/cli-codex/SKILL.md"
       - ".opencode/skills/cli-gemini/SKILL.md"
-      - ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/references/pattern-index.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
       fingerprint: "sha256:38fe68bc403651b05e50bebfeb0c4b0a661aede11c5927a95189818c2d58772d"
       session_id: "007-wire-precedence-and-crosslinks-complete"
@@ -57,11 +57,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All 5 cli-* SKILL.md files now carry an identical 3-tier prompt-composition precedence block that enforces a consistent decision order — fast path first, model override in tier 2 (pointing back to the sk-prompt-small-model hub), deep path last. Before this phase, each CLI skill defined composition guidance independently, making it impossible for a caller to predict which rule prevailed when two tiers both matched. Now every consumer reads the same three-tier cascade.
+All 5 cli-* SKILL.md files now carry an identical 3-tier prompt-composition precedence block that enforces a consistent decision order — fast path first, model override in tier 2 (pointing back to the sk-prompt-models hub), deep path last. Before this phase, each CLI skill defined composition guidance independently, making it impossible for a caller to predict which rule prevailed when two tiers both matched. Now every consumer reads the same three-tier cascade.
 
 ### 3-tier Precedence Block in All 5 CLI Skills
 
-The block defines: (1) fast path — use the model's native syntax when no hub profile exists; (2) model override — consult the sk-prompt-small-model hub profile for any model with a registered entry; (3) deep path — compose via sk-prompt frameworks when richness is required. All 5 files — cli-devin, cli-opencode, cli-claude-code, cli-codex, cli-gemini — received the same block, verbatim, to prevent tier-order drift.
+The block defines: (1) fast path — use the model's native syntax when no hub profile exists; (2) model override — consult the sk-prompt-models hub profile for any model with a registered entry; (3) deep path — compose via sk-prompt frameworks when richness is required. All 5 files — cli-devin, cli-opencode, cli-claude-code, cli-codex, cli-gemini — received the same block, verbatim, to prevent tier-order drift.
 
 ### cli-devin Mandate Reconciliation
 
@@ -69,11 +69,11 @@ cli-devin carried a bespoke "MUST be composed through sk-prompt" requirement in 
 
 ### Canonical Card Mirror Sync Refresh
 
-The sk-prompt-small-model SKILL.md canonical card had a stale "Mirror Sync" section that described a sync process that no longer existed. It was replaced with a duplication-guard description explaining that the hub profile is the single source of truth and cli-* skills must not maintain local copies.
+The sk-prompt-models SKILL.md canonical card had a stale "Mirror Sync" section that described a sync process that no longer existed. It was replaced with a duplication-guard description explaining that the hub profile is the single source of truth and cli-* skills must not maintain local copies.
 
 ### pattern-index.md Repoints
 
-The MiniMax and MiMo rows in `sk-prompt-small-model/references/pattern-index.md` previously pointed to framework-level notes inside individual cli-* skill trees. They now point to the hub profiles (`references/models/minimax-2.7.md`, `references/models/minimax-m3.md`, and `references/models/mimo-v2.5-pro.md`). The cli-opencode ownership cell was updated from a generic "framework guidance" description to "craft-vs-mechanics" to reflect that cli-opencode owns executor mechanics while sk-prompt-small-model owns the prompt craft for each model.
+The MiniMax and MiMo rows in `sk-prompt-models/references/pattern-index.md` previously pointed to framework-level notes inside individual cli-* skill trees. They now point to the hub profiles (`references/models/minimax-2.7.md`, `references/models/minimax-m3.md`, and `references/models/mimo-v2.5-pro.md`). The cli-opencode ownership cell was updated from a generic "framework guidance" description to "craft-vs-mechanics" to reflect that cli-opencode owns executor mechanics while sk-prompt-models owns the prompt craft for each model.
 
 ### Files Changed
 
@@ -81,12 +81,12 @@ The MiniMax and MiMo rows in `sk-prompt-small-model/references/pattern-index.md`
 |------|--------|---------|
 | `.opencode/skills/cli-devin/SKILL.md` | Modified | Inserted 3-tier precedence block; reconciled bespoke compose mandate to honor swe-1.6 profile + 3-tier rule |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | Inserted 3-tier precedence block; updated ownership cell description to craft-vs-mechanics |
-| `.opencode/skills/cli-claude-code/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-small-model tier 2 reference |
-| `.opencode/skills/cli-codex/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-small-model tier 2 reference |
-| `.opencode/skills/cli-gemini/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-small-model tier 2 reference |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-models tier 2 reference |
+| `.opencode/skills/cli-codex/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-models tier 2 reference |
+| `.opencode/skills/cli-gemini/SKILL.md` | Modified | Inserted 3-tier precedence block with sk-prompt-models tier 2 reference |
 | `.opencode/skills/cli-devin/references/prompt_templates.md` | Modified | Reconciled bespoke compose mandate to align with 3-tier rule |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Replaced stale Mirror Sync section with duplication-guard description |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modified | Repointed MiniMax and MiMo rows to hub profiles; updated cli-opencode ownership cell to craft-vs-mechanics |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Replaced stale Mirror Sync section with duplication-guard description |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modified | Repointed MiniMax and MiMo rows to hub profiles; updated cli-opencode ownership cell to craft-vs-mechanics |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -121,7 +121,7 @@ Each cli-* SKILL.md was read before editing to capture the exact insertion point
 | All 5 cli-* SKILL.md contain 3-tier block | PASS — verified by read after edit |
 | cli-devin mandate language consistent in SKILL.md + prompt_templates.md | PASS |
 | pattern-index.md MiniMax and MiMo rows point to hub profiles | PASS |
-| sk-prompt-small-model canonical card no longer contains Mirror Sync section | PASS |
+| sk-prompt-models canonical card no longer contains Mirror Sync section | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

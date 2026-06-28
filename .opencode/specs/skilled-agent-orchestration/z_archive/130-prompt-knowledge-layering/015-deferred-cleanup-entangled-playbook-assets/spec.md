@@ -93,7 +93,7 @@ asset docs into leading-divider consistency with the sk-doc asset template.
 
 ### In Scope
 - Land `cli-devin/references/cli_reference.md` (permission-mode typo dedup to the 2 real Devin modes, plus the matching version-drift wording), `cli-devin/references/quota-fallback.md` (model-profiles.json path repoint + its dividers) and `cli-opencode/references/cli_reference.md` (MiniMax-M3 row + its dividers).
-- Repoint the 9 dangling card paths in `sk-prompt/manual_testing_playbook/**` to `sk-prompt-small-model/assets/cli_prompt_quality_card.md`.
+- Repoint the 9 dangling card paths in `sk-prompt/manual_testing_playbook/**` to `sk-prompt-models/assets/cli_prompt_quality_card.md`.
 - Remove the leading `---` before section 1 in 6 asset docs (`prompt_templates.md` x5 + `cli-devin/assets/deep-loop-iter-template.md`).
 - Version bumps + changelogs for the 6 affected skills.
 

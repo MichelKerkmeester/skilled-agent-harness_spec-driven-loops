@@ -102,7 +102,7 @@ Full verified line-resolved touch list (~45 active files + historical sweep) liv
 |-------|--------|-------|--------|
 | 1 | `001-canonical-rehome-and-ci-gate/` | Re-home context-budget canonical + patch CI scripts (must be first) | Complete |
 | 2 | `002-runtime-code-and-executor-removal/` | Runtime code executor removal + swe-1.6 removal + deep-loop YAMLs | Complete |
-| 3 | `003-registry-graph-and-skill-advisor-removal/` | sk-prompt-small-model registry + skill-graph + advisor + Devin hooks + graph rebuild | Complete |
+| 3 | `003-registry-graph-and-skill-advisor-removal/` | sk-prompt-models registry + skill-graph + advisor + Devin hooks + graph rebuild | Complete |
 | 4 | `004-docs-agents-governance-removal/` | Agents (3 runtimes) + AGENTS/CLAUDE/README + cross-skill + constitutional | Complete |
 | 5 | `005-historical-record-reference-sweep/` | Coherently-editable historical prose references (per D1) | Complete |
 | 6 | `006-delete-skill-directory-and-verify/` | rm -rf cli-devin/ + final validation (zero active refs) | Complete |
@@ -131,7 +131,7 @@ Full verified line-resolved touch list (~45 active files + historical sweep) liv
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- D3 re-home target for `context-budget.md` defaults to `sk-prompt-small-model/references/` unless the operator redirects.
+- D3 re-home target for `context-budget.md` defaults to `sk-prompt-models/references/` unless the operator redirects.
 - D6 grader-prompt label neutralization is low-priority/optional (see `context-report.md` §1).
 <!-- /ANCHOR:questions -->
 

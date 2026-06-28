@@ -1,27 +1,27 @@
 [0m
 > build · gpt-5.5-fast
 [0m
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"A 3-layer prompt-knowledge refactor (spec 130) was reviewed (10 iterations) and then REMEDIATED. Layer 1: sk-prompt owns framework craft + assets/model-profiles.json (recommended_frameworks on 8 active models). Layer 2: sk-prompt-small-model is the per-model prompt-craft hub — references/models/<id>.md (8 profiles, 6 sections each) + _index.md + pattern-index.md. Layer 3: 5 cli-*/assets/prompt_quality_card.md thin delegating cards + 5 cli-*/SKILL.md with an identical 3-tier precedence rule. Prior review found: broken profile->cli relative links, profile benchmark numbers not packet-sourced, taxonomy mislabels, stale model-profiles.md schema prose, narrower Tier-3 trigger lists. These were remediated.\n\nRE-REVIEW DIMENSION (reverify-crosslinks): RE-VERIFY CROSS-LINK INTEGRITY (was FAIL). Resolve EVERY relative link in the 8 profiles, _index.md, pattern-index.md against the filesystem (accounting for each file's directory depth — profiles are at references/models/, so cli-X is ../../../cli-X). Flag any link whose target does not exist.\n\nOutput findings prefixed [P0]/[P1]/[P2] with file:line + fix; [OK] for verified-clean. End with one line: VERDICT PASS|CONDITIONAL|FAIL. Review only — do NOT modify files.","specFolder":".opencode/specs/130-prompt-knowledge-refactor","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"A 3-layer prompt-knowledge refactor (spec 130) was reviewed (10 iterations) and then REMEDIATED. Layer 1: sk-prompt owns framework craft + assets/model-profiles.json (recommended_frameworks on 8 active models). Layer 2: sk-prompt-models is the per-model prompt-craft hub — references/models/<id>.md (8 profiles, 6 sections each) + _index.md + pattern-index.md. Layer 3: 5 cli-*/assets/prompt_quality_card.md thin delegating cards + 5 cli-*/SKILL.md with an identical 3-tier precedence rule. Prior review found: broken profile->cli relative links, profile benchmark numbers not packet-sourced, taxonomy mislabels, stale model-profiles.md schema prose, narrower Tier-3 trigger lists. These were remediated.\n\nRE-REVIEW DIMENSION (reverify-crosslinks): RE-VERIFY CROSS-LINK INTEGRITY (was FAIL). Resolve EVERY relative link in the 8 profiles, _index.md, pattern-index.md against the filesystem (accounting for each file's directory depth — profiles are at references/models/, so cli-X is ../../../cli-X). Flag any link whose target does not exist.\n\nOutput findings prefixed [P0]/[P1]/[P2] with file:line + fix; [OK] for verified-clean. End with one line: VERDICT PASS|CONDITIONAL|FAIL. Review only — do NOT modify files.","specFolder":".opencode/specs/130-prompt-knowledge-refactor","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m→ [0mSkill "sk-code-review"
-[0m✱ [0mGlob "**/sk-prompt-small-model/references/pattern-index.md"[90m in . · 1 match[0m
-[0m✱ [0mGlob "**/sk-prompt-small-model/references/models/*.md"[90m in . · 9 matches[0m
-[0m✱ [0mGlob "**/sk-prompt-small-model/references/_index.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/sk-prompt-models/references/pattern-index.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/sk-prompt-models/references/models/*.md"[90m in . · 9 matches[0m
+[0m✱ [0mGlob "**/sk-prompt-models/references/_index.md"[90m in . · 0 matches[0m
 [0m
 [0m$ [0mnode - <<'JS'
 const fs = require('fs');
 const path = require('path');
 const root = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public';
 const files = [
-  '.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md',
-  '.opencode/skills/sk-prompt-small-model/references/models/_index.md',
-  '.opencode/skills/sk-prompt-small-model/references/pattern-index.md',
+  '.opencode/skills/sk-prompt-models/references/models/swe-1.6.md',
+  '.opencode/skills/sk-prompt-models/references/models/minimax-2.7.md',
+  '.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md',
+  '.opencode/skills/sk-prompt-models/references/models/qwen3.6.md',
+  '.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md',
+  '.opencode/skills/sk-prompt-models/references/models/glm-5.1.md',
+  '.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md',
+  '.opencode/skills/sk-prompt-models/references/models/minimax-m3.md',
+  '.opencode/skills/sk-prompt-models/references/models/_index.md',
+  '.opencode/skills/sk-prompt-models/references/pattern-index.md',
 ];
 function stripDest(raw) {
   let dest = raw.trim();
@@ -76,16 +76,16 @@ console.log(`TOTAL_RELATIVE_LINKS ${total}`);
 console.log(`BROKEN_LINKS ${broken.length}`);
 for (const b of broken) console.log(`${b.file}:${b.line}: ${b.target} -> ${b.resolved}`);
 JS
-.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md: 14 relative links
-.opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md: 12 relative links
-.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md: 14 relative links
-.opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md: 16 relative links
-.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md: 19 relative links
-.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md: 16 relative links
-.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md: 8 relative links
-.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md: 8 relative links
-.opencode/skills/sk-prompt-small-model/references/models/_index.md: 13 relative links
-.opencode/skills/sk-prompt-small-model/references/pattern-index.md: 23 relative links
+.opencode/skills/sk-prompt-models/references/models/swe-1.6.md: 14 relative links
+.opencode/skills/sk-prompt-models/references/models/minimax-2.7.md: 12 relative links
+.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md: 14 relative links
+.opencode/skills/sk-prompt-models/references/models/qwen3.6.md: 16 relative links
+.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md: 19 relative links
+.opencode/skills/sk-prompt-models/references/models/glm-5.1.md: 16 relative links
+.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md: 8 relative links
+.opencode/skills/sk-prompt-models/references/models/minimax-m3.md: 8 relative links
+.opencode/skills/sk-prompt-models/references/models/_index.md: 13 relative links
+.opencode/skills/sk-prompt-models/references/pattern-index.md: 23 relative links
 TOTAL_RELATIVE_LINKS 143
 BROKEN_LINKS 0
 [0m

@@ -103,7 +103,7 @@ A no-converge deep-loop-runtime driver (externalized JSONL state + reduce-state.
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-- **Coverage gap (D5)**: iterations 046-050 never exercised the `sk-prompt-small-model` per-model profiles or the `AGENTS.md` carry-path named in the D5 charter; whether small-model children honor the inlined manifest remains untested (research.md §8).
+- **Coverage gap (D5)**: iterations 046-050 never exercised the `sk-prompt-models` per-model profiles or the `AGENTS.md` carry-path named in the D5 charter; whether small-model children honor the inlined manifest remains untested (research.md §8).
 - **D6 angle re-use**: the monitor's corpus-expansion angle `MON-B3` ran three times (the override persisted across the driver's fast advance); those passes deepened rather than repeated, but ~2 of 5 D6 passes were lower-yield than their newInfoRatio claimed (research.md §3, §12).
 - **Residual bypasses**: three D4 bypasses cannot be fully closed — the Open Design daemon ships unmodifiable in the app bundle, a text-only cli-claude-code child cannot prove it did not replay a stale token, and shell aliases the Bash parser cannot resolve escape the gate (research.md §7).
 - **Working-tree only**: the packet is uncommitted; this is research, so no live sk-design change yet.

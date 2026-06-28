@@ -88,7 +88,7 @@ Conclusion: MiniMax direct-provider dispatches should use the same read-only, pa
 
 ### Finding 4: The documented fallback-router and permissions-gate runtime anchors are stale or absent in this checkout
 
-The prompt asked to verify against `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts` and `permissions-gate.ts`. Direct reads failed because those files do not exist at the referenced paths, and `rg --files .opencode/skills/system-spec-kit | rg 'deep-loop|fallback|permissions'` found no matching runtime helper files. The stale references are still present in the pattern index and example matrix. [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/pattern-index.md:43] [SOURCE: file:.opencode/skills/sk-prompt-small-model/references/pattern-index.md:46] [SOURCE: file:.opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json:55]
+The prompt asked to verify against `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts` and `permissions-gate.ts`. Direct reads failed because those files do not exist at the referenced paths, and `rg --files .opencode/skills/system-spec-kit | rg 'deep-loop|fallback|permissions'` found no matching runtime helper files. The stale references are still present in the pattern index and example matrix. [SOURCE: file:.opencode/skills/sk-prompt-models/references/pattern-index.md:43] [SOURCE: file:.opencode/skills/sk-prompt-models/references/pattern-index.md:46] [SOURCE: file:.opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json:55]
 
 This does not imply MiniMax needs new runtime code. It implies the implementation follow-up should first decide whether to restore/recreate those runtime helper files, update the references to their actual current locations, or explicitly mark those helpers as planned-but-absent. The MiniMax-specific delta should stay in documentation, model-profile metadata, and manual test coverage until the runtime anchor is reconciled.
 
@@ -113,4 +113,4 @@ Conclusion: no MiniMax-specific fallback code or mapping is needed. Keep `fallba
 
 ## Next Focus
 
-Iteration 8 should convert the now-hardened findings into a patch-ready implementation checklist: exact file-level edits for `sk-prompt/assets/model-profiles.json`, `cli-opencode/SKILL.md`, `cli-opencode/references/context-budget.md`, `cli-opencode/manual_testing_playbook`, and `sk-prompt-small-model/references/pattern-index.md`, including how to handle the stale runtime-helper anchors.
+Iteration 8 should convert the now-hardened findings into a patch-ready implementation checklist: exact file-level edits for `sk-prompt/assets/model-profiles.json`, `cli-opencode/SKILL.md`, `cli-opencode/references/context-budget.md`, `cli-opencode/manual_testing_playbook`, and `sk-prompt-models/references/pattern-index.md`, including how to handle the stale runtime-helper anchors.

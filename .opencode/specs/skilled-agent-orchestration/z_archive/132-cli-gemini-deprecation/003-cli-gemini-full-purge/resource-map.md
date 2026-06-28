@@ -187,7 +187,7 @@ _memory:
 | `.opencode/changelog/deep-review/changelog/v1.5.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
 | `.opencode/changelog/deep-review/changelog/v1.6.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
 | `.opencode/changelog/deep-review/changelog/v1.7.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
-| `.opencode/changelog/sk-prompt-small-model/changelog/v0.2.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
+| `.opencode/changelog/sk-prompt-models/changelog/v0.2.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
 | `.opencode/changelog/system-skill-advisor/changelog/v0.4.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
 | `.opencode/changelog/system-spec-kit/changelog/v3.4.0.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |
 | `.opencode/changelog/system-spec-kit/changelog/v3.4.1.0.md` | Edited | OK | Removed `cli-gemini` executor wording. |

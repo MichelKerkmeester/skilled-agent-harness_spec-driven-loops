@@ -133,9 +133,9 @@ _memory:
 | `.opencode/skills/deep-loop-runtime/SKILL.md` | Edited | OK | Removed Gemini from the fan-out executor list. |
 | `.opencode/skills/deep-loop-runtime/feature_catalog/**` (fanout-executor list) | Edited | OK | Feature catalog fan-out executor list drops Gemini. |
 | `.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js` | Edited | OK | Model-ref validator drops `gemini-flash`. |
-| `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` | Edited | OK | Removed the `gemini-flash` model profile. |
-| `.opencode/skills/sk-prompt-small-model/assets/per-model-budgets.json` | Edited | OK | Removed `gemini-flash` budget. |
-| `.opencode/skills/sk-prompt-small-model/**` refs | Edited | OK | Removed `gemini-flash` references. |
+| `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Edited | OK | Removed the `gemini-flash` model profile. |
+| `.opencode/skills/sk-prompt-models/assets/per-model-budgets.json` | Edited | OK | Removed `gemini-flash` budget. |
+| `.opencode/skills/sk-prompt-models/**` refs | Edited | OK | Removed `gemini-flash` references. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -247,7 +247,7 @@ _memory:
 | `.opencode/changelog/deep-review/**` (×4) | Edited | OK | Removed Gemini runtime wording. |
 | `.opencode/changelog/cli-*/**` (×5) | Edited | OK | Removed Gemini runtime/dispatch wording. |
 | `.opencode/changelog/sk-doc/**` (×1) | Edited | OK | Removed Gemini reference. |
-| `.opencode/changelog/sk-prompt-small-model/**` (×1) | Edited | OK | Removed `gemini-flash` model wording. |
+| `.opencode/changelog/sk-prompt-models/**` (×1) | Edited | OK | Removed `gemini-flash` model wording. |
 <!-- /ANCHOR:changelogs -->
 
 ---

@@ -62,7 +62,7 @@ _memory:
 - [x] T004 Run `validate.sh --strict` on the 008 child folder — exit 0 required before proceeding
 - [x] T005 Run `check-prompt-quality-card-sync.sh` from repo root — confirm all 5 cli-* cards PASS and guard exits 0
 - [x] T006 Verify `recommended_frameworks` field present on all 8 active small models in `sk-prompt/assets/model-profiles.json`
-- [x] T007 Verify `profile_ref` in each model's `recommended_frameworks` resolves to an existing `.md` file under `sk-prompt-small-model/references/models/`
+- [x] T007 Verify `profile_ref` in each model's `recommended_frameworks` resolves to an existing `.md` file under `sk-prompt-models/references/models/`
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,7 +28,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Prose home -> Architecture A (sk-prompt-small-model/references/models/)"
+      - "Prose home -> Architecture A (sk-prompt-models/references/models/)"
       - "Model scope -> all active small models at equal depth"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -58,7 +58,7 @@ Phase 001 delivered the ratified Architecture A decision plus three locked contr
 
 ### Architecture A Decision
 
-Architecture A designates `sk-prompt-small-model` as the per-model prompt-craft content hub. The three-layer split assigns framework craft (model-agnostic) to `sk-prompt`, per-model craft prose to `sk-prompt-small-model/references/models/<id>.md`, and executor mechanics to `cli-*` skills. This split is fork-proof for models dispatchable from two executors, and matches the existing "canonical home for model specifics" language in CLAUDE.md.
+Architecture A designates `sk-prompt-models` as the per-model prompt-craft content hub. The three-layer split assigns framework craft (model-agnostic) to `sk-prompt`, per-model craft prose to `sk-prompt-models/references/models/<id>.md`, and executor mechanics to `cli-*` skills. This split is fork-proof for models dispatchable from two executors, and matches the existing "canonical home for model specifics" language in CLAUDE.md.
 
 ### Three Locked Contracts
 

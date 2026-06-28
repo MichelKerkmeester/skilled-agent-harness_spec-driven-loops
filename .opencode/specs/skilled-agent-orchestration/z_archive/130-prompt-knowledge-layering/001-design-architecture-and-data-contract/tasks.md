@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Audit current prompt-knowledge state across cli-* + sk-prompt + sk-prompt-small-model
+- [x] T001 Audit current prompt-knowledge state across cli-* + sk-prompt + sk-prompt-models
 - [x] T002 [P] Generate centralized-SSOT architecture (lens A)
 - [x] T003 [P] Generate minimal-disruption architecture (lens B)
 <!-- /ANCHOR:phase-1 -->

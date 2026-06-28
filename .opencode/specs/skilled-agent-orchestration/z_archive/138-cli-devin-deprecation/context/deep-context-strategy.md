@@ -23,7 +23,7 @@ Blast radius: **~1811 files** mention `cli-devin`. Split:
 | # | SLICE cluster | Anchor paths | Why active |
 |---|---------------|--------------|------------|
 | 1 | The skill itself | `.opencode/skills/cli-devin/**` (SKILL.md, README, graph-metadata.json, references/, assets/, manual_testing_playbook/, changelog/) | Deletion target |
-| 2 | Model registry / dispatch | `sk-prompt-small-model/SKILL.md`, `assets/model-profiles.json`, `references/pattern-index.md`, `references/models/*.md` (swe-1.6, kimi-k2.6, deepseek-v4-pro, glm-5.1), `graph-metadata.json` | cli-devin as dispatch executor + provider/quota_pool entries |
+| 2 | Model registry / dispatch | `sk-prompt-models/SKILL.md`, `assets/model-profiles.json`, `references/pattern-index.md`, `references/models/*.md` (swe-1.6, kimi-k2.6, deepseek-v4-pro, glm-5.1), `graph-metadata.json` | cli-devin as dispatch executor + provider/quota_pool entries |
 | 3 | Deep-loop executor wiring | `deep-loop-runtime/lib/deep-loop/executor-config.ts`, `executor-audit.ts`; `commands/deep/assets/deep_start-*-loop_{auto,confirm}.yaml` (`--executor=cli-devin`, `cli-devin seats:` contracts) | cli-devin as an executor `kind` |
 | 4 | Agent rosters | `.opencode/agents/*.md` + `.claude/agents/*.md` + `.codex/agents/*.toml` (deep-review, deep-context, deep-research) | CLI-seat dispatch lists naming cli-devin |
 | 5 | Governance docs | `AGENTS.md`, `CLAUDE.md`, `.claude/CLAUDE.md`, `README.md` | CLI dispatch rule + small-model dispatch rule mention cli-devin |
@@ -37,7 +37,7 @@ Blast radius: **~1811 files** mention `cli-devin`. Split:
 
 - **Direct precedent: `132-cli-gemini-deprecation` (Level 3, shipped).** Scoped its work to *"active, non-spec references"* — deliberately did NOT rewrite historical spec docs. Updated runtime capability manifests, mirror/parity checks, command authoring guidance, doctor MCP config lists, skill-advisor routing, and top-level docs. This is the template to follow.
 - **`132-cli-gemini-deprecation` sibling: also removed a checked-in runtime mirror dir.** cli-devin has no separate runtime dir (it's a skill), so the analog is the skill dir + cross-runtime symlinks/agents.
-- Memory notes: cli-devin is a CLI executor option in all deep loops (`--executor=cli-devin`); `cli-devin has 2 permission modes, not 3`; small-model dispatch is governed by `sk-prompt-small-model` (model-profiles.json is single source); CLI dispatch rule in CLAUDE.md requires reading `cli-X/SKILL.md` before dispatch.
+- Memory notes: cli-devin is a CLI executor option in all deep loops (`--executor=cli-devin`); `cli-devin has 2 permission modes, not 3`; small-model dispatch is governed by `sk-prompt-models` (model-profiles.json is single source); CLI dispatch rule in CLAUDE.md requires reading `cli-X/SKILL.md` before dispatch.
 - Memory MCP `memory_context` was unavailable this session (session-scope error); known-context seeded from the precedent + scan instead.
 
 ## Convergence

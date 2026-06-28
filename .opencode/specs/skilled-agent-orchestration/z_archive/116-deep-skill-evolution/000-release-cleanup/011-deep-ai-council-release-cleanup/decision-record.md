@@ -59,7 +59,7 @@ The operator's prompt names the phase-5 toolchain twice: globally ("UTILIZE CLI-
 
 - Mac dispatch discipline forbids batching iterations; each iter runs one at a time.
 - Between-iter sweeps must PRESERVE `devin` (per `feedback_proactive_orphan_cleanup`: "kill for all except for devin"). Only `devin --print` and `/tmp/devin-*` are protected; codex/opencode/deep-research-runner orphans are swept.
-- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and `sk-prompt-small-model` (mandatory reads before composing the dispatch prompt).
+- SWE-1.6 requires RCAF + CLEAR + medium-density pre-planning per `cli-devin/SKILL.md` and `sk-prompt-models` (mandatory reads before composing the dispatch prompt).
 - The deep-research loop is owned by `/deep:start-research-loop` + `@deep-research` (native runtime); cli-devin is the per-iteration executor INSIDE that loop, not a replacement for the skill route (CLAUDE.md Gate-4 tiebreaker: executor CLI ≠ skill route).
 <!-- /ANCHOR:adr-001-context -->
 

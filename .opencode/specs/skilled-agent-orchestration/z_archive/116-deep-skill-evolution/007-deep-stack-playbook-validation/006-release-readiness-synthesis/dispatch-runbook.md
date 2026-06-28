@@ -8,7 +8,7 @@ dispatch. This is the single source of execution truth: a fresh session executin
 - `cli-devin` SWE-1.6 — deterministic inspection (`rg`/`sed`/`node`/Vitest/`.cjs`+`python3` asserts). Free tier (no Pro quota).
 - `cli-codex` GPT-5.5 medium-fast — A/B comparison, failure triage, cross-file reasoning, second opinions.
 
-> **Contract reminder:** Before composing any prompt, `Read` `.opencode/skills/cli-devin/SKILL.md` and `.opencode/skills/cli-codex/SKILL.md`. SWE-1.6 dispatch MUST be composed via `sk-prompt` (RCAF + medium-density pre-planning, bundle-gate language **standard**). Consult `sk-prompt-small-model` for context-budget + verification recipes.
+> **Contract reminder:** Before composing any prompt, `Read` `.opencode/skills/cli-devin/SKILL.md` and `.opencode/skills/cli-codex/SKILL.md`. SWE-1.6 dispatch MUST be composed via `sk-prompt` (RCAF + medium-density pre-planning, bundle-gate language **standard**). Consult `sk-prompt-models` for context-budget + verification recipes.
 
 ---
 
@@ -209,5 +209,5 @@ On a confirmed FAIL (after spot re-run):
 
 - `.opencode/skills/cli-devin/SKILL.md` (§3.1/§3.3 SWE-1.6 contract, RCAF, pre-planning, free tier)
 - `.opencode/skills/cli-codex/SKILL.md` (§3.1/§3.3 gpt-5.5 medium + service_tier fast, sandbox modes)
-- `.opencode/skills/sk-prompt-small-model/SKILL.md` (dispatch matrix, context-budget, verification recipes)
+- `.opencode/skills/sk-prompt-models/SKILL.md` (dispatch matrix, context-budget, verification recipes)
 - Each skill's `manual_testing_playbook/manual_testing_playbook.md` (Execution Policy, global preconditions, release rules, wave guidance)

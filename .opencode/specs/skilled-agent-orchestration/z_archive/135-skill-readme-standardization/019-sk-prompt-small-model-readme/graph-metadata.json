@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-small-model-readme",
-  "spec_folder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "packet_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-models-readme",
+  "spec_folder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-models-readme",
   "parent_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
   "children_ids": [],
   "manual": {
@@ -11,14 +11,14 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-prompt-small-model readme",
-      "sk-prompt-small-model narrative rewrite",
-      "sk-prompt-small-model readme plan",
-      "sk-prompt-small-model readme tasks",
-      "sk-prompt-small-model readme shipped"
+      "sk-prompt-models readme",
+      "sk-prompt-models narrative rewrite",
+      "sk-prompt-models readme plan",
+      "sk-prompt-models readme tasks",
+      "sk-prompt-models readme shipped"
     ],
     "key_topics": [
-      "sk-prompt-small-model",
+      "sk-prompt-models",
       "readme",
       "narrative",
       "rewrite",
@@ -34,7 +34,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/README.md",
+      ".opencode/skills/sk-prompt-models/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -44,7 +44,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/README.md",
+        "path": ".opencode/skills/sk-prompt-models/README.md",
         "source": "derived"
       },
       {
@@ -186,7 +186,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-prompt-small-model README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
+    "causal_summary": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
     "created_at": "2026-06-07T14:42:36Z",
     "last_save_at": "2026-06-23T03:49:51.925Z",
     "save_lineage": "graph_only",

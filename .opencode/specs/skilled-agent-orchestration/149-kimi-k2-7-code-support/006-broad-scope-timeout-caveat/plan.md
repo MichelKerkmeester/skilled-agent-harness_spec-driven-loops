@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: broad-scope-timeout-caveat [template:level_1/plan.md]"
-description: "Additive doc edits recording Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-small-model + cli-opencode, plus repair of stale kimi-k2.6 references; verified by the card-sync guard + strict validate."
+description: "Additive doc edits recording Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-models + cli-opencode, plus repair of stale kimi-k2.6 references; verified by the card-sync guard + strict validate."
 trigger_phrases:
   - "kimi k2.7 timeout caveat plan"
   - "broad scope over-exploration mitigation"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -42,7 +42,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + JSON skill docs |
 | **Framework** | spec-kit phase folder; prompt-card-sync drift guard |
-| **Storage** | Files in `sk-prompt-small-model` + `cli-opencode` |
+| **Storage** | Files in `sk-prompt-models` + `cli-opencode` |
 | **Testing** | `check-prompt-quality-card-sync.sh` + `validate.sh --strict` + JSON parse |
 
 ### Overview
@@ -74,7 +74,7 @@ Additive, doc-only change. Record the observed Kimi K2.7 Code over-exploration �
 Document-the-gotcha. The finding is data; the doc edits put it where future dispatchers will read it (profile + registry + executor card + budget reference).
 
 ### Key Components
-- **sk-prompt-small-model**: `references/models/kimi-k2.7-code.md` (§2 wall-clock, §5 read-cap/failure-mode, §6 variant caveat) + `assets/model_profiles.json` (weaknesses entry).
+- **sk-prompt-models**: `references/models/kimi-k2.7-code.md` (§2 wall-clock, §5 read-cap/failure-mode, §6 variant caveat) + `assets/model_profiles.json` (weaknesses entry).
 - **cli-opencode**: `SKILL.md` Kimi line caveat; `references/cli_reference.md` + `references/context-budget.md` stale `kimi-k2.6` → `k2p7`/`k2.7-code`.
 - **Guard**: `check-prompt-quality-card-sync.sh` proves the additions didn't desync the registry/profile/card.
 
@@ -87,7 +87,7 @@ Finding (028/007) → profile + registry + executor card + budget reference → 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Caveat in sk-prompt-small-model
+### Phase 1: Caveat in sk-prompt-models
 - [x] kimi-k2.7-code.md §5 (load-bearing read-cap + failure mode), §6 variant_flag caveat, §2 wall-clock observation
 - [x] model_profiles.json `kimi-k2.7-code` weaknesses entry
 

@@ -19,8 +19,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/007-kimi-k2.7-discriminating/aggregate.json"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/aggregate.json"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-004-discriminating-bakeoff"
@@ -52,7 +52,7 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | Node.js (deep-loop sweep engine), JSON profiles |
 | **Framework** | deep-loop-workflows `sweep-benchmark.cjs` (framework-bakeoff mode) |
-| **Storage** | JSON run outputs under `sk-prompt-small-model/benchmarks/` |
+| **Storage** | JSON run outputs under `sk-prompt-models/benchmarks/` |
 | **Testing** | Deterministic code oracle (5dim scorer) plus the spec-kit strict validator |
 
 ### Overview
@@ -108,8 +108,8 @@ This phase corrects a saturated benchmark result and changes a shared prompt-fra
 | `sweep-benchmark.cjs` | Bakeoff engine | unchanged (scope lock) | no diff against engine |
 
 Required inventories:
-- Same-class producers: `rg -n 'recommended_frameworks' .opencode/skills/sk-prompt-small-model/assets/model-profiles.json`.
-- Consumers of the changed default: `rg -n 'kimi-k2.7-code' .opencode/skills/sk-prompt-small-model --glob '*.md' --glob '*.json'`.
+- Same-class producers: `rg -n 'recommended_frameworks' .opencode/skills/sk-prompt-models/assets/model-profiles.json`.
+- Consumers of the changed default: `rg -n 'kimi-k2.7-code' .opencode/skills/sk-prompt-models --glob '*.md' --glob '*.json'`.
 - Card-sync guard: `check-prompt-quality-card-sync.sh` proves registry/reference parity for prompt-framework choices.
 <!-- /ANCHOR:affected-surfaces -->
 

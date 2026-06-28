@@ -29,7 +29,7 @@ A10|deep-loop-runtime READMEs|.opencode/skills/deep-loop-runtime
 A11|deep-loop-workflows root+mode roots|.opencode/skills/deep-loop-workflows/README*.md .opencode/skills/deep-loop-workflows/SKILL.md .opencode/skills/deep-loop-workflows/*/README*.md
 A12|deep-loop-workflows refs+scripts|.opencode/skills/deep-loop-workflows/*/references .opencode/skills/deep-loop-workflows/*/scripts
 A13|sk-code + sk-code-review|.opencode/skills/sk-code .opencode/skills/sk-code-review
-A14|sk-doc + sk-prompt + small-model|.opencode/skills/sk-doc .opencode/skills/sk-prompt .opencode/skills/sk-prompt-small-model
+A14|sk-doc + sk-prompt + small-model|.opencode/skills/sk-doc .opencode/skills/sk-prompt .opencode/skills/sk-prompt-models
 A15|sk-git + sk-interface-design|.opencode/skills/sk-git .opencode/skills/sk-interface-design
 A16|cli-* skills|.opencode/skills/cli-claude-code .opencode/skills/cli-codex .opencode/skills/cli-opencode
 A17|mcp-* skills|.opencode/skills/mcp-chrome-devtools .opencode/skills/mcp-click-up .opencode/skills/mcp-code-mode .opencode/skills/mcp-figma .opencode/skills/mcp-open-design

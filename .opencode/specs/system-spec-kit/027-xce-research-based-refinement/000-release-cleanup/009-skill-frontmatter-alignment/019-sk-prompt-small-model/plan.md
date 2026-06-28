@@ -1,32 +1,32 @@
 ---
-title: "Implementation Plan: Phase 19: sk-prompt-small-model Frontmatter Alignment"
-description: "Author the full canonical frontmatter block on all 14 sk-prompt-small-model reference/asset docs; first phase combining net-new authoring with model-profile registry-key cleanup."
+title: "Implementation Plan: Phase 19: sk-prompt-models Frontmatter Alignment"
+description: "Author the full canonical frontmatter block on all 14 sk-prompt-models reference/asset docs; first phase combining net-new authoring with model-profile registry-key cleanup."
 trigger_phrases:
-  - "sk-prompt-small-model frontmatter plan"
+  - "sk-prompt-models frontmatter plan"
   - "model profile frontmatter authoring"
   - "small model doc contract plan"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model"
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models"
     last_updated_at: "2026-06-11T13:10:00Z"
     last_updated_by: "claude-fable"
     recent_action: "14 docs normalized and checks green"
     next_safe_action: "Campaign continues in sibling phases"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/_index.md"
+      - ".opencode/skills/sk-prompt-models/references/models/_index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-11-009-019-sk-prompt-small-model"
+      session_id: "2026-06-11-009-019-sk-prompt-models"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 19: sk-prompt-small-model Frontmatter Alignment
+# Implementation Plan: Phase 19: sk-prompt-models Frontmatter Alignment
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -48,8 +48,8 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | Markdown YAML frontmatter only |
 | **Framework** | Canonical contract from 001 (operator Option B, 2026-06-11) |
-| **Storage** | `.opencode/skills/sk-prompt-small-model/references/**/*.md` (12 docs) + `assets/*.md` (2 docs) |
-| **Testing** | `check-skill-doc-frontmatter.sh --skill sk-prompt-small-model --coverage` + Python local-mode advisor smoke |
+| **Storage** | `.opencode/skills/sk-prompt-models/references/**/*.md` (12 docs) + `assets/*.md` (2 docs) |
+| **Testing** | `check-skill-doc-frontmatter.sh --skill sk-prompt-models --coverage` + Python local-mode advisor smoke |
 
 ### Overview
 Unlike the pilot, none of the 14 docs carried the detailed block, so this phase is net-new authoring: trigger_phrases, importance_tier, and contextType for every doc. The seven per-model prompt-craft profiles also carried non-contract registry keys (model_id, profile_of, status, last_benchmarked) and no description at all, so each gets an authored one-line description plus model-named trigger phrases for distinct routing.
@@ -88,7 +88,7 @@ Frontmatter-only normalization: the leading YAML fence is rewritten in place wit
 1. Coverage-mode check enumerates per-doc violations (14/14 failing at baseline)
 2. Each doc's leading fence is rewritten: contract fields authored, registry keys dropped
 3. Coverage re-check must report 0 violations for the skill
-4. Python local-mode smoke proves an authored model phrase routes to sk-prompt-small-model with a doc signal
+4. Python local-mode smoke proves an authored model phrase routes to sk-prompt-models with a doc signal
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -107,7 +107,7 @@ Frontmatter-only normalization: the leading YAML fence is rewritten in place wit
 
 ### Phase 3: Verification
 - [x] Coverage check green for the skill (0 violations)
-- [x] Python local-mode doc-phrase smoke ranks sk-prompt-small-model first with doc signals
+- [x] Python local-mode doc-phrase smoke ranks sk-prompt-models first with doc signals
 - [x] git diff confined to frontmatter hunks
 <!-- /ANCHOR:phases -->
 
@@ -118,7 +118,7 @@ Frontmatter-only normalization: the leading YAML fence is rewritten in place wit
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Contract | All 14 docs, coverage mode | `check-skill-doc-frontmatter.sh --skill sk-prompt-small-model --coverage` |
+| Contract | All 14 docs, coverage mode | `check-skill-doc-frontmatter.sh --skill sk-prompt-models --coverage` |
 | Routing smoke | Authored model phrase routes to owning skill | `SPECKIT_ADVISOR_DOC_TRIGGERS=true SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 skill_advisor.py` |
 | Diff hygiene | Frontmatter-only hunks | `git diff` review |
 <!-- /ANCHOR:testing -->
@@ -142,7 +142,7 @@ Frontmatter-only normalization: the leading YAML fence is rewritten in place wit
 
 - **Trigger**: A consumer turns out to depend on the removed model-profile registry keys (model_id, profile_of, status, last_benchmarked) or the prior frontmatter shape
 - **Procedure**:
-  1. `git checkout -- .opencode/skills/sk-prompt-small-model/references/ .opencode/skills/sk-prompt-small-model/assets/` (14 files, frontmatter-only hunks)
+  1. `git checkout -- .opencode/skills/sk-prompt-models/references/ .opencode/skills/sk-prompt-models/assets/` (14 files, frontmatter-only hunks)
   2. Re-run the coverage check to confirm the prior state
 
 <!-- /ANCHOR:rollback -->

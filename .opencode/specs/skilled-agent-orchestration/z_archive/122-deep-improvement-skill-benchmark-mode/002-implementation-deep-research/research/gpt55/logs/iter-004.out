@@ -3349,7 +3349,7 @@ exec
     40	- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
     41	- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
     42	- Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-    43	- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+    43	- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
     44	- Internal self-references inside the skill's own references/scripts/README.
     45	
     46	## 3. Approach

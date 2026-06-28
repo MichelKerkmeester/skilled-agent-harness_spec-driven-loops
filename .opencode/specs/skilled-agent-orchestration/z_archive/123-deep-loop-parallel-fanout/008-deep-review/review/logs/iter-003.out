@@ -1113,9 +1113,9 @@ exec
 .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration/plan.md
 .opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md
 .opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/001-templates-inventory.md
-.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md
+.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-prompt-models.md
 .opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/003-template-applied-to-real-dispatch.md
-.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/004-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md
+.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/004-deepseek-v4-via-opencode-go-with-sk-prompt-models.md
 .opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/001-clear-five-dimensions.md
 .opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/004-dimension-drilldown-rationale.md
 .opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/003-forty-of-fifty-threshold.md
@@ -2972,10 +2972,10 @@ exec
 .opencode/skills/system-spec-kit/scripts/test-fixtures/006-missing-required-files/plan.md
 .opencode/skills/system-spec-kit/scripts/test-fixtures/006-missing-required-files/tasks.md
 .opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/003-glm-5-1-complex-fallback.md
-.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/006-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md
+.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/006-deepseek-v4-via-sk-prompt-models-and-sk-prompt.md
 .opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/004-kimi-k2-6-complex-fallback.md
 .opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/002-deepseek-v4-pro-complex.md
-.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/005-swe16-via-sk-prompt-small-model-and-sk-prompt.md
+.opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/005-swe16-via-sk-prompt-models-and-sk-prompt.md
 .opencode/skills/cli-devin/manual_testing_playbook/03--model-presets/001-swe-1-6-default.md
 .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill/spec.md
 .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill/plan.md

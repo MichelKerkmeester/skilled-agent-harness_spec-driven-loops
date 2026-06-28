@@ -4,7 +4,7 @@ A prior automated fix pass edited the README files below (in git commit 83f36b80
 
 FILES TO AUDIT:
 - .opencode/skills/sk-git/README.md
-- .opencode/skills/sk-prompt-small-model/README.md
+- .opencode/skills/sk-prompt-models/README.md
 - .opencode/skills/sk-prompt/README.md
 - .opencode/skills/system-code-graph/README.md
 - .opencode/skills/system-code-graph/SKILL.md

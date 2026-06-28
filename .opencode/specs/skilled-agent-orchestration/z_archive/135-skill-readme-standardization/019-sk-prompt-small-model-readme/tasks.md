@@ -1,20 +1,20 @@
 ---
-title: "Tasks: sk-prompt-small-model README"
-description: "Task list for the sk-prompt-small-model README rewrite via deep-context and dual-draft."
+title: "Tasks: sk-prompt-models README"
+description: "Task list for the sk-prompt-models README rewrite via deep-context and dual-draft."
 trigger_phrases:
-  - "sk-prompt-small-model readme tasks"
+  - "sk-prompt-models readme tasks"
 importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme"
+    packet_pointer: "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-models-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All phase-019 tasks complete"
     next_safe_action: "Begin phase 020 (sk-prompt README)"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/README.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "readme-std-135-019"
@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: sk-prompt-small-model README
+# Tasks: sk-prompt-models README
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -60,7 +60,7 @@ _memory:
 - [x] T003 [P] Iteration 2 seats: verify the framework map, ownership split, navigation chain and stale facts
 - [x] T004 Synthesize context-report.md (host corrected the executor count and the minimax-2.7 evidence)
 - [x] T005 [P] Dual-draft: DeepSeek + MiMo author the README
-- [x] T006 Scan for the five-executors and version leaks; verify paths and benchmark dirs; write `sk-prompt-small-model/README.md`
+- [x] T006 Scan for the five-executors and version leaks; verify paths and benchmark dirs; write `sk-prompt-models/README.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---

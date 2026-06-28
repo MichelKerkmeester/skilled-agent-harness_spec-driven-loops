@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/checklist.md]"
+title: "Verification Checklist: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only [template:level_3/checklist.md]"
 description: "Verification Date: 2026-06-03"
 trigger_phrases:
   - "model registry verification"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Verification Checklist: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
+# Verification Checklist: Relocate the model registry + all model benchmarks into sk-prompt-models; make sk-prompt a forkable standalone framework engine; deep-improvement writes benchmarks to the hub only
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -60,7 +60,7 @@ _memory:
 - [x] CHK-010 [P0] No lint errors introduced — YAML, JSON, Markdown all well-formed after edits
 - [x] CHK-011 [P0] No console errors — `node -e` require of hub registry succeeds without errors
 - [x] CHK-012 [P1] Error handling: deep-improvement .cjs scripts are path-agnostic; no new error paths introduced
-- [x] CHK-013 [P1] Code follows project patterns — hub path follows existing `assets/` and `benchmarks/` conventions in sk-prompt-small-model
+- [x] CHK-013 [P1] Code follows project patterns — hub path follows existing `assets/` and `benchmarks/` conventions in sk-prompt-models
 <!-- /ANCHOR:code-quality -->
 
 ---

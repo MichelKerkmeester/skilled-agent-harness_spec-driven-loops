@@ -104,7 +104,7 @@ Re-run the bakeoff on adversarial fixtures hard enough to separate the framework
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks-discriminating.json` | Create | Harder bakeoff profile |
-| `.opencode/skills/sk-prompt-small-model/benchmarks/<next>-glm-5.2-discriminating/` | Create | Run outputs |
+| `.opencode/skills/sk-prompt-models/benchmarks/<next>-glm-5.2-discriminating/` | Create | Run outputs |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -12,7 +12,7 @@ A prior deep-research pass (this packet, iterations 001-018) proposed adopting p
 Proposed changes (plain): **009** verification-discipline bundle [completion-freshness = bind "done" to file content + clean tree; escalation gates; anti-softening; reviewer read-budget; numeric-severity note]; **010** a reviewer-prompt test-bench in deep-improvement (land FIRST); **011** the AC test-coverage gate [AC-format normalization + AC table + `AC_COVERAGE` rule + deep-review binding + warn→error]; coordination: reflection-cap→pending 004, current-state→pending 003.
 
 Surfaces to inspect (relative to --dir):
-- skills `.opencode/skills/{system-spec-kit,deep-review,deep-improvement,sk-code,sk-code-review,deep-research,cli-opencode,sk-prompt-small-model}/`
+- skills `.opencode/skills/{system-spec-kit,deep-review,deep-improvement,sk-code,sk-code-review,deep-research,cli-opencode,sk-prompt-models}/`
 - commands `.opencode/commands/{speckit,deep}/` (/speckit:complete, /speckit:resume, /deep:start-review-loop, /deep:start-model-benchmark-loop) + `/code-review`
 - agents `.opencode/agents/` and `.claude/agents/` ({review,context,debug,deep-review,deep-research,orchestrate})
 - hooks `.opencode/skills/system-spec-kit/references/hooks/`, `references/config/hook_system.md`, skill-advisor hook

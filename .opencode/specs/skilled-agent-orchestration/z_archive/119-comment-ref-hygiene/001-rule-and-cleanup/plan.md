@@ -116,7 +116,7 @@ Required inventories:
 - [ ] Part A — aggressive OpenCode §4 revision + §3/§7 fixes
 - [ ] Part A — Webflow pointer
 - [ ] Part A — echo-site reconciliation
-- [ ] Part B0 — pre-flight reads (cli-devin, cli-codex, sk-prompt-small-model); commit dirty tree; green baseline
+- [ ] Part B0 — pre-flight reads (cli-devin, cli-codex, sk-prompt-models); commit dirty tree; green baseline
 - [ ] Part B — validation-phase cleanup (deep-agent + skill-advisor)
 - [ ] Part B — code-graph cleanup
 - [ ] Part B — system-spec-kit bulk cleanup

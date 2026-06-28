@@ -86,7 +86,7 @@ Make **MiMo-V2.5-Pro** a first-class, efficiently-used model in the cli-opencode
 ## 3. SCOPE
 
 ### In Scope
-- Add the `xiaomi-token-plan-ams` provider + `mimo-v2.5-pro` model to cli-opencode + the shared registry + the `sk-prompt-small-model` sentinel (phase 001).
+- Add the `xiaomi-token-plan-ams` provider + `mimo-v2.5-pro` model to cli-opencode + the shared registry + the `sk-prompt-models` sentinel (phase 001).
 - Make MiMo + MiniMax selectable executors across the deep skills by replacing the hard-coded `--agent general` with an optional-agent flag and documenting the model examples (phase 002).
 - Deep-research how to best use / maximize efficiency of MiMo-V2.5-Pro via cli-opencode, producing follow-on deltas (phase 003).
 - Empirically benchmark MiMo's best prompting framework and integrate the winner into the cli-opencode MiMo dispatch path (phase 004).
@@ -107,7 +107,7 @@ Make **MiMo-V2.5-Pro** a first-class, efficiently-used model in the cli-opencode
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modify | 001, 004 | MiMo dispatch template |
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | 001, 004 | MiMo per-model override |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modify | 001 | MiMo trigger phrases |
-| `.opencode/skills/sk-prompt-small-model/**` | Modify | 001 | Sentinel: SKILL.md/description.json/pattern-index/README/graph-metadata |
+| `.opencode/skills/sk-prompt-models/**` | Modify | 001 | Sentinel: SKILL.md/description.json/pattern-index/README/graph-metadata |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | 002 | Optional-agent flag (drop hard-coded `--agent general`) |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | 002 | Optional-agent flag |
 | `.opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Modify | 002 | Omit `--agent` when general/unset; tests updated |

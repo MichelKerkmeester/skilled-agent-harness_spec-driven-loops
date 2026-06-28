@@ -5,7 +5,7 @@
 {"type":"finding","id":"f-minimax-i5-04","label":"CLI command files body text and .codex/config.toml registration name the old skill; must update alongside mirror rename","iteration":5}
 {"type":"finding","id":"f-minimax-i5-05","label":"deep-model-benchmark alias group may also need rename decision; must be explicitly decided in Phase 002 decision-record","iteration":5}
 {"type":"finding","id":"f-minimax-i5-06","label":"description.json auto-regeneration requires explicit generate-context.js invocation post-git-mv; not automatic","iteration":5}
-{"type":"finding","id":"f-minimax-i5-07","label":"sk-prompt-small-model SKILL.md cross-references deep-agent-improvement; must update during Phase 002","iteration":5}
+{"type":"finding","id":"f-minimax-i5-07","label":"sk-prompt-models SKILL.md cross-references deep-agent-improvement; must update during Phase 002","iteration":5}
 {"type":"finding","id":"f-minimax-i5-08","label":"HARD GATE: Lane C trace-normalization root changes with skill dir rename; building Lane C against old name then renaming requires full harness path rebuild. Option A (rename first) is strictly safer","iteration":5}
 {"type":"finding","id":"f-minimax-i5-09","label":"Phase 002 freeze inventory step prevents dangling refs; generated/cache files (score caches, vitest results, benchmark outputs) need explicit four-column classification","iteration":5}
 {"type":"finding","id":"f-minimax-i5-10","label":"TypeScript scorer and Python shim must be updated together; split-brain failure if only one is updated and runtime falls back to Python path","iteration":5}

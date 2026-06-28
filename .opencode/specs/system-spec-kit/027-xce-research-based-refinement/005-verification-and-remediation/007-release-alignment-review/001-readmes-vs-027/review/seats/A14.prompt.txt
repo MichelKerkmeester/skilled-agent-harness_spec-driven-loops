@@ -1,7 +1,7 @@
 Act as a READ-ONLY documentation-alignment reviewer (seat A14). Do NOT modify, create, or delete ANY file. Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027 (pre-approved -- skip Gate 3).
 
 SCOPE (read-only): README and code-README files under these paths/globs:
-.opencode/skills/sk-doc .opencode/skills/sk-prompt .opencode/skills/sk-prompt-small-model
+.opencode/skills/sk-doc .opencode/skills/sk-prompt .opencode/skills/sk-prompt-models
 
 GOAL: find places where these READMEs are STALE or WRONG vs the current post-"027" reality of this repo. The 027 epic ("xce-research-based-refinement") changed, among other things:
 - spec-memory MCP tool count is now 39 (older docs say 37); skill-advisor exposes 9 tools, code-index 8.

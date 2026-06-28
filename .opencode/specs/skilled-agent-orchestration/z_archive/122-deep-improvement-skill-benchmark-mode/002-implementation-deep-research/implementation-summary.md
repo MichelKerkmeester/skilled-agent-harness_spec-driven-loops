@@ -61,7 +61,7 @@ The Opus pass changed **4 verdicts** from the GPT-5.5 baseline — these are the
 3. **D1 advisor scorer is in-process-callable without an MCP boot** (CORRECTED) — `scoreAdvisorPrompt` (fusion.ts:334), but pass a fixture projection for determinism; `semantic_shadow` is dark without an embedder.
 4. **Trace capture is per-executor text-scraping** (CORRECTED) — the codex `.out` is a plain-text `exec`/`zsh -lc` transcript, not JSON tool events; no native token count.
 
-Plus the rename census was **widened** (CONFIRMED+): +`.claude/commands/` mirror, `.codex/config.toml` registry, mandatory `tsc` dist rebuild, SQLite recompile as the true last step; and **refuted** two GPT-5.5 surfaces that don't exist (`sk-prompt-small-model`, `data/skill-metadata.json`).
+Plus the rename census was **widened** (CONFIRMED+): +`.claude/commands/` mirror, `.codex/config.toml` registry, mandatory `tsc` dist rebuild, SQLite recompile as the true last step; and **refuted** two GPT-5.5 surfaces that don't exist (`sk-prompt-models`, `data/skill-metadata.json`).
 
 ## 5. Next steps
 

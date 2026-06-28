@@ -1,5 +1,5 @@
 ---
-title: "Deep Research — Refining & Connecting sk-prompt-small-model ↔ cli-* Executors"
+title: "Deep Research — Refining & Connecting sk-prompt-models ↔ cli-* Executors"
 status: converged
 executor: "claude2 (Claude account #2, claude-opus-4-8, read-only plan-mode)"
 iterations: 5
@@ -7,17 +7,17 @@ converged: true
 date: 2026-06-03
 ---
 
-# Deep Research — Refining & Connecting `sk-prompt-small-model` ↔ the five `cli-*` executors
+# Deep Research — Refining & Connecting `sk-prompt-models` ↔ the five `cli-*` executors
 
 ## 1. Research question
 
-How to further refine, structure, and connect `sk-prompt-small-model` and the five `cli-*`
+How to further refine, structure, and connect `sk-prompt-models` and the five `cli-*`
 executor skills (`cli-devin`, `cli-codex`, `cli-claude-code`, `cli-gemini`, `cli-opencode`) —
 the model-craft-hub ↔ executor-mechanics boundary, delegation/precedence, the per-model
 profiles, and how they all interconnect.
 
 This research investigates the 3-layer prompt-knowledge architecture **delivered by spec 130**
-(`sk-prompt` framework engine → `sk-prompt-small-model` per-model hub → `cli-*` executor
+(`sk-prompt` framework engine → `sk-prompt-models` per-model hub → `cli-*` executor
 mechanics) and asks where the seams have drifted and how to make the structure self-enforcing.
 
 ## 2. Method
@@ -81,7 +81,7 @@ checks registry fidelity** — which is why F1 went unnoticed. Iteration 5 confi
 `sk-prompt/SKILL.md:38`, matrix `:257-265`) — STAR is **not** among them. STAR/BUILD are genuine
 **`cli-devin` task-shapes**. The overloaded word "fallback" leaked STAR into hub surfaces as if
 it were a registry fallback / canonical framework:
-- `sk-prompt-small-model/SKILL.md:150` ✅ lists `STAR` among frameworks "defined once in
+- `sk-prompt-models/SKILL.md:150` ✅ lists `STAR` among frameworks "defined once in
   sk-prompt" — false.
 - `references/models/swe-1.6.md:84` ✅ — *"The registry names RCAF as primary and STAR as
   fallback"* — false; registry `recommended_frameworks.fallback` is `null`, and it contradicts

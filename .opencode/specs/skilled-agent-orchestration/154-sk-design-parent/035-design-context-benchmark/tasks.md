@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Consult sk-prompt-small-model for Kimi K2.7 (COSTAR) + MiniMax M3 (TIDD-EC) recipes
+- [x] T001 Consult sk-prompt-models for Kimi K2.7 (COSTAR) + MiniMax M3 (TIDD-EC) recipes
 - [x] T002 Smoke-test both transports (kimi-for-coding/k2p7 + minimax/MiniMax-M3) — both live
 - [x] T003 Create the `031` packet + review/ + 4 run dirs; author review prompt + 4 A/B prompts + drivers
 <!-- /ANCHOR:phase-1 -->

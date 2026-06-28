@@ -15,7 +15,7 @@ D2 Security (second pass) — re-examine for injection/traversal/secrets the fir
 - `.opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:103` — execSync string command
 - `.opencode/skills/deep-agent-improvement/scripts/scorer/grader/prompts/system-grader.md` — grader prompt
 - `.opencode/skills/deep-agent-improvement/scripts/scorer/grader/prompts/system-skeptic.md` — skeptic prompt
-- `.opencode/skills/sk-prompt-small-model/SKILL.md` — MiniMax/small-model routing
+- `.opencode/skills/sk-prompt-models/SKILL.md` — MiniMax/small-model routing
 
 ## Findings by Severity
 

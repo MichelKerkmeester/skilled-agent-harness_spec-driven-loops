@@ -49,7 +49,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Re-verify the live glm-5.2 slug (`opencode models <provider>`)
-- [x] T002 Pick the next free benchmark run-label (`ls .opencode/skills/sk-prompt-small-model/benchmarks/`)
+- [x] T002 Pick the next free benchmark run-label (`ls .opencode/skills/sk-prompt-models/benchmarks/`)
 - [x] T003 Clone `framework-bakeoff.json` → `glm-5.2-frameworks.json`, retarget model + frameworks (incl. `craft`) + strict validator fixtures
 <!-- /ANCHOR:phase-1 -->
 

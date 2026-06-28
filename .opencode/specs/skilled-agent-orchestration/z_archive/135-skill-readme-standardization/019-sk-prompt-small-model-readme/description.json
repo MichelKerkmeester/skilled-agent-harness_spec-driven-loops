@@ -1,9 +1,9 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-small-model-readme",
-  "description": "The sk-prompt-small-model README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/019-sk-prompt-models-readme",
+  "description": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five",
   "keywords": [
-    "sk-prompt-small-model",
+    "sk-prompt-models",
     "readme",
     "tabular",
     "reference",
@@ -21,7 +21,7 @@
   ],
   "lastUpdated": "2026-06-23T03:49:51.926Z",
   "specId": "019",
-  "folderSlug": "sk-prompt-small-model-readme",
+  "folderSlug": "sk-prompt-models-readme",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",

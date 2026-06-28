@@ -151,4 +151,4 @@ just `/memory:search` — the empty-`$ARGUMENTS` heuristic is a portable latent 
 - `.opencode/commands/memory/search.md` (router contract)
 - `.opencode/commands/memory/assets/search_presentation.txt` (presentation contract)
 - `.opencode/skills/cli-opencode/SKILL.md:269` (`--command` dispatch mechanics)
-- `.opencode/skills/sk-prompt-small-model/references/models/{deepseek-v4-pro,kimi-k2.7-code,mimo-v2.5-pro}.md`
+- `.opencode/skills/sk-prompt-models/references/models/{deepseek-v4-pro,kimi-k2.7-code,mimo-v2.5-pro}.md`

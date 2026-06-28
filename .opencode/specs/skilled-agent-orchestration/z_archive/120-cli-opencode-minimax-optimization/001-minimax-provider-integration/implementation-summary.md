@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: MiniMax 2.7 direct-API provider integration"
-description: "Added the minimax direct-API provider (model minimax-2.7) to cli-opencode docs + the shared small-model registry, surfaced via the sk-prompt-small-model sentinel."
+description: "Added the minimax direct-API provider (model minimax-2.7) to cli-opencode docs + the shared small-model registry, surfaced via the sk-prompt-models sentinel."
 trigger_phrases:
   - "minimax provider integration summary"
   - "minimax-2.7 added cli-opencode"
@@ -19,8 +19,8 @@ _memory:
       - ".opencode/skills/cli-opencode/SKILL.md"
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
-      - ".opencode/skills/sk-prompt-small-model/graph-metadata.json"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-minimax-provider-integration"
@@ -78,8 +78,8 @@ The shared small-model registry (`model-profiles.json`, bumped to v1.2) gains a 
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | Auth pre-flight `MINIMAX_OK`, decision-tree rows, login template, override examples |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Modified | §4 pre-flight + login shape; §5 model-selection row + `--variant` matrix row |
 | `.opencode/skills/sk-prompt/assets/model-profiles.json` | Modified | Appended `minimax-2.7` entry; version → 1.2 |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modified | Sentinel description + activation/keyword triggers include MiniMax |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modified | Added MiniMax trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modified | Sentinel description + activation/keyword triggers include MiniMax |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modified | Added MiniMax trigger phrases |
 <!-- /ANCHOR:what-built -->
 
 ---

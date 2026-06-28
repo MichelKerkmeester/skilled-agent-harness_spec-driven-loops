@@ -160,7 +160,7 @@ The operator's user spec for this packet phase-5 step 5a explicitly names "CLI-D
 ### Constraints
 
 - CLAUDE.md CLI dispatch rule mandates reading `.opencode/skills/cli-devin/SKILL.md` before composing any SWE-1.6 prompt.
-- CLAUDE.md small-model dispatch rule mandates consulting `sk-prompt-small-model` before dispatching SWE-1.6 / DeepSeek-v4 / Kimi-k2.6 / Qwen3.6 / GLM-5.1.
+- CLAUDE.md small-model dispatch rule mandates consulting `sk-prompt-models` before dispatching SWE-1.6 / DeepSeek-v4 / Kimi-k2.6 / Qwen3.6 / GLM-5.1.
 - Mac dispatch discipline forbids batched iterations; one iter at a time with SIGKILL between (per memory `feedback_deep_loop_iter_one_at_a_time`).
 - `/deep:start-research-loop :auto` is the canonical command per Skill Advisor + AGENTS.md §7 routing; cli-devin SWE-1.6 is supported as the executor under that command.
 
@@ -481,4 +481,4 @@ The Smart Router section in `.opencode/skills/deep-loop-runtime/SKILL.md §2` is
 - **Sibling ADRs**: `../002-deep-research/decision-record.md` (different toolchain choice — ADR-001 there vs ADR-002 here)
 - **HVR rules**: `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - **CLI dispatch contract**: `.opencode/skills/cli-devin/SKILL.md` (mandatory pre-read per ADR-002)
-- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-small-model/SKILL.md` (mandatory pre-read per ADR-002)
+- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-models/SKILL.md` (mandatory pre-read per ADR-002)

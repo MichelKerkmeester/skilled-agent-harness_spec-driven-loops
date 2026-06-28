@@ -39,7 +39,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown skill docs + JSON registry/metadata |
-| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-small-model) |
+| **Framework** | OpenCode skills (cli-opencode, sk-prompt, sk-prompt-models) |
 | **Storage** | `sk-prompt/assets/model-profiles.json` (shared small-model registry) |
 | **Testing** | `jq` JSON validation + `rg` grep checks + spec-kit `validate.sh --strict` |
 
@@ -93,7 +93,7 @@ This phase edits a shared schema file (`model-profiles.json`) consumed by the fa
 | `sk-prompt/assets/model-profiles.json` | Producer — registry of model→executor paths | update (add `minimax-m3`, dual-executor `minimax-2.7`, bump version) | `jq` parse + entry shape matches existing models |
 | `system-spec-kit/.../fallback-router.ts` | Consumer — reads `primary_quota_pool`/`fallback_target`/`executors[].quota_pool` | unchanged (new pool `minimax-token-plan`, `fallback_target: minimax-2.7`) | `rg -n "quota_pool\|fallback_target" fallback-router.ts` confirms it reads, not enumerates |
 | `cli-opencode` SKILL.md + cli_reference.md | Docs — provider auth + model selection | update (Token Plan default + Direct API alt) | `rg -n "minimax-coding-plan"` shows new rows |
-| `sk-prompt-small-model` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + triggers) | `rg -n "minimax-coding-plan\|token plan"` shows entries |
+| `sk-prompt-models` SKILL.md + graph-metadata.json | Discovery sentinel | update (description + triggers) | `rg -n "minimax-coding-plan\|token plan"` shows entries |
 
 Required inventories:
 - Same-class producers: `rg -n '"provider"|"quota_pool"' .opencode/skills/sk-prompt/assets/model-profiles.json`.
@@ -116,7 +116,7 @@ Required inventories:
 - [ ] cli-opencode cli_reference.md §4 (pre-flight detects both providers + setup) and §5 (model rows + `--variant`)
 - [ ] cli-opencode SKILL.md (auth options, pre-flight tree, login/setup template, model selection, `--agent` caveat)
 - [ ] cli-opencode assets (prompt_templates.md, prompt_quality_card.md) + graph-metadata.json triggers
-- [ ] sk-prompt-small-model SKILL.md + description.json + pattern-index.md + README.md + graph-metadata.json triggers
+- [ ] sk-prompt-models SKILL.md + description.json + pattern-index.md + README.md + graph-metadata.json triggers
 - [ ] sk-prompt/assets/cli_prompt_quality_card.md
 
 ### Phase 3: Verification

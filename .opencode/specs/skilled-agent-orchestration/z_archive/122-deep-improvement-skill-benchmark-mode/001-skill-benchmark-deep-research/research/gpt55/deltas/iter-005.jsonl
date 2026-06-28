@@ -8,6 +8,6 @@
 {"type":"finding","id":"f-gpt55-i5-07","label":"Advisor has split Python and TypeScript scorer surfaces that must move coherently","iteration":5}
 {"type":"finding","id":"f-gpt55-i5-08","label":"Advisor graph, graph metadata, and regression fixtures contain separate stale-id risks","iteration":5}
 {"type":"finding","id":"f-gpt55-i5-09","label":"deep-model-benchmark should remain a command bridge while penalties retarget deep-improvement","iteration":5}
-{"type":"finding","id":"f-gpt55-i5-10","label":"sk-prompt-small-model risk is indirect through advisor graph edges, not local runtime logic","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-10","label":"sk-prompt-models risk is indirect through advisor graph edges, not local runtime logic","iteration":5}
 {"type":"finding","id":"f-gpt55-i5-11","label":"Internal README, feature catalog, playbook, script docs, and root docs are live rename surfaces","iteration":5}
 {"type":"finding","id":"f-gpt55-i5-12","label":"Historical/archive references require an allowlist so final grep does not force false edits","iteration":5}

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: hub-doc-alignment-and-router"
-description: "Align sk-prompt-small-model's SKILL.md, README, and references/models profiles to the sk-doc templates: replace the no-op router with a model-keyed smart router, scrub ephemeral spec refs from the README, and conform the 9 profiles to the reference template."
+description: "Align sk-prompt-models's SKILL.md, README, and references/models profiles to the sk-doc templates: replace the no-op router with a model-keyed smart router, scrub ephemeral spec refs from the README, and conform the 9 profiles to the reference template."
 trigger_phrases:
   - "hub doc alignment"
   - "model-keyed router"
@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Validate then commit phase 010"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
-      - ".opencode/skills/sk-prompt-small-model/README.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
+      - ".opencode/skills/sk-prompt-models/references/models/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-Phase 10 of spec 130 aligns the `sk-prompt-small-model` hub's doc surface to the sk-doc templates
+Phase 10 of spec 130 aligns the `sk-prompt-models` hub's doc surface to the sk-doc templates
 (`skill_md_template`, `skill_smart_router`, `skill_reference_template`, `skill_readme_template`) and
 removes ephemeral spec references from its README. The sk-doc templates are the decision record for
 the target structure.
@@ -108,9 +108,9 @@ is (a per-model prompt-craft hub), with a real model-keyed router and a spec-ref
 ### Files to Change
 | File Path | Change Type |
 |-----------|-------------|
-| `sk-prompt-small-model/SKILL.md` | Modify (router + version + LOC cap) |
-| `sk-prompt-small-model/README.md` | Modify (full rewrite) |
-| `sk-prompt-small-model/references/models/*.md` + `_index.md` | Modify (structure) |
+| `sk-prompt-models/SKILL.md` | Modify (router + version + LOC cap) |
+| `sk-prompt-models/README.md` | Modify (full rewrite) |
+| `sk-prompt-models/references/models/*.md` + `_index.md` | Modify (structure) |
 | `skills/README.md` | Modify (index entry) |
 <!-- /ANCHOR:scope -->
 

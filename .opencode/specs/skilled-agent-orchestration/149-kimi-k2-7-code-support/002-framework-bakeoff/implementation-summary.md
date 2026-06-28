@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json"
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/synthesis.md"
       - ".opencode/specs/skilled-agent-orchestration/149-kimi-k2-7-code-support/002-framework-bakeoff/improvement/model-benchmark-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

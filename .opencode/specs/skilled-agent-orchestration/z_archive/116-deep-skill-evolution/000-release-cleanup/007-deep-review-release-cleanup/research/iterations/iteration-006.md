@@ -2,7 +2,7 @@
 
 ## Question
 
-Do all cross-skill dependency references in `.opencode/skills/deep-review/{README.md, SKILL.md, references/*.md, graph-metadata.json}` point at paths/contracts that actually exist? Specifically: are the contracts deep-review claims about `deep-loop-runtime`, `sk-code-review`, `system-spec-kit`, `cli-devin`, `cli-opencode`, `sk-prompt-small-model`, and any other named cross-skill targets still accurate? Each drift MUST cite both surfaces with `file:line`.
+Do all cross-skill dependency references in `.opencode/skills/deep-review/{README.md, SKILL.md, references/*.md, graph-metadata.json}` point at paths/contracts that actually exist? Specifically: are the contracts deep-review claims about `deep-loop-runtime`, `sk-code-review`, `system-spec-kit`, `cli-devin`, `cli-opencode`, `sk-prompt-models`, and any other named cross-skill targets still accurate? Each drift MUST cite both surfaces with `file:line`.
 
 ## Evidence (file:line citations required)
 
@@ -106,7 +106,7 @@ Lists `system-spec-kit` and `sk-code-review` as manual dependencies.
 - Found in multiple changelog files (v1.0.0.0 through v1.9.0.0) - historical references preserved
 - Found in `graph-metadata.json` (line 32) - manual depends_on entry
 
-**cli-devin/cli-opencode/sk-prompt-small-model references:**
+**cli-devin/cli-opencode/sk-prompt-models references:**
 - No direct references found in current deep-review surfaces (only in changelog v1.8.0.0 for cli-opencode as implementation detail)
 
 ### Step 5: Drift identification

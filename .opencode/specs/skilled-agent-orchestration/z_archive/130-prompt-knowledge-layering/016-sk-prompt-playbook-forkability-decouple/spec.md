@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-prompt-playbook-forkability-decouple"
-description: "Decouple the sk-prompt manual-testing-playbook from sk-prompt-small-model and cli skills so the skill is fully forkable: reframe the 2 card-centric escalation scenarios to test sk-prompt's own surface, repoint all hub-card source refs, scrub the stale §8 reference, and genericize cli-* operational mentions."
+description: "Decouple the sk-prompt manual-testing-playbook from sk-prompt-models and cli skills so the skill is fully forkable: reframe the 2 card-centric escalation scenarios to test sk-prompt's own surface, repoint all hub-card source refs, scrub the stale §8 reference, and genericize cli-* operational mentions."
 trigger_phrases:
   - "sk-prompt playbook forkability"
   - "playbook decouple"
@@ -48,7 +48,7 @@ _memory:
 | **Phase** | 16 of 16 |
 | **Predecessor** | 015-deferred-cleanup-entangled-playbook-assets |
 | **Successor** | None |
-| **Handoff Criteria** | The sk-prompt playbook has zero references to sk-prompt-small-model or cli-* skills; reframed scenarios test sk-prompt's own surface and their rg targets resolve; validate_document.py VALID on all touched files; validate --strict exit 0 |
+| **Handoff Criteria** | The sk-prompt playbook has zero references to sk-prompt-models or cli-* skills; reframed scenarios test sk-prompt's own surface and their rg targets resolve; validate_document.py VALID on all touched files; validate --strict exit 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,7 +58,7 @@ _memory:
 
 Phase 16 (forkability cleanup) of spec 130. sk-prompt is meant to be a standalone, forkable
 framework engine, but a forkability audit found its manual-testing-playbook still depended on
-`sk-prompt-small-model` (the relocated `cli_prompt_quality_card.md`) in nine places, including two
+`sk-prompt-models` (the relocated `cli_prompt_quality_card.md`) in nine places, including two
 `rg` test steps and a disk-resolution assertion that would fail in a standalone fork, plus a stale
 `§8 fast-path asset` reference (the section phase 014 removed) and a few `cli-*` mentions.
 
@@ -120,7 +120,7 @@ reference to sk-prompt's own docs.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Zero cross-skill reliance | grep across the playbook for `sk-prompt-small-model`, `cli_prompt_quality_card`, and every `cli-*` skill returns 0 |
+| REQ-001 | Zero cross-skill reliance | grep across the playbook for `sk-prompt-models`, `cli_prompt_quality_card`, and every `cli-*` skill returns 0 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -135,7 +135,7 @@ reference to sk-prompt's own docs.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Token grep for `sk-prompt-small-model` / `cli_prompt_quality_card` / `cli-*` across the playbook = 0.
+- **SC-001**: Token grep for `sk-prompt-models` / `cli_prompt_quality_card` / `cli-*` across the playbook = 0.
 - **SC-002**: All `rg` targets in the playbook point only at `.opencode/skills/sk-prompt/`; the reframed SP-023/024 targets resolve.
 - **SC-003**: `validate_document.py` VALID on all touched files; `validate.sh --recursive --strict` exit 0; card-sync guard green.
 <!-- /ANCHOR:success-criteria -->
@@ -157,5 +157,5 @@ reference to sk-prompt's own docs.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The hub (sk-prompt-small-model) has no playbook; if card-fast-path coverage is wanted there, that is a separate follow-up.
+- None. The hub (sk-prompt-models) has no playbook; if card-fast-path coverage is wanted there, that is a separate follow-up.
 <!-- /ANCHOR:questions -->

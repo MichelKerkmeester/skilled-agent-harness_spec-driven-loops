@@ -1,12 +1,12 @@
 ---
-title: "Decision Record: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model"
+title: "Decision Record: Phase 8 — rename sk-ai-small-model → sk-prompt-models"
 description: "3 ADRs covering family classification, REWRITE-ALL policy + deliberate cost, workflow inheritance from 007."
-trigger_phrases: ["rename decision record", "sk-prompt-small-model adr", "rewrite-all policy decision"]
+trigger_phrases: ["rename decision record", "sk-prompt-models adr", "rewrite-all policy decision"]
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-models-rename"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored decision-record.md"
@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model
+# Decision Record: Phase 8 — rename sk-ai-small-model → sk-prompt-models
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -90,9 +90,9 @@ Phase 007 used preserve-history (historical docs under 114/001-006 left untouche
 
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
-Adopt REWRITE-ALL. Every content occurrence of `sk-ai-small-model` rewritten to `sk-prompt-small-model`. Only acceptable residuals: (a) immutable phase-007 folder NAME `007-sk-ai-small-model-rename/` (path-only); (b) active 008/* phase docs (semantic-meaning preservation per D-008).
+Adopt REWRITE-ALL. Every content occurrence of `sk-ai-small-model` rewritten to `sk-prompt-models`. Only acceptable residuals: (a) immutable phase-007 folder NAME `007-sk-ai-small-model-rename/` (path-only); (b) active 008/* phase docs (semantic-meaning preservation per D-008).
 
-**Deliberate cost**: phase-007 shipped spec docs now describe a rename endpoint (`sk-prompt-small-model`) that did not exist in phase-007's actual timeline. Future readers without this ADR will misattribute phase-007's endpoint.
+**Deliberate cost**: phase-007 shipped spec docs now describe a rename endpoint (`sk-prompt-models`) that did not exist in phase-007's actual timeline. Future readers without this ADR will misattribute phase-007's endpoint.
 <!-- /ANCHOR:adr-002-decision -->
 
 <!-- ANCHOR:adr-002-alternatives -->

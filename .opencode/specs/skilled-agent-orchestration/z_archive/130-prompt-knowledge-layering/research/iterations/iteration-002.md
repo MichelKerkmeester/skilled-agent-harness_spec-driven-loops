@@ -23,14 +23,14 @@ NEW-INFO: **high** — exact token-level drift + the two-axis guard blindspot, a
 ---
 ## Full report (from account-2 plan file)
 
-# Deep-Research Iteration 2 — sk-prompt-small-model ↔ cli-* refinement
+# Deep-Research Iteration 2 — sk-prompt-models ↔ cli-* refinement
 
-**Question:** How to further refine, structure, and connect `sk-prompt-small-model` and the five `cli-*` executor skills — the model-craft-hub vs executor-mechanics boundary, delegation/precedence, per-model profiles, and how they interconnect.
+**Question:** How to further refine, structure, and connect `sk-prompt-models` and the five `cli-*` executor skills — the model-craft-hub vs executor-mechanics boundary, delegation/precedence, per-model profiles, and how they interconnect.
 
 **Method this pass:** read every relevant file directly (not via excerpt agents) to capture verbatim quotes with `file:line`. All 5 cli-* SKILL.md precedence blocks, both cli cards that carry model tables, the canonical card, the registry, all 8 active model profiles, the duplication-guard script, and pattern-index.md were read in full. **No repo files were modified.**
 
 **Authoritative boundary ruler (found this pass).** `pattern-index.md:57` is the canonical statement of where the line sits:
-> "Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-small-model/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool)."
+> "Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-models/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool)."
 Both leak directions below are measured against this rule.
 
 ---
@@ -145,7 +145,7 @@ Registry = `model-profiles.json` `executors[]`. "Profile names executors?" = doe
 ### Wiring findings — and a correction to iteration 1
 
 - **Iteration-1 claim "profiles don't state their dispatch path; no reconciliation vs registry executors[]" is OUTDATED — CORRECT IT.** Every one of the 8 active profiles names its executor path(s) in §1 Identity **and** every set agrees with the registry (8/8 match, multi-executor models included). Reconciliation holds in this direction.
-- **The real gap is the reverse link (asymmetric).** The cli-opencode card individually links only 3 models (`minimax-m3` `:22`, `minimax-2.7` `:23`, `mimo` `:24`) and **bundles** its other 4 dispatchable models (deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1) into a single **directory** pointer `../../sk-prompt-small-model/references/models/` (`:25`) — no direct `<id>.md` links. The cli-devin card, by contrast, links all 4 of its models directly (`:23-28`). No model is fully orphaned (the directory link covers them), but 4 opencode-go RCAF models are discoverable-but-not-direct.
+- **The real gap is the reverse link (asymmetric).** The cli-opencode card individually links only 3 models (`minimax-m3` `:22`, `minimax-2.7` `:23`, `mimo` `:24`) and **bundles** its other 4 dispatchable models (deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1) into a single **directory** pointer `../../sk-prompt-models/references/models/` (`:25`) — no direct `<id>.md` links. The cli-devin card, by contrast, links all 4 of its models directly (`:23-28`). No model is fully orphaned (the directory link covers them), but 4 opencode-go RCAF models are discoverable-but-not-direct.
 - **No profile's executor path disagrees with the registry.** Zero mismatches.
 - **Minor slug tension (not a wiring break):** registry `minimax-m3.capability.model_slug` = `minimax-coding-plan/MiniMax-M3` (`model-profiles.json:279`), but the dispatch rule in `minimax-m3.md:116` says "Pass as `--model minimax-coding-plan/MiniMax-M3-highspeed`". Documented as account-holder-directed; flag for tidy-up, not a break.
 

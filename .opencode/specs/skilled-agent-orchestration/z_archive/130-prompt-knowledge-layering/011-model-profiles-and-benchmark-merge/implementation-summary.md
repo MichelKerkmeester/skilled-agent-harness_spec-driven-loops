@@ -14,8 +14,8 @@ _memory:
     next_safe_action: "Stage rename, validate, commit; then phase 012"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/benchmarks/005-mimo-minimax-capability-discrimination/"
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/benchmarks/005-mimo-minimax-capability-discrimination/"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"

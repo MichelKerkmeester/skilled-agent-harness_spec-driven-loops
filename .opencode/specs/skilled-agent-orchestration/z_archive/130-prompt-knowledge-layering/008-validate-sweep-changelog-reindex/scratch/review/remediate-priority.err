@@ -1,18 +1,18 @@
 [0m
 > build · gpt-5.5-fast
 [0m
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet's per-model profiles per a deep-review FAIL finding.\n\nFix factual-sourcing in TWO files ONLY — edit in place, NO deletes of files, NO other files touched:\nA) .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md\nB) .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md\n\nThe §3 Benchmark Evidence sections cite numbers (minimax-m3: '0.775 dense vs 0.767 medium', etc.; mimo: '100% assertion pass', '~2.4x longer output', '10-15% format gap', 'all 10 runs') that a review flagged as not backed by model-profiles.json. RULE: §2 Recommended Framework must mirror model-profiles.json recommended_frameworks. §3 may keep richer numbers ONLY if verifiable in the matching benchmark synthesis doc; cite the packet id as the source (NOT 'the JSON'):\n  - MiniMax 120/003: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md\n  - MiMo 126/004: .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md\n\nFor EACH numeric/comparative claim in the two profiles' §3: READ the matching synthesis doc; if verified, keep it and attribute it to the benchmark packet (e.g. 'per 126/004 synthesis'); if NOT in the synthesis, delete that specific sentence/number (never invent). Keep minimax-m3 status:carried language, the H1, the frontmatter, and the 6-section structure. Report which claims you kept-with-citation vs deleted, per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet's per-model profiles per a deep-review FAIL finding.\n\nFix factual-sourcing in TWO files ONLY — edit in place, NO deletes of files, NO other files touched:\nA) .opencode/skills/sk-prompt-models/references/models/minimax-m3.md\nB) .opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md\n\nThe §3 Benchmark Evidence sections cite numbers (minimax-m3: '0.775 dense vs 0.767 medium', etc.; mimo: '100% assertion pass', '~2.4x longer output', '10-15% format gap', 'all 10 runs') that a review flagged as not backed by model-profiles.json. RULE: §2 Recommended Framework must mirror model-profiles.json recommended_frameworks. §3 may keep richer numbers ONLY if verifiable in the matching benchmark synthesis doc; cite the packet id as the source (NOT 'the JSON'):\n  - MiniMax 120/003: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md\n  - MiMo 126/004: .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md\n\nFor EACH numeric/comparative claim in the two profiles' §3: READ the matching synthesis doc; if verified, keep it and attribute it to the benchmark packet (e.g. 'per 126/004 synthesis'); if NOT in the synthesis, delete that specific sentence/number (never invent). Keep minimax-m3 status:carried language, the H1, the frontmatter, and the 6-section structure. Report which claims you kept-with-citation vs deleted, per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m
-[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "Fix factual-sourcing in two sk-prompt-small-model per-model profile markdown files under .opencode/skills by verifying benchmark evidence against synthesis docs" --threshold 0.8
+[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "Fix factual-sourcing in two sk-prompt-models per-model profile markdown files under .opencode/skills by verifying benchmark evidence against synthesis docs" --threshold 0.8
 Skill graph: loaded from SQLite
 [
   {
-    "skill": "sk-prompt-small-model",
+    "skill": "sk-prompt-models",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,
     "passes_threshold": true,
-    "reason": "Matched: !model profile(signal), !sk-prompt-small-model(explicit), !small-model(keyword), code~, files~",
+    "reason": "Matched: !model profile(signal), !sk-prompt-models(explicit), !small-model(keyword), code~, files~",
     "_graph_boost_count": 0
   },
   {
@@ -53,16 +53,16 @@ Skill graph: loaded from SQLite
   }
 ]
 [0m
-[0m→ [0mSkill "sk-prompt-small-model"
+[0m→ [0mSkill "sk-prompt-models"
 [0m
 [0m# [0mTodos
 [•] Read model profiles, registry, and benchmark synthesis sources
 [ ] Patch only the two requested profile files with sourced §2/§3 content
 [ ] Verify changed files and report kept vs deleted claims per profile
 [0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=200][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=1, limit=260][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/_index.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/minimax-m3.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md[90m [offset=1, limit=260][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=1200][0m
 [0m→ [0mRead .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md[90m [offset=1, limit=500][0m
 [0m→ [0mRead .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md[90m [offset=1, limit=500][0m
@@ -73,13 +73,13 @@ Skill graph: loaded from SQLite
 [ ] Verify changed files and report kept vs deleted claims per profile
 [0m
 [0m% [0mPatch 2 files
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=30, limit=38][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=32, limit=46][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/minimax-m3.md[90m [offset=30, limit=38][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md[90m [offset=32, limit=46][0m
 [0m
-[0m$ [0mgit diff --check -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+[0m$ [0mgit diff --check -- ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md"
 (no output)
 [0m
-[0m$ [0mgit diff -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+[0m$ [0mgit diff -- ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md"
 (no output)
 [0m
 [0m$ [0mgit status --short
@@ -121,8 +121,8 @@ M .claude/settings.local.json
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
  M .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
- M .opencode/skills/sk-prompt-small-model/SKILL.md
- M .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+ M .opencode/skills/sk-prompt-models/SKILL.md
+ M .opencode/skills/sk-prompt-models/references/pattern-index.md
  M .opencode/skills/sk-prompt/SKILL.md
  M .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
  M .opencode/skills/sk-prompt/assets/model-profiles.json
@@ -234,8 +234,8 @@ M .claude/settings.local.json
 ?? .opencode/skills/deep-improvement/changelog/v1.12.0.0.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/MODES.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/tests/README.md
-?? .opencode/skills/sk-prompt-small-model/changelog/v0.5.0.0.md
-?? .opencode/skills/sk-prompt-small-model/references/models/
+?? .opencode/skills/sk-prompt-models/changelog/v0.5.0.0.md
+?? .opencode/skills/sk-prompt-models/references/models/
 ?? .opencode/skills/sk-prompt/changelog/v1.4.0.0.md
 ?? .opencode/skills/system-skill-advisor/changelog/v0.4.0.md
 ?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-mimo-v25pro-high.json
@@ -254,14 +254,14 @@ M .claude/settings.local.json
 ?? .opencode/specs/skilled-agent-orchestration/131-doctor-install-alignment/
 ?? .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review-opus-claude2/
 [0m
-[0m✱ [0mGrep "all six|all 10 runs|--variant high|10.15|2\.4× longer per run|model-profiles\.json#mimo-v2\.5-pro\.recommended_frameworks\.evidence\.confidence"[90m in .opencode/skills/sk-prompt-small-model/references/models · 2 matches[0m
+[0m✱ [0mGrep "all six|all 10 runs|--variant high|10.15|2\.4× longer per run|model-profiles\.json#mimo-v2\.5-pro\.recommended_frameworks\.evidence\.confidence"[90m in .opencode/skills/sk-prompt-models/references/models · 2 matches[0m
 [0m
 [0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" "skilled-agent-orchestration/130-prompt-knowledge-layering" --strict
 ERROR: Folder not found: skilled-agent-orchestration/130-prompt-knowledge-layering
 [0m
-[0m$ [0mgit status --short -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
-?? .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md
-?? .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md
+[0m$ [0mgit status --short -- ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md"
+?? .opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md
+?? .opencode/skills/sk-prompt-models/references/models/minimax-m3.md
 [0m
 [0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering" --strict
 Auto-enabled recursive validation: phase child folders detected.
@@ -455,7 +455,7 @@ Summary: Errors: 0  Warnings: 0
 
 RESULT: PASSED
 [0m
-[0m✱ [0mGrep "10–15|all six|all 10|2\.4× longer per run|Confidence \| high"[90m in .opencode/skills/sk-prompt-small-model/references/models · 0 matches[0m
+[0m✱ [0mGrep "10–15|all six|all 10|2\.4× longer per run|Confidence \| high"[90m in .opencode/skills/sk-prompt-models/references/models · 0 matches[0m
 [0m
 [0m# [0mTodos
 [✓] Read model profiles, registry, and benchmark synthesis sources

@@ -61,7 +61,7 @@ index 5fdf7d0fdf..586dec3862 100644
 -CLI skills may read it for model facts, context lengths, quota-pool labels, and future fallback targets.
 +CLI skills may read it for model facts, context lengths, quota-pool labels, fallback targets, and prompt-framework recommendations.
 +
-+**Architecture note:** this JSON holds the DATA layer. Per-model prompt-crafting prose (framework rationale, density guidance, fixture evidence) lives in `sk-prompt-small-model/references/models/<id>.md`. The small-model skill is the model-craft hub; this registry is the lookup anchor.
++**Architecture note:** this JSON holds the DATA layer. Per-model prompt-crafting prose (framework rationale, density guidance, fixture evidence) lives in `sk-prompt-models/references/models/<id>.md`. The small-model skill is the model-craft hub; this registry is the lookup anchor.
 +
 +The registry currently contains 8 active models plus 2 optional unverified stubs.
  
@@ -244,7 +244,7 @@ index 5fdf7d0fdf..586dec3862 100644
 +
 +Per-model prompt-framework recommendation, backed by benchmark evidence where available.
 +
-+This field captures the **what** (framework ids, density) and **why** (evidence provenance). Prose rationale and fixture details live in the corresponding `sk-prompt-small-model/references/models/<id>.md` file.
++This field captures the **what** (framework ids, density) and **why** (evidence provenance). Prose rationale and fixture details live in the corresponding `sk-prompt-models/references/models/<id>.md` file.
 +
 +Sub-fields:
 +
@@ -439,7 +439,7 @@ index 5fdf7d0fdf..586dec3862 100644
  
  Put prose in this reference doc.
  
-+Per-model prompt-craft prose belongs in `sk-prompt-small-model/references/models/<id>.md`, not here.
++Per-model prompt-craft prose belongs in `sk-prompt-models/references/models/<id>.md`, not here.
 +
  ## Validation Commands
  
@@ -517,8 +517,8 @@ M .claude/settings.local.json
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
  D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
  M .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
- M .opencode/skills/sk-prompt-small-model/SKILL.md
- M .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+ M .opencode/skills/sk-prompt-models/SKILL.md
+ M .opencode/skills/sk-prompt-models/references/pattern-index.md
  M .opencode/skills/sk-prompt/SKILL.md
  M .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
  M .opencode/skills/sk-prompt/assets/model-profiles.json
@@ -618,8 +618,8 @@ M .claude/settings.local.json
 ?? .opencode/skills/deep-improvement/changelog/v1.12.0.0.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/MODES.md
 ?? .opencode/skills/deep-improvement/scripts/model-benchmark/tests/README.md
-?? .opencode/skills/sk-prompt-small-model/changelog/v0.5.0.0.md
-?? .opencode/skills/sk-prompt-small-model/references/models/
+?? .opencode/skills/sk-prompt-models/changelog/v0.5.0.0.md
+?? .opencode/skills/sk-prompt-models/references/models/
 ?? .opencode/skills/sk-prompt/changelog/v1.4.0.0.md
 ?? .opencode/skills/system-skill-advisor/changelog/v0.4.0.md
 ?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-mimo-v25pro-high.json

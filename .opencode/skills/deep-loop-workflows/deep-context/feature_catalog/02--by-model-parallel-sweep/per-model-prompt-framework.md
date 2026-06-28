@@ -6,7 +6,7 @@ trigger_phrases:
   - "COSTAR prompt"
   - "TIDD-EC prompt"
   - "prompt framing deep context"
-  - "sk-prompt-small-model seat"
+  - "sk-prompt-models seat"
   - "lineage prompt contract"
 version: 1.2.0.3
 ---
@@ -19,7 +19,7 @@ version: 1.2.0.3
 
 Applies the correct prompt framework to each seat's rendered prompt based on its model identity before dispatch.
 
-Every seat in the heterogeneous pool receives a prompt built from the same four-part lineage contract, but the wrapper framework differs by model. A seat told only "analyze" returns generic noise; the correct framework channels each model's strengths toward the structured finding schema the host expects. Per-model framing is resolved via `sk-prompt-small-model` before any seat is dispatched.
+Every seat in the heterogeneous pool receives a prompt built from the same four-part lineage contract, but the wrapper framework differs by model. A seat told only "analyze" returns generic noise; the correct framework channels each model's strengths toward the structured finding schema the host expects. Per-model framing is resolved via `sk-prompt-models` before any seat is dispatched.
 
 ---
 
@@ -37,7 +37,7 @@ Omitting any element degrades the seat's output quality and reduces its agreemen
 
 ### Framework Resolution
 
-`step_render_seat_prompts` reads each seat's `promptFramework` field from `config.fanout.executors` and resolves the wrapper via `sk-prompt-small-model`:
+`step_render_seat_prompts` reads each seat's `promptFramework` field from `config.fanout.executors` and resolves the wrapper via `sk-prompt-models`:
 
 | Model Family | Framework | Notes |
 |---|---|---|
@@ -60,7 +60,7 @@ Each seat's rendered prompt is stored at `{prompt_dir}/iter-{NNN}/{seat.label}.m
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/commands/deep/assets/deep_context_auto.yaml` | Workflow | `step_render_seat_prompts` — per-seat prompt rendering and framework resolution |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Reference | Canonical model-to-framework mapping and per-model dispatch guidance |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Reference | Canonical model-to-framework mapping and per-model dispatch guidance |
 | `.opencode/commands/deep/context.md` | Command | Per-model prompt framing note in PRE-BOUND SETUP ANSWERS schema and pool resolution section |
 
 ### Validation And Tests

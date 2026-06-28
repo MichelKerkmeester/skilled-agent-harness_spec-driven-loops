@@ -106,7 +106,7 @@ Confirmed accurate (NOT drift) — explicitly verified and REJECTED as false pos
 - **`.opencode/skills/README.md`** index — see F22/F23 (minor tool-count consistency).
 - **All deep-loop skill docs** (`deep-ai-council`, `deep-improvement`, `deep-loop-runtime`, `deep-research`, `deep-review` README+SKILL) — NO-DRIFT.
 - **`mcp-chrome-devtools`, `mcp-click-up`, `mcp-code-mode`** README/SKILL — NO-DRIFT relative to the 7 change-areas (pass-06's Code-Mode-config findings were out-of-scope; see §5).
-- **`sk-code-review`, `sk-doc`, `sk-prompt`, `sk-prompt-small-model`** README+SKILL — NO-DRIFT.
+- **`sk-code-review`, `sk-doc`, `sk-prompt`, `sk-prompt-models`** README+SKILL — NO-DRIFT.
 - **`feature_catalog` governance** (`17--governance/249-253`) and **mutation** (`02--mutation/017-026`) — NO-DRIFT (gate-enforcement rule pack correctly describes "three overlays / Gate 1-3"; comment-hygiene checker correctly referenced).
 - **`manual_testing_playbook`** embedder scenarios (270/271/272), daemon-probe (267), orphan (273), setup (261), governance (274-278) — NO-DRIFT.
 - **mk-spec-memory MCP README + ENV_REFERENCE** embedder cascade + `LEASE_HELD_BY` rollback row — verified ACCURATE (see §3.4).

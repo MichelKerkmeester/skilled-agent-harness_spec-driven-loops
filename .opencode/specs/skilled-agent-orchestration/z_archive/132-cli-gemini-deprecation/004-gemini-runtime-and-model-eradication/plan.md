@@ -106,7 +106,7 @@ After the eradication, no active runtime detection resolves Gemini, no hook subs
 | `system-skill-advisor/hooks/gemini/` + test + 2 docs | Gemini hook subsystem + docs | Delete + de-index | feature_catalog 37 to 36, playbook 46 to 45; enforcing vitest GREEN. |
 | `system-skill-advisor/.../advisor-runtime-values.ts` (+ metrics/schemas/bridge/py) | Canonical runtime-value tuple | Modify | runtime-parity, advisor-observability, plugin-bridge GREEN. |
 | `deep-loop-runtime/.../fallback-router` + test | `gemini-flash` model fallback | Modify | fallback-router 8/8. |
-| `sk-prompt-small-model/.../model-profiles.json` + `per-model-budgets.json` + refs | `gemini-flash` model profile | Modify | global `rg` clean. |
+| `sk-prompt-models/.../model-profiles.json` + `per-model-budgets.json` + refs | `gemini-flash` model profile | Modify | global `rg` clean. |
 | `system-spec-kit/shared/gate-3-classifier.ts` | `GEMINI.md` docs-comment token | Modify (comment only) | No Gate-3 classification change; spec-kit scripts 8/8. |
 | `system-spec-kit/scripts/**` + extractors | Capture/source/normalize/extract | Modify | spec-kit scripts 8/8 + 267/267 extractors. |
 | 4 Gemini-runtime docs + count self-checks | Catalog/playbook docs | Delete + recount | playbook 391 to 387, catalog 325 to 324; self-check 387==387. |

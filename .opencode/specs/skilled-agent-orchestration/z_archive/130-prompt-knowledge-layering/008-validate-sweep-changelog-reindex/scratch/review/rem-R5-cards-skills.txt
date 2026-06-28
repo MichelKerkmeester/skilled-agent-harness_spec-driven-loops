@@ -23,12 +23,12 @@ Implemented only the requested scoped edits.
   - Changed Haiku guidance to optional-unverified: use only when explicitly requested or after adoption.
   - Updated both model-selection guidance spots that previously treated Haiku as the normal fast/cheap route.
 
-- `.opencode/skills/sk-prompt-small-model/SKILL.md`
+- `.opencode/skills/sk-prompt-models/SKILL.md`
   - Normalized `deepseek-v4` to `deepseek-v4-pro`.
   - Normalized `gemini flash` to `gemini-flash`.
 
 **Verification**
 - Comment hygiene: passed.
-- `quick_validate.py`: all four skills valid; one existing soft warning remains for long `sk-prompt-small-model` description.
+- `quick_validate.py`: all four skills valid; one existing soft warning remains for long `sk-prompt-models` description.
 - `verify_alignment_drift.py --root .opencode/skills`: passed with non-blocking warnings outside these requested edits.
 - Strict spec validation for `.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering`: passed.

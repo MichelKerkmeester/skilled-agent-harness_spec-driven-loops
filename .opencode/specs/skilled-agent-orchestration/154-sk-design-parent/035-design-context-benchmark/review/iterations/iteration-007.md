@@ -18,7 +18,7 @@ Verdicts:
 - Skipped register: partial. Mechanisms exist at `.opencode/skills/sk-design/shared/context_loading_contract.md:20`, `.opencode/skills/sk-design/SKILL.md:60`, `.opencode/skills/sk-design/design-interface/SKILL.md:74`, and the scenario at `.opencode/skills/sk-design/design-interface/manual_testing_playbook/12--brief-to-dials-intake/016-register-first-context-gate.md:46`. Gap: the interface executable router still does not load the shared contract/cards by default.
 - Late contrast to WCAG-AA P1: partial. Mechanisms exist at `.opencode/skills/sk-design/design-foundations/SKILL.md:90` and `.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:38`. Gap: the COLOR router map does not include the worksheet, and there is no deterministic contrast check.
 - Ad-hoc audit: partial. Mechanisms exist at `.opencode/skills/sk-design/design-audit/SKILL.md:268` and `.opencode/skills/sk-design/shared/context_loading_contract.md:120`. Gap: audit routing does not auto-load the shared contract/worksheet for audit contract tasks.
-- Thin small-model context: partial. Mechanisms exist at `.opencode/skills/cli-opencode/assets/prompt_templates.md:580` and `.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:132`. Gap: the manual test command introduces path-guard and variant issues covered by F-005.
+- Thin small-model context: partial. Mechanisms exist at `.opencode/skills/cli-opencode/assets/prompt_templates.md:580` and `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md:132`. Gap: the manual test command introduces path-guard and variant issues covered by F-005.
 
 Fix: turn the proof-field requirements into machine-loaded resources or deterministic checks before treating the misses as closed.
 

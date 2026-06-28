@@ -25,7 +25,7 @@
     {
       "id": "D3",
       "q": "context-budget.md canonical re-home target",
-      "rec": "sk-prompt-small-model/references or cli-opencode; MUST precede deletion",
+      "rec": "sk-prompt-models/references or cli-opencode; MUST precede deletion",
       "evidence": "cli-opencode/references/context-budget.md is a sentinel pointing at cli-devin canonical"
     },
     {
@@ -61,7 +61,7 @@
     {
       "phase": "P3",
       "name": "bulk removals",
-      "action": "runtime code + tests + 5 YAMLs + 6 cmd docs + sk-prompt-small-model cluster + agents(3rt) + governance + cross-skill/constitutional + run-deep-review-arc.sh; apply D2/D4/D5"
+      "action": "runtime code + tests + 5 YAMLs + 6 cmd docs + sk-prompt-models cluster + agents(3rt) + governance + cross-skill/constitutional + run-deep-review-arc.sh; apply D2/D4/D5"
     },
     {
       "phase": "P4",

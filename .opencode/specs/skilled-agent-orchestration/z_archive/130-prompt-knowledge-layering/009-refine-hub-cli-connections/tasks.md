@@ -57,22 +57,22 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 C3 — relabel STAR/BUILD as cli-devin task-shapes; remove STAR from the sk-prompt framework list (sk-prompt-small-model/SKILL.md)
-- [x] T004 C3 — fix "registry names…STAR as fallback" to match `fallback: null` (sk-prompt-small-model/references/models/swe-1.6.md)
-- [x] T005 [P] C4 — fix swe-1.6 fallback mis-column (sk-prompt-small-model/references/models/_index.md)
+- [x] T003 C3 — relabel STAR/BUILD as cli-devin task-shapes; remove STAR from the sk-prompt framework list (sk-prompt-models/SKILL.md)
+- [x] T004 C3 — fix "registry names…STAR as fallback" to match `fallback: null` (sk-prompt-models/references/models/swe-1.6.md)
+- [x] T005 [P] C4 — fix swe-1.6 fallback mis-column (sk-prompt-models/references/models/_index.md)
 - [x] T006 C1 — pointer-ize the Tier-3 precedence trigger, drop the enumeration (cli-opencode/SKILL.md)
 - [x] T007 C1 — pointer-ize the Tier-3 precedence trigger (cli-codex/SKILL.md)
 - [x] T008 C1 — pointer-ize the Tier-3 precedence trigger (cli-gemini/SKILL.md)
 - [x] T009 C1 — pointer-ize the Tier-3 precedence trigger (cli-claude-code/SKILL.md)
 - [x] T010 C1/C2 — pointer-ize the Tier-3 trigger + drop the RCAF/STAR/BUILD restatement (cli-devin/SKILL.md)
-- [x] T011 [P] C5 — replace embedded opencode run wrapper with rule + pointer (sk-prompt-small-model/references/models/mimo-v2.5-pro.md)
-- [x] T012 [P] C5 — replace embedded opencode run wrapper with rule + pointer (sk-prompt-small-model/references/models/minimax-m3.md)
+- [x] T011 [P] C5 — replace embedded opencode run wrapper with rule + pointer (sk-prompt-models/references/models/mimo-v2.5-pro.md)
+- [x] T012 [P] C5 — replace embedded opencode run wrapper with rule + pointer (sk-prompt-models/references/models/minimax-m3.md)
 - [x] T013 C8 — complete pattern-index §4 (author-profile + _index row + matrix row); delete/merge the divergent SKILL.md §3 copy (pattern-index.md + SKILL.md)
 - [x] T014 C6 — shared default-unverified note + add bidirectional card↔profile links for the 4 clones (4 cluster profiles + cli-opencode/cli-devin cards)
 - [x] T015 C7 — add kimi/qwen/glm trigger_phrases + intent_signals (cli-opencode/graph-metadata.json)
 - [x] T016 C9 — extend the guard: pointer-only Tier-3 check incl. SKILL.md, registry↔profile↔_index completeness, discovery reachability (check-prompt-quality-card-sync.sh)
 - [x] T017 C9 — wire the guard into CI/hook
-- [x] T018 [P] C10 — refresh last_updated_at + intent_signals + enhances[].context (sk-prompt-small-model/graph-metadata.json)
+- [x] T018 [P] C10 — refresh last_updated_at + intent_signals + enhances[].context (sk-prompt-models/graph-metadata.json)
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -86,7 +86,7 @@ Files in 113/103/110/108/102/027/099/114 spec folders + sk-code-review/sk-doc/cl
 
 ## 3. NAMING CONVENTION DECISIONS
 
-- **Skill**: `deep-ai-council` → `sk-ai-council` (joins sk-util family: sk-code, sk-doc, sk-prompt, sk-git, sk-prompt-small-model)
+- **Skill**: `deep-ai-council` → `sk-ai-council` (joins sk-util family: sk-code, sk-doc, sk-prompt, sk-git, sk-prompt-models)
 - **Agent**: `deep-ai-council` → `ai-council` (drops `deep-` prefix; agents do not use `sk-` per existing convention)
 - **Skill graph family** in graph-metadata.json: stays `sk-util` (matches sk-prompt etc.)
 - **Skill category** in graph-metadata.json: stays `utility` (matches sk-prompt)

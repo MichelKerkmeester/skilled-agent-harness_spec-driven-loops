@@ -194,7 +194,7 @@ Deliver a release-ready `deep-agent-improvement` skill folder: every documentati
 | Risk | SKILL.md ~545 LOC trim cascades into router regression | Med — load-bearing pseudocode lives in §2 | Treat length as P2; defer aggressive trim to a dedicated packet unless a clean surgical cut exists |
 | Risk | `generate-context.js` regeneration wipes manual `depends_on` / `related_to` and parent `last_active_child_id` | Medium — graph traversal degrades | Re-apply manual fields + verify parent `children_ids`/`last_active_child_id` after every save |
 | Risk | Phase-5 batch dispatch on this Mac swaps to disk thrash | High — wall-clock degrades, may abort mid-iter | One iteration at a time, SIGKILL between, sweep `/tmp` orphans (devin preserved per operator rule) |
-| Dependency | `cli-devin` (`devin` binary) + SWE-1.6 preset | Phase 5 blocked if unavailable | Verify at phase-5 prologue; read `cli-devin/SKILL.md` + `sk-prompt-small-model` before dispatch |
+| Dependency | `cli-devin` (`devin` binary) + SWE-1.6 preset | Phase 5 blocked if unavailable | Verify at phase-5 prologue; read `cli-devin/SKILL.md` + `sk-prompt-models` before dispatch |
 | Dependency | Strict validator (`scripts/spec/validate.sh`) | Every phase exit blocked if missing | Verified present at plan time |
 | Dependency | `skill_graph_compiler.py` | Graph drift if not run after metadata edits | Run after every `graph-metadata.json` change |
 | Risk | CLI dispatch under heavy parallelism degrades reliability | Medium — fresh dispatches silently fail | Ceiling 1 concurrent during phase 5 |

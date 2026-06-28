@@ -43,8 +43,8 @@ Review Scope Files:
 - .opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs
 - .opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts
 - .opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts
-- .opencode/skills/sk-prompt-small-model/SKILL.md
-- .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+- .opencode/skills/sk-prompt-models/SKILL.md
+- .opencode/skills/sk-prompt-models/references/pattern-index.md
 - .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
 - .opencode/skills/sk-prompt/assets/model-profiles.json
 - .opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector/decision-record.md

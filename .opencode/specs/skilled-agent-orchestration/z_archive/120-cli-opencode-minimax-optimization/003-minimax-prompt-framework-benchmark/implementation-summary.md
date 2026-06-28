@@ -79,7 +79,7 @@ The winner is now the documented MiniMax default: a TIDD-EC + dense scaffold in 
 | `cli-opencode/SKILL.md` + `references/cli_reference.md` | Modified | Slug `minimax/minimax-2.7` → `minimax/MiniMax-M2.7`; version → 1.3.4.0 |
 | `cli-opencode/changelog/v1.3.4.0.md` | Created | Documents the uplift |
 | `sk-prompt/assets/model-profiles.json` | Modified | `minimax-2.7`: context_length 204800 + benchmark notes |
-| `sk-prompt/assets/cli_prompt_quality_card.md` + `sk-prompt-small-model/references/pattern-index.md` | Modified | MiniMax override note + pattern-index row |
+| `sk-prompt/assets/cli_prompt_quality_card.md` + `sk-prompt-models/references/pattern-index.md` | Modified | MiniMax override note + pattern-index row |
 <!-- /ANCHOR:what-built -->
 
 ---

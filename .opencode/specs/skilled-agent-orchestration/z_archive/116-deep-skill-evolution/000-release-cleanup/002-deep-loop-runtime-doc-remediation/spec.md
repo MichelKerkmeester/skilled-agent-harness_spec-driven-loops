@@ -173,7 +173,7 @@ Close all 36 findings, ship `deep-loop-runtime` v1.2.0 as a release-ready peer-r
 | REQ-012 | `skill_graph_compiler.py --export-json --pretty` re-run after `graph-metadata.json` edit | Compiler exit 0 + skill-graph.json refreshed |
 | REQ-013 | SKILL.md frontmatter version bumped 1.1.0 → 1.2.0 | `grep '^version:' SKILL.md` returns `1.2.0` |
 | REQ-014 | `changelog/v1.2.0.0.md` authored per schema | `audit_finding_refs` cites DR-001..DR-037 + AF refs |
-| REQ-015 | Pre-dispatch reads of `cli-devin/SKILL.md` + `sk-prompt-small-model/SKILL.md` recorded per batch | Per CLAUDE.md CLI dispatch rule + small-model dispatch rule |
+| REQ-015 | Pre-dispatch reads of `cli-devin/SKILL.md` + `sk-prompt-models/SKILL.md` recorded per batch | Per CLAUDE.md CLI dispatch rule + small-model dispatch rule |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -289,7 +289,7 @@ Close all 36 findings, ship `deep-loop-runtime` v1.2.0 as a release-ready peer-r
 - **Replacement-string source**: `../research/iterations/iteration-007.md` §C + `../research/iterations/iteration-009.md`
 - **Authoritative ADR for council scope**: `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md` ADR-001
 - **Executor SKILL.md**: `.opencode/skills/cli-devin/SKILL.md` (mandatory pre-read)
-- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-small-model/SKILL.md` (mandatory pre-read)
+- **Small-model dispatch matrix**: `.opencode/skills/sk-prompt-models/SKILL.md` (mandatory pre-read)
 - **sk-doc templates**: `.opencode/skills/sk-doc/references/feature_catalog_creation.md` + `manual_testing_playbook_creation.md`
 - **HVR rules**: `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - **Sibling pattern**: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/` (Level 2 remediation template)

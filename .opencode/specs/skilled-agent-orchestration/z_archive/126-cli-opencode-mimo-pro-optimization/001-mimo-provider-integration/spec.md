@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration"
-description: "Wire the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode, the shared small-model registry, and the sk-prompt-small-model sentinel, mirroring the MiniMax Token Plan wiring."
+description: "Wire the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode, the shared small-model registry, and the sk-prompt-models sentinel, mirroring the MiniMax Token Plan wiring."
 trigger_phrases:
   - "mimo provider integration"
   - "xiaomi-token-plan-ams"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-126-001"
@@ -76,7 +76,7 @@ The Xiaomi Token Plan (Europe) is configured on the install as provider `xiaomi-
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-small-model` sentinel never names it. We cannot route to it deliberately and have no usage guidance.
+MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-models` sentinel never names it. We cannot route to it deliberately and have no usage guidance.
 
 ### Purpose
 Register the Xiaomi Token Plan (Europe) provider + `mimo-v2.5-pro` model across cli-opencode, the shared registry, and the sentinel, with a `context_length` placeholder (null) pending phase-003 research, so MiMo becomes a deliberately selectable model.
@@ -90,7 +90,7 @@ Register the Xiaomi Token Plan (Europe) provider + `mimo-v2.5-pro` model across 
 ### In Scope
 - Add `mimo-v2.5-pro` to `sk-prompt/assets/model-profiles.json` (executor `cli-opencode`, provider `xiaomi-token-plan-ams`, quota_pool `xiaomi-token-plan`); register the free `opencode/mimo-v2.5-free` path; bump `version`; update the registry description's active-rotation line.
 - Update cli-opencode: auth options, §4 pre-flight detection, §5 model rows + `--variant` matrix, §6 agent-flag note, prompt template, quality-card per-model placeholder, graph-metadata trigger phrases, and a new changelog version file.
-- Update `sk-prompt-small-model`: SKILL.md activation + dispatch matrix, description.json, pattern-index.md, README.md, graph-metadata.json trigger phrases.
+- Update `sk-prompt-models`: SKILL.md activation + dispatch matrix, description.json, pattern-index.md, README.md, graph-metadata.json trigger phrases.
 
 ### Out of Scope
 - Determining MiMo's context length / `--variant` behavior / best framework — phases 003 + 004 (placeholders here).
@@ -109,11 +109,11 @@ Register the Xiaomi Token Plan (Europe) provider + `mimo-v2.5-pro` model across 
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modify | MiMo per-model override placeholder |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modify | MiMo/Xiaomi trigger phrases + key topics |
 | `.opencode/skills/cli-opencode/changelog/vX.Y.Z.0.md` | Create | New version changelog for the MiMo addition |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modify | Activation triggers + dispatch matrix row |
-| `.opencode/skills/sk-prompt-small-model/description.json` | Modify | Description + keywords |
-| `.opencode/skills/sk-prompt-small-model/references/pattern-index.md` | Modify | Provider/dispatch row |
-| `.opencode/skills/sk-prompt-small-model/README.md` | Modify | Provider mention |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modify | Trigger phrases |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modify | Activation triggers + dispatch matrix row |
+| `.opencode/skills/sk-prompt-models/description.json` | Modify | Description + keywords |
+| `.opencode/skills/sk-prompt-models/references/pattern-index.md` | Modify | Provider/dispatch row |
+| `.opencode/skills/sk-prompt-models/README.md` | Modify | Provider mention |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modify | Trigger phrases |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,7 +127,7 @@ Register the Xiaomi Token Plan (Europe) provider + `mimo-v2.5-pro` model across 
 |----|-------------|---------------------|
 | REQ-001 | MiMo-V2.5-Pro registered in the shared registry | `model-profiles.json` parses as valid JSON; `mimo-v2.5-pro` entry exists with executor provider `xiaomi-token-plan-ams`, quota_pool `xiaomi-token-plan`, slug `xiaomi-token-plan-ams/mimo-v2.5-pro`, status `active`; `version` bumped |
 | REQ-002 | cli-opencode documents the provider as a selectable MiMo path | `cli_reference.md` §5 + SKILL.md model selection show `xiaomi-token-plan-ams/mimo-v2.5-pro`; §4 pre-flight detects `xiaomi-token-plan-ams`; `--agent` omission recorded |
-| REQ-003 | Sentinel names MiMo | `sk-prompt-small-model` SKILL.md/description.json/pattern-index name MiMo via the Xiaomi Token Plan; graph-metadata carries MiMo trigger phrases |
+| REQ-003 | Sentinel names MiMo | `sk-prompt-models` SKILL.md/description.json/pattern-index name MiMo via the Xiaomi Token Plan; graph-metadata carries MiMo trigger phrases |
 
 ### P1 - Required (complete OR user-approved deferral)
 

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: model-registration"
-description: "Register Kimi K2.7 Code as a first-class small model in cli-opencode and sk-prompt-small-model, and retire the older kimi-k2.6 entry."
+description: "Register Kimi K2.7 Code as a first-class small model in cli-opencode and sk-prompt-models, and retire the older kimi-k2.6 entry."
 trigger_phrases:
   - "kimi-k2.7-code"
   - "kimi-for-coding"
@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff prompt-framework bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -70,7 +70,7 @@ This is **Phase 1** of the kimi-k2-7-code-support specification.
 
 **Dependencies**:
 - The `kimi-for-coding` provider is registered and authenticated in opencode.
-- The canonical "Adopting a New Provider" checklist in `sk-prompt-small-model/references/pattern-index.md` (§4).
+- The canonical "Adopting a New Provider" checklist in `sk-prompt-models/references/pattern-index.md` (§4).
 
 **Deliverables**:
 - `kimi-k2.7-code` registered across model profiles, references, SKILL.md, aliases, and routing graph metadata.
@@ -90,7 +90,7 @@ This is **Phase 1** of the kimi-k2-7-code-support specification.
 Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated "Kimi For Coding" coding-plan provider but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name. The older `kimi-k2.6` entry still points at the shared `opencode-go` gateway and no longer reflects how the operator runs Kimi.
 
 ### Purpose
-Register `kimi-k2.7-code` as a first-class small model across cli-opencode and sk-prompt-small-model and retire `kimi-k2.6`, so the new model is dispatchable, alias-resolvable, and advisor-routable while the card-sync guard stays green.
+Register `kimi-k2.7-code` as a first-class small model across cli-opencode and sk-prompt-models and retire `kimi-k2.6`, so the new model is dispatchable, alias-resolvable, and advisor-routable while the card-sync guard stays green.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -112,12 +112,12 @@ Register `kimi-k2.7-code` as a first-class small model across cli-opencode and s
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt-small-model/assets/model-profiles.json` | Modify | Add `kimi-k2.7-code` entry; retire `kimi-k2.6`; update registry description rotation line |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md` | Create | New 7-section prompt-craft profile (RCAF default-unverified) |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md` | Modify | Add HISTORICAL banner (superseded by kimi-k2.7-code) |
-| `.opencode/skills/sk-prompt-small-model/references/models/_index.md` | Modify | Move kimi-k2.7-code to ACTIVE, kimi-k2.6 to Historical |
-| `.opencode/skills/sk-prompt-small-model/SKILL.md` | Modify | Frontmatter, keywords, triggers, MODEL_ALIASES, §3 Dispatch Matrix row |
-| `.opencode/skills/sk-prompt-small-model/graph-metadata.json` | Modify | trigger_phrases, intent_signals, enhances-context |
+| `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Modify | Add `kimi-k2.7-code` entry; retire `kimi-k2.6`; update registry description rotation line |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md` | Create | New 7-section prompt-craft profile (RCAF default-unverified) |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md` | Modify | Add HISTORICAL banner (superseded by kimi-k2.7-code) |
+| `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modify | Move kimi-k2.7-code to ACTIVE, kimi-k2.6 to Historical |
+| `.opencode/skills/sk-prompt-models/SKILL.md` | Modify | Frontmatter, keywords, triggers, MODEL_ALIASES, §3 Dispatch Matrix row |
+| `.opencode/skills/sk-prompt-models/graph-metadata.json` | Modify | trigger_phrases, intent_signals, enhances-context |
 | `.opencode/skills/cli-opencode/graph-metadata.json` | Modify | trigger_phrases, key_topics for the new model/provider |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | Auth-login list line and Model Selection paragraph |
 <!-- /ANCHOR:scope -->

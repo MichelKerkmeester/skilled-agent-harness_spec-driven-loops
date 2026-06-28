@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Begin 002-framework-bakeoff prompt-framework bakeoff"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-model-registration"
@@ -52,7 +52,7 @@ _memory:
 
 - [x] T001 Confirm `kimi-for-coding` provider authed and slug live (`opencode models kimi-for-coding`)
 - [x] T002 Capture live facts: context 262144, output 32768, display name "Kimi K2.7 Code"
-- [x] T003 [P] Read the Adopting a New Provider checklist (`.opencode/skills/sk-prompt-small-model/references/pattern-index.md` §4)
+- [x] T003 [P] Read the Adopting a New Provider checklist (`.opencode/skills/sk-prompt-models/references/pattern-index.md` §4)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,12 +60,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Add `kimi-k2.7-code` entry + update registry description rotation line (`sk-prompt-small-model/assets/model-profiles.json`)
-- [x] T005 Retire `kimi-k2.6`: executors + recommended_frameworks status -> historical, notes point to kimi-k2.7-code (`sk-prompt-small-model/assets/model-profiles.json`)
-- [x] T006 Create the new prompt-craft profile (`sk-prompt-small-model/references/models/kimi-k2.7-code.md`)
-- [x] T007 [P] Add HISTORICAL banner to `sk-prompt-small-model/references/models/kimi-k2.6.md` and update `references/models/_index.md` tables
-- [x] T008 Update SKILL.md: frontmatter, keywords, triggers, MODEL_ALIASES, §3 matrix row (`sk-prompt-small-model/SKILL.md`)
-- [x] T009 [P] Update routing graph metadata (`sk-prompt-small-model/graph-metadata.json` and `cli-opencode/graph-metadata.json`)
+- [x] T004 Add `kimi-k2.7-code` entry + update registry description rotation line (`sk-prompt-models/assets/model-profiles.json`)
+- [x] T005 Retire `kimi-k2.6`: executors + recommended_frameworks status -> historical, notes point to kimi-k2.7-code (`sk-prompt-models/assets/model-profiles.json`)
+- [x] T006 Create the new prompt-craft profile (`sk-prompt-models/references/models/kimi-k2.7-code.md`)
+- [x] T007 [P] Add HISTORICAL banner to `sk-prompt-models/references/models/kimi-k2.6.md` and update `references/models/_index.md` tables
+- [x] T008 Update SKILL.md: frontmatter, keywords, triggers, MODEL_ALIASES, §3 matrix row (`sk-prompt-models/SKILL.md`)
+- [x] T009 [P] Update routing graph metadata (`sk-prompt-models/graph-metadata.json` and `cli-opencode/graph-metadata.json`)
 - [x] T010 Update cli-opencode auth-login list + Model Selection paragraph (`cli-opencode/SKILL.md`)
 <!-- /ANCHOR:phase-2 -->
 

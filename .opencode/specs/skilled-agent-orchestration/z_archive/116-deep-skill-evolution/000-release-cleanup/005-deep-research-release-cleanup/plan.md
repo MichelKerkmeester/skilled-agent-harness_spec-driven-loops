@@ -137,7 +137,7 @@ Required inventories:
 - Path references: `rg -F` every file path mentioned in any artifact under `.opencode/skills/deep-research/` to confirm targets exist.
 - MCP tool names: `rg "mcp__" .opencode/skills/deep-research/` — every name must resolve to a registered tool in `opencode.json`.
 - HVR rule applicability: scan every prose paragraph against banned-words / banned-phrase lists from `hvr_rules.md`.
-- Cross-system targets named in README rewrite: `deep-loop-runtime`, `deep-review`, `system-spec-kit`, `system-code-graph`, all 5 cli-* skills, `mcp-coco-index`, `sk-prompt`, `sk-prompt-small-model`, `/deep:start-research-loop`.
+- Cross-system targets named in README rewrite: `deep-loop-runtime`, `deep-review`, `system-spec-kit`, `system-code-graph`, all 5 cli-* skills, `mcp-coco-index`, `sk-prompt`, `sk-prompt-models`, `/deep:start-research-loop`.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

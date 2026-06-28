@@ -13,7 +13,7 @@ version: 0.8.0.8
 
 # Output Verification Pipeline
 
-> This reference was re-homed from cli-devin to sk-prompt-small-model as part of the cli-devin deprecation. Content is executor-agnostic.
+> This reference was re-homed from cli-devin to sk-prompt-models as part of the cli-devin deprecation. Content is executor-agnostic.
 
 ---
 

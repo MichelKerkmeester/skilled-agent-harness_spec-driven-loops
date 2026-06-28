@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: hub-doc-alignment-and-router"
-description: "Aligned the sk-prompt-small-model hub to the sk-doc templates: the no-op router became a model-keyed smart router, the README was rewritten to the hub identity with all ephemeral spec refs stripped, and the 9 per-model profiles were conformed to the reference template."
+description: "Aligned the sk-prompt-models hub to the sk-doc templates: the no-op router became a model-keyed smart router, the README was rewritten to the hub identity with all ephemeral spec refs stripped, and the 9 per-model profiles were conformed to the reference template."
 trigger_phrases:
   - "hub doc alignment summary"
 importance_tier: "normal"
@@ -14,8 +14,8 @@ _memory:
     next_safe_action: "validate --strict then commit; start phase 011"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/SKILL.md"
-      - ".opencode/skills/sk-prompt-small-model/README.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The `sk-prompt-small-model` hub now tells the truth about what it is and conforms to the sk-doc templates.
+The `sk-prompt-models` hub now tells the truth about what it is and conforms to the sk-doc templates.
 
 ### A real router replaces the no-op
 SKILL.md §2 declared "this skill has no runtime router of its own." It now carries a model-keyed smart router faithful to `skill_smart_router.md`: runtime discovery of `references/models/*.md`, an alias map that resolves a named model to its canonical id, guarded loads, and three-tier fallback (no model named → index + disambiguation checklist; known-but-unauthored → notice; happy path → load the profile + pattern-index). The LOC cap was relaxed from 200 to 300 because the template requires the inline router.
@@ -61,8 +61,8 @@ Each of the 8 model profiles plus `_index.md` now opens with `## 1. OVERVIEW` (P
 ### Files Changed
 | File | Action | Purpose |
 |------|--------|---------|
-| `sk-prompt-small-model/SKILL.md` | Modified | Model-keyed router; LOC cap 300; version 0.7.0.0 |
-| `sk-prompt-small-model/README.md` | Modified | Hub identity; spec refs stripped; template + HVR |
+| `sk-prompt-models/SKILL.md` | Modified | Model-keyed router; LOC cap 300; version 0.7.0.0 |
+| `sk-prompt-models/README.md` | Modified | Hub identity; spec refs stripped; template + HVR |
 | `references/models/*.md` (8) + `_index.md` | Modified | OVERVIEW + ALL-CAPS numbered sections |
 | `skills/README.md` | Modified | Hub index entry refreshed |
 <!-- /ANCHOR:what-built -->

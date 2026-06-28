@@ -20,9 +20,9 @@ peck makes a deliberate COST architecture choice: it runs its BLOCKING quality g
 - peck `external/peck-master/src/assets/agents/code-reviewer.md` (`model: opencode-go/glm-5.1`, `variant: low`)
 - peck `external/peck-master/src/assets/agents/planner.md` (note its model)
 - peck `external/peck-master/benchmarks/models.json`
-- spec-kit cost/dispatch surfaces: `.opencode/skills/cli-opencode/SKILL.md` (model selection), `.opencode/skills/sk-prompt-small-model/SKILL.md` and its `assets/model-profiles.json`, the deep-* loop executor-selection contracts
+- spec-kit cost/dispatch surfaces: `.opencode/skills/cli-opencode/SKILL.md` (model selection), `.opencode/skills/sk-prompt-models/SKILL.md` and its `assets/model-profiles.json`, the deep-* loop executor-selection contracts
 
-Determine: peck's thesis is that structural quality gates can run on CHEAP models because the RUBRIC carries the rigor, not the model. Does spec-kit have an explicit cost-tiered verification pattern (cheap small-model gates vs expensive implement/synthesize)? Given sk-prompt-small-model exists, is "run the deep-review / sk-code-review severity pass on a cheap small model via cli-opencode" a NET-NEW adoptable cost pattern — or does spec-kit already route this way? Watch for the trap: spec-kit reviewers may need stronger models than peck's because spec-kit's surface is broader. Verdict + effort + risk, and note the failure mode.
+Determine: peck's thesis is that structural quality gates can run on CHEAP models because the RUBRIC carries the rigor, not the model. Does spec-kit have an explicit cost-tiered verification pattern (cheap small-model gates vs expensive implement/synthesize)? Given sk-prompt-models exists, is "run the deep-review / sk-code-review severity pass on a cheap small model via cli-opencode" a NET-NEW adoptable cost pattern — or does spec-kit already route this way? Watch for the trap: spec-kit reviewers may need stronger models than peck's because spec-kit's surface is broader. Verdict + effort + risk, and note the failure mode.
 
 ## DELIVER (plain text only — orchestrator writes artifacts)
 ### FINDINGS

@@ -106,7 +106,7 @@ _memory:
 
 - [x] CHK-040 [P1] spec/plan/tasks/checklist synchronized
 - [x] CHK-041 [P1] No ephemeral artifact pointers embedded in code comments (registry `notes` are data strings)
-- [x] CHK-042 [P2] sk-prompt-small-model README has no MiniMax mention — no change needed
+- [x] CHK-042 [P2] sk-prompt-models README has no MiniMax mention — no change needed
 <!-- /ANCHOR:docs -->
 
 ---

@@ -1,7 +1,7 @@
 [0m
 > build · gpt-5.5-fast
 [0m
-[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). Remediate deep-review findings in exactly four skill/prompt quality files: cli-gemini prompt_quality_card, cli-codex prompt_quality_card, cli-claude-code SKILL.md, sk-prompt-small-model SKILL.md.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). Remediate deep-review findings in exactly four skill/prompt quality files: cli-gemini prompt_quality_card, cli-codex prompt_quality_card, cli-claude-code SKILL.md, sk-prompt-models SKILL.md.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
 [0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Edit .opencode skill files and prompt quality cards for canonical Tier 3 trigger wording and model id normalization, scoped to four files only.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true}}
 [0m→ [0mSkill "sk-code"
 [0m→ [0mSkill "customize-opencode"
@@ -16,11 +16,11 @@
 [0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=1, limit=240][0m
 [0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=1, limit=240][0m
 [0m→ [0mRead .opencode/skills/cli-claude-code/SKILL.md[90m [offset=220, limit=120][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=1, limit=100][0m
 [0m✱ [0mGrep "Tier 3|canonical Tier|ENHANCED_PROMPT|deepseek-v4|gemini flash|Haiku|haiku"[90m in .opencode/skills · 526 matches[0m
 [0m→ [0mRead .opencode/skills/cli-claude-code/SKILL.md[90m [offset=340, limit=70][0m
 [0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=80, limit=35][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=115, limit=55][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=115, limit=55][0m
 [0m% [0mPatch 4 files
 [0m
 [0m# [0mTodos
@@ -32,10 +32,10 @@
 [0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=17, limit=18][0m
 [0m→ [0mRead .opencode/skills/cli-claude-code/SKILL.md[90m [offset=341, limit=12][0m
 [0m→ [0mRead .opencode/skills/cli-claude-code/SKILL.md[90m [offset=252, limit=15][0m
-[0m→ [0mRead .opencode/skills/sk-prompt-small-model/SKILL.md[90m [offset=1, limit=36][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-models/SKILL.md[90m [offset=1, limit=36][0m
 [0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=20, limit=8][0m
 [0m
-[0m$ [0mbash ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mbash ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-models/SKILL.md"
 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 15: 
 Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
 
@@ -56,7 +56,7 @@ See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 20: syntax error near unexpected token `('
 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 20: `def main():'
 [0m
-[0m$ [0mgit diff -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mgit diff -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-models/SKILL.md"
 diff --git a/.opencode/skills/cli-claude-code/SKILL.md b/.opencode/skills/cli-claude-code/SKILL.md
 index 16fc8a6dc7..41cbe6fb0f 100644
 --- a/.opencode/skills/cli-claude-code/SKILL.md
@@ -93,7 +93,7 @@ index 16fc8a6dc7..41cbe6fb0f 100644
 -8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
 +8. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../sk-prompt/assets/cli_prompt_quality_card.md`:
 +   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
-+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt-small-model** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
++   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../sk-prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt-models** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
 +   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when complexity ≥ 7/10, compliance/privacy/security signal, >1 stakeholder, >1 ambiguous requirement, or the fast-path CLEAR cannot clear its floor.
 +
 +   Tag the framework in the Bash invocation comment and use the returned `ENHANCED_PROMPT`. Apply the CLEAR 5-question check from the canonical card via the local delegating card.
@@ -207,7 +207,7 @@ index 63bcf1af24..a2edf0f5eb 100644
 -- `../SKILL.md`
 +## 4. Related
  
-+-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
++-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-models/references/models/` (per-model profiles)
 diff --git a/.opencode/skills/cli-gemini/assets/prompt_quality_card.md b/.opencode/skills/cli-gemini/assets/prompt_quality_card.md
 index aa02dc6bff..63f8dc9387 100644
 --- a/.opencode/skills/cli-gemini/assets/prompt_quality_card.md
@@ -240,7 +240,7 @@ index aa02dc6bff..63f8dc9387 100644
 +## 2. Gemini CLI Model Overrides
  
 -### Usage
-+No per-model overrides today — Gemini Flash is an unverified stub (see the hub at `../../sk-prompt-small-model/references/models/` if a profile is added).
++No per-model overrides today — Gemini Flash is an unverified stub (see the hub at `../../sk-prompt-models/references/models/` if a profile is added).
  
 -Select a framework from the task map, run the CLEAR 5-check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
 +Tier 3-only Gemini escalation one-liner: after a canonical Tier 3 trigger, obtain `ENHANCED_PROMPT` from `@prompt-improver`, then pass it directly to Gemini CLI:
@@ -320,14 +320,14 @@ index aa02dc6bff..63f8dc9387 100644
 -- `../SKILL.md`
 +## 4. Related
  
-+-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
-diff --git a/.opencode/skills/sk-prompt-small-model/SKILL.md b/.opencode/skills/sk-prompt-small-model/SKILL.md
++-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-models/references/models/` (per-model profiles)
+diff --git a/.opencode/skills/sk-prompt-models/SKILL.md b/.opencode/skills/sk-prompt-models/SKILL.md
 index d92046f842..091137e7db 100644
---- a/.opencode/skills/sk-prompt-small-model/SKILL.md
-+++ b/.opencode/skills/sk-prompt-small-model/SKILL.md
+--- a/.opencode/skills/sk-prompt-models/SKILL.md
++++ b/.opencode/skills/sk-prompt-models/SKILL.md
 @@ -1,15 +1,15 @@
  ---
- name: sk-prompt-small-model
+ name: sk-prompt-models
 -description: Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax across cli-devin and cli-opencode (DeepSeek API + opencode-go + MiniMax Token Plan `minimax-coding-plan` default / MiniMax Direct API `minimax` providers) dispatch paths. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
 +description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
  allowed-tools: []
@@ -413,7 +413,7 @@ index d92046f842..091137e7db 100644
 -    |
 -    +-- Advisor matches trigger phrases (lexical lane)
 -    +-- cli-devin or cli-opencode already high-confidence
--    +-- enhances edge pulls sk-prompt-small-model into top-3
+-    +-- enhances edge pulls sk-prompt-models into top-3
 -```
 +### Detection & Flow
  
@@ -425,7 +425,7 @@ index d92046f842..091137e7db 100644
 +Prompt mentions small-model name/pattern
      |
 -    +- STEP 0: Identify whether a small-model executor is involved
--    +- STEP 1: Surface sk-prompt-small-model alongside the executor skill
+-    +- STEP 1: Surface sk-prompt-models alongside the executor skill
 -    +- Phase 1: Read references/pattern-index.md
 -    +- Phase 2: Navigate to the executor-owned pattern file
 -    +- Phase 3: Apply the pattern from its canonical location
@@ -474,10 +474,10 @@ index d92046f842..091137e7db 100644
 -def surface_sk_prompt_small_model(prompt, advisor):
 -    if matches_trigger(prompt, SMALL_MODEL_TRIGGERS):
 -        # Lexical lane match
--        return ("sk-prompt-small-model", advisor.lexical_score(prompt))
+-        return ("sk-prompt-models", advisor.lexical_score(prompt))
 -    if "cli-devin" in advisor.top_k(prompt, k=3) or "cli-opencode" in advisor.top_k(prompt, k=3):
 -        # Graph_causal lane via enhances edge (weight 0.5)
--        return ("sk-prompt-small-model", 0.5 * advisor.enhances_weight)
+-        return ("sk-prompt-models", 0.5 * advisor.enhances_weight)
 -    return None
 -```
 +| Level       | When to Load                  | Resources                                         |
@@ -499,11 +499,11 @@ index d92046f842..091137e7db 100644
 -### Sentinel Workflow
 +### Hub Workflow
  
--1. **Discovery** — Operator mentions a small-model name or pattern; the advisor surfaces `sk-prompt-small-model` alongside the relevant CLI skill.
+-1. **Discovery** — Operator mentions a small-model name or pattern; the advisor surfaces `sk-prompt-models` alongside the relevant CLI skill.
 -2. **Index lookup** — Operator reads `references/pattern-index.md` to find the pattern's canonical location and ship status.
 -3. **Navigate to owner** — Operator opens the linked executor file (e.g. `cli-devin/references/context-budget.md`) for the actual pattern body.
 -4. **Apply pattern** — Pattern is applied within the executor's prompt-pack or recipe, not from this sentinel.
-+1. **Discover** — The advisor surfaces `sk-prompt-small-model` alongside the relevant CLI skill when an operator names a small model or pattern.
++1. **Discover** — The advisor surfaces `sk-prompt-models` alongside the relevant CLI skill when an operator names a small model or pattern.
 +2. **Read the profile** — Open `references/models/<id>.md` for that model's prompt-craft: framework (primary + fallback), pre-planning density, scaffold shape, gotchas — mirrored from `model-profiles.json`.
 +3. **Apply MECHANICS + dispatch** — Follow `references/pattern-index.md` to the owning `cli-X` for flags/wrappers/budgets/permissions; the prompt-craft (here) and mechanics (`cli-X`) combine in the executor's prompt-pack.
  
@@ -615,8 +615,8 @@ index d92046f842..091137e7db 100644
  ### Skill Boundary Map
  
  ```text
--sk-prompt-small-model (this skill)         ← discovery + index only
-+sk-prompt-small-model (this skill)  ← OWNS per-model prompt-craft profiles + indexes
+-sk-prompt-models (this skill)         ← discovery + index only
++sk-prompt-models (this skill)  ← OWNS per-model prompt-craft profiles + indexes
      |
 -    +-- cli-devin                   ← owns SWE-1.6 budget + verification + fallback patterns
 -    +-- cli-opencode                ← owns DeepSeek/Kimi/Qwen propagation + permissions
@@ -629,11 +629,11 @@ index d92046f842..091137e7db 100644
 \ No newline at end of file
 +```
 [0m
-[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-models/SKILL.md"
 usage: quick_validate.py [-h] [--json]
                          [--description-soft-target DESCRIPTION_SOFT_TARGET]
                          skill_directory
-quick_validate.py: error: unrecognized arguments: .opencode/skills/cli-codex/assets/prompt_quality_card.md .opencode/skills/cli-claude-code/SKILL.md .opencode/skills/sk-prompt-small-model/SKILL.md
+quick_validate.py: error: unrecognized arguments: .opencode/skills/cli-codex/assets/prompt_quality_card.md .opencode/skills/cli-claude-code/SKILL.md .opencode/skills/sk-prompt-models/SKILL.md
 [0m
 [0m$ [0mpython3 ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py" --root ".opencode/skills"
 [alignment-drift] PASS
@@ -651,21 +651,21 @@ Actionable findings:
 
 Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.
 [0m
-[0m$ [0mpython3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-claude-code/SKILL.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mpython3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/cli-claude-code/SKILL.md" && python3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/sk-prompt-models/SKILL.md"
 (no output)
 [0m
-[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-gemini" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-codex" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-claude-code" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/sk-prompt-small-model"
+[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-gemini" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-codex" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-claude-code" && python3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/sk-prompt-models"
 ✅ Skill is valid!
 ✅ Skill is valid!
 ✅ Skill is valid!
 ✅ Skill is valid!
 ⚠️  Description is 440 chars, exceeds soft target of 130. Project total budget is ~5,600 chars (default 8,000 minus built-ins); trim per .opencode/skills/sk-doc/assets/frontmatter_templates.md § 'Description Budget & Trim Style'.
 [0m
-[0m$ [0mgit status --short -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mgit status --short -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-models/SKILL.md"
 M .opencode/skills/cli-claude-code/SKILL.md
  M .opencode/skills/cli-codex/assets/prompt_quality_card.md
  M .opencode/skills/cli-gemini/assets/prompt_quality_card.md
- M .opencode/skills/sk-prompt-small-model/SKILL.md
+ M .opencode/skills/sk-prompt-models/SKILL.md
 [0m
 [0m✱ [0mGlob ".opencode/specs/**/130-prompt-knowledge-layering"[90m in . · 0 matches[0m
 [0m✱ [0mGlob "**/130-prompt-knowledge-layering"[90m in . · 0 matches[0m
@@ -863,11 +863,11 @@ Summary: Errors: 0  Warnings: 0
 
 RESULT: PASSED
 [0m
-[0m$ [0mgit status --short -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-small-model/SKILL.md"
+[0m$ [0mgit status --short -- ".opencode/skills/cli-gemini/assets/prompt_quality_card.md" ".opencode/skills/cli-codex/assets/prompt_quality_card.md" ".opencode/skills/cli-claude-code/SKILL.md" ".opencode/skills/sk-prompt-models/SKILL.md"
 M .opencode/skills/cli-claude-code/SKILL.md
  M .opencode/skills/cli-codex/assets/prompt_quality_card.md
  M .opencode/skills/cli-gemini/assets/prompt_quality_card.md
- M .opencode/skills/sk-prompt-small-model/SKILL.md
+ M .opencode/skills/sk-prompt-models/SKILL.md
 [0m
 [0m✱ [0mGrep "Escalate when complexity|Complexity >= 7/10 or compliance/security|Gemini runtime one-liner|gemini flash`|`deepseek-v4`|Haiku \(fast/cheap\)|Haiku for batch ops"[90m in .opencode/skills · 28 matches[0m
 [0m

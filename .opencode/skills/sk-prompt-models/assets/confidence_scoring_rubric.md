@@ -13,7 +13,7 @@ version: 0.8.0.7
 
 # Confidence Scoring Rubric
 
-> This reference was re-homed from cli-devin to sk-prompt-small-model as part of the cli-devin deprecation. Content is executor-agnostic.
+> This reference was re-homed from cli-devin to sk-prompt-models as part of the cli-devin deprecation. Content is executor-agnostic.
 
 Weighted scoring rubric and thresholds for opt-in verification of small-model code and research output.
 

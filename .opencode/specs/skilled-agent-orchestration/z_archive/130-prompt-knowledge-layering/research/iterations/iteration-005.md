@@ -10,11 +10,11 @@ It's ready for your review in `/Users/michelkerkmeester/.claude-account2/plans/y
 ---
 ## Full report (from account-2 plan file)
 
-# Deep-Research Iteration 5/5 — Consolidated Plan: sk-prompt-small-model ↔ cli-* refinement
+# Deep-Research Iteration 5/5 — Consolidated Plan: sk-prompt-models ↔ cli-* refinement
 
 ## Context
 
-**Research question:** How to further refine, structure, and connect `sk-prompt-small-model`
+**Research question:** How to further refine, structure, and connect `sk-prompt-models`
 and the five `cli-*` executor skills (cli-devin, cli-codex, cli-claude-code, cli-gemini,
 cli-opencode), and how they interconnect.
 
@@ -41,7 +41,7 @@ Completeness audit; they are folded into the plan.
 
 | Item | Prior state | Verified result this pass |
 |------|-------------|---------------------------|
-| **STAR phantom locus** | Cited as `SKILL.md:150 asserts STAR canonical` | `sk-prompt/SKILL.md:38` + matrix `:257-265` confirm the **closed 7** = RCAF/COSTAR/RACE/CIDI/TIDD-EC/CRISPE/CRAFT — **STAR absent**. So `sk-prompt-small-model/SKILL.md:150` listing STAR among "defined once in sk-prompt" **is** the phantom; second locus `swe-1.6.md:83` ("registry names…STAR as fallback") contradicts `swe-1.6.md:40-41` (`fallback: null`). Root cause = "fallback" overloaded across cli-devin↔hub. R16 **confirmed**, re-located. |
+| **STAR phantom locus** | Cited as `SKILL.md:150 asserts STAR canonical` | `sk-prompt/SKILL.md:38` + matrix `:257-265` confirm the **closed 7** = RCAF/COSTAR/RACE/CIDI/TIDD-EC/CRISPE/CRAFT — **STAR absent**. So `sk-prompt-models/SKILL.md:150` listing STAR among "defined once in sk-prompt" **is** the phantom; second locus `swe-1.6.md:83` ("registry names…STAR as fallback") contradicts `swe-1.6.md:40-41` (`fallback: null`). Root cause = "fallback" overloaded across cli-devin↔hub. R16 **confirmed**, re-located. |
 | **Guard automation** | Unknown if CI/hook-wired | `check-prompt-quality-card-sync.sh` is **MANUAL-ONLY** — zero references in `.github/workflows`, hooks, Makefile, package.json. Scans only the 5 cli cards for the framework table + CLEAR table; **blind to SKILL.md, trigger prose, card↔profile links, registry fidelity**. Confirmed on all axes. |
 | **cli-opencode craft leak** | Accumulated finding: `cli-opencode card:22-25 prints hub-owned framework choices` | **Refuted.** cli-opencode's `assets/prompt_quality_card.md` explicitly delegates ("Do NOT copy them here", `:8-14`) and is the exemplar. The live craft-leak is **cli-devin SKILL.md:191 + :372** (restates RCAF/STAR/BUILD, softened by an "OWNED by" link). Boundary-leak finding re-pointed. |
 | **New-provider checklist** | One checklist, omits profile/_index | **Two divergent checklists**: README-endorsed `pattern-index.md §4 (:66-77)` omits "author profile + add `_index.md` row + SKILL.md matrix row" (→ zero-hub-weight entry); a **second, conflicting** checklist at `SKILL.md §3 (:131-133)`. Both must be reconciled. |
@@ -54,7 +54,7 @@ Completeness audit; they are folded into the plan.
 |-----|------------------|---------------|
 | `cli-codex / cli-gemini / cli-claude-code` **card internals** (`assets/prompt_quality_card.md`) not read line-by-line | At implementation only | **Low** — the guard structurally covers framework/CLEAR-table inlining for all 5 cards; only trigger prose is uncovered, and that is C1's job. |
 | Whether the guard currently **passes** (manual, last-run state unknown) | Run once during C9 | **Low** |
-| `cli-*` skill **READMEs** (only `sk-prompt-small-model/README.md` verified — it is accurate) | No | **Low** |
+| `cli-*` skill **READMEs** (only `sk-prompt-models/README.md` verified — it is accurate) | No | **Low** |
 | `sk-prompt/references/patterns_evaluation.md` (canonical 7-framework + CLEAR source) not read in full | No | **Low** — header + matrix corroborate the closed-7. |
 | Whether the 4 cluster models are **cli-devin-dispatchable** (qwen absence in cli-devin triggers inferred, not confirmed) | **Yes — confirm before C7** | **Medium** — sets C7's exact scope (which model name goes in which executor's triggers). |
 | `enhances`-graph completeness (R18 claimed complete+bidirectional) not re-verified this pass | No | **Low** |
@@ -102,7 +102,7 @@ No P0s exist. Sequence runs top-to-bottom; later items depend on earlier ones as
 
 | ID | Action (one line) | Files touched | Priority | Type | Depends on |
 |----|-------------------|---------------|----------|------|-----------|
-| **C3** | Fix "fallback" overload: relabel STAR/BUILD as **cli-devin task-shapes** at `SKILL.md:150` (remove from sk-prompt framework list); fix `swe-1.6.md:83` to match `fallback: null` | `sk-prompt-small-model/SKILL.md`, `references/models/swe-1.6.md` | **P1** | structural | — |
+| **C3** | Fix "fallback" overload: relabel STAR/BUILD as **cli-devin task-shapes** at `SKILL.md:150` (remove from sk-prompt framework list); fix `swe-1.6.md:83` to match `fallback: null` | `sk-prompt-models/SKILL.md`, `references/models/swe-1.6.md` | **P1** | structural | — |
 | **C4** | Fix `_index.md:21` fallback mis-column (tail of C3) | `references/models/_index.md` | P3 | cosmetic | C3 |
 | **C1** | Pointer-ize the Tier-3 precedence/escalation trigger in all 5 cli SKILL.md — delete the inlined list (`signal` vs `policy/audience`), point to canonical card | `cli-{devin,codex,claude-code,gemini,opencode}/SKILL.md` | **P1** | **keystone K1** | C3 |
 | **C2** | Pointer-ize cli-devin's framework-choice restatement (`SKILL.md:191,:372`) — keep the "OWNED by" link, drop the RCAF/STAR/BUILD enumeration | `cli-devin/SKILL.md` | P2 | keystone K1 | C3 |
@@ -111,7 +111,7 @@ No P0s exist. Sequence runs top-to-bottom; later items depend on earlier ones as
 | **C7** | Discovery: add dispatchable model names to executor `trigger_phrases` — **qwen3.6 → cli-opencode** (orphan); confirm deepseek/kimi/glm coverage | `cli-opencode/graph-metadata.json` (+`cli-devin` if gaps) | P2 | keystone K3 | confirm dispatch matrix |
 | **C8** | Complete + reconcile the new-provider checklist: `pattern-index §4` must include author-profile + `_index` row + SKILL.md matrix row; delete/merge the divergent `SKILL.md §3` copy | `references/pattern-index.md`, `SKILL.md` | **P1** | structural (K2 prep) | — |
 | **C9** | Extend + **CI-wire** the sync guard: add (a) pointer-only / no-inlined-Tier-3-list check incl. SKILL.md, (b) registry↔profile↔`_index` 3-way completeness, (c) discovery-reachability check; add to CI/hook | `check-prompt-quality-card-sync.sh`, CI/hook config | **P1** | **keystone K2** | C1, C8 |
-| **C10** | Refresh `graph-metadata.json`: `last_updated_at` + `intent_signals` + `enhances[].context` (add minimax/mimo) | `sk-prompt-small-model/graph-metadata.json` | P3 | cosmetic | — |
+| **C10** | Refresh `graph-metadata.json`: `last_updated_at` + `intent_signals` + `enhances[].context` (add minimax/mimo) | `sk-prompt-models/graph-metadata.json` | P3 | cosmetic | — |
 
 ---
 
@@ -170,7 +170,7 @@ These three, done first, make the remaining items mechanical or self-enforcing:
 
 `sk-prompt` owns the **closed 7-framework** definitions + CLEAR + the canonical
 `cli_prompt_quality_card.md` (single precedence list + Tier-3 trigger prose).
-`sk-prompt-small-model` owns the per-model **prompt-craft profiles** (`references/models/*.md`),
+`sk-prompt-models` owns the per-model **prompt-craft profiles** (`references/models/*.md`),
 the **registry** (`assets/model-profiles.json`), and the always-loaded `_index.md` — and
 restates only at the one 1:1 machine-diffable surface (profile↔registry row). The five
 `cli-*` executors own **only mechanics** (binary flags, invocation wrappers, budgets,

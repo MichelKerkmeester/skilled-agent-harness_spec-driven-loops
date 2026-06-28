@@ -95,7 +95,7 @@ Integration (Phase 4) touches shared skill files + a shared schema (model-profil
 | `sk-prompt/assets/model-profiles.json` | Producer — model registry (consumed by fallback router) | update (slug note + `context_length: 204800`) | `jq .` valid; entry shape unchanged |
 | `cli-opencode/SKILL.md` + `references/cli_reference.md` | Docs — model selection (carry the slug) | update (`minimax/minimax-2.7` → `minimax/MiniMax-M2.7`) | `rg "minimax/minimax-2.7"` returns 0; `rg "minimax/MiniMax-M2.7"` present |
 | `cli-opencode/assets/prompt_templates.md` + `prompt_quality_card.md` | Docs — prompt guidance (no per-model section yet) | add MiniMax winner section | `rg "MiniMax"` shows new section |
-| `sk-prompt-small-model/references/pattern-index.md` | Sentinel index (link-only) | add MiniMax framework row(s) | `rg "minimax"` shows row pointing to cli-opencode |
+| `sk-prompt-models/references/pattern-index.md` | Sentinel index (link-only) | add MiniMax framework row(s) | `rg "minimax"` shows row pointing to cli-opencode |
 
 Required inventories:
 - Slug consumers: `rg -n "minimax/minimax-2.7|minimax/MiniMax-M2.7" .opencode/skills` — every hit must end on the correct-cased slug.

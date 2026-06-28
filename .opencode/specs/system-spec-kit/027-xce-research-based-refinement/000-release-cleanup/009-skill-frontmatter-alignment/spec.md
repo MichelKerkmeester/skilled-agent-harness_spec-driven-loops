@@ -133,7 +133,7 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 | 16 | 016-sk-doc/ | Apply the canonical contract to sk-doc (2/14 references, 7/25 assets) AND reconcile frontmatter_templates.md with the decided contract. | Complete |
 | 17 | 017-sk-git/ | Apply the canonical contract to sk-git (0/7 references, 0/3 assets carry the detailed block). | Complete |
 | 18 | 018-sk-prompt/ | Apply the canonical contract to sk-prompt (0/2 references, 0/3 assets carry the detailed block). | Complete |
-| 19 | 019-sk-prompt-small-model/ | Apply the canonical contract to sk-prompt-small-model (0/12 references, 0/2 assets carry the detailed block). | Complete |
+| 19 | 019-sk-prompt-models/ | Apply the canonical contract to sk-prompt-models (0/12 references, 0/2 assets carry the detailed block). | Complete |
 | 20 | 020-system-code-graph/ | Apply the canonical contract to system-code-graph (6/7 references carry the detailed block; no assets). | Complete |
 | 21 | 021-system-skill-advisor/ | Apply the canonical contract to system-skill-advisor (14/15 references carry the detailed block; no assets). | Complete |
 | 22 | 022-system-spec-kit/ | Apply the canonical contract to system-spec-kit (2/41 references, 0/4 assets carry the detailed block). | Complete |

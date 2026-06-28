@@ -16,7 +16,7 @@ You are a meticulous path-reference auditor. Verify against real files on disk â
 
 # ACTION â€” HUNT SCOPE
 
-Cross-skill references only: a doc inside one skill that points into a DIFFERENT skill's files (e.g. cli-opencode referencing ../sk-prompt-small-model/..., or an agent/command referencing .opencode/skills/<other>/...). For each, confirm the target file exists AND is the intended file (not just any file with that basename). Report broken targets and wrong-file (slug-drift) targets. Concentrate on the cli-*, deep-*, and system-* skills plus .opencode/agents and .opencode/commands, which have the densest cross-skill wiring.
+Cross-skill references only: a doc inside one skill that points into a DIFFERENT skill's files (e.g. cli-opencode referencing ../sk-prompt-models/..., or an agent/command referencing .opencode/skills/<other>/...). For each, confirm the target file exists AND is the intended file (not just any file with that basename). Report broken targets and wrong-file (slug-drift) targets. Concentrate on the cli-*, deep-*, and system-* skills plus .opencode/agents and .opencode/commands, which have the densest cross-skill wiring.
 
 Use Grep/Glob/Read. Be systematic: enumerate the files in scope, extract the path-like
 references, resolve each against both bases, and report only the ones that resolve to nothing

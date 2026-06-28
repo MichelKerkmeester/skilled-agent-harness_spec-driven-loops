@@ -13,7 +13,7 @@ Last 2 ratios: 0.36 -> 0.29 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
 Next focus: Risks/failure-modes + negative knowledge (what NOT to do) + finalize exact patch text per file.
 
-Research Topic: How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-small-model and cli-opencode.
+Research Topic: How can we improve/update sk-prompt-models and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-models and cli-opencode.
 Iteration: 9 of 10
 Focus Area: HARDENING: (1) Enumerate risks + failure modes for MiniMax-2.7 via cli-opencode (RPM/TPM rate limits, pay-as-you-go cost runaway on 204,800-token contexts, hang/timeout behavior, --variant no-op risk, minimax-api single-path no-fallback exhaustion) and the mitigation for each. (2) Capture NEGATIVE KNOWLEDGE -- what NOT to do (e.g. do not assert --variant mapping without ablation; do not duplicate the provider rows phase-001 already added; do not add MiniMax-specific runtime branches). (3) Finalize the EXACT patch text for each delta target so the follow-on packet can apply them mechanically.
 Remaining Key Questions: Hardening: risks/failure-modes + mitigations; negative knowledge; exact patch text per delta target. (All 5 primary questions answered.)

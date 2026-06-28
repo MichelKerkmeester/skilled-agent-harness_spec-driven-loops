@@ -5,7 +5,7 @@ Here is the verification report.
 
 # 1. EXACT INVOCATION & NAVIGATION
 
-**How the skill is reached.** The advisor surfaces `sk-prompt-small-model` via `enhances` edges from `cli-devin` and `cli-opencode`, both at weight 0.5 (`graph-metadata.json:8-18`). The edge context strings confirm the routing targets. There are no `depends_on` edges — the skill is a leaf knowledge hub.
+**How the skill is reached.** The advisor surfaces `sk-prompt-models` via `enhances` edges from `cli-devin` and `cli-opencode`, both at weight 0.5 (`graph-metadata.json:8-18`). The edge context strings confirm the routing targets. There are no `depends_on` edges — the skill is a leaf knowledge hub.
 
 **Navigation chain.** SKILL.md §2 "Smart Routing" (`SKILL.md:79-86`) defines the phase detection:
 
@@ -59,15 +59,15 @@ Source: `model-profiles.json:35-48` (swe-1.6), `:95-109` (deepseek), `:148-162` 
 3. Confidence-scoring rubric (`cli-devin`)
 4. Per-model budget defaults (`cli-devin`)
 5. Quota-pool-aware fallback (`cli-devin`)
-6. Model-profile registry (`sk-prompt-small-model`)
+6. Model-profile registry (`sk-prompt-models`)
 7. Bayesian tool scoring (`system-spec-kit` + `cli-devin`)
 8. Fallback router (`system-spec-kit`)
 9. Structured permissions schema (`cli-opencode`)
 10. Structured permissions reference (`cli-opencode`)
 11. Permissions gate runtime (`system-spec-kit`)
 12. cli-opencode budget propagation (`cli-opencode`)
-13. MiniMax-M3 prompt-framework guidance (`sk-prompt-small-model`)
-14. MiMo-V2.5-Pro prompt-framework guidance (`sk-prompt-small-model`)
+13. MiniMax-M3 prompt-framework guidance (`sk-prompt-models`)
+14. MiMo-V2.5-Pro prompt-framework guidance (`sk-prompt-models`)
 
 ---
 

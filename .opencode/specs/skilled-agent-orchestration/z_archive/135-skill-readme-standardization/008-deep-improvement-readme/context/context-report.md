@@ -20,7 +20,7 @@ Editing an agent prompt is normally guesswork: you reword a rule, the prompt rea
 
 ## 4. INVOCATION (verified)
 
-Lane A: `/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}`. Lanes B and C: `/deep:start-model-benchmark-loop` and `/deep:start-skill-benchmark-loop`, both entering through `scripts/shared/loop-host.cjs`. Standalone scripts exist for `scan-integration.cjs`, `generate-profile.cjs` and `score-candidate.cjs`. Lane A writes packet-local candidates under `{spec_folder}/improvement/candidates/`, appends to `agent-improvement-state.jsonl`, `improvement-journal.jsonl` and `mutation-coverage.json`, and refreshes the dashboard and `experiment-registry.json` through `reduce-state.cjs`. Lane B writes to `sk-prompt-small-model/benchmarks/{run_label}/`. All lanes write packet-local evidence only; the canonical mutation requires explicit guarded promotion. Allowed tools include Write and Edit, so unlike the read-only deep loops this one can mutate, but only behind the promotion gate.
+Lane A: `/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}`. Lanes B and C: `/deep:start-model-benchmark-loop` and `/deep:start-skill-benchmark-loop`, both entering through `scripts/shared/loop-host.cjs`. Standalone scripts exist for `scan-integration.cjs`, `generate-profile.cjs` and `score-candidate.cjs`. Lane A writes packet-local candidates under `{spec_folder}/improvement/candidates/`, appends to `agent-improvement-state.jsonl`, `improvement-journal.jsonl` and `mutation-coverage.json`, and refreshes the dashboard and `experiment-registry.json` through `reduce-state.cjs`. Lane B writes to `sk-prompt-models/benchmarks/{run_label}/`. All lanes write packet-local evidence only; the canonical mutation requires explicit guarded promotion. Allowed tools include Write and Edit, so unlike the read-only deep loops this one can mutate, but only behind the promotion gate.
 
 ## 5. FIVE SCORING DIMENSIONS (Lane A)
 
@@ -48,7 +48,7 @@ Promotion is gated: a candidate is promoted only when its scored evidence clears
 
 ## 7. BOUNDARIES
 
-Proposal-first: it never mutates a canonical file before the score and approval gates pass. Sibling deep loops: `deep-research`, `deep-review`, `deep-context`, `deep-ai-council`; all ride the shared `deep-loop-runtime`. `system-spec-kit` owns the spec folder the candidates live in. The model-benchmark lane writes into the `sk-prompt-small-model` benchmarks tree.
+Proposal-first: it never mutates a canonical file before the score and approval gates pass. Sibling deep loops: `deep-research`, `deep-review`, `deep-context`, `deep-ai-council`; all ride the shared `deep-loop-runtime`. `system-spec-kit` owns the spec folder the candidates live in. The model-benchmark lane writes into the `sk-prompt-models` benchmarks tree.
 
 ## 8. TROUBLESHOOTING & FAQ MATERIAL
 

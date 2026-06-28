@@ -12,7 +12,7 @@
 No workflow or git hook references `argument-hint` or generalizes `route-validate`. `[SOURCE: grep → empty]` route-validate's 8 assertions remain doctor-only; 27/28 command docs ungated. Confirmed.
 
 ### V3 — Context-engineering surface is partially covered; gaps narrowed honestly
-`prompt-card-sync.yml` is a "3-layer prompt-knowledge drift guard" over sk-prompt / sk-prompt-small-model / cli-* (table inlining, Tier-3 escalation drift, registry/profile/_index completeness, per-model discovery reachability). `[SOURCE: prompt-card-sync.yml]` So the **prompt-craft card layer of context-engineering is already gated.** The surgical context-eng gaps narrow to exactly: trigger-vocabulary coherence (F4.1), hook-validation automation (F4.2), and template-placeholder parity (F4.3) — NOT the prompt-craft cards.
+`prompt-card-sync.yml` is a "3-layer prompt-knowledge drift guard" over sk-prompt / sk-prompt-models / cli-* (table inlining, Tier-3 escalation drift, registry/profile/_index completeness, per-model discovery reachability). `[SOURCE: prompt-card-sync.yml]` So the **prompt-craft card layer of context-engineering is already gated.** The surgical context-eng gaps narrow to exactly: trigger-vocabulary coherence (F4.1), hook-validation automation (F4.2), and template-placeholder parity (F4.3) — NOT the prompt-craft cards.
 
 ## Convergence Decision
 - **Stop reason:** all_questions_answered — KQ1–KQ5 resolved with file:line grounding; adversarial pass complete; all findings survived (two sharpened, none overturned).

@@ -77,7 +77,7 @@ Each skill is a self-contained package: a `SKILL.md` with runtime instructions, 
 | [sk-doc](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [sk-git](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
 | [sk-prompt](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
-| [sk-prompt-small-model](sk-prompt-small-model/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
+| [sk-prompt-models](sk-prompt-models/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
 
 ### system-\* (the runtime foundation)
 

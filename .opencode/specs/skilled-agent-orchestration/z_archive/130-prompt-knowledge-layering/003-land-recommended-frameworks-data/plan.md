@@ -91,7 +91,7 @@ Dispatchers read `model-profiles.json` to pick prompt frameworks. The `recommend
 |---------|--------------|--------|--------------|
 | `model-profiles.json` | Authoritative model data | Added `recommended_frameworks` to all 8 active entries | `jq empty` passes; count query returns 8 |
 | `model-profiles.md` | Human-readable reference | Rebuilt with correct count and schema section | Manual read confirms accuracy |
-| cli-opencode, cli-devin, sk-prompt-small-model | Downstream consumers | Unchanged in this phase; pick up new field in later phases | Not a consumer yet |
+| cli-opencode, cli-devin, sk-prompt-models | Downstream consumers | Unchanged in this phase; pick up new field in later phases | Not a consumer yet |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

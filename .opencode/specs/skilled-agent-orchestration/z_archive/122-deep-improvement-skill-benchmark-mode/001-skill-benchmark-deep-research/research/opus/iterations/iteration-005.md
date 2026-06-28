@@ -2,7 +2,7 @@
 
 ## Focus
 
-RQ6: Produce the **exhaustive rename surface** and a **safe execution ordering** for renaming the skill `deep-agent-improvement` → `deep-improvement`, covering: skill directory, `SKILL.md`, commands, agent + 4 runtime mirrors (`.opencode`/`.claude`/`.codex`/`.gemini`), the skill-advisor graph, `descriptions.json`, the `sk-prompt-small-model` sentinel chain, root docs, and internal cross-references. Identify **dangling-reference risks** and how to avoid them. Report only — no edits.
+RQ6: Produce the **exhaustive rename surface** and a **safe execution ordering** for renaming the skill `deep-agent-improvement` → `deep-improvement`, covering: skill directory, `SKILL.md`, commands, agent + 4 runtime mirrors (`.opencode`/`.claude`/`.codex`/`.gemini`), the skill-advisor graph, `descriptions.json`, the `sk-prompt-models` sentinel chain, root docs, and internal cross-references. Identify **dangling-reference risks** and how to avoid them. Report only — no edits.
 
 ## Actions Taken
 
@@ -56,13 +56,13 @@ The literal rename only drops "agent": `deep-agent-improvement → deep-improvem
 - Model-benchmark command also references the skill: `start-model-benchmark-loop.md:17` + assets (`_auto.yaml:24`, `_confirm.yaml:25`) [SOURCE: Grep count, model-benchmark rows].
 - **Decision required:** (a) **narrow** — rename only the skill/agent id, leaving `start-agent-improvement-loop`, asset dirs, and state files as-is (lowest blast radius; the advisor alias from F-5 keeps the command string resolving; but inconsistent); or (b) **wide** — also `agent-improvement → improvement` for command, asset/script dirs, and state files (consistent, but larger; touches loop state-file names that resume/continuity readers parse). This is the single biggest scope fork in RQ6.
 
-### F-8 — Cross-skill / cross-runtime references and the `sk-prompt-small-model` sentinel chain
+### F-8 — Cross-skill / cross-runtime references and the `sk-prompt-models` sentinel chain
 References outside both the skill and the advisor that must be swept:
 - `deep-loop-runtime/references/integration_points.md:1` (shared runtime references the skill) [SOURCE: Grep count].
 - `sk-doc/assets/agent_template.md:1` (template example) [SOURCE: Grep count].
 - `cli-opencode` family: `SKILL.md:3`, `README.md:1`, `references/agent_delegation.md:2`, `references/cli_reference.md:1`, `assets/prompt_templates.md:1`, `changelog/v1.1.0.0.md:2`, `manual_testing_playbook/manual_testing_playbook.md:1`, `manual_testing_playbook/04--agent-routing/008-orchestrate-agent-multi-agent.md:2` [SOURCE: Grep count, `cli-opencode/*` rows].
 - Root/install docs: `README.md:3`, `AGENTS.md:1`, `.opencode/skills/README.md:4`, `.opencode/install_guides/README.md:2`, `.opencode/install_guides/SET-UP - AGENTS.md:1` [SOURCE: Grep count, root rows].
-- **`sk-prompt-small-model` sentinel:** the census shows **no direct hit under `sk-prompt-small-model/`**; the sentinel is a routing anchor whose real patterns live in `cli-devin`/`cli-opencode` references (per its own description). Its link to the skill is therefore **indirect via the cli-opencode references above** [SOURCE: Grep count, absence of `sk-prompt-small-model` rows + sentinel skill description]. Still worth a direct grep of `sk-prompt-small-model/SKILL.md` before execution (Q2).
+- **`sk-prompt-models` sentinel:** the census shows **no direct hit under `sk-prompt-models/`**; the sentinel is a routing anchor whose real patterns live in `cli-devin`/`cli-opencode` references (per its own description). Its link to the skill is therefore **indirect via the cli-opencode references above** [SOURCE: Grep count, absence of `sk-prompt-models` rows + sentinel skill description]. Still worth a direct grep of `sk-prompt-models/SKILL.md` before execution (Q2).
 
 ### F-9 — `test-fixtures/060-stress-test` mirrors are FIXTURES (cp-improve-target), not the skill id — verify before touching
 The stress-test fixture tree contains its own 4-runtime mirror set targeting `cp-improve-target` (a synthetic improvement target), distinct from the skill name: `test-fixtures/060-stress-test/.{opencode,claude,gemini,codex}/agents/cp-improve-target.*` [SOURCE: Glob, `test-fixtures/060-stress-test/*` paths]. Any `deep-agent-improvement` hit there is the skill referring to itself in fixture setup; renaming the *fixture target* would break the stress tests. **Actionable:** content-sweep references to the skill, but do NOT rename `cp-improve-target`; re-run the stress suite after.
@@ -100,7 +100,7 @@ Rebuilding indexes triggers the MCP daemon's known behavior of mass-writing 1400
 ## Open Questions
 
 - **Q1 — RESOLVED:** `skill_advisor.py` (39 refs) is **hand-maintained source** (alias group + phrase scoring table + command node), not regenerated from frontmatter → step 5 is "edit + re-run any build", not "verify regenerated."
-- **Q2:** Does `sk-prompt-small-model/SKILL.md` name the skill directly in a dispatch matrix, or only inherit it via cli-opencode references? (Census showed no direct sentinel hit; confirm with a direct grep before execution.)
+- **Q2:** Does `sk-prompt-models/SKILL.md` name the skill directly in a dispatch matrix, or only inherit it via cli-opencode references? (Census showed no direct sentinel hit; confirm with a direct grep before execution.)
 - **Q3 — RESOLVED:** `scorer/aliases.ts` supports **skill-name aliasing** via `canonicalSkillId()` → the zero-downtime bridge (step 1) is viable; retain old names as aliases.
 - **Q4:** F-7 scope decision — narrow (skill/agent id only) vs wide (whole `agent-improvement` token family incl. loop state-file names). Wide touches resume/continuity readers and should be its own sub-packet.
 - **Q5:** Should the model-benchmark command/assets (`start-model-benchmark-loop`) be renamed too, or only have their references to the skill updated? They reference the skill but aren't named after it; note `explicit.ts` keeps a distinct `deep-model-benchmark` projection node that must survive untouched.

@@ -14,7 +14,7 @@ version: 0.8.0.11
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -145,7 +145,7 @@ Constraints:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -171,15 +171,15 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 
 **Implication:** strong raw illustration craft, weak brand-palette discipline. For a brand-critical illustration set prefer kimi-k2.7-code (strongest restraint); if deepseek is used, **pin the lead color and cap gold explicitly** in the brief and palette-check the output.
 
-**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#deepseek-v4-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-small-model/benchmarks/<label>/`).
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#deepseek-v4-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-models/benchmarks/<label>/`).
 
 ---
 
 ## 8. SEE ALSO
 
-- [`../../../sk-prompt-small-model/assets/model_profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
+- [`../../../sk-prompt-models/assets/model_profiles.json#deepseek-v4-pro`](../../../sk-prompt-models/assets/model_profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
-- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
+- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-models hub workflow and dispatch matrix
 - [`../pattern_index.md`](../pattern_index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for the deepseek-api path; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 - **Other active profiles:** [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) (COSTAR + lean — benchmark 007), [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium), [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)

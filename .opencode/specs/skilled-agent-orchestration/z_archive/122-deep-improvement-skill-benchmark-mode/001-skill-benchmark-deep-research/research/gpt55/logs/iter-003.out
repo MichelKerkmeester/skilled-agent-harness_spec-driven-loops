@@ -2214,7 +2214,7 @@ exec
    150	
    151	## 9. Risks
    152	
-   153	- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-small-model`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 002 touches anything.
+   153	- **Rename blast radius.** `deep-agent-improvement` is referenced by commands, the agent + 3 runtime mirrors, the advisor graph, `descriptions.json`, the sentinel `sk-prompt-models`, and root docs. Mitigation: Phase 001 produces an exhaustive impact map before Phase 002 touches anything.
    154	- **Lane C measurement validity.** "Did the AI find the right asset unprompted" must be measured without leaking the answer into the prompt. Mitigation: hint-free dispatch harness + held-out expected-resource keys; this is a primary research question.
    155	- **Non-determinism.** AI routing varies run-to-run. Mitigation: repeatability runs + report variance, mirroring Lane B's stability evidence.
    156	- **Scope creep into remediation.** Easy to drift from "diagnose" to "fix". Mitigation: NG1 freezes Lane C as diagnostic.
@@ -2281,7 +2281,7 @@ exec
     40	- Commands referencing the skill path: `/deep:start-agent-improvement-loop`, `/deep:start-model-benchmark-loop` (and the new `/deep:start-skill-benchmark-loop`) — update skill-path references. **Command verbs are NOT renamed** unless Phase 001 shows a reason; the agent-improvement command still improves agents.
     41	- Agent file `.opencode/agents/deep-agent-improvement.md` + runtime mirrors `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
     42	- Skill-advisor graph (`system-skill-advisor/.../skill-graph.json`), `descriptions.json`, advisor metadata; run advisor rebuild.
-    43	- Cross-references: sentinel `sk-prompt-small-model`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
+    43	- Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
     44	- Internal self-references inside the skill's own references/scripts/README.
     45	
     46	## 3. Approach
@@ -2732,7 +2732,7 @@ exec
 .opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml:170:        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
 .opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml:177:        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 .opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml:184:        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"scoringMethod\":\"{scoring_method}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
-.opencode/skills/README.md:42:| sk-util utility skills | 6 | deep-agent-improvement, deep-ai-council, sk-prompt-small-model, sk-doc, sk-git, sk-prompt |
+.opencode/skills/README.md:42:| sk-util utility skills | 6 | deep-agent-improvement, deep-ai-council, sk-prompt-models, sk-doc, sk-git, sk-prompt |
 .opencode/skills/README.md:150:| `deep-agent-improvement` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
 .opencode/skills/README.md:182:├── deep-agent-improvement/       # Evaluator-first agent improvement loop
 .opencode/skills/README.md:233:| `deep-agent-improvement` | Yes | No | Yes |
@@ -3620,7 +3620,7 @@ exec
 .opencode/skills/deep-ai-council/changelog/v1.3.0.0.md:14:The council skill is rejoining the `deep-*` family alongside `deep-review`, `deep-research`, `deep-agent-improvement`, and `deep-loop-runtime`, following the 130 research verdict and user intent. This is a point-release in the v1.x single-round-council era because it renames the skill package without changing the runtime model. The runtime agent remains `ai-council` because agent identity is already decoupled from the skill folder slug.
 .opencode/skills/deep-ai-council/changelog/v1.0.0.0.md:69:`README.md` follows the HVR (Human-Visible Reference) shape used by `deep-research`, `deep-review`, and `deep-agent-improvement`: ten numbered sections from Overview through Related Documents, three concrete usage examples (top-level dispatch, `@orchestrate` at Depth 1, CLI-skill capture), the runtime parity table for all four mirrors, and a troubleshooting matrix.
 .opencode/skills/deep-ai-council/changelog/v1.2.0.0.md:25:| Sibling skill graph edges | `cli-devin/graph-metadata.json`, `cli-opencode/graph-metadata.json` (already pointed at sk-* — unchanged); `deep-research/graph-metadata.json`, `deep-agent-improvement/graph-metadata.json`, `system-spec-kit/graph-metadata.json`, `system-skill-advisor/graph-metadata.json` (edges updated) |
-.opencode/skills/deep-ai-council/changelog/v1.2.0.0.md:36:- Compiled `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` via `skill_graph_compiler.py --export-json --pretty`. Result: 22 skills, 6 families, `deep-ai-council` now appears in the `sk-util` family alongside `sk-prompt-small-model`, `sk-doc`, `sk-git`, `sk-prompt`, and `deep-agent-improvement`. `deep-loop` family is now strictly `deep-research` + `deep-review`.
+.opencode/skills/deep-ai-council/changelog/v1.2.0.0.md:36:- Compiled `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` via `skill_graph_compiler.py --export-json --pretty`. Result: 22 skills, 6 families, `deep-ai-council` now appears in the `sk-util` family alongside `sk-prompt-models`, `sk-doc`, `sk-git`, `sk-prompt`, and `deep-agent-improvement`. `deep-loop` family is now strictly `deep-research` + `deep-review`.
 .opencode/skills/deep-ai-council/changelog/v1.2.0.0.md:42:- Sibling skill changelogs (cli-devin, deep-agent-improvement, deep-research, deep-review, sk-code-review, system-code-graph) — historical version notes preserved.
 .opencode/skills/deep-ai-council/graph-metadata.json:31:      "deep-agent-improvement",
 .opencode/skills/system-spec-kit/changelog/v3.4.0.0.md:160:**Concrete example.** The query `"5-dimension agent scoring"` used to misroute to `sk-prompt` at 0.77 confidence via a weak keyword hit on `scoring`. After the fix it routes to `sk-deep-agent-improvement` at 0.95.

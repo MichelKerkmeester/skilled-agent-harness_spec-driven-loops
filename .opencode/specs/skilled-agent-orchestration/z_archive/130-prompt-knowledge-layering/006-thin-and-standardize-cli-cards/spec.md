@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.
+This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub specification.
 
 **Scope Boundary**: Thin the 4 CLI prompt-quality cards that inlined the full framework table down to delegating mirrors. Reconcile the cli-devin semantic fork. Add the 3-tier precedence rule to the canonical card. No changes to SKILL.md files or the model-profiles registry (those are phase 007).
 

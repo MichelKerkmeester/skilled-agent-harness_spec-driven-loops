@@ -95,7 +95,7 @@ Integration touches shared skill files + a shared schema (model-profiles.json) +
 |---------|--------------|--------|--------------|
 | `cli-opencode/assets/prompt_templates.md` | Docs — prompt guidance (no MiMo per-model section yet) | add MiMo-V2.5-Pro COSTAR scaffold (Template 15) | `rg "MiMo"` / `rg "COSTAR"` shows new section |
 | `cli-opencode/assets/prompt_quality_card.md` | Docs — per-model overrides | add MiMo override -> COSTAR default, RACE fallback, MiMo != MiniMax note | `rg "COSTAR"` shows MiMo override row |
-| `sk-prompt-small-model/references/pattern-index.md` | Sentinel index (link-only) | add MiMo prompt-framework row -> cli-opencode canonical location | `rg -i "mimo"` shows row pointing to cli-opencode |
+| `sk-prompt-models/references/pattern-index.md` | Sentinel index (link-only) | add MiMo prompt-framework row -> cli-opencode canonical location | `rg -i "mimo"` shows row pointing to cli-opencode |
 | `sk-prompt/assets/model-profiles.json` | Producer — model registry | update `mimo-v2.5-pro` notes -> COSTAR/RACE-lean finding | `jq .` valid; entry shape unchanged |
 
 Required inventories:
@@ -198,7 +198,7 @@ Phase 1 (Stand up rig) ──► Phase 2 (Run benchmark) ──► Phase 3 (Inte
 - [x] Reproducibility commands recorded in `synthesis.md`
 
 ### Rollback Procedure
-1. Revert the 4 integration files: `git checkout -- cli-opencode/assets/prompt_templates.md cli-opencode/assets/prompt_quality_card.md sk-prompt-small-model/references/pattern-index.md sk-prompt/assets/model-profiles.json`
+1. Revert the 4 integration files: `git checkout -- cli-opencode/assets/prompt_templates.md cli-opencode/assets/prompt_quality_card.md sk-prompt-models/references/pattern-index.md sk-prompt/assets/model-profiles.json`
 2. `eval/` may be left in place (additive evidence) or removed wholesale
 3. Verify: `jq .` on model-profiles.json; `rg "COSTAR"` shows no MiMo override
 

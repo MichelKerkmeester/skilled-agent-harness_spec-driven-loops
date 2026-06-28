@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 context-budget.md + per-model-budgets.json re-homed to sk-prompt-small-model (swe-1.6 dropped)
+- [x] T002 context-budget.md + per-model-budgets.json re-homed to sk-prompt-models (swe-1.6 dropped)
 - [x] T003 output-verification.md + confidence-scoring-rubric.md + quota-fallback.md re-homed + de-cli-devin'd
 - [x] T004 cli-opencode sentinel + prompt_templates + SKILL.md + pattern-index repointed
 - [x] T005 check-prompt-quality-card-sync.sh cli_cards + cli_skills cleaned

@@ -139,7 +139,7 @@ Required inventories:
 - Path references: `rg -F` every file path mentioned in any artifact under `.opencode/skills/deep-review/` to confirm targets exist.
 - MCP tool names: `rg "mcp__" .opencode/skills/deep-review/` — every name must resolve to a registered tool in `opencode.json`.
 - HVR rule applicability: scan every prose paragraph against banned-words / banned-phrase lists from `hvr_rules.md`.
-- Cross-system targets named in README rewrite: `deep-loop-runtime`, `deep-research`, `sk-code-review`, `system-spec-kit`, `system-code-graph`, `cli-devin`, `cli-codex`, `cli-claude-code`, `cli-gemini`, `cli-opencode`, `mcp-coco-index`, `sk-prompt`, `sk-prompt-small-model`, `/deep:start-review-loop`.
+- Cross-system targets named in README rewrite: `deep-loop-runtime`, `deep-research`, `sk-code-review`, `system-spec-kit`, `system-code-graph`, `cli-devin`, `cli-codex`, `cli-claude-code`, `cli-gemini`, `cli-opencode`, `mcp-coco-index`, `sk-prompt`, `sk-prompt-models`, `/deep:start-review-loop`.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -194,7 +194,7 @@ Required inventories:
 #### Step 5a: 10 iterations (one at a time, SIGKILL between)
 
 - [ ] Verify cli-devin binary present and SWE-1.6 model accessible.
-- [ ] Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule) and `.opencode/skills/sk-prompt-small-model/SKILL.md` (small-model dispatch rule).
+- [ ] Read `.opencode/skills/cli-devin/SKILL.md` (CLI dispatch rule) and `.opencode/skills/sk-prompt-models/SKILL.md` (small-model dispatch rule).
 - [ ] Iters 1-10: `cli-devin --model swe-1.6` (RCAF + CLEAR + medium-density pre-planning).
 - [ ] Between each iter: `pkill -9 -f "devin"` + sweep `/tmp/devin-*`, `/tmp/deep-research-*`.
 - [ ] Convergence signal: 2 consecutive iters with `delta_vs_prev_iter:"no new gaps"` AND zero new P0/P1 logic_gaps. Per operator directive all 10 iters run regardless; convergence is recorded, not used for early stop.

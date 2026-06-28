@@ -18,7 +18,7 @@
       "evidence": ".opencode/skills/cli-devin/graph-metadata.json:6-47",
       "relevance": 1,
       "classification": "skill-internal",
-      "notes": "depends_on empty; reciprocal edges in cli-opencode/cli-claude-code/cli-codex/sk-prompt-small-model."
+      "notes": "depends_on empty; reciprocal edges in cli-opencode/cli-claude-code/cli-codex/sk-prompt-models."
     },
     {
       "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
@@ -101,7 +101,7 @@
       "notes": "[HARD] mirror auto removal."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      "path": ".opencode/skills/sk-prompt-models/assets/model-profiles.json",
       "symbol": "4 executor entries",
       "kind": "integration_point",
       "reuse": "remove",
@@ -111,21 +111,21 @@
       "notes": "[HARD] remove cli-devin executor objs; swe-1.6 has NO remaining executor (cognition-exclusive)."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "path": ".opencode/skills/sk-prompt-models/SKILL.md",
       "symbol": "when-to-use/ownership/boundary/resources",
       "kind": "dependency",
       "reuse": "remove",
-      "evidence": "sk-prompt-small-model/SKILL.md:3,21-22,51,103-104,132,200-207,216,233,237,258-262,274,281",
+      "evidence": "sk-prompt-models/SKILL.md:3,21-22,51,103-104,132,200-207,216,233,237,258-262,274,281",
       "relevance": 1,
       "classification": "active-wiring",
       "notes": "Multiple sites; dispatch matrix rows + boundary map + resource links."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "path": ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "symbol": "edges.enhances/related_to/causal_summary",
       "kind": "dependency",
       "reuse": "remove",
-      "evidence": "sk-prompt-small-model/graph-metadata.json:10-13,27,128",
+      "evidence": "sk-prompt-models/graph-metadata.json:10-13,27,128",
       "relevance": 1,
       "classification": "active-wiring",
       "notes": "Remove cli-devin from enhances + related_to; update causal_summary(128)."
@@ -261,7 +261,7 @@
       "notes": "Remove section + 'cli-devin and' on 974."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
       "symbol": "-",
       "kind": "dependency",
       "reuse": "remove",
@@ -271,7 +271,7 @@
       "notes": "Update executor refs; swe-1.6 special."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/swe-1.6.md",
       "symbol": "executor mechanics",
       "kind": "dependency",
       "reuse": "remove",
@@ -281,7 +281,7 @@
       "notes": "swe-1.6 cognition-exclusive; remove or mark retired."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md",
       "symbol": "executor mechanics",
       "kind": "dependency",
       "reuse": "remove",
@@ -291,7 +291,7 @@
       "notes": "Remove cli-devin path; keeps cli-opencode."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md",
       "symbol": "executor mechanics",
       "kind": "dependency",
       "reuse": "remove",
@@ -301,7 +301,7 @@
       "notes": "Remove cli-devin path; keeps cli-opencode."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.1.md",
       "symbol": "executor mechanics",
       "kind": "dependency",
       "reuse": "remove",
@@ -311,7 +311,7 @@
       "notes": "Remove cli-devin path; keeps cli-opencode."
     },
     {
-      "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "path": ".opencode/skills/sk-prompt-models/references/pattern-index.md",
       "symbol": "cli-devin links",
       "kind": "dependency",
       "reuse": "remove",

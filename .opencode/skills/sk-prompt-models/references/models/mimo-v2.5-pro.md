@@ -180,15 +180,15 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 
 **Implication:** for restraint-sensitive / reserved-accent visual work, give MiMo an **explicit per-card accent cap** (e.g. "orange on ≤1 card; gold rare") AND run a post-dispatch palette/accent check — or prefer kimi-k2.7-code (strongest restraint).
 
-**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#mimo-v2.5-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-small-model/benchmarks/<label>/`).
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#mimo-v2.5-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-models/benchmarks/<label>/`).
 
 ---
 
 ## 8. SEE ALSO
 
-- [`model_profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
+- [`model_profiles.json#mimo-v2.5-pro`](../../../sk-prompt-models/assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
 - [`../../../cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
 - [`../../../cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
 - Sibling profiles (same hub): [`minimax-m3.md`](./minimax-m3.md) — The MiniMax profile is the counter-example: TIDD-EC + dense wins there, the opposite of MiMo.
-- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix.
+- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-models hub workflow and dispatch matrix.

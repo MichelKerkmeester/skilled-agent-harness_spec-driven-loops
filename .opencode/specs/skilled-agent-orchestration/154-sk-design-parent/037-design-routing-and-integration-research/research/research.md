@@ -234,7 +234,7 @@ Enforceable across the CLI boundary: presence of the `DESIGN_DISPATCH_MANIFEST` 
 ### Open design decisions
 - Where the canonical manifest/assertion lives: inside `shared/context_loading_contract.md` vs a shared CLI reference imported by both families (`iteration-047.md:79`).
 - Skill-local duplicated `design_dispatch_contract.md` copies vs relaxing the shared-router same-skill path guard to allow one cross-skill shared reference (`iteration-050.md:83`).
-- **Coverage gap (flagged):** iters 046–050 never exercised the `sk-prompt-small-model` per-model profiles or `AGENTS.md` carry named in the D5 charter — whether small-model children honor the inlined manifest, and whether Open Design routes via `DESIGN`→transport vs a compound `DESIGN_TRANSPORT` intent, remain untested (`iteration-050.md:85`).
+- **Coverage gap (flagged):** iters 046–050 never exercised the `sk-prompt-models` per-model profiles or `AGENTS.md` carry named in the D5 charter — whether small-model children honor the inlined manifest, and whether Open Design routes via `DESIGN`→transport vs a compound `DESIGN_TRANSPORT` intent, remain untested (`iteration-050.md:85`).
 
 ---
 
@@ -304,7 +304,7 @@ A later build phase should prove each landed item against these gates (all deter
 - **Iterations:** 50/50 completed. **Stop reason:** `maxIterationsReached` (the only stop; convergence was logged as a signal, never enforced).
 - **Non-convergence:** newInfoRatio mean **0.655**, min **0.57**, max **0.74**, std small — the series never approached the 0.05 convergence floor. Anti-convergence held because each iteration drew a genuinely fresh angle from a 57-angle bank, and a parallel monitor injected deeper/cross-cutting angles + switched the corpus to `designer-skills-main` for the back third.
 - **Resilience:** one transient codex hang (iter 9) recovered on a driver restart from externalized state; codex contention with two concurrent xhigh research fanouts slowed some iterations to ~6 min but none failed; one accidental duplicate monitor was killed by exact PID. No data loss (reduced state corruptionCount = 0).
-- **Honesty caveats:** the D6 corpus-expansion angle `MON-B3` ran three times (the monitor override persisted across the driver's fast advance) — those passes deepened rather than repeated, but ~2 of 5 D6 iterations were lower-yield than their ratio claimed. D5 left the `sk-prompt-small-model` and `AGENTS.md` carry-path untested (flagged as a coverage gap, §8).
+- **Honesty caveats:** the D6 corpus-expansion angle `MON-B3` ran three times (the monitor override persisted across the driver's fast advance) — those passes deepened rather than repeated, but ~2 of 5 D6 iterations were lower-yield than their ratio claimed. D5 left the `sk-prompt-models` and `AGENTS.md` carry-path untested (flagged as a coverage gap, §8).
 - **Scope honored:** RESEARCH ONLY. No live `sk-design` / commands / `mcp-open-design` / `cli-*` files were edited. Nothing was committed.
 
 ---

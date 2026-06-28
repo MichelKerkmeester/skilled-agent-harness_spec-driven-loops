@@ -26,7 +26,7 @@ resolves under NEITHER base):
      link target: ./screenshots/mobile.png
 7. [skill:sk] .opencode/skills/sk-git/assets/pr_template.md
      link target: ./docs/migration.md
-8. [skill:sk] .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+8. [skill:sk] .opencode/skills/sk-prompt-models/references/pattern-index.md
      link target: ../models/_index.md
 
 # ROLE

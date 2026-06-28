@@ -1,5 +1,5 @@
 ---
-title: sk-prompt-small-model
+title: sk-prompt-models
 description: Per-model prompt-craft hub for small-model dispatch: look up the right framework, scaffold and gotchas for any active small model before you send it work.
 trigger_phrases:
   - "small model prompt"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt framework"
 ---
 
-# sk-prompt-small-model
+# sk-prompt-models
 
 > Before you dispatch a small model, read its prompt-craft profile here: the right framework, scaffold and known traps, then apply the executor mechanics from the cli-X.
 
@@ -34,13 +34,13 @@ Different small models want different prompt shapes. MiMo does best with COSTAR 
 
 ### What It Does
 
-`sk-prompt-small-model` is the per-model prompt-craft hub for small-model dispatch. Before you send work to a small model through `cli-devin` or `cli-opencode`, you read that model's profile here for the right prompt framework, scaffold and gotchas, then apply the executor mechanics from the cli-X skill. The hub carries no tools and no runtime code. It is a set of on-demand profiles plus an index, reached when the advisor co-surfaces it alongside whichever executor is in use.
+`sk-prompt-models` is the per-model prompt-craft hub for small-model dispatch. Before you send work to a small model through `cli-devin` or `cli-opencode`, you read that model's profile here for the right prompt framework, scaffold and gotchas, then apply the executor mechanics from the cli-X skill. The hub carries no tools and no runtime code. It is a set of on-demand profiles plus an index, reached when the advisor co-surfaces it alongside whichever executor is in use.
 
 ### Ownership
 
 Four owners, no overlap:
 
-- **`sk-prompt-small-model`** (this skill): per-model prompt-craft profiles and the model registry (`assets/model-profiles.json`).
+- **`sk-prompt-models`** (this skill): per-model prompt-craft profiles and the model registry (`assets/model-profiles.json`).
 - **`cli-devin`**: executor mechanics for SWE-1.6, DeepSeek, Kimi and GLM through its provider (budget, verification, fallback engines).
 - **`cli-opencode`**: executor mechanics for MiniMax and MiMo (flags, permissions schema, budget propagation).
 - **`sk-prompt`**: the generic framework definitions (the closed seven-framework set and CLEAR scoring) that the profiles choose from but never restate.
@@ -56,10 +56,10 @@ Four owners, no overlap:
 
 ```bash
 # Open the model index to find the profile
-Read(".opencode/skills/sk-prompt-small-model/references/models/_index.md")
+Read(".opencode/skills/sk-prompt-models/references/models/_index.md")
 
 # Then read the specific profile
-Read(".opencode/skills/sk-prompt-small-model/references/models/<id>.md")
+Read(".opencode/skills/sk-prompt-models/references/models/<id>.md")
 ```
 
 Each profile gives you: the primary and fallback framework, pre-planning density, a tuned scaffold template and dispatch gotchas.
@@ -67,7 +67,7 @@ Each profile gives you: the primary and fallback framework, pre-planning density
 **Step 3: Follow the pattern index to executor mechanics.**
 
 ```bash
-Read(".opencode/skills/sk-prompt-small-model/references/pattern-index.md")
+Read(".opencode/skills/sk-prompt-models/references/pattern-index.md")
 ```
 
 The pattern index points at the owning `cli-X` file for flags, wrappers, budgets and permissions. Your prompt-craft (from the profile) and the mechanics (from the executor) combine in the executor's prompt-pack.
@@ -115,7 +115,7 @@ This hub owns prompt-craft: which framework to use, how to shape the scaffold, w
 
 ### When To Use This Skill
 
-Reach for `sk-prompt-small-model` before dispatching any active small model to look up its prompt-craft profile. Skip it for frontier models (Opus, Sonnet, gpt-5.5), which are out of scope. Skip it for bare executor questions about flags and wrappers, which live in the cli-X skills.
+Reach for `sk-prompt-models` before dispatching any active small model to look up its prompt-craft profile. Skip it for frontier models (Opus, Sonnet, gpt-5.5), which are out of scope. Skip it for bare executor questions about flags and wrappers, which live in the cli-X skills.
 
 ### Related Skills
 

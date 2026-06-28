@@ -45,7 +45,7 @@ Derived from parent `spec.md` §11 (OQ1–OQ6) and §7 (R1–R6):
 - **RQ3.** Should activation accuracy be scored against the skill-advisor, the in-`SKILL.md` smart router, or both (as separate sub-scores)? What does "properly utilized" mean operationally?
 - **RQ4.** Scenario/fixture authoring: hand-authored vs generated-from-the-skill's-own-triggers — how to get realistic coverage while avoiding circularity (scoring a skill against scenarios derived from itself)?
 - **RQ5.** How should the **Skill Benchmark Report** rank bottlenecks and express remediations so a follow-up packet (or Lane A) can act on them?
-- **RQ6.** Exhaustive rename surface for `deep-agent-improvement → deep-improvement` and a safe ordering: skill dir, `SKILL.md` frontmatter/triggers, commands, agent + runtime mirrors (`.claude`/`.codex`/`.gemini`), skill-advisor graph (`skill-graph.json`), `descriptions.json`, sentinel `sk-prompt-small-model`, root docs/CLAUDE.md, and any tests/fixtures.
+- **RQ6.** Exhaustive rename surface for `deep-agent-improvement → deep-improvement` and a safe ordering: skill dir, `SKILL.md` frontmatter/triggers, commands, agent + runtime mirrors (`.claude`/`.codex`/`.gemini`), skill-advisor graph (`skill-graph.json`), `descriptions.json`, sentinel `sk-prompt-models`, root docs/CLAUDE.md, and any tests/fixtures.
 - **RQ7.** Prior art: how do agent/skill frameworks elsewhere measure tool/skill *discoverability* and routing efficiency (retrieval precision/recall, ablation, LLM-as-judge), and what transfers here?
 
 ## 3. Method — multi-model split
@@ -61,7 +61,7 @@ Run via the canonical loop only: `/deep:start-research-loop` (YAML owns dispatch
 | 11–15 | GPT-5.5 (xhigh reasoning, fast) | `cli-codex` |
 | 16–20 | Opus-4.8 | native `@deep-research` |
 
-Per small-model dispatch rule, MiniMax-2.7 and DeepSeek-v4-pro dispatch consults `sk-prompt-small-model` (provider/quota/context-budget). Per CLI dispatch rule, the relevant `cli-*/SKILL.md` is read before composing executor prompts.
+Per small-model dispatch rule, MiniMax-2.7 and DeepSeek-v4-pro dispatch consults `sk-prompt-models` (provider/quota/context-budget). Per CLI dispatch rule, the relevant `cli-*/SKILL.md` is read before composing executor prompts.
 
 Iteration discipline (from deep-research contract): LEAF, one focus per iteration, 8–11 tool calls (max 12), externalize findings to `iterations/iteration-NNN.md`, append JSONL delta with `newInfoRatio`, cite every finding.
 

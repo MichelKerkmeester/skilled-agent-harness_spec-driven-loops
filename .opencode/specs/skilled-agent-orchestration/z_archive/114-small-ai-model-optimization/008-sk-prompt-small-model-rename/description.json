@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/008-sk-prompt-small-model-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/008-sk-prompt-models-rename",
   "description": "`sk-ai-small-model` over-claims its scope",
   "keywords": [
     "sk-ai-small-model",
@@ -9,7 +9,7 @@
   ],
   "lastUpdated": "2026-06-23T03:49:50.553Z",
   "specId": "008",
-  "folderSlug": "sk-prompt-small-model-rename",
+  "folderSlug": "sk-prompt-models-rename",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",

@@ -44,12 +44,12 @@ mis-read a populated `$ARGUMENTS` as empty, falling to the startup path.
    row). Which fields should the contract mandate so conversational answers are
    comparable and trustworthy?
 5. **Prompt-framework fit per model** (DeepSeek/Kimi/MiMo) for command-style vs
-   conversational tasks — see `sk-prompt-small-model` per-model profiles; does the
+   conversational tasks — see `sk-prompt-models` per-model profiles; does the
    right framework reduce the command-adherence gap?
 
 ## Where to look
 - Command contract: `.opencode/commands/memory/search.md` + `assets/search_presentation.txt`.
 - cli-opencode `--command` mechanics: `.opencode/skills/cli-opencode/SKILL.md`
   ("Registered command dispatch" note — `$ARGUMENTS` expands like `"$@"`).
-- Per-model prompt profiles: `.opencode/skills/sk-prompt-small-model/references/models/`.
+- Per-model prompt profiles: `.opencode/skills/sk-prompt-models/references/models/`.
 - Live repro: `opencode run --command memory/search "<q>"` vs a direct prompt, per model.

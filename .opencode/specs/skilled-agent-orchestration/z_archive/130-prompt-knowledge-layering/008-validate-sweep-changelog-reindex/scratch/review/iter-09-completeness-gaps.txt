@@ -1,5 +1,5 @@
 Review only. I’ll inspect the touched skill files and model profile assets for completeness gaps, without modifying anything.
-I found the expected touched file set: 2 `sk-prompt` assets, 10 `sk-prompt-small-model` references, and 10 `cli-*` skill/card files. Next I’m checking the actual content and line-level evidence for missing profiles, stubs, roadmap links, and TODO/TBD text.
+I found the expected touched file set: 2 `sk-prompt` assets, 10 `sk-prompt-models` references, and 10 `cli-*` skill/card files. Next I’m checking the actual content and line-level evidence for missing profiles, stubs, roadmap links, and TODO/TBD text.
 One likely gap surfaced: the `cli-devin` local prompt card still has task rows prescribing non-profile frameworks for DeepSeek/GLM even though the new hub profiles say RCAF/medium. I’m checking whether that’s a real contradiction under the stated precedence rules or only a local addendum.
 The active profile set itself appears present, but two completeness issues are emerging in surrounding pointers: the canonical card omits MiMo from its small-model budget list, and a mirror-sync note still names only three CLI mirrors. I’m doing one final pass over the CLI SKILL blocks and scoped TODO/TBD matches before returning findings only.
 The SKILL.md precedence blocks are present across all five CLI skills. I’m narrowing the TODO/TBD/stub scan to only the touched assets and SKILL/profile files so unrelated playbooks and archived docs don’t pollute the findings.
@@ -9,12 +9,12 @@ The active model profile links and most pattern-index links resolve; I’m check
 Three pattern-index rows marked shipped point at missing deep-loop files, so the “missing path = roadmap pointer” convention is masking shipped-looking broken links there.
 One more gap is alias-related: `cli-devin` still uses `deepseek-v4` as the dispatch model while the hub profile is `deepseek-v4-pro.md`; I’m treating that as a tier-2 lookup risk rather than an active-profile absence.
 The exact `deepseek-v4.md` profile is absent; the earlier grep pattern was too strict for ripgrep’s regex engine, so I’ll use simple literal checks if needed.
-[P1] `.opencode/skills/sk-prompt-small-model/SKILL.md:33`: Model-name list uses `deepseek-v4`/`gemini flash` while canonical IDs are `deepseek-v4-pro`/`gemini-flash`; normalize IDs and document aliases separately.
+[P1] `.opencode/skills/sk-prompt-models/SKILL.md:33`: Model-name list uses `deepseek-v4`/`gemini flash` while canonical IDs are `deepseek-v4-pro`/`gemini-flash`; normalize IDs and document aliases separately.
 [P1] `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md:58`: Active `mimo-v2.5-pro` is missing from the small-model budget-awareness list; add it beside the other active small models.
 [P1] `.opencode/skills/cli-devin/assets/prompt_quality_card.md:26`: Rows 26-28 prescribe TIDD-EC/CRAFT locally for DeepSeek/GLM despite hub profiles saying RCAF/medium; replace local framework cells with profile-owned RCAF/defer-to-profile text.
 [P1] `.opencode/skills/cli-claude-code/SKILL.md:260`: Haiku is routed as the normal fast/cheap choice while the registry/card mark it optional-unverified; change guidance to “only when explicitly requested or after adoption.”
-[P1] `.opencode/skills/sk-prompt-small-model/references/pattern-index.md:42`: Rows 42-46 mark shipped runtime helpers but link missing `system-spec-kit/.../deep-loop/*.ts`; update them to `deep-loop-runtime/lib/deep-loop/{bayesian-scorer.ts,fallback-router.ts,permissions-gate.ts}`.
+[P1] `.opencode/skills/sk-prompt-models/references/pattern-index.md:42`: Rows 42-46 mark shipped runtime helpers but link missing `system-spec-kit/.../deep-loop/*.ts`; update them to `deep-loop-runtime/lib/deep-loop/{bayesian-scorer.ts,fallback-router.ts,permissions-gate.ts}`.
 [P2] `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md:122`: Mirror-sync text names only three CLI cards and omits `cli-devin`/`cli-opencode`; change to “all five cli-* cards” or list all five.
 [P2] `.opencode/skills/cli-devin/SKILL.md:59`: `TODO verify` remains in the active self-invocation guard, duplicated at line 80; verify/document the lockfile path or remove the speculative probe.
-[OK] `.opencode/skills/sk-prompt-small-model/references/models/_index.md:18`: All eight active model rows link to existing profile files; no active model profile is missing.
+[OK] `.opencode/skills/sk-prompt-models/references/models/_index.md:18`: All eight active model rows link to existing profile files; no active model profile is missing.
 VERDICT CONDITIONAL

@@ -51,7 +51,7 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | JSON profile config + deep-loop model-benchmark lane (Node/TypeScript) |
 | **Framework** | `/deep:model-benchmark` command over `deep-loop-workflows` deep-improvement |
-| **Storage** | Run outputs under `.opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework/` |
+| **Storage** | Run outputs under `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/` |
 | **Testing** | 5-dim scorer with LLM judge + correctness gate; verdict in `synthesis.md` |
 
 ### Overview

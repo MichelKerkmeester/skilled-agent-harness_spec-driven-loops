@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Phase 5: filename-underscore-alignment [template:level_1/spec.md]"
-description: "Align sk-prompt-small-model documentation and asset filenames to the house underscore convention (dashes to underscores), then repair every live inbound reference. Five descriptive markdown files and two dash-named JSON assets are renamed; the four references/models/<id>.md profiles are kept dashed because a pre-commit drift guard derives their path from the dashed model id."
+description: "Align sk-prompt-models documentation and asset filenames to the house underscore convention (dashes to underscores), then repair every live inbound reference. Five descriptive markdown files and two dash-named JSON assets are renamed; the four references/models/<id>.md profiles are kept dashed because a pre-commit drift guard derives their path from the dashed model id."
 trigger_phrases:
-  - "sk-prompt-small-model filename underscore"
+  - "sk-prompt-models filename underscore"
   - "rename dash filenames to underscores"
   - "filename-underscore-alignment phase"
   - "model-profiles.json rename"
@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Phase complete; strict-validate and close"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/assets/model_profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -67,7 +67,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the kimi-k2-7-code-support specification, a filename-convention cleanup on the `sk-prompt-small-model` skill (the hub that hosts the kimi-k2.7-code profile).
+This is **Phase 5** of the kimi-k2-7-code-support specification, a filename-convention cleanup on the `sk-prompt-models` skill (the hub that hosts the kimi-k2.7-code profile).
 
 **Scope Boundary**: Rename dash-named documentation and asset files to underscores and repair live inbound references. No change to model behaviour, framework choice, registry DATA values, or dispatch logic - only filenames and the strings that point at them.
 
@@ -90,7 +90,7 @@ This is **Phase 5** of the kimi-k2-7-code-support specification, a filename-conv
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The house convention for descriptive markdown and asset filenames is underscores (`document_name.md`), matching peer skills such as `mcp-open-design` (`od_cli_reference.md`) and `sk-design-interface` (`design_principles.md`). `sk-prompt-small-model` is inconsistent: several `references/` and `assets/` files use dashes (`pattern-index.md`, `context-budget.md`, `output-verification.md`, `quota-fallback.md`, `confidence-scoring-rubric.md`, `model-profiles.json`, `per-model-budgets.json`).
+The house convention for descriptive markdown and asset filenames is underscores (`document_name.md`), matching peer skills such as `mcp-open-design` (`od_cli_reference.md`) and `sk-design-interface` (`design_principles.md`). `sk-prompt-models` is inconsistent: several `references/` and `assets/` files use dashes (`pattern-index.md`, `context-budget.md`, `output-verification.md`, `quota-fallback.md`, `confidence-scoring-rubric.md`, `model-profiles.json`, `per-model-budgets.json`).
 
 ### Purpose
 Bring the skill's filenames into line with the underscore convention without breaking the live tooling that points at them, and without breaking the one hard contract that legitimately requires dashes (the model-profile filenames that mirror external model ids).
@@ -102,7 +102,7 @@ Bring the skill's filenames into line with the underscore convention without bre
 ## 3. SCOPE
 
 ### In Scope
-- Rename 5 descriptive markdown files and 2 JSON assets in `sk-prompt-small-model`, dash to underscore, preserving history with `git mv`.
+- Rename 5 descriptive markdown files and 2 JSON assets in `sk-prompt-models`, dash to underscore, preserving history with `git mv`.
 - Update every live inbound reference: the skill's own docs/metadata, `cli-opencode`, the `pre-commit` hook text, the `permissions-matrix` configs, the root `README.md`, and the drift-guard's `json.load` path.
 
 ### Out of Scope
@@ -115,14 +115,14 @@ Bring the skill's filenames into line with the underscore convention without bre
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-prompt-small-model/assets/confidence-scoring-rubric.md` | Rename | to `confidence_scoring_rubric.md` |
-| `sk-prompt-small-model/references/context-budget.md` | Rename | to `context_budget.md` |
-| `sk-prompt-small-model/references/output-verification.md` | Rename | to `output_verification.md` |
-| `sk-prompt-small-model/references/pattern-index.md` | Rename | to `pattern_index.md` |
-| `sk-prompt-small-model/references/quota-fallback.md` | Rename | to `quota_fallback.md` |
-| `sk-prompt-small-model/assets/model-profiles.json` | Rename | to `model_profiles.json` |
-| `sk-prompt-small-model/assets/per-model-budgets.json` | Rename | to `per_model_budgets.json` |
-| `sk-prompt-small-model/**` + `cli-opencode/**` + `cli-claude-code/SKILL.md` + `cli-codex/SKILL.md` | Modify | Update inbound references (path-qualified for the `context-budget` name collision) |
+| `sk-prompt-models/assets/confidence-scoring-rubric.md` | Rename | to `confidence_scoring_rubric.md` |
+| `sk-prompt-models/references/context-budget.md` | Rename | to `context_budget.md` |
+| `sk-prompt-models/references/output-verification.md` | Rename | to `output_verification.md` |
+| `sk-prompt-models/references/pattern-index.md` | Rename | to `pattern_index.md` |
+| `sk-prompt-models/references/quota-fallback.md` | Rename | to `quota_fallback.md` |
+| `sk-prompt-models/assets/model-profiles.json` | Rename | to `model_profiles.json` |
+| `sk-prompt-models/assets/per-model-budgets.json` | Rename | to `per_model_budgets.json` |
+| `sk-prompt-models/**` + `cli-opencode/**` + `cli-claude-code/SKILL.md` + `cli-codex/SKILL.md` | Modify | Update inbound references (path-qualified for the `context-budget` name collision) |
 | `.opencode/scripts/git-hooks/pre-commit` | Modify | Update `pattern-index.md` hint string |
 | `system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh` | Modify | Update the functional `json.load(... model-profiles.json)` path |
 | `README.md` (repo root) | Modify | Update `pattern-index.md` reference |

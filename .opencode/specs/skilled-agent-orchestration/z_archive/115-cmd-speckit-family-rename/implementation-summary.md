@@ -96,7 +96,7 @@ Renamed the SpecKit slash-command surface from `spec_kit` to `speckit` across al
 1. **Plan mode (Claude):** mapped the surface via 3 parallel Explore agents; confirmed scope + execution mode + permission mode via AskUserQuestion; wrote plan file
 2. **Pass 1 dispatch (cli-devin SWE-1.6):** background dispatch with `--permission-mode dangerous` (operator-approved). RCAF framework + medium-density pre-planning + sequential_thinking ≥5 thoughts + standard bundle-gate language per cli-devin §4 Rule 12. Wall-clock ~8 minutes
 3. **Main agent verification:** 7 verification gates passed. Found 8 broken-by-rename live files inside system-spec-kit/ that the rename created (tests + SKILL.md + README.md depend on the renamed paths). Fixed via sed
-4. **Pass 1 commit:** `576624ada8` — bundled the speckit rename with operator's parallel-track `sk-ai-small-model -> sk-prompt-small-model` rename because devin's `git add -A` captured everything in the working tree
+4. **Pass 1 commit:** `576624ada8` — bundled the speckit rename with operator's parallel-track `sk-ai-small-model -> sk-prompt-models` rename because devin's `git add -A` captured everything in the working tree
 5. **Pass 2 audit (cli-devin SWE-1.6):** read-only audit dispatch with `--permission-mode auto`. Edge-case patterns: case variants, camelCase, singular-path typo, hidden files, SQL/JSON embedded
 6. **Audit cleanup:** 3 P0 + 1 P1 from audit + 3 more P0 surfaced by re-grep all fixed. Pre-existing broken test fixed (removed `deep-research` from commandDocs)
 7. **Pass 2 commit:** `ce6d9c0cee` — STRICT SCOPE this time via `git restore --staged .` + explicit `git add` of 2 files (8 insertions, 10 deletions). anobel.com/039 spec.md P1 fix left in working tree for operator's parallel-work commit
@@ -149,7 +149,7 @@ Renamed the SpecKit slash-command surface from `spec_kit` to `speckit` across al
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- Pass 1 commit captured ~12 unrelated `sk-ai-small-model -> sk-prompt-small-model` renames from operator's parallel work (acknowledged in commit message; recoverable via `git reset --soft HEAD~2` + restage if operator wants strict split)
+- Pass 1 commit captured ~12 unrelated `sk-ai-small-model -> sk-prompt-models` renames from operator's parallel work (acknowledged in commit message; recoverable via `git reset --soft HEAD~2` + restage if operator wants strict split)
 - anobel.com/039 P1 fix exists in working tree but unstaged (waiting for operator to commit with their parallel work)
 - z_archive historical refs (~31 `command/spec_kit/` singular-typo path matches) intentionally not modified — these are inside packets that documented their own historical work at packet-time
 - Iteration JSON logs in deep-research/deep-review sessions left as historical session records (modifying = rewriting history)

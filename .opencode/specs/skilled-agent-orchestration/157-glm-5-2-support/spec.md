@@ -67,7 +67,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the **Z.AI GLM Coding Plan** provider — shown in opencode's auth list as "Z.AI Coding Plan (api)") available as a first-class small model in the `cli-opencode` and `sk-prompt-small-model` surfaces. The operator has subscribed to the Z.AI Coding Plan and wants GLM-5.2 dispatchable, alias-resolvable, and advisor-routable by name, with a recorded prompt-craft profile that documents the best framework for the model — exactly the way Kimi K2.7 Code (`kimi-for-coding/k2p7`) was adopted in packet 149.
+The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the **Z.AI GLM Coding Plan** provider — shown in opencode's auth list as "Z.AI Coding Plan (api)") available as a first-class small model in the `cli-opencode` and `sk-prompt-models` surfaces. The operator has subscribed to the Z.AI Coding Plan and wants GLM-5.2 dispatchable, alias-resolvable, and advisor-routable by name, with a recorded prompt-craft profile that documents the best framework for the model — exactly the way Kimi K2.7 Code (`kimi-for-coding/k2p7`) was adopted in packet 149.
 
 ### Purpose
 Make GLM-5.2 a first-class, discoverable small model end to end: registered in the model profiles, dispatch matrix, aliases, and routing graph; backed by a prompt-craft profile (default framework recorded, then made empirical by a bakeoff); and integrated into the cli-opencode auth pre-flight, model-selection, and login surfaces. Delivered across serial phases so registration, measurement, and promotion stay independently verifiable — mirroring the 149-kimi-k2-7-code-support arc.
@@ -82,7 +82,7 @@ Make GLM-5.2 a first-class, discoverable small model end to end: registered in t
 
 ### In Scope
 - Root purpose and child phase manifest for adding GLM-5.2 to the small-model rotation
-- Registration of `glm-5.2` across cli-opencode and sk-prompt-small-model (phase 1)
+- Registration of `glm-5.2` across cli-opencode and sk-prompt-models (phase 1)
 - Empirical prompt-framework bakeoff to pick the best framework for GLM-5.2 (phase 2)
 - Promotion of the bakeoff winner into the model profile (phase 3)
 - Contingency phases for a discriminating re-run (phase 4) and operational caveats (phase 5)
@@ -99,7 +99,7 @@ Summary of aggregate file scope across the phases. Per-phase detail lives in chi
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/sk-prompt-small-model/**` | Modify/Create | 1, 3 | Model registry entry, references profile, SKILL.md, aliases, `_index.md`, graph metadata |
+| `.opencode/skills/sk-prompt-models/**` | Modify/Create | 1, 3 | Model registry entry, references profile, SKILL.md, aliases, `_index.md`, graph metadata |
 | `.opencode/skills/cli-opencode/**` | Modify | 1 | Auth pre-flight + login list, model-selection, provider table, graph metadata |
 | `002-framework-bakeoff/` artifacts | Create | 2 | Bakeoff harness inputs, judged results |
 <!-- /ANCHOR:scope -->
@@ -155,4 +155,4 @@ Summary of aggregate file scope across the phases. Per-phase detail lives in chi
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Parent Spec**: See `../spec.md`
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
-- **Adoption checklist**: `.opencode/skills/sk-prompt-small-model/references/pattern_index.md` §4 "Adopting a New Provider"
+- **Adoption checklist**: `.opencode/skills/sk-prompt-models/references/pattern_index.md` §4 "Adopting a New Provider"

@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 git mv cli_prompt_quality_card.md from sk-prompt to the hub (sk-prompt-small-model/assets/)
+- [x] T002 git mv cli_prompt_quality_card.md from sk-prompt to the hub (sk-prompt-models/assets/)
 - [x] T003 Repoint 11 cli-* consumer refs (sibling path swap)
 - [x] T004 Hub SKILL.md §5 reference → local `./assets/`
 - [x] T005 Fix the card's own outbound links (framework defs → `../../sk-prompt/references/`)

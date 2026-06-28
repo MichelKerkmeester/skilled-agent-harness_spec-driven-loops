@@ -109,7 +109,7 @@ All three lanes share the same candidate, dispatcher and scorer seams.
 | B: Model-Benchmark | `/deep:start-model-benchmark-loop` | A model or prompt framework against repeatable fixtures |
 | C: Skill-Benchmark | `/deep:start-skill-benchmark-loop` | A skill's routing, discovery, efficiency and usefulness |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. Lane C runs through `scripts/shared/loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. Lane C runs through `scripts/shared/loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -132,7 +132,7 @@ Skip it for open-ended prompt rewrites across many agent families at once. Skip 
 | `deep-context` | Maps existing code for reuse before planning. Run it before you plan, not during improvement. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Feed it the Context Report, not an agent file. |
 
-`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the improvement run. `deep-loop-runtime` provides the shared coverage graph and atomic-state layer. `sk-prompt-small-model` owns the benchmark output tree that Lane B writes into.
+`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the improvement run. `deep-loop-runtime` provides the shared coverage graph and atomic-state layer. `sk-prompt-models` owns the benchmark output tree that Lane B writes into.
 
 ---
 

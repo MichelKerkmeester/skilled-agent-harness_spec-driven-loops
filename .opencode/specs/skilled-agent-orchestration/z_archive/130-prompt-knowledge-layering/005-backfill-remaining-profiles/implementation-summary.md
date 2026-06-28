@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 5 — Backfill Remaining Profiles"
-description: "Six remaining per-model prompt-craft profiles authored under sk-prompt-small-model/references/models/: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1. All follow the canonical 6-section template and resolve the profile_ref/model_id round-trip."
+description: "Six remaining per-model prompt-craft profiles authored under sk-prompt-models/references/models/: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1. All follow the canonical 6-section template and resolve the profile_ref/model_id round-trip."
 trigger_phrases:
   - "backfill remaining profiles"
   - "minimax-2.7 profile"
@@ -21,12 +21,12 @@ _memory:
     next_safe_action: "Proceed to phase 006-thin-and-standardize-cli-cards"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md"
-      - ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md"
+      - ".opencode/skills/sk-prompt-models/references/models/minimax-2.7.md"
+      - ".opencode/skills/sk-prompt-models/references/models/swe-1.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/qwen3.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.1.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "005-backfill-remaining-profiles"
@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 5 completed the sk-prompt-small-model model-craft hub by authoring the six remaining per-model prompt-craft profiles that were missing from the `references/models/` directory. Before this phase, only the priority profiles existed (mimo-v2.5-pro and minimax-m3 from phase 4); the remaining six models in the dispatch matrix — minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1 — had no authoritative prompt-craft reference, leaving callers without a canonical source for framework selection, template scaffolds, or dispatch gotchas.
+Phase 5 completed the sk-prompt-models model-craft hub by authoring the six remaining per-model prompt-craft profiles that were missing from the `references/models/` directory. Before this phase, only the priority profiles existed (mimo-v2.5-pro and minimax-m3 from phase 4); the remaining six models in the dispatch matrix — minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1 — had no authoritative prompt-craft reference, leaving callers without a canonical source for framework selection, template scaffolds, or dispatch gotchas.
 
 ### minimax-2.7.md — TIDD-EC empirical profile
 
@@ -81,12 +81,12 @@ The four remaining profiles share the RCAF / medium pre-planning convention defa
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md` | Created | TIDD-EC empirical profile for MiniMax-M2.7; benchmark 120/003 evidence, TIDD-EC scaffold, sibling pointer |
-| `.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md` | Created | RCAF + mandatory pre-planning contract for SWE-1.6; escalation rule, non-TTY rule |
-| `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md` | Created | RCAF/medium profile; `--pure` flag note, 64k budget guidance, escalation target context |
-| `.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md` | Created | RCAF/medium large-context profile; hang rate documentation, file-anchor discipline |
-| `.opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md` | Created | RCAF/medium profile; 32k window constraints, budget-overflow guidance |
-| `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md` | Created | RCAF/medium profile; dual-pool dispatch (cognition-pro + opencode-go) |
+| `.opencode/skills/sk-prompt-models/references/models/minimax-2.7.md` | Created | TIDD-EC empirical profile for MiniMax-M2.7; benchmark 120/003 evidence, TIDD-EC scaffold, sibling pointer |
+| `.opencode/skills/sk-prompt-models/references/models/swe-1.6.md` | Created | RCAF + mandatory pre-planning contract for SWE-1.6; escalation rule, non-TTY rule |
+| `.opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md` | Created | RCAF/medium profile; `--pure` flag note, 64k budget guidance, escalation target context |
+| `.opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md` | Created | RCAF/medium large-context profile; hang rate documentation, file-anchor discipline |
+| `.opencode/skills/sk-prompt-models/references/models/qwen3.6.md` | Created | RCAF/medium profile; 32k window constraints, budget-overflow guidance |
+| `.opencode/skills/sk-prompt-models/references/models/glm-5.1.md` | Created | RCAF/medium profile; dual-pool dispatch (cognition-pro + opencode-go) |
 <!-- /ANCHOR:what-built -->
 
 ---
