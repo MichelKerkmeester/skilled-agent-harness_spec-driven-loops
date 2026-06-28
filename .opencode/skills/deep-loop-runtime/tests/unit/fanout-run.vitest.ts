@@ -5,15 +5,51 @@ import { spawn } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { runtimeRoot, spawnCjs } from '../helpers/spawn-cjs';
+import {
+  createHermeticEnv,
+  runtimeRoot,
+  spawnCjs,
+  type HermeticEnv,
+  type SpawnCjsOptions,
+  type SpawnCjsResult,
+} from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
 
 const tempDirs: string[] = [];
+const hermeticEnvs: HermeticEnv[] = [];
 
 function makeTempDir(prefix: string): string {
   const dir = mkdtempSync(join(tmpdir(), prefix));
   tempDirs.push(dir);
   return dir;
+}
+
+function useHermeticEnv(testId: string): HermeticEnv {
+  const hermetic = createHermeticEnv(testId);
+  hermeticEnvs.push(hermetic);
+  return hermetic;
+}
+
+function envWithBin(hermetic: HermeticEnv, binDir: string, env: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
+  return {
+    ...hermetic.env,
+    ...env,
+    PATH: `${binDir}:${hermetic.env['PATH'] ?? ''}`,
+  };
+}
+
+function spawnFanout(
+  testId: string,
+  args: string[] = [],
+  options: Omit<SpawnCjsOptions, 'cwd' | 'env'> & { env?: NodeJS.ProcessEnv } = {},
+): Promise<{ hermetic: HermeticEnv; result: SpawnCjsResult }> {
+  const hermetic = useHermeticEnv(testId);
+  const { env, ...rest } = options;
+  return spawnCjs(fanoutRunScript, args, {
+    ...rest,
+    cwd: hermetic.tmpDir,
+    env: { ...hermetic.env, ...env },
+  }).then((result) => ({ hermetic, result }));
 }
 
 /**
@@ -117,9 +153,15 @@ function writeEchoStubBinary(binDir: string, name: string): string {
 }
 
 afterEach(() => {
-  while (tempDirs.length > 0) {
-    const dir = tempDirs.pop();
-    if (dir) rmSync(dir, { recursive: true, force: true });
+  try {
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+  } finally {
+    while (hermeticEnvs.length > 0) {
+      hermeticEnvs.pop()?.cleanup();
+    }
   }
 });
 
@@ -133,7 +175,7 @@ describe('fanout-run.cjs — module basics', () => {
       concurrency: 2,
     });
 
-    const result = await spawnCjs(fanoutRunScript, [
+    const { result } = await spawnFanout('module-native', [
       '--spec-folder',
       'specs/test-fanout-run-native',
       '--loop-type',
@@ -160,7 +202,7 @@ describe('fanout-run.cjs — module basics', () => {
   it('exits 3 (INPUT_VALIDATION) when fanout-config-json is not valid JSON', async () => {
     const baseDir = makeTempDir('fanout-run-bad-json-');
 
-    const result = await spawnCjs(fanoutRunScript, [
+    const { result } = await spawnFanout('module-bad-json', [
       '--spec-folder',
       'specs/test-fanout-run-bad-json',
       '--loop-type',
@@ -175,7 +217,7 @@ describe('fanout-run.cjs — module basics', () => {
   });
 
   it('exits 1 (SCRIPT_ERROR) when required args are missing', async () => {
-    const result = await spawnCjs(fanoutRunScript, ['--loop-type', 'research']);
+    const { result } = await spawnFanout('module-missing-args', ['--loop-type', 'research']);
 
     expect(result.exitCode).toBe(3);
   });
@@ -196,6 +238,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
       concurrency: 2,
     });
 
+    const hermetic = useHermeticEnv('pool-two-lineages');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -209,10 +252,8 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
         baseDir,
       ],
       {
-        env: {
-          ...process.env,
-          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
-        },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -265,6 +306,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
       concurrency: 1,
     });
 
+    const hermetic = useHermeticEnv('lock-state-dirs');
     await spawnCjs(
       fanoutRunScript,
       [
@@ -278,10 +320,8 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
         baseDir,
       ],
       {
-        env: {
-          ...process.env,
-          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
-        },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -314,6 +354,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
       concurrency: 1,
     });
 
+    const hermetic = useHermeticEnv('replica-state-dirs');
     await spawnCjs(
       fanoutRunScript,
       [
@@ -327,10 +368,8 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
         baseDir,
       ],
       {
-        env: {
-          ...process.env,
-          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
-        },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -367,6 +406,7 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       concurrency: 2,
     });
 
+    const hermetic = useHermeticEnv('fail-all');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -380,7 +420,8 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -406,6 +447,7 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       maxRetries: 1,
     });
 
+    const hermetic = useHermeticEnv('retry-salvage');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -419,7 +461,8 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -465,6 +508,7 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       concurrency: 2,
     });
 
+    const hermetic = useHermeticEnv('mixed-failure');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -478,7 +522,8 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -508,6 +553,7 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
     });
 
     const startedAt = Date.now();
+    const hermetic = useHermeticEnv('parallel-lineages');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -521,7 +567,8 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -546,6 +593,7 @@ describe('fanout-run.cjs — graceful self-stop', () => {
       concurrency: 1,
     });
 
+    const hermetic = useHermeticEnv('graceful-stop');
     const child = spawn(
       process.execPath,
       [
@@ -560,11 +608,8 @@ describe('fanout-run.cjs — graceful self-stop', () => {
         baseDir,
       ],
       {
-        cwd: runtimeRoot,
-        env: {
-          ...process.env,
-          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
-        },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         stdio: ['ignore', 'pipe', 'pipe'],
       },
     );
@@ -612,6 +657,7 @@ describe('fanout-run.cjs — progress heartbeat', () => {
       progressHeartbeatSeconds: 0.05,
     });
 
+    const hermetic = useHermeticEnv('progress-enabled');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -625,7 +671,8 @@ describe('fanout-run.cjs — progress heartbeat', () => {
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -654,6 +701,7 @@ describe('fanout-run.cjs — progress heartbeat', () => {
       concurrency: 1,
     });
 
+    const hermetic = useHermeticEnv('progress-disabled');
     const result = await spawnCjs(
       fanoutRunScript,
       [
@@ -667,7 +715,8 @@ describe('fanout-run.cjs — progress heartbeat', () => {
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -695,6 +744,7 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
       concurrency: 1,
     });
 
+    const hermetic = useHermeticEnv(`echo-${String(lineage['label'] ?? 'lineage')}`);
     await spawnCjs(
       fanoutRunScript,
       [
@@ -708,7 +758,8 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
         baseDir,
       ],
       {
-        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
         timeoutMs: 15_000,
       },
     );
@@ -775,10 +826,8 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
       concurrency: 1,
     });
 
-    const env: NodeJS.ProcessEnv = {
-      ...process.env,
-      PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
-    };
+    const hermetic = useHermeticEnv(`stack-${parentStack ?? 'empty'}`);
+    const env = envWithBin(hermetic, binDir);
     if (parentStack === undefined) {
       delete env['SPECKIT_CLI_DISPATCH_STACK'];
     } else {
@@ -797,7 +846,7 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
         '--base-artifact-dir',
         baseDir,
       ],
-      { env, timeoutMs: 15_000 },
+      { cwd: hermetic.tmpDir, env, timeoutMs: 15_000 },
     );
 
     return readFileSync(
@@ -851,7 +900,7 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
     return stubPath;
   }
 
-  async function runClaudeSeat(lineage: Record<string, unknown>): Promise<string> {
+  async function runClaudeSeat(lineage: Record<string, unknown>): Promise<{ home: string; stdout: string }> {
     const binDir = makeTempDir('fanout-run-claude-env-bin-');
     writeClaudeEnvStub(binDir);
     const baseDir = makeTempDir('fanout-run-claude-env-base-');
@@ -861,7 +910,8 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
       concurrency: 1,
     });
 
-    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` };
+    const hermetic = useHermeticEnv(`claude-${String(lineage['configDir'] ?? 'default')}`);
+    const env = envWithBin(hermetic, binDir);
     delete env['CLAUDE_CONFIG_DIR'];
 
     const result = await spawnCjs(
@@ -877,23 +927,27 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
         baseDir,
       ],
       {
+        cwd: hermetic.tmpDir,
         env,
         timeoutMs: 15_000,
       },
     );
 
     expect(result.exitCode).toBe(0);
-    return readFileSync(join(baseDir, 'lineages', 'fable', 'logs', 'fanout-lineage.out'), 'utf8');
+    return {
+      home: hermetic.home,
+      stdout: readFileSync(join(baseDir, 'lineages', 'fable', 'logs', 'fanout-lineage.out'), 'utf8'),
+    };
   }
 
   it('injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir', async () => {
-    const stdout = await runClaudeSeat({ configDir: '~/.claude-account2' });
-    expect(stdout).toContain(`CLAUDE_CONFIG_DIR=${join(process.env['HOME'] ?? '', '.claude-account2')}`);
+    const { home, stdout } = await runClaudeSeat({ configDir: '~/.claude-account2' });
+    expect(stdout).toContain(`CLAUDE_CONFIG_DIR=${join(home, '.claude-account2')}`);
     expect(stdout).toContain('--model claude-fable-5');
   });
 
   it('leaves CLAUDE_CONFIG_DIR absent when configDir is unset', async () => {
-    const stdout = await runClaudeSeat({});
+    const { stdout } = await runClaudeSeat({});
     expect(stdout).toContain('CLAUDE_CONFIG_DIR=');
     expect(stdout).not.toContain('.claude-account2');
   });

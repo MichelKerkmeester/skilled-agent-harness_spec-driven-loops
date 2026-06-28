@@ -1,5 +1,7 @@
+import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
-import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const helperDir = dirname(fileURLToPath(import.meta.url));
@@ -28,6 +30,14 @@ export type SpawnCjsResult = {
   timedOut: boolean;
 };
 
+export type HermeticEnv = {
+  home: string;
+  dbPath: string;
+  tmpDir: string;
+  env: NodeJS.ProcessEnv;
+  cleanup: () => void;
+};
+
 export type RunScriptOptions = {
   env?: NodeJS.ProcessEnv;
 };
@@ -37,6 +47,59 @@ export type ScriptNamespace = {
   loopType: 'research' | 'review' | 'council';
   sessionId: string;
 };
+
+export function createHermeticEnv(testId: string): HermeticEnv {
+  const tmpRoot = mkdtempSync(join(tmpdir(), 'dlr-hermetic-'));
+  const safeId = testId.replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'test';
+  const testRoot = join(tmpRoot, safeId);
+  const home = join(testRoot, 'home');
+  const dbPath = join(testRoot, 'database');
+  const tmpDir = join(testRoot, 'tmp');
+  const codexStateDir = join(tmpDir, 'codex-state');
+  const claudeStateDir = join(tmpDir, 'claude-code-state');
+  const opencodeStateDir = join(tmpDir, 'opencode-state');
+
+  for (const dir of [
+    home,
+    dbPath,
+    tmpDir,
+    join(home, '.codex'),
+    join(home, '.claude'),
+    join(home, '.claude-code'),
+    join(home, '.opencode'),
+    codexStateDir,
+    claudeStateDir,
+    opencodeStateDir,
+  ]) {
+    mkdirSync(dir, { recursive: true });
+  }
+
+  return {
+    home,
+    dbPath,
+    tmpDir,
+    env: {
+      ...process.env,
+      HOME: home,
+      TMPDIR: tmpDir,
+      TEMP: tmpDir,
+      TMP: tmpDir,
+      SPEC_KIT_DB_DIR: dbPath,
+      SPECKIT_DB_DIR: dbPath,
+      MEMORY_DB_PATH: join(dbPath, 'context-index.sqlite'),
+      CODEX_HOME: join(home, '.codex'),
+      CLAUDE_HOME: join(home, '.claude'),
+      CLAUDE_CODE_HOME: join(home, '.claude-code'),
+      OPENCODE_HOME: join(home, '.opencode'),
+      SPECKIT_CODEX_STATE_DIR: codexStateDir,
+      SPECKIT_CLAUDE_CODE_STATE_DIR: claudeStateDir,
+      SPECKIT_OPENCODE_STATE_DIR: opencodeStateDir,
+    },
+    cleanup: () => {
+      rmSync(tmpRoot, { recursive: true, force: true });
+    },
+  };
+}
 
 /**
  * Generates a unique namespace for a script run with timestamp and random nonce.

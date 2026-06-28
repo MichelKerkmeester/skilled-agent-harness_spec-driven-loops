@@ -18,11 +18,10 @@
     "because",
     "sha"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.437Z",
+  "lastUpdated": "2026-06-28T16:15:21.409Z",
   "specId": "001",
   "folderSlug": "hermetic-test-isolation",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "007-testing"
