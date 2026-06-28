@@ -60,7 +60,7 @@ parent-skill/
 - **Thin hub `SKILL.md`** — routes by mode key through `mode-registry.json` and holds **no** per-mode convergence, state, or synthesis logic. Every mode keeps its own contract in its packet.
 - **Declarative `mode-registry.json`** — the single source of truth. Routers, commands, and tests **read** it; none re-derive the mapping. It carries the 3-tier discriminator plus the `advisorRouting` projection (below).
 - **Exactly one `graph-metadata.json`** — the hub's. This is the one hard invariant (next subsection). Mode packets and `shared/` carry **none**.
-- **N mode packets** — each is verbatim self-contained (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, and any `feature_catalog/` or `manual_testing_playbook/`), with internal paths repointed to its packet root. Naming standard: `folder == packetSkillName == deep-<mode>` for single-mode packets. A packet MAY host several modes (the canonical `deep-improvement` hosts four) — it keeps one `packetSkillName`; and a grandfathered `folder != packetSkillName` is allowed when recorded via `packetSkillName` (the canonical `ai-council`/`deep-ai-council`).
+- **N mode packets** — each is verbatim self-contained (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, and any `feature_catalog/` or `manual_testing_playbook/`), with internal paths repointed to its packet root. Naming standard: `folder == packetSkillName == deep-<mode>` for single-mode packets. A packet MAY host several modes (the canonical `deep-improvement` hosts four) — it keeps one `packetSkillName`; and a grandfathered `folder != packetSkillName` is allowed only when an existing mismatch is recorded via `packetSkillName` (rare — grandfather an existing mismatch, never codify a new one).
 - **Non-discoverable `shared/`** — packet-shared **workflow-layer** helpers only (e.g. output-formatting synthesis). Execution primitives (scoring, fan-out, state, coverage-graph) belong in the backend, not here. `shared/` being advisor-invisible is *incidental* — it follows from nesting, not from a special mechanism.
 
 ### The One Hard Invariant: exactly one `graph-metadata.json` per parent skill
@@ -134,7 +134,7 @@ The worked example is the only parent skill, and two pieces are still **deep-loo
 
 ### Naming Standard and the Grandfathered Exception
 
-For **new** parent skills the standard is `folder == packetSkillName == deep-<mode>`, so no packet is ever one accidental discovery away from breaking the single-identity invariant. In the worked example, `ai-council/` is a **grandfathered** exception: its folder is `ai-council` while its packet name is `deep-ai-council`, recorded explicitly via `packetSkillName`. Grandfather an existing mismatch through `packetSkillName`; never codify a new one.
+For **new** parent skills the standard is `folder == packetSkillName == deep-<mode>`, so no packet is ever one accidental discovery away from breaking the single-identity invariant. A grandfathered `folder != packetSkillName` is allowed only when an existing mismatch is recorded explicitly via `packetSkillName`: grandfather an existing mismatch, never codify a new one. (The former `ai-council` packet was normalized to `deep-ai-council`, so its folder now equals its `packetSkillName` — it is no longer a mismatch.)
 
 ### Templates and Reference
 
