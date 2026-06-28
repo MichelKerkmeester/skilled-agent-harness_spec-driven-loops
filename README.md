@@ -984,7 +984,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Turn a rough ask into a strong prompt.** Auto-selects from 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - **Refines, then scores:** DEPTH thinking across 3-10 rounds, then CLEAR scoring (Clarity, Logic, Expression, Reliability) against a 40+/50 pass threshold
 
-**sk-prompt-small-model**
+**sk-prompt-models**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
 - **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3 and MiMo-V2.5-Pro via `cli-opencode`
 - **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
