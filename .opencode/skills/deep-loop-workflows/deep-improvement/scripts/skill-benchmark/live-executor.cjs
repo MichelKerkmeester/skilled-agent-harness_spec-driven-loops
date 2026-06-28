@@ -51,7 +51,8 @@ const GRADED_RESPONSE_MAX_CHARS = 8000;
 /**
  * Wrap the scenario prompt as a routing-ANALYSIS task with a strict output
  * contract. CS-* scenarios are already analysis-shaped; SD/LS/RD/SA get the
- * reframe. The contract forces one fenced json block the parser can read.
+ * reframe. Route-gold cases add a declaration line before the fenced json block
+ * the parser can read.
  *
  * @param {Object} scenario - Scenario being dispatched.
  * @returns {string} The routing-analysis dispatch prompt.
@@ -59,7 +60,7 @@ const GRADED_RESPONSE_MAX_CHARS = 8000;
 function buildLiveDispatchPrompt(scenario, skillId) {
   const base = scenario.prompt || '';
   const skill = skillId || 'the target skill';
-  return [
+  const prompt = [
     'You are analyzing skill routing only - do NOT edit files.',
     `Task: ${base}`,
     '',
@@ -69,10 +70,24 @@ function buildLiveDispatchPrompt(scenario, skillId) {
       + 'sub-language if any, else "none", (3) the exact reference/asset file paths you '
       + 'would load (relative to the skill root, e.g. references/... and assets/...), '
       + '(4) the agent you would dispatch, or "none".',
-    'Then emit ONLY a fenced ```json code block, nothing after it:',
+  ];
+
+  if (hasRouteGold(scenario && scenario.expected)) {
+    prompt.push(
+      'As the FIRST line of your answer, emit this exact declaration shape:',
+      'ROUTED: {"workflowMode": "<mode>", "intents": ["<mode>", "..."]}',
+      'Then emit ONLY a fenced ```json code block, nothing after it:',
+    );
+  } else {
+    prompt.push('Then emit ONLY a fenced ```json code block, nothing after it:');
+  }
+
+  prompt.push(
     '{"surface": "...", "subLanguage": "...", "resources": ["references/..."], '
       + '"assets": ["assets/..."], "agent": "none", "disambiguation": false}',
-  ].join('\n');
+  );
+
+  return prompt.join('\n');
 }
 
 function dispatchArgs(model, dir, variant) {
@@ -185,6 +200,57 @@ function extractRoutingJson(text) {
   return null;
 }
 
+function normalizeStringList(value) {
+  const list = Array.isArray(value) ? value : [value];
+  return [...new Set(list
+    .filter((entry) => typeof entry === 'string')
+    .map((entry) => entry.trim())
+    .filter(Boolean))];
+}
+
+/**
+ * Extract the live route declaration emitted before the routing-analysis block.
+ * Returns the last valid declaration because models sometimes restate answers.
+ *
+ * @param {string} text - The model's response text to scan.
+ * @returns {Object} Parsed declaration metadata.
+ */
+function parseRoutedDeclaration(text) {
+  const s = String(text);
+  const matches = [...s.matchAll(/(^|\n)\s*ROUTED:\s*/gi)];
+  let last = null;
+
+  for (const match of matches) {
+    const afterPrefix = match.index + match[0].length;
+    const rest = s.slice(afterPrefix);
+    const firstNonSpace = /\S/.exec(rest);
+    if (!firstNonSpace || rest[firstNonSpace.index] !== '{') continue;
+
+    const objs = collectBraceBalancedObjects(rest.slice(firstNonSpace.index));
+    if (objs.length === 0) continue;
+
+    try {
+      const declaration = JSON.parse(objs[0]);
+      if (!declaration || typeof declaration !== 'object') continue;
+
+      const workflowMode = normalizeStringList(declaration.workflowMode);
+      let intents = normalizeStringList(declaration.intents);
+      if (intents.length === 0 && workflowMode.length > 0) intents = workflowMode;
+      if (workflowMode.length === 0 && intents.length === 0) continue;
+
+      last = {
+        present: true,
+        workflowMode: workflowMode.length > 0 ? workflowMode : intents,
+        intents,
+      };
+    } catch (_) {
+      // Malformed declarations are treated as absent.
+    }
+  }
+
+  return last || { present: false };
+}
+
 /**
  * Last-resort prose fallback: when the model answered in prose with no JSON,
  * recover the surface keyword and any referenced skill paths so the run still
@@ -207,9 +273,10 @@ function proseRoutingFallback(text) {
  * @param {string} stdout - Raw NDJSON stdout from the dispatch.
  * @param {Object} [opts] - Parse options.
  * @param {string} [opts.skillId] - Skill id used to detect activation/reads.
+ * @param {boolean} [opts.requireRouteDeclaration] - Mark route-gold misses.
  * @returns observed-result consumed by score-skill-benchmark.scoreScenario
  */
-function parseLiveResult(stdout, { skillId } = {}) {
+function parseLiveResult(stdout, { skillId, requireRouteDeclaration = false } = {}) {
   const events = parseEvents(stdout);
   const toolCalls = [];
   let activated = false;
@@ -239,11 +306,12 @@ function parseLiveResult(stdout, { skillId } = {}) {
   const statedAssets = Array.isArray(stated.assets) ? stated.assets : [];
   const surfaceRaw = (stated.surface || '').toString().toUpperCase();
   const statedSurface = ['WEBFLOW', 'OPENCODE', 'UNKNOWN', 'MOTION_DEV', 'NONE'].includes(surfaceRaw) ? surfaceRaw : null;
+  const routed = parseRoutedDeclaration(responseText);
 
-  return {
+  const result = {
     mode: 'live',
     parseable: events.length > 0,
-    observedIntents: [],
+    observedIntents: routed.present ? routed.intents : [],
     // The model's STATED routing is the primary discovery signal; observed file
     // reads corroborate. References and assets are kept on SEPARATE channels:
     // D2/D3 score references only, asset support is scored on its own lane. The
@@ -257,6 +325,25 @@ function parseLiveResult(stdout, { skillId } = {}) {
     missingResources: [],
     raw: { eventCount: events.length, toolCalls, observedReads: [...new Set(observedReads)], stated, responseText: responseText.slice(0, GRADED_RESPONSE_MAX_CHARS) },
   };
+
+  if (routed.present) {
+    result.observedWorkflowMode = routed.workflowMode.length === 1 ? routed.workflowMode[0] : routed.workflowMode;
+    result.routeDeclaration = { present: true };
+    result.raw.routeTelemetry = {
+      observed: true,
+      source: 'live-declaration',
+      workflowMode: routed.workflowMode,
+    };
+  } else if (requireRouteDeclaration) {
+    result.routeDeclaration = { present: false, reason: 'route-declaration-missing' };
+    result.raw.routeTelemetry = { observed: false, reason: 'route-declaration-missing' };
+  }
+
+  return result;
+}
+
+function hasRouteGold(expected) {
+  return !!(expected && (expected.routeOutcome != null || expected.workflowMode != null));
 }
 
 /**
@@ -272,17 +359,23 @@ function runLiveScenario({ scenario, skillRoot, model } = {}) {
   const skillId = path.basename(skillRoot || '');
   const prompt = buildLiveDispatchPrompt(scenario, skillId);
   const chosenModel = model || DEFAULT_MODEL;
+  const requireRouteDeclaration = hasRouteGold(scenario && scenario.expected);
   const disp = runDispatch({ prompt, dir: skillRoot ? path.resolve(skillRoot, '..', '..', '..') : process.cwd(), model: chosenModel, variant: DEFAULT_VARIANT });
   if (disp.status !== 0) {
-    return {
+    const result = {
       mode: 'live', parseable: false, observedIntents: [], observedResources: [],
       observedSurface: null, statedRoutingCorrect: null, activation: { activated: false, topSkill: null },
       missingResources: [],
       error: disp.timedOut ? 'dispatch timed out' : `dispatch exit ${disp.status}`,
       raw: { stderr: (disp.stderr || '').slice(0, 500), model: chosenModel },
     };
+    if (requireRouteDeclaration) {
+      result.routeDeclaration = { present: false, reason: 'dispatch-failed' };
+      result.raw.routeTelemetry = { observed: false, reason: 'dispatch-failed' };
+    }
+    return result;
   }
-  const result = parseLiveResult(disp.stdout, { skillId });
+  const result = parseLiveResult(disp.stdout, { skillId, requireRouteDeclaration });
   result.raw.model = chosenModel;
   return result;
 }
@@ -291,15 +384,15 @@ function runLiveScenario({ scenario, skillRoot, model } = {}) {
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, collectBraceBalancedObjects, DEFAULT_MODEL, DEFAULT_VARIANT };
+module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, parseRoutedDeclaration, collectBraceBalancedObjects, DEFAULT_MODEL, DEFAULT_VARIANT };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (args['parse-file']) {
-    const out = parseLiveResult(fs.readFileSync(args['parse-file'], 'utf8'), { skillId: args.skill || 'sk-code' });
+    const out = parseLiveResult(fs.readFileSync(args['parse-file'], 'utf8'), { skillId: args.skill || 'sk-code', requireRouteDeclaration: args['require-route'] === true });
     process.stdout.write(JSON.stringify(out, null, 2) + '\n');
     process.exit(0);
   }
-  process.stderr.write('usage: live-executor.cjs --parse-file <ndjson> [--skill <id>]\n');
+  process.stderr.write('usage: live-executor.cjs --parse-file <ndjson> [--skill <id>] [--require-route]\n');
   process.exit(2);
 }
