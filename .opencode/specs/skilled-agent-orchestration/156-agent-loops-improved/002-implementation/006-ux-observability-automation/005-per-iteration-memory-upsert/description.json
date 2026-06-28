@@ -16,11 +16,10 @@
     "run",
     "completes"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.425Z",
+  "lastUpdated": "2026-06-28T21:17:48.803Z",
   "specId": "005",
   "folderSlug": "per-iteration-memory-upsert",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "006-ux-observability-automation"

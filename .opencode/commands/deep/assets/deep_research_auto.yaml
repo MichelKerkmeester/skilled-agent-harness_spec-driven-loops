@@ -496,6 +496,7 @@ workflow:
           - total_questions: "Count total questions tracked in strategy.md"
           - resource_map_present: "Extract boolean from deep-research-config.json, default false"
           - resource_map_prompt_line: "If resource_map_present is true, return 'Resource map: prior-inventoried files are listed in {spec_folder}/resource-map.md; treat them as the exclusion set when hunting for net-new files; flag only missed-from-map candidates as gaps.' Else return 'Resource map: resource-map.md not present; skipping coverage gate.'"
+          - memory_context_prompt_line: "If a refreshed memory context summary exists from the previous iteration, return 'Memory context refresh: {summary}'. Else use prior_context_summary from startup when available; otherwise return 'Memory context refresh: none loaded yet.'"
           - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
@@ -819,6 +820,7 @@ workflow:
             Questions: {answered_count}/{total_questions} answered | Last focus: {last_focus}
             Last 2 ratios: {ratio_prev} -> {ratio_latest} | Stuck count: {stuck_count}
             {resource_map_prompt_line}
+            {memory_context_prompt_line}
             Next focus: {next_focus}
           render_prompt_pack:
             template_path: ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl"
@@ -1091,6 +1093,33 @@ workflow:
           note: "Skip silently when graphEvents is missing or empty."
         if_graph_events_missing:
           proceed: true
+
+      step_memory_upsert_iteration:
+        action: "Upsert the canonical iteration evidence into Spec Kit Memory after reducer and graph persistence"
+        mcp_tool: memory_save
+        invocation: 'memory_save({ filePath: "{state_paths.iteration_pattern}" })'
+        timeout_seconds: 5
+        idempotency: "Re-running the same iteration file is safe because the memory backend upserts by path/content."
+        failure_policy:
+          mcp_error: "non-fatal; log advisory warning and continue"
+          timeout: "non-fatal after timeout_seconds; log advisory warning and continue"
+        outputs:
+          - memory_upsert_iteration_file: "{state_paths.iteration_pattern}"
+          - memory_upsert_status: "upserted | advisory_error"
+
+      step_refresh_memory_context:
+        action: "Refresh focused Spec Kit Memory context before the next prompt render"
+        mcp_tool: memory_context
+        invocation: 'memory_context({ input: "{research_topic}", mode: "focused", intent: "understand", includeContent: true })'
+        timeout_seconds: 5
+        use_response:
+          - "Update memory_context_prompt_line with a concise summary for the next step_dispatch_iteration.pre_dispatch.generate_summary."
+        failure_policy:
+          mcp_error: "non-fatal; log advisory warning and continue with the previous memory_context_prompt_line"
+          timeout: "non-fatal after timeout_seconds; log advisory warning and continue with the previous memory_context_prompt_line"
+        outputs:
+          - memory_context_prompt_line: "Fresh focused context summary for the next iteration prompt"
+          - memory_context_refresh_status: "refreshed | advisory_error"
 
       step_evaluate_results:
         action: "Verify iteration outputs and extract metrics"
@@ -1498,6 +1527,8 @@ rules:
     - dispatch_deep_research_agent_per_iteration
     - check_convergence_before_each_iteration
     - write_all_state_to_files
+    - upsert_iteration_memory_after_reducer
+    - refresh_memory_context_before_next_prompt
     - save_memory_context_after_synthesis
     - respect_max_iterations_cap
   NEVER:
