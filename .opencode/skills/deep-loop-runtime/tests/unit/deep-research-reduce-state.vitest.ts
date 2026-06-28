@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -84,8 +84,30 @@ const {
       }>;
       rejectedPatterns?: Array<{
         id: string;
+        ideaId?: string;
         pattern: string;
         category: string;
+      }>;
+      minIdeaObservations?: number;
+      observedIdeas?: Array<{
+        id: string;
+        idea: string;
+        category: string;
+        observationCount: number;
+      }>;
+      promotedIdeas?: Array<{
+        id: string;
+        idea: string;
+        category: string;
+        observationCount: number;
+        rank: number;
+      }>;
+      suppressedIdeas?: Array<{
+        id: string;
+        idea: string;
+        observationCount: number;
+        matchType: string;
+        rejectedPattern: string;
       }>;
       suppressedCandidates?: Array<{
         candidateText: string;
@@ -562,5 +584,114 @@ describe('deep-research reduce-state recovery gate', () => {
     });
     expect(recovery.accepted).toHaveLength(1);
     expect(recovery.suppressed).toHaveLength(0);
+  });
+
+  it('promotes observed ideas by threshold and suppresses rejected ideas', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, [
+      JSON.stringify({
+        type: 'iteration',
+        run: 1,
+        status: 'complete',
+        focus: 'resolve seed question',
+        findingsCount: 1,
+        newInfoRatio: 0.4,
+        answeredQuestions: ['What should be checked?'],
+        timestamp: '2026-06-28T00:00:00.000Z',
+      }),
+      JSON.stringify({
+        type: 'event',
+        event: 'idea_observed',
+        mode: 'research',
+        run: 1,
+        ideaId: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        category: 'ideas',
+        source: 'iteration-001.md',
+        timestamp: '2026-06-28T00:01:00.000Z',
+      }),
+      JSON.stringify({
+        type: 'event',
+        event: 'idea_observed',
+        mode: 'research',
+        run: 2,
+        ideaId: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        category: 'ideas',
+        source: 'iteration-002.md',
+        timestamp: '2026-06-28T00:02:00.000Z',
+      }),
+      '',
+    ].join('\n'));
+
+    const promoted = reduceResearchState(specFolder, { write: true });
+    const promotionEvents = readStateRecords(specFolder).filter((record) => record.event === 'idea_promoted');
+
+    expect(promoted.registry.minIdeaObservations).toBe(2);
+    expect(promoted.registry.observedIdeas).toEqual([
+      expect.objectContaining({
+        id: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        observationCount: 2,
+      }),
+    ]);
+    expect(promoted.registry.promotedIdeas).toEqual([
+      expect.objectContaining({
+        id: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        observationCount: 2,
+        rank: 1,
+      }),
+    ]);
+    expect(promoted.strategy).toContain('## 11. NEXT FOCUS\nInvestigate cache stampede mitigation');
+    expect(promoted.dashboard).toContain('## Ideas Backlog');
+    expect(promoted.dashboard).toContain('- Promoted ideas: 1');
+    expect(promotionEvents).toHaveLength(1);
+    expect(promotionEvents[0]).toMatchObject({
+      event: 'idea_promoted',
+      ideaId: 'idea-cache-stampede',
+      observationCount: 2,
+      minIdeaObservations: 2,
+    });
+
+    reduceResearchState(specFolder, { write: true });
+    expect(readStateRecords(specFolder).filter((record) => record.event === 'idea_promoted')).toHaveLength(1);
+
+    appendFileSync(
+      join(specFolder, 'research', 'deep-research-state.jsonl'),
+      `${JSON.stringify({
+        type: 'event',
+        event: 'idea_rejected',
+        mode: 'research',
+        run: 3,
+        ideaId: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        category: 'ideas',
+        reason: 'operator rejected this direction',
+        timestamp: '2026-06-28T00:03:00.000Z',
+      })}\n`,
+      'utf8',
+    );
+
+    const rejected = reduceResearchState(specFolder, { write: false });
+
+    expect(rejected.registry.promotedIdeas).toEqual([]);
+    expect(rejected.registry.suppressedIdeas).toEqual([
+      expect.objectContaining({
+        id: 'idea-cache-stampede',
+        idea: 'Investigate cache stampede mitigation',
+        matchType: 'id',
+        rejectedPattern: 'Investigate cache stampede mitigation',
+      }),
+    ]);
+    expect(rejected.registry.rejectedPatterns).toEqual([
+      expect.objectContaining({
+        ideaId: 'idea-cache-stampede',
+        pattern: 'Investigate cache stampede mitigation',
+        category: 'ideas',
+      }),
+    ]);
+    expect(rejected.strategy).toContain('## 11. NEXT FOCUS\n[All tracked questions are resolved]');
+    expect(rejected.dashboard).toContain('- Suppressed ideas: 1');
   });
 });

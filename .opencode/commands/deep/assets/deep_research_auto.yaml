@@ -294,6 +294,7 @@ workflow:
           convergenceThreshold: "{convergence_threshold}"
           convergenceMode: "default"
           stuckThreshold: 3
+          minIdeaObservations: 2
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
           resource_map_present: "{resource_map_present}"
@@ -317,7 +318,7 @@ workflow:
         action: "Initialize JSONL state log with config record"
         # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"convergenceMode":"default","resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"convergenceMode":"default","minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -497,6 +498,11 @@ workflow:
           - rejected_patterns_count: "Read registry.rejectedPatterns length when registry exists, else 0"
           - rejected_candidate_matches: "Read registry.suppressedCandidates when registry exists, else []"
           - rejected_pattern_fuzzy_threshold: "Read config.rejectedPatternFuzzyThreshold when present, else 0.85"
+          - min_idea_observations: "Read config.minIdeaObservations when present, default 2; clamp to 1..10"
+          - observed_ideas_count: "Read registry.observedIdeas length when registry exists, else 0"
+          - promoted_ideas_count: "Read registry.promotedIdeas length when registry exists, else 0"
+          - promoted_ideas_list: "Read registry.promotedIdeas idea text in rank order when registry exists, else []"
+          - suppressed_ideas_count: "Read registry.suppressedIdeas length when registry exists, else 0"
 
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
@@ -716,9 +722,12 @@ workflow:
               - "{least_explored}"
           ideas:
             category: "ideas"
+            values:
+              - "{promoted_ideas_list}"
             optional_file: "{state_paths.packet_dir}/research-ideas.md"
         algorithm: |
-          Use registry.rejectedPatternIndex from the latest reducer pass as the source of truth.
+          Use registry.rejectedPatternIndex and registry.promotedIdeas from the latest
+          reducer pass as the source of truth.
           Compare normalized exact text first. Then compare fuzzy similarity with
           rejected_pattern_fuzzy_threshold, but only when candidate and rejected categories
           are compatible. Remove suppressed candidates from next_focus, recovery, and ideas
@@ -735,6 +744,28 @@ workflow:
         if_all_candidates_suppressed:
           halt: true
           message: "All next-focus, recovery, and ideas candidates match active rejected patterns. Remove/reset the rejected pattern or provide a new focus."
+
+      step_ideas_backlog_lifecycle:
+        action: "Track reducer-owned observed/promoted/rejected idea lifecycle before dispatch"
+        read:
+          - "{state_paths.state_log}"
+          - "{state_paths.registry}"
+          - "{state_paths.config}"
+        lifecycle:
+          observed_event: "idea_observed"
+          promoted_event: "idea_promoted"
+          rejected_event: "idea_rejected"
+          min_observations: "{min_idea_observations}"
+          authority: "Leaf agents emit observations only; reducer emits promotions and owns ranking."
+        validate:
+          - "If new leaf-authored output includes idea_promoted, fail validation; only reducer output may append idea_promoted."
+          - "If promoted_ideas_count > 0 and next_focus is empty or all questions are resolved, prefer the first unsuppressed promoted idea."
+          - "If suppressed_ideas_count > 0, do not render those ideas into dispatch context."
+        outputs:
+          - observed_ideas_count: "Reducer-derived observed ideas count"
+          - promoted_ideas_count: "Reducer-derived promoted ideas count after minIdeaObservations"
+          - suppressed_ideas_count: "Reducer-derived rejected/suppressed ideas count"
+          - accepted_idea_candidate: "First unsuppressed promoted idea, or null"
 
       step_normalize_pause_events:
         action: "Normalize pause and recovery lifecycle events to the frozen STOP_REASONS enum at emission time"
@@ -1023,7 +1054,8 @@ workflow:
           - "{state_paths.dashboard}"
           - "{state_paths.strategy}"
           - "{state_paths.state_log} question_conflict events when inbox text disagrees with registry-owned question text"
-          - "{state_paths.registry} rejectedPatterns and suppressedCandidates from ideaRejected events"
+          - "{state_paths.state_log} idempotent idea_promoted events when observed ideas reach minIdeaObservations"
+          - "{state_paths.registry} observedIdeas, promotedIdeas, suppressedIdeas, rejectedPatterns, and suppressedCandidates from idea lifecycle events"
         failure_modes:
           malformed_delta: "skip + warn"
           missing_iteration_file: "no-op + error"

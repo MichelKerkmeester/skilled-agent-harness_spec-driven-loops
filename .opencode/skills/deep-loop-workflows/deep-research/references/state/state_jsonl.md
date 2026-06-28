@@ -228,20 +228,62 @@ Stuck recovery event:
 }
 ```
 
+Idea observation event:
+
+```json
+{
+  "type": "event",
+  "event": "idea_observed",
+  "mode": "research",
+  "run": 7,
+  "ideaId": "idea-cache-stampede",
+  "idea": "Investigate cache stampede mitigation as a follow-up focus",
+  "category": "ideas",
+  "source": "iteration-007.md",
+  "timestamp": "2026-05-24T00:00:00Z"
+}
+```
+
+Leaf agents may append `idea_observed` for promising tangents. They must not append `idea_promoted`; promotion is reducer-owned.
+
+Idea promotion event:
+
+```json
+{
+  "type": "event",
+  "event": "idea_promoted",
+  "mode": "research",
+  "run": 8,
+  "ideaId": "idea-cache-stampede",
+  "idea": "Investigate cache stampede mitigation as a follow-up focus",
+  "category": "ideas",
+  "observationCount": 2,
+  "minIdeaObservations": 2,
+  "firstObservedRun": 6,
+  "lastObservedRun": 7,
+  "timestamp": "2026-05-24T00:02:00Z"
+}
+```
+
+The reducer emits `idea_promoted` once per idea after replay shows `observationCount >= minIdeaObservations`. `minIdeaObservations` defaults to `2` and is clamped to the inclusive range `1..10`.
+
 Rejected idea event:
 
 ```json
 {
   "type": "event",
-  "event": "ideaRejected",
+  "event": "idea_rejected",
   "mode": "research",
   "run": 7,
-  "pattern": "Retry HTTP/3 as the primary latency fix",
-  "category": "next-focus",
+  "ideaId": "idea-cache-stampede",
+  "idea": "Investigate cache stampede mitigation as a follow-up focus",
+  "category": "ideas",
   "reason": "Already rejected by environment evidence",
   "timestamp": "2026-05-24T00:00:00Z"
 }
 ```
+
+`idea_rejected` durably suppresses the matching promoted idea and also enters the reducer-owned rejected-pattern cache. Use `category: "general"` only when the rejection should suppress matching text across next-focus, recovery, and ideas candidates.
 
 Rejected idea removal event:
 
@@ -268,7 +310,7 @@ Rejected idea reset event:
 }
 ```
 
-The reducer derives a bounded active rejected-pattern cache from these events. `ideaRejected` adds or refreshes one pattern, `ideaRejectedRemoved` removes a single matching pattern or id, and `ideaRejectedReset` clears the active cache. The active cache is capped at 100 entries; when more are added, the oldest active entry is evicted and the reducer emits a warning.
+The reducer derives a bounded active rejected-pattern cache from these events. `idea_rejected` adds or refreshes one pattern, `ideaRejectedRemoved` removes a single matching pattern or id, and `ideaRejectedReset` clears the active cache. Legacy `ideaRejected`, `ideaRejectedRemoved`, and `ideaRejectedReset` rows remain replayable for existing state logs. The active cache is capped at 100 entries; when more are added, the oldest active entry is evicted and the reducer emits a warning.
 
 Candidate checks compare normalized exact text first, then apply fuzzy matching only when the candidate category is compatible with the rejected category. Omit `category` for a general rejection that can suppress candidates across next-focus, recovery, or ideas surfaces.
 

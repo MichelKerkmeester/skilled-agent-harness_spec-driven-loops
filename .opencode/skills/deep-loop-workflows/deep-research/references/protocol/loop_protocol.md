@@ -216,18 +216,26 @@ This summary is prepended to the dispatch context (Step 3) to ensure the agent h
 
 #### Step 2d: Rejected Pattern Cache Check
 
-Before selecting the next-focus, recovery, or ideas-backed candidate for dispatch, read the reducer-owned rejected-pattern cache from the findings registry.
+Before selecting the next-focus, recovery, or ideas-backed candidate for dispatch, read the reducer-owned rejected-pattern cache and promoted ideas backlog from the findings registry.
 
 Rejected-cache lifecycle:
 
-1. `ideaRejected` appends one rejected pattern to JSONL with `pattern`, optional `category`, optional `reason`, and normal lifecycle fields.
+1. `idea_rejected` appends one rejected pattern to JSONL with `ideaId`, `idea` or `pattern`, optional `category`, optional `reason`, and normal lifecycle fields.
 2. The reducer derives the active cache from JSONL events; generated registry and dashboard files expose `rejectedPatterns`, `rejectedPatternIndex`, and `suppressedCandidates`.
 3. Exact suppression compares normalized candidate text against normalized rejected text.
 4. Fuzzy suppression uses `rejectedPatternFuzzyThreshold` from config when present, otherwise `0.85`, and only applies when the rejected category is compatible with the candidate category.
 5. `ideaRejectedRemoved` removes a single active pattern by id or by pattern/category.
 6. `ideaRejectedReset` clears all active rejected patterns for the current replay.
 
-The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `ideaRejected` event if it remains relevant.
+The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `idea_rejected` event if it remains relevant. Existing `ideaRejected` replay rows are legacy aliases and remain accepted for backward compatibility.
+
+Ideas lifecycle:
+
+1. Leaf agents may append `idea_observed` events only. They must not append `idea_promoted`.
+2. The reducer accumulates observations by `ideaId` or a normalized text-derived id.
+3. `minIdeaObservations` defaults to `2` and is clamped to `1..10`.
+4. When an idea reaches `observationCount >= minIdeaObservations`, the reducer appends one idempotent `idea_promoted` event and ranks promoted ideas by observation count, latest observation, then first observation.
+5. `idea_rejected` removes the matching idea from `promotedIdeas` and from ideas-backed next-focus candidates until a reset/removal event clears the active rejected pattern.
 
 Candidate categories:
 
@@ -235,7 +243,7 @@ Candidate categories:
 |----------|------------------|
 | `next-focus` | Strategy next-focus, carried-forward open questions, open questions, and follow-up findings |
 | `recovery` | Stuck and blocked-stop recovery strategies |
-| `ideas` | Deferred or promoted ideas backlog entries |
+| `ideas` | Reducer-promoted ideas backlog entries |
 | `general` | Cross-category fallback when a narrower category is not known |
 
 When all candidates in a category are suppressed, continue with the next eligible category or halt for operator input rather than reusing the rejected idea.
@@ -350,30 +358,25 @@ Checkpoint commits provide rollback points: `git log -- research/` shows the las
 
 ### Ideas Backlog Convention
 
-A persistent ideas file at `research/research-ideas.md` serves as a parking lot for promising directions not yet pursued.
+The canonical ideas backlog is reducer-owned and derived from JSONL lifecycle events. A persistent ideas file at `research/research-ideas.md` may still exist as operator-authored context, but leaf agents record new machine-discovered tangents with `idea_observed` events.
 
 #### Check Points
 
 The orchestrator checks the ideas backlog at three points:
 
-1. **Init**: During strategy initialization, if `research/research-ideas.md` exists from a prior session, read it and incorporate relevant ideas into the initial key questions or "Next Focus"
-2. **Stuck**: During stuck recovery (Step 2a of the recovery protocol in convergence.md), check ideas backlog before defaulting to generic recovery strategies. Deferred ideas often provide the best escape from stuck states
-3. **Resume**: On auto-resume, read the ideas file alongside JSONL and strategy.md to restore full context
+1. **Init**: During strategy initialization, if `research/research-ideas.md` exists from a prior session, read it as operator-authored context and incorporate relevant ideas into the initial key questions or "Next Focus"
+2. **Stuck**: During stuck recovery (Step 2a of the recovery protocol in convergence.md), check reducer-promoted ideas before defaulting to generic recovery strategies. Promoted ideas often provide the best escape from stuck states
+3. **Resume**: On auto-resume, read JSONL, registry, strategy.md, and any operator-authored ideas file to restore full context
 
-#### Format
+#### Event Format
 
-```markdown
-Title: Research Ideas
-
-Section: Deferred (not yet explored)
-- [Idea description] (noted iteration N: [why deferred])
-- [Idea description] (noted iteration N: [why deferred])
-
-Section: Promoted (moved to Key Questions)
-- [Idea] -> promoted to Key Question in iteration N
+```json
+{"type":"event","event":"idea_observed","mode":"research","run":4,"ideaId":"idea-cache-stampede","idea":"Investigate cache stampede mitigation","category":"ideas","source":"iteration-004.md","timestamp":"2026-05-24T00:00:00Z"}
+{"type":"event","event":"idea_promoted","mode":"research","run":5,"ideaId":"idea-cache-stampede","idea":"Investigate cache stampede mitigation","category":"ideas","observationCount":2,"minIdeaObservations":2,"firstObservedRun":4,"lastObservedRun":5,"timestamp":"2026-05-24T00:01:00Z"}
+{"type":"event","event":"idea_rejected","mode":"research","run":6,"ideaId":"idea-cache-stampede","idea":"Investigate cache stampede mitigation","category":"ideas","reason":"Operator rejected this direction","timestamp":"2026-05-24T00:02:00Z"}
 ```
 
-Users can edit `research-ideas.md` between sessions to steer future iterations. Agents append new ideas during iterations when they encounter promising tangents that fall outside the current focus.
+Users can edit `research-ideas.md` between sessions to steer future iterations. Agents do not promote ideas directly; they emit observations, and the reducer owns promotion, ranking, rejection filtering, and dashboard projection.
 
 ### Stuck Recovery Protocol
 When stuckThreshold consecutive iterations show no progress (default: 3, configurable via config.json):

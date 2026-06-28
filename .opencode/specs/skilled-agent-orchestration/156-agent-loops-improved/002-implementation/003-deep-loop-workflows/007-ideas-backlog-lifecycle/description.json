@@ -18,11 +18,10 @@
     "canonical",
     "lifecycle"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.431Z",
+  "lastUpdated": "2026-06-28T20:51:25.161Z",
   "specId": "007",
   "folderSlug": "ideas-backlog-lifecycle",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

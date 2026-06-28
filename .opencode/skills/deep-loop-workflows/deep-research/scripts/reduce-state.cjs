@@ -27,6 +27,9 @@ const DEFAULT_SPARKLINE_WIDTH = 20;
 const DEFAULT_TREND_FLATLINE_WINDOW = 3;
 const DEFAULT_REJECTED_PATTERN_CATEGORY = 'general';
 const DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD = 0.85;
+const DEFAULT_MIN_IDEA_OBSERVATIONS = 2;
+const MIN_IDEA_OBSERVATIONS = 1;
+const MAX_IDEA_OBSERVATIONS = 10;
 const INBOX_FILE_NAME = 'inbox.jsonl';
 const DEFAULT_INBOX_SOURCE = 'research-inbox';
 const LEGACY_IMPORT_ORIGIN = 'legacy-import';
@@ -36,6 +39,12 @@ const DEFAULT_QUESTION_DECISION = 'needs_decision';
 const MAX_REJECTED_PATTERNS = 100;
 const REJECTED_PATTERN_CANDIDATE_FIELDS = ['text', 'focus', 'nextFocus', 'pattern', 'idea', 'title'];
 const REJECTED_PATTERN_EVENT_FIELDS = ['pattern', 'idea', 'text', 'candidate'];
+const IDEA_EVENT_TEXT_FIELDS = ['idea', 'text', 'title', 'pattern', 'candidate'];
+const IDEA_OBSERVED_EVENTS = new Set(['idea_observed', 'ideaObserved']);
+const IDEA_PROMOTED_EVENTS = new Set(['idea_promoted', 'ideaPromoted']);
+const IDEA_REJECTED_EVENTS = new Set(['idea_rejected', 'ideaRejected']);
+const IDEA_REJECTED_REMOVED_EVENTS = new Set(['idea_rejected_removed', 'ideaRejectedRemoved']);
+const IDEA_REJECTED_RESET_EVENTS = new Set(['idea_rejected_reset', 'ideaRejectedReset']);
 const VALID_QUESTION_ORIGINS = new Set([
   'angle-bank',
   'analyst-strategy',
@@ -137,6 +146,13 @@ function normalizeRejectedPatternId(value) {
   return normalized || null;
 }
 
+function isNamedEvent(record, eventNames) {
+  return record
+    && record.type === 'event'
+    && typeof record.event === 'string'
+    && eventNames.has(record.event);
+}
+
 function readFirstTextField(record, fields) {
   if (!record || typeof record !== 'object' || Array.isArray(record)) {
     return '';
@@ -196,8 +212,9 @@ function normalizeRejectedPatternEvent(record) {
 
   const category = normalizeRejectedPatternCategory(record.category);
   return {
-    id: normalizeRejectedPatternId(record.rejectedId ?? record.id)
+    id: normalizeRejectedPatternId(record.rejectedId ?? record.ideaId ?? record.id)
       || `rejected-${category}-${contentHash(normalizedPattern)}`,
+    ideaId: normalizeRejectedPatternId(record.ideaId),
     pattern,
     normalizedPattern,
     category,
@@ -210,13 +227,13 @@ function normalizeRejectedPatternEvent(record) {
 }
 
 function removeRejectedPatternEntries(entries, record) {
-  const rejectedId = normalizeRejectedPatternId(record.rejectedId ?? record.id);
+  const rejectedId = normalizeRejectedPatternId(record.rejectedId ?? record.ideaId ?? record.id);
   const patternKey = normalizeRejectedPatternKey(readRejectedPatternText(record));
   const rawCategory = normalizeOptionalText(record.category);
   const category = rawCategory ? normalizeRejectedPatternCategory(rawCategory) : null;
 
   return entries.filter((entry) => {
-    if (rejectedId && entry.id === rejectedId) {
+    if (rejectedId && (entry.id === rejectedId || entry.ideaId === rejectedId)) {
       return false;
     }
     if (!patternKey || entry.normalizedPattern !== patternKey) {
@@ -246,19 +263,19 @@ function deriveRejectedPatternIndex(eventRecords, options = {}) {
       continue;
     }
 
-    if (record.event === 'ideaRejectedReset') {
+    if (isNamedEvent(record, IDEA_REJECTED_RESET_EVENTS)) {
       entries.length = 0;
       continue;
     }
 
-    if (record.event === 'ideaRejectedRemoved') {
+    if (isNamedEvent(record, IDEA_REJECTED_REMOVED_EVENTS)) {
       const nextEntries = removeRejectedPatternEntries(entries, record);
       entries.length = 0;
       entries.push(...nextEntries);
       continue;
     }
 
-    if (record.event !== 'ideaRejected') {
+    if (!isNamedEvent(record, IDEA_REJECTED_EVENTS)) {
       continue;
     }
 
@@ -452,6 +469,7 @@ function filterRejectedIdeaCandidates(candidates, rejectedIndex, options = {}) {
 function serializeRejectedPatternEntry(entry) {
   return {
     id: entry.id,
+    ideaId: entry.ideaId,
     pattern: entry.pattern,
     category: entry.category,
     reason: entry.reason,
@@ -460,6 +478,225 @@ function serializeRejectedPatternEntry(entry) {
     sessionId: entry.sessionId,
     generation: entry.generation,
   };
+}
+
+function resolveMinIdeaObservations(config) {
+  const rawValue = config?.minIdeaObservations
+    ?? config?.ideasBacklog?.minIdeaObservations
+    ?? DEFAULT_MIN_IDEA_OBSERVATIONS;
+  const numericValue = Number(rawValue);
+  if (!Number.isFinite(numericValue)) {
+    return DEFAULT_MIN_IDEA_OBSERVATIONS;
+  }
+  return Math.min(
+    MAX_IDEA_OBSERVATIONS,
+    Math.max(MIN_IDEA_OBSERVATIONS, Math.floor(numericValue)),
+  );
+}
+
+function normalizeIdeaCategory(value) {
+  const normalized = normalizeOptionalText(value).toLowerCase();
+  return normalized || 'ideas';
+}
+
+function readIdeaText(record) {
+  return readFirstTextField(record, IDEA_EVENT_TEXT_FIELDS);
+}
+
+function normalizeIdeaId(value, idea, category) {
+  const normalized = normalizeOptionalText(value);
+  if (normalized) {
+    return normalized;
+  }
+  return `idea-${category}-${contentHash(idea)}`;
+}
+
+function normalizeIdeaObservationEvent(record) {
+  const idea = readIdeaText(record);
+  if (!idea) {
+    return null;
+  }
+
+  const category = normalizeIdeaCategory(record.category);
+  const run = isFiniteNumber(record.run) ? record.run : null;
+  return {
+    id: normalizeIdeaId(record.ideaId ?? record.id, idea, category),
+    idea,
+    category,
+    run,
+    timestamp: normalizeOptionalText(record.timestamp),
+    source: normalizeOptionalText(record.source),
+    sessionId: normalizeRejectedPatternId(record.sessionId),
+    generation: isFiniteNumber(record.generation) ? record.generation : null,
+  };
+}
+
+function mergeIdeaObservation(existing, observation) {
+  if (!existing) {
+    return {
+      id: observation.id,
+      idea: observation.idea,
+      category: observation.category,
+      observationCount: 1,
+      firstObservedRun: observation.run,
+      lastObservedRun: observation.run,
+      firstObservedAt: observation.timestamp || null,
+      lastObservedAt: observation.timestamp || null,
+      sources: observation.source ? [observation.source] : [],
+      sessionId: observation.sessionId,
+      generation: observation.generation,
+    };
+  }
+
+  const sources = new Set(existing.sources);
+  if (observation.source) {
+    sources.add(observation.source);
+  }
+
+  return {
+    ...existing,
+    observationCount: existing.observationCount + 1,
+    lastObservedRun: observation.run ?? existing.lastObservedRun,
+    lastObservedAt: observation.timestamp || existing.lastObservedAt,
+    sources: Array.from(sources),
+  };
+}
+
+function isIdeaSuppressed(idea, rejectedIndex) {
+  for (const entry of readRejectedEntries(rejectedIndex)) {
+    if (entry.ideaId && entry.ideaId === idea.id) {
+      return {
+        candidateText: idea.idea,
+        category: idea.category,
+        matchType: 'id',
+        similarity: 1,
+        rejectedPattern: entry.pattern,
+        rejectedPatternId: entry.id,
+        rejectedPatternCategory: entry.category,
+      };
+    }
+  }
+
+  const match = findRejectedPatternMatch(
+    { text: idea.idea, category: idea.category },
+    rejectedIndex,
+    { category: idea.category },
+  );
+  return match
+    ? {
+        candidateText: match.candidateText,
+        category: match.candidateCategory,
+        matchType: match.matchType,
+        similarity: match.similarity,
+        rejectedPattern: match.rejectedPattern.pattern,
+        rejectedPatternId: match.rejectedPattern.id,
+        rejectedPatternCategory: match.rejectedPattern.category,
+      }
+    : null;
+}
+
+function rankPromotedIdeas(ideas) {
+  return ideas
+    .slice()
+    .sort((left, right) =>
+      right.observationCount - left.observationCount
+      || (right.lastObservedRun ?? 0) - (left.lastObservedRun ?? 0)
+      || (left.firstObservedRun ?? 0) - (right.firstObservedRun ?? 0)
+      || left.idea.localeCompare(right.idea),
+    )
+    .map((idea, index) => ({
+      ...idea,
+      rank: index + 1,
+    }));
+}
+
+function deriveIdeaBacklog(eventRecords, options = {}) {
+  const minIdeaObservations = resolveMinIdeaObservations(options);
+  const rejectedIndex = options.rejectedIndex || { entries: [] };
+  const byIdeaId = new Map();
+
+  for (const record of Array.isArray(eventRecords) ? eventRecords : []) {
+    if (!isNamedEvent(record, IDEA_OBSERVED_EVENTS)) {
+      continue;
+    }
+
+    const observation = normalizeIdeaObservationEvent(record);
+    if (!observation) {
+      continue;
+    }
+
+    byIdeaId.set(
+      observation.id,
+      mergeIdeaObservation(byIdeaId.get(observation.id), observation),
+    );
+  }
+
+  const observedIdeas = Array.from(byIdeaId.values())
+    .sort((left, right) =>
+      (left.firstObservedRun ?? 0) - (right.firstObservedRun ?? 0)
+      || left.idea.localeCompare(right.idea),
+    );
+  const promotionCandidates = observedIdeas
+    .filter((idea) => idea.observationCount >= minIdeaObservations);
+  const suppressedIdeas = [];
+  const promotableIdeas = [];
+
+  for (const idea of promotionCandidates) {
+    const suppression = isIdeaSuppressed(idea, rejectedIndex);
+    if (suppression) {
+      suppressedIdeas.push({
+        id: idea.id,
+        idea: idea.idea,
+        observationCount: idea.observationCount,
+        ...suppression,
+      });
+      continue;
+    }
+    promotableIdeas.push(idea);
+  }
+
+  return {
+    minIdeaObservations,
+    observedIdeas,
+    promotedIdeas: rankPromotedIdeas(promotableIdeas),
+    suppressedIdeas,
+  };
+}
+
+function buildIdeaPromotionEvents(promotedIdeas, eventRecords, context = {}) {
+  const existingPromotedIdeaIds = new Set(
+    eventRecords
+      .filter((record) => isNamedEvent(record, IDEA_PROMOTED_EVENTS))
+      .map((record) => normalizeIdeaId(record.ideaId ?? record.id, readIdeaText(record), normalizeIdeaCategory(record.category)))
+      .filter(Boolean),
+  );
+
+  return promotedIdeas
+    .filter((idea) => !existingPromotedIdeaIds.has(idea.id))
+    .map((idea) => ({
+      type: 'event',
+      event: 'idea_promoted',
+      mode: 'research',
+      run: context.run ?? idea.lastObservedRun ?? null,
+      ideaId: idea.id,
+      idea: idea.idea,
+      category: idea.category,
+      observationCount: idea.observationCount,
+      minIdeaObservations: context.minIdeaObservations ?? null,
+      firstObservedRun: idea.firstObservedRun,
+      lastObservedRun: idea.lastObservedRun,
+      timestamp: context.timestamp || new Date().toISOString(),
+      sessionId: context.sessionId ?? idea.sessionId ?? null,
+      generation: context.generation ?? idea.generation ?? null,
+    }));
+}
+
+function appendIdeaPromotionEvents(stateLogPath, promotedIdeas, eventRecords, context = {}) {
+  const rows = buildIdeaPromotionEvents(promotedIdeas, eventRecords, context);
+  if (rows.length) {
+    fs.appendFileSync(stateLogPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+  }
+  return rows;
 }
 
 function uniqueSuppressedCandidates(items) {
@@ -504,6 +741,7 @@ function filterItemTextField(items, field, rejectedIndex, category) {
 function buildSuppressedNextFocusCandidates({
   openQuestions,
   carriedForwardOpenQuestions,
+  promotedIdeas,
   iterationFiles,
   iterationRecords,
   blockedStopHistory,
@@ -512,6 +750,15 @@ function buildSuppressedNextFocusCandidates({
   const suppressed = [];
   suppressed.push(...filterRejectedIdeaCandidates(openQuestions, rejectedIndex, { category: 'next-focus' }).suppressed);
   suppressed.push(...filterRejectedIdeaCandidates(carriedForwardOpenQuestions, rejectedIndex, { category: 'next-focus' }).suppressed);
+  suppressed.push(...filterRejectedIdeaCandidates(
+    (Array.isArray(promotedIdeas) ? promotedIdeas : []).map((idea) => ({
+      text: idea.idea,
+      category: idea.category || 'ideas',
+      ideaId: idea.id,
+    })),
+    rejectedIndex,
+    { category: 'ideas' },
+  ).suppressed);
   suppressed.push(...iterationFiles.flatMap((iteration) =>
     filterRejectedIdeaCandidates(
       iteration.findings.map((text) => ({ text, category: 'next-focus', run: iteration.run, source: 'iteration-finding' })),
@@ -1677,12 +1924,25 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
   }
 
   const filteredInputs = filterNextFocusInputs(registry, iterationFiles, iterationRecords);
-  return deriveNextFocusFromContinuity({
+  const continuityFocus = deriveNextFocusFromContinuity({
     iterationFiles: filteredInputs.iterationFiles,
     iterationRecords: filteredInputs.iterationRecords,
     carriedForwardOpenQuestions: filteredInputs.carriedForwardOpenQuestions,
     machineOpenQuestions: filteredInputs.openQuestions,
   });
+
+  const normalizedFocus = normalizeOptionalText(continuityFocus).toLowerCase();
+  const shouldUseIdeaFocus = !normalizedFocus
+    || normalizedFocus === '[none yet]'
+    || normalizedFocus === '[all tracked questions are resolved]';
+  if (!shouldUseIdeaFocus) {
+    return continuityFocus;
+  }
+
+  const promotedIdea = Array.isArray(registry.promotedIdeas)
+    ? registry.promotedIdeas[0]
+    : null;
+  return promotedIdea?.idea || continuityFocus;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1775,6 +2035,10 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     fuzzyThreshold: reducerState.rejectedPatternFuzzyThreshold,
   });
   const rejectedPatterns = rejectedPatternIndex.entries.map(serializeRejectedPatternEntry);
+  const ideaBacklog = deriveIdeaBacklog(eventRecords, {
+    minIdeaObservations: reducerState.minIdeaObservations,
+    rejectedIndex: rejectedPatternIndex,
+  });
   const graphConvergence = buildGraphConvergenceRollup(eventRecords);
   const lineage = reducerState.lineage && typeof reducerState.lineage === 'object'
     ? reducerState.lineage
@@ -1796,6 +2060,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const suppressedCandidates = buildSuppressedNextFocusCandidates({
     openQuestions,
     carriedForwardOpenQuestions,
+    promotedIdeas: ideaBacklog.promotedIdeas,
     iterationFiles,
     iterationRecords,
     blockedStopHistory,
@@ -1830,6 +2095,10 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     },
     rejectedPatternWarnings: rejectedPatternIndex.warnings,
     suppressedCandidates,
+    minIdeaObservations: ideaBacklog.minIdeaObservations,
+    observedIdeas: ideaBacklog.observedIdeas,
+    promotedIdeas: ideaBacklog.promotedIdeas,
+    suppressedIdeas: ideaBacklog.suppressedIdeas,
     blockedStopHistory,
     graphConvergenceScore: graphConvergence.graphConvergenceScore,
     graphDecision: graphConvergence.graphDecision,
@@ -1843,6 +2112,9 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       keyFindings: keyFindings.length,
       rejectedPatterns: rejectedPatterns.length,
       suppressedCandidates: suppressedCandidates.length,
+      observedIdeas: ideaBacklog.observedIdeas.length,
+      promotedIdeas: ideaBacklog.promotedIdeas.length,
+      suppressedIdeas: ideaBacklog.suppressedIdeas.length,
       ...(questionConflicts.length ? { questionConflicts: questionConflicts.length } : {}),
       convergenceScore,
       coverageBySources,
@@ -1975,6 +2247,27 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, iterat
       'next-focus',
     );
   }
+  if (registry.observedIdeas.length || registry.promotedIdeas.length || registry.suppressedIdeas.length) {
+    const observedLines = registry.observedIdeas
+      .map((entry) =>
+        `- Observed ${entry.observationCount}/${registry.minIdeaObservations}: ${entry.idea} [${entry.category}]`,
+      );
+    const promotedLines = registry.promotedIdeas
+      .map((entry) =>
+        `- Promoted #${entry.rank}: ${entry.idea} (${entry.observationCount} observations)`,
+      );
+    const suppressedLines = registry.suppressedIdeas
+      .map((entry) =>
+        `- Suppressed: ${entry.idea} (${entry.matchType} match to ${entry.rejectedPattern})`,
+      );
+    updated = upsertAnchorSectionBefore(
+      updated,
+      'ideas-backlog',
+      '11C. IDEAS BACKLOG',
+      blockFromBulletList(promotedLines.concat(observedLines, suppressedLines)),
+      'next-focus',
+    );
+  }
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
   return updated;
 }
@@ -2016,6 +2309,27 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     );
   const rejectedPatternWarningLines = Array.isArray(registry.rejectedPatternWarnings)
     ? registry.rejectedPatternWarnings.map((warning) => `- ${warning}`)
+    : [];
+  const observedIdeaLines = registry.observedIdeas
+    .map((entry) => `- ${entry.idea} [${entry.category}] observed ${entry.observationCount}/${registry.minIdeaObservations}`);
+  const promotedIdeaLines = registry.promotedIdeas
+    .map((entry) => `- #${entry.rank} ${entry.idea} (${entry.observationCount} observations)`);
+  const suppressedIdeaLines = registry.suppressedIdeas
+    .map((entry) => `- ${entry.idea} suppressed by ${entry.rejectedPattern} (${entry.matchType})`);
+  const ideasBacklogSection = observedIdeaLines.length || promotedIdeaLines.length || suppressedIdeaLines.length
+    ? [
+        '<!-- ANCHOR:ideas-backlog -->',
+        '## Ideas Backlog',
+        `- minIdeaObservations: ${registry.minIdeaObservations}`,
+        `- Observed ideas: ${observedIdeaLines.length}`,
+        `- Promoted ideas: ${promotedIdeaLines.length}`,
+        `- Suppressed ideas: ${suppressedIdeaLines.length}`,
+        ...promotedIdeaLines,
+        ...observedIdeaLines,
+        ...suppressedIdeaLines,
+        '',
+        '<!-- /ANCHOR:ideas-backlog -->',
+      ]
     : [];
   const rejectedPatternSection = rejectedPatternLines.length || suppressedCandidateLines.length || rejectedPatternWarningLines.length
     ? [
@@ -2130,6 +2444,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       : ['- None yet'],
     '',
     '<!-- /ANCHOR:dead-ends -->',
+    ...ideasBacklogSection,
     ...rejectedPatternSection,
     '<!-- ANCHOR:next-focus -->',
     '## 7. NEXT FOCUS',
@@ -2244,6 +2559,7 @@ function reduceResearchState(specFolder, options = {}) {
     status,
     questionConflicts: questionResolution.questionConflicts,
     rejectedPatternFuzzyThreshold: resolveRejectedPatternFuzzyThreshold(config),
+    minIdeaObservations: resolveMinIdeaObservations(config),
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
@@ -2303,6 +2619,12 @@ function reduceResearchState(specFolder, options = {}) {
   if (write) {
     appendQuestionConflictEvents(stateLogPath, questionResolution.questionConflicts, events, {
       run: records.at(-1)?.run ?? null,
+      sessionId: registry.sessionId || null,
+      generation: registry.generation ?? null,
+    });
+    appendIdeaPromotionEvents(stateLogPath, registry.promotedIdeas, events, {
+      run: records.at(-1)?.run ?? null,
+      minIdeaObservations: registry.minIdeaObservations,
       sessionId: registry.sessionId || null,
       generation: registry.generation ?? null,
     });
