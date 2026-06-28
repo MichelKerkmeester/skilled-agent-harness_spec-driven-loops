@@ -1,6 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fallback Router Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import {
+  createFallbackRouter,
   type ModelProfile,
   type ModelRegistry,
   resolveFallback,
@@ -99,5 +104,64 @@ describe('fallback-router', () => {
       action: 'fail-fast',
       reason: 'unknown model missing-model; no quota pool available for fallback routing',
     });
+  });
+
+  it('routes typed timeout failures with trace metadata', () => {
+    const registry: ModelRegistry = {
+      models: [
+        {
+          id: 'swe-1.6',
+          quota_pool: 'cognition-free',
+          fallback_target: null,
+          onFailureTarget: { timeout: 'haiku' },
+          routeScope: 'executor',
+        },
+        {
+          id: 'haiku',
+          quota_pool: 'anthropic',
+          fallback_target: null,
+          routeScope: 'executor',
+        },
+      ],
+    };
+
+    const router = createFallbackRouter(registry);
+
+    expect(router.resolve('swe-1.6', ['swe-1.6', 'haiku'], {
+      failureKind: 'timeout',
+      routeGroupId: 'executor-fallback-1',
+    })).toEqual({
+      action: 'fallback',
+      target: 'haiku',
+      reason: 'cognition-free pool exhausted, routing swe-1.6 to separate anthropic pool target haiku',
+      failureKind: 'timeout',
+      routeGroupId: 'executor-fallback-1',
+      hopIndex: 0,
+    });
+  });
+
+  it('rejects cyclic fallback graphs before routing can dispatch', () => {
+    const registry: ModelRegistry = {
+      models: [
+        {
+          id: 'swe-1.6',
+          quota_pool: 'cognition-free',
+          fallback_target: null,
+          onFailureTarget: { timeout: 'haiku' },
+          routeScope: 'executor',
+        },
+        {
+          id: 'haiku',
+          quota_pool: 'anthropic',
+          fallback_target: null,
+          onFailureTarget: { timeout: 'swe-1.6' },
+          routeScope: 'executor',
+        },
+      ],
+    };
+
+    expect(() => createFallbackRouter(registry)).toThrow(
+      'fallback graph cycle detected: swe-1.6 -> haiku -> swe-1.6',
+    );
   });
 });

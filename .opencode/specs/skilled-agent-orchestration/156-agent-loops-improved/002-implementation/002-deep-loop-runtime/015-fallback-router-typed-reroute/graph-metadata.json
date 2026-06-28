@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "015-fallback-router-typed-reroute summary"
     ],
     "key_topics": [
       "fallback-router",
@@ -39,9 +39,10 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "fallback-router.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fallback-router.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On executor failure the fallback router retries flat without knowing the failure kind, routing all failures identically and producing no trace of the routing decision",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-06-28T14:29:34.948Z",
+    "last_save_at": "2026-06-28T19:51:04.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4800be33a244533d90babf3d383a96a1972297f327684a0cf29c6adffbb5e380",
+    "source_fingerprint": "sha256:9415c45743cb768c35bba430100d85a796c65df3dd805d9ee9bcda43d8c08987",
     "source_doc_hashes": {
-      "spec.md": "bea37aea8ee40a17a4f40f48da696117f9a6db4ddc1edc8764483299375a73b5",
+      "spec.md": "521bbeab55ed58f993ad53467a6d666f6e2c65996b14ee89c0a4857beaef41f7",
       "plan.md": "f02088b24dddac9d1829c0b6ae9fa88389f6cd38bcbc10a70ddf454352a6ccc5",
       "tasks.md": "219f1f7e9bf43f66546ff1a64ced176aeb5e4016df3156397655180debad4cd0",
-      "implementation-summary.md": "8d57364229a7d61b589a822e10ce176ccff1693c453b407dabd063fe14d79fab"
+      "implementation-summary.md": "8672b0251acfa2497c2fa593886c8c96d4897249605badd1c8ec37ecef7cab00"
     },
     "last_active_child_id": null,
     "last_active_at": null
