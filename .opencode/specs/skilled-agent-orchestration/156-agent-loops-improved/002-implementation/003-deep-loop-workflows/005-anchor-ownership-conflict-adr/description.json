@@ -17,11 +17,10 @@
     "unresolved",
     "markd"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.157Z",
+  "lastUpdated": "2026-06-28T20:20:28.742Z",
   "specId": "005",
   "folderSlug": "anchor-ownership-conflict-adr",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

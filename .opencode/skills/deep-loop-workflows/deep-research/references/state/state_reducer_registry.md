@@ -40,6 +40,8 @@ The reducer owns derived state. Manual edits to reducer-managed outputs are temp
 The workflow reducer:
 
 - reads `deep-research-state.jsonl`, per-iteration deltas, strategy, and iteration markdown;
+- reads `inbox.jsonl` as immutable question input;
+- reads the prior registry as canonical question state when present;
 - validates required iteration artifacts;
 - updates machine-owned strategy sections;
 - regenerates the findings registry;
@@ -69,6 +71,14 @@ The canonical registry stores open/resolved questions, findings, ruled-out direc
   "lastUpdated": "2026-05-24T00:00:00Z"
 }
 ```
+
+Question ownership:
+
+- `inbox.jsonl` is append-only input for external questions.
+- The registry is the canonical owner of promoted question text, provenance, and operator decisions.
+- The strategy `key-questions` block is a generated projection and is rewritten from registry state on every reduce step.
+
+When an inbox row targets an existing registry question by promoted question id or inbox id but carries different text, the reducer records a conflict instead of overwriting markdown. Conflict records use `operatorDecision` values of `accepted`, `rejected`, `superseded`, or `needs_decision`; the default unresolved decision is `needs_decision`. The emitted `question_conflict` JSONL event includes both `inboxValue` and `registryValue`.
 
 The currently documented live registry name is `deep-research-findings-registry.json` in command state paths, with `findings-registry.json` still appearing in older docs and packet examples. New docs should prefer the command state path and mention the older name only when explaining compatibility.
 

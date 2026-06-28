@@ -29,11 +29,19 @@ const INBOX_FILE_NAME = 'inbox.jsonl';
 const DEFAULT_INBOX_SOURCE = 'research-inbox';
 const LEGACY_IMPORT_ORIGIN = 'legacy-import';
 const LEGACY_IMPORT_SOURCE = 'key-questions';
+const QUESTION_CONFLICT_EVENT = 'question_conflict';
+const DEFAULT_QUESTION_DECISION = 'needs_decision';
 const VALID_QUESTION_ORIGINS = new Set([
   'angle-bank',
   'analyst-strategy',
   'operator',
   LEGACY_IMPORT_ORIGIN,
+]);
+const VALID_QUESTION_DECISIONS = new Set([
+  'accepted',
+  'rejected',
+  'superseded',
+  DEFAULT_QUESTION_DECISION,
 ]);
 const SPARKLINE_BLOCKS = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'];
 
@@ -92,6 +100,11 @@ function normalizeQuestionIteration(value) {
 function normalizeQuestionId(value) {
   const normalized = normalizeOptionalText(value);
   return normalized || null;
+}
+
+function normalizeQuestionDecision(value) {
+  const decision = normalizeOptionalText(value).toLowerCase();
+  return VALID_QUESTION_DECISIONS.has(decision) ? decision : null;
 }
 
 function contentHash(value) {
@@ -347,6 +360,367 @@ function readInboxQuestions(inboxPath) {
     questions,
     warnings,
     corruptionWarnings,
+  };
+}
+
+function readPriorQuestionRegistry(...registryPaths) {
+  for (const registryPath of registryPaths) {
+    if (!fs.existsSync(registryPath)) {
+      continue;
+    }
+
+    try {
+      return readJson(registryPath);
+    } catch (error) {
+      console.warn(
+        `[deep-research] ignored unreadable prior question registry: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+
+  return null;
+}
+
+function normalizeRegistryQuestion(question, index) {
+  if (!question || typeof question !== 'object' || Array.isArray(question)) {
+    return null;
+  }
+
+  const text = normalizeOptionalText(question.text);
+  if (!text) {
+    return null;
+  }
+
+  const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
+  const inboxId = normalizeQuestionId(question.inboxId);
+  const id = normalizeQuestionId(question.id)
+    || promotedQuestionId
+    || `question-${index + 1}-${slugify(text)}`;
+  const operatorDecision = normalizeQuestionDecision(question.operatorDecision)
+    || normalizeQuestionDecision(question.questionDecision);
+
+  return {
+    checked: Boolean(question.checked || question.resolved),
+    id,
+    inboxId,
+    text,
+    origin: normalizeQuestionOrigin(question.origin),
+    source: normalizeQuestionSource(question.source, LEGACY_IMPORT_SOURCE),
+    injectedAtIteration: normalizeQuestionIteration(question.injectedAtIteration ?? question.addedAtIteration),
+    promotedQuestionId,
+    ...(operatorDecision ? { operatorDecision } : {}),
+  };
+}
+
+function collectPriorRegistryQuestions(registry) {
+  if (!registry || typeof registry !== 'object' || Array.isArray(registry)) {
+    return [];
+  }
+
+  const candidates = [];
+  for (const key of ['keyQuestions', 'openQuestions', 'resolvedQuestions']) {
+    if (Array.isArray(registry[key])) {
+      candidates.push(...registry[key]);
+    }
+  }
+
+  const seen = new Set();
+  const questions = [];
+  for (const candidate of candidates) {
+    const question = normalizeRegistryQuestion(candidate, questions.length);
+    if (!question) {
+      continue;
+    }
+
+    const key = question.id || question.inboxId || contentHash(question.text);
+    if (seen.has(key)) {
+      continue;
+    }
+
+    seen.add(key);
+    questions.push(question);
+  }
+  return questions;
+}
+
+function indexCanonicalQuestions(questions) {
+  const byId = new Map();
+  const byInboxId = new Map();
+  const byText = new Map();
+
+  questions.forEach((question, index) => {
+    if (question.id) {
+      byId.set(question.id, index);
+    }
+    if (question.promotedQuestionId) {
+      byId.set(question.promotedQuestionId, index);
+    }
+    if (question.inboxId) {
+      byInboxId.set(question.inboxId, index);
+    }
+    byText.set(contentHash(question.text), index);
+  });
+
+  return { byId, byInboxId, byText };
+}
+
+function findCanonicalQuestionIndex(index, question) {
+  const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
+  if (promotedQuestionId && index.byId.has(promotedQuestionId)) {
+    return index.byId.get(promotedQuestionId);
+  }
+
+  const id = normalizeQuestionId(question.id);
+  if (id && index.byId.has(id)) {
+    return index.byId.get(id);
+  }
+
+  const inboxId = normalizeQuestionId(question.inboxId);
+  if (inboxId && index.byInboxId.has(inboxId)) {
+    return index.byInboxId.get(inboxId);
+  }
+
+  const text = normalizeOptionalText(question.text);
+  if (text) {
+    return index.byText.get(contentHash(text));
+  }
+
+  return undefined;
+}
+
+function buildQuestionConflict(registryQuestion, inboxQuestion, operatorDecision) {
+  const registryValue = normalizeText(registryQuestion.text);
+  const inboxValue = normalizeText(inboxQuestion.text);
+  const questionId = normalizeQuestionId(registryQuestion.id)
+    || normalizeQuestionId(inboxQuestion.promotedQuestionId)
+    || `question-${contentHash(registryValue)}`;
+  const inboxId = normalizeQuestionId(inboxQuestion.inboxId);
+  const conflictId = `question-conflict-${contentHash([
+    questionId,
+    inboxId || '',
+    registryValue,
+    inboxValue,
+  ].join('|'))}`;
+
+  return {
+    conflictId,
+    questionId,
+    inboxId,
+    operatorDecision,
+    registryValue,
+    inboxValue,
+    source: normalizeQuestionSource(inboxQuestion.source, DEFAULT_INBOX_SOURCE),
+    origin: normalizeQuestionOrigin(inboxQuestion.origin),
+    injectedAtIteration: normalizeQuestionIteration(inboxQuestion.injectedAtIteration),
+  };
+}
+
+function updateIndexedQuestion(questions, index, questionIndex, nextQuestion) {
+  const previous = questions[questionIndex];
+  if (previous.id) {
+    index.byId.delete(previous.id);
+  }
+  if (previous.promotedQuestionId) {
+    index.byId.delete(previous.promotedQuestionId);
+  }
+  if (previous.inboxId) {
+    index.byInboxId.delete(previous.inboxId);
+  }
+  index.byText.delete(contentHash(previous.text));
+
+  questions[questionIndex] = nextQuestion;
+  if (nextQuestion.id) {
+    index.byId.set(nextQuestion.id, questionIndex);
+  }
+  if (nextQuestion.promotedQuestionId) {
+    index.byId.set(nextQuestion.promotedQuestionId, questionIndex);
+  }
+  if (nextQuestion.inboxId) {
+    index.byInboxId.set(nextQuestion.inboxId, questionIndex);
+  }
+  index.byText.set(contentHash(nextQuestion.text), questionIndex);
+}
+
+function addIndexedQuestion(questions, index, question) {
+  const questionIndex = questions.length;
+  questions.push(question);
+  if (question.id) {
+    index.byId.set(question.id, questionIndex);
+  }
+  if (question.promotedQuestionId) {
+    index.byId.set(question.promotedQuestionId, questionIndex);
+  }
+  if (question.inboxId) {
+    index.byInboxId.set(question.inboxId, questionIndex);
+  }
+  index.byText.set(contentHash(question.text), questionIndex);
+}
+
+function mergeQuestionMetadata(existing, incoming) {
+  return {
+    ...existing,
+    inboxId: existing.inboxId || normalizeQuestionId(incoming.inboxId),
+    source: existing.source || normalizeQuestionSource(incoming.source, DEFAULT_INBOX_SOURCE),
+    origin: existing.origin || normalizeQuestionOrigin(incoming.origin),
+    injectedAtIteration: existing.injectedAtIteration || normalizeQuestionIteration(incoming.injectedAtIteration),
+    promotedQuestionId: existing.promotedQuestionId || normalizeQuestionId(incoming.promotedQuestionId),
+  };
+}
+
+function applyQuestionConflictDecision(registryQuestion, inboxQuestion, operatorDecision, conflict) {
+  if (operatorDecision === 'accepted') {
+    return {
+      ...registryQuestion,
+      ...inboxQuestion,
+      id: registryQuestion.id,
+      text: normalizeText(inboxQuestion.text),
+      checked: Boolean(registryQuestion.checked || inboxQuestion.checked),
+      inboxId: normalizeQuestionId(inboxQuestion.inboxId) || registryQuestion.inboxId,
+      promotedQuestionId: normalizeQuestionId(inboxQuestion.promotedQuestionId) || registryQuestion.promotedQuestionId,
+      operatorDecision,
+      conflictId: conflict.conflictId,
+    };
+  }
+
+  return {
+    ...mergeQuestionMetadata(registryQuestion, inboxQuestion),
+    operatorDecision,
+    conflictId: conflict.conflictId,
+  };
+}
+
+function buildQuestionFields(question) {
+  return {
+    id: question.id,
+    inboxId: question.inboxId,
+    text: question.text,
+    origin: question.origin,
+    source: question.source,
+    injectedAtIteration: question.injectedAtIteration,
+    promotedQuestionId: question.promotedQuestionId,
+    addedAtIteration: question.addedAtIteration,
+    resolvedAtIteration: question.resolvedAtIteration,
+    ...(question.operatorDecision ? { operatorDecision: question.operatorDecision } : {}),
+    ...(question.conflictId ? { conflictId: question.conflictId } : {}),
+  };
+}
+
+function appendQuestionConflictEvents(stateLogPath, questionConflicts, eventRecords, context = {}) {
+  if (!questionConflicts.length) {
+    return [];
+  }
+
+  const existingConflictIds = new Set(
+    eventRecords
+      .filter((record) => record.event === QUESTION_CONFLICT_EVENT)
+      .map((record) => normalizeQuestionId(record.conflictId))
+      .filter(Boolean),
+  );
+  const rows = [];
+
+  for (const conflict of questionConflicts) {
+    if (existingConflictIds.has(conflict.conflictId)) {
+      continue;
+    }
+
+    rows.push({
+      type: 'event',
+      event: QUESTION_CONFLICT_EVENT,
+      mode: 'research',
+      run: context.run ?? null,
+      conflictId: conflict.conflictId,
+      questionId: conflict.questionId,
+      inboxId: conflict.inboxId,
+      operatorDecision: conflict.operatorDecision,
+      inboxValue: conflict.inboxValue,
+      registryValue: conflict.registryValue,
+      source: conflict.source,
+      origin: conflict.origin,
+      injectedAtIteration: conflict.injectedAtIteration,
+      timestamp: context.timestamp || new Date().toISOString(),
+      sessionId: context.sessionId ?? null,
+      generation: context.generation ?? null,
+    });
+  }
+
+  if (rows.length) {
+    fs.appendFileSync(stateLogPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+  }
+
+  return rows;
+}
+
+/**
+ * Resolve strategy and inbox question inputs against the canonical registry.
+ *
+ * @param {Object} inputs - Question source inputs.
+ * @param {Array<Object>} inputs.strategyQuestions - Questions parsed from the strategy projection.
+ * @param {Array<Object>} inputs.inboxQuestions - Immutable injected question rows.
+ * @param {Object|null} inputs.priorRegistry - Prior reducer registry, when available.
+ * @returns {{questions: Array<Object>, questionConflicts: Array<Object>}} Resolved canonical questions and conflict records.
+ */
+function resolveQuestionConflicts({ strategyQuestions, inboxQuestions, priorRegistry }) {
+  const priorQuestions = collectPriorRegistryQuestions(priorRegistry);
+  if (!priorQuestions.length) {
+    return {
+      questions: mergeQuestionSources(strategyQuestions, inboxQuestions),
+      questionConflicts: [],
+    };
+  }
+
+  const questions = priorQuestions.map((question) => ({ ...question }));
+  const index = indexCanonicalQuestions(questions);
+  const questionConflicts = [];
+
+  for (const strategyQuestion of strategyQuestions) {
+    const questionIndex = findCanonicalQuestionIndex(index, strategyQuestion);
+    if (questionIndex !== undefined) {
+      continue;
+    }
+    const question = normalizeRegistryQuestion(strategyQuestion, questions.length);
+    if (question) {
+      addIndexedQuestion(questions, index, question);
+    }
+  }
+
+  for (const inboxQuestion of inboxQuestions) {
+    const questionIndex = findCanonicalQuestionIndex(index, inboxQuestion);
+    if (questionIndex === undefined) {
+      const question = normalizeRegistryQuestion(inboxQuestion, questions.length);
+      if (question) {
+        addIndexedQuestion(questions, index, question);
+      }
+      continue;
+    }
+
+    const registryQuestion = questions[questionIndex];
+    const registryValue = normalizeText(registryQuestion.text);
+    const inboxValue = normalizeText(inboxQuestion.text);
+    if (registryValue === inboxValue) {
+      updateIndexedQuestion(
+        questions,
+        index,
+        questionIndex,
+        mergeQuestionMetadata(registryQuestion, inboxQuestion),
+      );
+      continue;
+    }
+
+    const operatorDecision = normalizeQuestionDecision(registryQuestion.operatorDecision)
+      || DEFAULT_QUESTION_DECISION;
+    const conflict = buildQuestionConflict(registryQuestion, inboxQuestion, operatorDecision);
+    questionConflicts.push(conflict);
+    updateIndexedQuestion(
+      questions,
+      index,
+      questionIndex,
+      applyQuestionConflictDecision(registryQuestion, inboxQuestion, operatorDecision, conflict),
+    );
+  }
+
+  return {
+    questions: mergeQuestionSources([], questions.filter(Boolean)),
+    questionConflicts,
   };
 }
 
@@ -866,17 +1240,22 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const keyedQuestions = strategyQuestions.map((question, index) => {
     const normalized = normalizeText(question.text);
     const resolved = question.checked || answeredSet.has(normalized);
+    const id = normalizeQuestionId(question.id);
     const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
     const inboxId = normalizeQuestionId(question.inboxId);
     const injectedAtIteration = normalizeQuestionIteration(question.injectedAtIteration);
+    const operatorDecision = normalizeQuestionDecision(question.operatorDecision);
+    const conflictId = normalizeQuestionId(question.conflictId);
     return {
-      id: promotedQuestionId || `question-${index + 1}-${slugify(normalized)}`,
+      id: id || promotedQuestionId || `question-${index + 1}-${slugify(normalized)}`,
       inboxId,
       text: normalized,
       origin: normalizeQuestionOrigin(question.origin),
       source: normalizeQuestionSource(question.source, LEGACY_IMPORT_SOURCE),
       injectedAtIteration,
       promotedQuestionId,
+      ...(operatorDecision ? { operatorDecision } : {}),
+      ...(conflictId ? { conflictId } : {}),
       addedAtIteration: injectedAtIteration,
       resolvedAtIteration: resolved
         ? questionCoverageRecords.find((record) =>
@@ -936,16 +1315,14 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     ? reducerState.lineage
     : {};
   const openQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => ({
-    id: question.id,
-    inboxId: question.inboxId,
-    text: question.text,
-    origin: question.origin,
-    source: question.source,
-    injectedAtIteration: question.injectedAtIteration,
-    promotedQuestionId: question.promotedQuestionId,
-    addedAtIteration: question.addedAtIteration,
-    resolvedAtIteration: null,
+    ...buildQuestionFields({
+      ...question,
+      resolvedAtIteration: null,
+    }),
   }));
+  const questionConflicts = Array.isArray(reducerState.questionConflicts)
+    ? reducerState.questionConflicts
+    : [];
   const carriedForwardOpenQuestions = buildCarriedForwardOpenQuestions({
     iterationFiles,
     iterationRecords,
@@ -961,28 +1338,12 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     continuedFromRun: lineage.continuedFromRun ?? null,
     terminalStop: reducerState.terminalStop || null,
     keyQuestions: keyedQuestions.map((question) => ({
-      id: question.id,
-      inboxId: question.inboxId,
-      text: question.text,
-      origin: question.origin,
-      source: question.source,
-      injectedAtIteration: question.injectedAtIteration,
-      promotedQuestionId: question.promotedQuestionId,
-      addedAtIteration: question.addedAtIteration,
-      resolvedAtIteration: question.resolvedAtIteration,
+      ...buildQuestionFields(question),
       resolved: question.resolved,
     })),
     openQuestions,
     resolvedQuestions: keyedQuestions.filter((question) => question.resolved).map((question) => ({
-      id: question.id,
-      inboxId: question.inboxId,
-      text: question.text,
-      origin: question.origin,
-      source: question.source,
-      injectedAtIteration: question.injectedAtIteration,
-      promotedQuestionId: question.promotedQuestionId,
-      addedAtIteration: question.addedAtIteration,
-      resolvedAtIteration: question.resolvedAtIteration,
+      ...buildQuestionFields(question),
     })),
     carriedForwardOpenQuestions,
     uncoveredQuestions,
@@ -992,12 +1353,14 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     graphConvergenceScore: graphConvergence.graphConvergenceScore,
     graphDecision: graphConvergence.graphDecision,
     graphBlockers: graphConvergence.graphBlockers,
+    ...(questionConflicts.length ? { questionConflicts } : {}),
     metrics: {
       iterationsCompleted: iterationRecords.filter((record) => record.type === 'iteration').length,
       openQuestions: keyedQuestions.filter((question) => !question.resolved).length,
       resolvedQuestions: keyedQuestions.filter((question) => question.resolved).length,
       carriedForwardOpenQuestions: carriedForwardOpenQuestions.length,
       keyFindings: keyFindings.length,
+      ...(questionConflicts.length ? { questionConflicts: questionConflicts.length } : {}),
       convergenceScore,
       coverageBySources,
     },
@@ -1304,6 +1667,7 @@ function reduceResearchState(specFolder, options = {}) {
   const stateLogPath = path.join(researchDir, 'deep-research-state.jsonl');
   const strategyPath = path.join(researchDir, 'deep-research-strategy.md');
   const registryPath = path.join(researchDir, 'findings-registry.json');
+  const documentedRegistryPath = path.join(researchDir, 'deep-research-findings-registry.json');
   const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
   const resourceMapPath = path.join(researchDir, 'resource-map.md');
   const inboxPath = path.join(researchDir, INBOX_FILE_NAME);
@@ -1317,7 +1681,13 @@ function reduceResearchState(specFolder, options = {}) {
   const strategyContent = readUtf8(strategyPath);
   const strategyQuestions = parseStrategyQuestions(strategyContent);
   const inbox = readInboxQuestions(inboxPath);
-  const questionInputs = mergeQuestionSources(strategyQuestions, inbox.questions);
+  const priorRegistry = readPriorQuestionRegistry(registryPath, documentedRegistryPath);
+  const questionResolution = resolveQuestionConflicts({
+    strategyQuestions,
+    inboxQuestions: inbox.questions,
+    priorRegistry,
+  });
+  const questionInputs = questionResolution.questions;
   if (write) {
     warnLegacyImportQuestions(questionInputs);
   }
@@ -1351,6 +1721,7 @@ function reduceResearchState(specFolder, options = {}) {
     lineage,
     terminalStop,
     status,
+    questionConflicts: questionResolution.questionConflicts,
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
@@ -1403,6 +1774,11 @@ function reduceResearchState(specFolder, options = {}) {
   }
 
   if (write) {
+    appendQuestionConflictEvents(stateLogPath, questionResolution.questionConflicts, events, {
+      run: records.at(-1)?.run ?? null,
+      sessionId: registry.sessionId || null,
+      generation: registry.generation ?? null,
+    });
     writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
     writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);
     writeUtf8(dashboardPath, dashboard);
@@ -1505,4 +1881,5 @@ module.exports = {
   reduceResearchState,
   renderSparkline,
   readStateLogForReduction,
+  resolveQuestionConflicts,
 };

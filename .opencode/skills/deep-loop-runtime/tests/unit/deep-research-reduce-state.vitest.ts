@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -18,6 +18,13 @@ const {
   }) => {
     registry: {
       status?: string;
+      keyQuestions?: Array<{
+        id: string;
+        inboxId?: string | null;
+        text: string;
+        operatorDecision?: string;
+        conflictId?: string;
+      }>;
       openQuestions?: Array<{
         id: string;
         inboxId?: string | null;
@@ -26,6 +33,8 @@ const {
         source?: string;
         injectedAtIteration?: number;
         promotedQuestionId?: string | null;
+        operatorDecision?: string;
+        conflictId?: string;
       }>;
       resolvedQuestions?: Array<{
         id: string;
@@ -35,6 +44,16 @@ const {
         source?: string;
         injectedAtIteration?: number;
         promotedQuestionId?: string | null;
+        operatorDecision?: string;
+        conflictId?: string;
+      }>;
+      questionConflicts?: Array<{
+        conflictId: string;
+        questionId: string;
+        inboxId?: string | null;
+        operatorDecision: string;
+        registryValue: string;
+        inboxValue: string;
       }>;
     };
     strategy: string;
@@ -123,6 +142,21 @@ function writeInbox(specFolder: string, records: Array<Record<string, unknown>>)
     `${records.map((record) => JSON.stringify(record)).join('\n')}\n`,
     'utf8',
   );
+}
+
+function writePriorRegistry(specFolder: string, registry: Record<string, unknown>): void {
+  writeFileSync(
+    join(specFolder, 'research', 'findings-registry.json'),
+    `${JSON.stringify(registry, null, 2)}\n`,
+    'utf8',
+  );
+}
+
+function readStateRecords(specFolder: string): Array<Record<string, unknown>> {
+  return readFileSync(join(specFolder, 'research', 'deep-research-state.jsonl'), 'utf8')
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
 }
 
 function expectRecoveryRefusal(action: () => void, reason: string): void {
@@ -263,6 +297,76 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(result.strategy).toContain('- [ ] How should provenance travel?');
     expect(result.strategy).toContain('- [x] Which resolved provenance path?');
     expect(result.dashboard).toContain('- [ ] How should provenance travel? [angle-bank]');
+  });
+
+  it('keeps registry-owned question text and emits one conflict event for disagreeing inbox input', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      run: 2,
+      status: 'complete',
+      focus: 'registry conflict',
+      findingsCount: 1,
+      newInfoRatio: 0.3,
+    })}\n`);
+    writePriorRegistry(specFolder, {
+      keyQuestions: [
+        {
+          id: 'question-canonical-1',
+          text: 'What canonical question remains?',
+          origin: 'operator',
+          source: 'registry',
+          injectedAtIteration: 1,
+          resolved: false,
+        },
+      ],
+    });
+    writeInbox(specFolder, [
+      {
+        id: 'inbox-conflict-1',
+        text: 'What incoming question should replace it?',
+        source: 'operator.note',
+        origin: 'operator',
+        injectedAtIteration: 2,
+        promotedQuestionId: 'question-canonical-1',
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: true });
+    const conflict = result.registry.questionConflicts?.[0];
+
+    expect(result.registry.keyQuestions).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'question-canonical-1',
+          text: 'What canonical question remains?',
+          operatorDecision: 'needs_decision',
+          conflictId: conflict?.conflictId,
+        }),
+      ]),
+    );
+    expect(conflict).toMatchObject({
+      questionId: 'question-canonical-1',
+      inboxId: 'inbox-conflict-1',
+      operatorDecision: 'needs_decision',
+      registryValue: 'What canonical question remains?',
+      inboxValue: 'What incoming question should replace it?',
+    });
+    expect(result.strategy).toContain('- [ ] What canonical question remains?');
+    expect(result.strategy).not.toContain('What incoming question should replace it?');
+
+    reduceResearchState(specFolder, { write: true });
+    const conflictEvents = readStateRecords(specFolder).filter((record) => record.event === 'question_conflict');
+
+    expect(conflictEvents).toHaveLength(1);
+    expect(conflictEvents[0]).toMatchObject({
+      conflictId: conflict?.conflictId,
+      questionId: 'question-canonical-1',
+      inboxId: 'inbox-conflict-1',
+      operatorDecision: 'needs_decision',
+      registryValue: 'What canonical question remains?',
+      inboxValue: 'What incoming question should replace it?',
+    });
   });
 
   it('marks direct strategy questions as legacy imports and warns when writing', () => {

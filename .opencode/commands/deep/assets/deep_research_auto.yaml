@@ -979,10 +979,12 @@ workflow:
           - "{state_paths.registry}"
           - "{state_paths.dashboard}"
           - "{state_paths.strategy}"
+          - "{state_paths.state_log} question_conflict events when inbox text disagrees with registry-owned question text"
         failure_modes:
           malformed_delta: "skip + warn"
           missing_iteration_file: "no-op + error"
           schema_mismatch: "reject + conflict event"
+          question_conflict: "keep registry value + append question_conflict event with inboxValue, registryValue, and operatorDecision"
         guarantee: "Idempotent for identical inputs"
 
       step_graph_upsert:

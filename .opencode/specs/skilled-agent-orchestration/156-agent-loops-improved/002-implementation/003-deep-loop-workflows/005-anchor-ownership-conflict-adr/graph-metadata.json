@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "005-anchor-ownership-conflict-adr summary"
     ],
     "key_topics": [
       "anchor",
@@ -39,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
       ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_reducer_registry.md",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -73,6 +74,12 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved markdown overwrite race: whichever writer runs last wins, with no event emitted, no conflict record stored, and no declared owner",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-06-28T14:27:36.018Z",
+    "last_save_at": "2026-06-28T20:20:28.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9348d898d9719cd2eb1ca221cd86bb25c06554e45d01c1800fde5ae1ac9655f6",
+    "source_fingerprint": "sha256:c5654583c04c037e429148dbbf4e7230987f37ed39ab68033bea20cff3f86eee",
     "source_doc_hashes": {
-      "spec.md": "711900fc4b1cf81a69816ccc7e4d6bd77b7bac0f84bd518c0fd85f10648f3eeb",
+      "spec.md": "2f874559a60b692fc7c004304fca3d3757037fdf094c5677c166bbf73341c69d",
       "plan.md": "56360b800a53059237bf4f78d8e181792e8d2686a4361dc146d00e1526f54b4d",
       "tasks.md": "89b64b537a8ef6e0982407ab94983f101296e87e28bcef871145b6417d47d87f",
-      "implementation-summary.md": "cc71e95957db5aeb1598f54ef4b8d8f07e8c0c553a16f8df7ba626c7e0b6bf99"
+      "implementation-summary.md": "a282e11e5c9c49a0b304dfdf5855ebaafa207b281f1da437b56d9073027702dc"
     },
     "last_active_child_id": null,
     "last_active_at": null
