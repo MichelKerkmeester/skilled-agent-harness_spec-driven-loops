@@ -1,23 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/003-command-metadata-ssot",
-  "description": "Create sk-design/command-metadata.json as the command-surface SSOT plus a design-command-surface-check.mjs drift gate, keeping mode-registry.json rout",
+  "description": "The design command metadata is scattered across three unsynchronized places: the wrapper frontmatter, the hub `SKILL.md`, and `mode-registry.json`",
   "keywords": [
-    "create",
-    "sk-design",
-    "command-metadata",
-    "json",
-    "command-surface",
-    "ssot",
-    "plus",
-    "design-command-surface-check",
-    "mjs",
-    "drift",
-    "gate",
-    "keeping",
+    "design",
+    "command",
+    "metadata",
+    "scattered",
+    "across",
+    "three",
+    "unsynchronized",
+    "places",
+    "wrapper",
+    "frontmatter",
+    "hub",
+    "skill",
     "mode-registry",
-    "rout"
+    "json"
   ],
-  "lastUpdated": "2026-06-28T12:40:02.871Z",
+  "lastUpdated": "2026-06-28T15:51:02.608Z",
   "specId": "003",
   "folderSlug": "command-metadata-ssot",
   "parentChain": [
@@ -29,6 +30,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

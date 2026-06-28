@@ -1,7 +1,7 @@
 ---
 description: Animation, transitions, micro-interactions, AnimatePresence, reduced motion. sk-design motion mode.
-argument-hint: "<design request>"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<component-state> [--library]"
+allowed-tools: Read, Glob, Grep
 ---
 
 # /design:motion

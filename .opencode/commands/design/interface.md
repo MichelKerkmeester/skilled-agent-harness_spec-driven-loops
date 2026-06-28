@@ -1,7 +1,7 @@
 ---
 description: Distinctive, intentional UI design: direction, palette, type, layout, motion. sk-design interface mode.
-argument-hint: "<design request>"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<target> [--mode]"
+allowed-tools: Read, Glob, Grep
 ---
 
 # /design:interface

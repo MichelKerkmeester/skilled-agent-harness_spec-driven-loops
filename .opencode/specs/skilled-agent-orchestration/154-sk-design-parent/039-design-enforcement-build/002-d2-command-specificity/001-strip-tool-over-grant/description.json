@@ -1,25 +1,25 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/001-strip-tool-over-grant",
-  "description": "Strip Write/Edit/Bash from the four read-and-guide /design:* wrappers and gate any mutation-free command that still carries mutating tools, in .openco",
+  "description": "The four read-and-guide `/design:` wrappers (`audit`, `foundations`, `interface`, `motion`) only read source and cite the shared design reference base",
   "keywords": [
-    "strip",
-    "write",
-    "edit",
-    "bash",
     "four",
     "read-and-guide",
     "design",
     "wrappers",
-    "gate",
-    "mutation-free",
-    "command",
-    "still",
-    "carries",
-    "mutating",
-    "tools",
-    "openco"
+    "audit",
+    "foundations",
+    "interface",
+    "motion",
+    "only",
+    "read",
+    "source",
+    "cite",
+    "shared",
+    "reference",
+    "base"
   ],
-  "lastUpdated": "2026-06-28T12:40:02.103Z",
+  "lastUpdated": "2026-06-28T16:01:09.306Z",
   "specId": "001",
   "folderSlug": "strip-tool-over-grant",
   "parentChain": [
@@ -31,6 +31,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

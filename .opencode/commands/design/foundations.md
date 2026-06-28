@@ -1,7 +1,7 @@
 ---
 description: Visual systems: color/OKLCH, typography, layout, spacing, tokens, theming. sk-design foundations mode.
-argument-hint: "<design request>"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<axis> <target>"
+allowed-tools: Read, Glob, Grep
 ---
 
 # /design:foundations

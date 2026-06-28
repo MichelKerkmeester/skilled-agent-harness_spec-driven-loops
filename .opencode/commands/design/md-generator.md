@@ -1,6 +1,6 @@
 ---
 description: Extract a live site's real CSS into a Style Reference DESIGN.md. sk-design md-generator mode.
-argument-hint: "<design request>"
+argument-hint: "<live-url> --output <dir>"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

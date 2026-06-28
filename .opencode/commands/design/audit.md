@@ -1,7 +1,7 @@
 ---
 description: Design QA: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
-argument-hint: "<design request>"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<target> [--scope] [--score]"
+allowed-tools: Read, Glob, Grep
 ---
 
 # /design:audit

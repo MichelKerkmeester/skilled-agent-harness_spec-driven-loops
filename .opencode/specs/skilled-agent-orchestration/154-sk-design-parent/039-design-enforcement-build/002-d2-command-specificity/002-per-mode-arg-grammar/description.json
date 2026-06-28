@@ -1,21 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/002-per-mode-arg-grammar",
-  "description": "Replace the identical generic argument-hint with a per-mode argumentHint in command-metadata.json, projected to and drift-checked against the /design:",
+  "description": "All five `/design:` wrappers (`audit`, `foundations`, `interface`, `md-generator`, `motion`) shipped the identical placeholder `argument-hint: \"<desig",
   "keywords": [
-    "replace",
+    "five",
+    "design",
+    "wrappers",
+    "audit",
+    "foundations",
+    "interface",
+    "md-generator",
+    "motion",
+    "shipped",
     "identical",
-    "generic",
+    "placeholder",
     "argument-hint",
-    "per-mode",
-    "argumenthint",
-    "command-metadata",
-    "json",
-    "projected",
-    "drift-checked",
-    "against",
-    "design"
+    "desig"
   ],
-  "lastUpdated": "2026-06-28T12:40:01.091Z",
+  "lastUpdated": "2026-06-28T16:11:36.693Z",
   "specId": "002",
   "folderSlug": "per-mode-arg-grammar",
   "parentChain": [
@@ -27,6 +29,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

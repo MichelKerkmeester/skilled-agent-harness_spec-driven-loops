@@ -1,0 +1,77 @@
+[
+  {
+    "command": "/design:audit",
+    "ownerMode": "audit",
+    "description": "Design QA: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
+    "argumentHint": "<target> [--scope] [--score]",
+    "aliases": ["audit design quality", "critique ui surface", "score design readiness"],
+    "accepts": "a design target plus optional scope and scoring flags",
+    "returns": "a findings-first design quality report with evidence, scores, owners, and verification notes",
+    "next": ["/design:foundations", "/design:interface", "/design:motion"],
+    "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
+    "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
+    "toolPolicy": {
+      "mutatesWorkspace": false
+    }
+  },
+  {
+    "command": "/design:foundations",
+    "ownerMode": "foundations",
+    "description": "Visual systems: color/OKLCH, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
+    "argumentHint": "<axis> <target>",
+    "aliases": ["design visual system", "define design tokens", "plan static foundations"],
+    "accepts": "a static design-system axis and the target surface or product context",
+    "returns": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable",
+    "next": ["/design:interface", "/design:motion", "/design:audit"],
+    "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
+    "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
+    "toolPolicy": {
+      "mutatesWorkspace": false
+    }
+  },
+  {
+    "command": "/design:interface",
+    "ownerMode": "interface",
+    "description": "Distinctive, intentional UI design: direction, palette, type, layout, motion. sk-design interface mode.",
+    "argumentHint": "<target> [--mode]",
+    "aliases": ["shape interface direction", "redesign ui surface", "make ui distinctive"],
+    "accepts": "an interface target plus an optional mode hint for direction, redesign, or build judgment",
+    "returns": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes",
+    "next": ["/design:foundations", "/design:motion", "/design:audit"],
+    "proofFields": ["target", "register", "designDials", "preflightResult"],
+    "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+    "toolPolicy": {
+      "mutatesWorkspace": false
+    }
+  },
+  {
+    "command": "/design:md-generator",
+    "ownerMode": "md-generator",
+    "description": "Extract a live site's real CSS into a Style Reference DESIGN.md. sk-design md-generator mode.",
+    "argumentHint": "<live-url> --output <dir>",
+    "aliases": ["extract website css", "generate design reference", "capture design tokens"],
+    "accepts": "a reachable live URL plus an output directory",
+    "returns": "a Style Reference DESIGN.md and extracted token data under the output directory",
+    "next": ["/design:foundations", "/design:interface", "/design:audit"],
+    "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
+    "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
+    "toolPolicy": {
+      "mutatesWorkspace": true
+    }
+  },
+  {
+    "command": "/design:motion",
+    "ownerMode": "motion",
+    "description": "Animation, transitions, micro-interactions, AnimatePresence, reduced motion. sk-design motion mode.",
+    "argumentHint": "<component-state> [--library]",
+    "aliases": ["design motion behavior", "plan micro interactions", "specify animation states"],
+    "accepts": "a component or state transition plus an optional animation library hint",
+    "returns": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior",
+    "next": ["/design:interface", "/design:foundations", "/design:audit"],
+    "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+    "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+    "toolPolicy": {
+      "mutatesWorkspace": false
+    }
+  }
+]
