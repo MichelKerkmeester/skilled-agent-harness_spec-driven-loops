@@ -84,18 +84,78 @@
       "impact": "The closeout ledger cannot be mechanically reconciled: the plan says the C2 branch remains unchecked/not executed, while the task ledger counts the same skipped branch as completed work. That makes completion claims dependent on which document a reviewer or tool counts.",
       "recommendation": "Use one state convention for skipped branches. Either mark C2 as explicit N/A/non-checkbox in both docs, or mark the plan rows checked as 'skipped by decision' and keep T024-T026 checked with the same rationale.",
       "iter": 7
+    },
+    {
+      "id": "R155-F008",
+      "severity": "P1",
+      "dimension": "maintainability",
+      "title": "Zeroed session fingerprints remain in canonical packet docs",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/spec.md",
+      "loc": "24",
+      "evidence": "spec.md:24 says `fingerprint: \"sha256:0000000000000000000000000000000000000000000000000000000000000000\"`; scoped rg shows the same zero fingerprint in all parent/001/002 canonical docs, while graph-metadata.json has real nonzero `source_fingerprint` values, e.g. 002 graph-metadata.json:215.",
+      "impact": "The packet presents placeholder dedup metadata as if it were real session identity. Resume/dedup consumers that read YAML frontmatter can treat unrelated saves as the same zero-fingerprint session, undermining the claimed reconciliation-to-ground-truth state.",
+      "recommendation": "Populate `session_dedup.fingerprint` with real content/session hashes or remove the field from frontmatter so the nonzero graph metadata remains the only fingerprint source.",
+      "iter": 8
+    },
+    {
+      "id": "R155-F009",
+      "severity": "P1",
+      "dimension": "maintainability",
+      "title": "Checklist claims no broken ai-council filesystem refs remain while tests still point at the removed path",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md",
+      "loc": "77",
+      "evidence": "checklist.md:77 says `No known broken `ai-council` filesystem references remain after the rename`; but `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts:14` still requires `.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/rollback.cjs`, and rg finds old `deep-loop-workflows/ai-council` paths across 8 system-spec-kit/sk-doc test files. The old folder is absent and `deep-ai-council` exists.",
+      "impact": "The closure checklist overclaims path hygiene. Future maintainers can trust CHK-011 and miss stale test pointers that will fail or exercise the wrong fixture path after the rename.",
+      "recommendation": "Either fix the stale system-spec-kit/sk-doc test references to `deep-ai-council`, or narrow CHK-011 to the scoped deep-loop live surfaces and explicitly list the remaining out-of-packet stale refs as unresolved.",
+      "iter": 8
+    },
+    {
+      "id": "R155-F010",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "001 child metadata still reports in-progress after the phase is reconciled as decision-complete",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/graph-metadata.json",
+      "loc": "61",
+      "evidence": "graph-metadata.json:61 says \"status\": \"in_progress\", while spec.md:64 says \"| **Status** | Decision complete; NFR-S01 carried to 002 |\" and implementation-summary.md:48 says \"| **Completed** | Decision complete: ADR-001 Accepted (Option E); no source build in 001; NFR-S01 carried to 002 |\".",
+      "impact": "Machine-readable status still presents phase 001 as active even though the reconciled child docs and parent phase map treat it as decision-complete. Resume/search consumers can reopen the wrong phase state.",
+      "recommendation": "Regenerate or patch the 001 graph metadata to the closed enum that represents this decision-complete child state, or soften the 001 and parent prose to say the child remains in progress.",
+      "iter": 9
+    },
+    {
+      "id": "R155-F011",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "002 plan leaves the runtime dependency amber after R4 is closed",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md",
+      "loc": "187",
+      "evidence": "plan.md:187 says \"| deep-loop-runtime current assumptions | Internal | Amber | R4 must verify them before any simplification; default keep merged identity until evidence or sign-off |\", but the same file says at line 63 \"R4 is done as keep\" and at line 131 \"Stage 4 - runtime reconciliation (R4): keep merged identity by maintainer sign-off; drift-guard green\".",
+      "impact": "The 002 phase is advertised as complete, but its dependency table still marks a required R4 dependency as unresolved/future-tense. That makes the parent rollup less trustworthy for readers following dependency state.",
+      "recommendation": "Update the dependency row to Green/current-state wording, or remove the 002 complete claim until the runtime-assumptions dependency is actually closed.",
+      "iter": 9
+    },
+    {
+      "id": "R155-F012",
+      "severity": "P0",
+      "dimension": "maintainability",
+      "title": "",
+      "file": "",
+      "loc": "",
+      "evidence": "",
+      "impact": "",
+      "recommendation": "",
+      "iter": 10
     }
   ],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
     "traceability": true,
-    "maintainability": false
+    "maintainability": true
   },
   "findingsBySeverity": {
-    "P0": 0,
-    "P1": 7,
+    "P0": 1,
+    "P1": 11,
     "P2": 0
   },
-  "convergenceScore": 0.143
+  "convergenceScore": 0.083
 }

@@ -9,3 +9,6 @@
 | 5 | security | 0 | 6 | 0 | 1 | 248s |
 | 6 | correctness | 0 | 6 | 0 | 0 | 115s |
 | 7 | traceability | 0 | 7 | 0 | 1 | 199s |
+| 8 | maintainability | 0 | 9 | 0 | 2 | 222s |
+| 9 | correctness | 0 | 11 | 0 | 2 | 204s |
+| 10 | maintainability | 1 | 11 | 0 | 1 | 95s |

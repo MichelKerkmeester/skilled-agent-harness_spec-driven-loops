@@ -6,3 +6,6 @@
 {"type":"iteration","run":5,"dimension":"security","newFindings":1,"p0":0,"p1":6,"p2":0,"wallSeconds":248,"error":false,"timestamp":"2026-06-28T13:58:54.843Z"}
 {"type":"iteration","run":6,"dimension":"correctness","newFindings":0,"p0":0,"p1":6,"p2":0,"wallSeconds":115,"error":true,"timestamp":"2026-06-28T14:00:49.556Z"}
 {"type":"iteration","run":7,"dimension":"traceability","newFindings":1,"p0":0,"p1":7,"p2":0,"wallSeconds":199,"error":false,"timestamp":"2026-06-28T14:04:08.554Z"}
+{"type":"iteration","run":8,"dimension":"maintainability","newFindings":2,"p0":0,"p1":9,"p2":0,"wallSeconds":222,"error":false,"timestamp":"2026-06-28T14:07:50.558Z"}
+{"type":"iteration","run":9,"dimension":"correctness","newFindings":2,"p0":0,"p1":11,"p2":0,"wallSeconds":204,"error":false,"timestamp":"2026-06-28T14:11:14.947Z"}
+{"type":"iteration","run":10,"dimension":"maintainability","newFindings":1,"p0":1,"p1":11,"p2":0,"wallSeconds":95,"error":true,"timestamp":"2026-06-28T14:12:50.100Z"}
