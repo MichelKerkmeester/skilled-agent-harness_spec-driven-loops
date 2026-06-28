@@ -41,11 +41,19 @@ export interface BashDenylistEntry {
   readonly reason?: string;
 }
 
+export interface OpenDesignPreconditions {
+  readonly guardedTools?: readonly string[];
+}
+
 export interface CodexPolicyFile {
   readonly version?: number;
   readonly notes?: string;
   readonly bashDenylist?: readonly (string | BashDenylistEntry)[];
   readonly bash_denylist?: readonly (string | BashDenylistEntry)[];
+  readonly openDesignPreconditions?: OpenDesignPreconditions;
+  readonly toolPreconditions?: {
+    readonly openDesignPreconditions?: OpenDesignPreconditions;
+  };
 }
 
 export type CodexPreToolUseOutput =
@@ -58,6 +66,7 @@ export type CodexPreToolUseOutput =
 export interface CodexPreToolUseDependencies {
   readonly policyPath?: string;
   readonly readPolicy?: () => CodexPolicyFile;
+  readonly validateOpenDesignToken?: (token: unknown, input: CodexPreToolUseInput) => boolean;
 }
 
 export const DEFAULT_CODEX_BASH_DENYLIST: readonly string[] = [
@@ -135,6 +144,18 @@ function loadPolicy(policyPath: string): CodexPolicyFile {
   return cachedPolicy;
 }
 
+function readPolicyQuiet(policyPath: string): CodexPolicyFile {
+  if (!existsSync(policyPath)) {
+    return {};
+  }
+  try {
+    const parsed = JSON.parse(readFileSync(policyPath, 'utf8')) as unknown;
+    return isRecord(parsed) ? parsed as CodexPolicyFile : {};
+  } catch {
+    return {};
+  }
+}
+
 function toolNameFor(input: CodexPreToolUseInput): string | null {
   const toolName = input.tool ?? input.tool_name ?? input.toolName;
   return typeof toolName === 'string' ? toolName : null;
@@ -198,6 +219,148 @@ function denylistEntries(policy: CodexPolicyFile): readonly (string | BashDenyli
   ];
 }
 
+function normalizeGuardedToolName(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function guardedToolEntries(preconditions: OpenDesignPreconditions | undefined): readonly string[] {
+  if (!Array.isArray(preconditions?.guardedTools)) {
+    return [];
+  }
+  return preconditions.guardedTools
+    .map(normalizeGuardedToolName)
+    .filter((toolName): toolName is string => toolName !== null);
+}
+
+function resolveGuardedOpenDesignTools(
+  dependencies: CodexPreToolUseDependencies,
+): readonly string[] {
+  const policy = dependencies.readPolicy?.()
+    ?? readPolicyQuiet(dependencies.policyPath ?? defaultCodexPolicyPath());
+  return [
+    ...guardedToolEntries(policy.openDesignPreconditions),
+    ...guardedToolEntries(policy.toolPreconditions?.openDesignPreconditions),
+  ];
+}
+
+function fieldFromRecord(record: unknown, key: string): unknown {
+  return isRecord(record) ? record[key] : undefined;
+}
+
+function extractDesignProofToken(input: CodexPreToolUseInput): unknown {
+  return fieldFromRecord(input.tool_input, 'designProofToken')
+    ?? fieldFromRecord(input.toolInput, 'designProofToken')
+    ?? fieldFromRecord(input.input, 'designProofToken')
+    ?? input.designProofToken;
+}
+
+const SHA256_DIGEST_PATTERN = /^sha256:[a-f0-9]{64}$/;
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function isDigest(value: unknown): value is string {
+  return typeof value === 'string' && SHA256_DIGEST_PATTERN.test(value);
+}
+
+function hasValidLoadedFiles(value: unknown): boolean {
+  if (!Array.isArray(value) || value.length === 0) {
+    return false;
+  }
+  return value.every((file) => (
+    isRecord(file)
+    && isNonEmptyString(file.path)
+    && isDigest(file.sha256)
+  ));
+}
+
+function hasValidWorkflowModes(value: unknown): boolean {
+  return Array.isArray(value)
+    && value.length > 0
+    && value.every(isNonEmptyString);
+}
+
+function isValidTokenTimeWindow(issuedAt: unknown, expiresAt: unknown): boolean {
+  if (typeof issuedAt !== 'string' || typeof expiresAt !== 'string') {
+    return false;
+  }
+  const issuedTime = Date.parse(issuedAt);
+  const expiryTime = Date.parse(expiresAt);
+  if (!Number.isFinite(issuedTime) || !Number.isFinite(expiryTime)) {
+    return false;
+  }
+  const now = Date.now();
+  return issuedTime <= now && now < expiryTime;
+}
+
+function isStructurallyValidDesignProofToken(token: unknown): boolean {
+  if (!isRecord(token) || token.version !== 1) {
+    return false;
+  }
+  if (!hasValidLoadedFiles(token.loadedFiles) || !hasValidWorkflowModes(token.workflowModes)) {
+    return false;
+  }
+  if (!isDigest(token.subjectDigest)
+    || !isDigest(token.briefDigest)
+    || !isDigest(token.formAnswersDigest)
+    || !isDigest(token.openDesignLineageDigest)) {
+    return false;
+  }
+  if (!isValidTokenTimeWindow(token.issuedAt, token.expiresAt)) {
+    return false;
+  }
+  return token.singleUse === true
+    && isNonEmptyString(token.nonce)
+    && isNonEmptyString(token.runId)
+    && isNonEmptyString(token.mintedBy)
+    && isNonEmptyString(token.boundSurface);
+}
+
+function evaluateOpenDesignPrecondition(
+  input: CodexPreToolUseInput,
+  dependencies: CodexPreToolUseDependencies,
+): CodexPreToolUseOutput | null {
+  let toolName: string | null;
+  let guardedTools: readonly string[];
+  try {
+    toolName = toolNameFor(input);
+    if (!toolName) {
+      return null;
+    }
+    guardedTools = resolveGuardedOpenDesignTools(dependencies);
+  } catch {
+    return null;
+  }
+
+  if (guardedTools.length === 0 || !guardedTools.includes(toolName)) {
+    return null;
+  }
+
+  try {
+    const token = extractDesignProofToken(input);
+    const valid = dependencies.validateOpenDesignToken
+      ? dependencies.validateOpenDesignToken(token, input)
+      : isStructurallyValidDesignProofToken(token);
+    if (!valid) {
+      return {
+        decision: 'deny',
+        reason: 'Guarded Open Design call denied: missing or invalid design proof token',
+      };
+    }
+    return {};
+  } catch {
+    return {
+      decision: 'deny',
+      reason: 'Guarded Open Design call denied: precondition validator error',
+    };
+  }
+}
+
 export function clearCodexPreToolUsePolicyCacheForTests(): void {
   cachedPolicy = null;
   cachedPolicyPath = null;
@@ -210,6 +373,11 @@ export function handleCodexPreToolUse(
   try {
     if (!input) {
       return {};
+    }
+
+    const openDesignDecision = evaluateOpenDesignPrecondition(input, dependencies);
+    if (openDesignDecision !== null) {
+      return openDesignDecision;
     }
 
     if (toolNameFor(input) !== 'Bash') {

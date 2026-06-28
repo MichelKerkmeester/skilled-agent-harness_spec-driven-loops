@@ -93,7 +93,7 @@
     ],
     "causal_summary": "Build the four-layer deterministic routing/utilization spine for sk-design as one phase per research recommendation, D3-R1..R12.",
     "created_at": "2026-06-28T12:39:53.203Z",
-    "last_save_at": "2026-06-28T12:39:53.203Z",
+    "last_save_at": "2026-06-28T14:56:50.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -104,6 +104,6 @@
       "spec.md": "a2ed298967ba97f0162258bea3ba1330f40c5836c4848aba5d2b2ef08e6a9ef6"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-06-28T14:56:50.780Z"
   }
 }

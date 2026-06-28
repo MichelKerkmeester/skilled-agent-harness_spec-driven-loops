@@ -1,19 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/002-executable-pretooluse-branch",
-  "description": "Insert evaluateOpenDesignPrecondition(input,policy) before the Bash-only return {} in pre-tool-use.ts and deny on validator exception.",
+  "description": "The Codex PreToolUse hook (`handleCodexPreToolUse`) is Bash-only: any non-Bash tool returns the empty allow object `{}` at the early `if (toolNameFor(",
   "keywords": [
-    "insert",
-    "evaluateopendesignprecondition",
-    "input",
-    "policy",
+    "codex",
+    "pretooluse",
+    "hook",
+    "handlecodexpretooluse",
     "bash-only",
-    "return",
-    "pre-tool-use",
-    "deny",
-    "validator",
-    "exception"
+    "non-bash",
+    "tool",
+    "returns",
+    "empty",
+    "allow",
+    "object",
+    "early",
+    "toolnamefor"
   ],
-  "lastUpdated": "2026-06-28T12:39:55.554Z",
+  "lastUpdated": "2026-06-28T15:22:49.191Z",
   "specId": "002",
   "folderSlug": "executable-pretooluse-branch",
   "parentChain": [
@@ -25,6 +29,5 @@
     "004-d4-open-design-pairing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

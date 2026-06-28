@@ -1,22 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/002-gated-hubroute-scorer",
-  "description": "Insert a hard hubRoute stage before routed-intra in score-skill-benchmark.cjs so wrong-mode/silent-default/bundle-mismatch routing fails closed.",
+  "description": "The scorer judged hub routing only through the advisory `modePrecision` signal, which never sets `firstFailingStage`, never enters the weighted aggreg",
   "keywords": [
-    "insert",
-    "hard",
-    "hubroute",
-    "stage",
-    "routed-intra",
-    "score-skill-benchmark",
-    "cjs",
-    "wrong-mode",
-    "silent-default",
-    "bundle-mismatch",
+    "scorer",
+    "judged",
+    "hub",
     "routing",
-    "fails",
-    "closed"
+    "only",
+    "advisory",
+    "modeprecision",
+    "signal",
+    "never",
+    "sets",
+    "firstfailingstage",
+    "enters",
+    "weighted",
+    "aggreg"
   ],
-  "lastUpdated": "2026-06-28T12:39:59.788Z",
+  "lastUpdated": "2026-06-28T15:22:47.075Z",
   "specId": "002",
   "folderSlug": "gated-hubroute-scorer",
   "parentChain": [
@@ -28,6 +30,5 @@
     "003-d3-routing-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

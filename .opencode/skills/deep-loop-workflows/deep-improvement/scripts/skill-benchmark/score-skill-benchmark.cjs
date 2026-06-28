@@ -36,6 +36,7 @@ const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
 const D1_INTRA_INTENT_WEIGHT = 0.4;
 const D1_INTRA_RESOURCE_WEIGHT = 0.6;
 const SURFACE_MISMATCH_D1_CAP = 0.25;
+const KNOWN_ROUTE_GAP_STATUS = 'known silent-default gap';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -52,7 +53,36 @@ function scenarioObservationShape(arg) {
   return arg.scenario && arg.observed ? { scenario: arg.scenario, observed: arg.observed } : null;
 }
 
+function routeGapFromNotes(notes) {
+  return !!(notes && notes.status === KNOWN_ROUTE_GAP_STATUS);
+}
+
+function hasRouteGold(expected) {
+  return !!(expected && (expected.routeOutcome != null || expected.workflowMode != null));
+}
+
+function copyIfPresent(target, source, key) {
+  if (target[key] === undefined && source && source[key] !== undefined) target[key] = source[key];
+}
+
+function normalizeExpectedRouteGold(expected, scenario, arg) {
+  const out = expected ? { ...expected } : {};
+  const scenarioExpected = scenario && scenario.expected ? scenario.expected : {};
+  copyIfPresent(out, scenarioExpected, 'workflowMode');
+  copyIfPresent(out, scenarioExpected, 'routeOutcome');
+  copyIfPresent(out, scenarioExpected, 'forbiddenWorkflowModes');
+  copyIfPresent(out, scenarioExpected, 'minimalPairGroup');
+  copyIfPresent(out, scenarioExpected, 'knownRouteGap');
+  if (out.knownRouteGap !== true && !hasRouteGold(out)) {
+    out.knownRouteGap = routeGapFromNotes(scenario && scenario.notes)
+      || routeGapFromNotes(arg && arg.notes)
+      || routeGapFromNotes(out.notes);
+  }
+  return out;
+}
+
 function expectedFromScenario(scenario, obs, arg) {
+  const scenarioExpected = scenario.expected || {};
   return {
     skillId: scenario.expectedSkillId || scenario.skillId || arg.skillId,
     // Playbook gold is SURFACE + RESOURCES. Router intent keys are a different
@@ -68,6 +98,11 @@ function expectedFromScenario(scenario, obs, arg) {
     // the gate, so this rides a separate non-weighted lane.
     mode: scenario.expectedMode || (scenario.expected && scenario.expected.mode) || null,
     negativeActivation: scenario.negativeActivation === true,
+    workflowMode: scenarioExpected.workflowMode,
+    routeOutcome: scenarioExpected.routeOutcome,
+    forbiddenWorkflowModes: scenarioExpected.forbiddenWorkflowModes,
+    minimalPairGroup: scenarioExpected.minimalPairGroup,
+    knownRouteGap: scenarioExpected.knownRouteGap === true,
   };
 }
 
@@ -91,6 +126,7 @@ function normalizeScenarioInput(arg) {
     routerResult = routerResultFromObservation(obs);
     expected = expectedFromScenario(scenario, obs, arg);
   }
+  expected = normalizeExpectedRouteGold(expected, scenario, arg);
   return { scenarioId, tier, routerResult, expected, advisorResult, scenario };
 }
 
@@ -185,10 +221,85 @@ function scoreAssetRecall(expected, obs) {
   return { score: setRecall(expectedAssets, observedAssets), expectedAssets, observedAssets, note: 'live stated-asset recall (advisory, not weighted)' };
 }
 
+function uniqueArray(values) {
+  return [...new Set(Array.isArray(values) ? values : [])];
+}
+
+function sameSet(actual, expected) {
+  if (actual.length !== expected.length) return false;
+  const have = new Set(actual);
+  return expected.every((item) => have.has(item));
+}
+
+function scoreHubRoute({ expected, routerResult }) {
+  if (!expected || expected.routeOutcome == null || expected.workflowMode == null) {
+    return { applicable: false, pass: true };
+  }
+
+  const actual = uniqueArray(routerResult && routerResult.intents);
+  const forbidden = uniqueArray(expected.forbiddenWorkflowModes);
+  const forbiddenHit = forbidden.some((mode) => actual.includes(mode));
+  const knownGap = expected.knownRouteGap === true;
+
+  if (expected.routeOutcome === 'defer') {
+    return {
+      applicable: true,
+      pass: actual.length === 0 && !forbiddenHit,
+      firstFailingStage: actual.length === 0 && !forbiddenHit ? null : 'wrong-mode',
+      expected: [],
+      actual,
+      forbiddenHit,
+      knownGap,
+    };
+  }
+
+  if (actual.length === 0) {
+    return {
+      applicable: true,
+      pass: false,
+      firstFailingStage: 'silent-default',
+      expected: Array.isArray(expected.workflowMode) ? expected.workflowMode : [expected.workflowMode],
+      actual,
+      forbiddenHit,
+      knownGap,
+    };
+  }
+
+  if (expected.routeOutcome === 'orderedBundle') {
+    const expectedModes = Array.isArray(expected.workflowMode) ? uniqueArray(expected.workflowMode) : [expected.workflowMode];
+    const pass = sameSet(actual, expectedModes) && !forbiddenHit;
+    return {
+      applicable: true,
+      pass,
+      firstFailingStage: pass ? null : 'bundle-mismatch',
+      expected: expectedModes,
+      actual,
+      forbiddenHit,
+      knownGap,
+    };
+  }
+
+  const expectedModes = Array.isArray(expected.workflowMode) ? uniqueArray(expected.workflowMode) : [expected.workflowMode];
+  const pass = expected.routeOutcome === 'single'
+    && expectedModes.length === 1
+    && sameSet(actual, expectedModes)
+    && !forbiddenHit;
+  return {
+    applicable: true,
+    pass,
+    firstFailingStage: pass ? null : 'wrong-mode',
+    expected: expectedModes,
+    actual,
+    forbiddenHit,
+    knownGap,
+  };
+}
+
 function firstFailingStage({ dims, routerResult, surfaceMatch }) {
   if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) return 'activated-inter';
   if (!routerResult.parseable) return 'router-unparseable';
   if (surfaceMatch === false) return 'surface-mismatch';
+  if (dims.hubRoute && dims.hubRoute.applicable && !dims.hubRoute.pass) return dims.hubRoute.firstFailingStage;
   if (dims.d1intra.score < 0.5) return 'routed-intra';
   if (dims.d2.score < 0.5) return 'discovered';
   return null;
@@ -285,7 +396,10 @@ function scoreScenario(arg) {
     expectedMode: expected && expected.mode,
   });
 
-  // First failing stage (funnel): advisor activate -> router parse -> surface -> intra -> discovery.
+  // Hard route-gold lane: fail closed only when route gold is present.
+  dims.hubRoute = scoreHubRoute({ expected, routerResult });
+
+  // First failing stage (funnel): advisor activate -> router parse -> surface -> route gold -> intra -> discovery.
   const failingStage = firstFailingStage({ dims, routerResult, surfaceMatch });
 
   // Mode A scenario score: weight the measured dims, normalize over their weights.
@@ -366,6 +480,17 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   const headlineBottleneck = Object.entries(funnel)
     .filter(([k]) => k !== 'passed')
     .sort((a, b) => b[1] - a[1])[0] || null;
+  const hubRouteFailures = rows
+    .filter((r) => r.dims && r.dims.hubRoute && r.dims.hubRoute.applicable && !r.dims.hubRoute.pass)
+    .map((r) => r.dims.hubRoute);
+  const hubRouteRegressions = hubRouteFailures.filter((h) => h.knownGap !== true).length;
+  const hubRouteKnownGaps = hubRouteFailures.filter((h) => h.knownGap === true).length;
+  const hubRouteGate = {
+    failed: hubRouteRegressions > 0,
+    regressions: hubRouteRegressions,
+    knownGaps: hubRouteKnownGaps,
+    reason: hubRouteRegressions > 0 ? 'route-gold regression' : null,
+  };
 
   const d5 = connectivity.score;
   const aggregateScore = avg((r) => r.modeAScore);
@@ -388,6 +513,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
+  else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
   else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
   else if (aggregateScore >= 80) verdict = 'PASS';
   else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
@@ -396,8 +522,13 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   // Bottlenecks: D5 findings + any scenario stage failures, ranked by severity.
   const bottlenecks = [...connectivity.findings];
   if (headlineBottleneck) {
+    const onlyKnownRouteGaps = hubRouteGate.regressions === 0
+      && hubRouteGate.knownGaps > 0
+      && ['silent-default', 'wrong-mode', 'bundle-mismatch'].includes(headlineBottleneck[0]);
     bottlenecks.unshift({
-      class: 'funnel_attrition', severity: 'P1', stage: headlineBottleneck[0],
+      class: onlyKnownRouteGaps ? 'routing_known_gap' : 'funnel_attrition',
+      severity: onlyKnownRouteGaps ? 'P3' : 'P1',
+      stage: headlineBottleneck[0],
       detail: `${headlineBottleneck[1]} scenario(s) first fail at stage '${headlineBottleneck[0]}'`,
     });
   }
@@ -411,7 +542,12 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     targetSkill: { id: skillId, root: skillRoot },
     verdict,
     aggregateScore,
-    gate: { d5Score: d5, gateFailed, reason: gateFailed ? 'D5 structural hard-gate failure' : null },
+    gate: {
+      d5Score: d5,
+      gateFailed,
+      reason: gateFailed ? 'D5 structural hard-gate failure' : null,
+      hubRoute: hubRouteGate,
+    },
     dimensionScores: {
       D1inter: d1interAvg === null
         ? { points: WEIGHTS.d1inter, score: null, status: 'unscored-mode-a' }
@@ -444,6 +580,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     runQuality: {
       scenarioCount: rows.length,
       traceMode: traceMode || 'router',
+      hubRouteKnownGaps,
       note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
     },
   };

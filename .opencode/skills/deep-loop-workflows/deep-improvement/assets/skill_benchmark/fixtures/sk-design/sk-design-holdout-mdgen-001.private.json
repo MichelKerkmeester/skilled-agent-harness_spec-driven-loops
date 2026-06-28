@@ -9,6 +9,7 @@
     "negativeActivation": false,
     "workflowMode": "md-generator",
     "routeOutcome": "single",
+    "knownRouteGap": true,
     "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit"],
     "minimalPairGroup": null
   },
