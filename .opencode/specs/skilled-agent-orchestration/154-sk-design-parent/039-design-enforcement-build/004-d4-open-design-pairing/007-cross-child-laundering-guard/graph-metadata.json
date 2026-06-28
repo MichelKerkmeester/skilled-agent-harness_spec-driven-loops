@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d4-r7 cross-child laundering guard",
-      "child re-validate design build"
+      "child re-validate design build",
+      "token replay omit weaken deny",
+      "cross delegation laundering guard",
+      "child re-validate design token",
+      "laundering guard tasks",
+      "replay omit weaken deny tasks",
+      "child re-validate token tasks",
+      "laundering guard checklist",
+      "replay omit weaken acceptance",
+      "token re-validation acceptance",
+      "cross delegation laundering guard implementation summary"
     ],
     "key_topics": [
       "d4-r7",
@@ -23,17 +33,52 @@
       "re-validate",
       "design",
       "build",
-      "add",
-      "separate",
-      "required",
-      "block"
+      "token",
+      "replay",
+      "omit",
+      "weaken"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "cli_child_pairing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +86,133 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Delegation Token Laundering Guard",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Purpose Author",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Threat Model",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deny Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforcement Points",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Residual",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a separate required DESIGN_PROOF_TOKEN block to a shared design_delegation_payload.md and have child PreToolUse re-validate before start_run.",
+    "causal_summary": "The proof-token contract names a \"cross-delegation laundering guard\" as a consumer but never builds it",
     "created_at": "2026-06-28T12:39:55.429Z",
-    "last_save_at": "2026-06-28T12:39:55.429Z",
+    "last_save_at": "2026-06-28T19:59:33.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b0aed9b6c88afbebbfaf3982f09ef5dd118a865eba98fe216dccadfbbffacbe",
+    "source_fingerprint": "sha256:132def13b30d8602d8c0f823cf115476b50ed1c5d1bbd399c85b3b2375034705",
     "source_doc_hashes": {
-      "spec.md": "6657c62a0fa3f215a4dc731822e51d17ce0cb68dfcacf1018b131222bde13ab0"
+      "spec.md": "e6952cb7a12531c6655fb1c91bd755220826245bbdd1734437c2ba92095f1161",
+      "plan.md": "4f197cad81da55a987ab963464c68ad0ebd473a34913d233892a6c70ce5e982e",
+      "tasks.md": "a4aee61b0ef74e602f4a2d44e5c961f48e8792baae3664e71fa872b42a476db5",
+      "checklist.md": "bc43bf93319bc69f2094439201b80b8a9eda9deaff728b9285a0d2ffc3a75312",
+      "implementation-summary.md": "ce34fd9ec19c74957992d92539b2815bbe7e1919391bf93411931a04b99047ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

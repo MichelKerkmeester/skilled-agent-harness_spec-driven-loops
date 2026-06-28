@@ -190,3 +190,54 @@ This contract is acceptable when all of these are true:
 | Contract citations | The proof-token and guarded-proxy contracts are cited as dependencies and are not redefined here. |
 | Named residual | Text-only `cli-claude-code` without a machine-readable tool stream is named as advisory-only, with no deterministic guarantee. |
 | Agent I/O boundary | Agent I/O is explicitly optional-advisory and is not accepted as the gate. |
+
+---
+
+## Cross-Delegation Token Laundering Guard
+
+The laundering guard is the request-path token-side twin of the transport-result re-validation above. It prevents a child or delegated workflow from replaying, omitting, or weakening the `DESIGN_PROOF_TOKEN` while preserving the rule that this document consumes the proof-token contract and does not define a second token schema.
+
+The guard reuses `DESIGN_PROOF_TOKEN v1` §2 for the replay-defense fields and §6 for boundary-side rejection rules. It applies those existing rules at the child design boundary and again at parent demand-back.
+
+### Threat Model
+
+| Attack | Definition |
+|---|---|
+| REPLAY | A child presents a token whose `nonce` and `runId` pair was already consumed by an earlier design-affecting operation. |
+| OMIT | A child runs a design-affecting operation without the token, relying on absence being treated as exempt, advisory, or unverifiable. |
+| WEAKEN | A child presents a token derived from a real mint but relaxed: `singleUse` stripped or flipped, `expiresAt` extended, `issuedAt` backdated, or `boundSurface` swapped away from the authorized target. |
+
+### Deny Rules
+
+The parent and any modifiable child boundary MUST fail closed for these cases:
+
+| Rule | Denial condition |
+|---|---|
+| Replay consumed pair | Reuse the §2 replay defense and §6 consumed-pair rejection. The parent owns the run-scoped consumed set for `nonce` and `runId`; if that pair reappears after consumption, return `DENY` for the call or handoff. |
+| Missing child design token | Reuse the §6 required-field rejection, elevated to mandatory token presence on every design-affecting child operation. Absence is never exempt; if the child operation affects design and no token is present, return `DENY` for the call or handoff. |
+| Relaxed token fields | Reuse §6 single-use, time, TTL, surface, payload-digest, and file-hash validation against the original mint. If the presented token relaxes `singleUse`, extends or backdates the freshness window, changes `boundSurface`, or cannot reproduce the content-bound digests from the authorized material, return `DENY` for the call or handoff. |
+
+Content-bound digests are the tamper evidence for weakening. A child may reference the minted token, but it must not re-mint, mutate, summarize, or substitute it to pass a looser boundary.
+
+### Enforcement Points
+
+1. **Child PreToolUse re-validation** runs before the design-affecting call. A modifiable child validates token presence, the unconsumed `nonce` and `runId` pair, field integrity against the original mint, target-surface match, freshness, and digest recomputation before any guarded call reaches Open Design.
+2. **Parent demand-back** is the enforceable floor. The parent reconciles the returned `designProofTokenRef` and operation evidence against the original mint, the run-scoped consumed set, the outgoing target, and the transport-result replay. It returns `DENY` for replay, omission, weakening, ambiguity, stale state, or validator exception.
+
+### Named Residual
+
+An unmodifiable child CLI may ignore the guard and skip the child-side PreToolUse re-validation. That loses the early child-side denial and is covered only by the parent demand-back floor, which remains mandatory and fail-closed.
+
+A fully compromised child that steals authorized inputs and forges a digest-valid token inside the freshness window is out of scope for child-side guarantees. The enforceable control remains the parent boundary: reconcile against the original mint, consumed set, target surface, and replayable operation evidence, then deny anything that cannot be reconstructed.
+
+### Laundering Guard Acceptance
+
+This guard is acceptable when all of these are true:
+
+| Requirement | Acceptance condition |
+|---|---|
+| Attack coverage | REPLAY, OMIT, and WEAKEN are each defined as cross-delegation token-laundering attacks. |
+| Deny mapping | Each attack maps to one fail-closed deny rule: consumed-pair replay, missing child design token, and relaxed token fields. |
+| Proof-token reuse | The guard cites `DESIGN_PROOF_TOKEN v1` §2 and §6 for replay, required-field, single-use, time, TTL, surface, digest, and consumed-pair validation; it defines no new token schema. |
+| Enforcement points | Child PreToolUse re-validation and parent demand-back are both named, with parent demand-back as the enforceable floor. |
+| Named residuals | An unmodifiable child CLI and a fully compromised child forging a digest-valid token from stolen authorized inputs are named as residuals, not hidden by the guard. |
