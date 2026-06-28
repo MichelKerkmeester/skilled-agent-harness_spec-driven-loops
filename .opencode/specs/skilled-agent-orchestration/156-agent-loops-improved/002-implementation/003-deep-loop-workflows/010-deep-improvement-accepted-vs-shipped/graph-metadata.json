@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "010-deep-improvement-accepted-vs-shipped summary"
     ],
     "key_topics": [
       "accepted",
@@ -39,11 +39,14 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -57,6 +60,12 @@
         "source": "derived"
       },
       {
+        "name": "rollback-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
+        "source": "derived"
+      },
+      {
         "name": "promotion_gate_contract.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
@@ -66,6 +75,18 @@
         "name": "promotion_rules.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "improvement_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
     "created_at": "2026-06-28T14:02:13Z",
-    "last_save_at": "2026-06-28T14:27:36.846Z",
+    "last_save_at": "2026-06-28T20:42:01.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50820f997ee4ff4b9a5070048474f43df73a01790d38d2ef7a62a50bc1f6aa5d",
+    "source_fingerprint": "sha256:5a2d71cf71bd84a238f8be32564781e4d2cf23bd9e4d923536f553aa86fd4e5b",
     "source_doc_hashes": {
-      "spec.md": "f28cb39125e00ed343406a54b8b4c3043180702da9b6436358902c94e6f6e508",
+      "spec.md": "24c07673e8dde1a35d86ee6ee52265e345e9483738d1c04b01b432fb2ad9df8d",
       "plan.md": "cb4f9e92efc21fb79908bbd5da49f04cd43325365b058400c2d70afe32e0c15f",
       "tasks.md": "4d79dc1e388051c5d83b2d496bd62155da014fd021c61d9676c68d14ed793add",
-      "implementation-summary.md": "e95f43e20126feec0ebb988d53b2d85bea52a200c846583d38330aaaaa672a31"
+      "implementation-summary.md": "9eff15824366e8c8ce1f97f4b58e8dce2a157d8c858f3cbe61124787c2169dae"
     },
     "last_active_child_id": null,
     "last_active_at": null

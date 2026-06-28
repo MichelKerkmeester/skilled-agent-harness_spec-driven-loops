@@ -17,12 +17,25 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-workflows/deep-improvement/scripts');
 const PROMOTE = path.join(SCRIPTS, 'shared/promote-candidate.cjs');
+const ROLLBACK = path.join(SCRIPTS, 'shared/rollback-candidate.cjs');
 
 let work: string;
 
 function writeJson(filePath: string, value: unknown) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+function readJson(filePath: string) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function readJsonl(filePath: string) {
+  return fs.readFileSync(filePath, 'utf8')
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
 }
 
 // A target that is NOT an agent-definition file (not under .opencode/agents/),
@@ -36,6 +49,7 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
   const config = path.join(work, 'model-benchmark-config.json');
   const manifest = path.join(work, 'target_manifest.jsonc');
   const archiveDir = path.join(work, 'archive');
+  const eventLog = path.join(work, 'promotion-events.jsonl');
 
   fs.mkdirSync(work, { recursive: true });
   fs.writeFileSync(candidate, 'CANDIDATE BODY\n', 'utf8');
@@ -62,6 +76,7 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
     targetProfile: 'demo-profile',
     proposalOnly: false,
     promotionEnabled: true,
+    branchPreservationPolicy: 'preserve-on-failure',
     scoring: { thresholdDelta: 1 },
   });
 
@@ -72,7 +87,7 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
     'utf8',
   );
 
-  return { candidate, target, benchmarkReport, repeatability, config, manifest, archiveDir };
+  return { candidate, target, benchmarkReport, repeatability, config, manifest, archiveDir, eventLog };
 }
 
 function runPromote(p: ReturnType<typeof buildBenchmarkPacket>, extraArgs: string[] = []) {
@@ -93,10 +108,31 @@ function runPromote(p: ReturnType<typeof buildBenchmarkPacket>, extraArgs: strin
   );
 }
 
+function runPromoteArgs(args: string[]) {
+  return spawnSync('node', [PROMOTE, ...args], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+}
+
+function runShip(acceptanceFile: string, extraArgs: string[] = []) {
+  return runPromoteArgs([
+    `--phase=ship`,
+    `--acceptance-file=${acceptanceFile}`,
+    '--approve',
+    ...extraArgs,
+  ]);
+}
+
+function runRollback(acceptanceFile: string, extraArgs: string[] = []) {
+  return spawnSync(
+    'node',
+    [ROLLBACK, `--acceptance-file=${acceptanceFile}`, ...extraArgs],
+    { encoding: 'utf8', cwd: WORKSPACE_ROOT },
+  );
+}
+
 beforeEach(() => { work = fs.mkdtempSync(path.join(os.tmpdir(), 'promote-bench-')); });
 afterEach(() => { fs.rmSync(work, { recursive: true, force: true }); });
 
-describe('F017-P1-04 promote-candidate benchmark mode', () => {
+describe('promote-candidate benchmark mode', () => {
   it('promotes from a benchmark-complete + benchmark-pass report with NO --score (Lane B)', () => {
     const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
     const result = runPromote(p);
@@ -194,5 +230,78 @@ describe('F017-P1-04 promote-candidate benchmark mode', () => {
     expect(out.outcomeScoreDelta).toBe(2);
     expect(out.fixtureDeltaSummary.hurt).toBe(1);
     expect(fs.readFileSync(p.target, 'utf8')).toBe('CANDIDATE BODY\n');
+  });
+
+  it('accepts a candidate without mutating the canonical target', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
+    const result = runPromote(p, [
+      '--phase=accept',
+      `--acceptance-file=${acceptanceFile}`,
+      '--preserved-branch=preserved/test',
+    ]);
+
+    expect(result.status, result.stderr).toBe(0);
+    const out = JSON.parse(result.stdout);
+    expect(out.status).toBe('accepted');
+    expect(out.acceptanceFile).toBe(acceptanceFile);
+    expect(out.preservedBranch).toBe('preserved/test');
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+
+    const acceptedState = readJson(acceptanceFile);
+    expect(acceptedState.status).toBe('accepted');
+    expect(fs.readFileSync(acceptedState.candidateSnapshotPath, 'utf8')).toBe('CANDIDATE BODY\n');
+    expect(fs.readFileSync(acceptedState.preAcceptBackupPath, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('ships an accepted snapshot and rolls back to the pre-acceptance target', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
+    const accepted = runPromote(p, [
+      '--phase=accept',
+      `--acceptance-file=${acceptanceFile}`,
+      '--preserved-branch=preserved/test',
+    ]);
+    expect(accepted.status, accepted.stderr).toBe(0);
+
+    fs.writeFileSync(p.candidate, 'CANDIDATE MUTATED AFTER ACCEPT\n', 'utf8');
+    const shipped = runShip(acceptanceFile);
+
+    expect(shipped.status, shipped.stderr).toBe(0);
+    const shipOut = JSON.parse(shipped.stdout);
+    expect(shipOut.status).toBe('shipped');
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('CANDIDATE BODY\n');
+
+    const rolledBack = runRollback(acceptanceFile);
+    expect(rolledBack.status, rolledBack.stderr).toBe(0);
+    const rollbackOut = JSON.parse(rolledBack.stdout);
+    expect(rollbackOut.status).toBe('rolled_back');
+    expect(rollbackOut.preservedBranch).toBe('preserved/test');
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('blocks ship after canonical drift, restores the pre-acceptance target, and records a preserved-branch event', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
+    const accepted = runPromote(p, [
+      '--phase=accept',
+      `--acceptance-file=${acceptanceFile}`,
+      '--preserved-branch=preserved/test',
+    ]);
+    expect(accepted.status, accepted.stderr).toBe(0);
+
+    fs.writeFileSync(p.target, 'DRIFTED TARGET BODY\n', 'utf8');
+    const blocked = runShip(acceptanceFile, [`--event-log=${p.eventLog}`]);
+
+    expect(blocked.status).toBe(1);
+    expect(blocked.stderr).toMatch(/canonical target changed after acceptance/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+
+    const events = readJsonl(p.eventLog);
+    expect(events).toHaveLength(1);
+    expect(events[0].eventType).toBe('promotion_blocked_branch_preserved');
+    expect(events[0].phase).toBe('ship');
+    expect(events[0].preservedBranch).toBe('preserved/test');
+    expect(events[0].details.errorType).toBe('canonical_target_changed');
   });
 });

@@ -7,6 +7,7 @@
   "executionMode": "confirm",
   "proposalOnly": true,
   "promotionEnabled": false,
+  "branchPreservationPolicy": "preserve-on-failure",
   "baselineRequired": true,
   "specFolder": "",
   "createdAt": "",

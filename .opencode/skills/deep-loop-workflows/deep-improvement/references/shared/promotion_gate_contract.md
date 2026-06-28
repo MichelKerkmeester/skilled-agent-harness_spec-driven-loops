@@ -13,17 +13,22 @@ version: 1.17.0.13
 
 # Deep Agent Improvement Promotion Gate Contract
 
-Formal contract defining the guarded promotion gates that must pass before a packet-local candidate can mutate the canonical target.
+Formal contract defining the guarded gates that must pass before a packet-local candidate can move from accepted evidence to a canonical shipped target.
 
 ---
 
 ## 1. OVERVIEW
 
-Promotion is a narrow, gated operation that moves a packet-local candidate into the canonical target location. The promotion gate contract defines the five required gates that must all pass before mutation is allowed: prompt scoring, benchmark status, repeatability evidence, manifest boundary compliance, and explicit operator approval.
+Promotion has two callable phases:
+
+- `accept`: verify all gates, snapshot the canonical preimage, snapshot the candidate, and record the preserved branch without mutating the canonical target.
+- `ship`: re-check the same evidence, require the canonical target to still match the accepted preimage, then copy the accepted candidate snapshot into the canonical target.
+
+The promotion gate contract defines the five required gates that must pass before either phase can proceed: prompt scoring, benchmark status, repeatability evidence, manifest boundary compliance, and explicit operator approval.
 
 **Promotion script:** `scripts/shared/promote-candidate.cjs`
 
-**Rollback script:** `scripts/agent-improvement/rollback-candidate.cjs`
+**Rollback script:** `scripts/shared/rollback-candidate.cjs`
 
 **Policy reference:** `references/shared/promotion_rules.md`
 
@@ -118,13 +123,19 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 ## 3. PROMOTION PROCESS
 
-### Step 1: Pre-Promotion Validation
+### Step 1: Accept Candidate
 
 ```bash
 node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs \
+  --phase=accept \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
   --score={score_json_path} \
+  --benchmark-report={benchmark_report_path} \
+  --repeatability-report={repeatability_report_path} \
+  --config={spec_folder}/improvement/agent-improvement-config.json \
+  --manifest={spec_folder}/improvement/target_manifest.jsonc \
+  --archive-dir={spec_folder}/improvement/archive \
   --approve
 ```
 
@@ -134,32 +145,39 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promot
 3. Load benchmark report (if fixtures exist) and verify benchmark gate passed
 4. Load manifest and verify boundary compliance
 5. Verify `--approve` flag is present
-6. If any gate fails, abort with specific failure mode
+6. If any gate fails, abort with specific failure mode and emit `promotion_blocked_branch_preserved` when an event log is configured
+7. Snapshot canonical target and candidate under the archive directory
+8. Write an accepted-state file and return its `acceptanceFile` path
 
 ---
 
-### Step 2: Canonical Mutation
+### Step 2: Ship Accepted Candidate
 
-**Backup creation:**
-- Copy canonical target to `{spec_folder}/improvement/archive/{timestamp}_{target_name}.md.backup`
-- Record backup path in journal event
+```bash
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs \
+  --phase=ship \
+  --acceptance-file={spec_folder}/improvement/archive/{target_name}.{timestamp}.accepted.json \
+  --approve
+```
 
-**Mutation:**
-- Copy candidate over canonical target
-- Emit `promotion_result` event with `status: "success"`
-- Record post-promotion dimensional snapshot
+**Ship sequence:**
+1. Re-load the accepted-state file and gate evidence
+2. Verify the canonical target still hashes to the pre-acceptance snapshot
+3. Restore the pre-acceptance snapshot and emit `promotion_blocked_branch_preserved` if the clean-tree check fails
+4. Copy the accepted candidate snapshot over the canonical target
+5. Return `status: "shipped"` with the rollback backup path and preserved branch
 
 ---
 
-### Step 3: Post-Promotion Verification
+### Step 3: Post-Ship Verification
 
 **Mirror sync check:**
 - Run `scripts/agent-improvement/check-mirror-drift.cjs` to detect mirror divergence
 - Record drift status in journal (separate packaging work)
 
 **Dimensional verification:**
-- Re-score canonical target to verify improvement
-- Compare post-promotion score to pre-promotion baseline
+- Re-score canonical target to verify the shipped candidate
+- Compare post-ship score to pre-acceptance baseline
 - Record dimension trajectory in journal
 
 ---
@@ -176,9 +194,18 @@ Rollback is triggered when:
 ### Rollback Execution
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs \
   --target={canonical_target_path} \
-  --backup={backup_path}
+  --backup={backup_path} \
+  --config={config_path} \
+  --manifest={manifest_path}
+```
+
+When rolling back a two-phase promotion, the accepted-state file can supply those paths:
+
+```bash
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs \
+  --acceptance-file={acceptance_file_path}
 ```
 
 **Rollback sequence:**
@@ -186,7 +213,8 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improve
 2. Verify target path matches manifest
 3. Copy backup over canonical target
 4. Emit `rollback_result` event with `status: "success"`
-5. Record post-rollback dimensional snapshot
+5. Leave the preserved branch and accepted candidate snapshot intact for audit
+6. Record post-rollback dimensional snapshot
 
 **Post-rollback verification:**
 - Re-score canonical target to verify restoration
@@ -198,6 +226,18 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improve
 ## 5. JOURNAL EVENTS
 
 ### Promotion Events
+
+**Event:** `promotion_blocked_branch_preserved`
+```json
+{
+  "eventType": "promotion_blocked_branch_preserved",
+  "phase": "ship",
+  "target": ".opencode/agents/debug.md",
+  "candidate": "improvement/archive/debug.md.accepted",
+  "preservedBranch": "feature/improve-debug-agent",
+  "branchPreservationPolicy": "preserve-on-failure"
+}
+```
 
 **Event:** `promotion_attempt`
 ```json
@@ -263,6 +303,7 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improve
 | `mutation_failed` | Cannot copy candidate over target | Check file permissions, disk space |
 | `rollback_failed` | Cannot restore backup | Verify backup exists, check permissions |
 | `dimension_gate_failed` | One or more per-dimension gates fails or is unscored | Improve the targeted dimension and re-score |
+| `promotion_blocked_branch_preserved` | Accept or ship gate failed under branch-preservation policy | Inspect the preserved branch and acceptance evidence before retry |
 
 ---
 
@@ -272,7 +313,7 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improve
 |---|---|
 | `scripts/shared/promote-candidate.cjs` | Promotion gate validation and mutation |
 | `scripts/lib/promotion-gates.cjs` | Named weighted, benchmark, and per-dimension gate values |
-| `scripts/agent-improvement/rollback-candidate.cjs` | Rollback execution and verification |
+| `scripts/shared/rollback-candidate.cjs` | Rollback execution and verification |
 | `scripts/agent-improvement/check-mirror-drift.cjs` | Post-promotion mirror sync check |
 | `scripts/agent-improvement/score-candidate.cjs` | Prompt scoring gate |
 | `scripts/model-benchmark/run-benchmark.cjs` | Benchmark execution gate |

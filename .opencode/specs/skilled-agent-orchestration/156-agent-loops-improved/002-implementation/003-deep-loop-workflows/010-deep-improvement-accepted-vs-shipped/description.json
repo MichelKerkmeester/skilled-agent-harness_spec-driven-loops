@@ -17,11 +17,10 @@
     "merge",
     "canonica"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.873Z",
+  "lastUpdated": "2026-06-28T20:42:00.945Z",
   "specId": "010",
   "folderSlug": "deep-improvement-accepted-vs-shipped",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

@@ -40,12 +40,16 @@ Promotion stays intentionally narrower than scoring and benchmarking. A candidat
 
 All agent targets are evaluated via dynamic mode. Promotion is a per-target decision made under dynamic mode; there are no static, automatically promotion-eligible profiles.
 
-When promotion is enabled, the shipped promotion script enforces:
+When promotion is enabled, the promotion script enforces the same gates in both callable phases:
 - `candidate-acceptable` dynamic-mode 5-dimension scoring above `scoring.thresholdDelta`
 - a matching `benchmark-pass` report (when benchmarks are configured for the target)
 - a passing repeatability report
 - explicit operator approval plus manifest boundary enforcement for the specific target
 - a hard repo-managed mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`
+
+`--phase=accept` verifies those gates and snapshots the canonical preimage plus accepted candidate into the archive without mutating the canonical target. `--phase=ship` loads the accepted-state file, verifies that the canonical target still matches the accepted preimage, and then writes the accepted candidate snapshot. The legacy no-phase command still performs the previous guarded one-step promotion for existing callers.
+
+The default branch preservation policy is `preserve-on-failure`. Under that policy, accept or ship gate failures emit `promotion_blocked_branch_preserved` to the configured event log and leave branch/candidate evidence intact.
 
 ---
 
@@ -84,6 +88,7 @@ Promotion is allowed only when:
 - artifact-level fixtures exist (or are waived for the specific target)
 - repeatability is proven for the active benchmark set
 - rollback steps are documented
+- accept/ship evidence is present when using the two-phase path
 - the explicit approval gate is passed
 - the target is not classified `fixed` or `forbidden` in the manifest
 - agent-definition targets are present and content-aligned across all four runtime mirrors; Codex TOML is checked by extracted body tokens, not by byte-equivalence of the TOML wrapper
@@ -103,6 +108,7 @@ Safety brakes that force the loop to stop or refuse broader rollout. Do not expa
 - a second target lacks a deterministic or policy-stable evaluator
 - the mutator and scorer boundaries blur
 - canonical mutation happens without explicit approval
+- ship attempts to write over a canonical target that no longer matches the accepted preimage
 - benchmark evidence and mirror-sync evidence are being mixed together
 - a profile exceeds the configured infra-failure or weak-benchmark limits
 - all 5 evaluation dimensions have plateaued (3+ consecutive identical scores per dimension), indicating the loop has exhausted its current approach - stop and reassess the hypothesis or target
@@ -117,3 +123,4 @@ The reducer consumes these configured stop rules and marks the runtime `shouldSt
 - `rollback_runbook.md`
 - `../../scripts/shared/reduce-state.cjs`
 - `../../scripts/shared/promote-candidate.cjs`
+- `../../scripts/shared/rollback-candidate.cjs`

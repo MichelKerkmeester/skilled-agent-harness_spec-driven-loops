@@ -9,6 +9,8 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
+const { execFileSync } = require('node:child_process');
 const {
   BENCHMARK_AGGREGATE_GATE,
   PROMOTION_GATES,
@@ -22,7 +24,19 @@ const {
 } = require('../lib/mirror-sync-verify.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PROMOTION_PHASES = Object.freeze({
+  promote: 'promote',
+  accept: 'accept',
+  ship: 'ship',
+});
+
+const DEFAULT_BRANCH_PRESERVATION_POLICY = 'preserve-on-failure';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
@@ -65,6 +79,173 @@ function writeJson(filePath, data) {
 function appendJsonl(filePath, data) {
   ensureParent(filePath);
   fs.appendFileSync(filePath, `${JSON.stringify(data)}\n`, 'utf8');
+}
+
+function sha256File(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+}
+
+function safeTimestamp() {
+  return new Date().toISOString().replace(/[:]/g, '-');
+}
+
+function normalizePhase(value) {
+  const phase = value || PROMOTION_PHASES.promote;
+  if (!Object.values(PROMOTION_PHASES).includes(phase)) {
+    process.stderr.write(`Usage error: --phase must be one of ${Object.values(PROMOTION_PHASES).join(', ')}\n`);
+    process.exit(2);
+  }
+  return phase;
+}
+
+function currentGitBranch() {
+  try {
+    const branch = execFileSync('git', ['branch', '--show-current'], {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    return branch || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function resolveBranchPreservationPolicy(config) {
+  return config?.branchPreservationPolicy || DEFAULT_BRANCH_PRESERVATION_POLICY;
+}
+
+function resolvePreservedBranch(args, config, acceptedState = null) {
+  const configuredBranch = config?.promotion?.preservedBranch;
+  const explicitBranch = args['preserved-branch'] || args.branch || acceptedState?.preservedBranch || configuredBranch;
+  if (explicitBranch && explicitBranch !== true) {
+    return explicitBranch;
+  }
+  return currentGitBranch();
+}
+
+function resolveEventLogPath(args, config) {
+  return args['event-log']
+    || args['state-file']
+    || config?.promotion?.eventLog
+    || config?.journal?.path
+    || null;
+}
+
+function emitBlockedBranchPreserved(eventLogPath, blockedContext, message, details = {}) {
+  if (!eventLogPath || blockedContext.phase === PROMOTION_PHASES.promote) {
+    return;
+  }
+  if (blockedContext.branchPreservationPolicy !== DEFAULT_BRANCH_PRESERVATION_POLICY) {
+    return;
+  }
+  appendJsonl(eventLogPath, {
+    type: 'promotion_blocked_branch_preserved',
+    eventType: 'promotion_blocked_branch_preserved',
+    timestamp: new Date().toISOString(),
+    phase: blockedContext.phase,
+    target: blockedContext.target,
+    candidate: blockedContext.candidate,
+    acceptanceFile: blockedContext.acceptanceFile || null,
+    preservedBranch: blockedContext.preservedBranch || null,
+    branchPreservationPolicy: blockedContext.branchPreservationPolicy,
+    message,
+    details,
+  });
+}
+
+function readAcceptanceState(filePath) {
+  if (!filePath) {
+    return null;
+  }
+  return readJson(filePath);
+}
+
+function resolveAcceptanceFilePath(args, archiveDir, target, timestamp) {
+  if (args['acceptance-file'] && args['acceptance-file'] !== true) {
+    return args['acceptance-file'];
+  }
+  return path.join(archiveDir, `${path.basename(target)}.${timestamp}.accepted.json`);
+}
+
+function createAcceptanceState(context) {
+  const timestamp = safeTimestamp();
+  const targetBase = path.basename(context.target);
+  const candidateBase = path.basename(context.candidate);
+  const preAcceptBackupPath = path.join(context.archiveDir, `${targetBase}.${timestamp}.preaccept.bak`);
+  const candidateSnapshotPath = path.join(context.archiveDir, `${candidateBase}.${timestamp}.accepted`);
+  const acceptanceFile = resolveAcceptanceFilePath(context.args, context.archiveDir, context.target, timestamp);
+
+  fs.copyFileSync(context.target, preAcceptBackupPath);
+  fs.copyFileSync(context.candidate, candidateSnapshotPath);
+
+  const acceptedState = {
+    status: 'accepted',
+    phase: PROMOTION_PHASES.accept,
+    target: context.target,
+    candidate: context.candidate,
+    candidateSnapshotPath,
+    preAcceptBackupPath,
+    preAcceptTargetHash: sha256File(preAcceptBackupPath),
+    candidateHash: sha256File(candidateSnapshotPath),
+    preservedBranch: context.preservedBranch || null,
+    branchPreservationPolicy: context.branchPreservationPolicy,
+    archiveDir: context.archiveDir,
+    scorePath: context.scorePath || null,
+    benchmarkReportPath: context.benchmarkReportPath,
+    repeatabilityReportPath: context.resolvedRepeatabilityReportPath,
+    configPath: context.configPath,
+    manifestPath: context.manifestPath,
+    acceptedAt: new Date().toISOString(),
+  };
+  writeJson(acceptanceFile, acceptedState);
+  return { acceptanceFile, acceptedState };
+}
+
+function assertShipPreconditions(acceptedState, context, failGate) {
+  if (!acceptedState || acceptedState.status !== 'accepted') {
+    failGate('Cannot ship: acceptance file is not in accepted state', {
+      errorType: 'acceptance_state_invalid',
+    });
+  }
+
+  const expectedTargetHash = acceptedState.preAcceptTargetHash;
+  if (expectedTargetHash && !fs.existsSync(context.target)) {
+    if (acceptedState.preAcceptBackupPath && fs.existsSync(acceptedState.preAcceptBackupPath)) {
+      fs.copyFileSync(acceptedState.preAcceptBackupPath, context.target);
+    }
+    failGate('Cannot ship: canonical target missing after acceptance; restored pre-acceptance target', {
+      errorType: 'canonical_target_missing',
+      expectedHash: expectedTargetHash,
+      restoredFrom: acceptedState.preAcceptBackupPath || null,
+    });
+  }
+
+  if (expectedTargetHash && fs.existsSync(context.target) && sha256File(context.target) !== expectedTargetHash) {
+    if (acceptedState.preAcceptBackupPath && fs.existsSync(acceptedState.preAcceptBackupPath)) {
+      fs.copyFileSync(acceptedState.preAcceptBackupPath, context.target);
+    }
+    failGate('Cannot ship: canonical target changed after acceptance; restored pre-acceptance target', {
+      errorType: 'canonical_target_changed',
+      expectedHash: expectedTargetHash,
+      restoredFrom: acceptedState.preAcceptBackupPath || null,
+    });
+  }
+
+  const shipCandidate = acceptedState.candidateSnapshotPath || context.candidate;
+  if (!fs.existsSync(shipCandidate)) {
+    failGate(`Cannot ship: accepted candidate snapshot not found: ${shipCandidate}`, {
+      errorType: 'missing-accepted-candidate',
+    });
+  }
+
+  if (acceptedState.candidateHash && sha256File(shipCandidate) !== acceptedState.candidateHash) {
+    failGate('Cannot ship: accepted candidate snapshot hash changed after acceptance', {
+      errorType: 'accepted_candidate_changed',
+    });
+  }
+
+  return shipCandidate;
 }
 
 // Dual-shape contract: current producers always emit the primitive number shape;
@@ -139,9 +320,12 @@ function writeMirrorSyncState(stateFilePath, state) {
   }
 }
 
-function rejectWithStructuredError(errorType, message, details, stateFilePath) {
+function rejectWithStructuredError(errorType, message, details, stateFilePath, blockedContext, eventLogPath) {
   if (details?.mirror_sync_state) {
     writeMirrorSyncState(stateFilePath, details);
+  }
+  if (blockedContext && eventLogPath) {
+    emitBlockedBranchPreserved(eventLogPath, blockedContext, message, { errorType, ...details });
   }
   process.stderr.write(`${JSON.stringify({
     status: 'error',
@@ -153,7 +337,7 @@ function rejectWithStructuredError(errorType, message, details, stateFilePath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. VALIDATION CHECKS
+// 4. VALIDATION CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function resolveAllowedCanonicalTarget(manifestPath) {
@@ -162,26 +346,29 @@ function resolveAllowedCanonicalTarget(manifestPath) {
     .filter((target) => target.classification === 'canonical')
     .map((target) => target.path);
   if (canonicalTargets.length !== 1) {
-    process.stderr.write(`Cannot promote: expected exactly one canonical target in manifest, found ${canonicalTargets.length}\n`);
-    process.exit(1);
+    throw new Error(`Cannot promote: expected exactly one canonical target in manifest, found ${canonicalTargets.length}`);
   }
   return canonicalTargets[0];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. MAIN
+// 5. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const candidate = args.candidate;
-  const target = args.target;
-  const scorePath = args.score;
-  const benchmarkReportPath = args['benchmark-report'];
-  const repeatabilityReportPath = args['repeatability-report'];
-  const configPath = args.config;
-  const manifestPath = args.manifest;
-  const archiveDir = args['archive-dir'];
+  const phase = normalizePhase(args.phase);
+  const acceptedState = phase === PROMOTION_PHASES.ship
+    ? readAcceptanceState(args['acceptance-file'])
+    : null;
+  const candidate = args.candidate || acceptedState?.candidateSnapshotPath || acceptedState?.candidate;
+  const target = args.target || acceptedState?.target;
+  const scorePath = args.score || acceptedState?.scorePath;
+  const benchmarkReportPath = args['benchmark-report'] || acceptedState?.benchmarkReportPath;
+  const repeatabilityReportPath = args['repeatability-report'] || acceptedState?.repeatabilityReportPath;
+  const configPath = args.config || acceptedState?.configPath;
+  const manifestPath = args.manifest || acceptedState?.manifestPath;
+  const archiveDir = args['archive-dir'] || acceptedState?.archiveDir;
   const approve = args.approve === true || args.approve === 'true';
   const allowHurtFixtures = args['allow-hurt-fixtures'] === true || args['allow-hurt-fixtures'] === 'true';
   const noBaselineOk = args['no-baseline-ok'] === true || args['no-baseline-ok'] === 'true';
@@ -199,8 +386,8 @@ function main() {
   const benchmarkMode = !scorePath;
 
   if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approve) {
-    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--allow-hurt-fixtures] [--no-baseline-ok]\n');
-    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--allow-hurt-fixtures] [--no-baseline-ok]\n');
+    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
+    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
     process.exit(2);
   }
 
@@ -209,100 +396,101 @@ function main() {
   const resolvedRepeatabilityReportPath = repeatabilityReportPath || path.join(path.dirname(benchmarkReportPath), 'repeatability.json');
   const repeatabilityReport = readOptionalJson(resolvedRepeatabilityReportPath);
   const config = readJson(configPath);
+  const branchPreservationPolicy = resolveBranchPreservationPolicy(config);
+  const preservedBranch = resolvePreservedBranch(args, config, acceptedState);
+  const eventLogPath = resolveEventLogPath(args, config);
   const mirrorStateFilePath = args['state-file'] || config?.promotion?.mirrorSyncStateFile || null;
-  const allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
-  const threshold = Number(config?.scoring?.thresholdDelta ?? 1);   // iter-8 review: honor an explicit 0
+  const blockedContext = {
+    phase,
+    target,
+    candidate,
+    acceptanceFile: args['acceptance-file'] || null,
+    preservedBranch,
+    branchPreservationPolicy,
+  };
+  const failGate = (message, details = {}) => {
+    emitBlockedBranchPreserved(eventLogPath, blockedContext, message, details);
+    process.stderr.write(`${message}\n`);
+    process.exit(1);
+  };
+  let allowedCanonicalTarget;
+  try {
+    allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
+  } catch (error) {
+    failGate(error.message, { errorType: 'boundary_gate_failed' });
+  }
+  const threshold = Number(config?.scoring?.thresholdDelta ?? 1);
   const proposalOnly = config?.proposalOnly;
   const promotionEnabled = config?.promotionEnabled;
   if (!benchmarkMode && score.status !== 'scored') {
-    process.stderr.write('Cannot promote: score file is not in scored state\n');
-    process.exit(1);
+    failGate('Cannot promote: score file is not in scored state', { errorType: 'score_gate_failed' });
   }
 
   if (proposalOnly !== false) {
-    process.stderr.write('Cannot promote: runtime config is still in proposal-only mode\n');
-    process.exit(1);
+    failGate('Cannot promote: runtime config is still in proposal-only mode', { errorType: 'config_gate_failed' });
   }
 
   if (promotionEnabled !== true) {
-    process.stderr.write('Cannot promote: promotionEnabled is not true in runtime config\n');
-    process.exit(1);
+    failGate('Cannot promote: promotionEnabled is not true in runtime config', { errorType: 'config_gate_failed' });
   }
 
   if (config?.target && target !== config.target) {
-    process.stderr.write(`Cannot promote: target ${target} does not match runtime config target ${config.target}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: target ${target} does not match runtime config target ${config.target}`, { errorType: 'config_gate_failed' });
   }
 
   if (config?.targetProfile && benchmarkReport.profileId !== config.targetProfile) {
-    process.stderr.write(`Cannot promote: benchmark profile ${benchmarkReport.profileId} does not match runtime config target profile ${config.targetProfile}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: benchmark profile ${benchmarkReport.profileId} does not match runtime config target profile ${config.targetProfile}`, { errorType: 'benchmark_gate_failed' });
   }
 
   if (benchmarkReport.status !== 'benchmark-complete') {
-    process.stderr.write('Cannot promote: benchmark report is not in benchmark-complete state\n');
-    process.exit(1);
+    failGate('Cannot promote: benchmark report is not in benchmark-complete state', { errorType: 'benchmark_gate_failed' });
   }
 
   if (benchmarkReport.target !== target) {
-    process.stderr.write(`Cannot promote: benchmark report target ${benchmarkReport.target} does not match requested target ${target}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: benchmark report target ${benchmarkReport.target} does not match requested target ${target}`, { errorType: 'benchmark_gate_failed' });
   }
 
   if (benchmarkReport.recommendation !== 'benchmark-pass') {
-    process.stderr.write(`Cannot promote: benchmark recommendation is ${benchmarkReport.recommendation}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: benchmark recommendation is ${benchmarkReport.recommendation}`, { errorType: 'benchmark_gate_failed' });
   }
 
   if (Number(benchmarkReport.aggregateScore || 0) < BENCHMARK_AGGREGATE_GATE) {
-    process.stderr.write(`Cannot promote: benchmark aggregate ${benchmarkReport.aggregateScore} below gate ${BENCHMARK_AGGREGATE_GATE}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: benchmark aggregate ${benchmarkReport.aggregateScore} below gate ${BENCHMARK_AGGREGATE_GATE}`, { errorType: 'benchmark_gate_failed' });
   }
 
   const benchmarkHasDeltaContract = hasBenchmarkDeltaContract(benchmarkReport);
   const outcomeScoreDelta = readOutcomeScoreDelta(benchmarkReport);
   if (benchmarkHasDeltaContract && outcomeScoreDelta === null && !noBaselineOk) {
-    process.stderr.write('Cannot promote: outcomeScoreDelta is undefined because a baseline score is missing; pass --no-baseline-ok only when this is explicitly reviewed\n');
-    process.exit(1);
+    failGate('Cannot promote: outcomeScoreDelta is undefined because a baseline score is missing; pass --no-baseline-ok only when this is explicitly reviewed', { errorType: 'benchmark_gate_failed' });
   }
 
   if (outcomeScoreDelta !== null && outcomeScoreDelta < 0) {
-    process.stderr.write(`Cannot promote: regression: outcomeScoreDelta < 0 (${outcomeScoreDelta})\n`);
-    process.exit(1);
+    failGate(`Cannot promote: regression: outcomeScoreDelta < 0 (${outcomeScoreDelta})`, { errorType: 'benchmark_gate_failed' });
   }
 
   const hurtFixtures = hurtFixtureDeltas(benchmarkReport);
   if (hurtFixtures.length > 0 && !allowHurtFixtures) {
     const fixtureIds = hurtFixtures.map((entry) => entry.id || 'unknown').join(', ');
-    process.stderr.write(`Cannot promote: hurt fixtures detected (${fixtureIds}); pass --allow-hurt-fixtures only when this trade-off is explicitly reviewed\n`);
-    process.exit(1);
+    failGate(`Cannot promote: hurt fixtures detected (${fixtureIds}); pass --allow-hurt-fixtures only when this trade-off is explicitly reviewed`, { errorType: 'benchmark_gate_failed' });
   }
 
   if (!repeatabilityReport) {
-    process.stderr.write(`Cannot promote: repeatability report not found at ${resolvedRepeatabilityReportPath}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: repeatability report not found at ${resolvedRepeatabilityReportPath}`, { errorType: 'repeatability_gate_failed' });
   }
 
   if (repeatabilityReport.profileId !== benchmarkReport.profileId) {
-    process.stderr.write(`Cannot promote: repeatability profile ${repeatabilityReport.profileId} does not match benchmark profile ${benchmarkReport.profileId}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: repeatability profile ${repeatabilityReport.profileId} does not match benchmark profile ${benchmarkReport.profileId}`, { errorType: 'repeatability_gate_failed' });
   }
 
   if (repeatabilityReport.passed !== true) {
-    process.stderr.write('Cannot promote: repeatability check did not pass\n');
-    process.exit(1);
+    failGate('Cannot promote: repeatability check did not pass', { errorType: 'repeatability_gate_failed' });
   }
 
-  // iter-8 review: a missing candidate or target must fail closed with a structured
-  // error, not crash later at copyFileSync.
   if (!fs.existsSync(candidate)) {
-    rejectWithStructuredError('missing-candidate', `Cannot promote: candidate file not found: ${candidate}`, {}, mirrorStateFilePath);
+    rejectWithStructuredError('missing-candidate', `Cannot promote: candidate file not found: ${candidate}`, {}, mirrorStateFilePath, blockedContext, eventLogPath);
   }
 
-  // Spec 143 T2 (rubric guard): the optimizer must never write its own ruler.
-  // When the TARGET file contains its own scoring-relevant sections (rubric,
-  // floors, quality gates), a candidate that mutates them scores better for
-  // free — reject unless the operator explicitly allows a rubric edit.
+  // The optimizer must never alter the scoring surface it is being measured by.
   const allowRubricEdit = args['allow-rubric-edit'] === true || args['allow-rubric-edit'] === 'true';
   if (fs.existsSync(target) && fs.existsSync(candidate)) {
     const { rubricMutated } = require('./rubric-guard.cjs');
@@ -314,13 +502,14 @@ function main() {
         + 'Re-run with --allow-rubric-edit only if a rubric change is the explicit, reviewed intent.',
         { baselineRegions: verdict.baselineRegions, candidateRegions: verdict.candidateRegions },
         mirrorStateFilePath,
+        blockedContext,
+        eventLogPath,
       );
     }
   }
 
   if (target !== allowedCanonicalTarget) {
-    process.stderr.write(`Cannot promote: target ${target} is not the single allowed canonical target ${allowedCanonicalTarget}\n`);
-    process.exit(1);
+    failGate(`Cannot promote: target ${target} is not the single allowed canonical target ${allowedCanonicalTarget}`, { errorType: 'boundary_gate_failed' });
   }
 
   // The agent scored-file gates (candidate-better
@@ -331,25 +520,21 @@ function main() {
   let scoreDelta = null;
   if (!benchmarkMode) {
     if (score.recommendation !== 'candidate-better') {
-      process.stderr.write(`Cannot promote: recommendation is ${score.recommendation}\n`);
-      process.exit(1);
+      failGate(`Cannot promote: recommendation is ${score.recommendation}`, { errorType: 'score_gate_failed' });
     }
 
     if (Number(score.score || 0) < WEIGHTED_SCORE_GATE) {
-      process.stderr.write(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}\n`);
-      process.exit(1);
+      failGate(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}`, { errorType: 'score_gate_failed' });
     }
 
     const dimensionGate = evaluatePromotionGates(score.dimensions);
     if (!dimensionGate.passed) {
-      process.stderr.write(`Cannot promote: dimension gates failed ${dimensionGate.failed.concat(dimensionGate.unscored).join(', ')}; thresholds ${JSON.stringify(PROMOTION_GATES)}\n`);
-      process.exit(1);
+      failGate(`Cannot promote: dimension gates failed ${dimensionGate.failed.concat(dimensionGate.unscored).join(', ')}; thresholds ${JSON.stringify(PROMOTION_GATES)}`, { errorType: 'dimension_gate_failed' });
     }
 
     scoreDelta = readScoreDelta(score);
     if (Number(scoreDelta || 0) < threshold) {
-      process.stderr.write(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}\n`);
-      process.exit(1);
+      failGate(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}`, { errorType: 'score_gate_failed' });
     }
   }
 
@@ -380,7 +565,9 @@ function main() {
           driftRuntimes: syncResult.driftRuntimes,
           verification: syncResult,
         },
-        mirrorStateFilePath
+        mirrorStateFilePath,
+        blockedContext,
+        eventLogPath,
       );
     }
 
@@ -396,22 +583,95 @@ function main() {
   }
 
   ensureParent(path.join(archiveDir, 'placeholder'));
-  const timestamp = new Date().toISOString().replace(/[:]/g, '-');
+  if (phase === PROMOTION_PHASES.accept) {
+    const acceptance = createAcceptanceState({
+      args,
+      target,
+      candidate,
+      archiveDir,
+      scorePath,
+      benchmarkReportPath,
+      resolvedRepeatabilityReportPath,
+      configPath,
+      manifestPath,
+      preservedBranch,
+      branchPreservationPolicy,
+    });
+    const result = {
+      status: 'accepted',
+      phase,
+      mode: benchmarkMode ? 'benchmark' : 'agent',
+      target,
+      candidate,
+      acceptanceFile: acceptance.acceptanceFile,
+      candidateSnapshotPath: acceptance.acceptedState.candidateSnapshotPath,
+      preAcceptBackupPath: acceptance.acceptedState.preAcceptBackupPath,
+      preservedBranch,
+      branchPreservationPolicy,
+      benchmarkReport: benchmarkReportPath,
+      repeatabilityReport: resolvedRepeatabilityReportPath,
+      runtimeMirrors: runtimeMirrorSync,
+      mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
+      timestamp: acceptance.acceptedState.acceptedAt,
+    };
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    return;
+  }
+
+  const timestamp = safeTimestamp();
   const backupPath = path.join(archiveDir, `${path.basename(target)}.${timestamp}.bak`);
 
-  fs.copyFileSync(target, backupPath);
-  fs.copyFileSync(candidate, target);
+  let promotedCandidate = candidate;
+  let effectiveBackupPath = backupPath;
+  if (phase === PROMOTION_PHASES.ship) {
+    promotedCandidate = assertShipPreconditions(acceptedState, {
+      target,
+      candidate,
+    }, failGate);
+    effectiveBackupPath = acceptedState.preAcceptBackupPath || backupPath;
+    try {
+      fs.copyFileSync(promotedCandidate, target);
+    } catch (error) {
+      if (effectiveBackupPath && fs.existsSync(effectiveBackupPath)) {
+        fs.copyFileSync(effectiveBackupPath, target);
+      }
+      failGate(`Cannot ship: mutation failed: ${error.message}`, {
+        errorType: 'mutation_failed',
+        restoredFrom: effectiveBackupPath || null,
+      });
+    }
+  } else {
+    fs.copyFileSync(target, backupPath);
+    fs.copyFileSync(candidate, target);
+  }
 
   // Lane A output shape is unchanged (byte-behavior
   // contract). Lane B emits mode=benchmark plus the benchmark aggregate/delta so
   // the promotion result is self-describing for the model-benchmark loop.
-  const result = benchmarkMode
+  const result = phase === PROMOTION_PHASES.ship
+    ? {
+        status: 'shipped',
+        phase,
+        mode: benchmarkMode ? 'benchmark' : 'agent',
+        target,
+        candidate: promotedCandidate,
+        acceptanceFile: args['acceptance-file'],
+        backupPath: effectiveBackupPath,
+        preservedBranch,
+        branchPreservationPolicy,
+        benchmarkReport: benchmarkReportPath,
+        repeatabilityReport: resolvedRepeatabilityReportPath,
+        runtimeMirrors: runtimeMirrorSync,
+        mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
+        timestamp: new Date().toISOString(),
+      }
+    : benchmarkMode
     ? {
         status: 'promoted',
         mode: 'benchmark',
         target,
         candidate,
-        backupPath,
+        backupPath: effectiveBackupPath,
         benchmarkReport: benchmarkReportPath,
         repeatabilityReport: resolvedRepeatabilityReportPath,
         runtimeMirrors: runtimeMirrorSync,
@@ -427,7 +687,7 @@ function main() {
         status: 'promoted',
         target,
         candidate,
-        backupPath,
+        backupPath: effectiveBackupPath,
         benchmarkReport: benchmarkReportPath,
         repeatabilityReport: resolvedRepeatabilityReportPath,
         runtimeMirrors: runtimeMirrorSync,
