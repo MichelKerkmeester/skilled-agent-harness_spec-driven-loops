@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
@@ -16,7 +16,28 @@ const {
     emitResourceMap?: boolean;
     requireExistingState?: boolean;
   }) => {
-    registry: { status?: string };
+    registry: {
+      status?: string;
+      openQuestions?: Array<{
+        id: string;
+        inboxId?: string | null;
+        text: string;
+        origin?: string;
+        source?: string;
+        injectedAtIteration?: number;
+        promotedQuestionId?: string | null;
+      }>;
+      resolvedQuestions?: Array<{
+        id: string;
+        inboxId?: string | null;
+        text: string;
+        origin?: string;
+        source?: string;
+        injectedAtIteration?: number;
+        promotedQuestionId?: string | null;
+      }>;
+    };
+    strategy: string;
     dashboard: string;
     hasCorruption: boolean;
   };
@@ -94,6 +115,14 @@ function strategyTemplate(): string {
 
 function writeState(specFolder: string, content: string): void {
   writeFileSync(join(specFolder, 'research', 'deep-research-state.jsonl'), content, 'utf8');
+}
+
+function writeInbox(specFolder: string, records: Array<Record<string, unknown>>): void {
+  writeFileSync(
+    join(specFolder, 'research', 'inbox.jsonl'),
+    `${records.map((record) => JSON.stringify(record)).join('\n')}\n`,
+    'utf8',
+  );
 }
 
 function expectRecoveryRefusal(action: () => void, reason: string): void {
@@ -174,5 +203,92 @@ describe('deep-research reduce-state recovery gate', () => {
 
     expect(result.dashboard).toContain('| # | Focus | Track | Ratio | Findings | Status | Log Offset | Log Size | Log Path |');
     expect(result.dashboard).toContain('| 1 | offset metadata | - | 0.40 | 1 | complete | 34 | 211 | /tmp/research/deep-research-state.jsonl |');
+  });
+
+  it('promotes inbox questions with provenance into registry, strategy, and dashboard output', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      run: 3,
+      status: 'complete',
+      answeredQuestions: ['Which resolved provenance path?'],
+    })}\n`);
+    writeInbox(specFolder, [
+      {
+        id: 'inbox-angle-1',
+        text: 'How should provenance travel?',
+        source: 'angle-bank.seed',
+        origin: 'angle-bank',
+        injectedAtIteration: 2,
+        promotedQuestionId: 'question-angle-1',
+      },
+      {
+        id: 'inbox-analyst-1',
+        text: 'Which resolved provenance path?',
+        source: 'analyst.followup',
+        origin: 'analyst-strategy',
+        injectedAtIteration: 1,
+        promotedQuestionId: 'question-analyst-1',
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.openQuestions).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'question-angle-1',
+          inboxId: 'inbox-angle-1',
+          text: 'How should provenance travel?',
+          origin: 'angle-bank',
+          source: 'angle-bank.seed',
+          injectedAtIteration: 2,
+          promotedQuestionId: 'question-angle-1',
+        }),
+      ]),
+    );
+    expect(result.registry.resolvedQuestions).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'question-analyst-1',
+          inboxId: 'inbox-analyst-1',
+          text: 'Which resolved provenance path?',
+          origin: 'analyst-strategy',
+          source: 'analyst.followup',
+          injectedAtIteration: 1,
+          promotedQuestionId: 'question-analyst-1',
+        }),
+      ]),
+    );
+    expect(result.strategy).toContain('- [ ] How should provenance travel?');
+    expect(result.strategy).toContain('- [x] Which resolved provenance path?');
+    expect(result.dashboard).toContain('- [ ] How should provenance travel? [angle-bank]');
+  });
+
+  it('marks direct strategy questions as legacy imports and warns when writing', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, '');
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    try {
+      const result = reduceResearchState(specFolder, { write: true });
+
+      expect(result.registry.openQuestions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            text: 'What should be checked?',
+            origin: 'legacy-import',
+            source: 'key-questions',
+            injectedAtIteration: 0,
+          }),
+        ]),
+      );
+      expect(result.dashboard).toContain('- [ ] What should be checked? [legacy-import]');
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining('legacy-import question(s)'),
+      );
+    } finally {
+      warnSpy.mockRestore();
+    }
   });
 });

@@ -30,6 +30,19 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 - **Mutability:** Mutable — analyst-owned sections remain stable, while machine-owned sections are rewritten by the reducer after each iteration.
 - **Protection:** Shared state with explicit ownership boundaries. Orchestrator validates consistency on resume.
 
+### Question Injection Surface
+
+Use `{spec_folder}/research/inbox.jsonl` to append external questions during an active run. Each line is one JSON object with:
+
+- `id`: stable inbox record identifier
+- `text`: question text to promote
+- `source`: concrete source label, such as an angle bank entry, analyst strategy, or operator note
+- `origin`: one of `angle-bank`, `analyst-strategy`, `operator`, or `legacy-import`
+- `injectedAtIteration`: iteration number when the question was introduced
+- `promotedQuestionId`: promoted registry question id, or `null` until promotion
+
+The reducer reads the inbox on every reduce step and carries `origin` into the question registry and dashboard badges. Direct edits to Section 3 still work as a compatibility path, but they are attributed as `legacy-import`.
+
 ---
 
 ## 2. TOPIC
@@ -132,6 +145,7 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 - research/research.md ownership: workflow-owned canonical synthesis output
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred, not runtime-wired)
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11A
+- Question injection surface: `{spec_folder}/research/inbox.jsonl`
 - Canonical pause sentinel: `research/.deep-research-pause`
 - Capability matrix: `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json`
 - Capability matrix doc: `.opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md`

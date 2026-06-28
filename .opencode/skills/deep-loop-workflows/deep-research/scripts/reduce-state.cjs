@@ -25,6 +25,16 @@ const {
 
 const DEFAULT_SPARKLINE_WIDTH = 20;
 const DEFAULT_TREND_FLATLINE_WINDOW = 3;
+const INBOX_FILE_NAME = 'inbox.jsonl';
+const DEFAULT_INBOX_SOURCE = 'research-inbox';
+const LEGACY_IMPORT_ORIGIN = 'legacy-import';
+const LEGACY_IMPORT_SOURCE = 'key-questions';
+const VALID_QUESTION_ORIGINS = new Set([
+  'angle-bank',
+  'analyst-strategy',
+  'operator',
+  LEGACY_IMPORT_ORIGIN,
+]);
 const SPARKLINE_BLOCKS = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'];
 
 function readUtf8(filePath) {
@@ -60,6 +70,28 @@ function slugify(value) {
 
 function normalizeText(value) {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+function normalizeOptionalText(value) {
+  return typeof value === 'string' ? normalizeText(value) : '';
+}
+
+function normalizeQuestionOrigin(value) {
+  const origin = normalizeOptionalText(value).toLowerCase();
+  return VALID_QUESTION_ORIGINS.has(origin) ? origin : 'operator';
+}
+
+function normalizeQuestionSource(value, fallback) {
+  return normalizeOptionalText(value) || fallback;
+}
+
+function normalizeQuestionIteration(value) {
+  return isFiniteNumber(value) && value >= 0 ? Math.floor(value) : 0;
+}
+
+function normalizeQuestionId(value) {
+  const normalized = normalizeOptionalText(value);
+  return normalized || null;
 }
 
 function contentHash(value) {
@@ -273,6 +305,92 @@ function parseJsonlDetailed(jsonlContent) {
   return { records, corruptionWarnings };
 }
 
+function readInboxQuestions(inboxPath) {
+  if (!fs.existsSync(inboxPath)) {
+    return {
+      questions: [],
+      warnings: [],
+      corruptionWarnings: [],
+    };
+  }
+
+  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(inboxPath));
+  const warnings = corruptionWarnings.map((warning) =>
+    `line ${warning.line}: ${warning.error}`,
+  );
+  const questions = [];
+
+  records.forEach((record, index) => {
+    if (!record || typeof record !== 'object' || Array.isArray(record)) {
+      warnings.push(`record ${index + 1}: expected an object`);
+      return;
+    }
+
+    const text = normalizeOptionalText(record.text);
+    if (!text) {
+      warnings.push(`record ${index + 1}: missing text`);
+      return;
+    }
+
+    questions.push({
+      checked: false,
+      text,
+      inboxId: normalizeQuestionId(record.id) || `inbox-${index + 1}-${contentHash(text)}`,
+      source: normalizeQuestionSource(record.source, DEFAULT_INBOX_SOURCE),
+      origin: normalizeQuestionOrigin(record.origin),
+      injectedAtIteration: normalizeQuestionIteration(record.injectedAtIteration),
+      promotedQuestionId: normalizeQuestionId(record.promotedQuestionId),
+    });
+  });
+
+  return {
+    questions,
+    warnings,
+    corruptionWarnings,
+  };
+}
+
+function mergeQuestionSources(strategyQuestions, inboxQuestions) {
+  const merged = [];
+  const byQuestionText = new Map();
+
+  for (const question of strategyQuestions.concat(inboxQuestions)) {
+    const normalizedText = normalizeText(question.text);
+    const key = contentHash(normalizedText);
+    const existingIndex = byQuestionText.get(key);
+
+    if (existingIndex === undefined) {
+      byQuestionText.set(key, merged.length);
+      merged.push({
+        ...question,
+        text: normalizedText,
+      });
+      continue;
+    }
+
+    const existing = merged[existingIndex];
+    merged[existingIndex] = {
+      ...existing,
+      ...question,
+      checked: Boolean(existing.checked || question.checked),
+      text: existing.text,
+    };
+  }
+
+  return merged;
+}
+
+function warnLegacyImportQuestions(questions) {
+  const legacyCount = questions.filter((question) => question.origin === LEGACY_IMPORT_ORIGIN).length;
+  if (!legacyCount) {
+    return;
+  }
+
+  console.warn(
+    `[deep-research] detected ${legacyCount} legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.`,
+  );
+}
+
 function loadDeltaPayloads(deltaDir) {
   if (!fs.existsSync(deltaDir)) {
     return [];
@@ -404,6 +522,10 @@ function parseStrategyQuestions(strategyContent) {
       return {
         checked,
         text,
+        origin: LEGACY_IMPORT_ORIGIN,
+        source: LEGACY_IMPORT_SOURCE,
+        injectedAtIteration: 0,
+        promotedQuestionId: null,
       };
     });
 }
@@ -744,10 +866,18 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const keyedQuestions = strategyQuestions.map((question, index) => {
     const normalized = normalizeText(question.text);
     const resolved = question.checked || answeredSet.has(normalized);
+    const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
+    const inboxId = normalizeQuestionId(question.inboxId);
+    const injectedAtIteration = normalizeQuestionIteration(question.injectedAtIteration);
     return {
-      id: `question-${index + 1}-${slugify(normalized)}`,
+      id: promotedQuestionId || `question-${index + 1}-${slugify(normalized)}`,
+      inboxId,
       text: normalized,
-      addedAtIteration: 0,
+      origin: normalizeQuestionOrigin(question.origin),
+      source: normalizeQuestionSource(question.source, LEGACY_IMPORT_SOURCE),
+      injectedAtIteration,
+      promotedQuestionId,
+      addedAtIteration: injectedAtIteration,
       resolvedAtIteration: resolved
         ? questionCoverageRecords.find((record) =>
             Array.isArray(record.answeredQuestions)
@@ -807,7 +937,12 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     : {};
   const openQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => ({
     id: question.id,
+    inboxId: question.inboxId,
     text: question.text,
+    origin: question.origin,
+    source: question.source,
+    injectedAtIteration: question.injectedAtIteration,
+    promotedQuestionId: question.promotedQuestionId,
     addedAtIteration: question.addedAtIteration,
     resolvedAtIteration: null,
   }));
@@ -825,10 +960,27 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     generation: lineage.generation ?? 1,
     continuedFromRun: lineage.continuedFromRun ?? null,
     terminalStop: reducerState.terminalStop || null,
+    keyQuestions: keyedQuestions.map((question) => ({
+      id: question.id,
+      inboxId: question.inboxId,
+      text: question.text,
+      origin: question.origin,
+      source: question.source,
+      injectedAtIteration: question.injectedAtIteration,
+      promotedQuestionId: question.promotedQuestionId,
+      addedAtIteration: question.addedAtIteration,
+      resolvedAtIteration: question.resolvedAtIteration,
+      resolved: question.resolved,
+    })),
     openQuestions,
     resolvedQuestions: keyedQuestions.filter((question) => question.resolved).map((question) => ({
       id: question.id,
+      inboxId: question.inboxId,
       text: question.text,
+      origin: question.origin,
+      source: question.source,
+      injectedAtIteration: question.injectedAtIteration,
+      promotedQuestionId: question.promotedQuestionId,
       addedAtIteration: question.addedAtIteration,
       resolvedAtIteration: question.resolvedAtIteration,
     })),
@@ -931,12 +1083,9 @@ function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAncho
 
 function updateStrategyContent(strategyContent, registry, iterationFiles, iterationRecords) {
   const answeredTexts = registry.resolvedQuestions.map((question) => question.text);
-  const questionEntries = parseStrategyQuestions(strategyContent);
-  const answeredSet = new Set(answeredTexts.map(normalizeText));
-  const rewrittenQuestionLines = questionEntries.map((question) => {
-    const checked = answeredSet.has(normalizeText(question.text));
-    return `- [${checked ? 'x' : ' '}] ${question.text}`;
-  });
+  const rewrittenQuestionLines = registry.keyQuestions.map((question) =>
+    `- [${question.resolved ? 'x' : ' '}] ${question.text}`,
+  );
 
   const whatWorked = iterationFiles
     .filter((iteration) => iteration.reflectionWorked)
@@ -967,6 +1116,10 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, iterat
   );
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
   return updated;
+}
+
+function formatQuestionWithOrigin(question) {
+  return question.origin ? `${question.text} [${question.origin}]` : question.text;
 }
 
 function renderDashboard(config, registry, iterationRecords, iterationFiles) {
@@ -1062,7 +1215,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     '## 4. QUESTIONS',
     `- Answered: ${registry.metrics.resolvedQuestions}/${registry.metrics.resolvedQuestions + registry.metrics.openQuestions}`,
     ...registry.resolvedQuestions.map((question) => `- [x] ${question.text}`),
-    ...registry.openQuestions.map((question) => `- [ ] ${question.text}`),
+    ...registry.openQuestions.map((question) => `- [ ] ${formatQuestionWithOrigin(question)}`),
     '',
     '<!-- /ANCHOR:questions -->',
     '<!-- ANCHOR:uncovered-questions -->',
@@ -1153,6 +1306,7 @@ function reduceResearchState(specFolder, options = {}) {
   const registryPath = path.join(researchDir, 'findings-registry.json');
   const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
   const resourceMapPath = path.join(researchDir, 'resource-map.md');
+  const inboxPath = path.join(researchDir, INBOX_FILE_NAME);
   const iterationDir = path.join(researchDir, 'iterations');
   const deltaDir = path.join(researchDir, 'deltas');
 
@@ -1162,6 +1316,14 @@ function reduceResearchState(specFolder, options = {}) {
   const events = parsedRecords.filter((record) => record.type === 'event');
   const strategyContent = readUtf8(strategyPath);
   const strategyQuestions = parseStrategyQuestions(strategyContent);
+  const inbox = readInboxQuestions(inboxPath);
+  const questionInputs = mergeQuestionSources(strategyQuestions, inbox.questions);
+  if (write) {
+    warnLegacyImportQuestions(questionInputs);
+  }
+  for (const warning of inbox.warnings) {
+    console.warn(`[deep-research] skipped inbox record: ${warning}`);
+  }
   const iterationFiles = fs.existsSync(iterationDir)
     ? fs.readdirSync(iterationDir)
         .filter((fileName) => /^iteration-\d+\.md$/.test(fileName))
@@ -1185,7 +1347,7 @@ function reduceResearchState(specFolder, options = {}) {
     continuedFromRun: lineage.continuedFromRun,
   };
   const status = deriveDashboardStatus(config, records, events, terminalStop);
-  const registry = buildRegistry(strategyQuestions, iterationFiles, records, events, {
+  const registry = buildRegistry(questionInputs, iterationFiles, records, events, {
     lineage,
     terminalStop,
     status,
@@ -1193,6 +1355,8 @@ function reduceResearchState(specFolder, options = {}) {
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
   registry.corruptionWarnings = corruptionWarnings;
+  registry.inboxPath = inboxPath;
+  registry.inboxWarnings = inbox.warnings;
   registry.status = status;
   const evidenceRecords = records.filter((record) => record.status !== 'thought');
   const ratioHistory = evidenceRecords
