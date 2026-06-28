@@ -12,7 +12,7 @@ importance_tier: "important"
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp_server/`, and `shared/`. Continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp_server/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
 
 ---
 
@@ -25,7 +25,7 @@ importance_tier: "important"
 - `shared/` owns neutral modules imported by both scripts and runtime. TypeScript.
 - `dist/` carries generated JavaScript entrypoints only. Not authored.
 
-The package's operator-facing recovery surface is `/spec_kit:resume`. The recovery chain reads `handover.md`, then `_memory.continuity`, then canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`). Generated memory artifacts are supporting context only, not the primary continuity record.
+The package's operator-facing recovery surface is `/speckit:resume`. The recovery chain reads `handover.md`, then `_memory.continuity`, then canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`). Generated memory artifacts are supporting context only, not the primary continuity record.
 
 ### Architecture diagram
 
@@ -36,8 +36,8 @@ The package's operator-facing recovery surface is `/spec_kit:resume`. The recove
 │                                                                 │
 │  ┌──────────────────┐     ┌──────────────────────┐              │
 │  │   CLI Runtimes   │     │      AI Agents       │              │
-│  │ Claude / Codex   │────▶│  (Gate 1/2/3 flow)   │              │
-│  │ Copilot          │     │                      │              │
+│  │ Claude / Codex   │────▶│  (Gate 1/2/3 flow)   │               │
+│  │ OpenCode         │     │                      │              │
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
@@ -45,8 +45,8 @@ The package's operator-facing recovery surface is `/spec_kit:resume`. The recove
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
 │  │  │ claude/  │ │save/     │ │ search / resume / merge  │   │  │
-│  │  │ copilot/ │ │resume/   │ │ graph / continuity       │   │  │
-│  │  │ codex/   │ │search/   │ │                          │   │  │
+│  │  │ codex/   │ │resume/   │ │ graph / continuity       │   │  │
+│  │  │          │ │search/   │ │                          │   │  │
 │  │  │          │ │context/  │ │                          │   │  │
 │  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
 │  │  matrix_runners/        stress_test/                      │  │
@@ -111,7 +111,7 @@ Reverse imports are blocked by lint and CI.
 
 Spec-kit treats canonical spec documents as the durable continuity record. Generated memory indexes are search/recall surfaces over that record, not the record itself.
 
-**Read path (`/spec_kit:resume`):**
+**Read path (`/speckit:resume`):**
 
 1. Resolve the requested spec folder, following a valid phase-parent `derived.last_active_child_id` into a child before reading continuity.
 2. Look for `handover.md` at the resolved folder root.
@@ -139,11 +139,11 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Search.** The 5-channel hybrid retrieval pipeline (Vector, FTS5, BM25, Causal Graph, Degree) lives in `lib/search/`. The four pipeline stages are Gather → Score → Rerank → Filter. Reciprocal Rank Fusion combines channel outputs. Response shaping happens in `formatters/`.
 
-**Memory and continuity.** `lib/memory/` owns the indexed-continuity store schema and persistence. `lib/continuity/` owns the canonical-doc routing. `database/` carries the SQLite files (`memory.db`, `embeddings.db`, plus auxiliary stores).
+**Memory and continuity.** `lib/memory/` owns the indexed-continuity store schema and persistence. `lib/continuity/` owns the canonical-doc routing. `database/` carries the SQLite files (`context-index.sqlite` is the canonical store; embedding vectors live in per-profile `vectors/` shards; `speckit-eval.db` holds eval data).
 
 **Save pipeline.** `handlers/save/` runs the 3-layer save gate (intake validation, content router, post-save quality review). DQI scoring runs on every save.
 
-**Hook orchestrator.** `hooks/{claude,copilot,codex}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
+**Hook orchestrator.** `hooks/{claude,codex}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
 
 **Matrix runners.** `matrix_runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
 
@@ -155,7 +155,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 Spec-kit ships a runtime hook surface that wires into each AI client's session lifecycle. The hooks emit compact context payloads at `SessionStart`, `UserPromptSubmit`, and (where supported) `Compact`.
 
-**Hook matrix.** Claude Code injects prompt-time briefs directly. Codex CLI supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. OpenCode delivers context through a plugin bridge under `.opencode/plugins/`. Copilot CLI refreshes a managed block in `$HOME/.copilot/copilot-instructions.md` because Copilot hook stdout is not prompt-mutating.
+**Hook matrix.** Claude Code injects prompt-time briefs directly. Codex CLI supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. OpenCode delivers context through a plugin bridge under `.opencode/plugins/`.
 
 **Plugin bridges.** OpenCode plugin entrypoints live under `.opencode/plugins/`. Each plugin imports a thin bridge that calls into `mcp_server/lib/hooks/` and emits a payload back to the runtime.
 
@@ -185,7 +185,7 @@ Spec-kit's quality gates run at three layers.
 | ADR-004 | FSRS power-law forgetting curve, tuned by content type and importance | Accepted |
 | ADR-005 | 4-level documentation contract (Levels 1, 2, 3, 3+) with manifest templates | Accepted |
 | ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
-| ADR-007 | Embedding provider auto-cascade: Voyage → OpenAI → ollama → hf-local | Accepted |
+| ADR-007 | Embedding provider auto-cascade is local-first (Ollama → hf-local → OpenAI → Voyage), per ADR-014 | Accepted |
 
 ---
 
