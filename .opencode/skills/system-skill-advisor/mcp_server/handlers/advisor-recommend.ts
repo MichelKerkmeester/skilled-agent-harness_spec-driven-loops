@@ -10,6 +10,12 @@ import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
+import {
+  DEEP_ROUTING_PROJECTION_HASH,
+  MERGED_DEEP_SKILL_ID,
+  modeForAlias,
+  modeForPromptAlias,
+} from '../lib/scorer/aliases.js';
 import { withSemanticShadowPromptEmbedding } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
@@ -49,7 +55,7 @@ function canonicalizeWorkspaceRoot(input: string): string {
 }
 
 function cacheSourceSignature(status: AdvisorStatus): string {
-  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}`;
+  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`;
 }
 
 function recommendationLabels(output: AdvisorRecommendOutput): string[] {
@@ -244,7 +250,23 @@ export function matchedDocsFromContributions(
   return docs;
 }
 
-function publicRecommendation(recommendation: ScoredRecommendation, includeAttribution: boolean) {
+function workflowModeForRecommendation(
+  recommendation: ScoredRecommendation,
+  prompt: string,
+): string | undefined {
+  const directMode = modeForAlias(recommendation.skill);
+  const promptMode = recommendation.skill === MERGED_DEEP_SKILL_ID
+    ? modeForPromptAlias(prompt)
+    : null;
+  const workflowMode = sanitizeSkillLabel(directMode ?? promptMode ?? '');
+  return workflowMode || undefined;
+}
+
+function publicRecommendation(
+  recommendation: ScoredRecommendation,
+  includeAttribution: boolean,
+  prompt: string,
+) {
   const skillId = sanitizeSkillLabel(recommendation.skill);
   if (!skillId) return null;
   const matchedDocs = matchedDocsFromContributions(recommendation);
@@ -257,6 +279,7 @@ function publicRecommendation(recommendation: ScoredRecommendation, includeAttri
     || sanitizedStatus === 'future'
     ? sanitizedStatus as PublicRecommendationStatus
     : undefined;
+  const workflowMode = workflowModeForRecommendation(recommendation, prompt);
   return {
     skillId,
     score: recommendation.score,
@@ -277,6 +300,7 @@ function publicRecommendation(recommendation: ScoredRecommendation, includeAttri
     ...(redirectFrom.length > 0 ? { redirectFrom } : {}),
     ...(redirectTo ? { redirectTo } : {}),
     ...(status ? { status } : {}),
+    ...(workflowMode ? { workflowMode } : {}),
   };
 }
 
@@ -391,7 +415,11 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     runtimeLaneHealth: runtimeLaneHealthForStatus(status),
   }));
   const recommendations = result.recommendations
-    .map((recommendation) => publicRecommendation(recommendation, Boolean(input.options?.includeAttribution)))
+    .map((recommendation) => publicRecommendation(
+      recommendation,
+      Boolean(input.options?.includeAttribution),
+      input.prompt,
+    ))
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
     .slice(0, topK);
   const degradedLanes = result.metrics.degradedLanes ?? [];

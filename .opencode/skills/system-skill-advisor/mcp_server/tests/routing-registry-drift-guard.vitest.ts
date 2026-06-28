@@ -2,17 +2,7 @@
 // MODULE: Registry ↔ Advisor Routing Drift Guard
 // ───────────────────────────────────────────────────────────────────
 //
-// deep-loop-workflows/mode-registry.json is the declarative source of truth
-// for how each mode routes. The advisor keeps its hardcoded projection maps
-// (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) for
-// speed and to avoid reading a foreign skill's file on the hot path — so this
-// test asserts those maps stay equal to the registry projection. If the two
-// drift (a mode added to one side only, an alias set changed), this fails.
-//
-// Projection rule:
-//   Python map  = { legacyAdvisorId -> workflowMode } for routingClass 'lexical'
-//   TypeScript  = same, plus routingClass 'alias-fold' (the deep-improvement fold)
-
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -21,7 +11,11 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
-import { DEEP_MODE_BY_CANONICAL, SKILL_ALIAS_GROUPS } from '../lib/scorer/aliases.js';
+import {
+  DEEP_MODE_BY_CANONICAL,
+  DEEP_ROUTING_PROJECTION_HASH,
+  SKILL_ALIAS_GROUPS,
+} from '../lib/scorer/aliases.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
@@ -31,8 +25,10 @@ const advisorScript = resolve(
 );
 const registryPath = resolve(repoRoot, '.opencode/skills/deep-loop-workflows/mode-registry.json');
 
+type RoutingClass = 'lexical' | 'alias-fold' | 'metadata' | 'command-bridge';
+
 interface AdvisorRouting {
-  readonly routingClass: 'lexical' | 'alias-fold' | 'metadata' | 'command-bridge';
+  readonly routingClass: RoutingClass;
   readonly legacyAdvisorId?: string;
   readonly advisorDefaultMode?: boolean;
   readonly legacyAliases?: readonly string[];
@@ -43,25 +39,106 @@ interface Mode {
   readonly packet: string;
   readonly advisorRouting: AdvisorRouting;
 }
+interface ProjectionEntry {
+  readonly legacyAdvisorId: string;
+  readonly workflowMode: string;
+  readonly routingClass: 'lexical' | 'alias-fold';
+  readonly advisorDefaultMode: boolean;
+  readonly legacyAliases: readonly string[];
+}
+interface RoutingDump {
+  readonly DEEP_ROUTING_PROJECTION_HASH: string;
+  readonly DEEP_ROUTING_SKILLS: string[];
+  readonly DEEP_ROUTING_MODE_BY_KEY: Record<string, string>;
+  readonly PY_ALIAS_GROUP_KEYS: string[];
+}
 const registry = JSON.parse(readFileSync(registryPath, 'utf8')) as { modes: readonly Mode[] };
 
-function registryProjection(classes: readonly string[]): Record<string, string> {
-  const map: Record<string, string> = {};
+function registryProjectionEntries(classes: readonly RoutingClass[]): ProjectionEntry[] {
+  const entries: ProjectionEntry[] = [];
   for (const mode of registry.modes) {
     const ar = mode.advisorRouting;
-    if (classes.includes(ar.routingClass)) {
-      map[ar.legacyAdvisorId as string] = mode.workflowMode;
+    if ((ar.routingClass === 'lexical' || ar.routingClass === 'alias-fold') && classes.includes(ar.routingClass)) {
+      entries.push({
+        legacyAdvisorId: ar.legacyAdvisorId as string,
+        workflowMode: mode.workflowMode,
+        routingClass: ar.routingClass,
+        advisorDefaultMode: ar.advisorDefaultMode === true,
+        legacyAliases: [...(ar.legacyAliases ?? [])],
+      });
     }
   }
-  return map;
+  return entries.sort((left, right) => left.legacyAdvisorId.localeCompare(right.legacyAdvisorId));
 }
 
-function dumpPythonMaps(): { DEEP_ROUTING_SKILLS: string[]; DEEP_ROUTING_MODE_BY_KEY: Record<string, string>; PY_ALIAS_GROUP_KEYS: string[] } {
+function projectionHash(entries: readonly ProjectionEntry[]): string {
+  const canonical = JSON.stringify({
+    skill: 'deep-loop-workflows',
+    entries: entries.map((entry) => ({
+      legacyAdvisorId: entry.legacyAdvisorId,
+      workflowMode: entry.workflowMode,
+      routingClass: entry.routingClass,
+      advisorDefaultMode: entry.advisorDefaultMode,
+      legacyAliases: [...entry.legacyAliases],
+    })),
+  });
+  return `sha256:${createHash('sha256').update(canonical).digest('hex')}`;
+}
+
+function generatedTypeScriptProjectionEntries(): ProjectionEntry[] {
+  const registryById = new Map(
+    registryProjectionEntries(['lexical', 'alias-fold'])
+      .map((entry) => [entry.legacyAdvisorId, entry] as const),
+  );
+  return Object.entries(DEEP_MODE_BY_CANONICAL)
+    .map(([legacyAdvisorId, workflowMode]) => {
+      const registryEntry = registryById.get(legacyAdvisorId);
+      expect(registryEntry, `registry entry missing for ${legacyAdvisorId}`).toBeDefined();
+      return {
+        legacyAdvisorId,
+        workflowMode,
+        routingClass: registryEntry!.routingClass,
+        advisorDefaultMode: registryEntry!.advisorDefaultMode,
+        legacyAliases: [...(SKILL_ALIAS_GROUPS[legacyAdvisorId] ?? [])],
+      };
+    })
+    .sort((left, right) => left.legacyAdvisorId.localeCompare(right.legacyAdvisorId));
+}
+
+function generatedPythonProjectionEntries(dump: RoutingDump): ProjectionEntry[] {
+  const registryById = new Map(
+    registryProjectionEntries(['lexical'])
+      .map((entry) => [entry.legacyAdvisorId, entry] as const),
+  );
+  return Object.entries(dump.DEEP_ROUTING_MODE_BY_KEY)
+    .map(([legacyAdvisorId, workflowMode]) => {
+      const registryEntry = registryById.get(legacyAdvisorId);
+      expect(registryEntry, `registry lexical entry missing for ${legacyAdvisorId}`).toBeDefined();
+      return {
+        legacyAdvisorId,
+        workflowMode,
+        routingClass: registryEntry!.routingClass,
+        advisorDefaultMode: registryEntry!.advisorDefaultMode,
+        legacyAliases: [...registryEntry!.legacyAliases],
+      };
+    })
+    .sort((left, right) => left.legacyAdvisorId.localeCompare(right.legacyAdvisorId));
+}
+
+function dumpPythonMaps(): RoutingDump {
   const stdout = execFileSync('python3', [advisorScript, '--dump-routing-maps'], {
     cwd: repoRoot,
     encoding: 'utf8',
   });
-  return JSON.parse(stdout);
+  return JSON.parse(stdout) as RoutingDump;
+}
+
+function checkProjectionGenerator(): { readonly status: string; readonly projectionHash: string; readonly changed: readonly string[] } {
+  const stdout = execFileSync('python3', [advisorScript, '--check-routing-projection'], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  });
+  return JSON.parse(stdout) as { readonly status: string; readonly projectionHash: string; readonly changed: readonly string[] };
 }
 
 describe('routing-registry-drift-guard', () => {
@@ -79,14 +156,37 @@ describe('routing-registry-drift-guard', () => {
     }
   });
 
-  it('Python DEEP_ROUTING_MODE_BY_KEY equals the registry lexical projection', () => {
+  it('generated projection hash matches the registry projection', () => {
+    const registryHash = projectionHash(registryProjectionEntries(['lexical', 'alias-fold']));
     const py = dumpPythonMaps();
-    expect(py.DEEP_ROUTING_MODE_BY_KEY).toEqual(registryProjection(['lexical']));
-    expect(new Set(py.DEEP_ROUTING_SKILLS)).toEqual(new Set(Object.keys(registryProjection(['lexical']))));
+
+    expect(DEEP_ROUTING_PROJECTION_HASH).toBe(registryHash);
+    expect(py.DEEP_ROUTING_PROJECTION_HASH).toBe(registryHash);
   });
 
-  it('TypeScript DEEP_MODE_BY_CANONICAL equals the registry lexical+alias-fold projection', () => {
-    expect({ ...DEEP_MODE_BY_CANONICAL }).toEqual(registryProjection(['lexical', 'alias-fold']));
+  it('projection generator reports fresh generated blocks', () => {
+    const registryHash = projectionHash(registryProjectionEntries(['lexical', 'alias-fold']));
+    const generator = checkProjectionGenerator();
+
+    expect(generator.status).toBe('fresh');
+    expect(generator.changed).toEqual([]);
+    expect(generator.projectionHash).toBe(registryHash);
+  });
+
+  it('TypeScript generated projection stays hash-fresh', () => {
+    const registryHash = projectionHash(registryProjectionEntries(['lexical', 'alias-fold']));
+    const generatedHash = projectionHash(generatedTypeScriptProjectionEntries());
+
+    expect(generatedHash).toBe(registryHash);
+  });
+
+  it('Python lexical projection stays hash-fresh', () => {
+    const py = dumpPythonMaps();
+    const registryHash = projectionHash(registryProjectionEntries(['lexical']));
+    const generatedHash = projectionHash(generatedPythonProjectionEntries(py));
+
+    expect(generatedHash).toBe(registryHash);
+    expect(new Set(py.DEEP_ROUTING_SKILLS)).toEqual(new Set(Object.keys(py.DEEP_ROUTING_MODE_BY_KEY)));
   });
 
   it('exactly one mode is flagged advisorDefaultMode, and it is agent-improvement', () => {
@@ -94,17 +194,13 @@ describe('routing-registry-drift-guard', () => {
     expect(defaults.map((m) => m.workflowMode)).toEqual(['agent-improvement']);
   });
 
-  it('registry legacyAliases match the TS scorer aliases; legacyAdvisorId keys exist on both TS and Python', () => {
+  it('legacyAdvisorId keys exist on both TS and Python alias surfaces', () => {
     const pyKeys = new Set(dumpPythonMaps().PY_ALIAS_GROUP_KEYS);
     for (const mode of registry.modes) {
       const ar = mode.advisorRouting;
       if (ar.routingClass === 'lexical' || ar.routingClass === 'alias-fold') {
         const id = ar.legacyAdvisorId as string;
-        // legacyAliases mirrors the TypeScript scorer set (the merged-identity layer keys on it).
-        const expected = SKILL_ALIAS_GROUPS[id];
-        expect(expected, `no TS SKILL_ALIAS_GROUPS entry for ${id}`).toBeDefined();
-        expect(new Set(ar.legacyAliases ?? [])).toEqual(new Set(expected));
-        // The Python deep-router has its own alias values by design; cross-check only that the key exists.
+        expect(SKILL_ALIAS_GROUPS[id], `no TS SKILL_ALIAS_GROUPS entry for ${id}`).toBeDefined();
         expect(pyKeys.has(id), `legacyAdvisorId ${id} missing from Python SKILL_ALIAS_GROUPS`).toBe(true);
       }
     }

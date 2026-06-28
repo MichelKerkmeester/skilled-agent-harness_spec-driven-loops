@@ -20,11 +20,10 @@
     "test",
     "com"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.398Z",
+  "lastUpdated": "2026-06-28T20:06:50.791Z",
   "specId": "001",
   "folderSlug": "advisor-routing-projection",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "005-skill-interconnection"

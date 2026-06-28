@@ -164,6 +164,8 @@ template_sources:
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
+  advisor_projection_emit: "python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --emit-routing-projection"
+  advisor_projection_guard: "PATH=\"/opt/homebrew/bin:$PATH\" npm test -- routing-registry-drift-guard.vitest.ts"
 
 quality_standards:
   template_first: required
@@ -179,6 +181,10 @@ quality_standards:
     - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (system-id alias set, lexical + alias-fold only), packetSkillName"
     - "registry keys (mode.packet) match packet folder names; canonical default folder == packetSkillName == deep-<mode>, grandfathered mismatches recorded via packetSkillName"
     - "runtimeLoopType allowed set when non-null: research | review | council | context"
+  advisor_projection_requirements:
+    - "For lexical/alias-fold modes, emit the generated advisor projection from the finalized mode-registry.json into system-skill-advisor's TypeScript and Python projection constants"
+    - "Projection emission must include a SHA-256 freshness hash and must not add runtime reads of another skill's mode-registry.json"
+    - "The routing-registry drift guard must pass after projection emission"
   packet_requirements:
     - "RECOMMENDED DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode> (soft guidance, not a hard gate)"
     - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
@@ -283,11 +289,13 @@ workflow:
       - "Create or update one packet dir per distinct packet value (default folder == packetSkillName == deep-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md"
       - Create the non-discoverable shared/ dir
       - Never write a graph-metadata.json inside any packet or inside shared/
+      - "When any mode is routingClass lexical or alias-fold, run advisor_projection_emit to emit/update the advisor routing projection from the finalized mode-registry.json and refresh the embedded projection hash"
     outputs:
       - generated_hub
       - generated_registry
       - generated_packets
       - generated_shared
+      - advisor_projection_emitted
 
   step_5_validation:
     purpose: Verify generated package and identity (success gate == the /doctor parent-skill-check gate)
@@ -299,6 +307,7 @@ workflow:
       - "Per mode, assert an advisorRouting block with routingClass in {lexical, alias-fold, metadata, command-bridge}"
       - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; the default folder == packetSkillName == deep-<mode> is recommended, NOT required (allow many-modes-to-one-packet and grandfathered folder!=packetSkillName)"
       - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
+      - "If any mode is routingClass lexical or alias-fold, run the advisor projection drift guard from system-skill-advisor and require a pass"
     outputs:
       - hub_validation_passed
       - hub_identity_passed
@@ -306,13 +315,14 @@ workflow:
       - discriminator_passed
       - packet_structure_passed
       - one_identity_passed
+      - advisor_projection_guard_passed
 
   step_6_completion:
     purpose: Emit completion status
     activities:
       - Summarize operation, mode list, and generated paths
       - Report identity counts and validation results
-      - "Emit the advisor-map sync warning when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note): the registry block is registry-declared but INERT until the hardcoded advisor maps and a per-skill drift-guard test are hand-added"
+      - "Report advisor projection emission when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note)"
       - Return STATUS=OK PATH=[skill_root]
     outputs:
       - completion_report
@@ -320,15 +330,10 @@ workflow:
   advisor_map_sync_note:
     when: "any generated mode has advisorRouting.routingClass == lexical or alias-fold"
     warning: |
-      Advisor routing for lexical/alias-fold modes is registry-declared, NOT live.
-      The advisor does NOT read mode-registry.json at runtime. Each such mode is
-      INERT until you hand-add the matching hardcoded projection-map entries and a
-      per-skill drift-guard test:
-        - Python  DEEP_ROUTING_MODE_BY_KEY  (skill_advisor.py)
-        - TypeScript  DEEP_MODE_BY_CANONICAL  (advisor scorer)
-        - a drift-guard vitest asserting (hardcoded maps == this registry projection)
-      Until then the mode will not route, and adding a lexical/alias-fold mode by
-      update without this wiring will turn an existing drift-guard test RED.
+      Advisor routing for lexical/alias-fold modes is registry-declared and then
+      emitted into the advisor projection constants with a freshness hash.
+      The advisor does NOT read mode-registry.json at runtime. After emission,
+      the system-skill-advisor drift guard must pass before reporting success.
       metadata and command-bridge modes need no advisor-map entry.
 
 error_recovery:
@@ -384,7 +389,7 @@ completion_report_template: |
   - One-identity invariant: [passed/failed]
 
   Advisor map sync (lexical/alias-fold modes only):
-  - [none | REQUIRED: hand-add Python/TS projection maps + drift-guard test before the mode routes]
+  - [none | emitted with projection hash and drift guard passed]
 
   STATUS=[OK|FAIL] PATH=[skill_root]
 

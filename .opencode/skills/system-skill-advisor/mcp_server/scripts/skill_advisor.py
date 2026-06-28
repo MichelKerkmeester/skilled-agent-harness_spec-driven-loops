@@ -21,6 +21,7 @@ Options:
 """
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import os
@@ -78,6 +79,22 @@ NATIVE_GENERATION_MODULE = os.path.join(
     "freshness",
     "generation.js",
 )
+MODE_REGISTRY_PATH = os.path.join(SKILLS_DIR, "deep-loop-workflows", "mode-registry.json")
+ALIASES_TS_PATH = os.path.join(
+    SKILLS_DIR,
+    "system-skill-advisor",
+    "mcp_server",
+    "lib",
+    "scorer",
+    "aliases.ts",
+)
+TS_PROJECTION_START = "// BEGIN GENERATED DEEP ROUTING PROJECTION"
+TS_PROJECTION_END = "// END GENERATED DEEP ROUTING PROJECTION"
+PY_HASH_START = "# BEGIN GENERATED DEEP ROUTING " + "PROJECTION HASH"
+PY_HASH_END = "# END GENERATED DEEP ROUTING " + "PROJECTION HASH"
+PY_LEXICAL_START = "# BEGIN GENERATED DEEP ROUTING " + "LEXICAL PROJECTION"
+PY_LEXICAL_END = "# END GENERATED DEEP ROUTING " + "LEXICAL PROJECTION"
+PY_LEXICAL_ORDER = ("deep-review", "deep-research", "deep-ai-council")
 
 NATIVE_ADVISOR_BRIDGE = r"""
 import { readFileSync } from 'node:fs';
@@ -269,6 +286,9 @@ SKILL_ALIAS_TO_CANONICAL = {
     for canonical, aliases in SKILL_ALIAS_GROUPS.items()
     for alias in {canonical, *aliases}
 }
+# BEGIN GENERATED DEEP ROUTING PROJECTION HASH
+DEEP_ROUTING_PROJECTION_HASH = "sha256:5c22ac993d9fb60ec1efcd4688cdf0452eb000ccb8108d581911155e5e9a7d02"
+# END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
     ("SYMMETRY WARNINGS", "asymmetric edges"),
@@ -280,6 +300,178 @@ _SOURCE_METADATA_DIAGNOSTICS: Dict[str, List[Dict[str, str]]] = {
     "signal_map": [],
     "conflict_declarations": [],
 }
+
+
+def _json_hash(payload: Dict[str, Any]) -> str:
+    """Return a stable SHA-256 hash for compact canonical JSON."""
+    canonical = json.dumps(payload, separators=(",", ":"), ensure_ascii=False)
+    digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    return f"sha256:{digest}"
+
+
+def _load_mode_registry_projection(classes: Set[str]) -> List[Dict[str, Any]]:
+    """Load projection entries from the parent-skill mode registry."""
+    with open(MODE_REGISTRY_PATH, "r", encoding="utf-8") as registry_file:
+        registry = json.load(registry_file)
+
+    entries: List[Dict[str, Any]] = []
+    for mode in registry.get("modes", []):
+        if not isinstance(mode, dict):
+            continue
+        routing = mode.get("advisorRouting")
+        if not isinstance(routing, dict):
+            continue
+        routing_class = routing.get("routingClass")
+        if routing_class not in classes:
+            continue
+        legacy_id = routing.get("legacyAdvisorId")
+        workflow_mode = mode.get("workflowMode")
+        if not isinstance(legacy_id, str) or not isinstance(workflow_mode, str):
+            raise ValueError(f"Mode registry entry missing legacy id or workflowMode: {mode!r}")
+        aliases = routing.get("legacyAliases", [])
+        if not isinstance(aliases, list) or not all(isinstance(alias, str) for alias in aliases):
+            raise ValueError(f"Mode registry entry has invalid legacyAliases: {mode!r}")
+        entries.append({
+            "legacyAdvisorId": legacy_id,
+            "workflowMode": workflow_mode,
+            "routingClass": routing_class,
+            "advisorDefaultMode": routing.get("advisorDefaultMode") is True,
+            "legacyAliases": aliases,
+        })
+
+    return sorted(entries, key=lambda entry: entry["legacyAdvisorId"])
+
+
+def _projection_hash(entries: List[Dict[str, Any]]) -> str:
+    """Hash the generated advisor projection payload."""
+    return _json_hash({
+        "skill": "deep-loop-workflows",
+        "entries": entries,
+    })
+
+
+def _ts_string(value: str) -> str:
+    """Render a TypeScript single-quoted string literal for projection data."""
+    return "'" + value.replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+
+def _render_ts_projection(entries: List[Dict[str, Any]], projection_hash: str) -> str:
+    """Render the TypeScript generated projection block."""
+    lines = [
+        "/** Hash of the generated deep-loop routing projection embedded below. */",
+        f"export const DEEP_ROUTING_PROJECTION_HASH = {_ts_string(projection_hash)};",
+        "",
+        "const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({",
+    ]
+    for entry in entries:
+        lines.append(f"  {_ts_string(entry['legacyAdvisorId'])}: [")
+        for alias in entry["legacyAliases"]:
+            lines.append(f"    {_ts_string(alias)},")
+        lines.append("  ],")
+    lines.extend([
+        "});",
+        "",
+        "export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({",
+    ])
+    for entry in entries:
+        lines.append(f"  {_ts_string(entry['legacyAdvisorId'])}: {_ts_string(entry['workflowMode'])},")
+    lines.append("});")
+    return "\n".join(lines)
+
+
+def _ordered_lexical_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Keep existing Python tie order for known modes, then append new modes."""
+    order = {skill: index for index, skill in enumerate(PY_LEXICAL_ORDER)}
+    return sorted(entries, key=lambda entry: (order.get(entry["legacyAdvisorId"], 999), entry["legacyAdvisorId"]))
+
+
+def _render_python_hash(projection_hash: str) -> str:
+    """Render the Python generated projection hash block."""
+    return f'DEEP_ROUTING_PROJECTION_HASH = "{projection_hash}"'
+
+
+def _render_python_lexical_projection(entries: List[Dict[str, Any]]) -> str:
+    """Render Python lexical routing constants from the registry projection."""
+    ordered = _ordered_lexical_entries(entries)
+    skill_items = ", ".join(f'"{entry["legacyAdvisorId"]}"' for entry in ordered)
+    if len(ordered) == 1:
+        skill_items = f"{skill_items},"
+    lines = [
+        f"DEEP_ROUTING_SKILLS = ({skill_items})",
+        "DEEP_ROUTING_MODE_BY_KEY = {",
+    ]
+    for entry in ordered:
+        lines.append(f'    "{entry["legacyAdvisorId"]}": "{entry["workflowMode"]}",')
+    lines.append("}")
+    return "\n".join(lines)
+
+
+def _replace_marked_block(content: str, start: str, end: str, replacement: str) -> str:
+    """Replace a generated block delimited by exact marker lines."""
+    if start not in content or end not in content:
+        raise ValueError(f"Generated projection markers missing: {start} / {end}")
+    before, rest = content.split(start, 1)
+    _, after = rest.split(end, 1)
+    return f"{before}{start}\n{replacement.rstrip()}\n{end}{after}"
+
+
+def emit_routing_projection(check_only: bool = False) -> int:
+    """Emit generated advisor routing projection blocks from mode-registry.json."""
+    entries = _load_mode_registry_projection({"lexical", "alias-fold"})
+    lexical_entries = [entry for entry in entries if entry["routingClass"] == "lexical"]
+    projection_hash = _projection_hash(entries)
+
+    with open(ALIASES_TS_PATH, "r", encoding="utf-8") as aliases_file:
+        aliases_content = aliases_file.read()
+    with open(__file__, "r", encoding="utf-8") as script_file:
+        script_content = script_file.read()
+
+    next_aliases = _replace_marked_block(
+        aliases_content,
+        TS_PROJECTION_START,
+        TS_PROJECTION_END,
+        _render_ts_projection(entries, projection_hash),
+    )
+    next_script = _replace_marked_block(
+        script_content,
+        PY_HASH_START,
+        PY_HASH_END,
+        _render_python_hash(projection_hash),
+    )
+    next_script = _replace_marked_block(
+        next_script,
+        PY_LEXICAL_START,
+        PY_LEXICAL_END,
+        _render_python_lexical_projection(lexical_entries),
+    )
+
+    changed = []
+    if next_aliases != aliases_content:
+        changed.append(ALIASES_TS_PATH)
+    if next_script != script_content:
+        changed.append(__file__)
+
+    if check_only:
+        print(json.dumps({
+            "status": "stale" if changed else "fresh",
+            "projectionHash": projection_hash,
+            "changed": changed,
+        }, indent=2))
+        return 1 if changed else 0
+
+    if next_aliases != aliases_content:
+        with open(ALIASES_TS_PATH, "w", encoding="utf-8") as aliases_file:
+            aliases_file.write(next_aliases)
+    if next_script != script_content:
+        with open(__file__, "w", encoding="utf-8") as script_file:
+            script_file.write(next_script)
+
+    print(json.dumps({
+        "status": "emitted",
+        "projectionHash": projection_hash,
+        "changed": changed,
+    }, indent=2))
+    return 0
 
 
 def _file_url(path: str) -> str:
@@ -472,6 +664,10 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
             redirect_to = _sanitize_native_label(recommendation["redirectTo"])
             if redirect_to:
                 item["redirect_to"] = redirect_to
+        workflow_mode = _sanitize_native_label(recommendation.get("workflowMode"))
+        if workflow_mode:
+            item["workflowMode"] = workflow_mode
+            item.setdefault("mode", workflow_mode)
         if skill_id in shadow_by_skill:
             item["_shadow"] = shadow_by_skill[skill_id]
         legacy.append(item)
@@ -2306,7 +2502,6 @@ def _apply_memory_save_file_operation_cap(
 # Fallback to Candidate 2 happens naturally when packet_context is empty: prior_art_score=0.
 # LOW confidence (<0.65) returns a clarifying_question payload because ambiguous
 # iteration prompts can map to loops with different convergence and findings semantics.
-DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 
 # The five legacy deep-loop skills are folded into one public skill,
@@ -2319,11 +2514,14 @@ DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 # intentionally NOT a Candidate-3 discriminator: it stays metadata-routed
 # (resolved from its graph-metadata.json), so DEEP_ROUTING_SKILLS stays 3.
 MERGED_DEEP_SKILL_ID = "deep-loop-workflows"
+# BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
+DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_MODE_BY_KEY = {
     "deep-review": "review",
     "deep-research": "research",
     "deep-ai-council": "ai-council",
 }
+# END GENERATED DEEP ROUTING LEXICAL PROJECTION
 
 DEEP_ROUTING_LEXICAL_PATTERNS = {
     "deep-review": (
@@ -2588,6 +2786,7 @@ def _apply_deep_skill_routing_layer(
         recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
         recommendation["mode"] = mode
+        recommendation["workflowMode"] = mode
         reason = str(recommendation.get("reason", ""))
         note = f" [Candidate-3 deep routing: {payload['skill']} {mode} {payload['confidence_band']}]"
         if note not in reason:
@@ -3763,6 +3962,10 @@ Examples:
                         help='Read {"prompt": str, "packet_context": object} from stdin and emit Candidate-3 deep routing.')
     parser.add_argument('--dump-routing-maps', action='store_true',
                         help='Dump the hardcoded deep-loop-workflows routing projection maps as JSON (consumed by the registry drift-guard test).')
+    parser.add_argument('--emit-routing-projection', action='store_true',
+                        help='Regenerate embedded advisor routing projection constants from mode-registry.json.')
+    parser.add_argument('--check-routing-projection', action='store_true',
+                        help='Check embedded advisor routing projection constants without writing files.')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
     parser.add_argument('--validate-only', action='store_true',
@@ -3792,6 +3995,16 @@ Examples:
         print(json.dumps({"error": "Use only one of --force-local or --force-native."}, indent=2))
         return 2
 
+    if args.emit_routing_projection and args.check_routing_projection:
+        print(json.dumps({"error": "Use only one of --emit-routing-projection or --check-routing-projection."}, indent=2))
+        return 2
+
+    if args.emit_routing_projection:
+        return emit_routing_projection(check_only=False)
+
+    if args.check_routing_projection:
+        return emit_routing_projection(check_only=True)
+
     if args.force_refresh:
         get_skills(force_refresh=True)
 
@@ -3814,6 +4027,7 @@ Examples:
 
     if args.dump_routing_maps:
         print(json.dumps({
+            "DEEP_ROUTING_PROJECTION_HASH": DEEP_ROUTING_PROJECTION_HASH,
             "DEEP_ROUTING_SKILLS": list(DEEP_ROUTING_SKILLS),
             "DEEP_ROUTING_MODE_BY_KEY": dict(DEEP_ROUTING_MODE_BY_KEY),
             "PY_ALIAS_GROUP_KEYS": sorted(SKILL_ALIAS_GROUPS.keys()),

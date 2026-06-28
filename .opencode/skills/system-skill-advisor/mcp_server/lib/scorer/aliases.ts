@@ -2,7 +2,7 @@
 // MODULE: Advisor Skill Alias Groups
 // ───────────────────────────────────────────────────────────────
 
-const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'create:agent': ['command-create-agent', '/create:agent', 'create:agent'],
   'create:testing-playbook': [
     'command-create-testing-playbook',
@@ -10,6 +10,34 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'create:testing-playbook',
   ],
   'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
+  'deep-model-benchmark': [
+    'command-spec-kit-deep-model-benchmark',
+    '/deep:start-model-benchmark-loop',
+    'deep-model-benchmark',
+    'sk-deep-model-benchmark',
+  ],
+});
+
+// BEGIN GENERATED DEEP ROUTING PROJECTION
+/** Hash of the generated deep-loop routing projection embedded below. */
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:5c22ac993d9fb60ec1efcd4688cdf0452eb000ccb8108d581911155e5e9a7d02';
+
+const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  'deep-ai-council': [
+    '@deep-ai-council',
+    'deep-ai-council',
+    'deep ai council',
+    'ai council',
+    'planning council',
+    'council deliberation',
+    'multi-ai-council',
+  ],
+  'deep-improvement': [
+    'command-spec-kit-deep-agent-improvement',
+    '/deep:start-agent-improvement-loop',
+    'deep-agent-improvement',
+    'sk-deep-agent-improvement',
+  ],
   'deep-research': [
     'command-spec-kit-deep-research',
     '/deep:start-research-loop',
@@ -24,27 +52,19 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'deep-review',
     'sk-deep-review',
   ],
-  'deep-improvement': [
-    'command-spec-kit-deep-agent-improvement',
-    '/deep:start-agent-improvement-loop',
-    'deep-agent-improvement',
-    'sk-deep-agent-improvement',
-  ],
-  'deep-model-benchmark': [
-    'command-spec-kit-deep-model-benchmark',
-    '/deep:start-model-benchmark-loop',
-    'deep-model-benchmark',
-    'sk-deep-model-benchmark',
-  ],
-  'deep-ai-council': [
-    '@deep-ai-council',
-    'deep-ai-council',
-    'deep ai council',
-    'ai council',
-    'planning council',
-    'council deliberation',
-    'multi-ai-council',
-  ],
+});
+
+export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
+  'deep-ai-council': 'ai-council',
+  'deep-improvement': 'agent-improvement',
+  'deep-research': 'research',
+  'deep-review': 'review',
+});
+// END GENERATED DEEP ROUTING PROJECTION
+
+const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  ...BASE_ALIAS_GROUPS,
+  ...GENERATED_DEEP_ALIAS_GROUPS,
 });
 
 export const SKILL_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = RAW_ALIAS_GROUPS;
@@ -89,17 +109,6 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 // excludes it. Its workflowMode ('context') still lives in the mode registry.
 export const MERGED_DEEP_SKILL_ID = 'deep-loop-workflows';
 
-// Legacy mode-level skill id -> registry workflowMode. deep-improvement maps to
-// its Lane A default workflowMode ('agent-improvement'); the other improvement
-// sub-lanes (model-benchmark, skill-benchmark, non-dev-ai-system-refine) keep
-// their own command bridges and are not folded through this alias map.
-export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
-  'deep-research': 'research',
-  'deep-review': 'review',
-  'deep-ai-council': 'ai-council',
-  'deep-improvement': 'agent-improvement',
-});
-
 const ALIAS_TO_MODE = new Map<string, string>(
   Object.entries(RAW_ALIAS_GROUPS).flatMap(([canonical, aliases]) => {
     const mode = DEEP_MODE_BY_CANONICAL[canonical];
@@ -111,6 +120,22 @@ const ALIAS_TO_MODE = new Map<string, string>(
   }),
 );
 
+const PROMPT_ALIAS_ENTRIES = Array.from(ALIAS_TO_MODE.entries())
+  .sort((left, right) => right[0].length - left[0].length || left[0].localeCompare(right[0]));
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function promptContainsAlias(promptLower: string, alias: string): boolean {
+  const normalized = alias.toLowerCase();
+  if (!normalized) return false;
+  if (/^[a-z0-9][a-z0-9 -]*[a-z0-9]$/u.test(normalized)) {
+    return new RegExp(`(^|[^a-z0-9])${escapeRegExp(normalized)}([^a-z0-9]|$)`, 'u').test(promptLower);
+  }
+  return promptLower.includes(normalized);
+}
+
 /**
  * Resolve any deep-loop alias (or mode-level legacy id) to its workflowMode, or
  * null when the id is not a folded deep-loop mode. deep-context returns null by
@@ -118,6 +143,18 @@ const ALIAS_TO_MODE = new Map<string, string>(
  */
 export function modeForAlias(skillId: string): string | null {
   return ALIAS_TO_MODE.get(skillId) ?? ALIAS_TO_MODE.get(canonicalSkillId(skillId)) ?? null;
+}
+
+/**
+ * Resolve a deep-loop workflowMode when a prompt directly names a generated
+ * alias. Returns null for broad merged-skill prompts that require hub routing.
+ */
+export function modeForPromptAlias(prompt: string): string | null {
+  const promptLower = prompt.toLowerCase();
+  for (const [alias, mode] of PROMPT_ALIAS_ENTRIES) {
+    if (promptContainsAlias(promptLower, alias)) return mode;
+  }
+  return null;
 }
 
 /**

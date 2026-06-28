@@ -217,6 +217,7 @@ export const AdvisorRecommendationSchema = z.object({
   redirectFrom: z.array(z.string().min(1)).optional(),
   redirectTo: z.string().min(1).optional(),
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),
+  workflowMode: z.string().min(1).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

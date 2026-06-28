@@ -282,6 +282,24 @@ describe('advisor_recommend handler', () => {
     ]);
   });
 
+  it('publishes workflowMode for generated deep-loop aliases', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult([
+      recommendation({ skill: 'deep-loop-workflows' }),
+    ]));
+
+    const response = parseResponse(await handleAdvisorRecommend({
+      prompt: 'Use deep-review for iterative code audit.',
+    }));
+
+    expect(response.data.recommendations).toEqual([
+      expect.objectContaining({
+        skillId: 'deep-loop-workflows',
+        workflowMode: 'review',
+      }),
+    ]);
+  });
+
   it('records shadow deltas without raw prompt text', async () => {
     mockReadAdvisorStatus.mockReturnValue(status('live'));
     mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
