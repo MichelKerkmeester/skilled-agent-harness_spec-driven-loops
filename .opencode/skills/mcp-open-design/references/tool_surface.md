@@ -43,7 +43,7 @@ The stdio server returns the entire tool-definitions array, not the documentatio
 
 `list_projects`, `get_active_context`, `get_artifact`, `get_project`, `get_file`, `search_files` (literal substring match), `list_files`, `list_skills`, `list_plugins`, `list_agents`, `get_run`.
 
-These are always safe to surface. `get_active_context` returns what the user has open now. The `project` argument defaults to the active Open Design project, which expires after roughly 5 minutes of inactivity. Responses stamp `usedActiveContext` so you can tell when the fallback was used. **[CONFIRMED]**
+These are registry read-only, meaning they do not write workspace state. Registry read-only is not the same as unguarded: the two-axis classification below decides whether the output is guarded or pure transport. `get_active_context` returns what the user has open now. The `project` argument defaults to the active Open Design project, which expires after roughly 5 minutes of inactivity. Responses stamp `usedActiveContext` so you can tell when the fallback was used. **[CONFIRMED]**
 
 ### Mutating (5)
 
@@ -57,25 +57,77 @@ These are always safe to surface. `get_active_context` returns what the user has
 
 `delete_file`, `delete_project`. Both carry `destructiveHint:true` and require an explicit `project` **and** `confirm:true`. There is **no** active-project fallback for these. **[CONFIRMED - read registry]**
 
+### Two-axis decision classification
+
+The registry's read-only/mutating/destructive hints answer only one question: whether a call writes. The design precondition needs two independent axes:
+
+- **`feedsDesignDecision`** - Does the tool's output inform a design choice, such as a UI, design system, visual artifact, prototype, motion, or build brief? This is an advisory per-tool judgment made explicit, not a runtime probe of a specific call.
+- **`mutatesWorkspace`** - Does the tool write or change project, run, file, or artifact state? This is the mechanical write axis.
+
+Decision rule: **guarded = `feedsDesignDecision OR mutatesWorkspace`**. Pure transport is the complement: **exempt = neither axis**. A new, unclassified, or axis-indeterminate tool is guarded by default until both axes are explicitly tagged.
+
+The `mutatesWorkspace = Y` column equals the configured `guardedTools` projection for the seven mutating/destructive MCP tools: `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, and `delete_project`. This table is the source; the configured list is a projection of the write axis. Design-feeding reads are guarded by the `feedsDesignDecision` axis even when the registry marks them read-only.
+
+| Tool | feedsDesignDecision | mutatesWorkspace | guarded | feedsDesignDecision rationale |
+|------|:---:|:---:|:---:|---|
+| `list_projects` | N | N | N (EXEMPT) | Returns only project identifiers and names: bare inventory, no design substance. |
+| `list_files` | N | N | N (EXEMPT) | Returns filenames in a project: inventory of names, not contents. |
+| `list_skills` | N | N | N (EXEMPT) | Capability listing: names available skills, delivers no design content. |
+| `list_plugins` | N | N | N (EXEMPT) | Capability listing: names plugins, delivers no design content. |
+| `list_agents` | N | N | N (EXEMPT) | Capability listing: names inner agents, delivers no design content. |
+| `get_active_context` | Y | N | Y (GUARDED) | Returns the active project/context the design work is grounded in, surfacing live design state. |
+| `get_project` | Y | N | Y (GUARDED) | Returns one project's design-bearing state, including entry file, preview URL, and design linkage. |
+| `get_artifact` | Y | N | Y (GUARDED) | Returns a design artifact; the output is design content. |
+| `get_run` | Y | N | Y (GUARDED) | Returns the run result, including the generated design; this is the canonical read-only-but-design-feeding tool. |
+| `get_file` | Y (ambiguous) | N | Y (GUARDED, receipt-exemptible) | May return design files such as tokens, components, or generated output; deny-by-default keeps it guarded absent a non-design-use receipt. |
+| `search_files` | Y (ambiguous) | N | Y (GUARDED, receipt-exemptible) | Literal substring matches can surface design-file content; guarded by default, exempt only with a non-design-use receipt. |
+| `create_artifact` | Y | Y | Y (GUARDED) | Writes a design file into a project. |
+| `write_file` | Y | Y | Y (GUARDED) | Overwrites or writes file content, including design content. |
+| `create_project` | N | Y | Y (GUARDED) | Creates a new project handle; guarded on the mutation axis. |
+| `start_run` | Y | Y | Y (GUARDED) | Fires the build that writes the design; guarded on both axes. |
+| `cancel_run` | N | Y | Y (GUARDED) | Control mutation that aborts a run; guarded on the mutation axis. |
+| `delete_file` | N | Y | Y (GUARDED) | Destructive mutation; guarded on the mutation axis. |
+| `delete_project` | N | Y | Y (GUARDED) | Destructive mutation; guarded on the mutation axis. |
+
+Resulting sets:
+
+- **Guarded (13):** the seven `mutatesWorkspace = Y` tools, the four intrinsic design reads (`get_active_context`, `get_project`, `get_artifact`, `get_run`), and the two ambiguous reads (`get_file`, `search_files`) that are guarded by default and receipt-exemptible.
+- **Exempt pure transport (5):** `list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`.
+
+Ambiguous reads (`get_file`, `search_files`) are tagged `feedsDesignDecision = Y (ambiguous)`: guarded by default, exempt only when the caller supplies a non-design-use receipt stating the output will not feed a design decision. This refines the older flat "read-only is always safe" bucket: `list_projects` is pure transport because it returns identifiers only, while file reads and searches can carry design substance.
+
 ---
 
 ## 3. THE SURFACE / GATE / OMIT POLICY
 
-This policy is the spine of how the skill exposes the surface. It spans both the MCP tools above and the `od` CLI write verbs (see [od_cli_reference.md](od_cli_reference.md) Section 4).
+This policy is the spine of how the skill exposes the surface. It is derived from the two-axis table above and spans both the MCP tools and the `od` CLI write verbs (see [od_cli_reference.md](od_cli_reference.md) Section 4).
 
-### Surface freely (read-only)
+### Surface freely (pure transport)
 
 Call these without ceremony:
 
-- MCP: `list_projects`, `get_active_context`, `get_artifact`, `get_project`, `get_file`, `search_files`, `list_files`, `list_skills`, `list_plugins`, `list_agents`, `get_run`.
+- MCP: `list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`.
 - CLI: `od tools design-systems read`, `od files list`, `od files read`, `od skills list`, `od design-systems list`, `od doctor`, `od daemon status`, and the `list`/`view`/`show` forms of `od automation`, `od memory tree`, and `od ui`.
 
-### Surface but GATE (confirmation + explicit target + rollback note)
+For CLI reads, apply the same two-axis rule by intent: bare inventory is pure transport; output that feeds a design decision must satisfy the design precondition.
+
+### Surface but GATE
+
+Guarded means either the output feeds a design decision or the call mutates workspace state:
+
+- Design-feeding reads require the design precondition before their output is used to shape UI, design systems, artifacts, prototypes, motion, or briefs.
+- Mutations require confirmation plus an explicit target plus a rollback note.
+- Ambiguous reads (`get_file`, `search_files`) are guarded by default and become pure transport only with a non-design-use receipt.
 
 Before any of these, state the effect and a one-line rollback, name the explicit target project or name, and stop for confirmation:
 
 - MCP: `create_artifact`, `create_project`, `start_run`, `cancel_run`.
 - CLI: `od artifacts create`, `od files write`, `od media generate`, `od research search`, `od automation create/run/…`, `od ui respond/revoke/prefill`, `od memory tree edit/move`, `od plugin install/…`, `od diagnostics export`, `od daemon start`, `od project create`.
+
+Before using the output of any of these design-feeding reads to inform a design decision, satisfy the design precondition:
+
+- MCP: `get_active_context`, `get_project`, `get_artifact`, `get_run`, `get_file`, `search_files`.
+- CLI: any read that returns design-system, component, token, artifact, preview, or generated-file content.
 
 ### OMIT from the default path (reference docs only)
 
@@ -93,7 +145,7 @@ The investigation reached this gating posture two independent ways (a code read 
 The three biggest accuracy risks for this surface are CLI naming (there is no `od` shim), daemon transport (socket discovery, not a fixed `:7456`), and **MCP tool-surface drift** (the help text undercounts). All three must be hedged.
 
 1. **Always verify the live `tools/list`** before promising a tool's name or its read-only status. The `od mcp --help` subset is documentation, not the registered surface. **[CONFIRMED]**
-2. **Gate every mutating or destructive verb** behind explicit user confirmation, an explicit target project or name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts/media/automation/ui/memory/plugin` write verbs.
+2. **Gate every design-feeding read, mutating verb, or destructive verb** according to the two-axis table. Design-feeding reads require the design precondition; mutating or destructive verbs require explicit user confirmation, an explicit target project or name, and a one-line rollback note. This covers `get_active_context`, `get_project`, `get_artifact`, `get_run`, `get_file`, `search_files`, `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts/media/automation/ui/memory/plugin` write verbs.
 3. **Never run a destructive verb** (`delete_file`, `delete_project`) without an explicit project and `confirm:true` plus user approval, and never via the active-project fallback.
 4. **Read Open Design content live, never cache it into a repo.** Reuse a system's `tokens.css`/`components.html` at build time in the target app, not by vendoring Open Design's files (its per-source licenses would attach).
 
@@ -109,13 +161,13 @@ create_project        # (gated) only if the user wants a new project
   |                                                            #   discovery question-form, 0 files, awaiting_input
   -> answer the form                                          # (gated) od ui list/show -> od ui respond,
   |                                                            #   or send a follow-up message. THIS fires the build.
-  -> get_run(runId)   # (read-only) poll the build run until complete
-  -> get_artifact     # (read-only) fetch the result; the project now has entryFile + previewUrl
+  -> get_run(runId)   # guarded design read: poll the build run until complete
+  -> get_artifact     # guarded design read: fetch the result; the project now has entryFile + previewUrl
 ```
 
 Turn 1 alone produces **no design**. A run left `awaiting_input` is unfinished. The build that writes `index.html` and gives the project its `previewUrl` only fires once the discovery form is answered (`od ui respond --run <runId> <surfaceId> --value ... | --value-json ... | --skip`, or a follow-up message). `od artifacts create` is not part of this flow: it adds a file but never renders a design.
 
-Confirm the mutating steps (`create_project`, `start_run`, and the `od ui respond` that fires the build) with an explicit target and a rollback note before running them. Polling and fetching are read-only and safe. See [od_cli_reference.md](od_cli_reference.md) Section 5.
+Confirm the mutating steps (`create_project`, `start_run`, and the `od ui respond` that fires the build) with an explicit target and a rollback note before running them. Polling and fetching are read-only on the write axis, but guarded on the design-feeding axis when their output informs design decisions. See [od_cli_reference.md](od_cli_reference.md) Section 5.
 
 ---
 
