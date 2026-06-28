@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d3-r7 registry static audit",
-      "hub registry scan design build"
+      "hub registry scan design build",
+      "blocked-by-registry hub gate",
+      "scanhubregistry d5 connectivity",
+      "registry static audit gate",
+      "blocked-by-registry hub scan",
+      "scanhubregistry tasks",
+      "registry static audit build",
+      "blocked-by-registry verification",
+      "scanhubregistry checklist",
+      "registry static audit verification",
+      "blocked-by-registry checks"
     ],
     "key_topics": [
       "d3-r7",
@@ -23,15 +33,20 @@
       "scan",
       "design",
       "build",
-      "add",
+      "blocked-by-registry",
+      "gate",
       "scanhubregistry",
-      "beside",
-      "scanconnectivity"
+      "connectivity"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -42,59 +57,163 @@
         "source": "derived"
       },
       {
+        "name": "skill-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "6. EVIDENCE",
-        "kind": "heading",
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add scanHubRegistry() beside scanConnectivity in d5-connectivity.cjs and emit BLOCKED-BY-REGISTRY on structural registry defects.",
+    "causal_summary": "The hub registry is structurally clean today — five modes, a typed router, matched packet folders, and zero alias collisions — but nothing guards that state",
     "created_at": "2026-06-28T12:40:00.160Z",
-    "last_save_at": "2026-06-28T12:40:00.160Z",
+    "last_save_at": "2026-06-28T17:57:19.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53f55af861b388a724cc52bda332d5b4262812d22f0f532a644b156d1a323891",
+    "source_fingerprint": "sha256:03ae23e03c623edb960c9df97f6e2dc39e86d156d35df9e3d80bd4afcf1fb321",
     "source_doc_hashes": {
-      "spec.md": "bfd1dc19b42578096c310acbcd025f56e883e00e2e7733a7691204a2f9cec4c4"
+      "spec.md": "1f41e3b80cba0e950832323008c29ebe6dc4b36c035a0a839ce4ecc833c582a0",
+      "plan.md": "c800ff0426ea9f99442e99bf0a10316f2afbe5fd86439e59bba0c24a5d3a2d7c",
+      "tasks.md": "b419f088a3152e0bf1abf75a6bf69d9a0993b498e584d1147d5e79bb9d1a20c8",
+      "checklist.md": "5be5c3d9969fe5aa68631deb54207fc5570db389c450c40458ef65f93e6d5667",
+      "implementation-summary.md": "da1ef1cf04fe3fe522babf110cfe3dcb58a7831346d080ac1d1afe162137af5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

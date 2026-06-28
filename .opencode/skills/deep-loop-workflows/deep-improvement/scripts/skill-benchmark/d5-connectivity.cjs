@@ -28,6 +28,8 @@ const { parseRouter } = require('./router-replay.cjs');
 // 2. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+const SEVERITY_PENALTY = { P0: 40, P1: 12, P2: 3 };
+
 /**
  * List every markdown reference under the skill's references/ and assets/ trees.
  *
@@ -65,6 +67,219 @@ function resolveRoutedPath(skillRoot, r) {
   const inRoot = resolved === root || resolved.startsWith(root + path.sep);
   const inShared = resolved === sharedRoot || resolved.startsWith(sharedRoot + path.sep);
   return { resolved, escapes: !inRoot && !inShared };
+}
+
+function emptyHubRegistryResult() {
+  return {
+    registryPresent: false,
+    score: 100,
+    gateFailed: false,
+    verdict: null,
+    findings: [],
+    missingModes: [],
+    deadPackets: [],
+    packetNameMismatches: [],
+    aliasCollisions: [],
+    uncoveredIntentRate: null,
+    uncoveredKeywords: [],
+  };
+}
+
+function readJsonResult(filePath, label) {
+  try {
+    return { ok: true, value: JSON.parse(fs.readFileSync(filePath, 'utf8')) };
+  } catch (err) {
+    return {
+      ok: false,
+      finding: {
+        class: 'registry_unparseable',
+        severity: 'P0',
+        locus: label,
+        detail: `${label} could not be parsed: ${err.message}`,
+      },
+    };
+  }
+}
+
+function normalizeKeyword(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function normalizeIntentKeyword(value) {
+  return normalizeKeyword(value).replace(/[\s_-]+/g, ' ');
+}
+
+function extractFrontmatterName(skillMdPath) {
+  if (!fs.existsSync(skillMdPath)) return null;
+  const text = fs.readFileSync(skillMdPath, 'utf8');
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return null;
+  const name = match[1].match(/^name:\s*"?([^"\n]+)"?\s*$/m);
+  return name ? name[1].trim() : null;
+}
+
+/**
+ * Statically scan a hub registry and produce a hard gate for broken mode maps.
+ *
+ * @param {Object} args - Scan inputs.
+ * @param {string} args.skillRoot - Absolute path to the skill root.
+ * @returns {{ registryPresent:boolean, score:number, gateFailed:boolean,
+ *   verdict:string|null, findings:Array, missingModes:Array, deadPackets:Array,
+ *   packetNameMismatches:Array, aliasCollisions:Array,
+ *   uncoveredIntentRate:number|null, uncoveredKeywords:string[] }}
+ */
+function scanHubRegistry({ skillRoot }) {
+  const modeRegistryPath = path.join(skillRoot, 'mode-registry.json');
+  if (!fs.existsSync(modeRegistryPath)) return emptyHubRegistryResult();
+
+  const findings = [];
+  const hubRouterPath = path.join(skillRoot, 'hub-router.json');
+  const registryResult = readJsonResult(modeRegistryPath, 'mode-registry.json');
+  const routerResult = fs.existsSync(hubRouterPath)
+    ? readJsonResult(hubRouterPath, 'hub-router.json')
+    : {
+      ok: false,
+      finding: {
+        class: 'registry_unparseable',
+        severity: 'P0',
+        locus: 'hub-router.json',
+        detail: 'hub-router.json not found',
+      },
+    };
+
+  if (!registryResult.ok || !routerResult.ok) {
+    if (!registryResult.ok) findings.push(registryResult.finding);
+    if (!routerResult.ok) findings.push(routerResult.finding);
+    const penalty = findings.reduce((acc, f) => acc + (SEVERITY_PENALTY[f.severity] || 0), 0);
+    return {
+      registryPresent: true,
+      score: Math.max(0, 100 - penalty),
+      gateFailed: true,
+      verdict: 'BLOCKED-BY-REGISTRY',
+      findings,
+      missingModes: [],
+      deadPackets: [],
+      packetNameMismatches: [],
+      aliasCollisions: [],
+      uncoveredIntentRate: null,
+      uncoveredKeywords: [],
+    };
+  }
+
+  const registry = registryResult.value;
+  const hubRouter = routerResult.value;
+  const modes = Array.isArray(registry.modes) ? registry.modes : [];
+  const routerSignals = hubRouter.routerSignals && typeof hubRouter.routerSignals === 'object' ? hubRouter.routerSignals : {};
+  const vocabularyClasses = hubRouter.vocabularyClasses && typeof hubRouter.vocabularyClasses === 'object' ? hubRouter.vocabularyClasses : {};
+  const referencedPackets = new Set(modes.map((mode) => mode.packet).filter(Boolean));
+
+  const missingModes = [];
+  const packetNameMismatches = [];
+  const aliasOwners = new Map();
+  const rawAliases = new Set();
+  const rawIntentAliases = new Set();
+
+  for (const mode of modes) {
+    const workflowMode = mode.workflowMode;
+    const packet = mode.packet;
+    const skillMdPath = packet ? path.join(skillRoot, packet, 'SKILL.md') : null;
+    const hasPacket = Boolean(skillMdPath && fs.existsSync(skillMdPath));
+    const signal = routerSignals[workflowMode];
+    const hasRouterSignal = Boolean(signal);
+    const classes = Array.isArray(signal?.classes) ? signal.classes : [];
+    const missingVocabularyClasses = classes.filter((className) => !vocabularyClasses[className]);
+
+    if (!hasPacket || !hasRouterSignal || missingVocabularyClasses.length > 0) {
+      const missing = [];
+      if (!hasPacket) missing.push('packet');
+      if (!hasRouterSignal) missing.push('routerSignal');
+      if (missingVocabularyClasses.length > 0) missing.push('vocabularyClasses');
+      const defect = { workflowMode, packet, missing, missingVocabularyClasses };
+      missingModes.push(defect);
+      findings.push({
+        class: 'missing_mode',
+        severity: 'P0',
+        locus: workflowMode,
+        detail: `${workflowMode} is missing ${missing.join(', ')}`,
+      });
+    }
+
+    if (hasPacket && mode.packetSkillName) {
+      const actualName = extractFrontmatterName(skillMdPath);
+      if (actualName !== mode.packetSkillName) {
+        const mismatch = { workflowMode, packet, expected: mode.packetSkillName, actual: actualName };
+        packetNameMismatches.push(mismatch);
+        findings.push({
+          class: 'packet_name_mismatch',
+          severity: 'P1',
+          locus: packet,
+          detail: `${packet} declares ${actualName || 'no name'} instead of ${mode.packetSkillName}`,
+        });
+      }
+    }
+
+    for (const alias of Array.isArray(mode.aliases) ? mode.aliases : []) {
+      const normalized = normalizeKeyword(alias);
+      if (!normalized) continue;
+      rawAliases.add(normalized);
+      rawIntentAliases.add(normalizeIntentKeyword(alias));
+      if (!aliasOwners.has(normalized)) aliasOwners.set(normalized, new Set());
+      aliasOwners.get(normalized).add(workflowMode);
+    }
+  }
+
+  const deadPackets = fs.readdirSync(skillRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^design-/.test(entry.name))
+    .map((entry) => entry.name)
+    .filter((packet) => !referencedPackets.has(packet));
+  for (const packet of deadPackets) {
+    findings.push({
+      class: 'dead_packet',
+      severity: 'P0',
+      locus: packet,
+      detail: `${packet} is present on disk but not referenced by the registry`,
+    });
+  }
+
+  const aliasCollisions = [];
+  for (const [alias, owners] of aliasOwners.entries()) {
+    if (owners.size < 2) continue;
+    const collision = { alias, workflowModes: Array.from(owners).sort() };
+    aliasCollisions.push(collision);
+    findings.push({
+      class: 'alias_collision',
+      severity: 'P0',
+      locus: alias,
+      detail: `${alias} is owned by ${collision.workflowModes.join(', ')}`,
+    });
+  }
+
+  const typedKeywords = new Set();
+  for (const [className, value] of Object.entries(vocabularyClasses)) {
+    if (className.endsWith('-aliases')) continue;
+    for (const keyword of Array.isArray(value?.keywords) ? value.keywords : []) {
+      const normalized = normalizeIntentKeyword(keyword);
+      if (normalized) typedKeywords.add(normalized);
+    }
+  }
+  const uncoveredKeywords = Array.from(rawIntentAliases).filter((alias) => !typedKeywords.has(alias)).sort();
+  const uncoveredIntentRate = rawIntentAliases.size > 0 ? uncoveredKeywords.length / rawIntentAliases.size : 0;
+
+  const gateFailed = missingModes.length > 0 || deadPackets.length > 0 || aliasCollisions.length > 0;
+  const penalty = findings.reduce((acc, f) => acc + (SEVERITY_PENALTY[f.severity] || 0), 0);
+  return {
+    registryPresent: true,
+    score: Math.max(0, 100 - penalty),
+    gateFailed,
+    verdict: gateFailed ? 'BLOCKED-BY-REGISTRY' : null,
+    findings,
+    missingModes,
+    deadPackets,
+    packetNameMismatches,
+    aliasCollisions,
+    uncoveredIntentRate,
+    uncoveredKeywords,
+  };
 }
 
 /**
@@ -130,7 +345,7 @@ function scanConnectivity({ skillRoot }) {
     findings.push({ class: 'router_unparseable', severity: 'P0', detail: 'INTENT_SIGNALS / RESOURCE_MAP could not be parsed from SKILL.md' });
   }
   // Score: start at 100, subtract per finding by severity, floor 0.
-  const penalty = findings.reduce((acc, f) => acc + ({ P0: 40, P1: 12, P2: 3 }[f.severity] || 0), 0);
+  const penalty = findings.reduce((acc, f) => acc + (SEVERITY_PENALTY[f.severity] || 0), 0);
   const score = Math.max(0, 100 - penalty);
 
   return { score, gateFailed, routerParseable: router.parseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
@@ -140,7 +355,7 @@ function scanConnectivity({ skillRoot }) {
 // 3. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { scanConnectivity, listMarkdownRefs };
+module.exports = { scanConnectivity, scanHubRegistry, listMarkdownRefs };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
@@ -149,6 +364,11 @@ if (require.main === module) {
     process.exit(2);
   }
   const res = scanConnectivity({ skillRoot: args.skill });
+  const registry = scanHubRegistry({ skillRoot: args.skill });
+  if (registry.registryPresent) {
+    process.stdout.write(JSON.stringify({ connectivity: res, hubRegistry: registry }, null, 2) + '\n');
+    process.exit(res.gateFailed || registry.gateFailed ? 1 : 0);
+  }
   process.stdout.write(JSON.stringify(res, null, 2) + '\n');
   process.exit(res.gateFailed ? 1 : 0);
 }

@@ -1,6 +1,6 @@
 import { describe, it, expect, afterAll } from 'vitest';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -20,7 +20,7 @@ function makeRouterlessSkill(): string {
 // router-replay is a pure module — exercise it directly.
 const { routeSkillResources, scoreIntents, selectIntents, parseRouter } = require(join(SB, 'router-replay.cjs'));
 const { buildBannedVocab, lintFixture } = require(join(SB, 'contamination-lint.cjs'));
-const { scanConnectivity } = require(join(SB, 'd5-connectivity.cjs'));
+const { scanConnectivity, scanHubRegistry } = require(join(SB, 'd5-connectivity.cjs'));
 const { scoreScenario, aggregate } = require(join(SB, 'score-skill-benchmark.cjs'));
 const { renderReport } = require(join(SB, 'build-report.cjs'));
 const { scoreD1Inter, probeAdvisor } = require(join(SB, 'advisor-probe.cjs'));
@@ -146,6 +146,97 @@ describe('Lane C — D5 connectivity gate', () => {
     expect(res.routerParseable).toBe(true);
     // cli-codex routed paths exist, so no P0 dead-path gate.
     expect(res.deadResourcePaths).toEqual([]);
+  });
+});
+
+function makeRegistrySkill(options: { missingMode?: boolean; aliasCollision?: boolean } = {}): string {
+  const dir = mkdtempSync(join(tmpdir(), 'lc-registry-'));
+  const modes = [
+    {
+      workflowMode: 'alpha',
+      packet: 'design-alpha',
+      packetSkillName: 'design-alpha',
+      aliases: ['shared intent', 'alpha only'],
+    },
+    {
+      workflowMode: 'beta',
+      packet: 'design-beta',
+      packetSkillName: 'design-beta',
+      aliases: [options.aliasCollision ? 'shared intent' : 'beta only'],
+    },
+  ];
+  writeFileSync(join(dir, 'mode-registry.json'), JSON.stringify({ skill: 'synthetic-design', modes }, null, 2));
+  writeFileSync(join(dir, 'hub-router.json'), JSON.stringify({
+    routerSignals: options.missingMode
+      ? {
+        alpha: { classes: ['alpha-aliases'], resources: ['design-alpha/SKILL.md'] },
+      }
+      : {
+        alpha: { classes: ['alpha-aliases'], resources: ['design-alpha/SKILL.md'] },
+        beta: { classes: ['beta-aliases'], resources: ['design-beta/SKILL.md'] },
+      },
+    vocabularyClasses: {
+      'alpha-aliases': { keywords: ['shared intent', 'alpha only'] },
+      'beta-aliases': { keywords: ['beta only'] },
+    },
+  }, null, 2));
+  mkdirSync(join(dir, 'design-alpha'));
+  writeFileSync(join(dir, 'design-alpha', 'SKILL.md'), '---\nname: design-alpha\n---\n# Alpha\n');
+  if (!options.missingMode) {
+    mkdirSync(join(dir, 'design-beta'));
+    writeFileSync(join(dir, 'design-beta', 'SKILL.md'), '---\nname: design-beta\n---\n# Beta\n');
+  }
+  return dir;
+}
+
+describe('Lane C — hub registry gate', () => {
+  const registryDirs: string[] = [];
+  afterAll(() => {
+    for (const d of registryDirs) rmSync(d, { recursive: true, force: true });
+  });
+
+  it('reports the live sk-design registry without hard-gating it', () => {
+    const res = scanHubRegistry({ skillRoot: join(REPO_SKILLS, 'sk-design') });
+    expect(res.registryPresent).toBe(true);
+    expect(res.gateFailed).toBe(false);
+    expect(res.verdict).toBeNull();
+    expect(res.aliasCollisions).toEqual([]);
+    expect(res.missingModes).toEqual([]);
+    expect(res.deadPackets).toEqual([]);
+    expect(res.packetNameMismatches).toEqual([]);
+    expect(res.uncoveredIntentRate).toBeGreaterThanOrEqual(0);
+    expect(res.uncoveredIntentRate).toBeLessThan(1);
+    expect(res.uncoveredIntentRate).toBeGreaterThan(0.3);
+    expect(res.uncoveredIntentRate).toBeLessThan(0.6);
+  });
+
+  it('hard-gates a registry with a missing mode projection', () => {
+    const skillRoot = makeRegistrySkill({ missingMode: true });
+    registryDirs.push(skillRoot);
+    const res = scanHubRegistry({ skillRoot });
+    expect(res.gateFailed).toBe(true);
+    expect(res.verdict).toBe('BLOCKED-BY-REGISTRY');
+    expect(res.missingModes.length).toBeGreaterThan(0);
+  });
+
+  it('hard-gates a registry with an alias collision', () => {
+    const skillRoot = makeRegistrySkill({ aliasCollision: true });
+    registryDirs.push(skillRoot);
+    const res = scanHubRegistry({ skillRoot });
+    expect(res.gateFailed).toBe(true);
+    expect(res.verdict).toBe('BLOCKED-BY-REGISTRY');
+    expect(res.aliasCollisions).toEqual([{ alias: 'shared intent', workflowModes: ['alpha', 'beta'] }]);
+  });
+
+  it('is a benign pass for a registry-less skill', () => {
+    const skillRoot = makeRouterlessSkill();
+    registryDirs.push(skillRoot);
+    const res = scanHubRegistry({ skillRoot });
+    expect(res.registryPresent).toBe(false);
+    expect(res.score).toBe(100);
+    expect(res.gateFailed).toBe(false);
+    expect(res.verdict).toBeNull();
+    expect(res.findings).toEqual([]);
   });
 });
 
