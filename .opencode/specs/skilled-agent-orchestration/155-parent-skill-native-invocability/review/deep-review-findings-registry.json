@@ -60,18 +60,42 @@
       "impact": "R5/fix-completeness is marked done, but a reviewer cannot trace the claimed evidence set to a stable commit or diff range from the canonical scoped docs. That makes the closure branch-dependent despite the checklist saying it is pinned.",
       "recommendation": "Record the actual baseline SHA and fix SHA or explicit diff range in the 002 docs, or replace the checked item with a precise pointer to the canonical evidence artifact. Otherwise uncheck or soften CHK-FIX-007.",
       "iter": 4
+    },
+    {
+      "id": "R155-F006",
+      "severity": "P1",
+      "dimension": "security",
+      "title": "ADR-004 accepts a hub union grant that is not actually the union of mode tool contracts",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md",
+      "loc": "line 311",
+      "evidence": "ADR-004 says: \"Its `allowed-tools` grant is the union of the tools its nested modes require, including `WebFetch` for deep research.\" The live hub only grants `.opencode/skills/deep-loop-workflows/SKILL.md:5` `allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]`, while mode packets require additional tools: `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:4` includes `memory_context, memory_search`, and `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:4` includes `memory_context, memory_search, code_graph_query`.",
+      "impact": "NFR-S01 is closed on a permission-contract premise that does not match the repo. If hub tools govern `Skill(deep-loop-workflows)`, research/review may lose mode-required memory/code-graph tools; if mode frontmatter extends grants after dispatch, ADR-004's statement that the hub grant is the union is false and the accepted residual risk is incomplete.",
+      "recommendation": "Reconcile the contract: either make the hub `allowed-tools` the real full union and document the broader residual risk, or amend ADR-004/spec/checklist to say the hub is a partial routing grant and cite evidence that selected mode packet grants are applied after dispatch.",
+      "iter": 5
+    },
+    {
+      "id": "R155-F007",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "C2 closeout is unchecked in plan.md but marked complete in tasks.md",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md",
+      "loc": "plan.md:150-153; tasks.md:111-114",
+      "evidence": "plan.md:150-153 says \"C2 - Live-infra execution (gated on a C0 sign-off; skip entirely if C1 closes everything)\" and leaves all three C2 rows unchecked, e.g. \"- [ ] Not triggered - R3 remove branch\". tasks.md:111-114 maps the same C2 branch to checked tasks: \"- [x] T024 Not triggered\", \"- [x] T025 Not triggered\", and \"- [x] T026 Not triggered\".",
+      "impact": "The closeout ledger cannot be mechanically reconciled: the plan says the C2 branch remains unchecked/not executed, while the task ledger counts the same skipped branch as completed work. That makes completion claims dependent on which document a reviewer or tool counts.",
+      "recommendation": "Use one state convention for skipped branches. Either mark C2 as explicit N/A/non-checkbox in both docs, or mark the plan rows checked as 'skipped by decision' and keep T024-T026 checked with the same rationale.",
+      "iter": 7
     }
   ],
   "dimensionCoverage": {
     "correctness": true,
-    "security": false,
+    "security": true,
     "traceability": true,
     "maintainability": false
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 5,
+    "P1": 7,
     "P2": 0
   },
-  "convergenceScore": 0.2
+  "convergenceScore": 0.143
 }

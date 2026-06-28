@@ -3,3 +3,6 @@
 {"type":"iteration","run":2,"dimension":"correctness","newFindings":1,"p0":0,"p1":3,"p2":0,"wallSeconds":180,"error":false,"timestamp":"2026-06-28T13:47:47.701Z"}
 {"type":"iteration","run":3,"dimension":"traceability","newFindings":1,"p0":0,"p1":4,"p2":0,"wallSeconds":171,"error":false,"timestamp":"2026-06-28T13:50:39.092Z"}
 {"type":"iteration","run":4,"dimension":"traceability","newFindings":1,"p0":0,"p1":5,"p2":0,"wallSeconds":247,"error":false,"timestamp":"2026-06-28T13:54:46.375Z"}
+{"type":"iteration","run":5,"dimension":"security","newFindings":1,"p0":0,"p1":6,"p2":0,"wallSeconds":248,"error":false,"timestamp":"2026-06-28T13:58:54.843Z"}
+{"type":"iteration","run":6,"dimension":"correctness","newFindings":0,"p0":0,"p1":6,"p2":0,"wallSeconds":115,"error":true,"timestamp":"2026-06-28T14:00:49.556Z"}
+{"type":"iteration","run":7,"dimension":"traceability","newFindings":1,"p0":0,"p1":7,"p2":0,"wallSeconds":199,"error":false,"timestamp":"2026-06-28T14:04:08.554Z"}
