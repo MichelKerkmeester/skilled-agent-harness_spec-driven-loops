@@ -1,0 +1,107 @@
+# Iteration 4 — MiniMax-M3 (TIDD-EC) — traceability
+
+Dispatched: 2026-06-28T07:50:08.480Z | wall: 263s | billing: paid
+
+---
+
+</think>
+</think>
+Now let me verify the actual state of the deep-loop-workflows structure against the "Executed" claims:
+</think>
+</think>
+Now let me verify the specific traceability contradictions I found by re-reading critical sections:
+Let me verify the HVR_REFERENCE and other trace defects:
+</think>
+</think>
+</think>
+I've completed the TRACEABILITY dimension review. I traced each requirement R1–R5 forward to its tasks (T001–T017) and checklist items (CHK-001–CHK-143), traced back to the stated problem in spec.md §2, verified cross-references and file paths against the actual filesystem, and cross-checked ADR status across decision-record.md, plan.md's ADR section, and the parent phase map. I also verified the implementation claims (e.g. "renamed ai-council → deep-ai-council") against the real `ls` of `.opencode/skills/deep-loop-workflows/` — the rename is real on disk (folder is now `deep-ai-council` and `SKILL.md` name is `deep-ai-council`), which makes several doc-level contradictions even sharper. The dimension is **not clean** — I found 7 new traceability defects beyond the 9 already recorded.
+
+```json
+{
+  "findings": [
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Tasks T010–T017 marked both [B] (Blocked) and [x] (Completed) — impossible task state",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md",
+      "loc": "lines 75, 76, 77, 78, 88, 89, 90, 91 (also definition lines 40-43)",
+      "evidence": "T010 line 75: '- [x] T010 [B] Stage 3 (R1) — Retrofit Option E...'; same pattern for T011–T017. Notation table line 41 defines `[x]` as 'Completed' and line 43 defines `[B]` as 'Blocked'.",
+      "impact": "A task cannot simultaneously be blocked and completed. The blocked marker says execution is gated on prior stages, the completed marker says the work is done — these tell opposite stories. Any reader/tooling that walks the [B] tags to find unfinished work will skip T010–T017 and conclude the packet is fully complete, while any reader walking [x] will accept a done state that Phase 1's gate explicitly blocks. This is a fresh traceability defect (not the same as the recorded completion_pct vs [x] finding).",
+      "recommendation": "Pick one state per task: either [ ] pending + [B] blocked (consistent with plan.md phases unchecked) or [x] completed + remove [B]. Reconciling with plan.md lines 122-132 (all stages [ ]) and the implementation-summary 'EXECUTED' claim requires a decision about whether execution actually happened."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "tasks.md narrative asserts pending state while every checkbox asserts Completed",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md",
+      "loc": "line 47 vs lines 57-91, 99-102",
+      "evidence": "Line 47: 'All tasks below are pending. This packet is plan-only and every task is gated on the user\\'s go-ahead.'; Line 57: '- [x] T001 Stage 0 — Record a recovery baseline...'; Line 99: '- [x] All tasks marked `[x]`' (Completion Criteria).",
+      "impact": "Refinement of the recorded completion_pct-vs-[x] finding: the contradiction is not just numerical, it is prose-vs-checkboxes inside the same doc. The packet's own Task Notation (line 41) defines [x] as Completed, so line 47's 'pending' is overridden by every checkbox below. Future agents reading either the prose or the checkboxes will reach opposite conclusions about whether the packet is gated or done.",
+      "recommendation": "Either uncheck every T001–T017 box and keep line 47, or update line 47 to read 'All tasks are completed' and reconcile with implementation-summary.md 'no source tree changed' / plan.md stages still [ ]."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "ADR-002 status claims acceptance but Decision text is conditional and Stage-4-gated",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md",
+      "loc": "line 122 (Status) vs line 139 (Decision)",
+      "evidence": "Line 122: '| **Status** | Accepted - keep the merged-identity layer |'; Line 139: 'Default to keep; evaluate against evidence in Stage 4. Simplify only if routing fixtures show the hub\\'s aggregated identity routes deep queries as strongly as the per-mode projection does.'; Implementation line 184: 'Nothing in this packet. Stage 4 runs the routing-fixture comparison and records keep or simplify'.",
+      "impact": "This is the same pattern as the recorded ADR-001 status contradiction but on ADR-002 — status claims a final decision ('Accepted') while the Decision text and Implementation both defer to Stage 4 evidence. The Five-Checks table (lines 165-176) scores 5/5 PASS against an as-yet-unevaluated criterion, so the PASS stamp is forward-looking, not earned. A reader who skips the body and reads only the Status row will record 'merged-identity kept' as decided.",
+      "recommendation": "Change Status to 'Proposed (pending Stage 4 evidence)' to match the Decision text and Implementation; or run Stage 4 now and back-fill with measured evidence."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "plan.md 'L3 ARCHITECTURE DECISION RECORD' section only carries ADR-001; ADR-002 and ADR-003 are absent",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md",
+      "loc": "lines 290-305",
+      "evidence": "Section header 'L3: ARCHITECTURE DECISION RECORD' at line 290; only subsection is '### ADR-001: ai-council name/folder resolution' at line 292 with status 'Proposed (gated to execution)'. ADR-002 and ADR-003 are mentioned only in passing (lines 107, 125, 129, 273, 298). decision-record.md has all three (lines 38, 116, 192).",
+      "impact": "decision-record.md frames 'the three load-bearing decisions' (description line 3) but plan.md's L3 ADR section carries only one. A traceability reader expecting plan.md to summarize all three decisions will find two missing and the one present contradicts the source (status 'Proposed' here vs 'Accepted (executed)' in decision-record.md line 44). This is a fresh traceability gap (not the same as the recorded ADR-001 cross-doc contradiction — that one notes the conflict; this one notes the absence of two ADRs entirely).",
+      "recommendation": "Add ADR-002 and ADR-003 subsections to plan.md lines 290-305 with status pulled from decision-record.md; align ADR-001 status between the two files."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "spec.md Branch field points to an unrelated packet (028), not this packet's lineage (155)",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/spec.md",
+      "loc": "line 67 (also graph-metadata.json:18 lastUpdated drift unrelated)",
+      "evidence": "Line 67: '| **Branch** | `system-speckit/028-memory-search-intelligence` |'. This packet is `skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment` and the parent phase docs make no reference to a 028 branch. The sibling 001 packet (001-invocability-mechanism) was already flagged for the identical defect in deep-review iter-006 (`.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/review/deltas/iter-006.jsonl` line 1, finding 'Stale Branch field in metadata').",
+      "impact": "A TRACEABILITY dimension check requires cross-references and file paths to resolve. The Branch field is a forward/back pointer to the worktree the packet was authored on, and it points to a branch in a different packet's lineage. A maintainer following the branch pointer will look for the 002 work on `system-speckit/028-...`, find unrelated work, and conclude the packet is unattached. This defect persisted from 001's review into 002 without remediation.",
+      "recommendation": "Either set Branch to the actual current branch at authoring time or remove the field; do not carry 028's branch name into 155-family packets."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "HVR_REFERENCE path `.opencode/skills/sk-doc/references/hvr_rules.md` is dead in all 6 packet docs",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/{spec.md:38,plan.md:33,tasks.md:31,decision-record.md:33,checklist.md:32,implementation-summary.md:35}",
+      "loc": "all 6 docs each carry the identical comment on the line indicated",
+      "evidence": "All 6 docs contain '<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->' (verified). Verified path resolution: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/hvr_rules.md` returns 'No such file or directory'. The actual file lives at `.opencode/skills/sk-doc/references/global/hvr_rules.md` (under a `global/` subdirectory), so the docs' relative path is missing one directory level.",
+      "impact": "Every doc advertises an HVR (Human Voice Rules) reference for sk-doc validation. Six docs, all carrying the same broken path. The sibling 001 packet's iter-006 review flagged this on 2 docs; in 002 the defect is on every canonical spec doc. Any tooling that walks HVR_REFERENCE links (or any human following the comment looking for the rules) will produce a false-negative on all six.",
+      "recommendation": "Update all six HVR_REFERENCE comments to '.opencode/skills/sk-doc/references/global/hvr_rules.md', or remove the comment entirely if the validation tool no longer depends on it."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Three different statuses for the same packet across graph-metadata, parent phase map, and implementation-summary",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/{graph-metadata.json:42, spec.md:65, implementation-summary.md:14} + parent spec.md:50",
+      "loc": "graph-metadata.json:42 '\"status\": \"draft\"' vs spec.md:65 'Status: Draft' vs implementation-summary.md:14 'Executed: rename + invokable-hub routing done' vs parent .opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/spec.md:50 'Planned (gated)'",
+      "evidence": "Four status fields, four different claims: graph-metadata 'draft'; child spec.md YAML 'Draft'; implementation-summary recent_action 'Executed: rename + invokable-hub routing done; all 6 deep-loop packets pass --check'; parent phase map row 'Planned (gated)'. The filesystem confirms the rename actually happened (`.opencode/skills/deep-loop-workflows/deep-ai-council/` exists, `SKILL.md` name is `deep-ai-council`).",
+      "impact": "A traceability audit must be able to reconcile 'is this packet done' from the packet's own docs. The packet simultaneously reports plan-only (parent), draft (graph + spec), and executed-with-passing-checks (implementation-summary), and the only 'Executed' claim has real on-disk evidence while the plan.md stages are all [ ] (lines 123, 124, 125, 128, 129, 132). The cross-doc status field cannot be made consistent without first answering whether the rename+check claims are real or aspirational.",
+      "recommendation": "Pick one authoritative status source (suggest graph-metadata.json:42), then reconcile parent phase map, child spec.md YAML, and implementation-summary.md recent_action to it. If the on-disk rename is real, update plan.md stage checkboxes and re-render the implementation-summary away from 'EXECUTED' and toward evidence-anchored 'Stage 1 rename completed at 2026-06-26T...'."
+    },
+    {
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "plan.md Definition of Ready and Definition of Done are all unchecked while recent_action claims 'Executed'",
+      "file": ".opencode/specs/skilled-agent-ochestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md",
+      "loc": "lines 65-73",
+      "evidence": "Lines 66-68: '- [ ] Problem statement clear and scope documented'; '- [ ] Success criteria measurable'; '- [ ] Dependencies identified'. Lines 71-73: '- [ ] All acceptance criteria (R1–R5) met'; '- [ ] All gates green (`--check`, advisor/skill-graph rebuild, routing fixtures, `validate.sh`)'; '- [ ] Docs updated'. Meanwhile plan.md YAML frontmatter line 15: 'recent_action: Authored the staged alignment plan' (matches) BUT implementation-summary.md YAML line 14 claims 'Executed: rename + invokable-hub routing done'.",
+      "impact": "The plan's own Definition of Done explicitly includes 'All acceptance criteria (R1–R5) met' and 'All gates green'. The packet's own checklist defers all R5 gates (CHK-010, CHK-011, CHK-020, CHK-021, CHK-022, CHK-023 — checklist.md lines 70-84) and the plan's stage checkboxes (lines 123, 124, 125, 128, 129, 132) are all [ ]. Yet the implementation-summary claims execution is done. The DoD is the contract a downstream agent would check to claim completion; leaving it uncheckable while claiming 'Executed' defeats the gate.",
+      "recommendation": "Either check the DoR/DoD boxes and back them with evidence (Stage 5 gates), or remove the 'Executed' language from implementation-summary.md recent_action until the DoD is satisfiable. Do not leave both states in the packet."
+    }
+  ],
+  "new_findings_count": 8,
+  "dimension_clean": false
+}
+```
+

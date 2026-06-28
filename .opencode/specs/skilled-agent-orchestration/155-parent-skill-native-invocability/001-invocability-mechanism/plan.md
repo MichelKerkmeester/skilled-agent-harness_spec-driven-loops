@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Parent-skill native invocability"
-description: "A phased, research-first plan to make parent-skill nested mode packets natively reachable by the operator without regressing the one-graph-metadata single-identity invariant. Phase 1 probes runtime extensibility, prototypes the least-bad mechanism, and produces a decision record; Phase 2+ implements the chosen mechanism and is gated."
+description: "Decision-complete plan record for parent-skill native invocability. ADR-001 is Accepted: Option E invokable-hub routing is the chosen mechanism. This packet has no source build; downstream alignment carries NFR-S01 and runtime validation."
 trigger_phrases:
   - "parent skill invocability plan"
   - "skill discovery extensibility probe"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Drafted phased research-first plan; mechanism choice deferred to Phase 1"
-    next_safe_action: "Await user gate; then probe OpenCode and Claude-Code skill discovery"
+    recent_action: "Reconciled plan to ADR-001 Accepted: Option E chosen; no 001 source build"
+    next_safe_action: "Use 002 to document hub union-grant semantics and finish deep-loop validation gates"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md"
@@ -24,10 +24,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-155-parent-skill-native-invocability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 70
     open_questions:
-      - "Which mechanism (A/B/C/D) best fits after the runtime probe?"
-    answered_questions: []
+      - "NFR-S01 remains unresolved in 001 and is carried to 002."
+    answered_questions:
+      - "Option E invokable-hub routing is accepted."
+      - "Options A/B remain fallback complementary surfaces; no runtime enhancement is required."
 ---
 # Implementation Plan: Parent-skill native invocability
 
@@ -56,7 +58,7 @@ FAILURE MODES:
 | **Testing** | Routing-parity and drift-guard vitest fixtures; manual `Skill()` probes |
 
 ### Overview
-This plan is research-first. Phase 1 confirms whether the runtime skill-discovery surface is extensible at all, prototypes the least-bad mechanism, and produces a decision record choosing among the four mechanism options. Phase 2 and beyond implement the chosen mechanism generically for parent skills and are gated on Phase 1. No mechanism is pre-decided.
+This plan is now a decision-complete record. ADR-001 accepts Option E, invokable-hub routing: `Skill(<parent>)` loads the top-level parent hub, and the hub routes to the nested mode packet through its registry. No source build occurs in 001. The remaining downstream work is carried by phase 002, especially the NFR-S01 union-grant documentation and validation gates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -65,14 +67,14 @@ This plan is research-first. Phase 1 confirms whether the runtime skill-discover
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met, except NFR-S01 carried to 002
+- [ ] Tests passing where applicable; no source tests exist in 001
+- [x] Docs updated (spec/plan/tasks/decision-record/checklist/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -89,7 +91,7 @@ Parent skill with nested mode packets: one advisor-routable hub `SKILL.md`, one 
 - **Mode registry**: the declarative source of truth that routers, commands, and tests read. It carries the discriminator and an `advisorRouting` projection with a `routingClass`.
 
 ### Data Flow
-An operator request currently reaches a parent mode through a `/deep:*` command or an agent type, not through `Skill()`. The `Skill` tool resolves only top-level skill directories, so a nested mode name is unknown to it. This plan studies how to add a native operator path to a mode while keeping one advisor identity per parent skill.
+An operator request can reach a parent mode through a `/deep:*` command, an agent type, or the accepted Option E path: invoke the top-level parent hub with `Skill(<parent>)` and let the hub route to the nested mode packet. The `Skill` tool still resolves only top-level skill directories, so direct `Skill(mode)` remains out of scope.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -99,21 +101,20 @@ An operator request currently reaches a parent mode through a `/deep:*` command 
 
 Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
-This packet is plan-only, so no surface changes here. The table records the surfaces a Phase 2+ mechanism would touch so the research can scope them. Actions are stated as not-a-consumer for now because nothing is being changed yet.
+This packet is decision-only, so no source surface changes here. The table records how the accepted Option E mechanism relates to the surfaces a downstream implementation or alignment packet touches.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Runtime skill discovery (OpenCode / Claude-Code binary) | Registers top-level skill dirs by SKILL.md name | not a consumer (plan-only); option D would require runtime change | Phase 1 probe of the binary's skill resolution |
-| `mode-registry.json` per parent skill | Declarative discriminator and `advisorRouting` source of truth | not a consumer (plan-only); a mechanism may add a routing field | `rg -n "advisorRouting|routingClass" .opencode/skills/deep-loop-workflows/mode-registry.json` |
-| Per-mode `/deep:*` command assets | Current command-bridge invocation path | not a consumer (plan-only); option A would add per-mode commands | Inspect command YAML assets under the command surface |
-| Per-mode agent types | Current agent invocation path | not a consumer (plan-only); option B would add per-mode agents | Inspect the runtime agent directory for the active profile |
-| Advisor projection maps (Python and TypeScript) | Hardcoded maps guarded by a drift-guard test | not a consumer (plan-only); a mechanism must keep maps and registry in sync | `rg -n "DEEP_ROUTING_MODE_BY_KEY|DEEP_MODE_BY_CANONICAL" .opencode/skills/system-skill-advisor` |
+| Runtime skill discovery (OpenCode / Claude-Code binary) | Registers top-level skill dirs by SKILL.md name | Not changed; Option E avoids a runtime enhancement | Parent hub remains top-level and invocable |
+| `mode-registry.json` per parent skill | Declarative discriminator and routing source of truth | Downstream consumers use it for hub routing | `rg -n "packetSkillName|workflowMode" .opencode/skills/deep-loop-workflows/mode-registry.json` |
+| Per-mode `/deep:*` command assets | Existing command-bridge invocation path | Retained as complementary fallback surface (Option A) | Commands continue to reach the same packets |
+| Per-mode agent types | Existing agent invocation path | Retained as complementary fallback surface (Option B) | Agent definitions continue to reach the same packets |
+| Advisor projection maps (Python and TypeScript) | Drift-guarded maps for advisor routing strength | Not required for Option E invocation; evaluated in 002 for deep-loop routing strength | Routing fixtures and advisor validation in 002 |
 
-Required inventories (for Phase 1 research, not run here):
-- Same-class producers: `rg -n "graph-metadata.json" .opencode/skills` to enumerate skill identities.
-- Consumers of the registry projection: `rg -n "advisorRouting|routingClass|packetSkillName" .opencode/skills`.
-- Matrix axes: list each mechanism option against each invariant before any implementation.
-- Algorithm invariant: exactly one `graph-metadata.json` per parent skill, `skill_id == folder`, zero below it.
+Required carry-forward checks:
+- Preserve exactly one `graph-metadata.json` per parent skill, `skill_id == folder`, zero below it.
+- Treat hub `allowed-tools` as the union the modes need unless runtime evidence proves narrower per-mode grants.
+- Keep commands and agents as fallback surfaces, not competing implementations.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -121,21 +122,21 @@ Required inventories (for Phase 1 research, not run here):
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Research and design (gated entry; produces the decision)
-- [ ] Probe whether the runtime skill-discovery is extensible at all in OpenCode and in Claude-Code (any hook, config entry, or manifest the binary honors).
-- [ ] Confirm the no-in-repo-extension-point finding: `opencode.json` has no skills config and `.opencode/plugin/` is empty.
-- [ ] Prototype the least-bad mechanism against the one-`graph-metadata.json` invariant.
-- [ ] Produce `decision-record.md` selecting among options A through D with cited evidence and an explicit fallback.
+### Phase 1: Research and design (decision complete)
+- [x] Frame options A through E against the one-`graph-metadata.json` invariant.
+- [x] Accept Option E, invokable-hub routing, in `decision-record.md`.
+- [x] Record commands and agents (A/B) as the fallback complementary surfaces.
+- [ ] Carry NFR-S01 to phase 002 because 001 does not prove per-mode permission narrowing.
 
-### Phase 2: Implement the chosen mechanism (gated on Phase 1)
-- [ ] Implement the chosen mechanism generically for parent skills.
+### Phase 2: Downstream alignment (owned by child packets)
+- [ ] Apply Option E in downstream parent families as needed.
 - [ ] Keep exactly one advisor identity per parent skill.
-- [ ] Keep routing-parity and drift-guard fixtures green or migrate them deliberately.
+- [ ] Document or test any hub union-grant permission semantics before claiming NFR-S01 closure.
 
-### Phase 3: Verification (gated on Phase 2)
-- [ ] Confirm a parent skill's modes are natively reachable by the operator.
+### Phase 3: Verification (downstream)
+- [ ] Confirm a parent skill's modes are reachable through `Skill(<parent>)`.
 - [ ] Confirm the single-identity invariant is intact.
-- [ ] Confirm the `sk-design` Model-A conversion can adopt the mechanism without regression.
+- [ ] Confirm commands and agents continue to work as fallback surfaces.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -145,9 +146,9 @@ Required inventories (for Phase 1 research, not run here):
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Advisor projection maps equal registry projection | vitest drift-guard fixture |
-| Integration | Routing-parity for the single skill-to-mode mapping | routing-parity vitest fixtures |
-| Manual | Operator-side `Skill()` or chosen-mechanism reachability of a mode | Runtime probe |
+| Unit | Hub registry maps to the nested packets it loads | registry/drift fixtures in downstream packets |
+| Integration | Single parent skill identity routes internally to the correct mode | routing-parity fixtures |
+| Manual | Operator-side `Skill(<parent>)` reachability of a mode | Runtime probe in downstream packet |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -157,7 +158,7 @@ Required inventories (for Phase 1 research, not run here):
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Runtime skill-discovery surface | External | Red | Option D (true native resolution) may be impossible in-repo; fall back to A/B or C |
+| Runtime skill-discovery surface | External | Amber | Option D remains out-of-repo; Option E avoids depending on it |
 | Parent-skill pattern reference | Internal | Green | Defines the invariant the mechanism must respect |
 | Spec 150 pattern and invariant | Internal | Green | This packet extends it |
 <!-- /ANCHOR:dependencies -->
@@ -167,8 +168,8 @@ Required inventories (for Phase 1 research, not run here):
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: This packet is plan-only, so the only rollback need is to discard the authored documents.
-- **Procedure**: Delete the `155-parent-skill-native-invocability/` folder. No source, runtime, or configuration changed, so nothing else reverts.
+- **Trigger**: ADR-001 must be revised.
+- **Procedure**: Revert the authored 001 markdown docs to the prior decision state. No source, runtime, or configuration changed in 001, so nothing else reverts.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -180,14 +181,14 @@ Required inventories (for Phase 1 research, not run here):
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (Verify)
+Phase 1 (Decision) ──► Phase 2 (Downstream alignment) ──► Phase 3 (Verify)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Research + decision | User gate | Implement |
-| Implement | Research + decision | Verify |
-| Verify | Implement | None |
+| Decision | 001 packet docs | Downstream alignment |
+| Downstream alignment | Accepted Option E | Verify |
+| Verify | Downstream alignment | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -197,10 +198,10 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Research + decision | High | Bounded research sweep plus a prototype and a decision record |
-| Implement | Med | Depends entirely on the chosen mechanism |
+| Decision | Med | Completed in ADR-001; no source build in 001 |
+| Downstream alignment | Med | Depends on each parent family |
 | Verification | Low | Fixture re-run plus a manual reachability probe |
-| **Total** | | **Dominated by the research phase; implement effort is mechanism-dependent** |
+| **Total** | | **001 is decision-complete; remaining effort lives downstream** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -209,13 +210,13 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) — not applicable; plan-only
-- [ ] Feature flag configured — not applicable; plan-only
-- [ ] Monitoring alerts set — not applicable; plan-only
+- [ ] Backup created (if data changes) - not applicable; no data changes in 001
+- [ ] Feature flag configured - not applicable; no source changes in 001
+- [ ] Monitoring alerts set - not applicable; no rollout in 001
 
 ### Rollback Procedure
-1. Discard the authored documents in the packet folder.
-2. No code or configuration was changed, so no redeploy or revert is needed.
+1. Revert the authored 001 markdown docs.
+2. No code or configuration was changed in 001, so no redeploy or revert is needed.
 3. Confirm no other packet referenced the deleted folder.
 4. No stakeholders to notify; nothing user-facing changed.
 
@@ -234,21 +235,21 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 
 ```
 ┌──────────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   Phase 1            │────►│   Phase 2        │────►│   Phase 3        │
-│   Research + decide  │     │   Implement      │     │   Verify         │
+│   Phase 1            │────►│   Phase 2         │────►│   Phase 3        │
+│   Decide Option E    │     │   Align downstream│     │   Verify         │
 └──────────────────────┘     └──────────────────┘     └──────────────────┘
         ▲
-   user gate
+   accepted ADR-001
 ```
 
 ### Dependency Matrix
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| Runtime probe | User gate | Extensibility verdict | Mechanism prototype |
-| Mechanism prototype | Runtime probe | Least-bad candidate | Decision record |
-| Decision record | Mechanism prototype | Chosen mechanism | Phase 2 |
-| Phase 2 implementation | Decision record | Native invocation path | Phase 3 |
+| Decision record | Existing parent-hub evidence | Chosen mechanism | Downstream alignment |
+| Commands/agents fallback | Existing A/B surfaces | Fallback path if hub invocation is insufficient | Downstream verification |
+| NFR-S01 carry-forward | Hub union-grant reality | 002 documentation decision | Completion claim |
+| Downstream implementation | ADR-001 | Native invocation path | Verification |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -256,15 +257,14 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Runtime extensibility probe** - research-bounded - CRITICAL
-2. **Mechanism prototype against the invariant** - research-bounded - CRITICAL
-3. **Decision record selecting A through D** - research-bounded - CRITICAL
+1. **Decision record selecting A through E** - complete - CRITICAL
+2. **NFR-S01 carry-forward to 002** - open - CRITICAL
+3. **Downstream verification of hub routing** - downstream - CRITICAL
 
-**Total Critical Path**: The research phase gates everything; implementation effort is mechanism-dependent.
+**Total Critical Path**: 001 is decision-complete; completion now depends on 002 documenting the union-grant contract and closing validation gates.
 
 **Parallel Opportunities**:
-- The OpenCode probe and the Claude-Code probe can run side by side.
-- The tradeoff write-up for options A through D can be drafted while the prototype runs.
+- Downstream parent families can adopt Option E while NFR-S01 evidence is gathered, as long as docs do not claim per-mode permission narrowing prematurely.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -274,9 +274,9 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Runtime extensibility verdict | A clear yes or no on in-repo extensibility for option D | Phase 1 |
-| M2 | Mechanism decided | Decision record selects one option with cited evidence | Phase 1 |
-| M3 | Modes natively reachable | A parent skill mode reachable with the invariant intact | Phase 3 |
+| M1 | Mechanism decided | ADR-001 selects Option E with fallback surfaces | Phase 1 |
+| M2 | NFR-S01 documented | 002 records the hub union-grant pattern | Phase 2 |
+| M3 | Modes reachable through hub | A parent skill mode reachable with the invariant intact | Phase 3 |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -285,15 +285,17 @@ Phase 1 (Research + decision) ──► Phase 2 (Implement) ──► Phase 3 (V
 
 ### ADR-001: Mechanism for native parent-skill mode invocation
 
-**Status**: Proposed
+**Status**: Accepted
 
-**Context**: Nested mode packets are not reachable via the `Skill` tool, and the one-`graph-metadata.json` invariant keeps them advisor-invisible by construction. The mechanism choice is deferred to Phase 1 research.
+**Context**: Nested mode packets are not directly reachable via the `Skill` tool, and the one-`graph-metadata.json` invariant keeps them advisor-invisible by construction. The accepted path reaches them through the invocable parent hub.
 
-**Decision**: Deferred. The full options and tradeoffs live in `decision-record.md` and are pending the Phase 1 runtime probe and prototype.
+**Decision**: Option E, invokable-hub routing, is accepted. `Skill(<parent>)` invokes the hub; the hub routes to the nested mode packet. Options A/B remain fallback complementary surfaces. No runtime enhancement or 001 source build is required.
 
 **Consequences**:
-- Keeping the choice open avoids pre-deciding a mechanism that the runtime may not support.
-- The cost is one research phase before any implementation.
+- The parent hub stays the single advisor identity.
+- The packet avoids runtime changes and shim identities.
+- NFR-S01 remains carried to 002 because the hub `allowed-tools` are the union the modes need.
 
 **Alternatives Rejected**:
-- Pre-deciding the shim path now: rejected because it would re-introduce N skill identities without first checking whether a lower-cost mechanism exists.
+- Thin shim skills: rejected because they re-introduce N skill identities.
+- Runtime enhancement: not required for the accepted path and out of repo control.

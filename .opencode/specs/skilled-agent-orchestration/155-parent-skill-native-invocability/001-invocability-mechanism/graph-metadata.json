@@ -58,14 +58,17 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
       "checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/decision-record.md",
       ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
       ".opencode/skills/deep-loop-workflows/SKILL.md",
       "implementation-summary.md"
@@ -74,25 +77,25 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/tasks.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/decision-record.md",
         "source": "derived"
       },
       {
@@ -126,6 +129,12 @@
         "source": "derived"
       },
       {
+        "name": "Accepted Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,12 +154,6 @@
       },
       {
         "name": "Purpose Make",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,19 +201,19 @@
         "source": "derived"
       },
       {
-        "name": "Listed Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Probe Claude",
+        "name": "Accept Option",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -218,7 +221,7 @@
     ],
     "causal_summary": "Parent skills route to nested mode packets, but those packets are not invocable through the runtime `Skill` tool",
     "created_at": "2026-06-26T05:52:39.211Z",
-    "last_save_at": "2026-06-26T12:26:25.140Z",
+    "last_save_at": "2026-06-28T12:38:34.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,14 +232,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff2494bf5ffc14316b0f6d59f2aec1449ba52d42e81a6e5a47971207de9e02e8",
+    "source_fingerprint": "sha256:6b7f75104cd8017bb4fb57a6e43959c871bfb17d0b4d20f5a0e16d65c2af9503",
     "source_doc_hashes": {
-      "spec.md": "0c2c00c49ac8f8a1d8052536058cb5df51b792e4ecc652083cad339cc778dd29",
-      "plan.md": "f282072b7ad3c77762a59623ed7f48cbde05114386ee1597bfb7a59eb90512e9",
-      "tasks.md": "f229369d38c8cb6ccb1a4efc9697f3d7bbbbdca4f41aa2668a8448ed8a1b28f6",
-      "checklist.md": "9ace6609e479f35b93ba601c03e6135c3360006f79ee173bbaf240d0cc693643",
-      "decision-record.md": "8cd38e6ccfa1bce70dc8d46e80acbe5d6e0c04cd1f65494492a85a760a1d47a3",
-      "implementation-summary.md": "fe71c99b970dcb9115b3d2647748a3291683df785a7ed0715d0a3b879f5704f1"
+      "spec.md": "b67b0f90a3fb0277bea807bc3be60c6cd7f2dd913cc21312189a9f2420a67398",
+      "plan.md": "a213d105dacdd7f0af6e2a73a908359c944a96f958364178ce602fd3789271ee",
+      "tasks.md": "bd3441f218bd6910285cef3fc9a0944e5b9ce17f0be1a820f6cf0050dc4f3ccc",
+      "checklist.md": "1c52b5ac623c7252deac28d570c95f520c201da4446d23f64cc6e1a945b9f99a",
+      "decision-record.md": "4e4cf872afece6d870c4f49da33598336b1436c803eeb8b76ae5026c02c0ce7c",
+      "implementation-summary.md": "e407aafdf437f9f637fba4abfabbea890b740d393e45dce12f3796a2ca4be967"
     },
     "last_active_child_id": null,
     "last_active_at": null

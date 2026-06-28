@@ -182,7 +182,7 @@ quality_standards:
   packet_requirements:
     - "RECOMMENDED DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode> (soft guidance, not a hard gate)"
     - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
-    - "ALLOWED: grandfathered packets where folder != packetSkillName (canonical: folder ai-council, packetSkillName deep-ai-council)"
+    - "ALLOWED: grandfathered packets where folder != packetSkillName (rare; record the rationale in the packet's decision record)"
     - each packet has its own SKILL.md
     - "each mode's packet folder is a direct child of the hub (no absolute or ../ paths)"
     - NO per-packet graph-metadata.json
@@ -216,7 +216,7 @@ gate_logic:
       fail_action: "Run fix-and-revalidate loop"
   soft:
     S1_packet_naming:
-      description: "DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode>. NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement; ai-council/deep-ai-council)."
+      description: "DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode>. NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement)."
       fail_action: "Proceed with a logged assumption when grandfathering an existing packet or mapping several modes to one packet"
 
 workflow_overview:
@@ -253,7 +253,7 @@ workflow:
     purpose: Resolve the mode list and per-packet plan
     activities:
       - "For a net-new single-mode packet, default packetSkillName = \"deep-[mode]\" and a packet folder of the same name (recommended, not enforced)"
-      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (canonical: ai-council/deep-ai-council)"
+      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (rare; record the rationale)"
       - "Set each mode's top-level packet field to its packet sub-directory and plan the 3-tier discriminator (workflowMode, runtimeLoopType may be null, backendKind)"
       - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
       - Preserve existing packet names, registry keys, and routing blocks when update mode

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: deep-loop parent-skill alignment"
-description: "Staged, gated plan to align the deep-loop parent-skill family with the phase-001 mechanism and the sk-design parent-skill conventions. Mirrors the staged 154 conversion: recovery baseline per stage, lowest-blast structural fixes first, invokable-hub routing and runtime reconciliation last, validation gate at the end."
+description: "Closure execution plan/status for deep-loop parent-skill alignment. R1-R5 are done; NFR-S01 union-grant is accepted; the full live-loop e2e remains optional and was not run."
 trigger_phrases:
   - "deep-loop alignment plan"
   - "deep-loop staged conversion"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the staged alignment plan"
-    next_safe_action: "Gate, then run Stage 0 inventory + recovery baseline"
+    recent_action: "R5 gates green; runtime reachability confirmed by registration; optional live-loop e2e not run"
+    next_safe_action: "Optional: run a full live deep-loop e2e; refresh metadata separately"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,15 +22,21 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-155-002-deep-loop-alignment"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "R1 invokable-hub routing static retrofit is done."
+      - "R2 deep-ai-council rename is done."
+      - "R3 feature_catalog hygiene is done as keep-all earned; no deletion or repointing needed."
+      - "R4 merged-identity layer is kept by maintainer sign-off; drift-guard is green."
+      - "NFR-S01 uses the accepted hub union-grant pattern."
+      - "R5 is done: strict recursive validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
 ---
 # Implementation Plan: deep-loop parent-skill alignment
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 <!--
 SELF-CHECK:
 - Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
@@ -54,7 +60,7 @@ FAILURE MODES:
 | **Testing** | `package_skill.py --check`; advisor + skill-graph rebuilds; routing-parity fixtures; `validate.sh --recursive`; manual `Skill()` + `/deep:*` probes |
 
 ### Overview
-Mirror the proven 154 conversion: staged, each stage gated, a recovery baseline before each mutation, lowest-blast structural fixes first, the higher-blast routing/runtime work last, one validation gate at the end. Do not change deep-loop's workflow behavior — only its parent-skill structure and invocation surface. Work in a worktree if the owner's branch is active.
+This plan is now a closure execution/status record. R2 (`deep-ai-council` folder/name alignment) is done. R1 static invokable-hub routing is done in the hub docs/registry contract, and reachability is confirmed by runtime registration. R3 is done as keep-all earned: all five mode catalogs stay because each is substantial and warranted. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is accepted as the hub union-grant permission contract. R5 is done: strict recursive validation, package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. The full live-loop e2e remains optional and was not run.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -63,14 +69,14 @@ Mirror the proven 154 conversion: staged, each stage gated, a recovery baseline 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified (phase 001 mechanism; 154 precedent)
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified (phase 001 mechanism; 154 precedent)
 
 ### Definition of Done
-- [ ] All acceptance criteria (R1–R5) met
-- [ ] All gates green (`--check`, advisor/skill-graph rebuild, routing fixtures, `validate.sh`)
-- [ ] Docs updated (spec/plan/tasks/decision-record)
+- [x] All acceptance criteria (R1-R5) met; full live-loop e2e remains optional and was not run
+- [x] All required gates green (`--check`, advisor/graph consistency by drift-guard + parity + parent-skill-check, routing fixtures, `validate.sh`)
+- [x] Docs updated to closure state (spec/plan/tasks/decision-record/checklist/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -79,15 +85,15 @@ Mirror the proven 154 conversion: staged, each stage gated, a recovery baseline 
 ## 3. ARCHITECTURE
 
 ### Pattern
-Parent skill with nested mode packets: one advisor-routable hub `SKILL.md`, one declarative `mode-registry.json`, exactly one hub `graph-metadata.json`, N self-contained mode packets with zero `graph-metadata.json`, and a non-discoverable `shared/` helper layer. deep-loop already follows this shape; the alignment retrofits invokable-hub routing and resolves the `name == folder` and feature-catalog deviations.
+Parent skill with nested mode packets: one advisor-routable hub `SKILL.md`, one declarative `mode-registry.json`, exactly one hub `graph-metadata.json`, N self-contained mode packets with zero `graph-metadata.json`, and a non-discoverable `shared/` helper layer. deep-loop follows this shape. The alignment has retrofitted the static invokable-hub contract, resolved the council packet folder/name deviation, kept all five earned feature catalogs, kept the merged-identity layer by sign-off, and closed required R5 validation.
 
 ### Key Components
-- **deep-loop hub** (`deep-loop-workflows/SKILL.md` + `mode-registry.json`): the invocable identity; gains Option E routing so `Skill(deep-loop-workflows[,hint])` resolves a nested mode.
-- **Five mode packets** (`deep-research`, `deep-review`, `deep-improvement`, `deep-context`, `ai-council`): each must reach `name == folder`; `ai-council` is the grandfathered exception R2 resolves.
-- **deep-loop-runtime**: executor-config, fanout, and the deep-loop-specific advisor merged-identity projection (`lib/scorer/aliases.ts` + `skill_advisor.py`); reconciled in R4.
+- **deep-loop hub** (`deep-loop-workflows/SKILL.md` + `mode-registry.json`): the invocable identity; static Option E routing is in place so `Skill(deep-loop-workflows[,hint])` resolves through the hub contract.
+- **Five mode packets** (`deep-research`, `deep-review`, `deep-improvement`, `deep-context`, `deep-ai-council`): `name == folder` is resolved for the council packet; all five keep their earned `feature_catalog/` directories.
+- **deep-loop-runtime**: executor-config, fanout, and the deep-loop-specific advisor merged-identity projection; keep by maintainer sign-off with the routing-registry drift-guard green.
 
 ### Data Flow
-Today an operator request reaches a deep mode through a `/deep:*` command or an agent type, not through `Skill()`. After Stage 3, `Skill(deep-loop-workflows)` with a mode hint routes through the hub to the nested packet, while `/deep:*` commands and agents remain as complementary surfaces and the single advisor identity is preserved.
+An operator request can reach a deep mode through `/deep:*`, an agent type, or the static Option E hub contract. R5 confirms this at registration level: `Skill(deep-loop-workflows)` is registered as the top-level hub, the hub metadata is present, and `/deep:*` commands plus the `ai-council` agent are registered/available. A full live-loop e2e remains optional and was not run.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,21 +103,17 @@ Today an operator request reaches a deep mode through a `/deep:*` command or an 
 
 Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
-This packet is plan-only, so no surface changes here. The table records the surfaces the staged execution will touch so each stage can scope them.
+This doc pass edits markdown only. The table records the current state of the staged surfaces.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `deep-loop-workflows/SKILL.md` + `mode-registry.json` | Hub identity and declarative mode source of truth | Stage 3 adds Option E hub routing | `Skill(deep-loop-workflows)` reaches a mode; `package_skill.py --check` |
-| `ai-council` packet folder + `SKILL.md` name | Grandfathered `name != folder` | Stage 1 renames folder → `deep-ai-council` (ADR-001) | `package_skill.py --check`; `rg -n "ai-council" .opencode` zero broken refs |
-| Per-mode `feature_catalog/` (five modes) | Catalog docs, some unearned | Stage 2 keeps where earned, removes the rest (ADR-003) | No dangling `feature_catalog` refs; `--check` green |
-| `deep-loop-runtime` (executor-config, fanout, advisor projection) | Runtime config + merged-identity layer | Stage 4 verifies assumptions; evaluates merged-identity keep/simplify (ADR-002) | Runtime path/identity assumptions hold; `advisor_rebuild` + `skill_graph_validate` clean |
-| Advisor projection maps (Python + TypeScript) | Drift-guarded merged-identity maps | Stage 4 keeps or simplifies per ADR-002 | Routing-parity fixtures; drift-guard test |
+| `deep-loop-workflows/SKILL.md` + `mode-registry.json` | Hub identity and declarative mode source of truth | R1 static Option E routing done; runtime registration confirms reachability | `Skill(deep-loop-workflows)` registered; routing fixtures passed; full live-loop e2e not run |
+| `deep-ai-council` packet folder + `SKILL.md` name | Former `ai-council` mismatch, now folder/name aligned | R2 done; legacy `/deep:ai-council` and agent surfaces preserved | Package checks passed |
+| Per-mode `feature_catalog/` (five modes) | Catalog docs present in all five modes | R3 done: keep all five as earned; no deletions or repoints needed | Per-mode assessment table recorded in `decision-record.md` |
+| `deep-loop-runtime` (executor-config, fanout, advisor projection) | Runtime config + merged-identity layer | R4 done: keep by maintainer sign-off | Drift-guard green; fixture comparison optional |
+| Advisor projection maps (Python + TypeScript) | Drift-guarded merged-identity maps | Kept to preserve stronger per-mode routing | Drift-guard, routing parity, and parent-skill-check confirm consistency; forced `advisor_rebuild` not run/not required |
 
-Required inventories (for Stage 0, not run here):
-- Every `ai-council` reference: `rg -n "ai-council" .opencode/skills .opencode/commands .opencode/agents`.
-- Per-mode feature-catalog contents: enumerate each `feature_catalog/` under the five mode packets.
-- Runtime assumptions: `rg -n "deep-loop-workflows|ai-council|graph-metadata" .opencode/skills/deep-loop-runtime`.
-- Invariant: exactly one `graph-metadata.json` per parent skill, `skill_id == folder`, zero below it.
+Required remaining inventories: none. Optional residual: a full live-loop e2e can still be run as extra confidence, but it was not required for R5 closure and was not executed.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -119,17 +121,45 @@ Required inventories (for Stage 0, not run here):
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Structural alignment (Stages 0–2; lowest blast first)
-- [ ] Stage 0 — Inventory + baseline: record a recovery baseline; inventory every `ai-council` reference, each mode's `feature_catalog/` contents, and `deep-loop-runtime` path/identity assumptions + the merged-identity projection sites.
-- [ ] Stage 1 — `name == folder` (R2): resolve the `ai-council`/`deep-ai-council` mismatch (preferred: rename folder → `deep-ai-council`); rewire every reference from Stage 0's inventory.
-- [ ] Stage 2 — feature-catalog hygiene (R3): apply the ADR-003 ruling; keep `feature_catalog/` only where earned, remove the rest, repoint references.
+### Phase 1: Structural alignment (Stages 0-2; lowest blast first)
+- [x] Stage 0 - Inventory + baseline for the rename/routing work recorded in prior remediation evidence.
+- [x] Stage 1 - `name == folder` (R2): resolve the `ai-council`/`deep-ai-council` mismatch by using folder `deep-ai-council`.
+- [x] Stage 2 - feature-catalog hygiene (R3): ADR-003 keep-all earned; all five `feature_catalog/` directories stay and no repointing is needed.
 
-### Phase 2: Routing + runtime (Stages 3–4; higher blast)
-- [ ] Stage 3 — invokable-hub routing (R1): retrofit Option E onto the deep-loop hub `SKILL.md` + `mode-registry.json` routing so `Skill(deep-loop-workflows[,hint])` resolves a mode; keep `/deep:*` + agents.
-- [ ] Stage 4 — runtime reconciliation (R4): verify `deep-loop-runtime` assumptions post-1–3; evaluate the merged-identity layer (keep vs simplify) and record the decision (ADR-002).
+### Phase 2: Routing + runtime (Stages 3-4; higher blast)
+- [x] Stage 3 - invokable-hub routing (R1): static Option E hub routing is in place; runtime registration confirms reachability; full live-loop e2e not run.
+- [x] Stage 4 - runtime reconciliation (R4): keep merged identity by maintainer sign-off; drift-guard green and fixture comparison optional.
 
 ### Phase 3: Validation (Stage 5)
-- [ ] Stage 5 — validation (R5): `package_skill.py --check` (hub + packets); `advisor_rebuild` + `skill_graph_validate`; routing fixtures; `validate.sh --recursive`.
+- [x] Stage 5 - validation (R5): complete for required gates. `package_skill.py --check`, strict recursive spec validation, routing fixtures, parent-skill invariants, and runtime-registration reachability are green; full live-loop e2e remains optional and was not run.
+
+### Deferred-Item Closeout (decision-gated sequencing)
+
+Closes the open items (R3, R4, R5, and the NFR-S01 carry-in from phase 001) in dependency order: cheap decisions and assessment first, reversible doc-only resolutions next, live-infra changes only where a decision requires them, full validation last. Recommended defaults are noted so a happy-path exists.
+
+**C0 - Decisions & assessment (read-only, zero mutations):**
+- [x] NFR-S01: accept the union-grant hub contract (hub `allowed-tools` is the union the modes need; hub is routing-only) plus a documented residual risk and optional future runtime-narrowing probe.
+- [x] R3: run the per-mode earned-keep assessment across all five `feature_catalog/` directories; verdict is keep all five.
+- [x] R4: accept maintainer sign-off to keep merged identity; drift-guard is green.
+
+**C1 - Doc-only resolutions (low blast, reversible, no live-infra):**
+- [x] NFR-S01 (A): record the union-grant decision in `decision-record.md`; close the security checklist rows; flip NFR-S01 to resolved (accepted risk + hardening probe noted).
+- [x] R3 keep-all branch: amend ADR-003, fill the assessment table, mark Stage 2 and its tasks complete.
+- [x] R4 sign-off branch: record keep + rationale; ADR-002 accepted as kept.
+
+**C2 - Live-infra execution (gated on a C0 sign-off; skip entirely if C1 closes everything):**
+- [ ] Not triggered - R3 remove branch: no unearned `feature_catalog/` directories were found.
+- [ ] Not triggered - NFR-S01 (B) branch: union-grant accepted; runtime narrowing probe is optional future hardening.
+- [ ] Not triggered - R4 fixture branch: sign-off keeps the layer; fixture comparison is optional.
+
+**C3 - Full R5 validation & close-out:**
+- [x] Routing-parity query fixtures passed; advisor/graph consistency confirmed by drift-guard, routing-parity fixtures, and `parent-skill-check.cjs`; forced `advisor_rebuild` was not run and is not required because routing data was unchanged.
+- [x] Operator reachability confirmed by runtime registration: `Skill(deep-loop-workflows)` is registered as the top-level hub, hub metadata is present, and `/deep:*` commands plus the `ai-council` agent are registered/available. Full live-loop e2e was not run.
+- [x] Final `validate.sh --strict --recursive` and `package_skill.py --check` passed. Stage 5/R5 is complete; child statuses and the parent phase map are reconciled.
+
+**Out of this packet (separate follow-up):** two `system-spec-kit` test files still reference the pre-rename `deep-loop-workflows/ai-council/` path; confirm active-vs-fixture and fix in their own scope.
+
+**Closeout dependency shape:** C0 -> C1 are complete; C2 did not trigger; C3 is complete for required R5 validation. The out-of-packet follow-up runs independently.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -142,7 +172,7 @@ Required inventories (for Stage 0, not run here):
 | Unit | Advisor projection maps equal registry projection (if merged-identity kept) | vitest drift-guard fixture |
 | Integration | A deep-loop query routes to `deep-loop-workflows`; single skill-to-mode mapping | routing-parity vitest fixtures |
 | Packaging | `name == folder` for hub + all packets | `package_skill.py --check` |
-| Manual | `Skill(deep-loop-workflows[,hint])` reaches a mode; `/deep:*` + agents still function | Runtime probe |
+| Manual | `Skill(deep-loop-workflows)` reachability and `/deep:*` + agent availability | Runtime registration confirmed; full live-loop e2e optional/not run |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -154,7 +184,7 @@ Required inventories (for Stage 0, not run here):
 |------------|------|--------|-------------------|
 | Phase 001 Option E mechanism | Internal | Green | Defines the invokable-hub routing this packet retrofits |
 | Spec 154 staged conversion | Internal | Green | Execution precedent and source of the sk-design conventions |
-| deep-loop-runtime current assumptions | Internal | Amber | R4 must verify them before any simplification |
+| deep-loop-runtime current assumptions | Internal | Amber | R4 must verify them before any simplification; default keep merged identity until evidence or sign-off |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -175,17 +205,17 @@ Required inventories (for Stage 0, not run here):
 ## L2: PHASE DEPENDENCIES
 
 ```
-Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 (catalog) ──► Stage 3 (routing) ──► Stage 4 (runtime) ──► Stage 5 (validation)
+Stage 0 (done) ──► Stage 1 (R2 done) ──► Stage 2 (R3 done: keep-all) ──► Stage 3 (R1 done) ──► Stage 4 (R4 done: keep) ──► Stage 5 (R5 done)
 ```
 
 | Stage | Depends On | Blocks |
 |-------|------------|--------|
-| 0 Inventory + baseline | User gate | All later stages |
+| 0 Inventory + baseline | Prior remediation evidence | All later stages |
 | 1 name==folder (R2) | Stage 0 | Stage 2, Stage 3 |
 | 2 feature-catalog (R3) | Stage 1 | Stage 5 |
 | 3 invokable-hub (R1) | Stage 1 | Stage 4 |
 | 4 runtime (R4) | Stage 3 | Stage 5 |
-| 5 validation (R5) | Stages 1–4 | None |
+| 5 validation (R5) | Stages 1-4 | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -195,13 +225,13 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 
 | Stage | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| 0 Inventory + baseline | Low | Bounded recon sweep + baseline |
-| 1 name==folder | Med | Rename plus reference rewire across commands/agents/registry/runtime |
-| 2 feature-catalog | Low | Per-mode keep/remove + repoint |
-| 3 invokable-hub routing | Med | Hub router + registry routing retrofit |
-| 4 runtime reconciliation | Med | Assumption check + merged-identity evaluation |
-| 5 validation | Low | Gate re-runs |
-| **Total** | | **Dominated by the rename rewire (Stage 1) and the routing retrofit (Stage 3)** |
+| 0 Inventory + baseline | Low | Done in prior remediation evidence |
+| 1 name==folder | Med | Done for `deep-ai-council` folder/name alignment |
+| 2 feature-catalog | Low | Done: keep all five earned catalogs; no deletion/repoint |
+| 3 invokable-hub routing | Med | Static retrofit done; runtime registration confirms reachability |
+| 4 runtime reconciliation | Med | Done: keep merged identity by sign-off; drift-guard green |
+| 5 validation | Low | Done for required gates; full live-loop e2e optional/not run |
+| **Total** | | **About 95% complete: R1-R5 and NFR-S01 done; only optional live-loop e2e remains** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -210,9 +240,9 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Recovery baseline recorded before each mutating stage
+- [x] Recovery baseline recorded for prior mutating stages in remediation evidence
 - [ ] Worktree used if the owner's branch is active
-- [ ] Single-identity invariant confirmed before and after Stage 3
+- [x] Single-identity invariant confirmed after R5 gates by `parent-skill-check.cjs`
 
 ### Rollback Procedure
 1. Identify the failing stage from its exit gate.
@@ -250,10 +280,11 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| Inventory + baseline | User gate | Reference + catalog + runtime inventory | All stages |
-| name==folder rename | Inventory | Check-clean packets | Catalog, routing |
-| invokable-hub routing | Rename | `Skill()` reachability | Runtime reconcile |
-| Runtime reconciliation | Routing | Merged-identity decision | Validation |
+| Inventory + baseline | Prior remediation evidence | Reference + catalog + runtime inventory | Remaining stages |
+| name==folder rename | Inventory | `deep-ai-council` folder/name alignment | Catalog, routing |
+| invokable-hub routing | Rename | Static hub routing contract | Runtime reconcile and operator probe |
+| Runtime reconciliation | Routing | Accepted merged-identity keep decision | Validation |
+| feature-catalog assessment | Existing five catalogs | ADR-003 keep-all earned result | Final validation |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -261,16 +292,12 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Stage 0 inventory + baseline** - bounded - CRITICAL
-2. **Stage 1 name==folder rename + rewire** - bounded - CRITICAL
-3. **Stage 3 invokable-hub routing retrofit** - bounded - CRITICAL
-4. **Stage 5 validation gate** - bounded - CRITICAL
+1. **Stage 5 non-package validation gates** - done for required evidence; optional full live-loop e2e not run
 
-**Total Critical Path**: Stage 0 → 1 → 3 → 5 is the spine; Stage 2 and Stage 4 branch off and rejoin at Stage 5.
+**Total Critical Path**: Complete for required packet closure. Stage 2 keep-all, Stage 4 keep, and Stage 5 validation are closed.
 
 **Parallel Opportunities**:
-- Stage 2 (feature-catalog hygiene) can run alongside Stage 3 once Stage 1 is green.
-- The ADR-002 merged-identity evidence-gathering can begin while Stage 3 routing is in progress.
+- Optional live-loop e2e can run independently because R3/R4/R5 required gates no longer change semantics.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -280,9 +307,9 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Family is check-clean | `package_skill.py --check` passes for hub + all packets; zero broken `ai-council` refs | Stage 1 |
-| M2 | Native reachability | `Skill(deep-loop-workflows)` reaches a mode with one graph-metadata preserved | Stage 3 |
-| M3 | Aligned + validated | All gates green; `/deep:*` + agents still function; merged-identity decision recorded | Stage 5 |
+| M1 | Family is package-checkable | `package_skill.py --check` passes for hub + all packets | Complete |
+| M2 | Native reachability | Static hub routing done; runtime registration confirms reachability; full live-loop e2e optional/not run | Complete |
+| M3 | Aligned + validated | R3 assessment complete, R4 keep recorded, required gates green | Complete |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -291,15 +318,33 @@ Stage 0 (Inventory+baseline) ──► Stage 1 (name==folder) ──► Stage 2 
 
 ### ADR-001: ai-council name/folder resolution (see decision-record.md)
 
-**Status**: Proposed (gated to execution)
+**Status**: Accepted (executed)
 
-**Context**: The `ai-council` packet has `name == deep-ai-council` but folder `ai-council`, failing `package_skill.py --check`. The full framing and the two other alignment decisions live in `decision-record.md`.
+**Context**: The former `ai-council` packet mismatch has been resolved on disk. The packet folder and SKILL name are now `deep-ai-council`; legacy public `/deep:ai-council` and agent surfaces remain intentional.
 
-**Decision**: Rename the folder to `deep-ai-council` (recommended); finalized at the gate. The merged-identity keep/simplify call (ADR-002) and the feature-catalog ruling (ADR-003) are recorded there too.
+**Decision**: Rename the folder to `deep-ai-council`; executed. The merged-identity keep call (ADR-002), the feature-catalog keep-all ruling (ADR-003), and the NFR-S01 union-grant contract (ADR-004) remain separate decisions.
 
 **Consequences**:
-- Resolving the rename unblocks a clean family `--check`.
+- Resolving the rename unblocks package checks; current evidence passes on the hub and all five packets.
 - The cost is a one-pass reference rewire across commands, agents, registry, and runtime.
 
 **Alternatives Rejected**:
 - Renaming the packet to `ai-council`: rejected because it breaks the `deep-<mode>` convention and the established `deep-ai-council` identity the advisor and agents already use.
+
+### ADR-002: merged-identity keep/simplify decision (see decision-record.md)
+
+**Status**: Accepted - keep the merged-identity layer (sign-off; drift-guard green)
+
+**Decision**: Keep the merged-identity layer because Option E solves invocation, not advisor routing strength. Maintainer sign-off closes the decision; fixture comparison is optional hardening.
+
+### ADR-003: per-mode feature-catalog ruling (see decision-record.md)
+
+**Status**: Accepted - keep all five (earned)
+
+**Decision**: Apply the earned-keep test per mode and keep all five `feature_catalog/` directories. No deletion or repointing is needed.
+
+### ADR-004: NFR-S01 hub tool-permission contract (see decision-record.md)
+
+**Status**: Accepted - hub union-grant contract
+
+**Decision**: Accept the hub `allowed-tools` union as the permission contract for the routing-only hub. Per-mode contracts remain mode-owned, residual hub grant risk is documented, and a runtime tool-narrowing probe is optional future hardening.

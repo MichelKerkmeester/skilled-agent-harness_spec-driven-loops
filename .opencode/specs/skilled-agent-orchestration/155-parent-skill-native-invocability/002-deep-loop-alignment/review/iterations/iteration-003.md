@@ -1,0 +1,27 @@
+# Iteration 3 — Kimi-K2.7 (COSTAR) — security
+
+Dispatched: 2026-06-28T07:45:45.285Z | wall: 243s | billing: free
+
+---
+
+I checked the security dimension against the actual repo state. The implementation was in fact executed (commit `b0cbbe7b67`), so I was able to inspect the real tool-permission contracts, secrets exposure, and path handling. No secrets or path-traversal issues were found, but the hub’s `allowed-tools` grant is in tension with the packet’s own NFR-S01 no-widening claim.
+
+```json
+{
+  "findings": [
+    {
+      "severity": "P1",
+      "dimension": "security",
+      "title": "Hub allowed-tools union conflicts with NFR-S01 no-widening claim",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/spec.md",
+      "loc": "line 165 (NFR-S01)",
+      "evidence": "NFR-S01 states: 'No alignment step may widen a packet's tool-permission contract as a side effect of becoming invocable or being renamed.' The executed hub (.opencode/skills/deep-loop-workflows/SKILL.md:5) lists `allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]`, while `deep-context`, `deep-review`, `deep-ai-council`, and `deep-improvement` mode packets omit `WebFetch` (e.g. deep-context/SKILL.md:5: `allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]`). The parent-skill hub template (.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md:53) explicitly says the hub `allowed-tools` should be 'the union the modes need'.",
+      "impact": "If the runtime grants the hub's tool set for the full invocation, reaching a non-web mode through `Skill(deep-loop-workflows)` widens that packet's contract, directly violating NFR-S01. The docs neither assert nor verify that the runtime narrows to the selected packet's `allowed-tools` before executing mode logic, and the routing-only hub carries an unnecessary `WebFetch` grant.",
+      "recommendation": "Either tighten the hub `allowed-tools` to the intersection needed for routing (remove `WebFetch`) and document how packet-specific grants are enforced, or revise NFR-S01 to acknowledge the union-grant pattern and add a mitigation/verification step (e.g., runtime narrows to the selected packet's `allowed-tools` before mode execution)."
+    }
+  ],
+  "new_findings_count": 1,
+  "dimension_clean": false
+}
+```
+

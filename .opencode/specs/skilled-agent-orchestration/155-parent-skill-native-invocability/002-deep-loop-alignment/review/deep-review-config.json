@@ -1,0 +1,96 @@
+{
+  "topic": "Review: .opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment",
+  "mode": "review",
+  "sessionId": "2026-06-28T07:06:17.949Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/description.json",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/graph-metadata.json",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md"
+  ],
+  "severityThreshold": "P2",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "executionMode": "auto",
+  "roundRobin": true,
+  "executorPlan": [
+    {
+      "iter": 1,
+      "model": "DeepSeek-v4-Pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 2,
+      "model": "MiMo-v2.5-Pro",
+      "slug": "xiaomi/mimo-v2.5-pro",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 3,
+      "model": "Kimi-K2.7",
+      "slug": "kimi-for-coding/k2p7",
+      "dimension": "security"
+    },
+    {
+      "iter": 4,
+      "model": "MiniMax-M3",
+      "slug": "minimax/MiniMax-M3",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 5,
+      "model": "DeepSeek-v4-Pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 6,
+      "model": "MiMo-v2.5-Pro",
+      "slug": "xiaomi/mimo-v2.5-pro",
+      "dimension": "maintainability"
+    },
+    {
+      "iter": 7,
+      "model": "Kimi-K2.7",
+      "slug": "kimi-for-coding/k2p7",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 8,
+      "model": "MiniMax-M3",
+      "slug": "minimax/MiniMax-M3",
+      "dimension": "security"
+    },
+    {
+      "iter": 9,
+      "model": "DeepSeek-v4-Pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 10,
+      "model": "MiMo-v2.5-Pro",
+      "slug": "xiaomi/mimo-v2.5-pro",
+      "dimension": "maintainability"
+    }
+  ],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment",
+  "createdAt": "2026-06-28T07:06:17.949Z",
+  "status": "initialized"
+}

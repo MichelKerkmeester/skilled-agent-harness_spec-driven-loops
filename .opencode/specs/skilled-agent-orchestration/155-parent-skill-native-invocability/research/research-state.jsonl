@@ -1,0 +1,11 @@
+{"type":"config","mode":"research","executor":"gpt-5.5/xhigh/fast","topic":"155 remediation best-path","maxIterations":10,"createdAt":"2026-06-28T08:37:18.996Z"}
+{"type":"iteration","run":1,"slice":"Ground truth: 002 R1/R2 (rename + invokable-hub routing)","facts":12,"steps":5,"decisions":2,"wallSeconds":194,"error":false,"timestamp":"2026-06-28T08:40:33.320Z"}
+{"type":"iteration","run":2,"slice":"Ground truth: 002 R3 (feature-catalog) per-mode earned-keep","facts":12,"steps":3,"decisions":2,"wallSeconds":213,"error":false,"timestamp":"2026-06-28T08:44:45.029Z"}
+{"type":"iteration","run":3,"slice":"Ground truth: 002 R4 (merged-identity) + R5 (validation)","facts":10,"steps":5,"decisions":3,"wallSeconds":194,"error":false,"timestamp":"2026-06-28T08:47:59.353Z"}
+{"type":"iteration","run":4,"slice":"NFR-S01 resolution (hub WebFetch / tool-permission widening)","facts":7,"steps":5,"decisions":1,"wallSeconds":147,"error":false,"timestamp":"2026-06-28T08:50:25.969Z"}
+{"type":"iteration","run":5,"slice":"001 reconciliation plan (status, Option E scope, probe claim, fallback)","facts":10,"steps":7,"decisions":3,"wallSeconds":188,"error":false,"timestamp":"2026-06-28T08:53:33.932Z"}
+{"type":"iteration","run":6,"slice":"Status canonicalization across both children + parent (exact values)","facts":11,"steps":14,"decisions":2,"wallSeconds":325,"error":false,"timestamp":"2026-06-28T08:58:59.198Z"}
+{"type":"iteration","run":7,"slice":"Housekeeping plan (branch, HVR path, fingerprints, stale pointers, labels, templates)","facts":10,"steps":9,"decisions":3,"wallSeconds":238,"error":false,"timestamp":"2026-06-28T09:02:56.885Z"}
+{"type":"iteration","run":8,"slice":"Implementation order, rollback, validation gates","facts":15,"steps":8,"decisions":4,"wallSeconds":327,"error":false,"timestamp":"2026-06-28T09:08:23.498Z"}
+{"type":"iteration","run":9,"slice":"Red-team critique of the accumulated plan","facts":12,"steps":7,"decisions":5,"wallSeconds":232,"error":false,"timestamp":"2026-06-28T09:12:15.204Z"}
+{"type":"iteration","run":10,"slice":"Final consolidation — single ordered remediation plan","facts":20,"steps":25,"decisions":5,"wallSeconds":321,"error":false,"timestamp":"2026-06-28T09:17:36.375Z"}

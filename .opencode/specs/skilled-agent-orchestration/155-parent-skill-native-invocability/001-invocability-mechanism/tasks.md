@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Parent-skill native invocability"
-description: "Task Format: T### [P?] Description (file path). All tasks are pending: this packet is plan-only and execution is gated by the user."
+description: "Task Format: T### [P?] Description (file path). Decision tasks for ADR-001 are complete; 001 has no source build and carries NFR-S01 to 002."
 trigger_phrases:
   - "parent skill invocability tasks"
   - "native invocation task list"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Listed Phase 1 research tasks; all pending pending the user gate"
-    next_safe_action: "Await user gate; then start the runtime extensibility probe task"
+    recent_action: "Reconciled tasks to ADR-001 Accepted: Option E chosen; no runtime probe/source build in 001"
+    next_safe_action: "Use 002 to document hub union-grant semantics and finish remaining validation"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md"
@@ -23,9 +23,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-155-parent-skill-native-invocability"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 70
+    open_questions:
+      - "NFR-S01 closure is carried to 002."
+    answered_questions:
+      - "A-E mechanism framing is complete."
+      - "Option E is accepted; A/B remain fallback surfaces."
 ---
 # Tasks: Parent-skill native invocability
 
@@ -46,7 +49,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-All tasks below are pending. This packet is plan-only and every implementation task is gated on the user's go-ahead.
+Decision tasks are reconciled to reality. This packet has no source implementation; downstream validation and NFR-S01 closure live in 002.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -54,13 +57,13 @@ All tasks below are pending. This packet is plan-only and every implementation t
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-**Phase intent: research and design. This phase produces the mechanism decision.**
+**Phase intent: record the mechanism decision honestly.**
 
-- [ ] T001 [P] Probe OpenCode skill discovery for any hook, config, or manifest the binary honors (research notes)
-- [ ] T002 [P] Probe Claude-Code skill discovery for the same extension points (research notes)
-- [ ] T003 Confirm the no-in-repo-extension-point finding: `opencode.json` has no skills config and `.opencode/plugin/` is empty (research notes)
-- [ ] T004 Prototype the least-bad mechanism against the one-`graph-metadata.json` invariant (prototype notes)
-- [ ] T005 Produce the mechanism decision selecting among options A through D with cited evidence and a fallback (decision-record.md)
+- [x] T001 Record the confirmed `Skill(mode)` gap and the one-`graph-metadata.json` invariant (spec.md)
+- [x] T002 Frame mechanism options A through E with tradeoffs (decision-record.md)
+- [x] T003 Accept Option E, invokable-hub routing, as the chosen mechanism (decision-record.md)
+- [x] T004 Record A/B commands and agents as fallback complementary surfaces if hub invocation is insufficient (decision-record.md)
+- [ ] T005 Carry NFR-S01 to 002 because 001 does not prove per-mode permission narrowing (spec.md, checklist.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -68,11 +71,11 @@ All tasks below are pending. This packet is plan-only and every implementation t
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-**Gated on Phase 1. Do not start before the mechanism decision and the user go-ahead.**
+**No source build happens in 001. Downstream packets apply the accepted mechanism.**
 
-- [ ] T006 [B] Implement the chosen mechanism generically for parent skills (surfaces decided in Phase 1)
-- [ ] T007 [B] Keep exactly one advisor identity per parent skill (advisor maps and registry)
-- [ ] T008 [B] Keep routing-parity and drift-guard fixtures green or migrate them deliberately (test fixtures)
+- [x] T006 Record that 001 changes authored docs only and does not edit skill/runtime/configuration files (implementation-summary.md)
+- [ ] T007 Apply/document the hub union-grant decision in 002 before claiming NFR-S01 satisfied (002-deep-loop-alignment)
+- [ ] T008 Keep routing-parity and drift-guard fixtures green when downstream packets implement or validate the mechanism (test fixtures)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -80,10 +83,10 @@ All tasks below are pending. This packet is plan-only and every implementation t
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-**Gated on Phase 2.**
+**Downstream verification.**
 
-- [ ] T009 [B] Confirm a parent skill's modes are natively reachable by the operator (runtime probe)
-- [ ] T010 [B] Confirm the single-identity invariant is intact and the `sk-design` conversion can adopt the mechanism (fixtures plus review)
+- [ ] T009 Confirm a parent skill's modes are reachable through `Skill(<parent>)` (downstream runtime probe)
+- [ ] T010 Confirm the single-identity invariant and hub union-grant documentation remain accurate (fixtures plus review)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -92,8 +95,9 @@ All tasks below are pending. This packet is plan-only and every implementation t
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining
+- [ ] NFR-S01 carried to 002 is closed or explicitly accepted there
+- [ ] Manual downstream verification passed
 <!-- /ANCHOR:completion -->
 
 ---

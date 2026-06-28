@@ -1,0 +1,25 @@
+# Resource Map — 002-deep-loop-alignment
+
+Files with findings:
+
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md` — 5 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md` — 5 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md` — 4 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/` — 1 finding(s)
+- `002-deep-loop-alignment/decision-record.md` — 1 finding(s)
+- `002-deep-loop-alignment/decision-record.md + plan.md` — 1 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/spec.md` — 5 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md` — 3 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md` — 2 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/{spec.md:38,plan.md:33,tasks.md:31,decision-record.md:33,checklist.md:32,implementation-summary.md:35}` — 1 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/{graph-metadata.json:42, spec.md:65, implementation-summary.md:14} + parent spec.md:50` — 1 finding(s)
+- `.opencode/specs/skilled-agent-ochestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md` — 1 finding(s)
+- `.opencode/skills/deep-loop-workflows/graph-metadata.json` — 2 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/{spec.md,plan.md,tasks.md,decision-record.md,checklist.md,implementation-summary.md}` — 1 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/description.json` — 1 finding(s)
+- `.opencode/skills/deep-loop-workflows/SKILL.md` — 2 finding(s)
+- `.opencode/commands/create/assets/create_parent_skill_auto.yaml` — 1 finding(s)
+- `.opencode/agents/ai-council.md` — 1 finding(s)
+- `.opencode/commands/deep/ai-council.md` — 1 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/graph-metadata.json` — 1 finding(s)
+- `.opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment/graph-metadata.json` — 1 finding(s)

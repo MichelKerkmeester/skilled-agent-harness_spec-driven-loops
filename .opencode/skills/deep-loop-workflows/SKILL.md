@@ -70,7 +70,7 @@ deep-loop-workflows/
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
-Each mode packet is the former skill's content moved verbatim (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder is a grandfathered name case (folder `deep-ai-council`, `packetSkillName` `deep-ai-council`); the registry references it by its `packet` key, so always resolve the path through `mode-registry.json` rather than hardcoding it.
+Each mode packet is the former skill's content moved verbatim (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder follows the standard `folder == packetSkillName` convention (`deep-ai-council`); its legacy public surfaces (the `/deep:ai-council` command and the `ai-council` agent) intentionally keep the shorter `ai-council` key, so always resolve the packet path through `mode-registry.json` rather than hardcoding it.
 
 ### Backend
 All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out, the council primitives, and the promoted plumbing (capability resolver, artifact-root, loop-lock CLI, lifecycle taxonomy). The runtime never gains an `improvement` loopType — improvement stays host-driven.

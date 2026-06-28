@@ -1,0 +1,67 @@
+# Iteration 1 — Kimi-K2.7 (COSTAR) — correctness
+
+Dispatched: 2026-06-28T07:08:30.602Z | wall: 133s | billing: free
+
+---
+
+I checked all eight child packet documents plus the parent spec and graph metadata, and spot-verified the referenced implementation files (`deep-loop-workflows/SKILL.md`, `sk-design/SKILL.md` and their registries). The actual repo state does support an invokable-hub parent-skill pattern, but the target packet contains multiple contradictory completion/status claims and a false claim of probe-based evidence.
+
+```json
+{
+  "findings": [
+    {
+      "severity": "P0",
+      "dimension": "correctness",
+      "title": "False completion claim in implementation-summary.md",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/implementation-summary.md",
+      "loc": "line 46",
+      "evidence": "\"**Completed** | Mechanism decided (Option E, Accepted); reference implementation in spec 154\"",
+      "impact": "Claims the packet is complete when every checklist item, every task, and every `_memory.completion_pct` field in the packet still reads 0/unchecked.",
+      "recommendation": "Either mark the applicable checklist/tasks complete and bump `completion_pct` consistently, or remove the completion language and keep the packet Draft."
+    },
+    {
+      "severity": "P0",
+      "dimension": "correctness",
+      "title": "Contradictory ADR-001 status: Accepted vs Proposed",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/decision-record.md",
+      "loc": "line 47",
+      "evidence": "\"| **Status** | Accepted |\"",
+      "impact": "plan.md ADR-001 at line 288 says \"**Status**: Proposed\"; the same decision cannot be both Proposed and Accepted.",
+      "recommendation": "Reconcile the two ADR-001 instances to a single status that matches the packet’s actual state."
+    },
+    {
+      "severity": "P0",
+      "dimension": "correctness",
+      "title": "False claim of runtime-probe evidence",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/decision-record.md",
+      "loc": "line 99",
+      "evidence": "\"The mechanism is chosen against evidence from a real runtime probe rather than an assumption.\"",
+      "impact": "tasks.md Phase 1 tasks T001–T005 are all unchecked, tasks.md states \"All tasks below are pending\", and spec.md next_safe_action says to run the Phase 1 probe; no probe has happened.",
+      "recommendation": "Remove the probe-evidence claim or actually execute and evidence the Phase 1 probe before asserting it."
+    },
+    {
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Scope inconsistency: Option E chosen though spec.md scoped only A–D",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism/spec.md",
+      "loc": "lines 84–86",
+      "evidence": "\"A decision-record framing of the mechanism options (per-mode commands, per-mode agents, thin shim skills, runtime enhancement)\"",
+      "impact": "decision-record.md introduces and selects Option E (\"invokable-hub routing\"), which was never listed in the authorized scope, creating an undocumented scope expansion.",
+      "recommendation": "Amend spec.md scope to include Option E, or amend decision-record.md to restrict the choice to the originally scoped A–D options."
+    },
+    {
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Parent/child status and completion mismatch",
+      "file": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/spec.md",
+      "loc": "line 49",
+      "evidence": "\"| **001-invocability-mechanism** | ... | Mechanism **accepted** (ADR-001); validated in practice by the 154 sk-design conversion |\"",
+      "impact": "The child 001 spec.md says Status \"Draft\" and `_memory.completion_pct: 0`, while the parent reports the child as accepted/validated and the parent itself sets `completion_pct: 50`.",
+      "recommendation": "Align parent and child status/completion metadata so the same phase is not simultaneously Draft and accepted."
+    }
+  ],
+  "new_findings_count": 5,
+  "dimension_clean": false
+}
+```
+

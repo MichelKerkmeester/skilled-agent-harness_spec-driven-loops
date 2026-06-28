@@ -1,9 +1,9 @@
 ---
 title: "Implementation Summary: deep-loop parent-skill alignment"
-description: "Plan-only status record. No implementation has happened: this packet authors the spec, plan, tasks, decision record, and checklist for aligning the deep-loop parent-skill family with the phase-001 mechanism and the sk-design conventions. Execution is gated."
+description: "Closure status record for deep-loop parent-skill alignment. R1-R5, the deep-ai-council rename, R3 keep-all, R4 keep, and NFR-S01 union-grant are done; the full live-loop e2e remains optional and was not run."
 trigger_phrases:
   - "deep-loop alignment status"
-  - "deep-loop alignment plan-only"
+  - "deep-loop alignment closure"
 importance_tier: "supporting"
 contextType: "implementation"
 _memory:
@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Executed: rename + invokable-hub routing; all 6 deep-loop packets pass --check"
-    next_safe_action: "Await gate, then run plan Stage 0"
+    recent_action: "R5 gates green; runtime reachability confirmed by registration; optional live-loop e2e not run"
+    next_safe_action: "Optional: run a full live deep-loop e2e; refresh metadata separately"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,17 +22,21 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-155-002-deep-loop-alignment"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "ai-council rename direction (ADR-001 recommends folder -> deep-ai-council)"
-      - "merged-identity keep vs simplify (ADR-002, evaluate in Stage 4)"
-    answered_questions: []
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "R1 static hub routing done."
+      - "R2 deep-ai-council rename done."
+      - "R3 done: all five feature_catalog directories stay because each is earned."
+      - "R4 done: merged identity kept by sign-off; drift-guard green."
+      - "NFR-S01 accepted as hub union-grant; WebFetch stays on the hub."
+      - "R5 done: strict recursive validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
 ---
 # Implementation Summary: deep-loop parent-skill alignment
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -42,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 155-parent-skill-native-invocability/002-deep-loop-alignment |
-| **Completed** | Executed: rename + invokable-hub routing done; R3/R4 = keep; R5 validated |
+| **Completed** | Effectively complete (~95%): R1-R5 done; all static and fixture gates green; reachability confirmed by runtime registration; full live-loop e2e optional/not run |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +55,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet's alignment is EXECUTED: ai-council renamed to deep-ai-council, invokable-hub routing retrofitted onto the deep-loop hub, feature-catalogs kept (R3), and the merged-identity layer kept (R4). What exists is the planning record for aligning the deep-loop parent-skill family with the phase-001 invokable-hub mechanism and the sk-design parent-skill conventions.
+This packet's alignment is effectively complete. R1 is done for the static Option E hub routing contract: `Skill(deep-loop-workflows)` is the invokable hub surface, and routing is registry-driven. R2 is done: the packet folder/name is `deep-ai-council`, while legacy public `/deep:ai-council` and `ai-council` agent surfaces remain. R3 is done as keep-all earned: all five `feature_catalog/` directories remain because each catalog is substantial and warranted. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is accepted as the hub union-grant contract, with `WebFetch` staying on the hub. R5 is done for required evidence: strict recursive spec validation, package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. A full live-loop e2e was not run and remains optional.
 
 ### Planning artifacts authored
-The packet authors `spec.md` (problem, scope, R1–R5, success criteria, risks), `plan.md` (the staged, gated execution mirroring the 154 conversion), `tasks.md` (the R1–R5 task breakdown mapped to Stages 0–5), `decision-record.md` (the `ai-council` rename, merged-identity, and feature-catalog decisions as ADR-001/002/003), and `checklist.md` (acceptance items). No source tree changed; the named execution targets are `.opencode/skills/deep-loop-workflows/SKILL.md`, `mode-registry.json`, and `.opencode/skills/deep-loop-runtime/`.
+The packet authors `spec.md` (problem, scope, R1-R5, success criteria, risks), `plan.md` (stage status), `tasks.md` (task truth by stage), `decision-record.md` (ADR-001/002/003/004), and `checklist.md` (acceptance items). This doc-reconciliation pass changes markdown only; live R1/R2 skill-surface changes already exist on disk, R3/R4/NFR-S01 are decision-only closures, and R5 is closed by recorded gate evidence.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -62,7 +66,7 @@ The packet authors `spec.md` (problem, scope, R1–R5, success criteria, risks),
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The planning documents were authored against the current deep-loop state (recon: `deep-loop-workflows` hub + five mode packets + one `graph-metadata.json`; `ai-council` name/folder mismatch confirmed; `feature_catalog/` present in all five modes; `deep-loop-runtime` present) and against the phase-001 mechanism and the 154 conversion as the reference precedent. No rollout occurred because nothing was implemented; the next stage is the gated Stage 0 inventory.
+The documents were reconciled against the current deep-loop state: `deep-loop-workflows` hub + five mode packets + one `graph-metadata.json`; `deep-ai-council` folder/name identity present; `feature_catalog/` present in all five modes and kept as earned; `deep-loop-runtime` present with the merged-identity layer kept; strict recursive spec validation, package checks, routing fixtures, parent-skill invariants, and runtime registration are green. The remaining residual is optional: a full live-loop e2e was deliberately not run.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -72,10 +76,11 @@ The planning documents were authored against the current deep-loop state (recon:
 
 | Decision | Why |
 |----------|-----|
-| Keep the packet plan-only and staged | deep-loop is the most-used skill family; execution must be staged and gated like the 154 conversion |
-| Rename `ai-council` folder → `deep-ai-council` (ADR-001) | Restores `name == folder` and matches the `deep-<mode>` convention without breaking the established identity |
-| Default to keep the merged-identity layer (ADR-002) | Option E provides invocation, not routing strength; sk-design's removal regressed per-mode routing, so keep unless Stage 4 evidence says otherwise |
-| Per-mode earned-keep feature-catalog test (ADR-003) | Mirrors the sk-design ruling; removes catalog bloat where a mode does not warrant it |
+| Treat the packet as effectively complete, not live-e2e-complete | R1-R5 and NFR-S01 are done, but the optional full live-loop e2e was not run |
+| Rename `ai-council` folder -> `deep-ai-council` (ADR-001) | Restores `name == folder` while preserving legacy public command/agent surfaces |
+| Keep the merged-identity layer (ADR-002) | Option E provides invocation, not routing strength; maintainer sign-off and a green drift-guard keep the layer |
+| Keep all five feature catalogs (ADR-003) | The earned-keep assessment found every deep-loop catalog substantial and warranted; no deletion or repointing needed |
+| Accept NFR-S01 as hub union-grant (ADR-004) | The hub grants the union of tools its modes need; the hub is routing-only; do not strip WebFetch in this pass |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -85,9 +90,10 @@ The planning documents were authored against the current deep-loop state (recon:
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict --recursive` on the 155 parent + this packet | PASS expected at completion of authoring; structure conformed to the passing 001 sibling scaffold |
-| `package_skill.py --check` on the deep-loop family | Not run: gated Stage 1/5 (no skill changes in this packet) |
-| Routing fixtures + `Skill(deep-loop-workflows)` reachability | Not run: deferred to gated Stage 3/5 |
+| `validate.sh --strict --recursive` on the 155 parent + 001 + 002 | Passed with 0 errors and 0 warnings |
+| `package_skill.py --check` on the deep-loop family | Passed on the hub and all five packets |
+| Routing fixtures + `Skill(deep-loop-workflows)` reachability | Routing fixtures passed across 3 files/19 tests; runtime registration confirms hub reachability and `/deep:*` + `ai-council` agent availability |
+| Advisor/graph consistency | Confirmed by routing-registry drift-guard, routing parity, and `parent-skill-check.cjs`; forced `advisor_rebuild` was not run and is not required because routing data was unchanged |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +101,5 @@ The planning documents were authored against the current deep-loop state (recon:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No implementation exists.** Every task is gated on a user go-ahead.
-2. **Two decisions are deferred to execution.** The `ai-council` rename direction (ADR-001 recommends folder → `deep-ai-council`) and the merged-identity keep/simplify call (ADR-002, evaluated in Stage 4) are framed, not finalized.
-3. **High blast radius.** deep-loop is the most-used skill family; execution must be staged and gated like the 154 conversion, with a recovery baseline before each stage.
+1. **Optional live-loop e2e not run.** Required static, fixture, package, recursive, invariant, and runtime-registration gates are green; a full live end-to-end deep-loop execution remains optional evidence and was deliberately not executed.
 <!-- /ANCHOR:limitations -->

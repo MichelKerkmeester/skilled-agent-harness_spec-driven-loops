@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: deep-loop parent-skill alignment"
-description: "Frames the three load-bearing decisions for aligning the deep-loop family with the sk-design parent-skill conventions: how to resolve the ai-council name/folder mismatch, whether the deep-loop-specific advisor merged-identity layer stays once Option E exists, and the per-mode feature-catalog ruling. Recommendations recorded; final calls gated to execution."
+description: "Decision record for deep-loop alignment. ADR-001 is accepted/executed for the deep-ai-council rename; ADR-002 keeps the merged-identity layer by sign-off with drift-guard green; ADR-003 keeps all five feature catalogs as earned; ADR-004 accepts the NFR-S01 hub union-grant contract."
 trigger_phrases:
   - "ai-council rename decision"
   - "deep-loop merged-identity keep or drop"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Framed the three alignment decisions with recommendations"
-    next_safe_action: "Confirm the recommendations at the execution gate"
+    recent_action: "ADR-001 done; ADR-002 kept; ADR-003 keep-all earned; ADR-004 union-grant accepted"
+    next_safe_action: "Run remaining R5 validation gates"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,15 +22,20 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-155-002-deep-loop-alignment"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 85
+    open_questions:
+      - "Which R5 gates remain after R3/R4 close?"
+    answered_questions:
+      - "ADR-001 executed: folder/name identity is deep-ai-council."
+      - "ADR-002 accepted: keep the merged-identity layer by maintainer sign-off; the routing-registry drift-guard is green."
+      - "ADR-003 accepted: keep all five feature catalogs because each mode's catalog is substantial and earned."
+      - "ADR-004 accepted: NFR-S01 is a hub union-grant pattern; do not strip WebFetch in this pass."
 ---
 # Decision Record: deep-loop parent-skill alignment
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -50,7 +55,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-`ai-council` has folder `ai-council` but `SKILL.md` name `deep-ai-council`, so it fails `package_skill.py --check` (the validator requires `name == folder`). Every other deep mode is `deep-<mode>` with `name == folder`. The sk-design conversion established `name == folder` for all packets, so this is the one grandfathered exception in the family.
+The former `ai-council` packet had folder `ai-council` but `SKILL.md` name `deep-ai-council`. That mismatch is now resolved on disk: the packet folder and SKILL name are both `deep-ai-council`. The `/deep:ai-council` command and `ai-council` agent remain legacy public surfaces, not filesystem identity.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -58,7 +63,7 @@ _memory:
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: rename the folder `ai-council` → `deep-ai-council` so `name == folder == deep-ai-council`, matching the `deep-<mode>` convention. The alternative — rename the packet to `ai-council` — would break the convention and the established `deep-ai-council` identity the advisor and agents already use. Final confirmation is gated to execution (Stage 1).
+**We chose and executed**: rename the folder `ai-council` to `deep-ai-council` so `name == folder == deep-ai-council`, matching the `deep-<mode>` convention. The alternative, renaming the packet to `ai-council`, would break the convention and the established `deep-ai-council` identity the advisor and agents use.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,8 +83,9 @@ _memory:
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-- Rewire every `ai-council` reference: the `/deep:ai-council` command, the `ai-council` agent type, `mode-registry.json`, the `deep-loop-runtime` projection, and cross-refs. Inventory first (plan Stage 0), rename in one pass (Stage 1).
-- The `/deep:ai-council` *command name* can stay (it is the command surface, not the folder); only the packet folder + load paths change.
+- Filesystem load paths use `deep-ai-council`.
+- The `/deep:ai-council` command name and `ai-council` agent type stay as public compatibility surfaces.
+- Package checks pass with warnings per remediation evidence; warning-free validation is not claimed.
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -104,7 +110,8 @@ _memory:
 ### Implementation
 
 **What changes**:
-- Nothing in this packet; it records the decision. Stage 1 renames the `ai-council` folder to `deep-ai-council` and rewires every reference from the Stage 0 inventory.
+- The rename is already live on disk. This decision record documents that reality.
+- This doc-reconciliation pass does not edit source, command, agent, or skill files.
 
 **How to roll back**: Restore the Stage 0 recovery baseline; the rename and rewire revert as one unit.
 <!-- /ANCHOR:adr-001-impl -->
@@ -119,7 +126,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted - keep the merged-identity layer |
+| **Status** | Accepted - keep the merged-identity layer (sign-off; drift-guard green) |
 | **Date** | 2026-06-26 |
 | **Deciders** | User + Claude (this session) |
 
@@ -136,7 +143,7 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**Default to keep**; evaluate against evidence in Stage 4. Simplify only if routing fixtures show the hub's aggregated identity routes deep queries as strongly as the per-mode projection does. The sk-design family deliberately skipped this layer (Option E only) and its per-mode routing regressed — evidence the projection has real value and should likely stay for deep-loop.
+**Keep the merged-identity layer.** Maintainer sign-off closes the decision, and the routing-registry drift-guard is green. Option E solves invocation through the hub, but it does not replace the advisor's stronger per-mode routing projection. Fixture comparison is optional hardening, not a prerequisite for this accepted keep decision.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -146,8 +153,8 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 
 | Option | Pros | Cons | Verdict |
 |--------|------|------|---------|
-| **Keep the merged-identity layer** | Retains stronger per-mode advisor routing; matches deep-loop's heavy use | A drift-guarded Python+TS layer to maintain | Default (pending Stage 4) |
-| **Simplify to hub-only identity** | Removes the drift-guarded layer; matches sk-design | Risk of per-mode routing regression (sk-design saw this) | Only if Stage 4 evidence supports it |
+| **Keep the merged-identity layer** | Retains stronger per-mode advisor routing; matches deep-loop's heavy use; drift-guard is green | A drift-guarded Python+TS layer to maintain | CHOSEN |
+| **Simplify to hub-only identity** | Removes the drift-guarded layer; matches sk-design | Risk of per-mode routing regression; loses deep-loop's per-mode routing strength | Rejected |
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -155,8 +162,10 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 <!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 
-- If kept: deep-loop retains stronger per-mode advisor routing than sk-design; the divergence from sk-design is recorded, not an oversight.
-- If simplified: removes a drift-guarded Python+TS layer, at a routing-strength cost to weigh against the maintenance saving.
+- deep-loop retains stronger per-mode advisor routing than a hub-only projection.
+- The divergence from sk-design is recorded as an intentional deep-loop exception, not an oversight.
+- The drift-guard remains the consistency contract for the Python and TypeScript merged-identity maps.
+- A future fixture comparison may be useful hardening, but it is not required to keep the layer.
 <!-- /ANCHOR:adr-002-consequences -->
 
 ---
@@ -168,9 +177,9 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Option E changes the invocation story, so the projection's role must be re-examined |
 | 2 | **Beyond Local Maxima?** | PASS | Keep and simplify are both framed with a decision criterion |
-| 3 | **Sufficient?** | PASS | A Stage 4 fixture comparison settles keep vs simplify |
+| 3 | **Sufficient?** | PASS | Maintainer sign-off plus a green drift-guard settles keep vs simplify for this pass |
 | 4 | **Fits Goal?** | PASS | Preserves routing quality while aligning where evidence allows |
-| 5 | **Open Horizons?** | PASS | Defers the irreversible removal until evidence is in hand |
+| 5 | **Open Horizons?** | PASS | Keeps optional fixture comparison available without making it a blocker |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-002-five-checks -->
@@ -181,9 +190,11 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 ### Implementation
 
 **What changes**:
-- Nothing in this packet. Stage 4 runs the routing-fixture comparison and records keep or simplify; only a "simplify" outcome touches `lib/scorer/aliases.ts` and the `skill_advisor.py` projection.
+- Stage 4 is closed by maintainer sign-off: keep the merged-identity layer.
+- The routing-registry drift-guard remains green and continues to guard consistency.
+- No source, fixture, or runtime change is made in this doc-only reconciliation pass.
 
-**How to roll back**: If a Stage 4 simplification regresses routing, restore the projection from the Stage 4 recovery baseline.
+**How to roll back**: Reopen ADR-002 and run the optional fixture comparison before considering simplification.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -196,7 +207,7 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (executed) |
+| **Status** | Accepted - keep all five (earned) |
 | **Date** | 2026-06-26 |
 | **Deciders** | User + Claude (this session) |
 
@@ -205,7 +216,7 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-All five deep modes carry a `feature_catalog/`. The sk-design conversion kept `feature_catalog/` only for the one mode whose feature set genuinely warranted the cataloging structure and removed the rest as bloat. deep-loop's actual per-mode need is unassessed.
+All five deep modes carry a `feature_catalog/`. The sk-design conversion kept `feature_catalog/` only for the one mode whose feature set genuinely warranted the cataloging structure and removed thin catalogs as bloat. The same earned-keep test has now been applied to deep-loop, and the result differs because each deep-loop catalog is substantial: every mode has a version-stamped canonical inventory for a full autonomous-loop engine.
 <!-- /ANCHOR:adr-003-context -->
 
 ---
@@ -213,7 +224,7 @@ All five deep modes carry a `feature_catalog/`. The sk-design conversion kept `f
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-Apply the same test per deep mode in Stage 2: keep `feature_catalog/` only where the mode's feature surface earns the cataloging overhead; remove it elsewhere and repoint references. Assess against actual contents during execution rather than pre-committing a count here.
+Apply the same earned-keep test per deep mode and **keep all five** `feature_catalog/` directories. The earlier "remove the rest as bloat" premise was wrong for deep-loop: sk-design pruned thin modes, while deep-loop's five catalogs are all substantial and warranted. No deletion or reference repointing is needed.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -223,9 +234,9 @@ Apply the same test per deep mode in Stage 2: keep `feature_catalog/` only where
 
 | Option | Pros | Cons | Verdict |
 |--------|------|------|---------|
-| **Per-mode earned-keep test (mirror sk-design)** | Lower doc-maintenance surface; consistent with sk-design | Requires per-mode assessment + repointing | CHOSEN |
-| **Keep all five `feature_catalog/`** | No work | Carries the bloat sk-design already ruled against | Rejected |
-| **Remove all five** | Maximal cleanup | Drops catalogs a mode may genuinely warrant | Rejected |
+| **Per-mode earned-keep test (mirror sk-design)** | Applies the same evidence standard as sk-design | Can produce a different footprint when all catalogs are earned | CHOSEN |
+| **Keep all five `feature_catalog/`** | Preserves substantial version-stamped inventories; no dangling-reference risk | Keeps a larger doc surface | CHOSEN outcome of the earned-keep test |
+| **Remove some or all catalogs** | Smaller doc surface | Would delete warranted canonical inventories for full autonomous-loop engines | Rejected |
 <!-- /ANCHOR:adr-003-alternatives -->
 
 ---
@@ -233,8 +244,20 @@ Apply the same test per deep mode in Stage 2: keep `feature_catalog/` only where
 <!-- ANCHOR:adr-003-consequences -->
 ### Consequences
 
-- Lower doc-maintenance surface; consistent with sk-design.
-- Each removal must repoint `SKILL.md`/reference pointers to avoid dangling `feature_catalog` references.
+- All five `feature_catalog/` directories stay on disk.
+- No `SKILL.md` or reference pointer repointing is required for R3.
+- The sk-design precedent is preserved as an earned-keep test, not as a forced deletion count.
+- The remaining validation work is R5, not catalog removal.
+
+### Current Per-Mode Assessment
+
+| Mode | Files | md-lines | Verdict | Rationale |
+|------|-------|----------|---------|-----------|
+| `deep-research` | 17 | 1287 | earned | Canonical inventory for a full autonomous research loop with retrieval, iteration, and synthesis surfaces. |
+| `deep-review` | 28 | 2145 | earned | Canonical inventory for a full autonomous review loop with findings, convergence, and validation surfaces. |
+| `deep-improvement` | 25 | 1908 | earned | Canonical inventory for a full evaluator-first improvement loop with guarded promotion surfaces. |
+| `deep-context` | 26 | 2446 | earned | Canonical inventory for a full codebase-context loop with discovery, synthesis, and reuse surfaces. |
+| `deep-ai-council` | 33 | 2150 | earned | Canonical inventory for a full multi-seat council loop with convergence and packet-local artifact surfaces. |
 <!-- /ANCHOR:adr-003-consequences -->
 
 ---
@@ -244,11 +267,11 @@ Apply the same test per deep mode in Stage 2: keep `feature_catalog/` only where
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | The current all-five footprint carries bloat sk-design already ruled against |
+| 1 | **Necessary?** | PASS | The current all-five footprint needed the same earned-keep test sk-design applied |
 | 2 | **Beyond Local Maxima?** | PASS | Keep-all, remove-all, and earned-keep are all framed |
-| 3 | **Sufficient?** | PASS | A per-mode earned-keep test plus repointing resolves the footprint |
-| 4 | **Fits Goal?** | PASS | Aligns the catalog footprint to the sk-design ruling |
-| 5 | **Open Horizons?** | PASS | Assesses against real contents rather than pre-committing a count |
+| 3 | **Sufficient?** | PASS | The per-mode assessment resolves the footprint without deletion or repointing |
+| 4 | **Fits Goal?** | PASS | Aligns to the sk-design test while preserving catalogs that actually earn their place |
+| 5 | **Open Horizons?** | PASS | Keeps the canonical inventories available for future deep-loop maintenance |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-003-five-checks -->
@@ -259,8 +282,64 @@ Apply the same test per deep mode in Stage 2: keep `feature_catalog/` only where
 ### Implementation
 
 **What changes**:
-- Nothing in this packet. Stage 2 applies the earned-keep test per mode, removes the unearned `feature_catalog/` folders, and repoints every `SKILL.md`/reference pointer.
+- Stage 2 is closed as keep-all earned.
+- All five catalogs remain; no deletion, reference repointing, or source change is needed.
+- This doc-only reconciliation records the assessment counts and verdicts.
 
-**How to roll back**: Restore the Stage 2 recovery baseline to bring back any removed `feature_catalog/` and its references.
+**How to roll back**: Reopen ADR-003 if a future catalog becomes thin enough to reassess; no filesystem rollback is needed for this keep-all decision.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: NFR-S01 hub tool-permission contract
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted - hub union-grant contract |
+| **Date** | 2026-06-28 |
+| **Deciders** | User + Codex (this session) |
+
+---
+
+<!-- ANCHOR:adr-004-context -->
+### Context
+
+The deep-loop hub is a routing-only parent skill. Its `allowed-tools` grant is the union of the tools its nested modes require, including `WebFetch` for deep research. Each mode still owns its operational tool contract in its own frontmatter. The runtime has not been proven to narrow the hub grant to the selected mode after dispatch, so the docs must not imply per-mode narrowing.
+<!-- /ANCHOR:adr-004-context -->
+
+---
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
+
+Accept the union-grant contract for NFR-S01. The hub `allowed-tools` remains the union its modes need, the hub remains routing-only, and per-mode frontmatter remains the real mode contract. Do **not** strip `WebFetch` from the hub in this pass.
+<!-- /ANCHOR:adr-004-decision -->
+
+---
+
+<!-- ANCHOR:adr-004-consequences -->
+### Consequences
+
+- The permission contract is honest about current runtime evidence: hub-level grants may be broader than a non-research mode's own tool list.
+- The residual risk is accepted for this packet because the hub is a dispatcher, not the execution policy for every mode.
+- A future runtime tool-narrowing probe is optional hardening, not a blocker for C1 closeout.
+- No hub `allowed-tools`, per-mode `allowed-tools`, source files, or generated metadata are changed.
+<!-- /ANCHOR:adr-004-consequences -->
+
+---
+
+<!-- ANCHOR:adr-004-impl -->
+### Implementation
+
+**What changes**:
+- NFR-S01 is closed as an accepted hub union-grant decision.
+- Phase 001's carry-forward note is updated to point here as the resolution.
+- The optional future hardening path is a runtime narrowing probe, not a permission-stripping proposal.
+
+**How to roll back**: Reopen NFR-S01 and run a runtime narrowing probe before changing any hub or mode tool grants.
+<!-- /ANCHOR:adr-004-impl -->
+<!-- /ANCHOR:adr-004 -->
