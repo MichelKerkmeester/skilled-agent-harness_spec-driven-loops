@@ -1,6 +1,7 @@
 {
   "schemaVersion": "deep-ai-council.runtime-capabilities.v1",
   "skill": "deep-ai-council",
+  "stopPolicy": "fail-closed",
   "defaultMode": "in-cli",
   "invariants": {
     "planningOnly": true,

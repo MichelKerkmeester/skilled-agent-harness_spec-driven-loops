@@ -17,7 +17,30 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. FACTORY
+// 2. VALIDATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Validate stop policy before runtime records are trusted.
+ *
+ * @param {Object} matrix - Parsed runtime capability matrix
+ * @param {string} resolvedPath - Absolute path used in diagnostics
+ * @throws {Error} If the stop policy is absent or unsupported
+ */
+function validateStopPolicy(matrix, resolvedPath) {
+  if (!matrix || typeof matrix !== 'object') {
+    throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: expected object`);
+  }
+  if (matrix.stopPolicy === undefined) {
+    throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: missing stopPolicy`);
+  }
+  if (matrix.stopPolicy !== 'fail-closed') {
+    throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: stopPolicy must be "fail-closed"`);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -61,6 +84,8 @@ function createRuntimeCapabilities(options = {}) {
   function loadRuntimeCapabilities(capabilityPath = DEFAULT_CAPABILITY_PATH) {
     const resolvedPath = path.resolve(capabilityPath);
     const parsed = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
+
+    validateStopPolicy(parsed, resolvedPath);
 
     if (!Array.isArray(parsed.runtimes)) {
       throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: missing runtimes array`);
@@ -144,7 +169,7 @@ function createRuntimeCapabilities(options = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. EXPORTS
+// 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

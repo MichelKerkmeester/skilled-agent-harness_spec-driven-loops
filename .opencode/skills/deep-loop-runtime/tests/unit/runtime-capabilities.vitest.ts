@@ -14,7 +14,7 @@ const DRV_SHIM = '../../../deep-loop-workflows/deep-review/scripts/runtime-capab
 const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
   createRuntimeCapabilities: (opts: { label: string; defaultCapabilityPath: string }) => {
     DEFAULT_CAPABILITY_PATH: string;
-    loadRuntimeCapabilities: (p?: string) => { capabilityPath: string; matrix: { runtimes: Array<{ id: string }> } };
+    loadRuntimeCapabilities: (p?: string) => { capabilityPath: string; matrix: { stopPolicy: string; runtimes: Array<{ id: string }> } };
     listRuntimeCapabilityIds: (p?: string) => string[];
     resolveRuntimeCapability: (id: string, p?: string) => { capabilityPath: string; runtime: { id: string } };
   };
@@ -23,10 +23,14 @@ const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
 const tempDirs: string[] = [];
 
 function writeMatrix(runtimes: Array<Record<string, unknown>>): string {
+  return writeRawMatrix({ stopPolicy: 'fail-closed', runtimes });
+}
+
+function writeRawMatrix(matrix: Record<string, unknown>): string {
   const dir = mkdtempSync(join(tmpdir(), 'runtime-cap-'));
   tempDirs.push(dir);
   const matrixPath = join(dir, 'runtime_capabilities.json');
-  writeFileSync(matrixPath, JSON.stringify({ runtimes }), 'utf8');
+  writeFileSync(matrixPath, JSON.stringify(matrix), 'utf8');
   return matrixPath;
 }
 
@@ -64,12 +68,21 @@ describe('runtime-capabilities factory (promoted backend)', () => {
   });
 
   it('throws on a malformed matrix that is missing the runtimes array', () => {
-    const dir = mkdtempSync(join(tmpdir(), 'runtime-cap-'));
-    tempDirs.push(dir);
-    const matrixPath = join(dir, 'm.json');
-    writeFileSync(matrixPath, JSON.stringify({ notRuntimes: [] }), 'utf8');
+    const matrixPath = writeRawMatrix({ stopPolicy: 'fail-closed', notRuntimes: [] });
     const api = createRuntimeCapabilities({ label: 'deep-x', defaultCapabilityPath: matrixPath });
     expect(() => api.listRuntimeCapabilityIds()).toThrow(/missing runtimes array/);
+  });
+
+  it('rejects a matrix that does not declare a fail-closed stop policy', () => {
+    const matrixPath = writeRawMatrix({ runtimes: [{ id: 'alpha' }] });
+    const api = createRuntimeCapabilities({ label: 'deep-x', defaultCapabilityPath: matrixPath });
+    expect(() => api.loadRuntimeCapabilities()).toThrow(/missing stopPolicy/);
+  });
+
+  it('rejects a matrix that declares an unsupported stop policy', () => {
+    const matrixPath = writeRawMatrix({ stopPolicy: 'fail-open', runtimes: [{ id: 'alpha' }] });
+    const api = createRuntimeCapabilities({ label: 'deep-x', defaultCapabilityPath: matrixPath });
+    expect(() => api.loadRuntimeCapabilities()).toThrow(/stopPolicy must be "fail-closed"/);
   });
 });
 

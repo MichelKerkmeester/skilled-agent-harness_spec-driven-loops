@@ -101,6 +101,48 @@
       "name": "reviewDimensions",
       "reason": "Review dimensions define the product scope, not numeric tuning surface.",
       "contract": "product identity"
+    },
+    {
+      "name": "antiConvergence.convergenceMode",
+      "reason": "Convergence mode selects stop semantics and must not be optimizer-tuned.",
+      "contract": "anti-convergence contract"
+    },
+    {
+      "name": "convergenceMode",
+      "reason": "Legacy convergence mode selects stop semantics and must not be optimizer-tuned.",
+      "contract": "anti-convergence contract"
+    }
+  ],
+
+  "invariantGroups": [
+    {
+      "key": "anti-convergence-floor",
+      "description": "Reject anti-convergence candidates before scoring when the floor exceeds the hard iteration cap.",
+      "products": ["deep-research", "deep-review", "deep-context"],
+      "rejectBeforeScoring": true,
+      "lockedFields": ["antiConvergence.convergenceMode", "convergenceMode"],
+      "conditionalTunableFields": [
+        {
+          "name": "minIterations",
+          "canonicalPath": "antiConvergence.minIterations",
+          "type": "integer",
+          "range": { "min": 0, "max": 20 },
+          "requires": ["minIterations<=maxIterations"]
+        }
+      ],
+      "fieldAliases": {
+        "minIterations": ["antiConvergence.minIterations", "minIterations"],
+        "maxIterations": ["maxIterations"]
+      },
+      "constraints": [
+        {
+          "name": "minIterations<=maxIterations",
+          "type": "lessThanOrEqual",
+          "left": "minIterations",
+          "right": "maxIterations",
+          "message": "minIterations must be less than or equal to maxIterations"
+        }
+      ]
     }
   ],
 

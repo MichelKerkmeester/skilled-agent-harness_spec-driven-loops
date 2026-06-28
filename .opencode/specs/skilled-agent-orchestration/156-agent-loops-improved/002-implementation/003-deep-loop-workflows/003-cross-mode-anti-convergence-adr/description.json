@@ -16,11 +16,10 @@
     "miniterations",
     "maxiterations"
   ],
-  "lastUpdated": "2026-06-28T14:26:01.909Z",
+  "lastUpdated": "2026-06-28T20:29:44.244Z",
   "specId": "003",
   "folderSlug": "cross-mode-anti-convergence-adr",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

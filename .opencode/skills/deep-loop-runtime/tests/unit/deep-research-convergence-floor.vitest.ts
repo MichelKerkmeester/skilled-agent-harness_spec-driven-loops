@@ -47,9 +47,13 @@ function readConfig(): Record<string, unknown> {
 describe('deep-research convergence floor contract', () => {
   it('adds explicit floor and convergence mode defaults to the config template', () => {
     const config = readConfig();
+    const antiConvergence = config.antiConvergence as Record<string, unknown>;
 
-    expect(config.minIterations).toBe(3);
-    expect(config.convergenceMode).toBe('default');
+    expect(config).not.toHaveProperty('minIterations');
+    expect(config).not.toHaveProperty('convergenceMode');
+    expect(antiConvergence.minIterations).toBe(3);
+    expect(antiConvergence.convergenceMode).toBe('default');
+    expect(antiConvergence.stopPolicy).toBe('fail-closed');
     expect(config.maxIterations).toBe(10);
   });
 

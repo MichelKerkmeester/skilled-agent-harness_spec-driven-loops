@@ -5,6 +5,11 @@
   "executionMode": "auto",
   "maxIterations": 8,
   "convergenceThreshold": 0.10,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
   "stuckThreshold": 2,
   "maxToolCallsPerIteration": 12,
   "relevanceGate": 0.55,

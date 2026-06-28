@@ -8,6 +8,11 @@
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
   "convergenceThreshold": 0.10,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
   "stuckThreshold": 2,
   "maxDurationMinutes": 120,
   "maxToolCallsPerIteration": 12,
@@ -86,7 +91,7 @@
     "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
     "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
     "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
-    "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions"],
+    "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
     "promotionMode": "advisory-only"
   }
 }
