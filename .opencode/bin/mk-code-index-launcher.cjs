@@ -18,6 +18,7 @@ const opencodeDir = path.join(root, '.opencode');
 const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
 const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_(IDLE_TIMEOUT_MIN|WAL_TRUNCATE_BYTES)$|MK_CODE_INDEX_)/;
 const DEFAULT_WAL_TRUNCATE_BYTES = 8_388_608;
+const DAEMON_PID_REGISTRY_FILE_NAME = '.code-graph-daemon-pid.json';
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -333,6 +334,11 @@ function ownerLeasePath() {
   return path.join(resolvedDbDir(), OWNER_LEASE_FILE_NAME);
 }
 
+function daemonPidRegistryPath(registryDbDir = resolvedDbDir()) {
+  assertPathWithinRoot(registryDbDir, 'code graph daemon PID registry DB directory');
+  return path.join(canonicalizePath(registryDbDir), DAEMON_PID_REGISTRY_FILE_NAME);
+}
+
 function legacyLeasePaths() {
   // After the 2026-05-29 relocation, skill-local (mcp_server/database/) is the PRIMARY path.
   // The legacy probe now covers the former shared `.spec-kit` location plus the pre-rename
@@ -429,6 +435,63 @@ function writeOwnerLeaseFileExclusive(lease) {
     throw error;
   } finally {
     if (typeof fd === 'number') fs.closeSync(fd);
+  }
+}
+
+function writeDaemonPidRegistry(registry) {
+  const currentRegistryPath = path.join(
+    ensureCanonicalDir(path.dirname(daemonPidRegistryPath(registry.canonicalDbDir ?? resolvedDbDir()))),
+    DAEMON_PID_REGISTRY_FILE_NAME,
+  );
+  const tmp = `${currentRegistryPath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+  try {
+    fs.writeFileSync(tmp, `${JSON.stringify(registry, null, 2)}\n`, { mode: 0o600, flag: 'wx' });
+    fs.renameSync(tmp, currentRegistryPath);
+  } catch (error) {
+    try {
+      fs.rmSync(tmp, { force: true });
+    } catch {
+      // Best-effort temp cleanup.
+    }
+    throw error;
+  }
+}
+
+function discoverDaemonFromRegistry(registryDbDir = resolvedDbDir()) {
+  try {
+    const canonicalRegistryDbDir = canonicalizePath(registryDbDir);
+    const registryPath = daemonPidRegistryPath(canonicalRegistryDbDir);
+    const parsed = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+    if (
+      Number.isInteger(parsed.daemonPid) &&
+      parsed.daemonPid > 0 &&
+      Number.isInteger(parsed.launcherPid) &&
+      parsed.launcherPid > 0 &&
+      typeof parsed.startedAtIso === 'string' &&
+      typeof parsed.canonicalDbDir === 'string' &&
+      parsed.canonicalDbDir === canonicalRegistryDbDir &&
+      (typeof parsed.socketPath === 'string' || parsed.socketPath === null)
+    ) {
+      return {
+        daemonPid: parsed.daemonPid,
+        launcherPid: parsed.launcherPid,
+        socketPath: parsed.socketPath,
+        startedAtIso: parsed.startedAtIso,
+        canonicalDbDir: parsed.canonicalDbDir,
+        registryPath,
+      };
+    }
+  } catch {
+    // Missing or corrupt registry files are not authoritative.
+  }
+  return null;
+}
+
+function clearDaemonPidRegistry(registryDbDir = resolvedDbDir()) {
+  try {
+    fs.unlinkSync(daemonPidRegistryPath(registryDbDir));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
   }
 }
 
@@ -815,6 +878,9 @@ async function probeLeaseSocket(socketPath) {
   if (typeof socketPath !== 'string' || socketPath.length === 0) {
     return { status: 'dead', kind: 'unknown' };
   }
+  if (!fs.existsSync(socketPath)) {
+    return { status: 'dead', kind: 'enoent' };
+  }
   const { probeExistingService } = loadBridgeModule();
   if (typeof probeExistingService !== 'function') {
     return { status: 'dead', kind: 'unknown' };
@@ -1007,6 +1073,44 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
       fs.rmSync(lockDir, { recursive: true, force: true });
     }
   }
+}
+
+async function reclaimRegisteredDaemonIfNeeded() {
+  if (!reclaimDeadSocketEnabled()) return { action: 'skipped', reason: 'disabled' };
+  const registry = discoverDaemonFromRegistry(resolvedDbDir());
+  if (!registry) return { action: 'skipped', reason: 'missing-registry' };
+  if (processLiveness(registry.daemonPid) !== 'alive') return { action: 'skipped', reason: 'pid-not-live' };
+
+  const probe = await probeLeaseSocket(registry.socketPath);
+  if (isSocketServing(probe)) return { action: 'skipped', reason: 'socket-serving', socketPath: registry.socketPath };
+
+  let registryUid = null;
+  try {
+    registryUid = fs.statSync(registry.registryPath).uid;
+  } catch {
+    registryUid = null;
+  }
+  const ownerLease = {
+    ownerPid: registry.daemonPid,
+    ppid: registry.launcherPid,
+    executablePath: process.execPath,
+    startedAtIso: registry.startedAtIso,
+    childSpawnedAtIso: registry.startedAtIso,
+    lastHeartbeatIso: registry.startedAtIso,
+    ttlMs: 60000,
+    canonicalDbDir: registry.canonicalDbDir,
+    socketPath: registry.socketPath,
+    uid: registryUid,
+  };
+  const reapResult = await reapOwnerBeforeRespawn(registry.daemonPid, { ownerLease });
+  if (!reapResult.allowed) {
+    log(`registered orphan daemon pid ${registry.daemonPid} could not be reaped (${reapResult.reason}); not spawning a second daemon`);
+    return { action: 'blocked', reason: reapResult.reason, daemonPid: registry.daemonPid, socketPath: registry.socketPath };
+  }
+
+  clearDaemonPidRegistry(path.dirname(registry.registryPath));
+  log(`registered orphan daemon pid ${registry.daemonPid} reaped before spawn (${reapResult.reason})`);
+  return { action: 'reaped', reason: reapResult.reason, daemonPid: registry.daemonPid, socketPath: registry.socketPath };
 }
 
 async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
@@ -1391,11 +1495,21 @@ function launchServer() {
   });
 
   if (typeof childProcess.pid === 'number') {
+    const childSpawnedAtIso = new Date().toISOString();
+    const socketPath = ownerSocketPath();
     const refreshed = refreshOwnerLeaseFile(process.pid, {
       ownerPid: childProcess.pid,
       ppid: process.pid,
       executablePath: process.execPath,
-      childSpawnedAtIso: new Date().toISOString(),
+      childSpawnedAtIso,
+      socketPath,
+    });
+    writeDaemonPidRegistry({
+      daemonPid: childProcess.pid,
+      launcherPid: process.pid,
+      socketPath,
+      startedAtIso: childSpawnedAtIso,
+      canonicalDbDir: resolvedDbDir(),
     });
     if (!refreshed) {
       log('owner lease refresh to child pid failed; launcher pid remains the recorded owner');
@@ -1417,6 +1531,7 @@ function launchServer() {
       process.kill(process.pid, signal);
       return;
     }
+    clearDaemonPidRegistry();
     clearAllLeaseFiles();
     process.exit(code ?? 0);
   });
@@ -1468,6 +1583,7 @@ async function launcherMain() {
   // launchers' adopt-or-reap guards).
   let reclaimedOrphanPid = null;
   let reclaimedOrphanLease = null;
+  let reapedRegisteredOrphan = false;
 
   try {
     installSignalHandlers();
@@ -1518,6 +1634,12 @@ async function launcherMain() {
           ownerPid: leaseResult.ownerPid,
           leaseKind: leaseResult.legacyPath ? 'legacy-pid' : 'pid',
         });
+      } else {
+        const registeredReclaim = await reclaimRegisteredDaemonIfNeeded();
+        if (registeredReclaim.action === 'blocked') {
+          process.exit(0);
+        }
+        reapedRegisteredOrphan = registeredReclaim.action === 'reaped';
       }
     } else {
       log('MK_CODE_INDEX_STRICT_SINGLE_WRITER is disabled; skipping lease check');
@@ -1604,7 +1726,7 @@ async function launcherMain() {
     }
 
     checkpointStaleWalIfNeeded(path.join(resolvedDbDir(), 'code-graph.sqlite'), {
-      reapedOrphan: Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0,
+      reapedOrphan: reapedRegisteredOrphan || (Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0),
     });
     writeLeaseFile();
     const reprobe = readLeaseFile();
@@ -1665,11 +1787,16 @@ module.exports = {
   acquireBootstrapLock,
   acquireOwnerLeaseFile,
   artifactsReady,
+  clearAllLeaseFiles,
+  clearDaemonPidRegistry,
   clearOwnerLeaseFile,
+  daemonPidRegistryPath,
+  discoverDaemonFromRegistry,
   ownerLeasePath,
   readOwnerLeaseFile,
   reapOwnerBeforeRespawn,
   removeStaleBootstrapLock,
   readBootstrapLockOwnerPid,
   configureLauncherPathsForTesting,
+  writeDaemonPidRegistry,
 };
