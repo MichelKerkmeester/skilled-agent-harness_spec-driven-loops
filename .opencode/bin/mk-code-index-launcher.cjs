@@ -58,6 +58,24 @@ function isStrictModeDisabled(value) {
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
 
+function parsePositiveInteger(value, fallback) {
+  if (value === undefined || value === null || String(value).trim() === '') return fallback;
+  const parsed = Number.parseInt(String(value).trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function resolveStartupGraceMs(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_LAUNCHER_STARTUP_GRACE_MS, 30000);
+}
+
+function resolveMaxInitMs(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_LAUNCHER_MAX_INIT_MS, 120000);
+}
+
+function reclaimDeadSocketEnabled(env = process.env) {
+  return !isStrictModeDisabled(env.SPECKIT_LAUNCHER_RECLAIM_DEAD_SOCKET);
+}
+
 // Category -> INDEX_* env key. Module-level so the launcher and its tests share one source.
 const MAINTAINER_CATEGORY_ENV = {
   skills: 'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
@@ -133,6 +151,13 @@ const LEASE_METRIC_TRANSITION_CLASS = Object.freeze({
 
 function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
+}
+
+function launcherDiagnostic(reason, fields = {}) {
+  const fieldText = Object.entries(fields)
+    .map(([key, value]) => `${key}=${String(value)}`)
+    .join(' ');
+  process.stderr.write(`LAUNCHER_DIAGNOSTIC: reason=${reason}${fieldText ? ` ${fieldText}` : ''}\n`);
 }
 
 function leaseMetricClassForTransition(transition) {
@@ -975,6 +1000,7 @@ function launchServer() {
       ownerPid: childProcess.pid,
       ppid: process.pid,
       executablePath: process.execPath,
+      childSpawnedAtIso: new Date().toISOString(),
     });
     if (!refreshed) {
       log('owner lease refresh to child pid failed; launcher pid remains the recorded owner');
@@ -1221,6 +1247,10 @@ module.exports = {
   bridgeStdioThroughSessionProxy,
   MAINTAINER_CATEGORY_ENV,
   resolveMaintainerModeCategories,
+  resolveStartupGraceMs,
+  resolveMaxInitMs,
+  reclaimDeadSocketEnabled,
+  launcherDiagnostic,
   configureLeaseMetricSinkForTesting,
   emitLeaseMetric,
   leaseMetricClassForTransition,
