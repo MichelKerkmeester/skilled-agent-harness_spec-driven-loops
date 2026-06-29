@@ -99,6 +99,14 @@ interface MutableConsolidationCluster {
   nodes: SimilarNode[];
 }
 
+type CoverageDirection = 'incoming' | 'outgoing';
+
+interface CoverageGapRequirement {
+  kind: NodeKind;
+  relations: Array<CoverageEdge['relation']>;
+  direction: CoverageDirection;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
@@ -109,6 +117,31 @@ const EXACT_WORD_OVERLAP_THRESHOLD = 0.7;
 const WORD_SIMILARITY_THRESHOLD = 0.8;
 const MIN_FUZZY_WORD_LENGTH = 3;
 const MAX_ALIAS_MEMO_ENTRIES = 2_000;
+const MAX_METADATA_STRING_LENGTH = 80;
+const REDACTED_METADATA_VALUE = '[REDACTED]';
+
+const SAFE_METADATA_KEYS = new Set([
+  'confidence',
+  'confidenceScore',
+  'planConfidence',
+  'severity',
+  'priority',
+  'status',
+  'verification_status',
+  'quality_class',
+  'hotspot_score',
+  'relevance',
+  'confirmations',
+  'verified',
+]);
+
+const SECRET_METADATA_VALUE_PATTERNS = [
+  /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{20,}\b/,
+  /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,
+  /\b(?:AKIA|ASIA)[A-Z0-9]{16}\b/,
+  /\b(?:sk|rk|pk)_[A-Za-z0-9_-]{20,}\b/,
+  /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
+];
 
 const namespaceAliasMemo = new Map<string, number>();
 
@@ -177,6 +210,86 @@ function getEdgesFromNode(sourceId: string, ns: Namespace): CoverageEdge[] {
     metadata: row.metadata ? JSON.parse(row.metadata as string) : undefined,
     createdAt: row.created_at as string | undefined,
   }));
+}
+
+function parseMetadata(metadata: unknown): Record<string, unknown> | undefined {
+  if (!metadata) return undefined;
+  if (typeof metadata === 'string') {
+    try {
+      const parsed = JSON.parse(metadata) as unknown;
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+        ? parsed as Record<string, unknown>
+        : undefined;
+    } catch {
+      return undefined;
+    }
+  }
+  return typeof metadata === 'object' && !Array.isArray(metadata)
+    ? metadata as Record<string, unknown>
+    : undefined;
+}
+
+function isSecretLikeString(value: string): boolean {
+  return SECRET_METADATA_VALUE_PATTERNS.some(pattern => pattern.test(value));
+}
+
+function sanitizeMetadataValue(value: unknown): string | number | boolean | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'boolean') return value;
+  if (typeof value !== 'string') return undefined;
+  if (isSecretLikeString(value)) return REDACTED_METADATA_VALUE;
+  return value.length > MAX_METADATA_STRING_LENGTH
+    ? `${value.slice(0, MAX_METADATA_STRING_LENGTH)}...`
+    : value;
+}
+
+function sanitizeMetadata(metadata: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
+  if (!metadata) return undefined;
+  const safe: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(metadata)) {
+    if (!SAFE_METADATA_KEYS.has(key)) continue;
+    const sanitizedValue = sanitizeMetadataValue(value);
+    if (sanitizedValue !== undefined) {
+      safe[key] = sanitizedValue;
+    }
+  }
+
+  return Object.keys(safe).length > 0 ? safe : undefined;
+}
+
+function rowToCoverageNode(row: Record<string, unknown>): CoverageNode {
+  return {
+    id: row.id as string,
+    specFolder: row.spec_folder as string,
+    loopType: row.loop_type as Namespace['loopType'],
+    sessionId: row.session_id as string,
+    kind: row.kind as NodeKind,
+    name: row.name as string,
+    contentHash: row.content_hash as string | undefined,
+    iteration: row.iteration as number | undefined,
+    metadata: sanitizeMetadata(parseMetadata(row.metadata)),
+    createdAt: row.created_at as string | undefined,
+    updatedAt: row.updated_at as string | undefined,
+  };
+}
+
+function getCoverageGapRequirements(loopType: Namespace['loopType']): CoverageGapRequirement[] {
+  if (loopType === 'research') {
+    return [{ kind: 'QUESTION', relations: ['ANSWERS', 'COVERS'], direction: 'incoming' }];
+  }
+  if (loopType === 'context') {
+    return [{ kind: 'SLICE', relations: ['COVERED_BY'], direction: 'outgoing' }];
+  }
+  return [
+    { kind: 'DIMENSION', relations: ['COVERS', 'EVIDENCE_FOR'], direction: 'outgoing' },
+    { kind: 'FILE', relations: ['COVERS'], direction: 'incoming' },
+  ];
+}
+
+function isResearchClaimVerified(metadata: Record<string, unknown> | undefined): boolean {
+  const status = metadata?.verification_status;
+  return typeof status === 'string' && status.length > 0 && status !== 'unresolved';
 }
 
 function normalizeThreshold(threshold: number | undefined): number {
@@ -444,90 +557,45 @@ export function findConsolidationCandidates(
  * Find nodes with coverage gaps.
  *
  * For research: questions that have no incoming ANSWERS or COVERS edges.
- * For review: dimensions/files that are not sources of outgoing COVERS or EVIDENCE_FOR edges.
+ * For review: dimensions use outgoing coverage, while files use incoming COVERS edges.
  *
  * @param ns - Namespace identifying the coverage graph.
  * @returns Array of coverage gap objects.
  */
 export function findCoverageGaps(ns: Namespace): CoverageGap[] {
   const d = getDb();
-  const { loopType } = ns;
-
-  const coverageRelations = loopType === 'research'
-    ? ['ANSWERS', 'COVERS']
-    : loopType === 'context'
-      ? ['COVERED_BY']
-      : ['COVERS', 'EVIDENCE_FOR'];
-
-  const targetKinds = loopType === 'research'
-    ? ['QUESTION']
-    : loopType === 'context'
-      ? ['SLICE']
-      : ['DIMENSION', 'FILE'];
-
   const gaps: CoverageGap[] = [];
+  const requirements = getCoverageGapRequirements(ns.loopType);
 
-  if (loopType === 'review' || loopType === 'context') {
-    for (const kind of targetKinds) {
-      const nodeNamespace = buildNamespacePredicate('n', ns);
-      const edgeNamespace = buildNamespacePredicate('e', ns);
-      const nodeRows = d.prepare(`
-        SELECT n.id, n.kind, n.name
-        FROM coverage_nodes n
-        WHERE ${nodeNamespace.clause}
-          AND n.kind = ?
-          AND NOT EXISTS (
-            SELECT 1 FROM coverage_edges e
-            WHERE ${edgeNamespace.clause}
-              AND e.source_id = n.id
-              AND e.relation IN (${coverageRelations.map(() => '?').join(',')})
-          )
-      `).all(
-        ...nodeNamespace.params,
-        kind,
-        ...edgeNamespace.params,
-        ...coverageRelations,
-      ) as Array<{ id: string; kind: string; name: string }>;
+  for (const requirement of requirements) {
+    const nodeNamespace = buildNamespacePredicate('n', ns);
+    const edgeNamespace = buildNamespacePredicate('e', ns);
+    const edgeNodeColumn = requirement.direction === 'incoming' ? 'target_id' : 'source_id';
+    const nodeRows = d.prepare(`
+      SELECT n.id, n.kind, n.name
+      FROM coverage_nodes n
+      WHERE ${nodeNamespace.clause}
+        AND n.kind = ?
+        AND NOT EXISTS (
+          SELECT 1 FROM coverage_edges e
+          WHERE ${edgeNamespace.clause}
+            AND e.${edgeNodeColumn} = n.id
+            AND e.relation IN (${requirement.relations.map(() => '?').join(',')})
+        )
+    `).all(
+      ...nodeNamespace.params,
+      requirement.kind,
+      ...edgeNamespace.params,
+      ...requirement.relations,
+    ) as Array<{ id: string; kind: string; name: string }>;
 
-      for (const row of nodeRows) {
-        gaps.push({
-          nodeId: row.id,
-          kind: row.kind,
-          name: row.name,
-          reason: `No outgoing ${coverageRelations.join(' or ')} edges`,
-        });
-      }
-    }
-  } else {
-    for (const kind of targetKinds) {
-      const nodeNamespace = buildNamespacePredicate('n', ns);
-      const edgeNamespace = buildNamespacePredicate('e', ns);
-      const nodeRows = d.prepare(`
-        SELECT n.id, n.kind, n.name
-        FROM coverage_nodes n
-        WHERE ${nodeNamespace.clause}
-          AND n.kind = ?
-          AND NOT EXISTS (
-            SELECT 1 FROM coverage_edges e
-            WHERE ${edgeNamespace.clause}
-              AND e.target_id = n.id
-              AND e.relation IN (${coverageRelations.map(() => '?').join(',')})
-          )
-      `).all(
-        ...nodeNamespace.params,
-        kind,
-        ...edgeNamespace.params,
-        ...coverageRelations,
-      ) as Array<{ id: string; kind: string; name: string }>;
-
-      for (const row of nodeRows) {
-        gaps.push({
-          nodeId: row.id,
-          kind: row.kind,
-          name: row.name,
-          reason: `No incoming ${coverageRelations.join(' or ')} edges`,
-        });
-      }
+    for (const row of nodeRows) {
+      gaps.push({
+        nodeId: row.id,
+        kind: row.kind,
+        name: row.name,
+        reason: `No ${requirement.direction} ${requirement.relations.join(' or ')} edges`,
+      });
     }
   }
 
@@ -569,7 +637,7 @@ export function findContradictions(ns: Namespace): ContradictionPair[] {
     sourceName: row.source_name,
     targetName: row.target_name,
     weight: row.weight,
-    metadata: row.metadata ? JSON.parse(row.metadata) : undefined,
+    metadata: sanitizeMetadata(parseMetadata(row.metadata)),
   }));
 }
 
@@ -631,9 +699,9 @@ export function findProvenanceChain(ns: Namespace, nodeId: string, maxDepth: num
 }
 
 /**
- * Find claim nodes whose metadata verification_status is not 'verified'.
+ * Find claim nodes that have not reached the research verification threshold.
  *
- * For research: CLAIM nodes with status != 'verified'.
+ * For research: CLAIM nodes whose verification status is absent or unresolved.
  * For review: FINDING nodes with no RESOLVES edges.
  *
  * @param ns - Namespace identifying the coverage graph.
@@ -652,23 +720,8 @@ export function findUnverifiedClaims(ns: Namespace): CoverageNode[] {
     `).all(...nodeNamespace.params) as Record<string, unknown>[];
 
     return rows
-      .map(r => ({
-        id: r.id as string,
-        specFolder: r.spec_folder as string,
-        loopType: r.loop_type as string,
-        sessionId: r.session_id as string,
-        kind: r.kind as string,
-        name: r.name as string,
-        contentHash: r.content_hash as string | undefined,
-        iteration: r.iteration as number | undefined,
-        metadata: r.metadata ? JSON.parse(r.metadata as string) : undefined,
-        createdAt: r.created_at as string | undefined,
-        updatedAt: r.updated_at as string | undefined,
-      }))
-      .filter(n => {
-        const status = n.metadata?.verification_status;
-        return status !== 'verified';
-      }) as CoverageNode[];
+      .filter(row => !isResearchClaimVerified(parseMetadata(row.metadata)))
+      .map(rowToCoverageNode);
   }
 
   const reviewNodeNamespace = buildNamespacePredicate('n', ns);
@@ -688,19 +741,7 @@ export function findUnverifiedClaims(ns: Namespace): CoverageNode[] {
     ...reviewEdgeNamespace.params,
   ) as Record<string, unknown>[];
 
-  return rows.map(r => ({
-    id: r.id as string,
-    specFolder: r.spec_folder as string,
-    loopType: r.loop_type as string,
-    sessionId: r.session_id as string,
-    kind: r.kind as string,
-    name: r.name as string,
-    contentHash: r.content_hash as string | undefined,
-    iteration: r.iteration as number | undefined,
-    metadata: r.metadata ? JSON.parse(r.metadata as string) : undefined,
-    createdAt: r.created_at as string | undefined,
-    updatedAt: r.updated_at as string | undefined,
-  })) as CoverageNode[];
+  return rows.map(rowToCoverageNode) as CoverageNode[];
 }
 
 /**

@@ -10,16 +10,24 @@ import path from 'node:path';
 
 type DbModule = typeof import('../../lib/coverage-graph/coverage-graph-db.js');
 type QueryModule = typeof import('../../lib/coverage-graph/coverage-graph-query.js');
+type SignalsModule = typeof import('../../lib/coverage-graph/coverage-graph-signals.js');
 
 let originalDbDir: string | undefined;
 let tempDir: string;
 let dbModule: DbModule;
 let queryModule: QueryModule;
+let signalsModule: SignalsModule;
 
 const namespace = {
   specFolder: 'specs/coverage-graph-query-fixture',
   loopType: 'research',
   sessionId: 'coverage-graph-query-fixture',
+} as const;
+
+const reviewNamespace = {
+  specFolder: 'specs/coverage-graph-query-fixture',
+  loopType: 'review',
+  sessionId: 'coverage-graph-query-review-fixture',
 } as const;
 
 function graphSnapshot(): Record<string, unknown> {
@@ -37,6 +45,7 @@ beforeEach(async () => {
   dbModule = await import('../../lib/coverage-graph/coverage-graph-db.js');
   dbModule.initDb(tempDir);
   queryModule = await import('../../lib/coverage-graph/coverage-graph-query.js');
+  signalsModule = await import('../../lib/coverage-graph/coverage-graph-signals.js');
 });
 
 afterEach(() => {
@@ -168,6 +177,90 @@ describe('coverage-graph-query', () => {
       'finding-parser',
       'question-retry',
     ]);
+  });
+
+  it('findCoverageGaps treats incoming COVERS edges as FILE coverage in review graphs', () => {
+    dbModule.batchUpsert(
+      [
+        { ...reviewNamespace, id: 'slice-1', kind: 'SLICE', name: 'Reviewed slice' },
+        { ...reviewNamespace, id: 'file-covered', kind: 'FILE', name: 'covered.ts' },
+        { ...reviewNamespace, id: 'file-uncovered', kind: 'FILE', name: 'uncovered.ts' },
+      ],
+      [
+        {
+          ...reviewNamespace,
+          id: 'edge-slice-covers-file',
+          sourceId: 'slice-1',
+          targetId: 'file-covered',
+          relation: 'COVERS',
+          weight: 1,
+        },
+      ],
+    );
+
+    const fileGaps = queryModule.findCoverageGaps(reviewNamespace)
+      .filter(gap => gap.kind === 'FILE')
+      .map(gap => gap.nodeId)
+      .sort();
+
+    expect(fileGaps).toEqual(['file-uncovered']);
+  });
+
+  it('findUnverifiedClaims matches research convergence claim-verification semantics', () => {
+    dbModule.batchUpsert(
+      [
+        {
+          ...namespace,
+          id: 'claim-corroborated',
+          kind: 'CLAIM',
+          name: 'Corroborated claim',
+          metadata: { verification_status: 'corroborated' },
+        },
+        {
+          ...namespace,
+          id: 'claim-unresolved',
+          kind: 'CLAIM',
+          name: 'Unresolved claim',
+          metadata: { verification_status: 'unresolved' },
+        },
+      ],
+      [],
+    );
+
+    const nodes = dbModule.getNodes(namespace);
+    const unverified = queryModule.findUnverifiedClaims(namespace);
+
+    expect(signalsModule.computeResearchClaimVerificationRateFromData(nodes)).toBe(0.5);
+    expect(unverified.map(claim => claim.id)).toEqual(['claim-unresolved']);
+  });
+
+  it('findUnverifiedClaims emits prompt-safe metadata for returned claims', () => {
+    const secret = `ghp_${'a'.repeat(36)}`;
+    dbModule.batchUpsert(
+      [
+        {
+          ...namespace,
+          id: 'claim-secret',
+          kind: 'CLAIM',
+          name: 'Unresolved claim with metadata',
+          metadata: {
+            verification_status: 'unresolved',
+            status: secret,
+            apiToken: secret,
+            confidence: 0.72,
+          },
+        },
+      ],
+      [],
+    );
+
+    const [claim] = queryModule.findUnverifiedClaims(namespace);
+
+    expect(claim?.metadata).toEqual({
+      verification_status: 'unresolved',
+      status: '[REDACTED]',
+      confidence: 0.72,
+    });
   });
 
   it('findCoverageGaps surfaces uncovered QUESTION nodes when graph is populated', () => {
