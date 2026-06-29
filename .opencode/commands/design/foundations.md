@@ -87,3 +87,12 @@ Required fields:
 ```
 
 Returns: a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable
+
+## TASK PROJECTIONS
+
+These transform verbs are advisory task projections of this mode. They are NOT standalone commands and NOT new modes.
+
+- **typeset** (advisory) -- set a type system or target surface; applies the typography and token reference lanes.
+- **colorize** (advisory) -- color a palette or surface; applies the OKLCH and palette reference lanes.
+
+**Negative corpus:** none of these verbs is a `/design:<verb>` command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead.

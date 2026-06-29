@@ -1,25 +1,25 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
-  "description": "Promote typeset/colorize/bolder/quieter/distill/harden/polish/delight as command-visible task projections (not new modes) in command-metadata.json, re",
+  "description": "Eight high-value transform verbs \u2014 `typeset`, `colorize`, `bolder`, `quieter`, `distill`, `delight`, `harden`, `polish` \u2014 are the action words a user",
   "keywords": [
-    "promote",
+    "eight",
+    "high-value",
+    "transform",
+    "verbs",
     "typeset",
     "colorize",
     "bolder",
     "quieter",
     "distill",
+    "delight",
     "harden",
     "polish",
-    "delight",
-    "command-visible",
-    "task",
-    "projections",
-    "new",
-    "modes",
-    "command-metadata",
-    "json"
+    "action",
+    "words",
+    "user"
   ],
-  "lastUpdated": "2026-06-28T12:40:01.344Z",
+  "lastUpdated": "2026-06-29T07:10:49.997Z",
   "specId": "012",
   "folderSlug": "promote-task-verbs",
   "parentChain": [
@@ -31,6 +31,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

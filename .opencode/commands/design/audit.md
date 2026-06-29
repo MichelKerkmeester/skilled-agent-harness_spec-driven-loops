@@ -87,3 +87,12 @@ Required fields:
 ```
 
 Returns: a findings-first design quality report with evidence, scores, owners, and verification notes
+
+## TASK PROJECTIONS
+
+These transform verbs are advisory task projections of this mode. They are NOT standalone commands and NOT new modes.
+
+- **harden** (advisory) -- harden a built surface for production readiness; applies the hardening and remediation reference lanes.
+- **polish** (advisory) -- assess a near-final surface for polish readiness; applies the critique and remediation reference lanes.
+
+**Negative corpus:** none of these verbs is a `/design:<verb>` command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead.

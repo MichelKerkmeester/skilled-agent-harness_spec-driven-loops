@@ -87,3 +87,9 @@ Required fields:
 ```
 
 Returns: a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior
+
+## TASK PROJECTIONS
+
+No transform-verb projections own this mode. Transform verbs route to their owning mode, never to a new command.
+
+**Negative corpus:** none of the design transform verbs is a `/design:<verb>` command.

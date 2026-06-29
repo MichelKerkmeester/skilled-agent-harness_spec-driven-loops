@@ -100,3 +100,14 @@ Required fields:
 ```
 
 Returns: a deliberate interface direction with rationale, visual choices, critique, and handoff notes
+
+## TASK PROJECTIONS
+
+These transform verbs are advisory task projections of this mode. They are NOT standalone commands and NOT new modes.
+
+- **bolder** (advisory) -- push an interface surface louder with stronger hierarchy and committed choices.
+- **quieter** (advisory) -- calm an interface surface while preserving its point of view.
+- **distill** (advisory) -- reduce an interface surface to essentials without removing necessary function.
+- **delight** (advisory) -- add an earned moment to an interface surface through the real-UI loop.
+
+**Negative corpus:** none of these verbs is a `/design:<verb>` command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead.

@@ -20,6 +20,30 @@
     ],
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
+    "taskProjections": [
+      {
+        "verb": "harden",
+        "ownerMode": "audit",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-audit/references/hardening_edge_cases.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "a built surface to harden for production",
+        "fixtures": ["harden.positive", "harden.negative.mint-command"]
+      },
+      {
+        "verb": "polish",
+        "ownerMode": "audit",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-audit/references/critique_hardening.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "a near-final surface to assess for polish readiness",
+        "fixtures": ["polish.positive", "polish.negative.mint-command"]
+      }
+    ],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",
@@ -99,6 +123,30 @@
     ],
     "next": ["/design:interface", "/design:motion", "/design:audit"],
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
+    "taskProjections": [
+      {
+        "verb": "typeset",
+        "ownerMode": "foundations",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-foundations/references/type/typography_system.md",
+          "design-foundations/assets/token_starter.md"
+        ],
+        "requires": "a type system or target surface to set",
+        "fixtures": ["typeset.positive", "typeset.negative.mint-command"]
+      },
+      {
+        "verb": "colorize",
+        "ownerMode": "foundations",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-foundations/references/color/oklch_workflow.md",
+          "design-foundations/references/color/palette_theming.md"
+        ],
+        "requires": "a palette or surface to color",
+        "fixtures": ["colorize.positive", "colorize.negative.mint-command"]
+      }
+    ],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",
@@ -246,6 +294,52 @@
         "surface": "real-world reference critique tooling; not surfaced to the caller"
       }
     ],
+    "taskProjections": [
+      {
+        "verb": "bolder",
+        "ownerMode": "interface",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-interface/references/design-process/design_principles.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "an interface surface to push louder",
+        "fixtures": ["bolder.positive", "bolder.negative.mint-command"]
+      },
+      {
+        "verb": "quieter",
+        "ownerMode": "interface",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-interface/references/design-process/design_principles.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "an interface surface to calm",
+        "fixtures": ["quieter.positive", "quieter.negative.mint-command"]
+      },
+      {
+        "verb": "distill",
+        "ownerMode": "interface",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-interface/references/design-process/variation_diversity.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "an interface surface to reduce to essentials",
+        "fixtures": ["distill.positive", "distill.negative.mint-command"]
+      },
+      {
+        "verb": "delight",
+        "ownerMode": "interface",
+        "strictness": "advisory",
+        "referenceSources": [
+          "design-interface/references/design-process/real_ui_loop.md",
+          "design-audit/references/transform_remediation.md"
+        ],
+        "requires": "an interface surface to add an earned moment to",
+        "fixtures": ["delight.positive", "delight.negative.mint-command"]
+      }
+    ],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",
@@ -325,6 +419,7 @@
     ],
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
+    "taskProjections": [],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",
@@ -404,6 +499,7 @@
     ],
     "next": ["/design:interface", "/design:foundations", "/design:audit"],
     "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+    "taskProjections": [],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",

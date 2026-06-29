@@ -89,3 +89,9 @@ File outputs:
 ```
 
 Returns: a Style Reference DESIGN.md and extracted token data under the output directory
+
+## TASK PROJECTIONS
+
+No transform-verb projections own this mode. Transform verbs route to their owning mode, never to a new command.
+
+**Negative corpus:** none of the design transform verbs is a `/design:<verb>` command.

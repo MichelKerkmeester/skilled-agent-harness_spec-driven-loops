@@ -17,6 +17,7 @@ const REQUIRED_FIELDS = [
   "examples",
   "next",
   "proofFields",
+  "taskProjections",
   "pipeline",
   "registerPolicy",
   "deferToHubWhen",
@@ -45,6 +46,7 @@ const DRIFT_FIELDS = [
   "user-intent",
   "sibling-discriminator",
   "task-lanes",
+  "taskProjections",
   "preconditions",
   "pipeline",
   "register",
@@ -84,6 +86,9 @@ const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
 const INTERFACE_COMMAND = "/design:interface";
 const INTERFACE_AUDIT_ROUTE = "/design:audit";
 const INTERFACE_TASK_CLASSES = new Set(["sibling-command", "argument", "internal", "hidden"]);
+const TASK_PROJECTION_STRICTNESS = new Set(["advisory"]);
+const TASK_PROJECTION_FIELDS = ["verb", "ownerMode", "strictness", "referenceSources", "requires", "fixtures"];
+const TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER = "Negative corpus:";
 const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
@@ -145,10 +150,11 @@ async function main() {
     readFile(interfaceSkillUrl, "utf8")
   ]);
   const workflowModes = readWorkflowModes(registry);
+  const registryAliasesByMode = readRegistryAliasesByMode(registry);
   const interfaceIntentLanes = parseInterfaceIntentSignalKeys(interfaceSkillSource);
   const metadataErrors = [
     ...validateInterfaceIntentSignalKeys(interfaceIntentLanes),
-    ...validateMetadata(metadata, workflowModes, interfaceIntentLanes)
+    ...validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode)
   ];
 
   if (metadataErrors.length > 0) {
@@ -198,7 +204,28 @@ function readWorkflowModes(registry) {
   );
 }
 
-function validateMetadata(metadata, workflowModes, interfaceIntentLanes) {
+function readRegistryAliasesByMode(registry) {
+  const aliasesByMode = new Map();
+
+  if (!registry || !Array.isArray(registry.modes)) {
+    return aliasesByMode;
+  }
+
+  for (const mode of registry.modes) {
+    if (typeof mode?.workflowMode !== "string" || mode.workflowMode.length === 0) {
+      continue;
+    }
+
+    aliasesByMode.set(
+      mode.workflowMode,
+      Array.isArray(mode.aliases) ? mode.aliases.filter((alias) => typeof alias === "string") : []
+    );
+  }
+
+  return aliasesByMode;
+}
+
+function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode) {
   const errors = [];
 
   if (!Array.isArray(metadata)) {
@@ -208,6 +235,8 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes) {
   const seenCommands = new Map();
   const expectedCommands = new Set(COMMANDS);
   const seenAliases = new Map();
+  const seenTaskProjectionVerbs = new Map();
+  const workflowCommandSet = commandSetForModes(workflowModes);
 
   for (const record of metadata) {
     const command = typeof record?.command === "string" ? record.command : "<missing command>";
@@ -256,6 +285,17 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes) {
     errors.push(...validateOutputContract(record, command));
     errors.push(...validateDiscriminator(record, command, workflowModes));
     errors.push(...validatePipeline(record, command, expectedCommands));
+    errors.push(
+      ...validateTaskProjections(
+        record,
+        command,
+        workflowModes,
+        expectedCommands,
+        workflowCommandSet,
+        seenTaskProjectionVerbs,
+        registryAliasesByMode
+      )
+    );
 
     if (command === INTERFACE_COMMAND) {
       errors.push(...validateInterfaceTasks(record, command, interfaceIntentLanes, expectedCommands));
@@ -367,6 +407,113 @@ function validateInterfaceTasks(record, command, interfaceIntentLanes, commandSe
     errors.push(
       `${command}: tasks lane set must match interface INTENT_SIGNALS missing=[${missingLanes.join(",")}] extra=[${extraLanes.join(",")}]`
     );
+  }
+
+  return errors;
+}
+
+function validateTaskProjections(
+  record,
+  command,
+  workflowModes,
+  expectedCommands,
+  workflowCommandSet,
+  seenVerbs,
+  registryAliasesByMode
+) {
+  const errors = [];
+  const projections = record?.taskProjections;
+
+  if (!Array.isArray(projections)) {
+    return [`${command}: taskProjections must be an array`];
+  }
+
+  projections.forEach((projection, index) => {
+    const label = `${command}: taskProjections[${index}]`;
+
+    if (!isPlainObject(projection)) {
+      errors.push(`${label} must be an object`);
+      return;
+    }
+
+    for (const field of TASK_PROJECTION_FIELDS) {
+      if (!Object.hasOwn(projection, field)) {
+        errors.push(`${label}.${field} is required`);
+      }
+    }
+
+    const verb = typeof projection.verb === "string" ? projection.verb.trim() : "";
+    if (verb.length === 0) {
+      errors.push(`${label}.verb must be a non-empty string`);
+    } else {
+      if (projection.verb !== verb || !/^[a-z][a-z-]*$/.test(verb)) {
+        errors.push(`${label}.verb must use lowercase letters and hyphens`);
+      }
+
+      const priorOwner = seenVerbs.get(verb);
+      if (priorOwner) {
+        errors.push(`${label}.verb ${verb} is already owned by ${priorOwner}`);
+      } else {
+        seenVerbs.set(verb, command);
+      }
+
+      const projectedCommand = `/design:${verb}`;
+      if (expectedCommands.has(projectedCommand) || workflowCommandSet.has(projectedCommand)) {
+        errors.push(`${label}.verb ${verb} must not be minted as ${projectedCommand}`);
+      }
+
+      errors.push(...validateTaskProjectionAliasCollisions(label, record?.ownerMode, verb, registryAliasesByMode));
+    }
+
+    if (typeof projection.ownerMode !== "string" || projection.ownerMode.trim().length === 0) {
+      errors.push(`${label}.ownerMode must be a non-empty string`);
+    } else {
+      if (projection.ownerMode !== record?.ownerMode) {
+        errors.push(`${label}.ownerMode must match record ownerMode ${record?.ownerMode ?? "<missing>"}`);
+      }
+
+      if (!workflowModes.has(projection.ownerMode)) {
+        errors.push(`${label}.ownerMode must match a workflowMode`);
+      }
+    }
+
+    if (typeof projection.strictness !== "string" || !TASK_PROJECTION_STRICTNESS.has(projection.strictness)) {
+      errors.push(`${label}.strictness must be one of ${[...TASK_PROJECTION_STRICTNESS].join(",")}`);
+    }
+
+    for (const field of ["referenceSources", "fixtures"]) {
+      if (!isNonEmptyStringArray(projection[field])) {
+        errors.push(`${label}.${field} must be a non-empty string array`);
+      } else {
+        errors.push(...validateUniqueArray(label, field, projection[field]));
+      }
+    }
+
+    if (typeof projection.requires !== "string" || projection.requires.trim().length === 0) {
+      errors.push(`${label}.requires must be a non-empty string`);
+    }
+  });
+
+  return errors;
+}
+
+function validateTaskProjectionAliasCollisions(label, ownerMode, verb, registryAliasesByMode) {
+  const errors = [];
+
+  if (typeof ownerMode !== "string" || ownerMode.length === 0) {
+    return errors;
+  }
+
+  for (const [workflowMode, aliases] of registryAliasesByMode) {
+    if (workflowMode === ownerMode) {
+      continue;
+    }
+
+    for (const alias of aliases) {
+      if (containsWholeWord(alias, verb)) {
+        errors.push(`${label}.verb ${verb} collides with ${workflowMode} alias "${alias}"`);
+      }
+    }
   }
 
   return errors;
@@ -865,6 +1012,7 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedPreconditionsDrift(record, markdown));
     drift.push(...expectedPipelineDrift(record, markdown));
     drift.push(...expectedRegisterDrift(record, markdown));
+    drift.push(...expectedTaskProjectionsDrift(record, markdown));
 
     if (record.command === INTERFACE_COMMAND) {
       drift.push(...expectedInterfaceTaskLanesDrift(record, markdown));
@@ -872,6 +1020,63 @@ async function collectSurfaceDrift(records) {
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedTaskProjectionsDrift(record, markdown) {
+  const section = extractTaskProjectionsSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "taskProjections",
+        command: record.command,
+        field: "taskProjections",
+        expected: "## TASK PROJECTIONS",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const projections = Array.isArray(record.taskProjections) ? record.taskProjections : [];
+
+  for (const projection of projections) {
+    if (!isPlainObject(projection) || typeof projection.verb !== "string" || projection.verb.length === 0) {
+      continue;
+    }
+
+    if (!containsWholeWord(section, projection.verb)) {
+      drift.push({
+        kind: "taskProjections",
+        command: record.command,
+        field: "taskProjections",
+        expected: projection.verb,
+        actual: "<missing projection verb>"
+      });
+    }
+  }
+
+  if (projections.length === 0 && !containsPhrase(section, "No transform-verb projections")) {
+    drift.push({
+      kind: "taskProjections",
+      command: record.command,
+      field: "taskProjections",
+      expected: "No transform-verb projections",
+      actual: "<missing empty-projection notice>"
+    });
+  }
+
+  if (!section.includes(TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER)) {
+    drift.push({
+      kind: "taskProjections",
+      command: record.command,
+      field: "taskProjections",
+      expected: TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER,
+      actual: "<missing negative corpus marker>"
+    });
+  }
+
+  return drift;
 }
 
 function expectedInterfaceTaskLanesDrift(record, markdown) {
@@ -1475,6 +1680,10 @@ function extractInterfaceTaskLanesSection(markdown) {
   return extractNamedSection(markdown, "INTERFACE TASK LANES");
 }
 
+function extractTaskProjectionsSection(markdown) {
+  return extractNamedSection(markdown, "TASK PROJECTIONS");
+}
+
 function extractNamedSection(markdown, sectionName) {
   const sectionMatch = markdown.match(new RegExp(`^##\\s+(?:\\d+\\.\\s+)?${escapeRegExp(sectionName)}\\s*$`, "im"));
   if (!sectionMatch || typeof sectionMatch.index !== "number") {
@@ -1540,6 +1749,14 @@ function hasSkCodeHandoffLine(section) {
 
 function containsPhrase(value, phrase) {
   return value.toLowerCase().includes(phrase.toLowerCase());
+}
+
+function containsWholeWord(value, word) {
+  if (typeof value !== "string" || typeof word !== "string" || word.length === 0) {
+    return false;
+  }
+
+  return new RegExp(`(^|[^a-z0-9-])${escapeRegExp(word)}([^a-z0-9-]|$)`, "i").test(value);
 }
 
 function escapeRegExp(value) {
