@@ -137,6 +137,7 @@ const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
 const RESPAWN_REAP_GRACE_MS = 7000;
+const PID_IDENTITY_START_TOLERANCE_MS = 15000;
 let childProcess = null;
 let ownerLeasePid = null;
 let launchStarted = false;
@@ -509,6 +510,45 @@ function verifyPidIdentity({ pid, recordedCmdlineBasename, recordedStartMs, tole
   return { ok: true, reason: 'match' };
 }
 
+function readProcessCmdline(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  if (process.platform === 'linux') {
+    try {
+      return fs.readFileSync(`/proc/${pid}/cmdline`, 'utf8');
+    } catch {
+      return null;
+    }
+  }
+  const result = spawnSync('ps', ['-p', String(pid), '-o', 'command='], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  if (result.status !== 0 || !result.stdout) return null;
+  return result.stdout.trim();
+}
+
+function readProcessStartMs(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  const result = spawnSync('ps', ['-p', String(pid), '-o', 'lstart='], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  if (result.status !== 0 || !result.stdout) return null;
+  const parsed = Date.parse(result.stdout.trim());
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseIsoMs(value) {
+  if (typeof value !== 'string' || value.length === 0) return null;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function ageSinceIsoMs(value, nowMs = Date.now()) {
+  const parsed = parseIsoMs(value);
+  return parsed === null ? null : nowMs - parsed;
+}
+
 function readParentPid(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return null;
   if (process.platform === 'linux') {
@@ -705,6 +745,80 @@ function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
 }
 
+function resolveLeaseSocketPath(leaseResult) {
+  if (typeof leaseResult?.socketPath === 'string' && leaseResult.socketPath.length > 0) {
+    return leaseResult.socketPath;
+  }
+  try {
+    const { getIpcSocketPath } = loadBridgeModule();
+    if (typeof getIpcSocketPath !== 'function') return null;
+    return getIpcSocketPath('mk-code-index', { dbDir: resolvedDbDir() }) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function probeLeaseSocket(socketPath) {
+  if (typeof socketPath !== 'string' || socketPath.length === 0) {
+    return { status: 'dead', kind: 'unknown' };
+  }
+  const { probeExistingService } = loadBridgeModule();
+  if (typeof probeExistingService !== 'function') {
+    return { status: 'dead', kind: 'unknown' };
+  }
+  return probeExistingService(socketPath);
+}
+
+function isSocketServing(probeResult) {
+  return probeResult?.status === 'alive' && probeResult?.kind === 'json-rpc-reply';
+}
+
+async function bridgeToKnownServingSocket(socketPath, ownerPid, reason = 'serving') {
+  process.stderr.write(`[mk-code-index-launcher] bridging to lease holder pid=${ownerPid} socket=${socketPath}\n`);
+  await Promise.resolve(bridgeStdioThroughSessionProxy(socketPath));
+  return { action: 'bridge', reason, socketPath };
+}
+
+function buildOwnerReclaimInput(ownerLease, socketServing, nowMs = Date.now()) {
+  const childSpawnedAtMs = parseIsoMs(ownerLease.childSpawnedAtIso);
+  const heartbeatAgeMs = ageSinceIsoMs(ownerLease.lastHeartbeatIso, nowMs);
+  const heartbeatTtlMs = Number.isFinite(ownerLease.ttlMs) && ownerLease.ttlMs > 0 ? ownerLease.ttlMs : 60000;
+  return {
+    pidAlive: processLiveness(ownerLease.ownerPid) !== 'dead',
+    socketServing,
+    childSpawnedAtMs,
+    heartbeatAgeMs,
+    nowMs,
+    graceMs: resolveStartupGraceMs(),
+    maxInitMs: resolveMaxInitMs(),
+    heartbeatTtlMs,
+  };
+}
+
+async function classifyLiveOwnerReclaim(ownerLease, leaseResult) {
+  if (!reclaimDeadSocketEnabled()) return null;
+  if (!ownerLease || ownerLease.ownerPid !== leaseResult.ownerPid) return null;
+
+  const socketPath = resolveLeaseSocketPath(leaseResult) ?? resolveLeaseSocketPath(ownerLease);
+  const probe = await probeLeaseSocket(socketPath);
+  const input = buildOwnerReclaimInput(ownerLease, isSocketServing(probe));
+  return {
+    decision: classifyOwnerReclaim(input),
+    input,
+    probe,
+    socketPath,
+  };
+}
+
+async function reportRecheckAfterProbe(leaseResult, socketPath) {
+  const reprobe = await probeLeaseSocket(socketPath);
+  if (isSocketServing(reprobe)) {
+    return bridgeToKnownServingSocket(socketPath, leaseResult.ownerPid, 'recheck-serving');
+  }
+  writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-recheck)');
+  return { action: 'report', reason: 'recheck', socketPath };
+}
+
 async function waitForPidExit(pid, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() <= deadline) {
@@ -714,13 +828,50 @@ async function waitForPidExit(pid, timeoutMs) {
   return processLiveness(pid) === 'dead';
 }
 
-async function reapOwnerBeforeRespawn(ownerPid) {
+async function reapOwnerBeforeRespawn(ownerPid, options = {}) {
   const liveness = processLiveness(ownerPid);
   if (liveness === 'unknown-eperm') {
     return { allowed: false, reason: 'owner-liveness-unknown-eperm' };
   }
   if (liveness === 'dead') {
     return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  if (reclaimDeadSocketEnabled()) {
+    const currentOwnerLeasePath = ownerLeasePath();
+    const ownerLease = options.ownerLease ?? readOwnerLeaseFile(currentOwnerLeasePath);
+    const uidMatches = ownerUidMatches({
+      leasePath: currentOwnerLeasePath,
+      recordedUid: ownerLease?.uid,
+      currentUid: process.getuid?.(),
+      statUid: (targetLeasePath) => {
+        try {
+          return fs.statSync(targetLeasePath).uid;
+        } catch {
+          return null;
+        }
+      },
+    });
+    if (!uidMatches) {
+      launcherDiagnostic('foreign-owner', { ownerPid });
+      return { allowed: false, reason: 'foreign-owner' };
+    }
+
+    const recordedStartMs = parseIsoMs(ownerLease?.childSpawnedAtIso ?? ownerLease?.startedAtIso);
+    const identity = verifyPidIdentity({
+      pid: ownerPid,
+      recordedCmdlineBasename: path.basename(ownerLease?.executablePath ?? process.execPath),
+      recordedStartMs,
+      toleranceMs: PID_IDENTITY_START_TOLERANCE_MS,
+      lookups: {
+        readCmdline: readProcessCmdline,
+        readStartMs: readProcessStartMs,
+      },
+    });
+    if (!identity.ok) {
+      launcherDiagnostic('pid-reuse-suspected', { ownerPid, identity: identity.reason });
+      return { allowed: false, reason: 'pid-reuse-suspected' };
+    }
   }
 
   log(`confirmed-dead socket; reaping recorded code-index owner pid ${ownerPid} before respawn`);
@@ -765,7 +916,15 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
       return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
     }
 
-    const reapResult = await reapOwnerBeforeRespawn(ownerPid);
+    if (reclaimDeadSocketEnabled()) {
+      const finalProbe = await probeLeaseSocket(decision.socketPath);
+      if (isSocketServing(finalProbe)) {
+        launcherDiagnostic('late-serving-veto', { ownerPid, socketPath: decision.socketPath });
+        return bridgeToKnownServingSocket(decision.socketPath, ownerPid, 'late-serving-veto');
+      }
+    }
+
+    const reapResult = await reapOwnerBeforeRespawn(ownerPid, { ownerLease: currentOwner });
     if (!reapResult.allowed) {
       log(`dead-socket respawn skipped; ${reapResult.reason} for ownerPid=${ownerPid}`);
       writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${reapResult.reason})`);
@@ -785,6 +944,9 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
     buildIfNeeded([]);
     writeLeaseFile();
     launchServer();
+    if (reclaimDeadSocketEnabled()) {
+      launcherDiagnostic('dead-socket-reclaimed', { ownerPid, socketPath: decision.socketPath });
+    }
     return { action: 'respawn', reason: 'spawned', socketPath: decision.socketPath };
   } finally {
     if (bootstrapLockHeld) {
@@ -794,6 +956,45 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
 }
 
 async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
+  const ownerReclaim = await classifyLiveOwnerReclaim(options.ownerLease, leaseResult);
+  if (ownerReclaim) {
+    if (ownerReclaim.decision === 'serving') {
+      return bridgeToKnownServingSocket(ownerReclaim.socketPath, leaseResult.ownerPid);
+    }
+    if (ownerReclaim.decision === 'still-starting') {
+      const childAgeMs = ownerReclaim.input.childSpawnedAtMs === null
+        ? null
+        : ownerReclaim.input.nowMs - ownerReclaim.input.childSpawnedAtMs;
+      launcherDiagnostic('still-starting', {
+        ownerPid: leaseResult.ownerPid,
+        socketPath: ownerReclaim.socketPath,
+        childAgeMs,
+        graceMs: ownerReclaim.input.graceMs,
+      });
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-still-starting)');
+      return { action: 'report', reason: 'still-starting', socketPath: ownerReclaim.socketPath };
+    }
+    if (ownerReclaim.decision === 'recheck') {
+      return reportRecheckAfterProbe(leaseResult, ownerReclaim.socketPath);
+    }
+    if (ownerReclaim.decision === 'reclaimable') {
+      const respawnResult = await respawnAfterDeadSocket(
+        leaseResult,
+        { action: 'respawn', reason: 'owner-reclaimable', socketPath: ownerReclaim.socketPath },
+        { respawnChildPid: leaseResult.ownerPid, ownerLease: options.ownerLease },
+      );
+      emitLeaseMetric(
+        leaseMetricClassForTransition(respawnResult.action === 'respawn' ? 'respawned' : 'heldByOther'),
+        {
+          ownerPid: leaseResult.ownerPid,
+          reason: respawnResult.reason,
+          socketPath: respawnResult.socketPath,
+        },
+      );
+      return respawnResult;
+    }
+  }
+
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
   const decision = await maybeBridgeLeaseHolder({
     serviceName: 'mk-code-index',
@@ -1124,6 +1325,7 @@ async function launcherMain() {
   // against the same DB (mirrors the dead-socket respawn reap and the sibling
   // launchers' adopt-or-reap guards).
   let reclaimedOrphanPid = null;
+  let reclaimedOrphanLease = null;
 
   try {
     installSignalHandlers();
@@ -1142,6 +1344,7 @@ async function launcherMain() {
           && ownerLeaseResult.reclaimed.ownerPid > 0
           && ownerLeaseResult.reclaimed.ownerPid !== process.pid) {
         reclaimedOrphanPid = ownerLeaseResult.reclaimed.ownerPid;
+        reclaimedOrphanLease = ownerLeaseResult.reclaimed;
       }
       if (!ownerLeaseResult.acquired) {
         // A live owner already holds the single-writer lease. Bridge this
@@ -1156,6 +1359,7 @@ async function launcherMain() {
           socketPath: typeof ownerLeaseResult.holder.socketPath === 'string' ? ownerLeaseResult.holder.socketPath : null,
         }, {
           respawnChildPid: ownerLeaseResult.holder.ownerPid,
+          ownerLease: ownerLeaseResult.holder,
         });
         return;
       }
@@ -1250,7 +1454,7 @@ async function launcherMain() {
     // winning launcher reaps + respawns; a still-live orphan would otherwise keep
     // writing the SQLite DB alongside the new daemon.
     if (Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0) {
-      const reapResult = await reapOwnerBeforeRespawn(reclaimedOrphanPid);
+      const reapResult = await reapOwnerBeforeRespawn(reclaimedOrphanPid, { ownerLease: reclaimedOrphanLease });
       if (!reapResult.allowed) {
         log(`reclaimed orphan daemon pid ${reclaimedOrphanPid} could not be reaped (${reapResult.reason}); not spawning a second daemon`);
         process.exit(0);
