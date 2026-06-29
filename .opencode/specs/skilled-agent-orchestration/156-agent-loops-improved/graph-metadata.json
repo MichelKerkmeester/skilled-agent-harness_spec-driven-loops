@@ -12,7 +12,8 @@
     "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit",
     "skilled-agent-orchestration/156-agent-loops-improved/006-skill-interconnection",
     "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation",
-    "skilled-agent-orchestration/156-agent-loops-improved/008-testing"
+    "skilled-agent-orchestration/156-agent-loops-improved/008-testing",
+    "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -46,6 +47,8 @@
       ".opencode/plugins/mk-goal.js",
       ".opencode/commands/goal.md",
       "001-reference-research/research/research.md",
+      "review/review-report.md",
+      "review/mimo-campaign-report.md",
       "spec.md"
     ],
     "entities": [
@@ -59,6 +62,18 @@
         "name": "goal.md",
         "kind": "doc",
         "path": ".opencode/commands/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mimo-campaign-report.md",
+        "kind": "doc",
+        "path": "review/mimo-campaign-report.md",
         "source": "derived"
       },
       {
@@ -106,15 +121,15 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:00:31Z",
-    "last_save_at": "2026-06-29T10:37:56.407Z",
+    "last_save_at": "2026-06-29T10:46:17.586Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e040c47faf7527df9093df3f0528abfbab03cde12c84845799dc98739f01d1bf",
+    "source_fingerprint": "sha256:b8a92cebd38b8fe32984b6fa385a3cfdad4a8a78f9f042c85016ee445a6e9d6b",
     "source_doc_hashes": {
-      "spec.md": "548203f26b8cad446b1b0330b63e8576ee533c1a8e85f12a08221ac948bbd54b"
+      "spec.md": "306c82cbc17e083e7af7d178b96563e892778fd271b60e5307495fc2105db2b1"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-29T05:15:17.527Z"

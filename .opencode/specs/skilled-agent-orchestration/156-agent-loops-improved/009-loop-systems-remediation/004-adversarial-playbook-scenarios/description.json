@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/004-adversarial-playbook-scenarios",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "2-3",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-06-29T11:35:04.672Z",
+  "specId": "004",
+  "folderSlug": "adversarial-playbook-scenarios",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "009-loop-systems-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

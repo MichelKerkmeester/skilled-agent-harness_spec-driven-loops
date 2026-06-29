@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model-benchmark",
+      "benchmark_run",
+      "reducer ledger",
+      "agent-improvement-state",
+      "implementation",
+      "state-log",
+      "tasks"
+    ],
+    "key_topics": [
+      "model-benchmark",
+      "reducer",
+      "ledger",
+      "agent-improvement-state",
+      "implementation",
+      "state-log",
+      "tasks",
+      "autonomous",
+      "workflow",
+      "sends",
+      "benchmark",
+      "outputs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/implementation-summary.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_model-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/003-model-benchmark-reducer-ledger/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-host.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Filled Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Direct Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The autonomous model-benchmark workflow sends benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{runlabel}`, outside `{specfolder}/improvement`",
+    "created_at": "2026-06-29T10:43:18Z",
+    "last_save_at": "2026-06-29T11:04:27.222Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c07bcc0aeda593b06e31f7655eafb1baaac3a708cdd805bd41fa3a9d7decb143",
+    "source_doc_hashes": {
+      "spec.md": "91bc7e0ac70c83e8004e96d4b775269cf69c60c3e342d7ece44f5b69c8be7778",
+      "plan.md": "4c09d76ccd0678da32a2204a437c0c94062bcef48d6a65d339db2eac39c99a75",
+      "tasks.md": "5443ddba1d146c9ac68990ce432d92646444696196a3bc25e3dbc4a8b5862741",
+      "implementation-summary.md": "17ac51956c1baf3ca1f903b52df3783ab074349399f3d9898de6d42774fa81b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

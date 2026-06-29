@@ -103,6 +103,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | 006 | `006-skill-interconnection` | Advisor routing projection | Complete |
 | 007 | `007-ux-observability-automation` | Dashboards, telemetry heartbeat, run-now, dry-run, observability envelope, memory-upsert | Complete |
 | 008 | `008-testing` | Hermetic test isolation, record-replay cassette harness | Complete |
+| 009 | `009-loop-systems-remediation` | Remediate deep-review deferred findings + MiMo-campaign recs (rollback hash-guard, promotion safety, benchmark ledger, adversarial playbook scenarios, tightened pass-criteria, test-adequacy) | In Progress |
 
 ### Phase Transition Rules
 
@@ -116,6 +117,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001 | 002 | Ranked recommendation backlog synthesized | `001-reference-research/research/research.md` present |
+| 008 | 009 | Implementation phases shipped + deep-reviewed; remediation backlog triaged | `review/review-report.md` + `review/mimo-campaign-report.md` present |
 <!-- /ANCHOR:phase-map -->
 
 ---

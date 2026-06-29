@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/005-tighten-playbook-pass-criteria",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/005-tighten-playbook-pass-criteria",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tighten playbook pass criteria",
+      "manual testing playbook",
+      "inspection-only loophole",
+      "deep-loop-runtime",
+      "implementation plan",
+      "tasks",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "tighten",
+      "playbook",
+      "pass",
+      "criteria",
+      "manual",
+      "testing",
+      "inspection-only",
+      "loophole",
+      "deep-loop-runtime",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "single-loop-telemetry-heartbeat.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-lifecycle.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tighten Playbook Pass Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
+    "created_at": "2026-06-29T10:43:20Z",
+    "last_save_at": "2026-06-29T11:35:05.168Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd2ada321f789afb994d476e325f176857cb3b97522bc7fd06d03d24c95122c4",
+    "source_doc_hashes": {
+      "spec.md": "2548b499d1fdbeddbc8d8489092846d01c6c2c1b0980a881d3d635ec2f369d4c",
+      "plan.md": "ed9a3247f02426f3cddc6be90a0a9638fd7c33822cf00ba0593f1ba9001e7964",
+      "tasks.md": "041c51aae6dbd0ef48523aad6ac9a214596b794165e80ff5b37ca4a137fb6b79",
+      "implementation-summary.md": "f93bd333c3f38bc1f0a94d5be1b215a449319f2be91fd7e6a5a8e660d9e92f04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
