@@ -255,7 +255,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
 - ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
-- ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context_loading_contract.md`, requires `../shared/assets/context_loaded_card.md` before recommendations, and requires `../shared/assets/proof_of_application_card.md` before any ready claim.
+- ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context_loading_contract.md`, requires `../shared/assets/context_loaded_card.md` before recommendations, requires `../shared/assets/proof_of_application_card.md` before any ready claim, and presents a valid `DESIGN_BOUNDARY_PROOF v1` envelope at the dispatch boundary per `../shared/design_dispatch_boundary.md`.
 - ✅ Any handoff to `sk-code` includes the required build manifest with locked values, signature moves, reuse list, open risks and never-change constraints.
 
 ---
