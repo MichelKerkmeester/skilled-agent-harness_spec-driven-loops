@@ -80,7 +80,7 @@ describe('design proof token lint — dispatch fixtures', () => {
 });
 
 describe('design proof token lint — route-gold guard', () => {
-  it('keeps the existing sk-design hub route headline at 13 pass, 5 known gaps, 0 regressions', () => {
+  it('keeps the existing sk-design hub route headline at 23 pass, 5 known gaps, 0 regressions', () => {
     const rows = loadPairs('sk-design').map(({ publicFixture, privateFixture }) => {
       const routerResult = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
       return scoreScenario({
@@ -102,8 +102,8 @@ describe('design proof token lint — route-gold guard', () => {
     const routeRows = report.scenarioRows.filter((row: any) => row.dims?.hubRoute?.applicable);
     const passed = routeRows.filter((row: any) => row.dims.hubRoute.pass).length;
 
-    expect(routeRows).toHaveLength(18);
-    expect(passed).toBe(13);
+    expect(routeRows).toHaveLength(28);
+    expect(passed).toBe(23);
     expect(report.gate.hubRoute.knownGaps).toBe(5);
     expect(report.gate.hubRoute.regressions).toBe(0);
     expect(report.gate.hubRoute.failed).toBe(false);
