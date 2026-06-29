@@ -12,9 +12,21 @@ version: 1.0.0.0
 
 # Audit Evidence Worksheet
 
-Use this worksheet before scoring and before writing findings. It carries evidence labels into the report so confirmed, inferred and not-assessed never blur together.
+A fill-in worksheet for carrying evidence labels through audit scoring, findings and owner handoff.
 
-## 1. Target
+## 1. OVERVIEW
+
+### Purpose
+
+Carries evidence labels into the report so confirmed, inferred and not-assessed never blur together.
+
+### Usage
+
+Use this worksheet before scoring and before writing findings. Fill each table from the available source, rendered UI, design artifact and deterministic scan evidence.
+
+---
+
+## 2. Target
 
 | Field | Value |
 | --- | --- |
@@ -23,7 +35,7 @@ Use this worksheet before scoring and before writing findings. It carries eviden
 | Why this target | User request, release gate or sampled surface |
 | Evidence status | confirmed, inferred or not-assessed |
 
-## 2. Evidence Inventory
+## 3. Evidence Inventory
 
 | Evidence Type | Available | Source | Label |
 | --- | --- | --- | --- |
@@ -32,7 +44,7 @@ Use this worksheet before scoring and before writing findings. It carries eviden
 | Design artifact | yes/no | file, frame or image | confirmed / inferred / not-assessed |
 | Deterministic scan | yes/no | command and exit code | confirmed / not-assessed |
 
-## 3. Dimension Coverage
+## 4. Dimension Coverage
 
 | Dimension | Evidence | Label | What Would Confirm |
 | --- | --- | --- | --- |
@@ -42,7 +54,7 @@ Use this worksheet before scoring and before writing findings. It carries eviden
 | Theming |  | confirmed / inferred / not-assessed |  |
 | Anti-Patterns |  | confirmed / inferred / not-assessed |  |
 
-## 4. Probe Ledger
+## 5. Probe Ledger
 
 | Probe | Target | Result | Label | Impact If Failed |
 | --- | --- | --- | --- | --- |
@@ -53,13 +65,13 @@ Use this worksheet before scoring and before writing findings. It carries eviden
 | Responsive stress |  | pass/fail/skip | confirmed / inferred / not-assessed |  |
 | Anti-pattern scan |  | pass/fail/skip | confirmed / inferred / not-assessed |  |
 
-## 5. Finding Handoff Rows
+## 6. Finding Handoff Rows
 
 | Finding | Severity | Label | Evidence | What Would Confirm | Owner |
 | --- | --- | --- | --- | --- | --- |
 |  | P0/P1/P2/P3 | confirmed / inferred |  |  | interface/foundations/motion/sk-code |
 
-## 6. Use Rules
+## 7. Use Rules
 
 - Confirmed means the audit read real source, real render, real artifact or real command output.
 - Inferred means the audit has partial visual or contextual evidence and names what would confirm it.

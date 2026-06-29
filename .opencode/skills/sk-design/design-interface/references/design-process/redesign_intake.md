@@ -14,7 +14,25 @@ version: 1.0.0.0
 
 Use this before changing an existing interface. A redesign is not a blank page unless the brief says so.
 
-## 1. Classify The Redesign
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Classifies existing-interface redesign work as greenfield, preserve, or overhaul before visual changes begin.
+
+### When to Use
+
+Use before changing layout, tokens, navigation, forms, content structure, or other visible behavior in an existing interface.
+
+### Core Principle
+
+Redesign starts by deciding what must remain stable; protected contracts need explicit approval before they move.
+
+---
+
+## 2. Classify The Redesign
 
 Pick one lane before visual decisions:
 
@@ -26,7 +44,7 @@ Pick one lane before visual decisions:
 
 When the lane is ambiguous, ask one focused question: `Should this preserve the existing user path, or may I restructure it?`
 
-## 2. Audit Before Touching
+## 3. Audit Before Touching
 
 Before changing layout or tokens, capture:
 
@@ -38,7 +56,7 @@ Before changing layout or tokens, capture:
 - Existing IA, content blocks, reusable patterns and SEO-visible headings.
 - Components to preserve, components to retire and components to rebuild.
 
-## 3. Never Silently Change
+## 4. Never Silently Change
 
 These require explicit approval before changing:
 
@@ -51,7 +69,7 @@ These require explicit approval before changing:
 
 If a design improvement depends on one of these changes, state it as a required decision rather than hiding it inside the visual pass.
 
-## 4. Lane-Specific Moves
+## 5. Lane-Specific Moves
 
 ### Greenfield
 
@@ -71,7 +89,7 @@ If a design improvement depends on one of these changes, state it as a required 
 - Keep recognizers users rely on, such as account areas, pricing labels or support paths.
 - Provide a migration note for any approved URL, nav or form change.
 
-## 5. Output Contract
+## 6. Output Contract
 
 Return a compact intake before design work:
 

@@ -12,11 +12,21 @@ version: 1.0.0.0
 
 # Register Card
 
-Fill this in once at the start of a design task, before the mode workflow runs. It resolves the surface to Brand or Product and hands each mode its dial defaults. Full rationale: `../register.md`.
+A one-page card for resolving Brand versus Product posture before mode work starts.
+
+## 1. OVERVIEW
+
+### Purpose
+
+Sets the register for a design surface and records the dial defaults each mode should apply.
+
+### Usage
+
+Fill this in once at the start of a design task, before the mode workflow runs. Use the chosen register to hand each mode its defaults. Full rationale: `../register.md`.
 
 ---
 
-## 1. SET THE REGISTER
+## 2. SET THE REGISTER
 
 | Question | Answer |
 |---|---|
@@ -29,7 +39,7 @@ A mixed product is set per surface, not per project: the marketing page is Brand
 
 ---
 
-## 2. READ THE DIALS
+## 3. READ THE DIALS
 
 Copy the column for the chosen register.
 
@@ -46,7 +56,7 @@ Color strategy: Restrained (Product default) · Committed (Brand identity) · Fu
 
 ---
 
-## 3. HAND OFF TO THE MODES
+## 4. HAND OFF TO THE MODES
 
 - interface: density, motion budget, color strategy
 - foundations: color strategy, token density

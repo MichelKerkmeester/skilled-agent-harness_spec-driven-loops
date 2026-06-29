@@ -13,13 +13,21 @@ version: 1.0.0.0
 
 # Interface Pre-Flight Card
 
-Run this card on a built or planned interface as the last filter before delivery. Every box is binary: it passes or it fails. A single fail means the surface is not done. Fill the surface name and the section count once, then walk every box against the real render at the real breakpoints, not against an assumption.
+A binary pre-flight card for checking a planned or built interface before delivery.
 
-This card is the checkable form of three references. The layout boxes come from [`../references/design-process/mechanical_defaults.md`](../references/design-process/mechanical_defaults.md), the content boxes come from [`../references/design-process/copy_and_mock_data.md`](../references/design-process/copy_and_mock_data.md), and the dial calibration comes from [`../references/design-process/brief_to_dials.md`](../references/design-process/brief_to_dials.md). The Brand-vs-Product posture is set first in [`../../shared/register.md`](../../shared/register.md). Read those for the why, fill this for the check.
+## 1. OVERVIEW
+
+### Purpose
+
+Turns the sk-design delivery standards into a mechanical pass/fail gate for visual, content, motion, responsive and interaction-state readiness.
+
+### Usage
+
+Set the surface context, then walk each section top-to-bottom against the real render at real breakpoints. A single failed or uncheckable box means the surface is not ready to ship.
 
 ---
 
-## 1. SET THE CONTEXT
+## 2. SET THE CONTEXT
 
 | Field | Value |
 |---|---|
@@ -33,7 +41,7 @@ The posture sets how loud the surface may be. The dials set the calibration. Nei
 
 ---
 
-## 2. HERO (mechanical_defaults Section 2)
+## 3. HERO (mechanical_defaults Section 2)
 
 | Check | Pass |
 |---|---|
@@ -47,7 +55,7 @@ The posture sets how loud the surface may be. The dials set the calibration. Nei
 
 ---
 
-## 3. BENTO AND GRID (mechanical_defaults Section 3)
+## 4. BENTO AND GRID (mechanical_defaults Section 3)
 
 | Check | Pass |
 |---|---|
@@ -59,7 +67,7 @@ The posture sets how loud the surface may be. The dials set the calibration. Nei
 
 ---
 
-## 4. EYEBROW AND META-LABEL SWEEP (mechanical_defaults Section 4)
+## 5. EYEBROW AND META-LABEL SWEEP (mechanical_defaults Section 4)
 
 | Check | Pass |
 |---|---|
@@ -75,7 +83,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 5. BUTTON AND FORM CONTRAST (mechanical_defaults Section 5)
+## 6. BUTTON AND FORM CONTRAST (mechanical_defaults Section 5)
 
 | Check | Pass |
 |---|---|
@@ -89,7 +97,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 6. BREAKPOINT OVERFLOW AND MOBILE COLLAPSE (mechanical_defaults Sections 2, 6)
+## 7. BREAKPOINT OVERFLOW AND MOBILE COLLAPSE (mechanical_defaults Sections 2, 6)
 
 | Check | Pass |
 |---|---|
@@ -103,7 +111,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 7. REAL IMAGERY VS PLACEHOLDER (copy_and_mock_data Section 7)
+## 8. REAL IMAGERY VS PLACEHOLDER (copy_and_mock_data Section 7)
 
 | Check | Pass |
 |---|---|
@@ -117,7 +125,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 8. COPY AUDIT (copy_and_mock_data Sections 2, 3, 4, 5, 6)
+## 9. COPY AUDIT (copy_and_mock_data Sections 2, 3, 4, 5, 6)
 
 | Check | Pass |
 |---|---|
@@ -131,7 +139,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 9. MOTION MOTIVATION AND REDUCED MOTION (brief_to_dials Section 5)
+## 10. MOTION MOTIVATION AND REDUCED MOTION (brief_to_dials Section 5)
 
 | Check | Pass |
 |---|---|
@@ -144,7 +152,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 10. AI-TELL SWEEP (the cross-cutting last filter)
+## 11. AI-TELL SWEEP (the cross-cutting last filter)
 
 | Check | Pass |
 |---|---|
@@ -160,7 +168,7 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 11. INTERACTION STATE MATRIX (stateful surfaces only; else N/A)
+## 12. INTERACTION STATE MATRIX (stateful surfaces only; else N/A)
 
 Use this section when the surface has interactive states beyond default, including loading/error/empty/disabled states, async fetch, form submit, multi-step flow, optimistic update, or state-transition motion. If the surface is not stateful, mark N/A and skip the boxes. If it is stateful, every box below must pass.
 
@@ -183,7 +191,7 @@ Use this section when the surface has interactive states beyond default, includi
 
 ---
 
-## 12. VERDICT
+## 13. VERDICT
 
 | Result | Mark |
 |---|---|

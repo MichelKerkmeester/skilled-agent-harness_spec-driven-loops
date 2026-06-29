@@ -13,11 +13,21 @@ version: 1.0.0.0
 
 # Token Starter
 
-Fill this in to scaffold a static token system: an OKLCH color ramp, a type scale and a spacing scale. Read the register first, because it sets the color strategy and the density this scaffold inherits. Channel mechanics, contrast repair and semantic role rules live in the color and type references. This card is the fill-in, not the theory.
+A fill-in scaffold for turning register decisions into concrete color, type, spacing and dark-mode tokens.
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides a structured starting point for a static design-token system keyed to register, color strategy and density.
+
+### Usage
+
+Read the register first, copy its posture answers into this card, then fill the token tables before handing the system to implementation.
 
 ---
 
-## 1. READ THE REGISTER FIRST
+## 2. READ THE REGISTER FIRST
 
 The register decides how much color carries the surface and how dense the system is. Set it on the register card, then copy the two answers here. Full rationale: `../../shared/register.md`.
 
@@ -33,7 +43,7 @@ Restrained keeps one accent at 10 percent or less and is the Product default. Co
 
 ---
 
-## 2. COLOR RAMP
+## 3. COLOR RAMP
 
 Pick the hue from brand evidence, ramp lightness first, then reduce chroma near white and black. Fill OKLCH as `oklch(L C H)` with three decimals on L and C. Tint neutrals toward the brand hue with a tiny chroma, usually `C 0.005` to `0.015`.
 
@@ -68,7 +78,7 @@ Restrained surfaces follow 60-30-10 by visual weight: roughly 60 percent neutral
 
 ---
 
-## 3. TYPE SCALE
+## 4. TYPE SCALE
 
 Set the roles first, then fill sizes from a modular ratio such as 1.2 for dense Product or 1.25 to 1.333 for expressive Brand. Body sits near 16 px, and line height loosens as the column widens.
 
@@ -85,7 +95,7 @@ Keep the readable measure near 45 to 75 characters. Reserve the display role for
 
 ---
 
-## 4. SPACING SCALE
+## 5. SPACING SCALE
 
 Use a 4-point base so dense and airy surfaces both have a value to reach for. Tight gaps group, generous gaps separate and `clamp()` lets section spacing breathe on large screens.
 
@@ -107,7 +117,7 @@ Brand leans toward the generous end with one big move, and Product holds the tig
 
 ---
 
-## 5. DARK MODE (IF NEEDED)
+## 6. DARK MODE (IF NEEDED)
 
 Skip this block when dark mode is not in scope. Dark mode is its own surface system, so redefine semantic tokens and rebuild depth with lightness, not by inverting the light values.
 
@@ -122,7 +132,7 @@ Hold the hue and chroma steady across the surface steps and vary only lightness,
 
 ---
 
-## 6. HAND OFF
+## 7. HAND OFF
 
 When the scaffold is filled, the system is ready for implementation. Confirm before handing to `sk-code`:
 

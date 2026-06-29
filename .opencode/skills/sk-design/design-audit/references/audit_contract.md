@@ -15,7 +15,25 @@ version: 1.0.0.0
 
 This is the output contract for `audit`. It is aligned in spirit with `sk-code-review`: findings first, evidence-backed, severity ordered, and actionable.
 
-## 1. Severity
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines the design audit output contract: severity model, score dimensions, accessibility coverage evidence, findings schema, evidence rules, and report order.
+
+### When to Use
+
+Use when producing or validating `audit` reports that need severity-ordered findings, grounded evidence, accessibility coverage state, and actionable ownership.
+
+### Core Principle
+
+Design audit reports are findings-first and evidence-bound: every severity, score, accessibility claim, and fix must be traceable to observed or explicitly inferred evidence.
+
+---
+
+## 2. Severity
 
 | Severity | Name | Definition | Examples |
 | --- | --- | --- | --- |
@@ -26,7 +44,7 @@ This is the output contract for `audit`. It is aligned in spirit with `sk-code-r
 
 If unsure between severities, ask: would a real user fail, contact support, or abandon? If yes, it is at least P1.
 
-## 2. Five-Dimension Score
+## 3. Five-Dimension Score
 
 Score each dimension 0-4.
 
@@ -85,7 +103,7 @@ Rating bands:
 - `6-9` Poor.
 - `0-5` Critical.
 
-## 3. Findings Schema
+## 4. Findings Schema
 
 Use this shape for actionable findings:
 
@@ -102,7 +120,7 @@ Observation is neutral and factual; it records what was seen before the report s
 - Owner: `foundations` for token choice; `sk-code` for implementation.
 ```
 
-## 4. Evidence Rules
+## 5. Evidence Rules
 
 - Use file/line when code is provided.
 - Use rendered observation when a screenshot or live page is available.
@@ -110,7 +128,7 @@ Observation is neutral and factual; it records what was seen before the report s
 - Label any inferred issue as inferred and state what would confirm it.
 - Do not claim visual overlays, browser inspection, or automated scans ran unless they actually ran.
 
-## 5. Report Order
+## 6. Report Order
 
 1. Findings by severity.
 2. Audit Health Score table.

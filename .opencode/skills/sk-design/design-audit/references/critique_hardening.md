@@ -15,14 +15,34 @@ version: 1.0.0.0
 
 Use this reference when the task is broader than a technical scan: does the interface make sense, feel intentional, survive real data, and help the right users succeed?
 
-## 1. Critique Workflow
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Guides holistic design critique and hardening across AI slop, hierarchy, information architecture, emotional fit, states, copy, accessibility, edge cases, cognitive load, personas, polish, and resilience.
+
+### When to Use
+
+- Reviewing whether an interface makes sense, feels intentional, and helps the right users succeed.
+- Applying cognitive-load, Nielsen heuristic, persona, hardening, polish, and evidence-limit lenses.
+- Synthesizing rendered, deterministic, and judgment evidence into audit findings instead of concatenating notes.
+
+### Core Principle
+
+Synthesize the interface's real user experience; do not let detector output replace judgment about hierarchy, fit, and flow.
+
+---
+
+## 2. Critique Workflow
 
 1. Resolve the target to a concrete source path, URL, screenshot, or design plan.
 2. Review the design holistically before reading deterministic findings if both are available.
 3. Evaluate AI slop, hierarchy, information architecture, emotional fit, states, copy, accessibility, and edge cases.
 4. Synthesize; do not concatenate independent notes.
 
-## 2. Cognitive Load
+## 3. Cognitive Load
 
 Check:
 - Single focus: one primary task visible.
@@ -36,7 +56,7 @@ Check:
 
 Map failures to severity on a two-band scale: 2-3 failures = P2 (address soon); 4 or more failures = P1 (high cognitive load).
 
-## 3. Nielsen Heuristic Lens
+## 4. Nielsen Heuristic Lens
 
 Walk the 10 heuristics as a checklist; for each clear violation, file a P0-P3 finding with evidence. Do not assign per-heuristic numeric scores.
 1. Visibility of system status.
@@ -52,7 +72,7 @@ Walk the 10 heuristics as a checklist; for each clear violation, file a P0-P3 fi
 
 The Nielsen lens is a diagnostic to surface findings; it is NOT separately totaled. Each heuristic violation becomes a P0-P3 finding feeding the relevant /20 dimension (mostly Accessibility, Responsive, or Anti-Patterns). There is no /40 score in this skill.
 
-## 4. Persona Checks
+## 5. Persona Checks
 
 Select two or three relevant personas:
 - Power user: shortcuts, batch work, no forced hand-holding.
@@ -63,7 +83,7 @@ Select two or three relevant personas:
 
 Report red flags tied to actual elements, not generic persona descriptions.
 
-## 5. Hardening Checks
+## 6. Hardening Checks
 
 Real interfaces need hostile data tests:
 - Very long/short text.
@@ -75,7 +95,7 @@ Real interfaces need hostile data tests:
 - Concurrent submissions and double-clicks.
 - Permission states and read-only mode.
 
-## 6. Polish Checks
+## 7. Polish Checks
 
 Polish starts with design-system discovery. For drift, name the root cause:
 - Missing token.
@@ -121,6 +141,6 @@ The unfinished-marker scan is deterministic: scan the resolved surface for `\b(T
 
 This is a necessary floor, not proof of polish. A clean marker scan plus `ready` only says the surface has no visible unfinished markers and the review was performed; hierarchy, perceived quality, design-system alignment, and state craft still need rendered evidence and human judgment under section 7.
 
-## 7. Evidence Limits
+## 8. Evidence Limits
 
 A clean detector result is not proof of a strong design. Browser/rendered evidence and human judgment still matter for hierarchy, emotional fit, slop, and flow shape.

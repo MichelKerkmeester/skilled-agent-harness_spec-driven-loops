@@ -13,13 +13,21 @@ version: 1.0.0.0
 
 # Motion Performance Failure Card
 
-Check a motion build against this card before handing it off. Each row is a pattern that drops frames, drains battery or stutters under load. This is a build-side card for catching the failure while you write the motion, not a release audit. Severity scoring and findings reports for motion performance belong to the `audit` mode. The deeper technique guidance lives in `references/performance_reduced_motion.md`.
+A pre-handoff card for catching motion patterns that drop frames or stutter under load.
 
-Use it like a pre-flight: read each failure signature, check whether your build does it and apply the fix where it does. The recurring root cause is asking the browser to do layout or paint work every frame when transform and opacity would carry the same intent on the compositor.
+## 1. OVERVIEW
+
+### Purpose
+
+Check a motion build against this card before handing it off. Each row is a pattern that drops frames, drains battery or stutters under load. This is a build-side card for catching the failure while you write the motion, not a release audit. Severity scoring and findings reports for motion performance belong to the `audit` mode.
+
+### Usage
+
+Use it like a pre-flight: read each failure signature, check whether your build does it and apply the fix where it does. The recurring root cause is asking the browser to do layout or paint work every frame when transform and opacity would carry the same intent on the compositor. The deeper technique guidance lives in `references/performance_reduced_motion.md`.
 
 ---
 
-## 1. THE RENDERING COST FLOOR
+## 2. THE RENDERING COST FLOOR
 
 Three rendering steps, cheapest first. Stay as high in this list as the effect allows.
 
@@ -29,7 +37,7 @@ Three rendering steps, cheapest first. Stay as high in this list as the effect a
 
 ---
 
-## 2. FAILURE MODES
+## 3. FAILURE MODES
 
 | Failure | Signature in the build | Why it drops frames | Fix |
 |---|---|---|---|
@@ -43,7 +51,7 @@ Three rendering steps, cheapest first. Stay as high in this list as the effect a
 
 ---
 
-## 3. PRE-HANDOFF CHECK
+## 4. PRE-HANDOFF CHECK
 
 Tick each before handing the build to review.
 

@@ -13,13 +13,31 @@ version: 1.0.0.0
 
 # Evidence Capture
 
-Every finding rests on evidence, and the quality of an audit is the quality of that evidence. This reference is the evidence model: how to resolve the surface to a stable target, what counts as evidence, then how to label a finding when the evidence you wanted was out of reach. The severity model and the per-finding schema live in `audit_contract.md`. This file is the layer underneath it, the part that decides whether a finding is confirmed or inferred before it ever gets a severity.
-
-The audit gathers and labels evidence. It does not implement the fix, which is `sk-code` work once the user accepts the recommendation.
+This reference defines the evidence model behind design audit findings: stable targets, evidence types, and honest labels when evidence is partial.
 
 ---
 
-## 1. RESOLVE THE TARGET
+## 1. OVERVIEW
+
+### Purpose
+
+Explains how to resolve a surface to a stable target, what counts as source, rendered, or design-artifact evidence, and how to label a finding when the evidence you wanted was out of reach. The severity model and the per-finding schema live in `audit_contract.md`; this file decides whether a finding is confirmed or inferred before it ever gets a severity.
+
+The audit gathers and labels evidence. It does not implement the fix, which is `sk-code` work once the user accepts the recommendation.
+
+### When to Use
+
+- Resolving an audit request to a concrete file, URL, screenshot, or design artifact.
+- Gathering browser, deterministic, screenshot, overlay, source, rendered, or design-artifact evidence.
+- Labeling findings as confirmed, inferred, unavailable, static-risk, or not assessed without overstating confidence.
+
+### Core Principle
+
+Every finding rests on evidence; a report that names its blind spots is stronger than one that hides them.
+
+---
+
+## 2. RESOLVE THE TARGET
 
 Resolve the request to one concrete target before any evidence is gathered. A vague target produces vague findings.
 
@@ -35,7 +53,7 @@ State the resolved target at the top of the report so the reader knows exactly w
 
 ---
 
-## 2. THE THREE EVIDENCE TYPES
+## 3. THE THREE EVIDENCE TYPES
 
 An audit draws on three kinds of evidence. Each finding cites at least one, and the type is part of the finding.
 
@@ -49,7 +67,7 @@ Source plus rendered together is the gold standard: the code explains the cause 
 
 ---
 
-## 3. BROWSER EVIDENCE
+## 4. BROWSER EVIDENCE
 
 When browser automation is available and the target is viewable, rendered evidence makes a real difference to hierarchy, contrast, flow and motion claims that source alone cannot settle.
 
@@ -62,7 +80,7 @@ Browser evidence is rendered evidence. It confirms what the surface does. Pair i
 
 ---
 
-## 4. DETERMINISTIC SCANS
+## 5. DETERMINISTIC SCANS
 
 A deterministic scan is a repeatable check that returns the same finding every run: a contrast measurement, a selector match, a token-usage grep, an automated accessibility pass. Deterministic evidence is strong because anyone can rerun it and get the same answer.
 
@@ -73,7 +91,7 @@ A deterministic scan is a repeatable check that returns the same finding every r
 
 ---
 
-## 5. SCREENSHOT AND OVERLAY NOTES
+## 6. SCREENSHOT AND OVERLAY NOTES
 
 Screenshots and visual overlays are persuasive, which is exactly why they need honest labeling.
 
@@ -84,7 +102,7 @@ Screenshots and visual overlays are persuasive, which is exactly why they need h
 
 ---
 
-## 6. FALLBACK LABELS WHEN EVIDENCE IS UNAVAILABLE
+## 7. FALLBACK LABELS WHEN EVIDENCE IS UNAVAILABLE
 
 Evidence is often partial. A missing capability is never a reason to invent a result or to inflate confidence. Label the gap and keep going.
 
@@ -108,7 +126,7 @@ When impact evidence is missing, phrase the finding as a design risk and name th
 
 ---
 
-## 7. EVIDENCE TO SEVERITY HANDOFF
+## 8. EVIDENCE TO SEVERITY HANDOFF
 
 Once a finding has evidence and a confirmed-or-inferred label, it carries that into the severity and scoring step in `audit_contract.md`. The handoff rules:
 

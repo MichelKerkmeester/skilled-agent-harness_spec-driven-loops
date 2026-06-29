@@ -13,13 +13,21 @@ version: 1.0.0.0
 
 # AnimatePresence Checklist
 
-Run this before shipping any exit animation built with `AnimatePresence`. Each item is pass or fail. A single fail means an element will vanish instead of animating out, a list will jump or an exit will look broken. This card is the build-side and review-side gate. The reasoning and code for each rule lives in `references/animate_presence_patterns.md`, so this checklist stays terse and points there when a fix is needed.
+A pass-or-fail checklist for shipping `AnimatePresence` exit animations without broken removals.
 
-How to use: copy the section, mark each box and record the file and line for any fail. A checklist with an open fail is not ready to hand off.
+## 1. OVERVIEW
+
+### Purpose
+
+Run this before shipping any exit animation built with `AnimatePresence`. Each item is pass or fail. A single fail means an element will vanish instead of animating out, a list will jump or an exit will look broken. This card is the build-side and review-side gate.
+
+### Usage
+
+Copy the section, mark each box and record the file and line for any fail. A checklist with an open fail is not ready to hand off. The reasoning and code for each rule lives in `references/animate_presence_patterns.md`, so this checklist stays terse and points there when a fix is needed.
 
 ---
 
-## 1. EXIT WIRING
+## 2. EXIT WIRING
 
 The element has to be set up so Motion can run an exit before React removes it.
 
@@ -32,7 +40,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 2. KEYS
+## 3. KEYS
 
 Identity has to be stable so Motion can tell which element left.
 
@@ -43,7 +51,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 3. FIRST RENDER
+## 4. FIRST RENDER
 
 A default-state element should not animate in on page load.
 
@@ -54,7 +62,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 4. MODE
+## 5. MODE
 
 The mode has to match the layout situation.
 
@@ -66,7 +74,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 5. PRESENCE HOOKS
+## 6. PRESENCE HOOKS
 
 Hooks have to run in the right place and finish their cleanup.
 
@@ -78,7 +86,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 6. NESTED EXITS
+## 7. NESTED EXITS
 
 Parent and child exits have to coordinate.
 
@@ -89,7 +97,7 @@ Fail target: `file:line` `__________`
 
 ---
 
-## 7. RESULT
+## 8. RESULT
 
 - [ ] All six sections pass.
 - [ ] Every fail has a recorded `file:line` and a fix from `references/animate_presence_patterns.md`.

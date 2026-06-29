@@ -14,7 +14,25 @@ version: 1.0.0.0
 
 Use this for small interaction details where the standard strategy, micro-interaction and performance references are too broad. This is a craft top-up, not permission to add more motion.
 
-## 1. Origin-Aware Popovers
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides compact craft guidance for nuanced motion details such as origin-aware popovers, tooltip timing, CSS entry patterns, slow-motion debugging, shorthand limits, and ambitious effects.
+
+### When to Use
+
+Use when a motion decision is too specific for the standard strategy, micro-interaction, or performance references but still needs a bounded interaction contract.
+
+### Core Principle
+
+Advanced motion earns its place only when it clarifies origin, state, timing, or task flow while preserving performance and reduced-motion behavior.
+
+---
+
+## 2. Origin-Aware Popovers
 
 Popover motion should start from the trigger's perceived origin.
 
@@ -25,7 +43,7 @@ Popover motion should start from the trigger's perceived origin.
 
 Use transform origin and anchor geometry so motion explains where the surface came from. Do not animate layout properties just to fake origin.
 
-## 2. Instant Follow-Up Tooltips
+## 3. Instant Follow-Up Tooltips
 
 The first tooltip in a cluster may wait. Follow-up tooltips should be immediate while the pointer stays inside the same tool zone.
 
@@ -38,7 +56,7 @@ Suggested behavior:
 
 This prevents flicker and repeated waiting while still avoiding accidental tooltip noise.
 
-## 3. `@starting-style` Entry Pattern
+## 4. `@starting-style` Entry Pattern
 
 For CSS-only mounted entries, prefer `@starting-style` when browser support fits the project.
 
@@ -59,7 +77,7 @@ For CSS-only mounted entries, prefer `@starting-style` when browser support fits
 
 Use this instead of mounted-state hacks when the element is inserted already open. Keep a no-motion state for reduced motion.
 
-## 4. Slow-Motion Debugging
+## 5. Slow-Motion Debugging
 
 When a transition feels wrong, slow it down by a factor of 4 to 8.
 
@@ -73,7 +91,7 @@ Check:
 
 If the slow version looks decorative or confusing, the fast version is hiding the same defect.
 
-## 5. Framer Motion Shorthand Under Load
+## 6. Framer Motion Shorthand Under Load
 
 Framer Motion shorthand is fine for small, isolated interactions. Under load, it can hide too much.
 
@@ -86,7 +104,7 @@ Avoid shorthand when:
 
 Prefer explicit variants, stable keys, bounded properties and a named reduced-motion path. If the shorthand makes ownership unclear, write the longer version.
 
-## 6. High-Ambition Effects
+## 7. High-Ambition Effects
 
 When an effect is ambitious, expensive, or meant to feel technically extraordinary, propose it before building.
 

@@ -13,13 +13,27 @@ version: 1.0.0.0
 
 # Design Dispatch Boundary
 
-This file is the canonical home for `DESIGN_BOUNDARY_PROOF v1`. The envelope proves that design dispatch carried the loaded-context manifest, the proof-of-application demand, and the routed-mode declaration across a child-agent or small-model boundary.
-
-It proves boundary carry and binding. It does not prove the resulting design is good.
+Canonical reference for `DESIGN_BOUNDARY_PROOF v1` dispatch envelopes. It defines mechanical boundary proof, not the quality of the resulting design.
 
 ---
 
-## 1. Copy-Set Decision
+## 1. OVERVIEW
+
+### Purpose
+
+Defines the required `DESIGN_BOUNDARY_PROOF v1` envelope for child-agent and small-model design dispatch boundaries.
+
+### When to Use
+
+Use when dispatching design work across a boundary that must prove routed-mode binding, payload digests, proof-token reference, and canonical asset integrity.
+
+### Core Principle
+
+Boundary evidence proves the required context and proof demands survived delegation; final design quality still belongs to the active design mode and downstream audit evidence.
+
+---
+
+## 2. Copy-Set Decision
 
 Current copy set: canonical-only.
 
@@ -27,7 +41,7 @@ No real duplicate consumer currently carries this asset. Until one exists, the c
 
 ---
 
-## 2. Envelope Schema
+## 3. Envelope Schema
 
 `DESIGN_BOUNDARY_PROOF v1` is a structured object in the dispatch payload.
 
@@ -52,7 +66,7 @@ All digest fields use `sha256:<64 lowercase hex>`.
 
 ---
 
-## 3. JSON Shape
+## 4. JSON Shape
 
 ```json
 {
@@ -78,7 +92,7 @@ All digest fields use `sha256:<64 lowercase hex>`.
 
 ---
 
-## 4. Boundary Rules
+## 5. Boundary Rules
 
 A dispatch boundary MUST reject when any of these are true:
 
@@ -96,7 +110,7 @@ Unknown additive fields may be ignored only after every required v1 field passes
 
 ---
 
-## 5. Residual
+## 6. Residual
 
 The enforceable floor is mechanical: the dispatch carried the context manifest, design dispatch manifest, proof-card demand, authorizing token reference, loaded/payload digests, asset digest, and routed-mode binding. The remaining design-quality claim is still advisory and must be judged by the active design mode and any downstream audit evidence.
 

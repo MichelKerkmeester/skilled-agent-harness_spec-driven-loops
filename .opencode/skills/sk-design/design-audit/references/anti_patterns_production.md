@@ -15,7 +15,27 @@ version: 1.0.0.0
 
 This reference catches details that make a UI look generic, fragile, or production-unready.
 
-## 1. Anti-Slop Signals
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines anti-slop, theming drift, token misuse, copy clarity, pseudo-element, View Transition, and production-readiness checks for design audit findings.
+
+### When to Use
+
+- Detecting generic, fragile, or production-unready UI details.
+- Auditing design tokens, theming, semantic layers, copy clarity, pseudo-elements, View Transitions, or release-hardening states.
+- Mapping design findings to the owner mode that should handle remediation.
+
+### Core Principle
+
+Production-ready UI details support the surface's intent instead of exposing generic defaults, token drift, or missing states.
+
+---
+
+## 2. Anti-Slop Signals
 
 Use parent `sk-design/references/anti_slop_principles.md` as the shared vocabulary. Common findings:
 - Generic cream + serif + terracotta with no subject reason.
@@ -26,7 +46,7 @@ Use parent `sk-design/references/anti_slop_principles.md` as the shared vocabula
 - Decorative `01 / 02 / 03` labels without sequence.
 - Scattered motion instead of one choreographed moment.
 
-## 2. Theming And Tokens
+## 3. Theming And Tokens
 
 Report:
 - Hard-coded colors where semantic tokens exist.
@@ -45,7 +65,7 @@ Report:
 Map token fixes to `foundations` and implementation to `sk-code`.
 Map semantic layering fixes to `foundations` for the scale and `sk-code` for replacing arbitrary values in components.
 
-## 3. UX Copy Clarity
+## 4. UX Copy Clarity
 
 Check interface text:
 - Buttons use verb + object (`Save changes`, not `OK`).
@@ -56,7 +76,7 @@ Check interface text:
 - Placeholders are not the only labels.
 - Humor is avoided in errors.
 
-## 4. Pseudo-Elements
+## 5. Pseudo-Elements
 
 Pseudo-elements should reduce DOM clutter and improve native behavior when used correctly.
 
@@ -68,7 +88,7 @@ Rules (map each finding to P0-P3 by user impact; a broken `content` declaration 
 - Pseudo-elements can expand hit targets with negative inset.
 - Expanded hit areas must not overlap adjacent interactive targets; keep the 44x44 target floor and shrink the pseudo-element inset until targets do not collide.
 
-## 5. View Transitions
+## 6. View Transitions
 
 Use native View Transitions for navigation-level shared element changes when supported and when interruption/cancellation constraints fit.
 
@@ -78,7 +98,7 @@ Rules (map each finding to P0-P3 by user impact; an uncancellable transition tha
 - Style `::view-transition-*` pseudo-elements when default crossfade is not enough.
 - Avoid View Transitions for interaction-heavy UI requiring cancellation.
 
-## 6. Production Readiness
+## 7. Production Readiness
 
 Production-readiness findings include:
 - Missing empty/loading/error/success states.
@@ -96,7 +116,7 @@ Release-hardening detectors:
 - Component states: verify default, hover, focus-visible, active, disabled, loading, empty, error, success, selected, and destructive states where relevant.
 - Component accessibility: check name, role, value, keyboard path, focus visibility, announcements, contrast, and reduced-motion behavior.
 
-## 7. Finding Owner Map
+## 8. Finding Owner Map
 
 | Finding type | Owner |
 | --- | --- |

@@ -14,7 +14,27 @@ version: 1.0.0.0
 
 This skill distills QA and critique sources into one cross-cutting mode child.
 
-## Source Files
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Maps the external QA, critique, polish, hardening, optimization, accessibility, motion performance, UX writing, pseudo-element, and View Transition sources into the audit references that now carry their practical guidance.
+
+### When to Use
+
+- Tracing audit guidance back to the corpus file it was distilled from.
+- Checking which reference owns a QA, critique, hardening, performance, accessibility, or production-readiness topic.
+- Preserving distillation boundaries when updating audit guidance.
+
+### Core Principle
+
+Use the corpus map as provenance: modernized audit guidance lives in the distilled references, while stale source details stay behind.
+
+---
+
+## 2. Source Files
 
 | Corpus file | Distilled into | Practical guidance kept |
 | --- | --- | --- |
@@ -28,10 +48,10 @@ This skill distills QA and critique sources into one cross-cutting mode child.
 | `external/clarify.md` | `anti_patterns_production.md` | UX writing, error copy, CTAs, empty states, terminology, localization |
 | `external/pseudo-elements.md` | `anti_patterns_production.md` | pseudo-element and View Transitions review rules |
 
-## Distillation Notes
+## 3. Distillation Notes
 
 - Core Web Vitals were modernized during distillation: `external/optimize.md` still lists the deprecated First Input Delay (FID < 100ms), but `accessibility_performance.md` intentionally uses Interaction to Next Paint (INP < 200ms). Do not revert to FID from the stale corpus source.
 
-## Distillation Boundary
+## 4. Distillation Boundary
 
 This child reports and scores issues. Sibling skills own creation and repair guidance; implementation belongs to `sk-code` after the user accepts fixes.

@@ -13,13 +13,31 @@ version: 1.0.0.0
 
 # Hardening Edge Cases
 
-A surface that only works with perfect data is not production-ready. This reference is the edge-case matrix the audit walks to prove a surface survives the inputs, failures and languages that real users bring. Each row is a probe, an expected symptom when the surface is unhardened, the finding to file when the symptom appears, and the fix shape to recommend for follow-up.
-
-The narrative hardening workflow and the persona, cognitive-load and polish lenses live in `critique_hardening.md`. The production-readiness summary and the finding-owner map live in `anti_patterns_production.md`. This file does not repeat that prose. It is the concrete matrix underneath them: the specific probes to run and what each failure proves. The severity model and the findings schema come from `audit_contract.md`, and accessibility resilience stays in `accessibility_performance.md`. The audit reports these gaps and routes them, it does not implement the hardening, which is `sk-code` work after the user accepts the fix.
+Use this matrix to audit whether a surface survives hostile inputs, failures, permissions, languages, and constrained devices.
 
 ---
 
-## 1. HOW TO USE THE MATRIX
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the edge-case matrix the audit walks to prove a surface survives the inputs, failures and languages that real users bring. Each row is a probe, an expected symptom when the surface is unhardened, the finding to file when the symptom appears, and the fix shape to recommend for follow-up.
+
+The narrative hardening workflow and the persona, cognitive-load and polish lenses live in `critique_hardening.md`; the production-readiness summary and finding-owner map live in `anti_patterns_production.md`. This file does not repeat that prose: it is the concrete matrix underneath them, with severity and findings schema from `audit_contract.md` and accessibility resilience in `accessibility_performance.md`. The audit reports these gaps and routes them; it does not implement the hardening, which is `sk-code` work after the user accepts the fix.
+
+### When to Use
+
+- Auditing extreme inputs, API and network errors, permissions, rate limits, concurrency, i18n, RTL, text expansion, CJK, emoji, overlays, device limits, or constrained contexts.
+- Filing checkable production-readiness findings with exact probes, symptoms, user impact, severity, and owner routing.
+- Labeling skipped or unavailable probes as inferred and naming the evidence needed to confirm them.
+
+### Core Principle
+
+A surface that only works with perfect data is not production-ready.
+
+---
+
+## 2. HOW TO USE THE MATRIX
 
 1. Resolve the surface to source or rendered evidence, following `evidence_capture.md`.
 2. Walk each probe below against the surface. A probe you cannot run on the available evidence is an inferred finding, so label it inferred and state what would confirm it.
@@ -29,7 +47,7 @@ The narrative hardening workflow and the persona, cognitive-load and polish lens
 
 ---
 
-## 2. EXTREME INPUTS
+## 3. EXTREME INPUTS
 
 Real content is longer, shorter and stranger than the mockup. Probe the edges of every text and data field.
 
@@ -45,7 +63,7 @@ Empty, loading and error states are part of this probe. A surface missing any of
 
 ---
 
-## 3. API AND NETWORK ERRORS
+## 4. API AND NETWORK ERRORS
 
 The network fails, and the surface has to say so without breaking. Force each error and watch the response.
 
@@ -64,7 +82,7 @@ The contract for error copy itself, what happened, why and how to recover, lives
 
 ---
 
-## 4. PERMISSIONS AND RATE LIMITS
+## 5. PERMISSIONS AND RATE LIMITS
 
 State that depends on who the user is, and on how often they act, needs its own probes.
 
@@ -79,7 +97,7 @@ A disabled control still needs an accessible explanation of why it is disabled. 
 
 ---
 
-## 5. CONCURRENCY
+## 6. CONCURRENCY
 
 Users double-click, open two tabs and act while a request is still in flight. Probe the races.
 
@@ -94,7 +112,7 @@ Preventing double submission is the highest-frequency concurrency defect. Disabl
 
 ---
 
-## 6. INTERNATIONALIZATION AND RTL
+## 7. INTERNATIONALIZATION AND RTL
 
 The interface ships in one language and gets used in many. Probe the surface in scripts and directions it was not drawn for.
 
@@ -108,7 +126,7 @@ RTL failures almost always trace to physical properties. Logical properties such
 
 ---
 
-## 7. TEXT EXPANSION
+## 8. TEXT EXPANSION
 
 Translation makes text longer, often much longer. A layout tuned to English clips or overflows in other languages.
 
@@ -121,7 +139,7 @@ Budget roughly a third more space for translated text, and let containers size t
 
 ---
 
-## 8. CJK AND EMOJI
+## 9. CJK AND EMOJI
 
 Chinese, Japanese, Korean and emoji stress assumptions baked into Latin-only layouts.
 
@@ -135,7 +153,7 @@ Emoji and CJK characters are multi-byte, so any logic that counts characters as 
 
 ---
 
-## 8A. OVERLAYS AND TOP LAYER
+## 10. OVERLAYS AND TOP LAYER
 
 Menus, dropdowns and tooltips often fail because they are visually small but structurally trapped inside a clipping or stacking context. Probe overlays from inside scroll panels, cards, drawers and constrained layout regions.
 
@@ -145,7 +163,7 @@ Menus, dropdowns and tooltips often fail because they are visually small but str
 
 ---
 
-## 8B. DEVICE AND CONSTRAINED CONTEXT
+## 11. DEVICE AND CONSTRAINED CONTEXT
 
 Real devices impose budgets the desktop happy path hides. Probe battery saver, reduced-data signals, low-end CPU, reconnect behavior and slow media before calling a surface production-ready.
 
@@ -163,7 +181,7 @@ Route measurable load, layout-shift, long-task, interaction-latency and motion e
 
 ---
 
-## 9. ROUTING SUMMARY
+## 12. ROUTING SUMMARY
 
 1. Walk the matrix against real evidence, labeling any probe you could not run as inferred.
 2. File each failure with the exact element, the user impact and a severity from `audit_contract.md`.

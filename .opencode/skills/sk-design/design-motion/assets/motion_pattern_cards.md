@@ -13,19 +13,21 @@ version: 1.0.0.0
 
 # Motion Pattern Cards
 
-Pick the card for the pattern you are building and fill the blanks before writing any motion code. Each card forces the four things a motion spec must name: who owns the interaction, which states it moves between, why it moves and what happens under reduced motion. Run the decision gate in `references/animation_decision_framework.md` first. If the gate says do not animate, you do not need a card.
+Fill-in cards for common motion patterns before implementation handoff.
 
-How to use a card: copy the table, replace every `__________` and tick the boxes that apply. A card with blank cells is not ready to hand to `sk-code`. Timing, easing and material values come from `references/motion_strategy.md`, so a card cites them rather than inventing new numbers.
+## 1. OVERVIEW
+
+### Purpose
+
+Each card forces the four things a motion spec must name: who owns the interaction, which states it moves between, why it moves and what happens under reduced motion. These cards are handoff artifacts, not reusable components. Fill one card per interaction, keep it attached to the surface that owns the behavior, and treat any unchecked box as a design problem to resolve before implementation.
+
+### Usage
+
+Pick the card for the pattern you are building and fill the blanks before writing any motion code. Run the decision gate in `references/animation_decision_framework.md` first. If the gate says do not animate, you do not need a card. Copy the table, replace every `__________` and tick the boxes that apply. A card with blank cells is not ready to hand to `sk-code`. Timing, easing and material values come from `references/motion_strategy.md`, so a card cites them rather than inventing new numbers.
 
 ---
 
-## 0. OVERVIEW
-
-These cards are handoff artifacts, not reusable components. Fill one card per interaction, keep it attached to the surface that owns the behavior, and treat any unchecked box as a design problem to resolve before implementation.
-
----
-
-## 1. SHARED FIELDS
+## 2. SHARED FIELDS
 
 Every card carries these. They are repeated in each table so a single card can travel on its own.
 
@@ -38,7 +40,7 @@ Every card carries these. They are repeated in each table so a single card can t
 
 ---
 
-## 2. FEEDBACK CARD
+## 3. FEEDBACK CARD
 
 Confirms an action was received. Press, toggle, validation, copy, save.
 
@@ -55,7 +57,7 @@ Confirms an action was received. Press, toggle, validation, copy, save.
 
 ---
 
-## 3. HOVER CARD
+## 4. HOVER CARD
 
 A pointer affordance only. It signals "interactive" and never replaces a press state or a disclosure path.
 
@@ -72,7 +74,7 @@ A pointer affordance only. It signals "interactive" and never replaces a press s
 
 ---
 
-## 4. FOCUS CARD
+## 5. FOCUS CARD
 
 Keyboard parity for a hover or active affordance. Required, not optional.
 
@@ -89,7 +91,7 @@ Keyboard parity for a hover or active affordance. Required, not optional.
 
 ---
 
-## 5. LOADING CARD
+## 6. LOADING CARD
 
 Sets expectations during a wait and preserves layout so nothing jumps when content lands.
 
@@ -106,7 +108,7 @@ Sets expectations during a wait and preserves layout so nothing jumps when conte
 
 ---
 
-## 6. STATE TRANSITION CARD
+## 7. STATE TRANSITION CARD
 
 A control or region changing between two settled states. Toggle, accordion, tab content, expand and collapse.
 
@@ -123,7 +125,7 @@ A control or region changing between two settled states. Toggle, accordion, tab 
 
 ---
 
-## 7. TOAST CARD
+## 8. TOAST CARD
 
 A transient message. Enters and leaves from the same edge so swipe to dismiss feels obvious.
 
@@ -140,7 +142,7 @@ A transient message. Enters and leaves from the same edge so swipe to dismiss fe
 
 ---
 
-## 8. PAGE TRANSITION CARD
+## 9. PAGE TRANSITION CARD
 
 A route or view replacement. The heaviest motion on a Product surface, so justify it against the register.
 
@@ -158,7 +160,7 @@ A route or view replacement. The heaviest motion on a Product surface, so justif
 
 ---
 
-## 9. GESTURE CARD
+## 10. GESTURE CARD
 
 Drag, swipe and pointer-driven motion. This card records the spec only. The behavior rules for thresholds, velocity, damping and accessible alternatives live in `references/micro_interactions.md` Section 4, so cite them here rather than restating them.
 
@@ -176,7 +178,7 @@ Drag, swipe and pointer-driven motion. This card records the spec only. The beha
 
 ---
 
-## 10. DRAG-AND-DROP CARD
+## 11. DRAG-AND-DROP CARD
 
 Reordering or moving items between containers. A specialized gesture, so it inherits the gesture behavior rules and adds drop and reorder concerns.
 
@@ -195,7 +197,7 @@ Reordering or moving items between containers. A specialized gesture, so it inhe
 
 ---
 
-## 11. ASYNC STATE-MACHINE CARD
+## 12. ASYNC STATE-MACHINE CARD
 
 Branching async UI needs a state fragment before it needs animation. Use this for upload, sync, payment, import, generation, search, or any flow where pending, success, failure, retry, cancellation, and disabled states can overlap.
 

@@ -13,13 +13,21 @@ version: 1.0.0.0
 
 # Accessibility Quick Fixes
 
-This is a fix-reference card, not a workflow. When the audit files an accessibility finding, it points the owner here for the concrete shape of the fix, then `sk-code` makes the change once the user accepts it. The audit cites these snippets, it does not apply them. The priority order, the user-impact framing, plus the contrast and touch numbers all live in `../references/accessibility_performance.md`. This card is the snippet layer underneath that reference: the smallest correct change for each common defect.
+A snippet-level fix reference for common accessibility defects found during design audits.
 
-Two rules hold across every fix below. Prefer native HTML before adding ARIA, because a real `button` beats a div wearing a role. And keep the change minimal, because an accessibility fix is a targeted repair, not a license to refactor the surrounding component.
+## 1. OVERVIEW
+
+### Purpose
+
+This is a fix-reference card, not a workflow. This card is the snippet layer underneath `../references/accessibility_performance.md`: the smallest correct change for each common defect.
+
+### Usage
+
+When the audit files an accessibility finding, it points the owner here for the concrete shape of the fix, then `sk-code` makes the change once the user accepts it. The audit cites these snippets, it does not apply them. The priority order, the user-impact framing, plus the contrast and touch numbers all live in `../references/accessibility_performance.md`. Two rules hold across every fix below. Prefer native HTML before adding ARIA, because a real `button` beats a div wearing a role. And keep the change minimal, because an accessibility fix is a targeted repair, not a license to refactor the surrounding component.
 
 ---
 
-## 1. ACCESSIBLE NAMES
+## 2. ACCESSIBLE NAMES
 
 Every interactive control needs a name a screen reader can announce.
 
@@ -36,7 +44,7 @@ Every interactive control needs a name a screen reader can announce.
 
 ---
 
-## 2. KEYBOARD ACCESS
+## 3. KEYBOARD ACCESS
 
 Every action reachable by mouse must be reachable by keyboard.
 
@@ -54,7 +62,7 @@ Every action reachable by mouse must be reachable by keyboard.
 
 ---
 
-## 3. FOCUS AND DIALOGS
+## 4. FOCUS AND DIALOGS
 
 A dialog that mismanages focus strands keyboard and screen-reader users.
 
@@ -74,7 +82,7 @@ A dialog that mismanages focus strands keyboard and screen-reader users.
 
 ---
 
-## 4. SEMANTICS
+## 5. SEMANTICS
 
 Native semantics carry meaning that role hacks have to rebuild by hand.
 
@@ -88,7 +96,7 @@ Native semantics carry meaning that role hacks have to rebuild by hand.
 
 ---
 
-## 5. FORMS AND ERRORS
+## 6. FORMS AND ERRORS
 
 Form errors must reach the field, the screen reader and the user at the same moment.
 
@@ -107,7 +115,7 @@ Form errors must reach the field, the screen reader and the user at the same mom
 
 ---
 
-## 6. LIVE-REGION ANNOUNCEMENTS
+## 7. LIVE-REGION ANNOUNCEMENTS
 
 A change a sighted user sees must also be a change a screen-reader user hears.
 
@@ -124,7 +132,7 @@ A change a sighted user sees must also be a change a screen-reader user hears.
 
 ---
 
-## 7. CONTRAST AND STATES
+## 8. CONTRAST AND STATES
 
 Meaning must survive low vision, and it must not depend on color alone. The pass and fail ratios and the touch-target size live in `../references/accessibility_performance.md`. Measure against those numbers, do not eyeball a contrast fix.
 
@@ -137,7 +145,7 @@ Meaning must survive low vision, and it must not depend on color alone. The pass
 
 ---
 
-## 8. MOTION
+## 9. MOTION
 
 Non-essential motion must yield to a user who has asked for less of it.
 
@@ -158,7 +166,7 @@ Non-essential motion must yield to a user who has asked for less of it.
 
 ---
 
-## 9. HOW THE REPORT USES THIS CARD
+## 10. HOW THE REPORT USES THIS CARD
 
 1. The audit files the accessibility finding with its evidence and severity from `../references/audit_contract.md`.
 2. The finding points at the matching section here for the fix shape.

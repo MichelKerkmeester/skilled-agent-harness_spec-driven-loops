@@ -13,9 +13,29 @@ version: 1.0.0.0
 
 # Accessibility And Performance
 
-Accessibility and performance are release gates. A beautiful UI that blocks keyboard users or janks on target devices is not ready.
+Use this reference to audit whether a UI remains usable, measurable, and smooth under real accessibility and performance constraints.
 
-## 1. Accessibility Priority Order
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines the accessibility, WCAG, keyboard, focus, semantics, forms, motion performance, rendering, loading, and measurement checks that gate release-ready UI audits.
+
+### When to Use
+
+- Auditing accessible names, keyboard access, focus, dialogs, semantics, forms, announcements, contrast, media, or reduced motion.
+- Checking Core Web Vitals, loading, rendering, motion, network, or performance evidence.
+- Turning accessibility or performance observations into measured, severity-ready findings.
+
+### Core Principle
+
+Accessibility and performance are release gates; a beautiful UI that blocks keyboard users or janks on target devices is not ready.
+
+---
+
+## 2. Accessibility Priority Order
 
 | Priority | Category | Checks |
 | --- | --- | --- |
@@ -55,7 +75,7 @@ These are the pass/fail numbers behind the contrast and touch checks. Cite a mea
 | UI components and graphical affordances (icons, focus ring, control borders) | 3:1 | n/a |
 | Touch target size | 44x44px (24x24px CSS is the WCAG 2.2 minimum) | n/a |
 
-## 2. Accessibility Findings
+## 3. Accessibility Findings
 
 For each issue, report:
 - Exact element or snippet.
@@ -71,7 +91,7 @@ Common fixes:
 <span id="email-error">Email addresses need an @ symbol.</span>
 ```
 
-## 3. Performance Checks
+## 4. Performance Checks
 
 Measure before and after when possible.
 
@@ -83,7 +103,7 @@ Measure before and after when possible.
 | Motion | transform/opacity default, bounded paint, no continuous layout animation |
 | Network | request count, payload size, caching, compression, slow-connection behavior |
 
-## 4. Motion Performance
+## 5. Motion Performance
 
 Critical failures:
 - Interleaved layout reads and writes.
@@ -102,6 +122,6 @@ Recommended fixes:
 - Pause off-screen loops.
 - Downgrade technique before deleting useful state feedback.
 
-## 5. Performance Evidence
+## 6. Performance Evidence
 
 Use real metrics when available. If metrics are unavailable, label findings as static-risk findings and state the measurement needed to confirm.

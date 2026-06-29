@@ -13,13 +13,31 @@ version: 1.0.0.0
 
 # Transform Remediation
 
-When an audit finds a surface that is bland, loud, cluttered or generic, the fix has a direction. This reference maps four directional verbs to the findings that call for them, the mode that owns the work and the remediation path. The audit names the direction and routes it. It does not perform the transform, which is `interface` or `foundations` work, with implementation by `sk-code` after the user accepts the recommendation.
-
-This file is register-gated. Which direction is correct depends on the Brand-vs-Product posture, so resolve the register first: `../../shared/register.md`. A loud Brand hero and a loud Product dashboard get opposite verdicts from the same observation. Severity and the findings schema come from `audit_contract.md`. The general anti-slop signals are in `anti_patterns_production.md`, and the model-specific tells are in `ai_fingerprint_tells.md`.
+When an audit finds a surface that is bland, loud, cluttered or generic, the fix has a direction.
 
 ---
 
-## 1. THE FOUR VERBS
+## 1. OVERVIEW
+
+### Purpose
+
+Maps four directional verbs to the findings that call for them, the mode that owns the work, and the accepted remediation path. The audit names the direction and routes it; it does not perform the transform, which is `interface` or `foundations` work, with implementation by `sk-code` after the user accepts the recommendation.
+
+This file is register-gated. Which direction is correct depends on the Brand-vs-Product posture, so resolve the register first: `../../shared/register.md`. A loud Brand hero and a loud Product dashboard get opposite verdicts from the same observation. Severity and the findings schema come from `audit_contract.md`. The general anti-slop signals are in `anti_patterns_production.md`, and the model-specific tells are in `ai_fingerprint_tells.md`.
+
+### When to Use
+
+- Routing bland, loud, cluttered, or generic audit findings to bolder, quieter, distill, or redesign.
+- Deciding whether a Brand or Product register changes the remediation verdict.
+- Naming the owner mode and accepted path without performing the transform during audit.
+
+### Core Principle
+
+Resolve the register first; the same observation can require opposite remediation on Brand and Product surfaces.
+
+---
+
+## 2. THE FOUR VERBS
 
 | Verb | The problem it fixes | One-line direction |
 |---|---|---|
@@ -32,7 +50,7 @@ bolder, quieter and distill are single-axis moves on one surface. redesign is th
 
 ---
 
-## 2. REGISTER GATE
+## 3. REGISTER GATE
 
 The same observation routes to a different verb depending on posture. Read the register before assigning a remediation.
 
@@ -47,11 +65,11 @@ The audit-severity dial follows from this. On a Brand surface a generic-but-func
 
 ---
 
-## 3. FINDING TO VERB MAP
+## 4. FINDING TO VERB MAP
 
 Map the observed finding to a verb, then to the owner mode and the accepted path. None of these are implementation steps. They are the direction the owner mode will take.
 
-### 3.1 Bland signals to bolder
+### 4.1 Bland signals to bolder
 
 Signals: system fonts, everything medium-sized with no drama, uniform visual weight, no focal point, predictable standard patterns.
 
@@ -59,7 +77,7 @@ Signals: system fonts, everything medium-sized with no drama, uniform visual wei
 - Owner: `interface` for the focal moment and overall direction, `foundations` for the type scale, weight contrast and color strategy.
 - Accepted path: pick one hero moment, widen the size and weight contrast, commit the color strategy a step up the commitment axis. The trap to avoid is the AI idea of bold: gradient text, glassmorphism, neon on dark, hero-metric templates. Those are the opposite of bold and are themselves findings.
 
-### 3.2 Loud signals to quieter
+### 4.2 Loud signals to quieter
 
 Signals: oversaturated color, high-contrast everywhere, too many heavy elements competing, motion excess, no hierarchy because everything shouts.
 
@@ -67,7 +85,7 @@ Signals: oversaturated color, high-contrast everywhere, too many heavy elements 
 - Owner: `foundations` for desaturation, neutral dominance and weight reduction, `motion` for cutting decorative animation.
 - Accepted path: reduce saturation, let neutrals carry more, raise contrast only where it matters, replace dramatic motion with gentle feedback. The trap is collapsing to grayscale or killing all character. Quiet is precision, not absence.
 
-### 3.3 Cluttered signals to distill
+### 4.3 Cluttered signals to distill
 
 Signals: competing buttons, repeated information, too many colors and fonts and sizes, everything visible at once, unclear hierarchy, feature creep.
 
@@ -75,7 +93,7 @@ Signals: competing buttons, repeated information, too many colors and fonts and 
 - Owner: `interface` for the information architecture and the single primary goal, `foundations` for cutting the palette and type variants.
 - Accepted path: find the one primary goal, hide complexity behind progressive disclosure, merge related actions, reduce to one primary action with the rest tertiary or hidden. The trap is removing necessary function or making the surface so sparse it turns unclear. Distill removes obstacles, not features.
 
-### 3.4 Generic-everywhere signals to redesign
+### 4.4 Generic-everywhere signals to redesign
 
 Signals: default or Inter-everywhere type, pure-black backgrounds, oversaturated or multiple accents, the purple-blue AI gradient, three equal feature cards, generic card look of border plus shadow plus white, no hover or active states, missing empty and error states.
 
@@ -85,7 +103,7 @@ Signals: default or Inter-everywhere type, pure-black backgrounds, oversaturated
 
 ---
 
-## 4. CONTENT-REALISM AND MECHANICAL-LAYOUT CHECKS
+## 5. CONTENT-REALISM AND MECHANICAL-LAYOUT CHECKS
 
 Two recurring generic signals have their own authored gates on the interface side. Do not re-document them here. Reference the interface gate and report the review-side finding.
 
@@ -97,7 +115,7 @@ These two checks are the review-side view of the interface authoring gates. The 
 
 ---
 
-## 5. ROUTING SUMMARY
+## 6. ROUTING SUMMARY
 
 1. Resolve the register before assigning any verb.
 2. Match the finding to one verb, or step up to redesign when several findings stack.
