@@ -1,0 +1,83 @@
+[
+  {
+    "tell_id": "ghost-card-border-plus-shadow",
+    "model_family": "codex",
+    "self_defect_prompt": "Find any card, panel, or button that uses both a 1px solid border and a soft wide shadow. If the shadow blur is 16px or more on the same element, flag it as a ghost-card border-plus-shadow tell.",
+    "deterministic_check": "Detect any single element with border: 1px solid and a box-shadow blur radius of 16px or more.",
+    "fixture_id": "ai-fingerprint-ghost-card-border-plus-shadow",
+    "severity_floor": "P2",
+    "owner": "foundations"
+  },
+  {
+    "tell_id": "over-rounded-cards",
+    "model_family": "codex",
+    "self_defect_prompt": "Find cards, sections, panels, and text inputs with border-radius values of 24px or more. Treat pill tags and buttons separately; flag large containers that look inflated rather than designed.",
+    "deterministic_check": "Detect border-radius values of 24px or more on cards, sections, panels, or text inputs.",
+    "fixture_id": "ai-fingerprint-over-rounded-cards",
+    "severity_floor": "P3",
+    "owner": "foundations"
+  },
+  {
+    "tell_id": "sketchy-svg-illustration",
+    "model_family": "codex",
+    "self_defect_prompt": "Find hand-drawn or doodle-style SVGs that stand in for a real subject. Flag sketch or doodle class names, turbulence or displacement filters, and crude low-path scenes used as trust-building visuals.",
+    "deterministic_check": "Detect SVGs with sketch or doodle class names, feTurbulence or feDisplacementMap grain filters, or crude low-path scene illustrations.",
+    "fixture_id": "ai-fingerprint-sketchy-svg-illustration",
+    "severity_floor": "P2",
+    "owner": "interface"
+  },
+  {
+    "tell_id": "diagonal-stripe-background",
+    "model_family": "codex",
+    "self_defect_prompt": "Find decorative diagonal stripe backgrounds on the body or top-level sections. If repeating-linear-gradient is used as surface decoration rather than information, flag the Codex stripe tell.",
+    "deterministic_check": "Detect repeating-linear-gradient used as a section or body background.",
+    "fixture_id": "ai-fingerprint-diagonal-stripe-background",
+    "severity_floor": "P3",
+    "owner": "interface"
+  },
+  {
+    "tell_id": "element-tracking-on-display-type",
+    "model_family": "codex",
+    "self_defect_prompt": "Find display or hero headings with letter-spacing tighter than -0.04em. Flag cramped tracking, especially when letters touch or the heading loses legibility.",
+    "deterministic_check": "Detect letter-spacing values tighter than -0.04em on display or hero headings.",
+    "fixture_id": "ai-fingerprint-element-tracking-on-display-type",
+    "severity_floor": "P3",
+    "owner": "foundations"
+  },
+  {
+    "tell_id": "image-hover-animation",
+    "model_family": "gemini",
+    "self_defect_prompt": "Find hover states that transform an image itself, including parent-hover utilities that scale, rotate, or translate a child image. Flag it when the image is not the action target.",
+    "deterministic_check": "Detect :hover transforms on img elements or parent-hover patterns that animate a child image.",
+    "fixture_id": "ai-fingerprint-image-hover-animation",
+    "severity_floor": "P2",
+    "owner": "motion"
+  },
+  {
+    "tell_id": "cream-or-sand-body-background",
+    "model_family": "general",
+    "self_defect_prompt": "Find warm-neutral near-white body or page backgrounds, including tokens named paper, cream, sand, bone, linen, or ivory when used as the page background. Flag the generic warm-paper default unless the brief truly requires it.",
+    "deterministic_check": "Detect a body or page background in the light warm-neutral band, or warm-paper token names used as the page background.",
+    "fixture_id": "ai-fingerprint-cream-or-sand-body-background",
+    "severity_floor": "P2",
+    "owner": "foundations"
+  },
+  {
+    "tell_id": "eyebrow-above-every-section",
+    "model_family": "general",
+    "self_defect_prompt": "Find tiny uppercase tracked labels repeated above three or more section headings. Include the numbered 01/02/03 variant when the page is not a real ordered sequence.",
+    "deterministic_check": "Detect a small uppercase tracked label repeated above three or more section headings, including numbered markers used as universal section kickers.",
+    "fixture_id": "ai-fingerprint-eyebrow-above-every-section",
+    "severity_floor": "P2",
+    "owner": "interface"
+  },
+  {
+    "tell_id": "uniform-section-fade-and-rise",
+    "model_family": "general",
+    "self_defect_prompt": "Find one identical scroll reveal applied to most or all top-level sections: same fade, rise distance, easing, and trigger. Flag uniform reveal reflexes that ignore the content being revealed.",
+    "deterministic_check": "Detect the same scroll-triggered fade-and-rise animation applied uniformly to most or all top-level sections.",
+    "fixture_id": "ai-fingerprint-uniform-section-fade-and-rise",
+    "severity_floor": "P2",
+    "owner": "motion"
+  }
+]

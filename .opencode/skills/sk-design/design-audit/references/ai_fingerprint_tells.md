@@ -17,6 +17,8 @@ This reference turns "it feels AI-made" into named, checkable findings. Each tel
 
 The shared anti-slop vocabulary and the general slop signals live in `anti_patterns_production.md` section 1. Do not re-list those here. This file is the model-specific layer underneath them: the tells that point at a particular generator and that a reviewer can grep or eyeball with a concrete rule. The severity model and findings schema are in `audit_contract.md`. The audit reports these tells, it does not rewrite the element, which is `sk-code` work once the user accepts the fix.
 
+Structured mirror: `../assets/ai_fingerprint_registry.json` carries one machine-checkable row per tell, `../assets/ai_fingerprint_self_defect_card.md` carries one self-audit prompt per row and `../../shared/scripts/ai-fingerprint-registry-check.mjs` verifies catalog-to-registry parity.
+
 ---
 
 ## 1. HOW TO USE THIS CATALOG

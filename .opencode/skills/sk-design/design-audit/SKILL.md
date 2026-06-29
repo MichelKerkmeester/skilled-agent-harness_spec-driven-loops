@@ -84,6 +84,9 @@ DESIGN QA TASK
 - `references/accessibility_performance.md` covers accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion performance, Core Web Vitals, and measurement.
 - `references/critique_hardening.md` covers critique workflow, cognitive load, Nielsen heuristics, personas, polish, edge cases, i18n, error states, and resilience.
 - `references/anti_patterns_production.md` covers slop detection, theming drift, token misuse, pseudo-elements, View Transitions, copy clarity, and production hardening.
+- `assets/ai_fingerprint_registry.json` mirrors the model-specific tell catalog as one machine-checkable row per tell.
+- `assets/ai_fingerprint_self_defect_card.md` carries one self-audit prompt per registry row.
+- `../shared/scripts/ai-fingerprint-registry-check.mjs` validates catalog-to-registry parity and fixture-id shape before registry changes ship.
 - `references/corpus_map.md` maps the source corpus.
 - `../shared/sk_code_handoff.md` defines the accepted-finding backlog handoff to `sk-code`.
 
@@ -97,7 +100,7 @@ DESIGN QA TASK
 | CONDITIONAL | Accessibility or performance concern | `references/accessibility_performance.md` |
 | CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique_hardening.md` |
 | CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti_patterns_production.md` |
-| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md` (Codex, Gemini, 2026-general fingerprints as checkable findings) |
+| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md`, `assets/ai_fingerprint_registry.json`, `assets/ai_fingerprint_self_defect_card.md` (Codex, Gemini, 2026-general fingerprints as checkable findings with structured rows and self-defect prompts) |
 | CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform_remediation.md` (register-gated transform verbs mapped to findings and owners) |
 | CONDITIONAL | Resolving the target and labeling evidence | `references/evidence_capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
 | CONDITIONAL | Carrying confirmed, inferred and not-assessed labels into findings and scores | `assets/audit_evidence_worksheet.md` (target, evidence inventory, dimension coverage, probes and finding handoff rows) |
@@ -141,7 +144,7 @@ RESOURCE_MAP = {
     "AUDIT_CONTRACT": ["references/corpus_map.md", "references/audit_contract.md", "assets/audit_report_template.md", "../shared/sk_code_handoff.md"],
     "ACCESSIBILITY_PERFORMANCE": ["references/accessibility_performance.md", "assets/a11y_quick_fixes.md"],
     "CRITIQUE_HARDENING": ["references/critique_hardening.md", "references/hardening_edge_cases.md"],
-    "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md", "assets/anti_patterns_score_rubric.md"],
+    "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md", "assets/ai_fingerprint_registry.json", "assets/ai_fingerprint_self_defect_card.md", "assets/anti_patterns_score_rubric.md"],
     "TRANSFORM_REMEDIATION": ["references/transform_remediation.md"],
     "EVIDENCE_CAPTURE": ["references/evidence_capture.md", "assets/audit_evidence_worksheet.md"],
 }

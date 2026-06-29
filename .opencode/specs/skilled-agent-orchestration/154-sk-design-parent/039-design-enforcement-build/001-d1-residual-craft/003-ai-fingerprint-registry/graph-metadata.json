@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d1-r3 ai fingerprint registry",
-      "ai tell registry design build"
+      "ai tell registry design build",
+      "design audit anti-slop registry",
+      "ai fingerprint registry plan",
+      "ai tell registry validator",
+      "ai fingerprint registry tasks",
+      "design audit registry build tasks",
+      "ai tell registry validator tasks",
+      "ai fingerprint registry checklist",
+      "design audit registry verification",
+      "ai tell registry parity checklist",
+      "ai fingerprint registry summary"
     ],
     "key_topics": [
       "d1-r3",
@@ -21,19 +31,58 @@
       "tell",
       "design",
       "build",
-      "add",
-      "design-audit",
-      "assets",
-      "json",
-      "plus",
-      "generated"
+      "audit",
+      "anti-slop",
+      "plan",
+      "validator",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_self_defect_card.md",
+      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+      ".opencode/skills/sk-design/design-audit/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "ai_fingerprint_registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "ai_fingerprint_self_defect_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_self_defect_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-registry-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai_fingerprint_tells.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +90,133 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Fingerprint Registry",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Purpose Give",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Data",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Validator",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add design-audit/assets/ai_fingerprint_registry.json plus a generated self-defect card and a validator that fails catalog tells lacking a registry row/fixture.",
+    "causal_summary": "The audit mode detects model-specific AI tells from a prose catalog only (`design-audit/references/aifingerprinttells.md`)",
     "created_at": "2026-06-28T12:40:04.989Z",
-    "last_save_at": "2026-06-28T12:40:04.989Z",
+    "last_save_at": "2026-06-29T10:48:05.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a30ebc8a8a89a4259bdea3fae47fbbcdb28b6cd15dbe8419c66b4c1409132ba",
+    "source_fingerprint": "sha256:7451eff526c728a0f61e82523a258d840f35caa1082aec04e533720044f1b962",
     "source_doc_hashes": {
-      "spec.md": "825df91786ad653a025e0969878911bbc60d4334f8aa384f90a4e9652c937a4e"
+      "spec.md": "c3adc8d4eb240fb4864cf1868f3954ecc8057620de2f8f098165546b07afd1c2",
+      "plan.md": "2a93f5e7bc6be18b041f345601254b10fa6f4e670add776b2781f291ff9aac4b",
+      "tasks.md": "5e6b0ff0fd0ca4696318d2f335ccc3706d0c1d66c27a41ff7df359252d33f155",
+      "checklist.md": "2cf409c69535c8f58f900323bc1ddaf7e2dc19d813dd45ffbb1c6b6cef8dc0c1",
+      "implementation-summary.md": "0f4c91332e8276679eee5ff92eccee269f5d3b3ee55f6e2669f61421573bed54"
     },
     "last_active_child_id": null,
     "last_active_at": null
