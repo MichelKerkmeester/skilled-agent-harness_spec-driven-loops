@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d1-r2 transform verbs",
-      "transform verb aliases design build"
+      "transform verb aliases design build",
+      "make it should it be routing split",
+      "transform verb aliases plan",
+      "design transform routing build",
+      "interface transform application lane",
+      "transform verb aliases tasks",
+      "design transform routing tasks",
+      "interface transform application tasks",
+      "transform verb aliases checklist",
+      "design transform routing checklist",
+      "interface transform application checklist"
     ],
     "key_topics": [
       "d1-r2",
@@ -22,18 +32,43 @@
       "aliases",
       "design",
       "build",
-      "add",
-      "transform-verb",
-      "mode-registry",
-      "json",
-      "plus"
+      "make",
+      "routing",
+      "split",
+      "plan",
+      "interface"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/design-interface/references/design-process/transform_application.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "transform_application.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/transform_application.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +76,145 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "gold",
-        "kind": "key_phrase",
+        "name": "Verb Hub Routing",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Give",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registry Aliases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interface Authoring Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add transform-verb aliases to mode-registry.json plus a design-interface transform_application.md authoring lane with gold prompts.",
+    "causal_summary": "The transform verbs bolder, quieter, distill, clarify and delight had no parseable route into the sk-design hub",
     "created_at": "2026-06-28T12:40:06.534Z",
-    "last_save_at": "2026-06-28T12:40:06.534Z",
+    "last_save_at": "2026-06-29T10:46:05.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b082b875a8ae72002c884261d826e0f68e414396bb131ae1a3919b37bc2ba21",
+    "source_fingerprint": "sha256:d214797cfa23859d245bd9df61ea569d3959d9ae720f136be1374d5750da1ad8",
     "source_doc_hashes": {
-      "spec.md": "95adc6663aa37444aa3ab97f8d9a1e265bccb137b249202e9c62f3d61433fc8a"
+      "spec.md": "7de7ddac01937d99111ea127005f5ec97ba512222c019df987e46cc935030f95",
+      "plan.md": "2d973bb96ef0157bd5d3b66cc9d5306f201595ff8a4ec446442482f60c0df388",
+      "tasks.md": "5d0af7d058dd99f56984fb74a16467b47b22b39b7dd4e5ce10879a4ef9c65742",
+      "checklist.md": "6c7c1d44a19f002879c639bec2be54d8c15037daba26900d19e3e1e8344ee343",
+      "implementation-summary.md": "64cb7faec39e512e415c4c59da91de5717db2a4d5c202501f847d28961d78cb1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,6 +11,18 @@
     "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
     "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names, so all five are grandfathered."
   },
+  "transformVerbRouting": {
+    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move.",
+    "interfaceFrame": "make it",
+    "auditFrame": "should it be",
+    "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],
+    "aliasOnly": ["clarify"],
+    "commandProjectionParity": ["bolder", "quieter", "distill", "delight"],
+    "excludedAliases": {
+      "foundations": ["typeset", "colorize"],
+      "audit": ["harden", "polish"]
+    }
+  },
   "modes": [
     {
       "workflowMode": "interface",
@@ -24,7 +36,7 @@
       "packet": "design-interface",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "ui build", "design variations"],
+      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "ui build", "design variations", "bolder", "quieter", "distill", "clarify", "delight"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-interface"

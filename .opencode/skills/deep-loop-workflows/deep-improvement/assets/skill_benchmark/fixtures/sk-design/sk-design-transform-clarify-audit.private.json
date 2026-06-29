@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-design-transform-clarify-audit",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "audit",
+    "advisorLane": "sk-design",
+    "intentKeys": ["audit"],
+    "resources": ["design-audit/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "audit",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "md-generator"],
+    "minimalPairGroup": "transform-clarify-audit-interface"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the audit-framed transform question to the audit workflow mode"],
+    "harmChecks": ["does not apply the transform before the audit decision"]
+  }
+}

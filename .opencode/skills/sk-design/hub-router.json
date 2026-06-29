@@ -53,6 +53,7 @@
       "classes": [
         "audit-aliases",
         "audit-quality",
+        "audit-transform-question",
         "audit-accessibility",
         "audit-hardening"
       ],
@@ -93,7 +94,12 @@
         "redesign the ui",
         "hero section",
         "ui build",
-        "design variations"
+        "design variations",
+        "bolder",
+        "quieter",
+        "distill",
+        "clarify",
+        "delight"
       ]
     },
     "interface-taste": {
@@ -269,6 +275,16 @@
         "audit the design",
         "review the ui",
         "ui quality review"
+      ]
+    },
+    "audit-transform-question": {
+      "keywords": [
+        "should it be",
+        "should it be bolder",
+        "should it be quieter",
+        "should it be distill",
+        "should it be clarify",
+        "should it be delight"
       ]
     },
     "audit-accessibility": {

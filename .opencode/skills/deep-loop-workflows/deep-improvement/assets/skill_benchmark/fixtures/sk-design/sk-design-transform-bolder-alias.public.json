@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-transform-bolder-alias",
+  "tier": "T3",
+  "public": {
+    "prompt": "make it bolder",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}
