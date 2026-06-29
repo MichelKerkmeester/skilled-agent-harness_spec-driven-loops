@@ -18,8 +18,21 @@ Pin the `interface` mode of the `sk-design` parent hub to build or reshape a dis
 across modes; this command loads the `interface` mode directly. If the request spans more
 than `interface`, defer to the hub's routing instead of forcing this mode.
 
+## 3. INTERFACE TASK LANES
+
+Pick the lane that matches the request; if none fits, defer to the `sk-design` hub.
+
+- **direction** (default) -- invent a distinctive interface direction.
+- **directions** (`--mode directions`) -- produce debiased options.
+- **redesign** (`--mode redesign`) -- reshape an existing surface.
+- **preflight** (`--mode preflight`) -- run the pre-ship mechanical gate.
+- **handoff** (`--mode build`) -- run the real UI loop and emit the sk-code handoff manifest.
+- **aesthetic** (`--mode aesthetic`) -- name a realized look.
+- **quality** is not owned here; route accessibility, contrast, scoring, and hardening to `/design:audit`.
+- **register**, **copy-gate**, **grounding**, and **reference** are internal or hidden lanes; they run inside the workflow and are not surfaced and not selectable tasks.
+
 <!-- ANCHOR:sibling-discriminator -->
-## 3. WHEN TO USE THIS, NOT A SIBLING
+## 4. WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to invent or reshape a distinctive interface direction.
 - **Prefer `/design:audit` when** the request is findings-first review, accessibility, performance, scoring, or production hardening.
@@ -29,7 +42,7 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 4. PRECONDITIONS
+## 5. PRECONDITIONS
 
 - **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint
 - **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which interface surface, and is this Brand or Product register?" Do not run on a guess.
@@ -46,7 +59,7 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
 <!-- /ANCHOR:register -->
 
-## 5. INSTRUCTIONS
+## 6. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -61,7 +74,7 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 6. EMIT DELIVERABLE
+## 7. EMIT DELIVERABLE
 
 Emit `Interface Direction Spec` as the primary deliverable.
 
@@ -71,7 +84,7 @@ Required fields:
 - `designDials`
 - `preflightResult`
 
-## 7. PIPELINE & HANDOFF
+## 8. PIPELINE & HANDOFF
 
 - **Stage:** direction - frames the interface decision before static systems, behavior, audit, or build.
 - **Accepts from:** `/design:audit`, `/design:foundations`, `/design:md-generator`, `/design:motion`.
@@ -80,7 +93,7 @@ Required fields:
 - **Hands to build:** when the accepted interface direction moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
-## 8. EXAMPLE
+## 9. EXAMPLE
 
 ```
 /design:interface dashboard-shell --mode redesign

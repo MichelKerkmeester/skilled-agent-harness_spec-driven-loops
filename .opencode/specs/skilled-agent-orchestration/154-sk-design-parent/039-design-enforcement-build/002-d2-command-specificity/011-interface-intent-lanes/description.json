@@ -1,22 +1,22 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/011-interface-intent-lanes",
-  "description": "Bind interface command tasks to the interface router INTENT_SIGNALS, promoting directions/preflight/redesign/handoff as task projections and classifyi",
+  "description": "The `/design:interface` command collapses the interface mode's eleven router intent lanes into a single thin bridge",
   "keywords": [
-    "bind",
+    "design",
     "interface",
     "command",
-    "tasks",
+    "collapses",
+    "mode",
+    "eleven",
     "router",
-    "promoting",
-    "directions",
-    "preflight",
-    "redesign",
-    "handoff",
-    "task",
-    "projections",
-    "classifyi"
+    "intent",
+    "lanes",
+    "single",
+    "thin",
+    "bridge"
   ],
-  "lastUpdated": "2026-06-28T12:40:00.814Z",
+  "lastUpdated": "2026-06-29T06:51:13.833Z",
   "specId": "011",
   "folderSlug": "interface-intent-lanes",
   "parentChain": [
@@ -28,6 +28,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

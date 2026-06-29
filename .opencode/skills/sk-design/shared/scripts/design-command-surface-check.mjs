@@ -44,6 +44,7 @@ const DRIFT_FIELDS = [
   "returns",
   "user-intent",
   "sibling-discriminator",
+  "task-lanes",
   "preconditions",
   "pipeline",
   "register",
@@ -80,6 +81,10 @@ const REQUIRED_RETURN_STATUS_TOKENS = [
 ];
 const STATUS_ONLY_FAILURE_PATTERN = /STATUS=FAIL\s+ERROR="<message>"/;
 const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
+const INTERFACE_COMMAND = "/design:interface";
+const INTERFACE_AUDIT_ROUTE = "/design:audit";
+const INTERFACE_TASK_CLASSES = new Set(["sibling-command", "argument", "internal", "hidden"]);
+const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
   "result",
@@ -98,6 +103,7 @@ const skillRootUrl = new URL("../../", scriptUrl);
 const opencodeRootUrl = new URL("../../", skillRootUrl);
 const metadataUrl = new URL("command-metadata.json", skillRootUrl);
 const registryUrl = new URL("mode-registry.json", skillRootUrl);
+const interfaceSkillUrl = new URL("design-interface/SKILL.md", skillRootUrl);
 const commandsRootUrl = new URL("commands/design/", opencodeRootUrl);
 const SIBLING_DISCRIMINATOR_START = "<!-- ANCHOR:sibling-discriminator -->";
 const SIBLING_DISCRIMINATOR_END = "<!-- /ANCHOR:sibling-discriminator -->";
@@ -133,9 +139,17 @@ main().catch((error) => {
 });
 
 async function main() {
-  const [metadata, registry] = await Promise.all([readJson(metadataUrl), readJson(registryUrl)]);
+  const [metadata, registry, interfaceSkillSource] = await Promise.all([
+    readJson(metadataUrl),
+    readJson(registryUrl),
+    readFile(interfaceSkillUrl, "utf8")
+  ]);
   const workflowModes = readWorkflowModes(registry);
-  const metadataErrors = validateMetadata(metadata, workflowModes);
+  const interfaceIntentLanes = parseInterfaceIntentSignalKeys(interfaceSkillSource);
+  const metadataErrors = [
+    ...validateInterfaceIntentSignalKeys(interfaceIntentLanes),
+    ...validateMetadata(metadata, workflowModes, interfaceIntentLanes)
+  ];
 
   if (metadataErrors.length > 0) {
     emitAndExit(
@@ -184,7 +198,7 @@ function readWorkflowModes(registry) {
   );
 }
 
-function validateMetadata(metadata, workflowModes) {
+function validateMetadata(metadata, workflowModes, interfaceIntentLanes) {
   const errors = [];
 
   if (!Array.isArray(metadata)) {
@@ -243,6 +257,10 @@ function validateMetadata(metadata, workflowModes) {
     errors.push(...validateDiscriminator(record, command, workflowModes));
     errors.push(...validatePipeline(record, command, expectedCommands));
 
+    if (command === INTERFACE_COMMAND) {
+      errors.push(...validateInterfaceTasks(record, command, interfaceIntentLanes, expectedCommands));
+    }
+
     if (Array.isArray(record?.aliases)) {
       for (const alias of record.aliases) {
         const owner = seenAliases.get(alias);
@@ -264,6 +282,94 @@ function validateMetadata(metadata, workflowModes) {
   errors.push(...validatePipelineGraph(seenCommands));
 
   return errors.sort();
+}
+
+function parseInterfaceIntentSignalKeys(source) {
+  const blockMatch = source.match(/^INTENT_SIGNALS\s*=\s*\{([\s\S]*?)^}\s*$/m);
+  if (!blockMatch) {
+    return [];
+  }
+
+  return [...blockMatch[1].matchAll(/^\s+"([A-Z_]+)"\s*:/gm)].map((match) => match[1]);
+}
+
+function validateInterfaceIntentSignalKeys(keys) {
+  if (keys.length === 0) {
+    return [`${INTERFACE_COMMAND}: interface router INTENT_SIGNALS block must expose at least one lane`];
+  }
+
+  const duplicates = duplicateValues(keys);
+  if (duplicates.length > 0) {
+    return [`${INTERFACE_COMMAND}: interface router INTENT_SIGNALS contains duplicate lanes [${duplicates.join(",")}]`];
+  }
+
+  return [];
+}
+
+function validateInterfaceTasks(record, command, interfaceIntentLanes, commandSet) {
+  const errors = [];
+  const tasks = record?.tasks;
+
+  if (!Array.isArray(tasks) || tasks.length === 0) {
+    return [`${command}: tasks must be a non-empty array`];
+  }
+
+  const expectedLanes = interfaceIntentLanes;
+  const expectedLaneSet = new Set(expectedLanes);
+  const actualLanes = [];
+
+  tasks.forEach((task, index) => {
+    const label = `${command}: tasks[${index}]`;
+
+    if (!isPlainObject(task)) {
+      errors.push(`${label} must be an object`);
+      return;
+    }
+
+    for (const field of ["lane", "label", "class", "surface"]) {
+      if (typeof task[field] !== "string" || task[field].trim().length === 0) {
+        errors.push(`${label}.${field} must be a non-empty string`);
+      }
+    }
+
+    if (typeof task.lane === "string" && task.lane.trim().length > 0) {
+      actualLanes.push(task.lane);
+
+      if (commandSet.has(task.lane)) {
+        errors.push(`${label}.lane must not be promoted into the /design:* command set`);
+      }
+    }
+
+    if (typeof task.class === "string" && !INTERFACE_TASK_CLASSES.has(task.class)) {
+      errors.push(`${label}.class must be one of ${[...INTERFACE_TASK_CLASSES].join(",")}`);
+    }
+
+    if (
+      typeof task.class === "string"
+      && task.class !== "argument"
+      && typeof task.surface === "string"
+      && DESIGN_COMMAND_PATTERN.test(task.surface)
+    ) {
+      errors.push(`${label}.surface must not name a /design:* command unless class is argument`);
+    }
+  });
+
+  const duplicateLanes = duplicateValues(actualLanes);
+  for (const lane of duplicateLanes) {
+    errors.push(`${command}: tasks lane ${lane} is duplicated`);
+  }
+
+  const actualLaneSet = new Set(actualLanes);
+  const missingLanes = expectedLanes.filter((lane) => !actualLaneSet.has(lane));
+  const extraLanes = [...actualLaneSet].filter((lane) => !expectedLaneSet.has(lane)).sort();
+
+  if (missingLanes.length > 0 || extraLanes.length > 0) {
+    errors.push(
+      `${command}: tasks lane set must match interface INTENT_SIGNALS missing=[${missingLanes.join(",")}] extra=[${extraLanes.join(",")}]`
+    );
+  }
+
+  return errors;
 }
 
 function validatePreconditions(record, command) {
@@ -675,6 +781,20 @@ function validateUniqueArray(command, field, values) {
   return errors;
 }
 
+function duplicateValues(values) {
+  const seen = new Set();
+  const duplicates = new Set();
+
+  for (const value of values) {
+    if (seen.has(value)) {
+      duplicates.add(value);
+    }
+    seen.add(value);
+  }
+
+  return [...duplicates].sort();
+}
+
 function isPlainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
@@ -745,9 +865,83 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedPreconditionsDrift(record, markdown));
     drift.push(...expectedPipelineDrift(record, markdown));
     drift.push(...expectedRegisterDrift(record, markdown));
+
+    if (record.command === INTERFACE_COMMAND) {
+      drift.push(...expectedInterfaceTaskLanesDrift(record, markdown));
+    }
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedInterfaceTaskLanesDrift(record, markdown) {
+  const section = extractInterfaceTaskLanesSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "task-lanes",
+        command: record.command,
+        field: "task-lanes",
+        expected: "## INTERFACE TASK LANES",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const lowerSection = section.toLowerCase();
+  const tasks = Array.isArray(record.tasks) ? record.tasks : [];
+
+  for (const task of tasks) {
+    if (!isPlainObject(task) || typeof task.label !== "string") {
+      continue;
+    }
+
+    if (["argument", "sibling-command", "internal", "hidden"].includes(task.class) && !containsPhrase(section, task.label)) {
+      drift.push({
+        kind: "task-lanes",
+        command: record.command,
+        field: "task-lanes",
+        expected: task.label,
+        actual: "<missing lane label>"
+      });
+    }
+  }
+
+  if (tasks.some((task) => task?.class === "sibling-command") && !section.includes(INTERFACE_AUDIT_ROUTE)) {
+    drift.push({
+      kind: "task-lanes",
+      command: record.command,
+      field: "task-lanes",
+      expected: INTERFACE_AUDIT_ROUTE,
+      actual: "<missing sibling route>"
+    });
+  }
+
+  if (tasks.some((task) => ["internal", "hidden"].includes(task?.class))) {
+    if (!lowerSection.includes("not surfaced")) {
+      drift.push({
+        kind: "task-lanes",
+        command: record.command,
+        field: "task-lanes",
+        expected: "not surfaced",
+        actual: "<missing internal/hidden lane note>"
+      });
+    }
+
+    if (!lowerSection.includes("not selectable")) {
+      drift.push({
+        kind: "task-lanes",
+        command: record.command,
+        field: "task-lanes",
+        expected: "not selectable",
+        actual: "<missing internal/hidden lane note>"
+      });
+    }
+  }
+
+  return drift;
 }
 
 function expectedUserIntentDrift(record, markdown) {
@@ -1275,6 +1469,10 @@ function extractUserIntentSection(markdown) {
 
 function extractInternalBindingSection(markdown) {
   return extractNamedSection(markdown, "INTERNAL BINDING");
+}
+
+function extractInterfaceTaskLanesSection(markdown) {
+  return extractNamedSection(markdown, "INTERFACE TASK LANES");
 }
 
 function extractNamedSection(markdown, sectionName) {

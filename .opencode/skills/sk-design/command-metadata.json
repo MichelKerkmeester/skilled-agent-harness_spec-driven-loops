@@ -178,6 +178,74 @@
     ],
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
     "proofFields": ["target", "register", "designDials", "preflightResult"],
+    "tasks": [
+      {
+        "lane": "DESIGN_PRINCIPLES",
+        "label": "direction",
+        "class": "argument",
+        "surface": "default --mode: invent a distinctive interface direction"
+      },
+      {
+        "lane": "VARIATION_DIVERSITY",
+        "label": "directions",
+        "class": "argument",
+        "surface": "--mode directions: produce debiased options"
+      },
+      {
+        "lane": "REDESIGN_INTAKE",
+        "label": "redesign",
+        "class": "argument",
+        "surface": "--mode redesign: reshape an existing surface"
+      },
+      {
+        "lane": "MECHANICAL_PREFLIGHT",
+        "label": "preflight",
+        "class": "argument",
+        "surface": "--mode preflight: run the pre-ship mechanical gate"
+      },
+      {
+        "lane": "REAL_UI_LOOP",
+        "label": "handoff",
+        "class": "argument",
+        "surface": "--mode build: real UI loop and sk-code handoff manifest"
+      },
+      {
+        "lane": "AESTHETICS",
+        "label": "aesthetic",
+        "class": "argument",
+        "surface": "--mode aesthetic: name a realized look"
+      },
+      {
+        "lane": "UX_QUALITY",
+        "label": "quality",
+        "class": "sibling-command",
+        "surface": "audit sibling route: accessibility, contrast, scoring, and production hardening"
+      },
+      {
+        "lane": "REGISTER_DIALS",
+        "label": "register",
+        "class": "internal",
+        "surface": "always-load register calibration dial; not a chooser"
+      },
+      {
+        "lane": "COPY_MOCK_DATA",
+        "label": "copy-gate",
+        "class": "internal",
+        "surface": "content delivery gate inside the workflow"
+      },
+      {
+        "lane": "REAL_SYSTEM_GROUNDING",
+        "label": "grounding",
+        "class": "internal",
+        "surface": "reuse-before-generate grounding phase"
+      },
+      {
+        "lane": "REAL_WORLD_REFERENCE",
+        "label": "reference",
+        "class": "hidden",
+        "surface": "real-world reference critique tooling; not surfaced to the caller"
+      }
+    ],
     "registerPolicy": {
       "accepted": ["brand", "product"],
       "default": "auto",
