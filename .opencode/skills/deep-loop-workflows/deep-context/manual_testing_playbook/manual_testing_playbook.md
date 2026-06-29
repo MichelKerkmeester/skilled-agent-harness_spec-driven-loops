@@ -1,7 +1,7 @@
 ---
 title: "deep-context: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-context skill."
-version: 1.2.0.4
+version: 1.2.0.5
 ---
 
 # deep-context: Manual Testing Playbook
@@ -26,7 +26,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 25 deterministic scenarios across 7 categories validating the current `deep-context` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 27 deterministic scenarios across 7 categories validating the current `deep-context` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -140,8 +140,8 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Wave Planning Guidance
 
 - Wave 1 covers frontier seeding (FS-001 through FS-003) and parallel sweep (SWEEP-001 through SWEEP-004).
-- Wave 2 covers agreement merge (MERGE-001 through MERGE-003) and convergence detection (CONV-001 through CONV-004).
-- Wave 3 covers context report synthesis (SYN-001 through SYN-003) and coverage-graph schema (CG-001 through CG-003).
+- Wave 2 covers agreement merge (MERGE-001 through MERGE-003) and convergence detection (CONV-001 through CONV-005).
+- Wave 3 covers context report synthesis (SYN-001 through SYN-003) and coverage-graph schema (CG-001 through CG-004).
 - Wave 4 covers runtime robustness (RUNTIME-001 through RUNTIME-005).
 
 ### What Belongs In Per-Feature Files
@@ -211,7 +211,7 @@ Desired user-visible outcome: fresh sessions always produce a config file whose 
 
 ## 8. BY-MODEL PARALLEL SWEEP (`SWEEP-001..SWEEP-004`)
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### SWEEP-001 | Heterogeneous Pool Dispatch
 
@@ -283,7 +283,7 @@ Desired user-visible outcome: seat prompts are rendered with the correct model-s
 
 ## 9. AGREEMENT MERGE (`MERGE-001..MERGE-003`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### MERGE-001 | Finding Dedup by Symbol
 
@@ -336,7 +336,7 @@ Desired user-visible outcome: when two seats report incompatible contracts for t
 
 ---
 
-## 10. CONVERGENCE DETECTION (`CONV-001..CONV-004`)
+## 10. CONVERGENCE DETECTION (`CONV-001..CONV-005`)
 
 This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
@@ -406,6 +406,21 @@ Desired user-visible outcome: the convergence script produces a machine-readable
 #### Test Execution
 > **Feature File:** [CONV-004](04--convergence-detection/evaluate-context.md)
 
+### CONV-005 | Cross-Mode Anti-Convergence Contract
+
+#### Description
+Verify that `deep-context` declares the shared anti-convergence floor and fail-closed stop policy, with shared runtime and optimizer guard anchors.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the deep-context anti-convergence contract against `deep_context_config.json`, the shared runtime capability resolver, and the optimizer manifest. Return a concise verdict.
+
+Expected signals: `deep_context_config.json` contains `antiConvergence.minIterations = 2`, `convergenceMode = "default"`, and `stopPolicy = "fail-closed"`; the shared runtime resolver rejects missing/non-fail-closed policy; the optimizer manifest locks convergence mode and carries `minIterations<=maxIterations`.
+
+Desired user-visible outcome: the context loop cannot be documented as a one-sweep stop path; it carries a two-iteration floor and fail-closed stop-policy contract.
+
+#### Test Execution
+> **Feature File:** [CONV-005](04--convergence-detection/cross-mode-anti-convergence-contract.md)
+
 ---
 
 ## 11. CONTEXT REPORT SYNTHESIS (`SYN-001..SYN-003`)
@@ -463,7 +478,7 @@ Desired user-visible outcome: the reducer can be safely invoked on any spec fold
 
 ---
 
-## 12. COVERAGE-GRAPH SCHEMA (`CG-001..CG-003`)
+## 12. COVERAGE-GRAPH SCHEMA (`CG-001..CG-004`)
 
 This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
 
@@ -515,6 +530,21 @@ Desired user-visible outcome: the convergence engine can be unit-tested with in-
 
 #### Test Execution
 > **Feature File:** [CG-003](06--coverage-graph-schema/context-convergence-signals.md)
+
+### CG-004 | Code-Graph Coverage Seed Bridge
+
+#### Description
+Verify that `deep-context` seeds coverage-graph nodes from frontier/code-graph evidence with seed source and confidence metadata before the first convergence check.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the deep-context code-graph to coverage-graph seed bridge against `deep_context_auto.yaml`, `upsert.cjs`, and `coverage-graph-db.ts`. Return a concise verdict.
+
+Expected signals: YAML binds `coverage_seed_source` and `coverage_seed_confidence`; context uses 0.55 for code-graph and 0.35 for fallback seeds; `upsert.cjs` requires both seed fields and validates 0..1 confidence; `coverage-graph-db.ts` stores and returns `seed_source` and `seed_confidence`; tests cover seed metadata.
+
+Desired user-visible outcome: a context run starts convergence with seeded graph context when frontier data exists, and seeded nodes remain auditable by source and confidence.
+
+#### Test Execution
+> **Feature File:** [CG-004](06--coverage-graph-schema/code-graph-coverage-seed-bridge.md)
 
 ---
 
@@ -614,6 +644,8 @@ Desired user-visible outcome: every CLI seat launched by the context loop carrie
 | `.opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts` | `convergence.cjs --loop-type context` exit codes and JSON output | CONV-004 |
 | `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` | `computeContextSignalsFromData` vacuous-pass behavior | CG-003 |
 | `.opencode/skills/deep-loop-runtime/tests/integration/status-script.vitest.ts` | Coverage graph stats and signal snapshots | CG-001 |
+| `.opencode/skills/deep-loop-runtime/tests/integration/upsert-script.vitest.ts` | Seed metadata validation through the upsert CLI | CG-004 |
+| `.opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-db.vitest.ts` | Seed metadata persistence and zero-node seed warnings | CG-004 |
 
 ---
 
@@ -635,12 +667,14 @@ Desired user-visible outcome: every CLI seat launched by the context loop carrie
 | CONV-002 | Relevance Gate | Convergence Detection | [CONV-002](04--convergence-detection/relevance-gate.md) |
 | CONV-003 | Agreement Gate | Convergence Detection | [CONV-003](04--convergence-detection/agreement-gate.md) |
 | CONV-004 | Evaluate Context via Convergence Script | Convergence Detection | [CONV-004](04--convergence-detection/evaluate-context.md) |
+| CONV-005 | Cross-Mode Anti-Convergence Contract | Convergence Detection | [CONV-005](04--convergence-detection/cross-mode-anti-convergence-contract.md) |
 | SYN-001 | Reuse Catalog Generation | Context Report Synthesis | [SYN-001](05--context-report-synthesis/reuse-catalog-generation.md) |
 | SYN-002 | Context Report Assembly | Context Report Synthesis | [SYN-002](05--context-report-synthesis/context-report-assembly.md) |
 | SYN-003 | Reduce-State Merge | Context Report Synthesis | [SYN-003](05--context-report-synthesis/reduce-state-merge.md) |
 | CG-001 | Loop Type: Context Schema | Coverage-Graph Schema | [CG-001](06--coverage-graph-schema/loop-type-context-schema.md) |
 | CG-002 | Context Node Kinds and Relations | Coverage-Graph Schema | [CG-002](06--coverage-graph-schema/context-node-kinds-relations.md) |
 | CG-003 | Context Convergence Signals | Coverage-Graph Schema | [CG-003](06--coverage-graph-schema/context-convergence-signals.md) |
+| CG-004 | Code-Graph Coverage Seed Bridge | Coverage-Graph Schema | [CG-004](06--coverage-graph-schema/code-graph-coverage-seed-bridge.md) |
 | RUNTIME-001 | Atomic State | Runtime Robustness | [RUNTIME-001](07--runtime-robustness/atomic-state.md) |
 | RUNTIME-002 | JSONL Repair | Runtime Robustness | [RUNTIME-002](07--runtime-robustness/jsonl-repair.md) |
 | RUNTIME-003 | Post-Dispatch Validate (Seat Validation) | Runtime Robustness | [RUNTIME-003](07--runtime-robustness/post-dispatch-validate.md) |

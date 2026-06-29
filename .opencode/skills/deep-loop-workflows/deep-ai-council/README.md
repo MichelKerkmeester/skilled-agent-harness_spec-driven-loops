@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 2.3.0.20
+version: 2.3.0.21
 ---
 
 # deep-ai-council
@@ -109,7 +109,7 @@ Before convergence is allowed, three roles test the leading plan. The Hunter att
 
 ### The Two-of-Three Convergence Rule
 
-Convergence is not a popularity vote. A plan converges when two of three seats agree on the material direction and the critique pass finds no new high-severity blocker. If the council hits `max_rounds` without hitting that bar, the run emits `non-converged`. Preserved failed-round forensics let you inspect what blocked convergence and decide whether to add a round, change lenses or accept the partial result.
+Convergence is not a popularity vote. A plan converges when two of three seats agree on the material direction and the critique pass finds no new high-severity blocker. The shipped config also declares the shared anti-convergence floor for council mode: `antiConvergence.minRounds = 2`, `convergenceMode = "default"` and `stopPolicy = "fail-closed"`. If the council hits `max_rounds` without hitting that bar, the run emits `non-converged`. Preserved failed-round forensics let you inspect what blocked convergence and decide whether to add a round, change lenses or accept the partial result.
 
 ---
 
@@ -209,5 +209,6 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 | [`references/structure/folder_layout.md`](./references/structure/folder_layout.md) | Packet-local artifact tree shape and writer ownership |
 | [`references/structure/state_format.md`](./references/structure/state_format.md) | Append-only JSONL event semantics |
 | [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Round strategy template for seat setup and disagreement tracking |
+| [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Full feature inventory across the nine categories |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package with per-feature scenarios |

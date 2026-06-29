@@ -857,6 +857,24 @@ See [`05--lifecycle/async-ingestion-job-lifecycle.md`](05--lifecycle/async-inges
 
 ---
 
+### Speckit autopilot lifecycle
+
+#### Description
+
+The Speckit command surface now has an unattended `:autopilot` / `:unattended` / `--unattended` lifecycle for branch-preserved execution. It is not a quieter spelling of `:auto`: it is the machine-readable path for pipeline-style runs where a failure must preserve the branch and report a typed terminal reason.
+
+#### How It Works
+
+`/speckit:complete`, `/speckit:plan` and `/speckit:implement` parse autopilot flags as execution mode `autopilot` and explicitly avoid aliasing them to `:auto`. The complete workflow asset defines the branch-first, propose, apply, archive, verify and merge-on-clean sequence. Hard failures preserve the branch, skip merge and emit `SPECKIT_AUTOPILOT_RESULT` with one of four reason codes: `no_eligible_tasks`, `retry_exhausted`, `verification_failed` or `uncertainty_blocked`.
+
+Planning in autopilot mode also requires unattended task metadata (`agent`, `deps`, `touched-files`) so implementation can decide eligibility without stopping for user clarification.
+
+#### Source Files
+
+See [`05--lifecycle/speckit-autopilot-lifecycle.md`](05--lifecycle/speckit-autopilot-lifecycle.md) for full implementation and validation file listings.
+
+---
+
 ### Startup pending-file recovery
 
 #### Description

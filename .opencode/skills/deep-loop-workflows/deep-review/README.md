@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.0.34
+version: 1.11.0.35
 ---
 
 # deep-review
@@ -96,6 +96,8 @@ Because state is on disk, a crashed run resumes from the packet files. Use `/dee
 Convergence is a three-signal weighted vote: Rolling Average (0.30) evaluates the last two severity-weighted finding yields, MAD Noise Floor (0.25) tests the latest ratio against statistical noise and Dimension Coverage (0.45) checks that every configured dimension has been audited. When the weighted stop score clears the composite threshold (default 0.60), the loop enters the legal-stop gate bundle.
 
 Nine gates must all pass before STOP is legal. The bundle covers finding stability, dimension coverage, P0 resolution, evidence density, hotspot saturation, claim adjudication, fix-completeness replay, candidate coverage and graphless fallback. If any gate fails the loop persists a `blocked_stop` event and continues with a recovery focus. A P0 override raises the new-findings ratio so any fresh P0 finding forces at least one more iteration regardless of the other signals.
+
+The shipped config also carries the shared anti-convergence contract: `antiConvergence.minIterations = 2`, `convergenceMode = "default"` and `stopPolicy = "fail-closed"`. Runtime capability loading rejects missing or permissive stop policy, and the optimizer manifest locks convergence mode while enforcing `minIterations <= maxIterations`.
 
 ### Adversarial Self-Check
 
@@ -207,7 +209,7 @@ Expected output: zero issues reported.
 | [`assets/review_mode_contract.yaml`](./assets/review_mode_contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep_review_config.json`](./assets/deep_review_config.json) | Config template with defaults for max iterations, convergence threshold and executor |
+| [`assets/deep_review_config.json`](./assets/deep_review_config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
 | [`assets/deep_review_strategy.md`](./assets/deep_review_strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
 | [`assets/deep_review_dashboard.md`](./assets/deep_review_dashboard.md) | Dashboard template with convergence trend and iteration summary |
 | [`assets/prompt_pack_iteration.md.tmpl`](./assets/prompt_pack_iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |

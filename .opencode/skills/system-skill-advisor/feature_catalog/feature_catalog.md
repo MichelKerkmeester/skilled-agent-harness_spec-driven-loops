@@ -13,13 +13,13 @@ version: 0.8.0.12
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/mcp_server/`. Each group links to per-feature files that cite the real implementation and test anchors.
+This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/mcp_server/`, with adjacent OpenCode plugin docs included where the same hook/plugin ownership model applies. Each group links to per-feature files that cite the real implementation and test anchors.
 
 ---
 
 ## 1. OVERVIEW
 
-The catalog covers 41 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools plus the daemon-backed CLI fallback. Groups 07-08 cover runtime integrations plus Python compatibility.
+The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools plus the daemon-backed CLI fallback. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `04--scorer-fusion` and `06--mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -30,7 +30,7 @@ The catalog covers 41 features across 7 groups. Group 01 owns daemon correctness
 | [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
 | [06--mcp-surface](./06--mcp-surface/) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 3 | Claude and Codex hooks plus OpenCode plugin bridge |
+| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 4 | Claude and Codex hooks, OpenCode plugin bridge and the `/goal` plugin |
 | [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
@@ -93,7 +93,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Feature | File |
 | --- | --- |
 | Five-lane analytical fusion | [04--scorer-fusion/five-lane-fusion.md](./04--scorer-fusion/five-lane-fusion.md) |
-| Skill-nodes / skill-edges projection | [04--scorer-fusion/projection.md](./04--scorer-fusion/projection.md) |
+| Registry projection drift guard and workflowMode publication | [04--scorer-fusion/projection.md](./04--scorer-fusion/projection.md) |
 | Top-2 ambiguity window | [04--scorer-fusion/ambiguity.md](./04--scorer-fusion/ambiguity.md) |
 | Lane contribution attribution | [04--scorer-fusion/attribution.md](./04--scorer-fusion/attribution.md) |
 | Lane-by-lane ablation protocol | [04--scorer-fusion/ablation.md](./04--scorer-fusion/ablation.md) |
@@ -125,6 +125,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/claude-hook.md](./07--hooks-and-plugin/claude-hook.md) |
 | Codex CLI native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/codex-hook.md](./07--hooks-and-plugin/codex-hook.md) |
 | OpenCode plugin bridge | [07--hooks-and-plugin/opencode-plugin-bridge.md](./07--hooks-and-plugin/opencode-plugin-bridge.md) |
+| Goal OpenCode plugin (`/goal`, `mk_goal`, `mk_goal_status`) | [07--hooks-and-plugin/goal-opencode-plugin.md](./07--hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 

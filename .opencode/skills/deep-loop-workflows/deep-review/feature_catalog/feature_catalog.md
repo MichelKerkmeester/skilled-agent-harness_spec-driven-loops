@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.0.12
+version: 1.11.0.13
 ---
 
 # deep-review: Feature Catalog
@@ -19,7 +19,7 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 | Loop lifecycle | 9 features | `SKILL.md`, `references/protocol/loop_protocol.md`, deep-review workflows, fan-out runtime primitives |
 | State management | 7 features | `references/state/state_format.md`, review packet files, reducer outputs |
 | Review dimensions | 4 features | `assets/review_mode_contract.yaml`, `assets/deep_review_strategy.md` |
-| Severity system | 7 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract |
+| Severity system | 8 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract |
 
 ---
 
@@ -446,6 +446,22 @@ The legal-stop bundle combines evidence, scope, coverage, P0 resolution, evidenc
 #### Source Files
 
 See [`04--severity-system/quality-gates.md`](04--severity-system/quality-gates.md) for full implementation and validation file listings.
+
+---
+
+### Cross-mode anti-convergence contract
+
+#### Description
+
+Applies the shared minimum-iteration floor, fail-closed stop policy, runtime capability validation, and optimizer invariant locks to review mode.
+
+#### How It Works
+
+`deep_review_config.json` declares `antiConvergence.minIterations = 2`, `convergenceMode = "default"`, and `stopPolicy = "fail-closed"`. The runtime capability matrix repeats the fail-closed policy, the shared resolver rejects missing or permissive policy, and the optimizer manifest locks convergence mode while rejecting `minIterations > maxIterations` candidates.
+
+#### Source Files
+
+See [`04--severity-system/cross-mode-anti-convergence-contract.md`](04--severity-system/cross-mode-anti-convergence-contract.md) for full implementation and validation file listings.
 
 ---
 

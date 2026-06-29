@@ -8,7 +8,7 @@ trigger_phrases:
   - "what can I reuse"
   - "deep context loop"
   - "/deep:context"
-version: 1.2.0.9
+version: 1.2.0.10
 ---
 
 # deep-context
@@ -84,6 +84,8 @@ Expected output: `JSON OK`.
 
 The host extracts anchors from your scope query, then expands them through `code_graph_query` blast-radius calls into ranked SLICE nodes. When the code graph is stale or absent, the seeder falls back to Glob and Grep. The resulting frontier goes into `deep-context-strategy.md` before the first sweep runs. Every sweep targets the same frontier, so seats work from the same fact base.
 
+Before the first convergence check, the auto workflow also seeds the shared coverage graph from that frontier. Code-graph seeds carry `seed_source = "code_graph"` with confidence `0.55`; fallback-derived seeds carry lower confidence (`0.35`). The runtime stores this on nodes as `seed_source` and `seed_confidence`, so later graph evidence can distinguish seeded context from organically discovered findings.
+
 ### The Parallel By-Model Sweep
 
 All seats sweep the same scope at once. Native `@deep-context` agents run as a parallel Task batch. Optional heterogeneous CLI seats (MiMo, gpt, deepseek, claude) dispatch through the deep-loop-runtime multi-seat pool. Both groups start together and barrier-join before the host merges anything. A seat that fails does not block the others, and the agreement count reflects only the seats that returned. Seats are read-only analyzers. The host writes all merged state, which keeps the loop Gate-3-safe.
@@ -97,6 +99,8 @@ After each sweep the host deduplicates findings by `unit_id = sha256(path:symbol
 Five signals decide when the loop has gathered enough context. Three are blocking guards: `sliceCoverage` (0.70), `agreementRate` (0.50) and `relevanceFloor` (0.50). If any guard fails, the decision is STOP_BLOCKED and the loop continues with a recovery focus. Two are weighted contributors: `reuseCatalogCoverage` (weight 0.30, the highest) and `dependencyCompleteness` (weight 0.10). The host also runs a saturation check: new agreement-eligible findings per iteration must fall below the convergence threshold (default 0.10) for two consecutive sweeps before the loop is allowed to stop. A high composite score cannot buy past a failed blocking guard.
 
 When all guards pass and saturation is reached, the host emits STOP_ALLOWED and synthesizes the Context Report.
+
+The config additionally declares the shared anti-convergence contract: `antiConvergence.minIterations = 2`, `convergenceMode = "default"` and `stopPolicy = "fail-closed"`. That floor sits around the signal gates so one sweep is never documented as enough evidence by default.
 
 ---
 

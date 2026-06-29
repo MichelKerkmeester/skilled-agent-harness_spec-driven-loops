@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 48 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `08--scorer-fusion` and `10--python-compat`. This mirrors the `feature_catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 47 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 48 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -149,7 +149,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-010` native MCP behavior.
-- **Wave 2**: `CL-001`, `CL-004..CL-006` runtime hooks, plugin bridge and CLI fallback.
+- **Wave 2**: `CL-001`, `CL-004..CL-007` runtime hooks, plugin bridge, CLI fallback and goal plugin.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -181,7 +181,7 @@ This category validates native mcp tools scenarios `NC-001..NC-010`.
 
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-006`.
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-007`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -189,6 +189,7 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-006
 | CL-004 | Codex CLI Native Hooks And Wrapper Fallback | [004-codex-hook-and-wrapper.md](02--cli-hooks-and-plugin/codex-hook-and-wrapper.md) |
 | CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](02--cli-hooks-and-plugin/opencode-plugin-bridge.md) |
 | CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](02--cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
+| CL-007 | Goal OpenCode Plugin | [007-goal-opencode-plugin.md](02--cli-hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 
@@ -267,7 +268,7 @@ This category validates scorer fusion scenarios `SC-001..SC-005`.
 | ID | Scenario | File |
 |---|---|---|
 | SC-001 | Five-Lane Analytical Fusion | [001-five-lane-fusion.md](08--scorer-fusion/five-lane-fusion.md) |
-| SC-002 | Projection of Skill Nodes and Edges | [002-projection.md](08--scorer-fusion/projection.md) |
+| SC-002 | Registry Projection Drift Guard and workflowMode Publication | [002-projection.md](08--scorer-fusion/projection.md) |
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](08--scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](08--scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](08--scorer-fusion/ablation.md) |
@@ -290,12 +291,12 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 47-scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
 
 | Area | Automated test anchors |
 |---|---|
 | Native MCP tools | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts` |
+| Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/__tests__/mk-goal-state.test.cjs`; `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` |
 | Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` |
 | Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` |
 

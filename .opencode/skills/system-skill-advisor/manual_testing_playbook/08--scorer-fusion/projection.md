@@ -1,6 +1,6 @@
 ---
-title: "SC-002 Projection of Skill Nodes and Edges"
-description: "Manual validation that lib/scorer/projection.ts projects skill_nodes and skill_edges into scoring shape without leaking raw graph text or prompt content."
+title: "SC-002 Registry Projection Drift Guard and workflowMode Publication"
+description: "Manual validation that scorer projection stays prompt-safe while generated deep-loop routing projection, hash freshness and workflowMode publication remain aligned."
 trigger_phrases:
   - "sc-002"
   - "scorer projection"
@@ -9,7 +9,7 @@ trigger_phrases:
 version: 0.8.0.16
 ---
 
-# SC-002 Projection of Skill Nodes and Edges
+# SC-002 Registry Projection Drift Guard and workflowMode Publication
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -17,7 +17,7 @@ version: 0.8.0.16
 
 ## 1. OVERVIEW
 
-Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges` into the scoring shape required by lanes such as `graph_causal` and that the projection path never leaks prompt text into node or edge metadata.
+Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges` into the scoring shape required by lanes such as `graph_causal`, and that generated deep-loop routing projection stays fresh enough for `advisor_recommend` to publish the resolved `workflowMode`.
 
 ---
 
@@ -26,6 +26,7 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 - Read-only inspection against the live repo or disposable copy.
 - MCP server built. Daemon reachable.
 - Access to runtime diagnostics where projection output can be observed (for example via `advisor_validate` slices or internal test harness).
+- Deep-loop mode registry and generated projection constants are present.
 
 ---
 
@@ -41,13 +42,27 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 
 2. In the response, inspect the lane attribution: laneBreakdown entries expose exactly lane, rawScore, weightedScore, weight, and shadowOnly (the strict schema; projected node ids and edge types are not part of the shipped response).
 3. Search the projected output for any fragment of the input prompt.
-4. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
+4. Run the routing drift guard:
+
+```bash
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server test -- routing-registry-drift-guard.vitest.ts
+```
+
+5. Trigger a generated deep-loop alias and verify `workflowMode` appears:
+
+```text
+advisor_recommend({"prompt":"run a deep review loop","options":{"includeAttribution":true}})
+```
+
+6. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
 
 ### Expected Signals
 
 - Lane attribution exposes only the documented laneBreakdown fields (lane, rawScore, weightedScore, weight, shadowOnly).
 - No substring of the input prompt appears in projection metadata.
 - The laneBreakdown is bounded and consistent across equivalent calls.
+- Drift guard accepts the embedded TypeScript and Python projection hashes.
+- Deep-loop alias recommendations include the resolved `workflowMode` when a generated mode applies.
 - Parity slice in `advisor_validate` shows zero regressions on Python-correct prompts.
 
 ### Failure Modes
@@ -56,6 +71,8 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 | --- | --- | --- |
 | Prompt fragment in projection | Grep for prompt substring hits | Block release as privacy failure. |
 | Unbounded projection | Graph_causal attribution grows with prompt length | Inspect traversal bounds in `mcp_server/lib/scorer/lanes/graph-causal.ts`; `projection.ts` only clamps stored edge weights. |
+| Stale generated projection | Drift guard hash mismatch | Run `skill_advisor.py --emit-routing-projection` after confirming the mode registry is correct. |
+| Missing workflowMode | Deep-loop alias response lacks field | Inspect `lib/scorer/aliases.ts`, `handlers/advisor-recommend.ts`, and `schemas/advisor-tool-schemas.ts`. |
 | Parity regression | Python-correct cases now fail | Audit projection logic for divergence from Python expectation. |
 
 ---
@@ -66,6 +83,9 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 - Scenario [NC-003](../01--native-mcp-tools/native-validate-slices.md), validate slices.
 - Feature [`04--scorer-fusion/projection.md`](../../feature_catalog/04--scorer-fusion/projection.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts`.
+- Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts`.
+- Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`.
+- Test: `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`.
 
 ---
 

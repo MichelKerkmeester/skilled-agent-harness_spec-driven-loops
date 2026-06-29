@@ -1,7 +1,7 @@
 ---
 title: "deep-ai-council Feature Catalog"
-description: "Canonical capability inventory for the deep-ai-council planning skill: 32 features across 9 categories, each linked to its per-feature file and manual-testing scenario."
-version: 2.3.0.6
+description: "Canonical capability inventory for the deep-ai-council planning skill: 33 features across 9 categories, each linked to its per-feature file and manual-testing scenario."
+version: 2.3.0.7
 ---
 
 # deep-ai-council Feature Catalog
@@ -12,7 +12,7 @@ Canonical inventory of what the `deep-ai-council` planning skill does today, gro
 
 ## 1. OVERVIEW
 
-`deep-ai-council` runs planning-only councils with two or three distinct reasoning seats, forces cross-seat critique, checks convergence, and persists packet-local `ai-council/**` artifacts. This catalog lists the 32 shipped features across 9 categories. Each row links to its per-feature file, and each per-feature file carries the implementation anchors, the manual-testing scenario, and the source metadata.
+`deep-ai-council` runs planning-only councils with two or three distinct reasoning seats, forces cross-seat critique, checks convergence, and persists packet-local `ai-council/**` artifacts. This catalog lists the 33 shipped features across 9 categories. Each row links to its per-feature file, and each per-feature file carries the implementation anchors, the manual-testing scenario, and the source metadata.
 
 The manual testing playbook (`manual_testing_playbook/manual_testing_playbook.md`) is the companion validation surface: every feature here maps to a DAC scenario there. Feature IDs use the `DAC-NNN` prefix.
 
@@ -21,7 +21,7 @@ The manual testing playbook (`manual_testing_playbook/manual_testing_playbook.md
 | Runtime Routing and Rename | 2 | DAC-001..DAC-002 |
 | Council Deliberation and Seat Diversity | 2 | DAC-003..DAC-004 |
 | Artifact Persistence and State Format | 3 | DAC-005..DAC-007 |
-| Convergence and Rollback | 3 | DAC-008..DAC-010 |
+| Convergence and Rollback | 4 | DAC-008..DAC-010, DAC-033 |
 | Scope Boundaries | 2 | DAC-011..DAC-012 |
 | Depth and Failure Handling | 2 | DAC-014, DAC-018 |
 | Writer Library Contract | 4 | DAC-013, DAC-015..DAC-017 |
@@ -66,13 +66,14 @@ Scenario IDs: DAC-005..DAC-007. How council output is written and how the state 
 
 ## 5. CONVERGENCE AND ROLLBACK
 
-Scenario IDs: DAC-008..DAC-010. How convergence is decided and how failed rounds are preserved.
+Scenario IDs: DAC-008..DAC-010, DAC-033. How convergence is decided, how failed rounds are preserved, and how the cross-mode anti-convergence floor applies to council rounds.
 
 | Feature | What it does | File |
 | --- | --- | --- |
 | Two-of-three agree triggers convergence | Two of three seats agreeing triggers convergence. | [04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md](04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md) |
 | Max rounds without convergence emits non-converged | Hitting `max_rounds` without agreement emits a non-converged completion. | [04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md](04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md) |
 | Rollback failed round preserves forensic trail | Failed rounds move under `failed/` and the state log records rollback events. | [04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md](04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md) |
+| Cross-mode anti-convergence contract | Council mode declares `antiConvergence.minRounds = 2` and fail-closed stop policy. | [04--convergence-and-rollback/cross-mode-anti-convergence-contract.md](04--convergence-and-rollback/cross-mode-anti-convergence-contract.md) |
 
 ---
 
@@ -145,6 +146,6 @@ Scenario IDs: DAC-027..DAC-032. Measured graph-vs-baseline comparisons that just
 
 ## RELATED RESOURCES
 
-- `manual_testing_playbook/manual_testing_playbook.md` - companion manual validation package (DAC-001..DAC-032)
+- `manual_testing_playbook/manual_testing_playbook.md` - companion manual validation package (DAC-001..DAC-033)
 - `SKILL.md` - agent-facing router and operating contract
 - `README.md` - human-facing overview

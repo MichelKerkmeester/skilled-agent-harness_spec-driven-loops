@@ -39,6 +39,8 @@ The advisor answers the "which skill" question with a calibrated score and an ex
 
 system-skill-advisor is the standalone Gate 2 routing surface for Spec Kit. It runs as its own MCP server, `mk_skill_advisor`, so routing can be tuned, restarted or rolled back without touching memory or code-graph systems. It fuses five scoring lanes into one calibrated recommendation, returns per-lane attribution without leaking prompt content and surfaces a trust state on every response so the caller knows whether to use the result, caveat it or fall back.
 
+This skill also owns the documentation for OpenCode hook/plugin surfaces that follow the same runtime-integration pattern. That includes the Skill Advisor bridge plugin and the `/goal` plugin, whose command router delegates all state reads and writes to `mk_goal` / `mk_goal_status`.
+
 ---
 
 ## 3. QUICK START
@@ -80,6 +82,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --fo
 node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 ```
 
+**OpenCode plugin note.** The Skill Advisor bridge plugin injects routing advice at prompt time. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `mk_goal` / `mk_goal_status`; active continuation remains opt-in through `MK_GOAL_AUTONOMY`, with live OpenCode-run tool invocation still under investigation.
+
 ---
 
 ## 4. HOW IT WORKS
@@ -97,6 +101,8 @@ The advisor scores every prompt against five independent lanes, each producing i
 | `semantic_shadow` | 0.05 | Semantic embedding evidence, lowest fusion weight |
 
 The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, and the launcher allowlist passes it through to the daemon child (an env change needs a daemon restart to apply). Use it for experiments; durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+
+Deep-loop routing modes are projected from `mode-registry.json` into generated constants in `lib/scorer/aliases.ts` and the Python compatibility script. A SHA-256 projection hash is folded into the recommend cache signature and checked by the routing-registry drift guard. When a generated deep-loop alias resolves to the merged workflow skill, `advisor_recommend` publishes an optional `workflowMode` field for downstream routing.
 
 `advisor_recommend` accepts five options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence and `uncertaintyThreshold` overrides the maximum surfaced uncertainty. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full corpus, holdout, parity, safety and latency bundle.
 
@@ -236,4 +242,5 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 | [`references/hooks/skill_advisor_hook.md`](./references/hooks/skill_advisor_hook.md) | Prompt-time hook contract across runtimes |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Current feature inventory |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index |
+| [`feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`](./feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md) | `/goal` OpenCode plugin reference |
 | [`changelog/`](./changelog/) | Versioned changelogs |

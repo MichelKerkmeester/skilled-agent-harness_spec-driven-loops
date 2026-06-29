@@ -441,9 +441,12 @@ Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`
 | Suffix           | Behavior                                                                                              |
 | ---------------- | ----------------------------------------------------------------------------------------------------- |
 | `:auto`          | Execute without approval gates                                                                        |
+| `:autopilot` / `:unattended` / `--unattended` | Run the branch-preserved unattended lifecycle; emit `SPECKIT_AUTOPILOT_RESULT` on terminal exits |
 | `:confirm`       | Pause at each step for approval                                                                       |
 | `:with-phases`   | Phase decomposition mode on planning / completion flows, not a standalone command                     |
 | `:with-research` | Dispatch deep research before verification (`/speckit:complete` only)                               |
+
+Autopilot is distinct from `:auto`: it requires unattended task metadata during planning, preserves the branch on hard failure, skips merge unless verification is clean and limits terminal failure/no-op reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
 
 **Command source files**: `.opencode/commands/speckit/`
 
@@ -607,6 +610,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
 | `scripts/dist/memory/generate-context.js`                                    | Primary workflow for updating packet continuity state from structured JSON                            |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Complete catalog of implemented features                                    |
+| [`feature_catalog/05--lifecycle/speckit-autopilot-lifecycle.md`](./feature_catalog/05--lifecycle/speckit-autopilot-lifecycle.md) | Branch-preserved unattended Speckit lifecycle for plan, implement and complete |
 
 ### How the Pieces Connect
 

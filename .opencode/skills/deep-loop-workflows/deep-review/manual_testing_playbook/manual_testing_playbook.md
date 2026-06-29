@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.0.20
+version: 1.11.0.21
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 49 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 50 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (34 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -459,6 +459,19 @@ Expected signals: corrupt JSONL exits `2` without `--lenient`. `corruptionWarnin
 #### Test Execution
 > **Feature File:** [DRV-034](04--convergence-and-recovery/fail-closed-reducer.md)
 
+### DRV-068 | Cross-mode anti-convergence contract
+
+#### Description
+Verify review mode declares the shared anti-convergence floor, fail-closed stop policy, runtime capability validation, and optimizer invariant locks.
+
+#### Scenario Contract
+Prompt: `Validate the deep-review anti-convergence floor, fail-closed stop policy, runtime capability resolver, and optimizer invariant guard.`
+
+Expected signals: `deep_review_config.json` has `antiConvergence.minIterations = 2`, `convergenceMode = "default"`, and `stopPolicy = "fail-closed"`; runtime capabilities repeat fail-closed policy; the shared runtime resolver rejects missing or permissive policy; the optimizer manifest locks convergence mode and carries `minIterations<=maxIterations`.
+
+#### Test Execution
+> **Feature File:** [DRV-068](04--convergence-and-recovery/cross-mode-anti-convergence-contract.md)
+
 ---
 
 ## 11. PAUSE, RESUME, AND FAULT TOLERANCE
@@ -633,6 +646,7 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-032: [Review graph convergence signals participate in legal-stop gates](04--convergence-and-recovery/graph-convergence-review.md)
 - DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](04--convergence-and-recovery/blocked-stop-reducer-surfacing.md)
 - DRV-034: [Review reducer fails closed on corruption and missing anchors](04--convergence-and-recovery/fail-closed-reducer.md)
+- DRV-068: [Cross-mode anti-convergence contract](04--convergence-and-recovery/cross-mode-anti-convergence-contract.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 

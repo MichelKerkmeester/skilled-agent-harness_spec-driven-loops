@@ -8,7 +8,7 @@ trigger_phrases:
   - "gather context for feature"
   - "heterogeneous parallel sweep"
 last_updated: "2026-06-06"
-version: 1.2.0.4
+version: 1.2.0.5
 ---
 
 # deep-context: Feature Catalog
@@ -26,9 +26,9 @@ Use this catalog as the canonical inventory for the live `deep-context` feature 
 | Frontier seeding | 3 features | `deep_context_auto.yaml` phase_init, `code_graph_query`, `context.md` setup phase |
 | By-model parallel sweep | 4 features | `phase_loop` YAML, `multi-seat-dispatch.cjs`, `fanout-run.cjs`, `sk-prompt-models` |
 | Agreement merge | 3 features | `phase_loop` step_merge_findings, `reduce-state.cjs`, `fanout-merge.cjs` |
-| Convergence detection | 4 features | `convergence.cjs`, `coverage-graph-signals.ts`, `convergence.md`, `phase_loop` step_check_convergence |
+| Convergence detection | 5 features | `convergence.cjs`, `coverage-graph-signals.ts`, `convergence.md`, `phase_loop` step_check_convergence |
 | Context report synthesis | 3 features | `phase_synthesis` YAML, `context_report_template.md`, `generate-context.js` |
-| Coverage-graph schema | 3 features | `coverage-graph-db.ts`, `coverage-graph-signals.ts`, `coverage-graph-query.ts` |
+| Coverage-graph schema | 4 features | `coverage-graph-db.ts`, `coverage-graph-signals.ts`, `coverage-graph-query.ts`, `upsert.cjs` |
 | Runtime robustness | 5 features | `reduce-state.cjs`, `loop-lock.cjs`, `atomic-state.ts`, `jsonl-repair.ts`, `loop-lock.ts`, `executor-audit.ts`, YAML `cli_contract` |
 
 ---
@@ -273,6 +273,22 @@ See [`04--convergence-detection/evaluate-context.md`](04--convergence-detection/
 
 ---
 
+### Cross-Mode Anti-Convergence Contract
+
+#### Description
+
+Declares the shared two-iteration floor and fail-closed stop policy for context mode.
+
+#### Current Reality
+
+`deep_context_config.json` declares `antiConvergence.minIterations = 2`, `convergenceMode = "default"`, and `stopPolicy = "fail-closed"`. The context loop still requires host saturation plus `STOP_ALLOWED` from `convergence.cjs`; this block is the cross-mode floor/policy layer that prevents one-sweep stop assumptions and aligns context with the shared runtime and optimizer guard contract.
+
+#### Source Files
+
+See [`04--convergence-detection/cross-mode-anti-convergence-contract.md`](04--convergence-detection/cross-mode-anti-convergence-contract.md) for full implementation and test file listings.
+
+---
+
 ## 6. CONTEXT REPORT SYNTHESIS
 
 These entries cover the deliverable: the reuse-first Context Report compiled from merged findings, plus the machine-readable JSON companion and the continuity save.
@@ -374,6 +390,22 @@ Documents the `ContextConvergenceSignals` interface exported by `coverage-graph-
 #### Source Files
 
 See [`06--coverage-graph-schema/context-convergence-signals.md`](06--coverage-graph-schema/context-convergence-signals.md) for full implementation and test file listings.
+
+---
+
+### Code-Graph Coverage Seed Bridge
+
+#### Description
+
+Seeds coverage-graph nodes from the frontier/code-graph phase before the first convergence check.
+
+#### Current Reality
+
+`deep_context_auto.yaml` builds coverage seed nodes and edges from `frontier_slices_json`, binds `coverage_seed_source` to `frontier_source`, and sets seed confidence to `0.55` for code-graph seeds or `0.35` for fallback-derived seeds. `upsert.cjs` requires both `--seed-source` and `--seed-confidence` for seeding paths, and `coverage-graph-db.ts` stores the values as `seed_source` and `seed_confidence` on seeded nodes.
+
+#### Source Files
+
+See [`06--coverage-graph-schema/code-graph-coverage-seed-bridge.md`](06--coverage-graph-schema/code-graph-coverage-seed-bridge.md) for full implementation and test file listings.
 
 ---
 

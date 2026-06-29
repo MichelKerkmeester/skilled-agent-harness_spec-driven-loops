@@ -1,12 +1,12 @@
 ---
 title: "deep-ai-council: Manual Testing Playbook"
 description: "Operator-facing manual validation package for the deep-ai-council skill, runtime routing, council deliberation, artifact persistence, convergence, rollback, scope boundaries, and council graph integration."
-version: 2.3.0.16
+version: 2.3.0.17
 ---
 
 # deep-ai-council: Manual Testing Playbook
 
-This playbook validates the `deep-ai-council` skill through 32 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
+This playbook validates the `deep-ai-council` skill through 33 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -24,9 +24,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 32 deterministic scenarios across 9 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 33 deterministic scenarios across 9 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, the dedicated council-graph runtime CLI surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, and retired MCP registry entries), and real-world value-comparison scenarios proving the graph beats the no-graph baseline for unresolved-disagreement triage, decision provenance audit, convergence safety under critical disagreement, stalled-council blocker ranking, hot-topic discovery, and mid-run interruption recovery.
+Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, cross-mode anti-convergence floor, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, the dedicated council-graph runtime CLI surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, and retired MCP registry entries), and real-world value-comparison scenarios proving the graph beats the no-graph baseline for unresolved-disagreement triage, decision provenance audit, convergence safety under critical disagreement, stalled-council blocker ranking, hot-topic discovery, and mid-run interruption recovery.
 
 ### Realistic Test Model
 
@@ -125,7 +125,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-ai-council per-mode subtotal is 32 scenarios (`DAC-001..DAC-032`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-ai-council per-mode subtotal is 33 scenarios (`DAC-001..DAC-033`).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -214,7 +214,7 @@ Feature file: [DAC-007](03--artifact-persistence-and-state-format/output-schema-
 
 ---
 
-## 10. CONVERGENCE AND ROLLBACK (DAC-008..DAC-010)
+## 10. CONVERGENCE AND ROLLBACK (DAC-008..DAC-010, DAC-033)
 
 ### DAC-008 | Two-of-three agree triggers convergence
 
@@ -233,6 +233,12 @@ Feature file: [DAC-009](04--convergence-and-rollback/max-rounds-without-converge
 Verify rollback preserves failed artifacts and audit state.
 
 Feature file: [DAC-010](04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md)
+
+### DAC-033 | Cross-mode anti-convergence contract
+
+Verify council mode declares a minimum round floor and fail-closed stop policy before convergence is trusted.
+
+Feature file: [DAC-033](04--convergence-and-rollback/cross-mode-anti-convergence-contract.md)
 
 ---
 
@@ -403,7 +409,7 @@ Feature file: [DAC-032](09--council-graph-value-comparison/mid-run-interruption-
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
 | Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |
-| Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026 |
+| Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026, DAC-033 |
 
 ---
 
@@ -421,6 +427,7 @@ Feature file: [DAC-032](09--council-graph-value-comparison/mid-run-interruption-
 | DAC-008 | Two-of-three agree triggers convergence | `04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md` | `feature_catalog/04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md` |
 | DAC-009 | Max rounds without convergence emits non-converged | `04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md` | `feature_catalog/04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md` |
 | DAC-010 | Rollback failed round preserves forensic trail | `04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` | `feature_catalog/04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` |
+| DAC-033 | Cross-mode anti-convergence contract | `04--convergence-and-rollback/cross-mode-anti-convergence-contract.md` | `feature_catalog/04--convergence-and-rollback/cross-mode-anti-convergence-contract.md` |
 | DAC-011 | Graph support stays derived and scoped | `05--scope-boundaries/graph-support-derived-and-scoped.md` | `feature_catalog/05--scope-boundaries/graph-support-derived-and-scoped.md` |
 | DAC-012 | Planning-only boundary rejects implementation writes | `05--scope-boundaries/planning-only-boundary-rejects-implementation-writes.md` | `feature_catalog/05--scope-boundaries/planning-only-boundary-rejects-implementation-writes.md` |
 | DAC-013 | Library writer call sequence | `07--writer-library-contract/library-writer-call-sequence.md` | `feature_catalog/07--writer-library-contract/library-writer-call-sequence.md` |
