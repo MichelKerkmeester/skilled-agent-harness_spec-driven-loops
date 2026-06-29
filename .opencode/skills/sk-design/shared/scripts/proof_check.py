@@ -15,6 +15,7 @@ Usage:
   proof_check.py --require-source-proof notes.md
   proof_check.py --require-application-witness notes.md
   proof_check.py --require-decision-rationale notes.md
+  proof_check.py --require-observation-triad notes.md
 
 Required proof fields (matched case-insensitively, tolerant of formatting):
   REGISTER / DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, AUDIT EVIDENCE,
@@ -58,6 +59,8 @@ DECISION_RATIONALE_FIELDS = (
     "validationPlan",
     "sourceProofs[]",
 )
+OBSERVATION_TRIAD_FIELDS = ("Observation", "Problem", "Fix")
+FINDING_HEADING = re.compile(r"^#{1,6}\s+P[0-3]\s*[-:]\s+\S.*$", re.I)
 
 
 def _present(text: str, patterns) -> bool:
@@ -221,6 +224,49 @@ def _find_decision_rationale_rows(text: str) -> list[dict]:
     return rows
 
 
+def _observation_triad_value(line: str, field: str) -> Optional[str]:
+    pattern = re.compile(
+        r"^\s*(?:[-*+]\s*)?(?:\*\*)?"
+        + re.escape(field)
+        + r"(?:\*\*)?\s*:\s*(?:\*\*)?\s*(.*?)\s*(?:\*\*)?\s*$",
+        re.I,
+    )
+    match = pattern.match(line)
+    if not match:
+        return None
+    return _clean_cell(match.group(1))
+
+
+def _is_observation_triad_placeholder(value: str) -> bool:
+    cleaned = _clean_cell(value)
+    if _is_placeholder(cleaned):
+        return True
+    return bool(re.fullmatch(r"(?:<[^>]*>|\.{3}|tbd|todo|n/?a)", cleaned, re.I))
+
+
+def _find_observation_triad_blocks(text: str) -> list[dict]:
+    lines = text.splitlines()
+    blocks = []
+    current = None
+
+    for line in lines:
+        if FINDING_HEADING.match(line):
+            if current is not None:
+                blocks.append(current)
+            current = {"heading": line.strip("# ").strip(), "lines": []}
+            continue
+        if current is not None and MARKDOWN_HEADING.match(line):
+            blocks.append(current)
+            current = None
+            continue
+        if current is not None:
+            current["lines"].append(line)
+
+    if current is not None:
+        blocks.append(current)
+    return blocks
+
+
 def _repo_root(card_path: Optional[str]) -> Path:
     start = Path(card_path).resolve().parent if card_path else Path.cwd().resolve()
     for candidate in (start, *start.parents):
@@ -371,6 +417,47 @@ def _validate_decision_rationale(text: str) -> dict:
     return result
 
 
+def _validate_observation_triad(text: str) -> dict:
+    rows = _find_observation_triad_blocks(text)
+    result = {
+        "rows": len(rows),
+        "items": [],
+        "missing": [],
+        "ok": True,
+    }
+    if not rows:
+        result["missing"].append("observation-triad findings missing")
+        result["ok"] = False
+        return result
+
+    for row in rows:
+        values = {}
+        for line in row["lines"]:
+            for field in OBSERVATION_TRIAD_FIELDS:
+                value = _observation_triad_value(line, field)
+                if value is not None and field not in values:
+                    values[field] = value
+
+        item = {
+            "heading": row["heading"],
+            "ok": True,
+            "errors": [],
+        }
+        for field in OBSERVATION_TRIAD_FIELDS:
+            value = values.get(field)
+            if value is None:
+                item["errors"].append(f"{field} missing")
+            elif _is_observation_triad_placeholder(value):
+                item["errors"].append(f"{field} placeholder")
+
+        item["ok"] = not item["errors"]
+        result["items"].append(item)
+        result["missing"].extend(f"{row['heading']}: {error}" for error in item["errors"])
+
+    result["ok"] = not result["missing"]
+    return result
+
+
 def check(
     text: str,
     require_cards: bool,
@@ -378,6 +465,7 @@ def check(
     source_path: Optional[str] = None,
     require_application_witness: bool = False,
     require_decision_rationale: bool = False,
+    require_observation_triad: bool = False,
 ) -> dict:
     fields = {label: _present(text, pats) for label, pats in PROOF_FIELDS.items()}
     cards = {label: _present(text, pats) for label, pats in CARD_SECTIONS.items()} if require_cards else {}
@@ -393,6 +481,9 @@ def check(
     decision_rationale = _validate_decision_rationale(text) if require_decision_rationale else None
     if decision_rationale:
         missing.extend(decision_rationale["missing"])
+    observation_triad = _validate_observation_triad(text) if require_observation_triad else None
+    if observation_triad:
+        missing.extend(observation_triad["missing"])
     ok = not missing and ready
     result = {
         "fields": fields,
@@ -408,6 +499,8 @@ def check(
         result["application_witness"] = application_witness
     if decision_rationale:
         result["decision_rationale"] = decision_rationale
+    if observation_triad:
+        result["observation_triad"] = observation_triad
     return result
 
 
@@ -417,9 +510,10 @@ def main(argv) -> int:
     require_source_proof = "--require-source-proof" in argv
     require_application_witness = "--require-application-witness" in argv
     require_decision_rationale = "--require-decision-rationale" in argv
+    require_observation_triad = "--require-observation-triad" in argv
     paths = [a for a in argv if not a.startswith("--")]
     if len(paths) != 1:
-        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] [--require-application-witness] [--require-decision-rationale] <proof-card-or-notes.md>\n")
+        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] [--require-application-witness] [--require-decision-rationale] [--require-observation-triad] <proof-card-or-notes.md>\n")
         return 2
     try:
         with open(paths[0], "r", encoding="utf-8") as fh:
@@ -435,6 +529,7 @@ def main(argv) -> int:
         paths[0],
         require_application_witness,
         require_decision_rationale,
+        require_observation_triad,
     )
     if as_json:
         print(json.dumps({"file": paths[0], **r}, indent=2))
@@ -451,6 +546,9 @@ def main(argv) -> int:
         if require_decision_rationale:
             rationale_ok = r["decision_rationale"]["ok"]
             print(f"  [{'x' if rationale_ok else ' '}] DECISION RATIONALE")
+        if require_observation_triad:
+            triad_ok = r["observation_triad"]["ok"]
+            print(f"  [{'x' if triad_ok else ' '}] OBSERVATION TRIAD")
         print(f"  verdict READY: {'yes' if r['ready'] else 'no'}"
               + (" (NOT READY found)" if r["not_ready_flag"] else ""))
         if r["ok"]:

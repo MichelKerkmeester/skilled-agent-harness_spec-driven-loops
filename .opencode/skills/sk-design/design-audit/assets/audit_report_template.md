@@ -55,10 +55,11 @@ List findings before the score. Order P0, then P1, then P2, then P3. Use the fin
 
 ```markdown
 ### P0 - <short title>
+- Observation: <neutral, factual observation before judgment>
 - Evidence: <file/line, rendered observation, design-artifact note>
 - Category: <Accessibility / Performance / Responsive / Theming / Anti-Patterns>
-- Impact: <how a real user fails, is blocked or abandons>
-- Recommended fix: <the change, not the implementation>
+- Problem: <how a real user fails, is blocked or abandons>
+- Fix: <the change, not the implementation>
 - Owner: <foundations / motion / interface / sk-code>
 ```
 
@@ -66,10 +67,11 @@ List findings before the score. Order P0, then P1, then P2, then P3. Use the fin
 
 ```markdown
 ### P1 - <short title>
+- Observation: <...>
 - Evidence: <...>
 - Category: <...>
-- Impact: <...>
-- Recommended fix: <...>
+- Problem: <...>
+- Fix: <...>
 - Owner: <...>
 ```
 
@@ -77,10 +79,11 @@ List findings before the score. Order P0, then P1, then P2, then P3. Use the fin
 
 ```markdown
 ### P2 - <short title>
+- Observation: <...>
 - Evidence: <...>
 - Category: <...>
-- Impact: <...>
-- Recommended fix: <...>
+- Problem: <...>
+- Fix: <...>
 - Owner: <...>
 ```
 
@@ -88,10 +91,11 @@ List findings before the score. Order P0, then P1, then P2, then P3. Use the fin
 
 ```markdown
 ### P3 - <short title>
+- Observation: <...>
 - Evidence: <...>
 - Category: <...>
-- Impact: <...>
-- Recommended fix: <...>
+- Problem: <...>
+- Fix: <...>
 - Owner: <...>
 ```
 

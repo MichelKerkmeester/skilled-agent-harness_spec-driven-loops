@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d6-r9 observation problem fix triad",
-      "observation triad design build"
+      "observation triad design build",
+      "proof check observation triad flag",
+      "observation problem fix triad plan",
+      "audit finding triad implementation plan",
+      "observation slot audit schema",
+      "observation problem fix triad tasks",
+      "audit finding triad task list",
+      "require observation triad checker tasks",
+      "observation problem fix triad checklist",
+      "audit finding triad verification",
+      "require observation triad gate checklist"
     ],
     "key_topics": [
       "d6-r9",
@@ -22,18 +32,24 @@
       "triad",
       "design",
       "build",
-      "add",
-      "neutral",
-      "slot",
-      "optional",
-      "require-observation-triad"
+      "proof",
+      "check",
+      "flag",
+      "plan",
+      "audit"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
       ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
       ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -56,8 +72,50 @@
         "source": "derived"
       },
       {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Schema",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -68,47 +126,97 @@
         "source": "derived"
       },
       {
-        "name": "Output Format",
+        "name": "Problem Statement An",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "an",
-        "kind": "key_phrase",
+        "name": "Purpose Port",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "judging",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Report Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a neutral OBSERVATION slot before Problem/Fix to audit_contract.md + audit_report_template.md, with an optional proof_check.py --require-observation-triad.",
+    "causal_summary": "An audit finding used to jump straight to the diagnosis and the fix",
     "created_at": "2026-06-28T12:40:10.316Z",
-    "last_save_at": "2026-06-28T12:40:10.316Z",
+    "last_save_at": "2026-06-29T15:20:44.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:363dc8a8c4aa041809f54033f74ee4ad5f6394f5d8ee3534eaf22da2c0639e8e",
+    "source_fingerprint": "sha256:27f767f946ad35e7a73290d464a9264cfcca61483edd9067d5dc2c624b47efce",
     "source_doc_hashes": {
-      "spec.md": "3b95d6094b1f1b8c48ce454f64af62e2c826ca9ce952b093b24219938c7a5607"
+      "spec.md": "c9b84b24ba778b5bb272ff045393ea36b53c3aae37558d1c5ca6146dd31840fe",
+      "plan.md": "6cc5b765b0cba0c28182a64186f82fdf7ad92c787fd80e74c6f8514a18f64db5",
+      "tasks.md": "743479b84645316de44a2c489e729c8387e1ac9641732493640e04f52df53cab",
+      "checklist.md": "a82c7944cf6e18eff34312074d4ff784dca26ce1652e931376de216d632cad17",
+      "implementation-summary.md": "4790b7d9f2c6c3e7364c6556cd19f50fdc8db5693ba50a9568280270b68dc703"
     },
     "last_active_child_id": null,
     "last_active_at": null

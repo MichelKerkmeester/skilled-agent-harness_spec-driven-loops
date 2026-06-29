@@ -89,13 +89,16 @@ Rating bands:
 
 Use this shape for actionable findings:
 
+Observation is neutral and factual; it records what was seen before the report states the user-facing problem or the fix.
+
 ```markdown
 ### P1 - Text contrast fails on primary CTA
+- Observation: The primary CTA foreground appears muted against the white button surface.
 - Evidence: `Button` text uses `#8aa0a8` on `#ffffff`; observed contrast below AA target.
 - Category: Accessibility / Theming
 - Accessibility coverage: contrast=confirmed; keyboard=not-assessed; screen-reader=not-assessed; zoom-reflow=not-assessed; reduced-motion=not-assessed; assistive-tech=not-assessed; user-testing=not-assessed.
-- Impact: Low-vision users may not read the primary action.
-- Recommended fix: Use semantic `text-on-accent` token with AA contrast, or darken foreground via OKLCH lightness.
+- Problem: Low-vision users may not read the primary action.
+- Fix: Use semantic `text-on-accent` token with AA contrast, or darken foreground via OKLCH lightness.
 - Owner: `foundations` for token choice; `sk-code` for implementation.
 ```
 
