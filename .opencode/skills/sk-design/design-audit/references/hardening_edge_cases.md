@@ -147,6 +147,24 @@ Fix shape: use the native `<dialog>` or popover API where it fits the interactio
 
 ---
 
+## 8B. DEVICE AND CONSTRAINED CONTEXT
+
+Real devices impose budgets the desktop happy path hides. Probe battery saver, reduced-data signals, low-end CPU, reconnect behavior and slow media before calling a surface production-ready.
+
+| Probe | Expected symptom when unhardened | Finding to file |
+|---|---|---|
+| Low-power mode / battery-saver enabled, including reduced motion or paused autoplay where the platform applies it | Load-bearing state, progress or content is only exposed through animation or autoplay; when the platform throttles it, feedback disappears or content never appears | State or feedback depends on motion or autoplay without a static or reduced fallback. Record: `verdict: pass | fail | skip`; `evidence: low-power screenshot or trace, reduced-motion observation, or skip reason plus confirming probe needed` |
+| Save-Data header / data-saver signal active, such as `Save-Data`, `navigator.connection.saveData` or `prefers-reduced-data` | Full-resolution image, video, prefetch or heavy bundle ships anyway; a lite path hides real content instead of reducing cost | Save-Data or reduced-data signal ignored; no lighter media path or deferred loading. Record: `verdict: pass | fail | skip`; `evidence: request headers, payload comparison, media waterfall, or skip reason plus confirming probe needed` |
+| CPU-throttle / low-end device emulation, such as DevTools slowdown or coarse `hardwareConcurrency` / `deviceMemory` hints | Scroll jank, delayed input, dropped frames or frozen interaction during expensive work | No low-end CPU budget; long tasks block input. Record: `verdict: pass | fail | skip`; `evidence: throttled interaction recording, performance trace, long-task or latency measurement, or skip reason plus confirming probe needed` |
+| Offline-to-online recovery after a connection drops mid-flow and returns | UI remains stuck in offline or error state, queued input disappears, resync never happens, or the user must reload and re-enter data | No connectivity recovery path; reconnect leaves stale state, lost input or no automatic resync. Record: `verdict: pass | fail | skip`; `evidence: offline and reconnect observation, queued-input result, resync log, or skip reason plus confirming probe needed` |
+| Slow media over a slow connection, including large image or video, lazy loading, reserved dimensions and poster or skeleton path | Layout shifts as media arrives, blank gaps, blocked interaction, or broken-looking region until the large asset finishes | Slow or large media lacks reserved dimensions, placeholder, lazy loading or progressive path. Record: `verdict: pass | fail | skip`; `evidence: slow-network recording, layout-shift trace, media waterfall, or skip reason plus confirming probe needed` |
+
+Record `pass` when the surface degrades gracefully, `fail` when the symptom appears and becomes the finding, and `skip` only when the probe could not be run. Skipped probes stay inferred and name the evidence that would confirm them.
+
+Route measurable load, layout-shift, long-task, interaction-latency and motion evidence to `accessibility_performance.md`. Route layout and logical-property fixes to `foundations`, visual or flow direction to `interface`, and implementation to `sk-code`. The recovery probe is distinct from the earlier offline-failure probe: that row asks whether failure is contained, while this row asks whether the surface comes back cleanly after connectivity returns.
+
+---
+
 ## 9. ROUTING SUMMARY
 
 1. Walk the matrix against real evidence, labeling any probe you could not run as inferred.

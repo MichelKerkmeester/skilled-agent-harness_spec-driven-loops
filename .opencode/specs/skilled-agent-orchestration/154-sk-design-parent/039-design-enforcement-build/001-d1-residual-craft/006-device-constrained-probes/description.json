@@ -1,23 +1,26 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/006-device-constrained-probes",
-  "description": "Add a Device And Constrained Context section to the hardening edge-cases reference covering low-power, Save-Data, CPU-throttle, offline→online, and sl",
+  "description": "The hardening edge-case matrix (`hardeningedgecases.md`) proves a surface survives long text, network errors, permission states, concurrency, RTL, tex",
   "keywords": [
-    "add",
-    "device",
-    "constrained",
-    "context",
-    "section",
     "hardening",
-    "edge-cases",
-    "reference",
-    "covering",
-    "low-power",
-    "save-data",
-    "cpu-throttle",
-    "offline",
-    "online"
+    "edge-case",
+    "matrix",
+    "hardeningedgecases",
+    "proves",
+    "surface",
+    "survives",
+    "long",
+    "text",
+    "network",
+    "errors",
+    "permission",
+    "states",
+    "concurrency",
+    "rtl",
+    "tex"
   ],
-  "lastUpdated": "2026-06-28T12:40:05.619Z",
+  "lastUpdated": "2026-06-29T11:23:58.748Z",
   "specId": "006",
   "folderSlug": "device-constrained-probes",
   "parentChain": [
@@ -29,6 +32,5 @@
     "001-d1-residual-craft"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
