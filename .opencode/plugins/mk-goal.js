@@ -420,7 +420,7 @@ function extractAssistantEvidence(event, rawOptions = {}) {
  * @param {string} [rawOptions.stateDir] - Override directory for tests
  * @returns {Promise<string>} Absolute state directory path
  */
-export async function ensureGoalStateDir(rawOptions = {}) {
+async function ensureGoalStateDir(rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   await mkdir(options.stateDir, { recursive: true, mode: 0o700 });
   return options.stateDir;
@@ -433,7 +433,7 @@ export async function ensureGoalStateDir(rawOptions = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {string} Absolute JSON file path
  */
-export function goalPathForSession(sessionID, rawOptions = {}) {
+function goalPathForSession(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   return join(options.stateDir, `${sessionKeyForSession(sessionID)}.json`);
 }
@@ -523,7 +523,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object|null>} Goal record, or null when none is set
  */
-export async function readGoal(sessionID, rawOptions = {}) {
+async function readGoal(sessionID, rawOptions = {}) {
   const path = goalPathForSession(sessionID, rawOptions);
   try {
     const raw = await readFile(path, 'utf8');
@@ -554,7 +554,7 @@ async function fsyncDirectory(directoryPath) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object>} Written goal record
  */
-export async function writeGoalAtomic(goal, rawOptions = {}) {
+async function writeGoalAtomic(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const normalized = normalizeStoredGoal(goal, goal?.sessionId, options);
   const stateDir = await ensureGoalStateDir(options);
@@ -600,7 +600,7 @@ async function deleteGoalFile(sessionID, rawOptions = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object|null>} Mutated goal, or null after delete
  */
-export async function mutateGoal(sessionID, mutator, rawOptions = {}) {
+async function mutateGoal(sessionID, mutator, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const normalizedSessionID = requireSessionID(sessionID);
   const queueKey = `${options.stateDir}:${sessionKeyForSession(normalizedSessionID)}`;
@@ -670,7 +670,7 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
  * @param {number|null} [rawOptions.tokenBudget] - Optional token budget
  * @returns {Promise<Object>} Active goal record
  */
-export async function setGoal(sessionID, objective, rawOptions = {}) {
+async function setGoal(sessionID, objective, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const sanitizedObjective = sanitizeInlineText(objective, options.maxObjectiveChars);
   if (!sanitizedObjective) {
@@ -704,7 +704,7 @@ export async function setGoal(sessionID, objective, rawOptions = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<null>} Null after deletion
  */
-export async function clearGoal(sessionID, rawOptions = {}) {
+async function clearGoal(sessionID, rawOptions = {}) {
   return mutateGoal(sessionID, () => null, rawOptions);
 }
 
@@ -741,7 +741,7 @@ function budgetWasCrossed(nextTokensUsed, tokenBudget) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object|null>} Updated goal, unchanged goal, or null
  */
-export async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = {}) {
+async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const normalizedExpectedGoalID = sanitizeInlineText(expectedGoalID, 160).replace(/\s+/g, '-');
   const messageID = usage.messageID === null || usage.messageID === undefined
@@ -899,7 +899,7 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object>} Verifier verdict envelope
  */
-export async function maybeVerifyGoal(sessionID, rawOptions = {}) {
+async function maybeVerifyGoal(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const goal = await readGoal(sessionID, options);
   if (!goal || goal.status !== 'active') {
@@ -1061,7 +1061,7 @@ function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
  * @param {Object} [rawOptions] - Continuation options
  * @returns {Promise<Object>} Decision envelope
  */
-export async function maybeContinueGoal(sessionID, rawOptions = {}) {
+async function maybeContinueGoal(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const runtimeState = rawOptions.runtimeState || {};
   const normalizedSessionID = normalizeSessionID(sessionID);
@@ -1174,7 +1174,7 @@ export async function maybeContinueGoal(sessionID, rawOptions = {}) {
  * @param {Object} [rawOptions] - Render options
  * @returns {string} Injection block, or empty string when no block should render
  */
-export function renderGoalInjection(goal, rawOptions = {}) {
+function renderGoalInjection(goal, rawOptions = {}) {
   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
   const options = normalizeOptions(rawOptions);
   const objective = sanitizeInlineText(goal.objective, options.maxObjectiveChars);
@@ -1470,7 +1470,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
  *
  * @type {Object}
  */
-export const __test = Object.freeze({
+const __test = Object.freeze({
   GoalError,
   accountUsage,
   clearGoal,
@@ -1486,3 +1486,5 @@ export const __test = Object.freeze({
   sessionKeyForSession,
   writeGoalAtomic,
 });
+
+MkGoalPlugin.__test = __test;

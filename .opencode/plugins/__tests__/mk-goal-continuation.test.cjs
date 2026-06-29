@@ -33,7 +33,7 @@ async function main() {
   const testDir = dirname(__filename);
   const pluginUrl = pathToFileURL(join(testDir, '..', 'mk-goal.js')).href;
   const pluginModule = await import(pluginUrl);
-  const helpers = pluginModule.__test;
+  const helpers = pluginModule.default.__test;
   const stateDir = await mkdtemp(join(tmpdir(), 'mk-goal-continuation-'));
   const originalAutonomy = process.env.MK_GOAL_AUTONOMY;
 

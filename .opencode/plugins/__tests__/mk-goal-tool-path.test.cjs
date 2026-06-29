@@ -17,7 +17,7 @@ const { pathToFileURL } = require('node:url');
 
 async function main() {
   const pluginUrl = pathToFileURL(join(__dirname, '..', 'mk-goal.js')).href;
-  const { __test } = await import(pluginUrl);
+  const __test = (await import(pluginUrl)).default.__test;
   const stateDir = await mkdtemp(join(tmpdir(), 'mk-goal-toolpath-'));
   const opts = { stateDir };
   // Shape matches @opencode-ai/plugin ToolContext: { sessionID, messageID, agent }.
