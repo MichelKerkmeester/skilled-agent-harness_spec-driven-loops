@@ -241,3 +241,102 @@ This guard is acceptable when all of these are true:
 | Proof-token reuse | The guard cites `DESIGN_PROOF_TOKEN v1` §2 and §6 for replay, required-field, single-use, time, TTL, surface, digest, and consumed-pair validation; it defines no new token schema. |
 | Enforcement points | Child PreToolUse re-validation and parent demand-back are both named, with parent demand-back as the enforceable floor. |
 | Named residuals | An unmodifiable child CLI and a fully compromised child forging a digest-valid token from stolen authorized inputs are named as residuals, not hidden by the guard. |
+
+---
+
+## Open Design Transport Assertion Pairing
+
+`OPEN_DESIGN_TRANSPORT_ASSERTION v1` is the child-side, pre-operation assertion paired with the post-operation `OPEN_DESIGN_TRANSPORT_RESULT v1`. It is evidence the parent re-validates, not a replacement authorization token, and it reuses `DESIGN_PROOF_TOKEN v1` §2 for digest field shape and §6 for boundary-side recompute-and-reject rules. This section defines no second token schema.
+
+Every Open Design transport operation that returns a transport result MUST also carry a structured transport assertion. A prose claim that the child loaded design context, checked live tools, or used a particular payload is not enough; the assertion must be content-bound so the parent can recompute it and compare it to the returned result and the originating dispatch manifest.
+
+### Assertion Schema
+
+The child MUST emit the assertion as structured metadata named `OPEN_DESIGN_TRANSPORT_ASSERTION v1`.
+
+| Field | Type | Required | Meaning |
+|---|---:|---:|---|
+| `version` | integer | yes | Contract version. For this assertion contract the value is `1`. |
+| `dispatchId` | string | yes | Parent-issued dispatch identity. It MUST match the paired transport result and originating dispatch manifest. |
+| `childLoadedSkills` | string array | yes | Skills the child loaded before the Open Design operation. A design-affecting operation MUST include design judgment and Open Design transport. |
+| `operationClass` | string | yes | One of `read`, `mutating`, `destructive`, or `transport`. The value is conservative and MUST NOT downgrade observed behavior. |
+| `liveToolsListVerified` | boolean | yes | Whether the child verified the live Open Design tool surface before relying on tool names, availability, or mutability. |
+| `payloadDigests` | object | yes | Content-bound digests for the dispatch and operation payload, using the digest field shape from `DESIGN_PROOF_TOKEN v1` §2. Required keys are `designManifestDigest`, `transportAssertionDigest`, `briefDigest`, `formAnswersDigest`, `openDesignLineageDigest`, and `proofCardDigest` when those materials are part of the operation. |
+| `assertionDigest` | string | yes | Digest of the assertion envelope excluding `assertionDigest` itself. The parent recomputes this before accepting any assertion field. |
+
+```json
+{
+  "OPEN_DESIGN_TRANSPORT_ASSERTION": {
+    "version": 1,
+    "dispatchId": "dispatch-open-design-example",
+    "childLoadedSkills": ["sk-design", "mcp-open-design"],
+    "operationClass": "mutating",
+    "liveToolsListVerified": true,
+    "payloadDigests": {
+      "designManifestDigest": "sha256:<digest>",
+      "transportAssertionDigest": "sha256:<digest>",
+      "briefDigest": "sha256:<digest>",
+      "formAnswersDigest": "sha256:<digest>",
+      "openDesignLineageDigest": "sha256:<digest>",
+      "proofCardDigest": "sha256:<digest>"
+    },
+    "assertionDigest": "sha256:<digest>"
+  }
+}
+```
+
+### Result-Assertion Pairing Rule
+
+For each Open Design transport operation, the child return MUST carry both blocks:
+
+1. `OPEN_DESIGN_TRANSPORT_ASSERTION v1`, emitted before the operation or at the earliest child boundary where the operation inputs are known.
+2. `OPEN_DESIGN_TRANSPORT_RESULT v1`, emitted after the operation as the post-operation receipt.
+
+The two blocks are a pair only when `dispatchId`, `operationClass`, and every shared payload digest reconcile. The assertion's `payloadDigests` MUST match the corresponding transport-result digest fields and the originating dispatch manifest. A digest present in only one side is not accepted unless the operation class makes that material inapplicable and the parent can reconstruct that inapplicability from the dispatch and result.
+
+The assertion is checkable only when the parent can recompute the asserted digests from material it holds or receives back. If the parent cannot reconstruct a digest input unambiguously, the assertion does not pass.
+
+### Parent Re-Validation Extension
+
+The parent runs the existing transport-result re-validation first, then applies this extension to the paired assertion:
+
+1. Require a structured `OPEN_DESIGN_TRANSPORT_ASSERTION v1` whenever Open Design transport was used and a structured result is required.
+2. Schema-check assertion fields, supported version, required conditionals, operation-class values, digest shape, and types.
+3. Recompute `assertionDigest` from the assertion envelope excluding `assertionDigest`.
+4. Recompute `payloadDigests` using `DESIGN_PROOF_TOKEN v1` §2 digest field shape and the §6 recompute-and-reject discipline.
+5. Compare assertion digests to the paired result digests and to the originating dispatch manifest.
+6. Confirm `childLoadedSkills` includes design judgment and Open Design transport for design-affecting work.
+7. Confirm `operationClass` is at least as strict as the behavior reconstructed from the result, artifacts, run state, and tool-call evidence.
+8. Confirm `liveToolsListVerified` is `true` when the child relied on live Open Design tool names, availability, or mutability.
+9. Return `ALLOW` only when the existing transport-result re-validation and this assertion extension both pass. Return `DENY` for missing, malformed, ambiguous, mismatched, stale, downgraded, non-recomputable, or exception paths.
+
+### Assertion Deny Rules
+
+| Rule | Denial condition |
+|---|---|
+| Missing assertion after Open Design use | If Open Design was used and no structured `OPEN_DESIGN_TRANSPORT_ASSERTION v1` accompanies the required result, deny the handoff. |
+| Assertion digest mismatch | If `assertionDigest` cannot be recomputed from the assertion envelope excluding itself, deny the handoff. |
+| Result-assertion mismatch | If any assertion payload digest conflicts with the paired transport-result digest fields, deny the handoff. |
+| Manifest-assertion mismatch | If any assertion payload digest conflicts with the originating dispatch manifest or cannot be reconstructed from parent-held material, deny the handoff. |
+| Operation-class downgrade | If the assertion declares a less strict operation class than the observed Open Design behavior, deny the handoff. |
+| Live-tools verification missing | If the operation depended on live tool names, availability, or mutability and `liveToolsListVerified` is not `true`, deny the handoff. |
+| Missing design judgment | If `childLoadedSkills` does not show design judgment for design-affecting work, deny the handoff. |
+
+### Named Residual
+
+A text-only or unmodifiable child may emit the assertion as prose or omit it entirely. In that path, assertion checking degrades to **ADVISORY** because the parent has no structured assertion envelope to recompute.
+
+The enforceable floor remains parent demand-back plus the existing transport-result re-validation, and both fail closed. The parent may report supplied assertion-like prose as advisory evidence, but it must not claim a machine-checkable assertion pass from prose alone.
+
+### Assertion Pairing Acceptance
+
+This assertion-pairing extension is acceptable when all of these are true:
+
+| Requirement | Acceptance condition |
+|---|---|
+| Assertion schema | `OPEN_DESIGN_TRANSPORT_ASSERTION v1` defines `version`, `dispatchId`, `childLoadedSkills`, `operationClass`, `liveToolsListVerified`, `payloadDigests`, and a self-excluding `assertionDigest`. |
+| Result-assertion pairing | Every Open Design transport operation carries both the assertion block and the result block, and shared digests reconcile against the paired result and originating dispatch manifest. |
+| Parent re-validation | Parent validation cites and reuses `DESIGN_PROOF_TOKEN v1` §2 and §6 for digest shape and recompute-and-reject behavior, without defining a second token schema. |
+| Deny mapping | Missing assertion, digest mismatch, manifest mismatch, operation-class downgrade, missing live-tools verification, missing design judgment, and non-recomputable assertion digest each map to fail-closed `DENY`. |
+| Named residual | Text-only or unmodifiable child paths are explicitly advisory for assertion checking, with parent demand-back plus transport-result re-validation as the fail-closed enforceable floor. |
+| File integration | This section is appended after the existing contract sections, with prior contract text unchanged. |

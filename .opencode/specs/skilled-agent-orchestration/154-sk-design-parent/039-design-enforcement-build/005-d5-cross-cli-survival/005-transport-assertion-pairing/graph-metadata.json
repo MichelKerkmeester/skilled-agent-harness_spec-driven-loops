@@ -12,35 +12,54 @@
   "derived": {
     "trigger_phrases": [
       "d5-r5 transport assertion pairing",
-      "child-resident pairing design build"
+      "open design transport assertion design build",
+      "transport assertion pairing plan",
+      "open design transport assertion schema",
+      "child-resident pairing re-validation",
+      "transport assertion pairing tasks",
+      "open design assertion section tasks",
+      "child-resident pairing build tasks",
+      "transport assertion pairing checklist",
+      "open design assertion verification",
+      "child-resident pairing fix completeness",
+      "d5-r5 implementation summary"
     ],
     "key_topics": [
       "d5-r5",
       "transport",
       "assertion",
       "pairing",
-      "child-resident",
+      "open",
       "design",
       "build",
-      "add",
-      "open",
-      "always",
-      "rule",
-      "fields"
+      "plan",
+      "schema",
+      "child-resident",
+      "re-validation",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-opencode/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-claude-code/SKILL.md",
-      "spec.md"
+      ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+      ".opencode/skills/sk-design/references/design_proof_token.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "cli_child_pairing.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_proof_token.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/design_proof_token.md",
         "source": "derived"
       },
       {
@@ -50,7 +69,37 @@
         "source": "derived"
       },
       {
-        "name": "Open Design Transport Pairing",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -62,41 +111,109 @@
         "source": "derived"
       },
       {
-        "name": "assertion",
-        "kind": "key_phrase",
+        "name": "Purpose Author",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "parallel",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the D5-R2",
-        "kind": "key_phrase",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pre",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design Transport Assertion Pairing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Residual",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add an Open Design Transport Pairing (child-resident) ALWAYS rule with assertion fields to all 3 cli-* SKILLs.",
+    "causal_summary": "The return path into Open Design already has a receipt: `OPENDESIGNTRANSPORTRESULT v1` lets the parent replay what a CLI child did and fail closed when Open Design was used but no result returns",
     "created_at": "2026-06-28T12:40:08.047Z",
-    "last_save_at": "2026-06-28T12:40:08.047Z",
+    "last_save_at": "2026-06-29T08:28:12.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31af903ea94aaa424861beb098b8cb35aa98456419c5ec682a130dbf2879d9ba",
+    "source_fingerprint": "sha256:6561c0e310700e9f70d79a41e37abad4731e0a7baff6547341345aa9324c2f68",
     "source_doc_hashes": {
-      "spec.md": "4c93446dc170b0fa41e25fa344571bc37da6d82912e83f4d50edacbf7ab224e7"
+      "spec.md": "9d26d2d5212eb27a610ce92eb8a3cc4ac5d200ce8070b4512f6b84da18e356d3",
+      "plan.md": "296852d3c42eb0bd481b9e31aed938abf890df583905a300c5abeee6f4f2a9bf",
+      "tasks.md": "f27aa0d261c8dcdffed26eaf93bc4b3e06616f03c727a1f0726a7fce73b1fdea",
+      "checklist.md": "7a26262d582080cb697123fd07d9fae76cd6508b6a55e7dbbd5f23193b61a076",
+      "implementation-summary.md": "398df84ae90f1608ce1307841d5ad0db9dc5ac28e74b805f62e2aa69534b1d39"
     },
     "last_active_child_id": null,
     "last_active_at": null
