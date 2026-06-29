@@ -198,7 +198,7 @@ Algorithm:
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -213,10 +213,10 @@ Phase 2 (Checker) ──────────────┘
 | Checker | None (can be drafted in parallel against the planned vocabulary + row shape) | Verify |
 | Verify | Reference subsection, Checker | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -226,10 +226,10 @@ Phase 2 (Checker) ──────────────┘
 | Verification (pass/fail/blocked/not-assessed/ready-without-scan/invalid + audits) | Low | 45 minutes |
 | **Total** | | **~2.25-3 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -246,7 +246,7 @@ Phase 2 (Checker) ──────────────┘
 - **Has data migrations?** No
 - **Reversal procedure**: Subsection revert + file deletion only
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

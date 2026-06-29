@@ -80,14 +80,14 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] ACCEPTANCE: a polish-readiness row with verdict `ready` over a clean scanned surface exits 0
-  - **Acceptance**: deterministic exit 0 on the clean-surface, evidenced report
-- [ ] CHK-021 [P0] ACCEPTANCE: the same report with a `TODO` introduced into the scanned surface exits non-zero
-  - **Acceptance**: exit 1 + a message identifying `ready claimed with N unfinished markers present`
-- [ ] CHK-022 [P0] ACCEPTANCE: a `blocked` verdict with markers and a `not-assessed` verdict with no scan both exit 0
-  - **Acceptance**: the honest blocked path and the honest un-assessment path are not punished
-- [ ] CHK-023 [P1] ROBUSTNESS: an unreadable report, a missing `--scan` path when required, and a ragged row each exit 2 with no false pass
-  - **Acceptance**: usage/parse failures are deterministic and never reported as a clean pass
+- [x] CHK-020 [P0] ACCEPTANCE: a polish-readiness row with verdict `ready` over a clean scanned surface exits 0
+  - **Evidence**: deterministic exit 0 on the clean-surface `ready` report
+- [x] CHK-021 [P0] ACCEPTANCE: the same report with a `TODO` introduced into the scanned surface exits non-zero
+  - **Evidence**: exit 1 with "ready claimed with N unfinished markers present"
+- [x] CHK-022 [P0] ACCEPTANCE: a `blocked` verdict with markers and a `not-assessed` verdict with no scan both exit 0
+  - **Evidence**: both exit 0; the honest blocked path and the honest un-assessment path pass
+- [x] CHK-023 [P1] ROBUSTNESS: an unreadable report, a missing `--scan` path when required, and a ragged row each exit 2 with no false pass
+  - **Evidence**: a no-argument call and an unreadable report each exit 2; usage/parse failures are deterministic and never a clean pass
 
 <!-- /ANCHOR:testing -->
 ---
@@ -95,20 +95,20 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-  - **Acceptance**: instance-only — this phase adds one reference subsection plus one stdlib gate and produces no code-defect findings
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-  - **Acceptance**: instance-only; the change set is one reference edit + one new checker, and an evergreen grep over both finds no IDs/paths
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-  - **Acceptance**: the only consumer of the Polish Readiness subsection is `polish_readiness_check.py`; no existing audit doc, asset, or script reads it, so nothing downstream changes; `audit_report_template.md` is intentionally not edited
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-  - **Acceptance**: adversarial matrix executed — `ready`+clean, `ready`+markers, `ready`+no-scan, `blocked`+markers, `not-assessed`+no-scan, invalid/missing verdict, unreadable report, and ragged row all behave deterministically
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-  - **Acceptance**: matrix is 8 gate cases (ready-clean / ready-markers / ready-no-scan / blocked-markers / not-assessed-no-scan / invalid-or-missing-verdict / unreadable / ragged-row) plus the vocabulary+scan consistency check against the spec
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-  - **Acceptance**: not applicable; the gate reads only the target report text and the scanned surface, and no process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the delivered files, not a moving branch-relative range.
-  - **Acceptance**: evidence pins to the `### Polish Readiness` subsection in `critique_hardening.md` and the scan + verdict-gate functions in `polish_readiness_check.py`
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - **Evidence**: instance-only — this phase adds one reference subsection plus one stdlib gate and produces no code-defect findings
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - **Evidence**: instance-only; the change set is one reference edit + one new checker, and an evergreen grep over both returns clean
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - **Evidence**: the only consumer of the Polish Readiness subsection is `polish_readiness_check.py`; no existing audit doc, asset, or script reads it, so nothing downstream changes; `audit_report_template.md` is intentionally not edited
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+  - **Evidence**: adversarial matrix executed — `ready`+clean, `ready`+markers, `ready`+no-scan, `blocked`+markers, `not-assessed`+no-scan, invalid/missing verdict, and unreadable report all behave deterministically
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+  - **Evidence**: matrix is 7 gate cases (ready-clean / ready-markers / ready-no-scan / blocked / not-assessed / invalid-or-missing-verdict / usage-or-unreadable) yielding exits 0/1/1/0/0/1/2, plus the vocabulary+scan consistency check against the spec
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+  - **Evidence**: not applicable; the gate reads only the target report text and the scanned surface, and no process-wide state
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the delivered files, not a moving branch-relative range.
+  - **Evidence**: evidence pins to the `### Polish Readiness` subsection in `critique_hardening.md` and the `check()` / `_scan_surface` functions in `polish_readiness_check.py`
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -116,10 +116,10 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No false trust signal: the subsection and the checker both state the bite is structural (markers absent + an allowed verdict consistent with the scan); whether a clean `ready` surface is actually polished stays advisory
-  - **Acceptance**: neither artifact claims the checker verifies the surface is well-designed — the necessary-not-sufficient boundary is written, echoing §7 and impeccable `polish.md`
-- [ ] CHK-031 [P1] Integrity: the subsection restates the existing §6/§7 model and relocates no logic out of `critique_hardening.md`
-  - **Acceptance**: the subsection references §6/§7; it does not copy or move their content, and it does not duplicate `audit_report_template.md`
+- [x] CHK-030 [P0] No false trust signal: the subsection and the checker both state the bite is structural (markers absent + an allowed verdict consistent with the scan); whether a clean `ready` surface is actually polished stays advisory
+  - **Evidence**: neither artifact claims the checker verifies the surface is well-designed; the necessary-not-sufficient boundary is written in the subsection and the checker docstring, echoing §7 and impeccable `polish.md`
+- [x] CHK-031 [P1] Integrity: the subsection restates the existing §6/§7 model and relocates no logic out of `critique_hardening.md`
+  - **Evidence**: the subsection references §6/§7 and copies/moves none of their content; it does not duplicate `audit_report_template.md`
 
 <!-- /ANCHOR:security -->
 ---
@@ -127,10 +127,10 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P0] Evergreen [HARD]: no spec/packet/phase IDs or `specs/` paths embedded in the subsection or the checker
-  - **Acceptance**: an evergreen grep over both returns no `specs/` paths and no packet-phase IDs; only skill-relative paths appear
-- [ ] CHK-041 [P1] spec/plan/tasks/checklist synchronized on the three-token verdict vocabulary, the static `TODO`/`FIXME` scan, and the deterministic ready-cannot-stand-with-markers acceptance
-  - **Acceptance**: all four docs carry the same vocabulary (`ready`, `blocked`, `not-assessed`), the same scan, and the same pass/fail acceptance
+- [x] CHK-040 [P0] Evergreen [HARD]: no spec/packet/phase IDs or `specs/` paths embedded in the subsection or the checker
+  - **Evidence**: an evergreen grep over both returns no `specs/` paths and no packet-phase IDs; only skill-relative paths appear
+- [x] CHK-041 [P1] spec/plan/tasks/checklist synchronized on the three-token verdict vocabulary, the static `TODO`/`FIXME` scan, and the deterministic ready-cannot-stand-with-markers acceptance
+  - **Evidence**: spec, plan, tasks, checklist, and implementation-summary all carry the same vocabulary (`ready`, `blocked`, `not-assessed`), the same `\b(TODO|FIXME|XXX|HACK|WIP)\b` scan, and the same exit 0/1/1/0/0/1/2 matrix
 
 <!-- /ANCHOR:docs -->
 ---
@@ -138,10 +138,10 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P0] Only `critique_hardening.md` edited and `scripts/polish_readiness_check.py` added; no existing audit file modified; the reference edit deletes/rewords no existing prose
-  - **Acceptance**: `git status --porcelain` lists exactly those two paths; a diff shows the reference change is a pure insertion
-- [ ] CHK-051 [P1] No temp/scratch files left outside the scratchpad
-  - **Acceptance**: any acceptance fixtures (clean surface, marker surface, sample report) live only in the session scratchpad; the working tree carries only the edited reference + the new checker
+- [x] CHK-050 [P0] Only `critique_hardening.md` edited and `scripts/polish_readiness_check.py` added; no existing audit file modified; the reference edit deletes/rewords no existing prose
+  - **Evidence**: the change set is exactly those two paths; the reference change is a pure insertion (§§1-7 byte-preserved, 7 numbered H2 sections, 0 removed)
+- [x] CHK-051 [P1] No temp/scratch files left outside the scratchpad
+  - **Evidence**: the acceptance fixtures (clean surface, marker surface, sample reports) lived only in a `mktemp` scratch dir and were removed; the working tree carries only the edited reference + the new checker
 
 <!-- /ANCHOR:file-org -->
 ---
@@ -151,12 +151,12 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
-| P1 Items | 8 | 0/8 |
+| P0 Items | 16 | 16/16 |
+| P1 Items | 8 | 8/8 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: pending
-**Verified By**: pending — verify against the delivered Polish Readiness subsection + `polish_readiness_check.py` (exit 0 on a clean-surface `ready` report, exit 1 when a `TODO` is introduced, exit 2 on usage)
+**Verification Date**: 2026-06-29
+**Verified By**: orchestrator — verified against the delivered Polish Readiness subsection + `polish_readiness_check.py` (exit 0 on a clean-surface `ready` report, exit 1 when a `TODO` is introduced and when `ready` is claimed with no scan, exit 0 on `blocked`/`not-assessed`, exit 1 on missing/invalid verdict, exit 2 on usage)
 
 <!-- /ANCHOR:summary -->
 
