@@ -18,11 +18,10 @@
     "51-iteration",
     "referenc"
   ],
-  "lastUpdated": "2026-06-28T14:26:03.272Z",
+  "lastUpdated": "2026-06-29T05:08:45.211Z",
   "specId": "003",
   "folderSlug": "deep-loop-workflows",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation"
   ],

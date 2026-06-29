@@ -21,11 +21,10 @@
     "telemetry",
     "pari"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.403Z",
+  "lastUpdated": "2026-06-29T05:08:46.073Z",
   "specId": "006",
   "folderSlug": "ux-observability-automation",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation"
   ],

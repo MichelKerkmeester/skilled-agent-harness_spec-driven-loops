@@ -19,11 +19,10 @@
     "parallel",
     "execution"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.433Z",
+  "lastUpdated": "2026-06-29T05:08:46.351Z",
   "specId": "007",
   "folderSlug": "testing",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation"
   ],

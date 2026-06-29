@@ -1,7 +1,125 @@
-Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit
-Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit
-Status: planned
-Importance Tier: important
-Summary: The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit/001-speckit-autopilot-lifecycle"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit autopilot",
+      "speckit unattended",
+      "system-spec-kit lifecycle",
+      "004 system spec kit",
+      "speckit complete autopilot"
+    ],
+    "key_topics": [
+      "speckit",
+      "autopilot",
+      "unattended",
+      "system-spec-kit",
+      "lifecycle",
+      "004",
+      "system",
+      "spec",
+      "kit",
+      "complete",
+      "auto",
+      "flag"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "001-speckit-autopilot-lifecycle/spec.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Autopilot Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
+    "created_at": "2026-06-29T05:08:45.653Z",
+    "last_save_at": "2026-06-29T05:08:45.653Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:706ef097755901f5d893fe253d09d0ce362d83182fc2dc7e98ea446a18e5c43b",
+    "source_doc_hashes": {
+      "spec.md": "d8d0c632aa0be6a9b081cb3a28f071e05a70f1d92112f46abab89974b150c83e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

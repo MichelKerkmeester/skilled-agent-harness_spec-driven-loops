@@ -20,11 +20,10 @@
     "automatically",
     "regene"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.393Z",
+  "lastUpdated": "2026-06-29T05:08:45.795Z",
   "specId": "005",
   "folderSlug": "skill-interconnection",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation"
   ],

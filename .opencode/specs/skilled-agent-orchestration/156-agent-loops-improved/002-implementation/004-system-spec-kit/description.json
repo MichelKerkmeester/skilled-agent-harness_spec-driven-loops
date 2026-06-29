@@ -15,11 +15,10 @@
     "execution",
     "envelope"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.384Z",
+  "lastUpdated": "2026-06-29T05:08:45.500Z",
   "specId": "004",
   "folderSlug": "system-spec-kit",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation"
   ],
