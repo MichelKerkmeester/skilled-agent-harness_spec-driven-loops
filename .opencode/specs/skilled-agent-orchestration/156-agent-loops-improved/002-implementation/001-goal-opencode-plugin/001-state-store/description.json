@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/001-state-store",
+  "description": "The goal plugin needed durable session-scoped state before it could inject or manage a goal",
+  "keywords": [
+    "goal",
+    "plugin",
+    "needed",
+    "durable",
+    "session-scoped",
+    "state",
+    "inject",
+    "manage"
+  ],
+  "lastUpdated": "2026-06-29T05:05:21.358Z",
+  "specId": "001",
+  "folderSlug": "state-store",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-implementation",
+    "001-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

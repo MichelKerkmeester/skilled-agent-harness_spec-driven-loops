@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/005-completion-supervisor",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/005-completion-supervisor",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal supervisor",
+      "session idle",
+      "verifier verdict",
+      "completion source",
+      "goal supervisor plan",
+      "maybe verify goal",
+      "goal supervisor tasks",
+      "goal supervisor implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "supervisor",
+      "session",
+      "idle",
+      "verifier",
+      "verdict",
+      "completion",
+      "source",
+      "plan",
+      "maybe",
+      "verify",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Compare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The plugin could store and track goals, but automatic completion still needed a verifier that did not trust assistant self-report",
+    "created_at": "2026-06-28T20:44:10Z",
+    "last_save_at": "2026-06-28T21:37:55.450Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01cd4dc37b6a471fcce83098202fec9e9ed97b911ca0f74de3cf4d8cf7969f5f",
+    "source_doc_hashes": {
+      "spec.md": "5eb6d19d0b7388cb56a537704037fe20148e48d0adf7228029dd4640f0a1a742",
+      "plan.md": "8d4666edca13c1ac36c5ce663bc3dfc1f96e1c2a1ce90f47842365e16f764391",
+      "tasks.md": "efbe2d86bf1ee8c0e4c9cb2a414c9f21ad87b5fb70c1d12ab408c5be8ec16217",
+      "implementation-summary.md": "734ffc167f1d0595fba0c39c4be8c894c9eae936ff8937cc0e8ecdb304881726"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -3,7 +3,14 @@
   "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
   "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
   "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/001-state-store",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/002-injection-plugin",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/003-goal-command",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/004-lifecycle-tracking",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/005-completion-supervisor",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/006-active-continuation"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -14,15 +21,7 @@
       "goal opencode plugin",
       "slash goal command",
       "session goal injection",
-      "thread goals opencode",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary"
+      "thread goals opencode"
     ],
     "key_topics": [
       "goal",
@@ -34,21 +33,39 @@
       "injection",
       "thread",
       "goals",
-      "implementation",
-      "plan",
-      "name"
+      "completion-condition",
+      "system",
+      "feature"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "research/research.md",
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal.md",
       ".opencode/plugins/mk-spec-memory.js",
       ".opencode/commands/memory/learn.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal.md",
+        "source": "derived"
+      },
       {
         "name": "mk-spec-memory.js",
         "kind": "code",
@@ -68,24 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -94,7 +93,7 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -122,95 +121,49 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Research Design Synthesis",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Design Synthesis",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Executive Summary",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Confirmed Mechanics",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Recommended Design",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-06-28T14:34:03.979Z",
+    "last_save_at": "2026-06-29T05:05:23.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:8ec10a51e76bcddae20eea418d4d71196cf34f6b0b052eda3908bdf26ed5434b",
+    "source_fingerprint": "sha256:a0e37000940ce593b75a4e3d18801a647101970b93629fa9498f19f31794dbb3",
     "source_doc_hashes": {
-      "spec.md": "0d8fb4d4620781b048dad47f4fe700475bb3bc0a3452588935f55f992dad66cb",
-      "plan.md": "0241841b9feaec380628e26c6fc1621acb9485c79751488b3e480ff568199948",
-      "tasks.md": "6c63e99811e22f3b52ecf225f8a8591df7292644c1863aad7cecb6440e9462d0",
-      "implementation-summary.md": "e1740f732a9f5efdf058da6770bd98ea60ff7e3cf71179d0f3fd54f84796c486"
+      "spec.md": "1d13578b28cb1633cf2627cccda84f2d5bed03bd65994675115925b8a33ad402",
+      "research/research.md": "9d933f628029c57efd24abce1cdaa2536bedb40e2f37c620125e79846cafcdb9"
     },
     "last_active_child_id": null,
     "last_active_at": null

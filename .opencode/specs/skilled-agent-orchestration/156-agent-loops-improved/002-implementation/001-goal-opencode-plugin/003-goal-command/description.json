@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/003-goal-command",
+  "description": "The state store and injection renderer needed a safe user-facing control surface",
+  "keywords": [
+    "state",
+    "store",
+    "injection",
+    "renderer",
+    "needed",
+    "safe",
+    "user-facing",
+    "control",
+    "surface"
+  ],
+  "lastUpdated": "2026-06-29T05:05:21.954Z",
+  "specId": "003",
+  "folderSlug": "goal-command",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-implementation",
+    "001-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

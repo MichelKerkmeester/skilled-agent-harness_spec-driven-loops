@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/001-state-store",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin/001-state-store",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal state store",
+      "per-session goal state",
+      "atomic goal write",
+      "missing session id",
+      "goal state store plan",
+      "mutate goal queue",
+      "goal state store tasks",
+      "atomic write tasks",
+      "goal state store implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "state",
+      "store",
+      "per-session",
+      "atomic",
+      "write",
+      "missing",
+      "session",
+      "plan",
+      "mutate",
+      "queue",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Tool",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hex",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "temp",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal plugin needed durable session-scoped state before it could inject or manage a goal",
+    "created_at": "2026-06-28T20:44:08Z",
+    "last_save_at": "2026-06-29T05:04:24.952Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c388fb1da23f18000f8390360de7542c5ead335cc83cb3e14490038b16304c66",
+    "source_doc_hashes": {
+      "spec.md": "0b16a1ea3db414ef8c3cde2dd5600bd4bbd4ff65adf9a2b1eda60032230b1ca3",
+      "plan.md": "6962c0da5e10141770b2702e90e20ac54301f5b1f67622914416eaab4fcb1657",
+      "tasks.md": "de9b2c472a7657401e3e62b96908487b614ddd7e9411be6ce0edfec95d28a0ea",
+      "implementation-summary.md": "900534c861d6301b88b97f14c00c5cdd42f3252cf942bc1aee5cecb442fc8b37"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

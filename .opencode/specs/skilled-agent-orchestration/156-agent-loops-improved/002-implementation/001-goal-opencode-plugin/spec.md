@@ -157,3 +157,35 @@ REQ-005
 **Given**
 **Given**
 -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-state-store/ | Per-session JSON goal state: atomic writes, hex(sessionID) keying, fail-closed | Complete |
+| 2 | 002-injection-plugin/ | Inject the active goal into each turn via experimental.chat.system.transform (sanitized + fenced) | Complete |
+| 3 | 003-goal-command/ | Root /goal command + mk_goal/mk_goal_status tools (set/show/clear/complete/pause) | Complete |
+| 4 | 004-lifecycle-tracking/ | event() lifecycle: restore, usage accounting, budget_limited, blocked-by-prompt | Complete |
+| 5 | 005-completion-supervisor/ | Verifier (met/not_met/blocked) gating goal completion | Complete |
+| 6 | 006-active-continuation/ | Guarded session.idle continuation (default-off, caps + kill-switch) | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-state-store | 002-injection-plugin | State helpers persist + read a per-session goal | Plugin state unit test passes |
+| 002-injection-plugin | 003-goal-command | Active goal renders into the turn's system context | Injection preview + tool-path test pass |
+| 003-goal-command | 004-lifecycle-tracking | /goal verbs route through the mk_goal tools | Tool-path test + state persistence |
+| 004-lifecycle-tracking | 005-completion-supervisor | Lifecycle events update usage + status | Lifecycle unit test passes |
+| 005-completion-supervisor | 006-active-continuation | Verifier returns met/not_met/blocked | Supervisor unit test passes |
+<!-- /ANCHOR:phase-map -->
