@@ -105,3 +105,18 @@ Fill this section only when the surface is stateful: interactive states beyond d
 
 Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY. Add `--require-source-proof` to also verify cited source files by raw-byte hash and literal echo.
 Add `--require-application-witness` to also require a well-formed `loaded-determinative` witness naming both the output choice and the loaded rule source.
+
+---
+
+## 9. DECISION RATIONALE
+
+Fill this section only when the work sets direction, breaks an established pattern, or hands rationale to another worker or context. For non-triggering work, mark every value N/A. Gate: `python3 ../scripts/proof_check.py --require-decision-rationale <this-file>.md`.
+
+| Field | Value |
+|---|---|
+| decision | `__________` |
+| optionsConsidered[] | `__________` |
+| evidenceSources[] | `__________` |
+| tradeoffs[] | `__________` |
+| validationPlan | `__________` |
+| sourceProofs[] | `__________` |

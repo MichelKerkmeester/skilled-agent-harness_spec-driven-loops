@@ -164,6 +164,26 @@ dimensions:
 
 `audit` owns severity, scoring, labels, and finding order. Use `../design-audit/assets/audit_evidence_worksheet.md` to carry confirmed, inferred, and not-assessed labels into findings and scores.
 
+### Decision Rationale
+
+This lane applies when work sets direction, breaks an established pattern, or hands rationale to another worker or context. Non-triggering work marks the lane N/A.
+
+```text
+DECISION RATIONALE:
+decision:
+optionsConsidered[]:
+- <option>:
+evidenceSources[]:
+- <source>:
+tradeoffs[]:
+- <tradeoff>:
+validationPlan:
+sourceProofs[]:
+- <SOURCE PROOF row or source anchor>:
+```
+
+Use this lane to make the reason for the decision reviewable before the design choice hardens. The checker enforces presence and non-placeholder fields only; reasoning quality remains a review judgment.
+
 ---
 
 ## 5. HARD GATES
@@ -178,6 +198,7 @@ dimensions:
 | Audit Evidence | Any audit, score, accessibility or release-readiness claim |
 | Dispatch Profile | Any small-model delegation where a profile exists |
 | Adoption | Any canonical skill change from lineage findings |
+| Decision Rationale | Any direction, pattern-break, or handoff claim before the decision, considered options, evidence sources, trade-offs, validation plan, and source proofs are recorded |
 
 **Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-foundations/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
 

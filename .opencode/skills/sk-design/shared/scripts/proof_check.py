@@ -14,6 +14,7 @@ Usage:
   proof_check.py --require-cards notes.md   # also require both card sections
   proof_check.py --require-source-proof notes.md
   proof_check.py --require-application-witness notes.md
+  proof_check.py --require-decision-rationale notes.md
 
 Required proof fields (matched case-insensitively, tolerant of formatting):
   REGISTER / DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, AUDIT EVIDENCE,
@@ -45,9 +46,18 @@ READY = re.compile(r"(?:\[x\]|\*\*|verdict[:\s*]+|result[:\s*]+)\s*READY\b", re.
 NOT_READY = re.compile(r"(?:\[x\]|\*\*)\s*NOT[\s-]*READY\b", re.I)
 SOURCE_PROOF_HEADING = re.compile(r"^#{1,6}\s+.*SOURCE\s+PROOF.*$", re.I)
 APPLICATION_WITNESS_HEADING = re.compile(r"^#{1,6}\s+.*APPLICATION\s+WITNESS.*$", re.I)
+DECISION_RATIONALE_HEADING = re.compile(r"^#{1,6}\s+.*DECISION\s+RATIONALE.*$", re.I)
 MARKDOWN_HEADING = re.compile(r"^#{1,6}\s+")
 SHA256 = re.compile(r"^(?:sha256:)?([0-9a-f]{64})$", re.I)
 APPLICATION_CLASSIFICATIONS = ("not-loaded", "loaded-inert", "loaded-determinative")
+DECISION_RATIONALE_FIELDS = (
+    "decision",
+    "optionsConsidered[]",
+    "evidenceSources[]",
+    "tradeoffs[]",
+    "validationPlan",
+    "sourceProofs[]",
+)
 
 
 def _present(text: str, patterns) -> bool:
@@ -167,6 +177,50 @@ def _find_application_witness_rows(text: str) -> list[dict]:
     return rows
 
 
+def _decision_rationale_canonical_field(value: str) -> Optional[str]:
+    normalized = re.sub(r"\s+", "", _clean_cell(value).rstrip(":")).lower()
+    for field in DECISION_RATIONALE_FIELDS:
+        if normalized == field.lower():
+            return field
+    return None
+
+
+def _find_decision_rationale_rows(text: str) -> list[dict]:
+    lines = text.splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        if DECISION_RATIONALE_HEADING.search(line):
+            start = i + 1
+            break
+    if start is None:
+        return []
+
+    rows = []
+    in_table = False
+    for line in lines[start:]:
+        if MARKDOWN_HEADING.match(line):
+            break
+        cells = _split_table_row(line)
+        if not cells:
+            if in_table:
+                break
+            continue
+        if len(cells) != 2:
+            continue
+        normalized = [_clean_cell(cell).lower() for cell in cells]
+        if normalized == ["field", "value"] or _is_separator_row(cells):
+            in_table = True
+            continue
+        in_table = True
+        if _is_placeholder(cells[0]) and _is_placeholder(cells[1]):
+            continue
+        rows.append({
+            "field": _clean_cell(cells[0]),
+            "value": _clean_cell(cells[1]),
+        })
+    return rows
+
+
 def _repo_root(card_path: Optional[str]) -> Path:
     start = Path(card_path).resolve().parent if card_path else Path.cwd().resolve()
     for candidate in (start, *start.parents):
@@ -275,12 +329,55 @@ def _validate_application_witness(text: str) -> dict:
     return result
 
 
+def _validate_decision_rationale(text: str) -> dict:
+    rows = _find_decision_rationale_rows(text)
+    result = {
+        "rows": len(rows),
+        "items": [],
+        "missing": [],
+        "ok": True,
+    }
+    if not rows:
+        result["missing"].append("decision-rationale rows missing")
+        result["ok"] = False
+        return result
+
+    values_by_field = {}
+    for row in rows:
+        canonical = _decision_rationale_canonical_field(row["field"])
+        item = {
+            "field": row["field"],
+            "canonical_field": canonical,
+            "ok": True,
+            "errors": [],
+        }
+        if canonical is not None:
+            if _is_placeholder(row["value"]):
+                item["errors"].append("value missing")
+            current = values_by_field.get(canonical)
+            if current is None or _is_placeholder(current):
+                values_by_field[canonical] = row["value"]
+        item["ok"] = not item["errors"]
+        result["items"].append(item)
+
+    for field in DECISION_RATIONALE_FIELDS:
+        value = values_by_field.get(field)
+        if value is None:
+            result["missing"].append(f"decision-rationale field missing: {field}")
+        elif _is_placeholder(value):
+            result["missing"].append(f"decision-rationale field placeholder: {field}")
+
+    result["ok"] = not result["missing"]
+    return result
+
+
 def check(
     text: str,
     require_cards: bool,
     require_source_proof: bool = False,
     source_path: Optional[str] = None,
     require_application_witness: bool = False,
+    require_decision_rationale: bool = False,
 ) -> dict:
     fields = {label: _present(text, pats) for label, pats in PROOF_FIELDS.items()}
     cards = {label: _present(text, pats) for label, pats in CARD_SECTIONS.items()} if require_cards else {}
@@ -293,6 +390,9 @@ def check(
     application_witness = _validate_application_witness(text) if require_application_witness else None
     if application_witness:
         missing.extend(application_witness["missing"])
+    decision_rationale = _validate_decision_rationale(text) if require_decision_rationale else None
+    if decision_rationale:
+        missing.extend(decision_rationale["missing"])
     ok = not missing and ready
     result = {
         "fields": fields,
@@ -306,6 +406,8 @@ def check(
         result["source_proof"] = source_proof
     if application_witness:
         result["application_witness"] = application_witness
+    if decision_rationale:
+        result["decision_rationale"] = decision_rationale
     return result
 
 
@@ -314,9 +416,10 @@ def main(argv) -> int:
     require_cards = "--require-cards" in argv
     require_source_proof = "--require-source-proof" in argv
     require_application_witness = "--require-application-witness" in argv
+    require_decision_rationale = "--require-decision-rationale" in argv
     paths = [a for a in argv if not a.startswith("--")]
     if len(paths) != 1:
-        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] [--require-application-witness] <proof-card-or-notes.md>\n")
+        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] [--require-application-witness] [--require-decision-rationale] <proof-card-or-notes.md>\n")
         return 2
     try:
         with open(paths[0], "r", encoding="utf-8") as fh:
@@ -325,7 +428,14 @@ def main(argv) -> int:
         sys.stderr.write(f"cannot read {paths[0]}: {e}\n")
         return 2
 
-    r = check(text, require_cards, require_source_proof, paths[0], require_application_witness)
+    r = check(
+        text,
+        require_cards,
+        require_source_proof,
+        paths[0],
+        require_application_witness,
+        require_decision_rationale,
+    )
     if as_json:
         print(json.dumps({"file": paths[0], **r}, indent=2))
     else:
@@ -338,6 +448,9 @@ def main(argv) -> int:
         if require_application_witness:
             witness_ok = r["application_witness"]["ok"]
             print(f"  [{'x' if witness_ok else ' '}] APPLICATION WITNESS")
+        if require_decision_rationale:
+            rationale_ok = r["decision_rationale"]["ok"]
+            print(f"  [{'x' if rationale_ok else ' '}] DECISION RATIONALE")
         print(f"  verdict READY: {'yes' if r['ready'] else 'no'}"
               + (" (NOT READY found)" if r["not_ready_flag"] else ""))
         if r["ok"]:

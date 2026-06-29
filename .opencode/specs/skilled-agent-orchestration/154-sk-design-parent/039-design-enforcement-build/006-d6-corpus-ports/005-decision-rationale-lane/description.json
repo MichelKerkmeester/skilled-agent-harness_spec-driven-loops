@@ -1,21 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/005-decision-rationale-lane",
-  "description": "Add a conditional decision/optionsConsidered/evidenceSources/tradeoffs/validationPlan/sourceProofs field to the contract + proof card + proof_check.py",
+  "description": "Direction-setting, pattern-breaking, and handoff design work is where unjustified choices ship: a worker picks a direction, breaks an established patt",
   "keywords": [
-    "add",
-    "conditional",
-    "decision",
-    "optionsconsidered",
-    "evidencesources",
-    "tradeoffs",
-    "validationplan",
-    "sourceproofs",
-    "field",
-    "contract",
-    "proof",
-    "card"
+    "direction-setting",
+    "pattern-breaking",
+    "handoff",
+    "design",
+    "work",
+    "unjustified",
+    "choices",
+    "ship",
+    "worker",
+    "picks",
+    "direction",
+    "breaks",
+    "established",
+    "patt"
   ],
-  "lastUpdated": "2026-06-28T12:40:08.922Z",
+  "lastUpdated": "2026-06-29T13:21:51.685Z",
   "specId": "005",
   "folderSlug": "decision-rationale-lane",
   "parentChain": [
@@ -27,6 +30,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
