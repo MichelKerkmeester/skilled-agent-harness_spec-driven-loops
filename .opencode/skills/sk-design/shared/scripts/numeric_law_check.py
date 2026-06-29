@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Deterministic completeness gate for the numeric design laws index.
+"""Deterministic completeness and uniqueness gate for the numeric design laws index.
 
 The index is a reference surface, so the first failure mode is a row that looks
 canonical while leaving a value, owner, source, or caveat blank. This checker
 parses the law table and exits non-zero unless every law row has all six
-required cells populated.
+required cells populated and no two rows register the same value.
 
 Usage:
   numeric_law_check.py numeric_design_laws.md
   numeric_law_check.py --json numeric_design_laws.md
 
-Exit: 0 = rows present and complete; 1 = missing rows or incomplete cells;
-2 = usage or read error.
+Exit: 0 = rows present, complete, and unique; 1 = missing rows, incomplete
+cells, or duplicate values; 2 = usage or read error.
 """
 import json
 from pathlib import Path
@@ -56,6 +56,10 @@ def _is_placeholder(value: str) -> bool:
 
 def _normalized_header(cells: list[str]) -> list[str]:
     return [re.sub(r"\s+", " ", _clean_cell(cell).lower()) for cell in cells]
+
+
+def _normalized_value(value: str) -> str:
+    return re.sub(r"\s+", " ", _clean_cell(value).lower()).strip()
 
 
 def _find_law_table_start(lines: list[str]) -> int:
@@ -107,6 +111,34 @@ def _find_law_rows(text: str) -> tuple[list[dict[str, Any]], list[str]]:
     return rows, errors
 
 
+def _find_duplicates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    values: dict[str, list[dict[str, str]]] = {}
+
+    for index, row in enumerate(rows, 1):
+        if _is_placeholder(row["value/range"]):
+            continue
+
+        value = _normalized_value(row["value/range"])
+        law_id = row["law_id"] if not _is_placeholder(row["law_id"]) else f"row-{index}"
+        owner = row["owner mode"] if not _is_placeholder(row["owner mode"]) else ""
+        values.setdefault(value, []).append({"law_id": law_id, "owner": owner})
+
+    duplicates: list[dict[str, Any]] = []
+    for value, grouped_rows in values.items():
+        if len(grouped_rows) < 2:
+            continue
+
+        duplicates.append(
+            {
+                "value": value,
+                "law_ids": [row["law_id"] for row in grouped_rows],
+                "owners": [row["owner"] for row in grouped_rows],
+            }
+        )
+
+    return duplicates
+
+
 def check(text: str) -> dict[str, Any]:
     rows, errors = _find_law_rows(text)
     incomplete: list[dict[str, str]] = []
@@ -121,12 +153,14 @@ def check(text: str) -> dict[str, Any]:
     if not rows:
         missing.append("numeric-law rows missing")
 
-    ok = not errors and not missing and not incomplete
+    duplicates = _find_duplicates(rows)
+    ok = not errors and not missing and not incomplete and not duplicates
     return {
         "rows": len(rows),
         "errors": errors,
         "missing": missing,
         "incomplete": incomplete,
+        "duplicates": duplicates,
         "ok": ok,
     }
 
@@ -152,7 +186,7 @@ def main(argv: list[str]) -> int:
         print(f"Numeric law completeness gate - {path}")
         print(f"  rows: {result['rows']}")
         if result["ok"]:
-            print("PASS - all numeric law rows are fully populated.")
+            print("PASS - all numeric law rows are fully populated and unique.")
         else:
             for error in result["errors"]:
                 print(f"FAIL - {error}")
@@ -160,6 +194,12 @@ def main(argv: list[str]) -> int:
                 print(f"FAIL - {missing}")
             for item in result["incomplete"]:
                 print(f"FAIL - {item['law_id']}: blank {item['column']}")
+            for item in result["duplicates"]:
+                print(
+                    f"FAIL - duplicate law value \"{item['value']}\" shared by "
+                    f"{', '.join(item['law_ids'])} "
+                    f"(owners: {', '.join(item['owners'])})"
+                )
 
     return 0 if result["ok"] else 1
 

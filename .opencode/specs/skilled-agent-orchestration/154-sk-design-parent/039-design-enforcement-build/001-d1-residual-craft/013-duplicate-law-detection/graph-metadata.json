@@ -12,7 +12,13 @@
   "derived": {
     "trigger_phrases": [
       "d1-r13 duplicate law detection",
-      "duplicate law detection design build"
+      "duplicate law detection design build",
+      "numeric_law_check duplicate detection",
+      "duplicate law detection plan",
+      "duplicate law detection tasks",
+      "duplicate law detection checklist",
+      "duplicate law detection summary",
+      "within-index duplicate law re-port gate"
     ],
     "key_topics": [
       "d1-r13",
@@ -21,19 +27,43 @@
       "detection",
       "design",
       "build",
-      "add",
-      "duplicate-detection",
-      "docs",
-      "benchmark",
-      "fails",
-      "redundant"
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "within-index",
+      "re-port"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+      ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "numeric_law_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_design_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +71,145 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Duplicate Law Detection",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add duplicate-detection to the docs benchmark so it fails on redundant mode-local restatements of timing/color/layout/type defaults and forces references to owners.",
+    "causal_summary": "The numeric-law index gives each already-adopted numeric law (timing, color/contrast, layout/spacing, type) exactly one canonical row so modes cite the owner instead of re-copying the value",
     "created_at": "2026-06-28T12:40:06.787Z",
-    "last_save_at": "2026-06-28T12:40:06.787Z",
+    "last_save_at": "2026-06-29T12:14:08.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30599b0a53403d4cdcda4e4b45d9f45a5f0562d20a7707ee061b44cc974ec682",
+    "source_fingerprint": "sha256:fd7c1f33a4e17bd3569d93268b495c7a24ce6fd0f0f4e63b4e16ffadf7373002",
     "source_doc_hashes": {
-      "spec.md": "2493a17df2273046e3ab85f145d21bf01f40d41b06b255d0925618d0cbf1867f"
+      "spec.md": "b8c069b38fb86592df8b54b9780d0748112b782567b7db79fc8c65f8487c7079",
+      "plan.md": "ab97dd421f0e8678032d79ba1d5398728fccf0a3677adbdfd90a126101642b95",
+      "tasks.md": "cdb58d823154f7f329a4e898001aa4920eb553f4e458667317eaee5a451608cb",
+      "checklist.md": "5b377ba567c788f4aae8fee4836ebdf753ff3c0ba7693749dbb25439bb0352b2",
+      "implementation-summary.md": "4ed4bcfb51f63ad3e7ffbcb5798d142d5e389577ed9ef1d73c6159506a22d3a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

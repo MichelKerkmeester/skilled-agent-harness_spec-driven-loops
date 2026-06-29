@@ -1,24 +1,28 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection",
-  "description": "Add duplicate-detection to the docs benchmark so it fails on redundant mode-local restatements of timing/color/layout/type defaults and forces referen",
+  "description": "The numeric-law index gives each already-adopted numeric law (timing, color/contrast, layout/spacing, type) exactly one canonical row so modes cite th",
   "keywords": [
-    "add",
-    "duplicate-detection",
-    "docs",
-    "benchmark",
-    "fails",
-    "redundant",
-    "mode-local",
-    "restatements",
+    "numeric-law",
+    "index",
+    "gives",
+    "already-adopted",
+    "numeric",
+    "law",
     "timing",
     "color",
+    "contrast",
     "layout",
+    "spacing",
     "type",
-    "defaults",
-    "forces",
-    "referen"
+    "exactly",
+    "one",
+    "canonical",
+    "row",
+    "modes",
+    "cite"
   ],
-  "lastUpdated": "2026-06-28T12:40:06.660Z",
+  "lastUpdated": "2026-06-29T12:14:08.446Z",
   "specId": "013",
   "folderSlug": "duplicate-law-detection",
   "parentChain": [
@@ -30,6 +34,5 @@
     "001-d1-residual-craft"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
