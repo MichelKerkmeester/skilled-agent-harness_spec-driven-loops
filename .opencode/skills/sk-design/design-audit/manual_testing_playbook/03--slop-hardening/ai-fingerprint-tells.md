@@ -47,3 +47,24 @@ Supply one concrete UI artifact in the `<TARGET>` slot likely to carry generator
 - Severity follows the rule of thumb: one tell is low, three or more stacked tells push the Anti-Patterns dimension to P1, a tell that also breaks a user task climbs to P0.
 - Most tells route to the Anti-Patterns dimension, with the noted exceptions touching Theming or Performance.
 - A clean pass is reported as no model-specific tells found, not as proof the design is distinctive.
+
+## Fixture-Backed Check
+
+Use `assets/ai_fingerprint_fixtures/` as the deterministic corpus when no richer product artifact is supplied. Each fixture directory mirrors one registry `fixture_id` and contains a clean sample plus a tell-present sample.
+
+Run the clean pass first. Every `clean.html` sample should report no model-specific tells found, with no implied praise for distinctiveness. Then run the positive pass. Every `tell.html` sample should file exactly one finding: its own registry `tell_id`, with the matching family, owner and severity floor. A positive that fires a sibling tell is a false positive, not a partial pass.
+
+| Fixture family | Positive samples | Expected result |
+| --- | ---: | --- |
+| Codex | 5 | Each positive fires exactly one Codex tell |
+| Gemini | 1 | The positive fires exactly one Gemini tell |
+| 2026-general | 3 | Each positive fires exactly one general tell |
+| Clean samples | 9 | No tell fires |
+
+The deterministic runner is the enforceable preflight for this corpus:
+
+```bash
+node shared/scripts/ai-fingerprint-fixture-check.mjs
+```
+
+Manual audit output should still be evidence-first: name the exact selector, element or file location that produced each tell, and label source-backed hits as confirmed.

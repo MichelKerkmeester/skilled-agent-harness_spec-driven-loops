@@ -2,7 +2,9 @@
 // AI Fingerprint Registry Check
 // ============================================================================
 
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const REQUIRED_FIELDS = [
   "tell_id",
@@ -23,6 +25,7 @@ const scriptUrl = new URL(import.meta.url);
 const skillRootUrl = new URL("../../", scriptUrl);
 const catalogUrl = new URL("design-audit/references/ai_fingerprint_tells.md", skillRootUrl);
 const registryUrl = new URL("design-audit/assets/ai_fingerprint_registry.json", skillRootUrl);
+const fixtureRootUrl = new URL("design-audit/assets/ai_fingerprint_fixtures/", skillRootUrl);
 
 const options = parseArgs(process.argv.slice(2));
 const jsonMode = options.json;
@@ -59,7 +62,11 @@ async function main() {
 
   const catalogTells = parseCatalogTells(catalogSource);
   const validation = validateRegistry(registry, catalogTells);
-  const failures = [...validateCatalog(catalogTells), ...validation.errors];
+  const fixtureFailures = await validateFixtureFiles(
+    validation.rows,
+    directoryUrl(options.fixturesRoot ?? fixtureRootUrl)
+  );
+  const failures = [...validateCatalog(catalogTells), ...validation.errors, ...fixtureFailures];
   const status = failures.length > 0 ? "fail" : "pass";
 
   emitAndExit(
@@ -69,7 +76,8 @@ async function main() {
       metadata: {
         catalogTellCount: catalogTells.length,
         registryRowCount: validation.rows.length,
-        requiredFieldCount: REQUIRED_FIELDS.length
+        requiredFieldCount: REQUIRED_FIELDS.length,
+        fixtureRoot: directoryUrl(options.fixturesRoot ?? fixtureRootUrl).href
       },
       failures
     },
@@ -81,6 +89,7 @@ function parseArgs(args) {
   const parsed = {
     catalog: null,
     registry: null,
+    fixturesRoot: null,
     json: false,
     errors: []
   };
@@ -93,15 +102,18 @@ function parseArgs(args) {
       continue;
     }
 
-    if (arg === "--catalog" || arg === "--registry") {
+    if (arg === "--catalog" || arg === "--registry" || arg === "--fixtures-root") {
       const value = args[index + 1];
       if (!value || value.startsWith("--")) {
         parsed.errors.push(`${arg} requires a path value`);
       } else if (arg === "--catalog") {
         parsed.catalog = value;
         index += 1;
-      } else {
+      } else if (arg === "--registry") {
         parsed.registry = value;
+        index += 1;
+      } else {
+        parsed.fixturesRoot = value;
         index += 1;
       }
       continue;
@@ -289,6 +301,49 @@ function validateRegistry(registry, catalogTells) {
   };
 }
 
+async function validateFixtureFiles(rows, rootUrl) {
+  const errors = [];
+
+  await Promise.all(rows.map(async (row, index) => {
+    if (typeof row?.fixture_id !== "string" || row.fixture_id.trim().length === 0) {
+      return;
+    }
+
+    if (!SLUG_PATTERN.test(row.fixture_id)) {
+      return;
+    }
+
+    const label = rowLabel(row, index);
+    const dirUrl = new URL(`${row.fixture_id}/`, rootUrl);
+    const cleanUrl = new URL(`${row.fixture_id}/clean.html`, rootUrl);
+    const tellUrl = new URL(`${row.fixture_id}/tell.html`, rootUrl);
+
+    if (!(await existsAs(dirUrl, "directory"))) {
+      errors.push(`${label}: fixture directory ${row.fixture_id}/ is missing`);
+      return;
+    }
+
+    if (!(await existsAs(cleanUrl, "file"))) {
+      errors.push(`${label}: fixture ${row.fixture_id}/clean.html is missing`);
+    }
+
+    if (!(await existsAs(tellUrl, "file"))) {
+      errors.push(`${label}: fixture ${row.fixture_id}/tell.html is missing`);
+    }
+  }));
+
+  return errors.sort();
+}
+
+async function existsAs(url, kind) {
+  try {
+    const entry = await stat(url);
+    return kind === "directory" ? entry.isDirectory() : entry.isFile();
+  } catch {
+    return false;
+  }
+}
+
 function rowLabel(row, index) {
   if (typeof row?.tell_id === "string" && row.tell_id.length > 0) {
     return `registry row ${row.tell_id}`;
@@ -299,6 +354,12 @@ function rowLabel(row, index) {
 
 function isPlainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function directoryUrl(value) {
+  const url = value instanceof URL ? value : pathToFileURL(resolve(value));
+  const text = url.href.endsWith("/") ? url.href : `${url.href}/`;
+  return new URL(text);
 }
 
 function emitAndExit(report, exitCode) {

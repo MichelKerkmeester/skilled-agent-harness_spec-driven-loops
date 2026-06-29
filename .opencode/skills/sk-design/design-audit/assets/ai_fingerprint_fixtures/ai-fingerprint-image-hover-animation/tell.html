@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Image Hover Animation</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f6f8fb;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .project-card {
+      max-width: 340px;
+      margin: 48px auto;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .project-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 180ms ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.06);
+    }
+  </style>
+</head>
+<body>
+  <article class="project-card">
+    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Warehouse aisle">
+    <h1>Dock Review</h1>
+  </article>
+</body>
+</html>

@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d1-r4 ai tell fixtures",
-      "ai tell fixture corpus design build"
+      "ai tell fixture corpus design build",
+      "ai fingerprint fixture detection",
+      "ai tell fixture corpus plan",
+      "design audit fixture benchmark",
+      "ai tell fixture corpus tasks",
+      "design audit fixture benchmark tasks",
+      "ai fingerprint fixture detection tasks",
+      "ai tell fixture corpus checklist",
+      "design audit fixture benchmark checklist",
+      "ai fingerprint fixture detection checklist",
+      "ai tell fixture corpus summary"
     ],
     "key_topics": [
       "d1-r4",
@@ -22,18 +32,56 @@
       "corpus",
       "design",
       "build",
-      "add",
-      "fixture-backed",
-      "ai-tell",
-      "scenario",
-      "plus"
+      "fingerprint",
+      "detection",
+      "plan",
+      "audit",
+      "benchmark"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
+      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
+      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+      ".opencode/skills/sk-design/design-audit/manual_testing_playbook/03--slop-hardening/ai-fingerprint-tells.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-fixture-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-registry-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-tells.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/manual_testing_playbook/03--slop-hardening/ai-fingerprint-tells.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +89,133 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "expected",
-        "kind": "key_phrase",
+        "name": "Tell Fixture Corpus",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Detection Benchmark",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Purpose Land",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backed Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a fixture-backed AI-tell scenario plus a benchmark asserting expected tell IDs and no off-family false positives, extending the slop-hardening playbook.",
+    "causal_summary": "The just-landed AI-tell registry (`design-audit/assets/aifingerprintregistry.json`, D1-R3) carries one `fixtureid` slug per tell, but the fixture files those slugs name do not exist",
     "created_at": "2026-06-28T12:40:05.236Z",
-    "last_save_at": "2026-06-28T12:40:05.236Z",
+    "last_save_at": "2026-06-29T11:12:05.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c7422e8976e41558bd1d3e5fb6c1f93965463a630a1ac41d6646e200699f034",
+    "source_fingerprint": "sha256:b553495cf019feed24887dfcdaf8c6c84e6a1f675fb82a496ae53eb531ac14b5",
     "source_doc_hashes": {
-      "spec.md": "203e5fdf88d97f0602985b8261df817657cd4d3312a85508f9cf8811672a3217"
+      "spec.md": "1a35ac5153603b77b8459178e4562c59b0507d832781df57b8804b1764dd6f77",
+      "plan.md": "6c25b4683530cdb15f301a05a697017e25d2ebd2761e38eaa63875bb10154b09",
+      "tasks.md": "f712eeadd8991b7046e69c76a1383c392716b7d2369a01d5e990a93865112f45",
+      "checklist.md": "ebffcda3c094657e9c0881934d7f354a80bb4b479f21a32333d5b78b1f0a4fed",
+      "implementation-summary.md": "adc466e38ef3eef581d7944dc817f44d01c5cb501545d4976f139462349bc807"
     },
     "last_active_child_id": null,
     "last_active_at": null

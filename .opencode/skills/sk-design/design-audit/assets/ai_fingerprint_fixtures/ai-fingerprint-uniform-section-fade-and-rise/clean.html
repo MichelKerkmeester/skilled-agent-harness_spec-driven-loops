@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Clean Motion Variety</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f6f8fb;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .panel {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #ffffff;
+    }
+
+    .panel[data-motion="fade"] {
+      opacity: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .panel[data-motion="settle"] {
+      transform: translateY(8px);
+      transition: transform 260ms ease-out;
+    }
+  </style>
+</head>
+<body>
+  <section class="panel" data-motion="fade">
+    <h2>Inbound</h2>
+  </section>
+  <section class="panel">
+    <h2>Picking</h2>
+  </section>
+  <section class="panel" data-motion="settle">
+    <h2>Dispatch</h2>
+  </section>
+</body>
+</html>
