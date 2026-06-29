@@ -1,20 +1,25 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/001-command-recipe-projection",
-  "description": "Add a sibling `command-metadata.json` (argumentGrammar + choreography[] + outputContract + nextOptions[]) projecting over the 5 workflowMode keys and",
+  "description": "The design corpus treats a command as a workflow recipe \u2014 a verb carrying a typed argument grammar and an ordered, named-skill choreography that runs",
   "keywords": [
-    "add",
-    "sibling",
-    "command-metadata",
-    "json",
-    "argumentgrammar",
+    "design",
+    "corpus",
+    "treats",
+    "command",
+    "workflow",
+    "recipe",
+    "verb",
+    "carrying",
+    "typed",
+    "argument",
+    "grammar",
+    "ordered",
+    "named-skill",
     "choreography",
-    "outputcontract",
-    "nextoptions",
-    "projecting",
-    "workflowmode",
-    "keys"
+    "runs"
   ],
-  "lastUpdated": "2026-06-28T12:40:09.936Z",
+  "lastUpdated": "2026-06-29T12:30:38.266Z",
   "specId": "001",
   "folderSlug": "command-recipe-projection",
   "parentChain": [
@@ -26,6 +31,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

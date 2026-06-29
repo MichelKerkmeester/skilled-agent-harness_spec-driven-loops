@@ -12,6 +12,8 @@ const REQUIRED_FIELDS = [
   "autoTriggerEligible",
   "hubKeywordProjection",
   "argumentHint",
+  "argumentGrammar",
+  "choreography",
   "aliases",
   "userIntent",
   "copyGuard",
@@ -52,6 +54,7 @@ const DRIFT_FIELDS = [
   "taskProjections",
   "preconditions",
   "pipeline",
+  "choreography",
   "register",
   "wrapper"
 ];
@@ -92,6 +95,9 @@ const INTERFACE_TASK_CLASSES = new Set(["sibling-command", "argument", "internal
 const TASK_PROJECTION_STRICTNESS = new Set(["advisory"]);
 const TASK_PROJECTION_FIELDS = ["verb", "ownerMode", "strictness", "referenceSources", "requires", "fixtures"];
 const TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER = "Negative corpus:";
+const ARGUMENT_GRAMMAR_POSITIONAL_FIELDS = ["name", "required", "kind"];
+const ARGUMENT_GRAMMAR_FLAG_FIELDS = ["name", "required", "takesValue", "kind"];
+const CHOREOGRAPHY_FIELDS = ["order", "skill", "resource", "action"];
 const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
 const DESCRIPTION_ROLES = new Set(["hub-keyword-projection"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
@@ -278,6 +284,8 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
     }
 
     errors.push(...validateDescriptionRoleProjection(record, command));
+    errors.push(...validateArgumentGrammar(record, command));
+    errors.push(...validateChoreography(record, command));
     errors.push(...validateUserIntent(record, command));
 
     if (typeof record?.toolPolicy?.mutatesWorkspace !== "boolean") {
@@ -360,6 +368,148 @@ function validateDescriptionRoleProjection(record, command) {
   if (typeof record?.description !== "string" || !record.description.endsWith(expectedSuffix)) {
     errors.push(`${command}: description must end with ${expectedSuffix}`);
   }
+
+  return errors;
+}
+
+function validateArgumentGrammar(record, command) {
+  const errors = [];
+  const grammar = record?.argumentGrammar;
+
+  if (!isPlainObject(grammar)) {
+    return [`${command}: argumentGrammar must be an object`];
+  }
+
+  if (typeof grammar.render !== "string" || grammar.render.trim().length === 0) {
+    errors.push(`${command}: argumentGrammar.render must be a non-empty string`);
+  } else if (grammar.render !== record?.argumentHint) {
+    errors.push(`${command}: argumentGrammar.render must match argumentHint`);
+  }
+
+  if (!Array.isArray(grammar.positional) || grammar.positional.length === 0) {
+    errors.push(`${command}: argumentGrammar.positional must be a non-empty array`);
+  } else {
+    grammar.positional.forEach((token, index) => {
+      const label = `${command}: argumentGrammar.positional[${index}]`;
+
+      if (!isPlainObject(token)) {
+        errors.push(`${label} must be an object`);
+        return;
+      }
+
+      for (const field of ARGUMENT_GRAMMAR_POSITIONAL_FIELDS) {
+        if (!Object.hasOwn(token, field)) {
+          errors.push(`${label}.${field} is required`);
+        }
+      }
+
+      if (typeof token.name !== "string" || !/^[a-z][a-z0-9-]*$/.test(token.name)) {
+        errors.push(`${label}.name must use lowercase letters, numbers, and hyphens`);
+      }
+
+      if (token.required !== true && token.required !== false) {
+        errors.push(`${label}.required must be a boolean`);
+      }
+
+      if (typeof token.kind !== "string" || token.kind.trim().length === 0) {
+        errors.push(`${label}.kind must be a non-empty string`);
+      }
+    });
+  }
+
+  if (!Array.isArray(grammar.flags)) {
+    errors.push(`${command}: argumentGrammar.flags must be an array`);
+  } else {
+    grammar.flags.forEach((flag, index) => {
+      const label = `${command}: argumentGrammar.flags[${index}]`;
+
+      if (!isPlainObject(flag)) {
+        errors.push(`${label} must be an object`);
+        return;
+      }
+
+      for (const field of ARGUMENT_GRAMMAR_FLAG_FIELDS) {
+        if (!Object.hasOwn(flag, field)) {
+          errors.push(`${label}.${field} is required`);
+        }
+      }
+
+      if (typeof flag.name !== "string" || !/^--[a-z][a-z0-9-]*$/.test(flag.name)) {
+        errors.push(`${label}.name must be a long flag such as --scope`);
+      }
+
+      if (flag.required !== true && flag.required !== false) {
+        errors.push(`${label}.required must be a boolean`);
+      }
+
+      if (flag.takesValue !== true && flag.takesValue !== false) {
+        errors.push(`${label}.takesValue must be a boolean`);
+      }
+
+      if (typeof flag.kind !== "string" || flag.kind.trim().length === 0) {
+        errors.push(`${label}.kind must be a non-empty string`);
+      }
+
+      if (flag.takesValue === true && (typeof flag.valueName !== "string" || flag.valueName.trim().length === 0)) {
+        errors.push(`${label}.valueName must be a non-empty string when takesValue is true`);
+      }
+    });
+  }
+
+  return errors;
+}
+
+function validateChoreography(record, command) {
+  const errors = [];
+  const choreography = record?.choreography;
+
+  if (!Array.isArray(choreography) || choreography.length === 0) {
+    return [`${command}: choreography must be a non-empty array`];
+  }
+
+  const orders = [];
+  const seenOrders = new Set();
+
+  choreography.forEach((step, index) => {
+    const label = `${command}: choreography[${index}]`;
+
+    if (!isPlainObject(step)) {
+      errors.push(`${label} must be an object`);
+      return;
+    }
+
+    for (const field of CHOREOGRAPHY_FIELDS) {
+      if (!Object.hasOwn(step, field)) {
+        errors.push(`${label}.${field} is required`);
+      }
+    }
+
+    if (!Number.isInteger(step.order) || step.order < 1) {
+      errors.push(`${label}.order must be a positive integer`);
+    } else {
+      orders.push(step.order);
+
+      if (seenOrders.has(step.order)) {
+        errors.push(`${label}.order ${step.order} is duplicated`);
+      }
+
+      seenOrders.add(step.order);
+    }
+
+    for (const field of ["skill", "resource", "action"]) {
+      if (typeof step[field] !== "string" || step[field].trim().length === 0) {
+        errors.push(`${label}.${field} must be a non-empty string`);
+      }
+    }
+  });
+
+  const sortedOrders = [...orders].sort((left, right) => left - right);
+  sortedOrders.forEach((order, index) => {
+    const expectedOrder = index + 1;
+    if (order !== expectedOrder) {
+      errors.push(`${command}: choreography orders must be contiguous from 1`);
+    }
+  });
 
   return errors;
 }
@@ -1051,6 +1201,7 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedDiscriminatorDrift(record, markdown));
     drift.push(...expectedPreconditionsDrift(record, markdown));
     drift.push(...expectedPipelineDrift(record, markdown));
+    drift.push(...expectedChoreographyDrift(record, markdown));
     drift.push(...expectedRegisterDrift(record, markdown));
     drift.push(...expectedTaskProjectionsDrift(record, markdown));
 
@@ -1245,6 +1396,76 @@ function expectedUserIntentDrift(record, markdown) {
         expected: `lead region without "${phrase}"`,
         actual: phrase
       });
+    }
+  }
+
+  return drift;
+}
+
+function expectedChoreographyDrift(record, markdown) {
+  const section = extractChoreographySection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "choreography",
+        command: record.command,
+        field: "choreography",
+        expected: "## CHOREOGRAPHY",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const steps = Array.isArray(record.choreography) ? record.choreography : [];
+  const numberedLines = section
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => /^\d+\.\s+/.test(line));
+
+  if (numberedLines.length !== steps.length) {
+    drift.push({
+      kind: "choreography",
+      command: record.command,
+      field: "choreography",
+      expected: `${steps.length} ordered steps`,
+      actual: `${numberedLines.length} numbered steps`
+    });
+  }
+
+  for (const step of steps) {
+    if (!isPlainObject(step) || !Number.isInteger(step.order)) {
+      continue;
+    }
+
+    const line = numberedLines.find((candidate) => candidate.startsWith(`${step.order}.`));
+    if (!line) {
+      drift.push({
+        kind: "choreography",
+        command: record.command,
+        field: "choreography",
+        expected: `step ${step.order}`,
+        actual: "<missing ordered step>"
+      });
+      continue;
+    }
+
+    for (const field of ["skill", "resource", "action"]) {
+      const expected = step[field];
+      if (typeof expected !== "string" || expected.length === 0) {
+        continue;
+      }
+
+      if (!containsPhrase(line, expected)) {
+        drift.push({
+          kind: "choreography",
+          command: record.command,
+          field: "choreography",
+          expected,
+          actual: `<missing ${field} in step ${step.order}>`
+        });
+      }
     }
   }
 
@@ -1722,6 +1943,10 @@ function extractInterfaceTaskLanesSection(markdown) {
 
 function extractTaskProjectionsSection(markdown) {
   return extractNamedSection(markdown, "TASK PROJECTIONS");
+}
+
+function extractChoreographySection(markdown) {
+  return extractNamedSection(markdown, "CHOREOGRAPHY");
 }
 
 function extractNamedSection(markdown, sectionName) {

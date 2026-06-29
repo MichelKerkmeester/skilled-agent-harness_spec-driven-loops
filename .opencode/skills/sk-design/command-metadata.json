@@ -21,6 +21,42 @@
         "returnsArtifact": "a findings-first design quality report with evidence, scores, owners, and verification notes"
       }
     ],
+    "argumentGrammar": {
+      "positional": [
+        { "name": "target", "required": true, "kind": "design-target" }
+      ],
+      "flags": [
+        { "name": "--scope", "required": false, "takesValue": true, "valueName": "scope", "kind": "scope-filter" },
+        { "name": "--score", "required": false, "takesValue": false, "kind": "boolean" }
+      ],
+      "render": "<target> [--scope] [--score]"
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the parent hub routing table and shared references"
+      },
+      {
+        "order": 2,
+        "skill": "design-audit",
+        "resource": ".opencode/skills/sk-design/design-audit/SKILL.md",
+        "action": "load the audit mode contract"
+      },
+      {
+        "order": 3,
+        "skill": "design-audit",
+        "resource": ".opencode/skills/sk-design/design-audit/references/",
+        "action": "load mode references and assets as the work requires, then apply the audit workflow to $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-code",
+        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "action": "prepare implementation handoff only when accepted design output moves to code"
+      }
+    ],
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
     "taskProjections": [
@@ -127,6 +163,40 @@
         "returnsArtifact": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable"
       }
     ],
+    "argumentGrammar": {
+      "positional": [
+        { "name": "axis", "required": true, "kind": "design-axis" },
+        { "name": "target", "required": true, "kind": "design-target" }
+      ],
+      "flags": [],
+      "render": "<axis> <target>"
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the parent hub routing table and shared references"
+      },
+      {
+        "order": 2,
+        "skill": "design-foundations",
+        "resource": ".opencode/skills/sk-design/design-foundations/SKILL.md",
+        "action": "load the foundations mode contract"
+      },
+      {
+        "order": 3,
+        "skill": "design-foundations",
+        "resource": ".opencode/skills/sk-design/design-foundations/references/",
+        "action": "load mode references and assets as the work requires, then apply the foundations workflow to $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-code",
+        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "action": "prepare implementation handoff only when accepted design output moves to code"
+      }
+    ],
     "next": ["/design:interface", "/design:motion", "/design:audit"],
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
     "taskProjections": [
@@ -231,6 +301,41 @@
       {
         "invocation": "/design:interface dashboard-shell --mode redesign",
         "returnsArtifact": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes"
+      }
+    ],
+    "argumentGrammar": {
+      "positional": [
+        { "name": "target", "required": true, "kind": "interface-target" }
+      ],
+      "flags": [
+        { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" }
+      ],
+      "render": "<target> [--mode]"
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the parent hub routing table and shared references"
+      },
+      {
+        "order": 2,
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "action": "load the interface mode contract"
+      },
+      {
+        "order": 3,
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/references/",
+        "action": "load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-code",
+        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
@@ -429,6 +534,41 @@
         "returnsArtifact": "a Style Reference DESIGN.md and extracted token data under the output directory"
       }
     ],
+    "argumentGrammar": {
+      "positional": [
+        { "name": "live-url", "required": true, "kind": "live-url" }
+      ],
+      "flags": [
+        { "name": "--output", "required": true, "takesValue": true, "valueName": "dir", "kind": "output-directory" }
+      ],
+      "render": "<live-url> --output <dir>"
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the parent hub routing table and shared references"
+      },
+      {
+        "order": 2,
+        "skill": "design-md-generator",
+        "resource": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+        "action": "load the md-generator mode contract"
+      },
+      {
+        "order": 3,
+        "skill": "design-md-generator",
+        "resource": ".opencode/skills/sk-design/design-md-generator/references/",
+        "action": "load mode references and assets as the work requires, then apply the md-generator workflow to $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-code",
+        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "action": "prepare implementation handoff only when accepted design output moves to code"
+      }
+    ],
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
     "taskProjections": [],
@@ -510,6 +650,41 @@
       {
         "invocation": "/design:motion modal-open-close --library framer-motion",
         "returnsArtifact": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior"
+      }
+    ],
+    "argumentGrammar": {
+      "positional": [
+        { "name": "component-state", "required": true, "kind": "component-state" }
+      ],
+      "flags": [
+        { "name": "--library", "required": false, "takesValue": true, "valueName": "library", "kind": "library-hint" }
+      ],
+      "render": "<component-state> [--library]"
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-design",
+        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "action": "load the parent hub routing table and shared references"
+      },
+      {
+        "order": 2,
+        "skill": "design-motion",
+        "resource": ".opencode/skills/sk-design/design-motion/SKILL.md",
+        "action": "load the motion mode contract"
+      },
+      {
+        "order": 3,
+        "skill": "design-motion",
+        "resource": ".opencode/skills/sk-design/design-motion/references/",
+        "action": "load mode references and assets as the work requires, then apply the motion workflow to $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-code",
+        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
     "next": ["/design:interface", "/design:foundations", "/design:audit"],

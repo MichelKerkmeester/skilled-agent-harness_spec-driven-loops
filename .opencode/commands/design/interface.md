@@ -74,6 +74,13 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
+## CHOREOGRAPHY
+
+1. `sk-design` reads `.opencode/skills/sk-design/SKILL.md` -- load the parent hub routing table and shared references.
+2. `design-interface` reads `.opencode/skills/sk-design/design-interface/SKILL.md` -- load the interface mode contract.
+3. `design-interface` uses `.opencode/skills/sk-design/design-interface/references/` -- load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS.
+4. `sk-code` uses `.opencode/skills/sk-design/shared/sk_code_handoff.md` -- prepare implementation handoff only when accepted design output moves to code.
+
 ## 7. EMIT DELIVERABLE
 
 Emit `Interface Direction Spec` as the primary deliverable.

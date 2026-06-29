@@ -61,6 +61,13 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
+## CHOREOGRAPHY
+
+1. `sk-design` reads `.opencode/skills/sk-design/SKILL.md` -- load the parent hub routing table and shared references.
+2. `design-audit` reads `.opencode/skills/sk-design/design-audit/SKILL.md` -- load the audit mode contract.
+3. `design-audit` uses `.opencode/skills/sk-design/design-audit/references/` -- load mode references and assets as the work requires, then apply the audit workflow to $ARGUMENTS.
+4. `sk-code` uses `.opencode/skills/sk-design/shared/sk_code_handoff.md` -- prepare implementation handoff only when accepted design output moves to code.
+
 ## 6. EMIT DELIVERABLE
 
 Emit `Design Quality Audit Report` as the primary deliverable.
