@@ -33,6 +33,15 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - **Escalate:** if the site requires authentication or blocks headless extraction so the CSS cannot be captured, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request spans redesign, critique, or new visual-system invention rather than measured extraction, return `STATUS=DEFER ROUTE=hub`.
 
+<!-- ANCHOR:register -->
+## REGISTER
+
+- **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
+- **Postures:** Brand (design IS the product) records the captured surface as identity-led. Product (design SERVES the product) records it as task-led.
+- **This command's dials:** `register`.
+- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+<!-- /ANCHOR:register -->
+
 ## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode

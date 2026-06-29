@@ -33,6 +33,15 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - **Escalate:** if the motion depends on an interface direction that has not been decided yet, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request is static visual-system design, interface direction, audit scoring, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
 
+<!-- ANCHOR:register -->
+## REGISTER
+
+- **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
+- **Postures:** Brand (design IS the product) allows choreography when it earns the moment. Product (design SERVES the product) keeps motion to state, feedback, loading, and view changes.
+- **This command's dials:** `register`, `motionBudget`.
+- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+<!-- /ANCHOR:register -->
+
 ## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode

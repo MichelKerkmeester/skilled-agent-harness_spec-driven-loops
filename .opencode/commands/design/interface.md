@@ -33,6 +33,15 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
 
+<!-- ANCHOR:register -->
+## REGISTER
+
+- **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
+- **Postures:** Brand (design IS the product) gives the interface room for expression, identity, and a memorable move. Product (design SERVES the product) keeps the interface dense, predictable, and task-led.
+- **This command's dials:** `register`, `density`, `motionBudget`, `colorStrategy`.
+- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+<!-- /ANCHOR:register -->
+
 ## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode

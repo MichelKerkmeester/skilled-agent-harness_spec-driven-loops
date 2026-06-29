@@ -15,6 +15,13 @@
     ],
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
+    "registerPolicy": {
+      "accepted": ["brand", "product"],
+      "default": "auto",
+      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
+      "proofFields": ["register", "auditSeverity"]
+    },
     "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
     "preconditions": {
       "requiredInputKind": "a concrete design target - a URL, component, screen, or file - to inspect",
@@ -75,6 +82,13 @@
     ],
     "next": ["/design:interface", "/design:motion", "/design:audit"],
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
+    "registerPolicy": {
+      "accepted": ["brand", "product"],
+      "default": "auto",
+      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
+      "proofFields": ["register", "colorStrategy", "tokenDensity"]
+    },
     "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
     "preconditions": {
       "requiredInputKind": "a design-system axis (color, type, layout, spacing, or tokens) plus the target surface or product context",
@@ -135,6 +149,13 @@
     ],
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
     "proofFields": ["target", "register", "designDials", "preflightResult"],
+    "registerPolicy": {
+      "accepted": ["brand", "product"],
+      "default": "auto",
+      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
+      "proofFields": ["register", "density", "motionBudget", "colorStrategy"]
+    },
     "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
     "preconditions": {
       "requiredInputKind": "an interface target (surface, screen, or component set) plus the register and any mode hint",
@@ -195,6 +216,13 @@
     ],
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
+    "registerPolicy": {
+      "accepted": ["brand", "product"],
+      "default": "auto",
+      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
+      "proofFields": ["register"]
+    },
     "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
     "preconditions": {
       "requiredInputKind": "a reachable live URL plus a writable output directory",
@@ -255,6 +283,13 @@
     ],
     "next": ["/design:interface", "/design:foundations", "/design:audit"],
     "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+    "registerPolicy": {
+      "accepted": ["brand", "product"],
+      "default": "auto",
+      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
+      "proofFields": ["register", "motionBudget"]
+    },
     "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
     "preconditions": {
       "requiredInputKind": "a component or state transition to animate, plus an optional animation library",

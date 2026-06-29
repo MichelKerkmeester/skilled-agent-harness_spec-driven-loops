@@ -33,6 +33,15 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Escalate:** if the target needs build or run state the audit cannot reach to evidence a finding, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the ask is to create new direction, a static system, or motion rather than review existing quality, return `STATUS=DEFER ROUTE=hub`.
 
+<!-- ANCHOR:register -->
+## REGISTER
+
+- **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
+- **Postures:** Brand (design IS the product) weights distinctiveness and voice. Product (design SERVES the product) weights affordance, accessibility, and consistency.
+- **This command's dials:** `register`, `auditSeverity`.
+- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+<!-- /ANCHOR:register -->
+
 ## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode

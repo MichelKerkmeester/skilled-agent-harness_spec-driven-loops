@@ -1,26 +1,16 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/008-register-pinning",
-  "description": "Add registerPolicy{accepted,default:auto,resolutionOrder,askWhen,proofFields} plus a --register flag to command-metadata.json, emitting STATUS=ASK MIS",
+  "description": "A caller could not pin the Brand-vs-Product register at command entry",
   "keywords": [
-    "add",
-    "registerpolicy",
-    "accepted",
-    "default",
-    "auto",
-    "resolutionorder",
-    "askwhen",
-    "prooffields",
-    "plus",
+    "caller",
+    "pin",
+    "brand-vs-product",
     "register",
-    "flag",
-    "command-metadata",
-    "json",
-    "emitting",
-    "status",
-    "ask",
-    "mis"
+    "command",
+    "entry"
   ],
-  "lastUpdated": "2026-06-28T12:40:03.121Z",
+  "lastUpdated": "2026-06-29T05:59:51.064Z",
   "specId": "008",
   "folderSlug": "register-pinning",
   "parentChain": [
@@ -32,6 +22,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

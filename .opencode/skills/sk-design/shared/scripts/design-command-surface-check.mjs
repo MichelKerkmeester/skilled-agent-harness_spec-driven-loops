@@ -15,6 +15,7 @@ const REQUIRED_FIELDS = [
   "examples",
   "next",
   "proofFields",
+  "registerPolicy",
   "deferToHubWhen",
   "preconditions",
   "discriminator",
@@ -40,6 +41,7 @@ const DRIFT_FIELDS = [
   "returns",
   "sibling-discriminator",
   "preconditions",
+  "register",
   "wrapper"
 ];
 const GENERIC_ARGUMENT_HINT = "<design request>";
@@ -53,6 +55,7 @@ const PRECONDITION_FIELDS = [
   "escalateIf",
   "routeInstead"
 ];
+const REGISTER_POLICY_FIELDS = ["accepted", "default", "resolutionOrder", "askWhen", "proofFields"];
 const PRECONDITION_SECTION_MARKERS = ["Requires:", "Ask-first:", "Cannot-run:", "Escalate:"];
 const REQUIRED_RETURN_STATUS_TOKENS = [
   "STATUS=OK",
@@ -83,6 +86,8 @@ const registryUrl = new URL("mode-registry.json", skillRootUrl);
 const commandsRootUrl = new URL("commands/design/", opencodeRootUrl);
 const SIBLING_DISCRIMINATOR_START = "<!-- ANCHOR:sibling-discriminator -->";
 const SIBLING_DISCRIMINATOR_END = "<!-- /ANCHOR:sibling-discriminator -->";
+const REGISTER_SECTION_START = "<!-- ANCHOR:register -->";
+const REGISTER_SECTION_END = "<!-- /ANCHOR:register -->";
 
 const args = new Set(process.argv.slice(2));
 const jsonMode = args.has("--json");
@@ -215,6 +220,7 @@ function validateMetadata(metadata, workflowModes) {
     }
 
     errors.push(...validatePreconditions(record, command));
+    errors.push(...validateRegisterPolicy(record, command));
     errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
     errors.push(...validateDiscriminator(record, command, workflowModes));
@@ -252,6 +258,54 @@ function validatePreconditions(record, command) {
     if (typeof preconditions[field] !== "string" || preconditions[field].trim().length === 0) {
       errors.push(`${command}: preconditions.${field} must be a non-empty string`);
     }
+  }
+
+  return errors;
+}
+
+function validateRegisterPolicy(record, command) {
+  const errors = [];
+  const policy = record?.registerPolicy;
+
+  if (!isPlainObject(policy)) {
+    return [`${command}: registerPolicy must be an object`];
+  }
+
+  for (const field of REGISTER_POLICY_FIELDS) {
+    if (!Object.hasOwn(policy, field)) {
+      errors.push(`${command}: registerPolicy.${field} is required`);
+    }
+  }
+
+  if (!isNonEmptyStringArray(policy.accepted)) {
+    errors.push(`${command}: registerPolicy.accepted must be a non-empty string array`);
+  } else {
+    const accepted = new Set(policy.accepted);
+    for (const posture of ["brand", "product"]) {
+      if (!accepted.has(posture)) {
+        errors.push(`${command}: registerPolicy.accepted must include ${posture}`);
+      }
+    }
+  }
+
+  if (typeof policy.default !== "string" || policy.default.trim().length === 0) {
+    errors.push(`${command}: registerPolicy.default must be a non-empty string`);
+  } else if (policy.default !== "auto") {
+    errors.push(`${command}: registerPolicy.default must be auto`);
+  }
+
+  if (!isNonEmptyStringArray(policy.resolutionOrder)) {
+    errors.push(`${command}: registerPolicy.resolutionOrder must be a non-empty string array`);
+  }
+
+  if (typeof policy.askWhen !== "string" || policy.askWhen.trim().length === 0) {
+    errors.push(`${command}: registerPolicy.askWhen must be a non-empty string`);
+  }
+
+  if (!isNonEmptyStringArray(policy.proofFields)) {
+    errors.push(`${command}: registerPolicy.proofFields must be a non-empty string array`);
+  } else if (!policy.proofFields.includes("register")) {
+    errors.push(`${command}: registerPolicy.proofFields must include register`);
   }
 
   return errors;
@@ -500,9 +554,75 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
     drift.push(...expectedDiscriminatorDrift(record, markdown));
     drift.push(...expectedPreconditionsDrift(record, markdown));
+    drift.push(...expectedRegisterDrift(record, markdown));
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedRegisterDrift(record, markdown) {
+  const section = extractRegisterSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "register",
+        command: record.command,
+        field: "register",
+        expected: REGISTER_SECTION_START,
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const lowerSection = section.toLowerCase();
+
+  if (!section.includes("--register")) {
+    drift.push({
+      kind: "register",
+      command: record.command,
+      field: "register",
+      expected: "--register",
+      actual: "<missing flag token>"
+    });
+  }
+
+  for (const posture of ["brand", "product"]) {
+    if (!lowerSection.includes(posture)) {
+      drift.push({
+        kind: "register",
+        command: record.command,
+        field: "register",
+        expected: posture,
+        actual: "<missing posture token>"
+      });
+    }
+  }
+
+  if (!section.includes("STATUS=ASK MISSING_REGISTER")) {
+    drift.push({
+      kind: "register",
+      command: record.command,
+      field: "register",
+      expected: "STATUS=ASK MISSING_REGISTER",
+      actual: "<missing ask token>"
+    });
+  }
+
+  for (const dial of record.registerPolicy.proofFields) {
+    if (!section.includes(dial)) {
+      drift.push({
+        kind: "register",
+        command: record.command,
+        field: "register",
+        expected: dial,
+        actual: "<missing dial token>"
+      });
+    }
+  }
+
+  return drift;
 }
 
 function expectedPreconditionsDrift(record, markdown) {
@@ -725,6 +845,17 @@ function extractSiblingDiscriminatorSection(markdown) {
   }
 
   return markdown.slice(start + SIBLING_DISCRIMINATOR_START.length, end);
+}
+
+function extractRegisterSection(markdown) {
+  const start = markdown.indexOf(REGISTER_SECTION_START);
+  const end = markdown.indexOf(REGISTER_SECTION_END);
+
+  if (start === -1 || end === -1 || end <= start) {
+    return null;
+  }
+
+  return markdown.slice(start + REGISTER_SECTION_START.length, end);
 }
 
 function hasHubLine(section) {
