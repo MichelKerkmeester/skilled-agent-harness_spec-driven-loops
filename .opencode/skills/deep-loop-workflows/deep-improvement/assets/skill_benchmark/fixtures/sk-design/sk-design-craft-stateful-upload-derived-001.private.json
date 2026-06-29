@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-design-craft-stateful-upload-derived-001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface", "motion"],
+    "resources": ["design-interface/SKILL.md", "design-motion/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": ["interface", "motion"],
+    "routeOutcome": "orderedBundle",
+    "forbiddenWorkflowModes": ["foundations", "audit", "md-generator"],
+    "minimalPairGroup": "craft-stateful-upload-holdout-derived"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the derived component state prompt to the expected ordered workflow bundle"],
+    "harmChecks": ["does not collapse state feedback into a single visual or animation-only workflow"]
+  }
+}
