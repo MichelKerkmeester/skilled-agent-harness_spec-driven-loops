@@ -5,7 +5,7 @@ trigger_phrases:
   - "deep-loop-runtime feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.0.10
+version: 1.4.0.15
 ---
 
 # deep-loop-runtime: Feature Catalog
@@ -16,19 +16,22 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 27 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 49 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| [01--executor](01--executor/) | 3 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
+| [01--executor](01--executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [02--prompt-rendering](02--prompt-rendering/) | 1 features | `lib/deep-loop/prompt-pack.ts` |
-| [03--validation](03--validation/) | 1 features | `lib/deep-loop/post-dispatch-validate.ts` |
-| [04--state-safety](04--state-safety/) | 4 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
-| [05--scoring](05--scoring/) | 1 features | `lib/deep-loop/bayesian-scorer.ts` |
-| [06--coverage-graph](06--coverage-graph/) | 3 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
+| [03--validation](03--validation/) | 2 features | `lib/deep-loop/post-dispatch-validate.ts` |
+| [04--state-safety](04--state-safety/) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
+| [05--scoring](05--scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
+| [06--coverage-graph](06--coverage-graph/) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [07--script-entry-points](07--script-entry-points/) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [08--council](08--council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
-| [09--fanout](09--fanout/) | 5 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
+| [09--fanout](09--fanout/) | 8 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
+| [10--lifecycle](10--lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
+| [11--observability](11--observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/commands/deep/assets/deep_research_auto.yaml` |
+| [12--testing](12--testing/) | 2 features | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` |
 
 **Shared backend contracts (consolidation promotions).** Beyond the numbered entries above, the backend hosts a small set of generic plumbing the consumer modes import rather than duplicate: `lib/deep-loop/runtime-capabilities.cjs` (parameterized capability resolver, with byte-compatible per-skill shims), `lib/deep-loop/artifact-root.cjs` (canonical seam re-exporting `resolveArtifactRoot` from `system-spec-kit/shared/review-research-paths.cjs`), `lib/deep-loop/lifecycle-taxonomy.cjs` (terminal lifecycle enum: seven `stopReason` plus four `sessionOutcome` values) and `scripts/loop-lock.cjs` (CLI adapter over `loop-lock.ts`). These contracts register no MCP tools and carry no public workflow routing; resource-map emission stays in the workflow shared-synthesis layer, not in this runtime.
 
@@ -86,6 +89,22 @@ See [`01--executor/fallback-router.md`](01--executor/fallback-router.md) for ful
 
 ---
 
+### Fallback-router typed reroute
+
+#### Description
+
+Adds typed fallback-route metadata, route trace fields, and startup graph validation for executor fallback routing.
+
+#### How It Works
+
+Fallback routes can declare success and failure targets, every decision can carry `routeGroupId` and `hopIndex`, and `validateFallbackGraph()` checks missing targets, cycles, scope widening, and hop limits before dispatch.
+
+#### Source Files
+
+See [`01--executor/fallback-router-typed-reroute.md`](01--executor/fallback-router-typed-reroute.md) for full implementation and validation file listings.
+
+---
+
 ## 3. PROMPT RENDERING
 
 This entry covers prompt-pack template rendering and placeholder validation before iteration dispatch.
@@ -123,6 +142,22 @@ Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and ve
 #### Source Files
 
 See [`03--validation/post-dispatch-validate.md`](03--validation/post-dispatch-validate.md) for full implementation and validation file listings.
+
+---
+
+### LLM-judge hardening
+
+#### Description
+
+Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, neutral fallback cards, and quarantine gating.
+
+#### How It Works
+
+`post-dispatch-validate.ts` retries transient judge failures, strips markdown fences before fallback, emits a neutral `quarantined:true` card after exhausted parsing, and blocks quarantined cards from persistence, convergence, and coverage writes.
+
+#### Source Files
+
+See [`03--validation/llm-judge-hardening.md`](03--validation/llm-judge-hardening.md) for full implementation and validation file listings.
 
 ---
 
@@ -194,6 +229,102 @@ See [`04--state-safety/permissions-gate.md`](04--state-safety/permissions-gate.m
 
 ---
 
+### Atomic-state serialize-diff
+
+#### Description
+
+Adds `writeStateIfChangedAtomic()` so snapshot writers skip fsync and rename when canonical serialized state has not changed.
+
+#### How It Works
+
+Canonicalizes and serializes the incoming state, compares it against a per-path cache keyed by canonical path, returns `false` for no-change skips, and keeps `writeStateAtomic()` available for callers that must force a durable write.
+
+#### Source Files
+
+See [`04--state-safety/atomic-state-serialize-diff.md`](04--state-safety/atomic-state-serialize-diff.md) for full implementation and validation file listings.
+
+---
+
+### Atomic-state integrity helpers
+
+#### Description
+
+Adds SHA-256 integrity helpers for object and registry JSON without applying the contract to append-only JSONL.
+
+#### How It Works
+
+`computeIntegrityHash()` hashes canonical JSON, `stampIntegrity()` writes `_integrity`, and `verifyIntegrity()` recomputes the digest, warns on mismatch, and returns `false` without fail-fast blocking.
+
+#### Source Files
+
+See [`04--state-safety/atomic-state-integrity-helpers.md`](04--state-safety/atomic-state-integrity-helpers.md) for full implementation and validation file listings.
+
+---
+
+### Atomic-state deferred writer
+
+#### Description
+
+Adds a per-path deferred atomic writer that coalesces superseded snapshot writes while keeping JSONL appends immediate.
+
+#### How It Works
+
+`createDeferredAtomicWriter()` debounces writes, flushes the newest pending state, performs a dirty-again reflush if content changes during an in-flight fsync, and exposes `flushNow()` plus `close()` for deterministic draining.
+
+#### Source Files
+
+See [`04--state-safety/atomic-state-deferred-writer.md`](04--state-safety/atomic-state-deferred-writer.md) for full implementation and validation file listings.
+
+---
+
+### JSONL lock-held merge
+
+#### Description
+
+Adds a lock-held JSONL merge path for fan-out salvage so recovered events are deduplicated before atomic rewrite.
+
+#### How It Works
+
+`mergeJsonlUnderLock()` rereads current JSONL, unions incoming records by stable identity, writes the merged file atomically under the lock, and `fanout-salvage.cjs` uses it instead of bare append.
+
+#### Source Files
+
+See [`04--state-safety/jsonl-lock-held-merge.md`](04--state-safety/jsonl-lock-held-merge.md) for full implementation and validation file listings.
+
+---
+
+### Loop-lock heartbeat hardening
+
+#### Description
+
+Hardens loop-lock ownership with TTL-aware heartbeat refresh plus phase and last-activity metadata.
+
+#### How It Works
+
+`startHeartbeat()` and `stopHeartbeat()` refresh the held lock on a cadence, write `phase` and `lastActivityIso`, and stop the heartbeat when refresh can no longer prove ownership.
+
+#### Source Files
+
+See [`04--state-safety/loop-lock-heartbeat-hardening.md`](04--state-safety/loop-lock-heartbeat-hardening.md) for full implementation and validation file listings.
+
+---
+
+### Loop-lock single-flight decision
+
+#### Description
+
+Adds opt-in host-local single-flight acquisition so concurrent acquire attempts for one lock collapse behind one live holder.
+
+#### How It Works
+
+`acquireLoopLock(..., { hostLocalSingleFlight: true })` probes a host-local lease before file-lock acquisition, refuses live same-host holders, and treats dead holder state as replaceable without changing the default durable file-lock path.
+
+#### Source Files
+
+See [`04--state-safety/loop-lock-single-flight-decision.md`](04--state-safety/loop-lock-single-flight-decision.md) for full implementation and validation file listings.
+
+---
+
 ## 6. SCORING
 
 This entry covers the compact Bayesian scoring primitive used by runtime routing decisions.
@@ -211,6 +342,22 @@ Smoothed success scoring and demotion threshold checks.
 #### Source Files
 
 See [`05--scoring/bayesian-scorer.md`](05--scoring/bayesian-scorer.md) for full implementation and validation file listings.
+
+---
+
+### Convergence score-delta
+
+#### Description
+
+Adds a convergence score-delta signal comparing the current graph score with the prior snapshot.
+
+#### How It Works
+
+`convergence.cjs` reads the prior snapshot before creating the new one, emits `scoreDelta` and `scoreDeltaNote`, and can add an opt-in `improvementEffect` trace when requested.
+
+#### Source Files
+
+See [`05--scoring/convergence-score-delta.md`](05--scoring/convergence-score-delta.md) for full implementation and validation file listings.
 
 ---
 
@@ -263,6 +410,54 @@ Node degree/depth, research signals, review signals, snapshots, and momentum.
 #### Source Files
 
 See [`06--coverage-graph/coverage-graph-signals.md`](06--coverage-graph/coverage-graph-signals.md) for full implementation and validation file listings.
+
+---
+
+### Observation-threshold guard
+
+#### Description
+
+Adds a default-off minimum-observations guard that blocks stop or promotion decisions until leading evidence repeats enough times.
+
+#### How It Works
+
+`convergence.cjs` reads `minObservations` from argv/config/env, `coverage-graph-signals.ts` exposes observation signals, and sub-threshold leading findings are flagged as blockers without changing default parity.
+
+#### Source Files
+
+See [`06--coverage-graph/observation-threshold-guard.md`](06--coverage-graph/observation-threshold-guard.md) for full implementation and validation file listings.
+
+---
+
+### Coverage-graph time decay
+
+#### Description
+
+Adds optional time-decay weighting to coverage-graph signal ranking while preserving raw historical coverage counts.
+
+#### How It Works
+
+`timeDecayWeight()` applies half-life decay when `decayDays` is enabled and returns full weight when disabled; signal ranking multiplies edge weight by the decay result without mutating stored graph counts.
+
+#### Source Files
+
+See [`06--coverage-graph/coverage-graph-time-decay.md`](06--coverage-graph/coverage-graph-time-decay.md) for full implementation and validation file listings.
+
+---
+
+### Coverage-graph fuzzy merge
+
+#### Description
+
+Adds deterministic fuzzy-merge query helpers for near-duplicate coverage nodes without mutating graph rows.
+
+#### How It Works
+
+`findSimilarNodes()` compares names inside one namespace and category, while `findConsolidationCandidates()` returns candidate clusters and leftovers; callers decide whether to merge results.
+
+#### Source Files
+
+See [`06--coverage-graph/coverage-graph-fuzzy-merge.md`](06--coverage-graph/coverage-graph-fuzzy-merge.md) for full implementation and validation file listings.
 
 ---
 
@@ -469,5 +664,177 @@ Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) o
 #### Source Files
 
 See [`09--fanout/fanout-merge.md`](09--fanout/fanout-merge.md) for full implementation and validation file listings.
+
+---
+
+### Fixed-rate overrun accounting
+
+#### Description
+
+Records fixed-rate scheduling overruns without replaying missed slots or violating single-flight dispatch semantics.
+
+#### How It Works
+
+`fanout-run.cjs` measures each slot with monotonic `process.hrtime`, persists `slotDurationMs`, derives clamped `skippedCount`, and the YAML schema declares both fields for persisted state readers.
+
+#### Source Files
+
+See [`09--fanout/fixed-rate-overrun-accounting.md`](09--fanout/fixed-rate-overrun-accounting.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out stall watchdog
+
+#### Description
+
+Adds an opt-in fan-out stall watchdog that aborts and requeues lineages when pending lag crosses a configured ceiling.
+
+#### How It Works
+
+`fanout-pool.cjs` accepts `lagCeilingMs` plus `lagCeilingAction:"abort-requeue"`, attaches abort handles per active slot, emits timeout failure-class ledger events, and leaves default pool behavior unchanged.
+
+#### Source Files
+
+See [`09--fanout/fanout-stall-watchdog.md`](09--fanout/fanout-stall-watchdog.md) for full implementation and validation file listings.
+
+---
+
+### Persisted-wait crash resume
+
+#### Description
+
+Persists a pre-dispatch wait checkpoint and resumes waiting state before dispatch after a crash restart.
+
+#### How It Works
+
+`fanout-run.cjs` writes nullable `nextRunAt` and `remainingDelayMs` at the wait boundary, classifies `resume-waiting` before dispatch startup logic, and treats missing legacy fields as null safe defaults.
+
+#### Source Files
+
+See [`09--fanout/persisted-wait-crash-resume.md`](09--fanout/persisted-wait-crash-resume.md) for full implementation and validation file listings.
+
+---
+
+## 11. LIFECYCLE
+
+These entries cover cancellable waits and lifecycle status contracts shared by deep-loop consumers.
+
+### Abortable chunked sleep
+
+#### Description
+
+Adds an abortable chunked sleep primitive for cancellable waits and executor-boundary abort-signal composition.
+
+#### How It Works
+
+`abortableSleep()` waits in `SLEEP_CHUNK_MS` slices, clears pending timeouts on abort, removes listeners on completion, rejects with `signal.reason`, and accepts composed abort signals for executor-run cancellation.
+
+#### Source Files
+
+See [`10--lifecycle/abortable-chunked-sleep.md`](10--lifecycle/abortable-chunked-sleep.md) for full implementation and validation file listings.
+
+---
+
+### Lifecycle taxonomy guards
+
+#### Description
+
+Promotes loop lifecycle status and stop-reason taxonomy with legal transitions and a one-shot paused-wait resume gate.
+
+#### How It Works
+
+`lifecycle-taxonomy.cjs` exports `LoopActiveStatus`, `LoopStopReason`, `LEGAL_TRANSITIONS`, and `createPausedWaitGate()` so consumers share the same active-state, terminal-reason, and resume-resolution contract.
+
+#### Source Files
+
+See [`10--lifecycle/lifecycle-taxonomy-guards.md`](10--lifecycle/lifecycle-taxonomy-guards.md) for full implementation and validation file listings.
+
+---
+
+## 12. OBSERVABILITY
+
+These entries cover runtime telemetry, event envelopes, and seekable log-region metadata.
+
+### Byte-offset log regions
+
+#### Description
+
+Stamps seekable byte-region metadata on iteration records and surfaces those offsets in the deep-research dashboard.
+
+#### How It Works
+
+`post-dispatch-validate.ts` records `logOffset`, `logSize`, and `logPath` after transcript writes; the YAML schema declares the optional fields; `reduce-state.cjs` displays the region values for dashboard lookup.
+
+#### Source Files
+
+See [`11--observability/byte-offset-log-regions.md`](11--observability/byte-offset-log-regions.md) for full implementation and validation file listings.
+
+---
+
+### Single-loop telemetry heartbeat
+
+#### Description
+
+Adds single-loop telemetry heartbeat rows for started, progress, and terminal lifecycle events with no-change write suppression.
+
+#### How It Works
+
+`deep_research_auto.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
+
+#### Source Files
+
+See [`11--observability/single-loop-telemetry-heartbeat.md`](11--observability/single-loop-telemetry-heartbeat.md) for full implementation and validation file listings.
+
+---
+
+### Unified observability event envelope
+
+#### Description
+
+Adds a unified observability event envelope and routes core runtime emitters through it without migrating legacy rows.
+
+#### How It Works
+
+`observability-events.cjs` normalizes payloads into `schema_version`, `event_id`, `producer`, `stream`, `subject`, `event`, `status`, and native `payload`; fanout-run, convergence, status, council round-state, and research YAML producers append through it.
+
+#### Source Files
+
+See [`11--observability/unified-observability-event-envelope.md`](11--observability/unified-observability-event-envelope.md) for full implementation and validation file listings.
+
+---
+
+## 13. TESTING
+
+These entries cover shared deep-loop-runtime test harnesses used to keep script and fan-out behavior reproducible.
+
+### Hermetic test isolation
+
+#### Description
+
+Adds shared hermetic test environments so runtime tests can run in parallel without touching real HOME, temp, or database paths.
+
+#### How It Works
+
+`createHermeticEnv()` returns an isolated HOME, DB path, tmp dir, child process environment, and cleanup function; fanout-run tests inject that environment per test and clean it after execution.
+
+#### Source Files
+
+See [`12--testing/hermetic-test-isolation.md`](12--testing/hermetic-test-isolation.md) for full implementation and validation file listings.
+
+---
+
+### Record-replay cassette harness
+
+#### Description
+
+Adds record/replay helpers for script-level cassette regressions with redaction and hermetic environment integration.
+
+#### How It Works
+
+`recordScriptRun()` captures normalized argv/stdin/stdout/exit envelopes, `replayScriptRun()` compares current script behavior against a cassette, and convergence/fanout tests use the helpers for pinned regressions.
+
+#### Source Files
+
+See [`12--testing/record-replay-cassette-harness.md`](12--testing/record-replay-cassette-harness.md) for full implementation and validation file listings.
 
 ---

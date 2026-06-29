@@ -1,7 +1,7 @@
 ---
 title: "deep-loop-runtime: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the deep-loop-runtime skill."
-version: 1.4.0.8
+version: 1.4.0.15
 ---
 
 # deep-loop-runtime: Manual Testing Playbook
@@ -23,12 +23,15 @@ Canonical package artifacts:
 - `07--script-entry-points/`
 - `08--council/`
 - `09--fanout/`
+- `10--lifecycle/`
+- `11--observability/`
+- `12--testing/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 29 deterministic scenarios across 9 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 51 deterministic scenarios across 12 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -96,13 +99,13 @@ Scenario verdict:
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
 - `SKIP`: concrete sandbox blocker prevents execution and is documented
 
-Release is `READY` only when all 17 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is `READY` only when all 51 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
 ## 6. EXECUTOR
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-001 | Executor config
 
@@ -145,6 +148,21 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ---
 
+### DLR-044 | Fallback-router typed reroute
+
+#### Description
+Adds typed fallback-route metadata, route trace fields, and startup graph validation for executor fallback routing.
+
+#### Scenario Contract
+Prompt: `Validate Fallback-router typed reroute and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Route trace metadata, preflight validation errors, cycle detection, and same-scope routing coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-044](01--executor/fallback-router-typed-reroute.md)
+
+---
+
 ## 7. PROMPT RENDERING
 
 This category covers 1 scenario while the linked feature files remain the canonical execution contract.
@@ -166,7 +184,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ## 8. VALIDATION
 
-This category covers 1 scenario while the linked feature files remain the canonical execution contract.
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-005 | Post-dispatch validate
 
@@ -183,9 +201,24 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ---
 
+### DLR-045 | LLM-judge hardening
+
+#### Description
+Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, neutral fallback cards, and quarantine gating.
+
+#### Scenario Contract
+Prompt: `Validate LLM-judge hardening and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Retry behavior, neutral fallback card shape, quarantine skip paths, and non-quarantined success coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-045](03--validation/llm-judge-hardening.md)
+
+---
+
 ## 9. STATE SAFETY
 
-This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 10 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-006 | Atomic state
 
@@ -241,9 +274,89 @@ Expected signals: Deterministic mutation safety evidence from source and unit te
 
 ---
 
+### DLR-030 | Atomic-state serialize-diff
+
+#### Description
+Adds `writeStateIfChangedAtomic()` so snapshot writers skip fsync and rename when canonical serialized state has not changed.
+
+#### Scenario Contract
+Prompt: `Validate Atomic-state serialize-diff and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Compare-before-write behavior from source plus unit coverage for first write, unchanged skip, and changed-state rewrite.
+
+#### Test Execution
+> **Feature File:** [DLR-030](04--state-safety/atomic-state-serialize-diff.md)
+
+### DLR-031 | Atomic-state integrity helpers
+
+#### Description
+Adds SHA-256 integrity helpers for object and registry JSON without applying the contract to append-only JSONL.
+
+#### Scenario Contract
+Prompt: `Validate Atomic-state integrity helpers and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Integrity hash, stamping, stable key order, and mismatch warning behavior from unit tests.
+
+#### Test Execution
+> **Feature File:** [DLR-031](04--state-safety/atomic-state-integrity-helpers.md)
+
+### DLR-032 | Atomic-state deferred writer
+
+#### Description
+Adds a per-path deferred atomic writer that coalesces superseded snapshot writes while keeping JSONL appends immediate.
+
+#### Scenario Contract
+Prompt: `Validate Atomic-state deferred writer and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Debounce, superseded-write coalescing, dirty-again reflush, flushNow, and close coverage in atomic-state unit tests.
+
+#### Test Execution
+> **Feature File:** [DLR-032](04--state-safety/atomic-state-deferred-writer.md)
+
+### DLR-035 | JSONL lock-held merge
+
+#### Description
+Adds a lock-held JSONL merge path for fan-out salvage so recovered events are deduplicated before atomic rewrite.
+
+#### Scenario Contract
+Prompt: `Validate JSONL lock-held merge and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Merge dedupe, reread-under-lock behavior, atomic rewrite, and fanout-salvage integration tests.
+
+#### Test Execution
+> **Feature File:** [DLR-035](04--state-safety/jsonl-lock-held-merge.md)
+
+### DLR-036 | Loop-lock heartbeat hardening
+
+#### Description
+Hardens loop-lock ownership with TTL-aware heartbeat refresh plus phase and last-activity metadata.
+
+#### Scenario Contract
+Prompt: `Validate Loop-lock heartbeat hardening and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Heartbeat refresh updates, metadata preservation, stale holder replacement, and loop-lock unit coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-036](04--state-safety/loop-lock-heartbeat-hardening.md)
+
+### DLR-037 | Loop-lock single-flight decision
+
+#### Description
+Adds opt-in host-local single-flight acquisition so concurrent acquire attempts for one lock collapse behind one live holder.
+
+#### Scenario Contract
+Prompt: `Validate Loop-lock single-flight decision and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Default file-lock behavior remains unchanged while opt-in host-local same-lock attempts refuse the second live holder.
+
+#### Test Execution
+> **Feature File:** [DLR-037](04--state-safety/loop-lock-single-flight-decision.md)
+
+---
+
 ## 10. SCORING
 
-This category covers 1 scenario while the linked feature files remain the canonical execution contract.
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-010 | Bayesian scorer
 
@@ -260,9 +373,24 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ---
 
+### DLR-040 | Convergence score-delta
+
+#### Description
+Adds a convergence score-delta signal comparing the current graph score with the prior snapshot.
+
+#### Scenario Contract
+Prompt: `Validate Convergence score-delta and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: First-iteration null delta, prior-snapshot delta, graph output bindings, and improvement-effect trace coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-040](05--scoring/convergence-score-delta.md)
+
+---
+
 ## 11. COVERAGE GRAPH
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 6 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-011 | Coverage graph DB
 
@@ -302,6 +430,47 @@ Expected signals: Session-scoped graph behavior, schema/query/signal outputs, an
 
 #### Test Execution
 > **Feature File:** [DLR-013](06--coverage-graph/coverage-graph-signals.md)
+
+---
+
+### DLR-041 | Observation-threshold guard
+
+#### Description
+Adds a default-off minimum-observations guard that blocks stop or promotion decisions until leading evidence repeats enough times.
+
+#### Scenario Contract
+Prompt: `Validate Observation-threshold guard and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Default-off parity, configured threshold parsing, sub-threshold STOP blocking, and passing-threshold evidence coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-041](06--coverage-graph/observation-threshold-guard.md)
+
+### DLR-042 | Coverage-graph time decay
+
+#### Description
+Adds optional time-decay weighting to coverage-graph signal ranking while preserving raw historical coverage counts.
+
+#### Scenario Contract
+Prompt: `Validate Coverage-graph time decay and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: No-decay full weight, half-life decay math, ranking integration, and convergence parity coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-042](06--coverage-graph/coverage-graph-time-decay.md)
+
+### DLR-043 | Coverage-graph fuzzy merge
+
+#### Description
+Adds deterministic fuzzy-merge query helpers for near-duplicate coverage nodes without mutating graph rows.
+
+#### Scenario Contract
+Prompt: `Validate Coverage-graph fuzzy merge and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Similarity thresholding, category guard, bounded namespace behavior, and query-only consolidation candidate tests.
+
+#### Test Execution
+> **Feature File:** [DLR-043](06--coverage-graph/coverage-graph-fuzzy-merge.md)
 
 ---
 
@@ -414,9 +583,9 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 ---
 
-## 13. FAN-OUT
+## 14. FAN-OUT
 
-This category covers 7 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
+This category covers 10 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
 
 ### DLR-023 | Fan-out config schema
 
@@ -511,7 +680,157 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+### DLR-039 | Fixed-rate overrun accounting
+
+#### Description
+Records fixed-rate scheduling overruns without replaying missed slots or violating single-flight dispatch semantics.
+
+#### Scenario Contract
+Prompt: `Validate Fixed-rate overrun accounting and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Fast-slot zero skip, overrun skip count, slot duration persistence, and no catch-up dispatch behavior.
+
+#### Test Execution
+> **Feature File:** [DLR-039](09--fanout/fixed-rate-overrun-accounting.md)
+
+### DLR-046 | Fan-out stall watchdog
+
+#### Description
+Adds an opt-in fan-out stall watchdog that aborts and requeues lineages when pending lag crosses a configured ceiling.
+
+#### Scenario Contract
+Prompt: `Validate Fan-out stall watchdog and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: No-op default behavior, lag-ceiling event emission, abort-and-requeue handling, and required positive threshold validation.
+
+#### Test Execution
+> **Feature File:** [DLR-046](09--fanout/fanout-stall-watchdog.md)
+
+### DLR-047 | Persisted-wait crash resume
+
+#### Description
+Persists a pre-dispatch wait checkpoint and resumes waiting state before dispatch after a crash restart.
+
+#### Scenario Contract
+Prompt: `Validate Persisted-wait crash resume and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Wait checkpoint persistence, resume-waiting startup branch, null legacy migration behavior, and fanout-run unit coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-047](09--fanout/persisted-wait-crash-resume.md)
+
+---
+
+## 15. LIFECYCLE
+
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
+
+### DLR-033 | Abortable chunked sleep
+
+#### Description
+Adds an abortable chunked sleep primitive for cancellable waits and executor-boundary abort-signal composition.
+
+#### Scenario Contract
+Prompt: `Validate Abortable chunked sleep and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Sleep resolves after chunked waits, rejects on abort, removes listeners, and supports composed abort-signal cancellation.
+
+#### Test Execution
+> **Feature File:** [DLR-033](10--lifecycle/abortable-chunked-sleep.md)
+
+### DLR-034 | Lifecycle taxonomy guards
+
+#### Description
+Promotes loop lifecycle status and stop-reason taxonomy with legal transitions and a one-shot paused-wait resume gate.
+
+#### Scenario Contract
+Prompt: `Validate Lifecycle taxonomy guards and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Taxonomy export, legal-transition map, backward-compatible literals, and one-shot resume gate coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-034](10--lifecycle/lifecycle-taxonomy-guards.md)
+
+---
+
+## 16. OBSERVABILITY
+
+This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+
+### DLR-038 | Byte-offset log regions
+
+#### Description
+Stamps seekable byte-region metadata on iteration records and surfaces those offsets in the deep-research dashboard.
+
+#### Scenario Contract
+Prompt: `Validate Byte-offset log regions and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Stamped offset fields, readable byte slices, schema fields, and reducer dashboard output coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-038](11--observability/byte-offset-log-regions.md)
+
+### DLR-048 | Single-loop telemetry heartbeat
+
+#### Description
+Adds single-loop telemetry heartbeat rows for started, progress, and terminal lifecycle events with no-change write suppression.
+
+#### Scenario Contract
+Prompt: `Validate Single-loop telemetry heartbeat and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Started/progress/terminal heartbeat producers, single-loop row shape, no-change suppression, and YAML parse coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-048](11--observability/single-loop-telemetry-heartbeat.md)
+
+### DLR-049 | Unified observability event envelope
+
+#### Description
+Adds a unified observability event envelope and routes core runtime emitters through it without migrating legacy rows.
+
+#### Scenario Contract
+Prompt: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Envelope normalization, append behavior, core emitter wiring, and status/convergence parity coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-049](11--observability/unified-observability-event-envelope.md)
+
+---
+
+## 17. TESTING
+
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
+
+### DLR-050 | Hermetic test isolation
+
+#### Description
+Adds shared hermetic test environments so runtime tests can run in parallel without touching real HOME, temp, or database paths.
+
+#### Scenario Contract
+Prompt: `Validate Hermetic test isolation and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Per-test HOME/DB/temp isolation, child-env injection, cleanup behavior, and parallel fanout-run test coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-050](12--testing/hermetic-test-isolation.md)
+
+### DLR-051 | Record-replay cassette harness
+
+#### Description
+Adds record/replay helpers for script-level cassette regressions with redaction and hermetic environment integration.
+
+#### Scenario Contract
+Prompt: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+
+Expected signals: Cassette recording, deterministic replay, redacted path/timestamp placeholders, and convergence/fanout regression coverage.
+
+#### Test Execution
+> **Feature File:** [DLR-051](12--testing/record-replay-cassette-harness.md)
+
+---
+
+## 18. AUTOMATED TEST CROSS-REFERENCE
 
 | Surface | Tests | Purpose |
 |---|---|---|
@@ -521,11 +840,14 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 | Coverage graph scripts | `tests/integration/{convergence,query,status,upsert}-script.vitest.ts`, `tests/lifecycle/db-open-close.vitest.ts` | Direct script behavior and DB lifecycle. |
 | Review-depth integration | `tests/integration/review-depth-*.vitest.ts` | Review graph, convergence, and validator fixtures. |
 | Council | `tests/council/{multi-seat-dispatch,round-state-jsonl,adjudicator-verdict-scoring,cost-guards,session-state-hierarchy}.vitest.ts` | Council durability primitives: parallel dispatch, JSONL append + repair, verdict-delta scoring, cost guards, state-hierarchy validation. |
-| Fan-Out | `tests/unit/executor-config.vitest.ts` (+9 fan-out tests), `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge. |
+| Fan-Out | `tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge, stall watchdog, fixed-rate overrun, and persisted wait resume. |
+| Lifecycle | `tests/unit/sleep.vitest.ts`, `tests/unit/lifecycle-taxonomy-guards.vitest.ts` | Abortable waits and lifecycle taxonomy guards. |
+| Observability | `tests/unit/observability-events.vitest.ts`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `tests/integration/status-script.vitest.ts` | Event envelopes, telemetry heartbeat wiring, and seekable log-region metadata. |
+| Testing harness | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` | Hermetic environments and record/replay cassettes for script regressions. |
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Scenario | Feature Catalog Entry | Scenario File |
 |---|---|---|
@@ -558,3 +880,25 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 | DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-research.md](09--fanout/fanout-merge-research.md) |
 | DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-review-strongest-restriction.md](09--fanout/fanout-merge-review-strongest-restriction.md) |
 | DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/fanout-config-schema.md) | [09--fanout/artifact-dir-override-parity.md](09--fanout/artifact-dir-override-parity.md) |
+| DLR-030 | [F028 Atomic-state serialize-diff](../feature_catalog/04--state-safety/atomic-state-serialize-diff.md) | [04--state-safety/atomic-state-serialize-diff.md](04--state-safety/atomic-state-serialize-diff.md) |
+| DLR-031 | [F029 Atomic-state integrity helpers](../feature_catalog/04--state-safety/atomic-state-integrity-helpers.md) | [04--state-safety/atomic-state-integrity-helpers.md](04--state-safety/atomic-state-integrity-helpers.md) |
+| DLR-032 | [F030 Atomic-state deferred writer](../feature_catalog/04--state-safety/atomic-state-deferred-writer.md) | [04--state-safety/atomic-state-deferred-writer.md](04--state-safety/atomic-state-deferred-writer.md) |
+| DLR-033 | [F031 Abortable chunked sleep](../feature_catalog/10--lifecycle/abortable-chunked-sleep.md) | [10--lifecycle/abortable-chunked-sleep.md](10--lifecycle/abortable-chunked-sleep.md) |
+| DLR-034 | [F032 Lifecycle taxonomy guards](../feature_catalog/10--lifecycle/lifecycle-taxonomy-guards.md) | [10--lifecycle/lifecycle-taxonomy-guards.md](10--lifecycle/lifecycle-taxonomy-guards.md) |
+| DLR-035 | [F033 JSONL lock-held merge](../feature_catalog/04--state-safety/jsonl-lock-held-merge.md) | [04--state-safety/jsonl-lock-held-merge.md](04--state-safety/jsonl-lock-held-merge.md) |
+| DLR-036 | [F034 Loop-lock heartbeat hardening](../feature_catalog/04--state-safety/loop-lock-heartbeat-hardening.md) | [04--state-safety/loop-lock-heartbeat-hardening.md](04--state-safety/loop-lock-heartbeat-hardening.md) |
+| DLR-037 | [F035 Loop-lock single-flight decision](../feature_catalog/04--state-safety/loop-lock-single-flight-decision.md) | [04--state-safety/loop-lock-single-flight-decision.md](04--state-safety/loop-lock-single-flight-decision.md) |
+| DLR-038 | [F036 Byte-offset log regions](../feature_catalog/11--observability/byte-offset-log-regions.md) | [11--observability/byte-offset-log-regions.md](11--observability/byte-offset-log-regions.md) |
+| DLR-039 | [F037 Fixed-rate overrun accounting](../feature_catalog/09--fanout/fixed-rate-overrun-accounting.md) | [09--fanout/fixed-rate-overrun-accounting.md](09--fanout/fixed-rate-overrun-accounting.md) |
+| DLR-040 | [F038 Convergence score-delta](../feature_catalog/05--scoring/convergence-score-delta.md) | [05--scoring/convergence-score-delta.md](05--scoring/convergence-score-delta.md) |
+| DLR-041 | [F039 Observation-threshold guard](../feature_catalog/06--coverage-graph/observation-threshold-guard.md) | [06--coverage-graph/observation-threshold-guard.md](06--coverage-graph/observation-threshold-guard.md) |
+| DLR-042 | [F040 Coverage-graph time decay](../feature_catalog/06--coverage-graph/coverage-graph-time-decay.md) | [06--coverage-graph/coverage-graph-time-decay.md](06--coverage-graph/coverage-graph-time-decay.md) |
+| DLR-043 | [F041 Coverage-graph fuzzy merge](../feature_catalog/06--coverage-graph/coverage-graph-fuzzy-merge.md) | [06--coverage-graph/coverage-graph-fuzzy-merge.md](06--coverage-graph/coverage-graph-fuzzy-merge.md) |
+| DLR-044 | [F042 Fallback-router typed reroute](../feature_catalog/01--executor/fallback-router-typed-reroute.md) | [01--executor/fallback-router-typed-reroute.md](01--executor/fallback-router-typed-reroute.md) |
+| DLR-045 | [F043 LLM-judge hardening](../feature_catalog/03--validation/llm-judge-hardening.md) | [03--validation/llm-judge-hardening.md](03--validation/llm-judge-hardening.md) |
+| DLR-046 | [F044 Fan-out stall watchdog](../feature_catalog/09--fanout/fanout-stall-watchdog.md) | [09--fanout/fanout-stall-watchdog.md](09--fanout/fanout-stall-watchdog.md) |
+| DLR-047 | [F045 Persisted-wait crash resume](../feature_catalog/09--fanout/persisted-wait-crash-resume.md) | [09--fanout/persisted-wait-crash-resume.md](09--fanout/persisted-wait-crash-resume.md) |
+| DLR-048 | [F046 Single-loop telemetry heartbeat](../feature_catalog/11--observability/single-loop-telemetry-heartbeat.md) | [11--observability/single-loop-telemetry-heartbeat.md](11--observability/single-loop-telemetry-heartbeat.md) |
+| DLR-049 | [F047 Unified observability event envelope](../feature_catalog/11--observability/unified-observability-event-envelope.md) | [11--observability/unified-observability-event-envelope.md](11--observability/unified-observability-event-envelope.md) |
+| DLR-050 | [F048 Hermetic test isolation](../feature_catalog/12--testing/hermetic-test-isolation.md) | [12--testing/hermetic-test-isolation.md](12--testing/hermetic-test-isolation.md) |
+| DLR-051 | [F049 Record-replay cassette harness](../feature_catalog/12--testing/record-replay-cassette-harness.md) | [12--testing/record-replay-cassette-harness.md](12--testing/record-replay-cassette-harness.md) |
