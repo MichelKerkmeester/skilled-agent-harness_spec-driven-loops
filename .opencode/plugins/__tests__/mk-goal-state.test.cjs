@@ -76,6 +76,29 @@ async function main() {
     await plugin['experimental.chat.system.transform']({ sessionID: 'tool-session' }, output);
     assert.deepEqual(output.system, [injectionPreview]);
 
+    const longGoal = await helpers.setGoal(
+      'session-long-injection',
+      `Keep structural injection lines intact ${'x'.repeat(4000)}`,
+      {
+        stateDir,
+        nowMs: 5000,
+        goalIdFactory: () => 'long-injection-goal',
+        maxObjectiveChars: 5000,
+      },
+    );
+    const clippedBlock = helpers.renderGoalInjection(longGoal, {
+      maxInjectionChars: 220,
+      maxObjectiveChars: 5000,
+    });
+    assert.match(clippedBlock, /^\[active_goal:long-injection-goal\]\n/);
+    assert.match(
+      clippedBlock,
+      /\ndirective: Continue toward this objective\. Before ending, run the goal verifier or explain why it is blocked\.\n/,
+    );
+    assert.ok(clippedBlock.endsWith('\n[/active_goal]'));
+    const objectiveLine = clippedBlock.split('\n').find((line) => line.startsWith('objective: '));
+    assert.ok(objectiveLine.endsWith('...'));
+
     const toolClear = await plugin.tool.mk_goal.execute(
       { action: 'clear' },
       { sessionID: 'tool-session' },

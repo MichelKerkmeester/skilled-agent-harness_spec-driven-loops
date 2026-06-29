@@ -153,6 +153,13 @@ function clampText(value, maxChars) {
   return `${text.slice(0, Math.max(1, maxChars - 3)).trimEnd()}...`;
 }
 
+function clampInjectionObjective(value, maxChars) {
+  const text = String(value ?? '');
+  if (text.length <= maxChars) return text;
+  if (maxChars <= 3) return '...';
+  return `${text.slice(0, maxChars - 3).trimEnd()}...`;
+}
+
 function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   const text = String(value ?? '')
     .replace(/[\u0000-\u001f\u007f]+/g, ' ')
@@ -682,6 +689,9 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     if (current && current.objective === sanitizedObjective) {
+      if (current.status !== 'active' && current.status !== 'paused') {
+        return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
+      }
       return {
         ...current,
         status: 'active',
@@ -1136,28 +1146,29 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
   }
 
   continuationLocks?.add?.(normalizedSessionID);
-  const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
-  if (!reserved.didReserve) {
-    continuationLocks?.delete?.(normalizedSessionID);
-    return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
-  }
-
   try {
-    await promptAsync.call(
-      rawOptions.client.session,
-      buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
-    );
-    return decision('fired', 'prompt_async_sent', reserved.goal.autoTurnsUsed);
-  } catch (error) {
-    await recordContinuationReason(
-      normalizedSessionID,
-      reserved.goal.goalId,
-      'prompt_async_failed',
-      options,
-      true,
-      error?.message || 'promptAsync failed',
-    );
-    return decision('suppressed', 'prompt_async_failed', reserved.goal.autoTurnsUsed);
+    const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
+    if (!reserved.didReserve) {
+      return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
+    }
+
+    try {
+      await promptAsync.call(
+        rawOptions.client.session,
+        buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
+      );
+      return decision('fired', 'prompt_async_sent', reserved.goal.autoTurnsUsed);
+    } catch (error) {
+      await recordContinuationReason(
+        normalizedSessionID,
+        reserved.goal.goalId,
+        'prompt_async_failed',
+        options,
+        true,
+        error?.message || 'promptAsync failed',
+      );
+      return decision('suppressed', 'prompt_async_failed', reserved.goal.autoTurnsUsed);
+    }
   } finally {
     continuationLocks?.delete?.(normalizedSessionID);
   }
@@ -1186,17 +1197,19 @@ function renderGoalInjection(goal, rawOptions = {}) {
   const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS;
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
   const goalId = sanitizeInlineText(goal.goalId, 160).replace(/\s+/g, '-');
-  const block = [
+  const directive = 'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.';
+  const buildBlock = (objectiveText) => [
     `[active_goal:${goalId}]`,
     'status: active',
-    `objective: ${objective}`,
+    `objective: ${objectiveText}`,
     `last_check: ${verdict} ; reason: ${reason}`,
     `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}/${maxAutoTurns}`,
-    'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.',
+    directive,
     '[/active_goal]',
   ].join('\n');
+  const objectiveBudget = options.maxInjectionChars - buildBlock('').length;
 
-  return clampText(block, options.maxInjectionChars);
+  return buildBlock(clampInjectionObjective(objective, objectiveBudget));
 }
 
 async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions = {}) {

@@ -6,7 +6,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const { mkdtemp, readFile, rm } = require('node:fs/promises');
+const { chmod, mkdtemp, readFile, rm } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -159,6 +159,32 @@ async function main() {
     assert.equal(result.reason, 'auto_turn_cap_reached');
     goal = await helpers.readGoal('session-cap', { stateDir });
     assert.equal(goal.autoTurnsUsed, 8);
+
+    await helpers.setGoal('session-reserve-error', 'Release reservation after failed write', {
+      stateDir,
+      nowMs: 6000,
+      goalIdFactory: () => 'reserve-error-goal',
+    });
+    const reservationState = {
+      inFlightContinuations: new Set(),
+      blockedByPromptSessions: new Set(),
+      sessionStatuses: new Map([['session-reserve-error', 'idle']]),
+    };
+    await chmod(stateDir, 0o500);
+    try {
+      await assert.rejects(
+        helpers.maybeContinueGoal('session-reserve-error', {
+          stateDir,
+          nowMs: 7000,
+          client: activeClient,
+          runtimeState: reservationState,
+        }),
+        { code: 'WRITE_GOAL_FAILED' },
+      );
+    } finally {
+      await chmod(stateDir, 0o700);
+    }
+    assert.equal(reservationState.inFlightContinuations.has('session-reserve-error'), false);
 
     result = await helpers.maybeContinueGoal('session-cap', {
       stateDir,

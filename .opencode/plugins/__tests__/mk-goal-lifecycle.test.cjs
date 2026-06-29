@@ -113,6 +113,20 @@ async function main() {
     assert.equal(goal.status, 'budget_limited');
     assert.equal(goal.tokensUsed, 105);
 
+    const resetGoal = await helpers.setGoal('session-life', 'Finish inside the token budget', {
+      stateDir,
+      nowMs: 2000,
+      goalIdFactory: () => 'reset-goal',
+    });
+    assert.equal(resetGoal.status, 'active');
+    assert.equal(resetGoal.goalId, 'reset-goal');
+    assert.equal(resetGoal.tokensUsed, 0);
+    assert.ok(resetGoal.tokensUsed < resetGoal.tokenBudget);
+    assert.equal(resetGoal.timeUsedSeconds, 0);
+    assert.equal(resetGoal.lastAccountedMessageID, null);
+    assert.equal(resetGoal.continuationSuppressed, false);
+    assert.equal(resetGoal.completionSource, null);
+
     await helpers.setGoal('session-unavailable', 'Handle missing usage data', {
       stateDir,
       nowMs: 1000,
