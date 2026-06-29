@@ -12,31 +12,143 @@
   "derived": {
     "trigger_phrases": [
       "d2-r5 output contract",
-      "output contract design build"
+      "design command deliverable contract",
+      "outputContract emit deliverable spec",
+      "deliverable output contract plan",
+      "design command output contract",
+      "emit deliverable section",
+      "outputContract metadata",
+      "deliverable output contract tasks",
+      "emit deliverable section tasks",
+      "outputContract build tasks",
+      "deliverable output contract checklist",
+      "emit deliverable acceptance"
     ],
     "key_topics": [
       "d2-r5",
       "output",
       "contract",
       "design",
-      "build",
-      "add",
+      "command",
+      "deliverable",
       "outputcontract",
-      "primaryartifactname",
-      "artifactkind",
-      "requiredfields",
-      "fileoutputs",
-      "command-metadata"
+      "emit",
+      "spec",
+      "plan",
+      "section",
+      "metadata"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "spec.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -47,47 +159,67 @@
         "source": "derived"
       },
       {
-        "name": "Command Specificity",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Quality Audit Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Visual System Foundations Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add outputContract{primaryArtifactName,artifactKind,requiredFields,fileOutputs} to command-metadata.json and generate an Emit Deliverable section, banning generic artifact names.",
+    "causal_summary": "Each `/design:` wrapper declared only a `STATUS=OK|FAIL` tail (evidence: `commands/design/audit.md:26`), so the concrete deliverable each command produces had no named shape",
     "created_at": "2026-06-28T12:40:01.730Z",
-    "last_save_at": "2026-06-28T12:40:01.730Z",
+    "last_save_at": "2026-06-29T04:52:13.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79782d762b25856b928d504423495d363ee3465d15bb0c8bf527cb461b5124b1",
+    "source_fingerprint": "sha256:9bde51d064b0113d264cacec7ec7024847d0a446465e6802207da3813fcdfc70",
     "source_doc_hashes": {
-      "spec.md": "c9444bbf074678301d2b580d107e543ff8559d9a40f38d0f7320bf702934d52a"
+      "spec.md": "79981015ecba12016b89523f66f26833c09aed52320956e7535aa37d4396f40c",
+      "plan.md": "40421ab88758cefd0464296a7a840e321f5e463e6b08b38c8e97cb2698c72201",
+      "tasks.md": "21896ea4843531c3de9d3f7f4d855e8d3af9123c08df632a10a761b92590f5b1",
+      "checklist.md": "1d4af5802c18b4f07a7588a3447e62c13d99faa962ebf2783dc4c643a56ff717",
+      "implementation-summary.md": "f5421668edee0b2a236314c646625c1c03da02fcf30cf8643a974fc97976c758"
     },
     "last_active_child_id": null,
     "last_active_at": null

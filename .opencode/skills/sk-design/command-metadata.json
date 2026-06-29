@@ -12,6 +12,12 @@
     "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
     "toolPolicy": {
       "mutatesWorkspace": false
+    },
+    "outputContract": {
+      "primaryArtifactName": "Design Quality Audit Report",
+      "artifactKind": "report",
+      "requiredFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
+      "fileOutputs": []
     }
   },
   {
@@ -27,6 +33,12 @@
     "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
     "toolPolicy": {
       "mutatesWorkspace": false
+    },
+    "outputContract": {
+      "primaryArtifactName": "Visual System Foundations Plan",
+      "artifactKind": "plan",
+      "requiredFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
+      "fileOutputs": []
     }
   },
   {
@@ -42,6 +54,12 @@
     "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
     "toolPolicy": {
       "mutatesWorkspace": false
+    },
+    "outputContract": {
+      "primaryArtifactName": "Interface Direction Spec",
+      "artifactKind": "spec",
+      "requiredFields": ["target", "register", "designDials", "preflightResult"],
+      "fileOutputs": []
     }
   },
   {
@@ -57,6 +75,12 @@
     "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
     "toolPolicy": {
       "mutatesWorkspace": true
+    },
+    "outputContract": {
+      "primaryArtifactName": "Style Reference DESIGN.md",
+      "artifactKind": "reference-doc",
+      "requiredFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
+      "fileOutputs": ["<output>/DESIGN.md"]
     }
   },
   {
@@ -72,6 +96,12 @@
     "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
     "toolPolicy": {
       "mutatesWorkspace": false
+    },
+    "outputContract": {
+      "primaryArtifactName": "Motion Design Spec",
+      "artifactKind": "spec",
+      "requiredFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+      "fileOutputs": []
     }
   }
 ]

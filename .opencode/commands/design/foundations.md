@@ -26,3 +26,13 @@ than `foundations`, defer to the hub's routing instead of forcing this mode.
 ### Step 2: Return Status
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
+
+## 3. EMIT DELIVERABLE
+
+Emit `Visual System Foundations Plan` as the primary deliverable.
+
+Required fields:
+- `axis`
+- `target`
+- `tokenDecisions`
+- `contrastEvidence`

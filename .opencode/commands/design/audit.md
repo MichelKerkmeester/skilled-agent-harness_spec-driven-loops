@@ -26,3 +26,13 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 ### Step 2: Return Status
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
+
+## 3. EMIT DELIVERABLE
+
+Emit `Design Quality Audit Report` as the primary deliverable.
+
+Required fields:
+- `target`
+- `evidenceInventory`
+- `severityFindings`
+- `qualityScore`

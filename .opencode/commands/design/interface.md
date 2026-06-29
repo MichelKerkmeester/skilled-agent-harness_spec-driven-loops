@@ -26,3 +26,13 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 ### Step 2: Return Status
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
+
+## 3. EMIT DELIVERABLE
+
+Emit `Interface Direction Spec` as the primary deliverable.
+
+Required fields:
+- `target`
+- `register`
+- `designDials`
+- `preflightResult`

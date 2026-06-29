@@ -15,7 +15,8 @@ const REQUIRED_FIELDS = [
   "next",
   "proofFields",
   "deferToHubWhen",
-  "toolPolicy"
+  "toolPolicy",
+  "outputContract"
 ];
 
 const COMMANDS = [
@@ -30,6 +31,20 @@ const DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
 const GENERIC_ARGUMENT_HINT = "<design request>";
 const READ_ONLY_TOOLS = ["Read", "Glob", "Grep"];
 const MUTATING_TOOLS = ["Read", "Write", "Edit", "Bash", "Glob", "Grep"];
+const DRIFT_SORT_FIELDS = [...DRIFT_FIELDS, "emit-deliverable"];
+const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
+const GENERIC_ARTIFACT_NAMES = new Set([
+  "output",
+  "result",
+  "artifact",
+  "deliverable",
+  "data",
+  "response",
+  "file",
+  "document",
+  "thing",
+  "stuff"
+]);
 
 const scriptUrl = new URL(import.meta.url);
 const skillRootUrl = new URL("../../", scriptUrl);
@@ -168,6 +183,8 @@ function validateMetadata(metadata, workflowModes) {
       errors.push(`${command}: toolPolicy.mutatesWorkspace must be a boolean`);
     }
 
+    errors.push(...validateOutputContract(record, command));
+
     if (Array.isArray(record?.aliases)) {
       for (const alias of record.aliases) {
         const owner = seenAliases.get(alias);
@@ -189,8 +206,72 @@ function validateMetadata(metadata, workflowModes) {
   return errors.sort();
 }
 
+function validateOutputContract(record, command) {
+  const errors = [];
+  const contract = record?.outputContract;
+
+  if (!isPlainObject(contract)) {
+    return [`${command}: outputContract must be an object`];
+  }
+
+  if (typeof contract.primaryArtifactName !== "string" || contract.primaryArtifactName.trim().length === 0) {
+    errors.push(`${command}: outputContract.primaryArtifactName must be a non-empty string`);
+  } else if (isGenericArtifactName(contract.primaryArtifactName)) {
+    errors.push(`${command}: outputContract.primaryArtifactName must name a concrete artifact`);
+  }
+
+  if (typeof contract.artifactKind !== "string" || !ARTIFACT_KINDS.has(contract.artifactKind)) {
+    errors.push(`${command}: outputContract.artifactKind must be one of ${[...ARTIFACT_KINDS].join(",")}`);
+  }
+
+  if (!isNonEmptyStringArray(contract.requiredFields)) {
+    errors.push(`${command}: outputContract.requiredFields must be a non-empty string array`);
+  }
+
+  if (!isStringArray(contract.fileOutputs)) {
+    errors.push(`${command}: outputContract.fileOutputs must be a string array`);
+  }
+
+  if (Array.isArray(record?.proofFields) && Array.isArray(contract.requiredFields) && !sameValue(record.proofFields, contract.requiredFields)) {
+    errors.push(`${command}: outputContract.requiredFields must match proofFields`);
+  }
+
+  if (typeof record?.toolPolicy?.mutatesWorkspace === "boolean" && Array.isArray(contract.fileOutputs)) {
+    const hasFileOutputs = contract.fileOutputs.length > 0;
+
+    if (record.toolPolicy.mutatesWorkspace && !hasFileOutputs) {
+      errors.push(`${command}: outputContract.fileOutputs must be non-empty when toolPolicy.mutatesWorkspace is true`);
+    }
+
+    if (!record.toolPolicy.mutatesWorkspace && hasFileOutputs) {
+      errors.push(`${command}: outputContract.fileOutputs must be empty when toolPolicy.mutatesWorkspace is false`);
+    }
+  }
+
+  return errors;
+}
+
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
 function isNonEmptyStringArray(value) {
   return Array.isArray(value) && value.length > 0 && value.every((item) => typeof item === "string" && item.length > 0);
+}
+
+function isStringArray(value) {
+  return Array.isArray(value) && value.every((item) => typeof item === "string" && item.length > 0);
+}
+
+function isGenericArtifactName(value) {
+  const normalized = value.trim().toLowerCase();
+
+  if (GENERIC_ARTIFACT_NAMES.has(normalized)) {
+    return true;
+  }
+
+  const words = normalized.split(/[^a-z0-9]+/).filter(Boolean);
+  return words.length > 0 && words.every((word) => GENERIC_ARTIFACT_NAMES.has(word));
 }
 
 async function collectSurfaceDrift(records) {
@@ -198,10 +279,12 @@ async function collectSurfaceDrift(records) {
 
   for (const record of records) {
     const wrapperPath = wrapperPathForCommand(record.command);
+    let markdown;
     let frontmatter;
 
     try {
-      frontmatter = parseFrontmatter(await readFile(wrapperPath.url, "utf8"));
+      markdown = await readFile(wrapperPath.url, "utf8");
+      frontmatter = parseFrontmatter(markdown);
     } catch (error) {
       drift.push({
         command: record.command,
@@ -226,9 +309,49 @@ async function collectSurfaceDrift(records) {
         });
       }
     }
+
+    const deliverableDrift = expectedEmitDeliverableDrift(record, markdown);
+    if (deliverableDrift) {
+      drift.push(deliverableDrift);
+    }
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedEmitDeliverableDrift(record, markdown) {
+  const section = extractEmitDeliverableSection(markdown);
+
+  if (!section) {
+    return {
+      command: record.command,
+      field: "emit-deliverable",
+      expected: record.outputContract.primaryArtifactName,
+      actual: "<missing section>"
+    };
+  }
+
+  if (!section.includes(record.outputContract.primaryArtifactName)) {
+    return {
+      command: record.command,
+      field: "emit-deliverable",
+      expected: record.outputContract.primaryArtifactName,
+      actual: "<missing artifact name>"
+    };
+  }
+
+  return null;
+}
+
+function extractEmitDeliverableSection(markdown) {
+  const sectionMatch = markdown.match(/^##\s+\d+\.\s+EMIT DELIVERABLE\s*$/im);
+  if (!sectionMatch || typeof sectionMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = sectionMatch.index + sectionMatch[0].length;
+  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+\d+\./);
+  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
 function wrapperPathForCommand(command) {
@@ -352,7 +475,7 @@ function compareDrift(left, right) {
     return commandCompare;
   }
 
-  return DRIFT_FIELDS.indexOf(left.field) - DRIFT_FIELDS.indexOf(right.field);
+  return DRIFT_SORT_FIELDS.indexOf(left.field) - DRIFT_SORT_FIELDS.indexOf(right.field);
 }
 
 function emitAndExit(report, exitCode) {
