@@ -1,0 +1,10 @@
+{
+  "target": "session work since last review: 158 remediation (007 memory-reindex, 008 graph-symmetry, 009 filename/symlink), README rename + GLM-5.2 edits, phase 040 design-playbook denumbering (61 renames), and the skilled/154-sk-design-parent branch deletion",
+  "executor": "cli-opencode",
+  "model": "zai-coding-plan/glm-5.2",
+  "variant": "high (max thinking)",
+  "framework": "costar",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.0,
+  "dimensions": ["denumber-rename-correctness","denumber-link-integrity","denumber-completeness","graph-symmetry-008","memory-reindex-honesty-007","symlink-fix-009","readme-accuracy","branch-deletion-safety","root-cause-soundness","scope-commit-hygiene"]
+}

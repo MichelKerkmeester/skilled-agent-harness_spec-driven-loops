@@ -71,7 +71,7 @@ Run directly through the spec-memory MCP tool. GPT 5.5's daemon-CLI attempt was 
 <!-- ANCHOR:verification -->
 ## Verification
 
-An independent Opus verifier (adversarial) returned **CONCERN→reconciled**: `sqlite3 "$DB" "SELECT count(*) ... GLOB '*158-sk-prompt-models-rename/00[789]*'"` = **24** (phases 007/008/009 indexed); the 158 review-report row is present. No live skill/command/unrelated-active packet carries the old name.
+An independent Opus verifier (adversarial) returned **CONCERN→reconciled**: `sqlite3 "$DB" "SELECT count(*) ... GLOB '*158-sk-prompt-models-rename/00[789]*'"` = **24** — the 007/008/009 phase docs. The scan summary for the packet was 30 indexed / 1 updated / 42 unchanged; the rows beyond the 24 are the review-report + parent and per-phase metadata. The only old-name rows in a live packet are the 4 self-references in the 158 rename packet itself (it names what it renamed); no other live skill, command, or packet carries it.
 <!-- /ANCHOR:verification -->
 
 ---

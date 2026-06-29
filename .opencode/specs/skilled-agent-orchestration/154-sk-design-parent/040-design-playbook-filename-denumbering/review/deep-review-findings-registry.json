@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "target": "session work since last review (158 remediation, README, 040 denumbering, 154 branch deletion)",
+  "executor": "zai-coding-plan/glm-5.2 --variant high (max thinking)",
+  "iterations": 10,
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P1",
+      "pass": "memory-reindex-honesty-007",
+      "file": "158/007-memory-reindex/implementation-summary.md",
+      "issue": "\"30 indexed\" claim cited only 24+1 as evidence",
+      "status": "resolved",
+      "resolution": "cited the scan summary (30 indexed/1 updated/42 unchanged) as the evidence"
+    },
+    {
+      "id": "F2",
+      "severity": "P2",
+      "pass": "memory-reindex-honesty-007",
+      "file": "158/007-memory-reindex/implementation-summary.md",
+      "issue": "\"No live packet carries the old name\" contradicted the 4 self-reference rows in the live 158 packet",
+      "status": "resolved",
+      "resolution": "reworded to state the 4 self-refs ARE in the 158 packet; no OTHER live packet carries it"
+    },
+    {
+      "id": "F3",
+      "severity": "P2",
+      "pass": "memory-reindex-honesty-007",
+      "file": "158/007-memory-reindex/implementation-summary.md",
+      "issue": "completion_pct 100 paired with all-zero placeholder fingerprint",
+      "status": "accepted",
+      "resolution": "standard ZERO_CONTINUITY_FINGERPRINT scaffold placeholder; validate --strict passes (freshness not enforced for these packets) — not a fix"
+    }
+  ],
+  "verdict": "PASS"
+}
