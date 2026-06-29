@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-06-29T10:50:10Z"
     last_updated_by: "codex"
     recent_action: "Tracked rollback guard remediation"
-    next_safe_action: "Install local Vitest dependency and rerun full suite"
-    blockers:
-      - "Requested npx vitest run cannot execute because vitest is not installed locally and network lookup for npm registry fails."
+    next_safe_action: "Phase complete; rollback hash guard shipped and verified"
+    blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs"
       - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
       session_id: "rollback-hash-guard-2026-06-29"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,7 +76,7 @@ _memory:
 
 - [x] T010 Run syntax check on rollback helper
 - [x] T011 Run direct Node CLI rollback hash-guard scenario
-- [ ] T012 [B] Run full deep-improvement Vitest suite
+- [x] T012 Run full deep-improvement Vitest suite
 - [x] T013 Run comment hygiene on modified code/test files
 - [x] T014 Run strict spec validation after metadata refresh
 <!-- /ANCHOR:phase-3 -->
@@ -87,10 +86,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Direct behavioral verification passed
-- [ ] Full requested Vitest suite passed
+- [x] Full requested Vitest suite passed
 <!-- /ANCHOR:completion -->
 
 ---

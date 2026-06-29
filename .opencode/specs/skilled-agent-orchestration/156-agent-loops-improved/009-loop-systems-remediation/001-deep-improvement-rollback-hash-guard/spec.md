@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-06-29T10:50:10Z"
     last_updated_by: "codex"
     recent_action: "Implemented rollback hash guard"
-    next_safe_action: "Install local Vitest dependency and rerun full suite"
-    blockers:
-      - "Requested npx vitest run cannot execute because vitest is not installed locally and network lookup for npm registry fails."
+    next_safe_action: "Phase complete; rollback hash guard shipped and verified"
+    blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs"
       - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
       session_id: "rollback-hash-guard-2026-06-29"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "A pre-ship rollback must remain valid because the canonical target still matches the stored pre-acceptance hash."
@@ -42,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Review |
+| **Status** | Complete |
 | **Created** | 2026-06-29 |
 | **Branch** | current workspace |
 | **Parent Spec** | `../spec.md` |

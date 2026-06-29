@@ -47,7 +47,6 @@
       ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/plan.md",
       ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/tasks.md",
       ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/implementation-summary.md",
-      ".opencode/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -89,12 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored accepted-state hash",
     "created_at": "2026-06-29T10:43:17Z",
-    "last_save_at": "2026-06-29T10:54:47.997Z",
+    "last_save_at": "2026-06-29T12:53:57.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:350f108344ab0c5ce97528925d1c17c52df3d0c95f600bec28f34a7e3e59c74d",
+    "source_fingerprint": "sha256:70d9bdc37f365fa76def064e3d1423ba44a2fc8f6f1d8f71997457fe9126fb26",
     "source_doc_hashes": {
-      "spec.md": "9fb2b31a49913763b31277c64a9b7e8138d081110915bfdf438039c659bc1266",
-      "plan.md": "0e4816616a3a250604eee76e2a55fd2103b0adaf0927800110c249278096dccf",
-      "tasks.md": "bad42091e437151ef8361861d20a83108b25818f8443589a2b169852d2a062ed",
-      "implementation-summary.md": "09061b948a334332f98fc99d67ce4620c8d23882820bb4844ba2f83cecfbe29e"
+      "spec.md": "d605cbedac3511d041bf354bbc84e5bb9e2a38650f35bcde6e0d6a58b4f73932",
+      "plan.md": "7540736145157dc247bedbc71d8b318795a9e1eac3ad1a10867445719956022c",
+      "tasks.md": "dfa20fc50f9b298a307eec5d5aa2fc2977be785031656c0496cc48838ca83f08",
+      "implementation-summary.md": "3b868fe559d12761c4b5a92c9849a46e41bbd6aef34f914f8511edc7531837b4"
     },
     "last_active_child_id": null,
     "last_active_at": null
