@@ -1,42 +1,36 @@
 ---
-title: "Feature Specification: Phase 2: deep-improvement-promotion-safety [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Deep Improvement Promotion Safety"
+description: "Narrow the pre-mutation 4-runtime mirror-sync gate so it verifies runtime mirrors against the current canonical body, letting legitimate in-sync agent-definition promotions pass while still blocking genuine drift."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep improvement promotion safety"
+  - "mirror sync gate canonical baseline"
+  - "promote candidate agent definition mirror sync"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-deep-improvement-promotion-safety"
-    last_updated_at: "2026-06-29T10:43:18Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety"
+    last_updated_at: "2026-06-29T14:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Narrowed the mirror-sync gate baseline and added a hermetic promotion regression test"
+    next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-deep-improvement-promotion-safety"
+      session_id: "deep-improvement-promotion-safety-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The pre-mutation mirror-sync gate must compare mirrors against the current canonical body, not the candidate, because a real promotion always changes the body."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: deep-improvement-promotion-safety
+# Feature Specification: Deep Improvement Promotion Safety
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
 
@@ -46,15 +40,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-29 |
-| **Branch** | `scaffold/002-deep-improvement-promotion-safety` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | current workspace |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of 6 |
 | **Predecessor** | 001-deep-improvement-rollback-hash-guard |
 | **Successor** | 003-model-benchmark-reducer-ledger |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | An in-sync agent-definition promotion passes the mirror-sync gate, a drifted mirror still blocks, and the deep-improvement Vitest suite passes with the new regression. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,18 +56,21 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the remediation rec clusters specification.
+This phase remediates a deep-review finding in the deep-improvement promotion mirror-sync gate.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Limit code changes to the pre-mutation mirror-sync gate baseline in `promote-candidate.cjs` and a focused promotion regression test.
 
 **Dependencies**:
-- [To be defined during planning]
+- Node from `/opt/homebrew/bin` for script execution and the Vitest suite.
+- The existing `verifyMirrorSync` / `evaluateMirrorSyncGate` helpers (unchanged).
 
 **Deliverables**:
-- [To be defined during planning]
+- Corrected mirror-sync baseline in `promote-candidate.cjs`.
+- Hermetic promotion regression test in `promote-candidate-mirror-sync.vitest.ts`.
+- Level-1 phase documentation with verification evidence.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Parent changelog refresh is out of scope for this narrow remediation.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -82,10 +79,10 @@ This is **Phase 2** of the remediation rec clusters specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName, candidateContent, …)`, comparing each runtime mirror against the candidate. Because a real promotion always changes the agent body, every mirror registered as drift versus the candidate, so `allInSync` was false and the gate blocked every legitimate in-sync agent-definition promotion. Only a genuinely out-of-sync mirror should block.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Verify the runtime mirrors against the current canonical body — the state being replaced — so in-sync mirrors pass and only genuine drift blocks.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +91,26 @@ This is **Phase 2** of the remediation rec clusters specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Read the current canonical target content (not the candidate) as the `verifyMirrorSync` expected body in the agent-definition gate.
+- Preserve the existing block on genuine mirror drift and on missing mirrors.
+- Add a hermetic regression test proving in-sync promotion is allowed and drift is still blocked.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Changing `verifyMirrorSync` or `evaluateMirrorSyncGate` logic.
+- The no-phase legacy one-step canonical mutation (`normalizePhase` default), which is documented design-intent: a bare invocation maps to the one-step `promote` mutation while `--phase=accept` / `--phase=ship` is the staged path.
+- Promotion scoring gates and benchmark report parsing.
+- Git commits or branch operations beyond this phase's commit.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs` | Modify | Compare mirrors against the current canonical body, not the candidate. |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts` | Create | Hermetic in-sync-passes / drift-blocks regression coverage. |
+| `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/spec.md` | Modify | Replace scaffold placeholders with concrete specification. |
+| `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/plan.md` | Modify | Replace scaffold placeholders with concrete plan. |
+| `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/tasks.md` | Modify | Replace scaffold placeholders with concrete task tracking. |
+| `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/implementation-summary.md` | Modify | Document implementation and verification state. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +122,17 @@ This is **Phase 2** of the remediation rec clusters specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | An in-sync agent-definition promotion must pass the mirror-sync gate. | A promotion where all three runtime mirrors match the current canonical body exits 0 and lands the candidate on the target. |
+| REQ-002 | Genuine mirror drift must still block. | A promotion where a runtime mirror body differs from the current canonical exits non-zero and leaves the target unchanged. |
+| REQ-003 | The regression must fail before the fix and pass after. | The in-sync test fails against the pre-fix baseline (candidate comparison) and passes after the canonical comparison fix. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | The deep-improvement Vitest suite must stay green. | The full suite passes with the new regression file added and no pre-existing test regressed. |
+| REQ-005 | The no-phase legacy canonical mutation stays design-intent. | `normalizePhase` default behavior is unchanged and documented as out of scope. |
+| REQ-006 | Level-1 phase docs must contain no scaffold placeholders. | `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` are authored with concrete content. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +140,9 @@ This is **Phase 2** of the remediation rec clusters specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The regression test proves in-sync promotion is allowed (RED before the fix, GREEN after) and genuine drift still blocks with the canonical target untouched.
+- **SC-002**: `promote-candidate.cjs` passes `node --check`.
+- **SC-003**: The full deep-improvement Vitest suite passes (33 files, 405 tests) with no regressions versus the 403-test baseline.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +152,9 @@ This is **Phase 2** of the remediation rec clusters specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Over-narrowing the gate | Could let a genuinely drifted mirror through. | Keep the drift-block regression case asserting non-zero exit and an untouched target. |
+| Risk | Missing canonical target (new agent) | `readFileSync(target)` would throw where the old code read the candidate. | Guard with `fs.existsSync(target)` and fall back to the candidate, preserving the prior block-on-missing-mirrors behavior. |
+| Dependency | Node at `/opt/homebrew/bin` | Suite and syntax checks cannot run without it. | Use the documented PATH for all verification commands. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,31 +162,5 @@ This is **Phase 2** of the remediation rec clusters specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None. The fix, regression coverage, and full-suite verification are complete.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

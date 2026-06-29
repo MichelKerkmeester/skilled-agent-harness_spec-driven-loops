@@ -11,64 +11,89 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "deep improvement promotion safety",
+      "mirror sync gate canonical baseline",
+      "promote candidate agent definition mirror sync",
+      "deep improvement promotion safety plan",
+      "mirror sync gate canonical baseline plan",
+      "promote candidate mirror sync plan",
+      "deep improvement promotion safety tasks",
+      "mirror sync gate canonical baseline tasks",
+      "promote candidate mirror sync tasks",
+      "deep improvement promotion safety summary",
+      "mirror sync gate canonical baseline summary",
+      "promote candidate mirror sync summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary",
-      "impl",
-      "broken"
+      "deep",
+      "improvement",
+      "promotion",
+      "safety",
+      "mirror",
+      "sync",
+      "gate",
+      "canonical",
+      "baseline",
+      "promote",
+      "candidate",
+      "agent"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/mirror-sync-verify.cjs"
     ],
     "entities": [
       {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/002-deep-improvement-promotion-safety/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
         "source": "derived"
       },
       {
@@ -78,7 +103,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Deep Improvement Promotion Safety",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,7 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Corrected",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,27 +181,15 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName, candidateContent, …)`, comparing each runtime mirror against the candidate",
     "created_at": "2026-06-29T10:43:18Z",
-    "last_save_at": "2026-06-29T11:35:04.165Z",
+    "last_save_at": "2026-06-29T12:05:09.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ef0c57f6dcf2288a56a423ec7d3a42532609bf117507c0eb6185b9acbfb6980",
+    "source_fingerprint": "sha256:37761ffd865a5090f3788951b524135fa6435906217e29558f4f877255f01229",
     "source_doc_hashes": {
-      "spec.md": "277a110f0e71a4cf2e284f2893afac645e81585e3089fe31fa09da10d9794b8d",
-      "plan.md": "1cdfabac230ffd1791bc05f6999c81428561342f1c7e3615a82e6d21322193dc",
-      "tasks.md": "8b3e4864ad83d971563df6ce4b73dbba49323bf81735075b6a5e07a875df0488",
-      "implementation-summary.md": "77ce923ebe91bd9305941f54f5d74ab318a639cc72dbe9a9f5429b2c2165a4db"
+      "spec.md": "2dcf14954557ac60bd60f449fe071dd86f8a6d54264c4105b0a9b71eebc55b2c",
+      "plan.md": "d3679143047e6e87f70f052bcee671dbc72d2d3816ff0ef2208066dfbc4aacd0",
+      "tasks.md": "3e5207e6a7fe749763f57aad44072a64a06ffe9753a23b6ccb49289bb2b408c7",
+      "implementation-summary.md": "ede723b69e1035f287ee8cf96506b421e06955d4b87b24ac3f1a48896e8e0fcc"
     },
     "last_active_child_id": null,
     "last_active_at": null

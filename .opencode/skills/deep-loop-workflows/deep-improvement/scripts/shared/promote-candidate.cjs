@@ -541,8 +541,14 @@ function main() {
   let runtimeMirrorSync = null;
   if (isAgentDefinitionTarget(target)) {
     const agentName = inferAgentNameFromPath(target);
-    const candidateContent = fs.readFileSync(candidate, 'utf8');
-    const syncResult = verifyMirrorSync(agentName, candidateContent, {
+    // Pre-mutation invariant: verify the runtime mirrors against the CURRENT
+    // canonical body (the state being replaced), not the candidate. Comparing
+    // against the candidate flags every real body change as drift and blocks
+    // legitimate in-sync promotions; only genuine mirror drift should block.
+    const canonicalContent = fs.existsSync(target)
+      ? fs.readFileSync(target, 'utf8')
+      : fs.readFileSync(candidate, 'utf8');
+    const syncResult = verifyMirrorSync(agentName, canonicalContent, {
       repoRoot: process.cwd(),
       expectedFormat: expectedFormatForTarget(target),
     });
