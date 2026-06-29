@@ -21,6 +21,7 @@ const REQUIRED_FIELDS = [
   "returns",
   "examples",
   "next",
+  "handoff",
   "proofFields",
   "taskProjections",
   "pipeline",
@@ -54,6 +55,7 @@ const DRIFT_FIELDS = [
   "taskProjections",
   "preconditions",
   "pipeline",
+  "handoff",
   "choreography",
   "register",
   "wrapper"
@@ -81,6 +83,8 @@ const PIPELINE_SECTION_MARKERS = [
   "Recommend-only:"
 ];
 const PIPELINE_STATUS_TOKENS = ["PRODUCES=", "NEXT=", "PROOF="];
+const HANDOFF_OPTION_FIELDS = ["command", "when"];
+const HANDOFF_STATUS_TOKENS = ["NEXT_OPTIONS=", "HANDOFF_REQUIRED=", "HANDOFF_REASON="];
 const REQUIRED_RETURN_STATUS_TOKENS = [
   "STATUS=OK",
   "STATUS=ASK MISSING=<input>",
@@ -298,6 +302,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
     errors.push(...validateOutputContract(record, command));
     errors.push(...validateDiscriminator(record, command, workflowModes));
     errors.push(...validatePipeline(record, command, expectedCommands));
+    errors.push(...validateHandoff(record, command, expectedCommands));
     errors.push(
       ...validateTaskProjections(
         record,
@@ -1070,6 +1075,86 @@ function validatePipelineGraph(recordsByCommand) {
   return errors;
 }
 
+function validateHandoff(record, command, commandSet) {
+  const errors = [];
+  const handoff = record?.handoff;
+
+  if (!isPlainObject(handoff)) {
+    return [`${command}: handoff must be an object`];
+  }
+
+  for (const field of ["nextOptions", "handoffRequired", "handoffReason"]) {
+    if (!Object.hasOwn(handoff, field)) {
+      errors.push(`${command}: handoff.${field} is required`);
+    }
+  }
+
+  const optionCommands = [];
+
+  if (!Array.isArray(handoff.nextOptions) || handoff.nextOptions.length === 0) {
+    errors.push(`${command}: handoff.nextOptions must be a non-empty array`);
+  } else {
+    const seenOptions = new Set();
+
+    handoff.nextOptions.forEach((option, index) => {
+      const label = `${command}: handoff.nextOptions[${index}]`;
+
+      if (!isPlainObject(option)) {
+        errors.push(`${label} must be an object`);
+        return;
+      }
+
+      for (const field of HANDOFF_OPTION_FIELDS) {
+        if (!Object.hasOwn(option, field)) {
+          errors.push(`${label}.${field} is required`);
+        }
+      }
+
+      if (typeof option.command !== "string" || option.command.trim().length === 0) {
+        errors.push(`${label}.command must be a non-empty string`);
+      } else {
+        optionCommands.push(option.command);
+
+        if (!commandSet.has(option.command)) {
+          errors.push(`${label}.command contains unknown command ${option.command}`);
+        }
+
+        if (option.command === command) {
+          errors.push(`${label}.command must not reference its own command`);
+        }
+
+        if (seenOptions.has(option.command)) {
+          errors.push(`${label}.command is duplicated`);
+        }
+
+        seenOptions.add(option.command);
+      }
+
+      if (typeof option.when !== "string" || option.when.trim().length === 0) {
+        errors.push(`${label}.when must be a non-empty string`);
+      }
+    });
+  }
+
+  if (!Array.isArray(record?.next)) {
+    errors.push(`${command}: handoff.nextOptions cannot be checked until next is a string array`);
+  } else if (!sameValue(optionCommands, record.next)) {
+    errors.push(`${command}: handoff.nextOptions commands must match next exactly`);
+  }
+
+  if (typeof handoff.handoffRequired !== "boolean") {
+    errors.push(`${command}: handoff.handoffRequired must be a boolean`);
+  } else if (handoff.handoffRequired !== false) {
+    errors.push(`${command}: handoff.handoffRequired must be false for recommend-only command handoff`);
+  }
+
+  if (typeof handoff.handoffReason !== "string" || handoff.handoffReason.trim().length === 0) {
+    errors.push(`${command}: handoff.handoffReason must be a non-empty string`);
+  }
+
+  return errors;
+}
+
 function validateUserIntent(record, command) {
   const errors = [];
   const userIntent = record?.userIntent;
@@ -1201,6 +1286,7 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedDiscriminatorDrift(record, markdown));
     drift.push(...expectedPreconditionsDrift(record, markdown));
     drift.push(...expectedPipelineDrift(record, markdown));
+    drift.push(...expectedHandoffDrift(record, markdown));
     drift.push(...expectedChoreographyDrift(record, markdown));
     drift.push(...expectedRegisterDrift(record, markdown));
     drift.push(...expectedTaskProjectionsDrift(record, markdown));
@@ -1211,6 +1297,101 @@ async function collectSurfaceDrift(records) {
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedHandoffDrift(record, markdown) {
+  const section = extractHandoffGrammarSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "handoff",
+        command: record.command,
+        field: "handoff",
+        expected: "## HANDOFF GRAMMAR",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const handoff = record.handoff;
+  const nextOptionCommands = Array.isArray(handoff?.nextOptions)
+    ? handoff.nextOptions.map((option) => option.command)
+    : [];
+  const expectedLines = [
+    `NEXT_OPTIONS=${nextOptionCommands.join(",")}`,
+    `HANDOFF_REQUIRED=${String(handoff?.handoffRequired)}`,
+    `HANDOFF_REASON="${handoff?.handoffReason}"`
+  ];
+
+  for (const token of HANDOFF_STATUS_TOKENS) {
+    if (!section.includes(token)) {
+      drift.push({
+        kind: "handoff",
+        command: record.command,
+        field: "handoff",
+        expected: token,
+        actual: "<missing handoff token>"
+      });
+    }
+  }
+
+  for (const expectedLine of expectedLines) {
+    if (!section.includes(expectedLine)) {
+      drift.push({
+        kind: "handoff",
+        command: record.command,
+        field: "handoff",
+        expected: expectedLine,
+        actual: "<missing or mismatched handoff value>"
+      });
+    }
+  }
+
+  for (const option of handoff.nextOptions) {
+    if (!section.includes(option.command)) {
+      drift.push({
+        kind: "handoff",
+        command: record.command,
+        field: "handoff",
+        expected: option.command,
+        actual: "<missing next option command>"
+      });
+    }
+
+    if (!containsPhrase(section, option.when)) {
+      drift.push({
+        kind: "handoff",
+        command: record.command,
+        field: "handoff",
+        expected: option.when,
+        actual: "<missing next option rationale>"
+      });
+    }
+  }
+
+  if (handoff.handoffRequired === false && !section.includes("HANDOFF_REQUIRED=false")) {
+    drift.push({
+      kind: "handoff",
+      command: record.command,
+      field: "handoff",
+      expected: "HANDOFF_REQUIRED=false",
+      actual: "<missing recommend-only handoff flag>"
+    });
+  }
+
+  if (!containsPhrase(section, "never silently chains")) {
+    drift.push({
+      kind: "handoff",
+      command: record.command,
+      field: "handoff",
+      expected: "never silently chains",
+      actual: "<missing no-silent-chain assertion>"
+    });
+  }
+
+  return drift;
 }
 
 function expectedTaskProjectionsDrift(record, markdown) {
@@ -1947,6 +2128,10 @@ function extractTaskProjectionsSection(markdown) {
 
 function extractChoreographySection(markdown) {
   return extractNamedSection(markdown, "CHOREOGRAPHY");
+}
+
+function extractHandoffGrammarSection(markdown) {
+  return extractNamedSection(markdown, "HANDOFF GRAMMAR");
 }
 
 function extractNamedSection(markdown, sectionName) {

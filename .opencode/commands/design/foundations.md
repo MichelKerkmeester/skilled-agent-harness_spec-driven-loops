@@ -87,6 +87,20 @@ Required fields:
 - **Hands to build:** when tokens or static-system decisions move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
+## HANDOFF GRAMMAR
+
+```
+NEXT_OPTIONS=/design:interface,/design:motion,/design:audit
+HANDOFF_REQUIRED=false
+HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+```
+
+- `/design:interface` when static system decisions are ready to become a concrete interface direction or screen treatment.
+- `/design:motion` when tokens or layout decisions need temporal behavior, transitions, or state choreography.
+- `/design:audit` when the static system is ready for quality review, contrast evidence, or hardening.
+
+This command never silently chains; it emits options only.
+
 ## 8. EXAMPLE
 
 ```

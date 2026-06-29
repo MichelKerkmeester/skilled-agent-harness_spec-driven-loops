@@ -87,6 +87,20 @@ Required fields:
 - **Hands to build:** when accepted design findings move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
+## HANDOFF GRAMMAR
+
+```
+NEXT_OPTIONS=/design:foundations,/design:interface,/design:motion
+HANDOFF_REQUIRED=false
+HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+```
+
+- `/design:foundations` when audit findings need static token, contrast, or system decisions before another pass.
+- `/design:interface` when findings point to a changed interface direction rather than local fixes.
+- `/design:motion` when findings involve animation, timing, state feedback, or reduced-motion behavior.
+
+This command never silently chains; it emits options only.
+
 ## 8. EXAMPLE
 
 ```

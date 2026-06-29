@@ -100,6 +100,20 @@ Required fields:
 - **Hands to build:** when the accepted interface direction moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
+## HANDOFF GRAMMAR
+
+```
+NEXT_OPTIONS=/design:foundations,/design:motion,/design:audit
+HANDOFF_REQUIRED=false
+HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+```
+
+- `/design:foundations` when the direction needs a static token, type, spacing, or theming system.
+- `/design:motion` when the direction needs purposeful animation, transitions, or micro-interactions.
+- `/design:audit` when the interface direction is ready for findings-first review and scoring.
+
+This command never silently chains; it emits options only.
+
 ## 9. EXAMPLE
 
 ```

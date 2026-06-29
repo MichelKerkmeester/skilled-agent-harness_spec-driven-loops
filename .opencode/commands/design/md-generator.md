@@ -89,6 +89,20 @@ File outputs:
 - **Hands to build:** when extracted evidence informs implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
+## HANDOFF GRAMMAR
+
+```
+NEXT_OPTIONS=/design:foundations,/design:interface,/design:audit
+HANDOFF_REQUIRED=false
+HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+```
+
+- `/design:foundations` when measured CSS should be distilled into a static visual-system plan.
+- `/design:interface` when measured evidence should inform a new or reshaped interface direction.
+- `/design:audit` when the captured surface needs quality review or hardening based on measured evidence.
+
+This command never silently chains; it emits options only.
+
 ## 8. EXAMPLE
 
 ```

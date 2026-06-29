@@ -58,6 +58,24 @@
       }
     ],
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
+    "handoff": {
+      "nextOptions": [
+        {
+          "command": "/design:foundations",
+          "when": "audit findings need static token, contrast, or system decisions before another pass"
+        },
+        {
+          "command": "/design:interface",
+          "when": "findings point to a changed interface direction rather than local fixes"
+        },
+        {
+          "command": "/design:motion",
+          "when": "findings involve animation, timing, state feedback, or reduced-motion behavior"
+        }
+      ],
+      "handoffRequired": false,
+      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+    },
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
     "taskProjections": [
       {
@@ -198,6 +216,24 @@
       }
     ],
     "next": ["/design:interface", "/design:motion", "/design:audit"],
+    "handoff": {
+      "nextOptions": [
+        {
+          "command": "/design:interface",
+          "when": "static system decisions are ready to become a concrete interface direction or screen treatment"
+        },
+        {
+          "command": "/design:motion",
+          "when": "tokens or layout decisions need temporal behavior, transitions, or state choreography"
+        },
+        {
+          "command": "/design:audit",
+          "when": "the static system is ready for quality review, contrast evidence, or hardening"
+        }
+      ],
+      "handoffRequired": false,
+      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+    },
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
     "taskProjections": [
       {
@@ -339,6 +375,24 @@
       }
     ],
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
+    "handoff": {
+      "nextOptions": [
+        {
+          "command": "/design:foundations",
+          "when": "the direction needs a static token, type, spacing, or theming system"
+        },
+        {
+          "command": "/design:motion",
+          "when": "the direction needs purposeful animation, transitions, or micro-interactions"
+        },
+        {
+          "command": "/design:audit",
+          "when": "the interface direction is ready for findings-first review and scoring"
+        }
+      ],
+      "handoffRequired": false,
+      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+    },
     "proofFields": ["target", "register", "designDials", "preflightResult"],
     "tasks": [
       {
@@ -570,6 +624,24 @@
       }
     ],
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
+    "handoff": {
+      "nextOptions": [
+        {
+          "command": "/design:foundations",
+          "when": "measured CSS should be distilled into a static visual-system plan"
+        },
+        {
+          "command": "/design:interface",
+          "when": "measured evidence should inform a new or reshaped interface direction"
+        },
+        {
+          "command": "/design:audit",
+          "when": "the captured surface needs quality review or hardening based on measured evidence"
+        }
+      ],
+      "handoffRequired": false,
+      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+    },
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
     "taskProjections": [],
     "registerPolicy": {
@@ -688,6 +760,24 @@
       }
     ],
     "next": ["/design:interface", "/design:foundations", "/design:audit"],
+    "handoff": {
+      "nextOptions": [
+        {
+          "command": "/design:interface",
+          "when": "motion choices change or depend on the overall interface direction"
+        },
+        {
+          "command": "/design:foundations",
+          "when": "motion constraints affect static layout, token, or responsive decisions"
+        },
+        {
+          "command": "/design:audit",
+          "when": "the motion spec is ready for performance, accessibility, or quality review"
+        }
+      ],
+      "handoffRequired": false,
+      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+    },
     "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
     "taskProjections": [],
     "registerPolicy": {

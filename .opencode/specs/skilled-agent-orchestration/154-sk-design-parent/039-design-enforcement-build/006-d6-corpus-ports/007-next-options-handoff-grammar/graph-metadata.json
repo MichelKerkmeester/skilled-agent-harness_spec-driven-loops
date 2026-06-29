@@ -12,7 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "d6-r7 next options handoff grammar",
-      "handoff grammar design build"
+      "handoff grammar design build",
+      "validateHandoff design command surface-check",
+      "d6-r7 next options handoff grammar implementation summary",
+      "validateHandoff wrapper drift surface-check record",
+      "design command handoff grammar 0 0 summary"
     ],
     "key_topics": [
       "d6-r7",
@@ -22,18 +26,102 @@
       "grammar",
       "design",
       "build",
-      "add",
-      "status",
-      "produces",
+      "validatehandoff",
       "command",
-      "wrappers"
+      "surface-check",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -47,47 +135,85 @@
         "source": "derived"
       },
       {
-        "name": "explicit",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "D6-R1",
-        "kind": "key_phrase",
+        "name": "Purpose Port",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add STATUS/PRODUCES/NEXT_OPTIONS/HANDOFF_REQUIRED/HANDOFF_REASON to the design command wrappers + command-metadata.json; checker resolves each next option to a known recipe; auto-chain forbidden unless requested.",
+    "causal_summary": "The design corpus ends every command with an explicit follow-up grammar — a `## Output` block declaring what was produced and which named recipes may run next",
     "created_at": "2026-06-28T12:40:09.808Z",
-    "last_save_at": "2026-06-28T12:40:09.808Z",
+    "last_save_at": "2026-06-29T12:50:35.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e2656be6baaa15c88ce146b3f629f3c5d587c516eec73fc61fa0b42f8fceab1",
+    "source_fingerprint": "sha256:bb8977d503fa5d11db2c487f7f21043f7ef5d2e0f6181bef9e81c8205223a47c",
     "source_doc_hashes": {
-      "spec.md": "631b82451241b618b42237f5b0b088165799572af1ebc93adb583ba8a2028f55"
+      "spec.md": "0f618c6fca1abac93e71c9ac06312cf9548ba428f0340457e8c6f7d49ca679f9",
+      "plan.md": "15cdf65398108dc3572a16298dbe083a1e885a2df03da81a2e6f227ff9cf048c",
+      "tasks.md": "ccb6329c8cf6045f40a6cea7ffad02885c0c4251e330926827d509e0c5473631",
+      "checklist.md": "a8814c52ee32cca9a7026209df0fdfa6d230ccb4666dd4c7d5e1a1427dfe9a75",
+      "implementation-summary.md": "79f20e0bb095e4eb2b793908b6ec6edae2052bd154745605b5a936f339391bf2"
     },
     "last_active_child_id": null,
     "last_active_at": null

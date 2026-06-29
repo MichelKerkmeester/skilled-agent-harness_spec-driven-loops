@@ -87,6 +87,20 @@ Required fields:
 - **Hands to build:** when accepted motion behavior moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
+## HANDOFF GRAMMAR
+
+```
+NEXT_OPTIONS=/design:interface,/design:foundations,/design:audit
+HANDOFF_REQUIRED=false
+HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
+```
+
+- `/design:interface` when motion choices change or depend on the overall interface direction.
+- `/design:foundations` when motion constraints affect static layout, token, or responsive decisions.
+- `/design:audit` when the motion spec is ready for performance, accessibility, or quality review.
+
+This command never silently chains; it emits options only.
+
 ## 8. EXAMPLE
 
 ```

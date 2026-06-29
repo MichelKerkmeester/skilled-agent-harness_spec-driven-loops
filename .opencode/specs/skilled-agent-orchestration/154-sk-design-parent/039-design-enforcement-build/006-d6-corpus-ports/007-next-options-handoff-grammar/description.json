@@ -1,20 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/007-next-options-handoff-grammar",
-  "description": "Add STATUS/PRODUCES/NEXT_OPTIONS/HANDOFF_REQUIRED/HANDOFF_REASON to the design command wrappers + command-metadata.json; checker resolves each next op",
+  "description": "The design corpus ends every command with an explicit follow-up grammar \u2014 a `## Output` block declaring what was produced and which named recipes may",
   "keywords": [
-    "add",
-    "status",
-    "produces",
     "design",
+    "corpus",
+    "ends",
+    "every",
     "command",
-    "wrappers",
-    "command-metadata",
-    "json",
-    "checker",
-    "resolves",
-    "next"
+    "explicit",
+    "follow-up",
+    "grammar",
+    "output",
+    "block",
+    "declaring",
+    "produced",
+    "named",
+    "recipes"
   ],
-  "lastUpdated": "2026-06-28T12:40:09.678Z",
+  "lastUpdated": "2026-06-29T12:50:35.425Z",
   "specId": "007",
   "folderSlug": "next-options-handoff-grammar",
   "parentChain": [
@@ -26,6 +30,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
