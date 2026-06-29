@@ -340,3 +340,61 @@ This assertion-pairing extension is acceptable when all of these are true:
 | Deny mapping | Missing assertion, digest mismatch, manifest mismatch, operation-class downgrade, missing live-tools verification, missing design judgment, and non-recomputable assertion digest each map to fail-closed `DENY`. |
 | Named residual | Text-only or unmodifiable child paths are explicitly advisory for assertion checking, with parent demand-back plus transport-result re-validation as the fail-closed enforceable floor. |
 | File integration | This section is appended after the existing contract sections, with prior contract text unchanged. |
+
+---
+
+## Register Acceptance Gate
+
+The cross-CLI design dispatch boundary MUST fail closed when the effective design register is unresolved or outside the accepted register policy. The parent resolves the effective register before launch using `registerPolicy.resolutionOrder` and the operating postures defined by `shared/register.md`: Brand means the design is the product; Product means the design serves the product.
+
+The membership source is `registerPolicy.accepted` in `command-metadata.json`. The parent reads that field by reference and MUST NOT maintain a second hardcoded accepted-register list in this contract, prompts, or child dispatch glue.
+
+### Parent Re-Validation Extension
+
+The parent applies this extension before launching a cross-CLI design child, and again at demand-back when the child returns machine-readable register material:
+
+1. Resolve the effective register in policy order from the explicit flag, declared register, task cue, surface in focus, and safe default sources named by `registerPolicy.resolutionOrder`.
+2. Interpret the resolved value using `shared/register.md`; `unknown` means the register file was not read and no posture judgment was made.
+3. Test the resolved value against `registerPolicy.accepted` from `command-metadata.json`.
+4. Return `DENY` before launch when the value is `unknown`, empty, absent, malformed, or not a member of `registerPolicy.accepted`.
+5. Escalate unresolved register state through `STATUS=ASK MISSING_REGISTER`; do not coerce a default at this boundary.
+6. Return `ALLOW` for the register check only when the resolved value is accepted by policy. The existing transport-result, assertion, token, digest, operation-class, and demand-back checks still have to pass independently.
+
+An unresolved register is a missing precondition. It inherits the same deny-by-default posture as every other missing, ambiguous, stale, mismatched, or non-recomputable boundary input in this contract.
+
+### Register Deny Rules
+
+| Rule | Denial condition |
+|---|---|
+| Unknown register | If the effective register is `unknown`, deny before launch and escalate with `STATUS=ASK MISSING_REGISTER`. |
+| Missing register | If no effective register can be reconstructed from the dispatch manifest, policy resolution inputs, or machine-readable child material, deny before launch or demand-back. |
+| Out-of-set register | If the effective register is present but not a member of `registerPolicy.accepted`, deny before launch or demand-back. |
+| Parallel accepted list | If the boundary relies on a copied accepted-register list instead of reading `registerPolicy.accepted`, the membership check is invalid and the dispatch is denied until reconciled. |
+
+### Register Truth Table
+
+| Effective register | Boundary result |
+|---|---|
+| `unknown` | `DENY`; ask with `STATUS=ASK MISSING_REGISTER`; do not launch the child. |
+| `marketing` | `DENY`; this is an out-of-set token even though it is concrete. |
+| `brand` | Passes the register membership check. |
+| `product` | Passes the register membership check. |
+
+### Named Residuals
+
+Register correctness on a genuinely mixed surface is advisory. The deterministic gate proves only that the value is a member of `registerPolicy.accepted`; it cannot prove the selected accepted posture is the right design judgment for a surface where Brand and Product dials diverge.
+
+A text-only child with no machine-readable register field degrades register checking to **ADVISORY**. That residual is bounded by the existing text-only Named Residual and parent demand-back: the parent may report prose evidence, but it must not claim a machine-checkable register pass without structured material to reconstruct.
+
+### Register Acceptance
+
+This register gate is acceptable when all of these are true:
+
+| Requirement | Acceptance condition |
+|---|---|
+| Membership test | The parent tests the effective register against `registerPolicy.accepted` read from `command-metadata.json`. |
+| Fail-closed deny | `unknown`, empty, missing, malformed, or out-of-set register values return `DENY` before child launch or at demand-back. |
+| Accepted postures | `brand` and `product` pass the register membership check because they are accepted by the policy field. |
+| ASK reuse | Unresolved register state escalates through `STATUS=ASK MISSING_REGISTER`; no new escalation token or silent default is introduced. |
+| Single source | `registerPolicy.accepted` is the only accepted-register membership source; no parallel hardcoded list is introduced. |
+| Named residuals | Mixed-surface register correctness and text-only child register evidence are named as advisory residuals. |
