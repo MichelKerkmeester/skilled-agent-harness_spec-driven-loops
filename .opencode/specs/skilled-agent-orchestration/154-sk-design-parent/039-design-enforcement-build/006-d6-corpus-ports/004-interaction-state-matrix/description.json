@@ -1,26 +1,25 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/004-interaction-state-matrix",
-  "description": "Add a conditional states/events/transitions/forbidden/guards/uiByState/recovery/a11y/reducedMotion field to the context loading contract + proof card",
+  "description": "Stateful UI work \u2014 loading, error, empty, disabled, multi-step, optimistic-update flows \u2014 is where craft most often leaks: an interface looks finished",
   "keywords": [
-    "add",
-    "conditional",
-    "states",
-    "events",
-    "transitions",
-    "forbidden",
-    "guards",
-    "uibystate",
-    "recovery",
-    "a11y",
-    "reducedmotion",
-    "field",
-    "context",
+    "stateful",
+    "work",
     "loading",
-    "contract",
-    "proof",
-    "card"
+    "error",
+    "empty",
+    "disabled",
+    "multi-step",
+    "optimistic-update",
+    "flows",
+    "craft",
+    "often",
+    "leaks",
+    "interface",
+    "looks",
+    "finished"
   ],
-  "lastUpdated": "2026-06-28T12:40:11.255Z",
+  "lastUpdated": "2026-06-29T12:58:00.425Z",
   "specId": "004",
   "folderSlug": "interaction-state-matrix",
   "parentChain": [
@@ -32,6 +31,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

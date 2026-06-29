@@ -114,6 +114,37 @@ verdict: SHIP | FIX
 
 `interface` owns the detailed binary card. A single failed applicable box means the UI surface is not ready.
 
+### Interaction State Matrix
+
+This lane applies when the surface is stateful: interactive states beyond default, including loading/error/empty/disabled states, async fetch, form submit, multi-step flow, optimistic update, or state-transition motion. Non-stateful surfaces mark the lane N/A.
+
+```text
+INTERACTION STATE MATRIX:
+surface/component:
+trigger:
+states:
+- <state>: <one-line meaning>
+events:
+- <event>: <source state> -> <target state>
+transitions:
+- <transition>: defined target state | gap:
+forbidden:
+- <impossible state pair> -> prevented by:
+guards:
+- <transition>: <condition that must hold>
+uiByState:
+- <state>: <visible UI representation>
+recovery:
+- <error/terminal state>: <documented way out>
+a11y:
+- <state/transition>: focus target, async announcement, disabled semantics
+reducedMotion:
+- <state-transition motion>: reduced-motion alternative | N/A
+verdict: COMPLETE | GAPS
+```
+
+`interface` owns the binary pre-flight form for this lane. A stateful surface is not ready until states, events, transitions, forbidden combinations, guards, UI by state, recovery, accessibility, and reduced-motion handling are all modeled. Triggering and model completeness remain design judgment; the checkable floor is that the matrix is present, filled, and consistent wherever the lane applies.
+
 ### Audit Evidence
 
 ```text
@@ -143,6 +174,7 @@ dimensions:
 | Register/Dials | Any palette, layout, motion or copy decision before register and dials |
 | Foundations Contrast | Any UI build with changed foreground/background pairs |
 | Interface Pre-Flight | Any "done", "ready", "ship", "looks good" delivery claim |
+| Interaction State Matrix | Any stateful surface ship/ready/done claim before states, events, transitions, forbidden states, guards, UI by state, recovery, accessibility, and reduced-motion handling are modeled; non-stateful surfaces mark N/A |
 | Audit Evidence | Any audit, score, accessibility or release-readiness claim |
 | Dispatch Profile | Any small-model delegation where a profile exists |
 | Adoption | Any canonical skill change from lineage findings |

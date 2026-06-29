@@ -160,7 +160,30 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 11. VERDICT
+## 11. INTERACTION STATE MATRIX (stateful surfaces only; else N/A)
+
+Use this section when the surface has interactive states beyond default, including loading/error/empty/disabled states, async fetch, form submit, multi-step flow, optimistic update, or state-transition motion. If the surface is not stateful, mark N/A and skip the boxes. If it is stateful, every box below must pass.
+
+| Applicability | Mark |
+|---|---|
+| Stateful surface | [ ] |
+| N/A: no interactive states beyond default | [ ] |
+
+| Check | Pass |
+|---|---|
+| states: every distinct state is enumerated, none implicit | [ ] |
+| events: every trigger that moves the surface between states is named | [ ] |
+| transitions: every event maps to a defined target state, no undefined transition | [ ] |
+| forbidden: impossible state combinations are named and structurally prevented | [ ] |
+| guards: conditional transitions carry explicit validity, permission, or not-pending conditions | [ ] |
+| uiByState: every state has a visible UI representation, including hover/focus/active/disabled where applicable | [ ] |
+| recovery: every error or terminal state has a documented way out, no dead end | [ ] |
+| a11y: per-state focus targets, async announcements, and disabled semantics are covered | [ ] |
+| reducedMotion: state-transition motion has a reduced-motion alternative, or is marked N/A | [ ] |
+
+---
+
+## 12. VERDICT
 
 | Result | Mark |
 |---|---|

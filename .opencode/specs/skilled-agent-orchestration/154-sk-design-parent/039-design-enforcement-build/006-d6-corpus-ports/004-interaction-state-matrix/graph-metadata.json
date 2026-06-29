@@ -12,7 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "d6-r4 interaction state matrix",
-      "interaction state design build"
+      "interaction state design build",
+      "stateful ui proof lane design build",
+      "interaction state matrix plan",
+      "interaction state matrix tasks",
+      "interaction state matrix checklist",
+      "d6-r4 interaction state matrix implementation summary",
+      "stateful ui proof lane record",
+      "interaction state matrix mirrored homes summary"
     ],
     "key_topics": [
       "d6-r4",
@@ -21,19 +28,26 @@
       "matrix",
       "design",
       "build",
-      "add",
-      "conditional",
-      "states",
-      "events",
-      "transitions",
-      "forbidden"
+      "stateful",
+      "proof",
+      "lane",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/shared/context_loading_contract.md",
       ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
       ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -56,6 +70,48 @@
         "source": "derived"
       },
       {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "context_loaded_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -68,47 +124,97 @@
         "source": "derived"
       },
       {
-        "name": "Modeling Approach",
+        "name": "Problem Statement Stateful",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Port",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Interface Pre",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stateful",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interaction State Matrix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a conditional states/events/transitions/forbidden/guards/uiByState/recovery/a11y/reducedMotion field to the context loading contract + proof card + interface preflight card.",
+    "causal_summary": "Stateful UI work — loading, error, empty, disabled, multi-step, optimistic-update flows — is where craft most often leaks: an interface looks finished at the happy path and falls apart at the error, empty, or pending state",
     "created_at": "2026-06-28T12:40:11.378Z",
-    "last_save_at": "2026-06-28T12:40:11.378Z",
+    "last_save_at": "2026-06-29T12:58:00.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:641ca742b2f671ec58a579df2cb09ed3d87e8bd48a1162dfe0c12e7804ab047b",
+    "source_fingerprint": "sha256:8ef4902bd1804fa5e45d201bb1efa92e37b91eaf24c9d09c359c447fd32b260a",
     "source_doc_hashes": {
-      "spec.md": "ade29e311e77716019f8389a776413d2c25f53bc8211d25185f8bf2a9719009b"
+      "spec.md": "94b72f1e808b4c13d24d66ce408e911e70ef319899b7393259fda4ed90ddc756",
+      "plan.md": "93e4d188f234bca94167d23372f85f9bc014a4fd3be11226c8afbe314529f4b8",
+      "tasks.md": "e314f6e19a1d9e72573d1185e5c9535aaa73d6818c5c1cb2af070d782cad6640",
+      "checklist.md": "d4eb5c7ca69355852f2b3a60b89a21e87336ead21217287927fa9235b4b110e1",
+      "implementation-summary.md": "46cc3c20df1db36a5942d0922a5a78de0eef886c7e2b8ba5bd7ffe5abbc871a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -85,5 +85,23 @@ A witness proves a loaded rule had an observable effect on one named output choi
 
 ---
 
+## 8. INTERACTION STATE MATRIX
+
+Fill this section only when the surface is stateful: interactive states beyond default, including loading/error/empty/disabled states, async fetch, form submit, multi-step flow, optimistic update, or state-transition motion. For non-stateful surfaces, mark every row N/A. This section is carried by the proof-card discipline; the binary gate form lives on the interface pre-flight card.
+
+| Matrix field | Status | Evidence or gap |
+|---|---|---|
+| states | [ ] pass [ ] fail [ ] N/A | `__________` |
+| events | [ ] pass [ ] fail [ ] N/A | `__________` |
+| transitions | [ ] pass [ ] fail [ ] N/A | `__________` |
+| forbidden | [ ] pass [ ] fail [ ] N/A | `__________` |
+| guards | [ ] pass [ ] fail [ ] N/A | `__________` |
+| uiByState | [ ] pass [ ] fail [ ] N/A | `__________` |
+| recovery | [ ] pass [ ] fail [ ] N/A | `__________` |
+| a11y | [ ] pass [ ] fail [ ] N/A | `__________` |
+| reducedMotion | [ ] pass [ ] fail [ ] N/A | `__________` |
+
+---
+
 Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY. Add `--require-source-proof` to also verify cited source files by raw-byte hash and literal echo.
 Add `--require-application-witness` to also require a well-formed `loaded-determinative` witness naming both the output choice and the loaded rule source.
