@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d5-r4 design router intent lane",
-      "design intent lane design build"
+      "design intent lane design build",
+      "design router intent lane plan",
+      "DESIGN lane cli provider dictionary",
+      "cross-cli design intent routing",
+      "design router intent lane tasks",
+      "DESIGN lane cli tasks",
+      "cross-cli design routing tasks",
+      "design router intent lane checklist",
+      "DESIGN lane verification",
+      "cross-cli design routing checklist",
+      "d5-r4 implementation summary"
     ],
     "key_topics": [
       "d5-r4",
@@ -21,26 +31,30 @@
       "intent",
       "lane",
       "build",
-      "add",
-      "keywords",
-      "target",
-      "pointing",
-      "skill-local",
-      "contract"
+      "plan",
+      "cli",
+      "provider",
+      "dictionary",
+      "cross-cli",
+      "routing"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
-      "spec.md"
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "source": "derived"
       },
       {
@@ -50,53 +64,157 @@
         "source": "derived"
       },
       {
-        "name": "Resource Loading",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Design Standards Loading",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "parallel",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Resolve",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Compose",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a DESIGN intent + keywords + RESOURCE_MAP target pointing at the skill-local design contract in each of the three cli-* provider dictionaries.",
+    "causal_summary": "The deterministic cli- router lowercases a prompt, boundary-matches keywords, scores intents, and conditional-loads `RESOURCEMAP[intent]`",
     "created_at": "2026-06-28T12:40:07.543Z",
-    "last_save_at": "2026-06-28T12:40:07.543Z",
+    "last_save_at": "2026-06-29T08:13:29.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c570be46844e8adb74f1f18fc5d6a076f4968c4cbd3d31e6031ce39113740c5",
+    "source_fingerprint": "sha256:284528433af9a5f5d31500e4490a980414d970623d9afaf2568dde586a4954ce",
     "source_doc_hashes": {
-      "spec.md": "319d673f42b8a2ff2bafa03fa9ef94008dcaca74c578ec243ff07f9e0542c123"
+      "spec.md": "3ffa90a52319b568ab5bd3408f567fb82b06bc950ab6ddbf2f56bfd1c48aed5d",
+      "plan.md": "485feec218c0867a6de17b760cf6d4f2f35cb78b3464fa779cfbefd75fceb6b6",
+      "tasks.md": "dd3aac4dd17c66c5ce23c5b6dbd4a348d142ca776efb0d5dde13865ebe6d21cc",
+      "checklist.md": "959572dd5f8b749a402ffd567497d9bcbe53971313456ae33096adac87911f7b",
+      "implementation-summary.md": "94cee172a2e6eb477b7dad6f2913009138402a847ef1e40a78768f7736554dd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

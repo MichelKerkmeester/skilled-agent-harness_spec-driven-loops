@@ -107,6 +107,10 @@ INTENT_SIGNALS = {
     "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "agent", "background", "parallel", "offload", "claude agent"]},
     "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "claude prompt"]},
     "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "continue", "resume"]},
+    # WHY: DESIGN is an intent signal only. The durable sk-design loading contract lives in the
+    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
+    # limited to same-skill markdown paths.
+    "DESIGN":            {"weight": 4, "keywords": ["sk-design", "interface design", "frontend design", "visual design", "redesign the ui", "design foundations", "design tokens", "motion design", "micro-interactions", "design audit", "ui critique", "extract design system", "generate design.md"]},
 }
 
 RESOURCE_MAP = {

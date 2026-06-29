@@ -121,6 +121,10 @@ INTENT_SIGNALS = {
     "CROSS_REPO":         {"weight": 3, "keywords": ["cross-repo", "different repo", "--dir", "another repository", "remote opencode"]},
     "TEMPLATES":          {"weight": 3, "keywords": ["template", "prompt", "how to ask", "opencode prompt", "minimax", "MiniMax-M3", "tidd-ec", "prompt framework"]},
     "PATTERNS":           {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session continue", "resume session"]},
+    # WHY: DESIGN is an intent signal only. The durable sk-design loading contract lives in the
+    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
+    # limited to same-skill markdown paths.
+    "DESIGN":             {"weight": 4, "keywords": ["sk-design", "interface design", "frontend design", "visual design", "redesign the ui", "design foundations", "design tokens", "motion design", "micro-interactions", "design audit", "ui critique", "extract design system", "generate design.md"]},
 }
 
 RESOURCE_MAP = {

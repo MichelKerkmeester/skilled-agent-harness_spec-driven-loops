@@ -106,6 +106,10 @@ INTENT_SIGNALS = {
     "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "codex prompt"]},
     "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "resume", "fork"]},
     "HOOKS":             {"weight": 4, "keywords": ["hook", "hooks", "advisor brief", "startup context", "userpromptsubmit", "sessionstart", "codex_hooks"]},
+    # WHY: DESIGN is an intent signal only. The durable sk-design loading contract lives in the
+    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
+    # limited to same-skill markdown paths.
+    "DESIGN":            {"weight": 4, "keywords": ["sk-design", "interface design", "frontend design", "visual design", "redesign the ui", "design foundations", "design tokens", "motion design", "micro-interactions", "design audit", "ui critique", "extract design system", "generate design.md"]},
 }
 
 RESOURCE_MAP = {
