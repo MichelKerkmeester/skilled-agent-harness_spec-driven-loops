@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.0.12
+version: 1.14.0.13
 ---
 
 # deep-research: Feature Catalog
@@ -16,9 +16,9 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 6 features | `.opencode/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives |
-| State management | 3 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy surfaces |
-| Convergence | 4 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks |
+| Loop lifecycle | 9 features | `.opencode/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
+| State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
+| Convergence | 5 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks, minimum-iteration floor |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
 
 ---
@@ -131,6 +131,54 @@ See [`01--loop-lifecycle/fanout-dispatch.md`](01--loop-lifecycle/fanout-dispatch
 
 ---
 
+### Run-now control
+
+#### Description
+
+Consumes a one-shot sentinel to force the next auto-mode iteration out of cadence.
+
+#### How It Works
+
+`step_run_now_check` detects `{artifact_dir}/.deep-research-run-now` before dispatch, emits `run_now_requested`, checks pause precedence, and consumes the sentinel atomically when accepted. If the loop is paused, it emits `run_now_rejected` and leaves the sentinel present; if the operator recreates the sentinel mid-run, `step_run_now_restore_check` records `run_now_restored` for the next loop boundary.
+
+#### Source Files
+
+See [`01--loop-lifecycle/run-now-control.md`](01--loop-lifecycle/run-now-control.md) for full implementation and validation file listings.
+
+---
+
+### Per-iteration memory upsert
+
+#### Description
+
+Indexes completed iteration evidence before the next prompt render.
+
+#### How It Works
+
+After iteration validation, reducer refresh, and graph upsert, the auto workflow calls `memory_save()` on the canonical iteration evidence file. It then refreshes focused memory context before the next dispatch prompt, treating MCP errors and timeouts as advisory so an indexing problem does not kill the loop.
+
+#### Source Files
+
+See [`01--loop-lifecycle/per-iteration-memory-upsert.md`](01--loop-lifecycle/per-iteration-memory-upsert.md) for full implementation and validation file listings.
+
+---
+
+### Loop-wide dry-run
+
+#### Description
+
+Previews confirm-mode work while halting before mutation boundaries.
+
+#### How It Works
+
+`--dry-run` is normalized as a workflow input, not a third execution mode. The confirm YAML can perform safe setup, focus selection, prompt rendering, and convergence reads, then emits `dry_run_halt` preview events before dispatch, state mutation, reducer refresh, child-spawn, memory, and other persistent side effects.
+
+#### Source Files
+
+See [`01--loop-lifecycle/loop-wide-dry-run.md`](01--loop-lifecycle/loop-wide-dry-run.md) for full implementation and validation file listings.
+
+---
+
 ## 3. STATE MANAGEMENT
 
 These entries describe the packet files that carry continuity across fresh-context iterations. Strategy tracking also covers the reducer-owned findings registry that stays in sync with the iteration trail.
@@ -183,6 +231,86 @@ See [`02--state-management/config-management.md`](02--state-management/config-ma
 
 ---
 
+### Injection inbox provenance
+
+#### Description
+
+Adds `research/inbox.jsonl` as the canonical late-question injection surface.
+
+#### How It Works
+
+The reducer reads append-only inbox records on every reduce step and carries `origin`, `source`, `injectedAtIteration`, and related provenance into the registry, strategy, and dashboard. Direct markdown edits to the key-question block remain compatible but are attributed as `legacy-import` so operators can distinguish supported injections from old-style edits.
+
+#### Source Files
+
+See [`02--state-management/injection-inbox-provenance.md`](02--state-management/injection-inbox-provenance.md) for full implementation and test file listings.
+
+---
+
+### Question conflict ownership
+
+#### Description
+
+Records inbox and registry question disagreements as explicit conflict events.
+
+#### How It Works
+
+Inbox rows are immutable input, the registry is canonical question state, and the reducer is the sole renderer of generated key-question markdown. When an injected row disagrees with an existing registry question, the reducer keeps the registry value, stores an operator-decision record, and surfaces `question_conflict` with both inbox and registry values.
+
+#### Source Files
+
+See [`02--state-management/question-conflict-ownership.md`](02--state-management/question-conflict-ownership.md) for full implementation and test file listings.
+
+---
+
+### Rejected-pattern cache
+
+#### Description
+
+Suppresses rejected candidates before they re-enter next-focus or recovery selection.
+
+#### How It Works
+
+JSONL rejection events derive a bounded active cache with exact and category-compatible fuzzy matching. The reducer exposes rejected patterns and suppressed candidates, while the auto workflow checks those surfaces before selecting next-focus, recovery, or ideas-backed candidates. Removal and reset events can re-admit a previously rejected direction.
+
+#### Source Files
+
+See [`02--state-management/rejected-pattern-cache.md`](02--state-management/rejected-pattern-cache.md) for full implementation and test file listings.
+
+---
+
+### Ideas backlog lifecycle
+
+#### Description
+
+Promotes recurring ideas through reducer-owned threshold and ranking rules.
+
+#### How It Works
+
+Leaf agents may emit `idea_observed` only when idea capture is explicitly allowed. The reducer groups observations, promotes ideas after `minIdeaObservations`, ranks promoted ideas, and applies rejected-pattern suppression so rejected ideas do not return as future focus candidates until cleared.
+
+#### Source Files
+
+See [`02--state-management/ideas-backlog-lifecycle.md`](02--state-management/ideas-backlog-lifecycle.md) for full implementation and test file listings.
+
+---
+
+### Dashboard sparkline trend
+
+#### Description
+
+Renders dashboard sparklines for novelty and score history.
+
+#### How It Works
+
+`renderSparkline()` turns reducer history into compact trend lines in the dashboard's `## 5. TREND` section. The reducer renders separate new-information and score sparklines and can emit `trend_flatline` as advisory evidence when recent history stops moving.
+
+#### Source Files
+
+See [`02--state-management/dashboard-sparkline-trend.md`](02--state-management/dashboard-sparkline-trend.md) for full implementation and test file listings.
+
+---
+
 ## 4. CONVERGENCE
 
 These entries cover the stop logic, recovery logic, guard rails, and graph-aware extension that control when research can end.
@@ -200,6 +328,22 @@ The live algorithm checks hard stops first, then computes a weighted vote from r
 #### Source Files
 
 See [`03--convergence/three-signal-model.md`](03--convergence/three-signal-model.md) for full implementation and test file listings.
+
+---
+
+### Anti-convergence floor
+
+#### Description
+
+Blocks convergence STOP until the configured minimum iteration floor clears.
+
+#### How It Works
+
+The config template defines the anti-convergence defaults and the auto workflow reads them before accepting a convergence STOP. A STOP candidate is overridden while `iterationCount < minIterations`; when the floor clears, the workflow emits `min_iterations_guard_pass`. `convergenceMode: "off"` disables convergence STOP while preserving hard caps, pause, and halt behavior.
+
+#### Source Files
+
+See [`03--convergence/anti-convergence-floor.md`](03--convergence/anti-convergence-floor.md) for full implementation and test file listings.
 
 ---
 

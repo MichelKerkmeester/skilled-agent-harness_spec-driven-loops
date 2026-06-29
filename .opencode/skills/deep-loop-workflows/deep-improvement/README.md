@@ -9,7 +9,7 @@ trigger_phrases:
   - "model-benchmark mode"
   - "skill-benchmark mode"
   - "non-dev-ai-system mode"
-version: 1.17.0.37
+version: 1.17.0.38
 ---
 
 # deep-improvement
@@ -74,7 +74,7 @@ Each returns JSON with a five-dimension breakdown and a recommendation.
 
 ### The Proposal-First Lifecycle
 
-The loop never touches the canonical file until you tell it to. It copies the target, scans its integration surface, derives a dynamic profile from the agent's own rules, writes one bounded candidate to a packet-local directory, scores it and records the evidence. Promotion is a separate guarded step that demands score evidence, benchmark status, repeatability, boundary compliance and explicit operator approval. If you promote and regret it, the rollback helper restores the pre-promotion backup and records a post-rollback dimensional snapshot for comparison.
+The loop never touches the canonical file until you tell it to. It copies the target, scans its integration surface, derives a dynamic profile from the agent's own rules, writes one bounded candidate to a packet-local directory, scores it and records the evidence. Promotion is a separate guarded step that demands score evidence, benchmark status, repeatability, boundary compliance and explicit operator approval. The current promotion helper also supports an accept/ship split: accept snapshots candidate evidence without mutating the canonical target, ship writes only the accepted snapshot, and rollback restores the pre-acceptance backup.
 
 ### The Integration Scan
 
@@ -109,7 +109,7 @@ All four lanes share the same candidate, dispatcher and scorer seams.
 | C: Skill-Benchmark | `/deep:skill-benchmark` | A skill's routing, discovery, efficiency and usefulness |
 | D: Non-Dev-AI-System Refine | `/deep:ai-system-improvement` | An AI-system packaging benchmarked, independently re-graded and auto-refined behind guardrails |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane D runs through `loop-host.cjs --mode=non-dev-ai-system-refine`; the guarded loop itself is packaging-owned (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it, with dry-run as the default. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane D runs through `loop-host.cjs --mode=non-dev-ai-system-refine`; the guarded loop itself is packaging-owned (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it, with dry-run as the default. Lane D also has a command-level `--self-target <profile>` guard for deep-loop-runtime-style self-improvement profiles, validating frozen surfaces and allowed technique-doc diffs before compiling to the existing adapter invocation. Lane A is the default path when no mode flag is set.
 
 ---
 

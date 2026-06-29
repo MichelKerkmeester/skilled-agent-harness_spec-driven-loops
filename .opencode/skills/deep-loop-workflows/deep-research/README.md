@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.0.45
+version: 1.14.0.46
 ---
 
 # deep-research
@@ -75,17 +75,23 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
+Lifecycle controls now include [run-now control](./feature_catalog/01--loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature_catalog/01--loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature_catalog/01--loop-lifecycle/loop-wide-dry-run.md).
+
 ### Externalized State
 
 All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory. The config file (`deep-research-config.json`) holds settings. The append-only JSONL log (`deep-research-state.jsonl`) records every iteration, event and convergence signal. The strategy file (`deep-research-strategy.md`) tracks focus areas, what worked, what failed and exhausted approaches. The findings registry (`deep-research-findings-registry.json`) indexes every discovery. The dashboard (`deep-research-dashboard.md`) shows convergence trends. The reducer machine-owns the strategy sections, the registry and the dashboard. The agent writes only iteration files and JSONL records. The workflow owns the canonical `research.md`.
 
 Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
 
+Reducer-owned state also covers [injection inbox provenance](./feature_catalog/02--state-management/injection-inbox-provenance.md), [question conflict ownership](./feature_catalog/02--state-management/question-conflict-ownership.md), [rejected-pattern cache](./feature_catalog/02--state-management/rejected-pattern-cache.md), [ideas backlog lifecycle](./feature_catalog/02--state-management/ideas-backlog-lifecycle.md), and [dashboard sparkline trend](./feature_catalog/02--state-management/dashboard-sparkline-trend.md).
+
 ### Convergence Detection
 
 Convergence is a composite stop signal driven by the new-information ratio per iteration. The loop continues as long as iterations keep surfacing new findings. It stops when the ratio falls below the convergence threshold (default 0.05) for long enough. A quality gate also checks source diversity, focus alignment and weak-source prevention before accepting a stop. A stuck-recovery path handles iterations that add nothing, escalating after the stuck threshold (default 3) is reached.
 
 The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence_signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` and `deep-ai-council` each use a different default tuned to their domain.
+
+The minimum-iteration behavior is documented as the [anti-convergence floor](./feature_catalog/03--convergence/anti-convergence-floor.md).
 
 ### Progressive Synthesis
 

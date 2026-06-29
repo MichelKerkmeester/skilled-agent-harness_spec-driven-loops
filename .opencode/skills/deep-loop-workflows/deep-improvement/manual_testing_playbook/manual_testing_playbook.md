@@ -1,7 +1,7 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
 description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark, skill-benchmark and non-dev-ai-system lanes."
-version: 1.17.0.42
+version: 1.17.0.43
 ---
 
 # deep-improvement Manual Testing Playbook
@@ -107,8 +107,8 @@ Scenario verdict:
 Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
-2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 (model-benchmark), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement per-mode subtotal is 48 numbered scenarios (`IS-001..SB-048`, Lanes A/B/C). The Lane D `PR-001` scenario under `11--non-dev-ai-system/` is packaging-owned and tracked separately, so the on-disk count is 49 scenario files.
+2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement numbered subtotal is 50 scenarios (`IS-001..SB-048` plus MB-049 and E2E-050). Lane D `PR-*` scenarios and the reviewer regression `MB-R01` scenario are tracked separately.
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -366,7 +366,7 @@ Expected signals: Reducer completes without errors, exit code 0; Dashboard gener
 
 ## 12. END-TO-END LOOP
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### E2E-017 | Full Pipeline Loop with Debug Target
 
@@ -432,6 +432,19 @@ Expected signals: Candidate lineage graph created with per-session node entries;
 
 #### Test Execution
 > **Feature File:** [E2E-021](06--end-to-end-loop/candidate-lineage.md)
+
+### E2E-050 | Two-Phase Promotion and Rollback
+
+#### Description
+`promote-candidate.cjs --phase=accept` snapshots candidate evidence without mutating the target; `--phase=ship` ships the accepted snapshot; `rollback-candidate.cjs` restores the pre-acceptance backup; ship-time drift emits `promotion_blocked_branch_preserved`.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate accept/ship promotion split, rollback recovery, and branch-preserved ship failure. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: accept exits 0 and leaves the target unchanged; ship exits 0 and writes the accepted snapshot; rollback exits 0 and restores the original target; a drifted ship exits 1, restores the pre-acceptance target, and writes a `promotion_blocked_branch_preserved` event.
+
+#### Test Execution
+> **Feature File:** [E2E-050](06--end-to-end-loop/two-phase-promotion-and-rollback.md)
 
 ---
 
@@ -681,7 +694,7 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 
 ## 15. MODEL-BENCHMARK MODE
 
-This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
+This category covers 7 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, the criteria-exec hardening gate, and score-delta benchmark gates. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
 
 ### MB-038 | Mode Switch Routing via loop-host
 
@@ -760,6 +773,19 @@ Expected signals: with `SPECKIT_REVIEWER_BENCHMARKS=1`, `reviewer-scorer.cjs --p
 
 #### Test Execution
 > **Feature File:** [MB-R01](09--model-benchmark-mode/reviewer-prompt-regression-fixtures.md)
+
+### MB-049 | Score-Delta Benchmark Gates
+
+#### Description
+`run-benchmark.cjs` emits `outcomeScoreDelta` plus helped/hurt `fixtureDeltas[]`, `reduce-state.cjs` summarizes the deltas, and `promote-candidate.cjs` blocks regressions or unreviewed hurt fixtures.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that model-benchmark score-delta evidence is emitted, reduced, and enforced by promotion gates. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: `report.json` contains `outcomeScoreDelta`, `fixtureDeltas[]`, and `fixtureDeltaSummary`; the state log carries the same fields; the dashboard contains helped/hurt counts; promotion fails on hurt fixtures without `--allow-hurt-fixtures` and succeeds when that override is supplied.
+
+#### Test Execution
+> **Feature File:** [MB-049](09--model-benchmark-mode/score-delta-benchmark-gates.md)
 
 ---
 
@@ -847,7 +873,39 @@ Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` 
 
 ---
 
-## 17. AUTOMATED TEST CROSS-REFERENCE
+## 17. NON-DEV-AI-SYSTEM MODE
+
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane D (Non-Dev-AI-System): the packaging-owned guarded refine loop, synthetic-deficit promotion evidence, red-team gauntlet behavior, and the deep-loop-runtime self-target profile guard. See `SKILL.md` "Lane D: Non-Dev-AI-System Refine" and `references/non_dev_ai_system/loop_contract.md` for the source-of-truth contract.
+
+### PR-001 | Synthetic-Deficit Promotion And Red-Team Gauntlet
+
+#### Description
+`loop-host --mode=non-dev-ai-system-refine` reaches the packaging-owned `benchmark/_loop/loop.py`; the dispatch-free gauntlet passes its attack battery; a synthetic-deficit live run journals `promote_accept` in an isolated worktree.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, verify Lane D dry-run conformance, the dispatch-free gauntlet, and the synthetic-deficit promotion test. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: dry-run exits 0 with gap analysis and zero dispatches; gauntlet exits 0 with `GAUNTLET: 10/10 passed`; live run exits 0 with `event: "promote_accept"` in the loop journal and held-out independent grade at or above baseline.
+
+#### Test Execution
+> **Feature File:** [PR-001](11--non-dev-ai-system/synthetic-deficit-and-gauntlet.md)
+
+### PR-002 | Self-Target Packaging Profile
+
+#### Description
+The deep-loop-runtime self-target profile freezes scorer and harness surfaces, allows only technique-doc edits, keeps self-target schema fields optional for legacy packagings, and documents the command-level `--self-target` guard.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate the Lane D self-target packaging profile for deep-loop-runtime. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: editable docs exist and are allowed; frozen surfaces exist and are not allowed; schema fields exist but are not required; command and contract docs contain the dry-run default, clean-tree live guard, single-writer lock, explicit `--parallel`, and non-forwarding to `loop-host.cjs`.
+
+#### Test Execution
+> **Feature File:** [PR-002](11--non-dev-ai-system/self-target-packaging-profile.md)
+
+---
+
+## 18. AUTOMATED TEST CROSS-REFERENCE
 
 The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
 
@@ -858,11 +916,15 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Benchmark delta emission and ledger coverage used by MB-049 |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Benchmark-mode promotion gates, accept/ship split, rollback, and preserved-branch events used by MB-049 and E2E-050 |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Lane mix and benchmark delta reducer summaries used by MB-049 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
+| `.opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts` | Lane D self-target profile, schema, command, and contract coverage used by PR-002 |
 
 ---
 
-## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 
@@ -873,9 +935,10 @@ The feature catalog root is `.opencode/skills/deep-loop-workflows/deep-improveme
 | 5-Dimension Scorer | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/03--scoring-system/five-dimension-rubric.md`, `03-deterministic-scoring.md` |
 | Benchmark Integration | No one-to-one catalog file; validate against the script anchors in the per-feature files and the scoring-system catalog root. |
 | Reducer Dimensions | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/03--scoring-system/dimensional-progress.md` |
-| End-to-End Loop | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/01--evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
+| End-to-End Loop | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/01--evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md`, `two-phase-promotion-and-rollback.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
-| Model-Benchmark Mode | No one-to-one catalog file; validate against the Lane B contract in `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
+| Model-Benchmark Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
 | Skill-Benchmark Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
+| Non-Dev-AI-System Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md`, `self-target-packaging-profile.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

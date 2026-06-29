@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.0.20
+version: 1.14.0.21
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 44 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (35 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 53 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (44 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -83,7 +83,7 @@ This playbook provides 44 deterministic scenarios across 8 categories validating
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-001 | Auto mode deep-research kickoff
 
@@ -123,6 +123,19 @@ Expected signals: The command explicitly names topic, spec folder, execution mod
 
 #### Test Execution
 > **Feature File:** [DR-003](01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+
+### DR-063 | Loop-wide dry-run
+
+#### Description
+Verify that `--dry-run` performs safe preflight reads and halts before dispatch, state mutation, reducer refresh, or child spawn.
+
+#### Scenario Contract
+Prompt summary: Validate deep-research dry-run flag parsing and confirm-YAML halt boundaries.
+
+Expected signals: `--dry-run` normalizes to boolean input, non-mutating setup/read steps can run, and `dry_run_halt` events exist for dispatch, state-mutation, reducer-refresh, and child-spawn boundaries.
+
+#### Test Execution
+> **Feature File:** [DR-063](01--entry-points-and-modes/loop-wide-dry-run.md)
 
 ---
 
@@ -186,7 +199,7 @@ Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but 
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 13 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-007 | Iteration reads state before research
 
@@ -292,11 +305,76 @@ Expected signals: `graphEvents` documented as iteration-record input for graph-a
 #### Test Execution
 > **Feature File:** [DR-029](03--iteration-execution-and-state-discipline/graph-events-emission.md)
 
+### DR-056 | Injection inbox provenance
+
+#### Description
+Verify that late-question injections use `research/inbox.jsonl` and preserve question provenance.
+
+#### Scenario Contract
+Prompt summary: Validate the deep-research inbox provenance path from strategy docs through reducer output and tests.
+
+Expected signals: `inbox.jsonl` schema lists id, text, source, origin, injectedAtIteration, and promotedQuestionId; reducer reads the inbox; direct edits are treated as `legacy-import`.
+
+#### Test Execution
+> **Feature File:** [DR-056](03--iteration-execution-and-state-discipline/injection-inbox-provenance.md)
+
+### DR-057 | Question conflict ownership
+
+#### Description
+Verify that inbox and registry question disagreements emit conflict events instead of overwriting strategy markdown.
+
+#### Scenario Contract
+Prompt summary: Validate the deep-research question conflict model across reducer, strategy docs, state registry docs, YAML, and tests.
+
+Expected signals: `question_conflict` events include `inboxValue`, `registryValue`, and `operatorDecision`; unresolved conflicts default to `needs_decision`.
+
+#### Test Execution
+> **Feature File:** [DR-057](03--iteration-execution-and-state-discipline/question-conflict-ownership.md)
+
+### DR-058 | Rejected-pattern cache
+
+#### Description
+Verify that rejected ideas and patterns are suppressed from future focus candidates until removed or reset.
+
+#### Scenario Contract
+Prompt summary: Validate rejected-pattern suppression across JSONL events, loop protocol, reducer filtering, YAML candidate checks, and tests.
+
+Expected signals: Rejected cache is bounded to 100 entries, exact and category-compatible fuzzy matching are supported, and removal or reset re-admits candidates.
+
+#### Test Execution
+> **Feature File:** [DR-058](03--iteration-execution-and-state-discipline/rejected-pattern-cache.md)
+
+### DR-059 | Ideas backlog lifecycle
+
+#### Description
+Verify that leaf agents only observe ideas and the reducer owns promotion, ranking, and rejection suppression.
+
+#### Scenario Contract
+Prompt summary: Validate the ideas backlog lifecycle across agent rules, JSONL docs, reducer promotion, YAML checks, and tests.
+
+Expected signals: Leaf agents may emit `idea_observed` only, `minIdeaObservations` defaults to 2, reducer emits idempotent `idea_promoted`, and `idea_rejected` suppresses promoted ideas.
+
+#### Test Execution
+> **Feature File:** [DR-059](03--iteration-execution-and-state-discipline/ideas-backlog-lifecycle.md)
+
+### DR-060 | Dashboard sparkline trend
+
+#### Description
+Verify that the dashboard renders new-information and score history as sparklines with flatline advisory evidence.
+
+#### Scenario Contract
+Prompt summary: Validate the deep-research dashboard sparkline trend across reducer output, dashboard assets, and tests.
+
+Expected signals: `renderSparkline()` exists, dashboard output includes `## 5. TREND`, newInfoRatio and score sparklines are rendered, and `trend_flatline` is advisory.
+
+#### Test Execution
+> **Feature File:** [DR-060](03--iteration-execution-and-state-discipline/dashboard-sparkline-trend.md)
+
 ---
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 13 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 14 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-011 | Stop on max iterations
 
@@ -336,6 +414,19 @@ Expected signals: Three named signals, weights of 0.30/0.35/0.35, graceful degra
 
 #### Test Execution
 > **Feature File:** [DR-013](04--convergence-and-recovery/composite-convergence-stop-behavior.md)
+
+### DR-055 | Anti-convergence floor
+
+#### Description
+Verify that convergence STOP is blocked until the configured minimum iteration floor clears.
+
+#### Scenario Contract
+Prompt summary: Validate the deep-research minIterations floor and convergenceMode behavior against config, YAML, and tests.
+
+Expected signals: `minIterations` defaults to 3, `convergenceMode` defaults to `default`, early STOP uses `minIterationsNotReached`, and `min_iterations_guard_pass` is emitted when the floor clears.
+
+#### Test Execution
+> **Feature File:** [DR-055](04--convergence-and-recovery/anti-convergence-floor.md)
 
 ### DR-014 | Stuck recovery widens focus and continues
 
@@ -471,7 +562,7 @@ Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` 
 
 ## 11. PAUSE, RESUME, AND FAULT TOLERANCE
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-015 | Pause sentinel halts between iterations
 
@@ -525,11 +616,24 @@ Expected signals: The reconstruction algorithm scans iteration files, extracts a
 #### Test Execution
 > **Feature File:** [DR-018](05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md)
 
+### DR-061 | Run-now control
+
+#### Description
+Verify that the `.deep-research-run-now` sentinel triggers one immediate iteration with pause precedence and audit events.
+
+#### Scenario Contract
+Prompt summary: Validate the run-now sentinel lifecycle against auto YAML and its unit tests.
+
+Expected signals: `run_now_requested`, `run_now_accepted`, `run_now_rejected`, and `run_now_restored` events are documented or tested; accepted runs consume the sentinel before dispatch.
+
+#### Test Execution
+> **Feature File:** [DR-061](05--pause-resume-and-fault-tolerance/run-now-control.md)
+
 ---
 
 ## 12. SYNTHESIS, SAVE, AND GUARDRAILS
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-019 | Final synthesis plus memory save and guardrail behavior
 
@@ -569,6 +673,19 @@ Expected signals: Default run produces `research/resource-map.md` with category 
 
 #### Test Execution
 > **Feature File:** [DR-035](06--synthesis-save-and-guardrails/resource-map-emission.md)
+
+### DR-062 | Per-iteration memory upsert
+
+#### Description
+Verify that each completed iteration is upserted to memory and refreshed into the next prompt context.
+
+#### Scenario Contract
+Prompt summary: Validate per-iteration memory upsert ordering and non-fatal memory context refresh behavior.
+
+Expected signals: `step_memory_upsert_iteration` runs before `step_refresh_memory_context`, both run before result evaluation, and MCP errors are advisory.
+
+#### Test Execution
+> **Feature File:** [DR-062](06--synthesis-save-and-guardrails/per-iteration-memory-upsert.md)
 
 ---
 

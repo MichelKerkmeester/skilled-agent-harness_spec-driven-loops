@@ -1,7 +1,7 @@
 ---
 title: "deep-improvement: Feature Catalog"
 description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, skill-benchmark mode, and non-dev-ai-system mode surfaces that currently ship in deep-improvement."
-version: 1.17.0.28
+version: 1.17.0.29
 ---
 
 # deep-improvement: Feature Catalog
@@ -28,12 +28,12 @@ The skill runs four lanes through one agent. Each category and feature below is 
 
 | Category | Coverage | Lane | Primary Runtime Surface |
 |---|---:|---|---|
-| Evaluation loop | 6 features | Lane A | `.opencode/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
+| Evaluation loop | 7 features | Lane A | `.opencode/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.opencode/agents/deep-improvement.md` |
 | Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
-| Model-benchmark mode | 4 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
+| Model-benchmark mode | 5 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 | Skill-benchmark mode | 6 features | Lane C | `loop-host.cjs --mode=skill-benchmark`, `scripts/skill-benchmark/*.cjs` |
-| Non-dev-ai-system mode | 1 feature | Lane D | `loop-host.cjs --mode=non-dev-ai-system-refine`, `<packaging-root>/benchmark/_loop/loop.py`, `scripts/non-dev-ai-system/init_packaging.py` |
+| Non-dev-ai-system mode | 2 features | Lane D | `loop-host.cjs --mode=non-dev-ai-system-refine`, `<packaging-root>/benchmark/_loop/loop.py`, `scripts/non-dev-ai-system/init_packaging.py` |
 
 ---
 
@@ -136,6 +136,22 @@ Two stop models are live. `reduce-state.cjs` can stop when all tracked dimension
 #### Source Files
 
 See [`01--evaluation-loop/plateau-detection.md`](01--evaluation-loop/plateau-detection.md) for full implementation and validation file listings.
+
+---
+
+### Two-phase promotion and rollback
+
+#### Description
+
+Splits promotion into accept and ship phases and adds explicit rollback from the accepted-state backup.
+
+#### How It Works
+
+`promote-candidate.cjs --phase=accept` verifies gates, snapshots the canonical preimage and candidate, and leaves the canonical target unchanged. `--phase=ship` reloads the accepted-state file, verifies the target still matches the pre-acceptance hash, and writes the accepted snapshot. `rollback-candidate.cjs` restores the pre-acceptance backup, while ship failures under the default preservation policy emit `promotion_blocked_branch_preserved`.
+
+#### Source Files
+
+See [`01--evaluation-loop/two-phase-promotion-and-rollback.md`](01--evaluation-loop/two-phase-promotion-and-rollback.md) for full implementation and validation file listings.
 
 ---
 
@@ -333,6 +349,22 @@ See [`04--model-benchmark-mode/mode-records-and-gates.md`](04--model-benchmark-m
 
 ---
 
+### Score-delta benchmark gates
+
+#### Description
+
+Turns benchmark reports into quality-delta evidence and blocks promotion on regressions or unreviewed hurt fixtures.
+
+#### How It Works
+
+`run-benchmark.cjs` compares each fixture score with its baseline and emits `outcomeScoreDelta`, `fixtureDeltas[]`, and `fixtureDeltaSummary` on both the report and `benchmark_run` ledger row. `reduce-state.cjs` summarizes helped, hurt, unchanged, and missing-baseline counts. `promote-candidate.cjs` rejects negative deltas, missing baselines without `--no-baseline-ok`, and hurt fixtures without `--allow-hurt-fixtures`.
+
+#### Source Files
+
+See [`04--model-benchmark-mode/score-delta-benchmark-gates.md`](04--model-benchmark-mode/score-delta-benchmark-gates.md) for full implementation and validation file listings.
+
+---
+
 ## 6. SKILL-BENCHMARK MODE
 
 **Lane:** Lane C (skill-benchmark)
@@ -444,3 +476,17 @@ Runs the packaging-owned 7-phase guarded loop (preflight gates, N-sample benchma
 #### Source Files
 
 See [`06--non-dev-ai-system/guarded-refine-loop.md`](06--non-dev-ai-system/guarded-refine-loop.md) for full implementation and validation file listings.
+
+### Self-target packaging profile
+
+#### Description
+
+Defines a deep-loop-runtime Lane D self-target profile and command-level `--self-target` guard.
+
+#### How It Works
+
+`deep-loop-runtime.json` freezes scorer and harness surfaces, allows only selected technique-doc paths, and excludes deep-loop-runtime loop/scoring/merge/diagnostic session prefixes. The schema recognizes the self-target fields, `loop_contract.md` documents the allow-list invariant, and `/deep:ai-system-improvement --self-target <profile>` validates the profile before compiling to the existing `non-dev-ai-system-refine` adapter invocation.
+
+#### Source Files
+
+See [`06--non-dev-ai-system/self-target-packaging-profile.md`](06--non-dev-ai-system/self-target-packaging-profile.md) for full implementation and validation file listings.
