@@ -16,6 +16,7 @@ off-family matches.
 | `ai-fingerprint-sketchy-svg-illustration` | codex | `sketchy-svg-illustration` |
 | `ai-fingerprint-diagonal-stripe-background` | codex | `diagonal-stripe-background` |
 | `ai-fingerprint-element-tracking-on-display-type` | codex | `element-tracking-on-display-type` |
+| `ai-fingerprint-theater-meta-criticism-copy` | codex | `theater-meta-criticism-copy` |
 | `ai-fingerprint-image-hover-animation` | gemini | `image-hover-animation` |
 | `ai-fingerprint-cream-or-sand-body-background` | general | `cream-or-sand-body-background` |
 | `ai-fingerprint-eyebrow-above-every-section` | general | `eyebrow-above-every-section` |

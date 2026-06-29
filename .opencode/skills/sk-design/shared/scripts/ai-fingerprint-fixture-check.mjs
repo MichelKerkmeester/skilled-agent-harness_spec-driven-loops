@@ -37,6 +37,10 @@ const CHECK_MATCHERS = new Map([
     { tellId: "element-tracking-on-display-type", matches: matchesElementTrackingOnDisplayType }
   ],
   [
+    normalizeCheck("Detect body copy containing a word followed by theater as meta-criticism copy."),
+    { tellId: "theater-meta-criticism-copy", matches: matchesTheaterMetaCriticism }
+  ],
+  [
     normalizeCheck("Detect :hover transforms on img elements or parent-hover patterns that animate a child image."),
     { tellId: "image-hover-animation", matches: matchesImageHoverAnimation }
   ],
@@ -373,6 +377,25 @@ function matchesElementTrackingOnDisplayType(source) {
   });
 }
 
+function extractVisibleBodyText(source) {
+  const bodyMatch = /<body\b[^>]*>([\s\S]*?)<\/body>/i.exec(source);
+  const body = bodyMatch ? bodyMatch[1] : source;
+
+  return body
+    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function matchesTheaterMetaCriticism(source) {
+  return /\b(\w+)\s+theater\b/i.test(extractVisibleBodyText(source));
+}
+
 function matchesImageHoverAnimation(source) {
   return extractRules(source).some((rule) => {
     const selector = rule.selector.toLowerCase();
@@ -496,7 +519,7 @@ function emitAndExit(report, exitCode) {
 
   if (report.status === "pass") {
     console.log(
-      `PASS ai-fingerprint-fixture-check: registryRows=${report.metadata.registryRowCount} samples=${report.metadata.sampleCount}`
+      `PASS ai-fingerprint-fixture-check: registryRows=${report.metadata.registryRowCount} samples=${report.metadata.sampleCount} matcherCount=${report.metadata.matcherCount}`
     );
   } else {
     console.error(`FAIL ai-fingerprint-fixture-check: ${report.stage}`);

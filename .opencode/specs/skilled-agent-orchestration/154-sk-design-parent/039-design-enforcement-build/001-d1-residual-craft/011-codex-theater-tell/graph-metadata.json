@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d1-r11 codex theater tell",
-      "codex theater tell design build"
+      "codex theater tell design build",
+      "ai fingerprint theater meta criticism",
+      "codex theater tell plan",
+      "ai fingerprint theater meta criticism plan",
+      "design audit copy tell reconciliation",
+      "codex theater tell tasks",
+      "ai fingerprint theater meta criticism tasks",
+      "design audit copy tell reconciliation tasks",
+      "codex theater tell checklist",
+      "ai fingerprint theater meta criticism checklist",
+      "design audit copy tell reconciliation checklist"
     ],
     "key_topics": [
       "d1-r11",
@@ -21,19 +31,78 @@
       "tell",
       "design",
       "build",
-      "add",
-      "meta-criticism",
-      "narrow",
-      "static",
-      "regex",
-      "advisory"
+      "fingerprint",
+      "meta",
+      "criticism",
+      "plan",
+      "audit",
+      "copy"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/tell.html",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/clean.html",
+      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_self_defect_card.md",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "ai_fingerprint_tells.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai_fingerprint_registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "tell.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/tell.html",
+        "source": "derived"
+      },
+      {
+        "name": "clean.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/clean.html",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-fixture-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ai_fingerprint_self_defect_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_self_defect_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,7 +110,37 @@
         "source": "derived"
       },
       {
-        "name": "Missing Codex",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Theater",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Criticism Copy Tell",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -53,41 +152,73 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Purpose Close",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reconciled",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add the Codex theater/meta-criticism tell to ai_fingerprint_tells.md with a narrow static regex (advisory) plus a positive/negative fixture.",
+    "causal_summary": "The AI-fingerprint catalog at `aifingerprinttells.md` carried nine tells but not the Codex \"theater / meta-criticism copy\" tell — the slop habit of copy that narrates its own importance by calling a surface a kind of theater (\"design theater\", \"engagement theater\") instead of naming concrete user harm",
     "created_at": "2026-06-28T12:40:03.990Z",
-    "last_save_at": "2026-06-28T12:40:03.990Z",
+    "last_save_at": "2026-06-29T12:07:39.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e04b81b83e02529c3d64e9a71d08bf9b7163ecd8d315e78f396e7a751b4ae9c",
+    "source_fingerprint": "sha256:a8c6506bd81da1e148031228be450d98876971409872942a8d799dc8d73559a9",
     "source_doc_hashes": {
-      "spec.md": "33d2d6c70d31628be9a8627877866d8f7ccfdcb959d8f948a765102060db5d05"
+      "spec.md": "0ef3679fe7d402d573579a7e1c7d13fd344b1fda3053bf859ed97c4b551f3dd2",
+      "plan.md": "053b221b5058ca61a15e4470beb6ad588904b78648530cb20107dd216500a9bb",
+      "tasks.md": "7cbff9b1c2530193efe26bf1e7b4410469326585c800d9431ca210462908a7b1",
+      "checklist.md": "36a004eeab42e653724f5e2bb7918885b7a2aff776c3103f028ff32b6afed10d",
+      "implementation-summary.md": "19467e3dddac8085ca346bde2e86da279141414cdf14a0a84c2c69f3ed729d6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

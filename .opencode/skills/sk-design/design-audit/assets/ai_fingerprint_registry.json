@@ -45,6 +45,15 @@
     "owner": "foundations"
   },
   {
+    "tell_id": "theater-meta-criticism-copy",
+    "model_family": "codex",
+    "self_defect_prompt": "Find body copy that criticizes a product surface by calling it a kind of theater instead of naming concrete user harm. Flag it as advisory and confirm the surrounding context before filing.",
+    "deterministic_check": "Detect body copy containing a word followed by theater as meta-criticism copy.",
+    "fixture_id": "ai-fingerprint-theater-meta-criticism-copy",
+    "severity_floor": "P2",
+    "owner": "interface"
+  },
+  {
     "tell_id": "image-hover-animation",
     "model_family": "gemini",
     "self_defect_prompt": "Find hover states that transform an image itself, including parent-hover utilities that scale, rotate, or translate a child image. Flag it when the image is not the action target.",

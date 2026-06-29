@@ -31,6 +31,9 @@ Find decorative diagonal stripe backgrounds on the body or top-level sections. I
 ### element-tracking-on-display-type
 Find display or hero headings with letter-spacing tighter than -0.04em. Flag cramped tracking, especially when letters touch or the heading loses legibility.
 
+### theater-meta-criticism-copy
+Find body copy that criticizes a product surface by calling it a kind of theater instead of naming concrete user harm. Flag it as advisory and confirm the surrounding context before filing.
+
 ## Gemini
 
 ### image-hover-animation

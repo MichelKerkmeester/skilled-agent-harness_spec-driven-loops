@@ -77,6 +77,15 @@ Display headings with letter-spacing tighter than -0.04em. The Codex default dri
 - Owner: `foundations`.
 - Severity: P3, or P2 when it forces letters to collide and hurts legibility.
 
+### 2.6 Theater / meta-criticism copy
+
+Copy that criticizes a product surface by calling it a kind of "theater" instead of naming the concrete user harm. Phrases like "design theater", "engagement theater" or "strategy theater" sound incisive but often dodge the actual evidence: what is ornamental, what misleads the user and what should change. This is a Codex tell when the page or critique leans on meta-criticism as the voice.
+
+- Check: body copy containing a word followed by `theater` as meta-criticism copy.
+- Owner: `interface`.
+- Severity: P2, because the voice can flatten judgment into posture.
+- Advisory: a live hit is flag-and-confirm. Legitimate phrases such as "movie theater" or "home theater" are false positives unless the surrounding copy is clearly meta-criticism.
+
 ---
 
 ## 3. GEMINI TELLS
