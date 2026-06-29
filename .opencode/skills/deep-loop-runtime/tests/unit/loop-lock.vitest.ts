@@ -18,6 +18,8 @@ import {
 } from '../../lib/deep-loop/loop-lock.js';
 import { createHermeticEnv } from '../helpers/spawn-cjs.js';
 
+type LockDataWithNonce = LoopLockData & { acquireNonce?: string };
+
 /**
  * Creates a temporary lock file path for loop-lock tests.
  */
@@ -46,6 +48,26 @@ function lockData(overrides: Partial<LoopLockData> = {}): LoopLockData {
     lastActivityIso: now,
     ...overrides,
   };
+}
+
+/**
+ * Writes a lock file in the public on-disk snake_case format.
+ */
+function writeSerializedLock(lockPath: string, data: LockDataWithNonce, includeAcquireNonce = true): void {
+  const serialized: Record<string, unknown> = {
+    owner_pid: data.ownerPid,
+    started_at_iso: data.startedAtIso,
+    ttl_ms: data.ttlMs,
+    last_heartbeat_iso: data.lastHeartbeatIso,
+    packet_id: data.packetId,
+    runtime_kind: data.runtimeKind,
+    phase: data.phase,
+    last_activity_iso: data.lastActivityIso,
+  };
+  if (includeAcquireNonce && typeof data.acquireNonce === 'string') {
+    serialized.acquire_nonce = data.acquireNonce;
+  }
+  writeFileSync(lockPath, `${JSON.stringify(serialized, null, 2)}\n`, 'utf8');
 }
 
 /**
@@ -126,6 +148,7 @@ describe('loop-lock', () => {
       const result = acquireLoopLock(lockPath, lockData({ runtimeKind: 'cli-codex' }));
 
       expect(result).toMatchObject({ acquired: true });
+      if (!result.acquired) throw new Error('Expected lock acquisition');
       const disk = JSON.parse(readFileSync(lockPath, 'utf8'));
       expect(disk).toMatchObject({
         owner_pid: process.pid,
@@ -134,6 +157,8 @@ describe('loop-lock', () => {
         runtime_kind: 'cli-codex',
         phase: 'running',
       });
+      expect(typeof disk.acquire_nonce).toBe('string');
+      expect(disk.acquire_nonce).toBe((result.lock as LockDataWithNonce).acquireNonce);
       expect(typeof disk.started_at_iso).toBe('string');
       expect(typeof disk.last_heartbeat_iso).toBe('string');
       expect(typeof disk.last_activity_iso).toBe('string');
@@ -147,7 +172,13 @@ describe('loop-lock', () => {
 
       const second = acquireLoopLock(lockPath, lockData({ packetId: 'packet-004-second' }));
 
-      expect(second).toEqual({ acquired: false, holder: first });
+      expect(second).toMatchObject({
+        acquired: false,
+        holder: {
+          ownerPid: first.ownerPid,
+          packetId: first.packetId,
+        },
+      });
     });
   });
 
@@ -199,8 +230,10 @@ describe('loop-lock', () => {
       vi.setSystemTime(new Date('2026-05-22T12:00:00.000Z'));
       const lockPath = join(env.tmpDir, '.deep-loop.lock');
 
-      expect(acquireLoopLock(lockPath, lockData({ phase: 'paused' }))).toMatchObject({ acquired: true });
-      startHeartbeat({ lockPath, ownerPid: process.pid, phase: 'paused' }, 1_000);
+      const acquired = acquireLoopLock(lockPath, lockData({ phase: 'paused' }));
+      expect(acquired).toMatchObject({ acquired: true });
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+      startHeartbeat({ lockPath, ownerPid: process.pid, phase: 'paused', acquireNonce: acquired.lock.acquireNonce }, 1_000);
 
       vi.advanceTimersByTime(1_000);
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).last_heartbeat_iso).toBe('2026-05-22T12:00:01.000Z');
@@ -239,8 +272,32 @@ describe('loop-lock', () => {
       const replacement = lockData({ packetId: 'new-packet' });
       const result = acquireLoopLock(lockPath, replacement);
 
-      expect(result).toEqual({ acquired: true, lock: replacement, reclaimed: deadHolder });
+      expect(result).toMatchObject({
+        acquired: true,
+        lock: {
+          ownerPid: replacement.ownerPid,
+          packetId: replacement.packetId,
+        },
+        reclaimed: {
+          ownerPid: deadHolder.ownerPid,
+          packetId: deadHolder.packetId,
+        },
+      });
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe('new-packet');
+    });
+  });
+
+  it('reclaims a corrupt lock file instead of wedging on EEXIST', () => {
+    withTempLock((lockPath) => {
+      writeFileSync(lockPath, 'not json', 'utf8');
+
+      const result = acquireLoopLock(lockPath, lockData({ packetId: 'after-corrupt' }));
+
+      expect(result).toMatchObject({ acquired: true });
+      expect(JSON.parse(readFileSync(lockPath, 'utf8'))).toMatchObject({
+        owner_pid: process.pid,
+        packet_id: 'after-corrupt',
+      });
     });
   });
 
@@ -252,7 +309,81 @@ describe('loop-lock', () => {
       expect(acquireLoopLock(lockPath, first)).toMatchObject({ acquired: true });
       expect(acquireLoopLock(lockPath, second)).toMatchObject({ acquired: false });
       expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
-      expect(acquireLoopLock(lockPath, second)).toEqual({ acquired: true, lock: second });
+      expect(acquireLoopLock(lockPath, second)).toMatchObject({
+        acquired: true,
+        lock: {
+          ownerPid: second.ownerPid,
+          packetId: second.packetId,
+        },
+      });
+    });
+  });
+
+  it('does not clobber a lock reclaimed after a stale refresh read', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    let staleReadJson: string | null = null;
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        readFileSync(path: Parameters<typeof readFileSync>[0], options?: Parameters<typeof readFileSync>[1]) {
+          if (typeof path === 'string' && path === lockPath && staleReadJson !== null) {
+            const result = staleReadJson;
+            staleReadJson = null;
+            return result;
+          }
+          return actual.readFileSync(path, options);
+        },
+      };
+    });
+
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const acquired = loopLock.acquireLoopLock(lockPath, lockData({ packetId: 'packet-a' }));
+      expect(acquired).toMatchObject({ acquired: true });
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+      staleReadJson = readFileSync(lockPath, 'utf8');
+
+      const replacement = lockData({
+        ownerPid: process.pid + 100_000,
+        packetId: 'packet-b',
+      }) as LockDataWithNonce;
+      replacement.acquireNonce = 'replacement-nonce';
+      writeSerializedLock(lockPath, replacement);
+
+      const refreshed = loopLock.refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:05:00.000Z'), {
+        acquireNonce: acquired.lock.acquireNonce,
+      });
+
+      expect(refreshed).toBe(false);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8'))).toMatchObject({
+        owner_pid: replacement.ownerPid,
+        packet_id: 'packet-b',
+        acquire_nonce: 'replacement-nonce',
+      });
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('refreshes and releases legacy locks without acquire_nonce', () => {
+    withTempLock((lockPath) => {
+      writeSerializedLock(lockPath, lockData({ packetId: 'legacy-packet' }), false);
+
+      expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:04:00.000Z'))).toBe(true);
+      const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(refreshed).toMatchObject({
+        owner_pid: process.pid,
+        packet_id: 'legacy-packet',
+        last_heartbeat_iso: '2026-05-22T12:04:00.000Z',
+      });
+      expect(refreshed).not.toHaveProperty('acquire_nonce');
+      expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
+      expect(existsSync(lockPath)).toBe(false);
     });
   });
 

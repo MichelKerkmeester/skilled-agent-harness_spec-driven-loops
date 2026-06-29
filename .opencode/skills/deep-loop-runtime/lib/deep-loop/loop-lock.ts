@@ -1,6 +1,6 @@
 // MODULE: Deep-Loop Lock
 
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createConnection, createServer, type Server } from 'node:net';
 import { tmpdir } from 'node:os';
@@ -18,6 +18,7 @@ export interface LoopLockData {
   lastHeartbeatIso: string;
   packetId: string;
   runtimeKind: ExecutorKind | 'main';
+  acquireNonce?: string;
   phase?: string;
   lastActivityIso?: string;
 }
@@ -26,11 +27,13 @@ export interface LoopLockData {
 export interface LoopLockOwnerToken {
   lockPath: string;
   ownerPid: number;
+  acquireNonce?: string;
   phase?: string;
 }
 
 /** Optional metadata applied while refreshing the lock heartbeat. */
 export interface RefreshLoopLockOptions {
+  acquireNonce?: string;
   phase?: string;
   lastActivityIso?: string;
 }
@@ -42,7 +45,7 @@ export interface AcquireLoopLockOptions {
 
 export type LoopLockAcquireResult =
   | { acquired: true; lock: LoopLockData; reclaimed?: LoopLockData }
-  | { acquired: false; holder: LoopLockData };
+  | { acquired: false; holder?: LoopLockData };
 
 // ───── CONSTANTS ─────
 
@@ -75,6 +78,7 @@ type SerializedLoopLockData = {
   last_heartbeat_iso: string;
   packet_id: string;
   runtime_kind: ExecutorKind | 'main';
+  acquire_nonce?: string;
   phase?: string;
   last_activity_iso?: string;
 };
@@ -93,12 +97,24 @@ function normalizeLoopLockData(data: LoopLockData): LoopLockData {
   const lastActivityIso = typeof data.lastActivityIso === 'string' && data.lastActivityIso.length > 0
     ? data.lastActivityIso
     : data.lastHeartbeatIso;
+  const acquireNonce = typeof data.acquireNonce === 'string' && data.acquireNonce.length > 0
+    ? data.acquireNonce
+    : undefined;
 
-  return {
-    ...data,
+  const normalized: LoopLockData = {
+    ownerPid: data.ownerPid,
+    startedAtIso: data.startedAtIso,
+    ttlMs: data.ttlMs,
+    lastHeartbeatIso: data.lastHeartbeatIso,
+    packetId: data.packetId,
+    runtimeKind: data.runtimeKind,
     phase,
     lastActivityIso,
   };
+  if (acquireNonce !== undefined) {
+    normalized.acquireNonce = acquireNonce;
+  }
+  return normalized;
 }
 
 function fsyncPath(path: string): void {
@@ -117,9 +133,34 @@ function makeTempPath(targetPath: string): string {
   return `${targetPath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
 }
 
+function makeClaimPath(targetPath: string, purpose: string): string {
+  return `${targetPath}.${purpose}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+}
+
+function makeAcquireNonce(ownerPid: number): string {
+  return `${ownerPid}-${Date.now()}-${randomUUID()}`;
+}
+
+function withFreshAcquireNonce(data: LoopLockData): LoopLockData {
+  return normalizeLoopLockData({
+    ...data,
+    acquireNonce: makeAcquireNonce(data.ownerPid),
+  });
+}
+
+function errorCode(error: unknown): string | undefined {
+  return error && typeof error === 'object' && 'code' in error
+    ? (error as NodeJS.ErrnoException).code
+    : undefined;
+}
+
+function failedAcquire(holder: LoopLockData | null | undefined): LoopLockAcquireResult {
+  return holder ? { acquired: false, holder } : { acquired: false };
+}
+
 function serializeLock(data: LoopLockData): SerializedLoopLockData {
   const normalized = normalizeLoopLockData(data);
-  return {
+  const serialized: SerializedLoopLockData = {
     owner_pid: normalized.ownerPid,
     started_at_iso: normalized.startedAtIso,
     ttl_ms: normalized.ttlMs,
@@ -129,6 +170,10 @@ function serializeLock(data: LoopLockData): SerializedLoopLockData {
     phase: normalized.phase,
     last_activity_iso: normalized.lastActivityIso,
   };
+  if (normalized.acquireNonce !== undefined) {
+    serialized.acquire_nonce = normalized.acquireNonce;
+  }
+  return serialized;
 }
 
 function deserializeLock(raw: unknown): LoopLockData | null {
@@ -144,6 +189,7 @@ function deserializeLock(raw: unknown): LoopLockData | null {
     typeof candidate.last_heartbeat_iso !== 'string' ||
     typeof candidate.packet_id !== 'string' ||
     typeof candidate.runtime_kind !== 'string' ||
+    (candidate.acquire_nonce !== undefined && typeof candidate.acquire_nonce !== 'string') ||
     (candidate.phase !== undefined && typeof candidate.phase !== 'string') ||
     (candidate.last_activity_iso !== undefined && typeof candidate.last_activity_iso !== 'string')
   ) {
@@ -160,6 +206,7 @@ function deserializeLock(raw: unknown): LoopLockData | null {
     lastHeartbeatIso: candidate.last_heartbeat_iso,
     packetId: candidate.packet_id,
     runtimeKind: candidate.runtime_kind as ExecutorKind | 'main',
+    acquireNonce: candidate.acquire_nonce,
     phase: candidate.phase,
     lastActivityIso: candidate.last_activity_iso,
   });
@@ -196,7 +243,7 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
     writeFileSync(fd, `${JSON.stringify(serializeLock(data), null, 2)}\n`, { encoding: 'utf8' });
     fsyncSync(fd);
   } catch (error: unknown) {
-    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    const code = errorCode(error);
     if (code === 'EEXIST') {
       return false;
     }
@@ -225,11 +272,11 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
  * write would be last-writer-wins and let both believe they acquired.
  */
 function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean {
-  const reclaimPath = `${lockPath}.reclaiming.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+  const reclaimPath = makeClaimPath(lockPath, 'reclaiming');
   try {
     renameSync(lockPath, reclaimPath);
   } catch (error: unknown) {
-    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    const code = errorCode(error);
     if (code === 'ENOENT') {
       return false;
     }
@@ -240,6 +287,21 @@ function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean 
     return writeLoopLockExclusive(lockPath, data);
   } finally {
     rmSync(reclaimPath, { force: true });
+  }
+}
+
+function restoreClaimedLoopLock(lockPath: string, claimedPath: string): void {
+  if (!existsSync(claimedPath)) {
+    return;
+  }
+  if (existsSync(lockPath)) {
+    rmSync(claimedPath, { force: true });
+    return;
+  }
+  renameSync(claimedPath, lockPath);
+  try {
+    fsyncPath(dirname(lockPath));
+  } catch {
   }
 }
 
@@ -255,9 +317,8 @@ export function getLoopLockHostLocalSocketPath(lockPath: string): string {
   return join(tmpdir(), `deep-loop-${digest}.sock`);
 }
 
-function hostLocalSingleFlightHolder(lockPath: string, fallback: LoopLockData): LoopLockData {
-  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
-  return holder ?? fallback;
+function hostLocalSingleFlightHolder(lockPath: string): LoopLockData | null {
+  return existsSync(lockPath) ? readLoopLock(lockPath) : null;
 }
 
 function shouldTreatSocketErrorAsLive(error: unknown): boolean {
@@ -341,7 +402,7 @@ async function acquireHostLocalSingleFlightLease(
     hostLocalSingleFlightLeases.set(key, lease);
     return { acquired: true, lease };
   } catch (error: unknown) {
-    if (error && typeof error === 'object' && 'code' in error && (error as NodeJS.ErrnoException).code === 'EADDRINUSE') {
+    if (errorCode(error) === 'EADDRINUSE') {
       return { acquired: false };
     }
     throw error;
@@ -366,37 +427,42 @@ function dropHostLocalSingleFlightLease(lockPath: string, ownerPid: number): voi
 }
 
 function acquireLoopLockFileOnly(lockPath: string, data: LoopLockData): LoopLockAcquireResult {
-  const lock = normalizeLoopLockData(data);
-  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
+  const lock = withFreshAcquireNonce(data);
+  const lockExists = existsSync(lockPath);
+  const holder = lockExists ? readLoopLock(lockPath) : null;
   if (holder && !isStaleLoopLock(holder)) {
-    return { acquired: false, holder };
+    return failedAcquire(holder);
   }
 
   if (!holder) {
-    if (writeLoopLockExclusive(lockPath, lock)) {
+    if (!lockExists) {
+      if (writeLoopLockExclusive(lockPath, lock)) {
+        return { acquired: true, lock };
+      }
+      return failedAcquire(readLoopLock(lockPath));
+    }
+    if (tryReclaimStaleLoopLock(lockPath, lock)) {
       return { acquired: true, lock };
     }
-    const current = readLoopLock(lockPath);
-    return { acquired: false, holder: current ?? lock };
+    return failedAcquire(readLoopLock(lockPath));
   }
 
   if (tryReclaimStaleLoopLock(lockPath, lock)) {
     return { acquired: true, lock, reclaimed: holder };
   }
-  const current = readLoopLock(lockPath);
-  return { acquired: false, holder: current ?? holder };
+  return failedAcquire(readLoopLock(lockPath));
 }
 
 async function acquireLoopLockWithHostLocalSingleFlight(lockPath: string, data: LoopLockData): Promise<LoopLockAcquireResult> {
   const lock = normalizeLoopLockData(data);
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (holder && !isStaleLoopLock(holder)) {
-    return { acquired: false, holder };
+    return failedAcquire(holder);
   }
 
   const leaseResult = await acquireHostLocalSingleFlightLease(lockPath, lock.ownerPid);
   if (!leaseResult.acquired) {
-    return { acquired: false, holder: hostLocalSingleFlightHolder(lockPath, lock) };
+    return failedAcquire(hostLocalSingleFlightHolder(lockPath));
   }
 
   const result = acquireLoopLockFileOnly(lockPath, lock);
@@ -404,6 +470,23 @@ async function acquireLoopLockWithHostLocalSingleFlight(lockPath: string, data: 
     dropHostLocalSingleFlightLease(lockPath, lock.ownerPid);
   }
   return result;
+}
+
+function lockIdentityMatches(holder: LoopLockData, ownerPid: number, expectedAcquireNonce?: string): boolean {
+  if (holder.ownerPid !== ownerPid) {
+    return false;
+  }
+
+  if (
+    typeof holder.acquireNonce === 'string' &&
+    holder.acquireNonce.length > 0 &&
+    typeof expectedAcquireNonce === 'string' &&
+    expectedAcquireNonce.length > 0
+  ) {
+    return holder.acquireNonce === expectedAcquireNonce;
+  }
+
+  return true;
 }
 
 // ───── EXPORTS ─────
@@ -502,19 +585,50 @@ export function refreshLoopLock(
   now: Date = new Date(),
   options: RefreshLoopLockOptions = {},
 ): boolean {
-  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
-  if (!holder || holder.ownerPid !== ownerPid) {
-    return false;
+  const claimPath = makeClaimPath(lockPath, 'refreshing');
+  try {
+    renameSync(lockPath, claimPath);
+  } catch (error: unknown) {
+    const code = errorCode(error);
+    if (code === 'ENOENT') {
+      return false;
+    }
+    throw error;
   }
 
-  const heartbeatIso = now.toISOString();
-  writeLoopLockAtomic(lockPath, {
-    ...holder,
-    lastHeartbeatIso: heartbeatIso,
-    phase: options.phase ?? holder.phase,
-    lastActivityIso: options.lastActivityIso ?? heartbeatIso,
-  });
-  return true;
+  let claimed = true;
+  try {
+    const holder = readLoopLock(claimPath);
+    if (!holder || !lockIdentityMatches(holder, ownerPid, options.acquireNonce)) {
+      restoreClaimedLoopLock(lockPath, claimPath);
+      claimed = false;
+      return false;
+    }
+
+    const heartbeatIso = now.toISOString();
+    const updatedLock: LoopLockData = {
+      ...holder,
+      lastHeartbeatIso: heartbeatIso,
+      phase: options.phase ?? holder.phase,
+      lastActivityIso: options.lastActivityIso ?? heartbeatIso,
+    };
+    writeLoopLockAtomic(claimPath, updatedLock);
+    if (!writeLoopLockExclusive(lockPath, updatedLock)) {
+      rmSync(claimPath, { force: true });
+      claimed = false;
+      return false;
+    }
+    rmSync(claimPath, { force: true });
+    claimed = false;
+    return true;
+  } finally {
+    if (claimed) {
+      try {
+        restoreClaimedLoopLock(lockPath, claimPath);
+      } catch {
+      }
+    }
+  }
 }
 
 /**
@@ -536,6 +650,9 @@ export function startHeartbeat(
   if (!Number.isInteger(ownerToken.ownerPid) || ownerToken.ownerPid <= 0) {
     throw new TypeError('Heartbeat owner token requires a positive ownerPid');
   }
+  if (ownerToken.acquireNonce !== undefined && (typeof ownerToken.acquireNonce !== 'string' || ownerToken.acquireNonce.length === 0)) {
+    throw new TypeError('Heartbeat owner token acquireNonce must be a non-empty string when provided');
+  }
   if (!Number.isFinite(intervalMs) || intervalMs <= 0) {
     throw new TypeError('Heartbeat interval must be a positive finite number');
   }
@@ -544,6 +661,7 @@ export function startHeartbeat(
   heartbeatTimer = setInterval(() => {
     try {
       const refreshed = refreshLoopLock(ownerToken.lockPath, ownerToken.ownerPid, new Date(), {
+        acquireNonce: ownerToken.acquireNonce,
         phase: ownerToken.phase ?? DEFAULT_LOOP_LOCK_PHASE,
       });
       if (!refreshed) {
