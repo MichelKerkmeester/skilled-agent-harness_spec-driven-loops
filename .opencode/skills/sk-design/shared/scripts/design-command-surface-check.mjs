@@ -2,7 +2,7 @@
 // Design Command Surface Check
 // ============================================================================
 
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 
 const REQUIRED_FIELDS = [
   "command",
@@ -58,6 +58,7 @@ const DRIFT_FIELDS = [
   "handoff",
   "choreography",
   "register",
+  "roster",
   "wrapper"
 ];
 const GENERIC_ARGUMENT_HINT = "<design request>";
@@ -122,6 +123,7 @@ const skillRootUrl = new URL("../../", scriptUrl);
 const opencodeRootUrl = new URL("../../", skillRootUrl);
 const metadataUrl = new URL("command-metadata.json", skillRootUrl);
 const registryUrl = new URL("mode-registry.json", skillRootUrl);
+const hubRouterUrl = new URL("hub-router.json", skillRootUrl);
 const interfaceSkillUrl = new URL("design-interface/SKILL.md", skillRootUrl);
 const commandsRootUrl = new URL("commands/design/", opencodeRootUrl);
 const SIBLING_DISCRIMINATOR_START = "<!-- ANCHOR:sibling-discriminator -->";
@@ -158,10 +160,12 @@ main().catch((error) => {
 });
 
 async function main() {
-  const [metadata, registry, interfaceSkillSource] = await Promise.all([
+  const [metadata, registry, hubRouter, interfaceSkillSource, wrapperRoster] = await Promise.all([
     readJson(metadataUrl),
     readJson(registryUrl),
-    readFile(interfaceSkillUrl, "utf8")
+    readJson(hubRouterUrl),
+    readFile(interfaceSkillUrl, "utf8"),
+    readWrapperRoster()
   ]);
   const workflowModes = readWorkflowModes(registry);
   const registryAliasesByMode = readRegistryAliasesByMode(registry);
@@ -184,7 +188,10 @@ async function main() {
   }
 
   const records = [...metadata].sort((a, b) => a.command.localeCompare(b.command));
-  const drift = await collectSurfaceDrift(records);
+  const drift = [
+    ...(await collectSurfaceDrift(records)),
+    ...collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrapperRoster)
+  ].sort(compareDrift);
 
   emitAndExit(
     {
@@ -204,6 +211,37 @@ async function main() {
 async function readJson(url) {
   const raw = await readFile(url, "utf8");
   return JSON.parse(raw);
+}
+
+async function readWrapperRoster() {
+  const entries = await readdir(commandsRootUrl, { withFileTypes: true });
+  const wrappers = await Promise.all(
+    entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+      .map(async (entry) => {
+        const command = `/design:${entry.name.slice(0, -3)}`;
+        const relativePath = `.opencode/commands/design/${entry.name}`;
+        const markdown = await readFile(new URL(entry.name, commandsRootUrl), "utf8");
+        let frontmatter = null;
+        let frontmatterError = null;
+
+        try {
+          frontmatter = parseFrontmatter(markdown);
+        } catch (error) {
+          frontmatterError = error instanceof Error ? error.message : String(error);
+        }
+
+        return {
+          command,
+          relativePath,
+          markdown,
+          frontmatter,
+          frontmatterError
+        };
+      })
+  );
+
+  return wrappers.sort((a, b) => a.command.localeCompare(b.command));
 }
 
 function readWorkflowModes(registry) {
@@ -237,6 +275,17 @@ function readRegistryAliasesByMode(registry) {
   }
 
   return aliasesByMode;
+}
+
+function readHubRouterModes(hubRouter) {
+  if (!isPlainObject(hubRouter?.routerSignals)) {
+    return new Set();
+  }
+
+  return new Set(
+    Object.keys(hubRouter.routerSignals)
+      .filter((workflowMode) => workflowMode.length > 0)
+  );
 }
 
 function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode) {
@@ -1299,6 +1348,111 @@ async function collectSurfaceDrift(records) {
   return drift.sort(compareDrift);
 }
 
+function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrappers) {
+  const drift = [];
+  const metadataCommands = new Set(records.map((record) => record.command));
+  const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
+  const hubModes = readHubRouterModes(hubRouter);
+  const hubCommands = commandSetForModes(hubModes);
+  const registryCommands = commandSetForModes(workflowModes);
+  const reconciledCommands = intersectSets(metadataCommands, wrapperCommands, hubCommands, registryCommands);
+
+  for (const wrapper of wrappers) {
+    if (!metadataCommands.has(wrapper.command)) {
+      drift.push(rosterDrift("orphan-wrapper", wrapper.command, "metadata record", wrapper.relativePath));
+    }
+
+    if (wrapper.frontmatterError) {
+      drift.push(rosterDrift("dead-wrapper", wrapper.command, "parseable frontmatter", wrapper.frontmatterError));
+    }
+
+    if (!hasCommandTitle(wrapper.markdown, wrapper.command)) {
+      drift.push(rosterDrift("dead-wrapper", wrapper.command, `# ${wrapper.command}`, "<missing or mismatched title>"));
+    }
+
+    if (hasPlaceholderWrapper(wrapper)) {
+      drift.push(rosterDrift("placeholder-wrapper", wrapper.command, "specific argument contract", GENERIC_ARGUMENT_HINT));
+    }
+  }
+
+  for (const command of sortedSet(metadataCommands)) {
+    if (!wrapperCommands.has(command)) {
+      drift.push(rosterDrift("missing-wrapper", command, wrapperPathForCommand(command).relativePath, "<missing>"));
+    }
+
+    if (!hubCommands.has(command)) {
+      drift.push(rosterDrift("route-fixture-drift", command, "hub-router routable command", "<missing router signal>"));
+    }
+  }
+
+  for (const command of sortedSet(wrapperCommands)) {
+    if (!hubCommands.has(command)) {
+      drift.push(rosterDrift("route-fixture-drift", command, "hub-router routable command", "wrapper-only command"));
+    }
+  }
+
+  for (const command of sortedSet(hubCommands)) {
+    const workflowMode = command.replace("/design:", "");
+
+    if (!registryCommands.has(command)) {
+      drift.push(rosterDrift("route-fixture-drift", command, "mode-registry workflowMode", `hub-router routerSignals.${workflowMode}`));
+    }
+
+    if (!metadataCommands.has(command)) {
+      drift.push(rosterDrift("route-fixture-drift", command, "metadata record", `hub-router routerSignals.${workflowMode}`));
+    }
+
+    if (!wrapperCommands.has(command) && !metadataCommands.has(command)) {
+      drift.push(rosterDrift("missing-wrapper", command, wrapperPathForCommand(command).relativePath, `hub-router routerSignals.${workflowMode}`));
+    }
+  }
+
+  for (const record of records) {
+    drift.push(...collectDanglingHandoffDrift(record, reconciledCommands));
+  }
+
+  return uniqueDrift(drift).sort(compareDrift);
+}
+
+function collectDanglingHandoffDrift(record, commandSet) {
+  const drift = [];
+
+  for (const command of Array.isArray(record.next) ? record.next : []) {
+    if (!commandSet.has(command)) {
+      drift.push(rosterDrift("dangling-handoff", record.command, "next command in reconciled roster", command));
+    }
+  }
+
+  const nextOptions = Array.isArray(record.handoff?.nextOptions) ? record.handoff.nextOptions : [];
+  for (const option of nextOptions) {
+    const command = option?.command;
+    if (typeof command === "string" && !commandSet.has(command)) {
+      drift.push(rosterDrift("dangling-handoff", record.command, "nextOptions command in reconciled roster", command));
+    }
+  }
+
+  return drift;
+}
+
+function rosterDrift(kind, command, expected, actual) {
+  return {
+    kind,
+    command,
+    field: "roster",
+    expected,
+    actual
+  };
+}
+
+function hasCommandTitle(markdown, command) {
+  return new RegExp(`^#\\s+${escapeRegExp(command)}\\s*$`, "m").test(markdown);
+}
+
+function hasPlaceholderWrapper(wrapper) {
+  return wrapper.markdown.includes(GENERIC_ARGUMENT_HINT)
+    || wrapper.frontmatter?.["argument-hint"] === GENERIC_ARGUMENT_HINT;
+}
+
 function expectedHandoffDrift(record, markdown) {
   const section = extractHandoffGrammarSection(markdown);
 
@@ -2345,6 +2499,35 @@ function sameSet(left, right) {
   }
 
   return true;
+}
+
+function intersectSets(...sets) {
+  if (sets.length === 0) {
+    return new Set();
+  }
+
+  const [first, ...rest] = sets;
+  return new Set([...first].filter((item) => rest.every((set) => set.has(item))));
+}
+
+function sortedSet(set) {
+  return [...set].sort((left, right) => left.localeCompare(right));
+}
+
+function uniqueDrift(drift) {
+  const seen = new Set();
+  const unique = [];
+
+  for (const item of drift) {
+    const key = JSON.stringify([item.kind, item.command, item.field, item.expected, item.actual]);
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    unique.push(item);
+  }
+
+  return unique;
 }
 
 function commandSetForModes(workflowModes) {

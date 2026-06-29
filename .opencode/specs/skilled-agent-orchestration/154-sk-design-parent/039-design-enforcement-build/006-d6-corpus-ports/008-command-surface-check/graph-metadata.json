@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d6-r8 command surface check",
-      "command surface drift design build"
+      "command surface drift design build",
+      "roster reconciliation design command surface-check",
+      "command surface check structural drift",
+      "design command surface completeness audit",
+      "design wrapper roster reconciliation",
+      "command surface check tasks",
+      "design surface drift audit tasks",
+      "wrapper roster reconciliation tasks",
+      "command surface check checklist",
+      "design surface drift audit checklist",
+      "wrapper roster reconciliation checklist"
     ],
     "key_topics": [
       "d6-r8",
@@ -22,21 +32,83 @@
       "drift",
       "design",
       "build",
-      "new",
-      "checker",
-      "comparing",
-      "files",
-      "command-metadata"
+      "roster",
+      "reconciliation",
+      "surface-check",
+      "structural",
+      "completeness"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
       {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Group",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -47,47 +119,103 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roster Enumeration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "New checker comparing command files vs command-metadata.json vs generated docs vs wrapper frontmatter vs route fixtures for structural drift.",
+    "causal_summary": "The command surface checker already enforces every field-level invariant the spec names — no surviving `<design request>` placeholder, mutation-free modes carry no Write/Edit/Bash, `ownerMode ∈ workflowMode`, aliases unique — by iterating a hardcoded five-command roster and drift-checking each wrapper against `command-metadata.json`",
     "created_at": "2026-06-28T12:40:10.580Z",
-    "last_save_at": "2026-06-28T12:40:10.580Z",
+    "last_save_at": "2026-06-29T13:12:38.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf6a8997b4f0633eab7d3256d3ab5a9f0b0f4c5e48332534b27b52efc9d39963",
+    "source_fingerprint": "sha256:4508a4fc1f7aeeaf7928e4c229ab6842312f9a465d57c24904b763e39c8237d8",
     "source_doc_hashes": {
-      "spec.md": "1296fa2c7c99d0a445ac53904165de51088314f1c6897fe9427c9e5bf9dc8287"
+      "spec.md": "ccaca68a1564f8e99eef4129a221162c77bd02f68a257fe0637bb76943d159b4",
+      "plan.md": "ef42d868e2cef737c14727413dbc6ed52f19648d6ff367ee20ad387b011b8353",
+      "tasks.md": "83d0d33f90b337f29e366aeed08d5e535d5f82d3736322aeb9f79e0fc63fe150",
+      "checklist.md": "66f128ef039226e9582832402b5a545652aef480ffbeac8bf8c4d603a88f21a2",
+      "implementation-summary.md": "58ff44e503c886ba25e3a7c1411637f563b4840d51821446107e9e4807c2a3bf"
     },
     "last_active_child_id": null,
     "last_active_at": null
