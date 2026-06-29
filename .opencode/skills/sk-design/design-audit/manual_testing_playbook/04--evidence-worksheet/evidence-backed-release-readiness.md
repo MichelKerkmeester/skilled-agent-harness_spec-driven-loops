@@ -88,5 +88,5 @@ Launch readiness is a claim about evidence, not taste. A screenshot-only audit c
 - Group: Evidence Worksheet
 - Playbook ID: AUDIT-EVIDENCE-011
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--evidence-worksheet/011-evidence-backed-release-readiness.md`
+- Feature file path: `04--evidence-worksheet/evidence-backed-release-readiness.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

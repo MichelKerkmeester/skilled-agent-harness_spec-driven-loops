@@ -85,5 +85,5 @@ Color tokens can look coherent while a muted label, button text, or status color
 - Group: Color
 - Playbook ID: FOUND-COLOR-002
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `01--color/002-contrast-pair-inventory-before-audit.md`
+- Feature file path: `01--color/contrast-pair-inventory-before-audit.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

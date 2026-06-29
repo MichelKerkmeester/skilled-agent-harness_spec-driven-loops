@@ -97,5 +97,5 @@ Repeat with a Brand surface prompt such as a film-festival landing page. The exp
 - Group: Brief-To-Dials Intake
 - Playbook ID: ID-016
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `12--brief-to-dials-intake/016-register-first-context-gate.md`
+- Feature file path: `12--brief-to-dials-intake/register-first-context-gate.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.
