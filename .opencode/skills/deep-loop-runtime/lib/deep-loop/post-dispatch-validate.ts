@@ -2,11 +2,11 @@
 // MODULE: Deep-Loop Post-Dispatch Validator
 // ───────────────────────────────────────────────────────────────────
 
-import { existsSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, renameSync, rmSync, statSync, truncateSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { validateEvidenceContract } from './evidence-contract.js';
-import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
+import { appendJsonlRecord } from './jsonl-repair.js';
 import type { ExecutorKind } from './executor-config.js';
 
 // ───── 1. TYPE DEFINITIONS ─────
@@ -244,7 +244,6 @@ const REVIEW_ITERATION_FIELDS = [
   'findingsCount',
   'findingsSummary',
   'findingsNew',
-  'findingDetails',
   'newFindingsRatio',
   'sessionId',
   'generation',
@@ -271,7 +270,7 @@ type JsonlLineRegion = {
   rawLine: string;
   startOffset: number;
   nextOffset: number;
-  record: Record<string, unknown>;
+  parsed: unknown;
 };
 
 // ───── 4. HELPERS ─────
@@ -361,18 +360,26 @@ async function callJudgeWithDualTimeouts(
   const operation = invoke();
   let fastTimer: ReturnType<typeof setTimeout> | undefined;
 
-  const fastResult = await Promise.race<
+  const fastResult = await (async (): Promise<
     | { kind: 'response'; text: string }
     | { kind: 'fast_timeout' }
-  >([
-    operation.then((text) => ({ kind: 'response', text })),
-    new Promise<{ kind: 'fast_timeout' }>((resolveTimeout) => {
-      fastTimer = setTimeout(() => resolveTimeout({ kind: 'fast_timeout' }), fastTimeoutMs);
-    }),
-  ]);
-  if (fastTimer !== undefined) {
-    clearTimeout(fastTimer);
-  }
+  > => {
+    try {
+      return await Promise.race<
+        | { kind: 'response'; text: string }
+        | { kind: 'fast_timeout' }
+      >([
+        operation.then((text) => ({ kind: 'response', text })),
+        new Promise<{ kind: 'fast_timeout' }>((resolveTimeout) => {
+          fastTimer = setTimeout(() => resolveTimeout({ kind: 'fast_timeout' }), fastTimeoutMs);
+        }),
+      ]);
+    } finally {
+      if (fastTimer !== undefined) {
+        clearTimeout(fastTimer);
+      }
+    }
+  })();
 
   if (fastResult.kind === 'response') {
     return { text: fastResult.text, fastTimedOut: false };
@@ -400,17 +407,11 @@ async function callJudgeWithDualTimeouts(
   }
 }
 
-function getLastNonEmptyLine(content: string): string | null {
-  const lines = content.split(/\r?\n/);
-
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    const line = lines[index];
-    if (line.trim() !== '') {
-      return line;
-    }
+function clampByteOffset(value: number, contentLength: number): number {
+  if (!Number.isFinite(value)) {
+    return 0;
   }
-
-  return null;
+  return Math.max(0, Math.min(Math.floor(value), contentLength));
 }
 
 function isObjectRecord(value: unknown): value is Record<string, unknown> {
@@ -561,6 +562,50 @@ function isLegacyNonTrivialReviewRecord(record: Record<string, unknown>): boolea
     || (Array.isArray(record.dimensions) && record.dimensions.length > 1);
 }
 
+function isReviewIterationValidation(input: PostDispatchValidateInput): boolean {
+  return input.requiredJsonlFields.includes('findingsSummary') || input.requiredJsonlFields.includes('filesReviewed');
+}
+
+function hasPositiveCount(value: unknown): boolean {
+  return typeof value === 'number' && Number.isFinite(value) && value > 0;
+}
+
+function hasPositiveSeverityCount(value: unknown): boolean {
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+  if (!isObjectRecord(value)) {
+    return false;
+  }
+  return ['P0', 'P1', 'P2'].some((severity) => hasPositiveCount(value[severity]));
+}
+
+function reviewRecordNeedsFindingDetails(record: Record<string, unknown>): boolean {
+  return hasPositiveCount(record.findingsCount)
+    || hasPositiveSeverityCount(record.findingsSummary)
+    || hasPositiveSeverityCount(record.findingsNew);
+}
+
+function requiredJsonlFieldSet(
+  input: PostDispatchValidateInput,
+  record: Record<string, unknown>,
+): Set<string> {
+  const reviewValidation = isReviewIterationValidation(input);
+  const inputFields = reviewValidation
+    ? input.requiredJsonlFields.filter((field) => field !== 'findingDetails')
+    : input.requiredJsonlFields;
+  const requiredFields = new Set([
+    ...inputFields,
+    ...(reviewValidation ? REVIEW_ITERATION_FIELDS : []),
+  ]);
+
+  if (reviewValidation && reviewRecordNeedsFindingDetails(record)) {
+    requiredFields.add('findingDetails');
+  }
+
+  return requiredFields;
+}
+
 function v2Failure(
   reason: PostDispatchFailureReason,
   details: string,
@@ -593,9 +638,9 @@ function findLastIterationRecord(content: string): Record<string, unknown> | nul
   return null;
 }
 
-function findLastJsonlObjectRegion(content: Buffer): JsonlLineRegion | null {
+function findLastJsonlRegion(content: Buffer, startByte = 0): JsonlLineRegion | null {
   const regions: JsonlLineRegion[] = [];
-  let startOffset = 0;
+  let startOffset = clampByteOffset(startByte, content.length);
 
   while (startOffset < content.length) {
     const newlineOffset = content.indexOf(0x0a, startOffset);
@@ -608,20 +653,49 @@ function findLastJsonlObjectRegion(content: Buffer): JsonlLineRegion | null {
 
     if (rawLine.trim() !== '') {
       const parsed = JSON.parse(rawLine);
-      if (isObjectRecord(parsed)) {
-        regions.push({
-          rawLine,
-          startOffset,
-          nextOffset,
-          record: parsed,
-        });
-      }
+      regions.push({
+        rawLine,
+        startOffset,
+        nextOffset,
+        parsed,
+      });
     }
 
     startOffset = nextOffset;
   }
 
   return regions.at(-1) ?? null;
+}
+
+function repairJsonlTailSince(path: string, startByte: number): void {
+  const content = readFileSync(path);
+  let startOffset = clampByteOffset(startByte, content.length);
+  let validEndOffset = startOffset;
+
+  while (startOffset < content.length) {
+    const newlineOffset = content.indexOf(0x0a, startOffset);
+    const lineEndOffset = newlineOffset === -1 ? content.length : newlineOffset;
+    const nextOffset = newlineOffset === -1 ? content.length : newlineOffset + 1;
+    const rawEndOffset = lineEndOffset > startOffset && content[lineEndOffset - 1] === 0x0d
+      ? lineEndOffset - 1
+      : lineEndOffset;
+    const rawLine = content.toString('utf8', startOffset, rawEndOffset);
+
+    if (rawLine.trim() !== '') {
+      try {
+        JSON.parse(rawLine);
+      } catch {
+        break;
+      }
+    }
+
+    validEndOffset = nextOffset;
+    startOffset = nextOffset;
+  }
+
+  if (validEndOffset < content.length) {
+    truncateSync(path, validEndOffset);
+  }
 }
 
 function buildStampedJsonlContent(
@@ -669,10 +743,13 @@ function writeBufferAtomic(filePath: string, content: Buffer): void {
   }
 }
 
-function stampIterationLogRegion(input: PostDispatchValidateInput, record: Record<string, unknown>): void {
-  const content = readFileSync(input.stateLogPath);
-  const region = findLastJsonlObjectRegion(content);
-  if (!region || region.record.type !== CANONICAL_ITERATION_TYPE) {
+function stampIterationLogRegion(
+  input: PostDispatchValidateInput,
+  content: Buffer,
+  region: JsonlLineRegion,
+  record: Record<string, unknown>,
+): void {
+  if (record.type !== CANONICAL_ITERATION_TYPE) {
     return;
   }
 
@@ -1107,7 +1184,7 @@ function computeBehavioralAdvisories(text: string): PostDispatchAdvisory[] {
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
-  repairJsonlTail(input.stateLogPath);
+  repairJsonlTailSince(input.stateLogPath, input.previousStateLogSize);
 
   if (statSync(input.stateLogPath).size <= input.previousStateLogSize) {
     return {
@@ -1117,11 +1194,19 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
     };
   }
 
-  const stateLogContent = readFileSync(input.stateLogPath, 'utf8');
-  const lastLine = getLastNonEmptyLine(stateLogContent);
+  const stateLogContent = readFileSync(input.stateLogPath);
+  const currentRecordRegion = findLastJsonlRegion(stateLogContent, input.previousStateLogSize);
 
   try {
-    const parsedRecord = JSON.parse(lastLine ?? '');
+    if (!currentRecordRegion) {
+      return {
+        ok: false,
+        reason: 'jsonl_parse_error',
+        details: 'No JSONL record found in current append',
+      };
+    }
+
+    const parsedRecord = currentRecordRegion.parsed;
     if (!isObjectRecord(parsedRecord)) {
       return {
         ok: false,
@@ -1170,14 +1255,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       };
     }
 
-    const requiredFields = new Set([
-      ...input.requiredJsonlFields,
-      ...(
-        input.requiredJsonlFields.includes('findingsSummary') || input.requiredJsonlFields.includes('filesReviewed')
-          ? REVIEW_ITERATION_FIELDS
-          : []
-      ),
-    ]);
+    const requiredFields = requiredJsonlFieldSet(input, parsedRecord);
     const missingFields = [...requiredFields].filter((field) => !(field in parsedRecord));
 
     if (missingFields.length > 0) {
@@ -1328,7 +1406,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       };
     }
 
-    stampIterationLogRegion(input, parsedRecord);
+    stampIterationLogRegion(input, stateLogContent, currentRecordRegion, parsedRecord);
   } catch (error: unknown) {
     const details = error instanceof Error ? error.message : String(error);
     return { ok: false, reason: 'jsonl_parse_error', details };

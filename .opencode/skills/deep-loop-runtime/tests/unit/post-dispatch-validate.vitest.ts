@@ -105,6 +105,46 @@ describe('post-dispatch-validate', () => {
     }
   });
 
+  it('validates the current append when an older JSONL line is malformed', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 2\n\nTranscript body\n', 'utf8');
+      writeFileSync(
+        stateLogPath,
+        [
+          '{"type":"config","mode":"review"}',
+          '{"type":"event"',
+          '{"type":"event","event":"previous_valid"}',
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 2,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+        }),
+      ).toEqual({ ok: true });
+
+      const lines = readFileSync(stateLogPath, 'utf8').trim().split(/\r?\n/);
+      const stamped = JSON.parse(lines[lines.length - 1] ?? '{}') as Record<string, unknown>;
+      expect(stamped.logOffset).toBe(previousStateLogSize);
+      expect(stamped.logSize).toBeGreaterThan(0);
+    });
+  });
+
   it('returns iteration_file_missing when the iteration file does not exist', () => {
     withTempPaths(({ iterationFile, stateLogPath }) => {
       writeFileSync(stateLogPath, '{"type":"iteration","iteration":1,"newInfoRatio":0.4,"status":"continue","focus":"coverage"}\n', 'utf8');
@@ -184,6 +224,126 @@ describe('post-dispatch-validate', () => {
         ok: false,
         reason: 'jsonl_missing_fields',
         details: 'missing: newInfoRatio',
+      });
+    });
+  });
+
+  it('accepts the canonical review prompt record without findingDetails for a clean iteration', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"config","mode":"review"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        mode: 'review',
+        run: 'run-001',
+        status: 'complete',
+        focus: 'correctness',
+        dimensions: ['correctness'],
+        filesReviewed: ['path/to/file.ts:42'],
+        findingsCount: 0,
+        findingsSummary: { P0: 0, P1: 0, P2: 0 },
+        findingsNew: [],
+        traceabilityChecks: {},
+        newFindingsRatio: 0,
+        sessionId: 'session-001',
+        generation: 1,
+        lineageMode: 'new',
+        timestamp: '2026-04-30T00:00:00Z',
+        durationMs: 120000,
+        graphEvents: [],
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: [
+            'type',
+            'iteration',
+            'mode',
+            'run',
+            'status',
+            'focus',
+            'dimensions',
+            'filesReviewed',
+            'findingsCount',
+            'findingsSummary',
+            'findingsNew',
+            'findingDetails',
+            'newFindingsRatio',
+            'sessionId',
+            'generation',
+            'lineageMode',
+            'timestamp',
+            'durationMs',
+          ],
+        }),
+      ).toEqual({ ok: true });
+    });
+  });
+
+  it('still requires findingDetails when a review record reports findings', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"config","mode":"review"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        mode: 'review',
+        run: 'run-001',
+        status: 'complete',
+        focus: 'correctness',
+        dimensions: ['correctness'],
+        filesReviewed: ['path/to/file.ts:42'],
+        findingsCount: 1,
+        findingsSummary: { P0: 0, P1: 1, P2: 0 },
+        findingsNew: { P0: 0, P1: 1, P2: 0 },
+        newFindingsRatio: 0.5,
+        sessionId: 'session-001',
+        generation: 1,
+        lineageMode: 'new',
+        timestamp: '2026-04-30T00:00:00Z',
+        durationMs: 120000,
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: [
+            'type',
+            'iteration',
+            'mode',
+            'run',
+            'status',
+            'focus',
+            'dimensions',
+            'filesReviewed',
+            'findingsCount',
+            'findingsSummary',
+            'findingsNew',
+            'findingDetails',
+            'newFindingsRatio',
+            'sessionId',
+            'generation',
+            'lineageMode',
+            'timestamp',
+            'durationMs',
+          ],
+        }),
+      ).toEqual({
+        ok: false,
+        reason: 'jsonl_missing_fields',
+        details: 'missing: findingDetails',
       });
     });
   });
@@ -571,6 +731,26 @@ describe('post-dispatch-validate', () => {
       expect.objectContaining({ attempt: 1, kind: 'model_error', fastTimedOut: false }),
     ]);
     expect(calls).toBe(2);
+  });
+
+  it('clears the fast judge timeout timer after immediate rejection', async () => {
+    vi.useFakeTimers();
+    try {
+      const result = await runJudgeWithHardening({
+        fastTimeoutMs: 100,
+        slowTimeoutMs: 200,
+        invoke: async () => {
+          throw new Error('immediate rejection');
+        },
+      });
+
+      expect(result.ok).toBe(false);
+      expect(vi.getTimerCount()).toBe(0);
+      await vi.advanceTimersByTimeAsync(100);
+      expect(vi.getTimerCount()).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('strips markdown fences and parses judge JSON without issuing a fallback card', async () => {
