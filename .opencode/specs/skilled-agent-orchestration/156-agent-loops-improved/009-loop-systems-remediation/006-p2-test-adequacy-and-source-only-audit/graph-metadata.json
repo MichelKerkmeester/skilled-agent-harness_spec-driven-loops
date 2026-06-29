@@ -11,36 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "p2 test adequacy",
+      "genuinely concurrent jsonl append test",
+      "child process append harness",
+      "p2 test adequacy plan",
+      "genuinely concurrent jsonl append test plan",
+      "child process append harness plan",
+      "p2 test adequacy tasks",
+      "genuinely concurrent jsonl append test tasks",
+      "child process append harness tasks",
+      "p2 test adequacy summary",
+      "genuinely concurrent jsonl append test summary",
+      "child process append harness summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "test",
+      "adequacy",
+      "genuinely",
+      "concurrent",
+      "jsonl",
+      "append",
+      "child",
+      "process",
+      "harness",
       "plan",
       "tasks",
-      "summary",
-      "impl",
-      "broken"
+      "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,27 +53,33 @@
     ],
     "entities": [
       {
+        "name": "jsonl-repair.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -78,7 +89,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Test Adequacy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Audit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -102,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -120,7 +131,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Cross",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +143,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,27 +161,9 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -190,11 +171,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrent Append Harness",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls — left fully completed before right started — and wrote through raw `appendFileSync` rather than the real `appendJsonlRecord` fn",
     "created_at": "2026-06-29T10:43:21Z",
-    "last_save_at": "2026-06-29T11:35:05.517Z",
+    "last_save_at": "2026-06-29T12:49:01.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9aca1f5e49531000770215fc9b888d367c05ca48f9b3a1379c1eeb304c9d421",
+    "source_fingerprint": "sha256:cbadc442dbbd9aa59da6b9d1714b60b92e64dbedb2828ea417d0b49f01151abb",
     "source_doc_hashes": {
-      "spec.md": "790129f39f3ac3366b26aac678f80519367064aa1642504ef94a5aefd5b295eb",
-      "plan.md": "2c5f0602bba729e314e7076d6c7f7a342c80ceee331091938bd2dd564094e27f",
-      "tasks.md": "1c792415d1e136099313cc0ff0e4f4684127cc98e41eef2ac6ecf0653b688705",
-      "implementation-summary.md": "48b38b55a971643ae127a9c668dfd62b0e77e53a93653920db097315f3368873"
+      "spec.md": "a1b46cea9d45af1346712b50970738a6fcdedab0b89b6487cb905cdd3c645037",
+      "plan.md": "ff6d354d4b743340889d39179449afbdc939ca7b5e024767d2f9e23498207c5d",
+      "tasks.md": "a0a9abd66ec69d03a4ca50a7eb94eae49314f1852169cc7436f6809aaecb93f1",
+      "implementation-summary.md": "07e0819af862cefbec52ad9e845fea24b2f26b80f970c74ce252dbfb1e5ebe4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,42 +1,35 @@
 ---
-title: "Implementation Plan: Phase 6: p2-test-adequacy-and-source-only-audit [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: P2 Test Adequacy and Source-Only Audit"
+description: "Plan for replacing the sequential JSONL append test with a genuinely concurrent child-process harness through the real append fn."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "p2 test adequacy plan"
+  - "genuinely concurrent jsonl append test plan"
+  - "child process append harness plan"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-p2-test-adequacy-and-source-only-audit"
-    last_updated_at: "2026-06-29T10:43:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit"
+    last_updated_at: "2026-06-29T14:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Planned and implemented the concurrent append harness"
+    next_safe_action: "Finalize the 009 parent and 156 parent metadata"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-p2-test-adequacy-and-source-only-audit"
+      session_id: "p2-test-adequacy-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "A control-dir file barrier releases both child writers together so they race, which an in-process barrier could not achieve without timing out."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: p2-test-adequacy-and-source-only-audit
+# Implementation Plan: P2 Test Adequacy and Source-Only Audit
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -47,13 +40,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Vitest TypeScript tests over Node CommonJS runtime |
+| **Framework** | deep-loop-runtime test suite |
+| **Storage** | Hermetic temp JSONL files |
+| **Testing** | Child-process spawn via `tsx`, control-dir file barrier |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+A child writer script imports the real `appendJsonlRecord`, signals readiness through a control directory, waits for a `start` file, then appends its records. The test spawns two such writers, waits until both signal ready, writes `start` to release them together, awaits both, and asserts every row survives and the file needs no repair.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +55,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Sequential test and its weakness identified
+- [x] Real append fn and barrier pattern chosen
+- [x] Stability strategy defined
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Child-process append writer and runner helpers added
+- [x] Sequential test replaced with the concurrent harness
+- [x] Full deep-loop-runtime suite green
+- [x] Rewritten test verified stable across repeated runs
+- [x] Docs updated with current verification state
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,33 +73,31 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Cross-process control-dir barrier mirroring the atomic-state concurrent append test.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`writeAppendWriter`**: Emits a child script that appends through `appendJsonlRecord` after the barrier releases.
+- **`runAppendWriter`**: Spawns the child writer with `tsx` and resolves its exit/stdout/stderr.
+- **Control-dir barrier**: `<writer>.ready` files plus a `start` file release both writers together.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Both writers spawn, each writes its `ready` marker and blocks on `start`; the test writes `start` once both are ready, the writers race their appends, and the test reads back the JSONL to assert row preservation.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+## Fix Addendum: Affected Surfaces
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `jsonl-repair.vitest.ts` append test | Ran two writers sequentially via blocking spawnSync. | Replace with a barrier-synchronized concurrent harness. | Test file passes repeatedly; full suite green. |
+| `appendJsonlRecord` | Production append fn. | Now exercised under genuine concurrency. | Records survive parseable; `repairJsonlTail` clean. |
+| atomic-state concurrent append test | Already genuine. | Unchanged. | Remains green in the suite. |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Confirmed `appendJsonlRecord` is an `O_APPEND` write whose per-record atomicity is the property under test.
+- Confirmed the suite runs files non-parallel with a 30s test timeout, so the barrier deadlines are safe.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +106,20 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the sequential append test and the atomic-state genuine pattern
+- [x] Read `appendJsonlRecord` and the `spawn-cjs` helper
+- [x] Confirm the suite timeout and parallelism config
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add the `writeAppendWriter` and `runAppendWriter` helpers
+- [x] Replace the sequential test with the concurrent barrier harness
+- [x] Add the missing `existsSync` / `mkdirSync` / `sleep` imports
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Run the rewritten test in isolation
+- [x] Run the full deep-loop-runtime suite
+- [x] Re-run the test five times to confirm stability
+- [x] Update Level-1 phase docs
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +129,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | The rewritten concurrent append test | `npx vitest run tests/unit/jsonl-repair.vitest.ts` |
+| Suite | All deep-loop-runtime tests | `PATH=/opt/homebrew/bin:$PATH npm test` |
+| Stability | Repeated isolated runs of the rewritten test | Five consecutive `npx vitest run` invocations |
+| Spec validation | Level-1 phase docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +142,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Node at `/opt/homebrew/bin` | External runtime | Green | Cannot run the suite |
+| `tsx` loader | External dev dependency | Green | Child writer cannot import the TS append fn |
+| `appendJsonlRecord` | Internal contract | Green | No real append fn to exercise |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +152,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The rewritten test proves flaky under the suite or the barrier cannot release reliably.
+- **Procedure**: Revert the `jsonl-repair.vitest.ts` changes to the prior test and restore the prior docs state for this phase.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

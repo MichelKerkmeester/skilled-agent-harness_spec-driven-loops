@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { spawn, spawnSync } from 'node:child_process';
-import { appendFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 import { appendJsonlRecord, mergeJsonlUnderLock, repairJsonlTail } from '../../lib/deep-loop/jsonl-repair.js';
 import { createHermeticEnv, runtimeRoot } from '../helpers/spawn-cjs';
@@ -85,6 +86,73 @@ function runMergeWriter(
   });
 }
 
+/**
+ * Writes a child-process writer that appends `count` records through the real
+ * appendJsonlRecord fn after a control-dir barrier releases it.
+ */
+function writeAppendWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'append-writer.cjs');
+  writeFileSync(
+    writerPath,
+    [
+      "const fs = require('node:fs');",
+      'const { appendJsonlRecord } = require(process.argv[2]);',
+      'const [, , , statePath, controlDir, writer, countRaw] = process.argv;',
+      'const count = Number(countRaw);',
+      'const waitView = new Int32Array(new SharedArrayBuffer(4));',
+      'function waitForFile(path) {',
+      '  const deadline = Date.now() + 5000;',
+      '  while (!fs.existsSync(path)) {',
+      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    Atomics.wait(waitView, 0, 0, 10);',
+      '  }',
+      '}',
+      "fs.writeFileSync(`${controlDir}/${writer}.ready`, 'ready', 'utf8');",
+      "waitForFile(`${controlDir}/start`);",
+      'for (let index = 0; index < count; index += 1) {',
+      '  appendJsonlRecord(statePath, { writer, index });',
+      '}',
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+function runAppendWriter(
+  writerPath: string,
+  statePath: string,
+  controlDir: string,
+  writer: string,
+  count: number,
+): Promise<{ exitCode: number | null; stdout: string; stderr: string }> {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(
+      process.execPath,
+      [
+        '--import',
+        'tsx',
+        writerPath,
+        join(runtimeRoot, 'lib', 'deep-loop', 'jsonl-repair.ts'),
+        statePath,
+        controlDir,
+        writer,
+        String(count),
+      ],
+      { cwd: runtimeRoot, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+    let stdout = '';
+    let stderr = '';
+    child.stdout?.setEncoding('utf8');
+    child.stderr?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => { stdout += chunk; });
+    child.stderr?.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (exitCode) => {
+      resolvePromise({ exitCode, stdout: stdout.trim(), stderr: stderr.trim() });
+    });
+  });
+}
+
 describe('jsonl-repair', () => {
   it('repairs a corrupt trailing line and preserves prior valid records', () => {
     withTempJsonl((statePath) => {
@@ -149,29 +217,43 @@ describe('jsonl-repair', () => {
     });
   });
 
-  it('keeps concurrent append records parseable at record boundaries', () => {
-    withTempJsonl((statePath, tempDir) => {
-      const writerPath = join(tempDir, 'writer.cjs');
-      writeFileSync(
-        writerPath,
-        [
-          "const { appendFileSync } = require('node:fs');",
-          'for (let index = 0; index < 25; index += 1) {',
-          "  appendFileSync(process.argv[2], JSON.stringify({ writer: process.argv[3], index }) + '\\n', { flag: 'a' });",
-          '}',
-        ].join('\n'),
-        'utf8',
-      );
+  it('keeps concurrent append records parseable at record boundaries', async () => {
+    const hermetic = createHermeticEnv('jsonl-concurrent-append');
+    try {
+      const statePath = join(hermetic.tmpDir, 'state.jsonl');
+      const controlDir = join(hermetic.tmpDir, 'control');
+      mkdirSync(controlDir, { recursive: true });
+      const writerPath = writeAppendWriter(hermetic.tmpDir);
+      const perWriter = 25;
+      const writers = ['left', 'right'] as const;
 
-      const left = spawnSync(process.execPath, [writerPath, statePath, 'left'], { encoding: 'utf8' });
-      const right = spawnSync(process.execPath, [writerPath, statePath, 'right'], { encoding: 'utf8' });
+      // Two genuinely concurrent child processes append through the real
+      // appendJsonlRecord fn. A control-dir barrier releases both at once so they
+      // race on the same JSONL instead of running one after the other.
+      const left = runAppendWriter(writerPath, statePath, controlDir, 'left', perWriter);
+      const right = runAppendWriter(writerPath, statePath, controlDir, 'right', perWriter);
 
-      expect(left.status).toBe(0);
-      expect(right.status).toBe(0);
-      const records = readFileSync(statePath, 'utf8').trimEnd().split('\n').map((line) => JSON.parse(line));
-      expect(records).toHaveLength(50);
+      const deadline = Date.now() + 5000;
+      while (!writers.every((writer) => existsSync(join(controlDir, `${writer}.ready`)))) {
+        if (Date.now() > deadline) throw new Error('concurrent append writers did not signal ready');
+        await sleep(10);
+      }
+      writeFileSync(join(controlDir, 'start'), 'start', 'utf8');
+
+      const results = await Promise.all([left, right]);
+      expect(results).toEqual([
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+      ]);
+
+      const records = readJsonlRecords(statePath);
+      expect(records).toHaveLength(2 * perWriter);
+      expect(records.filter((record) => record.writer === 'left')).toHaveLength(perWriter);
+      expect(records.filter((record) => record.writer === 'right')).toHaveLength(perWriter);
       expect(repairJsonlTail(statePath)).toEqual({ repaired: false, droppedBytes: 0 });
-    });
+    } finally {
+      hermetic.cleanup();
+    }
   });
 
   it('strips corrupt trailing lines even when the corrupt line ends with a newline', () => {

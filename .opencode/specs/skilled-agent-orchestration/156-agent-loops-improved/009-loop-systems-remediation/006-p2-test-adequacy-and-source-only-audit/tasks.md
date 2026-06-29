@@ -1,34 +1,34 @@
 ---
-title: "Tasks: Phase 6: p2-test-adequacy-and-source-only-audit [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: P2 Test Adequacy and Source-Only Audit"
+description: "Task list for the genuinely concurrent JSONL append harness remediation."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "p2 test adequacy tasks"
+  - "genuinely concurrent jsonl append test tasks"
+  - "child process append harness tasks"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-p2-test-adequacy-and-source-only-audit"
-    last_updated_at: "2026-06-29T10:43:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit"
+    last_updated_at: "2026-06-29T14:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Tracked the concurrent append harness remediation"
+    next_safe_action: "Finalize the 009 parent and 156 parent metadata"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-p2-test-adequacy-and-source-only-audit"
+      session_id: "p2-test-adequacy-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 6: p2-test-adequacy-and-source-only-audit
+# Tasks: P2 Test Adequacy and Source-Only Audit
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -50,9 +50,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the sequential append test (`tests/unit/jsonl-repair.vitest.ts`)
+- [x] T002 Read the atomic-state genuine concurrent pattern (`tests/unit/atomic-state.vitest.ts`)
+- [x] T003 Read `appendJsonlRecord` and the `spawn-cjs` helper
+- [x] T004 Confirm the suite timeout (30s) and `fileParallelism: false`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T005 Add `writeAppendWriter` child-writer helper (`tests/unit/jsonl-repair.vitest.ts`)
+- [x] T006 Add `runAppendWriter` spawn helper (`tests/unit/jsonl-repair.vitest.ts`)
+- [x] T007 Replace the sequential test with the concurrent barrier harness (`tests/unit/jsonl-repair.vitest.ts`)
+- [x] T008 Add the `existsSync` / `mkdirSync` / `sleep` imports (`tests/unit/jsonl-repair.vitest.ts`)
+- [x] T009 Author concrete Level-1 docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Run the rewritten test in isolation (10/10 pass)
+- [x] T011 Run the full deep-loop-runtime suite (60 files / 545 tests)
+- [x] T012 Re-run the rewritten test five times to confirm stability (5/5 pass)
+- [x] T013 Run comment hygiene on the modified test file
+- [x] T014 Run strict spec validation after metadata refresh
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Concurrent harness verified genuine and stable
+- [x] Full deep-loop-runtime suite passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +98,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Implementation Summary**: See `implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-
