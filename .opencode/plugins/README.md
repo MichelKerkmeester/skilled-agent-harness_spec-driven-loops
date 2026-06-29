@@ -23,7 +23,9 @@ OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session 
 
 ## 1. OVERVIEW
 
-This folder is OpenCode's local-plugin mounting point. Every `.js` file here is auto-loaded once per session and must export a default plugin factory. Helper code, transports, schemas, and bridges deliberately live elsewhere so the auto-loader cannot pick up non-plugin modules.
+This folder is OpenCode's local-plugin mounting point. Every `.js` file here is auto-loaded once per session and must export a default plugin factory **and nothing else**.
+
+> **Default-export only — load-bearing.** OpenCode treats *every* export of a plugin module as its own plugin and invokes each one. A stray named export (a helper function, a constant, even a test surface) is loaded as a plugin, throws when invoked, and silently drops the **entire file** — including its real default plugin, which then never registers its tools or hooks. Keep the only `export` the `default`; hang any test surface off the default function as a property (e.g. `MyPlugin.__test = {...}`). Helper code, transports, schemas, and bridges live elsewhere so the auto-loader cannot pick up non-plugin modules.
 
 ---
 
@@ -31,7 +33,7 @@ This folder is OpenCode's local-plugin mounting point. Every `.js` file here is 
 
 When OpenCode boots, every `.js` file in this folder is invoked once. To add a new plugin:
 
-1. Create the entrypoint here (`my-plugin.js`) with a default export.
+1. Create the entrypoint here (`my-plugin.js`) with a **default export only** — no named exports (every named export is loaded as its own plugin; see Overview). Attach any test surface as a property on the default function.
 2. Co-locate any bridge / transport / schema modules under the owning skill, not here.
 3. Smoke-test from both the project root and any symlinked workspace before shipping.
 
@@ -43,6 +45,8 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 |---|---|
 | `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. Routes via `mk-skill-advisor-bridge.mjs`. |
 | `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*`. |
+| `mk-spec-memory.js` | Prompt-time Spec Kit Memory continuity plugin. Injects a continuity brief via `experimental.chat.system.transform` and exposes `mk_spec_memory_status`. Routes via the spec-kit warm CLI bridge. |
+| `mk-goal.js` | The `/goal` plugin. Owns per-session goal state (atomic, hex(sessionID)-keyed, fail-closed), injects the active goal each turn via `experimental.chat.system.transform`, exposes `mk_goal`/`mk_goal_status` tools, accounts usage over the `event()` lifecycle, and (default-off) can drive guarded autonomous continuation. Default-export only; test surface on `MkGoalPlugin.__test`. |
 | `session-cleanup.js` | Session-end MCP cleanup plugin. OpenCode has no JSON SessionEnd hook, so this listens for the `server.instance.disposed` / `global.disposed` dispose lifecycle events and runs `.opencode/scripts/session-cleanup.sh` to reclaim the session's MCP helper descendants. Best-effort and bounded; never blocks teardown. |
 
 ---

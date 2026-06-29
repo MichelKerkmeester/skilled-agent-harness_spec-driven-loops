@@ -1,13 +1,13 @@
-# Skilled - Agent Orchestration w/ Custom Spec Kit & Memory System
+# Skilled - Agent Orchestration Loops w/ Custom Spec Kit & Memory System
 
-| Core layer | What it adds |
-| --- | --- |
-| 📋 **Spec Kit Framework** | Structured plans, task tracking, validation gates, and handover docs |
-| 🧠 **Cognitive Memory** | Local-first project memory for decisions, context, and continuity |
-| ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
-| 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
-| 🤖 **12 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| Core layer　　　　　　　　　　 | What it adds                                                            |
+| --------------------------------| -------------------------------------------------------------------------|
+| 📋 **Spec Kit Framework**　　　| Structured plans, task tracking, validation gates, and handover docs    |
+| 🧠 **Cognitive Memory**　　　　| Local-first project memory for decisions, context, and continuity       |
+| ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context  |
+| 🔍 **Code Graph**　　　　　　　| Callers, imports, impact paths, and Code Graph + Grep code discovery    |
+| 🤖 **12 Specialized Agents**　 | Focused roles for implementation, review, research, docs, git, and more |
+| 🎯 **20 On-Demand Skills**　　 | Skill Advisor routing for the right workflow at the right time          |
 
 **Reasons to try it**
 
@@ -737,16 +737,16 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 └── tools/      tool registration
 ```
 
-| Tool                | What it does                                                                                                                                                                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `advisor_recommend` | Recommends skills for a prompt with lane breakdown, lifecycle redirects and a freshness trust signal. Returns the workspace root and the effective thresholds it used.                                                                      |
-| `advisor_rebuild`   | Rebuilds the advisor skill graph when `advisor_status` reports stale, absent or unavailable state. `force:true` rebuilds even when live.                                                                                                    |
-| `advisor_status`    | Reports freshness, generation, trust state, lane weights, skill count, last scan time and background daemon status.                                                                                                                         |
-| `advisor_validate`  | Runs measurement slices: corpus accuracy, holdout, parity, safety, latency. Surfaces the workspace root, effective thresholds, threshold semantics (aggregate vs runtime) and prompt-safe outcome counts (accepted / corrected / ignored).  |
-| `skill_graph_scan` | Indexes skill metadata into the advisor-owned skill graph surface. |
-| `skill_graph_query` | Queries skill graph relationships such as dependencies, families, hubs, conflicts and subgraphs. |
-| `skill_graph_status` | Reports graph counts, families, categories, staleness, validation and database status. |
-| `skill_graph_validate` | Validates schema drift, broken edges, reciprocal symmetry and dependency-cycle issues. |
+| Tool                   | What it does                                                                                                                                                                                                                               |
+| ------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `advisor_recommend`    | Recommends skills for a prompt with lane breakdown, lifecycle redirects and a freshness trust signal. Returns the workspace root and the effective thresholds it used.                                                                     |
+| `advisor_rebuild`      | Rebuilds the advisor skill graph when `advisor_status` reports stale, absent or unavailable state. `force:true` rebuilds even when live.                                                                                                   |
+| `advisor_status`       | Reports freshness, generation, trust state, lane weights, skill count, last scan time and background daemon status.                                                                                                                        |
+| `advisor_validate`     | Runs measurement slices: corpus accuracy, holdout, parity, safety, latency. Surfaces the workspace root, effective thresholds, threshold semantics (aggregate vs runtime) and prompt-safe outcome counts (accepted / corrected / ignored). |
+| `skill_graph_scan`     | Indexes skill metadata into the advisor-owned skill graph surface.                                                                                                                                                                         |
+| `skill_graph_query`    | Queries skill graph relationships such as dependencies, families, hubs, conflicts and subgraphs.                                                                                                                                           |
+| `skill_graph_status`   | Reports graph counts, families, categories, staleness, validation and database status.                                                                                                                                                     |
+| `skill_graph_validate` | Validates schema drift, broken edges, reciprocal symmetry and dependency-cycle issues.                                                                                                                                                     |
 
 &nbsp;
 #### How Runtimes Talk To It
@@ -1232,6 +1232,11 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 - Refines prompts and prompt packages through `/prompt` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - Applies DEPTH thinking methodology with CLEAR quality scoring
 - Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
+
+**Goal**
+- `/goal <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
+- Backed by the `mk-goal` OpenCode plugin: per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
+- Autonomous continuation is **default-off** and gated (caps, cooldown, kill-switch). See `.opencode/plugins/README.md` for the plugin contract
 
 ---
 
