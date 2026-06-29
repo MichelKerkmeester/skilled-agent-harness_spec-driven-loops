@@ -36,6 +36,8 @@ Space is a design material. Fix structure before adding more visual effects.
 
 Use a defined scale, not arbitrary one-off values. A 4-point base is flexible enough for dense and airy surfaces: `4, 8, 12, 16, 24, 32, 48, 64, 96`.
 
+The canonical baseline rhythm row lives in the [`token_starter.md` spacing scale](../../assets/token_starter.md#4-spacing-scale): `--baseline` is the vertical-rhythm unit that spacing tokens and body line-height resolve to.
+
 Rules:
 - Tight gaps group related elements: usually `8-12px`.
 - Generous gaps separate sections: often `48-96px`.

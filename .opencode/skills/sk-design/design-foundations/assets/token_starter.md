@@ -91,6 +91,7 @@ Use a 4-point base so dense and airy surfaces both have a value to reach for. Ti
 
 | Token | Value | Use |
 | --- | --- | --- |
+| `--baseline` | `4px` | vertical-rhythm base for spacing tokens and Body line-height |
 | `--space-2xs` | `4px` | icon-to-label, inline |
 | `--space-xs` | `8px` | tight grouping of siblings |
 | `--space-sm` | `12px` | grouped controls |
@@ -99,6 +100,8 @@ Use a 4-point base so dense and airy surfaces both have a value to reach for. Ti
 | `--space-xl` | `32px` | subsection gap |
 | `--space-2xl` | `48px` | section gap floor |
 | `--space-section` | `clamp(48px, 8vw, 96px)` | between major sections |
+
+Baseline rule: every spacing token and the Body line-height resolves to an integer multiple of `--baseline`, to `1/2` or `1/4` of `--baseline`, or to a row whose Use cell includes the literal `exception` marker with the reason.
 
 Brand leans toward the generous end with one big move, and Product holds the tighter end where whitespace earns its place. Pull every value from this scale rather than typing one-off numbers.
 

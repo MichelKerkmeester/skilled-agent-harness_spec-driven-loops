@@ -12,7 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "d1-r7 baseline rhythm",
-      "baseline rhythm token design build"
+      "baseline rhythm token design build",
+      "baseline_rhythm_check spacing validator",
+      "baseline rhythm token plan",
+      "baseline rhythm design build",
+      "line-height to spacing relation required",
+      "baseline rhythm token tasks",
+      "baseline rhythm token checklist",
+      "baseline rhythm token summary",
+      "baseline rhythm implementation"
     ],
     "key_topics": [
       "d1-r7",
@@ -21,19 +29,58 @@
       "token",
       "design",
       "build",
-      "add",
-      "row",
-      "foundations",
-      "starter",
-      "link",
-      "validator"
+      "spacing",
+      "validator",
+      "plan",
+      "line-height",
+      "relation",
+      "required"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+      ".opencode/skills/sk-design/design-foundations/references/layout/layout_responsive.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/baseline_rhythm_check.py",
+      ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "token_starter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+        "source": "derived"
+      },
+      {
+        "name": "layout_responsive.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/layout/layout_responsive.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline_rhythm_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/baseline_rhythm_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_design_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +88,133 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "contrast_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Baseline Rhythm Token",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Purpose Make",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "Spacing Scale",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spacing System",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Today",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Type Scale",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a baseline rhythm row to the foundations token starter, link it from layout_responsive.md, and add a validator checking spacing is a multiple/fraction or marked exception.",
+    "causal_summary": "The line-height-to-spacing relationship is stated as a requirement nowhere, so vertical rhythm is incidental: a spacing scale can say \"use the scale\" while a one-off value slips through and nothing notices",
     "created_at": "2026-06-28T12:40:04.484Z",
-    "last_save_at": "2026-06-28T12:40:04.484Z",
+    "last_save_at": "2026-06-29T11:29:37.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e823500c53d1dda07d53ba49f5184b1f6d55f58f3c907150e3424b7255d4210",
+    "source_fingerprint": "sha256:bcdfb17472d0349eec05d4f6dfacf096f8bc1ce1ec0892a1df0d229da21acc71",
     "source_doc_hashes": {
-      "spec.md": "223c0c0b723c3f15b34bc82fffab8e7a792dca0616268fb4c6e7cd4641f11268"
+      "spec.md": "25d21f2982e9b07413fa06901b441027ccaba3753f5473ab39aad1e6a6d993de",
+      "plan.md": "1354f60864238d5869d7d332225aed75f560dedc113f60fbb0046d51a0cffc29",
+      "tasks.md": "2246d0e4bbdbaabebab2f79d62c114eafdab0154e0b34aca4151d7a02a08cf2f",
+      "checklist.md": "727d03f70aef5961307de011f6acba5a7e3bcb26a43b7479e3bacbba0725ff3e",
+      "implementation-summary.md": "7b20947fa9ac68fe6b150ba91c4e7388a10133de4c706d6a8fd6d75e8004ce85"
     },
     "last_active_child_id": null,
     "last_active_at": null
