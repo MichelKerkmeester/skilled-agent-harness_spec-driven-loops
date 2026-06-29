@@ -52,7 +52,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Schema (45 minutes)
+## Phase 1: Setup
 
 - [x] T001 Read the private-fixture `expected` block schema and note where `skillId` / `forbiddenWorkflowModes` are defined (`assets/skill_benchmark/fixtures/sk-design/*.private.json`) [10m] — schema read; attach point confirmed
 - [x] T002 Add optional `rankBelowSkillIds` (string array) to the gold `expected` block schema; default to empty/absent so existing fixtures are unaffected (`assets/skill_benchmark/fixtures/sk-design/`) [10m] — optional, absent-safe field added
@@ -63,7 +63,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation (1.5-2 hours)
+## Phase 2: Implementation
 
 ### Core Function
 - [x] T005 Implement `scoreRelativeAdvisorRanking({ advisorResult, expectedSkillId, rankBelowSkillIds })` as a sibling to `scoreD1Inter`; return `{ pass, targetRank, violatingSkills, advisory }` (`scripts/skill-benchmark/advisor-probe.cjs`) [40m] — `advisor-probe.cjs:165`, returns the full result shape
@@ -84,7 +84,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification (1-1.5 hours)
+## Phase 3: Verification
 
 ### Synthetic Unit Cases
 - [x] T012 Add a relative-advisor-ranking verification path over the real advisor result shape [15m] — orchestrator verified independently with `{ ok:true, recommendations:[{skill,confidence}] }`

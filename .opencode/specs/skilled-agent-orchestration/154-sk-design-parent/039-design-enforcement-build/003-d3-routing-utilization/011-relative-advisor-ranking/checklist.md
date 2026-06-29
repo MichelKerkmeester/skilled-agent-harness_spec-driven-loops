@@ -93,6 +93,25 @@ _memory:
 <!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-060 [P0] No-regression: `hubRoute` headline stays 13 pass / 5 known-gap / 0 regression, `failed: false`
+  - **Evidence**: route-gold guard green after edits at 13 pass / 5 known-gap / 0 regression
+- [x] CHK-061 [P0] No-regression: `routeTelemetry` reducer output unchanged
+  - **Evidence**: `routeTelemetry` reducer output intact; the new lane never touches the telemetry block
+- [x] CHK-062 [P0] No-regression: weighted `aggregateScore`, `dimensionScores`, and `verdict` logic unchanged (no new `BLOCKED-BY-*` verdict)
+  - **Evidence**: `dims.relativeRanking` reduces into `advisorySignals` / `runQuality` only (`score-skill-benchmark.cjs:879/893`); `modeAScore` / `dimensionScores` / `verdict` math untouched
+- [x] CHK-063 [P1] New metric rides the advisory / `runQuality` block only — never folded into the weighted aggregate or the `hubRoute` gate
+  - **Evidence**: `advisorySignals.relativeRanking` carries the note "advisor target rank relative to sibling transports; advisory, not weighted"; the weighted aggregate is unchanged
+- [x] CHK-064 [P1] Acceptance met: probe passes when sk-design #1 with transports below (today: #1, transports at 3/5) and fails a seeded transport out-ranking
+  - **Evidence**: sk-design #1 → `pass: true`, `targetRank: 1`, `violatingSkills: []`; transport out-ranks → `pass: false`, `violatingSkills: ["cli-codex"]`; CLI fail-closed exit
+- [x] CHK-065 [P1] Full skill-benchmark vitest suite green
+  - **Evidence**: suite green after edits
+
+<!-- /ANCHOR:fix-completeness -->
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -126,25 +145,6 @@ _memory:
   - **Evidence**: no scratch artifacts remain at close
 
 <!-- /ANCHOR:file-org -->
----
-
-<!-- ANCHOR:fix-completeness -->
-## Fix Completeness
-
-- [x] CHK-060 [P0] No-regression: `hubRoute` headline stays 13 pass / 5 known-gap / 0 regression, `failed: false`
-  - **Evidence**: route-gold guard green after edits at 13 pass / 5 known-gap / 0 regression
-- [x] CHK-061 [P0] No-regression: `routeTelemetry` reducer output unchanged
-  - **Evidence**: `routeTelemetry` reducer output intact; the new lane never touches the telemetry block
-- [x] CHK-062 [P0] No-regression: weighted `aggregateScore`, `dimensionScores`, and `verdict` logic unchanged (no new `BLOCKED-BY-*` verdict)
-  - **Evidence**: `dims.relativeRanking` reduces into `advisorySignals` / `runQuality` only (`score-skill-benchmark.cjs:879/893`); `modeAScore` / `dimensionScores` / `verdict` math untouched
-- [x] CHK-063 [P1] New metric rides the advisory / `runQuality` block only — never folded into the weighted aggregate or the `hubRoute` gate
-  - **Evidence**: `advisorySignals.relativeRanking` carries the note "advisor target rank relative to sibling transports; advisory, not weighted"; the weighted aggregate is unchanged
-- [x] CHK-064 [P1] Acceptance met: probe passes when sk-design #1 with transports below (today: #1, transports at 3/5) and fails a seeded transport out-ranking
-  - **Evidence**: sk-design #1 → `pass: true`, `targetRank: 1`, `violatingSkills: []`; transport out-ranks → `pass: false`, `violatingSkills: ["cli-codex"]`; CLI fail-closed exit
-- [x] CHK-065 [P1] Full skill-benchmark vitest suite green
-  - **Evidence**: suite green after edits
-
-<!-- /ANCHOR:fix-completeness -->
 ---
 
 <!-- ANCHOR:summary -->

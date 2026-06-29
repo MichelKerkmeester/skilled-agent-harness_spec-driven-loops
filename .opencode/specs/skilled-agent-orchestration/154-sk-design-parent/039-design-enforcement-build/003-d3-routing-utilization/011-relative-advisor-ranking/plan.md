@@ -155,7 +155,7 @@ Additive sibling-function lane — mirror the existing advisory signals (`scoreM
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -168,10 +168,10 @@ Phase 1 (Schema) ──> Phase 2 (Core) ──> Phase 3 (Verify)
 | Core | Schema | Verify |
 | Verify | Core | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -181,10 +181,10 @@ Phase 1 (Schema) ──> Phase 2 (Core) ──> Phase 3 (Verify)
 | Verification (synthetic + no-regression + node --check) | Low-Medium | 1-1.5 hours |
 | **Total** | | **3.25-4.25 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -203,7 +203,7 @@ Phase 1 (Schema) ──> Phase 2 (Core) ──> Phase 3 (Verify)
 - **Has data migrations?** No (additive optional field + additive function; no stored state)
 - **Reversal procedure**: Plain code/fixture revert; no migration to undo
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
