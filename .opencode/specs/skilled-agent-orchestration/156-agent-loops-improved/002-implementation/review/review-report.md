@@ -1,6 +1,6 @@
 # Deep-Review Report — Loop-Systems Implementation Run (156/002) + /goal Plugin
 
-**Verdict:** CONDITIONAL → the implementation is broadly sound (baseline 527/527 unit tests green), and a 20-iteration adversarial review surfaced **57 unique findings (1 P0, 35 P1, 21 P2)**, concentrated in concurrency/crash-safety, fail-policy consistency, and fan-out isolation. None block normal single-writer operation. The **four highest-impact correctness/data-integrity clusters are now FIXED with regression tests** (P0 + ~12 P1, test suite 527→538 + plugin regressions, all green); the remaining ~22 P1 and 21 P2 are real but lower-blast / infra / design-inherent and are tracked below as scoped follow-ups.
+**Verdict:** CONDITIONAL → the implementation is broadly sound (baseline 527/527 unit tests green), and a 20-iteration adversarial review surfaced **57 unique findings (1 P0, 35 P1, 21 P2)**, concentrated in concurrency/crash-safety, fail-policy consistency, and fan-out isolation. None block normal single-writer operation. **Eight clusters are now FIXED with regression tests** (the P0 + ~20 P1; deep-loop-runtime suite 527→545 + plugin export-contract/regressions + reducer regression, all green). The remaining findings (deep-improvement promote/rollback safety, model-benchmark ledger row, the P2 test-adequacy gaps, and the design-inherent fan-out `workspace-write` scope) are real but lower-blast and tracked below as scoped follow-ups.
 
 ## Fixes landed this pass (verified green, committed)
 
@@ -10,8 +10,14 @@
 | **atomic-state** | :254 (invalid-JSON), :370 (unhandled rejection), :324 (concurrent append) | (in the +7) | `116e6fc` |
 | **JSONL** | round-state-jsonl :66/:290, jsonl-repair :188/:140 | +4 (suite →538) | `a5e4f91` |
 | **mk-goal** | :681 (terminal revival), :1199 (injection clamp), :1138 (continuation lock leak) | export-contract + 3 regressions | `a5e4f91` |
+| **post-dispatch-validate** | :596 (stale line fails valid iter), :364 (judge timer leak), :235/:1173 (validator↔template contract) | +regressions | `b8fe22a` |
+| **coverage-graph-query** | :462 (wrong edge direction), :669 (query/scoring divergence), :664 (metadata redaction) | +regressions | `b8fe22a` |
+| **fanout-run** | :1116 (exit-0/no-artifact false fulfilled), :737 (subprocess-tree kill), :1049/:866 (path traversal) | +regressions | `9660e2d` |
+| **reduce-state** | :654 (findings dropped when delta lacks per-finding rows) | +regression | `9660e2d` |
 
-Each fix shipped a regression test confirmed RED before the fix (executable proof the defect was real). Full deep-loop-runtime suite: **538/538 green, typecheck clean**; all 6 plugin test files green; mk-goal.js remains default-export-only.
+Each fix shipped a regression test confirmed RED before the fix (executable proof the defect was real). Full deep-loop-runtime suite: **545/545 green, typecheck clean**; all 6 plugin test files green; deep-review reducer round-trips the 20-iter packet (57 findings, 0 corruption); mk-goal.js remains default-export-only.
+
+> Note: the `reduce-state.cjs` fix is a larger diff (+264/−114) because the rollup path was restructured to add the summary-fallback; verified by its regression test + a live round-trip of the real packet.
 
 ## Method
 
