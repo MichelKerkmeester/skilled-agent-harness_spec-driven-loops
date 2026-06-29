@@ -44,7 +44,7 @@
       "control"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
@@ -123,15 +123,15 @@
     ],
     "causal_summary": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects",
     "created_at": "2026-06-29T05:08:46.224Z",
-    "last_save_at": "2026-06-29T10:30:56.283Z",
+    "last_save_at": "2026-06-29T15:23:05.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8b4d19a5342b11aa8d156226671cb780507ec7d96168aa69e5f64b21295e6e84",
+    "source_fingerprint": "sha256:3436f6f2571a0058bd769093bf0d3185de3484699f2d8b5dec1837407000bd6c",
     "source_doc_hashes": {
-      "spec.md": "390c309fe385d95b72a202717f2debfe782532d4505868c350d128f78adc2069"
+      "spec.md": "4087c05bb4766c172c775ea3744f2a6eeffe16dfc016d3b647516918c72e5d38"
     },
     "last_active_child_id": null,
     "last_active_at": null

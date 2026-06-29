@@ -51,7 +51,7 @@
       "library"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
@@ -192,15 +192,15 @@
     ],
     "causal_summary": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded for integrity and redundancy, the loop lock has no heartbeat during long dispatch, and there is no crash-resume for killed wait-boundary processes; (2) convergence quality — the convergence signal has no improvement-effect delta, no observation-threshold guard, and no time-decay on stale evidence; (3) observability — log transcript navigation requires full-file scanning and there is no byte-offset indexing; (4) robustness — the fallback router re",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-06-29T10:30:43.831Z",
+    "last_save_at": "2026-06-29T15:23:03.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e07c2a51404c95f11768cc9784b46eeb64eaca5864c9abfd15e0d8b842c665a4",
+    "source_fingerprint": "sha256:69262ed13dc8c50e4a2a87470d0ab7ed8c1711b837e243ac6eeb18f09ad5c8f0",
     "source_doc_hashes": {
-      "spec.md": "b507e0c6dc48e8a7e11703119925384514960556bed483ef2e589a0847d60f68"
+      "spec.md": "ad80e7d6c19df3318f009a694170564e2b522dae3f6882cd650fce5ff82200e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -36,7 +36,7 @@
       "guard"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "001-advisor-routing-projection/spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
@@ -129,15 +129,15 @@
     ],
     "causal_summary": "New deep-loop lexical modes added to `mode-registry.json` are born inert: the advisor's alias tables and drift-guard test are not automatically regenerated, so the advisor scores against stale projections and `advisorrecommend` responses omit the resolved `workflowMode` field that callers need",
     "created_at": "2026-06-29T05:08:45.945Z",
-    "last_save_at": "2026-06-29T10:30:55.605Z",
+    "last_save_at": "2026-06-29T15:23:04.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5004a8dfc8b1075acb21316fa9d56df79342a7e127628a2d1807281dd19b429d",
+    "source_fingerprint": "sha256:69ecef46689a1251ef07ee61be661ef3edb2b3158abcf75aa8c67493f0ccd828",
     "source_doc_hashes": {
-      "spec.md": "4c3510ec89b87136af05a284dd678407f84c37b912e6a47b2f99bec769c895a7"
+      "spec.md": "0376aef3b270abae8d93dc044e30299e60e599858b41e02066254c152487d7d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

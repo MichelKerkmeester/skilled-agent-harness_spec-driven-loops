@@ -38,7 +38,7 @@
       "feature"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       ".opencode/plugins/mk-goal.js",
@@ -97,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,6 +110,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -153,16 +153,16 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-06-29T10:25:54.595Z",
+    "last_save_at": "2026-06-29T15:23:03.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a0af95ce20d5ab9a2854f1b1c86746602cca5a7a467b711ee92a093123641af1",
+    "source_fingerprint": "sha256:efcb4570fb724dd63f08be56ebfb24176a31c89c7ed8588bca8ca0812a62f532",
     "source_doc_hashes": {
-      "spec.md": "0cf7eba223ee03d5d14bb8979b4def21cab9911ca6ed4d66effc385eec492ad9",
+      "spec.md": "0ca295d4684811347ca66dddd3db2c3651895284d78d47a454413a1a79bc08d2",
       "research/research.md": "9d933f628029c57efd24abce1cdaa2536bedb40e2f37c620125e79846cafcdb9"
     },
     "last_active_child_id": null,

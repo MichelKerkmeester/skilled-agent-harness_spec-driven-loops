@@ -38,7 +38,7 @@
       "tests"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
       ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
@@ -109,15 +109,15 @@
     ],
     "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution and risking real-data corruption",
     "created_at": "2026-06-29T05:08:46.500Z",
-    "last_save_at": "2026-06-29T10:30:58.687Z",
+    "last_save_at": "2026-06-29T15:23:05.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0cddce7216032548315ec1f01023d3ed14f469575a9de38c4527251b24e6cfad",
+    "source_fingerprint": "sha256:d8d6619187f3d998c444d174d3686edf27f1e11611fe5b36e2835b03dfd6a3af",
     "source_doc_hashes": {
-      "spec.md": "d907aee771677d13e23ce06af05259fbfbd709fd12668a8bc9cc7bb93390be29"
+      "spec.md": "3e1ea7b881b3f7a47ec59d7ed5a4640a1ad5d3d8ba0ebf3f713add198d2f2129"
     },
     "last_active_child_id": null,
     "last_active_at": null
