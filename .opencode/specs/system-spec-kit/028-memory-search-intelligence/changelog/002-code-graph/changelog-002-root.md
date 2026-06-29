@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-The Code Graph phase parent rolls up eight child phases across deterministic ranking, edge correctness, freshness metadata, default-off bi-temporal schema foundation, default-off impact ranking, parser resilience and document-symbol extraction. Detailed planning and verification live in the child phase folders listed below.
+The Code Graph phase parent rolls up nine child phases across deterministic ranking, edge correctness, freshness metadata, default-off bi-temporal schema foundation, default-off impact ranking, parser resilience, document-symbol extraction and daemon-reclaim hardening. Detailed planning and verification live in the child phase folders listed below.
 
 ### Included Phases
 
@@ -32,6 +32,7 @@ The Code Graph phase parent rolls up eight child phases across deterministic ran
 | `006-edge-governance-vocab` | Implemented default-off | The closed-vocab `edge_type` CHECK migration shipped behind `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` with `SCHEMA_VERSION` 7 to 8, a pre-rebuild DISTINCT scan and focused tests. The churn cap, audit-subgraph and derived-clock siblings remain deferred. |
 | `007-parser-resilience` | Implemented | Parser skip-list behavior now separates crash cohort from transient or fatal retry policy. |
 | `008-doc-symbol-lane` | Implemented | The doc lane now indexes heading and key nodes and the launcher classifies lease transitions through a no-op-default metrics hook. |
+| `009-daemon-reclaim-hardening` | Implemented (gated, default-on) | Tridimensional-liveness reclaim of a wedged code-index daemon (PID + socket-serving + heartbeat): compound socket-vetoed predicate, uid/PID-identity kill-guards, startup WAL hygiene, conditional CAS, crash-surviving PID registry. 31 tests, no regression; production soak + better-sqlite3 ABI realign pending. |
 
 ### Added
 
