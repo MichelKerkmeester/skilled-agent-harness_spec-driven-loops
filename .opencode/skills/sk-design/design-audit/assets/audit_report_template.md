@@ -124,6 +124,23 @@ Score each dimension 0 to 4 from the findings above. The score summarizes the fi
 
 Rating bands: `18-20` Excellent, `14-17` Good, `10-13` Acceptable, `6-9` Poor, `0-5` Critical. Do not score generously to soften the report. A 4 means genuinely excellent.
 
+### Performance Evidence
+
+Fill this whenever the Performance dimension above scores higher than 2. A Performance score above 2 is an optimize claim, and an optimize claim needs a measured number or an honest not-assessed label. Prose alone is not enough.
+
+| Field | Answer |
+|---|---|
+| Metric | `__________` (LCP, INP, CLS, frame time, bundle weight, request count or another named metric) |
+| Baseline | `__________` (number + unit, or `not-assessed`) |
+| Post-change | `__________` (number + unit, `not-assessed`, or `n/a - report only`) |
+| Evidence type | [ ] measured (name the tool and run) [ ] static-risk (no metric captured) |
+| Static-risk label | `__________` (the static risk to record when no metric was measured) |
+| Measurement needed | `__________` (the exact measurement that would confirm the claim) |
+
+Rule: a Performance score above 2 must carry a numeric metric in Baseline or Post-change, or the explicit `not-assessed` label in the filled evidence fields. The deterministic check confirms that the number or label is present; whether the number is a true measurement stays a judgment call. Evidence model: `../references/accessibility_performance.md` §5 and `../references/evidence_capture.md` §6.
+
+Deterministic check: `../scripts/perf_evidence_check.py <filled-report.md>`.
+
 ---
 
 ## 6. OWNER MAPPING

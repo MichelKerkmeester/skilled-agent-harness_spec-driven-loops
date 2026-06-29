@@ -1,24 +1,22 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/005-audit-performance-evidence",
-  "description": "Add a Performance Evidence block to the audit report template and require a numeric metric or explicit not-assessed label for Perf scores above 2.",
+  "description": "The audit report template scores Performance 0 to 4 in its Section 5 five-dimension table but gives the Performance dimension no field for a number",
   "keywords": [
-    "add",
-    "performance",
-    "evidence",
-    "block",
     "audit",
     "report",
     "template",
-    "require",
-    "numeric",
-    "metric",
-    "explicit",
-    "not-assessed",
-    "label",
-    "perf",
-    "scores"
+    "scores",
+    "performance",
+    "section",
+    "five-dimension",
+    "table",
+    "gives",
+    "dimension",
+    "field",
+    "number"
   ],
-  "lastUpdated": "2026-06-28T12:40:05.362Z",
+  "lastUpdated": "2026-06-29T11:17:27.935Z",
   "specId": "005",
   "folderSlug": "audit-performance-evidence",
   "parentChain": [
@@ -30,6 +28,5 @@
     "001-d1-residual-craft"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
