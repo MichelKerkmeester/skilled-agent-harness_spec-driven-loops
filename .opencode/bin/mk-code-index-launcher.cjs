@@ -480,6 +480,35 @@ function classifyOwnerReclaim(input) {
   return 'recheck';
 }
 
+function ownerUidMatches({ leasePath: targetLeasePath, recordedUid, currentUid, statUid }) {
+  if (!Number.isInteger(currentUid)) return false;
+  const ownerUid = recordedUid !== undefined && recordedUid !== null
+    ? recordedUid
+    : typeof statUid === 'function'
+      ? statUid(targetLeasePath)
+      : null;
+  return Number.isInteger(ownerUid) && ownerUid === currentUid;
+}
+
+function cmdlineBasename(cmdline) {
+  const command = String(cmdline).split('\0')[0].trim().split(/\s+/)[0];
+  return command ? path.basename(command) : '';
+}
+
+function verifyPidIdentity({ pid, recordedCmdlineBasename, recordedStartMs, toleranceMs, lookups }) {
+  const liveCmdline = lookups.readCmdline(pid);
+  if (liveCmdline === null) return { ok: false, reason: 'no-process' };
+  if (cmdlineBasename(liveCmdline) !== recordedCmdlineBasename) {
+    return { ok: false, reason: 'cmdline-mismatch' };
+  }
+
+  const liveStartMs = lookups.readStartMs(pid);
+  if (!Number.isFinite(liveStartMs) || Math.abs(liveStartMs - recordedStartMs) > toleranceMs) {
+    return { ok: false, reason: 'start-time-mismatch' };
+  }
+  return { ok: true, reason: 'match' };
+}
+
 function readParentPid(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return null;
   if (process.platform === 'linux') {
@@ -1274,6 +1303,8 @@ module.exports = {
   resolveMaxInitMs,
   reclaimDeadSocketEnabled,
   classifyOwnerReclaim,
+  ownerUidMatches,
+  verifyPidIdentity,
   launcherDiagnostic,
   configureLeaseMetricSinkForTesting,
   emitLeaseMetric,
