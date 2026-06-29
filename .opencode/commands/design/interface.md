@@ -14,7 +14,18 @@ Pin the `interface` mode of the `sk-design` parent hub to build or reshape a dis
 across modes; this command loads the `interface` mode directly. If the request spans more
 than `interface`, defer to the hub's routing instead of forcing this mode.
 
-## 2. INSTRUCTIONS
+<!-- ANCHOR:sibling-discriminator -->
+## 2. WHEN TO USE THIS, NOT A SIBLING
+
+- **Use this command when** the request is to invent or reshape a distinctive interface direction.
+- **Prefer `/design:audit` when** the request is findings-first review, accessibility, performance, scoring, or production hardening.
+- **Prefer `/design:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
+- **Prefer `/design:md-generator` when** the request is extracting a live site's measured CSS into DESIGN.md.
+- **Prefer `/design:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
+- **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
+<!-- /ANCHOR:sibling-discriminator -->
+
+## 3. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -27,7 +38,7 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
 
-## 3. EMIT DELIVERABLE
+## 4. EMIT DELIVERABLE
 
 Emit `Interface Direction Spec` as the primary deliverable.
 
@@ -37,7 +48,7 @@ Required fields:
 - `designDials`
 - `preflightResult`
 
-## 4. EXAMPLE
+## 5. EXAMPLE
 
 ```
 /design:interface dashboard-shell --mode redesign

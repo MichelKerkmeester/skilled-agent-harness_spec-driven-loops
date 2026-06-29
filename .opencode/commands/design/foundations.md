@@ -14,7 +14,18 @@ Pin the `foundations` mode of the `sk-design` parent hub to design the static vi
 across modes; this command loads the `foundations` mode directly. If the request spans more
 than `foundations`, defer to the hub's routing instead of forcing this mode.
 
-## 2. INSTRUCTIONS
+<!-- ANCHOR:sibling-discriminator -->
+## 2. WHEN TO USE THIS, NOT A SIBLING
+
+- **Use this command when** the request is to design or correct the static visual system.
+- **Prefer `/design:audit` when** the request is to review, score, accessibility-check, or harden a design surface.
+- **Prefer `/design:interface` when** the request is to invent the overall interface direction, voice, or signature visual concept first.
+- **Prefer `/design:md-generator` when** the request is to extract measured tokens from a live site into DESIGN.md.
+- **Prefer `/design:motion` when** the request is animation, transition choreography, micro-interactions, or reduced-motion behavior.
+- **Defer to the `sk-design` hub when** the request spans invention of the overall interface direction, motion choreography, or release-quality audit.
+<!-- /ANCHOR:sibling-discriminator -->
+
+## 3. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -27,7 +38,7 @@ than `foundations`, defer to the hub's routing instead of forcing this mode.
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
 
-## 3. EMIT DELIVERABLE
+## 4. EMIT DELIVERABLE
 
 Emit `Visual System Foundations Plan` as the primary deliverable.
 
@@ -37,7 +48,7 @@ Required fields:
 - `tokenDecisions`
 - `contrastEvidence`
 
-## 4. EXAMPLE
+## 5. EXAMPLE
 
 ```
 /design:foundations color marketing-site

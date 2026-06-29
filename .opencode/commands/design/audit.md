@@ -14,7 +14,18 @@ Pin the `audit` mode of the `sk-design` parent hub to audit and harden design qu
 across modes; this command loads the `audit` mode directly. If the request spans more
 than `audit`, defer to the hub's routing instead of forcing this mode.
 
-## 2. INSTRUCTIONS
+<!-- ANCHOR:sibling-discriminator -->
+## 2. WHEN TO USE THIS, NOT A SIBLING
+
+- **Use this command when** the request is to review, score, or harden an existing design surface.
+- **Prefer `/design:foundations` when** the request is to create or repair a static token system, palette, typography, layout, or spacing plan.
+- **Prefer `/design:interface` when** the request is to invent a new visual direction, interface concept, or signature surface.
+- **Prefer `/design:md-generator` when** the request is to extract measured CSS from a live site into a Style Reference DESIGN.md.
+- **Prefer `/design:motion` when** the request is to create animation choreography, transitions, or micro-interaction behavior.
+- **Defer to the `sk-design` hub when** the request asks for new direction, static system design, or motion choreography rather than quality review.
+<!-- /ANCHOR:sibling-discriminator -->
+
+## 3. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -27,7 +38,7 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
 
-## 3. EMIT DELIVERABLE
+## 4. EMIT DELIVERABLE
 
 Emit `Design Quality Audit Report` as the primary deliverable.
 
@@ -37,7 +48,7 @@ Required fields:
 - `severityFindings`
 - `qualityScore`
 
-## 4. EXAMPLE
+## 5. EXAMPLE
 
 ```
 /design:audit src/components/Checkout.tsx --scope a11y --score

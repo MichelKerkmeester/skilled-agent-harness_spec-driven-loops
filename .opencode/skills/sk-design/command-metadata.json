@@ -16,6 +16,32 @@
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
     "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
+    "discriminator": {
+      "whenToUse": "Use this command when the request is to review, score, or harden an existing design surface.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/design:foundations",
+          "when": "Prefer foundations when the request is to create or repair a static token system, palette, typography, layout, or spacing plan."
+        },
+        {
+          "sibling": "/design:interface",
+          "when": "Prefer interface when the request is to invent a new visual direction, interface concept, or signature surface."
+        },
+        {
+          "sibling": "/design:md-generator",
+          "when": "Prefer md-generator when the request is to extract measured CSS from a live site into a Style Reference DESIGN.md."
+        },
+        {
+          "sibling": "/design:motion",
+          "when": "Prefer motion when the request is to create animation choreography, transitions, or micro-interaction behavior."
+        }
+      ],
+      "pairWithHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
+      "sequence": {
+        "typicallyAfter": ["/design:interface", "/design:foundations", "/design:motion"],
+        "typicallyBefore": ["/design:foundations", "/design:interface", "/design:motion"]
+      }
+    },
     "toolPolicy": {
       "mutatesWorkspace": false
     },
@@ -43,6 +69,32 @@
     "next": ["/design:interface", "/design:motion", "/design:audit"],
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
     "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
+    "discriminator": {
+      "whenToUse": "Use this command when the request is to design or correct the static visual system.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/design:audit",
+          "when": "Prefer audit when the request is to review, score, accessibility-check, or harden a design surface."
+        },
+        {
+          "sibling": "/design:interface",
+          "when": "Prefer interface when the request is to invent the overall interface direction, voice, or signature visual concept first."
+        },
+        {
+          "sibling": "/design:md-generator",
+          "when": "Prefer md-generator when the request is to extract measured tokens from a live site into DESIGN.md."
+        },
+        {
+          "sibling": "/design:motion",
+          "when": "Prefer motion when the request is animation, transition choreography, micro-interactions, or reduced-motion behavior."
+        }
+      ],
+      "pairWithHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
+      "sequence": {
+        "typicallyAfter": ["/design:interface"],
+        "typicallyBefore": ["/design:motion", "/design:audit"]
+      }
+    },
     "toolPolicy": {
       "mutatesWorkspace": false
     },
@@ -70,6 +122,32 @@
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
     "proofFields": ["target", "register", "designDials", "preflightResult"],
     "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+    "discriminator": {
+      "whenToUse": "Use this command when the request is to invent or reshape a distinctive interface direction.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/design:audit",
+          "when": "Prefer audit when the request is findings-first review, accessibility, performance, scoring, or production hardening."
+        },
+        {
+          "sibling": "/design:foundations",
+          "when": "Prefer foundations when the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming."
+        },
+        {
+          "sibling": "/design:md-generator",
+          "when": "Prefer md-generator when the request is extracting a live site's measured CSS into DESIGN.md."
+        },
+        {
+          "sibling": "/design:motion",
+          "when": "Prefer motion when the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior."
+        }
+      ],
+      "pairWithHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+      "sequence": {
+        "typicallyAfter": [],
+        "typicallyBefore": ["/design:foundations", "/design:motion", "/design:audit"]
+      }
+    },
     "toolPolicy": {
       "mutatesWorkspace": false
     },
@@ -97,6 +175,32 @@
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
     "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
+    "discriminator": {
+      "whenToUse": "Use this command when the request is to extract a live site's real measured CSS into DESIGN.md.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/design:audit",
+          "when": "Prefer audit when the request is to review or score an existing design rather than extract its measured CSS."
+        },
+        {
+          "sibling": "/design:foundations",
+          "when": "Prefer foundations when the request is to author a static token or visual system from judgment rather than measurement."
+        },
+        {
+          "sibling": "/design:interface",
+          "when": "Prefer interface when the request is to invent a new design direction instead of capturing what already exists."
+        },
+        {
+          "sibling": "/design:motion",
+          "when": "Prefer motion when the request is to design animation, transitions, or micro-interaction behavior."
+        }
+      ],
+      "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
+      "sequence": {
+        "typicallyAfter": [],
+        "typicallyBefore": ["/design:foundations", "/design:interface", "/design:audit"]
+      }
+    },
     "toolPolicy": {
       "mutatesWorkspace": true
     },
@@ -124,6 +228,32 @@
     "next": ["/design:interface", "/design:foundations", "/design:audit"],
     "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
     "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+    "discriminator": {
+      "whenToUse": "Use this command when the request is to design purposeful animation, transitions, or reduced-motion behavior.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/design:audit",
+          "when": "Prefer audit when the request is findings-first quality review, release scoring, or motion-performance assessment."
+        },
+        {
+          "sibling": "/design:foundations",
+          "when": "Prefer foundations when the request is static color, type, layout, responsive, or theme-token work."
+        },
+        {
+          "sibling": "/design:interface",
+          "when": "Prefer interface when the request is to invent the full visual direction or interface concept first."
+        },
+        {
+          "sibling": "/design:md-generator",
+          "when": "Prefer md-generator when the request is to capture measured CSS or tokens from a live site."
+        }
+      ],
+      "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+      "sequence": {
+        "typicallyAfter": ["/design:interface", "/design:foundations"],
+        "typicallyBefore": ["/design:audit"]
+      }
+    },
     "toolPolicy": {
       "mutatesWorkspace": false
     },

@@ -16,6 +16,7 @@ const REQUIRED_FIELDS = [
   "next",
   "proofFields",
   "deferToHubWhen",
+  "discriminator",
   "toolPolicy",
   "outputContract"
 ];
@@ -36,6 +37,7 @@ const DRIFT_FIELDS = [
   "example-invocation",
   "example-prefix",
   "returns",
+  "sibling-discriminator",
   "wrapper"
 ];
 const GENERIC_ARGUMENT_HINT = "<design request>";
@@ -62,6 +64,8 @@ const opencodeRootUrl = new URL("../../", skillRootUrl);
 const metadataUrl = new URL("command-metadata.json", skillRootUrl);
 const registryUrl = new URL("mode-registry.json", skillRootUrl);
 const commandsRootUrl = new URL("commands/design/", opencodeRootUrl);
+const SIBLING_DISCRIMINATOR_START = "<!-- ANCHOR:sibling-discriminator -->";
+const SIBLING_DISCRIMINATOR_END = "<!-- /ANCHOR:sibling-discriminator -->";
 
 const args = new Set(process.argv.slice(2));
 const jsonMode = args.has("--json");
@@ -195,6 +199,7 @@ function validateMetadata(metadata, workflowModes) {
 
     errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
+    errors.push(...validateDiscriminator(record, command, workflowModes));
 
     if (Array.isArray(record?.aliases)) {
       for (const alias of record.aliases) {
@@ -215,6 +220,108 @@ function validateMetadata(metadata, workflowModes) {
   }
 
   return errors.sort();
+}
+
+function validateDiscriminator(record, command, workflowModes) {
+  const errors = [];
+  const discriminator = record?.discriminator;
+  const commandSet = commandSetForModes(workflowModes);
+  const expectedSiblings = new Set([...commandSet].filter((sibling) => sibling !== command));
+
+  if (!isPlainObject(discriminator)) {
+    return [`${command}: discriminator must be an object`];
+  }
+
+  if (typeof discriminator.whenToUse !== "string" || discriminator.whenToUse.trim().length === 0) {
+    errors.push(`${command}: discriminator.whenToUse must be a non-empty string`);
+  }
+
+  if (typeof discriminator.pairWithHubWhen !== "string" || discriminator.pairWithHubWhen.trim().length === 0) {
+    errors.push(`${command}: discriminator.pairWithHubWhen must be a non-empty string`);
+  } else if (discriminator.pairWithHubWhen !== record?.deferToHubWhen) {
+    errors.push(`${command}: discriminator.pairWithHubWhen must match deferToHubWhen`);
+  }
+
+  if (!Array.isArray(discriminator.preferSiblingWhen) || discriminator.preferSiblingWhen.length === 0) {
+    errors.push(`${command}: discriminator.preferSiblingWhen must be a non-empty array`);
+  } else {
+    const seenSiblings = new Set();
+
+    discriminator.preferSiblingWhen.forEach((entry, index) => {
+      const label = `${command}: discriminator.preferSiblingWhen[${index}]`;
+
+      if (!isPlainObject(entry)) {
+        errors.push(`${label} must be an object`);
+        return;
+      }
+
+      if (typeof entry.sibling !== "string" || entry.sibling.trim().length === 0) {
+        errors.push(`${label}.sibling must be a non-empty string`);
+      } else {
+        if (!commandSet.has(entry.sibling)) {
+          errors.push(`${label}.sibling must be one of ${[...commandSet].sort().join(",")}`);
+        }
+
+        if (entry.sibling === command) {
+          errors.push(`${label}.sibling must not reference its own command`);
+        }
+
+        if (seenSiblings.has(entry.sibling)) {
+          errors.push(`${label}.sibling is duplicated`);
+        }
+
+        seenSiblings.add(entry.sibling);
+      }
+
+      if (typeof entry.when !== "string" || entry.when.trim().length === 0) {
+        errors.push(`${label}.when must be a non-empty string`);
+      }
+    });
+
+    if (!sameSet(seenSiblings, expectedSiblings)) {
+      errors.push(`${command}: discriminator.preferSiblingWhen must cover exactly ${[...expectedSiblings].sort().join(",")}`);
+    }
+  }
+
+  errors.push(...validateDiscriminatorSequence(record, command, discriminator.sequence, commandSet));
+
+  return errors;
+}
+
+function validateDiscriminatorSequence(record, command, sequence, commandSet) {
+  const errors = [];
+
+  if (!isPlainObject(sequence)) {
+    return [`${command}: discriminator.sequence must be an object`];
+  }
+
+  for (const field of ["typicallyAfter", "typicallyBefore"]) {
+    if (!isStringArray(sequence[field])) {
+      errors.push(`${command}: discriminator.sequence.${field} must be a string array`);
+      continue;
+    }
+
+    for (const item of sequence[field]) {
+      if (!commandSet.has(item)) {
+        errors.push(`${command}: discriminator.sequence.${field} contains unknown command ${item}`);
+      }
+
+      if (item === command) {
+        errors.push(`${command}: discriminator.sequence.${field} must not reference its own command`);
+      }
+    }
+  }
+
+  if (isStringArray(sequence.typicallyBefore) && Array.isArray(record?.next)) {
+    const nextSet = new Set(record.next);
+    for (const item of sequence.typicallyBefore) {
+      if (!nextSet.has(item)) {
+        errors.push(`${command}: discriminator.sequence.typicallyBefore must be a subset of next`);
+      }
+    }
+  }
+
+  return errors;
 }
 
 function validateExamples(record, command) {
@@ -356,9 +463,53 @@ async function collectSurfaceDrift(records) {
     }
 
     drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
+    drift.push(...expectedDiscriminatorDrift(record, markdown));
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedDiscriminatorDrift(record, markdown) {
+  const section = extractSiblingDiscriminatorSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        kind: "discriminator",
+        command: record.command,
+        field: "sibling-discriminator",
+        expected: SIBLING_DISCRIMINATOR_START,
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const drift = [];
+  const expectedSiblings = record.discriminator.preferSiblingWhen.map((entry) => entry.sibling).sort();
+
+  for (const sibling of expectedSiblings) {
+    if (!section.includes(sibling)) {
+      drift.push({
+        kind: "discriminator",
+        command: record.command,
+        field: "sibling-discriminator",
+        expected: sibling,
+        actual: "<missing sibling token>"
+      });
+    }
+  }
+
+  if (!hasHubLine(section)) {
+    drift.push({
+      kind: "discriminator",
+      command: record.command,
+      field: "sibling-discriminator",
+      expected: "sk-design hub line",
+      actual: "<missing hub line>"
+    });
+  }
+
+  return drift;
 }
 
 function expectedEmitDeliverableDrift(record, markdown) {
@@ -467,6 +618,23 @@ function extractFirstFencedInvocation(section) {
 function extractReturnsArtifact(section) {
   const returnsMatch = section.match(/^Returns:\s*(.+)$/im);
   return returnsMatch ? returnsMatch[1].trim() : null;
+}
+
+function extractSiblingDiscriminatorSection(markdown) {
+  const start = markdown.indexOf(SIBLING_DISCRIMINATOR_START);
+  const end = markdown.indexOf(SIBLING_DISCRIMINATOR_END);
+
+  if (start === -1 || end === -1 || end <= start) {
+    return null;
+  }
+
+  return markdown.slice(start + SIBLING_DISCRIMINATOR_START.length, end);
+}
+
+function hasHubLine(section) {
+  return section
+    .split(/\r?\n/)
+    .some((line) => line.includes("sk-design") && /\bhub\b/i.test(line));
 }
 
 function wrapperPathForCommand(command) {
@@ -589,6 +757,24 @@ function sameValue(expected, actual) {
   return expected === actual;
 }
 
+function sameSet(left, right) {
+  if (left.size !== right.size) {
+    return false;
+  }
+
+  for (const item of left) {
+    if (!right.has(item)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function commandSetForModes(workflowModes) {
+  return new Set([...workflowModes].map((workflowMode) => `/design:${workflowMode}`));
+}
+
 function compareDrift(left, right) {
   const commandCompare = left.command.localeCompare(right.command);
   if (commandCompare !== 0) {
@@ -638,8 +824,9 @@ function formatTextReport(report) {
   }
 
   for (const item of report.drift ?? []) {
+    const kind = item.kind ? ` kind=${item.kind}` : "";
     lines.push(
-      `DRIFT ${item.command} ${item.field} expected=${formatValue(item.expected)} actual=${formatValue(item.actual)}`
+      `DRIFT${kind} ${item.command} ${item.field} expected=${formatValue(item.expected)} actual=${formatValue(item.actual)}`
     );
   }
 

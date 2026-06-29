@@ -14,7 +14,18 @@ Pin the `motion` mode of the `sk-design` parent hub to design purposeful animati
 across modes; this command loads the `motion` mode directly. If the request spans more
 than `motion`, defer to the hub's routing instead of forcing this mode.
 
-## 2. INSTRUCTIONS
+<!-- ANCHOR:sibling-discriminator -->
+## 2. WHEN TO USE THIS, NOT A SIBLING
+
+- **Use this command when** the request is to design purposeful animation, transitions, or reduced-motion behavior.
+- **Prefer `/design:audit` when** the request is findings-first quality review, release scoring, or motion-performance assessment.
+- **Prefer `/design:foundations` when** the request is static color, type, layout, responsive, or theme-token work.
+- **Prefer `/design:interface` when** the request is to invent the full visual direction or interface concept first.
+- **Prefer `/design:md-generator` when** the request is to capture measured CSS or tokens from a live site.
+- **Defer to the `sk-design` hub when** the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction.
+<!-- /ANCHOR:sibling-discriminator -->
+
+## 3. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -27,7 +38,7 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - Success: `STATUS=OK`
 - Failure: `STATUS=FAIL ERROR="<message>"`
 
-## 3. EMIT DELIVERABLE
+## 4. EMIT DELIVERABLE
 
 Emit `Motion Design Spec` as the primary deliverable.
 
@@ -37,7 +48,7 @@ Required fields:
 - `timingModel`
 - `reducedMotionPath`
 
-## 4. EXAMPLE
+## 5. EXAMPLE
 
 ```
 /design:motion modal-open-close --library framer-motion
