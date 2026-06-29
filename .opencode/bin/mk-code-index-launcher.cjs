@@ -457,6 +457,29 @@ function processLiveness(pid) {
   }
 }
 
+function classifyOwnerReclaim(input) {
+  const {
+    pidAlive,
+    socketServing,
+    childSpawnedAtMs,
+    heartbeatAgeMs,
+    nowMs,
+    graceMs,
+    maxInitMs,
+    heartbeatTtlMs,
+  } = input;
+
+  if (!pidAlive) return 'dead-pid';
+  if (socketServing) return 'serving';
+  if (childSpawnedAtMs === null) return 'recheck';
+
+  const childAgeMs = nowMs - childSpawnedAtMs;
+  if (childAgeMs <= graceMs) return 'still-starting';
+  if (childAgeMs <= maxInitMs) return 'recheck';
+  if (heartbeatAgeMs !== null && heartbeatAgeMs > heartbeatTtlMs) return 'reclaimable';
+  return 'recheck';
+}
+
 function readParentPid(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return null;
   if (process.platform === 'linux') {
@@ -1250,6 +1273,7 @@ module.exports = {
   resolveStartupGraceMs,
   resolveMaxInitMs,
   reclaimDeadSocketEnabled,
+  classifyOwnerReclaim,
   launcherDiagnostic,
   configureLeaseMetricSinkForTesting,
   emitLeaseMetric,
