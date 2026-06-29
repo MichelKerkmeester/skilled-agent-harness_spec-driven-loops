@@ -463,11 +463,9 @@ function deriveDashboardStatus(config, records, terminalStop) {
   if (terminalStop) {
     return 'COMPLETE';
   }
-  // LG-0001: surface pause/recovery state. The reducer already tracks iteration,
-  // resume/restart, and synthesis events; userPaused and stuckRecovery were the
-  // gap. If the most recent loop signal is a pause or recovery event (no later
-  // iteration/resume that would supersede it), reflect that on the dashboard
-  // instead of defaulting to RUNNING.
+  // Surface pause and recovery state from the most recent loop signal so the
+  // dashboard reflects operator-visible lifecycle transitions, not only
+  // iteration and synthesis progress.
   let latestPauseStuckIndex = -1;
   let latestPauseStuckKind = null;
   let latestProgressIndex = -1;
@@ -563,23 +561,188 @@ function deltaRecordToFinding(record) {
     description,
     findingClass: record.findingClass || null,
     deltaStatus: record.status || null,
-    // LG-0005: carry the documented findingDetails fields (state_format.md line 226)
-    // through to the registry instead of dropping them.
+    // Preserve structured evidence fields so registry consumers do not need to
+    // re-open raw delta files for scope and surface hints.
     scopeProof: typeof record.scopeProof === 'string' ? record.scopeProof : null,
     affectedSurfaceHints: asStringList(record.affectedSurfaceHints),
-    // LG-0008: carry content_hash so the registry can apply the documented
-    // two-tier dedup (SKILL.md 8.1). Null when the record predates the contract.
+    // Content hashes let the registry collapse repeated findings across review
+    // dimensions; legacy records remain valid without one.
     contentHash: typeof record.content_hash === 'string' && record.content_hash
       ? record.content_hash
       : (typeof record.contentHash === 'string' && record.contentHash ? record.contentHash : null),
   };
 }
 
+function getIterationRun(record) {
+  if (!record || typeof record !== 'object') {
+    return null;
+  }
+  if (isFiniteNumber(record.iteration)) {
+    return record.iteration;
+  }
+  if (isFiniteNumber(record.run)) {
+    return record.run;
+  }
+  const runText = normalizeText(record.run || '');
+  const runMatch = runText.match(/(\d+)$/);
+  return runMatch ? Number(runMatch[1]) : null;
+}
+
+function normalizeSummaryCounts(record) {
+  const summary = record && typeof record === 'object'
+    ? getNestedField(record, 'findingsSummary')
+    : null;
+  if (!summary || typeof summary !== 'object' || Array.isArray(summary)) {
+    return null;
+  }
+  const counts = zeroSeverityMap();
+  let total = 0;
+  for (const severity of SEVERITY_KEYS) {
+    const rawCount = summary[severity];
+    const count = Number.isFinite(rawCount) && rawCount > 0
+      ? Math.floor(rawCount)
+      : 0;
+    counts[severity] = count;
+    total += count;
+  }
+  return total > 0 ? counts : null;
+}
+
+function parseFindingLocation(fileValue) {
+  const file = typeof fileValue === 'string' ? fileValue : null;
+  let fileBase = null;
+  let lineNumber = null;
+  if (file) {
+    const m = file.match(/^(.+?):(\d+)(?:[:-].*)?$/);
+    if (m) {
+      fileBase = m[1];
+      lineNumber = Number(m[2]);
+    } else {
+      fileBase = file;
+    }
+  }
+  return { fileBase, lineNumber };
+}
+
+function findingDetailToFinding(detail, record, index) {
+  if (!detail || typeof detail !== 'object') {
+    return null;
+  }
+  const severity = normalizeSeverity(detail.finalSeverity || detail.severity);
+  if (!severity) {
+    return null;
+  }
+  const run = getIterationRun(record) || 0;
+  const findingId = normalizeText(detail.id || detail.findingId || '')
+    || `SUMMARY-${run}-${severity}-${String(index + 1).padStart(3, '0')}`;
+  const { fileBase, lineNumber } = parseFindingLocation(detail.file);
+  return {
+    findingId,
+    severity,
+    title: normalizeText(detail.title || `Summary ${severity} finding`),
+    file: fileBase,
+    line: lineNumber,
+    description: normalizeText(
+      detail.claim || detail.detail || detail.evidence || detail.recommendation || detail.description || '',
+    ),
+    findingClass: detail.findingClass || null,
+    deltaStatus: detail.disposition || detail.status || null,
+    scopeProof: typeof detail.scopeProof === 'string' ? detail.scopeProof : null,
+    affectedSurfaceHints: asStringList(detail.affectedSurfaceHints),
+    contentHash: typeof detail.content_hash === 'string' && detail.content_hash
+      ? detail.content_hash
+      : (typeof detail.contentHash === 'string' && detail.contentHash ? detail.contentHash : null),
+  };
+}
+
+function collectSummaryFallbackRecords(iterationRecords, deltaRecords) {
+  const byRun = new Map();
+  const candidates = []
+    .concat(Array.isArray(iterationRecords) ? iterationRecords : [])
+    .concat(Array.isArray(deltaRecords) ? deltaRecords : [])
+    .filter((record) => record?.type === 'iteration');
+
+  for (const record of candidates) {
+    const run = getIterationRun(record);
+    if (!isFiniteNumber(run)) {
+      continue;
+    }
+    const details = Array.isArray(record.findingDetails) ? record.findingDetails : [];
+    const summary = normalizeSummaryCounts(record);
+    if (!summary && details.length === 0) {
+      continue;
+    }
+    const score = details.length * 10 + (summary ? SEVERITY_KEYS.reduce((sum, key) => sum + summary[key], 0) : 0);
+    const existing = byRun.get(run);
+    if (!existing || score >= existing.score) {
+      byRun.set(run, { record, score });
+    }
+  }
+
+  return [...byRun.entries()]
+    .sort(([leftRun], [rightRun]) => leftRun - rightRun)
+    .map(([run, value]) => ({ run, record: value.record }));
+}
+
+function countFindingsSeenInRun(findingById, run) {
+  const counts = zeroSeverityMap();
+  for (const finding of findingById.values()) {
+    if (!SEVERITY_KEYS.includes(finding.severity)) {
+      continue;
+    }
+    if (finding.firstSeen <= run && finding.lastSeen >= run) {
+      counts[finding.severity] += 1;
+    }
+  }
+  return counts;
+}
+
+function summarySlotFinding(run, severity, slotIndex, record) {
+  return {
+    findingId: `SUMMARY-${severity}-${String(slotIndex + 1).padStart(3, '0')}`,
+    severity,
+    title: `Summary ${severity} finding ${slotIndex + 1}`,
+    file: null,
+    line: null,
+    description: normalizeText(record.focus || 'Finding carried by iteration summary counts'),
+    findingClass: 'summary-only',
+    deltaStatus: 'active',
+    scopeProof: null,
+    affectedSurfaceHints: [],
+    contentHash: null,
+  };
+}
+
+function fallbackFindingsFromIterationRecord(record, run, representedCounts) {
+  const details = Array.isArray(record.findingDetails) ? record.findingDetails : [];
+  const detailFindings = details
+    .map((detail, index) => findingDetailToFinding(detail, record, index))
+    .filter(Boolean);
+  const detailCounts = zeroSeverityMap();
+  for (const finding of detailFindings) {
+    detailCounts[finding.severity] += 1;
+  }
+
+  const summary = normalizeSummaryCounts(record);
+  if (!summary) {
+    return detailFindings;
+  }
+
+  const findings = [...detailFindings];
+  for (const severity of SEVERITY_KEYS) {
+    const alreadyRepresented = (representedCounts[severity] || 0) + detailCounts[severity];
+    const missingCount = Math.max(0, summary[severity] - alreadyRepresented);
+    for (let index = 0; index < missingCount; index += 1) {
+      findings.push(summarySlotFinding(run, severity, alreadyRepresented + index, record));
+    }
+  }
+  return findings;
+}
+
 /**
- * LG-0008: two-tier dedup key per SKILL.md 8.1.
- * Primary: content_hash. Fallback (records predating the contract): the legacy
- * `file:line + normalized-title` key. Returns a namespaced string so the two
- * tiers never collide.
+ * Build a two-tier dedup key. Primary: content_hash. Fallback for legacy
+ * records: `file:line + normalized-title`. Namespacing keeps the tiers from
+ * colliding.
  */
 function findingDedupKey(finding) {
   if (finding.contentHash) {
@@ -604,12 +767,9 @@ function dedupeDimensions(dimensions) {
 }
 
 /**
- * LG-0008: collapse cross-dimension restatements (same content_hash, different
- * findingId) into one canonical entry carrying a merged `dimensions[]` list,
- * matching the synthesis dedup contract in SKILL.md 8.1. Same-findingId entries
- * are already merged upstream by the findingId-keyed map, so this only collapses
- * genuine cross-dimension/cross-id duplicates. Additive: a finding with a unique
- * key keeps its single-element `dimensions` list and an empty `mergedFindingIds`.
+ * Collapse cross-dimension restatements into one canonical entry with a merged
+ * `dimensions[]` list. Same-id entries are already merged upstream, so this only
+ * handles genuine cross-id duplicates while unique findings stay independent.
  */
 function collapseFindingsByDedupKey(findingEntries) {
   const byKey = new Map();
@@ -645,11 +805,51 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   const findingById = new Map();
   const claimAdjudicationByFinding = buildClaimAdjudicationByFinding(iterationRecords);
 
-  // P1-026 fix: extract findings from {type:"finding"} delta records as the
-  // primary source. Delta records carry structured fields (id, severity,
-  // status, file:line, claim, evidenceRefs) authored by the loop runtime.
-  // Iteration-markdown parsing remains as fallback for legacy iteration
-  // files that don't have corresponding delta records.
+  function upsertFinding(finding, run, iteration, initialReason, adjustmentReason) {
+    const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
+    const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
+    const existing = findingById.get(finding.findingId);
+    if (!existing) {
+      findingById.set(finding.findingId, {
+        ...finding,
+        severity: canonicalSeverity,
+        dimension: deriveDimension(
+          { ...finding, severity: canonicalSeverity },
+          iteration,
+        ),
+        firstSeen: run,
+        lastSeen: run,
+        status: 'active',
+        transitions: mergeTransitions(
+          [{
+            iteration: run,
+            from: null,
+            to: canonicalSeverity,
+            reason: initialReason,
+          }],
+          claimAdjudication?.transitions,
+        ),
+      });
+      return;
+    }
+    existing.lastSeen = run;
+    if (existing.severity !== canonicalSeverity) {
+      existing.transitions.push({
+        iteration: run,
+        from: existing.severity,
+        to: canonicalSeverity,
+        reason: adjustmentReason,
+      });
+      existing.severity = canonicalSeverity;
+    }
+    if (claimAdjudication?.transitions?.length) {
+      existing.transitions = mergeTransitions(existing.transitions, claimAdjudication.transitions);
+    }
+  }
+
+  // Structured finding rows are the primary source because they carry exact
+  // severity, status, file evidence, and claim fields from the loop runtime.
+  // Iteration markdown remains a compatibility fallback.
   const deltaFindingsByRun = new Map();
   for (const record of deltaRecords) {
     const finding = deltaRecordToFinding(record);
@@ -669,83 +869,38 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   for (const run of sortedRuns) {
     const pseudoIteration = iterationByRun.get(run) || { focus: '', run, dimensionsAddressed: [] };
     for (const finding of deltaFindingsByRun.get(run)) {
-      const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
-      const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
-      const existing = findingById.get(finding.findingId);
-      if (!existing) {
-        findingById.set(finding.findingId, {
-          ...finding,
-          severity: canonicalSeverity,
-          dimension: deriveDimension(
-            { ...finding, severity: canonicalSeverity },
-            pseudoIteration,
-          ),
-          firstSeen: run,
-          lastSeen: run,
-          status: 'active',
-          transitions: mergeTransitions(
-            [{
-              iteration: run,
-              from: null,
-              to: canonicalSeverity,
-              reason: 'Initial discovery (delta)',
-            }],
-            claimAdjudication?.transitions,
-          ),
-        });
-      } else {
-        existing.lastSeen = run;
-        if (existing.severity !== canonicalSeverity) {
-          existing.transitions.push({
-            iteration: run,
-            from: existing.severity,
-            to: canonicalSeverity,
-            reason: 'Severity adjusted in later delta',
-          });
-          existing.severity = canonicalSeverity;
-        }
-      }
+      upsertFinding(finding, run, pseudoIteration, 'Initial discovery (delta)', 'Severity adjusted in later delta');
     }
   }
 
   for (const iteration of iterationFiles) {
     for (const finding of iteration.findings) {
-      const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
-      const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
-      const existing = findingById.get(finding.findingId);
-      if (!existing) {
-        findingById.set(finding.findingId, {
-          ...finding,
-          severity: canonicalSeverity,
-          dimension: deriveDimension({ ...finding, severity: canonicalSeverity }, iteration),
-          firstSeen: iteration.run,
-          lastSeen: iteration.run,
-          status: 'active',
-          transitions: mergeTransitions(
-            [{
-              iteration: iteration.run,
-              from: null,
-              to: canonicalSeverity,
-              reason: 'Initial discovery',
-            }],
-            claimAdjudication?.transitions,
-          ),
-        });
-      } else {
-        existing.lastSeen = iteration.run;
-        if (existing.severity !== canonicalSeverity) {
-          existing.transitions.push({
-            iteration: iteration.run,
-            from: existing.severity,
-            to: canonicalSeverity,
-            reason: 'Severity adjusted in later iteration',
-          });
-          existing.severity = canonicalSeverity;
-        }
-        if (claimAdjudication?.transitions?.length) {
-          existing.transitions = mergeTransitions(existing.transitions, claimAdjudication.transitions);
-        }
-      }
+      upsertFinding(finding, iteration.run, iteration, 'Initial discovery', 'Severity adjusted in later iteration');
+    }
+  }
+
+  const summaryFallbackRecords = collectSummaryFallbackRecords(iterationRecords, deltaRecords);
+  for (const { run, record } of summaryFallbackRecords) {
+    if (deltaFindingsByRun.has(run)) {
+      continue;
+    }
+    const pseudoIteration = iterationByRun.get(run) || {
+      focus: normalizeText(record.focus || ''),
+      run,
+      dimensionsAddressed: Array.isArray(record.dimensions)
+        ? record.dimensions.map((value) => normalizeText(value).toLowerCase()).filter(Boolean)
+        : [],
+    };
+    const representedCounts = countFindingsSeenInRun(findingById, run);
+    const fallbackFindings = fallbackFindingsFromIterationRecord(record, run, representedCounts);
+    for (const finding of fallbackFindings) {
+      upsertFinding(
+        finding,
+        run,
+        pseudoIteration,
+        'Initial discovery (iteration summary)',
+        'Severity adjusted in later iteration summary',
+      );
     }
   }
 
@@ -758,7 +913,7 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     }
   }
 
-  // LG-0008: collapse cross-dimension restatements before splitting open/resolved.
+  // Deduplicate restatements before splitting open and resolved findings.
   const collapsedFindings = collapseFindingsByDedupKey([...findingById.values()]);
 
   const openFindings = [];
@@ -903,10 +1058,9 @@ function buildGraphConvergenceRollup(records) {
 }
 
 /**
- * LG-0006: aggregate the latest `traceabilityChecks` payload (state_format.md
- * traceabilityChecks schema) into the registry. Iteration records emitted during
- * Traceability-dimension passes carry it; the reducer was dropping it. Returns
- * the latest summary + results, or a zeroed rollup when none has been emitted.
+ * Aggregate the latest `traceabilityChecks` payload into the registry. This is
+ * latest-wins because each iteration carries cumulative counts for the current
+ * pass; older passes remain available in JSONL for audit.
  */
 function buildTraceabilityRollup(iterationRecords) {
   const latest = (Array.isArray(iterationRecords) ? iterationRecords : [])
@@ -935,9 +1089,9 @@ function buildTraceabilityRollup(iterationRecords) {
 }
 
 /**
- * P1-02 closure: defensively normalize each entry in `blockedBy` so
- * the review dashboard cannot render `[object Object]` even if an older YAML
- * workflow accidentally passes structured graph blockers through the contract.
+ * Defensively normalize each entry in `blockedBy` so the review dashboard
+ * cannot render `[object Object]` even if an older workflow accidentally passes
+ * structured graph blockers through the contract.
  *
  * Contract: `blockedBy` is `string[]` of gate names. If an entry is already a
  * string, pass it through. If it is a structured graph blocker object
@@ -1153,11 +1307,9 @@ function buildSearchLedgerState(iterationRecords) {
 }
 
 /**
- * LG-0033: enforce the documented Validation Rules (state_format.md "Validation
- * Rules") at the field level. parseJsonlDetailed only guards JSON syntax. This
- * adds non-fatal, additive field warnings so the reduce still completes (it does
- * NOT throw or change the default pass/fail for currently-valid state). Each
- * warning names the record index and the violated rule.
+ * Enforce record validation at the field level. parseJsonlDetailed only guards
+ * JSON syntax; these warnings surface schema drift without changing the
+ * reducer's default pass/fail behavior for currently-valid state.
  */
 function validateReviewRecordFields(records) {
   const warnings = [];
@@ -1701,10 +1853,8 @@ function reduceReviewState(specFolder, options = {}) {
         .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
     : [];
 
-  // P1-026 fix: load delta payloads up-front so the finding registry can be
-  // built from {type:"finding"} delta records (primary source) rather than
-  // relying solely on iteration markdown parsing (legacy/fallback). The
-  // resource-map emit path below reuses these loaded payloads.
+  // Load delta payloads up-front so the finding registry can use structured
+  // rows first while the resource-map emit path reuses the same parsed data.
   const deltaPayloads = fs.existsSync(deltaDir) ? loadDeltaPayloads(deltaDir) : [];
   const flattenedDeltaRecords = deltaPayloads
     .flat()
@@ -1725,7 +1875,7 @@ function reduceReviewState(specFolder, options = {}) {
     if (getResourceMapEmitSetting(config) === false) {
       resourceMapSkipReason = 'config.resource_map.emit=false';
     } else {
-      // Reuse the deltaPayloads already loaded above (P1-026 fix) — avoids re-reading.
+      // Reuse the deltaPayloads already loaded above to avoid re-reading.
       if (!deltaPayloads.length) {
         resourceMapSkipReason = 'no delta files found';
       } else {
