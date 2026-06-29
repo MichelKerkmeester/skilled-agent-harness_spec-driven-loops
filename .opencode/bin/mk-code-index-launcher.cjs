@@ -9,12 +9,14 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const { createRequire } = require('module');
 const { createSessionProxy, createClassifyFrame } = require('./lib/launcher-session-proxy.cjs');
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
-const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN$|MK_CODE_INDEX_)/;
+const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_(IDLE_TIMEOUT_MIN|WAL_TRUNCATE_BYTES)$|MK_CODE_INDEX_)/;
+const DEFAULT_WAL_TRUNCATE_BYTES = 8_388_608;
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -70,6 +72,10 @@ function resolveStartupGraceMs(env = process.env) {
 
 function resolveMaxInitMs(env = process.env) {
   return parsePositiveInteger(env.SPECKIT_LAUNCHER_MAX_INIT_MS, 120000);
+}
+
+function resolveWalTruncateBytes(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_LAUNCHER_WAL_TRUNCATE_BYTES, DEFAULT_WAL_TRUNCATE_BYTES);
 }
 
 function reclaimDeadSocketEnabled(env = process.env) {
@@ -942,6 +948,7 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
     ownerLeasePid = process.pid;
 
     buildIfNeeded([]);
+    checkpointStaleWalIfNeeded(path.join(resolvedDbDir(), 'code-graph.sqlite'), { reapedOrphan: true });
     writeLeaseFile();
     launchServer();
     if (reclaimDeadSocketEnabled()) {
@@ -1141,6 +1148,94 @@ function buildIfNeeded(actions) {
   const missing = requiredArtifacts().filter((artifact) => !exists(artifact));
   if (missing.length > 0) {
     throw new Error(`bootstrap finished but artifacts are still missing: ${missing.map(rel).join(', ')}`);
+  }
+}
+
+function findDbFileHolderPids(dbPath) {
+  const candidates = [dbPath, `${dbPath}-wal`, `${dbPath}-shm`].filter((candidate) => fs.existsSync(candidate));
+  if (candidates.length === 0) return [];
+
+  const result = spawnSync('lsof', ['-t', ...candidates], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+    timeout: 1000,
+  });
+  if (result.error || result.status !== 0 || !result.stdout) return [];
+  return Array.from(new Set(
+    result.stdout
+      .split(/\s+/)
+      .map((value) => Number.parseInt(value, 10))
+      .filter((pid) => Number.isInteger(pid) && pid > 0 && pid !== process.pid),
+  ));
+}
+
+function dbAppearsHeldByLiveProcess(dbPath) {
+  const dbOwnerDir = path.dirname(dbPath);
+  const pidLease = leaseHeldFromFile(path.join(dbOwnerDir, PID_FILE_NAME));
+  if (pidLease.held && pidLease.ownerPid !== process.pid) return true;
+
+  const ownerLease = readOwnerLeaseFile(path.join(dbOwnerDir, OWNER_LEASE_FILE_NAME));
+  if (ownerLease && ownerLease.ownerPid !== process.pid && processLiveness(ownerLease.ownerPid) !== 'dead') {
+    return true;
+  }
+
+  return findDbFileHolderPids(dbPath).some((pid) => processLiveness(pid) !== 'dead');
+}
+
+function checkpointWalWithBetterSqlite(dbPath) {
+  const packageRequire = createRequire(path.join(kitDir, 'package.json'));
+  const Database = packageRequire('better-sqlite3');
+  const sqlite = new Database(dbPath);
+  try {
+    sqlite.pragma('wal_checkpoint(TRUNCATE)');
+  } finally {
+    sqlite.close();
+  }
+}
+
+function checkpointWalWithSqliteCli(dbPath) {
+  const result = spawnSync('sqlite3', [dbPath, 'PRAGMA wal_checkpoint(TRUNCATE);'], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: 5000,
+  });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    throw new Error((result.stderr || result.stdout || `sqlite3 exited ${result.status}`).trim());
+  }
+}
+
+function checkpointStaleWalIfNeeded(dbPath, options = {}) {
+  try {
+    const walPath = `${dbPath}-wal`;
+    if (!fs.existsSync(walPath)) return { checkpointed: false, reason: 'no-wal', bytes: 0 };
+
+    const bytes = fs.statSync(walPath).size;
+    const thresholdBytes = resolveWalTruncateBytes();
+    if (bytes <= thresholdBytes && options.reapedOrphan !== true) {
+      return { checkpointed: false, reason: 'under-threshold', bytes };
+    }
+
+    if (dbAppearsHeldByLiveProcess(dbPath)) {
+      launcherDiagnostic('wal-checkpoint-skipped-live-owner', { bytes });
+      return { checkpointed: false, reason: 'live-owner', bytes };
+    }
+
+    try {
+      checkpointWalWithBetterSqlite(dbPath);
+    } catch (betterSqliteError) {
+      launcherDiagnostic('wal-checkpoint-better-sqlite-unavailable', {
+        bytes,
+        error: betterSqliteError.message,
+      });
+      checkpointWalWithSqliteCli(dbPath);
+    }
+
+    launcherDiagnostic('wal-checkpoint-truncated', { bytes });
+    return { checkpointed: true, reason: 'truncated', bytes };
+  } catch (error) {
+    launcherDiagnostic('wal-checkpoint-failed', { error: error.message });
+    return { checkpointed: false, reason: 'error', error: error.message };
   }
 }
 
@@ -1461,6 +1556,9 @@ async function launcherMain() {
       }
     }
 
+    checkpointStaleWalIfNeeded(path.join(resolvedDbDir(), 'code-graph.sqlite'), {
+      reapedOrphan: Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0,
+    });
     writeLeaseFile();
     const reprobe = readLeaseFile();
     if (!reprobe || reprobe.pid !== process.pid) {
@@ -1505,7 +1603,9 @@ module.exports = {
   resolveMaintainerModeCategories,
   resolveStartupGraceMs,
   resolveMaxInitMs,
+  resolveWalTruncateBytes,
   reclaimDeadSocketEnabled,
+  checkpointStaleWalIfNeeded,
   classifyOwnerReclaim,
   ownerUidMatches,
   verifyPidIdentity,

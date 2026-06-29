@@ -26,6 +26,14 @@ import type { IndexScopePolicy, IndexScopePolicySource } from './index-scope-pol
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
 
+function resolveWalAutocheckpointPages(pageSizeBytes: number, env: NodeJS.ProcessEnv = process.env): number {
+  const defaultPages = pageSizeBytes > 4096 ? 500 : 2000;
+  const raw = env.SPECKIT_CODE_GRAPH_WAL_AUTOCHECKPOINT_PAGES;
+  if (raw === undefined || raw === null || raw.trim() === '') return defaultPages;
+  const parsed = Number.parseInt(raw.trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : defaultPages;
+}
+
 export interface StartupHighlight {
   name: string;
   kind: string;
@@ -1036,6 +1044,8 @@ export function initDb(dbDir: string): Database.Database {
     // PRAGMA setup also benefits from the wait.
     db.pragma('busy_timeout = 5000');
     db.pragma('journal_mode = WAL'); // WAL enables concurrent readers without locks
+    const pageSize = Number(db.pragma('page_size', { simple: true }));
+    db.pragma(`wal_autocheckpoint = ${resolveWalAutocheckpointPages(pageSize)}`);
     db.pragma('foreign_keys = ON');
     db.exec(SCHEMA_SQL);
     ensureSchemaMigrations(db);
