@@ -169,10 +169,10 @@ Shared-file lane (context_loading_contract.md §4):
 | Edits | Prep | Verify |
 | Verify | Edits | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -182,10 +182,10 @@ Shared-file lane (context_loading_contract.md §4):
 | Verification (lint bite + evergreen + no-regression) | Low | 30 minutes |
 | **Total** | | **~1.5 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -201,7 +201,7 @@ Shared-file lane (context_loading_contract.md §4):
 - **Has data migrations?** No
 - **Reversal procedure**: N/A — single-file documentation change
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
