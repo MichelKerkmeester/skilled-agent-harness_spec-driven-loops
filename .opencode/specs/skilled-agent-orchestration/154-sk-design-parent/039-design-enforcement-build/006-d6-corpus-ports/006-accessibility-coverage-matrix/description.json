@@ -1,22 +1,15 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
-  "description": "Split the single a11y dimension into a layered keyboard/screenReader/zoom/contrast/reducedMotion/AT/userTesting matrix in the contract + audit_contrac",
+  "description": "Accessibility used to collapse into a single field",
   "keywords": [
-    "split",
+    "accessibility",
+    "used",
+    "collapse",
     "single",
-    "a11y",
-    "dimension",
-    "layered",
-    "keyboard",
-    "screenreader",
-    "zoom",
-    "contrast",
-    "reducedmotion",
-    "usertesting",
-    "matrix",
-    "contract"
+    "field"
   ],
-  "lastUpdated": "2026-06-28T12:40:10.721Z",
+  "lastUpdated": "2026-06-29T14:56:47.096Z",
   "specId": "006",
   "folderSlug": "accessibility-coverage-matrix",
   "parentChain": [
@@ -28,6 +21,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

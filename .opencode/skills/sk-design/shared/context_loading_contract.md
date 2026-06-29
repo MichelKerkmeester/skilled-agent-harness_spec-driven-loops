@@ -156,13 +156,42 @@ design artifact: confirmed | inferred | not-assessed
 deterministic scan: confirmed | not-assessed
 dimensions:
   accessibility:
+    coverage:
+    - layer: keyboard
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: screen-reader
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: zoom-reflow
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: contrast
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: reduced-motion
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: assistive-tech
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
+    - layer: user-testing
+      state: confirmed | inferred | blocked | not-assessed
+      evidence:
+      blocker/what would confirm:
   performance:
   responsive:
   theming:
   anti-patterns:
 ```
 
-`audit` owns severity, scoring, labels, and finding order. Use `../design-audit/assets/audit_evidence_worksheet.md` to carry confirmed, inferred, and not-assessed labels into findings and scores.
+`audit` owns severity, scoring, labels, and finding order. Use `../design-audit/assets/audit_evidence_worksheet.md` to carry confirmed, inferred, blocked, and not-assessed labels into findings and scores. Accessibility coverage is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. `blocked` is not a pass; it is an honest resolved-with-reason state. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. The checkable floor is layer presence plus one valid state per layer; truthfulness of a `confirmed` state and sufficiency of the covered behavior remain audit judgment.
 
 ### Decision Rationale
 

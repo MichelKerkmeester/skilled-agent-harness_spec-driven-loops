@@ -38,6 +38,46 @@ Score each dimension 0-4.
 | Theming | hard-coded and no theme support | tokens exist but inconsistent | full semantic token use, dark mode works |
 | Anti-Patterns | obvious AI slop/gallery of tells | one or two noticeable tells | distinctive, intentional, no generic tells |
 
+### Accessibility Coverage Matrix
+
+Every accessibility score, WCAG claim, accessible claim, release-ready claim, or production-ready claim carries this report-level matrix:
+
+```markdown
+AUDIT EVIDENCE:
+accessibility:
+  coverage:
+  - layer: keyboard
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: screen-reader
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: zoom-reflow
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: contrast
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: reduced-motion
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: assistive-tech
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+  - layer: user-testing
+    state: confirmed | inferred | blocked | not-assessed
+    evidence:
+    blocker/what would confirm:
+```
+
+Layer states use this vocabulary: `confirmed` means direct evidence was reviewed; `inferred` means partial evidence exists and the report names what would confirm it; `blocked` means the audit records why the layer could not be assessed; `not-assessed` means no evidence was gathered. A matrix is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. Structural agreement across layers and valid states is checkable; truthfulness of a `confirmed` state and sufficiency of the coverage remain audit judgment.
+
 Rating bands:
 - `18-20` Excellent.
 - `14-17` Good.
@@ -53,6 +93,7 @@ Use this shape for actionable findings:
 ### P1 - Text contrast fails on primary CTA
 - Evidence: `Button` text uses `#8aa0a8` on `#ffffff`; observed contrast below AA target.
 - Category: Accessibility / Theming
+- Accessibility coverage: contrast=confirmed; keyboard=not-assessed; screen-reader=not-assessed; zoom-reflow=not-assessed; reduced-motion=not-assessed; assistive-tech=not-assessed; user-testing=not-assessed.
 - Impact: Low-vision users may not read the primary action.
 - Recommended fix: Use semantic `text-on-accent` token with AA contrast, or darken foreground via OKLCH lightness.
 - Owner: `foundations` for token choice; `sk-code` for implementation.
