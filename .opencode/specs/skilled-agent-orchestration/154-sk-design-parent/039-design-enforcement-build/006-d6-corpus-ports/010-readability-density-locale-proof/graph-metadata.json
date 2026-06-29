@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d6-r10 readability density locale proof",
-      "locale stress design build"
+      "locale stress design build",
+      "readability density rtl lint contract",
+      "d6-r10 plan",
+      "readability density locale proof plan",
+      "rtl lint contract plan",
+      "d6-r10 tasks",
+      "readability density locale proof tasks",
+      "rtl lint contract tasks",
+      "d6-r10 checklist",
+      "readability density locale proof checklist",
+      "rtl lint contract checklist"
     ],
     "key_topics": [
       "d6-r10",
@@ -23,15 +33,22 @@
       "stress",
       "design",
       "build",
-      "add",
-      "measured",
-      "rows",
-      "locale-stress"
+      "rtl",
+      "lint",
+      "contract",
+      "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -42,8 +59,62 @@
         "source": "derived"
       },
       {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readability And Density",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Locale Stress",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -54,47 +125,97 @@
         "source": "derived"
       },
       {
-        "name": "the RTL",
-        "kind": "key_phrase",
+        "name": "Problem Statement Readability",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Port",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Additive Contract Edits",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add measured readability/density rows and a locale-stress field to the context loading contract for content-heavy/global UI, plus a static margin-left/padding-left RTL lint.",
+    "causal_summary": "Readability comfort and localization survival lived in the design contract only as prose scattered across audit references",
     "created_at": "2026-06-28T12:40:09.295Z",
-    "last_save_at": "2026-06-28T12:40:09.295Z",
+    "last_save_at": "2026-06-29T15:25:22.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f85bf6335386f77fdbd7080ebad74f9eff17b8135749d12fdc9010a2373068ac",
+    "source_fingerprint": "sha256:d622434bc64401875787951cd971665b01310de471eabc42c78a5406006370ae",
     "source_doc_hashes": {
-      "spec.md": "9bfcd96a531ed689c7977aafcc7cca571ed10704f862fc3272d0403f854a6ef1"
+      "spec.md": "f8f9cd49ec41b0194e3cb4cecbf04ef78d9c84d51ad0bc85fcdfd47eafa3a1ca",
+      "plan.md": "cf25e5827955b15b8eb51a681935a24c0620def8af3bfe894e362de6eac9f493",
+      "tasks.md": "f3ae452294f5568bd8c409cfbb4b2658af4e4b587a5c4dcfc84f35a9a042664c",
+      "checklist.md": "da692bb093aecc2a572b224b6ca7f58e85c500a124812f61b5a8d03a61dc9422",
+      "implementation-summary.md": "3da67da14753b8ff666427c7c7610d37265770f4dd536b9aad3e0363a6020b82"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -213,6 +213,54 @@ sourceProofs[]:
 
 Use this lane to make the reason for the decision reviewable before the design choice hardens. The checker enforces presence and non-placeholder fields only; reasoning quality remains a review judgment.
 
+### Readability And Density
+
+This lane applies when the surface is content-heavy: articles, documentation, dashboards, forms with sustained reading, dense settings, or any UI where reading comfort and scan density affect the outcome. Display type, logos, badges, counters, nav labels, and short UI strings are exempt.
+
+```text
+READABILITY AND DENSITY:
+surface:
+trigger: content-heavy | N/A
+measured line length:
+  target: 45-75 characters, near 66 for sustained reading
+  observed:
+  method:
+text container max-width:
+  value:
+  unit: ch
+line-height:
+decision count:
+exemptions:
+- display type:
+- short UI labels:
+verdict: COMPLETE | GAPS | N/A
+```
+
+Use content-first house style: constrain sustained text with `ch`-unit max-widths, state an explicit line-height, and count the visible decisions a reader must parse in the surface. This lane is hybrid: field presence is convention-enforced for content-heavy surfaces, while the measured-value quality remains advisory.
+
+### Locale Stress
+
+This lane applies when the surface is global, localized, multilingual, translated, or likely to be reused in a right-to-left locale. Local-only surfaces mark the lane N/A.
+
+```text
+LOCALE STRESS:
+surface:
+trigger: global/localized | N/A
+text expansion proxy:
+  locale proxy: German/Finnish
+  target: approximately 130% source string length
+  result:
+rtl layout:
+  logical properties: pass | fail | N/A
+  physical-direction CSS exceptions:
+directional icons:
+  mirrored arrows/chevrons: pass | fail | N/A
+  non-mirrored exceptions:
+verdict: COMPLETE | GAPS | N/A
+```
+
+Use logical properties for RTL-sensitive layout (`margin-inline-start`, `padding-inline-start`, `text-align: start`) and mirror directional icons such as arrows and chevrons. Do not mirror logos, clocks, media-play controls, or other symbols whose direction has semantic meaning. This lane is hybrid: field presence is convention-enforced for global surfaces, while expansion quality and icon judgment remain advisory.
+
 ---
 
 ## 5. HARD GATES
@@ -228,8 +276,17 @@ Use this lane to make the reason for the decision reviewable before the design c
 | Dispatch Profile | Any small-model delegation where a profile exists |
 | Adoption | Any canonical skill change from lineage findings |
 | Decision Rationale | Any direction, pattern-break, or handoff claim before the decision, considered options, evidence sources, trade-offs, validation plan, and source proofs are recorded |
+| Locale Stress / RTL | Any global or localized UI ready claim before locale-stress proof is filled and the documented RTL physical-direction lint has been run or explicitly marked N/A |
 
 **Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-foundations/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
+
+Documented RTL physical-direction lint, deterministic when run and not an always-on wired gate:
+
+```bash
+rg -n --pcre2 '(?:^|[;{[:space:]])(?:margin-(?:left|right)|padding-(?:left|right))\s*:|(?:^|[;{[:space:]])text-align\s*:\s*(?:left|right)\b' --glob '*.{css,scss,sass,less,pcss}' <changed-css-path-or-dir>
+```
+
+The rule flags physical-direction CSS (`margin-left`, `margin-right`, `padding-left`, `padding-right`, `text-align: left`, `text-align: right`). It intentionally does not match logical equivalents such as `margin-inline-start`, `margin-inline-end`, `padding-inline-start`, `padding-inline-end`, `text-align: start`, or `text-align: end`. A hit blocks global or localized ready claims unless the style is replaced with a logical equivalent or the exception is documented.
 
 ---
 
