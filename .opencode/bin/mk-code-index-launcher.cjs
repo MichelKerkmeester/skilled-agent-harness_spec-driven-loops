@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const { createHash } = require('crypto');
 const { createRequire } = require('module');
 const { createSessionProxy, createClassifyFrame } = require('./lib/launcher-session-proxy.cjs');
 
@@ -373,6 +374,41 @@ function readOwnerLeaseFile(filePath = ownerLeasePath()) {
   return null;
 }
 
+function readOwnerLeaseSnapshot(filePath = ownerLeasePath()) {
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (
+      Number.isInteger(parsed.ownerPid) &&
+      Number.isInteger(parsed.ppid) &&
+      typeof parsed.executablePath === 'string' &&
+      typeof parsed.startedAtIso === 'string' &&
+      typeof parsed.lastHeartbeatIso === 'string' &&
+      Number.isInteger(parsed.ttlMs) &&
+      typeof parsed.canonicalDbDir === 'string'
+    ) {
+      return {
+        lease: parsed,
+        mtimeMs: fs.statSync(filePath).mtimeMs,
+        contentHash: createHash('sha256').update(raw).digest('hex'),
+      };
+    }
+  } catch {
+    // Missing or corrupt owner leases are treated as no active owner.
+  }
+  return null;
+}
+
+function staleLeaseUnchanged(snapshot, current) {
+  return Boolean(
+    snapshot &&
+    current &&
+    snapshot.lease.ownerPid === current.lease.ownerPid &&
+    snapshot.mtimeMs === current.mtimeMs &&
+    snapshot.contentHash === current.contentHash,
+  );
+}
+
 function writeOwnerLeaseFile(lease) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
   const tmp = `${currentLeasePath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
@@ -596,7 +632,8 @@ function classifyOwnerLease(lease) {
 
 function acquireOwnerLeaseFile() {
   const currentOwnerLeasePath = ownerLeasePath();
-  const existing = readOwnerLeaseFile(currentOwnerLeasePath);
+  const existingSnapshot = readOwnerLeaseSnapshot(currentOwnerLeasePath);
+  const existing = existingSnapshot?.lease ?? null;
 
   if (existing) {
     const classification = classifyOwnerLease(existing);
@@ -612,6 +649,16 @@ function acquireOwnerLeaseFile() {
   // only one racer can win: the loser's exclusive create hits EEXIST and returns
   // acquired:false instead of last-writer-wins overwriting the winner's lease.
   if (existing) {
+    const currentSnapshot = readOwnerLeaseSnapshot(currentOwnerLeasePath);
+    if (!staleLeaseUnchanged(existingSnapshot, currentSnapshot)) {
+      const holder = currentSnapshot?.lease ?? lease;
+      launcherDiagnostic('reclaim-superseded', { ownerPid: currentSnapshot?.lease?.ownerPid ?? existing.ownerPid });
+      return {
+        acquired: false,
+        holder,
+        classification: currentSnapshot ? classifyOwnerLease(holder) : 'live-owner',
+      };
+    }
     try {
       fs.unlinkSync(currentOwnerLeasePath);
     } catch (error) {
@@ -1609,6 +1656,7 @@ module.exports = {
   classifyOwnerReclaim,
   ownerUidMatches,
   verifyPidIdentity,
+  staleLeaseUnchanged,
   launcherDiagnostic,
   configureLeaseMetricSinkForTesting,
   emitLeaseMetric,
