@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 import {
   appendJsonlIfChangedAtomic,
@@ -12,7 +14,7 @@ import {
   writeStateAtomic,
   writeStateIfChangedAtomic,
 } from '../../lib/deep-loop/atomic-state.js';
-import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
+import { createHermeticEnv, runtimeRoot, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const hermeticEnvs: HermeticEnv[] = [];
 
@@ -58,6 +60,110 @@ function parseStatusLedgerRow(line: string): StatusLedgerRow {
   return parsed as unknown as StatusLedgerRow;
 }
 
+interface ChildResult {
+  readonly exitCode: number | null;
+  readonly stdout: string;
+  readonly stderr: string;
+}
+
+function writeConcurrentAppendWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'append-writer.mjs');
+  writeFileSync(
+    writerPath,
+    [
+      "import fs from 'node:fs';",
+      "import { syncBuiltinESMExports } from 'node:module';",
+      '',
+      'const [, , atomicModulePath, ledgerPath, controlDir, writer, rawValue] = process.argv;',
+      'const originalWriteFileSync = fs.writeFileSync.bind(fs);',
+      'const waitBuffer = new SharedArrayBuffer(4);',
+      'const waitView = new Int32Array(waitBuffer);',
+      'function waitBriefly() {',
+      '  Atomics.wait(waitView, 0, 0, 10);',
+      '}',
+      'function waitForFile(path) {',
+      '  const deadline = Date.now() + 5000;',
+      '  while (!fs.existsSync(path)) {',
+      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    waitBriefly();',
+      '  }',
+      '}',
+      'fs.writeFileSync = (...args) => {',
+      '  const [target] = args;',
+      "  if (typeof target === 'string' && target.startsWith(ledgerPath) && target.includes('.tmp.')) {",
+      "    originalWriteFileSync(`${controlDir}/${writer}.waiting`, 'ready', 'utf8');",
+      "    waitForFile(`${controlDir}/release`);",
+      '  }',
+      '  return originalWriteFileSync(...args);',
+      '};',
+      'syncBuiltinESMExports();',
+      '',
+      'const { appendJsonlIfChangedAtomic } = await import(atomicModulePath);',
+      "originalWriteFileSync(`${controlDir}/${writer}.ready`, 'ready', 'utf8');",
+      "waitForFile(`${controlDir}/start`);",
+      'const value = Number(rawValue);',
+      'appendJsonlIfChangedAtomic(',
+      '  ledgerPath,',
+      '  { writer, value },',
+      "  { diffField: 'state_hash', diffData: { writer, value }, cache: new Map() },",
+      ');',
+      "originalWriteFileSync(`${controlDir}/${writer}.done`, 'done', 'utf8');",
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+function spawnAppendWriter(
+  writerPath: string,
+  atomicModulePath: string,
+  ledgerPath: string,
+  controlDir: string,
+  writer: string,
+  value: number,
+): Promise<ChildResult> {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(
+      process.execPath,
+      ['--import', 'tsx', writerPath, atomicModulePath, ledgerPath, controlDir, writer, String(value)],
+      { cwd: runtimeRoot, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr.on('data', (chunk: string) => {
+      stderr += chunk;
+    });
+    child.on('error', reject);
+    child.on('close', (exitCode) => {
+      resolvePromise({ exitCode, stdout: stdout.trim(), stderr: stderr.trim() });
+    });
+  });
+}
+
+async function releaseConcurrentAppendWriters(controlDir: string, writers: readonly string[]): Promise<void> {
+  const started = Date.now();
+  while (Date.now() - started < 5_000) {
+    if (writers.every((writer) => existsSync(join(controlDir, `${writer}.waiting`)))) {
+      writeFileSync(join(controlDir, 'release'), 'release', 'utf8');
+      return;
+    }
+
+    if (writers.every((writer) => existsSync(join(controlDir, `${writer}.done`)))) {
+      return;
+    }
+
+    await sleep(10);
+  }
+
+  throw new Error('Timed out waiting for concurrent append writers.');
+}
+
 afterEach(() => {
   vi.restoreAllMocks();
   vi.useRealTimers();
@@ -94,6 +200,25 @@ describe('atomic-state', () => {
 
       expect(() => writeStateAtomic(statePath, { status: 'new' })).toThrow();
       expect(existsSync(statePath)).toBe(true);
+      expect(tempSiblings(statePath)).toEqual([]);
+    });
+  });
+
+  it('rejects non-representable top-level state without creating a file', () => {
+    withHermeticState('atomic-invalid-undefined', (statePath) => {
+      expect(() => writeStateAtomic(statePath, undefined)).toThrow(TypeError);
+      expect(existsSync(statePath)).toBe(false);
+      expect(tempSiblings(statePath)).toEqual([]);
+    });
+  });
+
+  it('rejects non-representable top-level state without replacing the prior file', () => {
+    withHermeticState('atomic-invalid-function', (statePath) => {
+      writeStateAtomic(statePath, { status: 'valid' });
+      const before = readFileSync(statePath, 'utf8');
+
+      expect(() => writeStateAtomic(statePath, () => 'invalid')).toThrow(TypeError);
+      expect(readFileSync(statePath, 'utf8')).toBe(before);
       expect(tempSiblings(statePath)).toEqual([]);
     });
   });
@@ -197,6 +322,42 @@ describe('atomic-state', () => {
         gauges: { lag: 1, pending: 0, failed: 0 },
       });
       expect(tempSiblings(ledgerPath)).toEqual([]);
+    });
+  });
+
+  it('preserves both rows from concurrent diff-gated appends', async () => {
+    await withHermeticState('jsonl-concurrent-append', async (_statePath, tempDir) => {
+      const ledgerPath = join(tempDir, 'orchestration-status.log');
+      const controlDir = join(tempDir, 'control');
+      const writerPath = writeConcurrentAppendWriter(tempDir);
+      const atomicModulePath = join(runtimeRoot, 'lib', 'deep-loop', 'atomic-state.ts');
+      mkdirSync(controlDir, { recursive: true });
+
+      const writers = ['left', 'right'] as const;
+      const left = spawnAppendWriter(writerPath, atomicModulePath, ledgerPath, controlDir, 'left', 1);
+      const right = spawnAppendWriter(writerPath, atomicModulePath, ledgerPath, controlDir, 'right', 2);
+
+      while (!writers.every((writer) => existsSync(join(controlDir, `${writer}.ready`)))) {
+        await sleep(10);
+      }
+
+      writeFileSync(join(controlDir, 'start'), 'start', 'utf8');
+      await releaseConcurrentAppendWriters(controlDir, writers);
+
+      const results = await Promise.all([left, right]);
+      expect(results).toEqual([
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+      ]);
+
+      const rows = readFileSync(ledgerPath, 'utf8')
+        .trimEnd()
+        .split('\n')
+        .map((line) => JSON.parse(line) as Record<string, unknown>);
+
+      expect(rows.map((row) => row.writer).sort()).toEqual(['left', 'right']);
+      expect(rows).toHaveLength(2);
+      expect(readFileSync(ledgerPath, 'utf8').endsWith('\n')).toBe(true);
     });
   });
 
@@ -317,6 +478,37 @@ describe('atomic-state', () => {
       });
       expect(() => writer.write({ status: 'late' })).toThrow('Deferred atomic writer is closed.');
       expect(tempSiblings(statePath)).toEqual([]);
+    });
+  });
+
+  it('surfaces timer flush failures through close without an unhandled rejection', async () => {
+    vi.useFakeTimers();
+
+    await withHermeticState('deferred-timer-failure', async (statePath) => {
+      mkdirSync(statePath);
+      const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+      const unhandledRejections: unknown[] = [];
+      const onUnhandledRejection = (reason: unknown): void => {
+        unhandledRejections.push(reason);
+      };
+      process.on('unhandledRejection', onUnhandledRejection);
+
+      try {
+        const writer = createDeferredAtomicWriter(statePath, { debounceMs: 1 });
+        writer.write({ status: 'pending', iteration: 1 });
+
+        await vi.advanceTimersByTimeAsync(1);
+        await Promise.resolve();
+
+        await expect(writer.close()).rejects.toThrow();
+        expect(unhandledRejections).toEqual([]);
+        expect(error).toHaveBeenCalledWith(
+          '[deep-loop] Deferred atomic writer flush failed.',
+          expect.anything(),
+        );
+      } finally {
+        process.off('unhandledRejection', onUnhandledRejection);
+      }
     });
   });
 

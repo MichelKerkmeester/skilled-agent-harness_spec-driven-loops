@@ -108,6 +108,26 @@ function serializePrettyState(data: unknown): string {
   return `${serialized}\n`;
 }
 
+function appendTextWithFsync(path: string, content: string): void {
+  let fd: number | undefined;
+
+  mkdirSync(dirname(path), { recursive: true });
+  try {
+    fd = openSync(path, 'a');
+    writeFileSync(fd, content, 'utf8');
+    fsyncSync(fd);
+  } finally {
+    if (typeof fd === 'number') {
+      closeSync(fd);
+    }
+  }
+
+  try {
+    fsyncPath(dirname(path));
+  } catch {
+  }
+}
+
 function readLastJsonlLine(path: string): string | null {
   if (!existsSync(path)) {
     return null;
@@ -252,7 +272,7 @@ export function verifyIntegrity(obj: unknown): boolean {
  * @throws If write, fsync, or rename fails.
  */
 export function writeStateAtomic(path: string, data: unknown): void {
-  writeTextAtomic(path, `${JSON.stringify(data, null, 2)}\n`);
+  writeTextAtomic(path, serializePrettyState(data));
 }
 
 /**
@@ -295,7 +315,7 @@ export function writeStateIfChangedAtomic(
  * @param data - Serializable row data to append.
  * @param options - Optional cache, diff payload, and persisted diff field.
  * @returns True when a row was appended; false when unchanged state was skipped.
- * @throws If serialization, read, write, fsync, or rename fails.
+ * @throws If serialization, read, append, or fsync fails.
  */
 export function appendJsonlIfChangedAtomic(
   path: string,
@@ -324,8 +344,7 @@ export function appendJsonlIfChangedAtomic(
   const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
   const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
 
-  mkdirSync(dirname(targetPath), { recursive: true });
-  writeTextAtomic(targetPath, `${currentContent}${separator}${serializedRow}\n`);
+  appendTextWithFsync(targetPath, `${separator}${serializedRow}\n`);
   cache.set(cacheKey, diffFingerprint);
   return true;
 }
@@ -353,6 +372,8 @@ export function createDeferredAtomicWriter(
   let pendingVersion = 0;
   let flushTimer: ReturnType<typeof setTimeout> | null = null;
   let flushPromise: Promise<void> | null = null;
+  let hasLastFlushError = false;
+  let lastFlushError: unknown = null;
   let isClosed = false;
 
   function clearFlushTimer(): void {
@@ -369,7 +390,11 @@ export function createDeferredAtomicWriter(
 
     flushTimer = setTimeout(() => {
       flushTimer = null;
-      void drainPendingWrites();
+      void drainPendingWrites().catch((error: unknown) => {
+        hasLastFlushError = true;
+        lastFlushError = error;
+        console.error('[deep-loop] Deferred atomic writer flush failed.', error);
+      });
     }, debounceMs);
   }
 
@@ -414,6 +439,12 @@ export function createDeferredAtomicWriter(
 
   async function flushNow(): Promise<void> {
     clearFlushTimer();
+    if (hasLastFlushError) {
+      hasLastFlushError = false;
+      const error = lastFlushError;
+      lastFlushError = null;
+      throw error;
+    }
     await drainPendingWrites();
   }
 
