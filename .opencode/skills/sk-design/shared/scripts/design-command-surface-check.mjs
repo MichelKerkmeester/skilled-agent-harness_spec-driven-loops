@@ -12,6 +12,7 @@ const REQUIRED_FIELDS = [
   "aliases",
   "accepts",
   "returns",
+  "examples",
   "next",
   "proofFields",
   "deferToHubWhen",
@@ -27,11 +28,20 @@ const COMMANDS = [
   "/design:motion"
 ];
 
-const DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
+const FRONTMATTER_DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
+const DRIFT_FIELDS = [
+  ...FRONTMATTER_DRIFT_FIELDS,
+  "emit-deliverable",
+  "example",
+  "example-invocation",
+  "example-prefix",
+  "returns",
+  "wrapper"
+];
 const GENERIC_ARGUMENT_HINT = "<design request>";
 const READ_ONLY_TOOLS = ["Read", "Glob", "Grep"];
 const MUTATING_TOOLS = ["Read", "Write", "Edit", "Bash", "Glob", "Grep"];
-const DRIFT_SORT_FIELDS = [...DRIFT_FIELDS, "emit-deliverable"];
+const DRIFT_SORT_FIELDS = [...DRIFT_FIELDS];
 const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
@@ -183,6 +193,7 @@ function validateMetadata(metadata, workflowModes) {
       errors.push(`${command}: toolPolicy.mutatesWorkspace must be a boolean`);
     }
 
+    errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
 
     if (Array.isArray(record?.aliases)) {
@@ -204,6 +215,35 @@ function validateMetadata(metadata, workflowModes) {
   }
 
   return errors.sort();
+}
+
+function validateExamples(record, command) {
+  const errors = [];
+
+  if (!Array.isArray(record?.examples) || record.examples.length === 0) {
+    return [`${command}: examples must be a non-empty array`];
+  }
+
+  record.examples.forEach((example, index) => {
+    const label = `${command}: examples[${index}]`;
+
+    if (!isPlainObject(example)) {
+      errors.push(`${label} must be an object`);
+      return;
+    }
+
+    if (typeof example.invocation !== "string" || example.invocation.trim().length === 0) {
+      errors.push(`${label}.invocation must be a non-empty string`);
+    } else if (firstToken(example.invocation) !== command) {
+      errors.push(`${label}.invocation must start with ${command}`);
+    }
+
+    if (typeof example.returnsArtifact !== "string" || example.returnsArtifact.trim().length === 0) {
+      errors.push(`${label}.returnsArtifact must be a non-empty string`);
+    }
+  });
+
+  return errors;
 }
 
 function validateOutputContract(record, command) {
@@ -295,7 +335,7 @@ async function collectSurfaceDrift(records) {
       continue;
     }
 
-    for (const field of DRIFT_FIELDS) {
+    for (const field of FRONTMATTER_DRIFT_FIELDS) {
       const expected = expectedFrontmatterValue(record, field);
       const actual = frontmatter[field];
       const isGenericArgumentHint = field === "argument-hint" && actual === GENERIC_ARGUMENT_HINT;
@@ -314,6 +354,8 @@ async function collectSurfaceDrift(records) {
     if (deliverableDrift) {
       drift.push(deliverableDrift);
     }
+
+    drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
   }
 
   return drift.sort(compareDrift);
@@ -343,6 +385,54 @@ function expectedEmitDeliverableDrift(record, markdown) {
   return null;
 }
 
+function expectedExampleDrift(record, markdown, wrapperPath) {
+  const drift = [];
+  const section = extractExampleSection(markdown);
+  const [example] = record.examples;
+
+  if (!section) {
+    return [
+      {
+        command: record.command,
+        field: "example",
+        expected: "## Example",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  const invocation = extractFirstFencedInvocation(section);
+  if (invocation !== example.invocation) {
+    drift.push({
+      command: record.command,
+      field: "example-invocation",
+      expected: example.invocation,
+      actual: invocation ?? "<missing>"
+    });
+  }
+
+  if (invocation && firstToken(invocation) !== wrapperPath.commandPrefix) {
+    drift.push({
+      command: record.command,
+      field: "example-prefix",
+      expected: wrapperPath.commandPrefix,
+      actual: firstToken(invocation)
+    });
+  }
+
+  const returnsArtifact = extractReturnsArtifact(section);
+  if (returnsArtifact !== example.returnsArtifact) {
+    drift.push({
+      command: record.command,
+      field: "returns",
+      expected: example.returnsArtifact,
+      actual: returnsArtifact ?? "<missing>"
+    });
+  }
+
+  return drift;
+}
+
 function extractEmitDeliverableSection(markdown) {
   const sectionMatch = markdown.match(/^##\s+\d+\.\s+EMIT DELIVERABLE\s*$/im);
   if (!sectionMatch || typeof sectionMatch.index !== "number") {
@@ -354,10 +444,36 @@ function extractEmitDeliverableSection(markdown) {
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
+function extractExampleSection(markdown) {
+  const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?Example\b.*$/im);
+  if (!sectionMatch || typeof sectionMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = sectionMatch.index + sectionMatch[0].length;
+  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
+  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
+}
+
+function extractFirstFencedInvocation(section) {
+  const fenceMatch = section.match(/```[^\r\n]*\r?\n([\s\S]*?)\r?\n```/);
+  if (!fenceMatch) {
+    return null;
+  }
+
+  return fenceMatch[1].split(/\r?\n/).map((line) => line.trim()).find(Boolean) ?? null;
+}
+
+function extractReturnsArtifact(section) {
+  const returnsMatch = section.match(/^Returns:\s*(.+)$/im);
+  return returnsMatch ? returnsMatch[1].trim() : null;
+}
+
 function wrapperPathForCommand(command) {
   const name = command.replace("/design:", "");
   const relativePath = `.opencode/commands/design/${name}.md`;
   return {
+    commandPrefix: `/design:${name}`,
     relativePath,
     url: new URL(`${name}.md`, commandsRootUrl)
   };
@@ -450,6 +566,10 @@ function normalizeFrontmatter(frontmatter) {
   return normalized;
 }
 
+function firstToken(value) {
+  return value.trim().split(/\s+/)[0] ?? "";
+}
+
 function unquote(value) {
   const quote = value[0];
   if ((quote === "\"" || quote === "'") && value[value.length - 1] === quote) {
@@ -475,7 +595,19 @@ function compareDrift(left, right) {
     return commandCompare;
   }
 
-  return DRIFT_SORT_FIELDS.indexOf(left.field) - DRIFT_SORT_FIELDS.indexOf(right.field);
+  const leftIndex = DRIFT_SORT_FIELDS.indexOf(left.field);
+  const rightIndex = DRIFT_SORT_FIELDS.indexOf(right.field);
+  const fieldCompare = normalizeSortIndex(leftIndex) - normalizeSortIndex(rightIndex);
+
+  if (fieldCompare !== 0) {
+    return fieldCompare;
+  }
+
+  return left.field.localeCompare(right.field);
+}
+
+function normalizeSortIndex(index) {
+  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
 }
 
 function emitAndExit(report, exitCode) {

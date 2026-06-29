@@ -1,23 +1,26 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/004-invocation-example-and-returns",
-  "description": "Add examples[]{invocation,returnsArtifact} to command-metadata.json and generate a per-command ## Example section with one fenced call and a Returns:",
+  "description": "The five `/design:` wrappers carry a routing/identity surface (description, per-mode argument grammar, aliases, tool policy, deliverable contract) but",
   "keywords": [
-    "add",
-    "examples",
-    "invocation",
-    "returnsartifact",
-    "command-metadata",
-    "json",
-    "generate",
-    "per-command",
-    "example",
-    "section",
-    "one",
-    "fenced",
-    "call",
-    "returns"
+    "five",
+    "design",
+    "wrappers",
+    "carry",
+    "routing",
+    "identity",
+    "surface",
+    "description",
+    "per-mode",
+    "argument",
+    "grammar",
+    "aliases",
+    "tool",
+    "policy",
+    "deliverable",
+    "contract"
   ],
-  "lastUpdated": "2026-06-28T12:40:03.367Z",
+  "lastUpdated": "2026-06-29T05:09:02.193Z",
   "specId": "004",
   "folderSlug": "invocation-example-and-returns",
   "parentChain": [
@@ -29,6 +32,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -36,3 +36,11 @@ Required fields:
 - `evidenceInventory`
 - `severityFindings`
 - `qualityScore`
+
+## 4. EXAMPLE
+
+```
+/design:audit src/components/Checkout.tsx --scope a11y --score
+```
+
+Returns: a findings-first design quality report with evidence, scores, owners, and verification notes

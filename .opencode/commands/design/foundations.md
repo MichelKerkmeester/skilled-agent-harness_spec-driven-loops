@@ -36,3 +36,11 @@ Required fields:
 - `target`
 - `tokenDecisions`
 - `contrastEvidence`
+
+## 4. EXAMPLE
+
+```
+/design:foundations color marketing-site
+```
+
+Returns: a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable

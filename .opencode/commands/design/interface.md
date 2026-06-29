@@ -36,3 +36,11 @@ Required fields:
 - `register`
 - `designDials`
 - `preflightResult`
+
+## 4. EXAMPLE
+
+```
+/design:interface dashboard-shell --mode redesign
+```
+
+Returns: a deliberate interface direction with rationale, visual choices, critique, and handoff notes

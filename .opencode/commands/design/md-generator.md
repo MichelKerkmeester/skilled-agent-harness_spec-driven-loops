@@ -38,3 +38,11 @@ Required fields:
 
 File outputs:
 - `<output>/DESIGN.md`
+
+## 4. EXAMPLE
+
+```
+/design:md-generator https://stripe.com --output design/reference
+```
+
+Returns: a Style Reference DESIGN.md and extracted token data under the output directory

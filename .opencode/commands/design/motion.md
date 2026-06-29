@@ -36,3 +36,11 @@ Required fields:
 - `motionPurpose`
 - `timingModel`
 - `reducedMotionPath`
+
+## 4. EXAMPLE
+
+```
+/design:motion modal-open-close --library framer-motion
+```
+
+Returns: a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior
