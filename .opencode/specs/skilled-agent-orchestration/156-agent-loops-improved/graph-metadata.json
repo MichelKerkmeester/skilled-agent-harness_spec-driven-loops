@@ -5,7 +5,14 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
-    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation"
+    "skilled-agent-orchestration/156-agent-loops-improved",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin",
+    "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime",
+    "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows",
+    "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit",
+    "skilled-agent-orchestration/156-agent-loops-improved/006-skill-interconnection",
+    "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation",
+    "skilled-agent-orchestration/156-agent-loops-improved/008-testing"
   ],
   "manual": {
     "depends_on": [],
@@ -36,10 +43,24 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal.md",
       "001-reference-research/research/research.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,17 +106,17 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:00:31Z",
-    "last_save_at": "2026-06-28T14:30:35.647Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-29T10:37:56.407Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ee7264f79d7ff982ea9ce0d6ef00fc9c89985dfc4dc45d4611841dbef174f536",
+    "source_fingerprint": "sha256:e040c47faf7527df9093df3f0528abfbab03cde12c84845799dc98739f01d1bf",
     "source_doc_hashes": {
-      "spec.md": "f2098df2a608378265f6c3a3768bb6cf90f5836abd707a603d94713b960a8948"
+      "spec.md": "548203f26b8cad446b1b0330b63e8576ee533c1a8e85f12a08221ac948bbd54b"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-06-29T05:15:17.527Z"
   }
 }

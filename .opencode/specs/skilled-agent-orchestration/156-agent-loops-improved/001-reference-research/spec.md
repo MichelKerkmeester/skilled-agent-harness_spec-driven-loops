@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed 51 proper iterations; synthesized research.md (40 recommendations)"
-    next_safe_action: "Implement recommendations via the sibling 002-implementation phase tree"
+    next_safe_action: "Implement recommendations via the sibling 156-agent-loops-improved phase tree"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,7 +46,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 2 |
 | **Predecessor** | None |
-| **Successor** | `002-implementation` |
+| **Successor** | `156-agent-loops-improved` |
 | **Handoff Criteria** | Ranked recommendation backlog synthesized in `research/research.md` |
 <!-- /ANCHOR:metadata -->
 
@@ -71,7 +71,7 @@ Mine two vendored reference codebases (`external/loop-cli-main`, `external/kaspe
 - Read-only mining of the two reference repos; mapping mechanisms onto our subsystems; synthesis into `research/research.md` + `research/resource-map.md`.
 
 ### Out of Scope
-- Implementing the improvements (delegated to the sibling `002-implementation`).
+- Implementing the improvements (delegated to the sibling `156-agent-loops-improved`).
 
 ### Files to Change
 
@@ -119,7 +119,7 @@ Mine two vendored reference codebases (`external/loop-cli-main`, `external/kaspe
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None — phase complete; open implementation questions live in `002-implementation` child phases.
+- None — phase complete; open implementation questions live in `156-agent-loops-improved` child phases.
 <!-- /ANCHOR:questions -->
 
 ---

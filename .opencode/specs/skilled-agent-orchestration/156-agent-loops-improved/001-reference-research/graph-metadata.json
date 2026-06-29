@@ -49,6 +49,7 @@
       "plan.md",
       ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
@@ -56,13 +57,8 @@
       ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,6 +89,12 @@
         "name": "atomic-state.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sleep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
         "source": "derived"
       },
       {
@@ -138,45 +140,15 @@
         "source": "derived"
       },
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-taxonomy.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "jsonl-repair.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -208,11 +180,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:30:35.956Z",
-    "last_save_at": "2026-06-28T14:34:06.815Z",
+    "last_save_at": "2026-06-29T10:34:08.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:be9dbbf5019829c8bffb69b434f891c9a54d20cd633256644cd7d173a6323de1",
+    "source_fingerprint": "sha256:20e9d0d1530632b1313cbbce02fca8efb60599b85cdebb2067e9239a5282358e",
     "source_doc_hashes": {
-      "spec.md": "a3db03d93854542c1bc7f4241d6433f8870c8f1d07c3223af4053a608cb9c944",
+      "spec.md": "7d4b1f1c448c09d2aa05ce09d994007dc42992fe57058b645b40d7bebedd8f4f",
       "plan.md": "5fbf3386dae8daf17f412e1c6ec8c14d909da872bc2dd5bce2ac3d2597a58849",
       "tasks.md": "d769a240f531f8e35b4459049dfe0fd00e8a7ebdadb3c742e33b73437139d846",
       "implementation-summary.md": "d23d34ca398e7c70aaec37bf529ab2572c3a8b958d50b63b183adceeed3688ba",
-      "research/research.md": "99cab63149b6bf2024e9ecd7205ee0c8e644004f2d42ab288972ee711eb24a18"
+      "research/research.md": "b1d714ecfc4041ddba752fc208fb0821cf58b5c371af2034bab7818fca7b5d89"
     },
     "last_active_child_id": null,
     "last_active_at": null

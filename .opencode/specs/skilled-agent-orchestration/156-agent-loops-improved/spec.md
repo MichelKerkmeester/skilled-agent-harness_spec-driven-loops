@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Backfilled root phase-parent spec for the agent-loops-improved packet"
-    next_safe_action: "Scaffold and execute the 002-implementation phase tree"
+    next_safe_action: "Scaffold remediation phases 009+ for deep-review follow-ups"
     blockers: []
     key_files: []
     session_dedup:
@@ -57,7 +57,7 @@ _memory:
 Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection. We need a disciplined way to discover concrete, evidence-backed improvements and then apply them without losing track of dependencies.
 
 ### Purpose
-This packet first researches two vendored reference codebases for portable patterns (phase `001-reference-research`), then applies the resulting improvements as an independently-executable phase tree (phase `002-implementation`), alongside one new capability — a `/goal` OpenCode plugin mirroring Claude Code's `/goal`.
+This packet first researches two vendored reference codebases for portable patterns (phase `001-reference-research`), then applies the resulting improvements as independently-executable phases (`003`–`008`, by subsystem), alongside one new capability — a `/goal` OpenCode plugin mirroring Claude Code's `/goal` (phase `002`). Phases `009+` remediate deep-review follow-ups.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -69,7 +69,7 @@ This packet first researches two vendored reference codebases for portable patte
 
 ### In Scope
 - Reference research mining loop-cli-main + kasper into a ranked recommendation backlog (`001-reference-research`).
-- Phased implementation of the 40 recommendations plus the `/goal` OpenCode plugin, grouped by subsystem (`002-implementation`).
+- Phased implementation of the 40 recommendations plus the `/goal` OpenCode plugin, as top-level phases `002`–`008` (by subsystem).
 
 ### Out of Scope
 - Subsystems unrelated to loop orchestration.
@@ -80,10 +80,10 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/deep-loop-runtime/**` | Modify | 002-implementation | Resilience, convergence, observability improvements |
-| `.opencode/skills/deep-loop-workflows/**` | Modify | 002-implementation | Anti-convergence, injection, interconnection improvements |
-| `.opencode/commands/{deep,speckit}/**` | Modify | 002-implementation | Telemetry, run-now, autopilot improvements |
-| `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal.md` | Create | 002-implementation | The `/goal` OpenCode plugin + command |
+| `.opencode/skills/deep-loop-runtime/**` | Modify | 003-deep-loop-runtime | Resilience, convergence, observability improvements |
+| `.opencode/skills/deep-loop-workflows/**` | Modify | 004-deep-loop-workflows | Anti-convergence, injection, interconnection improvements |
+| `.opencode/commands/{deep,speckit}/**` | Modify | 005-007 | Telemetry, run-now, autopilot improvements |
+| `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal.md` | Create | 002-goal-opencode-plugin | The `/goal` OpenCode plugin + command |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -96,7 +96,13 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-reference-research` | 50-iteration mining of loop-cli-main + kasper → 40 recommendations | Complete |
-| 002 | `002-implementation` | Apply the 40 recommendations + the `/goal` plugin (subsystem-grouped phases) | In Progress |
+| 002 | `002-goal-opencode-plugin` | The `/goal` OpenCode plugin (state store, injection, command, lifecycle, supervisor, continuation) | Complete |
+| 003 | `003-deep-loop-runtime` | 18 runtime recs: atomic-state, loop-lock, sleep, jsonl, executor/fallback, coverage-graph, fanout, lifecycle | Complete |
+| 004 | `004-deep-loop-workflows` | 12 workflow recs: anti-convergence + ADRs, injection-inbox, ideas/rejected caches, benchmark, push-wave | Complete |
+| 005 | `005-system-spec-kit` | Speckit autopilot lifecycle | Complete |
+| 006 | `006-skill-interconnection` | Advisor routing projection | Complete |
+| 007 | `007-ux-observability-automation` | Dashboards, telemetry heartbeat, run-now, dry-run, observability envelope, memory-upsert | Complete |
+| 008 | `008-testing` | Hermetic test isolation, record-replay cassette harness | Complete |
 
 ### Phase Transition Rules
 

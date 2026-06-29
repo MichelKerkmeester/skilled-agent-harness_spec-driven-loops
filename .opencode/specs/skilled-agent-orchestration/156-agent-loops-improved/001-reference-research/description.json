@@ -14,11 +14,10 @@
     "safety",
     "interconnection"
   ],
-  "lastUpdated": "2026-06-28T14:40:36.166Z",
+  "lastUpdated": "2026-06-29T10:34:08.617Z",
   "specId": "001",
   "folderSlug": "reference-research",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved"
   ],
   "memorySequence": 0,
