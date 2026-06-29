@@ -75,7 +75,36 @@ JSONL repair matches the documented current reality, the source anchors are accu
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### Adversarial Contract
+
+- Bug under guard: appending a record to a JSONL file whose last line lacked a trailing newline
+  merged the new record onto the prior line, corrupting both at the record boundary.
+- Must-stay-true invariant: appends must keep every record parseable at line boundaries even when
+  the prior content lacked a clean terminator.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/jsonl-repair.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the boundary-corruption regression has returned.
+
+### Adversarial Steps
+
+1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/jsonl-repair.vitest.ts` asserts `appends records without rewriting existing content` and `strips corrupt trailing lines even when the corrupt line ends with a newline`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/jsonl-repair.vitest.ts` | Fails if an append after a missing terminator corrupts a record boundary. |
+
+---
+
+## 6. SOURCE_METADATA
 
 - Group: State safety
 - Playbook ID: DLR-007

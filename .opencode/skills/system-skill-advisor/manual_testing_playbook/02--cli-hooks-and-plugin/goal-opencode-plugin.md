@@ -93,7 +93,51 @@ node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
 
 ---
 
-## 5. SOURCE METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guards for fixed deep-review findings in the goal plugin. Each guard PASSES only while
+> its bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### 5.1 Terminal-goal revival must drop stale usage
+
+- Bug under guard: re-setting the same objective after a terminal (completed or cleared) goal
+  carried stale usage counters (tokens, elapsed time, last-accounted message) into the revived goal.
+- Must-stay-true invariant: re-arming an objective after a terminal goal must reset usage to zero
+  and clear the last-accounted message and continuation-suppressed flags.
+- Pass/fail: PASS only if `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` exits 0 AND
+  the revived-goal assertions remain (`tokensUsed === 0`, `timeUsedSeconds === 0`,
+  `lastAccountedMessageID === null`); FAIL if the test is missing, weakened, or exits non-zero.
+
+```bash
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
+```
+
+### 5.2 Injection clamp must preserve directive and fence markers
+
+- Bug under guard: the passive-injection length clamp could truncate away the directive header or
+  the `[active_goal]` fence, leaking a malformed or unbounded injection block into context.
+- Must-stay-true invariant: clamping a long objective must still emit the opening
+  `[active_goal:<id>]` marker, the `directive:` line, and the closing `[/active_goal]` fence —
+  only the objective text is truncated (ends with `...`).
+- Pass/fail: PASS only if `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` exits 0 AND the
+  clamped-injection assertions remain (block starts with `[active_goal:<id>]`, contains the
+  `directive:` line, ends with `[/active_goal]`); FAIL if the test is missing, weakened, or exits
+  non-zero.
+
+```bash
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-state.test.cjs
+```
+
+### Regression Anchors
+
+| File | Role |
+|---|---|
+| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Fails if a revived same-objective goal carries stale usage. |
+| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Fails if the injection clamp drops the directive or fence markers. |
+
+---
+
+## 6. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-007

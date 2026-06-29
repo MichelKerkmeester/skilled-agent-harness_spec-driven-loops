@@ -75,7 +75,36 @@ Atomic-state deferred writer matches the documented current reality, the source 
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### Adversarial Contract
+
+- Bug under guard: a timer-driven flush failure in the deferred writer was swallowed as an
+  unhandled promise rejection instead of surfacing to the caller.
+- Must-stay-true invariant: a deferred flush failure must surface through `close()`, never vanish
+  as an unhandled rejection.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/atomic-state.vitest.ts` still
+  contains the named assertion; FAIL if that test is missing, renamed, skipped, or exits non-zero —
+  any of which means the swallowed-error regression has returned.
+
+### Adversarial Steps
+
+1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `surfaces timer flush failures through close without an unhandled rejection`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/atomic-state.vitest.ts` | Fails if a deferred flush error is swallowed instead of surfacing through close. |
+
+---
+
+## 6. SOURCE_METADATA
 
 - Group: State safety
 - Playbook ID: DLR-032

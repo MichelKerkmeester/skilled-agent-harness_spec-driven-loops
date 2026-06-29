@@ -75,7 +75,36 @@ Atomic-state integrity helpers matches the documented current reality, the sourc
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### Adversarial Contract
+
+- Bug under guard: `writeStateAtomic` given a non-representable top-level state (e.g. `undefined`)
+  silently created or replaced the target file with corrupt content instead of throwing.
+- Must-stay-true invariant: a non-representable top-level state must THROW and leave both a fresh
+  target and any prior file untouched.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/atomic-state.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the silent-corruption regression has returned.
+
+### Adversarial Steps
+
+1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `rejects non-representable top-level state without creating a file` and `rejects non-representable top-level state without replacing the prior file`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/atomic-state.vitest.ts` | Fails if a non-representable state writes or clears a file instead of throwing. |
+
+---
+
+## 6. SOURCE_METADATA
 
 - Group: State safety
 - Playbook ID: DLR-031

@@ -1,34 +1,35 @@
 ---
-title: "Tasks: Phase 4: adversarial-playbook-scenarios [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Adversarial Playbook Scenarios"
+description: "Task list for authoring eight adversarial regression scenarios across the runtime and goal-plugin playbooks."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "adversarial playbook scenarios tasks"
+  - "regression scenario tasks"
+  - "manual testing playbook adversarial tasks"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-adversarial-playbook-scenarios"
-    last_updated_at: "2026-06-29T10:43:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/004-adversarial-playbook-scenarios"
+    last_updated_at: "2026-06-29T14:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Tracked the adversarial scenario authoring"
+    next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-adversarial-playbook-scenarios"
+      session_id: "adversarial-playbook-scenarios-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: adversarial-playbook-scenarios
+# Tasks: Adversarial Playbook Scenarios
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -50,9 +51,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Enumerate the fixed clusters and map each to a regression test
+- [x] T002 Read each regression test to confirm the named assertion exists
+- [x] T003 Resolve the goal-plugin playbook home (`system-skill-advisor/.../goal-opencode-plugin.md`)
+- [x] T004 Confirm the scenario-to-catalog invariant requires section additions, not new files
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +62,14 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T005 Add the loop-lock split-brain adversarial section (`04--state-safety/loop-lock.md`)
+- [x] T006 Add the non-representable-state-throws section (`04--state-safety/atomic-state-integrity-helpers.md`)
+- [x] T007 Add the concurrent diff-gated append section (`04--state-safety/atomic-state-serialize-diff.md`)
+- [x] T008 Add the deferred-flush-error section (`04--state-safety/atomic-state-deferred-writer.md`)
+- [x] T009 Add the jsonl no-trailing-newline section (`04--state-safety/jsonl-repair.md`)
+- [x] T010 Add the fan-out exit-0/no-artifact section (`09--fanout/fanout-salvage-recovery.md`)
+- [x] T011 Add the goal-plugin revival and injection-clamp sections (`02--cli-hooks-and-plugin/goal-opencode-plugin.md`)
+- [x] T012 Author concrete Level-1 docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +77,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T013 Run the deep-loop-runtime suite (60 files / 545 tests)
+- [x] T014 Run the goal-plugin lifecycle and state tests (EXIT 0)
+- [x] T015 Validate the edited playbook documents (zero issues)
+- [x] T016 Run strict spec validation after metadata refresh
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +88,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Cited regression tests verified green
+- [x] Edited playbooks validate with zero issues
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +101,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Implementation Summary**: See `implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

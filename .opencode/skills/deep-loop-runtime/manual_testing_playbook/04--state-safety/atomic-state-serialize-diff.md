@@ -75,7 +75,35 @@ Atomic-state serialize-diff matches the documented current reality, the source a
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### Adversarial Contract
+
+- Bug under guard: two concurrent diff-gated appends could race so one row was dropped, losing
+  state-log history.
+- Must-stay-true invariant: concurrent diff-gated appends must preserve every row.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/atomic-state.vitest.ts` still
+  contains the named assertion; FAIL if that test is missing, renamed, skipped, or exits non-zero —
+  any of which means the lost-row regression has returned.
+
+### Adversarial Steps
+
+1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `preserves both rows from concurrent diff-gated appends`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/atomic-state.vitest.ts` | Fails if a concurrent diff-gated append drops a row. |
+
+---
+
+## 6. SOURCE_METADATA
 
 - Group: State safety
 - Playbook ID: DLR-030

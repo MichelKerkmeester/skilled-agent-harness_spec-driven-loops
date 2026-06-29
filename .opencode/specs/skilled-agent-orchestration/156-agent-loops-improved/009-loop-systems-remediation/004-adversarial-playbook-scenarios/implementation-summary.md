@@ -1,34 +1,36 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Adversarial Playbook Scenarios"
+description: "Summary of the eight adversarial regression scenarios added to the runtime and goal-plugin playbooks, and their verification state."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "adversarial playbook scenarios summary"
+  - "regression scenario summary"
+  - "manual testing playbook adversarial summary"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-adversarial-playbook-scenarios"
-    last_updated_at: "2026-06-29T10:43:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/004-adversarial-playbook-scenarios"
+    last_updated_at: "2026-06-29T14:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored and verified the adversarial regression scenarios"
+    next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-adversarial-playbook-scenarios"
+      session_id: "adversarial-playbook-scenarios-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Each adversarial scenario is FAIL-on-regression: it passes only while its named regression test stays present and green."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
@@ -38,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-adversarial-playbook-scenarios |
+| **Spec Folder** | `skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/004-adversarial-playbook-scenarios` |
 | **Completed** | 2026-06-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -48,28 +50,37 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Eight adversarial regression scenarios were added to the manual-testing playbooks, one per fixed deep-review cluster. Each is phrased to FAIL the moment its bug regresses and names the real regression test that catches it.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Scenarios
 
-### [Feature Name]
+| Cluster | Playbook file | Regression test |
+|---------|---------------|-----------------|
+| Loop-lock refresh-vs-reclaim split-brain | `04--state-safety/loop-lock.md` | `tests/unit/loop-lock.vitest.ts` |
+| `writeStateAtomic(undefined)` must throw | `04--state-safety/atomic-state-integrity-helpers.md` | `tests/unit/atomic-state.vitest.ts` |
+| Concurrent diff-gated append no row loss | `04--state-safety/atomic-state-serialize-diff.md` | `tests/unit/atomic-state.vitest.ts` |
+| Deferred-writer flush error surfaces | `04--state-safety/atomic-state-deferred-writer.md` | `tests/unit/atomic-state.vitest.ts` |
+| JSONL append after no trailing newline no-corrupt | `04--state-safety/jsonl-repair.md` | `tests/unit/jsonl-repair.vitest.ts` |
+| Fan-out exit-0/no-artifact not fulfilled | `09--fanout/fanout-salvage-recovery.md` | `tests/unit/fanout-run.vitest.ts` |
+| Goal terminal-revival drops stale usage | `02--cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-lifecycle.test.cjs` |
+| Goal injection clamp preserves directive + fence | `02--cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-state.test.cjs` |
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Approach
+
+Each scenario is an `ADVERSARIAL REGRESSION` section added inside the feature's existing scenario file, placed before the metadata footer so the numbered structure stays intact. Sections were chosen over new files because the playbook contract maps one scenario file to one feature-catalog entry; standalone files would have broken that invariant.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md` | Modified | Refresh-vs-reclaim split-brain adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md` | Modified | Non-representable-state-throws adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md` | Modified | Concurrent diff-gated append adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md` | Modified | Deferred-flush-error adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md` | Modified | No-trailing-newline no-corrupt adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modified | Exit-0/no-artifact not-fulfilled adversarial scenario. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Terminal-revival and injection-clamp adversarial scenarios. |
+| `004-adversarial-playbook-scenarios/{spec,plan,tasks,implementation-summary}.md` | Modified | Authored concrete Level-1 phase docs. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +88,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Each cluster was mapped to a regression test, and the test was read to confirm the named assertion exists before it was cited. The scenarios were then authored as sections and the cited tests were rerun to confirm green.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +96,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Add scenarios as sections, not new files | The playbook maps one scenario file to one feature-catalog entry; new files would break that count and require catalog entries out of scope here. |
+| Cite a specific named assertion per scenario | A scenario that names the exact assertion fails loudly if the guard is renamed or removed, not just if the file is deleted. |
+| Home the fan-out scenario in salvage-recovery | The exit-0/no-artifact path is the salvage-miss mechanism; the salvage scenario is its natural home, pointing at the fanout-run accounting test. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +108,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test` | PASS: 60 files / 545 tests |
+| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | PASS: exit 0 |
+| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-state.test.cjs` | PASS: exit 0 |
+| `validate_document.py` on `loop-lock.md` and `goal-opencode-plugin.md` | PASS: valid, 0 issues |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +121,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Adversarial scenarios are review aids, not executable gates.** They tell a manual reviewer which test must stay green; they do not themselves run in CI.
+2. **The named-assertion citations are coupled to test titles.** Renaming a regression test title requires updating the matching scenario, which is the intended fail-loud behavior.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

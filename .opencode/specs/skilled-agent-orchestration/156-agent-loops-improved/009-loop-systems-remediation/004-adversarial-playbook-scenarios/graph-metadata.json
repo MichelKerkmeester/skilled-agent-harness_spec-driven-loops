@@ -11,42 +11,91 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "adversarial playbook scenarios",
+      "regression scenario fail on regress",
+      "manual testing playbook adversarial",
+      "adversarial playbook scenarios plan",
+      "regression scenario plan",
+      "manual testing playbook adversarial plan",
+      "adversarial playbook scenarios tasks",
+      "regression scenario tasks",
+      "manual testing playbook adversarial tasks",
+      "adversarial playbook scenarios summary",
+      "regression scenario summary",
+      "manual testing playbook adversarial summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "adversarial",
+      "playbook",
+      "scenarios",
+      "regression",
+      "scenario",
+      "fail",
+      "regress",
+      "manual",
+      "testing",
       "plan",
       "tasks",
-      "summary",
-      "impl",
-      "broken"
+      "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "loop-lock.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state-integrity-helpers.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state-serialize-diff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state-deferred-writer.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage-recovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,7 +127,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Adversarial Playbook Scenarios",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,7 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adversarial",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,15 +187,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -148,53 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only \"does this feature match the docs\" scenarios",
     "created_at": "2026-06-29T10:43:19Z",
-    "last_save_at": "2026-06-29T11:35:04.841Z",
+    "last_save_at": "2026-06-29T12:35:33.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc1273869ccb6f9b59f8c66a03d61893ad9d34534cd52284b35fa8e62ebc1fde",
+    "source_fingerprint": "sha256:301dd7854fea38f2221ff7fc06c32a1b9835e409333735fd907ef3f5bade0ce9",
     "source_doc_hashes": {
-      "spec.md": "5a6614215791da9f701a4b1bac565fdc1002beed08ddbf124e26fc3911e74397",
-      "plan.md": "da93f08a8f2384243db1cd1744a8a3e5fc2add257436656404fdc91251b36ac4",
-      "tasks.md": "fa4fab6c4d8f49aaff28d6c8a17558ac2a28233822b7d826090caf975a1a1efc",
-      "implementation-summary.md": "a470bd771bf6cacdbf2c24f45e03607ed110d14e8006c92dc7bc43d9fadb5fd7"
+      "spec.md": "f10dfa0b55a8995ccf70b97cb6cac9abb1484b1125912d59912ce8f819346671",
+      "plan.md": "9d2433b325374cecb88d215a7b5238ff11d3527723d15c6930bf70c2a8eebfb8",
+      "tasks.md": "7f49886859e905c7dcd5d6ac847b1c3ea9ddffef7a70576b2d46324561e8ca4d",
+      "implementation-summary.md": "53cf127e71a12a533d4ff26b73a1f55154179eb3bb37b3ab3ae2ec1512e90d0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

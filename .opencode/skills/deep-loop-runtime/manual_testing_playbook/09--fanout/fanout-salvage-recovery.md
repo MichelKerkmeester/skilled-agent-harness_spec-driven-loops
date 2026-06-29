@@ -76,7 +76,36 @@ shared SQLite DB without any schema change.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. ADVERSARIAL REGRESSION
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+### Adversarial Contract
+
+- Bug under guard: a lineage that exited 0 but wrote no iteration artifact was reported as
+  fulfilled instead of a salvage-miss, masking a silent fan-out failure.
+- Must-stay-true invariant: an exit-0/no-artifact lineage must be treated as a salvage-miss
+  (salvaged or retried, then failed if still missing), never counted as fulfilled.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/fanout-run.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the false-fulfilled regression has returned.
+
+### Adversarial Steps
+
+1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/fanout-run.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/fanout-run.vitest.ts` asserts `retries a salvage-miss lineage once and exits ok when the retry succeeds` and `records exit 3 (all failed) when the only lineage exits non-zero`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/fanout-run.vitest.ts` | Fails if an exit-0/no-artifact lineage is counted as fulfilled instead of a salvage-miss. |
+
+---
+
+## 6. SOURCE_METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-026

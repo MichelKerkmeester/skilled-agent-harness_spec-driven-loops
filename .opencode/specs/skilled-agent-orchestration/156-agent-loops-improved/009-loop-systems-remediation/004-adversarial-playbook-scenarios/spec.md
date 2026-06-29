@@ -1,42 +1,36 @@
 ---
-title: "Feature Specification: Phase 4: adversarial-playbook-scenarios [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Adversarial Playbook Scenarios"
+description: "Add one adversarial regression scenario per fixed deep-review cluster to the manual-testing playbooks, each phrased to FAIL when the bug regresses and pointing at the real regression test."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "adversarial playbook scenarios"
+  - "regression scenario fail on regress"
+  - "manual testing playbook adversarial"
+importance_tier: "high"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-adversarial-playbook-scenarios"
-    last_updated_at: "2026-06-29T10:43:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation/004-adversarial-playbook-scenarios"
+    last_updated_at: "2026-06-29T14:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored eight adversarial regression scenarios across the runtime and goal playbooks"
+    next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-adversarial-playbook-scenarios"
+      session_id: "adversarial-playbook-scenarios-2026-06-29"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Adversarial scenarios are added as sections inside existing scenario files to preserve the one-scenario-to-one-feature-catalog-entry invariant."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: adversarial-playbook-scenarios
+# Feature Specification: Adversarial Playbook Scenarios
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
 
@@ -46,15 +40,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-29 |
-| **Branch** | `scaffold/004-adversarial-playbook-scenarios` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | current workspace |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 4 of 6 |
 | **Predecessor** | 003-model-benchmark-reducer-ledger |
 | **Successor** | 005-tighten-playbook-pass-criteria |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Each fixed cluster has an adversarial scenario that names a runnable regression test; the cited tests pass and the edited playbooks validate. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,18 +56,19 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the remediation rec clusters specification.
+This phase hardens the manual-testing playbooks against silent regressions of the bugs fixed earlier in the remediation.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Markdown only. Add adversarial regression scenarios to existing playbook scenario files; no source, test, or feature-catalog changes.
 
 **Dependencies**:
-- [To be defined during planning]
+- The regression tests authored by the fix phases must already exist and pass.
 
 **Deliverables**:
-- [To be defined during planning]
+- Eight adversarial regression scenarios across the deep-loop-runtime and goal-plugin playbooks.
+- Level-1 phase documentation with verification evidence.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Parent changelog refresh is out of scope for this narrow remediation.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -82,10 +77,10 @@ This is **Phase 4** of the remediation rec clusters specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only "does this feature match the docs" scenarios. None was phrased to FAIL specifically when one of those bugs regressed, so a reintroduced defect could pass manual review unnoticed.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Add one adversarial regression scenario per fixed cluster, phrased to FAIL when the bug returns, with TEST EXECUTION pointing at the real regression test.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +89,25 @@ This is **Phase 4** of the remediation rec clusters specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- One adversarial scenario per fixed cluster (eight total), authored as sections in the relevant existing scenario files.
+- Each scenario names a runnable regression test, requires EXIT 0, and FAILs if the test is missing, renamed, skipped, or red.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Source, runtime, or test code changes.
+- New standalone scenario files or feature-catalog entries (would break the one-scenario-to-one-catalog-entry invariant).
+- Pass-criteria wording for the non-adversarial scenarios (owned by phase 005).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md` | Modify | Add the refresh-vs-reclaim split-brain adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md` | Modify | Add the non-representable-state-throws adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md` | Modify | Add the concurrent diff-gated append no-row-loss adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md` | Modify | Add the deferred-flush-error-surfaces adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md` | Modify | Add the no-trailing-newline no-corrupt adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modify | Add the exit-0/no-artifact not-fulfilled adversarial scenario. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add the terminal-revival stale-usage and injection-clamp marker adversarial scenarios. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +119,17 @@ This is **Phase 4** of the remediation rec clusters specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Each fixed cluster has an adversarial scenario phrased to FAIL on regression. | Eight scenarios exist, each stating the bug, the must-stay-true invariant, and a FAIL-on-regression pass rule. |
+| REQ-002 | Each scenario points at a real, runnable regression test. | Each scenario names a test file and command that exits 0 today and asserts the guarded behavior. |
+| REQ-003 | The cited regression tests pass. | The deep-loop-runtime suite and the two named goal-plugin tests exit 0. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | The edited playbooks remain valid documents. | `validate_document.py` reports zero issues for the edited files. |
+| REQ-005 | The scenario-to-catalog invariant is preserved. | No new scenario files or feature-catalog entries are added; scenarios are sections in existing files. |
+| REQ-006 | Level-1 phase docs contain no scaffold placeholders. | `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` are authored with concrete content. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +137,9 @@ This is **Phase 4** of the remediation rec clusters specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Eight adversarial scenarios are present, each naming a runnable regression test and phrased to FAIL on regression.
+- **SC-002**: The deep-loop-runtime suite (60 files / 545 tests) and the `mk-goal-lifecycle` and `mk-goal-state` plugin tests exit 0.
+- **SC-003**: `validate_document.py` reports zero issues for every edited playbook file.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +149,9 @@ This is **Phase 4** of the remediation rec clusters specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | New standalone scenario files | Would break the documented 51-scenario / 51-catalog-entry invariant. | Author scenarios as sections inside existing files. |
+| Risk | Citing a test that does not assert the guard | Adversarial scenario would give false assurance. | Confirm each named test asserts the specific invariant before citing it. |
+| Dependency | Regression tests from the fix phases | Scenarios reference them. | Verified present and green via the suite and plugin test runs. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,31 +159,5 @@ This is **Phase 4** of the remediation rec clusters specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None. All eight scenarios are authored and their cited tests verified green.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
