@@ -1,20 +1,22 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/002-command-recipe-scorer-cap",
-  "description": "Insert a recipe-validity phase into score-skill-benchmark.cjs that caps D2/D3 scores when a command recipe is undefined or invalid.",
+  "description": "The sibling command-recipe projection (D6-R1) landed a typed `argumentGrammar` and an ordered `choreography[]` on the sk-design command surface, but a",
   "keywords": [
-    "insert",
-    "recipe-validity",
-    "phase",
-    "score-skill-benchmark",
-    "cjs",
-    "caps",
-    "scores",
+    "sibling",
+    "command-recipe",
+    "projection",
+    "d6-r1",
+    "landed",
+    "typed",
+    "argumentgrammar",
+    "ordered",
+    "choreography",
+    "sk-design",
     "command",
-    "recipe",
-    "undefined",
-    "invalid"
+    "surface"
   ],
-  "lastUpdated": "2026-06-28T12:40:09.425Z",
+  "lastUpdated": "2026-06-29T12:43:28.883Z",
   "specId": "002",
   "folderSlug": "command-recipe-scorer-cap",
   "parentChain": [
@@ -26,6 +28,5 @@
     "006-d6-corpus-ports"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

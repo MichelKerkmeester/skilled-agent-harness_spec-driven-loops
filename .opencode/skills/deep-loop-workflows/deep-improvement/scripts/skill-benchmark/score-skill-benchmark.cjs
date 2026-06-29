@@ -38,9 +38,11 @@ const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
 const D1_INTRA_INTENT_WEIGHT = 0.4;
 const D1_INTRA_RESOURCE_WEIGHT = 0.6;
 const SURFACE_MISMATCH_D1_CAP = 0.25;
+const RECIPE_INVALID_CAP = 0.25;
 const KNOWN_ROUTE_GAP_STATUS = 'known silent-default gap';
 const MUTATING_TOOLS = new Set(['write', 'edit', 'bash']);
 const MODE_REGISTRY_CACHE = new Map();
+const COMMAND_METADATA_CACHE = new Map();
 const FAILING_STAGE_ORDER = new Map([
   ['activated-inter', 1],
   ['router-unparseable', 2],
@@ -51,8 +53,9 @@ const FAILING_STAGE_ORDER = new Map([
   ['backend-tool-policy', 5],
   ['backend-kind-mismatch', 5],
   ['bash-allowlist', 5],
-  ['routed-intra', 6],
-  ['discovered', 7],
+  ['recipe-invalid', 6],
+  ['routed-intra', 7],
+  ['discovered', 8],
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -91,6 +94,7 @@ function normalizeExpectedRouteGold(expected, scenario, arg) {
   copyIfPresent(out, scenarioExpected, 'minimalPairGroup');
   copyIfPresent(out, scenarioExpected, 'knownRouteGap');
   copyIfPresent(out, scenarioExpected, 'toolSurface');
+  copyIfPresent(out, scenarioExpected, 'commandRecipe');
   copyIfPresent(out, scenarioExpected, 'rankBelowSkillIds');
   if (out.knownRouteGap !== true && !hasRouteGold(out)) {
     out.knownRouteGap = routeGapFromNotes(scenario && scenario.notes)
@@ -123,6 +127,7 @@ function expectedFromScenario(scenario, obs, arg) {
     minimalPairGroup: scenarioExpected.minimalPairGroup,
     knownRouteGap: scenarioExpected.knownRouteGap === true,
     toolSurface: scenarioExpected.toolSurface,
+    commandRecipe: scenarioExpected.commandRecipe,
     rankBelowSkillIds: scenario.expectedRankBelowSkillIds || scenarioExpected.rankBelowSkillIds,
   };
 }
@@ -258,6 +263,381 @@ function normalizeRouteModes(value) {
   return uniqueArray(Array.isArray(value) ? value : [value]);
 }
 
+function isPlainObject(value) {
+  return !!value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function sortedJsonValue(value) {
+  if (Array.isArray(value)) return value.map(sortedJsonValue);
+  if (!isPlainObject(value)) return value;
+  return Object.keys(value).sort().reduce((out, key) => {
+    out[key] = sortedJsonValue(value[key]);
+    return out;
+  }, {});
+}
+
+function sameJsonValue(left, right) {
+  return JSON.stringify(sortedJsonValue(left)) === JSON.stringify(sortedJsonValue(right));
+}
+
+function recipeMiss(stage, reason, extra = {}) {
+  return { stage, reason, ...extra };
+}
+
+function commandName(command) {
+  const m = /^\/design:([a-z0-9-]+)$/.exec(String(command || '').trim());
+  return m ? m[1] : null;
+}
+
+function resolveExpectedSkillRoot(expected, skillRoot) {
+  if (skillRoot) return skillRoot;
+  const skillId = expected && typeof expected.skillId === 'string' ? expected.skillId.trim() : '';
+  if (!skillId || skillId.includes('/') || skillId.startsWith('.')) return null;
+  return path.resolve(__dirname, '..', '..', '..', '..', skillId);
+}
+
+function loadCommandMetadata(skillRoot) {
+  if (!skillRoot) return { records: [], error: 'missing skill root' };
+  const metadataPath = path.join(skillRoot, 'command-metadata.json');
+  if (COMMAND_METADATA_CACHE.has(metadataPath)) return COMMAND_METADATA_CACHE.get(metadataPath);
+  let result;
+  try {
+    const records = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    result = Array.isArray(records)
+      ? { records, error: null, path: metadataPath }
+      : { records: [], error: 'command-metadata.json root must be an array', path: metadataPath };
+  } catch (err) {
+    result = { records: [], error: err && err.message ? err.message : String(err), path: metadataPath };
+  }
+  COMMAND_METADATA_CACHE.set(metadataPath, result);
+  return result;
+}
+
+function validateArgumentGrammarShape(grammar) {
+  const errors = [];
+  if (!isPlainObject(grammar)) return ['argumentGrammar must be an object'];
+  if (typeof grammar.render !== 'string' || grammar.render.trim().length === 0) {
+    errors.push('argumentGrammar.render must be a non-empty string');
+  }
+  if (!Array.isArray(grammar.positional) || grammar.positional.length === 0) {
+    errors.push('argumentGrammar.positional must be a non-empty array');
+  } else {
+    grammar.positional.forEach((token, index) => {
+      if (!isPlainObject(token)) {
+        errors.push(`argumentGrammar.positional[${index}] must be an object`);
+        return;
+      }
+      for (const field of ['name', 'required', 'kind']) {
+        if (!Object.hasOwn(token, field)) errors.push(`argumentGrammar.positional[${index}].${field} is required`);
+      }
+      if (typeof token.name !== 'string' || !/^[a-z][a-z0-9-]*$/.test(token.name)) {
+        errors.push(`argumentGrammar.positional[${index}].name must use lowercase letters, numbers, and hyphens`);
+      }
+      if (token.required !== true && token.required !== false) {
+        errors.push(`argumentGrammar.positional[${index}].required must be a boolean`);
+      }
+      if (typeof token.kind !== 'string' || token.kind.trim().length === 0) {
+        errors.push(`argumentGrammar.positional[${index}].kind must be a non-empty string`);
+      }
+    });
+  }
+  if (!Array.isArray(grammar.flags)) {
+    errors.push('argumentGrammar.flags must be an array');
+  } else {
+    grammar.flags.forEach((flag, index) => {
+      if (!isPlainObject(flag)) {
+        errors.push(`argumentGrammar.flags[${index}] must be an object`);
+        return;
+      }
+      for (const field of ['name', 'required', 'takesValue', 'kind']) {
+        if (!Object.hasOwn(flag, field)) errors.push(`argumentGrammar.flags[${index}].${field} is required`);
+      }
+      if (typeof flag.name !== 'string' || !/^--[a-z][a-z0-9-]*$/.test(flag.name)) {
+        errors.push(`argumentGrammar.flags[${index}].name must be a long flag`);
+      }
+      if (flag.required !== true && flag.required !== false) {
+        errors.push(`argumentGrammar.flags[${index}].required must be a boolean`);
+      }
+      if (flag.takesValue !== true && flag.takesValue !== false) {
+        errors.push(`argumentGrammar.flags[${index}].takesValue must be a boolean`);
+      }
+      if (typeof flag.kind !== 'string' || flag.kind.trim().length === 0) {
+        errors.push(`argumentGrammar.flags[${index}].kind must be a non-empty string`);
+      }
+      if (flag.takesValue === true && (typeof flag.valueName !== 'string' || flag.valueName.trim().length === 0)) {
+        errors.push(`argumentGrammar.flags[${index}].valueName must be non-empty when takesValue is true`);
+      }
+    });
+  }
+  return errors;
+}
+
+function validateChoreographyShape(choreography) {
+  const errors = [];
+  if (!Array.isArray(choreography) || choreography.length === 0) return ['choreography must be a non-empty array'];
+  const orders = [];
+  const seen = new Set();
+  choreography.forEach((step, index) => {
+    if (!isPlainObject(step)) {
+      errors.push(`choreography[${index}] must be an object`);
+      return;
+    }
+    for (const field of ['order', 'skill', 'resource', 'action']) {
+      if (!Object.hasOwn(step, field)) errors.push(`choreography[${index}].${field} is required`);
+    }
+    if (!Number.isInteger(step.order) || step.order < 1) {
+      errors.push(`choreography[${index}].order must be a positive integer`);
+    } else {
+      if (seen.has(step.order)) errors.push(`choreography[${index}].order is duplicated`);
+      seen.add(step.order);
+      orders.push(step.order);
+    }
+    for (const field of ['skill', 'resource', 'action']) {
+      if (typeof step[field] !== 'string' || step[field].trim().length === 0) {
+        errors.push(`choreography[${index}].${field} must be a non-empty string`);
+      }
+    }
+  });
+  [...orders].sort((a, b) => a - b).forEach((order, index) => {
+    if (order !== index + 1) errors.push('choreography orders must be contiguous from 1');
+  });
+  return errors;
+}
+
+function wrapperPathForCommand({ command, skillRoot }) {
+  const name = commandName(command);
+  if (!name || !skillRoot) return null;
+  return path.resolve(skillRoot, '..', '..', 'commands', 'design', `${name}.md`);
+}
+
+function parseFrontmatter(markdown) {
+  const m = /^---\n([\s\S]*?)\n---/.exec(markdown || '');
+  if (!m) return {};
+  const out = {};
+  for (const line of m[1].split(/\r?\n/)) {
+    const kv = /^([A-Za-z0-9_-]+):\s*(.*)$/.exec(line);
+    if (!kv) continue;
+    out[kv[1]] = kv[2].trim().replace(/^"|"$/g, '');
+  }
+  return out;
+}
+
+function firstHeading(markdown) {
+  const m = /^#\s+(.+)$/m.exec(markdown || '');
+  return m ? m[1].trim() : null;
+}
+
+function extractSection(markdown, heading) {
+  const lines = String(markdown || '').split(/\r?\n/);
+  const start = lines.findIndex((line) => line.trim().toUpperCase() === heading.toUpperCase());
+  if (start === -1) return '';
+  const out = [];
+  for (let i = start + 1; i < lines.length; i += 1) {
+    if (/^##\s+/.test(lines[i])) break;
+    out.push(lines[i]);
+  }
+  return out.join('\n');
+}
+
+function normalizedIncludes(haystack, needle) {
+  const hay = String(haystack || '').toLowerCase().replace(/\s+/g, ' ');
+  const pin = String(needle || '').toLowerCase().replace(/\s+/g, ' ');
+  return pin.length > 0 && hay.includes(pin);
+}
+
+function validateRecipeMetadata({ recipe, metadata }) {
+  const missReasons = [];
+  const command = typeof recipe.command === 'string' ? recipe.command.trim() : '';
+  if (!command) {
+    missReasons.push(recipeMiss('metadata', 'commandRecipe.command must be a non-empty string'));
+    return { command, record: null, missReasons };
+  }
+  if (!commandName(command)) {
+    missReasons.push(recipeMiss('metadata', 'commandRecipe.command must be a /design:* command', { command }));
+  }
+  if (metadata.error) {
+    missReasons.push(recipeMiss('metadata', 'command metadata could not be loaded', { detail: metadata.error }));
+    return { command, record: null, missReasons };
+  }
+  const record = metadata.records.find((item) => item && item.command === command) || null;
+  if (!record) {
+    missReasons.push(recipeMiss('metadata', 'command metadata record is missing', { command }));
+    return { command, record: null, missReasons };
+  }
+  if (recipe.ownerMode != null && record.ownerMode !== recipe.ownerMode) {
+    missReasons.push(recipeMiss('metadata', 'ownerMode does not match command metadata', {
+      expected: recipe.ownerMode,
+      actual: record.ownerMode,
+    }));
+  }
+  if (recipe.argumentHint != null && record.argumentHint !== recipe.argumentHint) {
+    missReasons.push(recipeMiss('metadata', 'argumentHint does not match command metadata', {
+      expected: recipe.argumentHint,
+      actual: record.argumentHint,
+    }));
+  }
+  const recordGrammarErrors = validateArgumentGrammarShape(record.argumentGrammar);
+  if (recordGrammarErrors.length) {
+    missReasons.push(recipeMiss('metadata', 'metadata argumentGrammar is malformed', { errors: recordGrammarErrors }));
+  }
+  const recordChoreographyErrors = validateChoreographyShape(record.choreography);
+  if (recordChoreographyErrors.length) {
+    missReasons.push(recipeMiss('metadata', 'metadata choreography is malformed', { errors: recordChoreographyErrors }));
+  }
+  return { command, record, missReasons };
+}
+
+function validateRecipeWrapper({ recipe, command, record, skillRoot }) {
+  const missReasons = [];
+  let markdown = '';
+  if (recipe.wrapperCommand != null && recipe.wrapperCommand !== command) {
+    missReasons.push(recipeMiss('wrapper', 'wrapper command does not match recipe command', {
+      expected: command,
+      actual: recipe.wrapperCommand,
+    }));
+  }
+  const wrapperPath = wrapperPathForCommand({ command, skillRoot });
+  if (!wrapperPath) {
+    missReasons.push(recipeMiss('wrapper', 'wrapper path could not be resolved', { command }));
+    return { markdown, missReasons };
+  }
+  try {
+    markdown = fs.readFileSync(wrapperPath, 'utf8');
+  } catch (err) {
+    missReasons.push(recipeMiss('wrapper', 'command wrapper could not be loaded', {
+      detail: err && err.message ? err.message : String(err),
+    }));
+    return { markdown, missReasons };
+  }
+  const frontmatter = parseFrontmatter(markdown);
+  if (firstHeading(markdown) !== command) {
+    missReasons.push(recipeMiss('wrapper', 'wrapper heading does not match command', {
+      expected: command,
+      actual: firstHeading(markdown),
+    }));
+  }
+  if (record && frontmatter['argument-hint'] !== record.argumentHint) {
+    missReasons.push(recipeMiss('wrapper', 'wrapper argument hint drifted from command metadata', {
+      expected: record.argumentHint,
+      actual: frontmatter['argument-hint'],
+    }));
+  }
+  return { markdown, missReasons };
+}
+
+function validateRecipeArgument({ recipe, record }) {
+  const missReasons = [];
+  if (!record) return missReasons;
+  const grammarErrors = validateArgumentGrammarShape(recipe.argumentGrammar);
+  if (grammarErrors.length) {
+    missReasons.push(recipeMiss('arg', 'commandRecipe.argumentGrammar is malformed', { errors: grammarErrors }));
+    return missReasons;
+  }
+  if (!sameJsonValue(recipe.argumentGrammar, record.argumentGrammar)) {
+    missReasons.push(recipeMiss('arg', 'commandRecipe.argumentGrammar does not match command metadata'));
+  }
+  return missReasons;
+}
+
+function validateRecipeRoute({ recipe, routerResult }) {
+  const routeExpected = {
+    workflowMode: recipe.workflowMode,
+    routeOutcome: recipe.routeOutcome,
+    forbiddenWorkflowModes: recipe.forbiddenWorkflowModes,
+    knownRouteGap: false,
+  };
+  const route = scoreHubRoute({ expected: routeExpected, routerResult });
+  if (!route.applicable) {
+    return [recipeMiss('route', 'commandRecipe route gold is incomplete')];
+  }
+  if (!route.pass) {
+    return [recipeMiss('route', 'commandRecipe route outcome did not match router result', {
+      expected: route.expected,
+      actual: route.actual,
+      firstFailingStage: route.firstFailingStage,
+    })];
+  }
+  return [];
+}
+
+function validateRecipeChoreography({ recipe, record, wrapperMarkdown }) {
+  const missReasons = [];
+  if (!record) return missReasons;
+  const choreographyErrors = validateChoreographyShape(recipe.choreography);
+  if (choreographyErrors.length) {
+    missReasons.push(recipeMiss('choreography', 'commandRecipe.choreography is malformed', { errors: choreographyErrors }));
+    return missReasons;
+  }
+  if (!sameJsonValue(recipe.choreography, record.choreography)) {
+    missReasons.push(recipeMiss('choreography', 'commandRecipe.choreography does not match command metadata'));
+  }
+  const section = extractSection(wrapperMarkdown, '## CHOREOGRAPHY');
+  if (!section) {
+    missReasons.push(recipeMiss('choreography', 'wrapper choreography section is missing'));
+    return missReasons;
+  }
+  for (const step of recipe.choreography) {
+    if (!isPlainObject(step) || !Number.isInteger(step.order)) continue;
+    const line = section.split(/\r?\n/).find((candidate) => candidate.trim().startsWith(`${step.order}.`));
+    if (!line) {
+      missReasons.push(recipeMiss('choreography', 'wrapper choreography step is missing', { order: step.order }));
+      continue;
+    }
+    for (const field of ['skill', 'resource', 'action']) {
+      if (typeof step[field] === 'string' && !normalizedIncludes(line, step[field])) {
+        missReasons.push(recipeMiss('choreography', `wrapper choreography step is missing ${field}`, { order: step.order }));
+      }
+    }
+  }
+  return missReasons;
+}
+
+function scoreCommandRecipe({ expected, skillRoot, routerResult }) {
+  const recipe = expected && expected.commandRecipe;
+  if (recipe == null) {
+    return { applicable: false, valid: true, firstFailingStage: null, firstFailingSubcheck: null, missReasons: [] };
+  }
+  if (!isPlainObject(recipe)) {
+    return {
+      applicable: true,
+      valid: false,
+      firstFailingStage: 'recipe-invalid',
+      firstFailingSubcheck: 'metadata',
+      missReasons: [recipeMiss('metadata', 'commandRecipe must be an object')],
+    };
+  }
+
+  const resolvedSkillRoot = resolveExpectedSkillRoot(expected, skillRoot);
+  const metadata = loadCommandMetadata(resolvedSkillRoot);
+  const metadataResult = validateRecipeMetadata({ recipe, metadata });
+  const wrapperResult = validateRecipeWrapper({
+    recipe,
+    command: metadataResult.command,
+    record: metadataResult.record,
+    skillRoot: resolvedSkillRoot,
+  });
+  const missReasons = [
+    ...metadataResult.missReasons,
+    ...wrapperResult.missReasons,
+    ...validateRecipeArgument({ recipe, record: metadataResult.record }),
+    ...validateRecipeRoute({ recipe, routerResult }),
+    ...validateRecipeChoreography({
+      recipe,
+      record: metadataResult.record,
+      wrapperMarkdown: wrapperResult.markdown,
+    }),
+  ];
+  const firstFailingSubcheck = missReasons.length ? missReasons[0].stage : null;
+  return {
+    applicable: true,
+    valid: missReasons.length === 0,
+    firstFailingStage: missReasons.length ? 'recipe-invalid' : null,
+    firstFailingSubcheck,
+    missReasons,
+    command: metadataResult.command || null,
+  };
+}
+
 function loadModeRegistry(skillRoot) {
   if (!skillRoot) return null;
   const registryPath = path.join(skillRoot, 'mode-registry.json');
@@ -381,6 +761,44 @@ function reduceRouteTelemetry(rows) {
       observedWrong: bundleMisses,
     }),
     routeGoldRows: total,
+  };
+}
+
+function reduceRecipeMiss(rows) {
+  const recipeRows = rows.filter((r) => r && r.dims && r.dims.commandRecipe && r.dims.commandRecipe.applicable);
+  const total = recipeRows.length;
+  const breakdownCounts = {
+    metadata: 0,
+    wrapper: 0,
+    arg: 0,
+    route: 0,
+    choreography: 0,
+  };
+  const firstFailingSubchecks = {};
+  let misses = 0;
+
+  for (const row of recipeRows) {
+    const recipe = row.dims.commandRecipe;
+    if (recipe.valid) continue;
+    misses += 1;
+    if (recipe.firstFailingSubcheck) {
+      firstFailingSubchecks[recipe.firstFailingSubcheck] = (firstFailingSubchecks[recipe.firstFailingSubcheck] || 0) + 1;
+    }
+    const stages = new Set((recipe.missReasons || []).map((reason) => reason.stage).filter(Boolean));
+    for (const stage of stages) {
+      if (breakdownCounts[stage] !== undefined) breakdownCounts[stage] += 1;
+    }
+  }
+
+  const breakdown = {};
+  for (const [stage, count] of Object.entries(breakdownCounts)) {
+    breakdown[stage] = metricRate(count, total);
+  }
+  return {
+    recipeMissRate: metricRate(misses, total, { valid: total - misses, misses }),
+    breakdown,
+    firstFailingSubchecks,
+    recipeGoldRows: total,
   };
 }
 
@@ -579,6 +997,7 @@ function firstFailingStage({ dims, routerResult, surfaceMatch }) {
   if (surfaceMatch === false) return 'surface-mismatch';
   if (dims.hubRoute && dims.hubRoute.applicable && !dims.hubRoute.pass) return dims.hubRoute.firstFailingStage;
   if (dims.toolSurface && dims.toolSurface.applicable && !dims.toolSurface.pass) return dims.toolSurface.firstFailingStage;
+  if (dims.commandRecipe && dims.commandRecipe.applicable && !dims.commandRecipe.valid) return dims.commandRecipe.firstFailingStage;
   if (dims.d1intra.score < 0.5) return 'routed-intra';
   if (dims.d2.score < 0.5) return 'discovered';
   return null;
@@ -634,6 +1053,11 @@ function scoreScenario(arg) {
   const resourceRecall = setRecall(expected && expected.resources, routerResult.resources);
   dims.d1intra = scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall });
 
+  // Command recipe validity is gold-gated. Without recipe gold it is inert; when
+  // present, an undefined or malformed recipe soft-caps D2/D3 instead of adding
+  // a new hard verdict gate.
+  dims.commandRecipe = scoreCommandRecipe({ expected, skillRoot: arg.skillRoot, routerResult, observed: obs });
+
   // D2 proxy (Mode A): recall of expected resources in the routed set. In live
   // mode this is replaced by Hit@k/Recall@k/MRR over the observed load trace.
   dims.d2 = scoreD2({ negative, d1intra: dims.d1intra, resourceRecall });
@@ -645,6 +1069,15 @@ function scoreScenario(arg) {
   // be routed, so the over-routing math inverts (routing them reads as zero
   // waste). Couple D3 to the suppression outcome instead, mirroring D2.
   dims.d3 = scoreD3({ negative, d1intra: dims.d1intra, routerResult, expected });
+  const recipeCapped = dims.commandRecipe.applicable && !dims.commandRecipe.valid;
+  if (recipeCapped) {
+    dims.d2.uncappedScore = dims.d2.score;
+    dims.d2.score = Math.min(dims.d2.score, RECIPE_INVALID_CAP);
+    dims.d2.recipeCapped = true;
+    dims.d3.uncappedScore = dims.d3.score;
+    dims.d3.score = Math.min(dims.d3.score, RECIPE_INVALID_CAP);
+    dims.d3.recipeCapped = true;
+  }
 
   // Asset support lane (advisory, not in the weighted aggregate). The router
   // defers assets/* on demand, so they are scored separately instead of inside
@@ -687,7 +1120,7 @@ function scoreScenario(arg) {
     toolCalls: obs && obs.raw && obs.raw.toolCalls,
   });
 
-  // First failing stage (funnel): advisor activate -> router parse -> surface -> route gold -> tool surface -> intra -> discovery.
+  // First failing stage (funnel): advisor activate -> router parse -> surface -> route gold -> tool surface -> recipe -> intra -> discovery.
   const failingStage = firstFailingStage({ dims, routerResult, surfaceMatch });
 
   // Mode A scenario score: weight the measured dims, normalize over their weights.
@@ -699,7 +1132,7 @@ function scoreScenario(arg) {
   const liveEvidence = buildLiveEvidence(obs);
 
   return {
-    scenarioId, tier, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true,
+    scenarioId, tier, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true, recipeCapped,
     classKind: scenario ? scenario.classKind : undefined,
     expectedWorkflowMode: expected && expected.workflowMode,
     expectedSurface, observedSurface, surfaceMatch,
@@ -815,6 +1248,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     ? { score: null, status: 'unscored (no advisor probe or no rank-below gold)', note: 'advisor target rank relative to sibling transports; advisory, not weighted' }
     : { score: relativeRankingAvg, note: 'advisor target rank relative to sibling transports; advisory, not weighted' };
   const routeTelemetry = reduceRouteTelemetry(rows);
+  const recipeMiss = reduceRecipeMiss(rows);
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
@@ -878,6 +1312,8 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
         : { score: modePrecisionAvg, note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' },
       relativeRanking: relativeRankingSignal,
       routeTelemetry,
+      recipeMissRate: recipeMiss.recipeMissRate,
+      recipeMissBreakdown: recipeMiss.breakdown,
     },
     funnel,
     headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,
@@ -892,6 +1328,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       hubRouteKnownGaps,
       relativeRanking: relativeRankingSignal,
       routeTelemetry,
+      recipeMissRate: recipeMiss.recipeMissRate,
+      recipeMissBreakdown: recipeMiss.breakdown,
+      recipeGoldRows: recipeMiss.recipeGoldRows,
       note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
     },
   };
@@ -901,4 +1340,15 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { scoreScenario, aggregate, computeDivergence, reduceRouteTelemetry, scoreToolSurface, WEIGHTS };
+module.exports = {
+  scoreScenario,
+  aggregate,
+  computeDivergence,
+  reduceRouteTelemetry,
+  reduceRecipeMiss,
+  scoreToolSurface,
+  scoreCommandRecipe,
+  loadCommandMetadata,
+  WEIGHTS,
+  RECIPE_INVALID_CAP,
+};

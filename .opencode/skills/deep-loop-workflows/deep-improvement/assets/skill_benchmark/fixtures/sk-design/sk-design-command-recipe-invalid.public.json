@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-command-recipe-invalid",
+  "tier": "T1",
+  "public": {
+    "prompt": "redesign the ui for a dashboard shell",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "recipe-corpus",
+    "goldAuthor": "recipe-corpus",
+    "blindToRouterKeywords": false
+  }
+}

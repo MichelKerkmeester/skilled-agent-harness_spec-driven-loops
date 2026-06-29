@@ -1,0 +1,39 @@
+{
+  "scenarioId": "sk-design-command-recipe-missing",
+  "expected": {
+    "skillId": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false,
+    "commandRecipe": {
+      "command": "/design:missing",
+      "ownerMode": "interface",
+      "argumentHint": "<target> [--mode]",
+      "wrapperCommand": "/design:missing",
+      "argumentGrammar": {
+        "positional": [
+          { "name": "target", "required": true, "kind": "interface-target" }
+        ],
+        "flags": [
+          { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" }
+        ],
+        "render": "<target> [--mode]"
+      },
+      "workflowMode": "interface",
+      "routeOutcome": "single",
+      "forbiddenWorkflowModes": ["audit", "foundations", "motion", "md-generator"],
+      "choreography": [
+        {
+          "order": 1,
+          "skill": "sk-design",
+          "resource": ".opencode/skills/sk-design/SKILL.md",
+          "action": "load the parent hub routing table and shared references"
+        }
+      ]
+    }
+  },
+  "rubric": {
+    "usefulnessChecks": ["missing command recipe is capped"],
+    "harmChecks": ["does not create route-gold applicability"]
+  }
+}

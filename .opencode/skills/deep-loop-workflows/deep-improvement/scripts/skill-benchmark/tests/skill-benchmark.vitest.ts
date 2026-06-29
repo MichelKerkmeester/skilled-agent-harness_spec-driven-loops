@@ -7,6 +7,7 @@ import { join, resolve } from 'node:path';
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
+const SKDESIGN = join(REPO_SKILLS, 'sk-design');
 
 // A genuinely router-less skill dir (no INTENT_SIGNALS/RESOURCE_MAP). The
 // deep-improvement skill itself now HAS a router (Lane B), so it cannot serve as
@@ -21,7 +22,13 @@ function makeRouterlessSkill(): string {
 const { routeSkillResources, scoreIntents, selectIntents, parseRouter } = require(join(SB, 'router-replay.cjs'));
 const { buildBannedVocab, lintFixture } = require(join(SB, 'contamination-lint.cjs'));
 const { scanConnectivity, scanHubRegistry } = require(join(SB, 'd5-connectivity.cjs'));
-const { scoreScenario, aggregate } = require(join(SB, 'score-skill-benchmark.cjs'));
+const {
+  scoreScenario,
+  aggregate,
+  scoreCommandRecipe,
+  reduceRecipeMiss,
+  RECIPE_INVALID_CAP,
+} = require(join(SB, 'score-skill-benchmark.cjs'));
 const { renderReport } = require(join(SB, 'build-report.cjs'));
 const { scoreD1Inter, probeAdvisor } = require(join(SB, 'advisor-probe.cjs'));
 const loopHost = require(join(SKILL_ROOT, 'scripts', 'shared', 'loop-host.cjs'));
@@ -253,6 +260,181 @@ describe('Lane C — scorer + report render', () => {
     const md = renderReport(report);
     expect(md).toContain('Skill Benchmark Report');
     expect(md).toContain('Verdict: PASS');
+  });
+});
+
+function designRecipe(command = '/design:interface'): any {
+  const records = JSON.parse(readFileSync(join(SKDESIGN, 'command-metadata.json'), 'utf8'));
+  const record = records.find((item: any) => item.command === command);
+  return JSON.parse(JSON.stringify({
+    command: record.command,
+    ownerMode: record.ownerMode,
+    argumentHint: record.argumentHint,
+    wrapperCommand: record.command,
+    argumentGrammar: record.argumentGrammar,
+    workflowMode: record.ownerMode,
+    routeOutcome: 'single',
+    forbiddenWorkflowModes: ['audit', 'foundations', 'motion', 'md-generator'].filter((mode) => mode !== record.ownerMode),
+    choreography: record.choreography,
+  }));
+}
+
+describe('Lane C — commandRecipe validity lane', () => {
+  const routerResult = {
+    parseable: true,
+    intents: ['interface'],
+    resources: ['design-interface/SKILL.md'],
+    missingResources: [],
+    scores: [],
+  };
+
+  it('passes a valid command recipe', () => {
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: designRecipe() },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.applicable).toBe(true);
+    expect(res.valid).toBe(true);
+    expect(res.missReasons).toEqual([]);
+  });
+
+  it('fails metadata validity before later checks when the recipe is undefined in metadata', () => {
+    const recipe = designRecipe();
+    recipe.command = '/design:missing';
+    recipe.wrapperCommand = '/design:missing';
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: recipe },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('metadata');
+    expect(res.missReasons.some((reason: any) => reason.stage === 'metadata')).toBe(true);
+  });
+
+  it('fails wrapper drift when the expected wrapper command diverges', () => {
+    const recipe = designRecipe();
+    recipe.wrapperCommand = '/design:audit';
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: recipe },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('wrapper');
+    expect(res.missReasons.some((reason: any) => reason.stage === 'wrapper')).toBe(true);
+  });
+
+  it('fails the arg fixture check when argumentGrammar drifts', () => {
+    const recipe = designRecipe();
+    recipe.argumentGrammar.render = '<target> --wrong';
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: recipe },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('arg');
+    expect(res.missReasons.some((reason: any) => reason.stage === 'arg')).toBe(true);
+  });
+
+  it('fails route/bundle when the router selected a sibling mode', () => {
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: designRecipe() },
+      skillRoot: SKDESIGN,
+      routerResult: { ...routerResult, intents: ['audit'] },
+    });
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('route');
+    expect(res.missReasons.some((reason: any) => reason.stage === 'route')).toBe(true);
+  });
+
+  it('fails choreography witness when the expected ordered steps drift', () => {
+    const recipe = designRecipe();
+    recipe.choreography[0].action = 'load something else';
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: recipe },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('choreography');
+    expect(res.missReasons.some((reason: any) => reason.stage === 'choreography')).toBe(true);
+  });
+
+  it('caps both D2 and D3 when an applicable recipe is invalid', () => {
+    const recipe = designRecipe();
+    recipe.argumentGrammar.render = '<target> --wrong';
+    const row = scoreScenario({
+      scenarioId: 'recipe-invalid',
+      tier: 'T1',
+      skillRoot: SKDESIGN,
+      routerResult,
+      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: recipe },
+    });
+    expect(row.recipeCapped).toBe(true);
+    expect(row.firstFailingStage).toBe('recipe-invalid');
+    expect(row.dims.d2.uncappedScore).toBe(1);
+    expect(row.dims.d3.uncappedScore).toBe(1);
+    expect(row.dims.d2.score).toBe(RECIPE_INVALID_CAP);
+    expect(row.dims.d3.score).toBe(RECIPE_INVALID_CAP);
+  });
+
+  it('leaves no-gold scenarios uncapped and applicable:false', () => {
+    const row = scoreScenario({
+      scenarioId: 'recipe-no-gold',
+      tier: 'T1',
+      skillRoot: SKDESIGN,
+      routerResult,
+      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'] },
+    });
+    expect(row.dims.commandRecipe).toMatchObject({ applicable: false, valid: true });
+    expect(row.recipeCapped).toBe(false);
+    expect(row.dims.d2.score).toBe(1);
+    expect(row.dims.d3.score).toBe(1);
+    expect(row.dims.d2.recipeCapped).toBeUndefined();
+    expect(row.dims.d3.recipeCapped).toBeUndefined();
+  });
+
+  it('reduces recipeMissRate and sub-check breakdown without gating the verdict', () => {
+    const valid = scoreScenario({
+      scenarioId: 'recipe-valid',
+      tier: 'T1',
+      skillRoot: SKDESIGN,
+      routerResult,
+      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: designRecipe() },
+    });
+    const invalidRecipe = designRecipe();
+    invalidRecipe.argumentGrammar.render = '<target> --wrong';
+    const invalid = scoreScenario({
+      scenarioId: 'recipe-invalid',
+      tier: 'T1',
+      skillRoot: SKDESIGN,
+      routerResult,
+      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: invalidRecipe },
+    });
+    const noGold = scoreScenario({
+      scenarioId: 'recipe-no-gold',
+      tier: 'T1',
+      skillRoot: SKDESIGN,
+      routerResult,
+      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'] },
+    });
+    const reduced = reduceRecipeMiss([valid, invalid, noGold]);
+    expect(reduced.recipeMissRate).toMatchObject({ numerator: 1, denominator: 2, misses: 1, valid: 1, rate: 0.5 });
+    expect(reduced.breakdown.arg).toMatchObject({ numerator: 1, denominator: 2, rate: 0.5 });
+
+    const report = aggregate({
+      skillId: 'sk-design',
+      skillRoot: SKDESIGN,
+      scenarioRows: [valid, invalid, noGold],
+      connectivity: { score: 100, gateFailed: false, findings: [] },
+      traceMode: 'router',
+    });
+    expect(report.advisorySignals.recipeMissRate.rate).toBe(0.5);
+    expect(report.runQuality.recipeMissRate.rate).toBe(0.5);
+    expect(report.gate.hubRoute.failed).toBe(false);
   });
 });
 
