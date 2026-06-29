@@ -6,16 +6,20 @@ allowed-tools: Read, Glob, Grep
 
 # /design:audit
 
-Thin bridge into the `sk-design` parent skill's `audit` mode.
+I want to review, score, and harden the quality of a design surface I already have.
 
-## 1. PURPOSE
+## 1. USER INTENT
+
+This command serves that user job and owns these signals: "audit design quality", "critique ui surface", "score design readiness".
+
+## 2. INTERNAL BINDING
 
 Pin the `audit` mode of the `sk-design` parent hub to audit and harden design quality. The hub owns routing
 across modes; this command loads the `audit` mode directly. If the request spans more
 than `audit`, defer to the hub's routing instead of forcing this mode.
 
 <!-- ANCHOR:sibling-discriminator -->
-## 2. WHEN TO USE THIS, NOT A SIBLING
+## 3. WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to review, score, or harden an existing design surface.
 - **Prefer `/design:foundations` when** the request is to create or repair a static token system, palette, typography, layout, or spacing plan.
@@ -25,7 +29,7 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request asks for new direction, static system design, or motion choreography rather than quality review.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. PRECONDITIONS
+## 4. PRECONDITIONS
 
 - **Requires:** a concrete design target - a URL, component, screen, or file - to inspect
 - **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "What is the audit target (URL, component, screen, or file), and what scope/score do you want?" Do not run on a guess.
@@ -42,7 +46,7 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
 <!-- /ANCHOR:register -->
 
-## 4. INSTRUCTIONS
+## 5. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -57,7 +61,7 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 5. EMIT DELIVERABLE
+## 6. EMIT DELIVERABLE
 
 Emit `Design Quality Audit Report` as the primary deliverable.
 
@@ -67,7 +71,7 @@ Required fields:
 - `severityFindings`
 - `qualityScore`
 
-## 6. PIPELINE & HANDOFF
+## 7. PIPELINE & HANDOFF
 
 - **Stage:** review - validates design output before the build handoff.
 - **Accepts from:** `/design:foundations`, `/design:interface`, `/design:md-generator`, `/design:motion`.
@@ -76,7 +80,7 @@ Required fields:
 - **Hands to build:** when accepted design findings move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
-## 7. EXAMPLE
+## 8. EXAMPLE
 
 ```
 /design:audit src/components/Checkout.tsx --scope a11y --score

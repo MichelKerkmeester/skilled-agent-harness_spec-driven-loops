@@ -6,16 +6,20 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 
 # /design:md-generator
 
-Thin bridge into the `sk-design` parent skill's `md-generator` mode.
+I want to extract a live site's real measured CSS into a Style Reference DESIGN.md.
 
-## 1. PURPOSE
+## 1. USER INTENT
+
+This command serves that user job and owns these signals: "extract website css", "generate design reference", "capture design tokens".
+
+## 2. INTERNAL BINDING
 
 Pin the `md-generator` mode of the `sk-design` parent hub to extract a live site's real CSS into a Style Reference DESIGN.md. The hub owns routing
 across modes; this command loads the `md-generator` mode directly. If the request spans more
 than `md-generator`, defer to the hub's routing instead of forcing this mode.
 
 <!-- ANCHOR:sibling-discriminator -->
-## 2. WHEN TO USE THIS, NOT A SIBLING
+## 3. WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to extract a live site's real measured CSS into DESIGN.md.
 - **Prefer `/design:audit` when** the request is to review or score an existing design rather than extract its measured CSS.
@@ -25,7 +29,7 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. PRECONDITIONS
+## 4. PRECONDITIONS
 
 - **Requires:** a reachable live URL plus a writable output directory
 - **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which live URL should I extract, and where should the DESIGN.md be written?" Do not run on a guess.
@@ -42,7 +46,7 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
 <!-- /ANCHOR:register -->
 
-## 4. INSTRUCTIONS
+## 5. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -57,7 +61,7 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 5. EMIT DELIVERABLE
+## 6. EMIT DELIVERABLE
 
 Emit `Style Reference DESIGN.md` as the primary deliverable.
 
@@ -69,7 +73,7 @@ Required fields:
 File outputs:
 - `<output>/DESIGN.md`
 
-## 6. PIPELINE & HANDOFF
+## 7. PIPELINE & HANDOFF
 
 - **Stage:** extract - the pipeline origin for measured source evidence before design judgment or audit.
 - **Accepts from:** a live source URL; this stage has no upstream design command.
@@ -78,7 +82,7 @@ File outputs:
 - **Hands to build:** when extracted evidence informs implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
-## 7. EXAMPLE
+## 8. EXAMPLE
 
 ```
 /design:md-generator https://stripe.com --output design/reference

@@ -6,16 +6,20 @@ allowed-tools: Read, Glob, Grep
 
 # /design:motion
 
-Thin bridge into the `sk-design` parent skill's `motion` mode.
+I want to design purposeful animation, transitions, or reduced-motion behavior for a component or state.
 
-## 1. PURPOSE
+## 1. USER INTENT
+
+This command serves that user job and owns these signals: "design motion behavior", "plan micro interactions", "specify animation states".
+
+## 2. INTERNAL BINDING
 
 Pin the `motion` mode of the `sk-design` parent hub to design purposeful animation and micro-interactions. The hub owns routing
 across modes; this command loads the `motion` mode directly. If the request spans more
 than `motion`, defer to the hub's routing instead of forcing this mode.
 
 <!-- ANCHOR:sibling-discriminator -->
-## 2. WHEN TO USE THIS, NOT A SIBLING
+## 3. WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to design purposeful animation, transitions, or reduced-motion behavior.
 - **Prefer `/design:audit` when** the request is findings-first quality review, release scoring, or motion-performance assessment.
@@ -25,7 +29,7 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. PRECONDITIONS
+## 4. PRECONDITIONS
 
 - **Requires:** a component or state transition to animate, plus an optional animation library
 - **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which component or state transition should the motion describe, and which library?" Do not run on a guess.
@@ -42,7 +46,7 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
 <!-- /ANCHOR:register -->
 
-## 4. INSTRUCTIONS
+## 5. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -57,7 +61,7 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 5. EMIT DELIVERABLE
+## 6. EMIT DELIVERABLE
 
 Emit `Motion Design Spec` as the primary deliverable.
 
@@ -67,7 +71,7 @@ Required fields:
 - `timingModel`
 - `reducedMotionPath`
 
-## 6. PIPELINE & HANDOFF
+## 7. PIPELINE & HANDOFF
 
 - **Stage:** behavior - specifies temporal behavior after direction or foundations and before audit or build.
 - **Accepts from:** `/design:audit`, `/design:foundations`, `/design:interface`.
@@ -76,7 +80,7 @@ Required fields:
 - **Hands to build:** when accepted motion behavior moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
 - **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
 
-## 7. EXAMPLE
+## 8. EXAMPLE
 
 ```
 /design:motion modal-open-close --library framer-motion

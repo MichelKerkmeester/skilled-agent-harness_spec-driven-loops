@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d2-r10 user intent framing",
-      "user intent framing design build"
+      "user intent framing design build",
+      "d2-r10 user intent framing plan",
+      "design command user intent plan",
+      "lead with user job design surface",
+      "d2-r10 user intent framing tasks",
+      "design command user intent tasks",
+      "lead with user job tasks",
+      "d2-r10 user intent framing checklist",
+      "design command user intent checklist",
+      "lead with user job checklist",
+      "d2-r10 user intent framing summary"
     ],
     "key_topics": [
       "d2-r10",
@@ -21,22 +31,111 @@
       "framing",
       "design",
       "build",
-      "add",
-      "userintent",
+      "plan",
+      "command",
+      "lead",
       "job",
-      "ownedsignals",
-      "plus",
-      "copyguard"
+      "surface",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
       {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Binding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -47,47 +146,79 @@
         "source": "derived"
       },
       {
-        "name": "Thin",
-        "kind": "key_phrase",
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Purpose Invert",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "thin-bridge",
-        "kind": "key_phrase",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Emit Deliverable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add userIntent{job,ownedSignals} plus a copyGuard to command-metadata.json so wrappers lead with the user job and move mode-binding into an Internal binding section.",
+    "causal_summary": "Every `/design:` wrapper opened with implementation framing — a \"Thin bridge into the `sk-design` parent skill's `<mode>` mode\" lead, then a `## 1",
     "created_at": "2026-06-28T12:40:02.738Z",
-    "last_save_at": "2026-06-28T12:40:02.738Z",
+    "last_save_at": "2026-06-29T06:30:25.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae6ca9d81f7c26ef0310cda960cdac1475f7b0db622080f2dbbbe0917af62e7e",
+    "source_fingerprint": "sha256:e414353ed8be06c7c95432a775a35d1ae960f6367c76edf35a875f5fa9a2c7a2",
     "source_doc_hashes": {
-      "spec.md": "e7b7b45b1a4e2a7872c825c9e00757412000a6e5309e7b9a9595ee6e2fc69a04"
+      "spec.md": "27ec109f07ca41e60e9776e8dac30ce33516acbc3a1004132327182986fe194a",
+      "plan.md": "0f090fa25440af2539086ab25f86b0f5f6eb96c5a5931cbef81a0f65547d3cea",
+      "tasks.md": "d0dc90fbe3af19f46dcf88ab44ef1118f5961994b36307529589a965ed639934",
+      "checklist.md": "826fc355ada7052572c9258e8bf262e2085e31945797718ee8fe32e36d2ecfa6",
+      "implementation-summary.md": "29a52030d633e6983d737fc6a275945296110b66e10c8a936badc8e4707b5562"
     },
     "last_active_child_id": null,
     "last_active_at": null

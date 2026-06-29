@@ -10,6 +10,8 @@ const REQUIRED_FIELDS = [
   "description",
   "argumentHint",
   "aliases",
+  "userIntent",
+  "copyGuard",
   "accepts",
   "returns",
   "examples",
@@ -40,6 +42,7 @@ const DRIFT_FIELDS = [
   "example-invocation",
   "example-prefix",
   "returns",
+  "user-intent",
   "sibling-discriminator",
   "preconditions",
   "pipeline",
@@ -226,6 +229,8 @@ function validateMetadata(metadata, workflowModes) {
         errors.push(`${command}: ${field} must be a non-empty string array`);
       }
     }
+
+    errors.push(...validateUserIntent(record, command));
 
     if (typeof record?.toolPolicy?.mutatesWorkspace !== "boolean") {
       errors.push(`${command}: toolPolicy.mutatesWorkspace must be a boolean`);
@@ -622,6 +627,40 @@ function validatePipelineGraph(recordsByCommand) {
   return errors;
 }
 
+function validateUserIntent(record, command) {
+  const errors = [];
+  const userIntent = record?.userIntent;
+
+  if (!isPlainObject(userIntent)) {
+    errors.push(`${command}: userIntent must be an object`);
+  } else {
+    if (typeof userIntent.job !== "string" || userIntent.job.trim().length === 0) {
+      errors.push(`${command}: userIntent.job must be a non-empty string`);
+    }
+
+    if (!isNonEmptyStringArray(userIntent.ownedSignals)) {
+      errors.push(`${command}: userIntent.ownedSignals must be a non-empty string array`);
+    } else {
+      errors.push(...validateUniqueArray(command, "userIntent.ownedSignals", userIntent.ownedSignals));
+
+      const aliases = new Set(Array.isArray(record?.aliases) ? record.aliases : []);
+      for (const signal of userIntent.ownedSignals) {
+        if (!aliases.has(signal)) {
+          errors.push(`${command}: userIntent.ownedSignals contains non-alias signal ${signal}`);
+        }
+      }
+    }
+  }
+
+  if (!isNonEmptyStringArray(record?.copyGuard)) {
+    errors.push(`${command}: copyGuard must be a non-empty string array`);
+  } else {
+    errors.push(...validateUniqueArray(command, "copyGuard", record.copyGuard));
+  }
+
+  return errors;
+}
+
 function validateUniqueArray(command, field, values) {
   const errors = [];
   const seen = new Set();
@@ -700,6 +739,7 @@ async function collectSurfaceDrift(records) {
       drift.push(deliverableDrift);
     }
 
+    drift.push(...expectedUserIntentDrift(record, markdown));
     drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
     drift.push(...expectedDiscriminatorDrift(record, markdown));
     drift.push(...expectedPreconditionsDrift(record, markdown));
@@ -708,6 +748,68 @@ async function collectSurfaceDrift(records) {
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedUserIntentDrift(record, markdown) {
+  const drift = [];
+  const userIntentSection = extractUserIntentSection(markdown);
+  const internalBindingSection = extractInternalBindingSection(markdown);
+  const leadRegion = extractIntentLeadRegion(markdown);
+
+  if (!userIntentSection) {
+    drift.push({
+      kind: "user-intent",
+      command: record.command,
+      field: "user-intent",
+      expected: "## USER INTENT",
+      actual: "<missing section>"
+    });
+  }
+
+  if (!internalBindingSection) {
+    drift.push({
+      kind: "user-intent",
+      command: record.command,
+      field: "user-intent",
+      expected: "## INTERNAL BINDING",
+      actual: "<missing section>"
+    });
+  }
+
+  if (!leadRegion) {
+    drift.push({
+      kind: "user-intent",
+      command: record.command,
+      field: "user-intent",
+      expected: record.userIntent.job,
+      actual: "<missing lead region>"
+    });
+    return drift;
+  }
+
+  if (!leadRegion.includes(record.userIntent.job)) {
+    drift.push({
+      kind: "user-intent",
+      command: record.command,
+      field: "user-intent",
+      expected: record.userIntent.job,
+      actual: "<missing job text>"
+    });
+  }
+
+  for (const phrase of record.copyGuard) {
+    if (containsPhrase(leadRegion, phrase)) {
+      drift.push({
+        kind: "user-intent",
+        command: record.command,
+        field: "user-intent",
+        expected: `lead region without "${phrase}"`,
+        actual: phrase
+      });
+    }
+  }
+
+  return drift;
 }
 
 function expectedPipelineDrift(record, markdown) {
@@ -1167,6 +1269,43 @@ function extractPreconditionsSection(markdown) {
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
+function extractUserIntentSection(markdown) {
+  return extractNamedSection(markdown, "USER INTENT");
+}
+
+function extractInternalBindingSection(markdown) {
+  return extractNamedSection(markdown, "INTERNAL BINDING");
+}
+
+function extractNamedSection(markdown, sectionName) {
+  const sectionMatch = markdown.match(new RegExp(`^##\\s+(?:\\d+\\.\\s+)?${escapeRegExp(sectionName)}\\s*$`, "im"));
+  if (!sectionMatch || typeof sectionMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = sectionMatch.index + sectionMatch[0].length;
+  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
+  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
+}
+
+function extractIntentLeadRegion(markdown) {
+  const titleMatch = markdown.match(/^#\s+\/design:[^\r\n]+$/im);
+  if (!titleMatch || typeof titleMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = titleMatch.index + titleMatch[0].length;
+  const afterTitle = markdown.slice(bodyStart);
+  const internalBindingMatch = afterTitle.match(/^##\s+(?:\d+\.\s+)?INTERNAL BINDING\s*$/im);
+
+  if (internalBindingMatch && typeof internalBindingMatch.index === "number") {
+    return afterTitle.slice(0, internalBindingMatch.index);
+  }
+
+  const nextSection = afterTitle.search(/\r?\n##\s+/);
+  return nextSection === -1 ? afterTitle : afterTitle.slice(0, nextSection);
+}
+
 function extractSiblingDiscriminatorSection(markdown) {
   const start = markdown.indexOf(SIBLING_DISCRIMINATOR_START);
   const end = markdown.indexOf(SIBLING_DISCRIMINATOR_END);
@@ -1199,6 +1338,14 @@ function hasSkCodeHandoffLine(section) {
   return section
     .split(/\r?\n/)
     .some((line) => line.includes("sk-code") && line.includes("sk_code_handoff.md"));
+}
+
+function containsPhrase(value, phrase) {
+  return value.toLowerCase().includes(phrase.toLowerCase());
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function wrapperPathForCommand(command) {

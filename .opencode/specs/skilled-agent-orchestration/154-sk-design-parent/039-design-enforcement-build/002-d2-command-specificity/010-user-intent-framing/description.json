@@ -1,23 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/010-user-intent-framing",
-  "description": "Add userIntent{job,ownedSignals} plus a copyGuard to command-metadata.json so wrappers lead with the user job and move mode-binding into an Internal b",
+  "description": "Every `/design:` wrapper opened with implementation framing \u2014 a \"Thin bridge into the `sk-design` parent skill's `<mode>` mode\" lead, then a `## 1",
   "keywords": [
-    "add",
-    "userintent",
-    "job",
-    "ownedsignals",
-    "plus",
-    "copyguard",
-    "command-metadata",
-    "json",
-    "wrappers",
-    "lead",
-    "user",
-    "move",
-    "mode-binding",
-    "internal"
+    "every",
+    "design",
+    "wrapper",
+    "opened",
+    "implementation",
+    "framing",
+    "thin",
+    "bridge",
+    "sk-design",
+    "parent",
+    "skill",
+    "mode",
+    "lead"
   ],
-  "lastUpdated": "2026-06-28T12:40:02.609Z",
+  "lastUpdated": "2026-06-29T06:30:25.303Z",
   "specId": "010",
   "folderSlug": "user-intent-framing",
   "parentChain": [
@@ -29,6 +29,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -5,6 +5,11 @@
     "description": "Design QA: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
     "argumentHint": "<target> [--scope] [--score]",
     "aliases": ["audit design quality", "critique ui surface", "score design readiness"],
+    "userIntent": {
+      "job": "I want to review, score, and harden the quality of a design surface I already have.",
+      "ownedSignals": ["audit design quality", "critique ui surface", "score design readiness"]
+    },
+    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
     "accepts": "a design target plus optional scope and scoring flags",
     "returns": "a findings-first design quality report with evidence, scores, owners, and verification notes",
     "examples": [
@@ -79,6 +84,11 @@
     "description": "Visual systems: color/OKLCH, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
     "argumentHint": "<axis> <target>",
     "aliases": ["design visual system", "define design tokens", "plan static foundations"],
+    "userIntent": {
+      "job": "I want to design or repair the static visual system - color, type, layout, spacing, tokens - for a surface.",
+      "ownedSignals": ["design visual system", "define design tokens", "plan static foundations"]
+    },
+    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
     "accepts": "a static design-system axis and the target surface or product context",
     "returns": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable",
     "examples": [
@@ -153,6 +163,11 @@
     "description": "Distinctive, intentional UI design: direction, palette, type, layout, motion. sk-design interface mode.",
     "argumentHint": "<target> [--mode]",
     "aliases": ["shape interface direction", "redesign ui surface", "make ui distinctive"],
+    "userIntent": {
+      "job": "I want to invent or reshape a distinctive interface direction for a surface.",
+      "ownedSignals": ["shape interface direction", "redesign ui surface", "make ui distinctive"]
+    },
+    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
     "accepts": "an interface target plus an optional mode hint for direction, redesign, or build judgment",
     "returns": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes",
     "examples": [
@@ -227,6 +242,11 @@
     "description": "Extract a live site's real CSS into a Style Reference DESIGN.md. sk-design md-generator mode.",
     "argumentHint": "<live-url> --output <dir>",
     "aliases": ["extract website css", "generate design reference", "capture design tokens"],
+    "userIntent": {
+      "job": "I want to extract a live site's real measured CSS into a Style Reference DESIGN.md.",
+      "ownedSignals": ["extract website css", "generate design reference", "capture design tokens"]
+    },
+    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
     "accepts": "a reachable live URL plus an output directory",
     "returns": "a Style Reference DESIGN.md and extracted token data under the output directory",
     "examples": [
@@ -301,6 +321,11 @@
     "description": "Animation, transitions, micro-interactions, AnimatePresence, reduced motion. sk-design motion mode.",
     "argumentHint": "<component-state> [--library]",
     "aliases": ["design motion behavior", "plan micro interactions", "specify animation states"],
+    "userIntent": {
+      "job": "I want to design purposeful animation, transitions, or reduced-motion behavior for a component or state.",
+      "ownedSignals": ["design motion behavior", "plan micro interactions", "specify animation states"]
+    },
+    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
     "accepts": "a component or state transition plus an optional animation library hint",
     "returns": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior",
     "examples": [
