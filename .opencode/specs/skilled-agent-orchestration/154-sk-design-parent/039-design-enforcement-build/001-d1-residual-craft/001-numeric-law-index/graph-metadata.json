@@ -12,7 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "d1-r1 numeric laws",
-      "numeric law index design build"
+      "numeric law index design build",
+      "cross-mode numeric laws shared index",
+      "numeric design laws plan",
+      "numeric design laws tasks",
+      "numeric_law_check completeness gate",
+      "numeric design laws checklist",
+      "numeric design laws summary",
+      "numeric law index implementation"
     ],
     "key_topics": [
       "d1-r1",
@@ -22,18 +29,44 @@
       "index",
       "design",
       "build",
-      "add",
-      "shared",
       "cross-mode",
-      "sk-design",
-      "central"
+      "shared",
+      "plan",
+      "tasks",
+      "completeness"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+      ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-design/shared/cognitive_laws.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "numeric_design_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_law_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +74,145 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cognitive_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/cognitive_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "Numeric Design Laws Index",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Give",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Owner Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforcement Target",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Application Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a shared numeric_design_laws.md index of cross-mode numeric laws to sk-design/shared/.",
+    "causal_summary": "The shared base is only conceptual today",
     "created_at": "2026-06-28T12:40:04.740Z",
-    "last_save_at": "2026-06-28T12:40:04.740Z",
+    "last_save_at": "2026-06-29T10:25:28.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81745d5ccf14bed3aefd8e0d1e5168564dcf5e4759a212896d4f97606fd327e1",
+    "source_fingerprint": "sha256:f9bb8e86eea8de494abf9b098105dd403e083235f07f1c81ce5520df4440ab96",
     "source_doc_hashes": {
-      "spec.md": "e642e43934e068b0d5d7df75c55371c3af4efeae15ddbe37620233f78c3db40f"
+      "spec.md": "1acab34524da3167b4bbfd47d041adeb91d42aac2967a61b95568a3db393c490",
+      "plan.md": "8e8dd1303a5133493227a3b189c9276e4281e74f18a0f25901b4edf7a52fdbc7",
+      "tasks.md": "9b1caa5600e6a02c9a9c6f3dfaa1b920b3d5f2dfe331ff41f87c36570450e22e",
+      "checklist.md": "77067c60dc718570de6c12741e2d7c5234c68db2876b1f3e4d3ddce0b5be29c6",
+      "implementation-summary.md": "69d45e042f981f2b67f97f4b1bb01bb0605efdfbddf990b841e3a958fab8c894"
     },
     "last_active_child_id": null,
     "last_active_at": null
