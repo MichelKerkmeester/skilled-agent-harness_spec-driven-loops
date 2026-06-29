@@ -235,6 +235,23 @@ function probeDaemon(socketPath, options = {}) {
   });
 }
 
+function normalizeExistingServiceProbeResult(result = {}) {
+  if (result.status === 'alive') {
+    return { status: 'alive', kind: 'json-rpc-reply' };
+  }
+
+  const failureText = `${result.reason ?? ''} ${result.code ?? ''}`.toUpperCase();
+  if (failureText.includes('ENOENT')) return { status: 'dead', kind: 'enoent' };
+  if (failureText.includes('ECONNREFUSED')) return { status: 'dead', kind: 'econnrefused' };
+  if (failureText.includes('TIMEOUT')) return { status: 'dead', kind: 'timeout' };
+  return { status: 'dead', kind: 'unknown' };
+}
+
+async function probeExistingService(socketPath, opts = {}) {
+  const result = await probeDaemon(socketPath, { ...opts, deepProbe: true });
+  return normalizeExistingServiceProbeResult(result);
+}
+
 function parseHttpJsonResponse(buffer) {
   const raw = buffer.toString('utf8');
   const headerEnd = raw.indexOf('\r\n\r\n');
@@ -446,7 +463,9 @@ module.exports = {
   bridgeStdioToSocket,
   getIpcSocketPath,
   maybeBridgeLeaseHolder,
+  normalizeExistingServiceProbeResult,
   probeDaemon,
+  probeExistingService,
   probeLeaseHolderWithRetries,
   probeModelServer,
   resolveLeaseProbeAttempts,
