@@ -12,7 +12,7 @@ const {
   repairRoundStateJsonl,
 } = require('../../lib/council/round-state-jsonl.cjs') as {
   appendRoundStateRecord: (path: string, record: Record<string, unknown>) => { appended: boolean; repair: { repaired: boolean; droppedBytes: number } };
-  readRoundStateRecords: (path: string) => Record<string, unknown>[];
+  readRoundStateRecords: (path: string, options?: { repair?: boolean }) => Record<string, unknown>[];
   repairRoundStateJsonl: (path: string) => { repaired: boolean; droppedBytes: number };
 };
 
@@ -61,7 +61,29 @@ describe('council round-state JSONL', () => {
     });
   });
 
-  // Coverage expanded from 2 tests / ~10 expects to 6 tests / 25+ expects.
+  it('separates an append from an existing final line without a trailing newline', () => {
+    withTempJsonl((statePath) => {
+      writeFileSync(statePath, '{"type":"round_started","round_id":"round-001"}', 'utf8');
+
+      appendRoundStateRecord(statePath, { type: 'round_resumed', topic_id: 'topic-001', round_id: 'round-001' });
+
+      const lines = readFileSync(statePath, 'utf8').trimEnd().split(/\r?\n/);
+      expect(lines).toHaveLength(2);
+      expect(lines.map((line) => JSON.parse(line).type)).toEqual(['round_started', 'round_resumed']);
+    });
+  });
+
+  it('repairs corrupt read tails in memory without rewriting the state file', () => {
+    withTempJsonl((statePath) => {
+      const content = '{"type":"round_started","round_id":"round-001"}\n{"type":';
+      writeFileSync(statePath, content, 'utf8');
+
+      const records = readRoundStateRecords(statePath);
+
+      expect(records.map((record) => record.type)).toEqual(['round_started']);
+      expect(readFileSync(statePath, 'utf8')).toBe(content);
+    });
+  });
 
   it('readRoundStateRecords returns empty array for non-existent path', () => {
     const records = readRoundStateRecords('/tmp/does-not-exist-' + Math.random() + '.jsonl');

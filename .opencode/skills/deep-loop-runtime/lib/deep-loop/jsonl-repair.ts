@@ -1,6 +1,18 @@
 // MODULE: Deep-Loop JSONL Repair
 
-import { appendFileSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, truncateSync, writeFileSync } from 'node:fs';
+import {
+  appendFileSync,
+  closeSync,
+  existsSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  truncateSync,
+  writeFileSync,
+} from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -130,6 +142,18 @@ function mergeRecords(existingRecords: JsonlRecord[], incomingRecords: JsonlReco
   return dedupeRecords([...existingRecords, ...incomingRecords]);
 }
 
+function fsyncPath(path: string): void {
+  let fd: number | undefined;
+  try {
+    fd = openSync(path, 'r');
+    fsyncSync(fd);
+  } finally {
+    if (typeof fd === 'number') {
+      closeSync(fd);
+    }
+  }
+}
+
 function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
   mkdirSync(dirname(path), { recursive: true });
   const tempPath = `${path}.tmp.${process.pid}.${Date.now()}.${randomUUID()}`;
@@ -139,7 +163,12 @@ function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
 
   try {
     writeFileSync(tempPath, content, 'utf8');
+    fsyncPath(tempPath);
     renameSync(tempPath, path);
+    try {
+      fsyncPath(dirname(path));
+    } catch {
+    }
   } catch (err) {
     rmSync(tempPath, { force: true });
     throw err;
@@ -210,7 +239,9 @@ export function mergeJsonlUnderLock(path: string, incomingRecords: Array<Record<
   try {
     repairJsonlTail(path);
     const currentRecords = readJsonlRecords(path);
-    writeJsonlRecordsAtomic(path, mergeRecords(currentRecords, uniqueIncomingRecords));
+    const mergedRecords = mergeRecords(currentRecords, uniqueIncomingRecords);
+    const latestRecords = readJsonlRecords(path);
+    writeJsonlRecordsAtomic(path, mergeRecords(latestRecords, mergedRecords));
   } finally {
     releaseWriterLock();
   }

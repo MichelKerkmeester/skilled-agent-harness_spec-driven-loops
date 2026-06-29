@@ -38,6 +38,10 @@ function newlineLengthAt(content, index) {
 }
 
 function validPrefixByteLength(content) {
+  return validPrefixInfo(content).byteLength;
+}
+
+function validPrefixInfo(content) {
   let cursor = 0;
   let validEnd = 0;
 
@@ -64,13 +68,16 @@ function validPrefixByteLength(content) {
   }
 
   const trailing = content.slice(cursor);
-  if (trailing.trim() === '') return byteLength(content);
+  if (trailing.trim() === '') {
+    return { byteLength: byteLength(content), content };
+  }
 
   try {
     JSON.parse(trailing);
-    return byteLength(content);
+    return { byteLength: byteLength(content), content };
   } catch {
-    return byteLength(content.slice(0, validEnd));
+    const validContent = content.slice(0, validEnd);
+    return { byteLength: byteLength(validContent), content: validContent };
   }
 }
 
@@ -104,6 +111,28 @@ function appendRoundStateObservabilityEvent(statePath, record) {
     });
   } catch {
     // Round-state JSONL append remains the durable council state write.
+  }
+}
+
+function appendJsonlLineWithFsync(statePath, line) {
+  const currentContent = fs.existsSync(statePath) ? fs.readFileSync(statePath, 'utf8') : '';
+  const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
+  const fd = fs.openSync(statePath, 'a');
+  try {
+    fs.writeFileSync(fd, `${separator}${line}`, 'utf8');
+    fs.fsyncSync(fd);
+  } finally {
+    fs.closeSync(fd);
+  }
+
+  try {
+    const dirFd = fs.openSync(path.dirname(statePath), 'r');
+    try {
+      fs.fsyncSync(dirFd);
+    } finally {
+      fs.closeSync(dirFd);
+    }
+  } catch {
   }
 }
 
@@ -260,13 +289,7 @@ function appendRoundStateRecord(statePath, record, options = {}) {
       written_at_iso: new Date().toISOString(),
       ...normalized,
     })}\n`;
-    const fd = fs.openSync(statePath, 'a');
-    try {
-      fs.writeFileSync(fd, line, 'utf8');
-      fs.fsyncSync(fd);
-    } finally {
-      fs.closeSync(fd);
-    }
+    appendJsonlLineWithFsync(statePath, line);
     appendRoundStateObservabilityEvent(statePath, normalized);
     return { appended: true, repair };
   } finally {
@@ -277,22 +300,24 @@ function appendRoundStateRecord(statePath, record, options = {}) {
 /**
  * Read all records from a JSONL round state file.
  *
- * Optionally repairs the file first, then splits on newlines, parses
- * each non-empty line as JSON, and returns the resulting array.
+ * By default, reads the valid JSONL prefix without rewriting the file,
+ * then splits on newlines, parses each non-empty line as JSON, and
+ * returns the resulting array.
  *
  * @param {string} statePath - Path to the JSONL state file.
  * @param {Object} [options] - Read options.
- * @param {boolean} [options.repair=true] - Whether to repair the file
- *   before reading.
+ * @param {boolean} [options.repair=true] - Whether to ignore a corrupt
+ *   tail while reading. False parses the file as-is.
  * @returns {Array<Object>} Parsed round state records (empty array if
  *   the file does not exist).
  */
 function readRoundStateRecords(statePath, options = {}) {
   if (!fs.existsSync(statePath)) return [];
-  if (options.repair !== false) {
-    repairRoundStateJsonl(statePath);
-  }
-  return fs.readFileSync(statePath, 'utf8')
+  const content = fs.readFileSync(statePath, 'utf8');
+  const readableContent = options.repair === false
+    ? content
+    : validPrefixInfo(content).content;
+  return readableContent
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean)
