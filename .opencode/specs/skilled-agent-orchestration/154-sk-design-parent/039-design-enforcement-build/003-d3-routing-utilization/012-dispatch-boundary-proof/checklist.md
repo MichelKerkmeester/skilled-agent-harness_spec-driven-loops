@@ -96,6 +96,25 @@ _memory:
 <!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+> The acceptance is not "code exists" — it is "the boundary proof and the asset-parity guard both fail closed on their negative case, and routing did not move."
+
+- [x] CHK-060 [P0] Acceptance demonstrated end-to-end: envelope present → pass; envelope absent/mismatched on a route-gold dispatch → flagged
+  - **Evidence**: both fixture verdicts observed via the Vitest spec and the CLI (present → valid/exit 0; missing → rejected/exit 1), not asserted from reading code
+- [x] CHK-061 [P0] The parity checker drift case is demonstrated, not assumed
+  - **Evidence**: the vitest writes an identical copy (valid), then a drifted copy → `asset-copy-drift` (rejected), then a missing copy → `missing-copy`, against a temp clone
+- [x] CHK-062 [P0] No partial-credit completion
+  - **Evidence**: the checker is run (CLI + vitest), and both the reject path (4 mutations) and the parity drift/missing paths are exercised — no "defined but never run"
+- [x] CHK-063 [P1] Honest residual is named, not hidden
+  - **Evidence**: the applied-quality advisory residual is written in asset §5 and `implementation-summary.md` Known Limitations #1; the proof is not claimed to certify taste
+- [x] CHK-064 [P1] Copy manifest is real, not aspirational
+  - **Evidence**: canonical-only — the parity manifest names no fabricated consumer; the guard verifies the canonical asset's contract markers + the `design-interface/SKILL.md` back-reference
+
+<!-- /ANCHOR:fix-completeness -->
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -131,25 +150,6 @@ _memory:
   - **Evidence**: the parity drift/missing probe uses an in-test `mkdtemp` clone removed in `afterAll`; no stray copies left behind
 
 <!-- /ANCHOR:file-org -->
----
-
-<!-- ANCHOR:fix-completeness -->
-## Fix Completeness
-
-> The acceptance is not "code exists" — it is "the boundary proof and the asset-parity guard both fail closed on their negative case, and routing did not move."
-
-- [x] CHK-060 [P0] Acceptance demonstrated end-to-end: envelope present → pass; envelope absent/mismatched on a route-gold dispatch → flagged
-  - **Evidence**: both fixture verdicts observed via the Vitest spec and the CLI (present → valid/exit 0; missing → rejected/exit 1), not asserted from reading code
-- [x] CHK-061 [P0] The parity checker drift case is demonstrated, not assumed
-  - **Evidence**: the vitest writes an identical copy (valid), then a drifted copy → `asset-copy-drift` (rejected), then a missing copy → `missing-copy`, against a temp clone
-- [x] CHK-062 [P0] No partial-credit completion
-  - **Evidence**: the checker is run (CLI + vitest), and both the reject path (4 mutations) and the parity drift/missing paths are exercised — no "defined but never run"
-- [x] CHK-063 [P1] Honest residual is named, not hidden
-  - **Evidence**: the applied-quality advisory residual is written in asset §5 and `implementation-summary.md` Known Limitations #1; the proof is not claimed to certify taste
-- [x] CHK-064 [P1] Copy manifest is real, not aspirational
-  - **Evidence**: canonical-only — the parity manifest names no fabricated consumer; the guard verifies the canonical asset's contract markers + the `design-interface/SKILL.md` back-reference
-
-<!-- /ANCHOR:fix-completeness -->
 ---
 
 <!-- ANCHOR:summary -->
