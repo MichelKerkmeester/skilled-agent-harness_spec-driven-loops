@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
     "created_at": "2026-06-29T10:17:13.087Z",
-    "last_save_at": "2026-06-29T10:17:13.087Z",
+    "last_save_at": "2026-06-29T10:19:43.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a606e086e7faaa23ce91f2a32225586f1b7c907a01462aaccceb167754308de4",
+    "source_fingerprint": "sha256:95c0b992da484103031192e8bbfb7df35291b3d59fb0f7438b6e80381406b4c4",
     "source_doc_hashes": {
       "spec.md": "cca9db8a30377096063991376b499810193ffcf5b3be5732a338343d9a9af87a",
       "plan.md": "2983a316a351df711f124622e132a65ba47b3deb3e699fd0676b83d3e8ad37a5",
       "tasks.md": "084b6cb4fb6b23a0994a5d92478ec21196c1f71fb0abd924820af3d26027d727",
-      "research/research.md": "7c7eaf080388be56b3fa6abd906850b5efbc6a5aa378c6f61605d1e5bb8e7c42"
+      "research/research.md": "6ebd7cdc810761d7a879490fd5f6171d19386eb7385523d382e0a3e2670c509f"
     },
     "last_active_child_id": null,
     "last_active_at": null
