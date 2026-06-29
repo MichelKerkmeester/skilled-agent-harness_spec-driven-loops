@@ -26,7 +26,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { scoreD1Inter, scoreModePrecision } = require('./advisor-probe.cjs');
+const { scoreD1Inter, scoreModePrecision, scoreRelativeAdvisorRanking } = require('./advisor-probe.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -91,6 +91,7 @@ function normalizeExpectedRouteGold(expected, scenario, arg) {
   copyIfPresent(out, scenarioExpected, 'minimalPairGroup');
   copyIfPresent(out, scenarioExpected, 'knownRouteGap');
   copyIfPresent(out, scenarioExpected, 'toolSurface');
+  copyIfPresent(out, scenarioExpected, 'rankBelowSkillIds');
   if (out.knownRouteGap !== true && !hasRouteGold(out)) {
     out.knownRouteGap = routeGapFromNotes(scenario && scenario.notes)
       || routeGapFromNotes(arg && arg.notes)
@@ -122,6 +123,7 @@ function expectedFromScenario(scenario, obs, arg) {
     minimalPairGroup: scenarioExpected.minimalPairGroup,
     knownRouteGap: scenarioExpected.knownRouteGap === true,
     toolSurface: scenarioExpected.toolSurface,
+    rankBelowSkillIds: scenario.expectedRankBelowSkillIds || scenarioExpected.rankBelowSkillIds,
   };
 }
 
@@ -672,6 +674,11 @@ function scoreScenario(arg) {
     modeRouting: arg.modeRouting,
     expectedMode: expected && expected.mode,
   });
+  dims.relativeRanking = scoreRelativeAdvisorRanking({
+    advisorResult,
+    expectedSkillId: expected && expected.skillId,
+    rankBelowSkillIds: expected && expected.rankBelowSkillIds,
+  });
 
   // Hard route-gold lane: fail closed only when route gold is present.
   dims.hubRoute = scoreHubRoute({ expected, routerResult });
@@ -802,6 +809,11 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   // matched the fixture's expected.mode. Never folded into aggregateScore.
   const modePrecisionAvg = avg((r) => (r.dims && r.dims.modePrecision && typeof r.dims.modePrecision.score === 'number'
     ? Math.round(r.dims.modePrecision.score * 100) : null));
+  const relativeRankingAvg = avg((r) => (r.dims && r.dims.relativeRanking && typeof r.dims.relativeRanking.score === 'number'
+    ? Math.round(r.dims.relativeRanking.score * 100) : null));
+  const relativeRankingSignal = relativeRankingAvg === null
+    ? { score: null, status: 'unscored (no advisor probe or no rank-below gold)', note: 'advisor target rank relative to sibling transports; advisory, not weighted' }
+    : { score: relativeRankingAvg, note: 'advisor target rank relative to sibling transports; advisory, not weighted' };
   const routeTelemetry = reduceRouteTelemetry(rows);
   const gateFailed = connectivity.gateFailed;
   let verdict;
@@ -864,6 +876,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       modePrecision: modePrecisionAvg === null
         ? { score: null, status: 'unscored (no mode-routing probe or no expected.mode)', note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' }
         : { score: modePrecisionAvg, note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' },
+      relativeRanking: relativeRankingSignal,
       routeTelemetry,
     },
     funnel,
@@ -877,6 +890,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       scenarioCount: rows.length,
       traceMode: traceMode || 'router',
       hubRouteKnownGaps,
+      relativeRanking: relativeRankingSignal,
       routeTelemetry,
       note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
     },

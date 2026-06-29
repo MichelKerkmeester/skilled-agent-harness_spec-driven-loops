@@ -76,6 +76,47 @@ function readFileSafe(p) {
   try { return fs.readFileSync(p, 'utf8'); } catch { return null; }
 }
 
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function cleanListItem(value) {
+  return String(value || '')
+    .trim()
+    .replace(/^[-\s]+/, '')
+    .replace(/^["'`]+|["'`,]+$/g, '')
+    .trim();
+}
+
+function parseListText(value) {
+  if (!value) return [];
+  return value
+    .split(/[\n,]+/)
+    .map(cleanListItem)
+    .filter(Boolean);
+}
+
+function parseFrontmatterList(block, keys) {
+  for (const key of keys) {
+    const escaped = escapeRegExp(key);
+    const inline = new RegExp(`(?:^|\\n)\\s*${escaped}:\\s*\\[(.*?)\\]`).exec(block);
+    if (inline) return parseListText(inline[1]);
+    const multiline = new RegExp(`(?:^|\\n)\\s*${escaped}:\\s*\\n((?:\\s*-\\s*.+\\n?)+)`).exec(block);
+    if (multiline) return parseListText(multiline[1]);
+  }
+  return [];
+}
+
+function parseExpectedRankBelowSkillIds(text) {
+  const fm = /^---\n([\s\S]*?)\n---/.exec(text || '');
+  if (!fm) return [];
+  return parseFrontmatterList(fm[1], [
+    'rankBelowSkillIds',
+    'rank_below_skill_ids',
+    'expected_rank_below_skill_ids',
+  ]);
+}
+
 /**
  * Pull every `references/...` / `assets/...` / `../shared/...` markdown-ish path
  * token out of a text block, deduped, order-preserving. Tolerates backticks,
@@ -163,6 +204,7 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
   const expectedSurface = KNOWN_SURFACES.has(surfaceRaw) ? surfaceRaw : null;
   const expectedResources = extractPaths(refBlock);
   const expectedAssets = extractPaths(assetBlock);
+  const expectedRankBelowSkillIds = parseExpectedRankBelowSkillIds(text);
 
   // Negative activation: the skill should NOT route here (UNKNOWN surface,
   // disambiguation expected, or advisor must pick another skill).
@@ -183,6 +225,8 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
     expectedIntent: null,
     expectedResources,
     expectedAssets,
+    expectedRankBelowSkillIds,
+    expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
     passCriteria,
     critical: !!critical,
     negativeActivation,
@@ -237,6 +281,11 @@ function loadYamlFrontmatterScenarios(playbookDir) {
       const intentM = /expected_intent:\s*["']?([A-Za-z_]+)/.exec(block);
       const resM = /expected_resources:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
       const resources = resM ? extractPaths(resM[1]) : [];
+      const expectedRankBelowSkillIds = parseFrontmatterList(block, [
+        'rankBelowSkillIds',
+        'rank_below_skill_ids',
+        'expected_rank_below_skill_ids',
+      ]);
       const category = path.basename(cur);
       const prompt = parsePromptBlock(text);
       const id = idM ? idM[1] : e.name.replace(/\.md$/, '');
@@ -250,6 +299,8 @@ function loadYamlFrontmatterScenarios(playbookDir) {
         expectedIntent: intentM ? intentM[1] : null,
         expectedResources: resources,
         expectedAssets: [],
+        expectedRankBelowSkillIds,
+        expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
         passCriteria: null,
         critical: false,
         negativeActivation: false,

@@ -137,6 +137,84 @@ function scoreModePrecision({ modeRouting, expectedMode }) {
   };
 }
 
+function normalizeSkillIds(value) {
+  if (value == null || value === false) return [];
+  const values = Array.isArray(value) ? value : String(value).split(',');
+  return values.map((item) => String(item).trim()).filter(Boolean);
+}
+
+function rankMap(recommendations) {
+  const ranks = new Map();
+  for (const [idx, rec] of (recommendations || []).entries()) {
+    if (rec && rec.skill && !ranks.has(rec.skill)) ranks.set(rec.skill, idx + 1);
+  }
+  return ranks;
+}
+
+/**
+ * Score relative advisor ordering for sibling transport suppression.
+ *
+ * @param {Object} params - Scoring parameters.
+ * @param {{ ok: boolean, recommendations: Array<{skill:string}> }} params.advisorResult - Result from probeAdvisor.
+ * @param {string} params.expectedSkillId - Skill id that must outrank listed siblings.
+ * @param {string[]|string} [params.rankBelowSkillIds] - Skill ids that must rank below the target.
+ * @returns {{ score: number|null, pass: boolean|null, targetRank: number|null,
+ *   violatingSkills: string[], checkedSkillIds: string[], ranks: Object,
+ *   advisory: true, unscored?: string, error?: string, reason?: string }}
+ */
+function scoreRelativeAdvisorRanking({ advisorResult, expectedSkillId, rankBelowSkillIds }) {
+  const checkedSkillIds = normalizeSkillIds(rankBelowSkillIds);
+  if (checkedSkillIds.length === 0) {
+    return {
+      score: null,
+      pass: null,
+      targetRank: null,
+      violatingSkills: [],
+      checkedSkillIds,
+      ranks: {},
+      advisory: true,
+      unscored: 'fixture carries no rankBelowSkillIds',
+    };
+  }
+  if (!advisorResult || !advisorResult.ok) {
+    return {
+      score: null,
+      pass: null,
+      targetRank: null,
+      violatingSkills: [],
+      checkedSkillIds,
+      ranks: {},
+      advisory: true,
+      unscored: 'advisor probe failed',
+      error: advisorResult && advisorResult.error,
+    };
+  }
+
+  const ranksBySkill = rankMap(advisorResult.recommendations);
+  const targetRank = expectedSkillId && ranksBySkill.has(expectedSkillId)
+    ? ranksBySkill.get(expectedSkillId) : null;
+  const ranks = {};
+  if (expectedSkillId) ranks[expectedSkillId] = targetRank;
+  for (const skillId of checkedSkillIds) {
+    ranks[skillId] = ranksBySkill.has(skillId) ? ranksBySkill.get(skillId) : null;
+  }
+  const violatingSkills = checkedSkillIds.filter((skillId) => {
+    const rank = ranks[skillId];
+    return rank !== null && (targetRank === null || rank <= targetRank);
+  });
+  const pass = targetRank !== null && violatingSkills.length === 0;
+  return {
+    score: pass ? 1 : 0,
+    pass,
+    targetRank,
+    violatingSkills,
+    checkedSkillIds,
+    ranks,
+    advisory: true,
+    reason: targetRank === null ? 'target skill missing from recommendations' : null,
+  };
+}
+
 /**
  * Score the D1-inter dimension for one scenario from an advisor probe result.
  * Rank-weighted: top-1 = 1.0, top-3 = 0.75, top-5 = 0.5, else 0. Negative
@@ -167,15 +245,36 @@ function scoreD1Inter({ advisorResult, expectedSkillId, negative }) {
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { probeAdvisor, probeAdvisorMode, scoreD1Inter, scoreModePrecision, DEFAULT_ADVISOR_PY };
+module.exports = {
+  probeAdvisor,
+  probeAdvisorMode,
+  scoreD1Inter,
+  scoreModePrecision,
+  scoreRelativeAdvisorRanking,
+  DEFAULT_ADVISOR_PY,
+};
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (!args.prompt) {
-    process.stderr.write('usage: advisor-probe.cjs --prompt "<text>" [--advisor-py <path>]\n');
+    process.stderr.write('usage: advisor-probe.cjs --prompt "<text>" [--advisor-py <path>] [--expected-skill-id <id> --rank-below <csv>]\n');
     process.exit(2);
   }
   const out = probeAdvisor({ prompt: args.prompt, advisorPy: args['advisor-py'] });
-  process.stdout.write(JSON.stringify(out, null, 2) + '\n');
-  process.exit(out.ok ? 0 : 1);
+  if (args['rank-below'] !== undefined) {
+    if (args['rank-below'] === true || !args['expected-skill-id']) {
+      process.stderr.write('usage: advisor-probe.cjs --prompt "<text>" --expected-skill-id <id> --rank-below <csv>\n');
+      process.exit(2);
+    }
+    const relativeRanking = scoreRelativeAdvisorRanking({
+      advisorResult: out,
+      expectedSkillId: args['expected-skill-id'],
+      rankBelowSkillIds: args['rank-below'],
+    });
+    process.stdout.write(JSON.stringify({ ...out, relativeRanking }, null, 2) + '\n');
+    process.exit(out.ok && relativeRanking.pass ? 0 : 1);
+  } else {
+    process.stdout.write(JSON.stringify(out, null, 2) + '\n');
+    process.exit(out.ok ? 0 : 1);
+  }
 }

@@ -1,20 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/011-relative-advisor-ranking",
-  "description": "Add rankBelowSkillIds to the playbook schema and scoreRelativeAdvisorRanking() in advisor-probe.cjs to gate sk-design #1 with transports ranked below.",
+  "description": "The deterministic advisor already returns sk-design at rank #1 with figma / open-design transports at ranks 3 and 5, but nothing in the benchmark mach",
   "keywords": [
-    "add",
-    "rankbelowskillids",
-    "playbook",
-    "schema",
-    "scorerelativeadvisorranking",
-    "advisor-probe",
-    "cjs",
-    "gate",
+    "deterministic",
+    "advisor",
+    "already",
+    "returns",
     "sk-design",
+    "rank",
+    "figma",
+    "open-design",
     "transports",
-    "ranked"
+    "ranks",
+    "nothing",
+    "benchmark",
+    "mach"
   ],
-  "lastUpdated": "2026-06-28T12:39:59.540Z",
+  "lastUpdated": "2026-06-29T09:20:34.888Z",
   "specId": "011",
   "folderSlug": "relative-advisor-ranking",
   "parentChain": [
@@ -26,6 +29,5 @@
     "003-d3-routing-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
