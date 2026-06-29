@@ -1,24 +1,20 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/012-variant-parameter-contract",
-  "description": "Add sk-design/shared/assets/variant_parameter_contract.md defining the live-variant numeric knobs with ranges and owner modes, tested across Figma/Ope",
+  "description": "The live-variant numeric knobs (density, type-scale, color-amount, structure, pairing) were not a transport-facing contract",
   "keywords": [
-    "add",
-    "sk-design",
-    "shared",
-    "assets",
-    "defining",
     "live-variant",
     "numeric",
     "knobs",
-    "ranges",
-    "owner",
-    "modes",
-    "tested",
-    "across",
-    "figma",
-    "ope"
+    "density",
+    "type-scale",
+    "color-amount",
+    "structure",
+    "pairing",
+    "transport-facing",
+    "contract"
   ],
-  "lastUpdated": "2026-06-28T12:40:05.893Z",
+  "lastUpdated": "2026-06-29T12:07:44.882Z",
   "specId": "012",
   "folderSlug": "variant-parameter-contract",
   "parentChain": [
@@ -30,6 +26,5 @@
     "001-d1-residual-craft"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

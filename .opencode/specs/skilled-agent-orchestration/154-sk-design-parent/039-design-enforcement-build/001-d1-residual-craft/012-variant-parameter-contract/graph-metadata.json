@@ -12,7 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "d1-r12 variant parameter contract",
-      "variant parameter contract design build"
+      "variant parameter contract design build",
+      "transport variant knob schema",
+      "variant parameter contract plan",
+      "variant parameter contract tasks",
+      "variant_parameter_check schema gate",
+      "variant parameter contract checklist",
+      "variant parameter contract summary",
+      "transport variant knob schema implementation"
     ],
     "key_topics": [
       "d1-r12",
@@ -21,22 +28,97 @@
       "contract",
       "design",
       "build",
-      "add",
-      "sk-design",
-      "shared",
-      "assets",
-      "defining",
-      "live-variant"
+      "transport",
+      "knob",
+      "schema",
+      "plan",
+      "tasks",
+      "gate"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/shared/assets/variant_parameter_contract.md",
+      ".opencode/skills/sk-design/shared/scripts/variant_parameter_check.py",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+      ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+      ".opencode/skills/sk-design/design-interface/references/design-process/brief_to_dials.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "variant_parameter_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/variant_parameter_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "variant_parameter_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/variant_parameter_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_design_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_law_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "brief_to_dials.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/brief_to_dials.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Variant Parameter Contract",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -47,47 +129,91 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "ranges",
-        "kind": "key_phrase",
+        "name": "Purpose Codify",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "explicit",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "knobs",
-        "kind": "key_phrase",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Owner Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Application Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add sk-design/shared/assets/variant_parameter_contract.md defining the live-variant numeric knobs with ranges and owner modes, tested across Figma/Open Design/live.",
+    "causal_summary": "The live-variant numeric knobs (density, type-scale, color-amount, structure, pairing) were not a transport-facing contract",
     "created_at": "2026-06-28T12:40:06.038Z",
-    "last_save_at": "2026-06-28T12:40:06.038Z",
+    "last_save_at": "2026-06-29T12:07:45.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d870b39a81f07f9fc9394b6480fbf72ad998ce8b7be44b49887ebca19103eb87",
+    "source_fingerprint": "sha256:d228d980d2ec3fb6875b7cef89e50d32ec0f1aec560d30d79cf244fb4dc522ec",
     "source_doc_hashes": {
-      "spec.md": "d02a5c93b36693ea33257912523588b1ffe7c248c587614ac4c9dff0c9d0846c"
+      "spec.md": "368928bb35fd6587064197fcf8c27c13a13176756fe3a529ae54bd414b38f083",
+      "plan.md": "6af40afc0ad32d4aa48fbe1390edac63a1e8143c300e018ec2260174c63d2264",
+      "tasks.md": "d61b534eb7d72e06fe88c65ef99364b427cb095891f9cec754db0c6b76694333",
+      "checklist.md": "923106636d2343fd56fb78e57f45eb0e8687a43564a8407ca0f78e91100eda45",
+      "implementation-summary.md": "9d47446b0bca7d9e7bbdceb9a5575a00bf72ae94a4d7dc757c3a7a6f4e47fc84"
     },
     "last_active_child_id": null,
     "last_active_at": null
