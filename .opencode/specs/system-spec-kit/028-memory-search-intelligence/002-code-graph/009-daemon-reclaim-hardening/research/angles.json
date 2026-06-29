@@ -1,0 +1,9 @@
+{
+  "subject": "Prevent recurrence of the code-index daemon wedge: a PID-alive-but-socket-dead daemon that the launcher does not reclaim, causing MCP reconnect -32000",
+  "executor": "cli-opencode",
+  "model": "zai-coding-plan/glm-5.2",
+  "variant": "high (max thinking)",
+  "framework": "costar",
+  "maxIterations": 10,
+  "incident": "code-index daemon crashed uncleanly: 2 orphaned processes alive at 0% CPU, IPC socket /tmp/mk-code-index/daemon-ipc.sock never (re)created, lease file gone from an empty socket dir, 17MB orphaned WAL with no holder, DB integrity ok. /mcp reconnect returned -32000. Manual fix: kill orphans + wal_checkpoint(TRUNCATE) + clean socket dir."
+}

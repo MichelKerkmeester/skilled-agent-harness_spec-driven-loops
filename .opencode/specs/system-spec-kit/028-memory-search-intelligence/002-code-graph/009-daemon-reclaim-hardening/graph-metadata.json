@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-index daemon reclaim hardening",
+      "wedged daemon dead socket reclaim",
+      "mk-code-index launcher -32000 prevent",
+      "daemon reclaim hardening plan",
+      "tridimensional liveness launcher plan",
+      "tasks",
+      "daemon reclaim hardening tasks"
+    ],
+    "key_topics": [
+      "code-index",
+      "daemon",
+      "reclaim",
+      "hardening",
+      "wedged",
+      "dead",
+      "socket",
+      "mk-code-index",
+      "launcher",
+      "32000",
+      "prevent",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Tridimensional",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
+    "created_at": "2026-06-29T10:17:13.087Z",
+    "last_save_at": "2026-06-29T10:17:13.087Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a606e086e7faaa23ce91f2a32225586f1b7c907a01462aaccceb167754308de4",
+    "source_doc_hashes": {
+      "spec.md": "cca9db8a30377096063991376b499810193ffcf5b3be5732a338343d9a9af87a",
+      "plan.md": "2983a316a351df711f124622e132a65ba47b3deb3e699fd0676b83d3e8ad37a5",
+      "tasks.md": "084b6cb4fb6b23a0994a5d92478ec21196c1f71fb0abd924820af3d26027d727",
+      "research/research.md": "7c7eaf080388be56b3fa6abd906850b5efbc6a5aa378c6f61605d1e5bb8e7c42"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

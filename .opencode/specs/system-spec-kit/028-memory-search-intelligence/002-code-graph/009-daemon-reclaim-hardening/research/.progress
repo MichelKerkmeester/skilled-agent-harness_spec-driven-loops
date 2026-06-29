@@ -1,0 +1,11 @@
+iter 001 (exact-failure-path): exit 0 /       59 lines
+iter 002 (socket-liveness-probe): exit 0 /       53 lines
+iter 003 (reclaim-on-dead-socket): exit 0 /       52 lines
+iter 004 (startup-grace-window): exit 0 /       51 lines
+iter 005 (wal-startup-robustness): exit 0 /       21 lines
+iter 006 (heartbeat-vs-socket): exit 0 /        5 lines
+iter 007 (self-heal-on-acquire): exit 0 /        6 lines
+iter 008 (race-and-permission-safety): exit 0 /       73 lines
+iter 009 (mcp-client-resilience): exit 0 /        5 lines
+iter 010 (fix-design-and-tests): exit 124 /       12 lines
+RESEARCH_DONE
