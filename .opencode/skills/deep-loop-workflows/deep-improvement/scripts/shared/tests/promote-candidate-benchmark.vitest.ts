@@ -280,6 +280,28 @@ describe('promote-candidate benchmark mode', () => {
     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
   });
 
+  it('allows pre-ship rollback but blocks rollback from unexpected target drift', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
+    const accepted = runPromote(p, [
+      '--phase=accept',
+      `--acceptance-file=${acceptanceFile}`,
+      '--preserved-branch=preserved/test',
+    ]);
+    expect(accepted.status, accepted.stderr).toBe(0);
+
+    const preShipRollback = runRollback(acceptanceFile);
+    expect(preShipRollback.status, preShipRollback.stderr).toBe(0);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+
+    fs.writeFileSync(p.target, 'UNEXPECTED TARGET BODY\n', 'utf8');
+    const blockedRollback = runRollback(acceptanceFile);
+
+    expect(blockedRollback.status).toBe(1);
+    expect(blockedRollback.stderr).toMatch(/unexpected canonical target state/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('UNEXPECTED TARGET BODY\n');
+  });
+
   it('blocks ship after canonical drift, restores the pre-acceptance target, and records a preserved-branch event', () => {
     const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
     const acceptanceFile = path.join(p.archiveDir, 'accepted.json');

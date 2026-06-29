@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -49,6 +50,10 @@ function ensureParent(filePath) {
 function appendJsonl(filePath, data) {
   ensureParent(filePath);
   fs.appendFileSync(filePath, `${JSON.stringify(data)}\n`, 'utf8');
+}
+
+function sha256File(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
 }
 
 function currentGitBranch() {
@@ -111,6 +116,46 @@ function fail(message) {
   process.exit(1);
 }
 
+function expectedRollbackSourceHashes(acceptedState) {
+  if (!acceptedState) {
+    return [];
+  }
+  return [
+    ['pre-acceptance target', acceptedState.preAcceptTargetHash],
+    ['accepted candidate', acceptedState.candidateHash],
+  ].filter(([, hash]) => typeof hash === 'string' && hash.length > 0);
+}
+
+function assertRollbackHashGuard(acceptedState, target, backup) {
+  if (!acceptedState) {
+    return;
+  }
+
+  const sourceHashes = expectedRollbackSourceHashes(acceptedState);
+  if (sourceHashes.length === 0) {
+    fail('Cannot roll back: acceptance file does not contain a verifiable accepted-state hash');
+  }
+
+  if (!acceptedState.preAcceptTargetHash) {
+    fail('Cannot roll back: acceptance file does not contain a pre-acceptance target hash');
+  }
+
+  if (sha256File(backup) !== acceptedState.preAcceptTargetHash) {
+    fail('Cannot roll back: backup file hash does not match the accepted pre-acceptance target hash');
+  }
+
+  if (!fs.existsSync(target)) {
+    fail(`Cannot roll back: target file not found for hash verification: ${target}`);
+  }
+
+  const currentTargetHash = sha256File(target);
+  const matchedState = sourceHashes.find(([, hash]) => hash === currentTargetHash);
+  if (!matchedState) {
+    const expectedLabels = sourceHashes.map(([label]) => label).join(' or ');
+    fail(`Cannot roll back: unexpected canonical target state; expected ${expectedLabels}`);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -153,6 +198,8 @@ function main() {
   if (!fs.existsSync(backup)) {
     fail(`Cannot roll back: backup file not found: ${backup}`);
   }
+
+  assertRollbackHashGuard(acceptedState, target, backup);
 
   ensureParent(target);
   fs.copyFileSync(backup, target);

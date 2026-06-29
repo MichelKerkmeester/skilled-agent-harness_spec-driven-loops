@@ -195,8 +195,172 @@ async function main() {
     goal = await helpers.readGoal('session-cap', { stateDir });
     assert.equal(goal.autoTurnsUsed, 8);
 
+    result = await helpers.maybeContinueGoal(null, {
+      stateDir,
+      nowMs: 5000,
+      client: capClient,
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'missing_session_id');
+
+    await helpers.setGoal('session-missing-client', 'Suppress when promptAsync is unavailable', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'missing-client-goal',
+    });
+    result = await helpers.maybeContinueGoal('session-missing-client', {
+      stateDir,
+      nowMs: 5000,
+      client: { session: {} },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'prompt_async_unavailable');
+    goal = await helpers.readGoal('session-missing-client', { stateDir });
+    assert.equal(goal.continuationSuppressed, true);
+    assert.equal(goal.continuationSuppressedReason, 'prompt_async_unavailable');
+
+    await helpers.setGoal('session-in-flight', 'Suppress duplicate continuation attempts', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'in-flight-goal',
+    });
+    result = await helpers.maybeContinueGoal('session-in-flight', {
+      stateDir,
+      nowMs: 5000,
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(['session-in-flight']),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-in-flight', 'idle']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'continuation_in_flight');
+    goal = await helpers.readGoal('session-in-flight', { stateDir });
+    assert.equal(goal.autoTurnsUsed, 0);
+
+    const blockedGoal = await helpers.setGoal('session-blocked-prompt', 'Wait while permission is pending', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'blocked-prompt-goal',
+    });
+    await helpers.writeGoalAtomic({
+      ...blockedGoal,
+      blockedByPrompt: true,
+    }, { stateDir });
+    result = await helpers.maybeContinueGoal('session-blocked-prompt', {
+      stateDir,
+      nowMs: 5000,
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-blocked-prompt', 'idle']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'permission_or_question_block');
+    goal = await helpers.readGoal('session-blocked-prompt', { stateDir });
+    assert.equal(goal.continuationSuppressedReason, 'permission_or_question_block');
+
+    await helpers.setGoal('session-runtime-busy', 'Do not continue while the runtime is busy', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'runtime-busy-goal',
+    });
+    result = await helpers.maybeContinueGoal('session-runtime-busy', {
+      stateDir,
+      nowMs: 5000,
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-runtime-busy', 'busy']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'session_busy');
+    goal = await helpers.readGoal('session-runtime-busy', { stateDir });
+    assert.equal(goal.continuationSuppressedReason, 'session_busy');
+
+    const cooldownGoal = await helpers.setGoal('session-cooldown', 'Respect the continuation cooldown', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'cooldown-goal',
+    });
+    await helpers.writeGoalAtomic({
+      ...cooldownGoal,
+      lastContinuationAtMs: 4900,
+    }, { stateDir });
+    result = await helpers.maybeContinueGoal('session-cooldown', {
+      stateDir,
+      nowMs: 5000,
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-cooldown', 'idle']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'cooldown');
+
+    const wallClockGoal = await helpers.setGoal('session-wall-clock', 'Stop after the wall clock cap', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'wall-clock-goal',
+    });
+    await helpers.writeGoalAtomic({
+      ...wallClockGoal,
+      startedAtMs: 1000,
+    }, { stateDir });
+    result = await helpers.maybeContinueGoal('session-wall-clock', {
+      stateDir,
+      nowMs: 1000 + (30 * 60 * 1000),
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-wall-clock', 'idle']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'wall_clock_cap_reached');
+    goal = await helpers.readGoal('session-wall-clock', { stateDir });
+    assert.equal(goal.continuationSuppressed, true);
+    assert.equal(goal.continuationSuppressedReason, 'wall_clock_cap_reached');
+
+    const budgetGoal = await helpers.setGoal('session-budget', 'Stop when token budget is exhausted', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'budget-goal',
+      tokenBudget: 100,
+    });
+    await helpers.writeGoalAtomic({
+      ...budgetGoal,
+      tokensUsed: 100,
+    }, { stateDir });
+    result = await helpers.maybeContinueGoal('session-budget', {
+      stateDir,
+      nowMs: 5000,
+      client: activeClient,
+      runtimeState: {
+        inFlightContinuations: new Set(),
+        blockedByPromptSessions: new Set(),
+        sessionStatuses: new Map([['session-budget', 'idle']]),
+      },
+    });
+    assert.equal(result.decision, 'suppressed');
+    assert.equal(result.reason, 'budget_exhausted');
+    goal = await helpers.readGoal('session-budget', { stateDir });
+    assert.equal(goal.status, 'budget_limited');
+    assert.equal(goal.continuationSuppressed, true);
+    assert.equal(goal.continuationSuppressedReason, 'budget_exhausted');
+    assert.equal(goal.autoTurnsUsed, 0);
+
     entries = await readContinuationEntries(stateDir);
-    assert.equal(entries.at(-1).autoTurnsUsed, 8);
+    assert.equal(entries.at(-1).reason, 'budget_exhausted');
+    assert.equal(entries.at(-1).autoTurnsUsed, 0);
   } finally {
     restoreEnv('MK_GOAL_AUTONOMY', originalAutonomy);
     await rm(stateDir, { recursive: true, force: true });
