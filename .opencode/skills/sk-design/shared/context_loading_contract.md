@@ -154,3 +154,36 @@ dimensions:
 ## 6. ADOPT-IF-BETTER
 
 Fan-out or delegated recommendations are candidates until merged, attributed, and gated. Before adopting a lineage recommendation into canonical skill files, use the promotion discipline in `../../deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md`: score the candidate, validate it against fixtures or miss cases, check repeatability, respect the manifest boundary, and require explicit operator approval.
+
+---
+
+## 7. DESIGN DISPATCH MANIFEST
+
+`DESIGN_DISPATCH_MANIFEST v1` is the structured carry a parent emits when dispatching design or UI work to a child. The CONTEXT MANIFEST names loaded files for the parent's own decision; the dispatch manifest makes that same resolution survive the dispatch boundary as a digestable block the child receives inline.
+
+| Field | Type | Required | Meaning |
+|---|---:|---:|---|
+| `version` | integer | yes | Contract version; `1` for v1. |
+| `surface` | string | yes | The surface the design work targets: route, page, frame, file, or artifact. |
+| `taskType` | string | yes | One of `advice`, `build`, `redesign`, `generation`, `audit`, or `dispatch`, matching the CONTEXT MANIFEST task-type set. |
+| `skDesignLoaded` | boolean | yes | Whether the hub was loaded before the manifest was resolved. Must be `true` to dispatch design work. |
+| `workflowModes` | string array | yes | Non-empty list of registry-valid modes: `interface`, `foundations`, `motion`, `audit`, or `md-generator`, validated against `mode-registry.json`. |
+| `register` | string | yes | `Brand` or `Product`. Must be resolved before dispatch; `unknown` is rejected. |
+| `dials` | object | yes | `VARIANCE`, `MOTION`, and `DENSITY`, matching the Register And Dials shape. |
+| `loadedFiles` | array | yes | Non-empty `{path, sha256}` entries for the design-context files the child must carry, using the proof-token loadedFiles convention by reference. |
+| `proofDemandBack` | object | yes | The proof the parent demands back: a proof-of-application card, and, when Open Design is used, a transport result whose dispatch-manifest digest recomputes to this manifest. |
+
+Validity rules:
+
+- `skDesignLoaded` is `true`.
+- `register` is resolved to `Brand` or `Product`; `unknown` is not dispatchable.
+- `workflowModes` is non-empty, and every mode is registry-valid.
+- `dials` carries the Register And Dials values used for the design decision.
+- `loadedFiles` is non-empty, and every entry has the proof-token `{path, sha256}` shape.
+- `proofDemandBack` names the proof the child must return, including the transport result when Open Design is in scope.
+
+A manifest that fails any validity rule is not dispatchable. The parent ASKs instead of launching the child.
+
+The manifest travels INLINE in the dispatch payload, never as a path the child resolves. It is the request carry that pairs with the return-path transport result: the parent recomputes the manifest digest from what it emitted and reconciles it against `designManifestDigest`.
+
+Residual: an unmodifiable child CLI may ignore an inlined manifest. The enforceable floor is parent-side: require a valid manifest before dispatch, demand proof back, and deny any return path whose manifest digest cannot be reconciled.
