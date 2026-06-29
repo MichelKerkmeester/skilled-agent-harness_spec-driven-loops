@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Add `probeExistingService(socketPath)` wrapping `probeDaemon({deepProbe:true})` → `{status, kind}` (launcher-ipc-bridge.cjs)
-- [ ] T002 Add `live-but-dead-socket` reclaimable state to `classifyOwnerLease` + mirror in `leaseHeldFromFile` (socket missing/dead past N probes → staleReclaimable)
+- [ ] T001 Add `probeExistingService(socketPath)` wrapping `probeDaemon` (normalize its `{status,reason}`) in `lib/launcher-ipc-bridge.cjs`; add an async `classifyLaunchOwner` wrapper (the sync `classifyOwnerLease`/`leaseHeldFromFile` cannot await the probe inline)
+- [ ] T002 Add `live-but-dead-socket` reclaimable state — reclaim only on the COMPOUND predicate (dead-socket AND aged-heartbeat AND past deadline) + a final post-lock socket veto; conditional CAS (re-stat/rename-claim before unlink)
 <!-- /ANCHOR:phase-1 -->
 
 ---

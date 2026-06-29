@@ -37,6 +37,24 @@ Implement components **1-3 + 4 + 7** as the P0 core (they directly close the inc
 
 ---
 
+## GPT-5.5 xhigh verification (5 adversarial iters)
+
+A second model (`gpt-5.5`, xhigh reasoning, fast) cross-checked the design above against the real source. **Verdict: sound-with-fixes** — the direction is right, but these corrections are must-fixes before implementation (4/5 iters produced findings; the missed-failure-modes iter was truncated on over-generation but its angle is covered below):
+
+1. **Wrong path (verified).** The live source is `.opencode/bin/lib/launcher-ipc-bridge.cjs` (launcher `require('./lib/launcher-ipc-bridge.cjs')` at L166); the `bin/` top-level is a directory. GLM's `bin/launcher-ipc-bridge.cjs` line refs map to the `lib/` file.
+2. **The reclaim CAS is NOT atomic (flagged by 3 iters).** `unlink`-by-path then `O_EXCL`-create has a classify→unlink window where a *successor* lease can be deleted. GLM's "no CAS change needed" is wrong — needs re-stat/inode revalidation, a rename-claim, or the owner-lease mutation lock before unlink.
+3. **Reclaim must be a COMPOUND predicate + a final socket-veto.** N deep-probe failures alone are unsafe: a healthy daemon mid huge `code_graph_scan` is alive but can't answer JSON-RPC for a while. Require `dead-socket AND aged-heartbeat (past TTL) AND past startup-deadline`, and after acquiring the respawn lock do a **final deep probe — if the socket answers, abort the kill**.
+4. **Sync vs async.** `classifyOwnerLease`/`leaseHeldFromFile` are synchronous and feed synchronous acquisition; the deep probe is async. Don't inline it — add an async `classifyLaunchOwner` wrapper (injected clock/liveness/identity/stat/probe) around the sync lease reads.
+5. **Respawn needs the child PID threaded.** If `maybeBridgeLeaseHolder` returns `action:'respawn'` for a held PID lease, `bridgeOrReportLeaseHeld` is called without `respawnChildPid`, so `respawnAfterDeadSocket` reports `missing-child-pid` instead of reaping/spawning.
+6. **`childSpawnedAtIso` is a new schema field.** `startedAtIso` is stamped before child spawn and the child-PID refresh patches only `ownerPid`/`ppid`/`executablePath`, so existing timestamps mis-age daemon startup — the grace clock must be a new field.
+7. **The crash-surviving PID registry is net-new** (only the two lease files + the launcher `writeState` PID exist today) — needed because the incident lost BOTH lease files, leaving no durable child PID to reap.
+8. **WAL-reaping needs daemon-identity + non-serving proof** (a process can legitimately hold the WAL mid-checkpoint/scan); never reap on WAL ownership alone.
+9. **Minor corrections:** `probeDaemon` returns `{status, reason}` (raw error strings) not a normalized `{status, kind}` — the wrapper must normalize; `classifyOwnerLease` also has `ppid-1-orphan` and `live-owner` states; the heartbeat is refreshed by BOTH the launcher and the child (every ~20s after stdio connect), so the real defect is *socket-ungated* heartbeat, not "launcher-only".
+
+**Net:** keep GLM's tridimensional-liveness direction, but implement reclaim as a compound, socket-vetoed, identity-guarded, conditional-CAS operation against the `lib/` bridge — never a probe-failure-count kill.
+
+---
+
 <!-- ANCHOR:sources -->
 ## Sources
 

@@ -38,6 +38,7 @@
     "key_files": [
       "research/research.md",
       ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -53,6 +54,12 @@
         "name": "mk-code-index-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Graph",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
     "created_at": "2026-06-29T10:17:13.087Z",
-    "last_save_at": "2026-06-29T10:19:43.126Z",
+    "last_save_at": "2026-06-29T10:49:38.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +200,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:95c0b992da484103031192e8bbfb7df35291b3d59fb0f7438b6e80381406b4c4",
+    "source_fingerprint": "sha256:0c83b5554eef82a0c26280138f215feb4e2cf663f69e3c43c8b49e86d002e5a0",
     "source_doc_hashes": {
-      "spec.md": "cca9db8a30377096063991376b499810193ffcf5b3be5732a338343d9a9af87a",
-      "plan.md": "2983a316a351df711f124622e132a65ba47b3deb3e699fd0676b83d3e8ad37a5",
-      "tasks.md": "084b6cb4fb6b23a0994a5d92478ec21196c1f71fb0abd924820af3d26027d727",
-      "research/research.md": "6ebd7cdc810761d7a879490fd5f6171d19386eb7385523d382e0a3e2670c509f"
+      "spec.md": "7d73a7480c75989b7a15d8ac92fe7e6a2c4fdfc997910ebf13ce31f4c158a92f",
+      "plan.md": "8ce6619aac97461f17e9091836cd9a1b3127d9f47cc6670f5631311db4a5d034",
+      "tasks.md": "eec8111b14d7e8f586d5311808144c4f3ce8ccbe4f90dc3a1ce7e42629ffe205",
+      "research/research.md": "978af5426f247cc3d5b97d5f2b8447a171b6fd2b083de18fe50820bb2711edab"
     },
     "last_active_child_id": null,
     "last_active_at": null

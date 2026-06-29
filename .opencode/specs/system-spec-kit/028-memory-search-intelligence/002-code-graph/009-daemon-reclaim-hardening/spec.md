@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-On 2026-06-29 the `mk_code_index` MCP server failed to reconnect with `-32000`. Investigation found the daemon had crashed uncleanly, leaving two orphaned processes alive (0% CPU) that had never (re)created their IPC socket, a vanished lease file, and a 17 MB orphaned WAL. Manual recovery: kill the orphans + `wal_checkpoint(TRUNCATE)` + clean the socket dir. A 10-iteration GLM 5.2 (max thinking) deep research (see `research/research.md`) produced the hardening design this phase implements.
+On 2026-06-29 the `mk_code_index` MCP server failed to reconnect with `-32000`. Investigation found the daemon had crashed uncleanly, leaving two orphaned processes alive (0% CPU) that had never (re)created their IPC socket, a vanished lease file, and a 17 MB orphaned WAL. Manual recovery: kill the orphans + `wal_checkpoint(TRUNCATE)` + clean the socket dir. A 10-iteration GLM 5.2 (max thinking) deep research (see `research/research.md`) produced the hardening design, then a 5-iteration GPT-5.5 (xhigh) adversarial cross-check refined it (verdict: **sound-with-fixes**) — correcting the bridge path to `lib/`, requiring a compound socket-vetoed reclaim predicate (NOT a probe-failure count, which would false-kill a busy `code_graph_scan`), a conditional CAS, an async classify wrapper, and child-PID threading on respawn.
 
 **Scope Boundary**: Harden `.opencode/bin/mk-code-index-launcher.cjs` (+ its IPC bridge + the child's `initDb`) so the wedge self-heals. No change to the code-graph query/scan semantics.
 
@@ -105,7 +105,7 @@ Make liveness **tridimensional** (PID-alive AND socket-serving AND heartbeat-fre
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/bin/mk-code-index-launcher.cjs` | Modify | Liveness classification, reclaim, grace window, self-heal, diagnostics |
-| `.opencode/bin/launcher-ipc-bridge.cjs` | Modify | `probeExistingService` wrapper; no-bridge-socket → respawn |
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Modify | `probeExistingService` wrapper (normalize `probeDaemon`'s `{status,reason}`); no-bridge-socket → respawn with the child PID threaded |
 | `system-code-graph/mcp_server/.../initDb` | Modify | `wal_autocheckpoint`; socket-gated heartbeat ownership |
 | launcher test suite | Add | Deterministic wedge-simulation cases |
 <!-- /ANCHOR:scope -->
@@ -119,7 +119,7 @@ Make liveness **tridimensional** (PID-alive AND socket-serving AND heartbeat-fre
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Reclaim dead-socket daemon | A live-PID owner whose socket is missing/unresponsive past `MAX_INIT_MS` is reaped + respawned automatically |
+| REQ-001 | Reclaim dead-socket daemon (safely) | Reclaim only on a COMPOUND predicate — dead socket AND aged heartbeat (past TTL) AND past `MAX_INIT_MS` — with a final deep-probe veto after acquiring the respawn lock (if the socket answers, abort the kill); never on probe-failure count alone, since a busy `code_graph_scan` is alive-but-slow |
 | REQ-002 | Don't kill a starting daemon | An owner within `STARTUP_GRACE_MS` with no socket yet is NOT killed |
 | REQ-003 | Startup WAL hygiene | An oversized/orphaned WAL is checkpoint-truncated before spawn; `wal_autocheckpoint` caps growth |
 | REQ-004 | Diagnostic line | Every failure exit emits one `LAUNCHER_DIAGNOSTIC: reason=<token>` line |

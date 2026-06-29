@@ -86,9 +86,9 @@ Tridimensional-liveness self-heal. Socket-serving health becomes a first-class i
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: P0 core
-- [ ] `probeExistingService` wrapper; socket-health gate → `live-but-dead-socket` in `classifyOwnerLease` + `leaseHeldFromFile`
-- [ ] No-bridge-socket branch → respawn; startup grace window (`childSpawnedAtIso`, `STARTUP_GRACE_MS`, `MAX_INIT_MS`)
-- [ ] Startup WAL hygiene (`wal_checkpoint(TRUNCATE)` over-threshold/post-reap; `wal_autocheckpoint`); one-line diagnostics
+- [ ] `probeExistingService` wrapper over `lib/launcher-ipc-bridge.cjs` (normalize `probeDaemon`'s `{status,reason}`); async `classifyLaunchOwner` wrapper around the sync lease reads (no inline async in the sync classifiers)
+- [ ] Reclaim on the COMPOUND predicate (dead-socket AND aged-heartbeat AND past `MAX_INIT_MS`) + a final deep-probe veto after the respawn lock; conditional CAS (re-stat/rename-claim before unlink) — never a probe-failure-count kill
+- [ ] No-bridge-socket → respawn with the child PID threaded (avoid `missing-child-pid`); startup grace keyed on a new `childSpawnedAtIso`; startup WAL hygiene (`wal_checkpoint(TRUNCATE)` over-threshold/post-reap; `wal_autocheckpoint`); `LAUNCHER_DIAGNOSTIC` line
 
 ### Phase 2: Safety + durability
 - [ ] Crash-surviving PID registry + one-shot self-heal-on-acquire (discover→reap→checkpoint→spawn)
