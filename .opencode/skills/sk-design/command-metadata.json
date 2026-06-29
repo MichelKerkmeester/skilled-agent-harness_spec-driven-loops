@@ -2,7 +2,10 @@
   {
     "command": "/design:audit",
     "ownerMode": "audit",
-    "description": "Design QA: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
+    "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
+    "descriptionRole": "hub-keyword-projection",
+    "autoTriggerEligible": false,
+    "hubKeywordProjection": ["accessibility", "performance", "responsive", "anti-slop", "scoring", "hardening"],
     "argumentHint": "<target> [--scope] [--score]",
     "aliases": ["audit design quality", "critique ui surface", "score design readiness"],
     "userIntent": {
@@ -105,7 +108,10 @@
   {
     "command": "/design:foundations",
     "ownerMode": "foundations",
-    "description": "Visual systems: color/OKLCH, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
+    "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
+    "descriptionRole": "hub-keyword-projection",
+    "autoTriggerEligible": false,
+    "hubKeywordProjection": ["color", "typography", "layout", "spacing", "tokens", "theming"],
     "argumentHint": "<axis> <target>",
     "aliases": ["design visual system", "define design tokens", "plan static foundations"],
     "userIntent": {
@@ -208,7 +214,10 @@
   {
     "command": "/design:interface",
     "ownerMode": "interface",
-    "description": "Distinctive, intentional UI design: direction, palette, type, layout, motion. sk-design interface mode.",
+    "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
+    "descriptionRole": "hub-keyword-projection",
+    "autoTriggerEligible": false,
+    "hubKeywordProjection": ["direction", "palette", "type", "layout", "motion"],
     "argumentHint": "<target> [--mode]",
     "aliases": ["shape interface direction", "redesign ui surface", "make ui distinctive"],
     "userIntent": {
@@ -401,7 +410,10 @@
   {
     "command": "/design:md-generator",
     "ownerMode": "md-generator",
-    "description": "Extract a live site's real CSS into a Style Reference DESIGN.md. sk-design md-generator mode.",
+    "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
+    "descriptionRole": "hub-keyword-projection",
+    "autoTriggerEligible": false,
+    "hubKeywordProjection": ["CSS", "Style Reference", "DESIGN.md", "extract"],
     "argumentHint": "<live-url> --output <dir>",
     "aliases": ["extract website css", "generate design reference", "capture design tokens"],
     "userIntent": {
@@ -481,7 +493,10 @@
   {
     "command": "/design:motion",
     "ownerMode": "motion",
-    "description": "Animation, transitions, micro-interactions, AnimatePresence, reduced motion. sk-design motion mode.",
+    "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
+    "descriptionRole": "hub-keyword-projection",
+    "autoTriggerEligible": false,
+    "hubKeywordProjection": ["animation", "transitions", "micro-interactions", "reduced motion"],
     "argumentHint": "<component-state> [--library]",
     "aliases": ["design motion behavior", "plan micro interactions", "specify animation states"],
     "userIntent": {

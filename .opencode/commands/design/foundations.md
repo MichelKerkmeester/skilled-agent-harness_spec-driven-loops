@@ -1,5 +1,5 @@
 ---
-description: Visual systems: color/OKLCH, typography, layout, spacing, tokens, theming. sk-design foundations mode.
+description: Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.
 argument-hint: "<axis> <target>"
 allowed-tools: Read, Glob, Grep
 ---

@@ -1,23 +1,21 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/013-description-role-projection",
-  "description": "Add descriptionRole + autoTriggerEligible:false + hubKeywordProjection to command-metadata.json and prove a 4-lane replay (advisor→hub, hub→mode, dire",
+  "description": "A command `description` is treated as if it were auto-trigger text for that one command, yet natural-language prompts collapse to the `sk-design` hub",
   "keywords": [
-    "add",
-    "descriptionrole",
-    "autotriggereligible",
-    "false",
-    "hubkeywordprojection",
-    "command-metadata",
-    "json",
-    "prove",
-    "4-lane",
-    "replay",
-    "advisor",
-    "hub",
-    "mode",
-    "dire"
+    "command",
+    "description",
+    "treated",
+    "auto-trigger",
+    "text",
+    "one",
+    "natural-language",
+    "prompts",
+    "collapse",
+    "sk-design",
+    "hub"
   ],
-  "lastUpdated": "2026-06-28T12:40:00.284Z",
+  "lastUpdated": "2026-06-29T07:26:08.761Z",
   "specId": "013",
   "folderSlug": "description-role-projection",
   "parentChain": [
@@ -29,6 +27,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

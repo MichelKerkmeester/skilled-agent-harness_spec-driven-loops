@@ -1,5 +1,5 @@
 ---
-description: Design QA: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
+description: Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
 argument-hint: "<target> [--scope] [--score]"
 allowed-tools: Read, Glob, Grep
 ---

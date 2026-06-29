@@ -8,6 +8,9 @@ const REQUIRED_FIELDS = [
   "command",
   "ownerMode",
   "description",
+  "descriptionRole",
+  "autoTriggerEligible",
+  "hubKeywordProjection",
   "argumentHint",
   "aliases",
   "userIntent",
@@ -90,6 +93,7 @@ const TASK_PROJECTION_STRICTNESS = new Set(["advisory"]);
 const TASK_PROJECTION_FIELDS = ["verb", "ownerMode", "strictness", "referenceSources", "requires", "fixtures"];
 const TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER = "Negative corpus:";
 const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
+const DESCRIPTION_ROLES = new Set(["hub-keyword-projection"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
   "result",
@@ -273,6 +277,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       }
     }
 
+    errors.push(...validateDescriptionRoleProjection(record, command));
     errors.push(...validateUserIntent(record, command));
 
     if (typeof record?.toolPolicy?.mutatesWorkspace !== "boolean") {
@@ -322,6 +327,41 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
   errors.push(...validatePipelineGraph(seenCommands));
 
   return errors.sort();
+}
+
+function validateDescriptionRoleProjection(record, command) {
+  const errors = [];
+
+  if (typeof record?.descriptionRole !== "string" || record.descriptionRole.trim().length === 0) {
+    errors.push(`${command}: descriptionRole must be a non-empty string`);
+  } else if (!DESCRIPTION_ROLES.has(record.descriptionRole)) {
+    errors.push(`${command}: descriptionRole must be one of ${[...DESCRIPTION_ROLES].join(",")}`);
+  }
+
+  if (record?.autoTriggerEligible !== false) {
+    errors.push(`${command}: autoTriggerEligible must be the boolean false`);
+  }
+
+  if (!isNonEmptyStringArray(record?.hubKeywordProjection)) {
+    errors.push(`${command}: hubKeywordProjection must be a non-empty string array`);
+  } else {
+    const description = typeof record?.description === "string" ? record.description : "";
+
+    for (const token of record.hubKeywordProjection) {
+      if (!containsPhrase(description, token)) {
+        errors.push(`${command}: hubKeywordProjection token "${token}" must be a substring of description`);
+      }
+    }
+  }
+
+  const ownerMode = typeof record?.ownerMode === "string" ? record.ownerMode : "<missing>";
+  const expectedSuffix = `sk-design ${ownerMode} mode.`;
+
+  if (typeof record?.description !== "string" || !record.description.endsWith(expectedSuffix)) {
+    errors.push(`${command}: description must end with ${expectedSuffix}`);
+  }
+
+  return errors;
 }
 
 function parseInterfaceIntentSignalKeys(source) {

@@ -1,5 +1,5 @@
 ---
-description: Distinctive, intentional UI design: direction, palette, type, layout, motion. sk-design interface mode.
+description: Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.
 argument-hint: "<target> [--mode]"
 allowed-tools: Read, Glob, Grep
 ---

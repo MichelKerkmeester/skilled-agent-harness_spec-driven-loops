@@ -1,5 +1,5 @@
 ---
-description: Animation, transitions, micro-interactions, AnimatePresence, reduced motion. sk-design motion mode.
+description: Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.
 argument-hint: "<component-state> [--library]"
 allowed-tools: Read, Glob, Grep
 ---
