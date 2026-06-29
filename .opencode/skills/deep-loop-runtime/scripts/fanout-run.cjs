@@ -354,7 +354,7 @@ const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
-    child.kill(signal);
+    terminateLineageProcess(child, signal);
   }
 }
 
@@ -366,6 +366,108 @@ function expandHomeDir(inputPath) {
     return path.join(os.homedir(), inputPath.slice(2));
   }
   return inputPath;
+}
+
+function isPathInside(childPath, parentPath) {
+  const relative = path.relative(parentPath, childPath);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function physicalPathForValidation(targetPath) {
+  try {
+    return fs.realpathSync.native(targetPath);
+  } catch {
+    const parentPath = path.dirname(targetPath);
+    try {
+      return path.join(fs.realpathSync.native(parentPath), path.basename(targetPath));
+    } catch {
+      return targetPath;
+    }
+  }
+}
+
+function validateBaseArtifactDir(baseArtifactDir, specFolder, loopType) {
+  if (baseArtifactDir.includes('\0')) {
+    throw inputError('baseArtifactDir must not contain null bytes');
+  }
+  if (baseArtifactDir.split(/[\\/]+/).includes('..')) {
+    throw inputError('baseArtifactDir must not contain ".." path segments');
+  }
+  const resolvedBase = physicalPathForValidation(path.resolve(process.cwd(), baseArtifactDir));
+  const resolvedSpecFolder = physicalPathForValidation(path.resolve(process.cwd(), specFolder));
+  const expectedRoot = path.join(resolvedSpecFolder, loopType);
+  if (!isPathInside(resolvedBase, expectedRoot)) {
+    throw inputError(`baseArtifactDir must resolve inside the spec folder's ${loopType} artifact tree`);
+  }
+  return baseArtifactDir;
+}
+
+function validateClaudeConfigDir(configDir) {
+  if (typeof configDir !== 'string' || configDir.trim() === '') {
+    throw inputError('configDir must be a non-empty string when set');
+  }
+  validateNamespaceValue(configDir, 'configDir', inputError);
+
+  const expanded = expandHomeDir(configDir);
+  const resolved = path.resolve(process.cwd(), expanded);
+  const homeDir = path.resolve(os.homedir());
+  const cwd = path.resolve(process.cwd());
+  const homeRelative = path.relative(homeDir, resolved);
+  const cwdRelative = path.relative(cwd, resolved);
+  const homeTop = homeRelative.split(path.sep)[0] || '';
+  const cwdTop = cwdRelative.split(path.sep)[0] || '';
+  const allowedConfigRoot = (segment) => segment === '.claude' || segment.startsWith('.claude-');
+
+  if (isPathInside(resolved, homeDir) && allowedConfigRoot(homeTop)) {
+    return resolved;
+  }
+  if (isPathInside(resolved, cwd) && allowedConfigRoot(cwdTop)) {
+    return resolved;
+  }
+  throw inputError('configDir must resolve under ~/.claude*, or a repo-local .claude* directory');
+}
+
+function terminateLineageProcess(child, signal) {
+  if (!child || child.killed) return;
+  if (process.platform !== 'win32' && child.pid) {
+    try {
+      process.kill(-child.pid, signal);
+      return;
+    } catch (error) {
+      if (error && error.code !== 'ESRCH') {
+        try {
+          child.kill(signal);
+        } catch {
+          // The process may have already exited between the group and direct kill attempts.
+        }
+      }
+      return;
+    }
+  }
+  try {
+    child.kill(signal);
+  } catch {
+    // The process may have already exited.
+  }
+}
+
+function expectedLineageArtifactPaths(loopType, lineageDir) {
+  if (loopType === 'review') return [path.join(lineageDir, 'review-report.md')];
+  if (loopType === 'context') return [path.join(lineageDir, 'context-report.md')];
+  return [path.join(lineageDir, 'research.md')];
+}
+
+function hasNonEmptyFile(filePath) {
+  try {
+    return fs.statSync(filePath).isFile() && fs.statSync(filePath).size > 0;
+  } catch {
+    return false;
+  }
+}
+
+function findMissingLineageArtifacts(loopType, lineageDir) {
+  return expectedLineageArtifactPaths(loopType, lineageDir)
+    .filter((artifactPath) => !hasNonEmptyFile(artifactPath));
 }
 
 function isRecord(value) {
@@ -720,6 +822,7 @@ function runLineageProcess(command, cmdArgs, opts) {
         cwd,
         env,
         stdio: [hasInput ? 'pipe' : 'ignore', 'pipe', 'pipe'],
+        detached: process.platform !== 'win32',
       });
     } catch (error) {
       resolvePromise({ status: null, signal: null, stdout: '', error });
@@ -736,8 +839,20 @@ function runLineageProcess(command, cmdArgs, opts) {
 
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
+      terminateLineageProcess(child, 'SIGTERM');
     }, timeoutMs);
+    timer.unref?.();
+
+    const abortHandler = () => {
+      terminateLineageProcess(child, 'SIGTERM');
+    };
+    if (opts.abortSignal) {
+      if (opts.abortSignal.aborted) {
+        abortHandler();
+      } else {
+        opts.abortSignal.addEventListener('abort', abortHandler, { once: true });
+      }
+    }
 
     child.stdout?.setEncoding('utf8');
     child.stdout?.on('data', (chunk) => {
@@ -745,7 +860,7 @@ function runLineageProcess(command, cmdArgs, opts) {
       stdoutBytes += Buffer.byteLength(chunk, 'utf8');
       if (stdoutBytes > maxBuffer) {
         truncated = true;
-        child.kill('SIGTERM');
+        terminateLineageProcess(child, 'SIGTERM');
         return;
       }
       stdout += chunk;
@@ -762,6 +877,7 @@ function runLineageProcess(command, cmdArgs, opts) {
       settled = true;
       activeLineageProcesses.delete(child);
       clearTimeout(timer);
+      opts.abortSignal?.removeEventListener?.('abort', abortHandler);
       const effectiveSignal = timedOut ? 'SIGTERM' : signal;
       resolvePromise({
         status: timedOut ? null : code,
@@ -864,12 +980,7 @@ async function main() {
     ? args.researchTopic.trim()
     : null;
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
-  const baseArtifactDir = ensureString(args, 'baseArtifactDir');
-  // Defense-in-depth: baseArtifactDir is host-provided, but reject path-traversal
-  // segments so a malformed value cannot relocate fanout artifacts outside its tree.
-  if (baseArtifactDir.split(/[\\/]/).includes('..')) {
-    throw inputError('baseArtifactDir must not contain ".." path segments');
-  }
+  const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
 
   const {
     parseFanoutConfig,
@@ -1005,7 +1116,7 @@ async function main() {
       if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
       appendFanoutStatusLedger(ledgerPath, enrichedEvent);
     },
-    worker: async (lineage) => {
+    worker: async (lineage, context) => {
       const hrStart = process.hrtime();
       const lineageDir = path.join(lineagesDir, lineage.label);
       const stateDir = path.join(lineageDir, '.executor-state');
@@ -1047,7 +1158,7 @@ async function main() {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(lineage.kind === 'cli-claude-code' && lineage.configDir
-          ? { CLAUDE_CONFIG_DIR: expandHomeDir(lineage.configDir) }
+          ? { CLAUDE_CONFIG_DIR: validateClaudeConfigDir(lineage.configDir) }
           : {}),
       };
 
@@ -1087,6 +1198,7 @@ async function main() {
           timeoutMs,
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
+          abortSignal: context.signal,
           ...(typeof input === 'string' ? { input } : {}),
         });
       } finally {
@@ -1107,6 +1219,7 @@ async function main() {
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
+      const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
 
       // A lineage whose CLI exits non-zero or is killed by the timeout is a FAILURE,
       // not a success. Throw so the pool settles this item as rejected and counts it
@@ -1121,6 +1234,18 @@ async function main() {
         failure.exitCode = exitCode;
         failure.timedOut = timedOut;
         failure.salvage = salvage;
+        throw failure;
+      }
+
+      if (missingArtifacts.length > 0) {
+        const failure = new Error(
+          `lineage ${lineage.label} exited 0 but did not produce expected artifact: ${missingArtifacts.join(', ')}`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = false;
+        failure.salvage = { salvaged: salvage.salvaged, failed: Math.max(1, salvage.failed) };
+        failure.missingArtifacts = missingArtifacts;
         throw failure;
       }
 

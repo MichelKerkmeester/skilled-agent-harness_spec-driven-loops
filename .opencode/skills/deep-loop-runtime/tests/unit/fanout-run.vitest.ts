@@ -2,9 +2,18 @@
 // MODULE: Fanout Run Unit Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { isAbsolute, join, relative, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -14,7 +23,7 @@ import {
   recordScriptRun,
   replayScriptRun,
   runtimeRoot,
-  spawnCjs,
+  spawnCjs as rawSpawnCjs,
   type HermeticEnv,
   type SpawnCjsOptions,
   type SpawnCjsResult,
@@ -50,6 +59,59 @@ function envWithBin(hermetic: HermeticEnv, binDir: string, env: NodeJS.ProcessEn
   };
 }
 
+function makeBaseArtifactDir(hermetic: HermeticEnv, specFolder: string, loopType: 'research' | 'review' | 'context'): string {
+  const dir = join(hermetic.tmpDir, specFolder, loopType);
+  mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function isPathInside(childPath: string, parentPath: string): boolean {
+  const rel = relative(resolve(parentPath), resolve(childPath));
+  return rel === '' || (!rel.startsWith('..') && !isAbsolute(rel));
+}
+
+function canonicalizeFanoutArgs(
+  scriptPath: string,
+  args: string[],
+  options: SpawnCjsOptions,
+): string[] {
+  if (scriptPath !== fanoutRunScript) return args;
+  const specIndex = args.indexOf('--spec-folder');
+  const loopIndex = args.indexOf('--loop-type');
+  const baseIndex = args.indexOf('--base-artifact-dir');
+  if (specIndex < 0 || loopIndex < 0 || baseIndex < 0) return args;
+  const cwd = options.cwd ?? runtimeRoot;
+  const specFolder = args[specIndex + 1];
+  const loopType = args[loopIndex + 1] as 'research' | 'review' | 'context';
+  const rawBaseDir = args[baseIndex + 1];
+  if (!specFolder || !loopType || !rawBaseDir) return args;
+
+  const resolvedBaseDir = resolve(cwd, rawBaseDir);
+  const expectedRoot = resolve(cwd, specFolder, loopType);
+  if (isPathInside(resolvedBaseDir, expectedRoot)) return args;
+
+  const canonicalBaseDir = resolve(expectedRoot, 'fanout-test-artifacts');
+  mkdirSync(canonicalBaseDir, { recursive: true });
+  if (existsSync(resolvedBaseDir)) {
+    cpSync(resolvedBaseDir, canonicalBaseDir, { recursive: true, force: true });
+    rmSync(resolvedBaseDir, { recursive: true, force: true });
+  }
+  mkdirSync(resolve(resolvedBaseDir, '..'), { recursive: true });
+  symlinkSync(canonicalBaseDir, resolvedBaseDir, 'dir');
+
+  const nextArgs = [...args];
+  nextArgs[baseIndex + 1] = canonicalBaseDir;
+  return nextArgs;
+}
+
+function spawnCjs(
+  scriptPath: string,
+  args: string[] = [],
+  options: SpawnCjsOptions = {},
+): Promise<SpawnCjsResult> {
+  return rawSpawnCjs(scriptPath, canonicalizeFanoutArgs(scriptPath, args, options), options);
+}
+
 function spawnFanout(
   testId: string,
   args: string[] = [],
@@ -70,7 +132,18 @@ function spawnFanout(
  */
 function writeStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
-  writeFileSync(stubPath, '#!/bin/sh\necho "stub-done"\nexit 0\n', { mode: 0o755 });
+  writeFileSync(
+    stubPath,
+    ['#!/bin/sh', 'write_fanout_artifacts', 'echo "stub-done"', 'exit 0', ''].join('\n')
+      .replace('write_fanout_artifacts', writeFanoutArtifactsShell()),
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
+function writeNoArtifactStubBinary(binDir: string, name: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(stubPath, '#!/bin/sh\necho "stub-done-without-artifact"\nexit 0\n', { mode: 0o755 });
   return stubPath;
 }
 
@@ -99,6 +172,7 @@ function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPa
       '  echo "short"',
       '  exit 1',
       'fi',
+      writeFanoutArtifactsShell(),
       'echo "retry-ok"',
       'exit 0',
       '',
@@ -114,7 +188,11 @@ function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPa
  */
 function writeSleepingStubBinary(binDir: string, name: string, seconds: number): string {
   const stubPath = join(binDir, name);
-  writeFileSync(stubPath, `#!/bin/sh\nsleep ${seconds}\necho "slept"\nexit 0\n`, { mode: 0o755 });
+  writeFileSync(
+    stubPath,
+    ['#!/bin/sh', `sleep ${seconds}`, writeFanoutArtifactsShell(), 'echo "slept"', 'exit 0', ''].join('\n'),
+    { mode: 0o755 },
+  );
   return stubPath;
 }
 
@@ -124,7 +202,19 @@ function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: numbe
     stubPath,
     [
       '#!/usr/bin/env node',
-      `setTimeout(() => { console.log('delayed'); process.exit(0); }, ${delayMs});`,
+      'const fs = require("node:fs");',
+      'const path = require("node:path");',
+      'function lineageDir() {',
+      '  const stateDir = process.env.SPECKIT_CODEX_STATE_DIR || process.env.SPECKIT_CLAUDE_CODE_STATE_DIR || process.env.SPECKIT_OPENCODE_STATE_DIR;',
+      '  return stateDir ? path.dirname(stateDir) : null;',
+      '}',
+      'function writeArtifacts() {',
+      '  const dir = lineageDir();',
+      '  if (!dir) return;',
+      '  fs.mkdirSync(dir, { recursive: true });',
+      '  for (const file of ["research.md", "review-report.md", "context-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
+      '}',
+      `setTimeout(() => { writeArtifacts(); console.log('delayed'); process.exit(0); }, ${delayMs});`,
       '',
     ].join('\n'),
     { mode: 0o755 },
@@ -136,11 +226,29 @@ function shellQuote(value: string): string {
   return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
+function writeFanoutArtifactsShell(): string {
+  return [
+    'lineage_dir=""',
+    'for state_dir in "$SPECKIT_CODEX_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR" "$SPECKIT_OPENCODE_STATE_DIR"; do',
+    '  if [ -n "$state_dir" ]; then',
+    '    lineage_dir=$(dirname "$state_dir")',
+    '    break',
+    '  fi',
+    'done',
+    'if [ -n "$lineage_dir" ]; then',
+    '  mkdir -p "$lineage_dir"',
+    '  printf "ok\\n" > "$lineage_dir/research.md"',
+    '  printf "ok\\n" > "$lineage_dir/review-report.md"',
+    '  printf "ok\\n" > "$lineage_dir/context-report.md"',
+    'fi',
+  ].join('\n');
+}
+
 function writeMarkerSleepingStubBinary(binDir: string, name: string, seconds: number, markerPath: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(
     stubPath,
-    `#!/bin/sh\n: > ${shellQuote(markerPath)}\nsleep ${seconds}\necho "slept"\nexit 0\n`,
+    `#!/bin/sh\n: > ${shellQuote(markerPath)}\nsleep ${seconds}\n${writeFanoutArtifactsShell()}\necho "slept"\nexit 0\n`,
     { mode: 0o755 },
   );
   return stubPath;
@@ -190,7 +298,7 @@ function writeEchoStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(
     stubPath,
-    '#!/bin/sh\necho "ARGV: $@"\necho "STDIN_START"\ncat\necho "STDIN_END"\nexit 0\n',
+    `#!/bin/sh\necho "ARGV: $@"\necho "STDIN_START"\ncat\necho "STDIN_END"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
     { mode: 0o755 },
   );
   return stubPath;
@@ -318,7 +426,7 @@ describe('fanout-run.cjs — module basics', () => {
 
   it('replays a native-only fanout cassette with a stable normalized run envelope', async () => {
     const hermetic = useHermeticEnv('native-cassette');
-    const baseDir = makeTempDir('fanout-run-cassette-base-');
+    const baseDir = makeBaseArtifactDir(hermetic, 'specs/cassette-fanout-native', 'research');
     const cassetteDir = makeTempDir('fanout-run-cassette-dir-');
     const cassetteId = 'fanout-native-empty';
     const fanoutConfig = JSON.stringify({
@@ -478,7 +586,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     const stubPath = join(binDir, 'codex');
     writeFileSync(
       stubPath,
-      '#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\nexit 0\n',
+      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
 
@@ -527,7 +635,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     // distinctness from captured stdout, not just dir existence.
     writeFileSync(
       stubPath,
-      '#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\nexit 0\n',
+      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
 
@@ -770,6 +878,7 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
 describe('fanout-run.cjs — graceful self-stop', () => {
   it('writes a stopped partial orchestration summary when SIGTERM interrupts an in-flight run', async () => {
     const binDir = makeTempDir('fanout-run-stop-bin-');
+    const hermetic = useHermeticEnv('graceful-stop');
     const baseDir = makeTempDir('fanout-run-stop-base-');
     const markerPath = join(baseDir, 'lineage-started.marker');
     writeMarkerSleepingStubBinary(binDir, 'codex', 10, markerPath);
@@ -779,11 +888,9 @@ describe('fanout-run.cjs — graceful self-stop', () => {
       concurrency: 1,
     });
 
-    const hermetic = useHermeticEnv('graceful-stop');
-    const child = spawn(
-      process.execPath,
+    const fanoutArgs = canonicalizeFanoutArgs(
+      fanoutRunScript,
       [
-        fanoutRunScript,
         '--spec-folder',
         'specs/test-fanout-run-stop',
         '--loop-type',
@@ -792,6 +899,14 @@ describe('fanout-run.cjs — graceful self-stop', () => {
         fanoutConfig,
         '--base-artifact-dir',
         baseDir,
+      ],
+      { cwd: hermetic.tmpDir },
+    );
+    const child = spawn(
+      process.execPath,
+      [
+        fanoutRunScript,
+        ...fanoutArgs,
       ],
       {
         cwd: hermetic.tmpDir,
@@ -844,7 +959,6 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     });
     const hermetic = useHermeticEnv(args.testId);
     const commandArgs = [
-      fanoutRunScript,
       '--spec-folder',
       `specs/${args.testId}`,
       '--loop-type',
@@ -857,7 +971,8 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     if (args.waitMs !== undefined) {
       commandArgs.push('--pre-dispatch-wait-ms', String(args.waitMs));
     }
-    return spawn(process.execPath, commandArgs, {
+    const fanoutArgs = canonicalizeFanoutArgs(fanoutRunScript, commandArgs, { cwd: hermetic.tmpDir });
+    return spawn(process.execPath, [fanoutRunScript, ...fanoutArgs], {
       cwd: hermetic.tmpDir,
       env: envWithBin(hermetic, args.binDir),
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -1240,7 +1355,7 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
       stubPath,
       '#!/bin/sh\necho "DISPATCH_STACK=$SPECKIT_CLI_DISPATCH_STACK"\n'
         + 'echo "STATE_DIR=$SPECKIT_CODEX_STATE_DIR"\n'
-        + 'echo "LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\nexit 0\n',
+        + `echo "LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
     return stubPath;
@@ -1326,7 +1441,7 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
     const stubPath = join(binDir, 'claude');
     writeFileSync(
       stubPath,
-      '#!/bin/sh\necho "ARGV: $@"\necho "CLAUDE_CONFIG_DIR=$CLAUDE_CONFIG_DIR"\nexit 0\n',
+      `#!/bin/sh\necho "ARGV: $@"\necho "CLAUDE_CONFIG_DIR=$CLAUDE_CONFIG_DIR"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
     return stubPath;
