@@ -117,6 +117,60 @@ Do not expose sliders, vibe controls or style presets. The verb is a work reques
 | Reduced motion | Delight must degrade to a static or instant state with the same information. |
 | Opt-out | Do not add delight to destructive actions, errors, dense decision points or accessibility-sensitive paths. |
 
+### Applied-Transform Proof Cards
+
+These are the fillable proof artifacts for applied `distill`, `clarify` and `delight` transforms. Fill one card for the real surface being changed. The lane named on the card supplies the guidance; the Shared Application Contract supplies the field meanings.
+
+Shape check only: a filled card has a keep-ledger row, a remove-ledger row, a before line and an after line. Whether the choices and earned moment are right remains an audit judgment.
+
+#### Proof Card - Distill
+
+Guidance lane: `Distill`. Contract: `Shared Application Contract`.
+
+Surface/job: `__________`
+
+| Field | Record for this surface |
+|---|---|
+| Keep ledger | `__________` |
+| Remove ledger | `__________` |
+| Before | `__________` |
+| After | `__________` |
+| Earned moment | `__________` |
+| Reduced motion | `__________` |
+| Opt-out | `__________` |
+
+#### Proof Card - Clarify
+
+Guidance lane: `Clarify`. Contract: `Shared Application Contract`.
+
+Surface/job: `__________`
+
+| Field | Record for this surface |
+|---|---|
+| Keep ledger | `__________` |
+| Remove ledger | `__________` |
+| Before | `__________` |
+| After | `__________` |
+| Earned moment | `__________` |
+| Reduced motion | `__________` |
+| Opt-out | `__________` |
+
+#### Proof Card - Delight
+
+Guidance lane: `Delight`. Contract: `Shared Application Contract`.
+
+Surface/job: `__________`
+
+| Field | Record for this surface |
+|---|---|
+| Keep ledger | `__________` |
+| Remove ledger | `__________` |
+| Before | `__________` |
+| After | `__________` |
+| Earned moment | `__________` |
+| Reduced motion | `__________` |
+| Opt-out | `__________` |
+
 ---
 
 ## 4. Gold Prompts

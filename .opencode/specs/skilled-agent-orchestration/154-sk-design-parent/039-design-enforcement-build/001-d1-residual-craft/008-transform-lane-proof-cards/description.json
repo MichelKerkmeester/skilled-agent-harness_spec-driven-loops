@@ -1,21 +1,26 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/008-transform-lane-proof-cards",
-  "description": "Add Distill/Clarify/Delight proof lanes to transform_application.md with keep/remove ledgers, before/after, earned-moment, reduced-motion, and opt-out",
+  "description": "The interface transform lane already named the proof fields (the Shared Application Contract) and gave per-verb guidance for bolder, quieter, distill,",
   "keywords": [
-    "add",
-    "distill",
-    "clarify",
-    "delight",
+    "interface",
+    "transform",
+    "lane",
+    "already",
+    "named",
     "proof",
-    "lanes",
-    "keep",
-    "remove",
-    "ledgers",
-    "earned-moment",
-    "reduced-motion",
-    "opt-out"
+    "fields",
+    "shared",
+    "application",
+    "contract",
+    "gave",
+    "per-verb",
+    "guidance",
+    "bolder",
+    "quieter",
+    "distill"
   ],
-  "lastUpdated": "2026-06-28T12:40:03.617Z",
+  "lastUpdated": "2026-06-29T11:35:42.178Z",
   "specId": "008",
   "folderSlug": "transform-lane-proof-cards",
   "parentChain": [
@@ -27,6 +32,5 @@
     "001-d1-residual-craft"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
