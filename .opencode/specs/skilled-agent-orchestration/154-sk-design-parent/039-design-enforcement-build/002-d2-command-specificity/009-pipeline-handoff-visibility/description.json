@@ -1,24 +1,16 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
-  "description": "Add pipeline{stage,acceptsFrom,produces,nextCommands,proofRequired} to command-metadata.json and emit STATUS=OK PRODUCES= NEXT= PROOF= / DEFER / ASK,",
+  "description": "The five `/design:` commands gave no handoff visibility",
   "keywords": [
-    "add",
-    "pipeline",
-    "stage",
-    "acceptsfrom",
-    "produces",
-    "nextcommands",
-    "proofrequired",
-    "command-metadata",
-    "json",
-    "emit",
-    "status",
-    "next",
-    "proof",
-    "defer",
-    "ask"
+    "five",
+    "design",
+    "commands",
+    "gave",
+    "handoff",
+    "visibility"
   ],
-  "lastUpdated": "2026-06-28T12:40:02.347Z",
+  "lastUpdated": "2026-06-29T06:14:48.897Z",
   "specId": "009",
   "folderSlug": "pipeline-handoff-visibility",
   "parentChain": [
@@ -30,6 +22,5 @@
     "002-d2-command-specificity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

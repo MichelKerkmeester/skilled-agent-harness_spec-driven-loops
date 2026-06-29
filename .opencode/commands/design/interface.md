@@ -52,7 +52,7 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - Apply the `interface` mode to `$ARGUMENTS`, following its workflow and quality gates.
 
 ### Step 2: Return Status
-- Success: `STATUS=OK`
+- Success: `STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/design:foundations,/design:motion,/design:audit PROOF=target,register,designDials,preflightResult`
 - Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
@@ -67,7 +67,16 @@ Required fields:
 - `designDials`
 - `preflightResult`
 
-## 6. EXAMPLE
+## 6. PIPELINE & HANDOFF
+
+- **Stage:** direction - frames the interface decision before static systems, behavior, audit, or build.
+- **Accepts from:** `/design:audit`, `/design:foundations`, `/design:md-generator`, `/design:motion`.
+- **Produces:** Interface Direction Spec, carrying `target`, `register`, `designDials`, `preflightResult`.
+- **Hands to next (recommend-only):** `/design:foundations`, `/design:motion`, `/design:audit` -- emitted as `NEXT=`, never auto-invoked.
+- **Hands to build:** when the accepted interface direction moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
+- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+
+## 7. EXAMPLE
 
 ```
 /design:interface dashboard-shell --mode redesign

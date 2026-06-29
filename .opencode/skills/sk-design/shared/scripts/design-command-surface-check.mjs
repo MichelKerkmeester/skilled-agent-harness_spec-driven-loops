@@ -15,6 +15,7 @@ const REQUIRED_FIELDS = [
   "examples",
   "next",
   "proofFields",
+  "pipeline",
   "registerPolicy",
   "deferToHubWhen",
   "preconditions",
@@ -41,6 +42,7 @@ const DRIFT_FIELDS = [
   "returns",
   "sibling-discriminator",
   "preconditions",
+  "pipeline",
   "register",
   "wrapper"
 ];
@@ -57,6 +59,16 @@ const PRECONDITION_FIELDS = [
 ];
 const REGISTER_POLICY_FIELDS = ["accepted", "default", "resolutionOrder", "askWhen", "proofFields"];
 const PRECONDITION_SECTION_MARKERS = ["Requires:", "Ask-first:", "Cannot-run:", "Escalate:"];
+const PIPELINE_FIELDS = ["stage", "acceptsFrom", "produces", "nextCommands", "proofRequired"];
+const PIPELINE_SECTION_MARKERS = [
+  "Stage:",
+  "Accepts from:",
+  "Produces:",
+  "Hands to next",
+  "Hands to build:",
+  "Recommend-only:"
+];
+const PIPELINE_STATUS_TOKENS = ["PRODUCES=", "NEXT=", "PROOF="];
 const REQUIRED_RETURN_STATUS_TOKENS = [
   "STATUS=OK",
   "STATUS=ASK MISSING=<input>",
@@ -224,6 +236,7 @@ function validateMetadata(metadata, workflowModes) {
     errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
     errors.push(...validateDiscriminator(record, command, workflowModes));
+    errors.push(...validatePipeline(record, command, expectedCommands));
 
     if (Array.isArray(record?.aliases)) {
       for (const alias of record.aliases) {
@@ -242,6 +255,8 @@ function validateMetadata(metadata, workflowModes) {
       errors.push(`${command}: missing metadata record`);
     }
   }
+
+  errors.push(...validatePipelineGraph(seenCommands));
 
   return errors.sort();
 }
@@ -487,6 +502,140 @@ function validateOutputContract(record, command) {
   return errors;
 }
 
+function validatePipeline(record, command, commandSet) {
+  const errors = [];
+  const pipeline = record?.pipeline;
+
+  if (!isPlainObject(pipeline)) {
+    return [`${command}: pipeline must be an object`];
+  }
+
+  for (const field of PIPELINE_FIELDS) {
+    if (!Object.hasOwn(pipeline, field)) {
+      errors.push(`${command}: pipeline.${field} is required`);
+    }
+  }
+
+  if (typeof pipeline.stage !== "string" || pipeline.stage.trim().length === 0) {
+    errors.push(`${command}: pipeline.stage must be a non-empty string`);
+  }
+
+  if (typeof pipeline.produces !== "string" || pipeline.produces.trim().length === 0) {
+    errors.push(`${command}: pipeline.produces must be a non-empty string`);
+  } else if (pipeline.produces !== record?.outputContract?.primaryArtifactName) {
+    errors.push(`${command}: pipeline.produces must match outputContract.primaryArtifactName`);
+  }
+
+  errors.push(...validatePipelineCommandList(record, command, "acceptsFrom", commandSet, true));
+  errors.push(...validatePipelineCommandList(record, command, "nextCommands", commandSet, false));
+
+  if (!isNonEmptyStringArray(pipeline.proofRequired)) {
+    errors.push(`${command}: pipeline.proofRequired must be a non-empty string array`);
+  } else {
+    errors.push(...validateUniqueArray(command, "pipeline.proofRequired", pipeline.proofRequired));
+
+    if (Array.isArray(record?.proofFields) && !sameValue(pipeline.proofRequired, record.proofFields)) {
+      errors.push(`${command}: pipeline.proofRequired must match proofFields`);
+    }
+  }
+
+  if (Array.isArray(pipeline.nextCommands) && Array.isArray(record?.next)) {
+    const nextSet = new Set(record.next);
+    for (const nextCommand of pipeline.nextCommands) {
+      if (!nextSet.has(nextCommand)) {
+        errors.push(`${command}: pipeline.nextCommands must be a subset of next`);
+      }
+    }
+  }
+
+  return errors;
+}
+
+function validatePipelineCommandList(record, command, field, commandSet, allowEmpty) {
+  const errors = [];
+  const value = record?.pipeline?.[field];
+  const validArray = allowEmpty ? isStringArray(value) : isNonEmptyStringArray(value);
+
+  if (!validArray) {
+    errors.push(`${command}: pipeline.${field} must be a ${allowEmpty ? "" : "non-empty "}string array`);
+    return errors;
+  }
+
+  errors.push(...validateUniqueArray(command, `pipeline.${field}`, value));
+
+  for (const item of value) {
+    if (!commandSet.has(item)) {
+      errors.push(`${command}: pipeline.${field} contains unknown command ${item}`);
+    }
+
+    if (item === command) {
+      errors.push(`${command}: pipeline.${field} must not reference its own command`);
+    }
+  }
+
+  return errors;
+}
+
+function validatePipelineGraph(recordsByCommand) {
+  const errors = [];
+  const records = [...recordsByCommand.values()].filter((record) => isPlainObject(record?.pipeline));
+  const stageOwners = new Map();
+
+  for (const record of records) {
+    const stage = record.pipeline.stage;
+    if (typeof stage !== "string" || stage.trim().length === 0) {
+      continue;
+    }
+
+    const owner = stageOwners.get(stage);
+    if (owner) {
+      errors.push(`${record.command}: pipeline.stage "${stage}" is already owned by ${owner}`);
+    } else {
+      stageOwners.set(stage, record.command);
+    }
+  }
+
+  for (const record of records) {
+    if (!isStringArray(record.pipeline.acceptsFrom)) {
+      continue;
+    }
+
+    const expected = new Set();
+    for (const upstream of records) {
+      if (
+        upstream.command !== record.command
+        && Array.isArray(upstream.pipeline?.nextCommands)
+        && upstream.pipeline.nextCommands.includes(record.command)
+      ) {
+        expected.add(upstream.command);
+      }
+    }
+
+    const actual = new Set(record.pipeline.acceptsFrom);
+    if (!sameSet(actual, expected)) {
+      errors.push(
+        `${record.command}: pipeline.acceptsFrom must match inverse nextCommands expected [${[...expected].sort().join(",")}]`
+      );
+    }
+  }
+
+  return errors;
+}
+
+function validateUniqueArray(command, field, values) {
+  const errors = [];
+  const seen = new Set();
+
+  for (const value of values) {
+    if (seen.has(value)) {
+      errors.push(`${command}: ${field} contains duplicate value ${value}`);
+    }
+    seen.add(value);
+  }
+
+  return errors;
+}
+
 function isPlainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
@@ -554,10 +703,176 @@ async function collectSurfaceDrift(records) {
     drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
     drift.push(...expectedDiscriminatorDrift(record, markdown));
     drift.push(...expectedPreconditionsDrift(record, markdown));
+    drift.push(...expectedPipelineDrift(record, markdown));
     drift.push(...expectedRegisterDrift(record, markdown));
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedPipelineDrift(record, markdown) {
+  const section = extractPipelineSection(markdown);
+  const drift = [];
+
+  if (!section) {
+    return [
+      {
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: "## PIPELINE & HANDOFF",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  for (const marker of PIPELINE_SECTION_MARKERS) {
+    if (!section.includes(marker)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: marker,
+        actual: "<missing marker>"
+      });
+    }
+  }
+
+  if (!section.includes(record.pipeline.stage)) {
+    drift.push({
+      kind: "pipeline",
+      command: record.command,
+      field: "pipeline",
+      expected: record.pipeline.stage,
+      actual: "<missing stage>"
+    });
+  }
+
+  if (!section.includes(record.pipeline.produces)) {
+    drift.push({
+      kind: "pipeline",
+      command: record.command,
+      field: "pipeline",
+      expected: record.pipeline.produces,
+      actual: "<missing produced artifact>"
+    });
+  }
+
+  for (const upstream of record.pipeline.acceptsFrom) {
+    if (!section.includes(upstream)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: upstream,
+        actual: "<missing upstream command>"
+      });
+    }
+  }
+
+  for (const nextCommand of record.pipeline.nextCommands) {
+    if (!section.includes(nextCommand)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: nextCommand,
+        actual: "<missing next command>"
+      });
+    }
+  }
+
+  for (const proofField of record.pipeline.proofRequired) {
+    if (!section.includes(proofField)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: proofField,
+        actual: "<missing proof field>"
+      });
+    }
+  }
+
+  if (!hasSkCodeHandoffLine(section)) {
+    drift.push({
+      kind: "pipeline",
+      command: record.command,
+      field: "pipeline",
+      expected: "sk-code handoff card",
+      actual: "<missing handoff line>"
+    });
+  }
+
+  drift.push(...expectedPipelineStatusDrift(record, markdown));
+
+  return drift;
+}
+
+function expectedPipelineStatusDrift(record, markdown) {
+  const status = extractSuccessStatusLine(markdown);
+
+  if (!status) {
+    return [
+      {
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: "STATUS=OK PRODUCES= NEXT= PROOF=",
+        actual: "<missing success status tail>"
+      }
+    ];
+  }
+
+  const drift = [];
+
+  for (const token of PIPELINE_STATUS_TOKENS) {
+    if (!status.includes(token)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: token,
+        actual: "<missing status token>"
+      });
+    }
+  }
+
+  if (!status.includes(record.pipeline.produces)) {
+    drift.push({
+      kind: "pipeline",
+      command: record.command,
+      field: "pipeline",
+      expected: record.pipeline.produces,
+      actual: "<missing status artifact>"
+    });
+  }
+
+  for (const nextCommand of record.pipeline.nextCommands) {
+    if (!status.includes(nextCommand)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: nextCommand,
+        actual: "<missing status next command>"
+      });
+    }
+  }
+
+  for (const proofField of record.pipeline.proofRequired) {
+    if (!status.includes(proofField)) {
+      drift.push({
+        kind: "pipeline",
+        command: record.command,
+        field: "pipeline",
+        expected: proofField,
+        actual: "<missing status proof field>"
+      });
+    }
+  }
+
+  return drift;
 }
 
 function expectedRegisterDrift(record, markdown) {
@@ -811,6 +1126,17 @@ function extractExampleSection(markdown) {
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
+function extractPipelineSection(markdown) {
+  const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?PIPELINE & HANDOFF\s*$/im);
+  if (!sectionMatch || typeof sectionMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = sectionMatch.index + sectionMatch[0].length;
+  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
+  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
+}
+
 function extractFirstFencedInvocation(section) {
   const fenceMatch = section.match(/```[^\r\n]*\r?\n([\s\S]*?)\r?\n```/);
   if (!fenceMatch) {
@@ -823,6 +1149,11 @@ function extractFirstFencedInvocation(section) {
 function extractReturnsArtifact(section) {
   const returnsMatch = section.match(/^Returns:\s*(.+)$/im);
   return returnsMatch ? returnsMatch[1].trim() : null;
+}
+
+function extractSuccessStatusLine(markdown) {
+  const statusMatch = markdown.match(/^\s*-\s+Success:\s+`([^`]*STATUS=OK[^`]*)`/im);
+  return statusMatch ? statusMatch[1].trim() : null;
 }
 
 function extractPreconditionsSection(markdown) {
@@ -862,6 +1193,12 @@ function hasHubLine(section) {
   return section
     .split(/\r?\n/)
     .some((line) => line.includes("sk-design") && /\bhub\b/i.test(line));
+}
+
+function hasSkCodeHandoffLine(section) {
+  return section
+    .split(/\r?\n/)
+    .some((line) => line.includes("sk-code") && line.includes("sk_code_handoff.md"));
 }
 
 function wrapperPathForCommand(command) {

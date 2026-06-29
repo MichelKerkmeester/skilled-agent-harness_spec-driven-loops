@@ -52,7 +52,7 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - Apply the `md-generator` mode to `$ARGUMENTS`, following its workflow and quality gates.
 
 ### Step 2: Return Status
-- Success: `STATUS=OK`
+- Success: `STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/design:foundations,/design:interface,/design:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore`
 - Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
@@ -69,7 +69,16 @@ Required fields:
 File outputs:
 - `<output>/DESIGN.md`
 
-## 6. EXAMPLE
+## 6. PIPELINE & HANDOFF
+
+- **Stage:** extract - the pipeline origin for measured source evidence before design judgment or audit.
+- **Accepts from:** a live source URL; this stage has no upstream design command.
+- **Produces:** Style Reference DESIGN.md, carrying `sourceUrl`, `extractedTokensDigest`, `fidelityScore`.
+- **Hands to next (recommend-only):** `/design:foundations`, `/design:interface`, `/design:audit` -- emitted as `NEXT=`, never auto-invoked.
+- **Hands to build:** when extracted evidence informs implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
+- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+
+## 7. EXAMPLE
 
 ```
 /design:md-generator https://stripe.com --output design/reference

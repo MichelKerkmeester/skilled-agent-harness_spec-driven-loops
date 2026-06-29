@@ -52,7 +52,7 @@ than `motion`, defer to the hub's routing instead of forcing this mode.
 - Apply the `motion` mode to `$ARGUMENTS`, following its workflow and quality gates.
 
 ### Step 2: Return Status
-- Success: `STATUS=OK`
+- Success: `STATUS=OK PRODUCES="Motion Design Spec" NEXT=/design:interface,/design:foundations,/design:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath`
 - Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
@@ -67,7 +67,16 @@ Required fields:
 - `timingModel`
 - `reducedMotionPath`
 
-## 6. EXAMPLE
+## 6. PIPELINE & HANDOFF
+
+- **Stage:** behavior - specifies temporal behavior after direction or foundations and before audit or build.
+- **Accepts from:** `/design:audit`, `/design:foundations`, `/design:interface`.
+- **Produces:** Motion Design Spec, carrying `componentState`, `motionPurpose`, `timingModel`, `reducedMotionPath`.
+- **Hands to next (recommend-only):** `/design:interface`, `/design:foundations`, `/design:audit` -- emitted as `NEXT=`, never auto-invoked.
+- **Hands to build:** when accepted motion behavior moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
+- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+
+## 7. EXAMPLE
 
 ```
 /design:motion modal-open-close --library framer-motion

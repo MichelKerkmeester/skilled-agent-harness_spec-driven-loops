@@ -52,7 +52,7 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - Apply the `audit` mode to `$ARGUMENTS`, following its workflow and quality gates.
 
 ### Step 2: Return Status
-- Success: `STATUS=OK`
+- Success: `STATUS=OK PRODUCES="Design Quality Audit Report" NEXT=/design:foundations,/design:interface,/design:motion PROOF=target,evidenceInventory,severityFindings,qualityScore`
 - Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
@@ -67,7 +67,16 @@ Required fields:
 - `severityFindings`
 - `qualityScore`
 
-## 6. EXAMPLE
+## 6. PIPELINE & HANDOFF
+
+- **Stage:** review - validates design output before the build handoff.
+- **Accepts from:** `/design:foundations`, `/design:interface`, `/design:md-generator`, `/design:motion`.
+- **Produces:** Design Quality Audit Report, carrying `target`, `evidenceInventory`, `severityFindings`, `qualityScore`.
+- **Hands to next (recommend-only):** `/design:foundations`, `/design:interface`, `/design:motion` -- emitted as `NEXT=`, never auto-invoked.
+- **Hands to build:** when accepted design findings move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
+- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+
+## 7. EXAMPLE
 
 ```
 /design:audit src/components/Checkout.tsx --scope a11y --score

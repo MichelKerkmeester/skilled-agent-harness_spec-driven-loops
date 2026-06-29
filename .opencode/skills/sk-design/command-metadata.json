@@ -64,6 +64,13 @@
       "artifactKind": "report",
       "requiredFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
       "fileOutputs": []
+    },
+    "pipeline": {
+      "stage": "review",
+      "acceptsFrom": ["/design:foundations", "/design:interface", "/design:md-generator", "/design:motion"],
+      "produces": "Design Quality Audit Report",
+      "nextCommands": ["/design:foundations", "/design:interface", "/design:motion"],
+      "proofRequired": ["target", "evidenceInventory", "severityFindings", "qualityScore"]
     }
   },
   {
@@ -131,6 +138,13 @@
       "artifactKind": "plan",
       "requiredFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
       "fileOutputs": []
+    },
+    "pipeline": {
+      "stage": "system",
+      "acceptsFrom": ["/design:audit", "/design:interface", "/design:md-generator", "/design:motion"],
+      "produces": "Visual System Foundations Plan",
+      "nextCommands": ["/design:interface", "/design:motion", "/design:audit"],
+      "proofRequired": ["axis", "target", "tokenDecisions", "contrastEvidence"]
     }
   },
   {
@@ -198,6 +212,13 @@
       "artifactKind": "spec",
       "requiredFields": ["target", "register", "designDials", "preflightResult"],
       "fileOutputs": []
+    },
+    "pipeline": {
+      "stage": "direction",
+      "acceptsFrom": ["/design:audit", "/design:foundations", "/design:md-generator", "/design:motion"],
+      "produces": "Interface Direction Spec",
+      "nextCommands": ["/design:foundations", "/design:motion", "/design:audit"],
+      "proofRequired": ["target", "register", "designDials", "preflightResult"]
     }
   },
   {
@@ -265,6 +286,13 @@
       "artifactKind": "reference-doc",
       "requiredFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
       "fileOutputs": ["<output>/DESIGN.md"]
+    },
+    "pipeline": {
+      "stage": "extract",
+      "acceptsFrom": [],
+      "produces": "Style Reference DESIGN.md",
+      "nextCommands": ["/design:foundations", "/design:interface", "/design:audit"],
+      "proofRequired": ["sourceUrl", "extractedTokensDigest", "fidelityScore"]
     }
   },
   {
@@ -332,6 +360,13 @@
       "artifactKind": "spec",
       "requiredFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
       "fileOutputs": []
+    },
+    "pipeline": {
+      "stage": "behavior",
+      "acceptsFrom": ["/design:audit", "/design:foundations", "/design:interface"],
+      "produces": "Motion Design Spec",
+      "nextCommands": ["/design:interface", "/design:foundations", "/design:audit"],
+      "proofRequired": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"]
     }
   }
 ]

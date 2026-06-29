@@ -52,7 +52,7 @@ than `foundations`, defer to the hub's routing instead of forcing this mode.
 - Apply the `foundations` mode to `$ARGUMENTS`, following its workflow and quality gates.
 
 ### Step 2: Return Status
-- Success: `STATUS=OK`
+- Success: `STATUS=OK PRODUCES="Visual System Foundations Plan" NEXT=/design:interface,/design:motion,/design:audit PROOF=axis,target,tokenDecisions,contrastEvidence`
 - Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
 - Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
 - Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
@@ -67,7 +67,16 @@ Required fields:
 - `tokenDecisions`
 - `contrastEvidence`
 
-## 6. EXAMPLE
+## 6. PIPELINE & HANDOFF
+
+- **Stage:** system - turns direction or measured evidence into static visual-system decisions.
+- **Accepts from:** `/design:audit`, `/design:interface`, `/design:md-generator`, `/design:motion`.
+- **Produces:** Visual System Foundations Plan, carrying `axis`, `target`, `tokenDecisions`, `contrastEvidence`.
+- **Hands to next (recommend-only):** `/design:interface`, `/design:motion`, `/design:audit` -- emitted as `NEXT=`, never auto-invoked.
+- **Hands to build:** when tokens or static-system decisions move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
+- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+
+## 7. EXAMPLE
 
 ```
 /design:foundations color marketing-site
