@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d1-r9 harden fix shapes",
-      "harden fix shapes design build"
+      "harden fix shapes design build",
+      "hardening matrix recommended fix owner",
+      "harden fix shape column plan",
+      "audit recommend fix shape sk-code implements",
+      "harden fix shape column tasks",
+      "hardening matrix fix shape owner tasks",
+      "audit fix shape recommend tasks",
+      "harden fix shape column checklist",
+      "hardening matrix fix shape verification",
+      "audit fix shape recommend checklist",
+      "harden fix shape column summary"
     ],
     "key_topics": [
       "d1-r9",
@@ -21,19 +31,30 @@
       "shapes",
       "design",
       "build",
-      "add",
+      "hardening",
+      "matrix",
+      "recommended",
+      "owner",
       "shape",
-      "recommend",
-      "column",
-      "keeping",
-      "audit"
+      "column"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "hardening_edge_cases.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +62,157 @@
         "source": "derived"
       },
       {
-        "name": "Residual Craft",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "sk-code",
-        "kind": "key_phrase",
+        "name": "Recommended Fix",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Shape Column",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Hardening Matrix",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "Purpose Make",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constrained Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Overlays",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extreme Inputs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Network Errors",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a 'Fix shape to recommend' column to hardening_edge_cases.md, keeping the audit/implement boundary (recommend shape+owner; sk-code implements).",
+    "causal_summary": "The hardening matrix in `hardeningedgecases.md` proved each edge case three ways: a probe to run, the symptom an unhardened surface shows, and the finding to file when the symptom appears",
     "created_at": "2026-06-28T12:40:04.234Z",
-    "last_save_at": "2026-06-28T12:40:04.234Z",
+    "last_save_at": "2026-06-29T11:44:03.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a46fa0344bf6a3627d89602aefb8e39490209f52f4af6371775ef561e710d4d3",
+    "source_fingerprint": "sha256:e137ba7cf2f3dd994e5c1f1923dce92241de67efd6a1390fce91e338e65713f4",
     "source_doc_hashes": {
-      "spec.md": "7a589b5f4b186bf6c806aef9fa26443b9d4bab4d80950bfb900bca179fccc58e"
+      "spec.md": "46bf58d19958176baae539d50088bf0eb2aa930816098a1dedcf25a0ad1ddc4a",
+      "plan.md": "0239d9f46b1b85cf779f0c34c474616c4a7d0116aacc73d9c06ecef7d454e708",
+      "tasks.md": "a0b45fbb1edfc14c3b35b48e73d044955f8d332473c9f7671cbc1e595124a8a8",
+      "checklist.md": "3e67e07760281ce39de68c302ce8323a9f32c67ee7a3f7ba8169ea300c0ebc1e",
+      "implementation-summary.md": "5999af1cf1a8229be050e6d62cd0c90c0744ce256ea87e46ced3f045e820293c"
     },
     "last_active_child_id": null,
     "last_active_at": null
