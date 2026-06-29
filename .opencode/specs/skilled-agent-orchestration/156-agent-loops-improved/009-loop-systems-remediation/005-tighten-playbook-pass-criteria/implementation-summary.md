@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md"
     session_dedup:
-      fingerprint: "sha256:manual-playbook-summary-complete-2026-06-29"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "tighten-playbook-pass-criteria-summary-2026-06-29"
       parent_session_id: null
     completion_pct: 100

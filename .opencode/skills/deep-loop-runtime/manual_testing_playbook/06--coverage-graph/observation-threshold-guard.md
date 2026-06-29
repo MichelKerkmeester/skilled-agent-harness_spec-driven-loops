@@ -26,7 +26,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - Layer partition: coverage graph runtime.
 - Real user request: `Validate Observation-threshold guard and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
 - Expected signals: Default-off parity, configured threshold parsing, sub-threshold STOP blocking, and passing-threshold evidence coverage.
-- Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
+- Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
 ---
 
@@ -45,8 +45,8 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 3. Inspect `tests/integration/convergence-script.vitest.ts` for the matching regression coverage.
 4. Inspect `tests/unit/convergence-score-delta.vitest.ts` for the matching regression coverage.
 5. Inspect `tests/unit/coverage-graph-signals.vitest.ts` for the matching regression coverage.
-6. Run or inspect the matching test assertions for this feature.
-7. Capture the source lines, command output, or test assertions that prove the expected signals.
+6. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
+7. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 8. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome

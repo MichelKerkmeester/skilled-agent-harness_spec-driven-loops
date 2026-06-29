@@ -28,7 +28,7 @@ weak executor cancels all other lineages.
 - Layer partition: pool primitive.
 - Real user request: `Validate the fan-out worker pool and confirm the 10 unit tests pass and match the documented concurrency and isolation contracts.`
 - Expected signals: Gated-worker test confirms max N in flight at any moment; failure-isolation test confirms pool continues after one rejection; `all_failed` flag is true only when every item fails; results array preserves index order.
-- Pass/fail: PASS if all 10 tests pass and source inspection confirms the concurrency pump logic; FAIL otherwise.
+- Pass/fail: PASS only if all 10 tests pass with EXIT 0 and source inspection confirms the concurrency pump logic; FAIL otherwise.
 
 ---
 

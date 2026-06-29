@@ -28,7 +28,7 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 - Layer partition: review merge.
 - Real user request: `Validate the review fan-out strongest-restriction merge and confirm all 5 review unit tests pass, covering every verdict combination and the duplicate escalation rule.`
 - Expected signals: clean+P0 → `mergedVerdict=FAIL`, `activeP0=1`; all clean → `mergedVerdict=PASS`, `activeP0=0`; P1-only → `mergedVerdict=CONDITIONAL`; duplicate `findingId` P2+P0 → escalates to P0 → FAIL, single deduplicated finding; `resolved_false_positive` excluded from `activeP0`.
-- Pass/fail: PASS if all 5 review tests pass; FAIL if any verdict combination is wrong or a non-active finding inflates counts.
+- Pass/fail: PASS only if all 5 review tests pass with EXIT 0; FAIL if the test is not run, exits non-zero, any verdict combination is wrong, or a non-active finding inflates counts.
 
 ---
 

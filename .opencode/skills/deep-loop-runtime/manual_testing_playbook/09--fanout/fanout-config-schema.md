@@ -27,7 +27,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 - Layer partition: executor config schema.
 - Real user request: `Validate fan-out config schema and confirm the 9 fan-out tests pass and align with the executor-config.ts implementation.`
 - Expected signals: `lineageExecutorSchema` extends `executorConfigSchema` without modifying it; `parseFanoutConfig` rejects duplicate labels and expanded-label collisions; `expandLineages` yields `label-1…label-N` for count>1; optional `lineageId` on `buildExecutorAuditRecord` is conditionally spread.
-- Pass/fail: PASS if source inspection and all 9 fan-out tests agree with the implementation contract; FAIL if any fan-out test fails or `lineageId` is unconditionally included.
+- Pass/fail: PASS only if all 9 fan-out tests pass with EXIT 0 and source inspection agrees with the implementation contract; FAIL if the test is not run, any fan-out test fails, or `lineageId` is unconditionally included.
 
 ---
 

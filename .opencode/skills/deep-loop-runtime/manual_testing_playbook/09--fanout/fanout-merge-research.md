@@ -28,7 +28,7 @@ attribution array is the only mechanism for cross-model provenance.
 - Layer partition: research merge.
 - Real user request: `Validate the research fan-out merge and confirm the 3 research unit tests pass, verifying deduplication, attribution, and metric aggregation.`
 - Expected signals: Duplicate `findingId` → single entry with both lineages in `_lineages`; `metrics.iterationsCompleted` = sum across lineages; `metrics.convergenceScore` = average; null registry handled gracefully.
-- Pass/fail: PASS if all 3 research tests pass and source inspection confirms the `findingById` Map dedup logic; FAIL otherwise.
+- Pass/fail: PASS only if all 3 research tests pass with EXIT 0 and source inspection confirms the `findingById` Map dedup logic; FAIL otherwise.
 
 ---
 

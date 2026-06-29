@@ -30,7 +30,7 @@ shared SQLite DB without any schema change.
 - Layer partition: salvage + coverage-graph isolation.
 - Real user request: `Validate the fan-out salvage module and confirm the 11 unit tests pass, verifying opencode stdout parsing, iteration recovery, and per-sessionId coverage isolation.`
 - Expected signals: opencode JSONL → text parts concatenated; too-short raw stdout → null; missing md + recoverable stdout → file written + `salvaged_from_stdout` event in state log; no recoverable content → `fanout_salvage_failed` placeholder; two lineage namespaces → each sees only its own coverage-graph nodes.
-- Pass/fail: PASS if all 11 tests pass; FAIL otherwise.
+- Pass/fail: PASS only if all 11 tests pass with EXIT 0; FAIL otherwise.
 
 ---
 

@@ -26,7 +26,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - Layer partition: fan-out runtime.
 - Real user request: `Validate Persisted-wait crash resume and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
 - Expected signals: Wait checkpoint persistence, resume-waiting startup branch, null legacy migration behavior, and fanout-run unit coverage.
-- Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
+- Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
 ---
 
@@ -43,8 +43,8 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 1. Inspect `scripts/fanout-run.cjs` for the implementation contract.
 2. Inspect `.opencode/commands/deep/assets/deep_research_auto.yaml` for the implementation contract.
 3. Inspect `tests/unit/fanout-run.vitest.ts` for the matching regression coverage.
-4. Run or inspect the matching test assertions for this feature.
-5. Capture the source lines, command output, or test assertions that prove the expected signals.
+4. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
+5. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 6. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome

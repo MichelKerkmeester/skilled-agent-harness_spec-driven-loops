@@ -29,7 +29,7 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 - Layer partition: YAML parity.
 - Real user request: `Validate the fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, and run the full vitest suite to confirm 197/197.`
 - Expected signals: `if_absent.command` = original `node -e "...resolveArtifactRoot('{spec_folder}', '...')..."` byte-for-byte; `step_fanout_spawn` has `skip_when: "config.fanout is absent"`; `step_fanout_merge` has `skip_when: "config.fanout is absent"`; full vitest suite passes.
-- Pass/fail: PASS if source inspection confirms all guards and vitest passes 197/197; FAIL if any `skip_when` guard is missing or `if_absent` branch has been modified.
+- Pass/fail: PASS only if vitest exits 0 for the full runtime unit suite and source inspection confirms all guards; FAIL if the test is not run, exits non-zero, any `skip_when` guard is missing, or the `if_absent` branch has been modified.
 
 ---
 

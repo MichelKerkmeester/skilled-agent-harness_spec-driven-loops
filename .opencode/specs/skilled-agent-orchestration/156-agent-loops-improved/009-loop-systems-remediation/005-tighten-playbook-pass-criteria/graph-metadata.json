@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
     "created_at": "2026-06-29T10:43:20Z",
-    "last_save_at": "2026-06-29T11:35:05.168Z",
+    "last_save_at": "2026-06-29T12:25:53.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd2ada321f789afb994d476e325f176857cb3b97522bc7fd06d03d24c95122c4",
+    "source_fingerprint": "sha256:6b592fd21c5fb7180d40d3ee318a2f3d2ed5b5301eaee2c1246f83955f1778f1",
     "source_doc_hashes": {
-      "spec.md": "2548b499d1fdbeddbc8d8489092846d01c6c2c1b0980a881d3d635ec2f369d4c",
-      "plan.md": "ed9a3247f02426f3cddc6be90a0a9638fd7c33822cf00ba0593f1ba9001e7964",
-      "tasks.md": "041c51aae6dbd0ef48523aad6ac9a214596b794165e80ff5b37ca4a137fb6b79",
-      "implementation-summary.md": "f93bd333c3f38bc1f0a94d5be1b215a449319f2be91fd7e6a5a8e660d9e92f04"
+      "spec.md": "63243eee5e492240a2b792c50d75e13229cbf183c5396da2a97a1fe25288a83a",
+      "plan.md": "8fce2cb729966a512623fa52eaf7564b2966e128fc9773a62cff0fcc71086185",
+      "tasks.md": "9919a5c36cbe8f84070294d1e7bfaffef41a18804a47a8c97e52bb509c137b42",
+      "implementation-summary.md": "e9b8a4948104253f66dc4cab0b92ff79c7a9adb9c610e0856d3829305d1c8390"
     },
     "last_active_child_id": null,
     "last_active_at": null

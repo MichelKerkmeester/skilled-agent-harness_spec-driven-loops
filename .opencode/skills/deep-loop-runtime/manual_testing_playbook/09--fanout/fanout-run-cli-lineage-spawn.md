@@ -29,7 +29,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 - Layer partition: CLI lineage dispatch.
 - Real user request: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
 - Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`.
-- Pass/fail: PASS if all 5 tests pass and source inspection confirms `SPECKIT_STATE_ENV_BY_KIND` usage; FAIL otherwise.
+- Pass/fail: PASS only if all 5 tests pass with EXIT 0 and source inspection confirms `SPECKIT_STATE_ENV_BY_KIND` usage; FAIL otherwise.
 
 ---
 

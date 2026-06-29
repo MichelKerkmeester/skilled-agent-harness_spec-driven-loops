@@ -26,7 +26,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 - Layer partition: state safety runtime.
 - Real user request: `Validate Permissions gate and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
 - Expected signals: Deterministic mutation safety evidence from source and unit tests.
-- Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
+- Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
 ---
 
@@ -42,8 +42,8 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 
 1. Inspect `lib/deep-loop/permissions-gate.ts` for the implementation contract.
 2. Inspect `tests/unit/permissions-gate.vitest.ts` for the primary regression coverage.
-3. Run or inspect the matching test assertions for this feature.
-4. Capture the source lines, command output, or test assertions that prove the expected signals.
+3. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
+4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome

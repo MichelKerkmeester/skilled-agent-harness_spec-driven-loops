@@ -26,7 +26,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - Layer partition: observability runtime.
 - Real user request: `Validate Single-loop telemetry heartbeat and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
 - Expected signals: Started/progress/terminal heartbeat producers, single-loop row shape, no-change suppression, and YAML parse coverage.
-- Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
+- Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
 ---
 
@@ -43,8 +43,8 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 1. Inspect `.opencode/commands/deep/assets/deep_research_auto.yaml` for the implementation contract.
 2. Inspect `lib/deep-loop/atomic-state.ts` for the implementation contract.
 3. Inspect `tests/unit/atomic-state.vitest.ts` for the matching regression coverage.
-4. Run or inspect the matching test assertions for this feature.
-5. Capture the source lines, command output, or test assertions that prove the expected signals.
+4. Run `bash: cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+5. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 6. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome

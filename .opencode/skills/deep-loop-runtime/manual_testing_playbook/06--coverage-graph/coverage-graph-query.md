@@ -26,7 +26,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 - Layer partition: coverage graph runtime.
 - Real user request: `Validate Coverage graph query and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
 - Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
-- Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
+- Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
 ---
 
@@ -42,8 +42,8 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 
 1. Inspect `lib/coverage-graph/coverage-graph-query.ts` for the implementation contract.
 2. Inspect `tests/unit/coverage-graph-query.vitest.ts` for the primary unit regression coverage, and `tests/integration/query-script.vitest.ts` for end-to-end script-surface coverage.
-3. Run or inspect the matching test assertions for this feature.
-4. Capture the source lines, command output, or test assertions that prove the expected signals.
+3. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
+4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome
