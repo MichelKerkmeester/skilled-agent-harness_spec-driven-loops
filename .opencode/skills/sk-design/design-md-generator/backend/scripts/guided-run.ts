@@ -1,4 +1,12 @@
 #!/usr/bin/env node
+// ────────────────────────────────────────────────────────────────
+// MODULE: Guided Run
+// ────────────────────────────────────────────────────────────────
+//
+// Guided runner for the design-md-generator backend: parses run options,
+// runs preflight checks, builds the ordered command plan, and executes the
+// extraction (or reports it under --dry-run).
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawnSync } from 'child_process';
