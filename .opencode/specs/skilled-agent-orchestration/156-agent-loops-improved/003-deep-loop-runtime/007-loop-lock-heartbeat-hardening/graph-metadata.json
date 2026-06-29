@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loop-lock heartbeat",
+      "refresh-loop-lock cadence",
+      "lock heartbeat hardening",
+      "loop lock liveness",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "007-loop-lock-heartbeat-hardening summary"
+    ],
+    "key_topics": [
+      "loop-lock",
+      "heartbeat",
+      "refresh-loop-lock",
+      "cadence",
+      "lock",
+      "hardening",
+      "loop",
+      "liveness",
+      "implementation",
+      "plan",
+      "name",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lock Heartbeat Cadence Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`refreshLoopLock` exists in `loop-lock.ts` but no caller invokes it while dispatch is running; a loop that is slow but alive will let its advisory lock expire on the configured TTL",
+    "created_at": "2026-06-28T14:01:56Z",
+    "last_save_at": "2026-06-29T10:30:46.096Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3eb70e6577abcf2e1af0339235fa2c307bdfc37ca543cbd968ae9e3aff1258bc",
+    "source_doc_hashes": {
+      "spec.md": "218c7ab20adce70aaaf7ab4bd191d4ddeaaca17ca37233cf399c880e786665bd",
+      "plan.md": "011a3e03a05398359a9b5e546d6862731b2dec71f3bec8e79b357bac3cb5bbcf",
+      "tasks.md": "4b65492a30b654c011b416994e4eea090b38137c892dc305c23eaaf42dbc6697",
+      "implementation-summary.md": "81e37d3ca688f6662a22156c4610b73461617d6ee68d737d570a4a3aa6b0b777"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

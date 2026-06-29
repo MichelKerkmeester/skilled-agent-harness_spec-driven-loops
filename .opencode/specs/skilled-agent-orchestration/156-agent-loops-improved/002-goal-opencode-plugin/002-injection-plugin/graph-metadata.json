@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin/002-injection-plugin",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin/002-injection-plugin",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal injection",
+      "active goal block",
+      "system transform",
+      "fail open injection",
+      "goal injection plan",
+      "active goal transform",
+      "injection preview",
+      "goal injection tasks",
+      "system transform tasks",
+      "goal injection implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "injection",
+      "active",
+      "block",
+      "system",
+      "transform",
+      "fail",
+      "open",
+      "plan",
+      "preview",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Persisted",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "duplicate-marker",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Persisted goal state is inert unless the assistant receives it during a turn",
+    "created_at": "2026-06-28T20:44:08Z",
+    "last_save_at": "2026-06-29T10:30:42.104Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2e6e6f07cfc2f2c0e762ad4a5666169ade091888b4cc0b82baa0293ff15df8da",
+    "source_doc_hashes": {
+      "spec.md": "5e7110622746188c4a64a25b4306ef212414202b4aba29d09bdfd7db078327df",
+      "plan.md": "cd896283feab454fe812e133ff713e44c41c1266a5785887d42c30c5d20c4ee5",
+      "tasks.md": "509fa8325fde247f5f1ab7e96d0d54366dea4a26813ba7ce35fb2d4f9af05138",
+      "implementation-summary.md": "a919d19ea4c20a45e8299dd3e288e84d7b4414dc1129640297575e47bfdb3462"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin/006-active-continuation",
+  "description": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
+  "keywords": [
+    "goal",
+    "plugin",
+    "verify",
+    "goals",
+    "idle",
+    "continue",
+    "active",
+    "work",
+    "notmet",
+    "verifier",
+    "result"
+  ],
+  "lastUpdated": "2026-06-29T10:21:10.965Z",
+  "specId": "006",
+  "folderSlug": "active-continuation",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

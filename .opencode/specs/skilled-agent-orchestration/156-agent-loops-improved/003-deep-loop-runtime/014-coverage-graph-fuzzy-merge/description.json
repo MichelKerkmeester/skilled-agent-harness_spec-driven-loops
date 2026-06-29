@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+  "description": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts c",
+  "keywords": [
+    "near-duplicate",
+    "findings",
+    "same",
+    "concept",
+    "slightly",
+    "different",
+    "wording",
+    "accumulate",
+    "separate",
+    "nodes",
+    "without",
+    "consolidation",
+    "layer",
+    "graph",
+    "over-counts"
+  ],
+  "lastUpdated": "2026-06-29T10:21:16.321Z",
+  "specId": "014",
+  "folderSlug": "coverage-graph-fuzzy-merge",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "003-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

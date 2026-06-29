@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin/002-injection-plugin",
+  "description": "Persisted goal state is inert unless the assistant receives it during a turn",
+  "keywords": [
+    "persisted",
+    "goal",
+    "state",
+    "inert",
+    "unless",
+    "assistant",
+    "receives",
+    "turn"
+  ],
+  "lastUpdated": "2026-06-29T10:21:09.570Z",
+  "specId": "002",
+  "folderSlug": "injection-plugin",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows/004-injection-inbox-provenance",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows/004-injection-inbox-provenance",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "injection inbox provenance",
+      "research inbox jsonl",
+      "question attribution badges",
+      "origin tracking open questions",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "004-injection-inbox-provenance summary"
+    ],
+    "key_topics": [
+      "injection",
+      "inbox",
+      "provenance",
+      "research",
+      "jsonl",
+      "question",
+      "attribution",
+      "badges",
+      "origin",
+      "tracking",
+      "open",
+      "questions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Inbox",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Question Provenance Attribution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Operators and analyst agents can inject questions mid-run only by editing the `key-questions` markdown block directly, which bypasses the state machine",
+    "created_at": "2026-06-28T14:02:09Z",
+    "last_save_at": "2026-06-29T10:30:51.759Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af1b6172c497c609f8e25e6fb7e32735fffe4e0b1d8a86c6be4e05891a9a3dd6",
+    "source_doc_hashes": {
+      "spec.md": "440cc60ec460e69a8d8eaa7c2f4bc8de7cb231446fd4587d20e0d66d05e19250",
+      "plan.md": "d30f4072494edeb607df382ece4406ac245ce48224804cd57e6a0c476cab5170",
+      "tasks.md": "ec365578c154a60cc246f40c654cf5b7d914b26736155748f39720227b01c4d3",
+      "implementation-summary.md": "8b6853175000e798af03c35869d8bfead9a56601bac53307c519c0dab286e773"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/010-fixed-rate-overrun-accounting",
+  "description": "When a loop iteration overruns its scheduled fixed-rate slot, the next slot starts immediately without any record of the overrun; missed slots are sil",
+  "keywords": [
+    "loop",
+    "iteration",
+    "overruns",
+    "scheduled",
+    "fixed-rate",
+    "slot",
+    "next",
+    "starts",
+    "immediately",
+    "without",
+    "record",
+    "overrun",
+    "missed",
+    "slots",
+    "sil"
+  ],
+  "lastUpdated": "2026-06-29T10:21:14.830Z",
+  "specId": "010",
+  "folderSlug": "fixed-rate-overrun-accounting",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "003-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

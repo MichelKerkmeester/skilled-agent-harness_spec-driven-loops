@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit/001-speckit-autopilot-lifecycle",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit/001-speckit-autopilot-lifecycle",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit autopilot lifecycle",
+      "speckit unattended",
+      "speckit complete autopilot",
+      "branch preserved failure",
+      "terminal reason codes speckit",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "speckit",
+      "autopilot",
+      "lifecycle",
+      "unattended",
+      "complete",
+      "branch",
+      "preserved",
+      "failure",
+      "terminal",
+      "reason",
+      "codes",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Speckit Unattended",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Autopilot Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
+    "created_at": "2026-06-28T20:06:47.253Z",
+    "last_save_at": "2026-06-29T10:30:55.262Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ecad2c623c38a543efed116ec44302cc8188f9d0663e7ee1bafed06f157019fa",
+    "source_doc_hashes": {
+      "spec.md": "9e7b88d2e177d2c63dca05267a13c316a3b1f7c778daf1628cee00d3fba744d6",
+      "plan.md": "00f41f9ab76c0bb15ea33dde3d921923bc0284cc6afc231e89a36984d19fb41d",
+      "tasks.md": "a7f3832c5cef34ff617c54884405047f775990ef832472ed60b91ce1c08e98f2",
+      "implementation-summary.md": "8c6849e2596aacc9fb856bed31b494be961b511227b6e9450311b8a5e88a2de1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

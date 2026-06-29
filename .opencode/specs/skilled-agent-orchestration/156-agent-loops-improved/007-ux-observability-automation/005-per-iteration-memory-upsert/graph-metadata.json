@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation/005-per-iteration-memory-upsert",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation/005-per-iteration-memory-upsert",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per iteration memory upsert",
+      "memory upsert hook",
+      "005 per iteration memory",
+      "step memory upsert iteration",
+      "incremental memory save",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "per",
+      "iteration",
+      "memory",
+      "upsert",
+      "hook",
+      "005",
+      "step",
+      "incremental",
+      "save",
+      "implementation",
+      "plan",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-memory-upsert-yaml.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Memory Upsert Hook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes",
+    "created_at": "2026-06-28T21:17:48.961Z",
+    "last_save_at": "2026-06-29T10:30:57.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f87de42d718f4a3a1ea267228c8cbbcddff455d2382bba4e17be5a40e6d2d292",
+    "source_doc_hashes": {
+      "spec.md": "2fdfd6d88aa2d54eb412bb21477a22e981758c1e242123a61420d8db9519f692",
+      "plan.md": "d8e4e21168ff58a301590d891af9dcedd0f258d18d35fca38d58ba4ce17b0d90",
+      "tasks.md": "bc38f44c6926c11b1239df4402228e0e6eba5d9f3d68069eb811abcc0d0ae17a",
+      "implementation-summary.md": "6b7add438a800906dc30b70b72911b13db1d518e21da8dbedcadd7c9072f1831"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

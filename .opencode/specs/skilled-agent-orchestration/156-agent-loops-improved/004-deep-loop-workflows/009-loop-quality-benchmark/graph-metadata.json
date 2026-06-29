@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows/009-loop-quality-benchmark",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows/009-loop-quality-benchmark",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loop quality benchmark score delta",
+      "outcomeScoreDelta benchmark",
+      "fixtureDeltas helped hurt",
+      "improvement over baseline gate",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "009-loop-quality-benchmark summary"
+    ],
+    "key_topics": [
+      "loop",
+      "quality",
+      "benchmark",
+      "score",
+      "delta",
+      "outcomescoredelta",
+      "fixturedeltas",
+      "helped",
+      "hurt",
+      "improvement",
+      "baseline",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "run-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-benchmark-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state-mode-mix.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better than what was there before?)",
+    "created_at": "2026-06-28T14:02:12Z",
+    "last_save_at": "2026-06-29T10:30:53.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b478000f02ce929781c442016a9f293b5f4eb91226d03d6291de2646a24a253b",
+    "source_doc_hashes": {
+      "spec.md": "6372da115bad1ad9b575cd9f77e968d2642843d44a8b16c755bea6d3fb8f86e5",
+      "plan.md": "aa610eb2332d7cc97ec7d59f67e931eedfa86c4d11ad9917c3b20f1c9d497510",
+      "tasks.md": "2d03e9e9e24046dc1d70f76ebf95dbe0f42cda94775dacc184d0ffe0aa15777f",
+      "implementation-summary.md": "9bf2ef004d9645bf27926c7e75e09a90b1f94e6c8b8c645647428f9bd08fed43"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

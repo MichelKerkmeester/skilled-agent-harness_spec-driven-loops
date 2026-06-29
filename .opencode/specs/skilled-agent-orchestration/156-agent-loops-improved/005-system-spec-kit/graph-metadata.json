@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved",
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/005-system-spec-kit/001-speckit-autopilot-lifecycle"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit autopilot",
+      "speckit unattended",
+      "system-spec-kit lifecycle",
+      "004 system spec kit",
+      "speckit complete autopilot"
+    ],
+    "key_topics": [
+      "speckit",
+      "autopilot",
+      "unattended",
+      "system-spec-kit",
+      "lifecycle",
+      "004",
+      "system",
+      "spec",
+      "kit",
+      "complete",
+      "auto",
+      "flag"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "001-speckit-autopilot-lifecycle/spec.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Autopilot Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
+    "created_at": "2026-06-29T05:08:45.653Z",
+    "last_save_at": "2026-06-29T10:30:54.917Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9b1975f639587dac411c131a4e9ba1d335d49a72a76bb443a16377d7a19290fc",
+    "source_doc_hashes": {
+      "spec.md": "41f0423f81e98027c492b2349407a3fb876b1dce95f6ca62caa324e3e98303c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

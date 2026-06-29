@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation/005-per-iteration-memory-upsert",
+  "description": "Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes",
+  "keywords": [
+    "deep-loop",
+    "findings",
+    "only",
+    "land",
+    "spec",
+    "kit",
+    "memory",
+    "final",
+    "memorysave",
+    "call",
+    "run",
+    "completes"
+  ],
+  "lastUpdated": "2026-06-29T10:21:25.634Z",
+  "specId": "005",
+  "folderSlug": "per-iteration-memory-upsert",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "007-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

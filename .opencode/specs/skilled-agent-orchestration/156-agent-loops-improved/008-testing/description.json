@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/008-testing",
+  "description": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution an",
+  "keywords": [
+    "tests",
+    "loop-lock",
+    "atomic-state",
+    "fanout-pool",
+    "cjs",
+    "share",
+    "real",
+    "home",
+    "database",
+    "paths",
+    "temp",
+    "dirs",
+    "preventing",
+    "parallel",
+    "execution"
+  ],
+  "lastUpdated": "2026-06-29T10:21:26.368Z",
+  "specId": "008",
+  "folderSlug": "testing",
+  "parentChain": [
+    "156-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

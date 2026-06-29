@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/009-byte-offset-log-regions",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/009-byte-offset-log-regions",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "byte-offset log regions",
+      "transcript log offset",
+      "iteration log slice",
+      "log seek by offset",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "009-byte-offset-log-regions summary"
+    ],
+    "key_topics": [
+      "byte-offset",
+      "log",
+      "regions",
+      "transcript",
+      "offset",
+      "iteration",
+      "slice",
+      "seek",
+      "implementation",
+      "plan",
+      "name",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state-sparkline.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offset Transcript Log Regions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Log",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Log analysis tools must scan and parse entire transcript files by markdown headers to locate a specific iteration's output; on long runs with many iterations this is slow and error-prone",
+    "created_at": "2026-06-28T14:01:57Z",
+    "last_save_at": "2026-06-29T10:30:46.845Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53e1be507660be3ef153079b66da6761233bb1d2a1fc87e10955ab355dc59dbe",
+    "source_doc_hashes": {
+      "spec.md": "c9044902321f4248f313384dbde374f94b4a1663f2bd650dcfea36f81b12a626",
+      "plan.md": "2e134451e29772f0a9467b085ec0413c3075170c11d0b3ba5e856a67b4c4a8c3",
+      "tasks.md": "a4a646363719e3375b5efeae7e50fca8e29cf0f7dce09120bcb8f4a64a9c02fc",
+      "implementation-summary.md": "c9745eaea4066939386cfd2af89975aca4313481c1dcbdd48d5abc3f32dd90fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

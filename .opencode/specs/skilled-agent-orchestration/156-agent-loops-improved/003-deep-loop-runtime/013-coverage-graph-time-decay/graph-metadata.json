@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/013-coverage-graph-time-decay",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/013-coverage-graph-time-decay",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "coverage-graph time-decay",
+      "signal decay weighting",
+      "stale convergence signal",
+      "decay-days configuration",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "013-coverage-graph-time-decay summary"
+    ],
+    "key_topics": [
+      "coverage-graph",
+      "time-decay",
+      "signal",
+      "decay",
+      "weighting",
+      "stale",
+      "convergence",
+      "decay-days",
+      "configuration",
+      "implementation",
+      "plan",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Graph Time",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decay Weighting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Old FINDING/SOURCE nodes accumulate in the coverage graph and continue to exert full convergence force long after their evidence is stale; this causes premature stop signals on runs that revisit old territory",
+    "created_at": "2026-06-28T14:02:01Z",
+    "last_save_at": "2026-06-29T10:30:48.466Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb8a96808c28772ca37522f17c8246ec7296765e49ff7cd19b522d9c77afa008",
+    "source_doc_hashes": {
+      "spec.md": "e002c112cbfb074ee461f085e93c56d27b9bc7443265d69a851fcbb817bf874b",
+      "plan.md": "49f23afc3b0b9d17ebeacabc587aa64dc3ab5a931fd5120993ea971b01d6e4b0",
+      "tasks.md": "74a68fea3b27b09587f30651f526c9f8d39153f1a623000e8450fa6be9c50614",
+      "implementation-summary.md": "1c10d3119716cfce9a0842dfd677d51163c00feac6a48488fdc0b3b51985fb6f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
