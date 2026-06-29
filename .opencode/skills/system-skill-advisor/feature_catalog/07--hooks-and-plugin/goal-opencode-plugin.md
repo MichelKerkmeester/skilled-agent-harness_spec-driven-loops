@@ -38,7 +38,7 @@ The plugin exposes two OpenCode tools: `mk_goal` for mutation and `mk_goal_statu
 
 Continuation is default-off. `MK_GOAL_AUTONOMY=smoke` logs that a continuation would fire without calling the runtime, and `MK_GOAL_AUTONOMY=active` may call `ctx.client.session.promptAsync` only after all gates pass: plugin enabled, real session id, active unsuppressed goal, no in-flight continuation, no pending permission or question, idle runtime status, cooldown elapsed, cap not exceeded and budget not exhausted. Continuation is capped at eight auto-turns, thirty minutes wall time and a 1500 ms cooldown.
 
-Known limitation: the `promptAsync` continuation path is implemented and covered by plugin tests, but live OpenCode-run tool invocation is still under investigation. Treat active continuation as opt-in until the live runtime path is verified in a real OpenCode session.
+Known limitation (verified): in one-shot `opencode run` mode, plugin-registered tools (`mk_goal`, `mk_goal_status`) are NOT surfaced to the model — a live `opencode run` session reported only MCP and built-in tools available, with `mk_goal` absent, so the `/goal` command cannot drive a tool call there. The plugin itself is verified end-to-end by the tool-path test (a real `ToolContext` persists, reads, and clears per-session state) plus the unit suite; reaching it from a live model turn requires `opencode serve`/TUI (or a runtime build that exposes plugin tools to `run`). Active continuation stays opt-in (default-off) until that live model-invocation path is exercised under serve/TUI.
 
 ## 3. SOURCE FILES
 
