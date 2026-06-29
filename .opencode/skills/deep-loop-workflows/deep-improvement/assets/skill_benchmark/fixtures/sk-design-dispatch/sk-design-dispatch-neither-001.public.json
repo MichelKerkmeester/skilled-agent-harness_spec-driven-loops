@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-dispatch-neither-001",
+  "tier": "T1",
+  "public": {
+    "prompt": "explain the markdown heading levels in a README without changing files",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "do not route to a design workflow"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

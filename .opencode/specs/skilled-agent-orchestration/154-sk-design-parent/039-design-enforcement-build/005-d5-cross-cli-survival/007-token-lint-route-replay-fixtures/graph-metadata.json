@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d5-r7 token lint route replay fixtures",
-      "design routing fixtures design build"
+      "design routing fixtures design build",
+      "design proof token lint",
+      "d5-r7 tasks",
+      "design token lint tasks",
+      "route replay fixtures tasks",
+      "d5-r7 checklist",
+      "design token lint checklist",
+      "route replay fixtures checklist",
+      "d5-r7 implementation summary",
+      "design token lint built",
+      "route replay fixtures summary"
     ],
     "key_topics": [
       "d5-r7",
@@ -24,21 +34,60 @@
       "design",
       "routing",
       "build",
-      "add",
-      "asserting",
-      "prompts"
+      "proof",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      "spec.md"
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/design-token-lint.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/design-token-lint.vitest.ts",
+      ".opencode/skills/sk-design/references/design_proof_token.md",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/shared/register.md",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "router-replay.cjs",
+        "name": "design-token-lint.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/design-token-lint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "design-token-lint.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/design-token-lint.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "design_proof_token.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/design_proof_token.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "register.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/register.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
         "source": "derived"
       },
       {
@@ -48,53 +97,127 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "DESIGN",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add fixtures asserting design prompts route to DESIGN and carry manifest tokens, with a neither-loaded negative control, under the skill-benchmark harness.",
+    "causal_summary": "The other D5 cross-CLI phases are only as trustworthy as their test gate",
     "created_at": "2026-06-28T12:40:08.293Z",
-    "last_save_at": "2026-06-28T12:40:08.293Z",
+    "last_save_at": "2026-06-29T08:53:25.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81b3e741d05f74bfa3c89637b82519a150ca11cf8eda8a7f76e20f299c83fb7c",
+    "source_fingerprint": "sha256:07f91bdc1340d9b945f65c97973eecb34432fde169862a6f67384d0c2b8280ff",
     "source_doc_hashes": {
-      "spec.md": "f5e4979e4512cc91e7f6da8f9396b044a985322bb34ef362d1408c4e53021da8"
+      "spec.md": "111bfcaca5969fe0ac595ab776ce110df23538f4496a97a149fd46f9f834b91d",
+      "plan.md": "9d6b257d14bbd25e32c98ddadcc76dee3964422f71d00166feafddd2eda3ca66",
+      "tasks.md": "e0a766220a94282dc62be6ce1cfa9b46ce9b5465f3732cfc2527f893ac1b82f9",
+      "checklist.md": "096d695f60195cf8f194885a46b147ecfd33cd0aef4182f29111b93b648210b3",
+      "implementation-summary.md": "d902785cda1a4070b27c0bbed74f6f7bc10db6aba990a76031cd5a4aa5101c4f"
     },
     "last_active_child_id": null,
     "last_active_at": null
