@@ -104,6 +104,23 @@ Perceived quality is audit evidence when it is tied to observable consistency. S
 
 Hold error, empty, loading, disabled, permission, and success states to the same visual quality as the primary path. File weak fallback states as P2 when they create uncertainty or recovery friction, P3 when they are mainly craft debt.
 
+### Polish Readiness
+
+Carry polish readiness as a report row, not as loose narration:
+
+| Row | Verdict | Scan evidence | Judgment evidence |
+| --- | --- | --- | --- |
+| Polish readiness | `ready` / `blocked` / `not-assessed` | `scripts/polish_readiness_check.py --scan <surface> <filled-report.md>` -> marker count and locations | Rendered/state review notes from the section 6 polish checks, or the reason the review could not run |
+
+Use exactly these verdicts:
+- `ready`: the unfinished-marker scan ran clean and the section 6 rendered/state review was walked.
+- `blocked`: the scan found unfinished markers, or a named incomplete state remains.
+- `not-assessed`: the scan did not run or the surface was unavailable, so readiness is unknown.
+
+The unfinished-marker scan is deterministic: scan the resolved surface for `\b(TODO|FIXME|XXX|HACK|WIP)\b`. A `ready` verdict requires a clean scan; if any marker is present, the row is at most `blocked`. If no scan ran, the row is `not-assessed`, not `ready`.
+
+This is a necessary floor, not proof of polish. A clean marker scan plus `ready` only says the surface has no visible unfinished markers and the review was performed; hierarchy, perceived quality, design-system alignment, and state craft still need rendered evidence and human judgment under section 7.
+
 ## 7. Evidence Limits
 
 A clean detector result is not proof of a strong design. Browser/rendered evidence and human judgment still matter for hierarchy, emotional fit, slop, and flow shape.
