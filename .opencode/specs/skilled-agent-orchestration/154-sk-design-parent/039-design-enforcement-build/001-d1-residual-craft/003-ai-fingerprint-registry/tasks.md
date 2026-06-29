@@ -52,7 +52,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup [Registry schema and rows] (1.5-2 hours)
+## Phase 1: Setup [Registry schema and rows, 1.5-2 hours]
 
 ### Schema
 - [x] T001 Define registry JSON shape with the seven required fields: `tell_id`, `model_family`, `self_defect_prompt`, `deterministic_check`, `fixture_id`, `severity_floor`, `owner` (`.opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json`) [20m] — seven-field schema authored, all rows carry every field
@@ -67,7 +67,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation [Validator and self-defect card] (2-3 hours)
+## Phase 2: Implementation [Validator and self-defect card, 2-3 hours]
 
 ### Parity Validator
 - [x] T006 Add the deterministic parity validator beside the existing shared validators (`.opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs`) [1h] — validator added, `node --check` clean
@@ -81,7 +81,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification [Audit-mode wiring and verification] (1 hour)
+## Phase 3: Verification [Audit-mode wiring and verification, 1 hour]
 
 ### Wiring (additive)
 - [x] T010 Add the registry and card to the audit mode resource map under the anti-patterns intent (`.opencode/skills/sk-design/design-audit/SKILL.md`) [15m] — resource-map rows + `ANTI_PATTERNS_PRODUCTION` RESOURCE_MAP entry added, 0 prose lines removed
