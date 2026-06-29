@@ -16,6 +16,13 @@
     "next": ["/design:foundations", "/design:interface", "/design:motion"],
     "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
     "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
+    "preconditions": {
+      "requiredInputKind": "a concrete design target - a URL, component, screen, or file - to inspect",
+      "missingInputQuestion": "What is the audit target (URL, component, screen, or file), and what scope/score do you want?",
+      "cannotRunWhen": "no target is given, or the named target cannot be opened or inspected",
+      "escalateIf": "the target needs build or run state the audit cannot reach to evidence a finding",
+      "routeInstead": "the ask is to create new direction, a static system, or motion rather than review existing quality"
+    },
     "discriminator": {
       "whenToUse": "Use this command when the request is to review, score, or harden an existing design surface.",
       "preferSiblingWhen": [
@@ -69,6 +76,13 @@
     "next": ["/design:interface", "/design:motion", "/design:audit"],
     "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
     "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
+    "preconditions": {
+      "requiredInputKind": "a design-system axis (color, type, layout, spacing, or tokens) plus the target surface or product context",
+      "missingInputQuestion": "Which axis (color, type, layout, spacing, tokens) and for which target surface?",
+      "cannotRunWhen": "no axis is named, or no target/product context is given to ground the system",
+      "escalateIf": "the request actually needs full interface invention, not a single static axis",
+      "routeInstead": "the work is overall interface direction, motion behavior, or release-quality audit"
+    },
     "discriminator": {
       "whenToUse": "Use this command when the request is to design or correct the static visual system.",
       "preferSiblingWhen": [
@@ -122,6 +136,13 @@
     "next": ["/design:foundations", "/design:motion", "/design:audit"],
     "proofFields": ["target", "register", "designDials", "preflightResult"],
     "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+    "preconditions": {
+      "requiredInputKind": "an interface target (surface, screen, or component set) plus the register and any mode hint",
+      "missingInputQuestion": "Which interface surface, and is this Brand or Product register?",
+      "cannotRunWhen": "no interface target is named to shape",
+      "escalateIf": "the register is genuinely mixed or unresolved and changes the design dials",
+      "routeInstead": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction"
+    },
     "discriminator": {
       "whenToUse": "Use this command when the request is to invent or reshape a distinctive interface direction.",
       "preferSiblingWhen": [
@@ -175,6 +196,13 @@
     "next": ["/design:foundations", "/design:interface", "/design:audit"],
     "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
     "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
+    "preconditions": {
+      "requiredInputKind": "a reachable live URL plus a writable output directory",
+      "missingInputQuestion": "Which live URL should I extract, and where should the DESIGN.md be written?",
+      "cannotRunWhen": "the URL is missing or unreachable, or the output directory cannot be resolved or written",
+      "escalateIf": "the site requires authentication or blocks headless extraction so the CSS cannot be captured",
+      "routeInstead": "the request spans redesign, critique, or new visual-system invention rather than measured extraction"
+    },
     "discriminator": {
       "whenToUse": "Use this command when the request is to extract a live site's real measured CSS into DESIGN.md.",
       "preferSiblingWhen": [
@@ -228,6 +256,13 @@
     "next": ["/design:interface", "/design:foundations", "/design:audit"],
     "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
     "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+    "preconditions": {
+      "requiredInputKind": "a component or state transition to animate, plus an optional animation library",
+      "missingInputQuestion": "Which component or state transition should the motion describe, and which library?",
+      "cannotRunWhen": "no component or state transition is named to animate",
+      "escalateIf": "the motion depends on an interface direction that has not been decided yet",
+      "routeInstead": "the request is static visual-system design, interface direction, audit scoring, or measured CSS extraction"
+    },
     "discriminator": {
       "whenToUse": "Use this command when the request is to design purposeful animation, transitions, or reduced-motion behavior.",
       "preferSiblingWhen": [

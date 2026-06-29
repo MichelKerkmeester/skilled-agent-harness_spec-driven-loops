@@ -25,7 +25,15 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request asks for new direction, static system design, or motion choreography rather than quality review.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. INSTRUCTIONS
+## 3. PRECONDITIONS
+
+- **Requires:** a concrete design target - a URL, component, screen, or file - to inspect
+- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "What is the audit target (URL, component, screen, or file), and what scope/score do you want?" Do not run on a guess.
+- **Cannot-run:** when no target is given, or the named target cannot be opened or inspected, stop with `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** if the target needs build or run state the audit cannot reach to evidence a finding, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
+- **Route instead:** when the ask is to create new direction, a static system, or motion rather than review existing quality, return `STATUS=DEFER ROUTE=hub`.
+
+## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -36,9 +44,11 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 
 ### Step 2: Return Status
 - Success: `STATUS=OK`
-- Failure: `STATUS=FAIL ERROR="<message>"`
+- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
+- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
+- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 4. EMIT DELIVERABLE
+## 5. EMIT DELIVERABLE
 
 Emit `Design Quality Audit Report` as the primary deliverable.
 
@@ -48,7 +58,7 @@ Required fields:
 - `severityFindings`
 - `qualityScore`
 
-## 5. EXAMPLE
+## 6. EXAMPLE
 
 ```
 /design:audit src/components/Checkout.tsx --scope a11y --score

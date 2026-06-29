@@ -25,7 +25,15 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. INSTRUCTIONS
+## 3. PRECONDITIONS
+
+- **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint
+- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which interface surface, and is this Brand or Product register?" Do not run on a guess.
+- **Cannot-run:** when no interface target is named to shape, stop with `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
+- **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
+
+## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -36,9 +44,11 @@ than `interface`, defer to the hub's routing instead of forcing this mode.
 
 ### Step 2: Return Status
 - Success: `STATUS=OK`
-- Failure: `STATUS=FAIL ERROR="<message>"`
+- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
+- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
+- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 4. EMIT DELIVERABLE
+## 5. EMIT DELIVERABLE
 
 Emit `Interface Direction Spec` as the primary deliverable.
 
@@ -48,7 +58,7 @@ Required fields:
 - `designDials`
 - `preflightResult`
 
-## 5. EXAMPLE
+## 6. EXAMPLE
 
 ```
 /design:interface dashboard-shell --mode redesign

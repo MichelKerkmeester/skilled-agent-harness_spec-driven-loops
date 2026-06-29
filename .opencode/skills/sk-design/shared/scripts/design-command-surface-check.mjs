@@ -16,6 +16,7 @@ const REQUIRED_FIELDS = [
   "next",
   "proofFields",
   "deferToHubWhen",
+  "preconditions",
   "discriminator",
   "toolPolicy",
   "outputContract"
@@ -38,12 +39,28 @@ const DRIFT_FIELDS = [
   "example-prefix",
   "returns",
   "sibling-discriminator",
+  "preconditions",
   "wrapper"
 ];
 const GENERIC_ARGUMENT_HINT = "<design request>";
 const READ_ONLY_TOOLS = ["Read", "Glob", "Grep"];
 const MUTATING_TOOLS = ["Read", "Write", "Edit", "Bash", "Glob", "Grep"];
 const DRIFT_SORT_FIELDS = [...DRIFT_FIELDS];
+const PRECONDITION_FIELDS = [
+  "requiredInputKind",
+  "missingInputQuestion",
+  "cannotRunWhen",
+  "escalateIf",
+  "routeInstead"
+];
+const PRECONDITION_SECTION_MARKERS = ["Requires:", "Ask-first:", "Cannot-run:", "Escalate:"];
+const REQUIRED_RETURN_STATUS_TOKENS = [
+  "STATUS=OK",
+  "STATUS=ASK MISSING=<input>",
+  "STATUS=FAIL ERROR=<named-cause>",
+  "STATUS=DEFER ROUTE="
+];
+const STATUS_ONLY_FAILURE_PATTERN = /STATUS=FAIL\s+ERROR="<message>"/;
 const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
@@ -197,6 +214,7 @@ function validateMetadata(metadata, workflowModes) {
       errors.push(`${command}: toolPolicy.mutatesWorkspace must be a boolean`);
     }
 
+    errors.push(...validatePreconditions(record, command));
     errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
     errors.push(...validateDiscriminator(record, command, workflowModes));
@@ -220,6 +238,23 @@ function validateMetadata(metadata, workflowModes) {
   }
 
   return errors.sort();
+}
+
+function validatePreconditions(record, command) {
+  const errors = [];
+  const preconditions = record?.preconditions;
+
+  if (!isPlainObject(preconditions)) {
+    return [`${command}: preconditions must be an object`];
+  }
+
+  for (const field of PRECONDITION_FIELDS) {
+    if (typeof preconditions[field] !== "string" || preconditions[field].trim().length === 0) {
+      errors.push(`${command}: preconditions.${field} must be a non-empty string`);
+    }
+  }
+
+  return errors;
 }
 
 function validateDiscriminator(record, command, workflowModes) {
@@ -464,9 +499,59 @@ async function collectSurfaceDrift(records) {
 
     drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
     drift.push(...expectedDiscriminatorDrift(record, markdown));
+    drift.push(...expectedPreconditionsDrift(record, markdown));
   }
 
   return drift.sort(compareDrift);
+}
+
+function expectedPreconditionsDrift(record, markdown) {
+  const drift = [];
+  const section = extractPreconditionsSection(markdown);
+
+  if (!section) {
+    return [
+      {
+        command: record.command,
+        field: "preconditions",
+        expected: "## PRECONDITIONS",
+        actual: "<missing section>"
+      }
+    ];
+  }
+
+  for (const marker of PRECONDITION_SECTION_MARKERS) {
+    if (!section.includes(marker)) {
+      drift.push({
+        command: record.command,
+        field: "preconditions",
+        expected: marker,
+        actual: "<missing marker>"
+      });
+    }
+  }
+
+  if (STATUS_ONLY_FAILURE_PATTERN.test(markdown)) {
+    drift.push({
+      command: record.command,
+      field: "preconditions",
+      expected: "named failure cause",
+      actual: "STATUS=FAIL ERROR=\"<message>\""
+    });
+  }
+
+  for (const token of REQUIRED_RETURN_STATUS_TOKENS) {
+    if (!markdown.includes(token)) {
+      drift.push({
+        command: record.command,
+        field: "preconditions",
+        expected: token,
+        actual: "<missing return-status token>"
+      });
+    }
+  }
+
+  return drift;
 }
 
 function expectedDiscriminatorDrift(record, markdown) {
@@ -618,6 +703,17 @@ function extractFirstFencedInvocation(section) {
 function extractReturnsArtifact(section) {
   const returnsMatch = section.match(/^Returns:\s*(.+)$/im);
   return returnsMatch ? returnsMatch[1].trim() : null;
+}
+
+function extractPreconditionsSection(markdown) {
+  const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?PRECONDITIONS\s*$/im);
+  if (!sectionMatch || typeof sectionMatch.index !== "number") {
+    return null;
+  }
+
+  const bodyStart = sectionMatch.index + sectionMatch[0].length;
+  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
+  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
 function extractSiblingDiscriminatorSection(markdown) {

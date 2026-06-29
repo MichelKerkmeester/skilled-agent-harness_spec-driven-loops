@@ -25,7 +25,15 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. INSTRUCTIONS
+## 3. PRECONDITIONS
+
+- **Requires:** a reachable live URL plus a writable output directory
+- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which live URL should I extract, and where should the DESIGN.md be written?" Do not run on a guess.
+- **Cannot-run:** when the URL is missing or unreachable, or the output directory cannot be resolved or written, stop with `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** if the site requires authentication or blocks headless extraction so the CSS cannot be captured, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
+- **Route instead:** when the request spans redesign, critique, or new visual-system invention rather than measured extraction, return `STATUS=DEFER ROUTE=hub`.
+
+## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -36,9 +44,11 @@ than `md-generator`, defer to the hub's routing instead of forcing this mode.
 
 ### Step 2: Return Status
 - Success: `STATUS=OK`
-- Failure: `STATUS=FAIL ERROR="<message>"`
+- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
+- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
+- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 4. EMIT DELIVERABLE
+## 5. EMIT DELIVERABLE
 
 Emit `Style Reference DESIGN.md` as the primary deliverable.
 
@@ -50,7 +60,7 @@ Required fields:
 File outputs:
 - `<output>/DESIGN.md`
 
-## 5. EXAMPLE
+## 6. EXAMPLE
 
 ```
 /design:md-generator https://stripe.com --output design/reference

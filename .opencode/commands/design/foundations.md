@@ -25,7 +25,15 @@ than `foundations`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request spans invention of the overall interface direction, motion choreography, or release-quality audit.
 <!-- /ANCHOR:sibling-discriminator -->
 
-## 3. INSTRUCTIONS
+## 3. PRECONDITIONS
+
+- **Requires:** a design-system axis (color, type, layout, spacing, or tokens) plus the target surface or product context
+- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which axis (color, type, layout, spacing, tokens) and for which target surface?" Do not run on a guess.
+- **Cannot-run:** when no axis is named, or no target/product context is given to ground the system, stop with `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** if the request actually needs full interface invention, not a single static axis, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
+- **Route instead:** when the work is overall interface direction, motion behavior, or release-quality audit, return `STATUS=DEFER ROUTE=hub`.
+
+## 4. INSTRUCTIONS
 
 ### Step 1: Load and apply the mode
 - Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
@@ -36,9 +44,11 @@ than `foundations`, defer to the hub's routing instead of forcing this mode.
 
 ### Step 2: Return Status
 - Success: `STATUS=OK`
-- Failure: `STATUS=FAIL ERROR="<message>"`
+- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
+- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
+- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
 
-## 4. EMIT DELIVERABLE
+## 5. EMIT DELIVERABLE
 
 Emit `Visual System Foundations Plan` as the primary deliverable.
 
@@ -48,7 +58,7 @@ Required fields:
 - `tokenDecisions`
 - `contrastEvidence`
 
-## 5. EXAMPLE
+## 6. EXAMPLE
 
 ```
 /design:foundations color marketing-site
