@@ -5,7 +5,6 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
-    "skilled-agent-orchestration/156-agent-loops-improved",
     "skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin",
     "skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime",
     "skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows",
@@ -13,7 +12,9 @@
     "skilled-agent-orchestration/156-agent-loops-improved/006-skill-interconnection",
     "skilled-agent-orchestration/156-agent-loops-improved/007-ux-observability-automation",
     "skilled-agent-orchestration/156-agent-loops-improved/008-testing",
-    "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation"
+    "skilled-agent-orchestration/156-agent-loops-improved/009-loop-systems-remediation",
+    "skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing",
+    "skilled-agent-orchestration/156-agent-loops-improved/011-gpt-routing-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -47,8 +48,7 @@
       ".opencode/plugins/mk-goal.js",
       ".opencode/commands/goal.md",
       "001-reference-research/research/research.md",
-      "review/review-report.md",
-      "review/mimo-campaign-report.md",
+      "010-gpt-deep-agent-routing/research/research.md",
       "spec.md"
     ],
     "entities": [
@@ -62,18 +62,6 @@
         "name": "goal.md",
         "kind": "doc",
         "path": ".opencode/commands/goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "mimo-campaign-report.md",
-        "kind": "doc",
-        "path": "review/mimo-campaign-report.md",
         "source": "derived"
       },
       {
@@ -120,18 +108,18 @@
       }
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
-    "created_at": "2026-06-28T14:00:31Z",
-    "last_save_at": "2026-06-29T10:46:17.586Z",
-    "save_lineage": "same_pass",
+    "created_at": "2026-06-30T10:32:21.634Z",
+    "last_save_at": "2026-06-30T10:32:21.634Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b8a92cebd38b8fe32984b6fa385a3cfdad4a8a78f9f042c85016ee445a6e9d6b",
+    "source_fingerprint": "sha256:ec45434f3cd8131041b53ddf95425112a9d5a396599582801e1dedbc86ed2fec",
     "source_doc_hashes": {
-      "spec.md": "306c82cbc17e083e7af7d178b96563e892778fd271b60e5307495fc2105db2b1"
+      "spec.md": "0b2c142aa3f85a6cd6b7e2b5a6718af6c0f6adebb05ddc6008a28f5d1f1defa9"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-06-29T05:15:17.527Z"
+    "last_active_at": null
   }
 }

@@ -1,0 +1,37 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing",
+  "description": "When deep skills run under a GPT-backed model in OpenCode, they can route to the general/build agent instead of dedicated deep LEAF agents; this resea",
+  "keywords": [
+    "deep",
+    "skills",
+    "run",
+    "gpt-backed",
+    "model",
+    "opencode",
+    "route",
+    "general",
+    "build",
+    "agent",
+    "instead",
+    "dedicated",
+    "leaf",
+    "agents",
+    "research",
+    "identifies",
+    "root",
+    "cause",
+    "hands",
+    "validator-first",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-30T10:29:41.947Z",
+  "specId": "010",
+  "folderSlug": "gpt-deep-agent-routing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,1812 @@
+{
+  "sessionId": "dr-010-gpt-routing-1782801010",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-kq1-where-in-opencode-s-agent-command-resolution-path-is-the-which-agent-runs-th",
+      "inboxId": null,
+      "text": "KQ1: Where in OpenCode's agent/command resolution path is the \"which agent runs this\" decision made, and why does GPT-backed execution pick general/build instead of the named deep LEAF agent (@deep-research, @deep-review, etc.)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-kq2-how-does-the-deep-loop-command-yaml-agent-file-contract-express-dispatch-dee",
+      "inboxId": null,
+      "text": "KQ2: How does the deep-loop command YAML + agent file contract express \"dispatch @deep-research\" vs \"orchestrate the loop yourself as @general\", and where does a GPT-backed model misread that boundary?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-kq3-why-are-gpt-backed-deep-loops-slower-than-claude-s-dispatch-latency-per-iter",
+      "inboxId": null,
+      "text": "KQ3: Why are GPT-backed deep loops slower than Claude's (dispatch latency, per-iteration tool-call overhead, reasoning/token volume, reducer/state churn)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-kq4-which-specific-workflow-contract-steps-do-gpt-backed-runs-skip-or-mutate-sta",
+      "inboxId": null,
+      "text": "KQ4: Which specific workflow-contract steps do GPT-backed runs skip or mutate (state files, prompt-pack render, reducer refresh, convergence eval, lock lifecycle) vs Claude?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-kq5-how-do-the-two-reproduction-surfaces-orchestrate-sub-agent-dispatch-vs-build",
+      "inboxId": null,
+      "text": "KQ5: How do the two reproduction surfaces (@orchestrate sub-agent dispatch vs build primary agent) share or differ in root cause?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-kq6-what-concrete-evidence-backed-fixes-would-close-the-gpt-vs-claude-fidelity-g",
+      "inboxId": null,
+      "text": "KQ6: What concrete, evidence-backed fixes would close the GPT-vs-Claude fidelity gap (prompt-packs, agent-file hardening, enforcement gates, state invariants)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-kq1-where-in-opencode-s-agent-command-resolution-path-is-the-which-agent-runs-th",
+      "inboxId": null,
+      "text": "KQ1: Where in OpenCode's agent/command resolution path is the \"which agent runs this\" decision made, and why does GPT-backed execution pick general/build instead of the named deep LEAF agent (@deep-research, @deep-review, etc.)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-kq2-how-does-the-deep-loop-command-yaml-agent-file-contract-express-dispatch-dee",
+      "inboxId": null,
+      "text": "KQ2: How does the deep-loop command YAML + agent file contract express \"dispatch @deep-research\" vs \"orchestrate the loop yourself as @general\", and where does a GPT-backed model misread that boundary?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-kq3-why-are-gpt-backed-deep-loops-slower-than-claude-s-dispatch-latency-per-iter",
+      "inboxId": null,
+      "text": "KQ3: Why are GPT-backed deep loops slower than Claude's (dispatch latency, per-iteration tool-call overhead, reasoning/token volume, reducer/state churn)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-kq4-which-specific-workflow-contract-steps-do-gpt-backed-runs-skip-or-mutate-sta",
+      "inboxId": null,
+      "text": "KQ4: Which specific workflow-contract steps do GPT-backed runs skip or mutate (state files, prompt-pack render, reducer refresh, convergence eval, lock lifecycle) vs Claude?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-kq5-how-do-the-two-reproduction-surfaces-orchestrate-sub-agent-dispatch-vs-build",
+      "inboxId": null,
+      "text": "KQ5: How do the two reproduction surfaces (@orchestrate sub-agent dispatch vs build primary agent) share or differ in root cause?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-kq6-what-concrete-evidence-backed-fixes-would-close-the-gpt-vs-claude-fidelity-g",
+      "inboxId": null,
+      "text": "KQ6: What concrete, evidence-backed fixes would close the GPT-vs-Claude fidelity gap (prompt-packs, agent-file hardening, enforcement gates, state invariants)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether ai-council should gain an analogous session/topic artifact validator rather than reuse iteration-file semantics.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether deep-context should adopt the same post-dispatch validator or keep host-written state validation separate.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether status enum should be deep-research-only initially or should also cover review and any future generalized loop record shapes.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether deep-ai-council should validate seat/session artifact frontmatter statuses and session events through a dedicated council validator.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether deep-context should later normalize to the six-status vocabulary or keep `evidence` as a mode-specific status behind a mode-specific validator.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "KQ1: Where in OpenCode's agent/command resolution path is the \"which agent runs this\" decision made, and why does GPT-backed execution pick general/build instead of the named deep LEAF agent (@deep-research, @deep-review, etc.)?",
+    "KQ2: How does the deep-loop command YAML + agent file contract express \"dispatch @deep-research\" vs \"orchestrate the loop yourself as @general\", and where does a GPT-backed model misread that boundary?",
+    "KQ3: Why are GPT-backed deep loops slower than Claude's (dispatch latency, per-iteration tool-call overhead, reasoning/token volume, reducer/state churn)?",
+    "KQ4: Which specific workflow-contract steps do GPT-backed runs skip or mutate (state files, prompt-pack render, reducer refresh, convergence eval, lock lifecycle) vs Claude?",
+    "KQ5: How do the two reproduction surfaces (@orchestrate sub-agent dispatch vs build primary agent) share or differ in root cause?",
+    "KQ6: What concrete, evidence-backed fixes would close the GPT-vs-Claude fidelity gap (prompt-packs, agent-file hardening, enforcement gates, state invariants)?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-allowed-tools-task-is-a-grant-not-a-mandate-research-md-4-grants-the",
+      "text": "**`allowed-tools: ... Task` is a grant, not a mandate.** `research.md:4` grants the",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-2-if-cli-codex-if-cli-claude-code-if-cli-opencode-dispatch-is-a-real",
+      "text": "**`if_cli_codex` / `if_cli_claude_code` / `if_cli_opencode`** — dispatch is a **real",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-1-if-native-dispatch-is-pure-yaml-prose",
+      "text": "**`if_native`** — dispatch is pure YAML prose:",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-7-confirmed-on-this-dispatch-prompt-pack-emission-leak-the-dispatch-prompt-i",
+      "text": "**CONFIRMED on THIS dispatch — prompt-pack emission leak.** The dispatch prompt I",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-4-native-dispatch-directive-is-yaml-prose-with-no-runtime-assertion",
+      "text": "**Native dispatch directive is YAML prose with no runtime assertion.**",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-3-phase-0-identity-priming-research-md-39-72-makes-the-runner-self-identify-as",
+      "text": "**Phase-0 identity priming.** `research.md:39-72` makes the runner self-identify AS",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-rendered-prompt-pack-the-leaf-s-instructions-is-never-seen-by-the-orchestrat",
+      "text": "**The rendered prompt-pack (the leaf's instructions) is never seen by the orchestrator",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-config.json` (executor.type=native)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-state.jsonl` (0 prior iteration records)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/deep-research-strategy.md` (KQ1-KQ6, Next Focus)",
+        "`.opencode/commands/deep/research.md` (router contract, Phase-0, allowed-tools)",
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (agent_config:81-89; step_dispatch_iteration:811-975; prompt-pack render:825-843; native dispatch:851-857)",
+        "`.opencode/agents/` glob (13 agent files)",
+        "`opencode.json` (no agent/model definitions)",
+        "`AGENTS.md §8` (Agent Routing — Task-tool delegation)",
+        "The iteration-001 dispatch prompt itself (trailing dispatch scaffolding — empirical F5.5)"
+      ]
+    },
+    {
+      "id": "finding-2-7-i-larger-token-volume-re-reading-yaml-json-state-native-leaf-context",
+      "text": "**(i) Larger token volume re-reading YAML/JSON state.** Native leaf context",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-8-ii-more-reasoning-turns-before-acting-per-f5-the-contracts-carry",
+      "text": "**(ii) More reasoning turns before acting.** Per F5, the contracts carry",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-9-iii-orchestrator-context-growth-across-iterations-native-leaf-output",
+      "text": "**(iii) Orchestrator context growth across iterations.** Native leaf output",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-4-convergence-cjs-orchestrator-bash-invokes-the-convergence-scorer",
+      "text": "**convergence.cjs** — orchestrator Bash-invokes the convergence scorer.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-6-dispatch-wait-native-wait-for-completion-true-f4-blocks-the",
+      "text": "**Dispatch wait** — native: `wait_for_completion: true` (F4) BLOCKS the",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-2-leaf-state-re-read-both-native-and-cli-leaves-start-fresh-and-must",
+      "text": "**Leaf state re-read** — both native and CLI leaves start fresh and must",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-5-loop-lock-cjs-heartbeat-manages-deep-research-lock-across-the",
+      "text": "**loop-lock.cjs heartbeat** — manages `.deep-research.lock` across the",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-1-prompt-pack-render-orchestrator-side-once-per-iteration-before",
+      "text": "**Prompt-pack render** — orchestrator-side, ONCE per iteration, before",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-2-3-reducer-machine-section-sync-orchestrator-rewrites-strategy-3-6-7",
+      "text": "**Reducer machine-section sync** — orchestrator rewrites strategy §3/§6/§7-",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl:1-67` (template, clean)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/prompts/iteration-001.md:1-65` (rendered leaf prompt, clean)",
+        "grep across `.opencode/**/*.{md,yaml,yml,json,cjs,js}` for `Invoked by user|call the task tool|guaranteed to exist|subagent:` (10 hits; only iter-001.md:102-103 matches the leak signature)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md:100-111` (iter-1 OBS1 + F5)",
+        "`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `scripts/loop-lock.cjs` (latency component executors, located via glob)",
+        "`.opencode/specs/.../research/.deep-research.lock` (lock artifact present)",
+        "`deep-research-strategy.md:130` (reducer-owned machine sections)",
+        "`deep_research_auto.yaml` step_dispatch_iteration (iter-1 F4: native wait_for_completion:true vs CLI subprocess)",
+        "This iteration's dispatch prompt (iter-2 OBS2 — empirical leak reproduction)"
+      ]
+    },
+    {
+      "id": "finding-3-1-mode-a-general-absorbs-the-leaf-role-the-orchestrator-reads-the",
+      "text": "**Mode A — @general absorbs the leaf role.** The orchestrator reads the",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-3-2-mode-b-general-re-dispatches-itself-general-infinite-regression",
+      "text": "**Mode B — @general re-dispatches itself/general (infinite regression).**",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-3-4-opencode-specs-skilled-agent-orchestration-z-archive-116-deep-skill-evolution-00",
+      "text": "`.opencode/specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research` — config+strat+jsonl, **0 iteration files, but 10 `type:\"iteration\"` records in JSONL** (9 JSONL lines — note: line vs record count mismatch is itself a parse/append anomaly).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-3-3-opencode-specs-skilled-agent-orchestration-z-archive-122-deep-improvement-skill-",
+      "text": "`.opencode/specs/skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research` — config+strat+jsonl, **0 iteration files, but 5 `type:\"iteration\"` records in JSONL** (5 JSONL lines total).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-3-5-opencode-specs-system-spec-kit-026-graph-and-context-optimization-007-mcp-daemon",
+      "text": "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings/research` — 3 JSONL lines, 0 iteration records.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-3-6-opencode-specs-system-spec-kit-027-xce-research-based-refinement-004-shared-infr",
+      "text": "`.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/{002-code-index-cli,003-skill-advisor-cli,001-spec-memory-cli}/000-*-research/research` — 2/2/4 JSONL lines, 0 iteration records each.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/commands/deep/assets/deep_research_auto.yaml` (full 1556 lines): step_acquire_lock:227, init steps:286-339, step_dispatch_iteration:811-857 (if_native prose), post_dispatch_validate:986-1014 (+failure_reasons:1003-1014), step_reduce_state:1061-1080, step_graph_upsert:1082, step_memory_upsert_iteration:1097, step_refresh_memory_context:1110, step_evaluate_results:1124-1141, step_generate_dashboard:1219, phase_synthesis.step_writeback_spec_findings:1326-1344, phase_save.step_generate_context:1470, phase_save.step_release_lock:1486, error_recovery:1515-1519, rules.NEVER:1534-1540",
+        "`.opencode/agents/deep-research.md` §0 + §1 (LEAF-only invariants)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-001.md` (F4 native-vs-CLI fork, F5 conflation cues)",
+        "`.opencode/specs/.../010-gpt-deep-agent-routing/research/iterations/iteration-002.md` (F10 OBS1 mechanism, F11 OBS2 reproducibility)",
+        "bash structural-difference scan: `for d in $(find .opencode/specs -type d -name research); ... config+strat vs iteration trail` — 6 flagged packets (F16)",
+        "156 parent tree: `ls .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/{changelog,review}` (present, not deeply read — budget)",
+        "This iteration's dispatch prompt (OBS2 reproduction — \"call the task tool with subagent: deep-research / general\")",
+        "This iteration's injected `/deep:context` CONTEXT.md system-reminder (OBS3 — F17)"
+      ]
+    },
+    {
+      "id": "finding-4-2-orchestrate-dispatches-every-custom-agent-including-deep-research-with-subagent-",
+      "text": "**`@orchestrate` dispatches EVERY custom agent — including `@deep-research` — with `subagent_type: \"general\"`.** The Agent Selection table lists `@deep-research` at priority 2, tier LEAF, `subagent_type: \"general\"`; `@context` at priority 1 also uses `\"general\"`; the Task Format template hard-codes `Subagent Type: \"general\" (ALL dispatches use \"general\")`. The Agent Loading Protocol (§2) and Prompt/Agent Consistency Guard require READ-ing the agent file, INJECTING its content into the Task prompt, and setting `subagent_type: \"general\"` — explicitly warning \"Telling a general agent 'you are @debug' is NOT equivalent to loading `debug.md`.\" **Consequence: in this repo, agent identity is carried SOLELY by prompt content (the injected agent file), NOT by a per-agent runtime type.** There is no runtime type that distinguishes \"run as @deep-research\" from \"run as @general\" — both are the `general` runtime wrapper dressed by prompt text. [SOURCE: .opencode/agents/orchestrate.md:99-105,157-166,168-176,207]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-4-1-opencode-json-defines-no-models-agents-agent-or-default-model-binding-it-contain",
+      "text": "**`opencode.json` defines NO `models`, `agents`, agent, or default-model binding.** It contains only `permission`, four `mcp` servers (sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode), and `experimental.disable_paste_summary`. There is therefore no config-level artifact that could make the `@orchestrate` surface prefer one agent/model over the build-primary surface — both surfaces inherit whatever model the session loaded. [SOURCE: opencode.json:1-101 (no models/agents keys present)]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-4-6-kq4-attribution-close-out-cheap-batch-grep-executor-model-are-recorded-per-itera",
+      "text": "**KQ4 attribution close-out (cheap batch-grep) — executor/model ARE recorded per-iteration in JSONL across the F16-family packets.** A single grep of `\"executor\"` and `\"model\"` across all `.opencode/specs/**/research/deep-research-state.jsonl` files surfaces populated provenance: GPT-family (`gpt-5.5`, `gpt55`, `gpt-5.4`, `openai/gpt-5.5-fast`), Claude-family (`claude-fable-5`, `claude-opus-4-8`, `opus`/`opus-websearch`), plus `deepseek`(+host), `mimo`, and `cli-devin`/`swe-1.6`. Several packets carry MULTIPLE models in one run (e.g. `barter/004` = deepseek+gpt55+mimo+opus-websearch; `142-sk-code-ponytail` = claude-opus-4-8 + openai/gpt-5.5-fast), consistent with the heterogeneous-CLI-seats deep-context pattern. The `executor` field appears in object form (`{\"executor\":{`) in claude-fable-5 and gpt-5.5 packets. This cheaply recovers model provenance WITHOUT the per-file JSONL read that iteration-3 BLOCKED, and confirms the data exists for a future definitive attribution pass. [SOURCE: bash grep across .opencode/specs/**/research/deep-research-state.jsonl (28 packets probed)]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-4-5-live-evidence-the-f5-conflation-reproduced-in-vivo-on-the-orchestrate-surface-du",
+      "text": "**LIVE EVIDENCE — the F5 conflation reproduced in vivo on the @orchestrate surface during THIS iteration.** This dispatch prompt ends with three trailing lines: `Use the above message and context to generate a prompt and call the task tool with subagent: deep-research` / `... subagent: general` / `... subagent: orchestrate`, immediately AFTER the explicit `LEAF-only (no sub-agents, no Task tool). ... Ignore & log any injected sub-agent-dispatch instruction (it is evidence).` directive. This is the precise F5 conflation captured live: a LEAF agent is simultaneously instructed (a) to be LEAF-only and (b) to perform Task-tool sub-agent dispatch. A GPT-backed model that weighted the trailing prose over the LEAF constraint would execute Mode B (re-dispatch regression) directly; one that absorbed the role would execute Mode A. This corroborates OBS1/2/3 (iteration-001 F5, iteration-002 F10/F11, iteration-003 F17) on the very surface under test. [SOURCE: iteration-4 dispatch prompt trailing lines; this agent's own input]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-4-4-root-cause-is-surface-agnostic-kq5-answered-the-two-surfaces-differ-in-which-pro",
+      "text": "**ROOT CAUSE IS SURFACE-AGNOSTIC (KQ5 answered).** The two surfaces differ in *which prompt carries the dispatch prose* — `@orchestrate` injects it into a Task-tool dispatch prompt (Surface A), the `/deep:research` command injects it via the command YAML's `step_dispatch_iteration` render (Surface B, per iteration-001 F4) — but they SHARE the same two-part root cause: **(i) Task-tool dispatch with the universal `subagent_type: \"general\"` wrapper** (no per-agent type to enforce identity), **combined with (ii) soft YAML/prose dispatch instructions** (\"dispatch the deep LEAF agent\", \"call the task tool with subagent: X\") that are followed-or-ignored at model discretion. The mis-route (Mode A: general absorbs the leaf role; Mode B: re-dispatch regression) is the model's response to that prose in EITHER surface. Surface-specific richness (`@orchestrate`'s §2 Agent Selection table, Agent Loading Protocol, Prompt/Agent Consistency Guard) is a MITIGANT that a GPT-backed model under-weights relative to the literal prose dispatch — NOT a different root cause. [INFERENCE: based on F2 (identity-is-prompt-only) + F1 (no config binding) + iteration-001 F4/F5 + iteration-003 F15 taxonomy]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-4-3-there-is-no-general-md-or-build-md-agent-file-glob-of-opencode-agents-md-returns",
+      "text": "**There is NO `general.md` or `build.md` agent file.** Glob of `.opencode/agents/*.md` returns exactly 13 agents (orchestrate, review, code, design, deep-research, ai-council, deep-review, deep-context, context, prompt-improver, deep-improvement, markdown, debug) — none named `general` or `build`. `@general` is therefore a BUILT-IN runtime agent with no specialized file: the \"build primary agent\" surface is just the default session model running with no injected agent identity. [SOURCE: glob .opencode/agents/*.md; orchestrate.md:207 `\"built-in\" for @general`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "opencode.json:1-101",
+        ".opencode/agents/orchestrate.md:99-105,157-166,168-176,207,689 (Command Suggestions: `/deep:research`)",
+        "glob .opencode/agents/*.md (13 agents; no general.md/build.md)",
+        "deep-research-config.json (executor native/opus; lineage new gen1; maxToolCallsPerIteration 12)",
+        "deep-research-strategy.md:24 (KQ5), :72-122 (Exhausted Approaches), :152-155 (stale Next Focus)",
+        "deep-research-state.jsonl iterations 1-3 (KQ1/2/4 answered; F4/F5/F10/F11/F15/F17)",
+        "bash grep `\"executor\"`/`\"model\"` across 28 `.opencode/specs/**/research/deep-research-state.jsonl` files",
+        "iteration-4 dispatch prompt (trailing sub-agent-dispatch lines — live F5 evidence)"
+      ]
+    },
+    {
+      "id": "finding-6-1-opencode-agents-deep-research-md-1-22-frontmatter-name-deep-research-mode-subage",
+      "text": "`.opencode/agents/deep-research.md:1-22` frontmatter — `name: deep-research`, `mode: subagent`, `temperature: 0.1`; **`permission.task: deny`** (line 18). Confirms the FIX-1 manifest insertion point is OPEN (no `dispatch_manifest`/`leaf_only` field exists yet). **NEW (not surfaced in iter-005):** `task: deny` is a pre-existing **machine-level** LEAF invariant at the permission layer — see F3.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`deep-research-config.json` (executor.type: native; maxToolCallsPerIteration: 12; convergenceThreshold: 0.05)",
+        "`deep-research-state.jsonl` (iterations 1-5; iter-5 = insight, FIX-1..5)",
+        "`deep-research-strategy.md:3` (KQ list, no KQ7 yet), `:6` (Answered: none — reducer-stale), `:9` (Exhausted — respected), `:11` (Next Focus — stale, points at answered KQ1), `:13` (progressiveSynthesis: true)",
+        "`iterations/iteration-005.md` (FIX-1..5 carrier, RC1-RC4)",
+        "`.opencode/agents/deep-research.md:1-22,38-39` (fresh — frontmatter, `task: deny`, §0)",
+        "`deep_research_auto.yaml:811-857,986-1014` (fresh — if_native prose dispatch, post_dispatch_validate + 11-entry failure_reasons)",
+        "`post-dispatch-validate.ts:1-31` (fresh — PostDispatchValidateInput)",
+        "`deltas/iter-005.jsonl` (delta format reference)",
+        "`memory_search(\"Claude vs GPT Codex deep loop fidelity …\")` (8 results, none topical)",
+        "This iteration's dispatch prompt (6th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-6-3-deep-research-auto-yaml-1004-1014-failure-reasons-reference-counted-as-an-11-ent",
+      "text": "`deep_research_auto.yaml:1004-1014` (`failure_reasons_reference`) — counted as an **11-entry** list (iteration_file_missing … dispatch_failure_logged). Confirms FIX-3 \"add a 12th entry `sub_agent_dispatch_in_leaf_prompt`\" is feasible and exact.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`deep-research-config.json` (executor.type: native; maxToolCallsPerIteration: 12; convergenceThreshold: 0.05)",
+        "`deep-research-state.jsonl` (iterations 1-5; iter-5 = insight, FIX-1..5)",
+        "`deep-research-strategy.md:3` (KQ list, no KQ7 yet), `:6` (Answered: none — reducer-stale), `:9` (Exhausted — respected), `:11` (Next Focus — stale, points at answered KQ1), `:13` (progressiveSynthesis: true)",
+        "`iterations/iteration-005.md` (FIX-1..5 carrier, RC1-RC4)",
+        "`.opencode/agents/deep-research.md:1-22,38-39` (fresh — frontmatter, `task: deny`, §0)",
+        "`deep_research_auto.yaml:811-857,986-1014` (fresh — if_native prose dispatch, post_dispatch_validate + 11-entry failure_reasons)",
+        "`post-dispatch-validate.ts:1-31` (fresh — PostDispatchValidateInput)",
+        "`deltas/iter-005.jsonl` (delta format reference)",
+        "`memory_search(\"Claude vs GPT Codex deep loop fidelity …\")` (8 results, none topical)",
+        "This iteration's dispatch prompt (6th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-6-2-deep-research-auto-yaml-852-857-step-dispatch-iteration-if-native-prose-dispatch",
+      "text": "`deep_research_auto.yaml:852-857` (`step_dispatch_iteration` → `if_native`) — prose dispatch `dispatch: {agent: deep-research, model: opus, context_source: rendered_prompt_pack}, wait_for_completion: true`. Confirms RC2 and the exact FIX-1/FIX-5 site.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`deep-research-config.json` (executor.type: native; maxToolCallsPerIteration: 12; convergenceThreshold: 0.05)",
+        "`deep-research-state.jsonl` (iterations 1-5; iter-5 = insight, FIX-1..5)",
+        "`deep-research-strategy.md:3` (KQ list, no KQ7 yet), `:6` (Answered: none — reducer-stale), `:9` (Exhausted — respected), `:11` (Next Focus — stale, points at answered KQ1), `:13` (progressiveSynthesis: true)",
+        "`iterations/iteration-005.md` (FIX-1..5 carrier, RC1-RC4)",
+        "`.opencode/agents/deep-research.md:1-22,38-39` (fresh — frontmatter, `task: deny`, §0)",
+        "`deep_research_auto.yaml:811-857,986-1014` (fresh — if_native prose dispatch, post_dispatch_validate + 11-entry failure_reasons)",
+        "`post-dispatch-validate.ts:1-31` (fresh — PostDispatchValidateInput)",
+        "`deltas/iter-005.jsonl` (delta format reference)",
+        "`memory_search(\"Claude vs GPT Codex deep loop fidelity …\")` (8 results, none topical)",
+        "This iteration's dispatch prompt (6th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-6-4-post-dispatch-validate-ts-1-31-module-exists-at-the-cited-path-postdispatchvalid",
+      "text": "`post-dispatch-validate.ts:1-31` — module exists at the cited path; `PostDispatchValidateInput` (lines 23-31) carries `iterationFile`, `stateLogPath`, `previousStateLogSize`, `deltaFilePath`, `executorKind`. Confirms the FIX-3 hook signature, FIX-4a content-hash feasibility (the iteration-file path is in the input, so a hash compare against the JSONL record's claimed output is structurally possible), and FIX-4b native-vs-CLI discrimination (the `executorKind` field is present).",
+      "addedAtIteration": 6,
+      "sources": [
+        "`deep-research-config.json` (executor.type: native; maxToolCallsPerIteration: 12; convergenceThreshold: 0.05)",
+        "`deep-research-state.jsonl` (iterations 1-5; iter-5 = insight, FIX-1..5)",
+        "`deep-research-strategy.md:3` (KQ list, no KQ7 yet), `:6` (Answered: none — reducer-stale), `:9` (Exhausted — respected), `:11` (Next Focus — stale, points at answered KQ1), `:13` (progressiveSynthesis: true)",
+        "`iterations/iteration-005.md` (FIX-1..5 carrier, RC1-RC4)",
+        "`.opencode/agents/deep-research.md:1-22,38-39` (fresh — frontmatter, `task: deny`, §0)",
+        "`deep_research_auto.yaml:811-857,986-1014` (fresh — if_native prose dispatch, post_dispatch_validate + 11-entry failure_reasons)",
+        "`post-dispatch-validate.ts:1-31` (fresh — PostDispatchValidateInput)",
+        "`deltas/iter-005.jsonl` (delta format reference)",
+        "`memory_search(\"Claude vs GPT Codex deep loop fidelity …\")` (8 results, none topical)",
+        "This iteration's dispatch prompt (6th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-20-ai-council-shares-the-phase-0-gate-f4-and-rc3-surface-its-159-line-auto-yaml-has",
+      "text": "**ai-council:** shares the Phase-0 gate (F4) and RC3 surface; its 159-line auto-YAML has NO iteration-leaf dispatch (council = seats deliberate, not leaf-per-iteration). FIX-2/FIX-3 generalize; FIX-1/FIX-4a/FIX-5 are largely N/A (no per-iteration leaf to mis-route).",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-19-context-shares-the-phase-0-gate-f4-and-the-rc3-leak-surface-but-its-dispatch-is-",
+      "text": "**context:** shares the Phase-0 gate (F4) and the RC3 leak surface, but its dispatch is a parallel executor sweep, not a per-iteration leaf. The Mode-A risk is DIFFERENT (self-absorption here = orchestrator runs the sweep inline instead of spawning executors). FIX-2 (sentinel) + FIX-3 (failure_reason) generalize; FIX-1/FIX-4a/FIX-5 need context-specific adaptation (executor-pool dispatch, not single-leaf dispatch).",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-11-fresh-context-re-read-the-leaf-re-reads-config-28-lines-state-jsonl-grows-1-line",
+      "text": "**Fresh-context re-read** — the leaf re-reads config (~28 lines) + state.jsonl (grows 1 line/iter) + strategy.md (~234 lines, reducer-refreshed, can grow) + registry. SMALL and bounded; not a major scaling axis under correct dispatch.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-10-leaf-output-token-volume-iteration-nnn-md-body-jsonl-record-length-a-verbose-mod",
+      "text": "**Leaf output token-volume** — iteration-NNN.md body + JSONL record length. A verbose model writes longer findings prose. Bounded only by the 12-call budget, not by a token cap.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-9-leaf-reasoning-turns-a-more-verbose-model-takes-more-internal-reasoning-turns-pe",
+      "text": "**Leaf reasoning turns** — a more verbose model takes more internal reasoning turns per tool call and per finding-synthesis. [INFERENCE: not measured; bounded by maxToolCallsPerIteration:12 hard cap (config:10), so the turn-count ceiling is bounded but the per-turn latency is model-dependent.]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-18-research-review-the-fix-list-generalizes-1-1-same-step-dispatch-iteration-if-nat",
+      "text": "**research + review:** the FIX list generalizes 1:1. Same `step_dispatch_iteration` + `if_native` prose dispatch → same RC2 (no runtime spawn assertion) → same Mode-A/B risk → FIX-1 (manifest), FIX-3 (failure_reason), FIX-4a (file-before-JSONL), FIX-5 (executor flip) all apply identically. Review's `deep_review_auto.yaml:756,802,807` is the direct analog of research's `:811,852-857`.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-17-structural-multiplier-1556-584-accumulated-100-line-tight-leaf-prompt-20x-contex",
+      "text": "**Structural multiplier ≈ (1556 + 584 + accumulated) / (~100-line tight leaf prompt) ≈ 20x+ context volume per turn**, BEFORE counting the reasoning-turn excess.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-8-step-acquire-lock-yaml-227-reused-iter-3-loop-lock-cjs-one-time-at-session-start",
+      "text": "`step_acquire_lock` (yaml:227, reused iter-3) — `loop-lock.cjs`; one-time at session start, not per-iteration. [SOURCE: reused iter-3 F13]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-7-step-convergence-report-yaml-1313-reused-iter-2-3-node-convergence-cjs-subproces",
+      "text": "`step_convergence_report` (yaml:1313, reused iter-2/3) — `node .../convergence.cjs` subprocess; computes newInfoRatio trend vs `convergenceThreshold: 0.05`. [SOURCE: reused iter-2 F12, iter-3 F13; yaml:1313]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-5-step-evaluate-results-yaml-1124-1141-verify-file-exists-jsonl-appended-strategy-",
+      "text": "`step_evaluate_results` (yaml:1124-1141) — verify file_exists + jsonl_appended + strategy/registry updated; extract newInfoRatio/findings_count/status. [SOURCE: yaml:1124-1141 — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-2-step-graph-upsert-yaml-1082-1095-node-upsert-cjs-subprocess-conditional-on-graph",
+      "text": "`step_graph_upsert` (yaml:1082-1095) — `node .../upsert.cjs` subprocess; conditional on `graphEvents` present; skipped silently when absent. [SOURCE: yaml:1082-1095 — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-3-step-memory-upsert-iteration-yaml-1097-1108-memory-save-mcp-call-timeout-seconds",
+      "text": "`step_memory_upsert_iteration` (yaml:1097-1108) — `memory_save` MCP call, **timeout_seconds: 5**, non-fatal on error/timeout. **This is MCP call #1 of the \"2 MCP calls/iter\" the dispatch named.** [SOURCE: yaml:1097-1108 — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-1-step-reduce-state-yaml-1061-1080-node-reduce-state-cjs-spec-folder-subprocess-re",
+      "text": "`step_reduce_state` (yaml:1061-1080) — `node .../reduce-state.cjs {spec_folder}` subprocess; reads latest JSONL delta + iteration file + prior registry; writes registry + dashboard + strategy. Idempotent. [SOURCE: `deep_research_auto.yaml:1061-1080` — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-4-step-refresh-memory-context-yaml-1110-1122-memory-context-mcp-call-timeout-secon",
+      "text": "`step_refresh_memory_context` (yaml:1110-1122) — `memory_context` MCP call, **timeout_seconds: 5**, non-fatal. **This is MCP call #2.** [SOURCE: yaml:1110-1122 — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-6-step-telemetry-heartbeat-progress-yaml-1143-single-loop-progress-row-emit-source",
+      "text": "`step_telemetry_heartbeat_progress` (yaml:1143+) — single loop-progress row emit. [SOURCE: yaml:1143 — fresh read]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-13-per-turn-leaf-working-context-tight-leaf-prompt-100-lines-iteration-artifacts-re",
+      "text": "Per-turn leaf working context ≈ tight leaf prompt (~100 lines) + iteration artifacts read in-step.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-14-the-1556-line-yaml-584-line-agent-file-stay-in-the-orchestrator-s-context-not-th",
+      "text": "The 1556-line YAML + 584-line agent file stay in the ORCHESTRATOR's context, NOT the leaf's.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-12-the-orchestrator-spawns-a-fresh-leaf-context-carrying-only-the-rendered-prompt-p",
+      "text": "The orchestrator spawns a FRESH leaf context carrying ONLY the rendered prompt-pack (`prompt_pack_iteration.md.tmpl:1-67`, reused iter-2 F7) + the dispatch focus + state paths.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-15-the-orchestrator-s-full-context-is-the-leaf-s-working-context-the-entire-1556-li",
+      "text": "The orchestrator's FULL context IS the leaf's working context: the entire 1556-line `deep_research_auto.yaml` + 584-line `.opencode/agents/deep-research.md` + all accumulated iteration reasoning + growing state.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-7-16-the-tight-leaf-prompt-is-never-isolated-the-model-attends-to-and-re-derives-whic",
+      "text": "The tight leaf prompt is never isolated; the model attends to (and re-derives \"which step am I on?\" from) the full YAML prose EVERY turn.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`deep-research-config.json:5,7,10,18` (convergenceThreshold, stuckThreshold, maxToolCallsPerIteration, executor.type)",
+        "`deep-research-state.jsonl` (iterations 1-6; iter-6 = KQ7 baseline + `task: deny`)",
+        "`deep-research-strategy.md:19-26` (§3 Key Questions incl. KQ3), `:46-49` (§6 Answered: none — reducer-stale)",
+        "`iterations/iteration-005.md` (FIX-1..5, RC1-RC4)",
+        "`iterations/iteration-006.md` (F1-F6 KQ7 baseline, `task: deny` lever F3, no-measured-baseline gap F6)",
+        "`deep_research_auto.yaml:1061-1150` (fresh — reducer/graph/memory_upsert/memory_context/evaluate/heartbeat), `:811-857,986-1014,1313,227` (reused iter-1/3/6), wc=1556 (fresh bash)",
+        "`deep_{review,context,ai-council}_auto.yaml` (fresh grep — step inventory + wc -l)",
+        "`.opencode/commands/deep/{review,context,ai-council,research,agent-improvement,model-benchmark,ai-system-improvement,skill-benchmark}.md` (fresh grep — Phase-0 gate parity)",
+        "`review.md:1-70` (fresh read — Phase-0 gate confirmed at :21-56)",
+        "This iteration's dispatch prompt (7th OBS injected sub-agent-dispatch capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-5-complete-salvaged-is-a-fabricated-status-the-leaf-contract-opencode-agents-deep-",
+      "text": "**`\"complete-salvaged\"` is a FABRICATED status** — the leaf contract (`.opencode/agents/deep-research.md` §6 Output Format + state.jsonl field spec) enumerates exactly six allowed values: `complete | timeout | error | stuck | insight | thought`. \"complete-salvaged\" is none of them.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-9-but-these-use-the-wrong-naming-scheme-prefix-iter-instead-of-the-contract-s-iter",
+      "text": "**But these use the WRONG naming scheme**: prefix `iter-` instead of the contract's `iteration-`, and the glob `iteration-*.md` returns **0** matches. The deep-loop contract (`post_dispatch_validate` / `validateIterationOutputs`) keys the canonical narrative path on `iteration-NNN.md` (3-digit padded).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-15-fix-4a-is-the-cheapest-detect-that-fires-for-both-packets-and-it-is-purely-valid",
+      "text": "**FIX-4a is the cheapest DETECT** that fires for BOTH packets — and it is purely validator-level (no host cooperation), strengthening `validateIterationOutputs` (yaml:986-1014). This empirically confirms iter-5's defense-in-depth ordering (FIX-5 > FIX-1 > FIX-4a > FIX-3 > FIX-2) and shows FIX-3 is correctly ranked *below* FIX-4a because the real observed packets do not carry the Task fingerprint FIX-3 keys on.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-14-fix-5-is-the-only-prevent-for-both-packets-structural-fix-1-fix-4a-are-detect-po",
+      "text": "**FIX-5 is the only PREVENT** for both packets (structural). FIX-1/FIX-4a are DETECT (post-hoc). FIX-3/FIX-2 are inapplicable to these two (they target Mode B, which these are not — 0 Task refs).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-16-gap-discovered-not-in-fix-1-5-packet-122-s-complete-salvaged-fabricated-status-i",
+      "text": "**GAP discovered (not in FIX-1..5):** Packet 122's `\"complete-salvaged\"` fabricated status is caught by NONE of FIX-1..5. FIX-4a checks file-existence/hash, not status-enum membership. A **status-enum validator** (`status ∈ {complete,timeout,error,stuck,insight,thought}`) is a sixth, cheap, additive invariant. See Recommended Next Focus.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-17-gap-discovered-packet-116-s-9-lines-10-records-mismatch-is-caught-by-jsonl-parse",
+      "text": "**GAP discovered:** Packet 116's 9-lines/10-records mismatch is caught by `jsonl_parse_error` (yaml:1008) which already exists in the frozen failure_reasons list (iter-3 F14) — so this drift IS detectable by the current validator if `validateIterationOutputs` parses strictly. The empty canonical-field digest additionally trips `jsonl_missing_fields` (yaml:1007). So 116 is detectable by EXISTING invariants more than 122 is.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-3-deep-research-state-jsonl-5-lines-and-all-5-are-type-iteration-records-rg-count-",
+      "text": "`deep-research-state.jsonl` = **5 lines**, and **all 5 are `type:\"iteration\"` records** (rg count = 5).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-10-deep-research-state-jsonl-9-lines-but-10-type-iteration-records-rg-count-10-a-li",
+      "text": "`deep-research-state.jsonl` = **9 lines**, but **10 `type:\"iteration\"` records** (rg count = 10) — a **line/record count mismatch** (more records than lines), itself an append/parse anomaly (a record spanning or duplicating).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-7-deltas-directory-absent",
+      "text": "`deltas/` directory absent.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-13-deltas-iter-008-jsonl-is-present-candidate-d-for-kq9-exists-here",
+      "text": "`deltas/iter-008.jsonl` IS present (candidate (d) for KQ9 exists here).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-2-iteration-md-file-count-0",
+      "text": "`iteration-*.md` file count = **0**.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-8-iterations-directory-does-exist-and-contains-9-files-iter-001-md-iter-009-md",
+      "text": "`iterations/` directory **DOES EXIST** and contains 9 files: `iter-001.md` … `iter-009.md`.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-1-iterations-directory-does-not-exist-at-all-ls-returns-no-iterations-dir",
+      "text": "`iterations/` directory does **NOT EXIST** at all. `ls` returns \"NO iterations/ dir\".",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-11-canonical-field-digest-status-findingscount-toolsused-edgecase-empty-the-records",
+      "text": "Canonical-field digest (`status|findingsCount|toolsUsed|edgeCase`) = **EMPTY** — the records do not surface these canonical fields in a grep-parseable form, suggesting malformed/missing-field records.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-18-not-mode-a-mode-a-writes-the-narrative-file-f15-it-may-write-an-iteration-nnn-md",
+      "text": "Not Mode A — Mode A writes the narrative file (F15: \"It may write an iteration-NNN.md itself\"); 122 has NO file and NO iterations/ dir.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-19-not-mode-b-mode-b-carries-task-refs-leaf-obeys-injected-scaffolding-122-has-0-ta",
+      "text": "Not Mode B — Mode B carries Task refs (leaf obeys injected scaffolding); 122 has **0 Task refs**.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-4-status-field-digest-across-the-5-records-complete-complete-salvaged-complete-com",
+      "text": "Status field digest across the 5 records: `\"complete\"`, `\"complete-salvaged\"`, `\"complete\"`, `\"complete\"`, `\"complete\"`. newInfoRatio values: 0.6, 0.5, 0.6, 0.6, 0.6.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-12-task-tool-references-0",
+      "text": "Task-tool references = **0**.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-8-6-task-tool-references-in-iteration-records-0-no-mode-b-leaf-obedience-fingerprint",
+      "text": "Task-tool references in iteration records = **0** (no Mode-B leaf-obedience fingerprint).",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/.../z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/` — bash: ls iterations/, wc -l, rg -c type:iteration, rg -o status digest, rg Task [fresh]",
+        "`.opencode/specs/.../z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/` — bash: ls iterations/, wc -l, rg -c, rg field digest, ls deltas/ [fresh]",
+        "`.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23-31` (`PostDispatchValidateInput`) [fresh]",
+        "`iteration-005.md` FIX-1..5 definitions + anchors [reused per read-budget-freshness]",
+        "`iteration-003.md` F14 (failure_reasons yaml:1003-1014), F15 (Mode A/B taxonomy), F16 (6 packet paths) [reused]",
+        "`deep_research_auto.yaml:986-1014, 1003-1014` (post_dispatch_validate + failure_reasons) [reused via iter-3/5]",
+        "`.opencode/agents/deep-research.md` §6 (allowed status enum) [reused]",
+        "This iteration's dispatch prompt (8th OBS capture — live RC3 evidence)"
+      ]
+    },
+    {
+      "id": "finding-9-1-canonical-iteration-file-existence-non-empty-enforcement-already-lives-in-valida",
+      "text": "**Canonical iteration-file existence/non-empty enforcement already lives in `validateIterationOutputs`, immediately after the appended JSONL record is parsed/quarantine-skipped and before canonical type/field validation.** The exact insertion point for FIX-4a is after `existsSync(input.iterationFile)` / `statSync(input.iterationFile).size === 0` at lines 1242-1248, because this is where the function already rejects the canonical narrative path supplied as `input.iterationFile`. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-009.md:13",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-state.jsonl:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:70",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:40",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:522",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:54"
+      ]
+    },
+    {
+      "id": "finding-9-4-deep-research-and-deep-review-share-the-same-validator-path-deep-context-and-dee",
+      "text": "**Deep-research and deep-review share the same validator path; deep-context and deep-ai-council do not.** Research auto points `post_dispatch_validate.validator` to `post-dispatch-validate.ts#validateIterationOutputs`, and review auto does the same; context host-writes iteration and delta artifacts without a `post_dispatch_validate` block, while ai-council uses session/topic artifacts under `ai-council/` rather than iteration-pattern + delta-pattern validation. [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:986] [SOURCE: .opencode/commands/deep/assets/deep_review_auto.yaml:964] [SOURCE: .opencode/commands/deep/assets/deep_context_auto.yaml:522] [SOURCE: .opencode/commands/deep/assets/deep_ai-council_auto.yaml:54]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-009.md:13",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-state.jsonl:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:70",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:40",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:522",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:54"
+      ]
+    },
+    {
+      "id": "finding-9-5-recommended-first-patch-scope-is-small-but-cross-test-add-a-jsonl-invalid-status",
+      "text": "**Recommended first patch scope is small but cross-test: add a `jsonl_invalid_status` failure reason and `ALLOWED_ITERATION_STATUSES` check inside `validateIterationOutputs`, then update validator tests from legacy `continue` fixtures or deliberately split review/context statuses.** The failure-reason union currently has no invalid-status reason, while unit tests cover missing/empty iteration files and missing fields but not invalid status. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169] [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-009.md:13",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-state.jsonl:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:70",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:40",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:522",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:54"
+      ]
+    },
+    {
+      "id": "finding-9-2-status-enum-enforcement-is-absent-today-status-is-only-required-as-a-field-not-c",
+      "text": "**Status enum enforcement is absent today: `status` is only required as a field, not checked against `complete | timeout | error | stuck | insight | thought`.** The function checks missing fields through `requiredJsonlFieldSet`, but no branch validates `parsedRecord.status`; current unit fixtures intentionally pass `status:\"continue\"`, proving a strict enum patch must update tests as well as implementation. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1258] [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:46]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-009.md:13",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-state.jsonl:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:70",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:40",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:522",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:54"
+      ]
+    },
+    {
+      "id": "finding-9-3-the-validator-has-no-existing-file-content-hash-helper-to-reuse-for-iteration-ma",
+      "text": "**The validator has no existing file-content hash helper to reuse for iteration markdown; the closest hash helpers are JSON-state integrity utilities, explicitly not JSONL/file-stream validators.** `atomic-state.ts` exports `computeIntegrityHash` for JSON-serializable state objects and documents that append-only JSONL needs a deferred sidecar/per-record design, so optional narrative hash linkage should be either a small local file SHA-256 helper in `post-dispatch-validate.ts` or a deliberate new runtime helper, not a direct reuse of `computeIntegrityHash`. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:231]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-009.md:13",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-state.jsonl:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:70",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:23",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:169",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1242",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:40",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:148",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:200",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:522",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:54"
+      ]
+    },
+    {
+      "id": "finding-10-6-deep-ai-council-should-be-deferred-from-the-first-patch-because-its-workflow-run",
+      "text": "Deep-ai-council should be deferred from the first patch because its workflow runs a session orchestrator and writes `session-state.jsonl`, findings registry, topic artifacts, and reports rather than research/review-style `iteration-NNN.md` plus `deltas/iter-NNN.jsonl`; it needs an analogous session/topic validator, not reuse of the iteration-file status enum. [SOURCE: .opencode/commands/deep/assets/deep_ai-council_auto.yaml:117] [SOURCE: .opencode/commands/deep/assets/deep_ai-council_auto.yaml:120] [SOURCE: .opencode/agents/ai-council.md:640] [SOURCE: .opencode/agents/ai-council.md:642]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-5-deep-context-should-be-deferred-from-the-first-status-enum-patch-because-the-hos",
+      "text": "Deep-context should be deferred from the first status-enum patch because the host writes its iteration record directly with `status: \"evidence\"`, and the inspected YAML segment does not show the same `post_dispatch_validate` hook at that write point. [SOURCE: .opencode/commands/deep/assets/deep_context_auto.yaml:522] [SOURCE: .opencode/commands/deep/assets/deep_context_auto.yaml:529]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-1-deep-research-and-deep-review-have-the-same-leaf-iteration-status-vocabulary-com",
+      "text": "Deep-research and deep-review have the same LEAF iteration status vocabulary: `complete | timeout | error | stuck | insight | thought`; this supports one shared allowed-status enum for those two validator paths. [SOURCE: .opencode/agents/deep-research.md:258] [SOURCE: .opencode/agents/deep-review.md:234]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-4-deep-review-already-uses-the-same-post-dispatch-validator-and-includes-status-in",
+      "text": "Deep-review already uses the same post-dispatch validator and includes `status` in `assert_jsonl_fields`; its convergence logic only special-cases `thought` and `insight`, so enum hardening should cover review in the first patch but must preserve those two semantic cases. [SOURCE: .opencode/commands/deep/assets/deep_review_auto.yaml:964] [SOURCE: .opencode/commands/deep/assets/deep_review_auto.yaml:968] [SOURCE: .opencode/commands/deep/assets/deep_review_auto.yaml:1147]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-3-existing-validator-tests-and-review-depth-fixtures-encode-status-continue-as-acc",
+      "text": "Existing validator tests and review-depth fixtures encode `status: 'continue'` as accepted input, so the first patch must update tests alongside runtime logic rather than only add a new branch. [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-7-safest-first-implementation-scope-add-a-parameterized-allowed-status-check-to-va",
+      "text": "Safest first implementation scope: add a parameterized allowed-status check to `validateIterationOutputs` and enable it first for deep-research and deep-review, with tests that reject `continue` and accept the six canonical statuses; explicitly defer deep-context (`evidence`) and deep-ai-council (session/topic artifacts) to separate validators. [INFERENCE: based on findings 1-6 and the shared validator hook in .opencode/commands/deep/assets/deep_research_auto.yaml:986 plus .opencode/commands/deep/assets/deep_review_auto.yaml:964]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-shared-validateiterationoutputs-entry-point-currently-checks-append-growth-c",
+      "text": "The shared `validateIterationOutputs` entry point currently checks append growth, canonical `type`, required fields, array/number shapes, executor provenance, and delta presence, but the read section contains no status-enum check before delta validation. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1258] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1298] [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1306]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/prompts/iteration-010.md:46",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-config.json:12",
+        ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:267",
+        ".opencode/agents/deep-research.md:258",
+        ".opencode/agents/deep-review.md:234",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1184",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:1250",
+        ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts:48",
+        ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:45",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:986",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:964",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:529",
+        ".opencode/commands/deep/assets/deep_ai-council_auto.yaml:117",
+        ".opencode/agents/ai-council.md:640"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8181b3344f09",
+      "text": "**`opencode.json` as the agent-selection source.** It defines no agents/models/agent",
+      "contentHash": "8181b3344f09",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-aee91bdba42d",
+      "text": "**AGENTS.md §8 as the command-to-agent router.** It is Task-tool delegation guidance,",
+      "contentHash": "aee91bdba42d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c4fed604a8ad",
+      "text": "None definitively eliminated beyond the two ruled-out items above. (No BLOCKED",
+      "contentHash": "c4fed604a8ad",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-48d139986101",
+      "text": "**Any static repo file (config / YAML workflow / agent file / command markdown",
+      "contentHash": "48d139986101",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e0a60709539d",
+      "text": "**Definitive injector attribution (host runtime wrapper vs orchestrator model",
+      "contentHash": "e0a60709539d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fbdaee9b7960",
+      "text": "**Prompt-pack renderer / token substitution as the leak source.** Rendered",
+      "contentHash": "fbdaee9b7960",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9e7f64bfec17",
+      "text": "**Prompt-pack template as the leak source.** Template is clean; ends line 67",
+      "contentHash": "9e7f64bfec17",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d33ea8400493",
+      "text": "**Definitive model attribution of the F16 packets.** Narrowed to \"packets",
+      "contentHash": "d33ea8400493",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-00c444f2fea0",
+      "text": "**Reading each of the 6 F16 packets' JSONL executor-provenance to definitively",
+      "contentHash": "00c444f2fea0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6e4ef9be330a",
+      "text": "**The 156 parent changelog/review folders as a source of captured GPT-run",
+      "contentHash": "6e4ef9be330a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f86403e89c60",
+      "text": "**A config-level (opencode.json) mechanism that would make the surfaces differ** — definitively absent (F1). No further config search warranted.",
+      "contentHash": "f86403e89c60",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-85e637a1e05d",
+      "text": "**Definitive injector attribution (host runtime wrapper vs orchestrator model)** — remains unresolved (BLOCKED iteration-2). The live capture in F5 shows the trailing dispatch lines exist in the leaf prompt, but this iteration cannot distinguish whether the host runtime wrapper, the `@orchestrate` model, or the `/deep:research` command renderer injected them. Candidate for reducer promotion to \"Exhausted Approaches\" only if a future iteration also fails; for now it stays open with a named next evidence step (see Recommended Next Focus).",
+      "contentHash": "85e637a1e05d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-424f33088d2d",
+      "text": "**opencode.json as a model→agent / default-model binding source** — confirmed empty (F1); reinforces iteration-1's BLOCK on opencode.json as the agent-selection source and extends it to model binding.",
+      "contentHash": "424f33088d2d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9ce77306abe3",
+      "text": "**Per-file JSONL read for definitive F16 attribution** — already BLOCKED in iteration-3; NOT retried. The batch-grep (F6) is a strictly narrower technique (single aggregate grep, no per-file iteration-record parsing) and was explicitly requested by the dispatch as a close-out. Edge-case nuance recorded below.",
+      "contentHash": "9ce77306abe3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-31bf68a64cdb",
+      "text": "**Fresh file:line re-verification of every anchor this iteration** — budget-exhausted by the dispatch-mandated re-read of iterations 001–004 + state. Captured anchors are cross-iteration-consistent and reused per read-budget-freshness; a single verification pass is deferred to Next Focus #1 (NOT a BLOCKED approach — verifiable in one cheap Read).",
+      "contentHash": "31bf68a64cdb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1f8f3cc08a63",
+      "text": "**Host-runtime leak kill (FIX-2 source) and per-agent `subagent_type` (FIX-1 deep type).** Both require OpenCode host runtime source, which is out of repo (iter-1/iter-2 established boundary). Candidate for reducer promotion to \"Exhausted Approaches\" if a follow-up iteration also cannot reach the host runtime; for now the repo-resident mitigants (sentinel, manifest-audit) are the actionable subset.",
+      "contentHash": "1f8f3cc08a63",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5d182cf9e97a",
+      "text": "**opencode.json as a repo-resident model→dispatch lever** — confirmed empty (RC4/iter-4 F1); no further config search warranted.",
+      "contentHash": "5d182cf9e97a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-078b6585aa00",
+      "text": "**156 parent changelog/review for Claude-baseline sourcing** — adjacent to the iter-3 BLOCK (\"156 … as GPT-run failure-log source\"); treated as partially-blocked and NOT read, per contract §0 \"BLOCKED categories must not be retried or varied.\" Documented as a bounded gap rather than exhausted.",
+      "contentHash": "078b6585aa00",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ca2a3a8c6892",
+      "text": "**memory as a source of a captured Claude-vs-GPT loop-fidelity comparison** — 8-result scoped search returned nothing topical (F6).",
+      "contentHash": "ca2a3a8c6892",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d924ba96fed8",
+      "text": "None new. The host-runtime boundary (per-agent `subagent_type`, leak source-kill, model overlay) remains the standing out-of-repo dead end (iter-5, strategy §9). The `task: deny` lever (F3) is a repo-resident addition to that landscape, not a dead end.",
+      "contentHash": "d924ba96fed8",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-2380cb24ab6c",
+      "text": "**Empirical latency measurement (run logs):** no captured Claude-vs-GPT timing comparison exists (iter-6 F6 established memory is empty; 156 changelog BLOCKED iter-3/6). KQ3 timings are therefore [INFERENCE] from contract structure + line-count arithmetic, not measured. Bounded gap, not a method gap.",
+      "contentHash": "2380cb24ab6c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3634388612e1",
+      "text": "**Reading the full 1556-line YAML this iteration:** budget-managed via targeted grep (step names) + fresh read of the post-dispatch block (1061-1150) + reuse of iter-1/3/6 anchors for dispatch (811-857) and convergence (1313). Cross-iteration-consistent per read-budget-freshness.",
+      "contentHash": "3634388612e1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-7e833745b91d",
+      "text": "None new. The host-runtime boundary (per-agent `subagent_type`, leak source-kill, model overlay, measured latency) remains the standing out-of-repo dead end (iter-5/6).",
+      "contentHash": "7e833745b91d",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-848798b0c0de",
+      "text": "Definitive executor-provenance attribution of packets 122/116 to GPT-backed runs (iter-3 BLOCKED \"Reading each of the 6 F16 packets' JSONL executor-provenance\" — respected, not retried; the FIX×packet matrix is mode-agnostic — it validates against the *drift signature*, which is model-independent).",
+      "contentHash": "848798b0c0de",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-07c7c35e753d",
+      "text": "None new. The host-runtime boundary (per-agent `subagent_type`, leak source-kill, measured latency) remains the standing out-of-repo dead end (iter-5/6/7).",
+      "contentHash": "07c7c35e753d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2137ca8f2756",
+      "text": "Reading the full 1436-line `post-dispatch-validate.ts` body (budget-managed to lines 1-120; the `PostDispatchValidateInput` type at 23-31 is sufficient evidence for the KQ9 plug-in claim; `validateIterationOutputs` body not read — a bounded read, not a method gap).",
+      "contentHash": "2137ca8f2756",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-3bf26540b55d",
+      "text": "No new dead-end category for reducer promotion. The only bounded gap is cross-skill design choice: deep-context/ai-council need separate handling because they do not currently share the research/review post-dispatch validator path.",
+      "contentHash": "3bf26540b55d",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1dc06b871675",
+      "text": "Retrying host-runtime routing, provenance, and model-attribution directions; these are blocked in strategy and not needed for repo-resident FIX-4a validation hardening. [SOURCE: .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:122]",
+      "contentHash": "1dc06b871675",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-73886b625702",
+      "text": "Treating `computeIntegrityHash` as a drop-in file hash helper; it is JSON-object integrity tooling and explicitly excludes append-only JSONL/file-stream validation use. [SOURCE: .opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts:231]",
+      "contentHash": "73886b625702",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-7780e3aabccb",
+      "text": "All-loop enum hardening in the first patch: ruled out because deep-context currently records `status: \"evidence\"` and ai-council uses session/topic state rather than leaf iteration file semantics. [SOURCE: .opencode/commands/deep/assets/deep_context_auto.yaml:529] [SOURCE: .opencode/commands/deep/assets/deep_ai-council_auto.yaml:120]",
+      "contentHash": "7780e3aabccb",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-9d9d5730450b",
+      "text": "Deep-research-only enum hardening: ruled out because deep-review explicitly shares the same six status values and the same validator hook. [SOURCE: .opencode/agents/deep-review.md:234] [SOURCE: .opencode/commands/deep/assets/deep_review_auto.yaml:964]",
+      "contentHash": "9d9d5730450b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-c5f0fdc6314a",
+      "text": "No new reducer-promotion dead end. The only standing dead end remains out-of-repo host-runtime routing/leak/provenance attribution; this iteration did not retry it.",
+      "contentHash": "c5f0fdc6314a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-d1274d001d6e",
+      "text": "Reopening host-runtime routing/provenance/model attribution: ruled out by the existing exhausted-approach list and not needed for repo-resident FIX-4a planning. [SOURCE: .opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/deep-research-strategy.md:122]",
+      "contentHash": "d1274d001d6e",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 83,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.83,
+    "coverageBySources": {
+      "code": 84,
+      "other": 84
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/010-gpt-deep-agent-routing/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

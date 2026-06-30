@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/011-gpt-routing-fixes",
+  "description": "Phase 010 found GPT-backed deep research/review loops can drift from the workflow contract by accepting malformed iteration state; this phase implemen",
+  "keywords": [
+    "phase",
+    "010",
+    "found",
+    "gpt-backed",
+    "deep",
+    "research",
+    "review",
+    "loops",
+    "drift",
+    "workflow",
+    "contract",
+    "accepting",
+    "malformed",
+    "iteration",
+    "state",
+    "implements",
+    "validator-first",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-30T10:17:15.054Z",
+  "specId": "011",
+  "folderSlug": "gpt-routing-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -104,6 +104,8 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | 007 | `007-ux-observability-automation` | Dashboards, telemetry heartbeat, run-now, dry-run, observability envelope, memory-upsert | Complete |
 | 008 | `008-testing` | Hermetic test isolation, record-replay cassette harness | Complete |
 | 009 | `009-loop-systems-remediation` | Remediate deep-review deferred findings + MiMo-campaign recs (rollback hash-guard, promotion safety, benchmark ledger, adversarial playbook scenarios, tightened pass-criteria, test-adequacy) | In Progress |
+| 010 | `010-gpt-deep-agent-routing` | Research GPT-backed deep-loop mis-routing, slowness, and workflow-contract drift | Complete |
+| 011 | `011-gpt-routing-fixes` | Plan validator-first hardening for research/review status-enum drift | Draft |
 
 ### Phase Transition Rules
 
@@ -118,6 +120,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 |------|-----|----------|--------------|
 | 001 | 002 | Ranked recommendation backlog synthesized | `001-reference-research/research/research.md` present |
 | 008 | 009 | Implementation phases shipped + deep-reviewed; remediation backlog triaged | `review/review-report.md` + `review/mimo-campaign-report.md` present |
+| 010 | 011 | GPT-routing research synthesized and first implementation scope selected | `010-gpt-deep-agent-routing/research/research.md` present |
 <!-- /ANCHOR:phase-map -->
 
 ---
