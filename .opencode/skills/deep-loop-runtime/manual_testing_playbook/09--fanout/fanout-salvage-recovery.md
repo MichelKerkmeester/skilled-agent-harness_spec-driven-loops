@@ -94,7 +94,7 @@ shared SQLite DB without any schema change.
 ### Adversarial Steps
 
 1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/fanout-run.vitest.ts` and require EXIT 0.
-2. Confirm `tests/unit/fanout-run.vitest.ts` asserts `retries a salvage-miss lineage once and exits ok when the retry succeeds` and `records exit 3 (all failed) when the only lineage exits non-zero`.
+2. Confirm `tests/unit/fanout-run.vitest.ts` asserts both `retries a salvage-miss lineage once and exits ok when the retry succeeds` AND `treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)` — the latter uses an exit-0 stub (`writeNoArtifactStubBinary`) to exercise the exact bug-under-guard path, and `records exit 3 (all failed) when the only lineage exits non-zero`.
 3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
 
 ### Regression Anchor

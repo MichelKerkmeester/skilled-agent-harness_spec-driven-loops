@@ -667,6 +667,53 @@ function buildAttributionMd(lineageData, loopType) {
 // 6. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Reconstruct a minimal review findings registry from a lineage state log.
+ *
+ * Leaf-only review lineages may carry active findings only in their state log
+ * iteration records (`findingDetails`), with no registry file on disk. This maps
+ * those findingDetails into the openFindings shape mergeReviewRegistries consumes,
+ * so registry-absent lineages are not silently dropped from merge/synthesis.
+ *
+ * @param {Array<Object>} stateRecords - Parsed JSONL state records.
+ * @param {string} label - Lineage label, for attribution.
+ * @returns {{openFindings:Array,Object}|null} Reconstructed registry, or null when no findings exist.
+ */
+function reconstructReviewRegistryFromState(stateRecords, label) {
+  if (!Array.isArray(stateRecords)) return null;
+  const openFindings = [];
+  const resolvedFindings = [];
+  for (const record of stateRecords) {
+    if (!record || record.type !== 'iteration' || !Array.isArray(record.findingDetails)) continue;
+    for (const detail of record.findingDetails) {
+      if (!detail || typeof detail !== 'object') continue;
+      const id = detail.id || detail.findingId || detail.title;
+      if (!id) continue;
+      const isActive = (detail.disposition || detail.status || 'active') === 'active';
+      const mapped = {
+        findingId: id,
+        title: detail.title || id,
+        severity: detail.severity || 'P2',
+        status: isActive ? 'active' : 'resolved',
+        ...(detail.dimension ? { dimension: detail.dimension } : {}),
+        ...(detail.file ? { file: detail.file } : {}),
+        ...(detail.recommendation ? { recommendation: detail.recommendation } : {}),
+        _lineages: [label],
+        _reconstructed_from_state: true,
+      };
+      if (isActive) openFindings.push(mapped);
+      else resolvedFindings.push(mapped);
+    }
+  }
+  if (openFindings.length === 0 && resolvedFindings.length === 0) return null;
+  const bySeverity = {
+    P0: openFindings.filter((f) => f.severity === 'P0').length,
+    P1: openFindings.filter((f) => f.severity === 'P1').length,
+    P2: openFindings.filter((f) => f.severity === 'P2').length,
+  };
+  return { openFindings, resolvedFindings, findingsBySeverity: bySeverity, _reconstructed: true };
+}
+
 async function main() {
   const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
@@ -700,8 +747,16 @@ async function main() {
 
   const lineageData = labelDirs.map((label) => {
     const lineageDir = path.join(lineagesDir, label);
-    const registry = tryReadJson(path.join(lineageDir, registryName));
+    let registry = tryReadJson(path.join(lineageDir, registryName));
     const stateRecords = readStateLog(path.join(lineageDir, stateLogName));
+    // Leaf-only review lineages (orchestrator-managed direct-leaf convention) may carry
+    // active findings only in their state log's findingDetails, with no registry file.
+    // Without a registry, such a lineage was silently skipped by the registry-only merge,
+    // dropping its findings from synthesis. Reconstruct a minimal review registry from
+    // the state log so leaf-only lineages reach merge without a separate reducer step.
+    if (!registry && loopType === 'review') {
+      registry = reconstructReviewRegistryFromState(stateRecords, label);
+    }
     // Infer kind/model from state log executor records
     const executorRecord = stateRecords.find((r) => r.type === 'event' && r.event === 'executor_start');
     return {
@@ -747,7 +802,7 @@ async function main() {
 }
 
 // Exports for unit testing
-module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd };
+module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState };
 
 if (require.main === module) {
   main().catch((err) => {

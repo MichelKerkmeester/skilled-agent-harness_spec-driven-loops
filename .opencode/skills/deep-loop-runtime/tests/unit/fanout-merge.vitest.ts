@@ -12,6 +12,7 @@ const {
   mergeResearchRegistries,
   mergeReviewRegistries,
   buildAttributionMd,
+  reconstructReviewRegistryFromState,
 } = require('../../scripts/fanout-merge.cjs') as {
   mergeResearchRegistries: (
     lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
@@ -22,6 +23,10 @@ const {
     options?: { enableNearDuplicateDedup?: boolean },
   ) => Record<string, unknown>;
   buildAttributionMd: (lineageData: unknown[], loopType: string) => string;
+  reconstructReviewRegistryFromState: (
+    stateRecords: Array<Record<string, unknown>>,
+    label: string,
+  ) => { openFindings: unknown[]; resolvedFindings: unknown[]; findingsBySeverity: Record<string, number>; _reconstructed: true } | null;
 };
 
 const tempDirs: string[] = [];
@@ -584,6 +589,32 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
 });
 
 // ─── fanout-merge.cjs script tests ────────────────────────────────────────
+
+describe('reconstructReviewRegistryFromState — leaf-only lineage fallback', () => {
+  it('rebuilds an openFindings registry from state-log findingDetails when no registry file exists', () => {
+    const stateRecords = [
+      { type: 'iteration', findingDetails: [
+        { id: 'P1-1', severity: 'P1', title: 'gap a', disposition: 'active' },
+        { id: 'P2-2', severity: 'P2', title: 'advisory', disposition: 'active' },
+        { id: 'P1-3', severity: 'P1', title: 'fixed', disposition: 'resolved' },
+      ] },
+    ];
+    const registry = reconstructReviewRegistryFromState(stateRecords as never, 'glm');
+    expect(registry).not.toBeNull();
+    expect(registry!.openFindings).toHaveLength(2);
+    expect(registry!.resolvedFindings).toHaveLength(1);
+    expect(registry!.findingsBySeverity).toEqual({ P0: 0, P1: 1, P2: 1 });
+    expect(registry!.openFindings[0]).toMatchObject({ findingId: 'P1-1', severity: 'P1', status: 'active', _lineages: ['glm'] });
+  });
+
+  it('returns null when the state log carries no findings, so the lineage stays skipped', () => {
+    const registry = reconstructReviewRegistryFromState(
+      [{ type: 'iteration', findingDetails: [] }] as never,
+      'glm',
+    );
+    expect(registry).toBeNull();
+  });
+});
 
 describe('fanout-merge.cjs — script', () => {
   it('exits 0 with ok when no lineages directory exists', async () => {

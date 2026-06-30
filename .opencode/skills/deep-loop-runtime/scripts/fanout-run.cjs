@@ -124,6 +124,34 @@ function ensureString(args, key) {
   return args[key];
 }
 
+function parseOptionalNumber(args, key) {
+  const raw = args[key];
+  if (raw === undefined || raw === false || raw === null || raw === '') {
+    return null;
+  }
+  if (raw === true || typeof raw !== 'string') {
+    throw inputError(`${key} must be a number`);
+  }
+  const value = Number(raw);
+  if (!Number.isFinite(value) || value < 0) {
+    throw inputError(`${key} must be a non-negative number`);
+  }
+  return value;
+}
+
+function normalizeStopPolicy(raw) {
+  if (raw === undefined || raw === false || raw === null || raw === '') {
+    return 'convergence';
+  }
+  if (raw === true || typeof raw !== 'string') {
+    throw inputError('stopPolicy must be convergence or max-iterations');
+  }
+  if (raw !== 'convergence' && raw !== 'max-iterations') {
+    throw inputError('stopPolicy must be convergence or max-iterations');
+  }
+  return raw;
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -223,6 +251,10 @@ function statusForLedgerEvent(entry) {
   if (entry.event === 'failed') return entry.terminal === false ? 'retrying' : 'failed';
   if (entry.event === 'stopped') return 'stopped';
   if (entry.event === 'retry_scheduled' || entry.event === 'orphan_requeued') return 'retrying';
+  // Lag-ceiling signals from the pool: a stall warning while work remains pending, or a
+  // forced abort of the stalled attempt. Map both to typed statuses instead of 'unknown'.
+  if (entry.event === 'lag_ceiling_exceeded') return entry.action === 'abort' ? 'failed' : 'warning';
+  if (entry.event === 'lag_ceiling_abort') return 'failed';
   return 'unknown';
 }
 
@@ -341,7 +373,6 @@ function logFlatPoolGuardRejections({ rejections, ledgerPath, runId, loopType, s
 
 // Per-kind first state-dir env var (used for lockfile isolation across same-kind replicas).
 const SPECKIT_STATE_ENV_BY_KIND = {
-  'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
 };
@@ -468,6 +499,52 @@ function hasNonEmptyFile(filePath) {
 function findMissingLineageArtifacts(loopType, lineageDir) {
   return expectedLineageArtifactPaths(loopType, lineageDir)
     .filter((artifactPath) => !hasNonEmptyFile(artifactPath));
+}
+
+function parseJsonlRecords(filePath) {
+  const text = fs.readFileSync(filePath, 'utf8');
+  return text
+    .split(/\r?\n/)
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line));
+}
+
+function findMaxIterationsPolicyViolation({ loopType, lineageDir, lineage, stopPolicy }) {
+  if (loopType !== 'review' || stopPolicy !== 'max-iterations') return null;
+  if (typeof lineage.iterations !== 'number' || lineage.iterations <= 0) {
+    return 'stopPolicy=max-iterations requires a positive lineage iteration cap';
+  }
+
+  const statePath = path.join(lineageDir, 'deep-review-state.jsonl');
+  if (!hasNonEmptyFile(statePath)) {
+    return 'missing deep-review-state.jsonl for max-iterations stop-policy validation';
+  }
+
+  let records;
+  try {
+    records = parseJsonlRecords(statePath);
+  } catch (error) {
+    return `could not parse deep-review-state.jsonl: ${error.message}`;
+  }
+
+  const iterationCount = records.filter((record) => record && record.type === 'iteration').length;
+  const synthesis = [...records]
+    .reverse()
+    .find((record) => record && record.type === 'event' && record.event === 'synthesis_complete');
+  if (!synthesis) {
+    return 'missing synthesis_complete event for max-iterations stop-policy validation';
+  }
+
+  const totalIterations = Number.isFinite(Number(synthesis.totalIterations))
+    ? Number(synthesis.totalIterations)
+    : iterationCount;
+  if (totalIterations !== lineage.iterations) {
+    return `expected ${lineage.iterations} iterations, got ${totalIterations}`;
+  }
+  if (synthesis.stopReason !== 'maxIterationsReached') {
+    return `expected stopReason=maxIterationsReached, got ${synthesis.stopReason || 'unknown'}`;
+  }
+  return null;
 }
 
 function isRecord(value) {
@@ -677,10 +754,10 @@ async function persistPreDispatchWait({ checkpointPath, ledgerPath, runId, loopT
 
 /**
  * Build the "run the full loop" prompt text for a CLI lineage subprocess.
- * The subprocess reads this, loads the skill, and runs the loop to convergence
+ * The subprocess reads this, loads the skill, and runs the requested stop policy
  * with config.fanout_lineage_artifact_dir overriding step_resolve_artifact_root.
  */
-function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic) {
+function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, options = {}) {
   const skillFile =
     loopType === 'review'
       ? '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md'
@@ -688,16 +765,33 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         ? '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md'
         : '.opencode/skills/deep-loop-workflows/deep-research/SKILL.md';
   const agentName = loopType === 'review' ? 'deep-review' : loopType === 'context' ? 'deep-context' : 'deep-research';
+  const detachedIntro = lineage.kind === 'cli-opencode'
+    ? [
+        `This is an explicit parallel-detached OpenCode lineage, not a self-invocation of the parent session.`,
+        `Use the separate lineage directory and session id below as the detached state boundary.`,
+        ``,
+      ]
+    : lineage.kind === 'native'
+      ? [
+          `This is an explicit native fan-out adapter running through the command host's OpenCode CLI surface.`,
+          `Use the separate lineage directory and session id below as the detached state boundary.`,
+          ``,
+        ]
+      : [];
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
-  const stopClause = hasIterationCap
-    ? 'to convergence OR config.maxIterations, whichever comes first'
-    : 'to convergence';
+  const stopPolicy = options.stopPolicy || 'convergence';
+  const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
+    ? 'until config.maxIterations is reached; treat convergence before that as telemetry only and broaden review angles instead of synthesizing early'
+    : hasIterationCap
+      ? 'to legal convergence OR config.maxIterations, whichever comes first'
+      : 'to legal convergence';
   const params = [
     `  spec_folder: ${specFolder}`,
     `  config.fanout_lineage_artifact_dir: ${lineageDir}`,
     `  session_id: ${sessionId}`,
     `  executor: ${lineage.kind} model=${lineage.model || 'default'}`,
     `  loop_type: ${loopType}`,
+    `  config.stopPolicy: ${stopPolicy}`,
   ];
   if (researchTopic) {
     // A research lineage's phase_init binds research_topic from this line. Without it a
@@ -708,12 +802,34 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   if (hasIterationCap) {
     params.push(`  config.maxIterations: ${lineage.iterations}`);
   }
+  if (options.convergenceThreshold !== null && options.convergenceThreshold !== undefined) {
+    params.push(`  config.convergenceThreshold: ${options.convergenceThreshold}`);
+  }
+  // Review/context lineages scope by spec_folder but the auto-workflow preflight
+  // still requires the same review setup bindings the native command path pre-binds.
+  // Without these, a detached CLI lineage can fail first-run initialization or infer a
+  // different setup contract than native lineages.
+  const setupBindings =
+    loopType === 'review' || loopType === 'context'
+      ? [
+          ``,
+          `Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):`,
+          `review_target: ${specFolder}`,
+          `review_target_type: spec-folder`,
+          `review_dimensions: all`,
+          `spec_folder: ${specFolder}`,
+          `execution_mode: AUTONOMOUS`,
+          `lineage_mode: auto`,
+          ``,
+        ]
+      : [];
   return [
     `You are a ${agentName} agent running a fan-out lineage.`,
+    ...detachedIntro,
     ``,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
     ...params,
-    ``,
+    ...setupBindings,
     `The step_resolve_artifact_root step will bind artifact_dir to ${lineageDir} via the`,
     `config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node`,
     `command; bind artifact_dir directly to the override value.`,
@@ -722,6 +838,41 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `Write all outputs to ${lineageDir}. Do not touch any path outside ${lineageDir}.`,
     ``,
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
+  ].join('\n');
+}
+
+function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
+  const maxIterations = lineage.iterations || 12;
+  const convergenceThreshold = options.convergenceThreshold ?? 0.1;
+  const stopPolicy = options.stopPolicy || 'convergence';
+  const args = [
+    ':auto',
+    JSON.stringify(specFolder),
+    `--spec-folder=${specFolder}`,
+    `--max-iterations=${maxIterations}`,
+    `--convergence=${convergenceThreshold}`,
+    `--stop-policy=${stopPolicy}`,
+    `--fanout-lineage-artifact-dir=${lineageDir}`,
+    '--lineage-mode=auto',
+  ];
+  if (loopType === 'research' && options.researchTopic) {
+    args.push(`--research-topic=${JSON.stringify(options.researchTopic)}`);
+  }
+
+  return [
+    args.join(' '),
+    '',
+    'PRE-BOUND SETUP ANSWERS:',
+    `review_target: ${specFolder}`,
+    'review_target_type: spec-folder',
+    'review_dimensions: all',
+    `spec_folder: ${specFolder}`,
+    'execution_mode: AUTONOMOUS',
+    'lineage_mode: auto',
+    `maxIterations: ${maxIterations}`,
+    `convergenceThreshold: ${convergenceThreshold}`,
+    `stop_policy: ${stopPolicy}`,
+    `config.fanout_lineage_artifact_dir: ${lineageDir}`,
   ].join('\n');
 }
 
@@ -895,33 +1046,11 @@ function runLineageProcess(command, cmdArgs, opts) {
 }
 
 /**
- * Build the subprocess command for a CLI lineage.
+ * Build the subprocess command for a fan-out lineage.
  * Returns { command, args, input?, env } where input is stdin content when applicable.
  */
-function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission) {
+function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options = {}) {
   const kind = lineage.kind;
-
-  if (kind === 'cli-codex') {
-    // Only emit -c service_tier when a validated tier is set; otherwise omit the
-    // pair so the Codex CLI applies its own account default. Substituting the
-    // literal 'default' would push a value outside the validated tier enum.
-    const args = [
-      'exec',
-      '--model',
-      lineage.model || 'o4-mini',
-      '-c',
-      `model_reasoning_effort=${lineage.reasoningEffort || 'medium'}`,
-    ];
-    if (lineage.serviceTier) {
-      args.push('-c', `service_tier=${lineage.serviceTier}`);
-    }
-    args.push('-c', 'approval_policy=never', '--sandbox', resolvedSandbox, '-');
-    return {
-      command: 'codex',
-      args,
-      input: prompt,
-    };
-  }
 
   if (kind === 'cli-claude-code') {
     const args = [
@@ -940,6 +1069,30 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
     return { command: 'claude', args };
   }
 
+  if (kind === 'native') {
+    // Native fan-out cannot call the LEAF @deep-review agent with a full-loop prompt.
+    // For review runs this is the real deep/review command surface with a lineage
+    // artifact override, so the command YAML owns init, loop, and synthesis.
+    const args = [
+      'run',
+      '--format',
+      'json',
+      '--dangerously-skip-permissions',
+      '--dir',
+      process.cwd(),
+      '--command',
+      `deep/${options.loopType || 'review'}`,
+    ];
+    args.push(buildNativeCommandInput(
+      options.loopType || 'review',
+      options.specFolder || '',
+      options.lineageDir || '',
+      lineage,
+      options,
+    ));
+    return { command: 'opencode', args, input: '' };
+  }
+
   if (kind === 'cli-opencode') {
     // No --agent: current opencode treats `general` as a subagent and rejects it
     // on a top-level `run`. The default agent runs when none is named, and a
@@ -950,9 +1103,24 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
       lineage.model || 'anthropic/claude-opus-4-8',
       '--format',
       'json',
-      '--dangerously-skip-permissions',
       '--pure',
+      '--dir',
+      process.cwd(),
     ];
+    // Permission bypass is opt-in: only detach the sandbox for lineages that explicitly
+    // request danger-full-access. workspace-write/read-only lineages run WITHOUT
+    // --dangerously-skip-permissions so their writes are subject to the CLI permission
+    // boundary. opencode has no path-scoped write flag, so a workspace-write review
+    // lineage's lineageDir-only boundary still relies on the prompt — but the operator
+    // must now opt into full bypass rather than getting it silently by default.
+    const useDangerousBypass = resolvedSandbox === 'danger-full-access';
+    if (useDangerousBypass) {
+      args.splice(args.indexOf('--pure'), 0, '--dangerously-skip-permissions');
+      process.stderr.write(
+        `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --dangerously-skip-permissions. `
+          + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
+      );
+    }
     if (lineage.reasoningEffort) {
       args.push('--variant', lineage.reasoningEffort);
     }
@@ -960,7 +1128,7 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
     return { command: 'opencode', args, input: '' };
   }
 
-  throw inputError(`Unknown CLI executor kind: ${kind}`);
+  throw inputError(`Unknown fan-out executor kind: ${kind}`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -981,11 +1149,13 @@ async function main() {
     : null;
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
+  const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
+  const stopPolicy = normalizeStopPolicy(args.stopPolicy);
 
   const {
     parseFanoutConfig,
     expandLineages,
-    resolveCodexSandboxMode,
+    resolveSandboxMode,
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
@@ -1018,8 +1188,10 @@ async function main() {
     specFolder,
   });
 
-  // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
-  const cliLineages = allLineages.filter((l) => l.kind !== 'native');
+  // Fan-out pool owns every lineage kind. The old YAML-native branch dispatched the
+  // LEAF review agent with a full-loop prompt, which is invalid; keep full-loop
+  // ownership here so all lineages share the same retries and artifact validation.
+  const cliLineages = allLineages;
   const checkpointPath = waitCheckpointPath(baseArtifactDir);
   const resumeWaiting = await resumeWaitingCheckpoint({
     checkpointPath,
@@ -1124,7 +1296,10 @@ async function main() {
       fs.mkdirSync(stateDir, { recursive: true });
 
       const sessionId = `fanout-${lineage.label}-${runId}`;
-      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic);
+      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, {
+        convergenceThreshold,
+        stopPolicy,
+      });
 
       // Sandbox resolution stays write-capable by default even for review lineages:
       // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
@@ -1133,7 +1308,7 @@ async function main() {
       // is enforced by the prompt ('Do not touch any path outside lineageDir') rather than by a
       // narrower sandbox; a path-scoped workspace-write would be the stronger fix if the CLIs
       // exposed one. Callers can still pass an explicit sandboxMode to override.
-      const resolvedSandbox = resolveCodexSandboxMode(lineage.sandboxMode);
+      const resolvedSandbox = resolveSandboxMode(lineage.sandboxMode);
       const resolvedPermission = resolveClaudePermissionMode(lineage.sandboxMode);
 
       const effectiveSandbox = resolvedSandbox;
@@ -1144,10 +1319,18 @@ async function main() {
         prompt,
         effectiveSandbox,
         effectivePermission,
+        {
+          loopType,
+          specFolder,
+          lineageDir,
+          convergenceThreshold,
+          stopPolicy,
+          researchTopic,
+        },
       );
 
       // Advertise a per-replica state dir hint to the child via SPECKIT_<KIND>_STATE_DIR.
-      // This is DETECTION-ONLY: the native CLIs read their own home env (CODEX_HOME /
+      // This is DETECTION-ONLY: the native CLIs read their own home env (OPENCODE_HOME /
       // OPENCODE_HOME / CLAUDE_CODE_HOME), not this var, so it does NOT relocate the
       // native lockfile. Real same-kind-replica isolation comes from each lineage's
       // unique artifact dir (lineage.label); remapping the CLI home to isolate the lock
@@ -1220,6 +1403,12 @@ async function main() {
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
       const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
+      const stopPolicyViolation = findMaxIterationsPolicyViolation({
+        loopType,
+        lineageDir,
+        lineage,
+        stopPolicy,
+      });
 
       // A lineage whose CLI exits non-zero or is killed by the timeout is a FAILURE,
       // not a success. Throw so the pool settles this item as rejected and counts it
@@ -1246,6 +1435,35 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: Math.max(1, salvage.failed) };
         failure.missingArtifacts = missingArtifacts;
+        throw failure;
+      }
+
+      if (stopPolicyViolation) {
+        const failure = new Error(
+          `lineage ${lineage.label} violated max-iterations stop policy: ${stopPolicyViolation}`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = false;
+        failure.salvage = salvage;
+        failure.stopPolicyViolation = stopPolicyViolation;
+        throw failure;
+      }
+
+      // An exit-0 lineage whose salvage sweep could not recover every iteration
+      // markdown is NOT fulfilled, even when the top-level report exists. Returning
+      // here would let a lineage with a fanout_salvage_failed marker pass as complete,
+      // dropping durable per-iteration evidence from merge/synthesis. Throw so the
+      // pool retries it (the classifier maps salvage.failed > 0 to artifact_miss).
+      if (salvage && salvage.failed > 0) {
+        const failure = new Error(
+          `lineage ${lineage.label} exited 0 but ${salvage.failed} iteration markdown file(s) were unrecoverable`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = false;
+        failure.salvage = { salvaged: salvage.salvaged, failed: salvage.failed };
+        failure.missingArtifacts = [];
         throw failure;
       }
 

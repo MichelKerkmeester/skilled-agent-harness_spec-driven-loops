@@ -26,6 +26,7 @@ const LINEAGE_FAILURE_CLASSES = Object.freeze({
   TIMEOUT: 'timeout',
   EXIT: 'exit',
   SALVAGE_MISS: 'salvage_miss',
+  ARTIFACT_MISS: 'artifact_miss',
 });
 const LINEAGE_RETRY_VERDICTS = Object.freeze({
   TRANSIENT: 'transient',
@@ -175,11 +176,19 @@ function classifyLineageFailure(error) {
     failureClass = LINEAGE_FAILURE_CLASSES.TIMEOUT;
   } else if (salvage && salvage.failed > 0 && salvage.salvaged === 0) {
     failureClass = LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
+  } else if (salvage && salvage.failed > 0) {
+    // Mixed salvage: at least one iteration was recovered but some artifact/iteration
+    // markdown was unrecoverable or a top-level artifact went missing. This is a
+    // transient artifact-recovery gap, not a fatal exit, so it should be retried rather
+    // than consumed as terminal. Without this branch a { salvaged: >0, failed: >0 }
+    // lineage fell through to EXIT (fatal) and was never retried.
+    failureClass = LINEAGE_FAILURE_CLASSES.ARTIFACT_MISS;
   }
 
   const retryable =
     failureClass === LINEAGE_FAILURE_CLASSES.TIMEOUT
-    || failureClass === LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
+    || failureClass === LINEAGE_FAILURE_CLASSES.SALVAGE_MISS
+    || failureClass === LINEAGE_FAILURE_CLASSES.ARTIFACT_MISS;
   return {
     failure_class: failureClass,
     retry_verdict: retryable ? LINEAGE_RETRY_VERDICTS.TRANSIENT : LINEAGE_RETRY_VERDICTS.FATAL,

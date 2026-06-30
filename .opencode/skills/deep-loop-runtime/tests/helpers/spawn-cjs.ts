@@ -107,21 +107,18 @@ export function createHermeticEnv(testId: string): HermeticEnv {
   const home = join(testRoot, 'home');
   const dbPath = join(testRoot, 'database');
   const tmpDir = join(testRoot, 'tmp');
-  const codexStateDir = join(tmpDir, 'codex-state');
-  const claudeStateDir = join(tmpDir, 'claude-code-state');
   const opencodeStateDir = join(tmpDir, 'opencode-state');
+  const claudeStateDir = join(tmpDir, 'claude-code-state');
 
   for (const dir of [
     home,
     dbPath,
     tmpDir,
-    join(home, '.codex'),
+    join(home, '.opencode'),
     join(home, '.claude'),
     join(home, '.claude-code'),
-    join(home, '.opencode'),
-    codexStateDir,
-    claudeStateDir,
     opencodeStateDir,
+    claudeStateDir,
   ]) {
     mkdirSync(dir, { recursive: true });
   }
@@ -139,11 +136,11 @@ export function createHermeticEnv(testId: string): HermeticEnv {
       SPEC_KIT_DB_DIR: dbPath,
       SPECKIT_DB_DIR: dbPath,
       MEMORY_DB_PATH: join(dbPath, 'context-index.sqlite'),
-      CODEX_HOME: join(home, '.codex'),
+      OPENCODE_HOME: join(home, '.opencode'),
       CLAUDE_HOME: join(home, '.claude'),
       CLAUDE_CODE_HOME: join(home, '.claude-code'),
       OPENCODE_HOME: join(home, '.opencode'),
-      SPECKIT_CODEX_STATE_DIR: codexStateDir,
+      SPECKIT_OPENCODE_STATE_DIR: opencodeStateDir,
       SPECKIT_CLAUDE_CODE_STATE_DIR: claudeStateDir,
       SPECKIT_OPENCODE_STATE_DIR: opencodeStateDir,
     },
@@ -189,11 +186,11 @@ function buildRedactions(
   addRedaction(redactions, env['SPEC_KIT_DB_DIR'], '<DB_DIR>');
   addRedaction(redactions, env['SPECKIT_DB_DIR'], '<DB_DIR>');
   addRedaction(redactions, env['MEMORY_DB_PATH'], '<MEMORY_DB_PATH>');
-  addRedaction(redactions, env['CODEX_HOME'], '<CODEX_HOME>');
+  addRedaction(redactions, env['OPENCODE_HOME'], '<OPENCODE_HOME>');
   addRedaction(redactions, env['CLAUDE_HOME'], '<CLAUDE_HOME>');
   addRedaction(redactions, env['CLAUDE_CODE_HOME'], '<CLAUDE_CODE_HOME>');
   addRedaction(redactions, env['OPENCODE_HOME'], '<OPENCODE_HOME>');
-  addRedaction(redactions, env['SPECKIT_CODEX_STATE_DIR'], '<CODEX_STATE_DIR>');
+  addRedaction(redactions, env['SPECKIT_OPENCODE_STATE_DIR'], '<OPENCODE_STATE_DIR>');
   addRedaction(redactions, env['SPECKIT_CLAUDE_CODE_STATE_DIR'], '<CLAUDE_CODE_STATE_DIR>');
   addRedaction(redactions, env['SPECKIT_OPENCODE_STATE_DIR'], '<OPENCODE_STATE_DIR>');
 

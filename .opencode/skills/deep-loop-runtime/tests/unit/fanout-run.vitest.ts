@@ -141,6 +141,29 @@ function writeStubBinary(binDir: string, name: string): string {
   return stubPath;
 }
 
+function writeNativeOpencodeStubBinary(binDir: string): string {
+  const stubPath = join(binDir, 'opencode');
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      'payload="$*"',
+      'lineage_dir=$(printf "%s\\n" "$payload" | sed -n "s/.*--fanout-lineage-artifact-dir=//p" | sed "s/[[:space:]].*//" | head -n 1)',
+      'if [ -n "$lineage_dir" ]; then',
+      '  mkdir -p "$lineage_dir"',
+      '  printf "ok\\n" > "$lineage_dir/research.md"',
+      '  printf "ok\\n" > "$lineage_dir/review-report.md"',
+      '  printf "ok\\n" > "$lineage_dir/context-report.md"',
+      'fi',
+      'echo "native-stub-done"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
 function writeNoArtifactStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(stubPath, '#!/bin/sh\necho "stub-done-without-artifact"\nexit 0\n', { mode: 0o755 });
@@ -164,7 +187,7 @@ function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPa
     [
       '#!/bin/sh',
       `counter=${shellQuote(counterPath)}`,
-      'lineage_dir=$(dirname "$SPECKIT_CODEX_STATE_DIR")',
+      'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
       'if [ ! -f "$counter" ]; then',
       '  echo first > "$counter"',
       '  mkdir -p "$lineage_dir"',
@@ -205,7 +228,7 @@ function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: numbe
       'const fs = require("node:fs");',
       'const path = require("node:path");',
       'function lineageDir() {',
-      '  const stateDir = process.env.SPECKIT_CODEX_STATE_DIR || process.env.SPECKIT_CLAUDE_CODE_STATE_DIR || process.env.SPECKIT_OPENCODE_STATE_DIR;',
+      '  const stateDir = process.env.SPECKIT_OPENCODE_STATE_DIR || process.env.SPECKIT_CLAUDE_CODE_STATE_DIR;',
       '  return stateDir ? path.dirname(stateDir) : null;',
       '}',
       'function writeArtifacts() {',
@@ -229,7 +252,7 @@ function shellQuote(value: string): string {
 function writeFanoutArtifactsShell(): string {
   return [
     'lineage_dir=""',
-    'for state_dir in "$SPECKIT_CODEX_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR" "$SPECKIT_OPENCODE_STATE_DIR"; do',
+    'for state_dir in "$SPECKIT_OPENCODE_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR"; do',
     '  if [ -n "$state_dir" ]; then',
     '    lineage_dir=$(dirname "$state_dir")',
     '    break',
@@ -256,6 +279,17 @@ function writeMarkerSleepingStubBinary(binDir: string, name: string, seconds: nu
 
 function parseJsonFile<T>(filePath: string): T {
   return JSON.parse(readFileSync(filePath, 'utf8')) as T;
+}
+
+function normalizeFanoutTiming(payload: Record<string, unknown>): Record<string, unknown> {
+  const normalized = JSON.parse(JSON.stringify(payload)) as {
+    results?: Array<{ duration_ms?: unknown; output?: { slotDurationMs?: unknown } }>;
+  };
+  for (const result of normalized.results ?? []) {
+    if ('duration_ms' in result) result.duration_ms = '<DURATION_MS>';
+    if (result.output && 'slotDurationMs' in result.output) result.output.slotDurationMs = '<SLOT_DURATION_MS>';
+  }
+  return normalized as Record<string, unknown>;
 }
 
 function waitForFile(filePath: string, timeoutMs = 5_000): Promise<void> {
@@ -320,7 +354,9 @@ afterEach(() => {
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
 
 describe('fanout-run.cjs — module basics', () => {
-  it('exits 0 and emits ok JSON when there are no CLI lineages (native-only config)', async () => {
+  it('exits 0 and emits ok JSON for native fanout through opencode command dispatch', async () => {
+    const binDir = makeTempDir('fanout-run-native-bin-');
+    writeNativeOpencodeStubBinary(binDir);
     const baseDir = makeTempDir('fanout-run-native-');
     const nativeOnlyConfig = JSON.stringify({
       executors: [{ label: 'native-a', kind: 'native', count: 1 }],
@@ -336,32 +372,37 @@ describe('fanout-run.cjs — module basics', () => {
       nativeOnlyConfig,
       '--base-artifact-dir',
       baseDir,
-    ]);
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     expect(result.exitCode).toBe(0);
     const json = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
     expect(json.status).toBe('ok');
-    expect(json.results).toEqual([]);
+    expect(json.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0, all_failed: false });
 
     const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as {
       convergence?: { status?: string; reason?: string; no_new_findings?: boolean };
       gauges?: { lag?: number; pending?: number; failed?: number };
+      total?: number;
+      succeeded?: number;
+      failed?: number;
     };
-    expect(summary.convergence).toEqual({ status: 'converged', reason: 'empty_tick', no_new_findings: true });
+    expect(summary.total).toBe(1);
+    expect(summary.succeeded).toBe(1);
+    expect(summary.failed).toBe(0);
     expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
   });
 
   it('logs and falls back to flat_pool when wave assignment is requested', async () => {
     const binDir = makeTempDir('fanout-run-wave-bin-');
-    writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'opencode');
     const baseDir = makeTempDir('fanout-run-wave-base-');
     const fanoutConfig = JSON.stringify({
       assignment_model: 'wave',
       executors: [
         {
           label: 'wave-seat',
-          kind: 'cli-codex',
-          model: 'o4-mini',
+          kind: 'cli-opencode',
+          model: 'opencode-go/glm-5.1',
           assignment_model: 'wave',
           depends_on: ['prep'],
           touches: ['.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs'],
@@ -424,7 +465,9 @@ describe('fanout-run.cjs — module basics', () => {
     expect(ledgerEvents.some((event) => event.event === 'started' && event.label === 'wave-seat')).toBe(true);
   });
 
-  it('replays a native-only fanout cassette with a stable normalized run envelope', async () => {
+  it('replays a native fanout cassette with a stable normalized run envelope', async () => {
+    const binDir = makeTempDir('fanout-run-native-cassette-bin-');
+    writeNativeOpencodeStubBinary(binDir);
     const hermetic = useHermeticEnv('native-cassette');
     const baseDir = makeBaseArtifactDir(hermetic, 'specs/cassette-fanout-native', 'research');
     const cassetteDir = makeTempDir('fanout-run-cassette-dir-');
@@ -447,7 +490,7 @@ describe('fanout-run.cjs — module basics', () => {
       cassetteDir,
       cassetteId,
       cwd: hermetic.tmpDir,
-      env: hermetic.env,
+      env: envWithBin(hermetic, binDir),
       redactions: { [baseDir]: '<BASE_ARTIFACT_DIR>' },
       timeoutMs: 15_000,
     };
@@ -473,24 +516,24 @@ describe('fanout-run.cjs — module basics', () => {
       signal: null,
       timedOut: false,
     });
-    expect(payload).toEqual({
+    expect(payload).toMatchObject({
       status: 'ok',
-      message: 'no CLI lineages to spawn',
       run_id: '<RUN_ID>',
-      results: [],
+      results: [
+        expect.objectContaining({ label: 'native-a', status: 'fulfilled' }),
+      ],
       summary: {
-        total: 0,
-        succeeded: 0,
+        total: 1,
+        succeeded: 1,
         failed: 0,
         all_failed: false,
-        gauges: { lag: 0, pending: 0, failed: 0 },
-        convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
       },
     });
 
     const replayed = await replayScriptRun(cassetteId, fanoutRunScript, args, options);
-    expect(replayed.matches, replayed.diff.join('\n')).toBe(true);
-    expect(JSON.parse(replayed.normalized.stdout)).toEqual(payload);
+    expect(normalizeFanoutTiming(JSON.parse(replayed.normalized.stdout) as Record<string, unknown>)).toEqual(
+      normalizeFanoutTiming(payload),
+    );
   });
 
   it('exits 3 (INPUT_VALIDATION) when fanout-config-json is not valid JSON', async () => {
@@ -518,16 +561,16 @@ describe('fanout-run.cjs — module basics', () => {
 });
 
 describe('fanout-run.cjs — pool integration with stub binaries', () => {
-  it('creates two isolated lineage dirs and writes orchestration summary for 2 cli-codex lineages', async () => {
+  it('creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages', async () => {
     const binDir = makeTempDir('fanout-run-bin-');
-    writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'opencode');
 
     const baseDir = makeTempDir('fanout-run-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [
-        { label: 'lineage-a', kind: 'cli-codex', model: 'o4-mini', count: 1 },
-        { label: 'lineage-b', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'lineage-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+        { label: 'lineage-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
       ],
       concurrency: 2,
     });
@@ -580,13 +623,13 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect((summary as { succeeded?: number }).succeeded).toBe(2);
   });
 
-  it('sets distinct SPECKIT_CODEX_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {
+  it('sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {
     const binDir = makeTempDir('fanout-run-lock-bin-');
-    // Stub codex writes the state-dir env var to stdout so we can assert distinctness
-    const stubPath = join(binDir, 'codex');
+    // Stub opencode writes the state-dir env var to stdout so we can assert distinctness
+    const stubPath = join(binDir, 'opencode');
     writeFileSync(
       stubPath,
-      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
 
@@ -594,8 +637,8 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
 
     const fanoutConfig = JSON.stringify({
       executors: [
-        { label: 'alpha', kind: 'cli-codex', model: 'o4-mini', count: 1 },
-        { label: 'beta', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'alpha', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+        { label: 'beta', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
       ],
       concurrency: 1,
     });
@@ -628,14 +671,14 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(stateAlpha).not.toBe(stateBeta);
   });
 
-  it('expands a single count>1 executor into replicas each receiving a distinct SPECKIT_CODEX_STATE_DIR', async () => {
+  it('expands a single count>1 executor into replicas each receiving a distinct SPECKIT_OPENCODE_STATE_DIR', async () => {
     const binDir = makeTempDir('fanout-run-replica-bin-');
-    const stubPath = join(binDir, 'codex');
+    const stubPath = join(binDir, 'opencode');
     // The stub echoes the per-replica state-dir + lineage id so the test can assert
     // distinctness from captured stdout, not just dir existence.
     writeFileSync(
       stubPath,
-      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_CODEX_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      `#!/bin/sh\necho "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
 
@@ -644,7 +687,7 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     // A SINGLE executor with count:2 — the actual same-kind-replica path via
     // expandLineages' `${label}-${replica}` suffixing.
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'rep', kind: 'cli-codex', model: 'o4-mini', count: 2 }],
+      executors: [{ label: 'rep', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 2 }],
       concurrency: 1,
     });
 
@@ -692,11 +735,11 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
 describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
   it('records exit 3 (all failed) when the only lineage exits non-zero', async () => {
     const binDir = makeTempDir('fanout-run-fail-bin-');
-    writeFailingStubBinary(binDir, 'codex', 2);
+    writeFailingStubBinary(binDir, 'opencode', 2);
     const baseDir = makeTempDir('fanout-run-fail-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'lineage-fail', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'lineage-fail', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 2,
     });
 
@@ -733,10 +776,10 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
   it('retries a salvage-miss lineage once and exits ok when the retry succeeds', async () => {
     const binDir = makeTempDir('fanout-run-retry-bin-');
     const baseDir = makeTempDir('fanout-run-retry-base-');
-    writeFlakySalvageMissStubBinary(binDir, 'codex', join(baseDir, 'codex.counter'));
+    writeFlakySalvageMissStubBinary(binDir, 'opencode', join(baseDir, 'opencode.counter'));
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'flaky', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'flaky', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
       maxRetries: 1,
     });
@@ -787,16 +830,69 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
     ]);
   });
 
+  it('treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)', async () => {
+    // Regression guard: a lineage that exited 0 but wrote NO artifact must be treated as a
+    // salvage-miss (retried, then failed if still missing), never counted as fulfilled.
+    // The stub always exits 0 and writes nothing, so this fails (exit 3) iff the invariant holds.
+    const binDir = makeTempDir('fanout-run-noartifact-bin-');
+    const baseDir = makeTempDir('fanout-run-noartifact-base-');
+    writeNoArtifactStubBinary(binDir, 'opencode');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'noart', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 1,
+    });
+
+    const hermetic = useHermeticEnv('no-artifact');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-noartifact',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    // Exit 3 = all lineages failed; the exit-0/no-artifact lineage must NOT be fulfilled.
+    expect(result.exitCode).toBe(3);
+    const summary = JSON.parse(
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+    ) as { failed?: number; succeeded?: number; all_failed?: boolean };
+    expect(summary.failed).toBe(1);
+    expect(summary.succeeded).toBe(0);
+    expect(summary.all_failed).toBe(true);
+
+    // The lineage must have been classified as salvage_miss and retried before failing.
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toEqual([
+      expect.objectContaining({ label: 'noart', retry_count: 1, failure_class: 'salvage_miss' }),
+    ]);
+  });
+
   it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {
     const binDir = makeTempDir('fanout-run-mixed-bin-');
-    // codex stub fails; claude stub succeeds.
-    writeFailingStubBinary(binDir, 'codex', 5);
+    // opencode stub fails; claude stub succeeds.
+    writeFailingStubBinary(binDir, 'opencode', 5);
     writeStubBinary(binDir, 'claude');
     const baseDir = makeTempDir('fanout-run-mixed-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [
-        { label: 'fails', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'fails', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
         { label: 'passes', kind: 'cli-claude-code', model: 'claude-opus-4-8', count: 1 },
       ],
       concurrency: 2,
@@ -835,13 +931,13 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
 describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnSync)', () => {
   it('runs two ~1s lineages in roughly 1s wall-clock with concurrency 2', async () => {
     const binDir = makeTempDir('fanout-run-parallel-bin-');
-    writeSleepingStubBinary(binDir, 'codex', 1);
+    writeSleepingStubBinary(binDir, 'opencode', 1);
     const baseDir = makeTempDir('fanout-run-parallel-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [
-        { label: 'sleep-a', kind: 'cli-codex', model: 'o4-mini', count: 1 },
-        { label: 'sleep-b', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'sleep-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+        { label: 'sleep-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
       ],
       concurrency: 2,
     });
@@ -881,10 +977,10 @@ describe('fanout-run.cjs — graceful self-stop', () => {
     const hermetic = useHermeticEnv('graceful-stop');
     const baseDir = makeTempDir('fanout-run-stop-base-');
     const markerPath = join(baseDir, 'lineage-started.marker');
-    writeMarkerSleepingStubBinary(binDir, 'codex', 10, markerPath);
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 10, markerPath);
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'slow', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
 
@@ -954,7 +1050,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     waitMs?: number;
   }): ReturnType<typeof spawn> {
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'delayed', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'delayed', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
     const hermetic = useHermeticEnv(args.testId);
@@ -983,7 +1079,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const binDir = makeTempDir('fanout-run-wait-bin-');
     const baseDir = makeTempDir('fanout-run-wait-base-');
     const markerPath = join(baseDir, 'lineage-launched.marker');
-    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
 
     const child = spawnWaitingFanout({
       testId: 'pre-dispatch-wait',
@@ -1025,7 +1121,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const baseDir = makeTempDir('fanout-run-resume-wait-base-');
     const markerPath = join(baseDir, 'lineage-launched.marker');
     const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
-    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
     writeFileSync(
       checkpointPath,
       `${JSON.stringify({
@@ -1070,7 +1166,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const baseDir = makeTempDir('fanout-run-legacy-wait-base-');
     const markerPath = join(baseDir, 'lineage-launched.marker');
     const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
-    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
     writeFileSync(
       checkpointPath,
       `${JSON.stringify({ schemaVersion: 1, status: 'waiting', updatedAt: new Date().toISOString() })}\n`,
@@ -1094,11 +1190,11 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
 describe('fanout-run.cjs — progress heartbeat', () => {
   it('emits progress events for a long lineage when cadence is configured', async () => {
     const binDir = makeTempDir('fanout-run-progress-bin-');
-    writeSleepingStubBinary(binDir, 'codex', 1);
+    writeSleepingStubBinary(binDir, 'opencode', 1);
     const baseDir = makeTempDir('fanout-run-progress-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'slow', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
       progressHeartbeatSeconds: 0.05,
     });
@@ -1139,11 +1235,11 @@ describe('fanout-run.cjs — progress heartbeat', () => {
 
   it('does not emit progress events when cadence is left disabled', async () => {
     const binDir = makeTempDir('fanout-run-progress-disabled-bin-');
-    writeSleepingStubBinary(binDir, 'codex', 1);
+    writeSleepingStubBinary(binDir, 'opencode', 1);
     const baseDir = makeTempDir('fanout-run-progress-disabled-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'slow', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
 
@@ -1179,11 +1275,11 @@ describe('fanout-run.cjs — progress heartbeat', () => {
 describe('fanout-run.cjs — slot overrun accounting', () => {
   it('records skippedCount 0 and slotDurationMs for a fast completed lineage', async () => {
     const binDir = makeTempDir('fanout-run-fast-slot-bin-');
-    writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'opencode');
     const baseDir = makeTempDir('fanout-run-fast-slot-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'fast', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'fast', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
       progressHeartbeatSeconds: 1,
     });
@@ -1223,11 +1319,11 @@ describe('fanout-run.cjs — slot overrun accounting', () => {
 
   it('records missed fixed-rate slots without launching catch-up lineages', async () => {
     const binDir = makeTempDir('fanout-run-overrun-slot-bin-');
-    writeDelayedNodeStubBinary(binDir, 'codex', 3_100);
+    writeDelayedNodeStubBinary(binDir, 'opencode', 3_100);
     const baseDir = makeTempDir('fanout-run-overrun-slot-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'overrun', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'overrun', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
       progressHeartbeatSeconds: 1,
     });
@@ -1278,16 +1374,16 @@ describe('fanout-run.cjs — slot overrun accounting', () => {
 });
 
 describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub', () => {
-  async function runCodexEcho(
+  async function runOpencodeEcho(
     lineage: Record<string, unknown>,
     loopType: 'research' | 'review',
   ): Promise<{ stdout: string; baseDir: string }> {
     const binDir = makeTempDir('fanout-run-echo-bin-');
-    writeEchoStubBinary(binDir, 'codex');
+    writeEchoStubBinary(binDir, 'opencode');
     const baseDir = makeTempDir('fanout-run-echo-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ ...lineage, kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ ...lineage, kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
 
@@ -1319,28 +1415,28 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     return { stdout, baseDir };
   }
 
-  it('omits service_tier from codex argv when serviceTier is unset (A4)', async () => {
-    const { stdout } = await runCodexEcho({ label: 'no-tier' }, 'research');
+  it('omits --variant from opencode argv when reasoningEffort is unset', async () => {
+    const { stdout } = await runOpencodeEcho({ label: 'no-variant' }, 'research');
     const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
-    expect(argvLine).not.toContain('service_tier');
+    expect(argvLine).not.toContain('--variant');
   });
 
-  it('includes service_tier=standard in codex argv when serviceTier is set (A4)', async () => {
-    const { stdout } = await runCodexEcho({ label: 'with-tier', serviceTier: 'standard' }, 'research');
+  it('includes --variant in opencode argv when reasoningEffort is set', async () => {
+    const { stdout } = await runOpencodeEcho({ label: 'with-variant', reasoningEffort: 'high' }, 'research');
     const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
-    expect(argvLine).toContain('service_tier=standard');
+    expect(argvLine).toContain('--variant high');
   });
 
   it('adds config.maxIterations to the prompt when lineage.iterations is set (A3)', async () => {
-    const { stdout } = await runCodexEcho({ label: 'capped', iterations: 4 }, 'research');
+    const { stdout } = await runOpencodeEcho({ label: 'capped', iterations: 4 }, 'research');
     expect(stdout).toContain('config.maxIterations: 4');
     expect(stdout).toContain('whichever comes first');
   });
 
   it('omits config.maxIterations from the prompt when iterations is null (A3)', async () => {
-    const { stdout } = await runCodexEcho({ label: 'uncapped' }, 'research');
+    const { stdout } = await runOpencodeEcho({ label: 'uncapped' }, 'research');
     expect(stdout).not.toContain('config.maxIterations');
-    expect(stdout).toContain('(to convergence)');
+    expect(stdout).toContain('(to legal convergence)');
   });
 });
 
@@ -1354,22 +1450,22 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
     writeFileSync(
       stubPath,
       '#!/bin/sh\necho "DISPATCH_STACK=$SPECKIT_CLI_DISPATCH_STACK"\n'
-        + 'echo "STATE_DIR=$SPECKIT_CODEX_STATE_DIR"\n'
+        + 'echo "STATE_DIR=$SPECKIT_OPENCODE_STATE_DIR"\n'
         + `echo "LINEAGE_ID=$SPECKIT_FANOUT_LINEAGE_ID"\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
     return stubPath;
   }
 
-  async function runCodexSeat(
+  async function runOpencodeSeat(
     parentStack: string | undefined,
   ): Promise<string> {
     const binDir = makeTempDir('fanout-run-stack-bin-');
-    writeStackEchoStub(binDir, 'codex');
+    writeStackEchoStub(binDir, 'opencode');
     const baseDir = makeTempDir('fanout-run-stack-base-');
 
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'seat-a', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      executors: [{ label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
 
@@ -1403,19 +1499,19 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
   }
 
   it('stamps the dispatched CLI seat env with its kind when the parent stack is empty', async () => {
-    const stdout = await runCodexSeat(undefined);
+    const stdout = await runOpencodeSeat(undefined);
     const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
-    expect(stackLine).toBe('DISPATCH_STACK=cli-codex');
+    expect(stackLine).toBe('DISPATCH_STACK=cli-opencode');
   });
 
   it('appends the kind onto an existing parent dispatch stack (cross-kind chain)', async () => {
-    const stdout = await runCodexSeat('cli-opencode');
+    const stdout = await runOpencodeSeat('cli-claude-code');
     const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
-    expect(stackLine).toBe('DISPATCH_STACK=cli-opencode:cli-codex');
+    expect(stackLine).toBe('DISPATCH_STACK=cli-claude-code:cli-opencode');
   });
 
   it('preserves per-replica state-dir + lineage-id env after the dispatch-env allowlist filter', async () => {
-    const stdout = await runCodexSeat(undefined);
+    const stdout = await runOpencodeSeat(undefined);
     const stateLine = stdout.split('\n').find((l) => l.startsWith('STATE_DIR=')) ?? '';
     const lineageLine = stdout.split('\n').find((l) => l.startsWith('LINEAGE_ID=')) ?? '';
     // buildExecutorDispatchEnv strips non-allowlisted keys; these SPECKIT_* keys
@@ -1425,14 +1521,14 @@ describe('fanout-run.cjs — recursion-guard dispatch stack (SPECKIT_CLI_DISPATC
   });
 
   it('demonstrates the guard end-to-end: the stamped kind is detected as same-kind recursion', async () => {
-    // The seat env carries SPECKIT_CLI_DISPATCH_STACK=cli-codex; a nested
-    // cli-codex dispatch from inside that seat would hit this exact check.
-    const stdout = await runCodexSeat(undefined);
+    // The seat env carries the spawned kind; a nested same-kind dispatch from
+    // inside that seat would hit this exact check.
+    const stdout = await runOpencodeSeat(undefined);
     const stackLine = stdout.split('\n').find((l) => l.startsWith('DISPATCH_STACK=')) ?? '';
     const stack = stackLine.slice('DISPATCH_STACK='.length);
 
-    expect(detectSameKindFromStack(stack, 'cli-codex')).toBe(true);
-    expect(detectSameKindFromStack(stack, 'cli-opencode')).toBe(false);
+    expect(detectSameKindFromStack(stack, 'cli-opencode')).toBe(true);
+    expect(detectSameKindFromStack(stack, 'cli-claude-code')).toBe(false);
   });
 });
 

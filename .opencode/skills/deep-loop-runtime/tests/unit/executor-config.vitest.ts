@@ -28,8 +28,8 @@ describe('executor-config', () => {
 
   it('defaults governor to null and accepts a governor string on any kind', () => {
     expect(parseExecutorConfig({ kind: 'native' }).governor).toBeNull();
-    expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', governor: 'be terse; act not narrate' }))
-      .toMatchObject({ kind: 'cli-codex', governor: 'be terse; act not narrate' });
+    expect(parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', governor: 'be terse; act not narrate' }))
+      .toMatchObject({ kind: 'cli-opencode', governor: 'be terse; act not narrate' });
   });
 
   it('rejects a non-string or empty governor', () => {
@@ -44,42 +44,32 @@ describe('executor-config', () => {
     });
   });
 
-  it('accepts a wired cli-codex executor with a model', () => {
-    expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4' })).toMatchObject({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
-    });
+  it('rejects the retired executor kind', () => {
+    const retiredKind = ['cli', 'gemini'].join('-');
+    expect(() => parseExecutorConfig({ kind: retiredKind, model: 'gpt-5.4' })).toThrow(ExecutorConfigError);
   });
 
   it('accepts deprecated executor type as an alias for kind and logs a warning', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 
-    expect(parseExecutorConfig({ type: 'cli-codex', model: 'gpt-5.4' })).toMatchObject({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+    expect(parseExecutorConfig({ type: 'cli-opencode', model: 'opencode-go/glm-5.1' })).toMatchObject({
+      kind: 'cli-opencode',
+      model: 'opencode-go/glm-5.1',
     });
     expect(warn).toHaveBeenCalledWith(expect.stringContaining("Deprecated executor field 'type'"));
   });
 
   it('rejects conflicting deprecated type and canonical kind values', () => {
-    expect(() => parseExecutorConfig({ type: 'native', kind: 'cli-codex', model: 'gpt-5.4' })).toThrow(
+    expect(() => parseExecutorConfig({ type: 'native', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' })).toThrow(
       ExecutorConfigError,
     );
   });
 
-  it('rejects cli-codex when model is null', () => {
-    try {
-      parseExecutorConfig({ kind: 'cli-codex', model: null });
-      throw new Error('Expected parseExecutorConfig to throw');
-    } catch (error: unknown) {
-      expect(error).toBeInstanceOf(ExecutorConfigError);
-      if (error instanceof ExecutorConfigError) {
-        expect(error.issues).toContainEqual({
-          path: ['model'],
-          message: 'model is required when kind is cli-codex',
-        });
-      }
-    }
+  it('accepts cli-opencode without a model because the CLI can use its default', () => {
+    expect(parseExecutorConfig({ kind: 'cli-opencode', model: null })).toMatchObject({
+      kind: 'cli-opencode',
+      model: null,
+    });
   });
 
 
@@ -117,8 +107,8 @@ describe('executor-config', () => {
   });
 
   it('rejects configDir for non-Claude executor kinds', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', configDir: '~/.claude-account2' })).toThrowError(
-      /configDir.*not supported by executor kind 'cli-codex'/,
+    expect(() => parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', configDir: '~/.claude-account2' })).toThrowError(
+      /configDir.*not supported by executor kind 'cli-opencode'/,
     );
   });
 
@@ -127,25 +117,25 @@ describe('executor-config', () => {
   });
 
   it('rejects unknown reasoning effort values', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', reasoningEffort: 'super' })).toThrow(
+    expect(() => parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', reasoningEffort: 'super' })).toThrow(
       ExecutorConfigError,
     );
   });
 
   it('rejects unknown service tier values', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', serviceTier: 'slow' })).toThrow(
+    expect(() => parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', serviceTier: 'slow' })).toThrow(
       ExecutorConfigError,
     );
   });
 
   it('rejects non-positive timeout values', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4', timeoutSeconds: 0 })).toThrow(
+    expect(() => parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', timeoutSeconds: 0 })).toThrow(
       ExecutorConfigError,
     );
   });
 
   it('defaults timeoutSeconds to 900 when not specified', () => {
-    expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4' }).timeoutSeconds).toBe(900);
+    expect(parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1' }).timeoutSeconds).toBe(900);
   });
 
   it('rejects serviceTier for cli-claude-code because the kind does not support it', () => {
@@ -174,10 +164,14 @@ describe('executor-config', () => {
     });
   });
 
-  it('rejects sandboxMode for cli-opencode because the kind does not support read-only', () => {
-    expect(() =>
-      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/qwen3.6-plus', sandboxMode: 'read-only' }),
-    ).toThrowError(/sandboxMode.*not supported by executor kind 'cli-opencode'/);
+  it('accepts sandboxMode for cli-opencode so a detached lineage can declare its write boundary', () => {
+    expect(
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/qwen3.6-plus', sandboxMode: 'workspace-write' }),
+    ).toMatchObject({
+      kind: 'cli-opencode',
+      model: 'opencode-go/qwen3.6-plus',
+      sandboxMode: 'workspace-write',
+    });
   });
 
   it('rejects serviceTier for cli-opencode (no opencode equivalent)', () => {
@@ -194,16 +188,16 @@ describe('executor-config', () => {
   });
 
   it('lets CLI values override file values during resolution', () => {
-    expect(resolveExecutorConfig({ cli: { kind: 'cli-codex', model: 'gpt-5.4' }, file: { kind: 'native' } })).toMatchObject({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+    expect(resolveExecutorConfig({ cli: { kind: 'cli-opencode', model: 'opencode-go/glm-5.1' }, file: { kind: 'native' } })).toMatchObject({
+      kind: 'cli-opencode',
+      model: 'opencode-go/glm-5.1',
     });
   });
 
   it('uses file values when CLI values are absent', () => {
-    expect(resolveExecutorConfig({ cli: {}, file: { kind: 'cli-codex', model: 'gpt-5.4' } })).toMatchObject({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+    expect(resolveExecutorConfig({ cli: {}, file: { kind: 'cli-opencode', model: 'opencode-go/glm-5.1' } })).toMatchObject({
+      kind: 'cli-opencode',
+      model: 'opencode-go/glm-5.1',
     });
   });
 
@@ -213,8 +207,9 @@ describe('executor-config', () => {
     );
   });
 
-  it('rejects a resolved cli-codex config when no model is available from any source', () => {
-    expect(() => resolveExecutorConfig({ cli: { kind: 'cli-codex' } })).toThrow(ExecutorConfigError);
+  it('rejects a retired executor config during resolution', () => {
+    const retiredKind = ['cli', 'gemini'].join('-');
+    expect(() => resolveExecutorConfig({ cli: { kind: retiredKind as never } })).toThrow(ExecutorConfigError);
   });
 });
 
@@ -223,7 +218,7 @@ describe('parseFanoutConfig', () => {
     const config = parseFanoutConfig({
       executors: [
         { kind: 'native', label: 'opus' },
-        { kind: 'cli-codex', model: 'gpt-5.4', label: 'gpt' },
+        { kind: 'cli-opencode', model: 'opencode-go/glm-5.1', label: 'glm' },
       ],
     });
     expect(config.executors).toHaveLength(2);
@@ -307,8 +302,9 @@ describe('parseFanoutConfig', () => {
     );
   });
 
-  it('reuses per-executor kind validation (cli-codex requires model)', () => {
-    expect(() => parseFanoutConfig({ executors: [{ kind: 'cli-codex', label: 'gpt' }] })).toThrow(ExecutorConfigError);
+  it('reuses per-executor kind validation for retired kinds', () => {
+    const retiredKind = ['cli', 'gemini'].join('-');
+    expect(() => parseFanoutConfig({ executors: [{ kind: retiredKind, label: 'gpt' }] })).toThrow(ExecutorConfigError);
   });
 
   it('reuses per-executor flag-support validation (cli-opencode rejects serviceTier)', () => {

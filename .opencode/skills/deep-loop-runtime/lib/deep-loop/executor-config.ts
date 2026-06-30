@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh'] as const;
@@ -49,9 +49,8 @@ export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
   native: [],
-  'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
-  'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
+  'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -136,12 +135,12 @@ function normalizeIssues(error: z.ZodError<ExecutorConfig>): ExecutorConfigIssue
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * Map a generic sandbox mode to the Codex CLI sandbox mode.
+ * Map a generic sandbox mode to the executor-agnostic CLI sandbox mode.
  *
  * @param mode - Generic sandbox mode or undefined.
- * @returns Codex-compatible sandbox mode.
+ * @returns CLI-compatible sandbox mode.
  */
-export function resolveCodexSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
+export function resolveSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
   return normalizeSandboxMode(mode);
 }
 
@@ -181,11 +180,6 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   }
 
   const config = parsed.data;
-  if (config.kind === 'cli-codex' && config.model === null) {
-    throw new ExecutorConfigError({
-      issues: [{ path: ['model'], message: 'model is required when kind is cli-codex' }],
-    });
-  }
   const supportedFlags = EXECUTOR_KIND_FLAG_SUPPORT[config.kind];
   const unsupportedFields: string[] = [];
   const allOptionalFields: (keyof ExecutorConfig)[] = [
@@ -290,8 +284,7 @@ export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;
  * Parse and validate a raw fan-out configuration.
  *
  * Each entry's executor subset is routed through {@link parseExecutorConfig} so
- * ALL existing kind/model/flag rules (cli-codex needs model, per-kind flag
- * support) apply per lineage with zero duplication.
+ * ALL existing kind/model/flag rules apply per lineage with zero duplication.
  * Labels must be unique and base-label (count>1) expansion must not collide.
  *
  * @param raw - Raw input to parse (JSON-parsed object).
