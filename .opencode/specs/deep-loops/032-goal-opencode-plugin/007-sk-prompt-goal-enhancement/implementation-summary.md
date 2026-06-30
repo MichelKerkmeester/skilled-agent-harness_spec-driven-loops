@@ -89,12 +89,12 @@ The change stays inside the plugin tool path, so `.opencode/commands/goal.md` re
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-| Decision | Why |
-|----------|-----|
-| Use deterministic prompt generation in `mk-goal.js` | OpenCode skills are context resources, not a stable plugin API. Local generation avoids latency, recursion and nondeterministic state writes. |
-| Preserve raw `objective` separately from `goalPrompt` | Status output and old tests can still inspect the user's original goal while injection uses the improved prompt. |
-| Backfill missing `goalPrompt` on read | Existing state files remain readable without migration scripts. |
-| Keep `/goal` command unchanged | The command contract already requires exactly one plugin tool call; duplicating prompt logic there would split state ownership. |
+| Decision                                              | Why                                                                                                                                           |
+| -------------------------------------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------|
+| Use deterministic prompt generation in `mk-goal.js`   | OpenCode skills are context resources, not a stable plugin API. Local generation avoids latency, recursion and nondeterministic state writes. |
+| Preserve raw `objective` separately from `goalPrompt` | Status output and old tests can still inspect the user's original goal while injection uses the improved prompt.                              |
+| Backfill missing `goalPrompt` on read                 | Existing state files remain readable without migration scripts.                                                                               |
+| Keep `/goal` command unchanged                        | The command contract already requires exactly one plugin tool call; duplicating prompt logic there would split state ownership.               |
 <!-- /ANCHOR:decisions -->
 
 ---

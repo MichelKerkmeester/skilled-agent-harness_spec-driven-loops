@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.7.0.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, mk-spec-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, mk-spec-memory, mk-goal, goal-plugin, active_goal, session-goal, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
 
 # Spec Kit - Mandatory Conversation Documentation
 
@@ -88,7 +88,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/workflows/` for command workflows, shared intake, rename procedures, and worked examples.
 - `references/debugging/` for troubleshooting and root-cause methodology.
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
-- `references/hooks/` for prompt-time advisor hooks, runtime hook parity, and hook validation playbooks.
+- `references/hooks/` for prompt-time advisor hooks, the OpenCode goal plugin, runtime hook parity, and hook validation playbooks.
 
 ### Template and Script Sources of Truth
 
@@ -151,7 +151,7 @@ INTENT_SIGNALS = {
     "PHASE": {"weight": 4, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
     "RETRIEVAL_TUNING": {"weight": 3, "keywords": ["retrieval", "search tuning", "fusion", "scoring", "pipeline"]},
     "INTAKE": {"weight": 4, "keywords": ["intake", "folder_state", "start_state", "repair-mode", "intake-only"]},
-    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate", "goal plugin", "mk-goal", "/goal", "active_goal", "session goal"]},
     "LAUNCHER": {"weight": 4, "keywords": ["launcher", "lease", "pid file", "single-writer", "lease_held_by"]},
     "RENAME": {"weight": 3, "keywords": ["rename", "mechanical refactor", "rename pattern", "git mv", "case variants"]},
     "EVALUATION": {"weight": 3, "keywords": ["evaluate", "ablation", "benchmark", "baseline", "metrics"]},
@@ -213,6 +213,7 @@ RESOURCE_MAP = {
     "HOOKS": [
         "references/hooks/skill_advisor_hook.md",
         "references/hooks/skill_advisor_hook_validation.md",
+        "references/hooks/goal_plugin.md",
         "references/config/hook_system.md",
     ],
     "LAUNCHER": [
@@ -422,14 +423,18 @@ The current memory baseline is schema v41. The hardening features ship behind co
 
 Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the spec-memory local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search still has a Stage 3 rerank step: MMR diversity reranking plus MPAB chunk collapse, with the `memory_search` `rerank` option defaulting to true. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
-## Security
+### Security
 
 - `VOYAGE_API_KEY` is read from the process environment only. It must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set it in shell init files owned by the operator with mode `600`.
 - Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses the plugin bridge), and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `references/hooks/goal_plugin.md`, `mcp_server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
+
+### OpenCode Goal Plugin
+
+The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal_plugin.md`](./references/hooks/goal_plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 

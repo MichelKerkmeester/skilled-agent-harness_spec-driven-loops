@@ -1,16 +1,14 @@
 {
   "level": "phase",
   "specFolder": "032-goal-opencode-plugin",
-  "description": "Enhance goal input through sk-prompt into a bounded goal prompt",
+  "description": "Goal plugin system-spec-kit integration",
   "keywords": [
-    "enhance",
     "goal",
-    "input",
-    "sk-prompt",
-    "bounded",
-    "prompt"
+    "plugin",
+    "system-spec-kit",
+    "integration"
   ],
-  "lastUpdated": "2026-06-30T16:17:28.369Z",
+  "lastUpdated": "2026-06-30T17:33:02.505Z",
   "specId": "032",
   "folderSlug": "goal-opencode-plugin",
   "parentChain": [],

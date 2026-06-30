@@ -13,13 +13,14 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin"
     last_updated_at: "2026-06-30T16:30:00Z"
     last_updated_by: "opencode-gpt"
-    recent_action: "Implemented phase 7 sk-prompt goal prompt enhancement"
-    next_safe_action: "Phase 7 complete; restart OpenCode before relying on the updated plugin in a new session"
+    recent_action: "Completed phase 8 system-spec-kit goal plugin integration"
+    next_safe_action: "Phase 8 complete; restart OpenCode before relying on changed plugin docs in a fresh session"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/commands/goal.md"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
@@ -176,6 +177,7 @@ REQ-005
 | 6 | 006-active-continuation/ | Guarded session.idle continuation (default-off, caps + kill-switch) | Complete |
 
 | 7 | 007-sk-prompt-goal-enhancement/ | Transform raw `/goal set` input into a deterministic sk-prompt-style `goalPrompt` under 4000 chars | Complete |
+| 8 | 008-system-spec-kit-integration/ | Integrate `mk-goal` into system-spec-kit routing, references, catalog assets, manual playbook, and env docs | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -194,4 +196,6 @@ REQ-005
 | 005-completion-supervisor | 006-active-continuation | Verifier returns met/not_met/blocked | Supervisor unit test passes |
 | 006-active-continuation | 007-sk-prompt-goal-enhancement | Existing continuation behavior remains green before prompt generation changes | Continuation test passes |
 | 007-sk-prompt-goal-enhancement | Complete | `goalPrompt` stored, injected and capped under 4000 chars with prompt metadata | State/tool-path tests plus strict parent validation pass |
+| 007-sk-prompt-goal-enhancement | 008-system-spec-kit-integration | `goalPrompt` behavior is already implemented before system-spec-kit docs are updated | Goal plugin tests stay green |
+| 008-system-spec-kit-integration | Complete | `mk-goal` is discoverable from system-spec-kit references and does not masquerade as a daemon bridge | Docs checks plus strict parent validation pass |
 <!-- /ANCHOR:phase-map -->

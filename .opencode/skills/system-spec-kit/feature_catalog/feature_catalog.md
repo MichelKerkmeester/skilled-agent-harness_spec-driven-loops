@@ -43,6 +43,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 | Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook_validation.md` |
 | Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill_advisor_hook.md`, `references/hooks/skill_advisor_hook_validation.md` (Step 3) |
 | Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook_system.md` (Advisor Bridge and Threshold Contract section), `references/hooks/skill_advisor_hook.md` |
+| Goal plugin | Local `/goal` OpenCode plugin state, injection, and tool contract | [`18--ux-hooks/goal-opencode-plugin.md`](18--ux-hooks/goal-opencode-plugin.md), `references/hooks/goal_plugin.md` |
 
 ### Command-Surface Contract
 
@@ -4904,6 +4905,22 @@ Enabled by default (graduated). Set `SPECKIT_SESSION_RETRIEVAL_STATE=false` to d
 #### Source Files
 
 See [`18--ux-hooks/retrieval-session-state.md`](18--ux-hooks/retrieval-session-state.md) for full implementation and test file listings.
+
+---
+
+### Goal OpenCode plugin
+
+#### Description
+
+The local `/goal` OpenCode plugin persists a session completion objective, injects it into the active session context, exposes status and mutation tools, and tracks lifecycle state without routing through a Spec Kit Memory MCP daemon.
+
+#### How It Works
+
+`.opencode/plugins/mk-goal.js` registers OpenCode `event` and `experimental.chat.system.transform` hooks plus `mk_goal` and `mk_goal_status` tools. `.opencode/commands/goal.md` remains a state-free router. Runtime state lives under `.opencode/skills/.goal-state/`; the injected `[active_goal]` block includes a short raw `objective:` preview and an enhanced `goal_prompt:`. OpenCode must be restarted after plugin or command edits because local plugin and command files are loaded at startup.
+
+#### Source Files
+
+See [`18--ux-hooks/goal-opencode-plugin.md`](18--ux-hooks/goal-opencode-plugin.md) for full implementation and test file listings.
 
 ---
 

@@ -10,9 +10,20 @@ contextType: "implementation"
 
 # Spec 032 Changelog Index
 
-Spec 032 owns the `/goal` OpenCode plugin and command. The changelog mirrors the packet's seven implementation sub-phases and one root rollup.
+> Packet-local changelog index for the dedicated `/goal` OpenCode plugin spec and its phase children.
 
-## Phases
+Spec 032 owns the `/goal` OpenCode plugin and command. The changelog mirrors the packet's eight implementation sub-phases and one root rollup.
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. PHASE CHANGELOGS](#1-phase-changelogs)
+
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
+## 1. PHASE CHANGELOGS
 
 | Phase | Changelog |
 |-------|-----------|
@@ -24,3 +35,4 @@ Spec 032 owns the `/goal` OpenCode plugin and command. The changelog mirrors the
 | 005 completion supervisor | [changelog-032-005-completion-supervisor.md](./changelog-032-005-completion-supervisor.md) |
 | 006 active continuation | [changelog-032-006-active-continuation.md](./changelog-032-006-active-continuation.md) |
 | 007 sk-prompt goal enhancement | [changelog-032-007-sk-prompt-goal-enhancement.md](./changelog-032-007-sk-prompt-goal-enhancement.md) |
+| 008 system-spec-kit integration | [changelog-032-008-system-spec-kit-integration.md](./changelog-032-008-system-spec-kit-integration.md) |

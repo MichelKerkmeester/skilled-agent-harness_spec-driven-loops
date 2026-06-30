@@ -642,6 +642,24 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 
 ---
 
+## OPENCODE GOAL PLUGIN
+
+Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugin. These are plugin-level controls, not MCP daemon flags.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection and goal plugin behavior for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_AUTONOMY` | unset (continuation suppressed) | enum (`active`, `smoke`, `passive`, unset) | `active` enables guarded continuation, `smoke` logs would-fire decisions without sending a prompt, `passive` explicitly suppresses continuation, and unset is treated as disabled. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.goal-state/.goal-events.log`. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | number (positive int) | Maximum stored raw objective length. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_INJECTION_CHARS` | `4800` | number (positive int) | Maximum `[active_goal]` system-injection block length. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_EVIDENCE_CHARS` | `1200` | number (positive int) | Maximum verifier evidence retained in goal state. | `.opencode/plugins/mk-goal.js` |
+
+Detailed operator guidance lives in `references/hooks/goal_plugin.md`.
+
+---
+
 ## CLI FRONT DOOR (DUAL-STACK)
 
 Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (39 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons. MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.

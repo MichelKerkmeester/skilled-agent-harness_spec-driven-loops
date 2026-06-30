@@ -1,0 +1,17 @@
+{
+  "specFolder": "032-goal-opencode-plugin/008-system-spec-kit-integration",
+  "description": "Phase 1: system-spec-kit-integration",
+  "keywords": [
+    "phase",
+    "system-spec-kit-integration"
+  ],
+  "lastUpdated": "2026-06-30T17:33:03.671Z",
+  "specId": "008",
+  "folderSlug": "system-spec-kit-integration",
+  "parentChain": [
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

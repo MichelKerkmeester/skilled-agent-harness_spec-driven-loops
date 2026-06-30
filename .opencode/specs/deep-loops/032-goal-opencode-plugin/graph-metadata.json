@@ -10,7 +10,8 @@
     "deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking",
     "deep-loops/032-goal-opencode-plugin/005-completion-supervisor",
     "deep-loops/032-goal-opencode-plugin/006-active-continuation",
-    "deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement"
+    "deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+    "deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration"
   ],
   "manual": {
     "depends_on": [],
@@ -154,16 +155,16 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-06-30T16:38:24.902Z",
+    "last_save_at": "2026-06-30T17:54:07.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c6ffada910a73519143bab522884dcbd7ed6fec520229e030e03466a0549355b",
+    "source_fingerprint": "sha256:10a85e05a0f812e1be545466863bb3193602b9e4ae76d9723471222a1624c29d",
     "source_doc_hashes": {
-      "spec.md": "7ca30164a0641a1e79517edf111f27aa27bdb48ef777f51dae2e5fd5af68d3fe",
+      "spec.md": "28b629e974931c73858662f2a660c26174997d0556c320c72f5a8f0b511618d1",
       "research/research.md": "a8dc4b09e8ecdc1196316588759864680037401a28c39301b70d463bf87fe3b9"
     },
     "last_active_child_id": null,
