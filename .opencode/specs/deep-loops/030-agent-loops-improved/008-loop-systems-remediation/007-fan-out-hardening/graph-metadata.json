@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/007-fan-out-hardening",
+  "spec_folder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/007-fan-out-hardening",
+  "parent_id": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan out hardening",
+      "detached cli review lineage salvage retry",
+      "fanout merge leaf only lineage",
+      "cli opencode sandbox opt in",
+      "fan out hardening plan",
+      "detached cli fanout salvage retry plan",
+      "fan out hardening tasks",
+      "detached cli fanout salvage retry tasks",
+      "fan out hardening implementation summary",
+      "detached cli fanout salvage retry summary"
+    ],
+    "key_topics": [
+      "fan",
+      "hardening",
+      "detached",
+      "cli",
+      "review",
+      "lineage",
+      "salvage",
+      "retry",
+      "fanout",
+      "merge",
+      "leaf",
+      "only"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage-recovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Lineages",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The detached CLI fan-out path had: (1) review init bindings missing from CLI prompts, (2) unrecoverable salvage yielding false-fulfilled lineages, (3) mixed-salvage failures treated as fatal instead of retryable, (4) prompt-only write isolation via unconditional `--dangerously-skip-permissions`, (5) a playbook regression that did not exercise the documented exit-0/no-artifact path, (6) registry-only merge silently skipping leaf-only lineages, and (7) lag-ceiling observability events normalizing to `unknown`",
+    "created_at": "2026-06-30T13:35:53.863Z",
+    "last_save_at": "2026-06-30T14:53:29.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18bc8c754ae2f3325b2a164fc532b0b63f992f70c44dee9cdb6c009a7ed11ce4",
+    "source_doc_hashes": {
+      "spec.md": "aec787f4819a221d0a1ae7b4ee198919cc5471522e503922978e3c45e307d02d",
+      "plan.md": "80eebe4b6a79a8a65284cae8bd94545286730e4050d6fb9b81034d69d24f31fa",
+      "tasks.md": "0271d401c435fa7dc995c74cc3a87cdfc3532c6a617f65568e2a69e1d02a49aa",
+      "implementation-summary.md": "bdc444b5a5ca1f6e795c9c8cf394b6f21360cc679a388ac9d14e695f19ce30c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
