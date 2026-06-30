@@ -802,6 +802,40 @@ function reduceRecipeMiss(rows) {
   };
 }
 
+function formatReportRate(metric) {
+  if (!metric || typeof metric.denominator !== 'number') return 'n/a';
+  const numerator = typeof metric.numerator === 'number' ? metric.numerator : 0;
+  if (metric.denominator === 0 || typeof metric.rate !== 'number') {
+    return `n/a (${numerator}/${metric.denominator})`;
+  }
+  return `${Math.round(metric.rate * 100)}% (${numerator}/${metric.denominator})`;
+}
+
+function formatReportSignal(signal) {
+  if (signal && typeof signal.score === 'number') return `${signal.score}/100`;
+  return (signal && signal.status) || 'unscored';
+}
+
+function buildRunQualityNote({ routeTelemetry, recipeMiss, modePrecisionAvg, relativeRankingSignal }) {
+  const routeGoldRows = routeTelemetry && typeof routeTelemetry.routeGoldRows === 'number'
+    ? routeTelemetry.routeGoldRows
+    : 0;
+  const advisoryLine = [
+    `mode precision ${modePrecisionAvg === null ? 'unscored' : `${modePrecisionAvg}/100`}`,
+    `relative ranking ${formatReportSignal(relativeRankingSignal)}`,
+    `route gold rows ${routeGoldRows}`,
+    `telemetry missing ${formatReportRate(routeTelemetry && routeTelemetry.telemetryMissingRate)}`,
+    `route misses ${formatReportRate(routeTelemetry && routeTelemetry.routeMissRate)}`,
+    `alias misses ${formatReportRate(routeTelemetry && routeTelemetry.aliasMissRate)}`,
+    `bundle misses ${formatReportRate(routeTelemetry && routeTelemetry.bundleMissRate)}`,
+    `recipe misses ${formatReportRate(recipeMiss && recipeMiss.recipeMissRate)}`,
+  ].join('; ');
+  return [
+    'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
+    `Advisory signals: ${advisoryLine}.`,
+  ].join(' ');
+}
+
 function scoreHubRoute({ expected, routerResult }) {
   if (!expected || expected.routeOutcome == null || expected.workflowMode == null) {
     return { applicable: false, pass: true };
@@ -1249,6 +1283,12 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     : { score: relativeRankingAvg, note: 'advisor target rank relative to sibling transports; advisory, not weighted' };
   const routeTelemetry = reduceRouteTelemetry(rows);
   const recipeMiss = reduceRecipeMiss(rows);
+  const runQualityNote = buildRunQualityNote({
+    routeTelemetry,
+    recipeMiss,
+    modePrecisionAvg,
+    relativeRankingSignal,
+  });
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
@@ -1331,7 +1371,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       recipeMissRate: recipeMiss.recipeMissRate,
       recipeMissBreakdown: recipeMiss.breakdown,
       recipeGoldRows: recipeMiss.recipeGoldRows,
-      note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
+      note: runQualityNote,
     },
   };
 }

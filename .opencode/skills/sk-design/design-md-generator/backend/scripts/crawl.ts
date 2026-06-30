@@ -77,17 +77,65 @@ const MEDIUM_PRIORITY_PATHS = new Set([
   '/support', '/help', '/faq',
 ]);
 
-const SAFE_BUTTON_PATTERNS = [
-  /sign\s*up/i, /get\s*started/i, /contact/i, /demo/i,
-  /try/i, /learn\s*more/i, /subscribe/i, /join/i, /watch/i,
+const COOKIE_SELECTORS = [
+  '#onetrust-banner-sdk',
+  '#onetrust-consent-sdk',
+  '.ot-sdk-container',
+  '#CybotCookiebotDialog',
+  '#CookiebotWidget',
+  '.cc-window',
+  '.cc-banner',
+  '#qc-cmp2-ui',
+  '.qc-cmp2-container',
+  '#usercentrics-root',
+  '[data-testid="uc-app-container"]',
+  '[data-testid="uc-banner"]',
+  '#didomi-host',
+  '.didomi-popup-container',
+  '.osano-cm-window',
+  '.osano-cm-dialog',
+  '.truste_box_overlay',
+  '#truste-consent-track',
+  '[id*="cookie" i]',
+  '[class*="cookie" i]',
+  '[id*="consent" i]',
+  '[class*="consent" i]',
+  '[id*="gdpr" i]',
+  '[class*="gdpr" i]',
+  '[aria-label*="cookie" i]',
+  '[aria-label*="consent" i]',
+  '[data-testid*="cookie" i]',
+  '[data-testid*="consent" i]',
 ];
 
-const COOKIE_SELECTORS = [
-  '[class*="cookie"]', '[id*="cookie"]',
-  '[class*="consent"]', '[id*="consent"]',
-  '[class*="gdpr"]', '[id*="gdpr"]',
-  '[class*="privacy"]', '[id*="privacy-banner"]',
-  '[aria-label*="cookie"]', '[aria-label*="consent"]',
+const DESIGN_REVEAL_CONTROL_SELECTOR = [
+  'button',
+  '[role="button"]',
+  '[type="button"]',
+  '[aria-haspopup]',
+  '[aria-expanded]',
+  '[aria-controls]',
+  '[role="tab"]',
+  'summary',
+  '[data-toggle]',
+  '[data-bs-toggle]',
+].join(', ');
+
+const DESIGN_REVEAL_PATTERNS = [
+  /\b(menu|dropdown|submenu|accordion|tab|tabs|filter|filters|sort|options)\b/i,
+  /\b(settings|preferences|language|region|country|more|details|expand|collapse)\b/i,
+  /\b(open|show|view|watch|play|share)\b/i,
+];
+
+const DESIGN_REVEAL_ATTRIBUTE_PATTERN =
+  /(menu|dropdown|submenu|accordion|tab|filter|sort|options|settings|preferences|language|region|modal|dialog|drawer|popover|toggle|expand|collapse)/i;
+
+const STATE_CHANGING_ACTION_PATTERNS = [
+  /\b(subscribe|sign\s*up|signup|join|buy|purchase|checkout|submit|delete)\b/i,
+  /\b(pay|payment|register|order|donate)\b/i,
+  /\b(get\s*started|start\s*(a\s*)?(free\s*)?trial|free\s*trial|try\s*(for\s*)?free)\b/i,
+  /\b(request|book|schedule)\s+(a\s+)?(demo|call|consultation)\b/i,
+  /\b(contact\s+(sales|us)|create\s+(an?\s+)?account)\b/i,
 ];
 
 // ────────────────────────────────────────────────────────────────
@@ -166,29 +214,46 @@ function isResourceUrl(href: string): boolean {
 // ─── Cookie Dismissal ────────────────────────────────────────────────────────
 
 async function dismissCookieBanners(page: Page): Promise<void> {
-  await page.evaluate((selectors: string[]) => {
-    // Remove elements matching cookie/consent selectors
+  await page.evaluate((selectors: readonly string[]) => {
+    const dismissIntent = /\b(reject|decline|deny|close|dismiss|necessary only|essential only|opt out|do not sell|continue without|without accepting)\b/i;
+    const acceptIntent = /\b(accept all|accept|agree|allow all|allow|ok|got it)\b/i;
+    const dismissQualifier = /\b(reject|decline|deny|without|necessary|essential|opt out|do not sell)\b/i;
+    const banners = new Set<HTMLElement>();
+
     for (const sel of selectors) {
-      document.querySelectorAll(sel).forEach((el) => {
-        (el as HTMLElement).style.display = 'none';
-      });
+      try {
+        document.querySelectorAll(sel).forEach((el) => {
+          if (el instanceof HTMLElement) banners.add(el);
+        });
+      } catch {
+        // Ignore selectors unsupported by a browser version.
+      }
     }
 
-    // Remove fixed/sticky bottom bars with high z-index (likely cookie banners)
-    const allEls = document.querySelectorAll('*');
-    for (const el of allEls) {
-      const style = window.getComputedStyle(el);
-      const position = style.getPropertyValue('position');
-      if (position !== 'fixed' && position !== 'sticky') continue;
+    for (const banner of banners) {
+      const controls = banner.querySelectorAll(
+        'button, [role="button"], a[href], [aria-label], [title]',
+      );
 
-      const rect = (el as HTMLElement).getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const isBottomBar = rect.bottom >= viewportHeight - 20 && rect.height < 300;
+      for (const control of controls) {
+        if (!(control instanceof HTMLElement)) continue;
+        const label = [
+          control.textContent ?? '',
+          control.getAttribute('aria-label') ?? '',
+          control.getAttribute('title') ?? '',
+        ].join(' ');
 
-      const zIndex = parseInt(style.getPropertyValue('z-index'), 10);
-      if (isBottomBar && zIndex > 9000) {
-        (el as HTMLElement).style.display = 'none';
+        if (!dismissIntent.test(label)) continue;
+        if (acceptIntent.test(label) && !dismissQualifier.test(label)) continue;
+
+        control.click();
+        break;
       }
+
+      // Hide consent UI for screenshots without granting consent for the user.
+      banner.style.setProperty('display', 'none', 'important');
+      banner.style.setProperty('visibility', 'hidden', 'important');
+      banner.setAttribute('aria-hidden', 'true');
     }
   }, COOKIE_SELECTORS);
 }
@@ -282,10 +347,22 @@ async function loadPage(
 
 async function isCaptchaPage(page: Page): Promise<boolean> {
   return page.evaluate(() => {
-    const hasRecaptcha = document.querySelector('iframe[src*="recaptcha"]') !== null;
-    const hasCfChallenge = document.querySelector('.cf-challenge-running') !== null
-      || document.querySelector('#challenge-running') !== null;
-    return hasRecaptcha || hasCfChallenge;
+    const captchaSelectors = [
+      'iframe[src*="recaptcha"], .g-recaptcha',
+      'iframe[src*="hcaptcha.com"], script[src*="hcaptcha.com"], .h-captcha',
+      'iframe[src*="challenges.cloudflare.com"], script[src*="challenges.cloudflare.com"], .cf-turnstile, [name*="cf-turnstile" i], [name*="cf_chl" i], [id*="cf_chl" i], [class*="cf_chl" i], .cf-challenge-running, #challenge-running',
+      'iframe[src*="arkoselabs.com"], script[src*="arkoselabs.com"], iframe[src*="funcaptcha"], [id*="funcaptcha" i], [class*="funcaptcha" i]',
+      'iframe[src*="captcha-delivery.com"], script[src*="captcha-delivery.com"], [src*="datadome" i], [id*="datadome" i], [class*="datadome" i]',
+      '[id*="px-captcha" i], [class*="px-captcha" i], [src*="perimeterx" i], [href*="perimeterx" i], [src*="_px"], [href*="_px"]',
+    ];
+
+    return captchaSelectors.some((selector) => {
+      try {
+        return document.querySelector(selector) !== null;
+      } catch {
+        return false;
+      }
+    });
   });
 }
 
@@ -517,17 +594,75 @@ async function triggerModals(
   const modals: Array<{ screenshot: Buffer; style: Record<string, string> }> = [];
   let modalCount = 0;
 
-  const buttons = await page.locator('button, a[role="button"], [type="button"]').all();
+  const buttons = await page.locator(DESIGN_REVEAL_CONTROL_SELECTOR).all();
 
   for (const button of buttons) {
     if (modalCount >= MAX_MODALS) break;
 
     try {
-      const text = await button.textContent({ timeout: 1000 });
-      if (!text) continue;
+      const candidate = await button.evaluate((el) => {
+        const htmlEl = el as HTMLElement;
+        const tagName = htmlEl.tagName.toLowerCase();
+        const type = (htmlEl.getAttribute('type') ?? '').toLowerCase();
+        const href = (htmlEl.getAttribute('href') ?? '').trim().toLowerCase();
+        const role = (htmlEl.getAttribute('role') ?? '').toLowerCase();
+        const className = htmlEl.getAttribute('class') ?? '';
+        const value = htmlEl.getAttribute('value') ?? '';
+        const revealAttributes = [
+          'aria-haspopup',
+          'aria-expanded',
+          'aria-controls',
+          'data-toggle',
+          'data-bs-toggle',
+          'data-accordion',
+          'data-target',
+          'data-state',
+        ];
+        const hasNavigatingHref = tagName === 'a'
+          && href !== ''
+          && href !== '#'
+          && !href.startsWith('#')
+          && !href.startsWith('javascript:');
+        const hasRevealAttribute = revealAttributes.some((attr) => htmlEl.hasAttribute(attr))
+          || role === 'tab';
+        const intentText = [
+          htmlEl.textContent ?? '',
+          htmlEl.getAttribute('aria-label') ?? '',
+          htmlEl.getAttribute('title') ?? '',
+          htmlEl.id,
+          className,
+          htmlEl.getAttribute('name') ?? '',
+          value,
+          type,
+          role,
+          href,
+        ].join(' ');
 
-      const isSafe = SAFE_BUTTON_PATTERNS.some((pattern) => pattern.test(text));
-      if (!isSafe) continue;
+        return {
+          intentText,
+          hasNavigatingHref,
+          hasRevealAttribute,
+          isInsideForm: htmlEl.closest('form') !== null,
+          isSubmitControl: type === 'submit',
+        };
+      });
+
+      const hasActionIntent = STATE_CHANGING_ACTION_PATTERNS.some((pattern) => (
+        pattern.test(candidate.intentText)
+      ));
+      if (
+        candidate.isInsideForm
+        || candidate.isSubmitControl
+        || candidate.hasNavigatingHref
+        || hasActionIntent
+      ) {
+        continue;
+      }
+
+      const hasRevealIntent = candidate.hasRevealAttribute
+        || DESIGN_REVEAL_ATTRIBUTE_PATTERN.test(candidate.intentText)
+        || DESIGN_REVEAL_PATTERNS.some((pattern) => pattern.test(candidate.intentText));
+      if (!hasRevealIntent) continue;
 
       // Check visibility
       const isVisible = await button.isVisible();
@@ -540,7 +675,8 @@ async function triggerModals(
       const modalData = await page.evaluate(() => {
         const modalSelectors = [
           '[role="dialog"]', '[class*="modal"]', '[class*="dialog"]',
-          '[class*="overlay"]', '[aria-modal="true"]',
+          '[class*="overlay"]', '[class*="drawer"]', '[class*="popover"]',
+          '[class*="offcanvas"]', '[aria-modal="true"]', '[role="menu"]',
         ];
 
         for (const sel of modalSelectors) {
@@ -862,12 +998,6 @@ export async function crawlPages(
 
   return { pages, failedUrls, totalTime };
 }
-
-// ────────────────────────────────────────────────────────────────
-// 4. HELPERS
-// ────────────────────────────────────────────────────────────────
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function deduplicateLinks(links: DiscoveredLink[]): DiscoveredLink[] {
   const seen = new Map<string, DiscoveredLink>();

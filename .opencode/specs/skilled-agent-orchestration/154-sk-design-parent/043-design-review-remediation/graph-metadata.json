@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/043-design-review-remediation",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/043-design-review-remediation",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "043-design-review-remediation spec",
+      "design review remediation",
+      "sk-design md-generator findings fix",
+      "043-design-review-remediation plan",
+      "design review remediation plan",
+      "sk-design findings remediation plan",
+      "043-design-review-remediation tasks",
+      "design review remediation tasks",
+      "sk-design findings remediation tasks",
+      "043-design-review-remediation checklist",
+      "design review remediation verification",
+      "sk-design findings remediation checklist"
+    ],
+    "key_topics": [
+      "043-design-review-remediation",
+      "spec",
+      "design",
+      "review",
+      "remediation",
+      "sk-design",
+      "md-generator",
+      "findings",
+      "fix",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/sk-design/shared/scripts/md_table.py",
+      ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+      ".opencode/skills/sk-design/shared/scripts/variant_parameter_check.py",
+      ".opencode/skills/sk-design/design-foundations/scripts/baseline_rhythm_check.py",
+      ".opencode/skills/sk-design/design-foundations/scripts/naming_doc_check.py",
+      ".opencode/skills/sk-design/design-audit/scripts/perf_evidence_check.py",
+      ".opencode/skills/sk-design/design-audit/scripts/polish_readiness_check.py",
+      ".opencode/agents/design.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".claude/agents/design.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "guided-run.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        "source": "derived"
+      },
+      {
+        "name": "crawl.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "md_table.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/md_table.py",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_law_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "variant_parameter_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/variant_parameter_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "baseline_rhythm_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/baseline_rhythm_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "naming_doc_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/naming_doc_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "perf_evidence_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-audit/scripts/perf_evidence_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "polish_readiness_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-audit/scripts/polish_readiness_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sibling deep review `042-design-work-deep-review` returned a CONDITIONAL verdict with 14 findings: 0 P0, 1 P1, and 13 P2",
+    "created_at": "2026-06-30T04:50:27.652Z",
+    "last_save_at": "2026-06-30T04:50:27.652Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34734268ea60ff129e03cff97f3c9d4aee5f3e1020190d80c7becc511b122783",
+    "source_doc_hashes": {
+      "spec.md": "8649dfea8e1ad5e7fd5b01a331c922155bef21e656859a9e861bac4650f7987f",
+      "plan.md": "39c37afec5adbb7a95a45729a297c2bae6c7349ef7bfcebc49527160f4adbec6",
+      "tasks.md": "5f7b78a5f7f1811a9b0524cdb47a57df624ba10cc46640633fff546a35dd083a",
+      "checklist.md": "605de43ed08b2b99ef19777f65f9dfd0e7afa858ebf007dab45c0fab1b31ce82",
+      "implementation-summary.md": "1258ea6ebd55db03e1e5e5dc581c6b40c0bea1b63e47c7f9521850ff39096249"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

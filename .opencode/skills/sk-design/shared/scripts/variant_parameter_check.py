@@ -14,10 +14,14 @@ Exit: 0 = rows present, complete, and transport-covered; 1 = violated;
 2 = usage or read error.
 """
 import json
+import os
 from pathlib import Path
 import re
 import sys
 from typing import Any
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from md_table import _clean_cell, _is_separator_row, _split_table_row
 
 TABLE_COLUMNS = [
     "knob",
@@ -38,24 +42,6 @@ CANONICAL_TRANSPORTS = ["figma", "open-design", "live"]
 KNOB_TABLE_HEADING = re.compile(r"^#{1,6}\s+(?:\d+\.\s+)?Knob Schema\s*$", re.I)
 MARKDOWN_HEADING = re.compile(r"^#{1,6}\s+")
 PLACEHOLDER = re.compile(r"^(?:_+|TBD|TODO|-|N/A)$", re.I)
-
-
-def _clean_cell(value: str) -> str:
-    value = value.strip()
-    if len(value) >= 2 and value[0] == "`" and value[-1] == "`":
-        value = value[1:-1].strip()
-    return value
-
-
-def _split_table_row(line: str) -> list[str]:
-    line = line.strip()
-    if not line.startswith("|") or not line.endswith("|"):
-        return []
-    return [cell.strip() for cell in line.strip("|").split("|")]
-
-
-def _is_separator_row(cells: list[str]) -> bool:
-    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.strip()) for cell in cells)
 
 
 def _is_placeholder(value: str) -> bool:

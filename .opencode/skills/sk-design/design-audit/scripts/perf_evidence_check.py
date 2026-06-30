@@ -14,10 +14,15 @@ Usage:
 Exit: 0 = satisfied; 1 = violated or unfilled; 2 = usage/read/parse error.
 """
 import json
+import os
 from pathlib import Path
 import re
 import sys
 from typing import Optional
+
+SHARED_SCRIPTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "shared", "scripts"))
+sys.path.insert(0, SHARED_SCRIPTS_DIR)
+from md_table import _is_separator_row, _split_table_row, _strip_markdown
 
 
 SECTION_5 = re.compile(r"^##\s+5\.\s+FIVE-DIMENSION SCORE\b", re.I)
@@ -43,24 +48,6 @@ def _clean_cell(value: str) -> str:
     while len(value) >= 2 and value[0] == "`" and value[-1] == "`":
         value = value[1:-1].strip()
     return value
-
-
-def _strip_markdown(value: str) -> str:
-    value = value.strip()
-    value = re.sub(r"`([^`]*)`", r"\1", value)
-    value = value.replace("**", "")
-    return value.strip()
-
-
-def _split_table_row(line: str) -> list[str]:
-    line = line.strip()
-    if not line.startswith("|") or not line.endswith("|"):
-        return []
-    return [cell.strip() for cell in line.strip("|").split("|")]
-
-
-def _is_separator_row(cells: list[str]) -> bool:
-    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.strip()) for cell in cells)
 
 
 def _is_placeholder(value: str) -> bool:

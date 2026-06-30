@@ -34,6 +34,23 @@ export interface PlannedCommand {
 
 const BACKEND_ROOT = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(BACKEND_ROOT, '..');
+const VALUE_FLAGS = new Set(['--output', '--design-md']);
+const BOOLEAN_FLAGS = new Set(['--fast', '--report', '--dry-run']);
+const PREFLIGHT_COMMAND_TIMEOUT_MS = 120_000;
+const RUN_COMMAND_TIMEOUT_MS = 600_000;
+
+interface CommandCheckResult {
+  ok: boolean;
+  detail: string;
+}
+
+interface SpawnResult {
+  error?: Error;
+  signal: string | null;
+  status: number | null;
+  stderr?: string | Buffer | null;
+  stdout?: string | Buffer | null;
+}
 
 function usage(): string {
   return [
@@ -45,12 +62,25 @@ function usage(): string {
 
 export function parseGuidedRunArgs(argv: string[]): GuidedRunOptions {
   const args = argv.slice(2);
-  const url = args.find((arg) => !arg.startsWith('--')) ?? '';
   const readValue = (flag: string): string | undefined => {
     const index = args.indexOf(flag);
     if (index === -1) return undefined;
-    return args[index + 1];
+    const value = args[index + 1];
+    if (!value || value.startsWith('--')) return undefined;
+    return value;
   };
+  let url = '';
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (VALUE_FLAGS.has(arg)) {
+      const value = args[index + 1];
+      if (value && !value.startsWith('--')) index += 1;
+      continue;
+    }
+    if (BOOLEAN_FLAGS.has(arg) || arg.startsWith('--')) continue;
+    url = arg;
+    break;
+  }
   const output = readValue('--output') ?? '';
   if (!url || !output) {
     throw new Error(usage());
@@ -65,9 +95,54 @@ export function parseGuidedRunArgs(argv: string[]): GuidedRunOptions {
   };
 }
 
-function commandExists(command: string, args: string[]): boolean {
-  const result = spawnSync(command, args, { cwd: BACKEND_ROOT, stdio: 'ignore' });
-  return result.status === 0;
+function outputText(value: string | Buffer | null | undefined): string {
+  if (!value) return '';
+  return typeof value === 'string' ? value : value.toString('utf-8');
+}
+
+function describeSpawnFailure(label: string, result: SpawnResult, timeoutMs: number): string {
+  if (result.signal === 'SIGTERM') {
+    return `${label} timed out after ${timeoutMs}ms`;
+  }
+  if (result.error) {
+    return `${label} failed: ${result.error.message}`;
+  }
+  if (result.status === null) {
+    return `${label} failed without an exit status within ${timeoutMs}ms`;
+  }
+  if (result.signal) {
+    return `${label} terminated by ${result.signal}`;
+  }
+  const output = outputText(result.stderr) || outputText(result.stdout);
+  return `${label} exited ${result.status}${output ? `: ${output.trim()}` : ''}`;
+}
+
+function commandExists(command: string, args: string[]): CommandCheckResult {
+  const label = [command, ...args].join(' ');
+  const result = spawnSync(command, args, {
+    cwd: BACKEND_ROOT,
+    stdio: 'ignore',
+    timeout: PREFLIGHT_COMMAND_TIMEOUT_MS,
+  });
+  if (result.status === 0 && !result.error && result.signal === null) {
+    return { ok: true, detail: `${label} succeeded` };
+  }
+  return { ok: false, detail: describeSpawnFailure(label, result, PREFLIGHT_COMMAND_TIMEOUT_MS) };
+}
+
+function isPathInsideOrEqual(targetPath: string, rootPath: string): boolean {
+  const relative = path.relative(rootPath, targetPath);
+  return relative === '' || (!!relative && !relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function unsafeOutputPathReason(outputPath: string): string | undefined {
+  if (isPathInsideOrEqual(outputPath, BACKEND_ROOT)) {
+    return `inside backend root ${BACKEND_ROOT}`;
+  }
+  if (isPathInsideOrEqual(outputPath, SKILL_ROOT)) {
+    return `inside skill root ${SKILL_ROOT}`;
+  }
+  return undefined;
 }
 
 export function runPreflight(options: GuidedRunOptions): PreflightCheck[] {
@@ -75,15 +150,15 @@ export function runPreflight(options: GuidedRunOptions): PreflightCheck[] {
   const nodeMajor = Number(process.versions.node.split('.')[0]);
   const packageJson = path.join(BACKEND_ROOT, 'package.json');
   const nodeModules = path.join(BACKEND_ROOT, 'node_modules');
-  const chromiumOk = commandExists('npx', ['playwright', 'install', '--dry-run', 'chromium']);
-  const escapesSkill = !outputPath.startsWith(SKILL_ROOT + path.sep);
+  const chromium = commandExists('npx', ['playwright', 'install', '--dry-run', 'chromium']);
+  const unsafeOutputPath = unsafeOutputPathReason(outputPath);
 
   return [
     { name: 'node', ok: nodeMajor >= 20, detail: `Node ${process.versions.node}` },
     { name: 'package-json', ok: fs.existsSync(packageJson), detail: packageJson },
     { name: 'dependencies', ok: fs.existsSync(nodeModules), detail: nodeModules },
-    { name: 'chromium', ok: chromiumOk, detail: 'Playwright Chromium dry-run check' },
-    { name: 'output-path', ok: escapesSkill, detail: outputPath },
+    { name: 'chromium', ok: chromium.ok, detail: chromium.detail },
+    { name: 'output-path', ok: !unsafeOutputPath, detail: unsafeOutputPath ? `${outputPath} is unsafe: ${unsafeOutputPath}` : outputPath },
   ];
 }
 
@@ -111,9 +186,13 @@ export function buildPlan(options: GuidedRunOptions): PlannedCommand[] {
 
 function runCommand(step: PlannedCommand): string {
   if (step.command === 'write-file') return '';
-  const result = spawnSync(step.command, step.args, { cwd: BACKEND_ROOT, encoding: 'utf-8' });
-  if (result.status !== 0) {
-    throw new Error(`${step.label} failed: ${result.stderr || result.stdout}`);
+  const result = spawnSync(step.command, step.args, {
+    cwd: BACKEND_ROOT,
+    encoding: 'utf-8',
+    timeout: RUN_COMMAND_TIMEOUT_MS,
+  });
+  if (result.status !== 0 || result.error || result.signal !== null) {
+    throw new Error(describeSpawnFailure(step.label, result, RUN_COMMAND_TIMEOUT_MS));
   }
   return result.stdout ?? '';
 }

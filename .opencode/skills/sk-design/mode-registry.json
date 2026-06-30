@@ -9,7 +9,7 @@
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
-    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names, so all five are grandfathered."
+    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all five (there is no mismatch to grandfather)."
   },
   "transformVerbRouting": {
     "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move.",

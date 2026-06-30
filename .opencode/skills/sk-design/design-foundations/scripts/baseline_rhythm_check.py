@@ -23,10 +23,15 @@ Exit: 0 = all rows resolve or are marked; 1 = validation failure; 2 = usage or
 read error.
 """
 import json
+import os
 from pathlib import Path
 import re
 import sys
 from typing import Any, Optional
+
+SHARED_SCRIPTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "shared", "scripts"))
+sys.path.insert(0, SHARED_SCRIPTS_DIR)
+from md_table import _clean_cell, _is_separator_row, _split_table_row
 
 ROOT_PX = 16.0
 EPSILON = 0.000001
@@ -39,24 +44,6 @@ LENGTH_TOKEN = re.compile(
 )
 FIXED_UNITS = {"px", "rem", "em"}
 FLUID_UNITS = {"vw", "vh", "vmin", "vmax", "%", "dvw", "dvh", "svw", "svh", "lvw", "lvh"}
-
-
-def _clean_cell(value: str) -> str:
-    value = value.strip()
-    if len(value) >= 2 and value[0] == "`" and value[-1] == "`":
-        value = value[1:-1].strip()
-    return value
-
-
-def _split_table_row(line: str) -> list[str]:
-    line = line.strip()
-    if not line.startswith("|") or not line.endswith("|"):
-        return []
-    return [cell.strip() for cell in line.strip("|").split("|")]
-
-
-def _is_separator_row(cells: list[str]) -> bool:
-    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.strip()) for cell in cells)
 
 
 def _normalized_header(cells: list[str]) -> list[str]:

@@ -70,6 +70,14 @@ function parsePositiveInt(value: string | undefined, flag: string): number {
   return parsed;
 }
 
+function normalizeInputUrl(url: string): string {
+  const trimmed = url.trim();
+  if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) {
+    return `https://${trimmed}`;
+  }
+  return trimmed;
+}
+
 function parseArgs(argv: string[]): ExtractOptions {
   const args = argv.slice(2);
   const urls: string[] = [];
@@ -110,7 +118,13 @@ function parseArgs(argv: string[]): ExtractOptions {
       const file = args[++i];
       if (fs.existsSync(file)) {
         const content = fs.readFileSync(file, 'utf-8');
-        extraUrls.push(...content.split('\n').map(l => l.trim()).filter(Boolean));
+        extraUrls.push(
+          ...content
+            .split('\n')
+            .map(l => l.trim())
+            .filter(Boolean)
+            .map(normalizeInputUrl),
+        );
       }
     } else if (arg === '--wait-for') {
       const val = args[++i];
@@ -156,12 +170,7 @@ function parseArgs(argv: string[]): ExtractOptions {
   }
 
   // Normalize URLs
-  const normalizedUrls = urls.map(u => {
-    if (!u.startsWith('http://') && !u.startsWith('https://')) {
-      return `https://${u}`;
-    }
-    return u;
-  });
+  const normalizedUrls = urls.map(normalizeInputUrl);
 
   // Auto-add root URL if input isn't root
   for (const url of [...normalizedUrls]) {
@@ -230,10 +239,6 @@ function log(verbose: boolean, ...args: unknown[]): void {
 
 // ─── Main Extraction Pipeline ─────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────
-// 2. TYPE DEFINITIONS
-// ────────────────────────────────────────────────────────────────
-
 interface PageExtraction {
   url: string;
   dom: DOMCollection;
@@ -241,10 +246,6 @@ interface PageExtraction {
   interactions?: InteractionData;
   asyncA11y?: Awaited<ReturnType<typeof extractA11yAsync>>;
 }
-
-// ────────────────────────────────────────────────────────────────
-// 5. CORE LOGIC
-// ────────────────────────────────────────────────────────────────
 
 async function extract(options: ExtractOptions): Promise<void> {
   const startTime = Date.now();
@@ -647,10 +648,6 @@ async function extract(options: ExtractOptions): Promise<void> {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────
-// 4. HELPERS
-// ────────────────────────────────────────────────────────────────
-
 function urlToSlug(url: string): string {
   const parsed = new URL(url);
   const p = parsed.pathname === '/' ? 'homepage' : parsed.pathname.replace(/^\//, '').replace(/\//g, '-').replace(/[^a-zA-Z0-9-]/g, '');
@@ -658,10 +655,6 @@ function urlToSlug(url: string): string {
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-
-// ────────────────────────────────────────────────────────────────
-// 5. CORE LOGIC
-// ────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const options = parseArgs(process.argv);

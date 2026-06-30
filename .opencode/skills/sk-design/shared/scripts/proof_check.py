@@ -24,10 +24,14 @@ Exit: 0 = complete + READY; 1 = missing field or NOT READY; 2 = usage error.
 """
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
 from typing import Optional
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from md_table import _clean_cell, _is_separator_row, _split_table_row
 
 # label -> regexes that satisfy it (any match counts)
 PROOF_FIELDS = {
@@ -40,10 +44,15 @@ CARD_SECTIONS = {
     "Context Loaded card": [r"context[\s-]*loaded\s+card"],
     "Proof Of Application card": [r"proof[\s-]*of[\s-]*application\s+card"],
 }
-# Verdict detection is checkbox-aware: a card lists both "[x] READY" and
-# "[ ] NOT READY" as options, so match only the CHECKED/asserted form, never the
-# bare unchecked label.
-READY = re.compile(r"(?:\[x\]|\*\*|verdict[:\s*]+|result[:\s*]+)\s*READY\b", re.I)
+# Verdict detection is checkbox-aware. A bolded READY in prose is not a
+# verdict, so match only checked boxes or verdict/result labels.
+READY = re.compile(
+    r"(?:"
+    r"\[x\]\s*(?:\*\*)?\s*READY\b(?:\*\*)?"
+    r"|(?<!\w)(?:\*\*)?(?:verdict|result)(?:\*\*)?\s*(?::|\|)\s*(?:\*\*)?\s*READY\b(?:\*\*)?"
+    r")",
+    re.I,
+)
 NOT_READY = re.compile(r"(?:\[x\]|\*\*)\s*NOT[\s-]*READY\b", re.I)
 SOURCE_PROOF_HEADING = re.compile(r"^#{1,6}\s+.*SOURCE\s+PROOF.*$", re.I)
 APPLICATION_WITNESS_HEADING = re.compile(r"^#{1,6}\s+.*APPLICATION\s+WITNESS.*$", re.I)
@@ -67,27 +76,9 @@ def _present(text: str, patterns) -> bool:
     return any(re.search(p, text, re.I | re.S) for p in patterns)
 
 
-def _clean_cell(value: str) -> str:
-    value = value.strip()
-    if len(value) >= 2 and value[0] == "`" and value[-1] == "`":
-        value = value[1:-1].strip()
-    return value
-
-
 def _is_placeholder(value: str) -> bool:
     cleaned = _clean_cell(value)
     return not cleaned or bool(re.fullmatch(r"(?:sha256:)?_+", cleaned))
-
-
-def _split_table_row(line: str) -> list[str]:
-    line = line.strip()
-    if not line.startswith("|") or not line.endswith("|"):
-        return []
-    return [cell.strip() for cell in line.strip("|").split("|")]
-
-
-def _is_separator_row(cells: list[str]) -> bool:
-    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.strip()) for cell in cells)
 
 
 def _find_source_proof_rows(text: str) -> list[dict]:

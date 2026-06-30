@@ -10,7 +10,7 @@ permission:
   bash: allow
   grep: allow
   glob: allow
-  webfetch: allow
+  webfetch: deny
   memory: allow
   task: deny
   list: allow
