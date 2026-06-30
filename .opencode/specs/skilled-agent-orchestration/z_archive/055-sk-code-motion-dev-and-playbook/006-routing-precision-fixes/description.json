@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
+  "description": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical",
+  "keywords": [
+    "phase",
+    "005",
+    "proved",
+    "motion",
+    "dev",
+    "peer-reference",
+    "architecture",
+    "works",
+    "majority",
+    "path",
+    "matrix",
+    "still",
+    "returned",
+    "conditional",
+    "because",
+    "two",
+    "critical"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.625Z",
+  "specId": "006",
+  "folderSlug": "routing-precision-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "055-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

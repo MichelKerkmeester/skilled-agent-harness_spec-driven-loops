@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep ai council architecture",
+      "council architecture research",
+      "deep-ai-council 001",
+      "deep ai council 001 plan",
+      "deep ai council 001 tasks",
+      "deep ai council 001 checklist",
+      "deep ai council 001 adrs",
+      "deep-ai-council architecture decisions",
+      "deep ai council 001 summary",
+      "deep ai council research synthesis"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "architecture",
+      "research",
+      "deep-ai-council",
+      "001",
+      "plan",
+      "tasks",
+      "checklist",
+      "adrs",
+      "decisions",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/iter-001.md",
+      "research/research.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".codex/agents/ai-council.toml",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "iter-001.md",
+        "kind": "doc",
+        "path": "research/iter-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-parity-deep-skills.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-ai-council` had a current single-session, flat round artifact model",
+    "created_at": "2026-05-23T09:30:00Z",
+    "last_save_at": "2026-06-23T03:49:50.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:fb8163aba55532e02bdf95b09ae1820dca0eb4aaad0837f94ecd038dae6be248",
+    "source_doc_hashes": {
+      "spec.md": "c6e831bab81efd086eb3dcbf04b38d416c7589c17e619939a24f25e3625a90fd",
+      "plan.md": "35ba236c51b88175de93e82ba10670c6fecb2c490ee9f19162ab86d561c8d732",
+      "tasks.md": "437332cab47bbe3f2b238fdf6b51134ef4c17e5f767b275fe4f82bbac0250242",
+      "checklist.md": "adcc921394a39cc4d567755e5ea402b7938441f521ffa74a08ad0e53342692c6",
+      "decision-record.md": "368641fbfe8a58ad502892a1bc5f4c98d3b9eeb337a8703fd75f89b048294ed2",
+      "implementation-summary.md": "07782e27d5491a98ea98316e37b1375b3978025e4faa6d85d0d5d23901a7cdac",
+      "research/research.md": "58f7d35790d38e4f6b66638374a92b60b89da46cf92cce06de5326fc4c911862"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

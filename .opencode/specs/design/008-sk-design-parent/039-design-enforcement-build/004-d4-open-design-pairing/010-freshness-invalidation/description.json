@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/010-freshness-invalidation",
+  "description": "A valid-but-stale or replayed design proof token otherwise authorizes design-affecting work long after issuance or for a different subject",
+  "keywords": [
+    "valid-but-stale",
+    "replayed",
+    "design",
+    "proof",
+    "token",
+    "otherwise",
+    "authorizes",
+    "design-affecting",
+    "work",
+    "long",
+    "issuance",
+    "different",
+    "subject"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.188Z",
+  "specId": "010",
+  "folderSlug": "freshness-invalidation",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

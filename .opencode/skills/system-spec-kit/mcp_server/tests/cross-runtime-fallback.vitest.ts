@@ -6,7 +6,6 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, it, expect, afterEach } from 'vitest';
 import { createRuntimeFixture, setRuntimeEnv, clearRuntimeEnv } from './fixtures/runtime-fixtures.js';
-import { clearCodexHookPolicyCacheForTests } from '../lib/codex-hook-policy.js';
 import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../lib/runtime-detection.js';
 
 const ORIGINAL_CWD = process.cwd();
@@ -39,12 +38,6 @@ const CANONICAL_RUNTIME_HOOK_VOCABULARY = {
     compaction: 'PreCompact',
     stop: 'Stop',
   },
-  'codex-cli': {
-    prompt: 'UserPromptSubmit',
-    lifecycle: 'SessionStart',
-    compaction: null,
-    stop: null,
-  },
   'copilot-cli': {
     prompt: 'UserPromptSubmit',
     lifecycle: 'SessionStart',
@@ -57,11 +50,10 @@ describe('cross-runtime fallback', () => {
   afterEach(() => {
     clearCopilotCliFixture();
     clearRuntimeEnv();
-    clearCodexHookPolicyCacheForTests();
   });
 
   describe('each runtime gets correct recovery approach', () => {
-    const runtimes = ['claude-code', 'codex-cli', 'copilot-cli'] as const;
+    const runtimes = ['claude-code', 'copilot-cli'] as const;
     for (const runtime of runtimes) {
       it(`${runtime} has correct fixture`, () => {
         const fixture = createRuntimeFixture(runtime);
@@ -84,7 +76,7 @@ describe('cross-runtime fallback', () => {
 
   describe('tool fallback available for all runtimes', () => {
     it('all runtimes support tool fallback', () => {
-      for (const rt of ['claude-code', 'codex-cli', 'copilot-cli'] as const) {
+      for (const rt of ['claude-code', 'copilot-cli'] as const) {
         expect(createRuntimeFixture(rt).supports.toolFallback).toBe(true);
       }
     });
@@ -94,13 +86,6 @@ describe('cross-runtime fallback', () => {
     it('claude-code uses hooks', () => {
       setRuntimeEnv('claude-code');
       expect(getRecoveryApproach()).toBe('hooks');
-    });
-    it('codex-cli uses the recovery approach implied by dynamic hook policy', () => {
-      setRuntimeEnv('codex-cli');
-      const detected = detectRuntime();
-      expect(getRecoveryApproach()).toBe(
-        detected.hookPolicy === 'unavailable' ? 'tool_fallback' : 'hooks',
-      );
     });
     it('copilot-cli uses hooks when repo hook config is present', () => {
       seedCopilotCliFixture();
@@ -126,18 +111,7 @@ describe('cross-runtime fallback', () => {
       expect(getRecoveryApproach()).toBe('tool_fallback');
     });
 
-    // Scenario 3: Codex CLI
-    it('codex-cli: runtime is codex-cli, hookPolicy is dynamic, recovery follows policy', () => {
-      setRuntimeEnv('codex-cli');
-      const detected = detectRuntime();
-      expect(detected.runtime).toBe('codex-cli');
-      expect(['live', 'partial', 'unavailable']).toContain(detected.hookPolicy);
-      expect(getRecoveryApproach()).toBe(
-        detected.hookPolicy === 'unavailable' ? 'tool_fallback' : 'hooks',
-      );
-    });
-
-    // Scenario 4: Copilot CLI
+    // Scenario 3: Copilot CLI
     it('copilot-cli: runtime is copilot-cli, hookPolicy is enabled, recovery is hooks when repo hook config exists', () => {
       seedCopilotCliFixture();
       setRuntimeEnv('copilot-cli');
@@ -147,7 +121,7 @@ describe('cross-runtime fallback', () => {
       expect(getRecoveryApproach()).toBe('hooks');
     });
 
-    // Scenario 5: Unknown runtime
+    // Scenario 4: Unknown runtime
     it('unknown runtime: runtime is unknown, hookPolicy is unknown, recovery is tool_fallback', () => {
       clearRuntimeEnv();
       const detected = detectRuntime();
@@ -156,7 +130,7 @@ describe('cross-runtime fallback', () => {
       expect(getRecoveryApproach()).toBe('tool_fallback');
     });
 
-    // Scenario 6: Runtime detection failure — graceful degradation
+    // Scenario 5: Runtime detection failure — graceful degradation
     it('runtime detection failure: detectRuntime does not throw, returns valid RuntimeInfo, recovery is tool_fallback', () => {
       clearRuntimeEnv();
       let detected: ReturnType<typeof detectRuntime> | undefined;

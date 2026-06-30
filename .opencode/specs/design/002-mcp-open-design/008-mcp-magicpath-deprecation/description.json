@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "design/002-mcp-open-design/008-mcp-magicpath-deprecation",
+  "description": "The `mcp-magicpath` skill drives the hosted MagicPath canvas through the `magicpath-ai` CLI",
+  "keywords": [
+    "mcp-magicpath",
+    "skill",
+    "drives",
+    "hosted",
+    "magicpath",
+    "canvas",
+    "magicpath-ai",
+    "cli"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.633Z",
+  "specId": "008",
+  "folderSlug": "mcp-magicpath-deprecation",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

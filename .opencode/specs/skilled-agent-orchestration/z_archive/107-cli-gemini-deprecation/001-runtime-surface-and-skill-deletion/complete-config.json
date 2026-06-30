@@ -1,0 +1,23 @@
+{
+  "featureDescription": "Deprecate project .gemini runtime surface and remove active non-spec mentions across the public repo while preserving all specs as historic records",
+  "specPath": "specs/skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation",
+  "executionMode": "auto",
+  "dispatchMode": "single_agent",
+  "memoryChoice": "skip",
+  "researchIntent": "refactor",
+  "researchIntegration": false,
+  "phaseDecomposition": false,
+  "phaseCount": 3,
+  "phaseNames": "",
+  "intake": {
+    "selectedLevel": "3",
+    "startState": "partial-folder",
+    "repairMode": "repair-metadata",
+    "recordRelationships": false,
+    "manualRelationships": {
+      "depends_on": [],
+      "related_to": [],
+      "supersedes": []
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "design/008-sk-design-parent/045-design-command-upgrade",
+  "description": "The design command surface has accumulated broad aliases and prose-level routing guidance, but the research backlog shows that command specificity nee",
+  "keywords": [
+    "design",
+    "command",
+    "surface",
+    "accumulated",
+    "broad",
+    "aliases",
+    "prose-level",
+    "routing",
+    "guidance",
+    "research",
+    "backlog",
+    "shows",
+    "specificity",
+    "nee"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.334Z",
+  "specId": "045",
+  "folderSlug": "design-command-upgrade",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-06-26_10-11__all-deep-review-findings-for-154-sk-design-parent.md"
+  ]
+}

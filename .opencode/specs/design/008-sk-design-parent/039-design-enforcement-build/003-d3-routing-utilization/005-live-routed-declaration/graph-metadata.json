@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/005-live-routed-declaration",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/005-live-routed-declaration",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r5 routed declaration token",
+      "live route declaration design build",
+      "intentRecall observedIntents fix",
+      "live routed declaration plan",
+      "route declaration parser design build",
+      "d3-r5 plan",
+      "live routed declaration tasks",
+      "route declaration parser tasks",
+      "d3-r5 tasks",
+      "live routed declaration checklist",
+      "route declaration parser checklist",
+      "d3-r5 checklist"
+    ],
+    "key_topics": [
+      "d3-r5",
+      "routed",
+      "declaration",
+      "token",
+      "live",
+      "route",
+      "design",
+      "build",
+      "intentrecall",
+      "observedintents",
+      "fix",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "live-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Live",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "landed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Live routing was invisible",
+    "created_at": "2026-06-28T12:39:58.911Z",
+    "last_save_at": "2026-06-28T19:09:56.463Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0a654debed048f2ddd219865008102122602ccdd507a23fb6c17dcfe6b533aa2",
+    "source_doc_hashes": {
+      "spec.md": "0b1d59653f7463748b4932a033c3b8f46530ab48cafcaaadac2c97f0c8a04644",
+      "plan.md": "93a9b60880d92a434ef4184b7f9cad8834d34b8b3b88f3865d714fd5adf3df0f",
+      "tasks.md": "a404d8ee62c4d92aeb38ad3e0e194c608e2b765b504ee5034916da4d02304f6b",
+      "checklist.md": "fef8f5f41f314f57520fea9353d494887124fdaa591257a2ec94d43eb3520368",
+      "implementation-summary.md": "6a533234ac778b1ad19da936e0223d9dc0831e882cb67994eb47c2d0e403ea0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

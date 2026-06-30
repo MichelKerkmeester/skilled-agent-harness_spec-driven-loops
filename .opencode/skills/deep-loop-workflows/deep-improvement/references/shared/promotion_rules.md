@@ -45,7 +45,7 @@ When promotion is enabled, the promotion script enforces the same gates in both 
 - a matching `benchmark-pass` report (when benchmarks are configured for the target)
 - a passing repeatability report
 - explicit operator approval plus manifest boundary enforcement for the specific target
-- a hard repo-managed mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`
+- a hard repo-managed mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, or `.opencode/agents/`
 
 `--phase=accept` verifies those gates and snapshots the canonical preimage plus accepted candidate into the archive without mutating the canonical target. `--phase=ship` loads the accepted-state file, verifies that the canonical target still matches the accepted preimage, and then writes the accepted candidate snapshot. The legacy no-phase command still performs the previous guarded one-step promotion for existing callers.
 
@@ -91,7 +91,7 @@ Promotion is allowed only when:
 - accept/ship evidence is present when using the two-phase path
 - the explicit approval gate is passed
 - the target is not classified `fixed` or `forbidden` in the manifest
-- agent-definition targets are present and content-aligned across all four runtime mirrors; Codex TOML is checked by extracted body tokens, not by byte-equivalence of the TOML wrapper
+- agent-definition targets are present and content-aligned across all four runtime mirrors; OpenCode TOML is checked by extracted body tokens, not by byte-equivalence of the TOML wrapper
 
 If mirror verification fails, promotion rejects with a structured `MIRROR_SYNC_GATE_FAILED` error. The optional promotion state file records `mirror_sync_state` as `all_landed`, `partial:<runtime-list>`, or `verification_failed`. Resume behavior defaults to rolling back partial mirror landings before another promotion attempt; operators may instead retry failed mirrors or pause for an explicit decision.
 

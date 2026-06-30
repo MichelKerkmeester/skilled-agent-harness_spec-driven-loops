@@ -1,0 +1,34 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
+  "specFolder": "skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/002-sk-git-playbook",
+  "description": "sk-git is the three-phase git lifecycle orchestrator (worktree setup → commit formation → finish/PR) used across the repo for every feature shipped",
+  "keywords": [
+    "sk-git",
+    "three-phase",
+    "git",
+    "lifecycle",
+    "orchestrator",
+    "worktree",
+    "setup",
+    "commit",
+    "formation",
+    "finish",
+    "used",
+    "across",
+    "repo",
+    "every",
+    "feature",
+    "shipped"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.801Z",
+  "specId": "002",
+  "folderSlug": "sk-git-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "076-testing-playbooks-code-review-and-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

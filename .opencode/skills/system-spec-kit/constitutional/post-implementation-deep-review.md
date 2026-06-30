@@ -49,7 +49,7 @@ triggerPhrases:
 
 ## How to dispatch
 
-Run it through `/deep:review`, which owns iter sequencing, convergence, the per-iter prompt contract, and the `review/` output. Two roles: a **native Anthropic Agent** as loop-manager (iter adjudication + synthesis) and a **CLI review worker** (`cli-codex` / `cli-opencode`) per iteration — preload the executor's SKILL.md first per `cli-dispatch-skill-preload.md`. Default **10 iterations** (3-7 for a single patch/commit, ~20 for a full umbrella stack); convergence default 0.10, early-stop after 3 iters with no new P0/P1.
+Run it through `/deep:review`, which owns iter sequencing, convergence, the per-iter prompt contract, and the `review/` output. Two roles: a **native Anthropic Agent** as loop-manager (iter adjudication + synthesis) and a **CLI review worker** (`cli-opencode` / `cli-opencode`) per iteration — preload the executor's SKILL.md first per `cli-dispatch-skill-preload.md`. Default **10 iterations** (3-7 for a single patch/commit, ~20 for a full umbrella stack); convergence default 0.10, early-stop after 3 iters with no new P0/P1.
 
 ## Verdict → next action
 
@@ -59,7 +59,7 @@ Findings are tiered P0/P1/P2; the main agent decides:
 |---|---|
 | PASS | Move on |
 | PASS hasAdvisories=true | Move on; queue P2 backlog |
-| CONDITIONAL | **Dispatch remediation** (cli-codex), then re-run deep-review (this rule self-iterates) |
+| CONDITIONAL | **Dispatch remediation** (cli-opencode), then re-run deep-review (this rule self-iterates) |
 | FAIL | Halt — likely architecture-level; escalate to operator |
 
 Output (`review/review-report.md` + per-iter files + state JSONL) and review-packet placement (packet-local — never a new top-level packet for a follow-up review) follow the deep-review SKILL.md and spec-folder conventions.

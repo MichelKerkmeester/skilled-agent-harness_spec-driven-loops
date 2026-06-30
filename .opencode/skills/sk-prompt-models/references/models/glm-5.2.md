@@ -1,15 +1,17 @@
 ---
 title: GLM-5.2 Prompt-Craft Profile
 model_id: "glm-5.2"
-description: How to prompt GLM-5.2 (Z.AI GLM Coding Plan, slug zai-coding-plan/glm-5.2) via cli-opencode — COSTAR framework (empirical, benchmark 008 — best-of-tied perfect tier; fallback TIDD-EC, avoid RCAF) with lean pre-planning over the 1M window, file-anchored context scaffold, and Z.AI Coding Plan dispatch gotchas.
+description: How to prompt GLM-5.2 (Z.AI GLM Coding Plan, slug zai-coding-plan/glm-5.2) via cli-opencode — COSTAR framework (empirical, benchmark 008 — best-of-tied perfect tier; fallback TIDD-EC, avoid RCAF) with lean pre-planning over the 1M window, file-anchored context scaffold, Z.AI Coding Plan dispatch gotchas, and native vision-to-code image input (§7).
 trigger_phrases:
   - "glm-5.2 prompt framework"
   - "glm-5.2 dispatch scaffold"
   - "z.ai coding plan prompting"
   - "glm-5.2 dispatch gotchas"
+  - "glm-5.2 vision image input"
+  - "glm-5.2 vision to code"
 importance_tier: normal
 contextType: implementation
-version: 0.8.0.1
+version: 0.8.1.0
 ---
 
 # GLM-5.2 Prompt-Craft Profile
@@ -43,6 +45,7 @@ COSTAR + lean pre-planning, framed for the task and output shape. The 1M window 
 | Model slug | `zai-coding-plan/glm-5.2` (display name "Z.AI Coding Plan / GLM-5.2") |
 | Canonical id | `glm-5.2` |
 | Context window | 1,000,000 tokens (1M); 131,072 (128K) output — per Z.AI docs, re-verify on the install |
+| Modalities | text + **vision (image input)** — native multimodal / vision-to-code, confirmed live 2026-06-28 (see §7) |
 | Primary quota pool | `zai-coding-plan` (dedicated Z.AI GLM Coding Plan subscription pool) |
 | Executor path | `cli-opencode` → provider `zai-coding-plan` → pool `zai-coding-plan` |
 | Avg iteration wall-clock | OBSERVED (benchmark 008, n=45 small code-gen cells): latency 6–161s, avg ~26s; thinking-on drives high variance. Budget generous timeouts for non-trivial scopes. |
@@ -155,12 +158,59 @@ Model-specific capability fields and flags are sourced from the `glm-5.2` entry 
 
 ---
 
-## 7. SEE ALSO
+## 7. VISION / IMAGE INPUT (vision-to-code)
+
+GLM-5.2 is **natively multimodal** — it reads images and builds frontend code from a design (vision-to-code), the trait it is most known for. Confirmed live on this install 2026-06-28 (packet `157-glm-5-2-support/006`): a `glm-5.2` request carrying an `image_url` content block returned a correct reading of the attached UI, and a budget dashboard tile was then built from a reference screenshot.
+
+**For design work, feed pixels — not a text transcription.** Transcribing a reference image to prose is lossy (it drops the refinement that lives in the pixels) and yields "same composition, less refined" output. Attach the actual image.
+
+### Working transport (image input)
+
+| Concern | Value |
+| --- | --- |
+| Endpoint | `https://api.z.ai/api/coding/paas/v4/chat/completions` — the Coding Plan endpoint. The general `/api/paas/v4` returns 429 "insufficient balance" for the subscription key. |
+| Auth | `Authorization: Bearer <zai-coding-plan key>` (from opencode `auth.json`). |
+| Image payload | OpenAI-style content array: a `{type:"image_url", image_url:{url:"data:image/png;base64,…"}}` block alongside the `{type:"text",…}` block. |
+| Token budget | Thinking is on by default and consumes the budget first — set a LARGE `max_tokens` (≥ ~12k for an HTML build) or `content` returns empty with `finish_reason:"length"`. |
+| Model id (raw) | `glm-5.2` accepts images (also `glm-4.6v`); non-vision `glm-4.6` rejects image content with error code 1210. |
+
+### opencode `--file` caveat — do NOT rely on it for this provider
+
+`opencode run --file <image>` does **not** deliver image attachments to vision models on **custom OpenAI-compatible providers** — upstream bug **opencode #20802**, and `zai-coding-plan` is exactly such a provider. Verified 2026-06-28: `--file` to `zai-coding-plan/glm-5.2` → model replies `NO_IMAGE_RECEIVED` (no image part attached); `glm-5v-turbo --file` → hang/timeout. Until #20802 is fixed (or an opencode-native vision config is confirmed), use the direct Coding Plan API above for image input. Because that bypasses `opencode run`, it sits OUTSIDE the cli-opencode dispatch mandate — a deviation justified only by the verified #20802 breakage; flag it to the operator.
+
+### Large vision generations: DISABLE thinking
+
+On big vision-to-code requests (full HTML tile from a reference image), GLM-5.2 on the Z.AI
+Coding Plan can fall into a **reasoning spiral** — it spends the entire `max_tokens` budget in
+`reasoning_content` (often confabulating that it "cannot see images"), returning
+`finish_reason: undefined` / `length` with **empty `content`**. Symptom: repeated `len=0`
+failures even though trivial text calls succeed. Fix: send `"thinking": {"type": "disabled"}`
+in the request body — the budget then goes to output, and the same prompt that returned 0 bytes
+returns a complete ~10–12 KB tile (`finish_reason: stop`, `reasoning=0`). Verified 2026-06-29.
+Keep `max_tokens` generous regardless; strip a leading ```html fence from the output.
+
+### Generator, not auditor
+
+GLM-5.2 reads images well enough to BUILD from them, but it is **not** a reliable visual
+auditor: asked to critique a render it confabulates specific flaws that are not present
+(e.g. claimed an "orange CTA" + "`#cccccc` text" on tiles that had neither — verified 0
+orange, no such hex; 2026-06-28). Use it to generate; do not trust its self-audits. For an
+accurate vision audit, **MiniMax-M3** (anthropic endpoint + base64 image) is the rotation's
+auditor of record — see [`../vision-audit-benchmark.md`](../vision-audit-benchmark.md).
+
+### Render-feedback loop (iterating on a design)
+
+Round 1: attach the reference image + the house-style/design-system contract → the model builds. Round N: render the model's own output to an image and attach BOTH the reference AND the current render → "here is the target, here is your result, close these named gaps." Keep the deterministic gates (contrast/proof) as checks — never let a gate pre-empt a refined design choice.
+
+---
+
+## 8. SEE ALSO
 
 - [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, TIDD-EC, RCAF, full library).
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Z.AI GLM Coding Plan); non-TTY rule, permissions, model-selection guidance.
 - [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see mimo-v2.5-pro for the other 1M-context rotation peer, and kimi-k2.7-code for the other COSTAR-winning coding model.
+- [`../vision-audit-benchmark.md`](../vision-audit-benchmark.md) — Cross-model vision capability + design-audit accuracy (GLM generates but confabulates audits; MiniMax-M3 is the accurate auditor).
 - **Benchmark outputs:** `../../benchmarks/008-glm-5.2-prompt-framework/` — results.json, aggregate.json, synthesis.md.
 - **Adoption packet:** `157-glm-5-2-support` — phase 1 registration; phase 2 framework bakeoff (008); phase 3 promotion.

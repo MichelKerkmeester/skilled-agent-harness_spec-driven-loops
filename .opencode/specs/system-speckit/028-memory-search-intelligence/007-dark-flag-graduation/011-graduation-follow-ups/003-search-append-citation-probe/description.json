@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/003-search-append-citation-probe",
+  "description": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
+  "keywords": [
+    "009",
+    "dark-flag",
+    "validation",
+    "found",
+    "two",
+    "production-readiness",
+    "gaps",
+    "search",
+    "layer"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.813Z",
+  "specId": "003",
+  "folderSlug": "search-append-citation-probe",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "007-dark-flag-graduation",
+    "011-graduation-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

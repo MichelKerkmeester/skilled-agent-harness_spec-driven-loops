@@ -1,0 +1,14 @@
+{
+  "key": "kimi-scores-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "scores",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 118775,
+  "bytes": 89684,
+  "stderrTail": ""
+}

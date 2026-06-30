@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
+  "description": "After system-spec-kit, seven skills carry the bulk of the remaining snippets (~548 files)",
+  "keywords": [
+    "system-spec-kit",
+    "seven",
+    "skills",
+    "carry",
+    "bulk",
+    "remaining",
+    "snippets",
+    "548",
+    "files"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.277Z",
+  "specId": "004",
+  "folderSlug": "migrate-high-volume-skills",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "108-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -60,7 +60,7 @@ Build a feature catalog for the playbook system and document each scenario as a 
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: may silently pick top-1 — verify both are scored.
+- **cli-opencode (gpt-5.5/high/fast)**: may silently pick top-1 — verify both are scored.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact tie-resolution; verify resource list.
 
 ## Success Criteria

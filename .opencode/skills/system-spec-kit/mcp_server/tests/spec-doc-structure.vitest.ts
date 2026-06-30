@@ -46,7 +46,7 @@ function injectMemoryBlock(filePath: string, overrides: Partial<Record<string, s
     '  continuity:',
     `    packet_pointer: "${overrides.packet_pointer ?? 'system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/003-gate-c-writer-ready'}"`,
     `    last_updated_at: "${overrides.last_updated_at ?? '2026-04-11T12:00:00Z'}"`,
-    `    last_updated_by: "${overrides.last_updated_by ?? 'codex-gate-c'}"`,
+    `    last_updated_by: "${overrides.last_updated_by ?? 'opencode-gate-c'}"`,
     `    recent_action: "${overrides.recent_action ?? 'Validated gate c fixture'}"`,
     `    next_safe_action: "${overrides.next_safe_action ?? 'Run strict validator'}"`,
     `  fingerprint: "${overrides.fingerprint ?? `sha256:${'1'.repeat(64)}`}"`,
@@ -112,7 +112,7 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/merge-fixture"
     last_updated_at: "2026-04-11T12:00:00Z"
-    last_updated_by: "codex-gate-c"
+    last_updated_by: "opencode-gate-c"
     recent_action: "Prepared merge fixture"
     next_safe_action: "Run merge validation"
 ---

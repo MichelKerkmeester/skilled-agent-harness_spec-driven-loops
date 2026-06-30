@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "design/002-mcp-open-design/003-sk-design-interface-evolution",
+  "description": "The `sk-design-interface` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, p",
+  "keywords": [
+    "sk-design-interface",
+    "skill",
+    "still",
+    "vendored",
+    "data",
+    "scripts",
+    "derived",
+    "mit",
+    "ui-ux-pro-max",
+    "repo",
+    "nine",
+    "csv",
+    "inventories",
+    "colors",
+    "typography"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.610Z",
+  "specId": "003",
+  "folderSlug": "sk-design-interface-evolution",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

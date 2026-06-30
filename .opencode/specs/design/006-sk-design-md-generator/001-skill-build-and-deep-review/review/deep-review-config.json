@@ -1,0 +1,150 @@
+{
+  "topic": "Review: sk-design-md-generator",
+  "sessionId": "2026-06-21T10:32:25Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/design/006-sk-design-md-generator",
+  "createdAt": "2026-06-21T10:32:25Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-pro",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1200
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/skills/sk-design-md-generator",
+  "reviewTargetType": "skill",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/sk-design-md-generator/graph-metadata.json",
+    ".opencode/skills/sk-design-md-generator/README.md",
+    ".opencode/skills/sk-design-md-generator/INSTALL_GUIDE.md",
+    ".opencode/skills/sk-design-md-generator/SKILL.md",
+    ".opencode/skills/sk-design-md-generator/changelog/v1.0.0.0.md",
+    ".opencode/skills/sk-design-md-generator/references/troubleshooting.md",
+    ".opencode/skills/sk-design-md-generator/references/extraction_workflow.md",
+    ".opencode/skills/sk-design-md-generator/assets/design_md_prompt_template.md",
+    ".opencode/skills/sk-design-md-generator/assets/cardinal_rules_card.md",
+    ".opencode/skills/sk-design-md-generator/tool/vitest.config.ts",
+    ".opencode/skills/sk-design-md-generator/tool/resources/quality-checklist.md",
+    ".opencode/skills/sk-design-md-generator/tool/resources/writing-style-guide.md",
+    ".opencode/skills/sk-design-md-generator/tool/resources/design-md-format.md",
+    ".opencode/skills/sk-design-md-generator/tool/resources/component-taxonomy.md",
+    ".opencode/skills/sk-design-md-generator/tool/resources/anti-patterns.md",
+    ".opencode/skills/sk-design-md-generator/tool/resources/color-role-taxonomy.md",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/report-gen.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/proof.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/dark-mode-detect.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/cli.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/cluster.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/framework-detect.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/validate.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/motion-extract.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/types.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/css-analyzer.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/design-boundary-detect.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/a11y-extract.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/dom-collector.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/icon-detect.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/interaction-capture.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/css-tree.d.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/preview-gen.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/crawl.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/__tests__/cluster.test.ts",
+    ".opencode/skills/sk-design-md-generator/tool/scripts/__tests__/validate.test.ts",
+    ".opencode/skills/sk-design-md-generator/tool/examples/vercel/DESIGN.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/vercel/writing-notes.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/linear/DESIGN.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/linear/writing-notes.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/supabase/DESIGN.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/supabase/writing-notes.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/stripe/DESIGN.md",
+    ".opencode/skills/sk-design-md-generator/tool/examples/stripe/writing-notes.md"
+  ]
+}

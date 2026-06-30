@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-scores-s2",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "scores",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 114288,
+  "bytes": 76846,
+  "stderrTail": ""
+}

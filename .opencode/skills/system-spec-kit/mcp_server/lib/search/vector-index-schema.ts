@@ -1299,7 +1299,7 @@ function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'sy
   if (normalized.includes('import') || normalized.includes('ingest') || normalized.includes('scan') || normalized.includes('index')) {
     return 'import';
   }
-  if (/\b(agent|assistant|claude|codex|opencode|automation|bot)\b/.test(normalized)) {
+  if (/\b(agent|assistant|claude|opencode|opencode|automation|bot)\b/.test(normalized)) {
     return 'agent';
   }
   return 'system';

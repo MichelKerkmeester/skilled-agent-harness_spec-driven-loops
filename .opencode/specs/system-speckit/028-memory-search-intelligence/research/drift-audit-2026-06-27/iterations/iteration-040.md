@@ -1,0 +1,24 @@
+# Iteration 40 — gpt55
+
+**Angle:** Check all description.json level claims (001-007 children of 028) for phase-parent self-identification — 005 claims level 3 despite being a parent; others may also misidentify
+
+**Findings:** 6
+
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/description.json:2` — 001 parent claims level 1
+  - evidence: Top-level metadata says "level": "1" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero".
+  - fix: Change 001-speckit-memory description.json level to the phase-parent value used by phase parents, e.g. "phase".
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph/description.json:2` — 002 parent claims level 1
+  - evidence: Top-level metadata says "level": "1" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order".
+  - fix: Change 002-code-graph description.json level to the phase-parent value used by phase parents, e.g. "phase".
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor/description.json:2` — 003 parent claims level 1
+  - evidence: Top-level metadata says "level": "1" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine".
+  - fix: Change 003-skill-advisor description.json level to the phase-parent value used by phase parents, e.g. "phase".
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop/description.json:2` — 004 parent claims level 1
+  - evidence: Top-level metadata says "level": "1" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix".
+  - fix: Change 004-deep-loop description.json level to the phase-parent value used by phase parents, e.g. "phase".
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/description.json:2` — 005 parent claims level 3
+  - evidence: Top-level metadata says "level": "3" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored".
+  - fix: Change 005-spec-data-quality description.json level to the phase-parent value used by phase parents, e.g. "phase".
+- **[P2] misalignment** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/description.json:19` — 007 parent claims level 3
+  - evidence: Top-level metadata says "level": "3" while a numbered child exists: .opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr/description.json:2 "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr".
+  - fix: Change 007-dark-flag-graduation description.json level to the phase-parent value used by phase parents, e.g. "phase".

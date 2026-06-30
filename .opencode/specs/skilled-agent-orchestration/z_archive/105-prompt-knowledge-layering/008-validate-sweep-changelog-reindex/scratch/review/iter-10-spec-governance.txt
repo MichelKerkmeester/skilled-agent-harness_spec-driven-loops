@@ -1,0 +1,21 @@
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/graph-metadata.json:41 parent `derived.status` is `in_progress` while `spec.md:54` says `Review` and the phase map marks all children `Complete`; fix: set parent status/continuity to one truth and regenerate graph metadata.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/001-design-architecture-and-data-contract/spec.md:48 says `In Progress` while parent `spec.md:119` marks phase 001 `Complete`; fix: close phase 001 status metadata or downgrade the parent map.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/001-design-architecture-and-data-contract/implementation-summary.md:59 still contains scaffold placeholder prose despite `Completed` metadata; fix: replace with the actual design-delivery summary and set continuity completion to 100.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/003-land-recommended-frameworks-data/spec.md:126 claims `minimax-m3` is `empirical`, but production JSON has `minimax-m3` as `carried`; fix: change acceptance text to `minimax-2.7` and `mimo-v2.5-pro` empirical, `minimax-m3` carried.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/implementation-summary.md:66 says the remaining six models are `default-unverified`, but `minimax-2.7` is `empirical`; fix: say `minimax-m3` carried, `minimax-2.7` and `mimo-v2.5-pro` empirical, remaining five default-unverified.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/implementation-summary.md:70 claims per-skill changelog entries were populated, but no `changelog/*` files exist; fix: create the changelog entries or remove the claim.
+
+[P1] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/implementation-summary.md:74 claims `skill_advisor.py` rebuilt `skill-graph.json`, but checked-in `skill-graph.json:1` still predates the packet and line 126 says reindex is deferred; fix: run the real reindex and update evidence or mark it deferred.
+
+[P2] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/006-thin-and-standardize-cli-cards/implementation-summary.md:77 uses nonexistent `cli-*/references/prompt_quality_card.md` paths; fix: change all five to `cli-*/assets/prompt_quality_card.md`.
+
+[P2] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/007-wire-precedence-and-crosslinks/implementation-summary.md:76 cites `references/models/minimax.md` and `mimo.md`, but actual hub profiles are `minimax-2.7.md`, `minimax-m3.md`, and `mimo-v2.5-pro.md`; fix: use the exact filenames.
+
+[OK] .opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/004-model-hub-and-priority-profiles/implementation-summary.md:68 matches production for the 8-row model index and the fixed six-section profile structure; fix: none.
+
+VERDICT CONDITIONAL

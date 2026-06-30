@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/005-audit-performance-evidence",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/005-audit-performance-evidence",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r5 performance evidence",
+      "audit performance evidence design build",
+      "perf_evidence_check deterministic gate",
+      "audit performance evidence plan",
+      "perf evidence gate design build",
+      "audit report baseline delta block",
+      "audit performance evidence tasks",
+      "audit performance evidence checklist",
+      "audit performance evidence summary",
+      "perf evidence gate implementation"
+    ],
+    "key_topics": [
+      "d1-r5",
+      "performance",
+      "evidence",
+      "audit",
+      "design",
+      "build",
+      "deterministic",
+      "gate",
+      "plan",
+      "perf",
+      "report",
+      "baseline"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+      ".opencode/skills/sk-design/design-audit/scripts/perf_evidence_check.py",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+      ".opencode/skills/sk-design/design-audit/references/evidence_capture.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "audit_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "perf_evidence_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-audit/scripts/perf_evidence_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility_performance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence_capture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/evidence_capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Performance Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Performance Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Performance Evidence Fill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Block",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deterministic Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit report template scores Performance 0 to 4 in its Section 5 five-dimension table but gives the Performance dimension no field for a number",
+    "created_at": "2026-06-28T12:40:05.490Z",
+    "last_save_at": "2026-06-29T11:17:28.102Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:45d2f4da2b489441c54a66c8ddfe919e96de79985f696fdb8f99d5bb3dfee96a",
+    "source_doc_hashes": {
+      "spec.md": "1f784230bbe410a4973d7a64156f87e84b703d109846cbba0b896e6fb43fa287",
+      "plan.md": "d547cc1db00ab1e49aa41159609a917dad89527187fa8d0a3f2da4a3dfe3652e",
+      "tasks.md": "7a9b779c6fe1ed9d017a017e029a5a7ee9c9417e7f1a6ef98e7ee0e6b7985e07",
+      "checklist.md": "66e300749eb81add139ff5e98dd18f356c8fed584f85358ece738c7f15ccddcc",
+      "implementation-summary.md": "595c30c4811372219d16e05f5dceeed85519ba34442293adb9d9604ff81d07b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

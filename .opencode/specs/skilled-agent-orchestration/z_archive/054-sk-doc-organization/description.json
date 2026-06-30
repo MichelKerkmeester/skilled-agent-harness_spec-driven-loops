@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization",
+  "description": "The `sk-doc` skill's `assets/` directory has accreted a two-level hierarchy that no longer matches its access patterns",
+  "keywords": [
+    "sk-doc",
+    "skill",
+    "assets",
+    "directory",
+    "accreted",
+    "two-level",
+    "hierarchy",
+    "longer",
+    "matches",
+    "access",
+    "patterns"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.623Z",
+  "specId": "054",
+  "folderSlug": "sk-doc-organization",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

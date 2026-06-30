@@ -16,7 +16,7 @@ const REQUIRED_FIELDS = [
   "owner"
 ];
 
-const MODEL_FAMILIES = new Set(["codex", "gemini", "general"]);
+const MODEL_FAMILIES = new Set(["opencode", "gemini", "general"]);
 const SEVERITY_FLOORS = new Set(["P0", "P1", "P2", "P3"]);
 const OWNERS = new Set(["foundations", "interface", "motion", "sk-code"]);
 const SLUG_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
@@ -164,8 +164,8 @@ function parseCatalogTells(source) {
 function familyFromHeading(heading) {
   const normalized = heading.toLowerCase();
 
-  if (normalized.includes("codex tells")) {
-    return "codex";
+  if (normalized.includes("opencode tells")) {
+    return "opencode";
   }
 
   if (normalized.includes("gemini tells")) {

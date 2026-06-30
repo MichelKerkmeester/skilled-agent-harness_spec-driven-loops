@@ -38,7 +38,7 @@ Both `deep_context_auto.yaml` and `deep_context_confirm.yaml` include a `cli_con
 `buildExecutorDispatchEnv(config, parentEnv)` in `executor-audit.ts`:
 1. Reads `parentEnv[SPECKIT_CLI_DISPATCH_STACK]` (`CLI_DISPATCH_STACK_ENV` constant).
 2. Splits the colon-delimited stack, appends the new executor kind, and writes the updated stack into `nextEnv[SPECKIT_CLI_DISPATCH_STACK]`.
-3. Filters the parent env to only include allowed keys per executor kind (common allowlist + per-kind prefixes like `OPENCODE_`, `CODEX_`, `CLAUDE_`, etc.).
+3. Filters the parent env to only include allowed keys per executor kind (common allowlist + per-kind prefixes like `OPENCODE_`, `OPENCODE_`, `CLAUDE_`, etc.).
 
 ### Recursion Guard Layers
 

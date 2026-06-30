@@ -4,13 +4,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => ({
-  codexHookPolicy: vi.fn(),
   existsSync: vi.fn(),
   readFileSync: vi.fn(),
-}));
-
-vi.mock('../lib/shared/codex-hook-policy.js', () => ({
-  detectCodexHookPolicy: mocks.codexHookPolicy,
 }));
 
 vi.mock('node:fs', async (importOriginal) => {
@@ -37,7 +32,6 @@ describe('runtime-detection / detectRuntime', () => {
     for (const key of Object.keys(process.env)) {
       if (
         key.startsWith('CLAUDE_')
-        || key.startsWith('CODEX_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
         || key === 'OPENAI_API_KEY'
@@ -46,7 +40,6 @@ describe('runtime-detection / detectRuntime', () => {
         delete process.env[key];
       }
     }
-    mocks.codexHookPolicy.mockReturnValue({ hooks: 'live' });
     mocks.existsSync.mockReturnValue(false);
     mocks.readFileSync.mockReturnValue('[]');
   });
@@ -80,19 +73,6 @@ describe('runtime-detection / detectRuntime', () => {
     expect(info.runtime).toBe('claude-code');
   });
 
-  it('detects Codex CLI via CODEX_CLI=1', () => {
-    process.env.CODEX_CLI = '1';
-    const info = detectRuntime();
-    expect(info.runtime).toBe('codex-cli');
-    expect(mocks.codexHookPolicy).toHaveBeenCalled();
-  });
-
-  it('detects Codex CLI via CODEX_THREAD_ID', () => {
-    process.env.CODEX_THREAD_ID = 'thread-1';
-    const info = detectRuntime();
-    expect(info.runtime).toBe('codex-cli');
-  });
-
   it('detects Copilot CLI via COPILOT_CLI=1', () => {
     process.env.COPILOT_CLI = '1';
     mocks.existsSync.mockReturnValue(false);
@@ -113,13 +93,6 @@ describe('runtime-detection / detectRuntime', () => {
     const info = detectRuntime();
     expect(info.runtime).toBe('unknown');
     expect(info.hookPolicy).toBe('unknown');
-  });
-
-  it('codex-cli hook policy uses detectCodexHookPolicy result', () => {
-    mocks.codexHookPolicy.mockReturnValue({ hooks: 'partial' });
-    process.env.CODEX_CLI = '1';
-    const info = detectRuntime();
-    expect(info.hookPolicy).toBe('partial');
   });
 
   it('copilot-cli returns enabled when wrapper parity is detected', () => {
@@ -148,7 +121,7 @@ describe('runtime-detection / areHooksAvailable', () => {
     for (const key of Object.keys(process.env)) {
       if (
         key.startsWith('CLAUDE_')
-        || key.startsWith('CODEX_')
+        || key.startsWith('OPENCODE_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
         || key === 'OPENAI_API_KEY'
@@ -186,7 +159,7 @@ describe('runtime-detection / getRecoveryApproach', () => {
     for (const key of Object.keys(process.env)) {
       if (
         key.startsWith('CLAUDE_')
-        || key.startsWith('CODEX_')
+        || key.startsWith('OPENCODE_')
         || key === 'COPILOT_CLI'
         || key === 'GITHUB_COPILOT_TOKEN'
         || key === 'OPENAI_API_KEY'

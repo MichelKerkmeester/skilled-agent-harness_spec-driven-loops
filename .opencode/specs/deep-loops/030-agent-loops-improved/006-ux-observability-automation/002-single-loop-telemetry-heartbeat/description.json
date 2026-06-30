@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat",
+  "description": "The deep-loop dashboard and status tooling reads `orchestration-status.log` rows emitted by fan-out runs",
+  "keywords": [
+    "deep-loop",
+    "dashboard",
+    "status",
+    "tooling",
+    "reads",
+    "orchestration-status",
+    "log",
+    "rows",
+    "emitted",
+    "fan-out",
+    "runs"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.447Z",
+  "specId": "002",
+  "folderSlug": "single-loop-telemetry-heartbeat",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "006-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/010-freshness-invalidation",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/010-freshness-invalidation",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r10 freshness invalidation",
+      "ttl span bound design token",
+      "design proof freshness consumer contract",
+      "freshness invalidation plan",
+      "proof token freshness consumer",
+      "stale token reject rule",
+      "freshness invalidation tasks",
+      "proof token freshness consumer tasks",
+      "ttl span bound tasks",
+      "freshness invalidation checklist",
+      "proof token freshness verification",
+      "ttl span bound QA"
+    ],
+    "key_topics": [
+      "d4-r10",
+      "freshness",
+      "invalidation",
+      "ttl",
+      "span",
+      "bound",
+      "design",
+      "token",
+      "proof",
+      "consumer",
+      "contract",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
+      ".codex/policy.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/references/design_proof_token.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "freshness_invalidation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-tool-use.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": ".codex/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_proof_token.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/design_proof_token.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Axes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boundary Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Notes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A valid-but-stale or replayed design proof token otherwise authorizes design-affecting work long after issuance or for a different subject",
+    "created_at": "2026-06-28T12:39:57.024Z",
+    "last_save_at": "2026-06-28T21:21:28.298Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:82bc8078c7f4595129cff9d94a15d82c54f0f92ecca968ed3622b02eb82a9b15",
+    "source_doc_hashes": {
+      "spec.md": "ede01859f9d897cbf960749b6ebf32ef34f0a87a6eb0aab84b6accd1bb8a4be3",
+      "plan.md": "ed5a2aaee7ecfa6cbee254a7eaf763a5afadcedd112b8aa71c7cd85fc7db1b1c",
+      "tasks.md": "d1dd9f7e06b45fb06610a1e8a5a6323921015764d1dc3b44e3f50c2dfdd88588",
+      "checklist.md": "0092fa56b830704291bb95d69ae749d5a72bb864877c109726f806a3ad70aa7c",
+      "implementation-summary.md": "2a834211be993511a23671df6b4d0bff215a2465d5644996dd03582b88b031ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/13.png",
+ "title": "Accountbeheer",
+ "desc": "Neem vloot-accounts 'realtime' over en bekijk o.a. hun slimme winkelwagen",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/accountbeheer-glm-1.html",
+   "brief": "A fleet-account list: rows MS Aldebaran / MS Castor / MS Pollux with the user (Kapt. naam) + an online status dot + a 'Neem over' action button per row."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/accountbeheer-glm-2.html",
+   "brief": "An active takeover/impersonation session card: 'U bekijkt nu als MS Aldebaran' banner (navy, the signature) + a compact preview of that account's slimme winkelwagen + a quiet 'Stop sessie' control."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/accountbeheer-glm-3.html",
+   "brief": "A preview of the taken-over account's smart cart: cart header + 3-4 line items with quantities and prices + a subtotal."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/accountbeheer-glm-4.html",
+   "brief": "A rights/permissions matrix: accounts down the side, permissions (bestellen / goedkeuren / budget zien) across the top, with check/\u25a2 cells."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/accountbeheer-glm-5.html",
+   "brief": "An account-activity timeline: recent sessions/actions (ingelogd, winkelwagen bekeken, bestelling geplaatst) with timestamps."
+  }
+ ]
+}

@@ -1,11 +1,11 @@
 ---
 title: Runtime Hooks - Spec Kit MCP Hook Entrypoints
-description: Reference for the system-spec-kit runtime hook entrypoints (Claude, Codex, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
+description: Reference for the system-spec-kit runtime hook entrypoints (Claude, OpenCode, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
 trigger_phrases:
   - "spec kit runtime hooks"
   - "hook entrypoints registration"
   - "dynamic load hook pattern"
-  - "claude codex copilot hooks"
+  - "claude opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.8
@@ -13,7 +13,7 @@ version: 3.5.0.8
 
 # Runtime Hooks - Spec Kit MCP Hook Entrypoints
 
-Reference for the three runtime hook surfaces that wire `mcp_server/hooks/` entrypoints into Claude, Codex, and Copilot via runtime settings files.
+Reference for the three runtime hook surfaces that wire `mcp_server/hooks/` entrypoints into Claude, OpenCode, and Copilot via runtime settings files.
 
 ---
 
@@ -55,7 +55,7 @@ Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks
 | Runtime | Settings file | Wiring shape |
 |---|---|---|
 | Claude | `.claude/settings.local.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
-| Codex | `.codex/settings.json` | Nested `hooks.<Event>[].hooks[]` array; same shape as Claude |
+| OpenCode | `.opencode/settings.json` | Nested `hooks.<Event>[].hooks[]` array; same shape as Claude |
 | Copilot | `mcp_server/hooks/copilot/README.md` | Custom-instructions writer (no native hook contract); invoked from a Copilot-supported command surface |
 
 The audit at packet `003-dead-code-audit` reached the same conclusion: 15 hook entrypoints classified `dynamic-only-reference` with `keep-with-rationale` (audit report §"Category: `dynamic-only-reference`"). KEEP unless a hook-removal packet proves the wiring is gone.
@@ -104,18 +104,18 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
 
 ---
 
-## 4. CODEX HOOKS
+## 4. OPENCODE HOOKS
 
-`mcp_server/hooks/codex/` - 3 wired entrypoints + 1 fallback wrapper + setup helper.
+`mcp_server/hooks/opencode/` - 3 wired entrypoints + 1 fallback wrapper + setup helper.
 
 | Entrypoint | Runtime event | Settings line |
 |---|---|---|
-| `session-start.ts` | `SessionStart` | `.codex/settings.json:8` |
-| `user-prompt-submit.ts` | `UserPromptSubmit` | `.codex/settings.json:19` |
-| `pre-tool-use.ts` | `PreToolUse` | `.codex/settings.json:30` |
-| `prompt-wrapper.ts` | (fallback) | Documented in `references/hooks/skill_advisor_hook.md:60`; runs only when Codex hook policy reports hooks unavailable |
+| `session-start.ts` | `SessionStart` | `.opencode/settings.json:8` |
+| `user-prompt-submit.ts` | `UserPromptSubmit` | `.opencode/settings.json:19` |
+| `pre-tool-use.ts` | `PreToolUse` | `.opencode/settings.json:30` |
+| `prompt-wrapper.ts` | (fallback) | Documented in `references/hooks/skill_advisor_hook.md:60`; runs only when OpenCode hook policy reports hooks unavailable |
 
-`setup.ts` is a configuration helper for the Codex hook system (not a runtime entrypoint).
+`setup.ts` is a configuration helper for the OpenCode hook system (not a runtime entrypoint).
 
 ### Wiring Shape
 
@@ -125,7 +125,7 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
     "hooks": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js'",
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/opencode/session-start.js'",
         "timeout": 3
       }
     ]
@@ -133,7 +133,7 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
 ]
 ```
 
-Codex hook stdin JSON wins over argv JSON when both are present (per advisor hook reference §2).
+OpenCode hook stdin JSON wins over argv JSON when both are present (per advisor hook reference §2).
 
 ---
 
@@ -181,7 +181,7 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ```
 □ Author the TypeScript source under `mcp_server/hooks/<runtime>/<name>.ts`
-□ Register the wiring entry in the matching settings.json (Claude/Codex) or document in the Copilot README
+□ Register the wiring entry in the matching settings.json (Claude/OpenCode) or document in the Copilot README
 □ Build to confirm the dist artifact emits: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
 □ Smoke-test with the runtime's documented invocation form (advisor hook ref §4 has examples)
 □ Consider parity: if the feature applies to other runtimes, register there too (see §7)
@@ -199,13 +199,13 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ### Cross-Runtime Parity
 
-Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to Codex/Copilot. Each runtime has different events (Claude uses `PreCompact`, Codex uses `PreToolUse`, Copilot has no native compact contract). Parity decisions are explicit:
+Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to OpenCode/Copilot. Each runtime has different events (Claude uses `PreCompact`, OpenCode uses `PreToolUse`, Copilot has no native compact contract). Parity decisions are explicit:
 
 | Question | Action |
 |---|---|
-| Does the feature need session-start priming? | Add to Claude (`session-prime`), Codex (`session-start`), Copilot (`session-prime`) |
-| Does the feature run per-prompt? | Add to Claude/Codex `user-prompt-submit` and Copilot's writer |
-| Does the feature run on compaction? | Map runtime-specific event names: Claude `PreCompact`, Codex no native event, Copilot via cache helper |
+| Does the feature need session-start priming? | Add to Claude (`session-prime`), OpenCode (`session-start`), Copilot (`session-prime`) |
+| Does the feature run per-prompt? | Add to Claude/OpenCode `user-prompt-submit` and Copilot's writer |
+| Does the feature run on compaction? | Map runtime-specific event names: Claude `PreCompact`, OpenCode no native event, Copilot via cache helper |
 
 ---
 
@@ -214,7 +214,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 ### Canonical Evidence
 
 - Dead-code audit (003): `<spec-folder>` - 15 hook entrypoints classified `dynamic-only-reference`, KEEP
-- Per-runtime hook directories: `mcp_server/hooks/{claude,codex,copilot}/README.md`
+- Per-runtime hook directories: `mcp_server/hooks/{claude,opencode,copilot}/README.md`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 
@@ -225,7 +225,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 ### Settings Files (wiring source-of-truth)
 
 - `.claude/settings.local.json`
-- `.codex/settings.json`
+- `.opencode/settings.json`
 - `mcp_server/hooks/copilot/README.md` (Copilot has no settings.json contract)
 
 ### Framework Context

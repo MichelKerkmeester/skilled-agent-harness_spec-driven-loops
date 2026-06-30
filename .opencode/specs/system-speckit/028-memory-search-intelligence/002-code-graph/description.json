@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph",
+  "description": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
+  "keywords": [
+    "code",
+    "graph",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "deterministic",
+    "traversal",
+    "edge",
+    "lifecycle",
+    "readiness",
+    "parser",
+    "resilience",
+    "doc-symbol",
+    "coverage"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.753Z",
+  "specId": "002",
+  "folderSlug": "code-graph",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

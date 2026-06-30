@@ -185,7 +185,7 @@ Checks whether the runtime-specific mirrors still reflect the canonical agent bo
 
 #### How It Works
 
-Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents` and `.codex/agents` against the canonical `.opencode/agents`.
+Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents` and `.opencode/agents` against the canonical `.opencode/agents`.
 
 #### Source Files
 
@@ -309,7 +309,7 @@ Model-agnostic dispatcher that routes prompts across executor CLIs only on the m
 
 #### How It Works
 
-`scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, and cli-codex, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
+`scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, and cli-opencode, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
 
 #### Source Files
 

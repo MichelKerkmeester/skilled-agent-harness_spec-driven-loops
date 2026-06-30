@@ -74,7 +74,7 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
 | `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
-| `.codex/agents/deep-review.toml` | Agent write contract, inspect iteration output requirements |
+| `.opencode/agents/deep-review.toml` | Agent write contract, inspect iteration output requirements |
 | `.claude/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 
 ---

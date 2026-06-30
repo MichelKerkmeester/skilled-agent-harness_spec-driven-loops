@@ -37,7 +37,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "frameworks": ["rcaf"],
   "models": [
     { "executor": "cli-opencode", "provider": "minimax-coding-plan", "model_slug": "MiniMax-M2.7", "variant": "high" },
-    { "executor": "cli-codex", "provider": "openai", "model_slug": "gpt-5.5", "variant": "high" },
+    { "executor": "cli-opencode", "provider": "deepseek", "model_slug": "DeepSeek-V4-Pro", "variant": "high" },
     { "executor": "cli-claude-code", "provider": "anthropic", "model_slug": "claude-opus", "variant": "high" }
   ],
   "scoring": { "scorer": "5dim", "correctnessGate": { "threshold": 1.0 } },
@@ -77,7 +77,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
 
 ## C — reasoning-effort ablation
 
-**Question:** does more reasoning effort actually help, holding model and prompt constant? `variant` is already forwarded to each executor (`--variant` for OpenCode, `--effort` for Claude, `model_reasoning_effort` for Codex), so this is pure config.
+**Question:** does more reasoning effort actually help, holding model and prompt constant? `variant` is already forwarded to each supported executor (`--variant` for OpenCode, `--effort` for Claude), so this is pure config.
 
 **Swept axis:** `variants[]` (e.g. `high` / `medium` / `low`). **Fixed:** one model, one framework, the fixture set. **`groupBy`:** `variant`.
 

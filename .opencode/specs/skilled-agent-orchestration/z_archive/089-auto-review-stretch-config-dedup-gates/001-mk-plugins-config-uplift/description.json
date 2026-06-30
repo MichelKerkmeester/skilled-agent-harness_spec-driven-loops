@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
+  "description": "Our OpenCode plugins (`mk-skill-advisor.js` + `mk-code-graph.js`) use env-only or hardcoded config",
+  "keywords": [
+    "opencode",
+    "plugins",
+    "mk-skill-advisor",
+    "mk-code-graph",
+    "use",
+    "env-only",
+    "hardcoded",
+    "config"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.980Z",
+  "specId": "001",
+  "folderSlug": "mk-plugins-config-uplift",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "089-auto-review-stretch-config-dedup-gates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

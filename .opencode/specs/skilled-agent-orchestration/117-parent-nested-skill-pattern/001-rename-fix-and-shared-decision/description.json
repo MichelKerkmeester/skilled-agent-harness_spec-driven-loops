@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern/001-rename-fix-and-shared-decision",
+  "description": "The 152 merge wired `deep-loop-workflows`'s internal references to bare packet names (`context/`, `research/`, `review/`, `improvement/`, `ai-council/",
+  "keywords": [
+    "152",
+    "merge",
+    "wired",
+    "deep-loop-workflows",
+    "internal",
+    "references",
+    "bare",
+    "packet",
+    "names",
+    "context",
+    "research",
+    "review",
+    "improvement",
+    "ai-council"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.793Z",
+  "specId": "001",
+  "folderSlug": "rename-fix-and-shared-decision",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "117-parent-nested-skill-pattern"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

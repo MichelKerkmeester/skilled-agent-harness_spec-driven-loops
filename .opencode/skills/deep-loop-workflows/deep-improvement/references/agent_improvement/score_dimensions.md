@@ -72,7 +72,7 @@ The 5-dimension scoring rubric is the core evaluation framework for deep-improve
 
 **Scoring logic:**
 - Runs `scan-integration.cjs` to discover integration surfaces
-- Mirror parity score: 60% of dimension (3 mirrors checked: Claude, Codex, .agents)
+- Mirror parity score: 60% of dimension (3 mirrors checked: Claude, OpenCode, .agents)
 - Command coverage: 20% of dimension (commands reference agent)
 - Skill coverage: 20% of dimension (skills reference agent)
 - Score = (mirrorScore * 0.60) + (commandScore * 0.20) + (skillScore * 0.20)
@@ -192,7 +192,7 @@ weightedScore = (
       "weight": 0.25,
       "details": [
         { "check": "Mirror parity: Claude", "passed": true },
-        { "check": "Mirror parity: Codex", "passed": false }
+        { "check": "Mirror parity: OpenCode", "passed": false }
       ]
     },
     {

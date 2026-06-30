@@ -27,15 +27,17 @@
     "templating",
     "loops"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.299Z",
+  "lastUpdated": "2026-06-28T09:56:30.090Z",
   "specId": "004",
   "folderSlug": "bento-visuals",
   "parentChain": [
     "anobel.com"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "21-06-26_14-51__completed-speckit-planning-level-2-for-anobel.md",
-    "22-06-26_14-26__anobel-bento-visuals-live-in-open-design-project.md"
+    "22-06-26_14-26__anobel-bento-visuals-live-in-open-design-project.md",
+    "28-06-26_10-49__next-steps.md",
+    "28-06-26_10-56__next-steps.md"
   ]
 }

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/009-harden-fix-shapes",
+  "description": "The hardening matrix in `hardeningedgecases.md` proved each edge case three ways: a probe to run, the symptom an unhardened surface shows, and the fin",
+  "keywords": [
+    "hardening",
+    "matrix",
+    "hardeningedgecases",
+    "proved",
+    "edge",
+    "case",
+    "three",
+    "ways",
+    "probe",
+    "run",
+    "symptom",
+    "unhardened",
+    "surface",
+    "shows",
+    "fin"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.974Z",
+  "specId": "009",
+  "folderSlug": "harden-fix-shapes",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

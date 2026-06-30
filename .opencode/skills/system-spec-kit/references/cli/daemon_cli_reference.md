@@ -102,7 +102,7 @@ node .opencode/bin/code-index.cjs code_graph_status --warm-only --format json --
 node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json --timeout-ms 3000
 ```
 
-Warm-only defaults can also come from env flags documented in `../config/environment_variables.md` and `../../mcp_server/ENV_REFERENCE.md`: per-CLI `*_CLI_WARM_ONLY`, per-CLI `*_CLI_PROMPT_TIME`, cross-CLI `SPECKIT_CLI_PROMPT_TIME`, and runtime prompt-time markers such as `OPENCODE_PROMPT_TIME`, `CODEX_PROMPT_TIME`, and `CLAUDE_CODE_PROMPT_TIME`.
+Warm-only defaults can also come from env flags documented in `../config/environment_variables.md` and `../../mcp_server/ENV_REFERENCE.md`: per-CLI `*_CLI_WARM_ONLY`, per-CLI `*_CLI_PROMPT_TIME`, cross-CLI `SPECKIT_CLI_PROMPT_TIME`, and runtime prompt-time markers such as `OPENCODE_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, and `CLAUDE_CODE_PROMPT_TIME`.
 
 Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through the matching `mk-*-launcher.cjs`.
 

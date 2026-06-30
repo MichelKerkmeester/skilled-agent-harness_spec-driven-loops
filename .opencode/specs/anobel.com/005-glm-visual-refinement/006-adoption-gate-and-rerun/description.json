@@ -1,0 +1,31 @@
+{
+  "specFolder": "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun",
+  "description": "Phases 001-005 implement the seven research angles and the eleven-step pipeline that should close the bento-tile quality gap, but the program's value",
+  "keywords": [
+    "phases",
+    "001-005",
+    "implement",
+    "seven",
+    "research",
+    "angles",
+    "eleven-step",
+    "pipeline",
+    "close",
+    "bento-tile",
+    "quality",
+    "gap",
+    "program",
+    "value"
+  ],
+  "lastUpdated": "2026-06-29T10:48:51.319Z",
+  "specId": "006",
+  "folderSlug": "adoption-gate-and-rerun",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "anobel.com",
+    "005-glm-visual-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

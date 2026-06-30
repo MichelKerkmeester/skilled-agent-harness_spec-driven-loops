@@ -43,7 +43,7 @@ An agent is not just its `.md` file. It exists across canonical, mirrors, comman
 | --- | --- | --- |
 | Canonical | `.opencode/agents/{name}.md` | Exists, frontmatter parsed |
 | Claude mirror | `.claude/agents/{name}.md` | Exists, sync status vs canonical |
-| Codex mirror | `.codex/agents/{name}.toml` | Exists, sync status vs canonical |
+| OpenCode mirror | `.opencode/agents/{name}.toml` | Exists, sync status vs canonical |
 | Commands | `.opencode/commands/**/*.md` | Files containing `@{name}` dispatch |
 | YAML workflows | `.opencode/commands/**/assets/*.yaml` | Files referencing `@{name}` |
 | Skills | `.opencode/skills/*/SKILL.md` | Files referencing the agent |
@@ -81,7 +81,7 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
     "canonical": { "path": ".opencode/agents/{agent-name}.md", "exists": true },
     "mirrors": [
       { "path": ".claude/agents/{agent-name}.md", "syncStatus": "aligned" },
-      { "path": ".codex/agents/{agent-name}.toml", "syncStatus": "aligned" }
+      { "path": ".opencode/agents/{agent-name}.toml", "syncStatus": "aligned" }
     ],
     "commands": [{ "path": ".opencode/commands/speckit/{agent-name}.md", "references": ["@{agent-name}"] }],
     "skills": [{ "path": ".opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md", "referenceCount": 2 }]

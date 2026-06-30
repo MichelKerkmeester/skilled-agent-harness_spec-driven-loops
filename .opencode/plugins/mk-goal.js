@@ -22,8 +22,9 @@ import { tool } from '@opencode-ai/plugin/tool';
 
 const PLUGIN_ID = 'mk-goal';
 const DEFAULT_STATE_DIR = fileURLToPath(new URL('../skills/.goal-state/', import.meta.url));
-const DEFAULT_MAX_OBJECTIVE_CHARS = 2000;
-const DEFAULT_MAX_INJECTION_CHARS = 2400;
+const DEFAULT_MAX_OBJECTIVE_CHARS = 4000;
+const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
+const DEFAULT_MAX_INJECTION_CHARS = 4800;
 const DEFAULT_MAX_REASON_CHARS = 280;
 const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
 const DEFAULT_MAX_AUTO_TURNS = 8;
@@ -34,6 +35,17 @@ const AUTONOMY_ENV = 'MK_GOAL_AUTONOMY';
 const DEBUG_ENV = 'MK_GOAL_DEBUG';
 const CONTINUATION_LOG_FILENAME = '.continuation.log';
 const GOAL_EVENTS_LOG_FILENAME = '.goal-events.log';
+const PROMPT_ENHANCEMENT_VERSION = 'sk-prompt-goal-v1';
+const PROMPT_ENHANCEMENT_FRAMEWORK = 'CRAFT+TIDD-EC';
+const PROMPT_ENHANCEMENT_METHODOLOGY = 'DEPTH';
+const PROMPT_ENHANCEMENT_MODE = 'standard';
+const PROMPT_ENHANCEMENT_PERSPECTIVES = [
+  'prompt_engineering',
+  'ai_interpretation',
+  'user_clarity',
+  'framework_fit',
+  'token_efficiency',
+];
 const AUTONOMY_ACTIVE_MODES = new Set(['active', 'smoke']);
 const VALID_STATUSES = new Set([
   'active',
@@ -68,8 +80,13 @@ function normalizePositiveInt(value, fallback) {
   return Number.isFinite(value) && value > 0 ? Math.trunc(value) : fallback;
 }
 
+function normalizeMaxGoalPromptChars(value, fallback = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
+  return Math.min(DEFAULT_MAX_GOAL_PROMPT_CHARS, normalizePositiveInt(value, fallback));
+}
+
 function normalizeOptions(rawOptions = {}) {
   const envMaxObjectiveChars = Number(process.env.MK_GOAL_MAX_OBJECTIVE_CHARS);
+  const envMaxGoalPromptChars = Number(process.env.MK_GOAL_MAX_GOAL_PROMPT_CHARS);
   const envMaxInjectionChars = Number(process.env.MK_GOAL_MAX_INJECTION_CHARS);
   const envMaxEvidenceChars = Number(process.env.MK_GOAL_MAX_EVIDENCE_CHARS);
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
@@ -82,6 +99,10 @@ function normalizeOptions(rawOptions = {}) {
     maxObjectiveChars: normalizePositiveInt(
       options.maxObjectiveChars,
       normalizePositiveInt(envMaxObjectiveChars, DEFAULT_MAX_OBJECTIVE_CHARS),
+    ),
+    maxGoalPromptChars: normalizeMaxGoalPromptChars(
+      options.maxGoalPromptChars,
+      normalizeMaxGoalPromptChars(envMaxGoalPromptChars, DEFAULT_MAX_GOAL_PROMPT_CHARS),
     ),
     maxInjectionChars: normalizePositiveInt(
       options.maxInjectionChars,
@@ -153,13 +174,6 @@ function clampText(value, maxChars) {
   return `${text.slice(0, Math.max(1, maxChars - 3)).trimEnd()}...`;
 }
 
-function clampInjectionObjective(value, maxChars) {
-  const text = String(value ?? '');
-  if (text.length <= maxChars) return text;
-  if (maxChars <= 3) return '...';
-  return `${text.slice(0, maxChars - 3).trimEnd()}...`;
-}
-
 function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   const text = String(value ?? '')
     .replace(/[\u0000-\u001f\u007f]+/g, ' ')
@@ -172,6 +186,22 @@ function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   return clampText(text, maxChars);
 }
 
+function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
+  const text = String(value ?? '')
+    .replace(/\r\n?/g, '\n')
+    .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]+/g, ' ')
+    .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
+    .replace(/`{3,}/g, '\'\'\'')
+    .replace(/\b(system|developer|assistant|tool|user)\s*:/gi, '$1-role:')
+    .replace(/\b(ignore|disregard)\s+(all\s+)?(previous|prior)\s+(instructions?|messages?)\b/gi, '[instruction-redacted]')
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+/g, ' ').trim())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return clampText(text, maxChars);
+}
+
 function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
   const text = sanitizeInlineText(value, maxChars)
     .replace(/\b(sk-[A-Za-z0-9_-]{8,})\b/g, '[secret-redacted]')
@@ -180,6 +210,125 @@ function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
     .replace(/\b(AKIA[0-9A-Z]{12,})\b/g, '[secret-redacted]')
     .replace(/\b(api[_-]?key|token|password|secret)\s*[:=]\s*['"]?[^'"\s,;]+/gi, '$1=[secret-redacted]');
   return clampText(text, maxChars);
+}
+
+function scoreEnhancedGoalPrompt(goalPrompt) {
+  const prompt = String(goalPrompt || '');
+  const hasRole = /(^|\n)Role:/i.test(prompt);
+  const hasObjective = /(^|\n)Objective:/i.test(prompt);
+  const hasMethod = /(^|\n)Method:/i.test(prompt);
+  const hasSuccess = /(^|\n)Success Criteria:/i.test(prompt);
+  const hasStop = /(^|\n)Stop Conditions:/i.test(prompt);
+  const hasNoPlaceholders = !/\[[A-Z_ ]+\]|TODO|TBD|placeholder/i.test(prompt);
+  const safeLength = prompt.length > 120 && prompt.length <= DEFAULT_MAX_GOAL_PROMPT_CHARS;
+
+  const correctness = hasObjective && hasNoPlaceholders ? 9 : 7;
+  const logic = hasMethod && hasStop ? 9 : 7;
+  const expression = safeLength && hasNoPlaceholders ? 13 : 10;
+  const arrangement = [hasRole, hasObjective, hasMethod, hasSuccess, hasStop].filter(Boolean).length >= 5 ? 9 : 7;
+  const reusability = 4;
+
+  return {
+    total: correctness + logic + expression + arrangement + reusability,
+    breakdown: {
+      correctness,
+      logic,
+      expression,
+      arrangement,
+      reusability,
+    },
+  };
+}
+
+function goalFocusHints(objective) {
+  const text = String(objective || '').toLowerCase();
+  const hints = [];
+  if (/\b(fix|bug|error|fail|failing|broken|regression|debug)\b/.test(text)) {
+    hints.push('Find the root cause before changing code; verify the fix against the failing symptom.');
+  }
+  if (/\b(implement|build|add|create|upgrade|refactor|change|modify|patch)\b/.test(text)) {
+    hints.push('Make the smallest correct implementation that satisfies the requested behavior.');
+  }
+  if (/\b(test|tests|verify|validation|lint|green|pass)\b/.test(text)) {
+    hints.push('Run the relevant verification commands and report exact pass/fail evidence.');
+  }
+  if (/\b(review|audit|inspect|analy[sz]e|research)\b/.test(text)) {
+    hints.push('Ground conclusions in concrete files, outputs, or cited evidence.');
+  }
+  if (hints.length === 0) {
+    hints.push('Clarify the concrete completion condition from available context, then execute until it is met or blocked.');
+  }
+  return hints;
+}
+
+function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const rawObjective = sanitizeInlineText(objective, options.maxObjectiveChars);
+  const objectiveBudget = Math.max(240, Math.min(1200, options.maxGoalPromptChars - 1900));
+  const objectiveSummary = clampText(rawObjective, objectiveBudget);
+  const hints = goalFocusHints(rawObjective);
+  const prompt = sanitizePromptText([
+    'Role: Focused OpenCode execution agent operating under the active session goal.',
+    `Objective: ${objectiveSummary}`,
+    'Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.',
+    'Method:',
+    '- Restate the concrete completion condition from available evidence before acting.',
+    ...hints.map((hint) => `- ${hint}`),
+    '- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.',
+    'Success Criteria:',
+    '- The requested outcome is materially complete, not merely analyzed or partially prepared.',
+    '- Required verification has run, or any inability to run it is reported with the exact blocker.',
+    '- Status output distinguishes confirmed evidence from inference.',
+    'Stop Conditions:',
+    '- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.',
+    '- If blocked, preserve state and name the next safe action.',
+  ].join('\n'), options.maxGoalPromptChars);
+  const score = scoreEnhancedGoalPrompt(prompt);
+
+  return {
+    goalPrompt: prompt,
+    promptEnhancement: {
+      version: PROMPT_ENHANCEMENT_VERSION,
+      methodology: PROMPT_ENHANCEMENT_METHODOLOGY,
+      mode: PROMPT_ENHANCEMENT_MODE,
+      framework: PROMPT_ENHANCEMENT_FRAMEWORK,
+      perspectives: PROMPT_ENHANCEMENT_PERSPECTIVES,
+      clearScore: score.total,
+      clearBreakdown: score.breakdown,
+      maxChars: options.maxGoalPromptChars,
+      charCount: prompt.length,
+    },
+  };
+}
+
+function normalizePromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const raw = rawEnhancement && typeof rawEnhancement === 'object' ? rawEnhancement : {};
+  const score = scoreEnhancedGoalPrompt(goalPrompt);
+  return {
+    version: sanitizeInlineText(raw.version || PROMPT_ENHANCEMENT_VERSION, 80),
+    methodology: sanitizeInlineText(raw.methodology || PROMPT_ENHANCEMENT_METHODOLOGY, 80),
+    mode: sanitizeInlineText(raw.mode || PROMPT_ENHANCEMENT_MODE, 80),
+    framework: sanitizeInlineText(raw.framework || PROMPT_ENHANCEMENT_FRAMEWORK, 80),
+    perspectives: Array.isArray(raw.perspectives) && raw.perspectives.length > 0
+      ? raw.perspectives.map((entry) => sanitizeInlineText(entry, 80)).filter(Boolean).slice(0, 8)
+      : PROMPT_ENHANCEMENT_PERSPECTIVES,
+    clearScore: score.total,
+    clearBreakdown: score.breakdown,
+    maxChars: options.maxGoalPromptChars,
+    charCount: goalPrompt.length,
+  };
+}
+
+function normalizeGoalPromptFields(rawGoal, objective, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const fallback = buildEnhancedGoalPrompt(objective, options);
+  const storedPrompt = sanitizePromptText(rawGoal?.goalPrompt || '', options.maxGoalPromptChars);
+  const goalPrompt = storedPrompt || fallback.goalPrompt;
+  return {
+    goalPrompt,
+    promptEnhancement: normalizePromptEnhancement(rawGoal?.promptEnhancement || fallback.promptEnhancement, goalPrompt, options),
+  };
 }
 
 function normalizeTokenBudget(value) {
@@ -461,12 +610,15 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
 
   const createdAtMs = Number.isFinite(rawGoal.createdAtMs) ? Math.trunc(rawGoal.createdAtMs) : nowMs(options);
   const updatedAtMs = Number.isFinite(rawGoal.updatedAtMs) ? Math.trunc(rawGoal.updatedAtMs) : createdAtMs;
+  const promptFields = normalizeGoalPromptFields(rawGoal, objective, options);
 
   return {
     ...rawGoal,
     sessionId: sessionID,
     goalId: sanitizeInlineText(rawGoal.goalId || goalIdFromFactory(options), 160).replace(/\s+/g, '-'),
     objective,
+    goalPrompt: promptFields.goalPrompt,
+    promptEnhancement: promptFields.promptEnhancement,
     status: rawGoal.status,
     tokenBudget: rawGoal.tokenBudget === undefined ? null : rawGoal.tokenBudget,
     tokensUsed: Number.isFinite(rawGoal.tokensUsed) ? Math.max(0, Math.trunc(rawGoal.tokensUsed)) : 0,
@@ -631,11 +783,14 @@ async function mutateGoal(sessionID, mutator, rawOptions = {}) {
 function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const timestamp = nowMs(options);
+  const promptFields = buildEnhancedGoalPrompt(objective, options);
 
   return {
     sessionId: requireSessionID(sessionID),
     goalId: goalIdFromFactory(options),
     objective,
+    goalPrompt: promptFields.goalPrompt,
+    promptEnhancement: promptFields.promptEnhancement,
     status: 'active',
     tokenBudget,
     tokensUsed: 0,
@@ -688,6 +843,7 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
   return mutateGoal(sessionID, (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
+    const promptFields = buildEnhancedGoalPrompt(sanitizedObjective, options);
     if (current && current.objective === sanitizedObjective) {
       if (current.status !== 'active' && current.status !== 'paused') {
         return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
@@ -695,6 +851,8 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
       return {
         ...current,
         status: 'active',
+        goalPrompt: promptFields.goalPrompt,
+        promptEnhancement: promptFields.promptEnhancement,
         tokenBudget,
         updatedAtMs: timestamp,
         updatedAt: isoFromMs(timestamp),
@@ -958,11 +1116,15 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
 
 function renderContinuationPrompt(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const objective = sanitizeInlineText(goal?.objective, options.maxObjectiveChars);
+  const objectivePreviewChars = Math.max(60, Math.min(600, Math.floor(options.maxInjectionChars * 0.12)));
+  const objective = sanitizeInlineText(goal?.objective, Math.min(options.maxObjectiveChars, objectivePreviewChars));
+  const goalPrompt = sanitizePromptText(goal?.goalPrompt || goal?.objective, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
   return clampText([
     '[active_goal_continuation]',
     `objective: ${objective}`,
+    'goal_prompt:',
+    goalPrompt,
     `last_check: ${goal?.lastVerifierVerdict || 'not_evaluated'} ; reason: ${reason}`,
     'instruction: Continue the active goal from the current session context. Do not ask for confirmation unless blocked by missing permission or user input. End only when the verifier can prove completion or the work is blocked.',
     '[/active_goal_continuation]',
@@ -1188,7 +1350,9 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
 function renderGoalInjection(goal, rawOptions = {}) {
   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
   const options = normalizeOptions(rawOptions);
-  const objective = sanitizeInlineText(goal.objective, options.maxObjectiveChars);
+  const objectivePreviewChars = Math.max(60, Math.min(600, Math.floor(options.maxInjectionChars * 0.12)));
+  const objective = sanitizeInlineText(goal.objective, Math.min(options.maxObjectiveChars, objectivePreviewChars));
+  const goalPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
   const tokensUsed = Number.isFinite(goal.tokensUsed) ? Math.max(0, Math.trunc(goal.tokensUsed)) : 0;
@@ -1198,18 +1362,20 @@ function renderGoalInjection(goal, rawOptions = {}) {
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
   const goalId = sanitizeInlineText(goal.goalId, 160).replace(/\s+/g, '-');
   const directive = 'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.';
-  const buildBlock = (objectiveText) => [
+  const buildBlock = (promptText) => [
     `[active_goal:${goalId}]`,
     'status: active',
-    `objective: ${objectiveText}`,
+    `objective: ${objective}`,
+    'goal_prompt:',
+    promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
     `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}/${maxAutoTurns}`,
     directive,
     '[/active_goal]',
   ].join('\n');
-  const objectiveBudget = options.maxInjectionChars - buildBlock('').length;
+  const promptBudget = Math.max(3, options.maxInjectionChars - buildBlock('').length);
 
-  return buildBlock(clampInjectionObjective(objective, objectiveBudget));
+  return buildBlock(sanitizePromptText(goalPrompt, promptBudget));
 }
 
 async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions = {}) {
@@ -1250,6 +1416,12 @@ function goalStateLines(action, goal, rawOptions = {}) {
     `goal_id=${goal.goalId}`,
     `status=${goal.status}`,
     `objective=${quoteValue(goal.objective)}`,
+    `goal_prompt=${quoteValue(goal.goalPrompt || '')}`,
+    `prompt_framework=${quoteValue(goal.promptEnhancement?.framework || '')}`,
+    `prompt_methodology=${quoteValue(goal.promptEnhancement?.methodology || '')}`,
+    `prompt_clear_score=${goal.promptEnhancement?.clearScore ?? 'unknown'}`,
+    `prompt_char_count=${goal.promptEnhancement?.charCount ?? String(goal.goalPrompt || '').length}`,
+    `prompt_max_chars=${goal.promptEnhancement?.maxChars ?? normalizeOptions(rawOptions).maxGoalPromptChars}`,
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `tokens_used=${goal.tokensUsed}`,
     `time_used_seconds=${goal.timeUsedSeconds}`,
@@ -1486,6 +1658,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
 const __test = Object.freeze({
   GoalError,
   accountUsage,
+  buildEnhancedGoalPrompt,
   clearGoal,
   ensureGoalStateDir,
   executeGoalAction,

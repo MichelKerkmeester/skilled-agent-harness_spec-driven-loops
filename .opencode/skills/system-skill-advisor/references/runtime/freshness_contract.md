@@ -109,7 +109,7 @@ Every caller that uses an advisor response must inspect `trustState` plus act ac
 
 | Caller Type | live | stale | absent | unavailable |
 |---|---|---|---|---|
-| Hook adapter (Claude, Codex, OpenCode) | Use recommendation directly | Use with caveat, log staleness | Skip recommendation, defer to keyword matching against `trigger_phrases` | Skip recommendation, fall back to Python shim |
+| Hook adapter (Claude, OpenCode, OpenCode) | Use recommendation directly | Use with caveat, log staleness | Skip recommendation, defer to keyword matching against `trigger_phrases` | Skip recommendation, fall back to Python shim |
 | MCP client (direct call) | Use recommendation directly | Call `advisor_rebuild` first if confidence matters | Call `advisor_rebuild`. Do not act on empty result | Wait for subsystem recovery or use Python shim |
 | Python shim (`skill_advisor.py`) | Use native response | Pass through with stale annotation | Compute fallback locally | Compute fallback locally |
 | Validation harness (`advisor_validate`) | Run as configured | Trigger rebuild before measurement | Trigger rebuild before measurement | Fail the validate run with clear error |

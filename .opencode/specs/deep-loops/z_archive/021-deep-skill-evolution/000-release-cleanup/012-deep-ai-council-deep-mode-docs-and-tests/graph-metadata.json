@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council deep-mode docs",
+      "deep-ai-council follow-on",
+      "findings-registry reference",
+      "deep-ai-council script tests",
+      "DAC-001 narrative reconciliation",
+      "deep-ai-council follow-on plan",
+      "deep-mode docs plan",
+      "findings-registry reference plan",
+      "deep-ai-council follow-on tasks",
+      "deep-mode docs tasks",
+      "deep-ai-council follow-on checklist",
+      "deep-ai-council follow-on summary"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "deep-mode",
+      "docs",
+      "follow-on",
+      "findings-registry",
+      "reference",
+      "script",
+      "tests",
+      "dac-001",
+      "narrative",
+      "reconciliation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session → topic → round, exposed via `/deep:ask-ai-council`) is implemented in `scripts/orchestrate-session.cjs` + `orchestrate-topic.cjs` + `scripts/lib/findings-registry.cjs` with no reference documentation",
+    "created_at": "2026-05-24T06:00:00.000Z",
+    "last_save_at": "2026-06-23T03:49:50.673Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1bbc8e9caa4043f471af98f24a78f531a6f746ff37e60bc2e0c7ee891846b1e",
+    "source_doc_hashes": {
+      "spec.md": "5df3127fe34818664221105277b4f7cbd530f2f625e1aba4d5b0abc196469b3a",
+      "plan.md": "169d55f7b0cd2018cdc9f0b59d00cd4f08fae28b200a5ad68248070686e9d449",
+      "tasks.md": "d803cafc3afbeab521ef209049213ebb94cefa6faa8afa68ab85802fb563bce5",
+      "checklist.md": "5a3e19f577fc923e24a640c978e79e0bb806a96fc1fee34df3e3d0ac8e915db3",
+      "implementation-summary.md": "335f048c978a48ad2b973a8b011c5f494b2afa1833df4cc70dd9d4d2c330af63"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

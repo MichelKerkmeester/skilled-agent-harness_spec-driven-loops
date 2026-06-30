@@ -155,7 +155,7 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 - Hyphen-separated
 - Action-noun structure
 
-**Good examples:** `fix-typo`, `add-auth`, `mcp-code-mode`, `cli-codex`
+**Good examples:** `fix-typo`, `add-auth`, `mcp-code-mode`, `cli-opencode`
 
 ### Manual Context Save
 

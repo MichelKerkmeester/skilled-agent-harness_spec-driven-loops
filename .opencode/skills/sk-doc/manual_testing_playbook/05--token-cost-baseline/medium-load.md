@@ -64,7 +64,7 @@ Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: record input/output token counts as median baseline.
+- **cli-opencode (gpt-5.5/high/fast)**: record input/output token counts as median baseline.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: record input/output token counts as median baseline.
 
 ## Success Criteria

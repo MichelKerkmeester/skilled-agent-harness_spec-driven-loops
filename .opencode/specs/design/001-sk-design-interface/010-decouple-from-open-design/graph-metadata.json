@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/010-decouple-from-open-design",
+  "spec_folder": "design/001-sk-design-interface/010-decouple-from-open-design",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design-interface decouple open design",
+      "standalone interface design skill",
+      "real_ui_loop split parity doc",
+      "phase 010 spec",
+      "decouple open design plan",
+      "split parity doc plan",
+      "phase 010 plan",
+      "decouple open design tasks",
+      "phase 010 tasks",
+      "tasks core",
+      "decouple open design done",
+      "real_ui_loop split status"
+    ],
+    "key_topics": [
+      "sk-design-interface",
+      "decouple",
+      "open",
+      "design",
+      "standalone",
+      "interface",
+      "skill",
+      "split",
+      "parity",
+      "doc",
+      "phase",
+      "010"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ownership",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strip Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Open",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design-interface` is vendored from Anthropic's Apache-2.0 `frontend-design` skill and is meant to be reusable standalone, but it accumulated ~101 references to the internal `mcp-open-design` skill and the Open Design app across 23 files",
+    "created_at": "2026-06-17T00:00:00Z",
+    "last_save_at": "2026-06-23T03:49:48.445Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:35f40c2b4f0e1b289b4d15a23703e100dff921cdaeca3268e88122d9942a17f8",
+    "source_doc_hashes": {
+      "spec.md": "42f24b44d1f2fb77511130d3503b3908e70c792e6a16a23120aaffbebbbd5fdb",
+      "plan.md": "28dd713fdbd9bfa8be16b09f5474c805a63cee10aabd2e16f11dfc171721a0f0",
+      "tasks.md": "6929415c6c699bc69d2fd7a4a529049bdebf56b99c5ccf57442a6c2c90bd969e",
+      "implementation-summary.md": "fa151dae852382fcf6b619b809f52b132e37023e0bee44ff8da237fb269f70ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

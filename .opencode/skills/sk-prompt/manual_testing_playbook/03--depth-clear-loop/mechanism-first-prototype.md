@@ -45,7 +45,7 @@ Refactor my microservices explanation prompt; verify Prototype orders WHY and co
 ### Commands
 
 1. `sk-prompt: Refactor my prompt for explaining microservices — explain WHY they help before WHAT they are.`
-2. `agent: @prompt-improver raw_task="Improve a prompt that teaches microservices using WHY-before-WHAT ordering." task_type=generation target_cli=codex complexity_hint=6 constraints="First establish mechanism and context, then instructions."`
+2. `agent: @prompt-improver raw_task="Improve a prompt that teaches microservices using WHY-before-WHAT ordering." task_type=generation target_cli=opencode complexity_hint=6 constraints="First establish mechanism and context, then instructions."`
 3. `bash: rg 'Mechanism First|WHY then WHAT|Prototype' .opencode/skills/sk-prompt/references/depth_framework.md`
 
 ### Expected

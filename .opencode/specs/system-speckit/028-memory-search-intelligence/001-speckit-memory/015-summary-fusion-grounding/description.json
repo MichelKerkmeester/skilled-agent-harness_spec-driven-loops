@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
+  "description": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coar",
+  "keywords": [
+    "memory",
+    "mcp",
+    "already",
+    "computes",
+    "community",
+    "per-chunk",
+    "summaries",
+    "evidence",
+    "never",
+    "participates",
+    "main",
+    "ranked",
+    "blend",
+    "coar"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.702Z",
+  "specId": "015",
+  "folderSlug": "summary-fusion-grounding",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -45,7 +45,7 @@ As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Ve
 ### Commands
 
 1. `sk-prompt: Run @prompt-improver on my data extraction prompt and return the structured output block exactly as documented.`
-2. `agent: @prompt-improver raw_task="Improve a data extraction prompt for reliable CLI handoff." task_type=generation target_cli=codex complexity_hint=7 constraints="Return the documented five-field structured output block."`
+2. `agent: @prompt-improver raw_task="Improve a data extraction prompt for reliable CLI handoff." task_type=generation target_cli=opencode complexity_hint=7 constraints="Return the documented five-field structured output block."`
 3. `bash: rg 'Structured Output Block|FRAMEWORK|CLEAR_SCORE|RATIONALE|ENHANCED_PROMPT|ESCALATION_NOTES' .opencode/skills/sk-prompt/SKILL.md`
 
 ### Expected

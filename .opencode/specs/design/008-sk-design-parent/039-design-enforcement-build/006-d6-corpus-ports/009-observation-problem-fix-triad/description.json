@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "description": "An audit finding used to jump straight to the diagnosis and the fix",
+  "keywords": [
+    "audit",
+    "finding",
+    "used",
+    "jump",
+    "straight",
+    "diagnosis",
+    "fix"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.292Z",
+  "specId": "009",
+  "folderSlug": "observation-problem-fix-triad",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

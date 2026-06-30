@@ -527,7 +527,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'deep-loop-workflows' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'mcp-chrome-devtools' && /\b(\.codex\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
+  if (skillId === 'mcp-chrome-devtools' && /\b(\.opencode\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
     return true;
   }
   // Browser/devtools inspection is a genuine chrome-devtools task even though
@@ -535,9 +535,6 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   // explainer floor when the prompt carries devtools-specific vocabulary.
   if (skillId === 'mcp-chrome-devtools'
     && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser))\b/.test(promptLower)) {
-    return true;
-  }
-  if (skillId === 'cli-codex' && /\b\.codex\/agents\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {

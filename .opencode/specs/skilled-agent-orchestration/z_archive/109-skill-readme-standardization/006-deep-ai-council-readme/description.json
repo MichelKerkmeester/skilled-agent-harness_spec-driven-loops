@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/006-deep-ai-council-readme",
+  "description": "The deep-ai-council README is a tabular reference card with no problem-first entry point",
+  "keywords": [
+    "deep-ai-council",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.323Z",
+  "specId": "006",
+  "folderSlug": "deep-ai-council-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

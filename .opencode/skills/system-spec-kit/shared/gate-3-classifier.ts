@@ -4,7 +4,7 @@
 // Shared typed classifier for the Gate 3 (SPEC FOLDER QUESTION) trigger surface.
 // Addresses classifier edge cases from the foundational-runtime deep review.
 //
-// Runtime root docs (AGENTS.md, CLAUDE.md, CODEX.md) and the
+// Runtime root docs (AGENTS.md, CLAUDE.md) and the
 // speckit command entry docs cite this module as the machine contract.
 // The prose trigger lists in those docs remain as human-readable references
 // but the authoritative list of tokens lives here.

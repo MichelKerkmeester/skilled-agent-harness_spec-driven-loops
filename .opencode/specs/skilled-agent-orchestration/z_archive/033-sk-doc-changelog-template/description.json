@@ -1,0 +1,31 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template",
+  "description": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelogtempl",
+  "keywords": [
+    "canonical",
+    "changelog",
+    "release-notes",
+    "template",
+    "previously",
+    "lived",
+    "create-command",
+    "asset",
+    "path",
+    "opencode",
+    "commands",
+    "create",
+    "assets",
+    "changelogtempl"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.296Z",
+  "specId": "033",
+  "folderSlug": "sk-doc-changelog-template",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-04-26_10-32__moved-canonical-changelog-and-release-notes.md"
+  ]
+}

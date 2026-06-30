@@ -48,7 +48,14 @@
       "spec.md",
       "plan.md",
       "checklist.md",
-      "tasks.md"
+      ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      "scratch/faithful-import/dist/bento-canvas.html",
+      "handover.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+      "tasks.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -94,9 +101,51 @@
         "source": "derived"
       },
       {
+        "name": "gen-tile.mjs",
+        "kind": "file",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "bento-canvas.html",
+        "kind": "file",
+        "path": "scratch/faithful-import/dist/bento-canvas.html",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "contrast_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -152,69 +201,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Design System Import",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four Anobel bento feature-visual prototypes exist as Design Component `.dc.html` files with inline styles and `<sc-for>` templating loops",
     "created_at": "2026-06-22T13:16:29.310Z",
-    "last_save_at": "2026-06-23T03:49:48.296Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-29T13:39:39.462Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:6fe2c75d025ea1520aa50b17935c0f94e45a06aaf1ff86843c7cdd3911a6969c",
+    "source_fingerprint": "sha256:36ed649d1f6b81fc2afbebefdc4ee2287f8887dc59e9174e51a8f50b35005457",
     "source_doc_hashes": {
       "spec.md": "a91ed42243731131179876fe9e13608f61591ae911819d186efe88d2a38f68c3",
       "plan.md": "4c1e79328b27795b17512d343536c100935721f5c07dab0cd725fd031ba0aa3e",
       "tasks.md": "88eda5d95a9129db2bdf80e1c4b39907dbd9e8aec39f1ca5831aa967366b85dc",
       "checklist.md": "d0de6ddc7e606f610fac166f850a0eff539dc267bc680877a9ad924b82419522",
-      "implementation-summary.md": "fd21b9215bf429cfbe7680c58537539cc0d0604b352966d9ee72d708bd2ad1c0"
+      "implementation-summary.md": "9548cbf04a53a6ba71155068ef5c0adc9a69679864c40a0021e144b09cdb7488",
+      "research/research.md": "27c9be24ed3e28ea8d4d8ee6f68a3c352cd2fea838231bc3d9ca0d193ebd245a",
+      "handover.md": "e15411f928a8726d2be2cae658e78b47bed67674030c71f4d863e2ba74c94241"
     },
     "last_active_child_id": null,
     "last_active_at": null

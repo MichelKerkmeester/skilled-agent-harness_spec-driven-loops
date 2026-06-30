@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/053-mcp-figma-transfer",
+  "description": "This phased decomposition tracks mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from CodeEnvironment/Public, reframe as a Figma MCP",
+  "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
+    "mcp-figma",
+    "transfer",
+    "tri-repo",
+    "withdraw",
+    "developer",
+    "skill",
+    "codeenvironment",
+    "public",
+    "reframe",
+    "figma",
+    "mcp"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.592Z",
+  "specId": "053",
+  "folderSlug": "mcp-figma-transfer",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

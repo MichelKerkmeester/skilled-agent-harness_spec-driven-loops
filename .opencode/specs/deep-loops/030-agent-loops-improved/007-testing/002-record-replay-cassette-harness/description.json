@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/007-testing/002-record-replay-cassette-harness",
+  "description": "Convergence math in `convergence.cjs` is modified frequently (score-delta, observation-threshold, time-decay, fuzzy-merge) but there is no way to veri",
+  "keywords": [
+    "convergence",
+    "math",
+    "cjs",
+    "modified",
+    "frequently",
+    "score-delta",
+    "observation-threshold",
+    "time-decay",
+    "fuzzy-merge",
+    "way",
+    "veri"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.483Z",
+  "specId": "002",
+  "folderSlug": "record-replay-cassette-harness",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "007-testing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

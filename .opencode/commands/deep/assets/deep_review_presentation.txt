@@ -16,7 +16,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_review_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -35,9 +35,11 @@ PRE-BOUND SETUP ANSWERS:
   review_dimensions: all  # or comma-separated subset: correctness, security, traceability, maintainability
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
+ lineage_mode: auto  # one of: auto | resume | restart
   maxIterations: 10
   convergenceThreshold: 0.10
-  executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode
+  stop_policy: convergence  # one of: convergence | max-iterations
+  executor: native  # one of: native | cli-opencode | cli-claude-code | cli-opencode
   executor_model: ""  # optional, executor-specific (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional
@@ -64,8 +66,10 @@ Rules:
 | `review_dimensions` | Y | flag `--dims` if supported by caller, marker `review_dimensions`, or default | `"all"` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
+| `stop_policy` | Y | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default | `convergence` | N |
 | `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
 | `executor_model` | N | flag `--model`, marker `executor_model`, or executor-specific validation | none | N |
 | `executor_config_dir` | N | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default | none | N |
@@ -73,10 +77,15 @@ Rules:
 | `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 | `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
+| `config.fanout_lineage_artifact_dir` | N | internal flag `--fanout-lineage-artifact-dir=PATH` or marker `config.fanout_lineage_artifact_dir` | none | N |
 | `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
 | `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
 
-**Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native fan-out (count N for `native` executor) runs N sequential `@deep-review` sub-agents; CLI fan-out runs N headless subprocesses in the capped pool.
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
+
+**Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `review/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
+
+**Stop policy:** `stop_policy=convergence` preserves normal deep-review behavior: legal convergence may stop before `maxIterations`. `stop_policy=max-iterations` makes convergence signals telemetry-only until the iteration ceiling; before `maxIterations`, broaden the next angle instead of synthesizing. Terminal manual pause, user stop, unrecoverable error, and `maxIterationsReached` still stop.
 
 ### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode
 
@@ -100,14 +109,18 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 3. PARSE optional flags from $ARGUMENTS:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
+   |-- --stop-policy=convergence|max-iterations -> stop_policy = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode`)
+   |-- --restart -> lineage_mode = restart
+   |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-opencode` | `cli-claude-code` | `cli-opencode`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
+   |-- --fanout-lineage-artifact-dir=PATH -> config.fanout_lineage_artifact_dir = PATH (internal single-lineage command invocation only)
    |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
    |     (repeatable; each occurrence adds one entry to config.fanout.executors)
    |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch
@@ -118,7 +131,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -134,7 +147,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Validation hook:
    - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
-   - Invalid combinations fail fast with clear errors, including `cli-codex` without `--model` and reserved-but-unwired executor kinds
+   - Invalid combinations fail fast with clear errors, including `cli-opencode` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
@@ -144,7 +157,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
-   - Include Q-Exec only when `--executor` is NOT present and the target text does NOT already mention executor hints such as `cli-codex`, `codex`, or `gpt-5.4`
+   - Include Q-Exec only when `--executor` is NOT present and the target text does NOT already mention executor hints such as `cli-opencode`, ``, or `gpt-5.4`
    - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 
    Q0. Review Target (if not in command): What to review?
@@ -176,7 +189,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-review agent with Opus.
-     B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
+     B) cli-opencode — ` exec` with --model X -c model_reasoning_effort -c service_tier.
       C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
 
@@ -195,8 +208,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_choice = [A/B/C/D from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
+   - lineage_mode = [auto/resume/restart from flag, marker, or default auto]
    - maxIterations = [from Q3 or flag or default 7]
    - convergenceThreshold = [from flag or default 0.10]
+   - stop_policy = [from flag, marker, or default convergence]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
@@ -211,7 +226,9 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `review_target` | `review_target_type` | `review_dimensions`
-- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold`
+- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `stop_policy`
+- `lineage_mode`
+- `config.fanout_lineage_artifact_dir` when present
 
 ## 2. Dashboard / Checkpoint Layout
 
@@ -408,14 +425,14 @@ Convergence thresholds and recovery settings used by this command are a governed
 
 # Fan-out: two CLI lineages in parallel
 /deep:review:auto "skill:sk-code" \
-  --executor=cli-codex --model=o4-mini --label=codex \
+  --executor=cli-opencode --model=o4-mini --label= \
   --executor=cli-claude-code --model=claude-opus-4-8 --config-dir=~/.claude-account2 --label=claude \
   --concurrency=2
 
 # Fan-out: native + CLI (mixed)
 /deep:review:auto "agent:deep-research" \
   --executor=native --count=1 --label=native \
-  --executor=cli-codex --model=o4-mini --count=2 \
+  --executor=cli-opencode --model=o4-mini --count=2 \
   --concurrency=3
 ```
 

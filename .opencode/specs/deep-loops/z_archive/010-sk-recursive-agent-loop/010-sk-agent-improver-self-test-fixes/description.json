@@ -1,0 +1,21 @@
+{
+  "specFolder": "deep-loops/z_archive/010-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+  "description": "Phase 009 (self-test) found 5 issues",
+  "keywords": [
+    "phase",
+    "009",
+    "self-test",
+    "found",
+    "issues"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.202Z",
+  "specId": "010",
+  "folderSlug": "sk-agent-improver-self-test-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "041-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

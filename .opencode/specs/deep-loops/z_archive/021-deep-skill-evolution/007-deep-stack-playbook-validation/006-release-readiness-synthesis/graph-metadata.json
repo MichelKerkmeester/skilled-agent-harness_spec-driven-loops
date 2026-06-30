@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop release readiness synthesis",
+      "deep loop playbook dispatch runbook",
+      "007 phase 006 synthesis",
+      "deep-loop synthesis plan",
+      "deep loop release readiness plan",
+      "007 phase 006 plan",
+      "deep-loop synthesis tasks",
+      "deep loop release readiness tasks",
+      "007 phase 006 tasks",
+      "deep-loop synthesis checklist",
+      "deep loop release readiness checklist",
+      "007 phase 006 checklist"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "release",
+      "readiness",
+      "synthesis",
+      "deep",
+      "loop",
+      "playbook",
+      "dispatch",
+      "runbook",
+      "007",
+      "phase",
+      "006"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Child",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
+    "created_at": "2026-05-27T07:08:08.399Z",
+    "last_save_at": "2026-06-23T03:49:51.061Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b8b8e453a6b2eecf8c05153d140df724c957307485619b619b9a99f328b7bff",
+    "source_doc_hashes": {
+      "spec.md": "59f97d819afd793c988095b22db97d431dc062626c983a4f57dd3894ded55c1c",
+      "plan.md": "36324db5991081b9a2dcc60672794f966195f6231e6bfb9382b6950c8d4f8cf5",
+      "tasks.md": "1ad4ab2f3cb136046b5aea0b8488218053986fa0b2ab9818f6bb373a1f07d4a8",
+      "checklist.md": "92ecb5e9ea6d772fc31a7b8246eb96c2c2a4826194bc88e9f90f4c9d72413616",
+      "implementation-summary.md": "c328c94050cbf08e8f26a866fa8270836a239a4dedb764abcf75144b013f6b63"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

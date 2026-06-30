@@ -15,7 +15,7 @@ version: 0.8.0.2
 
 ## 1. OVERVIEW
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/skill-advisor.cjs` as a CLI-only layer over the existing advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched. The OpenCode bridge gained CLI fallback routing with its primary path intact, and the Claude/Codex prompt-submit hooks gained the warm-only CLI fallback.
+The 028 MCP-to-CLI program shipped `node .opencode/bin/skill-advisor.cjs` as a CLI-only layer over the existing advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched. The OpenCode bridge gained CLI fallback routing with its primary path intact, and the Claude/OpenCode prompt-submit hooks gained the warm-only CLI fallback.
 
 ## 2. HOW IT WORKS
 
@@ -42,7 +42,7 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 | `mcp_server/skill-advisor-cli-manifest.ts` | CLI manifest | Hand-maintained command registry, held byte-identical to `TOOL_DEFINITIONS` by the manifest parity suite |
 | `mcp_server/advisor-server.ts` | Daemon | Daemon-side trust default (`MK_SKILL_ADVISOR_TRUST_DEFAULT`) |
 | `mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Plugin bridge | CLI fallback route with primary path untouched |
-| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/Codex prompt-submit hooks |
+| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks |
 
 ### Validation And Tests
 

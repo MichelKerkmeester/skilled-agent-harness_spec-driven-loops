@@ -1,0 +1,14 @@
+{
+  "key": "mimo-quality-s2",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "quality",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 84788,
+  "bytes": 52642,
+  "stderrTail": ""
+}

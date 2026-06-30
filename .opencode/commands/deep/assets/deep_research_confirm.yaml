@@ -697,18 +697,6 @@ workflow:
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
-        if_cli_codex:
-          command: |
-            codex exec \
-              --model "{config.executor.model}" \
-              -c model_reasoning_effort="{config.executor.reasoningEffort}" \
-              -c service_tier="{config.executor.serviceTier}" \
-              -c approval_policy=never \
-              --sandbox workspace-write \
-              - < "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
-          working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
-          wait_for_completion: true
         if_cli_copilot:
           command: |
             PROMPT_PATH='{state_paths.prompt_dir}/iteration-{current_iteration}.md'
@@ -774,7 +762,7 @@ workflow:
             - "opencode run takes a positional message; prompt is fed via command substitution"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"

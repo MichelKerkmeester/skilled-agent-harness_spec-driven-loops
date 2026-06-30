@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/067-cli-copilot-deprecation-due-to-price-hike",
+  "spec_folder": "skilled-agent-orchestration/z_archive/067-cli-copilot-deprecation-due-to-price-hike",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-copilot deprecation",
+      "cli-copilot removal",
+      "delete cli-copilot",
+      "cli-copilot price hike",
+      "remove copilot cli",
+      "skill advisor copilot purge",
+      "cli-copilot deprecation plan",
+      "cli-codex deletion batches",
+      "skill advisor purge plan",
+      "cli-copilot resource map",
+      "cli-copilot tasks",
+      "deprecation task list"
+    ],
+    "key_topics": [
+      "cli-copilot",
+      "deprecation",
+      "removal",
+      "delete",
+      "price",
+      "hike",
+      "remove",
+      "copilot",
+      "cli",
+      "skill",
+      "advisor",
+      "purge"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/README.md",
+      "matrix_runners/run-matrix.ts",
+      "matrix_runners/matrix-manifest.json",
+      "matrix_runners/README.md",
+      "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
+      "implementation-summary.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      "resource-map.md",
+      "checklist.md",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/cli-claude-code/README.md",
+      ".opencode/skills/cli-codex/README.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-matrix.ts",
+        "kind": "code",
+        "path": "matrix_runners/run-matrix.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-manifest.json",
+        "kind": "config",
+        "path": "matrix_runners/matrix-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "017-001-infrastructure-primitives.description.json",
+        "kind": "config",
+        "path": "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Total Deprecation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`",
+    "created_at": "2026-05-06T10:28:50.690Z",
+    "last_save_at": "2026-06-23T03:49:49.881Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:ef051588b2ea2fb4b096caa81fdc10c1f6de6696a38f6f2f3370e47845f80ffc",
+    "source_doc_hashes": {
+      "spec.md": "e0fce39ca21d513f52e9d0e8124960f6813906844edc76c18efde9edb8406d5a",
+      "plan.md": "f200e0bff0b977c1fefb48b95ec791ee581abe10cca4282113d23e50184fac15",
+      "tasks.md": "378a134144be9f4c47fe0ab61b5726cb09e3cb17c1f877afbb683ced1e4f4ccd",
+      "checklist.md": "14a04fce22850d2e72e94fba10358564ad3bbc627086d531a7157c8a854ee737",
+      "implementation-summary.md": "449978bc6840cfeb5af079092891ee4e86f71a996b96037defd1bab619929dec",
+      "resource-map.md": "01c78866a2e6fc420bf8fd71f55da170d5e0e2147bc0d14d53bec5d1c4f5f69a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

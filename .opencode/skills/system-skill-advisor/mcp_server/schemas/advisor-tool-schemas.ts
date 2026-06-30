@@ -322,7 +322,7 @@ export const AdvisorValidateInputSchema = z.object({
   // Capturing prompts to close that gap would violate the prompt-safety
   // invariant and is intentionally not supported.
   outcomeEvents: z.array(z.object({
-    runtime: z.enum(['claude', 'copilot', 'codex']),
+    runtime: z.enum(['claude', 'copilot', 'opencode']),
     outcome: z.enum(['accepted', 'corrected', 'ignored']),
     skillId: z.string().min(1),
     correctedSkillId: z.string().min(1).optional(),

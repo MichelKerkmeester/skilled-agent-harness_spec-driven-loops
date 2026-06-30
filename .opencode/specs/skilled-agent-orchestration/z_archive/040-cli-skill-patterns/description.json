@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/040-cli-skill-patterns",
+  "description": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an",
+  "keywords": [
+    "cli",
+    "skills",
+    "opencode",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-gemini",
+    "cli-opencode",
+    "expose",
+    "same",
+    "intent",
+    "orchestrate"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.345Z",
+  "specId": "040",
+  "folderSlug": "cli-skill-patterns",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

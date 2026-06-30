@@ -98,7 +98,7 @@ describe('filterContamination severity tracking', () => {
     const result = filterContamination(
       'Read tool on /src/file.ts',
       undefined,
-      { sourceCapabilities: getSourceCapabilities('codex-cli-capture') },
+      { sourceCapabilities: getSourceCapabilities('opencode-cli-capture') },
     );
 
     expect(result.hadContamination).toBe(true);

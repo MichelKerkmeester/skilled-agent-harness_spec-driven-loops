@@ -1,4 +1,0 @@
-# Raw model event streams and timing sidecars are reproducible via run-benchmark.mjs.
-# The parsed data lives in metrics.json, the analysis in benchmark-results.md.
-raw/
-meta/

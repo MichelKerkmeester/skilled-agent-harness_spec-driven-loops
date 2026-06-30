@@ -33,8 +33,8 @@ const SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {
     toolTitleWithPathExpected: true,
     prefersStructuredSave: true,
   },
-  'codex-cli-capture': {
-    source: 'codex-cli-capture',
+  'opencode-cli-capture': {
+    source: 'opencode-cli-capture',
     inputMode: 'captured',
     toolTitleWithPathExpected: false,
     prefersStructuredSave: true,

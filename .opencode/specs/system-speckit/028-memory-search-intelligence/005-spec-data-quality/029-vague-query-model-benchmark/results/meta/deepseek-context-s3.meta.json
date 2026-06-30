@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-context-s3",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "context",
+  "queryClass": "generic",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 83702,
+  "bytes": 105602,
+  "stderrTail": ""
+}

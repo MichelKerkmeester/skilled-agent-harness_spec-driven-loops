@@ -1,0 +1,1 @@
+{"type":"iteration","iter":30,"model":"mimo","angle":"Cross-check whether the CLI daemon front doors (.opencode/bin/spec-memory.cjs, code-index.cjs, skill-advisor.cjs) pass these undocumented envs to the daemon child, or whether CHILD_ENV_ALLOWLIST blocks them silently","at":"2026-06-27T06:22:28.221Z","findings_count":0,"parse_ok":false,"timed_out":true,"code":null}

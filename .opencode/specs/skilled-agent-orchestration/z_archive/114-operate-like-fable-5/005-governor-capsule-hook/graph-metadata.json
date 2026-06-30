@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/005-governor-capsule-hook",
+  "spec_folder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/005-governor-capsule-hook",
+  "parent_id": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fable-5 governor capsule",
+      "governor on the skill-advisor hook",
+      "per-turn governor reminder",
+      "fable governor render.ts",
+      "B2 governor capsule",
+      "fable-5 governor capsule plan",
+      "render.ts governor capsule",
+      "skill-advisor reminder governor",
+      "B2 implementation plan",
+      "fable-governor.md plan",
+      "fable-5 governor capsule tasks",
+      "render.ts governor tasks"
+    ],
+    "key_topics": [
+      "fable-5",
+      "governor",
+      "capsule",
+      "skill-advisor",
+      "hook",
+      "per-turn",
+      "reminder",
+      "fable",
+      "render",
+      "plan",
+      "implementation",
+      "fable-governor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/constitutional/fable-governor.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "fable-governor.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/fable-governor.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Static",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a WHY",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` / `CLAUDE.md`, which decay out of context as a session grows; there is no behavioral setpoint that re-asserts itself every turn",
+    "created_at": "2026-06-15T14:06:37Z",
+    "last_save_at": "2026-06-23T03:49:48.499Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:017928d4850d0bf47a812c93bcba367c13f8c573f8c0419b9087d6552db72284",
+    "source_doc_hashes": {
+      "spec.md": "103a5c4f41b891e3ce967e00d7902e2d4d167dbe390ea8c05bf3539af7d8bbbe",
+      "plan.md": "acd7504806063659991870122a24a99efe8cd0f8108b0a1620a1e80c5db90b3c",
+      "tasks.md": "3ddce75a319247405c2cad36807395b3d9e088173deaf1d281eb774f1ae71bf4",
+      "checklist.md": "e63bbfb03bee217f410a68a24cd736acb66dfc8b0fdf8405e13b80331a7a920f",
+      "implementation-summary.md": "06b909c1c4ad950ab9ccde1ff78899324e1a3d60e5454a68f79b5a9085fc1c95"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

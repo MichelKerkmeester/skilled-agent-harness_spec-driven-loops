@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-routing-s3",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "routing",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 104141,
+  "bytes": 83935,
+  "stderrTail": ""
+}

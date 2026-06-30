@@ -1,0 +1,14 @@
+{
+  "key": "mimo-authentication-s3",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "authentication",
+  "queryClass": "off-corpus",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 121014,
+  "bytes": 61701,
+  "stderrTail": ""
+}

@@ -1,0 +1,29 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Scaffolded phase parent and 4 children; awaiting phase 001 dispatch.",
+  "specFolder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+  "description": "Phase parent for the four-phase migration that brings .opencode/skills/, .opencode/agents/, .opencode/commands/ into compliance with opencode official",
+  "keywords": [
+    "phase",
+    "parent",
+    "four-phase",
+    "migration",
+    "brings",
+    "opencode",
+    "skills",
+    "agents",
+    "commands",
+    "compliance",
+    "official"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.809Z",
+  "specId": "001",
+  "folderSlug": "rename-opencode-dirs",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "079-rename-opencode-dirs-to-plural"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

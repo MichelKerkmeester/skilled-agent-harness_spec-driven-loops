@@ -49,7 +49,7 @@ The code graph database lives SKILL-LOCAL, owned by and co-located with its skil
 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
 ```
 
-Every repo-managed runtime (`.claude` / `.codex` / `.opencode`) reaches this path through the
+Every repo-managed runtime (`.claude` / `.opencode` / `.opencode`) reaches this path through the
 `.opencode/skills` symlink, so the skill-local database is a single shared instance with no
 per-runtime fragmentation. It must not live under either of the following:
 

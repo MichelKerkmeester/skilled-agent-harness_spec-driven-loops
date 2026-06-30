@@ -1,0 +1,14 @@
+{
+  "key": "mimo-memory-s3",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "memory",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 94926,
+  "bytes": 57126,
+  "stderrTail": ""
+}

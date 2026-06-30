@@ -1,0 +1,96 @@
+{
+  "topic": "Review: .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism",
+  "mode": "review",
+  "sessionId": "2026-06-28T07:06:17.948Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/decision-record.md",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/description.json",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/graph-metadata.json",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism/tasks.md"
+  ],
+  "severityThreshold": "P2",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "executionMode": "auto",
+  "roundRobin": true,
+  "executorPlan": [
+    {
+      "iter": 1,
+      "model": "Kimi-K2.7",
+      "slug": "kimi-for-coding/k2p7",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 2,
+      "model": "MiniMax-M3",
+      "slug": "minimax/MiniMax-M3",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 3,
+      "model": "DeepSeek-v4-Pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "dimension": "security"
+    },
+    {
+      "iter": 4,
+      "model": "MiMo-v2.5-Pro",
+      "slug": "xiaomi/mimo-v2.5-pro",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 5,
+      "model": "Kimi-K2.7",
+      "slug": "kimi-for-coding/k2p7",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 6,
+      "model": "MiniMax-M3",
+      "slug": "minimax/MiniMax-M3",
+      "dimension": "maintainability"
+    },
+    {
+      "iter": 7,
+      "model": "DeepSeek-v4-Pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "dimension": "correctness"
+    },
+    {
+      "iter": 8,
+      "model": "MiMo-v2.5-Pro",
+      "slug": "xiaomi/mimo-v2.5-pro",
+      "dimension": "security"
+    },
+    {
+      "iter": 9,
+      "model": "Kimi-K2.7",
+      "slug": "kimi-for-coding/k2p7",
+      "dimension": "traceability"
+    },
+    {
+      "iter": 10,
+      "model": "MiniMax-M3",
+      "slug": "minimax/MiniMax-M3",
+      "dimension": "maintainability"
+    }
+  ],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-invocability-mechanism",
+  "createdAt": "2026-06-28T07:06:17.948Z",
+  "status": "initialized"
+}

@@ -1,0 +1,34 @@
+{
+  "specFolder": "deep-loops/z_archive/024-deep-loop-parallel-fanout/004-salvage-coverage-graph",
+  "description": "Make every iteration yield a usable artifact even when an executor doesn't write its file (weak CLIs / sandboxed writes), and ensure parallel lineages",
+  "keywords": [
+    "make",
+    "every",
+    "iteration",
+    "yield",
+    "usable",
+    "artifact",
+    "even",
+    "executor",
+    "doesn",
+    "write",
+    "file",
+    "weak",
+    "clis",
+    "sandboxed",
+    "writes",
+    "ensure",
+    "parallel",
+    "lineages"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.394Z",
+  "specId": "004",
+  "folderSlug": "salvage-coverage-graph",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -4,7 +4,7 @@ description: "Dispatches all CLI executor seats as one-shot read-only analysis p
 trigger_phrases:
   - "CLI council seats"
   - "cli-opencode seat"
-  - "cli-codex seat"
+  - "cli-opencode seat"
   - "council scaffold"
   - "one-shot analysis"
   - "multi-seat-dispatch"
@@ -20,7 +20,7 @@ version: 1.2.0.4
 
 Dispatches all CLI executor seats as one-shot read-only analysis passes over the shared focus via the council scaffold using `Promise.all` fan-out.
 
-CLI seats are the non-native members of the heterogeneous pool. Each CLI seat is a different model (e.g. MiMo, gpt, deepseek) dispatched via a different executor runtime (cli-opencode, cli-codex, cli-claude-code). They sweep the same current focus as native seats and return structured findings in the same output schema. The council scaffold handles concurrent dispatch and per-seat result aggregation.
+CLI seats are the non-native members of the heterogeneous pool. Each CLI seat is a different model (e.g. MiMo, gpt, deepseek) dispatched via a different executor runtime (cli-opencode, cli-claude-code). They sweep the same current focus as native seats and return structured findings in the same output schema. The council scaffold handles concurrent dispatch and per-seat result aggregation.
 
 ---
 
@@ -39,7 +39,7 @@ Each CLI seat performs exactly **one** read-only analysis pass per iteration —
 | Executor | Invocation | Read-Only Enforcement |
 |---|---|---|
 | `cli-opencode` | `opencode run` with `</dev/null` for closed stdin | No top-level `--agent` (rejects it); `read-only` sandbox |
-| `cli-codex` | `codex exec --model X -c model_reasoning_effort -c approval_policy=never` | `--sandbox read-only` |
+| `cli-opencode` | `opencode run --model X -c model_reasoning_effort -c approval_policy=never` | `--sandbox read-only` |
 | `cli-claude-code` | `claude -p ... --model X` | `--permission-mode plan` |
 
 ### Optional Autonomous-Lineage Mode

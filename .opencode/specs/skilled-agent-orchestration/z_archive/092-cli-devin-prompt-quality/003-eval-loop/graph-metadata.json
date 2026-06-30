@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/003-eval-loop",
+  "spec_folder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/003-eval-loop",
+  "parent_id": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/003 eval loop",
+      "cli-devin deep loop",
+      "swe 1.6 iteration run",
+      "hill-climbing convergence",
+      "113/003 plan",
+      "113/003 tasks",
+      "113/003 checklist",
+      "113/003 decisions",
+      "113/003 summary"
+    ],
+    "key_topics": [
+      "113",
+      "003",
+      "eval",
+      "loop",
+      "cli-devin",
+      "deep",
+      "swe",
+      "iteration",
+      "run",
+      "hill-climbing",
+      "convergence",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Loop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "require",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "insights",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "We have a rig (002) and a ratified design contract (001)",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-06-23T03:49:50.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd93dad9cf2d522220333149b8b4a6803e442111019cf469eda89063e46b9fc9",
+    "source_doc_hashes": {
+      "spec.md": "ca5330e0d15043b1b6389010a5f003487f9b6ad7b914f0ecbbb3395f111aff51",
+      "plan.md": "87b8f52ea58846fddffdd1b71275a20d6ce2d165646867c9c5824b450482533f",
+      "tasks.md": "e8bc92c388f58aee92744a06148adf6d32ff342f41b4ec5aac44af0bfe97344c",
+      "checklist.md": "715a318091d4ef2eba69d69d3d6016376fe94c63b705957cc45f86f0ea579dfd",
+      "decision-record.md": "a553c2880deb7ef810394b7205944aa4ead691e52afaf2171d537d87d3208b5f",
+      "implementation-summary.md": "8523c757ee9b74a7875df4f9587b5cf672d3f9727b676a3e198afc837bea28cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

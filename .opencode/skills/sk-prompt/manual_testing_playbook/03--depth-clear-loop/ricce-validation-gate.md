@@ -45,7 +45,7 @@ Strengthen my new-engineer onboarding prompt; verify the final output accounts f
 ### Commands
 
 1. `sk-prompt: Make my onboarding prompt for new engineers more rigorous — I want explicit role, instructions, context, constraints, and examples.`
-2. `agent: @prompt-improver raw_task="Improve an onboarding prompt for new engineers with explicit RICCE coverage." task_type=generation target_cli=codex complexity_hint=7 constraints="Return Role, Instructions, Context, Constraints, Examples status."`
+2. `agent: @prompt-improver raw_task="Improve an onboarding prompt for new engineers with explicit RICCE coverage." task_type=generation target_cli=opencode complexity_hint=7 constraints="Return Role, Instructions, Context, Constraints, Examples status."`
 3. `bash: rg 'RICCE|Role, Instructions, Context, Constraints, Examples|present or justified' .opencode/skills/sk-prompt/SKILL.md .opencode/skills/sk-prompt/references/depth_framework.md`
 
 ### Expected

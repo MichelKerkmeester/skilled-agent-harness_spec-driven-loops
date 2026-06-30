@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/050-agent-create",
+  "description": "Create new @create agent (4-runtime mirrors) as dedicated executor for /create:* commands. Uses sk-doc skill + templates. Aligned with updated sk-doc",
+  "keywords": [
+    "create",
+    "new",
+    "agent",
+    "4-runtime",
+    "mirrors",
+    "dedicated",
+    "executor",
+    "commands",
+    "uses",
+    "sk-doc",
+    "skill",
+    "templates",
+    "aligned",
+    "updated"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.529Z",
+  "specId": "050",
+  "folderSlug": "agent-create",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

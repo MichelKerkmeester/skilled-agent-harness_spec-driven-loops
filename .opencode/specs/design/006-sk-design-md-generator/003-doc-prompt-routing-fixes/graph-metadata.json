@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/006-sk-design-md-generator/003-doc-prompt-routing-fixes",
+  "spec_folder": "design/006-sk-design-md-generator/003-doc-prompt-routing-fixes",
+  "parent_id": "design/006-sk-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fabrication mandate removal",
+      "absent stamp",
+      "named principle evidence gate",
+      "comparative framing removal",
+      "per-section anti-fabrication ruleset"
+    ],
+    "key_topics": [
+      "fabrication",
+      "mandate",
+      "removal",
+      "absent",
+      "stamp",
+      "named",
+      "principle",
+      "evidence",
+      "gate",
+      "comparative",
+      "framing",
+      "per-section"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interpretive Fabrication",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview These",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "intra-system",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`designmdformat.md` requires a named depth principle (§9) and motion philosophy (§10) even with zero data; §3.4/style-guide §15 require a comparison to other systems the tool knows nothing about; the validator demands 15 sections while gold-standard docs use ~9-10",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-23T03:49:48.837Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab639d9bbfb93266c1cca2434848f28b9321e93611915f28cc29494d8ef64676",
+    "source_doc_hashes": {
+      "spec.md": "8c2f76470e21611bc1ebc9fd81754c0a22c13f42ede248f891d9e39efaae26cf",
+      "plan.md": "9369db1ddac2c91be952306a19a60a615445cb434112b348fc00e9ad8dac16ae",
+      "tasks.md": "931da9da215a13e3406163a24fb64f230c5e47fd2f8c8a746a6058acba0debb4",
+      "checklist.md": "03f93536df499bd8826b72903bfb607cf6105091730cf9cde118c4305671920b",
+      "implementation-summary.md": "4732f4c5bb51bb77bd0683d69bf416f656cadeaee19fddd5a8e792a5bfff257a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

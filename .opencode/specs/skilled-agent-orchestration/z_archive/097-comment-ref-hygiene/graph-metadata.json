@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene",
+  "spec_folder": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene/001-rule-and-cleanup",
+    "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene/002-active-enforcement-layer"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "comment hygiene",
+      "ephemeral artifact references",
+      "spec folder references in comments",
+      "sk-code comment rule",
+      "119 comment hygiene",
+      "comment hygiene resources",
+      "119 resource map"
+    ],
+    "key_topics": [
+      "comment",
+      "hygiene",
+      "ephemeral",
+      "artifact",
+      "references",
+      "spec",
+      "folder",
+      "comments",
+      "sk-code",
+      "rule",
+      "119",
+      "resources"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "001-rule-and-cleanup/spec.md",
+      "002-active-enforcement-layer/spec.md",
+      "resource-map.md",
+      ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+      ".claude/settings.local.json",
+      ".opencode/hooks/install-hooks.sh",
+      ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_quality_standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/install-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Forbid Ephemeral",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact References",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Comments",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comment Hygiene Program",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Enforcement Layer",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder Navigation",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and task/checklist ids — directly into inline code comments",
+    "created_at": "2026-05-27T00:00:00.000Z",
+    "last_save_at": "2026-06-23T03:49:51.124Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:9eb57d4d971e8ae4cc8cc692eeae7655db26eded37b27498ffa17cd5854d8f8f",
+    "source_doc_hashes": {
+      "spec.md": "df3c04dfc968294146184c0667f5120166ba1e9a69198e7dc3e819d332bcd04b",
+      "resource-map.md": "45897316611b57edefefa70346d19f3e5d5d5f48513e89c56eba32eaefbea32d"
+    },
+    "last_active_child_id": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene/002-active-enforcement-layer",
+    "last_active_at": "2026-05-30T11:45:59.328Z"
+  }
+}

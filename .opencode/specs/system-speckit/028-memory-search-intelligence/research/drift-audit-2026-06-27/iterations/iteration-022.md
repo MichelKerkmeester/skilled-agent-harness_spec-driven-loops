@@ -1,0 +1,24 @@
+# Iteration 22 — mimo
+
+**Angle:** Cross-check every command/agent `allowed-tools` list against the actual `TOOL_DEFINITIONS` and `advisor-tool-schemas` registries to find omitted or stale tool IDs (e.g., `skill_graph_propagate_enhances`, `embedder_status`, `session_health`).
+
+**Findings:** 6
+
+- **[P1] misalignment** `.opencode/commands/doctor/update.md:4` — /doctor:update missing L5 Lifecycle + L7 Maintenance tools
+  - evidence: allowed-tools has 26 spec-memory tools but omits: checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete (L5), embedder_list, embedder_set, embedder_status (L7), memory_embedding_reconcile (L4), memory_get_learning_history (L7), memory_ingest_start, memory_ingest_status, memory_ingest_cancel (L7), memory_bulk_delete (L4), memory_retention_sweep (L4), memory_save (L2), memory_list (L3), memory_delete (L4). Canonical TOOL_DEFINITIONS has 39 tools; this command has 26.
+  - fix: Add checkpoint_create, checkpoint_restore, checkpoint_list, checkpoint_delete (L5 safety nets for DB rebuild), embedder_status (L7 diagnostics), memory_embedding_reconcile (L4 maintenance), memory_save, memory_list, memory_delete, memory_bulk_delete, memory_retention_sweep, memory_ingest_start/status/cancel to allowed-tools line.
+- **[P1] misalignment** `.opencode/commands/memory/learn.md:4` — /memory:learn missing memory_context and 16 other spec-memory tools
+  - evidence: allowed-tools: Read, Write, Edit, Glob, Bash, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_index_scan — only 6 spec-memory tools out of 39 canonical. Missing: memory_context (L2), memory_quick_search (L2), memory_match_triggers (L2), memory_health (L3), session_health (L3), memory_update (L4), memory_validate (L4), all checkpoint tools (L5), all analysis tools (L6), all L7 tools.
+  - fix: At minimum add memory_context (L2), memory_match_triggers (L2), memory_validate (L4), memory_update (L4), memory_health (L3), and checkpoint_create/checkpoint_delete (L5 safety) for constitutional rule management.
+- **[P2] misalignment** `.opencode/commands/doctor/_routes.yaml:53-54` — embeddings route missing embedder_list and embedder_set
+  - evidence: mcp_tools: - mcp__mk_spec_memory__embedder_status — only one tool listed. Canonical TOOL_DEFINITIONS has 3 embedder tools: embedder_list, embedder_set, embedder_status. The diagnostic route cannot enumerate available embedders.
+  - fix: Add mcp__mk_spec_memory__embedder_list to the embeddings route mcp_tools (embedder_set is a write tool and may be excluded intentionally for read-only routes).
+- **[P1] misalignment** `.opencode/commands/memory/manage.md:4` — /memory:manage missing memory_context and memory_embedding_reconcile
+  - evidence: allowed-tools has 18 spec-memory tools but omits memory_context (L2 — needed to understand what's being managed) and memory_embedding_reconcile (L4 — the canonical embedding maintenance tool). Description says 'Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest' but lacks the reconciliation tool for embedding health.
+  - fix: Add mcp__mk_spec_memory__memory_context and mcp__mk_spec_memory__memory_embedding_reconcile to allowed-tools line.
+- **[P2] dead** `ALL commands (code-index registry)` — code_graph_classify_query_intent and code_graph_verify never declared in any command
+  - evidence: Canonical TOOL_DEFINITIONS in system-code-graph/mcp_server/tool-schemas.ts includes code_graph_classify_query_intent and code_graph_verify. Grep across all .opencode/commands/*.md shows zero matches for either tool ID. These tools exist in the MCP server but are unreachable from any command surface.
+  - fix: Add code_graph_classify_query_intent to deep/context.md, deep/research.md, deep/review.md, deep/ai-council.md commands that use code_graph_query/context. Add code_graph_verify to doctor/update.md (maintenance orchestrator).
+- **[P2] dead** `ALL commands (skill-advisor registry)` — skill_graph_propagate_enhances and skill_graph_validate never declared in any command
+  - evidence: Canonical TOOL_DEFINITIONS in system-skill-advisor/mcp_server/tools/index.ts includes skill_graph_propagate_enhances and skill_graph_validate. Grep across all .opencode/commands/*.md shows zero matches for either tool ID. These are maintenance/validation tools that exist in the MCP server but are unreachable from command surfaces.
+  - fix: Add skill_graph_validate to doctor/update.md (maintenance orchestrator) and _routes.yaml skill-advisor route. Add skill_graph_propagate_enhances to doctor/update.md only (write operation, appropriate for update orchestrator).

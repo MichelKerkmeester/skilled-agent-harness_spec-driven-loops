@@ -15,7 +15,7 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-- Works with **Opencode**, **Codex**, and **Claude Code**
+- Works with **OpenCode** and **Claude Code**
 - Supports external CLI agent orchestration without unnecessary MCPs or proxies
 - Designed to be modular, readable, and easy to adapt to your own stack
 
@@ -172,9 +172,8 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs --help
 node .opencode/bin/mk-code-index-launcher.cjs --help
 
 # Confirm the active runtime's MCP config references the launchers
-# (only the runtime you use needs to exist. .codex/config.toml ships in the repo)
 grep -l 'mk-spec-memory\|mk_skill_advisor\|mk_code_index' \
-  opencode.json .claude/mcp.json .codex/config.toml .vscode/mcp.json 2>/dev/null
+  opencode.json .claude/mcp.json .vscode/mcp.json 2>/dev/null
 ```
 
 ### First Use
@@ -600,7 +599,7 @@ Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"`
 
 The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk_code_index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk_code_index` surface while follow-on config work handles remaining legacy bindings.
 
-**Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Two supported runtimes (Claude Code, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude, `session-start.ts` on Codex). Codex requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions with a limited cache and writer path. It refreshes a managed block but does not inject model-visible context during the precompute phase. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
+**Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Claude Code transports the compact startup shared-payload through its runtime hook (`session-prime.ts`). OpenCode uses plugin surfaces for in-session context and routing. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
 **Auto-indexing.** The graph stays current through three mechanisms:
 1. **Startup scan** - indexes on server boot (async, non-blocking)
@@ -751,9 +750,8 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 &nbsp;
 #### How Runtimes Talk To It
 
-- **Claude Code, Codex CLI**: call prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Codex CLI requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions for the startup-surface path only.
+- **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/`.
 - **OpenCode**: uses `.opencode/plugins/mk-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts`.
-- **Codex cold starts**: the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out. The smoke helper lives at [freshness-smoke-check.ts](.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 - **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
@@ -924,13 +922,9 @@ The shared runtime plus the `deep-loop-workflows` parent skill behind the autono
 &nbsp;
 #### CROSS-AI CLI
 
-These skills let you run **cross-CLI agent teams from any starting CLI**. Whichever assistant you're talking to (Claude Code, Codex, Copilot, OpenCode, raw shell), it can dispatch the other AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns. Use this to compose a Codex implementation + Claude review pipeline from inside any one of them.
+These skills let you run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode, or a raw shell can dispatch supported AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns.
 
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
-
-**cli-codex**
-- OpenAI Codex CLI orchestrator. Use it for **code generation, diff-aware review (`/review`), web browsing (`--search`) and screenshot analysis (`--image`)**. Supports session resume/fork, agent profiles and cost control via `--max-budget-usd`.
-- Default model: `gpt-5.5` at medium reasoning, fast service tier. `gpt-5.3-codex` and other GPT-5.x variants available via override.
 
 **cli-claude-code**
 - Claude Code CLI orchestrator. Use it for **extended thinking (chain-of-thought), surgical diff-based edits and JSON-schema-validated structured output**. Ships with 9 built-in agents and session continuity.
@@ -994,7 +988,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 ### 🤖 Agent Network
 
-12 custom specialist agents. Defined in `.opencode/agents/` (source of truth), mirrored for Claude Code (`.claude/agents/`) and Codex CLI (`.codex/agents/`) runtime surfaces. OpenCode and Copilot CLI use runtime-specific MCP and startup integration rather than a dedicated agent mirror.
+12 custom specialist agents. Defined in `.opencode/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode uses the canonical `.opencode/agents/` definitions directly.
 
 #### AGENT ORCHESTRATION
 
@@ -1034,7 +1028,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 #### DEEP LOOP
 
 **AI Council**
-- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-codex, cli-claude-code and native, then deliberates over multiple rounds
+- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native, then deliberates over multiple rounds
 - Planning-only, scored on a 5-dimension rubric. See [Deep Loop](#deep-loop)
 
 **Deep Research**
@@ -1139,7 +1133,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
-- Creates source-of-truth file in `.opencode/agents/` and mirrors for Claude and Codex runtimes
+- Creates source-of-truth file in `.opencode/agents/` and the Claude Code mirror
 - Modes: `:auto`, `:confirm`
 
 **Readme**
@@ -1224,7 +1218,7 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 #### UTILITY
 
 **Agent Router**
-- Routes requests to external AI systems (Codex CLI, Claude Code, Copilot CLI)
+- Routes requests to supported external AI systems such as Claude Code
 - The receiving AI operates under its own system prompt - full identity adoption
 - Use for cross-AI delegation where the target AI needs to behave as itself
 
@@ -1323,7 +1317,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
-| `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
+| `cli-*` (claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
 | `mcp-open-design`                                   | ✅ Codebase-agnostic                        | Drives the installed Open Design desktop app from the terminal (read and reuse design systems, gated generation runs) via the `od` CLI + MCP. Requires the Open Design desktop app installed. Stack-independent. |
@@ -1348,7 +1342,6 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 - **`opencode.json`** - MCP server bindings, model configuration and launcher notes. Used by OpenCode platform.
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill.
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only.
-- **`.codex/config.toml`** - Codex CLI MCP configuration and profile definitions.
 - **`.vscode/mcp.json`** - VS Code / Copilot MCP configuration wrapper.
 
 &nbsp;
@@ -1424,7 +1417,7 @@ Abbreviated shape. Runtime config files can temporarily differ while the `mk_cod
 &nbsp;
 ### Maintainer-Mode Code-Graph Flags (already disabled for end users)
 
-All 4 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
+All supported runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
 
 ```text
 SPECKIT_CODE_GRAPH_INDEX_SKILLS    (covers .opencode/skills/**)
@@ -1444,17 +1437,17 @@ SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory overrid
 <a id="git-clean-filter--maintainer-mode-stays-local"></a>
 #### Git clean filter: maintainer mode stays local
 
-The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the 4 config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index. The smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
+The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the supported config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index. The smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
 
-- **End users cloning the template** → all 4 configs show `"false"` (framework default, correct out of box)
-- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → all 4 configs show `"true"` locally. Commits + pushes still ship `"false"` to the remote
+- **End users cloning the template** → supported configs show `"false"` (framework default, correct out of box)
+- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → supported configs show `"true"` locally. Commits + pushes still ship `"false"` to the remote
 
 To opt into maintainer mode on a fresh clone (only relevant if you're contributing upstream):
 
 ```bash
 ./scripts/setup-maintainer-filters.sh
-git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml
-git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml
+git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json
+git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json
 ```
 
 After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` shows `"false"` (what the remote sees).
@@ -1474,7 +1467,7 @@ A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to
 &nbsp;
 **Q: Is this only for OpenCode or does it work with other runtimes?**
 
-A: It works with OpenCode, Codex CLI and Claude Code. The repo also includes Copilot CLI-oriented startup-surface integration. Agent definitions are mirrored in the checked-in Claude and Codex runtime directories. OpenCode and Copilot CLI use runtime-specific MCP or startup integration rather than a dedicated agent mirror.
+A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude Code uses hook adapters.
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 
@@ -1498,7 +1491,7 @@ A: The memory database is a SQLite file on your local machine. No session data, 
 &nbsp;
 **Q: How do I contribute a new agent definition?**
 
-A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/` and `.codex/agents/`. Use `/create:agent` to scaffold the file from the agent template.
+A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/`. Use `/create:agent` to scaffold the file from the agent template.
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 

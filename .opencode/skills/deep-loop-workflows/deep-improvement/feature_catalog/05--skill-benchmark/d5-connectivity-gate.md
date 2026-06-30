@@ -47,7 +47,7 @@ It returns `{ score, gateFailed, routerParseable, deadResourcePaths, deadIntentK
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a router-less skill hard-gates (`gateFailed:true`, `routerParseable:false`) and that a router-bearing skill (`cli-codex`) with valid paths is `routerParseable:true` with no dead resource paths. |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a router-less skill hard-gates (`gateFailed:true`, `routerParseable:false`) and that a router-bearing skill (`cli-opencode`) with valid paths is `routerParseable:true` with no dead resource paths. |
 
 ---
 

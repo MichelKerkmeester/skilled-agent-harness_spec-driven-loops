@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/020-benchmark-fixtures",
+  "spec_folder": "design/008-sk-design-parent/020-benchmark-fixtures",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design benchmark fixtures phase",
+      "routing benchmark fixture set per mode",
+      "motion benchmark report artifact",
+      "sk-design benchmark fixtures plan",
+      "motion benchmark report plan",
+      "sk-design benchmark fixtures tasks",
+      "motion benchmark report tasks",
+      "sk-design benchmark fixtures checklist",
+      "motion benchmark report checklist",
+      "sk-design benchmark fixtures status",
+      "motion benchmark report outcome"
+    ],
+    "key_topics": [
+      "sk-design",
+      "benchmark",
+      "fixtures",
+      "phase",
+      "routing",
+      "fixture",
+      "set",
+      "per",
+      "mode",
+      "motion",
+      "report",
+      "artifact"
+    ],
+    "importance_tier": "supporting",
+    "status": "complete",
+    "key_files": [
+      "design-interface/skill-benchmark-report.json",
+      "design-interface/skill-benchmark-report.md",
+      "design-foundations/skill-benchmark-report.json",
+      "design-foundations/skill-benchmark-report.md",
+      "design-motion/skill-benchmark-report.json",
+      "design-motion/skill-benchmark-report.md",
+      "design-audit/skill-benchmark-report.json",
+      "design-audit/skill-benchmark-report.md",
+      "design-md-generator/skill-benchmark-report.json",
+      "design-md-generator/skill-benchmark-report.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": "design-interface/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": "design-interface/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Turn",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No mode has its claimed routing score backed by checked-in fixtures, so the scores are not reproducible",
+    "created_at": "2026-06-27T05:42:27.793Z",
+    "last_save_at": "2026-06-27T08:14:52.596Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31b44100dac27937f8336cf89f0a94e5091aa79a46f24bfd7ea6b4b620c764de",
+    "source_doc_hashes": {
+      "spec.md": "78349ee0e59412370d4099ea9b9fef46eef8ac4c385b1a9dc261f4728dddbd16",
+      "plan.md": "713c16ba97b744b3b2192b633e7e1e94f04828160d68661c0865b44e1c9133be",
+      "tasks.md": "c3bfa5257fca9c9412becf8ae6438675b81c76e59cdd27ff88b92d9cf91fd4a3",
+      "checklist.md": "87f7340331730f6e21eebb6b2ba4d027ca310ae3f508a79a2a04c9f9e48aa279",
+      "implementation-summary.md": "d65a39150fbc5d33db385b43feb8b117cc1263c8f095a9853b32d162355c5508"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

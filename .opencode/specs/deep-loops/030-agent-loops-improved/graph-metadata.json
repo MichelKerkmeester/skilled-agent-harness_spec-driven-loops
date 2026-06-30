@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved",
+  "spec_folder": "deep-loops/030-agent-loops-improved",
+  "parent_id": null,
+  "children_ids": [
+    "deep-loops/030-agent-loops-improved/001-reference-research",
+    "deep-loops/030-agent-loops-improved/002-deep-loop-runtime",
+    "deep-loops/030-agent-loops-improved/003-deep-loop-workflows",
+    "deep-loops/030-agent-loops-improved/004-system-spec-kit",
+    "deep-loops/030-agent-loops-improved/005-skill-interconnection",
+    "deep-loops/030-agent-loops-improved/006-ux-observability-automation",
+    "deep-loops/030-agent-loops-improved/007-testing",
+    "deep-loops/030-agent-loops-improved/008-loop-systems-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent loops improved",
+      "loop systems improvement",
+      "deep-loop improvements implementation",
+      "156 agent loops"
+    ],
+    "key_topics": [
+      "agent",
+      "loops",
+      "improved",
+      "loop",
+      "systems",
+      "improvement",
+      "deep-loop",
+      "improvements",
+      "implementation",
+      "156",
+      "loop-based",
+      "deep-loop-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "001-reference-research/research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Loops Improved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
+    "created_at": "2026-06-30T10:32:21.634Z",
+    "last_save_at": "2026-06-30T14:53:29.715Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4b146fdef3a9e417117b84ee3d72a77ba5d0be29276d9622635943e265f91f5e",
+    "source_doc_hashes": {
+      "spec.md": "1d4df715859c95d94380ca6a4af1e6fcc1a982d497542811c2cab5fff5c4e2b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

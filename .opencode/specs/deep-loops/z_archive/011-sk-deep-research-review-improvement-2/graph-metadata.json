@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2",
+  "spec_folder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2",
+  "parent_id": null,
+  "children_ids": [
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/003-wave-executor",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/009-round3-review-remediation",
+    "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/010-root-level-review-research-convention"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042",
+      "deep research",
+      "deep review",
+      "runtime improvement",
+      "phase overview",
+      "parent packet",
+      "deep",
+      "research",
+      "further",
+      "improvements",
+      "resource map",
+      "skilled-agent-orchestration 042-sk-deep-research-review-improvement-2 resource map"
+    ],
+    "key_topics": [
+      "042",
+      "deep",
+      "research",
+      "review",
+      "runtime",
+      "improvement",
+      "phase",
+      "overview",
+      "parent",
+      "packet",
+      "improvements",
+      "resource"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "review/archive-rvw-2026-04-11/review-report.md",
+      "resource-map.md",
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/archive-rvw-2026-04-11/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Runtime Improvement Bundle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Further Improvements",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Skills",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Method This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Gaps",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
+    "created_at": "2026-04-12T09:02:50.190Z",
+    "last_save_at": "2026-06-23T03:49:49.211Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:c4ed4b60a31891954f55cdf7302c3c7cdbe7cff95ebcc517e72d8efd36de8ae1",
+    "source_doc_hashes": {
+      "spec.md": "fa0fc9243bfe1c1a681f12e606cea83185b15df7b1a4fa1b91f9a394d12a25b4",
+      "research/research.md": "3cfc43c7702d979473d08add557100c78397aaeeea4d847e8ae9881b0cf1c81b",
+      "resource-map.md": "bda61cadf85cbe8be7a5a9e89dd1023503459305b10c99610c860edb0543d747"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

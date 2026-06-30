@@ -23,7 +23,7 @@ Current state:
 - Shared payload and code-graph contract types are local copies owned by this package.
 - `metrics-stub.ts` provides no-op `spec_kit.*` instrumentation hooks so production code does not import `system-skill-advisor`.
 - Path helpers guard operator-controlled locations such as canonical file paths.
-- Hook policy and state helpers expose read-only runtime state to startup and detection modules.
+- Hook state helpers expose read-only runtime state to startup and detection modules.
 
 ---
 
@@ -34,7 +34,6 @@ shared/
 +-- assert-never.ts             # Exhaustiveness guard
 +-- canonical-path.ts           # File path canonicalization helper
 +-- code-graph-contracts.ts     # Local readiness and ops contracts
-+-- codex-hook-policy.ts        # Codex hook policy detection
 +-- hook-state.ts               # Hook state reads
 +-- index-scope.ts              # Scan include and exclude policy
 +-- logger.ts                   # Small logging helper
@@ -70,7 +69,6 @@ shared/
 +-- assert-never.ts
 +-- canonical-path.ts
 +-- code-graph-contracts.ts
-+-- codex-hook-policy.ts
 +-- hook-state.ts
 +-- index-scope.ts
 +-- logger.ts
@@ -92,7 +90,6 @@ shared/
 | `mcp-types.ts` | Provides typed MCP response and argument parsing helpers. |
 | `metrics-stub.ts` | Exposes no-op metric helpers used by code-graph call sites. |
 | `canonical-path.ts` | Resolves canonical filesystem paths for graph records and safety checks. |
-| `codex-hook-policy.ts` | Detects whether Codex hook behavior should be enabled. |
 | `hook-state.ts` | Reads persisted hook state for startup and readiness surfaces. |
 | `assert-never.ts` | Throws on impossible discriminated-union branches. |
 | `logger.ts` | Centralizes small logger behavior used by library modules. |

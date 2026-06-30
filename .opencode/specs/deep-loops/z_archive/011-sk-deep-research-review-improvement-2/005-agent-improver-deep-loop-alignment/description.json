@@ -1,0 +1,28 @@
+{
+  "specFolder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+  "description": "Before this phase shipped, the improve-agent loop had strong evaluator logic but weak runtime truth",
+  "keywords": [
+    "phase",
+    "shipped",
+    "improve-agent",
+    "loop",
+    "strong",
+    "evaluator",
+    "logic",
+    "weak",
+    "runtime",
+    "truth"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.247Z",
+  "specId": "005",
+  "folderSlug": "agent-improver-deep-loop-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-04-26_05-00__phase-005-agent-improver-deep-loop-alignment-closeout.md"
+  ]
+}

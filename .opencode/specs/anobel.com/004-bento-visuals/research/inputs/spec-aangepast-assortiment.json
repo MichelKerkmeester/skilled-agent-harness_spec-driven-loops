@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/15.png",
+ "title": "Aangepast assortiment",
+ "desc": "Bepaal welke producten zichtbaar mogen zijn voor uw vloot",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/aangepast-assortiment-glm-1.html",
+   "brief": "A product-visibility toggle list: product rows (Antifouling 2,5 L, RVS bout M12, ...) each with a category and a 'zichtbaar' on/off toggle (navy = on)."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/aangepast-assortiment-glm-2.html",
+   "brief": "A catalogus -> curated-subset scope: full catalog count (1.240 producten) narrowing to a visible-to-fleet subset (320 zichtbaar), shown as a funnel/scope."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/aangepast-assortiment-glm-3.html",
+   "brief": "A ship \u00d7 category visibility matrix: ships down the side, product categories across, with visible/hidden cells."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/aangepast-assortiment-glm-4.html",
+   "brief": "An included/excluded stat: a big '320 van 1.240 producten zichtbaar' with a progress ring + 'verborgen 920'."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/aangepast-assortiment-glm-5.html",
+   "brief": "A full-catalog -> gefilterd assortiment funnel: full assortment at top narrowing through a 'vloot-filter' to the curated set."
+  }
+ ]
+}

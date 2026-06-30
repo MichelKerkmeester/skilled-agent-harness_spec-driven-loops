@@ -106,8 +106,8 @@ describe('per-skill shims stay byte-compatible', () => {
   });
 
   it('preserve the frozen baseline runtime id set', () => {
-    expect(dr.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude', 'codex']);
-    expect(drv.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude', 'codex']);
+    expect(dr.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude']);
+    expect(drv.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude']);
   });
 
   it('keep per-skill labels in the not-found error', () => {
@@ -117,6 +117,6 @@ describe('per-skill shims stay byte-compatible', () => {
 
   it('resolve a known runtime record', () => {
     expect(dr.resolveRuntimeCapability('opencode').runtime.id).toBe('opencode');
-    expect(drv.resolveRuntimeCapability('codex').runtime.id).toBe('codex');
+    expect(drv.resolveRuntimeCapability('opencode').runtime.id).toBe('opencode');
   });
 });

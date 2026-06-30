@@ -1,0 +1,14 @@
+{
+  "key": "kimi-graph-s1",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "graph",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 168665,
+  "bytes": 85963,
+  "stderrTail": ""
+}

@@ -46,6 +46,11 @@
         },
         "profile_ref": "sk-prompt-models/references/models/deepseek-v4-pro.md",
         "status": "default-unverified"
+      },
+      "capability": {
+        "modalities": [
+          "text"
+        ]
       }
     },
     {
@@ -73,7 +78,12 @@
         "format_mode": "json",
         "quota_pool": "kimi-for-coding",
         "variant_status": "accepted-unverified",
-        "notes": "Live slug `kimi-for-coding/k2p7` confirmed responsive 2026-06-15 (`opencode models kimi-for-coding`; smoke dispatch returned 'pong', cost 0). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: `--variant high` is accepted without error but its reasoning-effort effect is not benchmark-confirmed for this provider — safe to pass, do not depend on it. Subscription billing: dispatch cost shows 0. Re-verify slug before dispatch (Kimi/Moonshot ids drift)."
+        "notes": "Live slug `kimi-for-coding/k2p7` confirmed responsive 2026-06-15 (`opencode models kimi-for-coding`; smoke dispatch returned 'pong', cost 0). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: `--variant high` is accepted without error but its reasoning-effort effect is not benchmark-confirmed for this provider — safe to pass, do not depend on it. Subscription billing: dispatch cost shows 0. Re-verify slug before dispatch (Kimi/Moonshot ids drift).",
+        "modalities": [
+          "text",
+          "image",
+          "video"
+        ]
       },
       "strengths": [
         "dedicated Kimi For Coding subscription pool (`kimi-for-coding`), independent of minimax / xiaomi pools",
@@ -140,7 +150,12 @@
         "format_mode": "json",
         "quota_pool": "minimax-token-plan",
         "variant_status": "omitted-by-default-historically",
-        "notes": "Plain `minimax-coding-plan/MiniMax-M3` confirmed live (2026-06-02; re-verified on opencode 1.16.2 2026-06-06); there is NO `MiniMax-M3-highspeed` on 1.16.2. agent_policy omit-general: `--agent` is rejected on opencode 1.15.13. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant. Direct API path: provider `minimax`, quota_pool `minimax-api`."
+        "notes": "Plain `minimax-coding-plan/MiniMax-M3` confirmed live (2026-06-02; re-verified on opencode 1.16.2 2026-06-06); there is NO `MiniMax-M3-highspeed` on 1.16.2. agent_policy omit-general: `--agent` is rejected on opencode 1.15.13. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant. Direct API path: provider `minimax`, quota_pool `minimax-api`.",
+        "modalities": [
+          "text",
+          "image",
+          "video"
+        ]
       },
       "strengths": [
         "subscription billing (no pay-per-token burn) via the MiniMax Token Plan",
@@ -196,7 +211,10 @@
         "format_mode": "json",
         "quota_pool": "xiaomi-token-plan",
         "variant_status": "confirmed",
-        "notes": "Live slug `xiaomi-token-plan-ams/mimo-v2.5-pro` confirmed responsive on opencode 1.15.13 (2026-06-01). default_variant high: `--variant` maps to MiMo reasoning effort (low/medium/high) and `--variant high` is confirmed accepted — always dispatch with it. agent_policy omit-general: `--agent` warns and falls back on 1.15.13. format_mode json: OpenAI-compatible endpoint; dispatch via `opencode run --format json` for the normalized envelope. Manual direct-provider reroutes use `xiaomi/mimo-v2.5-pro` when configured; no automatic gateway fallback is defined."
+        "notes": "Live slug `xiaomi-token-plan-ams/mimo-v2.5-pro` confirmed responsive on opencode 1.15.13 (2026-06-01). default_variant high: `--variant` maps to MiMo reasoning effort (low/medium/high) and `--variant high` is confirmed accepted — always dispatch with it. agent_policy omit-general: `--agent` warns and falls back on 1.15.13. format_mode json: OpenAI-compatible endpoint; dispatch via `opencode run --format json` for the normalized envelope. Manual direct-provider reroutes use `xiaomi/mimo-v2.5-pro` when configured; no automatic gateway fallback is defined.",
+        "modalities": [
+          "text"
+        ]
       },
       "strengths": [
         "1,000,000-token context window (largest in the small-model rotation)",
@@ -258,6 +276,11 @@
         "format_mode": "json",
         "quota_pool": "zai-coding-plan",
         "variant_status": "accepted-unverified",
+        "modalities": [
+          "text",
+          "image"
+        ],
+        "vision": "native vision-to-code; image input via the direct Z.AI Coding Plan multimodal API (base64 image_url block at https://api.z.ai/api/coding/paas/v4/chat/completions) — opencode `--file` does NOT deliver images to this provider per upstream #20802; confirmed live 2026-06-28; see references/models/glm-5.2.md §7",
         "notes": "Live slug `zai-coding-plan/glm-5.2` confirmed present 2026-06-28 (`opencode models zai-coding-plan`). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: GLM's native `reasoning_effort` has high/max, but whether opencode `--variant high/max` forwards to it is not confirmed — smoke-test, do not depend on it. Subscription billing: confirm dispatch cost via smoke test. GLM dispatch quirks (Z.AI docs): thinking on by default + preserved thinking on the Coding Plan endpoint; function-calling `tool_choice` only `auto`; streaming tool calls need `tool_stream=true`. Re-verify slug before dispatch (Z.AI ids drift)."
       },
       "strengths": [

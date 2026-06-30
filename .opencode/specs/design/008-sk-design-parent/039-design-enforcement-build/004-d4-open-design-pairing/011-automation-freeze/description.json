@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/011-automation-freeze",
+  "description": "A headless automation fires with no interactive operator present",
+  "keywords": [
+    "headless",
+    "automation",
+    "fires",
+    "interactive",
+    "operator",
+    "present"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.192Z",
+  "specId": "011",
+  "folderSlug": "automation-freeze",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

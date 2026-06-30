@@ -634,7 +634,7 @@ Verify that `@prompt-improver` accepts the input payload with required `raw_task
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
+Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=opencode, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
 
 Payload accepted: yes. Constraints preserved: yes.
 

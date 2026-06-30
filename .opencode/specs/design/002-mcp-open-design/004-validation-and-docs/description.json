@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "design/002-mcp-open-design/004-validation-and-docs",
+  "description": "The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-design-interface` de-vendor (phase 003) shipped without",
+  "keywords": [
+    "mcp-open-design",
+    "skill",
+    "phase",
+    "002",
+    "built",
+    "reverse-engineering",
+    "pass",
+    "sk-design-interface",
+    "de-vendor",
+    "003",
+    "shipped",
+    "without"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.614Z",
+  "specId": "004",
+  "folderSlug": "validation-and-docs",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

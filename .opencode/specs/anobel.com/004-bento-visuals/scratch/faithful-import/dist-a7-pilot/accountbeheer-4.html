@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="nl" data-primitive="matrix" data-a1-rows-cap="3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=560,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;background:#eceef0}
+body{display:grid;place-items:center;font-family:'Hanken Grotesk',Arial,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;color:#0a1a2f}
+.card{position:relative;width:560px;height:480px;overflow:hidden;padding:30px;border-radius:22px;background:#ffffff;box-shadow:0 1px 2px rgba(20,28,46,.04),0 26px 52px -22px rgba(20,28,46,.20)}
+.visual{position:absolute;left:30px;top:30px;width:500px;height:298px;overflow:hidden;border:1px solid #ececec;border-radius:16px;background:#fefefe;box-shadow:0 8px 14px rgba(20,28,46,.08)}
+.eyebrow{position:absolute;right:30px;top:30px;z-index:3;display:flex;align-items:center;gap:7px;height:28px;padding:0 11px;border:1px solid #e7e9ee;border-radius:999px;background:#f6f8fc;color:#06458c;font-size:12px;font-weight:700;line-height:1}
+.eyebrow svg{width:15px;height:15px;flex:0 0 auto}
+.title-band{position:absolute;left:30px;top:356px;width:390px;height:100px}
+.title{max-width:370px;margin:0;color:#0a1a2f;font-size:21px;line-height:1.15;font-weight:700;letter-spacing:-.01em}
+.desc{max-width:390px;margin:8px 0 0;color:#4e4e4e;font-size:13.5px;line-height:1.35;font-weight:500}
+.cta{position:absolute;right:30px;bottom:30px;display:grid;place-items:center;width:34px;height:34px;border:1px solid #e2e2e2;border-radius:50%;background:#ffffff;color:#06458c;text-decoration:none;font-size:16px;font-weight:700;line-height:1}
+.matrixWrap{position:absolute;left:18px;right:18px;top:48px;bottom:18px}
+.matrixRow{display:grid;align-items:center;gap:10px;height:34px;margin-bottom:9px}
+.matrixHead{height:32px}
+.matrixLabel,.matrixCell{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border-radius:10px;font-size:12px;line-height:1;font-weight:700}
+.matrixLabel{padding:11px 12px;color:#0a1a2f;background:#ffffff;border:1px solid #e7e9ee}
+.matrixHead .matrixLabel,.matrixHead .matrixCell{color:#4e4e4e;background:#f6f8fc;border:1px solid #e7e9ee;font-size:11px}
+.matrixCell{padding:11px 10px;text-align:center;color:#0a1a2f;background:#f6f8fc;border:1px solid #e7e9ee}
+.matrixCell.ok{color:#367e39;background:#ffffff}
+.matrixCell.warn{color:#c9140f;background:#ffffff}
+.moreChip{display:inline-flex;align-items:center;height:26px;margin-top:1px;padding:0 10px;border:1px solid #e7e9ee;border-radius:999px;background:#ffffff;color:#4e4e4e;font-size:12px;font-weight:700}
+.links{position:absolute;inset:0;width:500px;height:298px;pointer-events:none}
+.statusPill{position:absolute;left:18px;top:18px;z-index:2;display:flex;align-items:center;gap:7px;height:26px;padding:0 10px;border:1px solid #e7e9ee;border-radius:999px;background:#f6f8fc;color:#367e39;font-size:12px;font-weight:800}
+.statusPill span{width:7px;height:7px;border-radius:50%;background:#367e39}
+.nodeBox{position:absolute;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:5px;overflow:hidden;padding:13px 14px;border:1px solid #e7e9ee;border-radius:15px;background:#ffffff;box-shadow:0 8px 14px rgba(20,28,46,.06)}
+.nodeHub{border-color:#043367;background:#043367;color:#E7ECF7;box-shadow:0 14px 22px -14px rgba(4,51,103,.48)}
+.nodeLabel,.nodeRole{max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.nodeLabel{font-size:14px;line-height:1.1;font-weight:800;color:inherit}
+.nodeRole{font-size:11px;line-height:1.1;font-weight:700;color:#4e4e4e}
+.nodeHub .nodeRole{color:#B8C2D6}
+@media (prefers-reduced-motion:no-preference){.cta{transition:transform .16s ease}.cta:hover{transform:translateY(-1px)}}
+</style>
+</head>
+<body>
+<main class="card" data-a1-role="card" data-primitive="matrix" data-a1-rows-cap="3">
+  <section class="visual" data-a1-role="visual"><div class="matrixWrap"><div class="matrixRow matrixHead" style="grid-template-columns:142px repeat(3, minmax(0, 1fr))">
+    <div class="matrixLabel">Account</div>
+    <div class="matrixCell">Schip</div><div class="matrixCell">Status</div><div class="matrixCell">Winkelwagen</div>
+  </div><div class="matrixRow" data-a1-role="row" style="grid-template-columns:142px repeat(3, minmax(0, 1fr))">
+      <div class="matrixLabel">MS Aldebaran</div>
+      <div class="matrixCell ok">Actief</div><div class="matrixCell">€ 12.450</div><div class="matrixCell">Overnemen</div>
+    </div><div class="matrixRow" data-a1-role="row" style="grid-template-columns:142px repeat(3, minmax(0, 1fr))">
+      <div class="matrixLabel">MS Castor</div>
+      <div class="matrixCell ok">Actief</div><div class="matrixCell">€ 8.900</div><div class="matrixCell">Overnemen</div>
+    </div><div class="matrixRow" data-a1-role="row" style="grid-template-columns:142px repeat(3, minmax(0, 1fr))">
+      <div class="matrixLabel">MS Pollux</div>
+      <div class="matrixCell ok">Inactief</div><div class="matrixCell">€ 3.200</div><div class="matrixCell">Overnemen</div>
+    </div><div class="moreChip" data-a1-role="label">+1 more</div></div></section>
+  <div class="eyebrow" data-a1-role="eyebrow"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v11M5.5 5.5h7M6 13c-2.2-.7-3.5-2.1-4-4.1M12 13c2.2-.7 3.5-2.1 4-4.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Vloot-functie</span></div>
+  <section class="title-band">
+    <h1 class="title" data-a1-role="title">Accountbeheer</h1>
+    <p class="desc" data-a1-role="description">Neem vloot-accounts realtime over</p>
+  </section>
+  <a class="cta" data-a1-role="shell-cta" href="#" aria-label="Open details">&#8599;</a>
+</main>
+</body>
+</html>

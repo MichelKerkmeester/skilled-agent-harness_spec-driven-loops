@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-authentication-s2",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "authentication",
+  "queryClass": "off-corpus",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 171216,
+  "bytes": 96679,
+  "stderrTail": ""
+}

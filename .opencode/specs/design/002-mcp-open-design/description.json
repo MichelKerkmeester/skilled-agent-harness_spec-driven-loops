@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "design/002-mcp-open-design",
+  "description": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only",
+  "keywords": [
+    "installed",
+    "open",
+    "design",
+    "desktop",
+    "app",
+    "nexu-io",
+    "open-design",
+    "holds",
+    "rich",
+    "local-first",
+    "systems",
+    "generation",
+    "engine",
+    "framework",
+    "only"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.536Z",
+  "specId": "002",
+  "folderSlug": "mcp-open-design",
+  "parentChain": [
+    "design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

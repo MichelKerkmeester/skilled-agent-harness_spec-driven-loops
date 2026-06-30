@@ -3,7 +3,7 @@
   "tier": "T1",
   "public": {
     "prompt": "polish a billing settings panel with font pairing that handles German compound labels, Arabic directionality, and narrow mobile widths",
-    "runtime": "codex",
+    "runtime": "opencode",
     "mutationBoundary": "routing-only",
     "outputContract": "select the appropriate design workflow without editing files"
   },

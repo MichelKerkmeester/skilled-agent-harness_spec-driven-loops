@@ -1,0 +1,40 @@
+You are a senior AI-systems + design-engineering researcher. Conduct ONE deep research iteration on the angle below, for a project improving GLM-5.2 vision-to-code output for maritime-B2B dashboard "bento" tiles (register=Product, dials V4/M2/D6; baseline 27/45=60% SHIP; the core defect is the LAYOUT PRIMITIVE — 2D-positioned diagrams score 35-58 vs 86-94 for linear-flow tiles).
+
+USE YOUR WEB TOOLS: webfetch each candidate source URL listed in the angle and extract the concrete, applicable technique (not a summary). If a URL fails, note it and continue.
+
+GROUNDING — Root-Cause Ledger:
+## §1 Root-Cause Ledger
+
+Built from STEP-3 forensic viewing of the 5 lowest tiles (accountbeheer-4 35, orders-facturen-4 52,
+goedkeuringssysteem-4 55, oci-4 58, aangepast-assortiment-3 58) and 5 highest (kwartaalcijfers-2 94,
+accountbeheer-5 93, een-factuur-5 93, accountbeheer-1 92, orders-facturen-1 90 / aangepast-assortiment-4 88),
+plus calculator-confirmed contrast and grep-confirmed anti-tells.
+
+| RC-id | Defect (render symptom + tile) | Hard-fact / refinement | Root cause | Consumed by |
+|---|---|---|---|---|
+| **RC-1** | **Vertical overflow — content exceeds the 480px height budget.** 4th matrix row (MS Vesta) spills out of the inner panel and lands ON TOP of the bottom title "Accountbeheer"+desc (accountbeheer-4, **35**); 6th matrix row + legend collide with the title (aangepast-assortiment-3, **58**); the title "Orders & facturen" is clipped clean off the bottom card edge (orders-facturen-4, **52**); panel rows overflow rounded corners (goedkeuringssysteem-1, **62**); CTA buttons bleed past panel (goedkeuringssysteem-3, **66**); panel overlaps title (een-factuur-1, **88**); last row clipped (favorieten-3, **78**). | **Hard-fact** (an overflow/bounding gate catches it; `overflow:true` in 8 audit rows). | **GLM rendering limitation** — lays out N rows/nodes at fixed pixel heights with no constraint solver, never computing cumulative-height ≤ 480px − reserved-title-block; **+ prompt-contract gap** (no per-region height budget, max-row count, or "reserve Npx for the bottom title"). | A1, A3, A5 |
+| **RC-2** | **2D node collisions** — the "Verbonden" pill overlaps the SAP card and truncates "MS V…" (oci-4, **58**); eyebrow overlaps the right flow node "Anobel-catalogus" (oci-2, **78**); branch cards crowd the card edge (goedkeuringssysteem-4, **55**); popover overflows the card's right edge and clips the eyebrow (favorieten-4, **62**). `position:absolute` count: oci-4 = **6**, accountbeheer-4 = 4, goedkeuringssysteem-4 = 4. | **Mixed** — the clip is hard-fact (overflow); node-on-node crowding is **refinement** (no gate computes bounding-box overlap). | **GLM rendering limitation** — direct numerical coordinate placement with no collision detection; external lit: "direct LLM numerical positioning → out-of-boundary errors and object collisions." | A1, A5, A3 |
+| **RC-3** | **Title-at-bottom rule breaks under diagram layouts** — title rendered TOP-left not bottom-left (goedkeuringssysteem-4, **55**, `title_at_bottom:false`); same on aangepast-assortiment-3 (**58**) and orders-facturen-4 (**52**). | **Hard-fact** (title Y-position is checkable). | **Instruction-density mismatch + GLM limitation** — once GLM commits an absolutely-positioned full-card diagram, it drops the "title bottom-left" pin (one of ~20 contract constraints); the diagram claims the whole canvas. | A1, A5 |
+| **RC-4** | **Eyebrow renders ALL-CAPS, wraps, wrong glyph** — "VLOOT-FUNCTIE" uppercase wrapped to 2 lines and crowding a node (goedkeuringssysteem-4); `text-transform:uppercase` grep count: goedkeuringssysteem-4 = **3**, aangepast-assortiment-3 = 2, accountbeheer-4 = 1. Wrong 4-arrows "move" glyph (✛) substituted for the anchor in the eyebrow AND in hub nodes (goedkeuringssysteem-4, oci-4); broken anchor glyph (oci-4). | **Hard-fact** (uppercase is grep-catchable vs the contract's "Title case, NOT uppercase"); glyph substitution is **refinement**. | **Prompt-contract gap + instruction-density** — the "Title case not uppercase" pin was stated in prose but dropped 
+
+THE ANGLE TO RESEARCH:
+## Angle A1 — PROMPTING
+- **Dimension:** prompting
+- **Hypothesis:** Pinning the *mechanical* constraints the dense prose contract only described — case (eyebrow Title-case via literal text, not `text-transform`), z-order, safe-zones, an explicit vertical height budget with a reserved bottom-title band, a neutral-on-dark companion ramp, and an enumerated set of adversarial layout edge-cases — converts RC-1/RC-3/RC-4/RC-5 from "dropped under load" into checkable invariants and lifts SHIP rate without changing the house style.
+- **Why it matters (grounded):** RC-1 (overflow) drove the two worst tiles (accountbeheer-4 **35**, orders-facturen-4 **52**); RC-3 broke title-at-bottom on 3 tiles; RC-4 leaked `text-transform:uppercase` **3×** in goedkeuringssysteem-4 despite the contract literally saying "Title case, NOT uppercase"; RC-5 produced #4e4e4e-on-navy at **1.51:1** and #8591b3-as-text at **3.14:1**. These are all *stated-but-unenforced* prose rules — the contract told, it did not constrain.
+- **Researchable question:** Which contract rewrites (literal pre-cased strings, an explicit `safe-zone`/height-budget block, a neutral-on-dark token pair, and an enumerated adversarial-edge-case list) most reduce RC-1/RC-3/RC-4/RC-5 recurrence per dollar of added prompt tokens?
+- **What to test / measure:** A/B the current contract vs a hardened contract on the 8 RC-1 tiles + the 3 RC-3 tiles; metrics = overflow count (audit `overflow:true` rate), `title_at_bottom:true` rate, `text-transform:uppercase` grep-count → 0, `contrast_check.py` exit-0 rate on the enumerated text-on-navy pairs, and net MiniMax-M3 score delta. Watch token cost — see A5's instruction-density cliff.
+- **Candidate online sources:**
+  - https://arxiv.org/html/2508.03560v1 (LaTCoder — layout preservation; use absolute positioning sparingly)
+  - https://arxiv.org/html/2507.11538v1 (IFScale — every-instruction compliance decays ~exponentially; >15 constraints → cliff)
+  - https://www.designersforest.com/dear-llm-heres-how-my-design-system-works/ (practitioner: how to state a design system to an LLM)
+- **Decision it should produce:** A revised `goal-prompt.md` contract block (a CONTRACT CHANGE): a `LAYOUT SAFE-ZONE` section (reserved title band height, max instrument height, max-row count per primitive), pre-cased eyebrow string, an explicit `text-on-dark` neutral, and a 6-8 item adversarial edge-case checklist.
+
+RETURN (markdown, grounded + specific — no fluff):
+# {angle id} findings
+## What the sources actually say (per URL: technique + the exact mechanism, with the citation)
+## How it maps to THIS run's defects (cite RC-ids + the numbers)
+## Concrete, testable recommendation (the exact contract change / dial preset / pipeline step — copy-pasteable where possible)
+## Predicted effect (on SHIP rate / contrast exit-0 / diagram-vs-linear delta) + cost (tokens/latency)
+## Open questions for the next iteration
+Be concrete enough that an engineer could implement the recommendation tomorrow.

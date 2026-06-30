@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council/006-rename-reindex-validate",
+  "description": "After 002-005 land file edits, the compiled skill-graph.json + advisor cache need to be refreshed so the advisor surfaces the renamed identities",
+  "keywords": [
+    "002-005",
+    "land",
+    "file",
+    "edits",
+    "compiled",
+    "skill-graph",
+    "json",
+    "advisor",
+    "cache",
+    "need",
+    "refreshed",
+    "surfaces",
+    "renamed",
+    "identities"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.735Z",
+  "specId": "006",
+  "folderSlug": "rename-reindex-validate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/006-rename-reindex-validate"
+  ]
+}

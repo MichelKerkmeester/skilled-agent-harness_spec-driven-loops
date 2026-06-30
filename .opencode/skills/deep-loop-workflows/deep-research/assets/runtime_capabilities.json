@@ -39,24 +39,6 @@
       "hookBootstrap": true,
       "schemaAdaptation": "low",
       "fallbackBridgeEligible": true
-    },
-    {
-      "id": "codex",
-      "label": "Codex",
-      "mirrorPath": ".codex/agents/deep-research.toml",
-      "toolSurface": [
-        "Read",
-        "Write",
-        "Edit",
-        "Bash",
-        "Grep",
-        "Glob",
-        "WebFetch",
-        "memory"
-      ],
-      "hookBootstrap": true,
-      "schemaAdaptation": "medium",
-      "fallbackBridgeEligible": true
     }
   ]
 }

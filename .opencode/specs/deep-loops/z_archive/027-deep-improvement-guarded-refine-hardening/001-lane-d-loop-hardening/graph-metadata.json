@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening",
+  "spec_folder": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening",
+  "parent_id": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "phase",
+      "001",
+      "lane",
+      "loop",
+      "hardening"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Take",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "N",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "TTL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001: Lane D Loop Hardening",
+    "created_at": "2026-06-18T12:37:48.873Z",
+    "last_save_at": "2026-06-23T03:49:52.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:19773b9288717df56d4947aef56afb0af13c2c4cb4859db7fb6cb9adfe90278c",
+    "source_doc_hashes": {
+      "spec.md": "3e6733c98ca132e092e0fc3a93019ee7bc6384f08c7b62bd6f89e226f6f48970"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

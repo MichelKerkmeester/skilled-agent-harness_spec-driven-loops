@@ -1,0 +1,22 @@
+Running gate on 148 baseline tiles ...
+
+=== CONFUSION MATRIX (positive = FIX) ===
+TP=17 FP=0 TN=27 FN=1  (n=45)
+precision=1.00 recall=0.94 F1=0.97
+
+=== SENTINELS ===
+  accountbeheer-4: gate=FAIL [titleBandIntrusion,visualPanelOverflow,bboxOverlap] | audit=FIX 35
+  oci-4: gate=FAIL [bboxOverlap] | audit=FIX 58
+  goedkeuringssysteem-4: gate=FAIL [bannedContrast] | audit=FIX 55
+  accountbeheer-5: gate=PASS | audit=SHIP 93
+  kwartaalcijfers-2: gate=PASS | audit=SHIP 94
+
+=== PER-CHECK CORRELATION ===
+  visualPanelOverflow vs audit.overflow: 38/45 agree
+  bannedContrast vs audit.readable: 38/45 agree
+  titleBandIntrusion vs audit.title_at_bottom: 40/45 agree
+
+=== MISCLASSIFIED / MISSING ===
+  FN favorieten-3 (gate PASS, audit FIX 78) issue=Last product row (Teak reiniger & olie set) description is c
+
+wrote _probe-result.json

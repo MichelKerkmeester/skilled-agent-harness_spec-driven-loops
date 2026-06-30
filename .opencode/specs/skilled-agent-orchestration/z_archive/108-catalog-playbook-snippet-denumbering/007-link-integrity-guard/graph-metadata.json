@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "spec_folder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "parent_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "markdown link integrity guard",
+      "broken link CI check skills commands agents",
+      "133 phase 007 link guard",
+      "133 phase 007 plan",
+      "markdown link guard plan",
+      "007-link-integrity-guard completion"
+    ],
+    "key_topics": [
+      "markdown",
+      "link",
+      "integrity",
+      "guard",
+      "broken",
+      "check",
+      "skills",
+      "commands",
+      "agents",
+      "133",
+      "phase",
+      "007"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+      ".github/workflows/markdown-link-integrity.yml",
+      "scripts/check-links.sh",
+      "rules/check-phase-links.sh",
+      ".opencode/skills/system-spec-kit/scripts/check-links.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "markdown-link-integrity.yml",
+        "kind": "config",
+        "path": ".github/workflows/markdown-link-integrity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-links.sh",
+        "kind": "script",
+        "path": "scripts/check-links.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-phase-links.sh",
+        "kind": "script",
+        "path": "rules/check-phase-links.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Link Integrity Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "narrow",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review found 295 broken markdown links across skills/commands/agents because feature removal/migration/deprecation edits deleted snippet files or moved targets without updating the hand-maintained `featurecatalog.md` / `manualtestingplaybook.md` roots and other cross-references — and nothing failed, so the debt accumulated silently",
+    "created_at": "2026-06-06T06:46:12.388Z",
+    "last_save_at": "2026-06-23T03:49:51.751Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c839729d282ff2ae0c37744081af2a04946ab23fd8545e11e4f80d56d5113547",
+    "source_doc_hashes": {
+      "spec.md": "42b914cb2e98f944527bfc6f8b520e2eaaeba3d0c6f355c1c25c0cbae4092e40",
+      "plan.md": "9708ca37239b1d1c9f10294716c5a8a7399eda6a7732d1a4505aa10fa25367d9",
+      "tasks.md": "dcbdae28e3323c563097b723bbf47339505ef90dbf158bd4b1416e0a0ab63712",
+      "checklist.md": "7ceb09221adaf8d978a19c000368aa752d24aa545ef68289e98facc92e101497",
+      "implementation-summary.md": "6b31df33e40cc6bd49c6f5e2c725e4960f264b92e4df5804162bc83e0c5d89af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

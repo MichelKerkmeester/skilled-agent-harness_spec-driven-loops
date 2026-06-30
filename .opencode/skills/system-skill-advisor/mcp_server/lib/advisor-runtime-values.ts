@@ -10,7 +10,6 @@
 export const ADVISOR_RUNTIME_VALUES = [
   'claude',
   'copilot',
-  'codex',
   'opencode',
 ] as const;
 

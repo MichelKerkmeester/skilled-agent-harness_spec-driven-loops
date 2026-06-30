@@ -1,0 +1,14 @@
+{
+  "key": "kimi-quality-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "quality",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 395087,
+  "bytes": 112050,
+  "stderrTail": ""
+}

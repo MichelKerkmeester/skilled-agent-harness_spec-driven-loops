@@ -65,7 +65,6 @@ Servers Checked:
 Config Files Scanned:
   opencode.json         OpenCode CLI
   .claude/mcp.json      Claude Code CLI
-  .codex/config.toml    Codex CLI
   .vscode/mcp.json      VS Code / Copilot
 HELP
 }
@@ -699,7 +698,6 @@ detect_and_check_configs() {
   local -a config_files=(
     "opencode.json|json-mcp|OpenCode"
     ".claude/mcp.json|json-mcpServers|Claude Code"
-    ".codex/config.toml|toml|Codex CLI"
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 

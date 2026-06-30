@@ -10,14 +10,14 @@ import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 const posixIt = process.platform === 'win32' ? it.skip : it;
 
 /**
- * Returns a default cli-codex ExecutorConfig for use in tests.
+ * Returns a default CLI executor config for use in tests.
  */
-function cliCodexExecutor(): ExecutorConfig {
+function cliClaudeExecutor(): ExecutorConfig {
   return {
-    kind: 'cli-codex',
-    model: 'gpt-5.4',
+    kind: 'cli-claude-code',
+    model: 'claude-opus-4-6',
     reasoningEffort: 'high',
-    serviceTier: 'priority',
+    serviceTier: null,
     sandboxMode: null,
     timeoutSeconds: 900,
   };
@@ -77,7 +77,7 @@ describe('executor-audit process-group supervisor', () => {
         timeoutSeconds: 0.15,
         timeoutGraceMs: 75,
         stateLogPath,
-        executor: cliCodexExecutor(),
+        executor: cliClaudeExecutor(),
         iteration: 4,
         guardContext: {
           env: {},
@@ -99,7 +99,7 @@ describe('executor-audit process-group supervisor', () => {
         event: 'dispatch_failure',
         iteration: 4,
         reason: 'timeout',
-        executor: { kind: 'cli-codex' },
+        executor: { kind: 'cli-claude-code' },
       });
     } finally {
       rmSync(tempDir, { recursive: true, force: true });

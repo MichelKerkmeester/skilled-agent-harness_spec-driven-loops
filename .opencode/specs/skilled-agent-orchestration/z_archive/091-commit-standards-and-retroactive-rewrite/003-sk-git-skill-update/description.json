@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+  "description": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the dec",
+  "keywords": [
+    "sk-git",
+    "documents",
+    "commit",
+    "standards",
+    "two",
+    "places",
+    "skill",
+    "assets",
+    "commitmessagetemplate",
+    "partially",
+    "stale",
+    "relative",
+    "dec"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.013Z",
+  "specId": "003",
+  "folderSlug": "sk-git-skill-update",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "091-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

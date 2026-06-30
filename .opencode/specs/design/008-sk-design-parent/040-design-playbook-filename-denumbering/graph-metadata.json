@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/040-design-playbook-filename-denumbering",
+  "spec_folder": "design/008-sk-design-parent/040-design-playbook-filename-denumbering",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design playbook filename denumbering",
+      "sk-design numbered playbook files",
+      "remove numeric prefix design playbook",
+      "design playbook denumbering plan",
+      "gpt5.5 glm5.2 rename split",
+      "tasks",
+      "design playbook denumbering tasks",
+      "design playbook denumbering implementation"
+    ],
+    "key_topics": [
+      "design",
+      "playbook",
+      "filename",
+      "denumbering",
+      "sk-design",
+      "numbered",
+      "files",
+      "remove",
+      "numeric",
+      "prefix",
+      "plan",
+      "gpt5"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Disjoint",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "required",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design manual testing playbooks use globally-numbered per-feature filenames (`001-live-extraction.md`, `007-report-generation.md`)",
+    "created_at": "2026-06-29T06:09:27.048Z",
+    "last_save_at": "2026-06-30T09:11:43.184Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd1272219ba772c51c3eb903d7fb4b5d0b92ebf562b17313a553bd2627562531",
+    "source_doc_hashes": {
+      "spec.md": "ebccc95b55374813a793c62bd6054765f7c93fc63bc2593198e3404e8e61dcd8",
+      "plan.md": "5154d7ea386f6984f3e37a313493e2b5657ce7bbbf4b7cbe41a6cf47679e44b7",
+      "tasks.md": "eae38cbc8c52bf73321260dd7739a92f2bc31eaa309553428661ab97529f5ad3",
+      "implementation-summary.md": "5edfd012c0481b33cb95d51139eadd044bc059ecede09ef2861943789b6c9800"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -78,12 +78,12 @@ describe('ai-council runtime mirror parity', () => {
       expect(sharedBody(body(read(mirror))), mirror).toBe(canonicalSharedBody);
     }
 
-    const codex = read('.codex/agents/ai-council.toml');
-    expect(codex).toContain(`name = "${nameMatch![1]}"`);
-    expect(normalizeProse(codex)).toContain(normalizeProse(descMatch![1]));
-    expect(codex).toContain('sandbox_mode = "workspace-write"');
-    expect(codex).toContain('ai-council/**');
-    expect(codex).toContain('COUNCIL PERSISTENCE PROTOCOL');
-    expect(codex).not.toContain('planning-only: write, edit, bash, and patch remain denied');
+    const opencode = read('.opencode/agents/ai-council.toml');
+    expect(opencode).toContain(`name = "${nameMatch![1]}"`);
+    expect(normalizeProse(opencode)).toContain(normalizeProse(descMatch![1]));
+    expect(opencode).toContain('sandbox_mode = "workspace-write"');
+    expect(opencode).toContain('ai-council/**');
+    expect(opencode).toContain('COUNCIL PERSISTENCE PROTOCOL');
+    expect(opencode).not.toContain('planning-only: write, edit, bash, and patch remain denied');
   });
 });

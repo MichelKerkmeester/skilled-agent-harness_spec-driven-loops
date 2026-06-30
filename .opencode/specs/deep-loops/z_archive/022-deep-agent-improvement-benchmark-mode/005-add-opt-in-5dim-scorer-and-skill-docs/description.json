@@ -1,0 +1,32 @@
+{
+  "title": "Feature Specification: add opt-in 5dim scorer and skill docs",
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
+  "description": "The 122 review flagged that the ported 5-dim scorer (`score-model-variant.cjs`) was built and available but never wired into `run-benchmark.cjs` (defe",
+  "keywords": [
+    "122",
+    "review",
+    "flagged",
+    "ported",
+    "5-dim",
+    "scorer",
+    "score-model-variant",
+    "cjs",
+    "built",
+    "available",
+    "never",
+    "wired",
+    "run-benchmark",
+    "defe"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.203Z",
+  "specId": "005",
+  "folderSlug": "add-opt-in-5dim-scorer-and-skill-docs",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

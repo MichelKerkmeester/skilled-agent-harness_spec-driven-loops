@@ -19,7 +19,7 @@ const properties: Record<(typeof ADVISOR_VALIDATE_PARAMETER_KEYS)[number], Recor
       type: 'object',
       additionalProperties: false,
       properties: {
-        runtime: { type: 'string', enum: ['claude', 'copilot', 'codex'] },
+        runtime: { type: 'string', enum: ['claude', 'copilot', 'opencode'] },
         outcome: { type: 'string', enum: ['accepted', 'corrected', 'ignored'] },
         skillId: { type: 'string', minLength: 1 },
         correctedSkillId: { type: 'string', minLength: 1 },

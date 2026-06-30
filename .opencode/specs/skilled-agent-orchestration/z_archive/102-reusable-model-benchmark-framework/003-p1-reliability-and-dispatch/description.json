@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+  "description": "The P0 MVP makes benchmarking config-driven and gates correctness, but its trust verdict uses a minimal single-sample heuristic, the dispatcher does n",
+  "keywords": [
+    "mvp",
+    "makes",
+    "benchmarking",
+    "config-driven",
+    "gates",
+    "correctness",
+    "trust",
+    "verdict",
+    "uses",
+    "minimal",
+    "single-sample",
+    "heuristic",
+    "dispatcher"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.187Z",
+  "specId": "003",
+  "folderSlug": "p1-reliability-and-dispatch",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "102-reusable-model-benchmark-framework"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

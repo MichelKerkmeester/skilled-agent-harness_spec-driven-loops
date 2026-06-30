@@ -91,7 +91,7 @@ require_path "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-research"
 require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/agents/deep-research.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-research.md"
-require_path "${REPO_ROOT}/.codex/agents/deep-research.toml"
+require_path "${REPO_ROOT}/.opencode/agents/deep-research.toml"
 
 validate_sandbox_dir "$SANDBOX_DIR"
 
@@ -104,6 +104,6 @@ copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.openco
 
 copy_file "${REPO_ROOT}/.opencode/agents/deep-research.md" "${SANDBOX_DIR}/.opencode/agents/deep-research.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-research.md" "${SANDBOX_DIR}/.claude/agents/deep-research.md"
-copy_file "${REPO_ROOT}/.codex/agents/deep-research.toml" "${SANDBOX_DIR}/.codex/agents/deep-research.toml"
+copy_file "${REPO_ROOT}/.opencode/agents/deep-research.toml" "${SANDBOX_DIR}/.opencode/agents/deep-research.toml"
 
 echo "Created deep-research command sandbox at ${SANDBOX_DIR}"

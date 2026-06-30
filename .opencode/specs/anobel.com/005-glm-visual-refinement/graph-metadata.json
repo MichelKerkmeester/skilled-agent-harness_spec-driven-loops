@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/005-glm-visual-refinement",
+  "spec_folder": "anobel.com/005-glm-visual-refinement",
+  "parent_id": null,
+  "children_ids": [
+    "anobel.com/005-glm-visual-refinement/001-spatial-contract-and-gate",
+    "anobel.com/005-glm-visual-refinement/002-primitive-routing",
+    "anobel.com/005-glm-visual-refinement/003-minimax-auditor-in-loop",
+    "anobel.com/005-glm-visual-refinement/004-skeleton-first-2d",
+    "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author",
+    "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-glm-visual-refinement",
+      "glm visual refinement",
+      "bento refinement pipeline",
+      "spatial contract",
+      "skeleton-first 2d"
+    ],
+    "key_topics": [
+      "005-glm-visual-refinement",
+      "glm",
+      "visual",
+      "refinement",
+      "bento",
+      "pipeline",
+      "spatial",
+      "contract",
+      "skeleton-first",
+      "45-tile",
+      "glm-5",
+      "vision-to-code"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "reviews/SUMMARY.md",
+      ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SUMMARY.md",
+        "kind": "doc",
+        "path": "reviews/SUMMARY.md",
+        "source": "derived"
+      },
+      {
+        "name": "glm-5.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 45-tile GLM-5.2 vision-to-code run (`../004-bento-visuals`) shipped only 27/45 = 60% SHIP (mean audit 81.1)",
+    "created_at": "2026-06-29T10:50:18.269Z",
+    "last_save_at": "2026-06-29T10:50:18.269Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6c8b08be9ccf1c6a2c5c2f28406977b57eed92a88152cb6f2ebec430bf8bf41c",
+    "source_doc_hashes": {
+      "spec.md": "c9c3200f1730e9a05542f9a551e4ba40506f4fa47465e3612e574335f31a037f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

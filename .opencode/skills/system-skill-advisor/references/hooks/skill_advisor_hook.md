@@ -1,6 +1,6 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI and the OpenCode plugin bridge.
+description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, OpenCode and the OpenCode plugin bridge.
 trigger_phrases:
   - "skill advisor hook"
   - "user prompt submit hook"
@@ -14,7 +14,7 @@ version: 0.8.0.32
 
 # Skill Advisor Hook Reference
 
-Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, Codex CLI and the OpenCode plugin bridge.
+Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, OpenCode and the OpenCode plugin bridge.
 
 ---
 
@@ -26,7 +26,7 @@ Defines the operator contract for prompt-time Skill Advisor hooks across support
 
 ### When to Use
 
-- Installing or debugging Claude, Copilot, Codex or OpenCode prompt-submit hooks.
+- Installing or debugging Claude, Copilot, OpenCode or OpenCode prompt-submit hooks.
 - Checking hook fail-open, redaction or freshness behavior.
 - Aligning runtime adapters with the native advisor package.
 
@@ -49,8 +49,8 @@ Hooks surface compact advisor context; they do not replace skill loading or leak
 | --- | --- | --- | --- |
 | Claude Code | `mcp_server/hooks/claude/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt` and `cwd`. |
 | Copilot CLI | `mcp_server/hooks/copilot/user-prompt-submit.ts` | managed block in `$HOME/.copilot/copilot-instructions.md`. Hook stdout remains `{}` | Copilot advisor is NEXT-PROMPT freshness: current prompt sees PRIOR turn's brief. |
-| Codex CLI | `mcp_server/hooks/codex/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
-| Codex fallback | `mcp_server/hooks/codex/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when Codex hook policy reports hooks unavailable. |
+| OpenCode | `mcp_server/hooks/opencode/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
+| OpenCode fallback | `mcp_server/hooks/opencode/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when OpenCode hook policy reports hooks unavailable. |
 | OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js` and applies the same effective threshold on native and fallback paths. When native is unavailable it falls back to the warm-only skill-advisor CLI (`.opencode/bin/skill-advisor.cjs`; daemon socket probe, never a cold spawn, exit `75` retryable, `metadata.route: "cli"`); the Python route remains only as a force-local fail-open stub that yields no brief. |
 
 Build all runtime adapters:
@@ -101,18 +101,18 @@ cat "$SPECKIT_COPILOT_INSTRUCTIONS_PATH"
 
 Expected: hook stdout is `{}` and the custom-instructions file contains `SPEC-KIT-COPILOT-CONTEXT` plus an `Active Advisor Brief` section.
 
-### Codex CLI
+### OpenCode
 
 ```bash
 printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
+  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/opencode/user-prompt-submit.js
 ```
 
 Prompt wrapper fallback:
 
 ```bash
 printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/prompt-wrapper.js
+  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/opencode/prompt-wrapper.js
 ```
 
 ### OpenCode Plugin Bridge

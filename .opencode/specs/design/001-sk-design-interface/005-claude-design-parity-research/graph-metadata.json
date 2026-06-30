@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/005-claude-design-parity-research",
+  "spec_folder": "design/001-sk-design-interface/005-claude-design-parity-research",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude design parity research",
+      "sk-design-interface mcp-magicpath improvement",
+      "claude design tool gap analysis",
+      "claude design parity plan",
+      "sk-design-interface mcp-magicpath research plan",
+      "claude design parity tasks",
+      "sk-design-interface mcp-magicpath research tasks",
+      "claude design parity summary",
+      "sk-design-interface mcp-magicpath research outcome",
+      "claude design gap analysis"
+    ],
+    "key_topics": [
+      "claude",
+      "design",
+      "parity",
+      "research",
+      "sk-design-interface",
+      "mcp-magicpath",
+      "improvement",
+      "tool",
+      "gap",
+      "analysis",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anthropic Labs",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "WebFetch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework has two UI-design skills: `sk-design-interface` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath canvas-generation CLI that already depends on sk-design-interface)",
+    "created_at": "2026-06-14T08:30:00Z",
+    "last_save_at": "2026-06-23T03:49:48.412Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9ba98482eeeeea92e18b8bdb16d36861fbfe379a38a171a6b26d76600af2523b",
+    "source_doc_hashes": {
+      "spec.md": "841341d37f39875bec8dd9b66e4ed0c4e61cfde97e76753a70a4f060dae8c169",
+      "plan.md": "34eeeae219bf28bffa1521960d8291ab1473bafd0be1c5cedd414708fa53d9fb",
+      "tasks.md": "6f30040d192e25dd29d27be07fba856f9a49bd285458a674ea049844cdaab698",
+      "implementation-summary.md": "8547528b0b2bdb8604393802ba47c8f11bc5a0f2481610f83a289ed36684e5cf",
+      "research/research.md": "7a6b822422ee1a5d1c928401836696f608dae98216c75af5e0c1934025c5f805"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/059-sk-code-scripts-relocation",
+  "description": "`.opencode/skills/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-code",
+    "scripts",
+    "currently",
+    "mixes",
+    "stack-specific",
+    "webflow",
+    "build",
+    "utilities",
+    "root",
+    "skill"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.795Z",
+  "specId": "059",
+  "folderSlug": "sk-code-scripts-relocation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

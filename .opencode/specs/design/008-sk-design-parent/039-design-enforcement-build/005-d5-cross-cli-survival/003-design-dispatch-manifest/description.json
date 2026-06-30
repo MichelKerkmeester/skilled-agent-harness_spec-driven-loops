@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/003-design-dispatch-manifest",
+  "description": "A dispatched child CLI cannot know which register, mode bundle, or design-context files the parent resolved before handing off design or UI work",
+  "keywords": [
+    "dispatched",
+    "child",
+    "cli",
+    "cannot",
+    "know",
+    "register",
+    "mode",
+    "bundle",
+    "design-context",
+    "files",
+    "parent",
+    "resolved",
+    "handing",
+    "design",
+    "work"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.212Z",
+  "specId": "003",
+  "folderSlug": "design-dispatch-manifest",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "005-d5-cross-cli-survival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

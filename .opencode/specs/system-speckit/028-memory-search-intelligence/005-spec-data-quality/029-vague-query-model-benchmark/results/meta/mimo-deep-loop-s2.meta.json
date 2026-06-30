@@ -1,0 +1,14 @@
+{
+  "key": "mimo-deep-loop-s2",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "deep-loop",
+  "queryClass": "aligned",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 104561,
+  "bytes": 61131,
+  "stderrTail": ""
+}

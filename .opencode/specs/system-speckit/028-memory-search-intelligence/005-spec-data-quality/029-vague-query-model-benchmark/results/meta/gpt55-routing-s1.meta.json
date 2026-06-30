@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-routing-s1",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "routing",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 175397,
+  "bytes": 108866,
+  "stderrTail": ""
+}

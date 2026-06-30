@@ -659,10 +659,10 @@ describe('code-graph-query handler', () => {
         },
         {
           symbolId: 'shadow-implementation',
-          fqName: 'hooks.codex.handleSessionStart',
+          fqName: 'hooks.opencode.handleSessionStart',
           name: 'handleSessionStart',
           kind: 'function',
-          filePath: 'hooks/codex/session-start.ts',
+          filePath: 'hooks/opencode/session-start.ts',
           startLine: 80,
         },
       ],
@@ -713,10 +713,10 @@ describe('code-graph-query handler', () => {
     }));
     const implementationCandidate = {
       symbolId: 'shadow-implementation-after-cap',
-      fqName: 'hooks.codex.handleSessionStart',
+      fqName: 'hooks.opencode.handleSessionStart',
       name: 'handleSessionStart',
       kind: 'function',
-      filePath: 'hooks/codex/session-start.ts',
+      filePath: 'hooks/opencode/session-start.ts',
       startLine: 80,
     };
 

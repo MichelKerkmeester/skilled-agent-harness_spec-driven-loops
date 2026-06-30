@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/008-nested-parent-conversion",
+  "spec_folder": "design/008-sk-design-parent/008-nested-parent-conversion",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+        "reason": "Native invocability of the parent hub; its research is satisfied by the invokable-hub routing decided in ADR-002",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "design/008-sk-design-parent/002-architecture-decision",
+        "reason": "This packet reverses the 002 Model-B decision to Model-A (ADR-001)",
+        "source": "manual"
+      },
+      {
+        "packet_id": "deep-loops/029-deep-loop-workflows",
+        "reason": "Canonical worked example of the nested-packet parent pattern this conversion follows",
+        "source": "manual"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/117-parent-nested-skill-pattern",
+        "reason": "Provenance of the parent nested-skill pattern and the one-graph-metadata invariant",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design nested parent conversion",
+      "sk-design model A reversal",
+      "sk-design invokable hub routing",
+      "sk-design single graph-metadata",
+      "flat design family to nested packets",
+      "sk-design conversion plan",
+      "sk-design nested packet stages",
+      "sk-design rewire plan",
+      "sk-design conversion rollback",
+      "sk-design conversion tasks",
+      "sk-design nested packet task list",
+      "sk-design conversion stages tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "nested",
+      "parent",
+      "conversion",
+      "model",
+      "reversal",
+      "invokable",
+      "hub",
+      "routing",
+      "single",
+      "graph-metadata",
+      "flat"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+      ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skills_nested_packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skill_hub_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Consequence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Convert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Definition",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-design` family currently ships as one umbrella router skill plus five independent top-level sibling skills, each with its own `graph-metadata.json`",
+    "created_at": "2026-06-26T06:12:26.180Z",
+    "last_save_at": "2026-06-26T06:26:24.928Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b5f35e9e554a18cadba086c18f64927879cec738b34bc67af1212cf73d421d4",
+    "source_doc_hashes": {
+      "spec.md": "edcd93b42a80a60c4c01a8ba756df1a6773d34bbd79afcec7f92aa9e6e482ba1",
+      "plan.md": "b4da599aab1a26843c6c4e160826698add7d9c8edda1a40587791f3e0c65e363",
+      "tasks.md": "dc1ff4ca60f53a67bd16218168444402ed7675bea56f08d58f57d8da3025e0cc",
+      "checklist.md": "56d58e66059e6fca2ea87db33a8a580a976dc101c7d91715c921638fe0199f93",
+      "decision-record.md": "6a6eb9f5be599a252cabb435e7f5f60ec441bb6db4818b3e0c05ac8ddc8b1fcb",
+      "implementation-summary.md": "04d4b2f9e7b82647027b79430fa943f50d672c7a693e9650d6973dd99d8b5889"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/008-agent-deep-review",
+  "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "deep-review",
+    "579",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.516Z",
+  "specId": "008",
+  "folderSlug": "agent-deep-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "048-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

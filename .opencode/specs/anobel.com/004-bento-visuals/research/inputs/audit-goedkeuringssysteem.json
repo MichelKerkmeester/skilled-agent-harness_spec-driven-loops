@@ -1,0 +1,52 @@
+[
+  {
+    "tile": 1,
+    "score": 62,
+    "overflow": true,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Inner panel rows overflow the inner card's rounded corners — last 'Goedgekeurd' pill and the green status dot clip against the panel's bottom edge; the eyebrow + check icon also crowd the first row."
+  },
+  {
+    "tile": 2,
+    "score": 88,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "none"
+  },
+  {
+    "tile": 3,
+    "score": 66,
+    "overflow": true,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "'Keur goed' / 'Wijs af' action buttons clearly bleed past the inner panel's bottom rounded edge; CTA bar visually escapes the panel."
+  },
+  {
+    "tile": 4,
+    "score": 55,
+    "overflow": false,
+    "readable": false,
+    "on_brand": false,
+    "title_at_bottom": false,
+    "verdict": "FIX",
+    "issue": "Title/description at top-left instead of bottom-left (rule violation); 'Vloot-functie' eyebrow wrapped to two lines and rendered in ALL CAPS; '€ 1.000' and 'Routeringsregel' labels inside the navy block read as light/medium grey against deep blue — low contrast."
+  },
+  {
+    "tile": 5,
+    "score": 86,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "none"
+  }
+]

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/121-sk-prompt-models-rename/008-graph-symmetry-cleanup",
+  "spec_folder": "skilled-agent-orchestration/121-sk-prompt-models-rename/008-graph-symmetry-cleanup",
+  "parent_id": "skilled-agent-orchestration/121-sk-prompt-models-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill graph symmetry cleanup",
+      "skill_graph_compiler validation failed",
+      "sk-design reciprocal edges",
+      "graph symmetry cleanup plan",
+      "skill graph reciprocal edges plan",
+      "tasks",
+      "graph symmetry cleanup tasks",
+      "008-graph-symmetry-cleanup implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "graph",
+      "symmetry",
+      "cleanup",
+      "validation",
+      "failed",
+      "sk-design",
+      "reciprocal",
+      "edges",
+      "plan",
+      "tasks",
+      "008-graph-symmetry-cleanup"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-code-review/graph-metadata.json",
+      ".opencode/skills/sk-prompt-models/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reciprocity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`, but `sk-design` lacks the reciprocal `prerequisitefor` + `sibling` edges; and `sk-design` declares `sibling sk-code-review` without the reciprocal",
+    "created_at": "2026-06-28T15:46:01.946Z",
+    "last_save_at": "2026-06-28T16:32:22.198Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4c75aae9831af31d4360f6bc6a8a316cbe8f89c25c07d29756b1d5984bbc8e25",
+    "source_doc_hashes": {
+      "spec.md": "e61c22637afa49fde2d4c3976aff2667efa0bee3cc719d76af5c44fe10c84105",
+      "plan.md": "141730c3cf3d17f1237e6839d79aba914928a39893f5840c0963d4a99543aa8a",
+      "tasks.md": "d522c34a519045e81107a04e404e2b159469bbbfe3c6df1caa31177eae8c6373",
+      "implementation-summary.md": "8c0d717981d251c876a491d9dcb335732c0571ea58598ea62a6ea25a14d58003"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

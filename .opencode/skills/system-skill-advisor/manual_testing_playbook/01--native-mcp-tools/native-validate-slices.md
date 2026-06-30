@@ -46,9 +46,9 @@ advisor_validate({
   "confirmHeavyRun":true,
   "skillSlug":"system-spec-kit",
   "outcomeEvents":[
-    {"runtime":"codex","outcome":"accepted","skillId":"system-spec-kit"},
-    {"runtime":"codex","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},
-    {"runtime":"codex","outcome":"ignored","skillId":"system-spec-kit"}
+    {"runtime":"opencode","outcome":"accepted","skillId":"system-spec-kit"},
+    {"runtime":"opencode","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},
+    {"runtime":"opencode","outcome":"ignored","skillId":"system-spec-kit"}
   ]
 })
 ```

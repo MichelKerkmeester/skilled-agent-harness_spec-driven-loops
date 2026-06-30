@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/014-routing-benchmark",
+  "spec_folder": "design/008-sk-design-parent/014-routing-benchmark",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design routing benchmark",
+      "design mode routing efficiency",
+      "design router replay vs live dispatch",
+      "design benchmark verdict table",
+      "sk-design routing benchmark plan",
+      "design mode benchmark execution plan",
+      "sk-design routing benchmark tasks",
+      "design mode benchmark evidence tasks",
+      "sk-design routing benchmark verdict",
+      "design mode benchmark outcome"
+    ],
+    "key_topics": [
+      "sk-design",
+      "routing",
+      "benchmark",
+      "design",
+      "mode",
+      "efficiency",
+      "router",
+      "replay",
+      "live",
+      "dispatch",
+      "verdict",
+      "table"
+    ],
+    "importance_tier": "supporting",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Kimi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ran Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kimi",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five sk-design mode packets (interface, foundations, motion, audit, md-generator) each ship a router that points a model at the references and assets a task needs",
+    "created_at": "2026-06-27T04:38:24.561Z",
+    "last_save_at": "2026-06-27T04:39:22.511Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:63b4472ff792363faa016f54e9aa55e33af0b9d669d12d8acbeba106f99a00fb",
+    "source_doc_hashes": {
+      "spec.md": "fd419b2756ae6ea391d298f8129eecf0b909b68cb6ccffdaeda4af508e3a3d35",
+      "plan.md": "374b60982848a20def4ae160ecafe94ae5c5aa103eee93bc10601907290a5287",
+      "tasks.md": "32254a4b561b316ce43566f9ab12efa09de83bbf0e276046edcbb5131bca2b8e",
+      "implementation-summary.md": "e055c926b1bb2dbc0967068cf0a376b27cd25366ccc6622c8098814da0bfb3ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

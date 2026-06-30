@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "description": "Port the residual feature/reference/asset craft from impeccable-main and designer-skills-main into the live sk-design modes, one phase per recommendat",
+  "keywords": [
+    "port",
+    "residual",
+    "feature",
+    "reference",
+    "asset",
+    "craft",
+    "impeccable-main",
+    "designer-skills-main",
+    "live",
+    "sk-design",
+    "modes",
+    "one",
+    "phase",
+    "per",
+    "recommendat"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.929Z",
+  "specId": "001",
+  "folderSlug": "d1-residual-craft",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-06-26_10-11__all-deep-review-findings-for-154-sk-design-parent.md"
+  ]
+}

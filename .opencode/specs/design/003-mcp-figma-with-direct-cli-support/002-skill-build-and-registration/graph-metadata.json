@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/003-mcp-figma-with-direct-cli-support/002-skill-build-and-registration",
+  "spec_folder": "design/003-mcp-figma-with-direct-cli-support/002-skill-build-and-registration",
+  "parent_id": "design/003-mcp-figma-with-direct-cli-support",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-figma skill build",
+      "figma-ds-cli skill registration",
+      "figma terminal control skill",
+      "mcp-figma build plan",
+      "figma skill registration plan",
+      "mcp-figma build tasks",
+      "figma skill registration tasks",
+      "mcp-figma build checklist",
+      "figma skill build verification",
+      "mcp-figma build summary",
+      "figma skill build outcome"
+    ],
+    "key_topics": [
+      "mcp-figma",
+      "skill",
+      "build",
+      "figma-ds-cli",
+      "registration",
+      "figma",
+      "terminal",
+      "control",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/mcp-figma/SKILL.md",
+      ".opencode/skills/mcp-figma/references/figma_cli_reference.md",
+      ".opencode/skills/mcp-figma/references/tool_surface.md",
+      ".opencode/skills/mcp-figma/references/mcp_wiring.md",
+      ".opencode/skills/mcp-figma/references/troubleshooting.md",
+      ".opencode/skills/mcp-figma/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-figma/README.md",
+      ".opencode/skills/mcp-figma/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-figma/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "figma_cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/references/figma_cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/references/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_wiring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/references/mcp_wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-figma/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Desktop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The phase 001 research established that the silships figma-cli can drive the live Figma Desktop session from the terminal, that npm carries a naming trap and a minimal-build trap, and that an optional Figma MCP is reachable through Code Mode",
+    "created_at": "2026-06-14T17:00:00Z",
+    "last_save_at": "2026-06-23T03:49:48.658Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ceb68449bddd0ba392ccd360849910d3b9a183257a7fe078cbcf50056b69bf4b",
+    "source_doc_hashes": {
+      "spec.md": "b7ab643cb6e6632c87644d99307b8c08f7ab3199dafa5cead9953a47d8164ab3",
+      "plan.md": "46c3fd62a01cbd05378304f1c16e1f3600c6842b0827961165430dd566b4593b",
+      "tasks.md": "e7537a22d2d89d912878832a3d3c4b9dd4d50bd5a5dddf871409c13fbc6cfbda",
+      "checklist.md": "4da6ca570b8fd5445ce30371d50ad9f438ebe6ffc763569e272e582d093d1912",
+      "implementation-summary.md": "09444c313cdbfaa503b63efd528ed10459f12b319190ba17cab3a639389807e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

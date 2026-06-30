@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 This playbook provides 24 deterministic scenarios across 8 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-codex and cli-opencode, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
+Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -80,7 +80,7 @@ Coverage note (2026-06-13): the playbook covers single-pass review flow, securit
 - Bash commands shown as `bash: <command>`.
 - Native review-agent prompts shown as `agent: @review <instruction>`.
 - Deep-review references shown as `agent: @deep-review <single-iteration context>` only when a scenario inspects deep-review behavior; this root playbook does not run the deep-review loop.
-- Codex CLI dispatches shown as `cli-codex: <prompt>`.
+- External OpenCode CLI dispatches shown as `cli-opencode: <prompt>`.
 - OpenCode CLI dispatches shown as `cli-opencode: <prompt>`.
 - `->` separates sequential steps inside one deterministic command sequence.
 - External CLI handbacks are review-only. Any implementation, file edit, or branch mutation is contradictory evidence.
@@ -145,7 +145,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 |---|---|---|
 | Scenario ID | Yes | One of CR-001..CR-024 |
 | Feature file | Yes | Relative path under this playbook root |
-| Runtime | Yes | Native, @review, cli-codex, cli-opencode, or skipped surface |
+| Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
 | Exact prompt hash | Yes | Hash or pasted prompt proving canonical prompt equality |
 | Evidence path | Yes | Transcript, report path, or captured output location |
@@ -513,23 +513,23 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 > **Feature File:** [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md)
 
-### CR-017 | cli-codex delegation
+### CR-017 | cli-opencode delegation
 
 #### Description
 
-Codex handback that must preserve the review schema without editing files.
+OpenCode handback that must preserve the review schema without editing files.
 
 #### Scenario Contract
 
-Prompt: `As an external conductor, delegate a code review to cli-codex against the requested diff scope. Verify Codex uses findings-first severity, file:line evidence, and no implementation changes. Return a sk-code-review-compatible handback.`
+Prompt: `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a sk-code-review-compatible handback.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
 #### Test Execution
 
-> **Feature File:** [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md)
+> **Feature File:** [CR-017](06--cross-cli-orchestration/cli-opencode-delegation.md)
 
-### CR-018 | cli-opencode and cli-codex handback
+### CR-018 | cli-opencode and cli-claude-code handback
 
 #### Description
 
@@ -537,13 +537,13 @@ Alternate-CLI handback comparison that keeps unsupported claims out of blockers.
 
 #### Scenario Contract
 
-Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-codex against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
+Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-claude-code against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
 #### Test Execution
 
-> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md)
+> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-opencode-handback.md)
 
 ---
 
@@ -689,8 +689,8 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-014 | Stale architecture fresh pass | RE-REVIEW AND STALE CONTEXT | [CR-014](05--re-review-and-stale-context/stale-architecture-fresh-pass.md) |
 | CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md) |
 | CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md) |
-| CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md) |
-| CR-018 | cli-opencode and cli-codex handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-codex-handback.md) |
+| CR-017 | cli-opencode delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-opencode-delegation.md) |
+| CR-018 | cli-opencode and cli-claude-code handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md) |
 | CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md) |
 | CR-020 | Reinvent-the-wheel detection | EFFICIENCY AND RESTRAINT | [CR-020](08--efficiency-and-restraint/reinvent-the-wheel-detection.md) |
 | CR-021 | Unrequested-code removal prompt | EFFICIENCY AND RESTRAINT | [CR-021](08--efficiency-and-restraint/unrequested-code-removal.md) |

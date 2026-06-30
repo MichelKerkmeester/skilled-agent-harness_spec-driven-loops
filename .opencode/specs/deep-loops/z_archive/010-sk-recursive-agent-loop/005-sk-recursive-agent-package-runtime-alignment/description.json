@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/z_archive/010-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+  "description": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templa",
+  "keywords": [
+    "phase",
+    "004",
+    "agent-improver",
+    "workflow",
+    "functionally",
+    "strong",
+    "package",
+    "still",
+    "stricter",
+    "alignment",
+    "gap",
+    "against",
+    "sk-doc",
+    "templa"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.171Z",
+  "specId": "005",
+  "folderSlug": "sk-recursive-agent-package-runtime-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "041-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

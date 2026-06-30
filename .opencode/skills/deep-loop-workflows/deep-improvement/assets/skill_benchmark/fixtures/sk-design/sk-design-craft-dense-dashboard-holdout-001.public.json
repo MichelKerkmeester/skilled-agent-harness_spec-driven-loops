@@ -3,7 +3,7 @@
   "tier": "T2",
   "public": {
     "prompt": "shape a product dashboard grid for high-volume data tables, chart type choices, filters, and empty states without adding decorative whitespace",
-    "runtime": "codex",
+    "runtime": "opencode",
     "mutationBoundary": "routing-only",
     "outputContract": "select the appropriate design workflow without editing files"
   },

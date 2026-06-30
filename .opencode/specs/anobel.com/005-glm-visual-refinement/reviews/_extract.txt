@@ -1,0 +1,1159 @@
+================ PHASE 001-spatial-contract-and-gate ================
+---- glm ----
+## Verdict
+AGREE-WITH-CHANGES — confidence 0.72 — the gate + measurement surface is genuinely high-ROI, but the contract's load-bearing role is assumed not shown, the card geometry is internally contradictory, and the success criteria conflate "fixed diagrams" with "converted diagrams".
+
+## What GPT-5.5 got right
+- **The gate is the real asset.** Making RC-1..RC-5 machine-checkable on the rendered DOM (not the model's self-report) is the correct load-bearing surface; everything else is decoration around it. NFR-R01 (render failure = explicit error, never silent pass) is the right invariant.
+- **As-text vs as-fill distinction (NFR-C02)** is correctly identified as the RC-5 false-negative trap (`#8591b3` as stroke passes, as text fails). Most plans miss this.
+- **Arm-based isolation (REQ-008)** with `control` byte-reproducibility is the right experimental discipline — it isolates whether the *contract* lifts SHIP (T1) vs the *gate+repair* (T2), which is the actual scientific question.
+- **Scope fence is clean** — pushing primitive routing, skeleton-first 2D, and the adoption gate to later phases stops this phase from boiling the ocean.
+- **Failure-only repair** (no second pass) is a pragmatic cap on cost and a clean handoff to phase 004 for residual failures.
+
+## Gaps / risks / errors
+
+1. **HARD — Card geometry is self-contradictory.** The spec says `SAFE_LINEAR_560` at 560×480 with visual box `x=30..530, y=30..328` and title band `y=356..456`. But the A1 research it claims to implement specifies **480×480** (`--tile-w:480px; --tile-h:480px`, `visualBox:[24,24,432,304]`). The continuity "answered question" hand-waves this away ("locked at 560x480, not 480") without re-deriving the geometry — the wider aspect (500px vs 432px visual width) changes row capacity, glyph sizes, and the gate's bbox thresholds. If the harness actually renders 480-tall, every Y threshold in REQ-006 is potentially wrong. **Resolve before freezing the contract.**
+
+2. **SC-002 is a measurement-conflation trap.** "Diagram-vs-linear delta narrows from ~41 to 15-22 pts" — but A1's mechanism is *converting* diagrams into compact-matrix/stacked-list, not *fixing* spatial reasoning. The worst-band tiles stop being diagrams, so the delta shrinks by reclassification, not by skill gain. Phase 006's adoption decision will be reading a metric whose meaning changed mid-experiment. State this honestly: SC-002 should measure "post-conversion primitive score", not "diagram score".
+
+3. **One-shot repair (REQ-007) is unvalidated.** No evidence GLM-5.2 given failure-JSON + screenshot actually resolves the failure in a single call. The 76-82% SHIP forecast assumes a repair success rate that has never been measured. Cost of being wrong: the entire T2 lift collapses and phase 006 blocks. **Run a 5-tile probe first** (below).
+
+4. **The failure-JSON schema is load-bearing for phase 002 but deferred to "documented in plan.md" (REQ-009).** plan.md doesn't contain it. Phase 002 is blocked on a schema that doesn't exist. Freeze it in Phase-1 Setup as a versioned artifact, not a doc afterthought.
+
+5. **T1 vs T2 attribution is buried.** SC-001 says "under the T2 arm" — but T1 (contract-only) is the cheap experiment and T2 is where the lift almost certainly lives (the research itself admits "prompt-only collision prevention is weaker than browser-measured overlap"). The plan structures the 45-tile pilot as if contract and gate contribute comparably. They likely don't. If T1 lift is ~0, the contract is decorative and could be cut to reduce prompt density (which the spec itself flags as the IFScale-cliff risk in §6).
+
+6. **Contrast helper LOC and determinism are optimistic.** NFR-C02 requires walking every element, classifying SVG `stroke`/`fill` vs CSS `color`, and exempting `aria-hidden`. Realistically `contrast.mjs` alone is 200+ LOC, not bundled into a 200-450 total. Separately, NFR-C01 (determinism) is violated by async web-font load shifting bboxes — the gate must `await document.fonts.ready` + network-idle before measurement, which isn't specified.
+
+7. **REQ-002 caps may trade correctness for safety.** "Matrix = header + max 3 rows + N more" assumes no Product tile semantically needs ≥4 rows. If any of the 45 tiles is a 5-invoice ledger where hiding rows loses meaning, the gate passes an *impoverished* tile. No audit of the 45 specs' row requirements is cited.
+
+8. **Gate false-positive operating point is undefined** because the adoption-vs-repair-only question (OQ-1) is deferred to phase 006. If the gate ever blocks adoption, its FP rate on known-good tiles becomes critical — and REQ-006 only validates against 2 known-good examples (accountbeheer-5, kwartaalcijfers-2). That's undersized for a measurement surface 4 phases depend on.
+
+9. **Scaffold leaks.** `Branch: system-speckit/028-memory-search-intelligence` is an unrelated packet; `fingerprint: sha256:0000…` is a placeholder; arm names switch between `control/a1_prompt/a1_gate_repair` (REQ-008) and `C0/T1/T2` (Edge Cases, Testing). Minor individually, but signals the docs weren't reconciled before this review.
+
+## Strongest improvement or alternative
+**Insert a 5-tile probe before the 45-tile pilot.** Take 5 known-bad diagram tiles (accountbeheer-4, oci-4, goedkeuringssysteem-4, orders-facturen-4, aangepast-assortiment-3), hand-inject the `SAFE_LINEAR_560` contract, and measure T1 lift *before* building the gate. Two outcomes, both valuable:
+- **T1 lifts ≥10pts** → contract is load-bearing, full pilot justified, gate build proceeds.
+- **T1 lifts <5pts** → contract is decorative under instruction load (as the research itself predicts); skip T1, build gate+repair only, cut contract tokens to ease the IFScale risk.
+
+This costs ~1 hour and de-risks the entire 8-15h estimate + the unvalidated one-shot-repair assumption (the same 5 tiles can probe repair success rate simultaneously). The plan currently goes straight from "no code" to "full 45-tile pilot" with no intermediate falsification step — that's the single biggest methodological gap.
+
+## One thing to test or verify before building this phase
+**Confirm the actual rendered card dimensions** by reading the harness's reference shell CSS (`gen-tile.mjs` + the shell template). The 560×480 (spec) vs 480×480 (A1 research) contradiction must be resolved empirically before any bbox threshold in REQ-006 is trusted — otherwise the gate could pass/fail against the wrong coordinate space and every downstream phase inherits the error.
+
+---- mimo ----
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence **0.72** — The architecture (compact contract → deterministic gate → one repair pass) is sound and the root-cause mapping is rigorous, but the SHIP prediction is over-optimistic by ~5-10pp and the proposal skips a cheap validation step that could de-risk the entire experiment.
+
+---
+
+## What GPT-5.5 got right
+
+1. **Replace-diffuse-prose strategy is correct.** The research (IFScale, LaTCoder) shows instruction density degrades GLM compliance. Replacing ~800 tokens of scattered layout rules with ~350-450 tokens of compact spatial contract is the right direction. The contract is load-bearing and short.
+
+2. **Deterministic gate as authority, not model self-report.** The preflight JSON is self-reported by GLM — untrustworthy by design. Making the gate the acceptance authority (not the preflight) is the single most important architectural decision. This is Goodhart-resistant.
+
+3. **Single repair pass constraint.** Unbounded iteration loops are the classic failure mode of LLM repair pipelines. One repair + one re-gate is the correct ceiling for a first experiment.
+
+4. **Failure JSON as measurement surface.** Creating a stable schema consumed by phases 002-006 is the right way to sequence work. This phase produces data, not just a fix.
+
+5. **RC-1..5 mapping to gate checks.** Each of the 6 gate checks maps to a specific RC-id. This is auditable and verifiable. No orphan checks, no uncovered RCs.
+
+6. **Arm-based A/B design.** Three arms (C0, T1, T2) cleanly decompose: does the prompt alone lift? Does gate+repair add? This is proper experiment design.
+
+---
+
+## Gaps / risks / errors
+
+### Gap 1: SHIP prediction is over-optimistic (SC-001)
+
+The spec predicts 34-37/45 = 76-82% SHIP. The math doesn't hold:
+
+- The 18 non-SHIP tiles include both **layout failures** (RC-1..5, fixable by this phase) and **diagram complexity failures** (2D positioning, NOT fixable by this phase — that's phases 004-005).
+- Linearizing diagram tiles (cap 3 rows/nodes) doesn't produce a good tile — it produces a truncated tile. A matrix with 6 rows showing only 3 + "+3 more" might score 55-65, still below SHIP.
+- The 41pt gap (35-58 for diagrams vs 86-94 for linear) won't narrow to 15-22pts by capping rows. The cap reduces overflow but also reduces information density, which the audit likely penalizes.
+- **Realistic prediction: 30-34/45 = 67-76%** (a 7-16pp lift, not 16-22pp). The gate catches RC-1..5 mechanically, but the linearized diagram tiles still underperform on aesthetics/information.
+
+**Fix:** Add a "predicted per-tile band" table in the spec that breaks down which tiles are expected to lift by how much, and why. Don't aggregate to a single SHIP number.
+
+### Gap 2: No gate validation on existing baseline
+
+The proposal jumps straight to a full 45-tile regeneration experiment. But the gate's 6 checks have never been run against the existing 45 tiles. This is a **2-hour validation step** that could save 10+ hours:
+
+1. Run the gate on the existing 45 baseline tiles (no GLM calls).
+
+---- deepseek ----
+## Verdict
+**DISAGREE** — confidence 0.85 — the proposal has a fatal dimensional contradiction (480×480 in research contract vs 560×480 in spec/harness) that would produce invalid tiles, plus the repair pass assumes GLM can self-correct the same spatial reasoning it demonstrably lacks.
+
+---
+
+## What GPT-5.5 got right
+- Correctly identifies that prose contracts are unenforceable under instruction load and that a **deterministic post-render gate** is the right authority model (gate owns acceptance, model never self-certifies).
+- The six gate checks (title-band intrusion, visual-panel overflow, bbox overlap, banned-gray-on-dark, `text-transform:uppercase`, clipping) are well-targeted at RC-1..RC-5.
+- The arm-isolation design (C0 / T1 / T2) enables clean A/B inference.
+- Recognizing that preflight self-reports are untrustworthy and the gate must measure the rendered DOM is the correct posture.
+
+---
+
+## Gaps / risks / errors
+
+### 1. FATAL: Dimensional contradiction between contract and harness
+The A1 research recommendation hardcodes **480×480** geometry (`--tile-w:480px; --tile-h:480px;`, visual box `y=24..328`). The spec *correctly* overrides this to **560×480** (matching the existing harness). But the plan, architecture section, and A1 recommendation block in the spec itself all copy-paste the **480×480** values without reconciling them. A GLM prompt that says "the tile is 560×480" followed by CSS vars that declare `--tile-w:480px; --tile-h:480px; --visual-bottom:328px; --title-y:352px` will produce tiles positioned for a 480×480 canvas rendered in a 560×480 container — guaranteed layout breakage on every tile. This must be resolved before any code is written.
+
+### 2. The repair pass is structurally unsound
+REQ-007 sends "failure JSON + rendered screenshot" to the same GLM-5.2 that produced the failing tile. RC-1 and RC-2 are *spatial reasoning defects* — GLM cannot compute cumulative row heights or detect bounding-box collisions. Giving it JSON that says "element X overflowed by 42px" does not give it the constraint-solving capability to fix the overflow. The model will either (a) guess at new pixel values (likely producing a different but still-wrong layout), or (b) strip content to fit (silently dropping rows, shrinking text). The edge case "fails twice: no second repair, keep best-scoring pass" confirms this — the repair is expected to have a high failure rate. A repair pass on a model that *can't do the thing* is token burn, not remediation.
+
+**Alternative**: Skip the GLM repair pass entirely in phase 001. Instead, mark gate-failing tiles and defer actual fixes to phase 004 (skeleton-first 2D, where layout coordinates are computed deterministically). This eliminates ~20-30% of the token budget (~800-1400 tokens per failed tile × expected ~18 failures = 14k-25k wasted tokens).
+
+### 3. The "as-text vs as-fill" contrast distinction is under-specified and likely harder than estimated
+The contrast gate must not flag `#8591b3` when used as an SVG `stroke=` (aangepast-assortiment-4 scored 88) but must flag it as readable text `color:` on dark. This requires traversing the DOM, distinguishing text-bearing nodes from decorative ones, and checking *which property* carries a given hex value. For SVG, `stroke=` vs `fill=` is parseable; for HTML/CSS, you need to check computed `color` vs `border-color` vs `background-color` for each element. The spec says "dedicated `contrast.mjs`" but provides no algorithm. The effort estimate (3-5 hours for gate + contrast combined) is optimistic by at least 2× for getting this right, especially with SVG inline in GLM output.
+
+### 4. Causal inference gap in the arm design
+T1 = contract only, T2 = contract + gate + repair. There is no **gate-only (no contract)** arm. If T2 outperforms T1, you can't attribute the lift to the gate + repair vs the contract. If T2 is *worse* than T1 (contract alone is sufficient), you can't detect that the gate/repair is harmful. Add a T3 = gate-only arm (gate the control output, no contract, no repair) to isolate each component's contribution.
+
+### 5. Token budget math doesn't close
+NFR-P01 claims "~350-450 prompt tokens" by replacing diffuse layout prose. But the A1 contract block alone is ~430 tokens (I counted: CSS vars paragraph + layout primitive paragraph + caps paragraph + text/case paragraph + dark tokens paragraph + 6-gate checklist), and the A2 reasoning-embedded contract adds another ~500 tokens. The preflight JSON schema adds ~200 tokens. Total is ~1100-1200 tokens of new contract content. Unless the old layout prose was exactly that long (unlikely for "diffuse" prose), this is a net addition. The IFScale cliff risk (mentioned in spec §6) is real: more instruction density → more dropped constraints → paradoxical regression on the linear-flow tiles the proposal is trying to protect. SC-005's "do not regress >3 pts" guardrail may not hold.
+
+### 6. Missing gate failure modes
+- No handling for GLM output that crashes the headless renderer (JS infinite loop, `document.write` in a loop, enormous inline SVG). The spec says "render or browser failure surfaces as an explicit gate error" but doesn't define recovery.
+- No handling for malformed HTML where elements exist but CSS is unparseable. Does every element without a style attribute get a pass? Fail?
+- No handling for the gate itself being wrong (false positive sends a good tile to unnecessary repair; false negative ships a bad tile). There's no gate self-audit mechanism.
+
+### 7. SC-001 (76-82% SHIP) is over-optimistic
+The 60% → 76-82% prediction assumes RC-1..RC-5 account for all 18 failures (27/45), and that the contract + gate + repair fixes all of them. But RC-1 alone has 8 tiles with overflow (only some of which are the 18 failures), and RC-2 has collision issues on tiles that may *also* have other defects not in RC-1..RC-5. The proposal doesn't map each of the 18 failures to a specific RC with a predicted fix probability. A more honest forecast: contract alone fixes ~5-7 tiles (overflow + title-band + text-transform are cheap to fix in prompt only on the tiles where GLM was *close* to correct), gate catches ~10-12 failures, repair fixes ~0-2 of those. Net: 32-36/45 = 71-80%, with high variance. The upper bound is plausible; the lower bound should be acknowledged.
+
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.62**. The measurement-surface + failure-only repair architecture is sound, but the spec as written contains a load-bearing dimensional contradiction and success criteria that imply capabilities this phase does not actually ship.
+
+## What GPT-5.5 got right
+- The **failure-JSON measurement surface** is the highest-ROI artifact here; even if SHIP lift is modest, phases 002–006 cannot run without it.
+- **Failure-only repair** is correctly costed and avoids refining already-SHIP tiles.
+- The **three-arm A/B** (control / prompt-only / prompt+gate+repair) is the right experimental structure to isolate causal effects.
+- The six gate checks map cleanly to the observed RC-1..RC-5 failure modes.
+
+## Gaps / risks / errors
+
+### 1. CRITICAL: 480 vs 560 dimensional contradiction
+The research-grounded A1 contract says **480×480** (`--tile-w:480px; --tile-h:480px; visualBox [24,24,432,304]`), while the spec and harness say **560×480** (`x=30..530`, `SAFE_LINEAR_560`). Applying the 480-width contract to a 560 card will either leave an 80px dead band or silently break centering/padding math. The spec cannot be implemented until one geometry is chosen and the contract coordinates recalculated. This is a copy-paste error from the parent research that has propagated into scope, requirements, and NFRs.
+
+### 2. Success criteria are program-level, not phase-level
+SC-001 claims **34–37/45 (76–82%) SHIP** and SC-002 claims narrowing the diagram-vs-linear delta to **15–22 pts** for a phase that explicitly **excludes** primitive routing (002), MiniMax fix-JSON (003), skeleton-first 2D (004), and GPT-5.5 skeleton author (005). Those four phases are where the 41-pt gap actually closes. Phase 001 should target a smaller, honest lift (e.g., +6–12 pp SHIP, mostly from RC-1/RC-3/RC-4 compliance, not diagram sophistication).
+
+### 3. The contract does not actually ban the root-cause primitive
+The root cause is **2D-positioned diagrams**. A2 says “Do not use a freeform 2D node map,” but the A1 contract only says *“convert to linear-flow if >3 nodes.”* A 3-node freeform diagram is still allowed and will still collide. The repair prompt should include a hard downgrade rule: if the gate detects ≥N absolute-positioned content elements or bbox overlap, the repair must switch to a linear/table primitive.
+
+### 4. Bbox overlap detection will false-positive
+“Any readable text/card/node bbox overlap” with zero tolerance will flag valid adjacent grid/flex items whose margins/padding touch. The gate needs a **pixel tolerance** (e.g., overlap area > 4 px²) and must ignore whitespace-collapsed inline text spans, otherwise T2 will over-repair and burn tokens.
+
+### 5. “As-text vs as-fill” contrast is under-specified
+REQ-004/NFR-C02 require distinguishing `#8591b3` as stroke vs text, but the algorithm is not defined. Edge cases not covered: SVG `<text>` inside a shape with the same fill, `currentColor`, CSS `color` inherited into pseudo-elements, text on semi-transparent overlays. Without a concrete rule, the gate will be noisy.
+
+### 6. Preflight JSON assumes GLM compliance
+REQ-005 requires parseable preflight metadata “stored as metadata, never rendered.” GLM-5.2 reliably emits JSON only when the format is trivial and the example is few-shot. A complex schema with nested arrays (`contrast_pairs`, `accent_semantics`) will frequently be malformed or hallucinated. The harness needs a **graceful fallback**: if preflight parse fails, fall back to DOM gate results.
+
+### 7. Control-arm byte-reproducibility is unverified
+NFR-R02 claims `control` reproduces the existing single-shot path, but `gen-tile.mjs` is being modified with arm guards, preflight parsing, and output isolation. Unless the control branch literally short-circuits before any of that code, byte reproducibility is a claim, not a fact.
+
+### 8. Branch name is wrong
+`system-speckit/028-memory-search-intelligence` is unrelated to this work; it is a copy-paste from a different packet and should be corrected.
+
+## Strongest improvement or alternative
+**Pull primitive-routing forward into the repair pass.** The phase should not wait until 002 to downgrade 2D diagrams. In `a1-repair.mjs`, when the gate detects absolute-positioned content overlap, title-zone intrusion, or >3 nodes/rows, the repair prompt should include a mandatory directive: *“Rebuild this tile using `linear-flow`, `stacked-ledger`, or `mini-table`; do not attempt to fix the 2D layout.”* This single change makes phase 001 capable of hitting a realistic SHIP target instead of merely measuring the problem.
+
+## One thing to test or verify before building this phase
+Run the **T1 (prompt-only) arm on the 5 lowest-scoring 2D tiles** (accountbeheer-4, orders-facturen-4, goedkeuringssysteem-4, oci-4, aangepast-assortiment-3) with no gate and no repair. If the prompt alone does not convert at least 3 of them to linear/table primitives, the phase-1 SHIP target is unachievable and primitive routing must be added before implementation.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.62**. The direction is correct (deterministic gate > prompt prose), the RC-to-REQ mapping is solid, and "failure-only repair" is the right shape. But the spec is over-promising on lift, under-specifying the schema, and contains a coordinate bug that will silently desync the contract from the research. The repair call is the weakest link and the success criteria are not robust to repair-success-rate uncertainty.
+
+---
+
+## What GPT-5.5 got right
+- **Cause-to-control mapping**: RC-1/RC-3/RC-4/RC-5 each have a checkable invariant, and each REQ owns one. That's the right shape.
+- **Gate as authority, not prompt**: treating the headless DOM/CSS gate as the load-bearing surface (and the model's preflight as a hint, not a contract) is the correct inversion of what failed in iter-r3.
+- **Arm isolation (`control` / `a1_prompt` / `a1_gate_repair`)**: forces a real paired A/B rather than a self-report.
+- **Linearizer ceiling as risk, not goal**: correctly framed as "preserve 86-94 winners, lift 35-58" with `+N more`, not "force everything linear."
+- **Banned-token-as-stroke vs banned-token-as-text distinction** for `#8591b3` (RC-5): this is the correct way to avoid a false-positive on aangepast-assortiment-4 (88).
+- **Repair degrees of freedom** are correctly narrowed (copy/palette/title/glyph/casing locked).
+
+---
+
+## Gaps / risks / errors
+
+### 1. **Coordinate bug — the contract block silently disagrees with the research**
+- Research A1 final-rec: `--pad:24px; --visual-y:24px; --visual-bottom:328px; --title-y:352px`, `visualBox: [24, 24, 432, 304]`, `titleBox: [24, 352, 432, 104]`.
+- Spec.md REQ-001 + A1 contract: `x=30..530, y=30..328`, title band `x=30..530, y=356..456`.
+- That's **30 vs 24 padding** and **y=356 vs y=352** title-band start (4px gap shift). If the gate enforces spec.md coords but GLM honors research A1 coords (or vice versa), you get systematic false negatives or false positives — and the gate's known-good self-test (accountbeheer-5, kwartaalcijfers-2) won't catch it because those tiles don't touch the boundary.
+- Pick one. Lock it in spec.md, not plan.md.
+
+### 2. **Primitive vocabulary isn't reconciled between A1 and A2**
+- A1 caps talk about: matrix rows, approval/branch flow, integration flow nodes, legend, CTA.
+- A2 primitives: `linear-flow | stacked-ledger | compact-kpi-row | two-column-comparison | mini-table`.
+- These are different vocabularies. The gate's "exceeds cap" check (REQ-002) needs a primitive→cap lookup. Whose vocabulary wins? Spec REQ-002 lists A1 caps but doesn't map them to A2 primitives, so the gate will be ambiguous on what counts as a "branch flow" vs an "integration flow" when GLM picks `compact-kpi-row`.
+
+### 3. **The repair call is the unvalidated assumption — and it's the load-bearing one**
+- SC-001 (76-82% SHIP) is arithmetic over `18 failures × repair_success_rate`. At 40% repair success → 7 fixes → 34/45 = 76%. At 60% → 11 fixes → 38/45 = 84%. The whole SC-001 range lives in an assumption the spec never measures or bounds.
+- Worse: the repair call has copy/palette/title/glyph/casing **locked** — only layout degrees of freedom remain. The reason the tile failed was layout. You're asking the same model, with very similar freedom, to redo what it just failed at, given a JSON hint. Published evidence (and the cited CoR/IFScale) suggests single-shot spatial repair from a free-form LLM is **not** a solved problem — it's typically 30-55%.
+- Mitigation missing: a **repair success-rate gate** (e.g., "if pilot repair rate < 50%, escalate to phase 004 skeleton-first, do not ship T2").
+
+### 4. **"Fails twice → ship anyway" conflicts with the success criteria**
+- Spec edge case: *"no second repair in this phase; record the residual failure JSON and keep the best-scoring pass."* But SC-001 expects +9 to +10 SHIP. If 18 baseline failures × ~50% repair rate = 9 fixes, and the other 9 stay at their baseline score (~50-60) instead of failing the gate but still passing SHIP, you net **some SHIP, some non-SHIP**. The spec doesn't quantify how many tiles ship with `gate.fail=true` and what that means for the audit rubric.
+- Recommend: explicitly state "non-passing tiles are NOT counted in SC-001; SC-001 measures SHIP among `gate.fail=false` tiles only" OR add SC-007 "repair-recovered SHIP rate ≥ X%".
+
+### 5. **The 350-450 token contract is an IFScale-collision risk the spec doesn't measure**
+- IFScale (cited in A2 grounding) says constraint-following degrades as instruction density grows. The whole baseline analysis is "GLM dropped constraints under instruction load." The fix adds ~350-450 tokens of dense layout rules **plus** A2's ~30-line preflight JSON. Combined ~600-700 extra tokens of constraints. SC-005 caps linear-flow regression at 3 pts, but you have **no a-priori measurement of where GLM-5.2's constraint-omission cliff sits** in prompt tokens.
+- This is testable cheaply (5-tile sample at 0 / 200 / 400 / 700 added constraint tokens) and the spec skips it.
+
+================ PHASE 002-primitive-routing ================
+---- glm ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.82 — the classifier is a correct, cheap, necessary routing step, but the spec freezes a brittle 10/35 split as its ground truth without acknowledging that 4 of the 10 "2D" tiles are also height-budget failures (RC-1), so routing them to skeleton-first fixes collisions but may leave overflow intact.
+
+## What GPT-5.5 got right
+- Route key = **primitive form, not treatment index** is the real insight; the `aangepast-assortiment-4` `(d)` donut = linear-flow proof is a good falsifier and a correct gate.
+- Keeping it a deterministic lookup + branch (no service, no LLM classifier) is the right-sized solution for a 45-tile finite set — no over-engineering.
+- REQ-001's throw-on-unmapped is the correct invariant (no silent unlabeled generation).
+- Honest scoping: repair policy explicitly marked inert until phase 001 lands.
+
+## Gaps / risks / errors
+
+1. **Frozen-strata circularity.** SC-001 defines success as "matches `iter-r3-A3.md` frozen strata," and that stratum is the *same artifact* this research produced. The spec has no independent ground-truth — if the stratum is wrong, the test passes while the route is wrong. This is testing the implementation against its own design, not against reality. (Open Q1 sidesteps this but doesn't resolve it.)
+
+2. **Confounding primitive with defect.** Per the root-cause ledger, **RC-1 (vertical overflow / height-budget) is the dominant scorer**, not RC-2 (node collisions). But the routing buckets overflow and collision together under "2d-positioned." Three of the lowest five (accountbeheer-4, aangepast-assortiment-3, orders-facturen-4) fail primarily on **row count > budget** (RC-1), not on x/y placement (RC-2). Skeleton-first with bbox non-overlap validators does not address "4th matrix row spills below y=344" unless every skeleton validator also enforces `max_visible_rows_3` *inside the diagram zone* — which the A3 contract mentions but the spec's REQ-002 acceptance criteria never reference. The phase risks shipping a router whose "2d" path fixes RC-2 but leaves RC-1.
+
+3. **REQ-002 enumerates 10 tiles but the ledger supports fewer 2D-classified low-scorers.** `oci-2` (78) and `favorieten-4` (62) are mid-band, and `kwartaalcijfers-4` (a "dense chart") is in the 2d set but its failure mode isn't shown in the ledger's five-worst forensic list. The 10/35 split appears curated for completeness of the concept matrix, not derived from defect presence. Some `linear-flow` tiles that scored <70 (goedkeuringssysteem-1 62, goedkeuringssysteem-3 66, favorieten-3 78) have overflow defects (RC-1) but are routed to `failure-only` — meaning they get *no* mandatory round-2 despite known defects. **The route-by-primitive misses route-by-defect.**
+
+4. **`title_at_bottom` (RC-3) is primitive-independent.** The ledger shows the title-rule break is driven by diagram layouts consuming the canvas — a prompt-contract/instruction-density issue. Routing doesn't address it; the repair contract does, but only for the mandatory-round-2 path. Linear tiles that drop the title pin get no protection.
+
+5. **No failure-cost estimate.** The plan claims no new service and minimal change, but the real cost is in phase 004's skeleton service (out of scope here). The router is a cheap *trigger* for expensive downstream work. If 10 tiles now each require a skeleton + mandatory round-2, that's ~20+ GLM calls added per run. The spec should state this cost so it's a conscious decision, not a surprise in phase 004.
+
+6. **`slugFromOut` derived from `out` path is fragile.** Parsing `dist/<concept>-glm-<n>.html` to recover the key couples routing correctness to a filename convention. A concept slug with a hyphen-number (`aangepast-assortiment-4`) makes `slugFromOut` ambiguous against multi-hyphen slugs. Prefer the input `spec-*.json` carrying an explicit `tileId` rather than re-deriving it from output path. (Likely fine for these 9 slugs, but it's a latent foot-gun.)
+
+## Strongest improvement or alternative
+
+**Add a defect-route axis alongside the primitive-route axis**, keyed to the root-cause ledger, not the frozen stratum. Concretely:
+
+- Route key becomes `{ primitive, defectClass }` where `defectClass ∈ { none, overflow, collision, title-break }`, derived from the existing per-tile audit JSON (the `overflow:true` flags the ledger already cites as hard-facts).
+- The repair policy keys on `defectClass`: any tile with `overflow` (RC-1) — primitive-linear *or* 2D — gets `mandatory-row-truncation` enforcement regardless of primitive. This fixes the goedkeuringssysteem-1/3 (linear, overflow, 62/66) and orders-facturen-4 cases that the current design leaves under-protected.
+- This is still deterministic, still single-file, still no service — it adds one column to `primitive-map.mjs` keyed on the audit row, and it makes SC-001 test against **defect presence** (independent ground truth from the audit) rather than the self-authored frozen stratum.
+
+This closes the RC-1 blind spot (the highest-impact defect) without changing the phase's cost profile, and it removes the circularity in SC-001.
+
+## One thing to test or verify before building this phase
+
+Before writing the classifier, run a **confusion matrix**: for each of the 45 tiles, tabulate `{ primitive-from-map, has-overflow-defect(RC-1), has-collision-defect(RC-2), has-title-break(RC-3), score }`. If any `linear-flow` tile has an RC-1 overflow defect scoring <70 (the ledger already names several), the current router design is provably under-protective and the defect-route axis (improvement above) is mandatory, not optional. Build the router from that table, not from the frozen stratum alone.
+
+---- mimo ----
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence 0.82 — the core primitive-split diagnosis is sound and the 10/35 taxonomy is well-evidenced, but the spec contains a self-contradictory model dial, an unexamined assumption that GLM-5.2 can emit correct skeleton JSON for the very layouts it cannot render, and a dimension mismatch that would confuse implementers.
+
+---
+
+## What GPT-5.5 got right
+
+1. **The root-cause decomposition is genuinely good.** RC-1 through RC-4 trace specific render failures to specific GLM limitations (no constraint solver, no collision detection, instruction-density overload). The 41-point gap is real and the causal mechanism is named, not hand-waved.
+
+2. **The `(d)` proof is the right architectural test.** Insisting that `aangepast-assortiment-4` (donut/ring) routes `linear-flow` while `-3` and `-5` route `2d-positioned` — within the same concept — proves the classifier keys on form not letter. This prevents the most common cargo-cult failure: routing by treatment index.
+
+3. **Deterministic lookup over keyword matching.** Choosing a hand-curated `PRIMITIVE_MAP` over a keyword heuristic avoids the "funnel/scope" borderline problem entirely. If it's wrong, it's wrong in a known, auditable way.
+
+4. **The repair policy split is pragmatic.** Linear-flow tiles only get Round-2 on gate failure (cheap); 2D tiles always get a mandatory Round-2 (justified by the score gap). This matches effort to blast radius.
+
+---
+
+## Gaps / risks / errors
+
+### 1. Model dial contradicts itself (critical)
+
+The A3 recommendation specifies:
+> Code/skeleton model: `glm-5.2`, `thinking.enabled`, `reasoning_effort=max`
+
+But the research grounding explicitly states:
+> `glm-5.2` is documented as text-only. Do not send screenshots to `glm-5.2`.
+
+**The problem:** if the skeleton-first sub-pipeline (phase 004) generates bounding-box JSON that must be visually correct, it needs spatial reasoning about the 480×480 canvas. GLM-5.2 has never seen an image. Specifying it as the skeleton author while calling it text-only is a direct contradiction — either the skeleton author must be `glm-5v-turbo`/`glm-4.6v`, or the skeleton is pure-prose and doesn't need vision. The spec doesn't clarify which.
+
+**Failure mode:** An implementer uses GLM-5.2 for skeleton JSON, it produces plausible-looking but spatially wrong bboxes (overlapping, out-of-zone), and the deterministic validators catch 80% of them — but the 20% that slip through produce *worse* tiles than the original, because now there's a wrong skeleton constraining the render.
+
+### 2. 560×480 vs 480×480 — dimension mismatch (medium)
+
+The user prompt states tiles are **560×480**. The A3 contract specifies:
+> Canvas: `480x480`.
+> Safe x range: `24..456`.
+
+A 480px safe range on a 560px canvas wastes 80px. On a 480px canvas, 24..456 is 432px. Which is it? If the canvas is 560 wide, the safe zones are wrong. If it's 480, the user prompt is wrong. This needs resolution before anyone writes a validator.
+
+
+---- deepseek ----
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence 0.72. The core insight (route by layout primitive, not treatment letter) is correct and the `(d)` donut proof is well-chosen, but the proposal has a critical blind spot: it assumes the 10 static labels are complete and correct, with no feedback loop for tiles that are misclassified or that *should* have been 2D-positioned but weren't.
+
+## What GPT-5.5 got right
+
+- **Primitive key > treatment letter.** The `aangepast-assortiment-4` example (donut = `linear-flow` at 88, while `-3`/`-5` are `2d-positioned` at 58) is the single most important design decision in this phase. Routing by letter would have sent the donut down the skeleton path unnecessarily.
+- **Deterministic map + source annotations.** Transcribing from `concepts.md` §2 with per-entry form annotations makes the map auditable and prevents silent drift — this is the right pattern for a gate that downstream phases consume.
+- **Repair policy per route.** `failure-only` for linear-flow vs `mandatory-round-2` for 2D is correctly asymmetric and locks the spending to where it pays off.
+
+## Gaps / risks / errors
+
+1. **RC-1 (vertical overflow) is NOT a 2D-only problem.** The root-cause ledger shows `accountbeheer-1` (92 — linear-flow winner), `goedkeuringssysteem-1` (62), `een-factuur-1` (88), and `favorieten-3` (78) all overflow. None are in the 10-tile 2D set. The routing sends these through the normal path with `repair=failure-only`, but the phase 001 gate may not catch *all* overflow cases (only 8 of 45 tiles have `overflow:true` in the audit rows). Tiles that overflow but don't trigger a gate FIX get no repair — the ~41pt gap conflates 2D-positioning failures with general spatial failures.
+
+2. **The donut is a 2D-primitive masquerading as linear-flow.** A donut/ring chart computes arc paths, center coordinates, slice angles, and label radial placement — it IS a 2D-positioned diagram mechanically, even if GLM happened to render one correctly. The classification is scoredriven (`88 → linear-flow`) rather than mechanics-driven. If a different concept's donut scores 50 next run, the classifier (which hard-codes donut as linear-flow) silently routes it down the wrong path with no skeleton support.
+
+3. **`primitiveFor()` throws on unmapped tiles = pipeline crash.** Adding a 10th concept or renaming a treatment halts all 45 generations. A default route (with a loud warning and a "triage-me" flag) is safer and costs one line of code. This is especially risky because the map is transcribed from a human-authored doc that can drift.
+
+4. **The skeleton validators are defined in the A3 recommendation but phase 001 owns the gate.** Eight validators (`inside_canvas_safe_area`, `title_zone_reserved`, `max_visible_rows_3`, etc.) appear in the A3 final recommendation as "deterministic skeleton validators," but the spec says phase 001 ships the gate and phase 004 ships the skeleton service. This creates a three-way ownership split where no single phase is accountable for the validator implementations working end-to-end.
+
+5. **No evidence GLM-5.2 can produce valid non-overlapping bbox JSON.** The skeleton requirements demand `{x, y, w, h}` for every element with minimum 12px gaps and zero overlaps — this is a constraint-solving problem disguised as JSON generation. The model-dial guardrail correctly notes GLM-5.2 is text-only, but doesn't address whether it can actually satisfy spatial constraints in JSON form. If the skeleton output needs multiple repair rounds itself, the "one mandatory Round-2" assumption breaks.
+
+## Strongest improvement or alternative
+
+**Add a post-generation reclassification gate.** After each tile renders, run a lightweight check: count `position: absolute` declarations and measure cumulative element heights. If a tile tagged `linear-flow` produces ≥3 absolute-positioned elements or overflows the 480px canvas, flip its classification to `2d-positioned` and re-route it through the skeleton path. This closes the gap between the static map and real rendering behavior, catches the RC-1 overflow tiles that are currently misrouted, and costs ~30 lines of JS. The static map becomes a *prior*, not a prison — the actual render is the arbiter.
+
+## One thing to test or verify before building this phase
+
+**Run the 10 "linear-flow" tiles that scored <70 through a manual `position:absolute` count.** If tiles like `goedkeuringssysteem-1` (62), `goedkeuringssysteem-3` (66), or `favorieten-3` (78) use absolute positioning despite being labeled linear-flow, the 10/35 split is incomplete and the routing boundary is drawn in the wrong place. This takes 10 minutes — open each tile's HTML, search for `position: absolute`, and compare against the classifier's label. If more than 1-2 false negatives exist, the static map needs expansion before any skeleton pipeline code is written.
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.60**. The core insight (two layout classes need different treatment) is directionally correct, but the spec treats a *correlate* as the *cause* and hard-codes designer intent instead of model behavior.
+
+## What GPT-5.5 got right
+- The 41-point gap is real and actionable; routing *before* generation is the right insertion point.
+- A deterministic, auditable `treatment -> primitive` map is a clean, reviewable artifact.
+- The `(d)` proof correctly shows that route-by-index would be wrong.
+
+## Gaps / risks / errors
+- **Correlation ≠ causation.** RC-1 overflow also hits linear-flow tiles (`een-factuur-1` 88, `favorieten-3` 78, `goedkeuringssysteem-1` 62/3 66). Routing by primitive won't catch those. The real root cause is missing spatial contract (title zone, max rows, safe area), not the primitive label.
+- **Donut misclassified as `linear-flow`.** A radial donut/ring is not a linear-flow primitive. It scored 88 because *this one* rendered well, not because donuts are structurally linear. This weakens REQ-003.
+- **Map encodes intent, not GLM output.** `concepts.md` says what the tile *should* look like; GLM may render a "list" with absolute positioning and overflow. The classifier has no runtime signal (`position:absolute` count, bbox overlap, overflow) so it can match labels perfectly while still missing failures.
+- **Mandatory Round-2 for all 2D is unvalidated cost.** No evidence skeleton-first fixes RC-1, RC-3, or RC-4; it mainly targets RC-2. The phase assumes ~41 points of recovery without a measurement.
+- **Repair policies are inert without Phase 001.** The `failure-only` linear path cannot fire until the gate lands, so this phase ships a branch whose main policy is untestable.
+
+## Strongest improvement or alternative
+Add a **runtime override**: use the static map as a prior, but after generation let the Phase 001 gate re-route any tile that actually overflows/overlaps/title-fails. Better still, route by a lightweight pre-generation complexity predictor (element count, estimated absolute-position count, row count) instead of a 45-row lookup, so re-briefs don't silently break the map.
+
+## One thing to test or verify before building this phase
+Run the Phase 001 gate on all 45 tiles and check whether the 10 manually-labeled 2D tiles are the *only* ones with overflow/overlap/title-zone failures. If any of the 35 "linear-flow" tiles also fail, the primitive classifier will miss real defects and the 10/35 split is the wrong optimization target.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.70 — the routing decision is real, but this phase ships a metadata layer for later phases, not a measurable fix; the success criteria test label fidelity, not score improvement.
+
+## What GPT-5.5 got right
+- The 41-point gap is real and bimodal (2D range 35-58, linear range 86-94, zero overlap in the cited extremes) — routing by primitive is a defensible design decision.
+- The `(d)`-proof rationale is correctly argued: the route key must be the **layout primitive**, not the treatment index letter. `aangepast-assortiment-4` is a single-ring KPI, not a 2D diagram, and locking the route to the letter would have been a real bug.
+- Decoupling routing from the actual fix (skeleton service in 004, GPT-5.5 author in 005, MiniMax adapter in 003) is sound: each phase has one job.
+- Using `concepts.md §2` as the source of truth and annotating each map cell with its source form is the right hygiene for a manually transcribed lookup.
+
+## Gaps / risks / errors
+
+1. **Phase ships metadata, not a fix.** Both `failure-only` and `mandatory-round-2` policies are inert until phase 001's gate is live. The only runtime effect of THIS phase landing alone is emitting `skeletonFirst=true` for 10 tiles — the actual skeleton doesn't exist yet. If 001/004 slip, this phase produces nothing useful and the spec doesn't acknowledge that.
+
+2. **Success criteria measure consistency, not improvement.** SC-001 ("10/35 split matches") and SC-002 ("`(d)` proof holds") both test that the label matches the *prior* manual labels — i.e. they test transcription fidelity to `iter-r3-A3.md`, not whether routing closes the gap. The 41-point claim is the load-bearing hypothesis and is not in the gate.
+
+3. **The `aangepast-assortiment-4` (donut) = `linear-flow` label is suspect.** A donut is **radial**, not linear. The justification ("single stat ring, not a complex 2D diagram") conflates *complexity* with *layout primitive*. If the primitive is "what CSS shape is this?", a donut is its own category. Score=88 may be a property of donut-specific prompt strength, not of being in the linear bucket. Risk: a future 2-ring or 3-ring KPI donut gets routed to `linear-flow` and inherits a different failure mode than the spec's "primitive" model predicts.
+
+4. **The taxonomy is binary, but the failure modes aren't.** `RC-1` (vertical overflow) hits BOTH primitives: `favorieten-3` at 78 SHIP and `goedkeuringssysteem-1` at 62 are overflow cases on tiles the spec labels `linear-flow` (or does it? — `favorieten-3` is not in the explicit 10-tile list, but its 78 score is *below* the linear cluster's 86 floor and *above* the 2D ceiling of 58 — it sits in a no-man's-land the spec doesn't address). `RC-2` (node collision) is 2D-only. `RC-3` (title-at-bottom) is mixed. The binary primitive can't cleanly route these.
+
+5. **The 10/35 split is presented as frozen ground truth, but the labels in `iter-r3-A3.md` were authored after seeing the scores.** Risk of post-hoc rationalization: the 10 lowest-scoring tiles were called "2D" because they failed, not because `concepts.md §2` independently said so. The spec should show the **agreement** between the score-bucket assignment and the `concepts.md` wording as a separate audit, not assert it as frozen.
+
+6. **Manual transcription error is unguarded.** 45 entries, hand-keyed from `concepts.md §2` with no automated check. One wrong cell → silent misclassification. There is no test that runs the model and verifies the labeled primitive matches the rendered layout. Without that, the map is a trust-me artifact.
+
+7. **The `failure-only` linear policy is dead-code-shaped.** Linear tiles score 86-94 already. The gate FIX rate on those is presumably low. The policy exists for completeness, but its actual firing rate is unestimated — if it never fires in the 45-tile corpus, the linear branch is just the original pipeline with a comment.
+
+8. **Borderline entries are punted.** `aangepast-assortiment-2` ("funnel/scope"), `favorieten-2` ("folder tree"), and `favorieten-3` (78 SHIP, overflow) are listed in `RC-1`/`open_questions` but not resolved. The "curated per-tile primitive" decision is just deferred to a human, with no rule for new concepts that arrive after the program ends.
+
+9. **The plan's "manual run of `gen-tile.mjs` printing the resolved `{ primitive, route }` per tile without calling the API" is a smoke test, not verification.** It confirms the lookup returns a value; it does not confirm the routing decision is correct against the rendered output.
+
+## Strongest improvement or alternative
+
+**Add SC-003: a 5-tile pilot that measures whether routing actually moves the score.** Pick 5 of the 10 labeled `2d-positioned` tiles. Run them twice — once through the current single-pipeline baseline, once through the routed path with a *hand-stubbed* skeleton (one node per tile at the canonical bbox, no real geometry) plus one mandatory Round-2. Compare the SHIP scores. If the routed path doesn't move at least 3 of 5 tiles by ≥10 points, the routing hypothesis is wrong and the rest of phases 003-005 are building on a false premise. This costs ~5 GLM calls and turns this phase from a metadata exercise into a falsifiable claim. If SC-003 passes, you have evidence to build phase 004 on; if it fails, you discover it now, not after phases 003-005 ship.
+
+Alternative cut: **merge this phase into phase 001 (gate).** The classifier output is consumed by the gate (failure-only vs mandatory-round-2). Putting both in one phase avoids the "phase 002 is metadata-only waiting for 001" smell and reduces inter-phase integration risk by one boundary.
+
+## One thing to test or verify before building this phase
+
+**Independent primitive labeling audit.** Take 5 random tiles (not the 5 lowest-scoring 2D ones, not the 5 highest-scoring linear ones — pick from the middle of the 45-tile distribution). Without seeing the score, have a second human label each as `linear-flow` or `2d-positioned` from `concepts.md §2` alone. Compare against the spec's frozen labels. If agreement is <100%, the labels are not as `concepts.md`-grounded as the spec claims — they're partially score-driven — and the map's claim to be a "general principle" is weaker than presented. This audit takes 20 minutes and pre-empts the strongest critique of the program: that 2D is just a label for "tiles that already failed."
+
+================ PHASE 003-minimax-auditor-in-loop ================
+---- glm ----
+## Verdict
+AGREE-WITH-CHANGES — confidence 0.80 — the loop is correctly designed (external auditor, failure-only, adopt-if gate, A/B), but it targets the one defect class its verification gate is blind to, and its marginal value collapses once sibling phases 001/004/002 land, so it should be re-sequenced or explicitly time-boxed.
+
+## What GPT-5.5 got right
+- **Generator ≠ auditor is correctly settled and load-bearing.** GLM confabulates audits (the fake orange CTA / `#cccccc`), so an external critique channel is the only trustworthy signal. Keeping MiniMax as auditor and GLM as repairer is the right Self-Refine variant.
+- **Adopt-if gate + non-regression snapshot is the correct pattern.** Not blindly accepting round-2, requiring proof+contrast+geometry+MiniMax SHIP with `false_fix=false` and a title/casing/palette regression guard is exactly how you avoid the classic self-refine failure of "changed one thing, broke two."
+- **Failure-only routing (SKIP_SHIP on the 27 sentinels) + max 3 fixes/tile + env-switch rollback** are disciplined and keep the blast radius small. The rollback rule (≤1 conversion or false_fix > 2/18) is a real kill criterion, not theater.
+- **Honesty about marginal value.** SC-001 distinguishes standalone (5–7) from integrated (+1–3 after A1/A3 overlap) and even flags the "collapse into 001?" question in §7. That's better than most plans.
+
+## Gaps / risks / errors (specific)
+
+1. **The gate is weakest precisely where A4's targets live (RC-2).** Your own ledger marks node-on-node collision as *refinement* ("no gate computes bounding-box overlap"), while RC-1 overflow is hard-fact. So the deterministic gate verifies the *overflow* fixes reliably but is blind to the *node-collision* fixes — and RC-2 is a primary failure on the 2D cohort (oci-4=6 absolutes, accountbeheer-4=4). The adopt-if gate therefore has a hole exactly over the defect class A4 exists to repair. A round-2 tile that "fixes" overflow by cramming nodes can pass geometry (no overflow) yet still be visually broken, and MiniMax is the known false-negative on subtle clips (your §3). **Net: your strongest gate is orthogonal to your hardest defect.** This undermines the `false_fix_rate ≤ 1/18` target's measurability, not necessarily its achievement.
+
+2. **Same auditor finds *and* verifies — confirmation loop.** MiniMax diagnoses round-1 and then rescores round-2 as the SHIP signal. Any systematic MiniMax leniency (e.g., it scores tiles it "already explained" more charitably) is not caught by this design. You're using one model for both ground-truth and acceptance. Add either a second auditor spot-check on the converted cohort or a human spot-check — there is no human/ground-truth criterion anywhere in REQ-001…006 for an 18-tile batch where that's trivially affordable.
+
+3. **`classifyFixes` regex has no precision/recall target — it's an unverified brittle NLP step load-bearing for the whole phase.** MiniMax issues are free-form English/Dutch prose ("matrix content spills past inner panel and overlaps bottom title/description"). A regex mapping that to `defect_type: vertical_overflow` will misclassify, and a *misclassified fix contract fed to GLM is worse than no contract* (it instructs the wrong repair). REQ-001 only requires "schema-valid ≤3 fixes," which says nothing about *correctness*. Add an acceptance criterion: classifier precision on a hand-labeled gold set of the 18 rows (e.g., ≥85%), measured *before* any round-2 generation. Without it you're flying blind on the input to the entire loop.
+
+4. **T0 ("generic improve this") is a strawman and REQ-005 may prove nothing.** A fair generic arm would feed GLM the *rendered image + the raw MiniMax issue text as plain bullets* — no typed schema, but full information. If your T0 is literally "improve this" with no issue list, T1 wins trivially and the A/B is theater. Define T0 to share the evidence and differ *only* in structure; otherwise the ≥3-conversion delta is a measure of schema-vs-no-context, not schema-vs-prose.
+
+5. **Sequencing: why A4 before 004?** The durable cure for the root cause is *don't ask GLM to do 2D placement at all* (decomposition/skeleton-first, phases 004/005) or *route 2D tiles to a linear primitive* (phase 002/A3). A4 is a reactive band-aid whose value the plan itself admits shrinks to +1–3 once 001/A1 capture overflow/title/contrast. The plan blocks correctly on 001, but doesn't justify ordering A4 ahead of 004. If 004 lands first, A4's remaining marginal target is the gate-blind RC-2 set — the hardest, least-verifiable slice. The "why now?" question is unanswered and is more important than the two open questions in §7.
+
+6. **retry_depth=1 against a capability gap caps the ceiling.** GLM failed round-1 because it can't solve the constraint problem, not for lack of a hint. One more attempt with a typed contract may move the overflow-class (because the fix is "reserve 104px + use stacked-list," a *procedural* instruction GLM can follow) but is unlikely to move the genuine 2D-placement class (RC-2). The standalone 5–7 prediction is plausible *only* if most of the 18 FIX are RC-1/RC-3 (procedural-fixable); if a meaningful share are RC-2, expect 2–4. The prediction should be conditioned on the RC-mix of the 18 rows, which isn't broken down.
+
+7. **One-shot vs recurring is never stated, and it changes the build/buy math.** If this is a one-time improvement of 45 tiles, hand-authoring fix-JSON for 18 rows (1–2h, zero classification error) dominates building + validating a regex classifier. The adapter is only worth its cost if the pipeline regenerates *new* tile sets repeatedly. The spec never says which. If one-shot, the adapter is over-engineered; if recurring, say so and the design stands.
+
+## Strongest improvement or alternative
+**Before building A4, decompose the 18 FIX rows by RC-id and split the phase in two by fixability:**
+- *RC-1/RC-3 (procedural — reserve title band, switch to stacked/linear primitive):* these are already captured by **phase 001's deterministic-gate repair pass**. Fold them in; A4 adds ~nothing here. (This is your own open question — resolve it by measuring the RC-mix, not by deferring it.)
+- *RC-2 (genuine 2D collision, gate-blind):* route these to **phase 004 skeleton-first** rather than asking GLM to re-attempt the same impossible 2D placement. A4's single retry will mostly fail here anyway, and you can't verify the few that "pass."
+
+Then A4 shrinks to a *validation harness* for whatever 001/004 don't catch — or is deferred entirely. If you keep A4 as-is, make two hard additions: (a) a `classifyFixes` gold-set precision gate (≥85%) before any generation, and (b) a human or second-auditor spot-check on every adopted conversion, because the deterministic gate + MiniMax together are insufficient exactly on this cohort. This converts A4 from "optimistic repair loop" to "measured, gated loop with a known-blind-spot disclaimer."
+
+## One thing to test or verify before building this phase
+**Tally the 18 FIX findings by RC-id (RC-1 overflow vs RC-2 collision vs RC-3 title vs RC-4/5/6 glyph/contrast).** The standalone-conversion ceiling is almost entirely determined by this mix: procedural fixes (RC-1/3) are GLM-fixable and largely duplicate 001; collision fixes (RC-2) are not fixable in one retry and not verifiable by your gate. If ≥70% of the 18 are RC-2, A4 will underperform its 5–7 prediction *and* can't be trusted at adopt-time — strong signal to skip A4 and fund 004 instead. This is a 20-minute grep over `audit-*.json` and it resolves the central risk before any code is written.
+
+---- mimo ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72 — The core idea (externalize MiniMax findings into typed fix-JSON) is sound and well-grounded in the RC ledger, but the spec has an over-optimistic conversion prediction, an under-specified adapter that will silently drop real defects, and a critical circular-dependency risk with the phase-001 predecessor that the spec treats as solved.
+
+---
+
+## What GPT-5.5 got right
+
+1. **Generator != auditor is the correct architecture.** The vision-audit-benchmark.md §3 evidence (GLM confabulating "orange CTA" + `#cccccc`) makes this non-negotiable. Self-Refine's external-refiner variant is the right citation.
+
+2. **Failure-only routing (SHIP-skip) is essential.** The 27 SHIP tiles must not be touched. The `A4_ARM` env-switch isolation is clean and non-destructive.
+
+3. **Adopt-if gate with deterministic gates + MiniMax rescore is the right safety net.** Combining hard-fact DOM/CSS checks with the auditor's judgment prevents both MiniMax false-negatives (the subtle-clip case) and GLM false-fixes.
+
+4. **The RC-keyed approach is grounded.** Every fix type maps to a confirmed RC-id from forensic tile viewing, not abstract best-practice.
+
+5. **A/B comparator (T0 generic vs T1 structured) is necessary.** Without it, you can't prove the typed contract earns its complexity over a simple "try again with the screenshot."
+
+---
+
+## Gaps / risks / errors
+
+### GAP-1: The `classifyFixes` regex will silently miss real defects (RC-1, RC-2)
+
+Looking at the actual audit data, the regex patterns have coverage holes. `accountbeheer-4`'s issue is *"matrix rows (MS Vesta row and 'Live overname' status text collide); matrix content spills past the inner panel — clear overflow and severe z-order/stacking conflict."* The word "spill" IS present so RC-1 fires. But `oci-4`'s issue is *"left SAP card text 'MS V...' is clipped/cut off by the overlapping Verbonden pill"* — the word "clipped" is present so RC-1 fires too. However, `goedkeuringssysteem-4`'s issue is *"Title/description at top-left instead of bottom-left; eyebrow wrapped to two lines and rendered in ALL CAPS; labels inside the navy block read as light/medium grey against deep blue — low contrast."* This has **no overflow language at all** — it's RC-3 + RC-4 + RC-5. The adapter correctly skips RC-1 here. But the real problem is the **node_collision regex**: `/overlap|collid|crowd|popover|node|branch|hub|matrix|diagram|funnel|connector|truncat/i`. The word "node" matches almost any issue that mentions a UI element. `accountbeheer-4`'s issue mentions "matrix rows" → `matrix` matches → RC-2 fires. But accountbeheer-4's real problem is vertical overflow (RC-1), not 2D node collision (RC-2). **The adapter will generate a redundant RC-2 fix for a tile that only needs RC-1.** With `max_fixes_per_tile: 3`, this wastes a slot and sends GLM conflicting instructions.
+
+**Fix:** Tighten the node_collision regex to require a spatial-collision verb near the noun (`/overlap.*node|collid.*card|crowd.*edge/i`), or use a two-pass approach: first classify the primary defect, then only add secondary defects if the issue text contains distinct spatial-collision evidence.
+
+### GAP-2: Phase 001 is a hard predecessor, but its gates don't exist yet and haven't been validated
+
+The spec says "Hard predecessor; do not start this phase until 001 ships." But 001 is still in Draft status with `completion_pct: 0`. The adopt-if gate **critically depends** on 001's `proof_check`, `contrast_check`, and `geometry_check` producing reliable pass/fail signals. If those gates have false-positive rates (passing tiles that should fail) or false-negative rates (failing tiles that should pass), the entire adopt-if mechanism is untrustworthy. The spec doesn't account for the possibility that 001's gates might need iteration before A4 can trust them.
+
+**Fix:** Add a gate-validation step to Phase 1 Setup: run 001's gates on the 27 known-SHIP tiles and confirm <5% false-positive rate, and on the 5 worst FIX tiles and confirm they flag the known defects. If gates are unreliable, A4 must pause.
+
+### GAP-3: The standalone-vs-integrated success criteria reveal a marginal-value problem
+
+SC-001 says A4 converts **>=5/18 standalone** but contributes only **+1-3 net** in the integrated pipeline after A1/A3 overlap. This is an admission that phase 001's prompt hardening + deterministic gate + one repair pass already captures most of the low-hanging fruit (overflow, title position, contrast). The spec's own open question asks: *"is the added latency (~1.3-1.5x full batch) justified, or should A4 collapse into the 001 repair pass?"*
+
+**This is the most important question in the spec, and it's left unanswered.** If the integrated marginal is +1-3 tiles at 1.3-1.5x latency, that's ~2-5 extra GLM calls + 18 MiniMax rescores for a handful of tiles. A cheaper alternative: **fold the MiniMax findings into the 001 repair pass as additional evidence** (one pass, not two). This avoids the double-repair chain (001 repair → A4 repair) and the prompt bloat of stacking two repair contexts.
+
+**Fix:** Either (a) answer the open question before building — run a quick experiment where the 001 repair prompt includes MiniMax findings as supplementary evidence, measure whether it captures the same conversions — or (b) collapse A4 into 001 as an optional evidence injection, not a separate pipeline step.
+
+---- deepseek ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.78 — the direction is correct but the adapter design has an unnecessary fragility, the prompt block is truncated, and the success prediction isn't stress-tested against the actual audit data.
+
+---
+
+## What GPT-5.5 got right
+
+1. **Generator ≠ auditor is the correct axiom.** The benchmark is unambiguous: GLM-5.2 confabulated a non-existent "orange CTA" and `#cccccc` text (`vision-audit-benchmark.md:49`). Self-audit is contraindicated. The separation is non-negotiable.
+
+2. **Failure-only routing is correct and cheap to enforce.** The 27 SHIP sentinels have `verdict: "SHIP"` in the audit JSON — a single `if` check, not a classifier. Zero risk.
+
+3. **The adopt-if gate pairing deterministic checks + MiniMax rescore is the right defense-in-depth.** MiniMax missed the subtle vertical clip (`vision-audit-benchmark.md:48`), so the 001 geometry/overflow check is a necessary complement.
+
+4. **The layout policy forcing linear/stacked/bounded-lane for RC-1/RC-2 tiles is directionally sound.** The root cause is clear: GLM doesn't compute cumulative heights. Giving it bounded primitives removes the computation burden.
+
+---
+
+## Gaps / risks / errors
+
+### GAP 1 (HIGH): The adapter ignores structured data already in the audit JSON
+
+The audit JSON already contains `overflow: true/false`, `title_at_bottom: true/false`, `readable: true/false`, `on_brand: true/false`. The spec's `classifyFixes` is described as "RC-keyed regex defect classifier mapping MiniMax `issue` text to typed fix objects." This is backwards — the structured booleans directly map to RC-1 (`overflow`), RC-3 (`title_at_bottom`), and RC-5 (correlated with `readable`). Running regex on free-text when structured fields already encode the same information is:
+- **Fragile**: "panel rows overflow rounded corners" (goedkeuringssysteem-1) uses "overflow" but "MS Vesta row and 'Live overname' status text collide" (accountbeheer-4:40) doesn't — same RC-1, different language.
+- **Unnecessary**: 9/9 audit files have the boolean columns.
+- **Creates a phantom maintenance burden**: if MiniMax changes phrasing, the regex breaks but the booleans don't.
+
+**Fix**: `classifyFixes` should consume the boolean columns as the primary signal, use regex only for dimensions without booleans (RC-2 collision, RC-4 casing/glyph, RC-6 glyph mismatch).
+
+### GAP 2 (HIGH): The GLM round-2 prompt block is truncated — invariants 6-9 are missing
+
+The research grounding's "GLM round-2 prompt block" text cuts off mid-sentence at:
+
+> `6. Preserve the original title, icon/`
+
+Invariants 6-9 are unspecified. The spec says "9 hard invariants" but the only complete specification is the contract YAML in the final recommendation. This is a **build-blocker** — an implementer reading the phase docs cannot construct the prompt without guessing the missing invariants.
+
+**Fix**: Reconstruct the full 9 invariants from the YAML contract and the root-cause ledger. Candidate missing invariants from the ledger: (6) preserve title/glyph, (7) no uppercase eyebrow, (8) palette-only hex, (9) contrast gate (WCAG AA).
+
+### GAP 3 (MEDIUM): Forced primitive change may silently destroy information structure
+
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.72**. The external-auditor feedback loop is the right mechanism, but the phase as written overreaches on 2D layout repairs, misorders A4 against the research pipeline, and ships a brittle issue classifier that will misroute fixes.
+
+## What GPT-5.5 got right
+- The 18 FIX findings are real, specific, and never fed back — verified from `004-bento-visuals/research/inputs/audit-*.json` (27 SHIP / 18 FIX).
+- Keeping generator (GLM-5.2) and auditor (MiniMax-M3) separate is correct; the benchmark notes GLM confabulates audits.
+- The `adopt-if` gate with deterministic overflow/contrast/geometry checks is the right guardrail against false-fixes.
+- The +1–3 net SHIP prediction aligns with `iter-r4-pipeline.md` §3 adopt/adapt/reject table.
+
+## Gaps / risks / errors
+1. **Sequencing conflict with the research pipeline.** The research `iter-r4-pipeline.md` places MiniMax issue→typed JSON at **step 10**, *after* step 7–9 skeleton-first/best-of-3/downgrade. The proposed phase makes A4 **phase 003**, before skeleton-first (004/005). This means A4 will burn round-2 calls on hard 2D tiles that skeleton-first is meant to solve, then still route holdouts to 004 afterward. A4 should run after 004/005, not before.
+2. **Adapter regex misclassifies issues.** The `/overlap|collid|crowd|popover|node|branch|hub|matrix|diagram|funnel|connector|truncat/i` pattern fires on almost every issue because words like "matrix," "panel," or "overflow" appear in overflow issues too. Example: `accountbeheer-4` ("matrix rows … overlap bottom title") would emit both `vertical_overflow` and `node_collision`, but a matrix is not a node collision — it is a table/row primitive. `accountbeheer-2` ("red square") would be classified as `typography_or_icon_contract` instead of `off_brand_color`. This will over-generate fixes and push wrong repair contracts.
+3. **"Force linear/stacked/bounded-lane" degrades product semantics for 2D tiles.** The spec tells GLM to replace a rights/permissions matrix or a routing diagram with a stacked list to fix overflow (RC-1/RC-2). That may raise the MiniMax score by removing overlap, but it changes the visual encoding — a matrix shows cross-product relationships a list cannot. The "preserve product meaning" invariant is in tension with the layout policy.
+4. **Scope ambiguity: FIX-only vs borderline.** `iter-r4-pipeline.md` step 10 says run A4 "after deterministic gates pass **or for borderline failures**." The proposed phase says strictly FIX-only. The two borderline FIX tiles (`een-factuur-1` 88, `kwartaalcijfers-4` 86) are easy conversions; excluding them would understate A4's value and the comparator results.
+5. **T0 comparator is not a true no-findings baseline.** Both T0 and T1 inject the failed render image, so T0 is really "look at the broken render and fix it." That overlaps with the A3 render-feedback loop, not with the question "does typed MiniMax feedback beat raw re-rendering?" A cleaner T0 omits the render image and relies only on generic invariants.
+6. **Dependency naming drift.** The plan repeatedly references `geometry_check.py`, but phase 001 ships `a1-gate.mjs` / `contrast.mjs` / `a1-repair.mjs`. The contract surface needs to match the actual filenames/schema from 001.
+7. **Missing measurement of semantic/primitive regression.** The false-fix gate checks title position, contrast, palette, casing — but not whether the tile still uses the intended primitive (matrix remains matrix, routing remains routing). Add a primitive-consistency check or A4 will silently flatten diagrams into lists.
+
+## Strongest improvement
+Narrow A4 to a **post-skeleton, post-downgrade audit translator**: let phase 001 (deterministic gate) and phases 004/005 (skeleton-first/downgrade) own geometry, then run A4 only on the remaining failures for the defects those phases cannot express well — RC-5 contrast, RC-6 off-brand color, RC-4 casing/glyph drift, and minor clipping. For hard 2D layout, A4 should *describe* the defect but route to 004/005, not attempt a prose-driven geometric repair.
+
+## One thing to test before building
+Run `classifyFixes` against all 18 issue strings and manually audit the emitted fix types. If the regex maps `matrix` to `node_collision` or `red square` to `typography_or_icon_contract`, the adapter needs a rule-based, not keyword-based, classifier before any GLM calls are wasted.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES — confidence 0.70** — mechanism is sound in principle, but the cost/benefit vs. a single tighter-prompt round-1 regen is unproven, and three load-bearing assumptions (GLM round-2 instruction compliance, MiniMax rescore stability, audit finding accuracy) are asserted, not verified.
+
+## What GPT-5.5 got right
+- **Generator ≠ auditor is settled correctly** — GLM-5.2 confabulation in vision-audit-benchmark.md §3 is real; an external critique channel is required.
+- **Adopt-if multi-gate shape is right** — combining proof_check + contrast_check + geometry_check + MiniMax rescore is the correct defense against false-fixes (REQ-004).
+- **Failure-only routing is the correct default** — skipping the 27 SHIP sentinels is the right cost discipline; the "SKIP_SHIP" early-exit is clean.
+- **Hard predecessor gate on phase 001** is correct — without the deterministic surface, adopt_if cannot block overflow/contrast false-fixes.
+- **T0 vs. T1 A/B framing** is the right experimental instinct — a comparator arm proves the structure earns its place.
+
+## Gaps / risks / errors
+1. **GLM round-2 compliance on instructions round-1 ignored is the load-bearing assumption that breaks the whole phase.** Round-1's contract (`gen-tile.mjs:22`) already says "Size the instrument to leave room for the bottom title+desc block" — GLM ignored it on tile 4. Round-2's "use linear/stacked/bounded-lane primitives" is the same kind of instruction. **RC-3 root cause is partly "instruction-density mismatch"** — A4 ADDS a typed-JSON block on top, increasing prompt density further. The 5-7 conversion prediction has no empirical basis if round-2 compliance matches round-1 compliance.
+2. **Cheaper alternative not considered: a single augmented-prompt round-1 regen.** Extract the 18 issues verbatim → 5-8 distilled rules → re-run `gen-tile.mjs` on the 18 FIX tiles with a 10-line prompt addition. No adapter, no JSON schema, no T0/T1 arm, no T0-vs-T1 cost. Same +1-3 SHIP potential at ~1.0x marginal cost (just the 18 extra GLM calls), vs. A4's 1.5-2x (18 round-2 GLM + 18 MiniMax rescore).
+3. **`classifyFixes` regex is fragile on real audit text.** Sampled `audit-accountbeheer.json`: tile-2's "introduces an off-brand red accent not in palette" needs semantic understanding of "red accent" — pure regex requires exact phrase variants. Tile-4's "MS Vesta row and 'Live overname' status text collide" mixes overflow, collision, AND z-order in one sentence; the 3-fix cap collapses them. The 18 FIX findings likely collapse to ~8-10 unique fixes, not 18.
+4. **The 18 FIX finding accuracy is asserted, not verified.** No inter-rater reliability check; no ground-truth adjudication. A wrongly-FIX tile (audit false positive) gets repaired needlessly; a wrongly-SHIP tile (audit false negative — the subtle-clip case in vision-audit-benchmark.md §3) is never repaired. A4 has no audit-correction mechanism; REQ-006 only BLOCKS the wrong-SHIP from being adopted, it does not REPAIR it.
+5. **T0/T1 A/B is structurally weak — it tests prompt structure, not the value of round-2 itself.** Both arms are GLM round-2. A proper A/B is 3 arms: T0 (raw MiniMax issue verbatim), T1 (typed fix-JSON), T2 (fresh round-1 with distilled rules). T0 vs. T1 alone cannot answer "is the typed JSON doing the work, or is any round-2-with-feedback doing it?" — this is the **single most important question** the proposal punts on.
+6. **MiniMax rescore is the adopt_if signal but has unmeasured variance.** GLM is at temp 0.4 (`gen-tile.mjs:30`); MiniMax rescore temperature is unspecified. A real fix may score differently on rescore from inter-call noise, not actual regression. The `false_fix_rate ≤ 1/18` criterion (5.5%) is meaningless without a rescore-variance baseline.
+7. **Open questions in spec.md §7 are unanswered in plan.md.** "Should A4 run on borderline SHIP?" and "If marginal is +1-3, is 1.3-1.5x latency justified?" are the two highest-leverage questions in the whole spec, and the plan punts both. The plan's Definition of Done ("T1 beats T0") is also non-decisional if both arms fail equally.
+8. **The "9 hard invariants" partly duplicate the round-1 contract** (560×480, bottom-left title, palette, 21px weight). Re-asserting them does not address RC-3's instruction-density root cause; it amplifies it. A4 will likely make round-2 compliance *worse* on dense tiles.
+9. **The "max 3 fixes per tile" cap is unjustified.** Why 3? Audit JSON shows tiles have 1-2 distinct issues typically. If the cap is a real budget, it should be 2. If it's a safety bound against prompt bloat, it should be justified by GLM's context window math (24000 tokens / ~500 per fix ≈ 48 fixes possible).
+10. **The "free 2D absolute positioning forbidden" rule in the round-2 prompt is the real prize** — but it should be a phase-001 prompt-level invariant, not a per-tile fix. A4 is patching a round-1 prompt defect, not solving the primitive problem. Phase 004 (A5/A7 skeleton) addresses this properly; A4 is a temporary band-aid.
+
+## Strongest improvement or alternative
+**Drop the adapter layer and run a 3-arm T0/T1/T2 A/B on the 18 FIX tiles:**
+- **T0** = round-2 with the raw MiniMax `issue` strings verbatim + the original round-1 contract
+- **T1** = round-2 with typed fix-JSON (the current A4)
+- **T2** = fresh round-1 with the original contract + a 10-line "lessons learned" block distilled from the 18 issues
+- Same harness, same `adopt_if` gates, same cost ceiling (~1.4x baseline)
+
+If T0 ≈ T1, the typed-JSON structure is decorative — adopt T0, save the schema overhead. If T1 ≫ T2, the typed feedback earns its place. If T2 ≈ T1, the whole A4 phase is unnecessary — a single augmented round-1 prompt regen gets the same result at lower latency, lower cost, and no MiniMax round-2 dependency. **This single test answers the open questions spec.md §7 punts on, replaces the underspecified T0/T1 design, and pre-empts the "is A4 even needed" question before ~3 weeks of implementation.**
+
+## One thing to test or verify before building this phase
+**Run one canonical FIX tile (accountbeheer-4, score 35, the textbook overflow case) through 3 round-2 prompts — T0 (raw issue text verbatim: "matrix content spills past the inner panel and overlaps bottom title/description"), T1 (typed fix-JSON with `defect_type: vertical_overflow`, `preferred_primitives: [stacked-list, linear-flow, bounded-lanes]`), T2 (fresh round-1 with one added line: "the diagram must end at or above y=348px; reserve the bottom 104px for title") — and visually compare the three outputs.** The decision threshold: **if T0 and T1 both still produce a 2D-matrix that overflows, the whole phase is dead on arrival** — GLM's primitive choice is not prompt-controllable, the 5-7 conversion prediction is wishful, and A4 should collapse into a phase-001 prompt-level invariant before any 3-arm A/B. If T0 fails but T1 succeeds, the typed structure is the value. If T2 matches T1, the whole adapter is unnecessary. **This 1-tile pilot costs ~3 GLM calls + ~30 minutes and prevents a 3-week dead-end on a 1.5-2x cost multiplier.**
+
+================ PHASE 004-skeleton-first-2d ================
+---- glm ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72 — The root-cause diagnosis and the "geometry belongs upstream, GLM is a renderer" thesis are correct and well-evidenced, but the plan treats the central untested assumption (that GLM will *obey* a deterministic skeleton) as near-certain, mis-specifies best-of-3, and front-loads 11-20h of build before the cheapest possible falsification test.
+
+## What GPT-5.5 got right
+- **Root-cause framing is airtight.** RC-1/RC-2/RC-3 are correctly classified as hard-fact geometry defects (overflow, collision, title-at-bottom), not taste — and they map cleanly to deterministic checks. Demoting GLM to a renderer is the right inversion.
+- **best-of-3 is correctly placed *after* first verifier failure, not always-on** (AdaCoder-style adaptive escalation). This avoids 3× prompt cost on the easy majority.
+- **Downgrade-to-linear as a total escape** (NFR-R02: "any tile that fails 2D twice always resolves") is the correct safety property — no crowded-geometry retry loop.
+- **RC coverage is honest**: the spec explicitly says this phase closes RC-1/RC-2/RC-3 and does *not* claim to fix the refinement-tier defects. Good scope discipline.
+- **Arm switch (`A5_ARM=control`) + rollback** is wired in, not bolted on.
+
+## Gaps / risks / errors
+
+1. **The crux assumption is untested and mis-rated.** R-003 ("GLM ignores the contract") is rated Likelihood **Low** with zero evidence. The entire ROI rests on GLM faithfully transcribing skeleton coordinates. IFScale / instruction-density literature says long constraint lists are exactly where models drift. If non-compliance is even ~15-20%, best-of-3 fires constantly, costs balloon past the −100..+400 token claim, and the premise ("skeleton replaces layout prose") inverts — you end up shipping skeleton JSON *plus* policing prose. **This likelihood rating is the single weakest claim in the doc.**
+
+2. **best-of-3 is under-specified to the point of being non-algorithmic.** `compute-skeleton` is deterministic on fixed inputs (same Dutch copy, same 480×480). What varies across the 3 candidates? Row caps? Layout mode (hub-spoke vs matrix-3)? Font size? Node collapse ("+N more")? The plan is silent. As written, "recompute 3 candidates" is either trivially identical (pure waste, ~3× skeleton cost on every FAIL#1) or relies on unstated variation heuristics. This is a design hole, not an implementation detail.
+
+3. **SC-004 (<10% downgrade rate) is a tunable, gameable metric — and it's misaligned with the goal.** Downgrade rate is directly controllable by loosening skeleton budgets. Loose budgets → low downgrade → sparse/ugly 2D tiles that still "pass." The guard should be **mean blind-audit score on shipped 2D tiles** (which SC-001 nominally is, but only if downgraded tiles are excluded from the 2D holdout — which creates survivorship bias the spec doesn't address). Either include downgrades in the 2D denominator or replace SC-004 with a shipped-quality floor.
+
+4. **Canvas dimension inconsistency is a hard blocker.** User spec says **560×480** tiles; skeleton uses **480×480**. If 560 is the true outer canvas, every coordinate, region, and constraint constant in A5/A7 is wrong. The spec never reconciles this. Resolve before schema freeze — not as an open question.
+
+5. **The 104px vs 112px title question is blocking, not deferred.** It changes `diagram_max_y` (320 vs 328), which ripples into every node placement, row cap, and AABB check. Listing it under "Open Questions" alongside soft items understates it — it's a schema constant that must be locked *before* `skeleton-schema.json` freeze (Milestone M1). Resolve against measured production Dutch copy in Phase 1, not Phase 3.
+
+6. **"Measure Dutch copy before prompting GLM" is under-specified and quietly hard.** Pixel width of a string requires fixed font-family / size / weight / line-height — but the schema lets GLM pick "variant" and the renderer emits inline styles. If typography isn't pinned in the skeleton, copy measurement is a guess and the title-reservation math is unreliable (R-001, rated H/M, is correctly feared but its cause is in this gap, not just "prod fonts differ"). **The schema must own typography per text region**, not just geometry.
+
+7. **No baseline-capture step.** SC-001 compares against a "35-58 baseline" scored under the *old* audit. The new verifier adds 6 geometry fields; pass/fail thresholds shift. Without re-baselining the old outputs through the *new* verifier, the +15pt delta is apples-to-oranges. The plan's Phase 3 skips straight to "confirm SC-001..SC-005." Insert a Phase-0 baseline capture.
+
+8. **REQ-007 "linear untouched" is weaker than the mechanism guarantees.** Linear tiles bypass `compute-skeleton`, but the plan modifies the *shared* ship-gate (`_audit.mjs`). Additive fields can still flip a borderline linear tile's pass/fail if thresholds are reused. Specify: linear SHIP decision is byte-identical pre/post (additive fields only, no threshold reuse).
+
+9. **Downgrade target list is internally inconsistent on whether compact-matrix is a terminal escape.** A7's `linearized` is terminal-linear; A5/downgrade.mjs lists "compact-matrix," which is still 2D-positioned and would re-enter the skeleton path. If compact-matrix reruns the skeleton, "downgrade" isn't an escape — it's a reshuffle. Pin the fallback chain to *genuinely linear* primitives (table / stacked-rows / list) only.
+
+10. **Effort estimate is optimistic ~1.5-2×.** 8-14h for skeleton math (connector routing around labels, AABB gaps, legend row-cap variants) + render contract + best-of-3 variation logic + downgrade + a 6-field browser verifier extension is light. Schedule slip will compress Phase 3 verification — the part that actually proves the lift.
+
+11. **Connector-anchor 4px tolerance is arbitrary and uncalibrated.** Subpixel rounding, SVG path stroke width, and Dutch diacritics can each consume pixels. An uncalibrated 4px threshold will either false-fail (→ spurious best-of-3 → spurious downgrade) or false-pass. Calibrate against measured render variance before locking REQ-002/edge-case spec.
+
+## Strongest improvement / alternative
+
+**Insert a Phase-0 "GLM-obeys-contract pilot" before any module work — hand-author skeletons for 2-3 sentinel tiles (e.g. `accountbeheer-4 matrix`, `oci-4 node`) and measure GLM-5.2's transcription fidelity under the render contract.** Cost: ~2-3h. Return: a measured non-compliance rate that either (a) validates R-003's "Low" rating and de-risks the whole 11-20h build, or (b) exposes that GLM ignores coordinates >15% of the time, in which case the deterministic skeleton alone is insufficient and you should sequence 005 (GPT-5.5 author) *before* — or alongside — 004, or reconsider whether a pure deterministic renderer (no GLM in the 2D path at all) is cheaper than a skeleton + policing + best-of-3 + downgrade stack. This is the single cheapest experiment that can falsify the program's central premise, and its absence is the plan's biggest methodological gap.
+
+## One thing to test before building this phase
+**Run the Phase-0 pilot above and report GLM-5.2's coordinate-compliance rate on hand-authored skeletons for 3 sentinel 2D tiles.** If compliance is <85%, the deterministic-skeleton-only thesis is in trouble and 004's scope/sequencing must change before you write `compute-skeleton.mjs`.
+
+---- mimo ----
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence **0.68** — The core mechanism (upstream geometry, model-as-renderer, deterministic verification) is architecturally sound and well-grounded in LaTCoder/GeoSVG-RL/LaySPA evidence, but the spec contains an unresolved A5-vs-A7 skeleton format conflict, underspecified enforcement of GLM compliance, and an optimistic effort/risk profile that could sink the phase.
+
+---
+
+## What GPT-5.5 got right
+
+1. **Root cause diagnosis is precise.** The RC-1/RC-2/RC-3 ledger is hard-fact grounded (overflow=true in 8 audit rows, `position:absolute` counts, title Y-position checks). The ~41-pt gap between 2D-positioned (35-58) and linear-flow (86-94) is real and measurable.
+
+2. **"Model-as-renderer" is the correct architectural move.** The evidence from LaTCoder, LaySPA, GeoSVG-RL, and DCGen consistently shows that plan-first + bounded-region + deterministic audit outperforms prompt-only layout. Demoting GLM to a mechanical renderer that fills visual details but doesn't own coordinates is the right framing.
+
+3. **Adaptive escalation (best-of-3 only after failure) is well-motivated.** AdaCoder's pattern of "start cheap, test, escalate only when failure feedback proves it's needed" is the correct default. Always-on 3x generation is wasteful for tiles that pass first time.
+
+4. **Downgrade-to-linear as the terminal failure state is correct.** Never giving GLM a third chance at coordinates and instead falling back to a known-good primitive class is the right safety net.
+
+5. **The experiment design (iter-r3-A5.md) is rigorous.** Paired A/B, blocked randomization, blinded MiniMax audit, sentinel tiles, 7-gate adoption criteria with specific thresholds. This is proper experiment discipline.
+
+---
+
+## Gaps / risks / errors
+
+### G1: A5 and A7 propose CONFLICTING skeleton formats (HIGH — will cause implementation confusion)
+
+A5 (`iter-r2-A5.md`) proposes a **freeform skeleton JSON** where GLM receives explicit pixel boxes, anchors, and connector routes — GLM renders FROM these coordinates. A7 (`iter-r2-A7.md`) proposes a **semantic plan** (`bento_plan_v2` JSON) where GLM outputs `nodes[]` with `role` and `importance` fields, and a **deterministic renderer** maps them to fixed templates (`hub-spoke`, `matrix-3`, `stacked-rows`).
+
+These are fundamentally different contracts:
+- A5: "Here are exact pixel positions. Render them." (GLM receives geometry)
+- A7: "Here are semantic nodes. Renderer computes positions." (GLM outputs semantics, renderer owns geometry)
+
+The spec merges both as "A5 + A7" without declaring which contract wins. The skeleton-schema.json needs to be ONE of these, not both. **If you build A5's format, GLM still has to interpret pixel coordinates correctly. If you build A7's format, you need a deterministic renderer that maps semantic plans to pixel positions.** These are different engineering paths with different risk profiles.
+
+**Recommendation:** Pick A7's semantic plan as the canonical contract (GLM outputs `bento_plan_v2`, renderer computes pixels). A5's skeleton JSON becomes the renderer's OUTPUT, not GLM's INPUT. This eliminates the risk of GLM misinterpreting pixel coordinates.
+
+### G2: GLM contract compliance enforcement is underspecified (HIGH)
+
+The spec says `forbid_glm_coordinate_text=true` but describes no enforcement mechanism. GLM is a language model — you can instruct it not to output `position:absolute` or `transform:` but it may comply only probabilistically. The verifier catches violations post-render, but:
+
+- What happens when GLM emits `style="left: 40px; top: 132px"` in the HTML? The verifier flags it → FAIL#1 → best-of-3 → but the recomputed skeleton is upstream, not in GLM's output. The "recompute" is meaningless if GLM keeps ignoring the contract.
+- The spec's `auditA5Geometry` checks DOM bboxes but doesn't check whether GLM injected coordinate text. There's no `grep` for `position:absolute` or `left:` in the rendered HTML as a FAIL trigger.
+
+---- deepseek ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72 — the direction (externalize geometry) is correct, but the implementation plan has two critical underspecified components and one untested behavioral assumption that threaten the predicted +15pt lift.
+
+## What GPT-5.5 got right
+- Root-cause diagnosis (RC-1/RC-2/RC-3) is well-grounded in tile forensics with hard-fact evidence (overflow counts, `position:absolute` counts, title Y-position checks).
+- The escalation ladder (preflight → best-of-3 recompute → downgrade-to-linear) is well-structured and mirrors proven patterns (AdaCoder, Self-Refine).
+- The arm switch (`A5_ARM=control`) for rollback is good defensive engineering.
+- Correctly identifies that linear-flow tiles must be bypassed entirely (REQ-007 negative control).
+
+## Gaps / risks / errors
+
+### GAP-1 (BLOCKER): The skeleton-compute module IS a graph layout engine, and it's completely unspecified.
+The spec says "place node/row boxes within caps → compute connector anchors + orthogonal routes." For a routing diagram with 4 nodes and 3 edges, this is a non-trivial graph layout problem. The A5 skeleton example shows hardcoded `{x:40, y:132}` for SAP — but **who computes those coordinates deterministically** given arbitrary node labels, edge relations, and Dutch copy lengths? The spec names no layout algorithm (grid? force-directed? Sugiyama? layered?), no copy-measurement method (canvas `measureText`? font metrics table?), and no connector-routing strategy (Manhattan? direct? edge-bundled?). This is 80% of the engineering effort and it's a single bullet point.
+
+### GAP-2 (BLOCKER): The "GLM as mechanical renderer" assumption is untested.
+No evidence is cited that GLM-5.2 can reliably consume a 500+ token skeleton JSON with explicit pixel coordinates and render them faithfully. The research says "GLM must not invent x/y/w/h" but never demonstrates that GLM **can** follow such a contract. If GLM ignores even one coordinate (e.g., places the title at y=200 instead of y=352), the verifier catches it — but then best-of-3 fires and produces the **same skeleton** (since the compute is deterministic), creating an infinite loop into downgrade. The "best-of-3" mechanism is meaningless without a **variation strategy** (different layout algorithm? random seed? constraint relaxation?). A deterministic compute that always produces identical output makes best-of-3 a no-op.
+
+### GAP-3: The A5 (explicit coordinates in skeleton JSON) and A7 (semantic plan + renderer computes bboxes) approaches are merged without resolving their architectural conflict.
+A5 says: compute pixel coordinates upstream, embed them in the skeleton JSON, give to GLM. A7 says: GLM outputs a semantic plan (`{nodes: [...], edges: [...]}`), a **renderer** (not GLM) computes all bboxes from templates. These are fundamentally different architectures. A5 makes GLM the renderer (consume coordinates, produce DOM). A7 makes GLM a semantic planner and uses a separate deterministic renderer. The spec claims both but can't ship both — the `nodes[].box` in the skeleton JSON implies A5-style explicit coordinates, but the "Renderer mapping" section implies A7-style template rendering. This ambiguity will surface at implementation time.
+
+### GAP-4: Auto-linearize thresholds are likely too conservative.
+`nodes>5 / rows>3 / edges>6 → auto-linearize` means most real maritime dashboards (which typically have 4-6 nodes with 3-5 edges) will **never** enter the 2D skeleton path. A routing diagram with 4 nodes (SAP → catalog → order → delivery) and 3 edges hits exactly the threshold and gets linearized. This undermines SC-001/SC-002 because the tiles that need the fix most are precisely the ones that get downgraded before the skeleton even tries. The spec should distinguish between "over-budget for the skeleton" and "over-budget for GLM without a skeleton" — with a skeleton providing explicit layout, the diagram region can fit more elements than GLM can self-author.
+
+### GAP-5: The 480×480 canvas vs 560×480 tile size discrepancy is unexplained.
+The research references 560×480 bento tiles but the skeleton uses a 480×480 canvas. Where does the 80px horizontal gap go? Is it outer card padding? Browser chrome? The spec never reconciles this, which means the skeleton's coordinate system may not map 1:1 to the rendered output.
+
+### GAP-6: The `data-a5-region` / `data-a5-id` audit tags create a circular dependency.
+The verifier needs these DOM attributes to identify nodes for collision detection. But GLM must render them. If GLM fails to include the tags (same class of failure as misplacing coordinates), the verifier can't verify — and can't distinguish "GLM rendered wrong geometry" from "GLM didn't include audit tags." Without tags, `node_collision_count` is uncomputable.
+
+## Strongest improvement or alternative
+
+**Ship the A7 renderer-first architecture instead of the A5 skeleton-JSON-to-GLM approach.** The A5 approach (embed explicit coordinates in the GLM prompt) makes GLM the single point of failure for geometry fidelity, with no evidence it can reliably follow such a contract. The A7 approach (GLM outputs a semantic plan `{nodes, edges, roles}` → a deterministic Node.js renderer computes all bboxes and emits the HTML) removes GLM from geometry entirely. This is more engineering upfront (the renderer must handle 5 layout modes) but eliminates GAP-2 (the untested GLM-as-renderer assumption) and GAP-6 (the audit-tag circular dependency) in one move. The semantic plan is also ~70% smaller than the skeleton JSON, reducing token cost. The cost is that the renderer must produce visually varied output within each layout mode, but this is a solved problem (CSS variables, template variants, icon/color token selection).
+
+## One thing to test or verify before building this phase
+
+**Run a single end-to-end skeleton→GLM test with ONE tile (e.g., `oci-4 node`, baseline score 58).** Manually author a skeleton JSON with the correct coordinates for the OCI node diagram (SAP ↔ catalog ↔ Anobel), embed it in the GLM prompt with `forbid_glm_coordinate_text=true`, render the output, and run the geometry verifier. This answers GAP-2 in 1-2 hours: either GLM follows the skeleton (proceed) or it doesn't (switch to A7 renderer-first architecture). Do not build the compute-skeleton module, best-of-3, or downgrade logic until this single test passes.
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.62** — the diagnosis is correct and the downstream mechanism is directionally right, but the phase overestimates GLM's ability to honor a "contract" and underestimates the need for a deterministic renderer.
+
+## What GPT-5.5 got right
+
+- **Root cause**: RC-1/RC-2/RC-3 are genuinely geometry defects, not taste; moving coordinate placement out of GLM is the correct strategy.
+- **best-of-3 upstream**: Recomputing skeleton candidates instead of re-prompting GLM for coordinates avoids the instruction-density death spiral (A5/A7 research).
+- **Downgrade path**: A hard fallback to linear/stacked after two failures is the right safety valve.
+- **Linear-flow negative control**: Keeping strong linear tiles away from the skeleton path is essential to avoid regressions.
+
+## Gaps / risks / errors
+
+1. **"GLM renders from skeleton" is underspecified — and probably unreliable.** The whole premise of RC-1/RC-2/RC-3 is that GLM-5.2 *ignores* spatial constraints in prose. Adding a JSON contract does not eliminate that failure mode; GLM can still emit `position:absolute`, inline `style="..."`, or extra rows. The spec relies on the model obeying a negative constraint ("do not invent coordinates"), which is exactly what it already fails at. **Concrete failure mode**: RC-2 node collisions persist if GLM adds a `transform: translate(...)` to "adjust" the skeleton.
+
+2. **best-of-3 recomputes the same algorithm unless inputs vary.** The spec says "recompute up to 3 skeleton candidates upstream" but does not define what differs between candidates. If compute-skeleton is deterministic, the three outputs are identical. If inputs vary (font size, row caps, diagram region height), the spec must name the parameter sweep; otherwise the loop is theater.
+
+3. **A5 vs A7 title-region conflict is a real blocker, not an open question.** A5 reserves 112px, A7 reserves 104px. Requirements SC-001/REQ-001 depend on this constant. The phase cannot be built without resolving it against production Dutch copy — "open question" status blocks implementation.
+
+4. **Success criteria conflate geometry fixes with total audit score.** SC-001 targets 65-82 (+15-47 pts) but the 41-pt gap is not purely geometry. Even a collision-free diagram can score poorly on palette, typography, iconography, or semantic clarity. A more defensible target is "zero RC-1/RC-2/RC-3 defects in shipped 2D tiles" plus a smaller mean lift.
+
+5. **Prompt cost claim is likely wrong.** The skeleton JSON example is ~800 tokens; complex node/connectors could hit 1500+. NFR-P01 claims −100 to +400 tokens vs. dense layout prose, but no baseline prose length is measured.
+
+6. **10% downgrade rate target may be unachievable.** If production Dutch copy routinely overflows a 104-112px title band, deterministic skeletons will fail often. SC-004 should include a measured threshold rather than a fixed cap.
+
+7. **Shared harness modifications create hidden linear-tile regression.** REQ-007 claims linear tiles bypass the skeleton path, but modifying `gen-tile.mjs` and `_audit.mjs` still touches the shared flow. "Drop ≤ 3 pts" is an assumption, not a verified guard.
+
+8. **Missing renderer architecture.** The spec creates a skeleton-schema but does not commit to *who renders it*. A7's semantic-plan + deterministic renderer is more robust; this phase defers it but claims to implement A7.
+
+## Strongest improvement or alternative
+
+**Replace the "render contract" with a deterministic template renderer.** Do not ask GLM to honor a JSON contract; give it no coordinates to invent. GLM should output only A7's semantic plan (`tile_type`, `nodes`, `edges`, `copy`, `style_tokens`), and a small Node/Browser renderer maps each `tile_type` to a template that consumes the skeleton and writes the HTML/SVG. This structurally eliminates RC-1/RC-2/RC-3 instead of hoping GLM follows a negative rule.
+
+If that is too large for this phase, the minimum viable change is: **ship a deterministic renderer for the five 2D treatments first**, let GLM produce the skeleton JSON, and validate that the rendered output matches the skeleton before any GLM-authored HTML is accepted.
+
+## One thing to test or verify before building this phase
+
+Run a **contract-fidelity probe**: manually create skeleton JSON for 3-5 real failing 2D tiles, prompt GLM-5.2 to render strictly from it, and measure what fraction of outputs contain any invented coordinates, `position:absolute`, transforms, or extra rows. If GLM violates the contract on >20% of tiles, the phase must pivot from a "contract" model to a deterministic renderer.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.78. The geometry-kernel direction is correct and the 5-stage pipeline (preflight → render → verify → best-of-3 → downgrade) is sound. But the spec hides three load-bearing ambiguities that will block implementation or invalidate the predicted +15-pt lift if unresolved.
+
+## What GPT-5.5 got right
+- **Root-cause framing is honest**: RC-1/RC-2/RC-3 are hard-fact, geometry-checkable defects, not taste — and the citation of "direct LLM numerical positioning → out-of-boundary errors" matches a known LLM failure mode.
+- **"Model as renderer" pattern is the right abstraction** for this defect class — LaySPA/LaTCoder/GeoSVG-RL/AdaCoder are legitimate analogues.
+- **Best-of-3 → downgrade is a sane failure policy** — gives the model one retry on geometry without burning three GLM calls.
+- **REQ-007 (linear-flow negative control)** is correctly identified as the regression canary.
+- **Rollback via `A5_ARM=control`** is the right shape even if Phase 001 isn't built yet.
+
+## Gaps / risks / errors
+
+**CRITICAL — would block implementation**
+
+1. **A5 and A7 disagree on the title region**: A5 reserves `y=344, h=112` (diagram_max_y=320); A7 reserves `y=352, h=104` (visual end ≤328, baseline ≥368). That's an **8-32 px conflict** that determines every other constraint. The spec punts this to "Open Questions" but `compute-skeleton.mjs` cannot be written without locking it. **Resolution:** pick one, measure Dutch copy on the prod font *before* writing skeleton code, then freeze.
+
+2. **Two different architectures are stitched together.** A5 says "GLM receives the skeleton as canonical geometry… may not invent x/y/w/h" → GLM still emits HTML, just constrained. A7 says GLM emits a semantic plan (`bento_plan_v2`) and a separate deterministic **Renderer** computes all bboxes from templates. These are different code paths:
+   - A5 path: `skeleton JSON → GLM(HTML) → browser` (GLM in the loop; needs `forbid_glm_coordinate_text` regex)
+   - A7 path: `bento_plan_v2 → GLM(plan) → deterministic Renderer → HTML` (GLM out of the loop; needs 5 specialized renderers per `tile_type`)
+   
+   The spec.md reads as A5 but the A7 render-mapping paragraph is included as if it were the same thing. Pick one. The A7 path is more deterministic and harder to break; the A5 path is faster to build but relies on GLM compliance with negative constraints.
+
+3. **Best-of-3 search space is undefined.** "Recompute up to 3 skeleton candidates" — but what varies between candidates? The inputs (Dutch copy + tile type) are deterministic. If the variation is just spacing tweaks, all three candidates fail AABB for the same reason (5th matrix row still doesn't fit). AdaCoder/LaTCoder vary decomposition strategy, not micro-geometry. **Required:** name the axes (e.g., row-height ∈ {compact, default, generous}, node-order permutations, legend on/off) and prove candidate diversity ≠ noise.
+
+**HIGH — material risk to the +15-pt lift claim**
+
+4. **The five treatments are not one geometry.** Matrix = grid (works with the proposed skeleton). Node/hub-spoke = polar around center (needs anchor angles). Routing = graph with edge crossings (needs orthogonal router, not AABB). Funnel = trapezoidal/contracting (the box schema can't represent sloped edges). Popover = z-stacked overlay (needs z-index, not in the schema). One `nodes[]/connectors[]` schema is matrix-shaped; you'll ship a special case for each non-matrix treatment or fail them. **Either** branch the schema by `layout_mode` (linear-flow | hub-spoke | matrix-3 | stacked-rows | mini-map | linearized — A7 already lists these) **or** explicitly accept that funnel/popover downgrades will be common and lower the SC-004 threshold.
+
+5. **`forbid_glm_coordinate_text` is harder than it looks.** False positives on `width: 100%`, `flex: 1`, `padding: 24px` (legitimate), and `transform: translate(-50%, -50%)` (centering pattern) will trigger spurious FAILs and inflate the downgrade rate. You need an allow-list of "permitted numeric CSS" vs a deny-list of "forbidden layout CSS" — and the boundary is fuzzy. **Pilot this regex on 5 existing tiles before building the rest.**
+
+6. **No validation that GLM-5.2 actually obeys the negative constraint.** The whole pipeline assumes GLM, when told "do not invent x/y/w/h," will comply. This is an empirical question. A 5-tile pilot with *only* the prompt constraint (no skeleton) would measure compliance in <1 hour and either validate or kill the architecture before any skeleton code is written.
+
+7. **SC-001 target band 65-82 is optimistic against the design-audit anti-slop tax.** Deterministic skeletons will likely improve geometry scores but introduce a *new* defect class — "templated feel" — that blind auditors (MiniMax-M3) dock for. The current 35-58 scores likely bundle geometry + taste defects; geometry-only fixes may yield only +8-12 pts, not +15. **Confidence on +15-pt hit: I'd put it at 35-50%, not "predicted."** Recommend SC-001 floor at +8 pts (target band 55-70) with +15 as a stretch.
+
+**MEDIUM**
+
+8. **Auto-linearize (compute time: `nodes>5 / rows>3 / edges>6`) and runtime downgrade (FAIL#2) are two different downgrade mechanisms** with no defined relationship. Which fires first? If both, what's the SC-004 denominator — runtime downgrades only, or both? Spec is silent.
+
+9. **Cost claim is implausible.** NFR-P01: "−100 to +400 tokens." The skeleton JSON example is ~80 lines / ~700-900 tokens serialised. To net −100 you'd need GLM to save >800 output tokens, which it won't because it's still writing HTML. Realistic: +400 to +900 input tokens per 2D tile. Cost-per-tile rises.
+
+
+================ PHASE 005-gpt5-5-skeleton-author ================
+---- glm ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.74 — The skeleton-author-not-renderer split is the right call and the cost-gating is sound, but the spec under-specs the validation/re-escalation loop and is over-optimistic that GPT-5.5 can satisfy a 1000×312 coordinate contract in a single non-iterative call.
+
+## What GPT-5.5 got right
+- **Role separation** (geometry skeleton → deterministic compile → GLM render) directly attacks RC-1/RC-2 without letting GLM re-author coordinates. This is the highest-leverage choice: it removes the "GLM has no constraint solver" root cause by externalizing the solver.
+- **Cost gating is tight and well-bounded**: `≤1 call/≤4200 tokens` per tile, batch gated on pre-spend `N_2D`, zero spend on linear tiles. The worst-case math (≤18 calls / ≤75.6K tokens) is honest.
+- **Deterministic-first ordering** is correct — escalation is failure-triggered, so the free/cheap path runs first.
+- **Schema reuse** (phase-004 JSON skeleton, unchanged compile path) correctly keeps this phase a *swap of author*, not a new pipeline.
+
+## Gaps / risks / errors (specific)
+
+1. **Validation gap — what happens when GPT-5.5's skeleton is itself invalid?** REQ-002 says "validates against the schema," but there's **no recovery path defined for a *spatially* invalid skeleton**. GPT-5.5 will emit bboxes that violate its own `x+w ≤ 1000 / y+h ≤ 312` rule or overlap (RC-2 is exactly this failure mode). The spec assumes schema-valid ⇒ spatially-valid. It does not. **This is the biggest hole**: without a per-node overlap/containment check (the same gate RC-2 needs), a well-formed-but-colliding skeleton silently reaches GLM and re-fails.
+
+2. **Single-shot assumption is optimistic.** Research predicts +1–3 at conf 0.78 — that conf number is for *the approach*, not for *one attempt*. A non-iterative `--variant xhigh` dispatch with no self-critique gives you exactly the "direct numerical positioning → collisions" failure the cited literature warns about. The open question "1 call vs best-of-2" under-states it: the real need is **1 generate + 1 self-verify pass** (GPT checks its own bbox table against the contract before returning), not best-of-2.
+
+3. **Token cap (4200) is likely too small for dense 2D tiles.** A matrix/node-diagram with >8 nodes, edges, pills, and a `validation` block — the listed schema fields (`nodes[]`, `rows[]`, `edges[]`, `overflowPlan`, `validation`) alone at xhigh reasoning effort will burn 2.5–3K of the budget on thinking before emitting JSON. You risk truncated/malformed JSON. No `max_tokens` budgeting or partial-output handling is specified.
+
+4. **No measurement of *why* it fails.** SC-001 only gates on recovered-tile count. If GPT-5.5 recovers <3, you'll know *that* it failed but not *whether* (a) the skeleton was spatially invalid, (b) valid-but-ugly, or (c) valid-but-GLM-mangled-it. Tag each post-escalation failure with `invalid_skeleton | collision_present | glm_rewrite | still_overflow`. Without this, the parent open question (worth it vs downgrade?) is unanswerable.
+
+5. **`diagramFrame h:312 / maxY:336` inconsistency.** `y:24 + h:312 = 336`, but the prompt says "nothing may enter y=336..368" while also "title renders bottom-left in titleFrame (y:368)". That leaves a 32px dead band — intended — but the coordinate system says `y+h ≤ 312` (relative), which is consistent; **however the prompt mixes absolute (`y=336..368`) and relative (`0..312`) framings without a labeled transform**. GPT-5.5 will get this wrong. State the transform explicitly.
+
+6. **RC-3 (title-at-bottom) is under-protected.** The skeleton locks `titleFrame`, but the compile step must *enforce* it; if GLM can still move the title (REQ-risk row says "forbids editing top/left"), that contract lives in phase 001/004 — **verify it actually forbids the title zone, not just diagram nodes.** Unverified assumption.
+
+## Strongest improvement or alternative
+
+**Add a deterministic spatial validator between GPT-5.5 and GLM, and re-escalate once on invalid output — before you build anything else in this phase.**
+
+Concretely: after `Gpt55SkeletonAuthor` returns JSON, run a pure-deterministic checker (`bboxContainment(node, diagramFrame)` + `pairwiseOverlap(nodes)` + `titleZoneClear`) over the skeleton. Three outcomes:
+- **Valid** → compile + render (current path).
+- **Invalid, budget remains** → one re-dispatch with the violated-rule IDs fed back ("node#3 overlaps node#5 by 18px; fix") — this is cheaper and far more effective than best-of-2-blind.
+- **Invalid, no budget** → downgrade-to-linear, log `invalid_skeleton`.
+
+This single addition (a) closes gap #1 (the real RC-2 risk), (b) replaces the weak "1 vs best-of-2" open question with a principled "1 + 1 conditional repair," and (c) makes SC-001 failures diagnosable (gap #4). It costs ~1 deterministic pass + ≤1 extra GPT-5.5 call on the *worst* tiles only — well inside the existing batch budget if you raise the per-tile cap to 2 calls while keeping `≤N_2D + repair_calls` as the batch ceiling. **Make the validator the P0, not an afterthought.**
+
+Secondary: raise the token cap to ~6000 or switch the dispatch to `max_completion_tokens`-bounded structured output, and fix the absolute/relative coordinate framing in the prompt.
+
+## One thing to test or verify before building this phase
+
+**Dry-run the skeleton-author prompt against the 5 lowest-scoring 2D tiles *today* (manually, one `opencode run` per tile) and run the deterministic spatial validator on the raw JSON** — before writing EscalationClassifier/CostCapAccountant. You will learn in one hour: (1) does xhigh emit valid contained bboxes at all, (2) the real token cost, (3) whether the single-shot assumption (gap #2) holds. If ≥3/5 skeletons are spatially invalid on first pass, the validator-and-repair design above is mandatory and the phase's cost model changes. This is the cheapest possible go/no-go and the spec currently defers it to Phase 3.
+
+---- mimo ----
+## Gaps / risks / errors
+
+### 1. THE CAUSAL GAP (RC-1/RC-2/RC-3 — critical)
+
+The root-cause ledger says RC-1/RC-2/RC-3 are **GLM rendering limitations** — GLM "lays out N rows/nodes at fixed pixel heights with no constraint solver" and "direct numerical coordinate placement with no collision detection." But the proposal's fix is to give GLM a *better skeleton*. If GLM can't follow skeleton constraints (which is why the deterministic skeleton fails in the first place), a GPT-5.5-authored skeleton of the same schema doesn't fix the renderer.
+
+**The untested assumption**: GLM-5.2 will obey a skeleton it's given. Phase 004 hasn't run yet. If GLM ignores the deterministic skeleton, it will also ignore the GPT-5.5 skeleton. The proposal should explicitly gate on "GLM follows skeleton constraints at least 80% of the time" before escalating to a paid author.
+
+**The research itself admits this**: iter-r2-A6.md line 219 — "GLM-5.2 may ignore or rewrite scaffold geometry unless the prompt forbids modifying `data-layout-id`, `top`, `left`, `width`, `height`, and zone styles." But the mitigation is just "carry the render contract" — the same kind of prose instruction that GLM is already ignoring.
+
+### 2. COST-PER-RECOVERY IS UNDEFINED (critical for a "cost-capped" escalation)
+
+The spec says "Exact dollar ceiling is UNKNOWN without live token prices" (plan.md, cost_caps section). For a phase whose entire value proposition is cost-capped escalation, this is a gap. The iter-r4-risk analysis says "GPT-5.5 skeleton on all 2D failures: N_2D × 1-4 paid GPT-5.5 calls" but the spec caps at 1 call. Even at 1 call × 18 tiles × 4.2K tokens = 75.6K tokens, the dollar cost is genuinely unknown. The A/B measurement (REQ-005) needs a denominator.
+
+**Fix**: Before building this phase, run a 3-tile pilot with GPT-5.5 to measure actual input/output tokens and compute $/skeleton. If $/recovered-tile exceeds a defined threshold (e.g., $5/tile), kill the escalation and use downgrade-to-linear instead.
+
+### 3. THE DETERMINISTIC SKELETON IS UNTESTED (premise gap)
+
+Phase 004 is still in planning (`implementation-summary.md`: "Nothing yet. This phase is in planning."). The proposal assumes the deterministic skeleton will fail on the hardest tiles and that GPT-5.5 can succeed where it fails. But we don't know:
+
+- How many tiles the deterministic skeleton actually recovers
+- Whether the failures are skeleton-quality failures or renderer-obedience failures
+- Whether the +1 to +3 prediction is for GPT-5.5 skeletons or for GPT-5.5 skeletons that GLM actually follows
+
+**Fix**: Implement and measure phase 004 first. If the deterministic skeleton recovers 12+ of the 18 baseline failures, the GPT-5.5 escalation may be unnecessary. The spec's open question ("Does the deterministic skeleton recover enough 2D tiles that the 005 GPT-5.5 escalation is optional?") should be answered before building 005.
+
+### 4. THE +3 GO/NO-GO IS A COIN-FLIP AT CONF 0.78
+
+Research predicts +1 to +3 at confidence 0.78. At the lower bound (+1), the phase is rejected. At the upper bound (+3), it barely passes. The confidence interval includes the rejection threshold. This means the go/no-go decision is essentially random — you need more data (the phase-004 holdout results) before you can make a meaningful decision.
+
+**Fix**: Don't set the go/no-go bar until you have the phase-004 deterministic baseline. If deterministic recovers X tiles and GPT-5.5 recovers X+Y tiles, the bar should be Y ≥ 3, not absolute recovery ≥ 3.
+
+### 5. NO FALLBACK FOR GPT-5.5 ITSELF FAILING (operational gap)
+
+The proposal covers: GPT-5.5 skeleton → gate pass → ship, and GPT-5.5 skeleton → gate fail → downgrade. But it doesn't cover:
+
+- GPT-5.5 API timeout or 500 error
+- GPT-5.5 returns prose/HTML instead of JSON
+- GPT-5.5 returns JSON that doesn't match the schema
+- cli-opencode dispatch failure (auth, slug not found)
+
+---- deepseek ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.73 — The strategy (expensive model solves layout; cheap model renders) is correct, but the proposal overestimates skeleton leverage because RC-3/Rc-4 are instruction-following failures, not spatial, and the scaffold-to-GLM handoff is an untested assumption that could nullify the entire phase.
+
+## What GPT-5.5 got right
+- **Role partition**: GPT-5.5 as skeleton author only, never tile code; GLM-5.2 stays renderer. This avoids spending paid tokens on CSS/HTML boilerplate.
+- **Cost discipline**: `<=1` call + `<=4200` tokens per tile, batch budget derived from `N_2D`, and linear-tile exclusion (they score 86-94 already).
+- **Hard canvas contract**: diagramFrame / titleFrame / coordinate-system spec is concrete and machine-verifiable.
+- **Escalation trigger logic**: `trigger_gpt55_if` / `skip_gpt55_if` rules correctly exclude linear primitives and low-item-count tiles.
+
+## Gaps / risks / errors
+
+**GAP-1: No deterministic geometry validator between GPT-5.5 output and compile.** JSON schema validation (REQ-002) only checks shape (`0 <= x <= 1000`), not geometry correctness (bbox overlap, cumulative row height, title-zone encroachment). GPT-5.5 can return a schema-valid skeleton where two nodes collide exactly like RC-2 (oci-4, score 58: 6 `position:absolute` elements, pill overlaps SAP card). A 50-line validator that checks bbox-bbox overlap, cumulative row height ≤ 312px, and title-zone clearance would catch these before GLM ever sees them — and could feed validation errors back for a retry within the 1-call budget, making +3 recovery more achievable.
+
+**GAP-2: The scaffold-to-GLM handoff is an untested assumption (high blast-radius).** The entire phase assumes that a locked HTML/CSS scaffold (`data-layout-id`, `top`, `left`, `width`, `height`) constrains GLM-5.2's rendering. But RC-3 (title-at-bottom failure — goedkeuringssysteem-4 score 55, aangepast-assortiment-3 score 58, orders-facturen-4 score 52) is **exactly** a case where GLM drops explicit constraints. If GLM rewrites absolute-positioned elements ≥30% of the time, GPT-5.5's skeleton is no more useful than the deterministic one — and the phase delivers zero recovery for paid spend. A 5-tile micro-test feeding hand-crafted locked scaffolds to GLM and measuring geometry preservation rate should gate this phase.
+
+**GAP-3: GPT-5.5 addresses only RC-1 and RC-2, not RC-3 or RC-4.** The root-cause ledger has 4 RCs:
+- RC-1 (overflow):  ✓ skeleton can fix via cumulative-height computation
+- RC-2 (collisions): ✓ skeleton can fix via bbox-overlap avoidance
+- RC-3 (title position): ✗ instruction-following, not spatial — GLM drops the "title bottom-left" pin regardless of skeleton quality
+- RC-4 (eyebrow ALL-CAPS/wrap/glyph): ✗ text formatting, not spatial — irrelevant to skeleton
+
+If RC-3 and RC-4 failures persist on the 2D holdouts (and the forensic audit shows they appear on 3 of the 5 lowest-scoring tiles), the +3 recovery bar is mathematically constrained: even perfect RC-1/RC-2 fixes can only recover tiles where RC-3/RC-4 weren't the dominant defect. The spec should acknowledge this ceiling.
+
+**GAP-4: The `+3` go/no-go bar conflicts with the research's own prediction.** The research predicts +1 to +3 recovery at confidence 0.78. Setting the go/no-go at the upper bound of the predicted range means the phase rejects itself even at median performance (+2). Given the 0.78 confidence, there's a ~40% chance the true effect is below +3 even if the mechanism works — a Type-II error that discards a working solution. Consider +2 as provisional-accept with a cost-effectiveness gate instead.
+
+**GAP-5: Missing GPT-5.5 API failure/timeout handling.** The plan's rollback section mentions disabling the feature flag, but the in-line path during a batch run is unspecified: what happens when `opencode run` hangs after 30s? The `gen-tile.mjs` main loop needs a timeout + catch that falls through to the deterministic skeleton path without blocking the batch.
+
+## Strongest improvement or alternative
+
+**Add a deterministic geometry validator between GPT-5.5 output and the phase-004 compile step**, plus feed validation failures back for one retry (within the existing 1-call budget since the validator is free). This validator checks: (a) no bbox-bbox overlap exceeding the 16px min-gap, (b) cumulative row/row-gap heights ≤ 312px, (c) no element y+h encroaches into the title guard zone (y > 336), (d) visible row count ≤ 4. If the skeleton fails validation, the error report is appended to the prompt for a second GPT-5.5 attempt before falling through to downgrade-to-linear. This is the single highest-ROI change because it prevents GPT-5.5 geometry errors from cascading through GLM's already-fragile rendering, and costs zero additional paid tokens (the validator is deterministic code).
+
+## One thing to test or verify before building this phase
+
+**Micro-test: Can GLM-5.2 respect a locked HTML/CSS scaffold?** Hand-craft 3 skeleton-compiled scaffolds (one matrix, one node-diagram, one branch) with `data-layout-id`, explicit `top`/`left`/`width`/`height` on every positioned element, and a hard title-zone guard (`y:368-480` reserved). Feed each to GLM-5.2 (3 render passes per scaffold) and measure: (a) % of elements where GLM's output preserves the exact pixel position (±4px tolerance), (b) % of renders where the title stays in the bottom zone, (c) % of renders where no element enters y=336-368. If element-position preservation is <85% or title-zone violation is >20%, this phase is dead on arrival — no amount of GPT-5.5 skeleton quality can overcome an unconstrained renderer.
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72 — The skeleton-author escalation is the right architecture, but the plan over-optimistically assumes a single GPT-5.5 shot will produce *spatially* valid JSON and glosses several dispatch/prompt/cost details that will break on first implementation.
+
+## What GPT-5.5 got right
+- **Role boundary**: skeleton-only, never final tile code, keeps GLM-5.2 as renderer (matches iter-r2-A6).
+- **Failure-triggered escalation**: deterministic skeleton + best-of-3 first, GPT-5.5 only on residual 2D failures (AdaCoder principle).
+- **Linear-tile exclusion**: zero paid spend on already-strong linear primitives.
+- **Cost-gating intent**: per-tile cap, batch `N_2D` ceiling, explicit go/no-go on `$/recovered-tile`.
+- **Schema reuse**: re-uses phase-004 skeleton schema/compile path, so this phase is a swap of author, not a new pipeline.
+
+## Gaps / risks / errors
+
+1. **Unverified model slug** — The spec dispatches `openai/gpt-5.5-fast --variant xhigh`, but `.opencode/skills/cli-opencode/SKILL.md` only documents `openai/gpt-5.5-pro`; `gpt-5.5-fast` is not listed and may not resolve. **Verify with `opencode models openai` before locking the plan.**
+
+2. **No enforceable 4200-token cap** — The invocation shown has no `--max-tokens` / `max_completion_tokens` flag, so the cap is an accounting target, not a hard limit. Dense matrix/node diagrams with >8 nodes + edges can exceed 4200 tokens at `xhigh` reasoning effort, producing truncated JSON.
+
+3. **Prompt omits the actual tile content** — The skeleton author must know *what* to lay out (the source brief, items, relationships, possibly the reference image). The shown prompt is only canvas/constraint prose. Without the content payload GPT-5.5 cannot author a meaningful skeleton.
+
+4. **Schema-valid ≠ spatially valid** (RC-2) — GPT-5.5 can emit JSON that parses against the schema yet contains overlapping bboxes or content that overflows `diagramFrame`. The spec assumes schema validation is enough; it is not. A deterministic `bboxContainment + pairwiseOverlap + titleZoneClear` validator is required between GPT-5.5 and GLM.
+
+5. **Single-shot assumption is over-optimistic** — Research predicts `+1 to +3` at confidence 0.78 for *the approach*, not for one non-iterative attempt. Hard 2D tiles fail precisely because direct coordinate placement collides; one more direct placement by a stronger model does not magically solve collision avoidance without a verification loop.
+
+6. **No failure taxonomy for SC-001** — If recovery is `<+3`, the spec does not tell you *why*: `invalid_skeleton`, `collision_present`, `glm_rewrote_scaffold`, `still_overflow`, `downgraded`. Without tags, the parent open question (worth it vs downgrade?) is unanswerable.
+
+7. **Trigger/skip priority is ambiguous** — `trigger_gpt55_if` lists broad primitives (`matrix, flow, hub, branch, popover, node-diagram, network, connector-map`) while `skip_gpt55_if` lists exemptions. The spec must state explicitly that **skip rules override trigger rules**, otherwise a simple 3-item flow could still escalate.
+
+8. **GLM scaffold compliance is assumed, not enforced** — The mitigation is a prose contract forbidding edits to `data-layout-id`, `top`, `left`, etc. After GLM render, a deterministic DOM check must verify those exact attributes/values are preserved; otherwise the skeleton effort is wasted (RC-1/RC-3 can return).
+
+9. **Statistical noise on +3 bar** — One tile is ~2.2 percentage points on n=45. A `+3` recovery claim is within sampling noise unless measured as paired tile-level deltas with a holdout set, not a single batch run.
+
+10. **`$/recovered-tile` denominator can be zero** — If GPT-5.5 recovers 0 tiles, the metric is undefined. The spec needs a break-even value model or a floor reporting rule.
+
+11. **A6 is a derivative bet** — The research says implement A5/004 skeleton-first first and keep A6 as an escalation. The spec treats A6 as a fixed phase 5, but it only pays off if A5 leaves dense 2D failures that are worth paid recovery. Consider making A6 contingent on A5's measured residual.
+
+12. **No temperature/reproducibility setting** — A geometry solver should run at low temperature or structured output; the spec omits this.
+
+## Strongest improvement or alternative
+**Insert a deterministic spatial validator after GPT-5.5 and allow one conditional repair dispatch, not a blind best-of-2.** Concretely:
+1. GPT-5.5 emits skeleton JSON.
+2. Deterministic validator checks `bboxContainment`, `pairwiseOverlap`, `titleZoneClear`, `rowCap`.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72. The escalation shape (paid model as geometry-skeleton author, never as renderer, never on linear tiles) is correct, but the mechanism re-asks GPT-5.5 to do precise 2D coordinate placement — which is exactly the RC-1/RC-2 failure mode GLM exhibits. Trust must move from "GPT-5.5 picks coordinates" to "GPT-5.5 picks a layout template + parameters; deterministic engine places coordinates."
+
+## What GPT-5.5 got right
+- **Escalation gate, not renderer swap.** Keeping GLM-5.2 as renderer and using GPT-5.5 only on geometry is the right separation of concerns. Renderer drift is the dominant regression risk; this preserves the locked compile path.
+- **Strict trigger / skip rule set.** The `trigger_gpt55_if` / `skip_gpt55_if` pairing with explicit layoutPrimitive lists is auditable and matches the failure cluster in the ledger.
+- **Cost-cap design at the boundary, not after.** Pre-spend `N_2D` accounting with `<=1` call / `<=4200` tokens per tile is the right discipline; the worst-case 18 calls × 4.2K = ~75.6K tokens is honestly bounded.
+- **JSON-schema contract, not free-form prose.** Returning only a parseable skeleton (not HTML/CSS) lets the phase-001 gate re-validate cheaply.
+- **Provider auth pre-flight, no silent substitution.** Correct guardrail for paid provider reliability.
+
+## Gaps / risks / errors
+
+1. **RC-1/RC-2 is "models are bad at pixel-precise coordinate math," and you just asked GPT-5.5 to do pixel-precise coordinate math.** The ledger's RC-1 (overflow) and RC-2 (collision) are the *exact* class of error that comes from an LLM emitting absolute numerical coordinates. JSON-schema validation only catches out-of-bounds, not "node 7 sits inside node 3." There is no collision-detection re-validation step in plan §3 — it stops at schema parse, then hands to compile. Plan §6 acknowledges "GPT-5.5 skeleton is no better than deterministic (predicted only +1 to +3, conf 0.78)" but still routes through coordinates. This is the central contradiction.
+
+2. **`<=4200` token cap is incompatible with a "real" skeleton.** The prompt contract alone is ~280 tokens. At 4200 output tokens, a dense matrix (8 rows × 3 cols × {node, label, edge, anchor, status}) fits, but you have zero budget left for overflowPlan, validation, textRules, and the JSON envelope. The hardest 2D tiles (the ones this phase exists to recover) are exactly the densest. The cap will silently truncate the very tiles you escalated to fix. Either raise to ~8K or shrink the schema.
+
+3. **No retry on schema-invalid JSON.** REQ-003 says "any over-cap call is refused and logged" but says nothing about "JSON validates but is semantically broken." If GPT-5.5 emits `nodes: [{x:-50}]` (passes schema-less numeric range if you don't validate hard enough) or omits `overflowPlan`, the tile silently downgrades — losing the budget and the tile in one stroke. Need: (a) hard schema validator with strict bounds, (b) a `<=1` repair re-prompt inside the same per-tile budget, (c) downgrade-to-linear only if repair also fails.
+
+4. **Go/no-go bar is at or above the predicted ceiling.** Research predicts +1 to +3 at confidence 0.78; SC-001 requires `>=+3`. With uniform distribution over the prediction range, P(meeting bar) ≈ 0.33. The plan buries this as "below bar rejects the phase" — i.e., the most likely outcome is rejection after spending the budget. Add a softer "P(recovered >= 1) AND $/recovered-tile below deterministic-downgrade floor" alternative acceptance criterion.
+
+5. **`itemCount > 4` rule overlaps with linear primitives.** A 6-row timeline, a 5-cell comparison table, and a 6-step process list are all `itemCount > 4` but are *linear*. The skip list catches them via `layoutPrimitive in [linear, ..., timeline]`, but only if the phase-002 router labels them correctly. If phase-002 misclassifies a 6-row timeline as `flow` (because it has step connectors), GPT-5.5 gets called and wastes a tile's budget on a tile deterministic already solved. Add a unit test on the classification overlap.
+
+6. **Layout-primitive list is incomplete.** `[matrix, flow, hub, branch, popover, node-diagram, network, connector-map]` is missing `tree`, `swimlane`, `sankey`, `gantt`, `org-chart`, `scatter`, `choropleth`. The maritime B2B set plausibly has at least one of these (e.g., vessel hierarchy). A tile whose primitive isn't in the list is escalated to *neither* — silent skip.
+
+7. **Self-invocation guard is hand-waved.** Plan §3 says "if the harness ever runs inside OpenCode, route through a sibling cli-* / fresh shell per the cli-opencode self-invocation guard." This is exactly the failure mode where the spec.ts skill's MCP registry returns cli-opencode but the harness's Node process is a sibling tool, not a child. Need an explicit "harness process tree check before dispatch" step in Phase 1 setup, not a note in architecture.
+
+8. **`$/recovered-tile` denominator is wrong.** REQ-005 measures against deterministic-only. The honest comparator is **downgrade-to-linear** (what phase-004 does *anyway* for failed 2D tiles). You're not deciding GPT-5.5 vs deterministic — you're deciding GPT-5.5 vs "ship as a linear table." A recovered 2D tile that scores 70 vs a linear version that scores 80 is not a recovery; it's a loss. The A/B needs a third arm: GPT-5.5 vs downgrade-to-linear on the *same* failed tiles, comparing SHIP-rate and visual-quality.
+
+9. **Latency / wall-clock is omitted.** GPT-5.5 at `--variant xhigh` is not free wall-clock. If each call is 30–60s and 18 tiles escalate, the full pipeline adds 9–18 minutes of paid API blocking time. For a re-runnable harness this matters; budget vs latency tradeoff needs an explicit row.
+
+10. **Rollback only disables; doesn't preserve learning.** The rollback plan reverts the router but doesn't say what happens to the GPT-5.5 skeleton outputs on disk. If they remain, future runs could re-invoke them; if deleted, you lose the A/B evidence. Specify.
+
+## Strongest improvement or alternative
+
+**Replace "GPT-5.5 picks coordinates" with "GPT-5.5 picks a template + parameters; a deterministic engine places coordinates."** Concretely:
+
+1. Pre-author a small library of **8–12 pre-validated skeleton templates** in the phase-004 schema: `matrix-Ncol-Mrow`, `branch-2way`, `hub-spoke-5`, `connector-map-2col-popover`, etc. Each template is shipped with a deterministic expander that takes content + parameters and emits the full node/edge/row array.
+2. The GPT-5.5 prompt becomes: *"Given this content + this brief, return `{template: 'matrix-3col-4row', params: {headerRow: true, accentColumn: 1, statusPillCol: 2, rowGap: 8}}`."* Output budget drops to ~150 tokens. Validation is a finite enum, not free-form numbers.
+3. The deterministic expander handles all the math — gap enforcement, collision avoidance, overflowPlan synthesis — and is unit-testable without any LLM in the loop.
+4. GPT-5.5's job becomes the part LLMs are *good at*: layout selection + content-to-parameter mapping. The part LLMs are *bad at* (coordinate math) goes to code.
+
+================ PHASE 006-adoption-gate-and-rerun ================
+---- glm ----
+## Verdict
+AGREE-WITH-CHANGES — confidence 0.72 — the adoption-gate + measured re-run is the correct final phase and the engineering is sound, but the design conflates "gate-passing" with "adoption-worthy," and that conflation is exactly the failure mode (downgrade inflation / validator overfit) the phase claims to guard against.
+
+## What GPT-5.5 got right
+- **Gate location is correct.** Step 11 belongs at the end as a per-tile AND over deterministic sub-gates; it is cheap, pure, and resumable. Putting human/MiniMax taste as one sub-gate (not a separate oracle) is the right shape.
+- **Downgrade-inflation guard (REQ-005) is the single most valuable requirement in the spec.** Tagging `recovered-2D` / `downgraded-to-linear` / `improved-linear` is the only thing that makes the headline SHIP rate honest. This is non-trivial and GPT-5.5 named it explicitly — credit where due.
+- **Paired tile-level deltas (REQ-003, risk row "Over-optimism on n=45").** Refusing to sum A1/A3/A4/A5 independently is correct and rare; most plans silently stack predicted lifts. Good.
+- **Idempotent/resumable JSONL ledger + `transient-fail` exclusion (NFR-R01/R02).** Correctly handles the ~1/45 dispatch tail without biasing the quality denominator.
+- **Contrast exit-0 demotion (open question 1).** Correctly identifying a hard-gate sub-metric as near-tautological is a sharp call; SC-003 reflects it.
+- **Measurement-only blast radius.** Writes confined to `research/rerun/`; rollback = don't adopt. Risk/scope ratio is genuinely Low.
+
+## Gaps / risks / errors
+
+1. **The headline SC (SHIP 80-84%) is not adoption-worthy on its own — but the decision rule that maps metrics → ADOPT is deferred to `checklist.md`, which I wasn't given.** The two open questions ("SHIP 80% via downgrades only — ADOPT or ITERATE?", "MiniMax on every accepted tile or failure-only?") are not open — they *are* the adoption decision, and they must be answered in `spec.md` §5 Success Criteria with explicit thresholds, not punted to a doc this review doesn't cover. A gate that can't decide ADOPT is a measurement phase, not an adoption gate. (RC-7, RC-2)
+
+2. **The adoption gate has no "quality floor" sub-gate — only correctness sub-gates.** Geometry/contrast/casing/palette/MiniMax-status all measure *defects*, none measure *richness*. A tile that downgrades from a routing-diagram to `stacked-list` with `+N more` passes every sub-gate and ships. This means the gate structurally rewards the downgrade path. REQ-005 tags it after the fact, but tagging ≠ gating. The decision function's type should be `ship | keep-prior | downgrade` where `downgrade` is *scored lower than a prior 2D ship*, not treated as equivalent pass-rate. As written, `keep-prior` and `downgrade` are both "not ship" — but a downgrade that loses diagram richness is a *regression* against a prior-best 2D render, and the spec doesn't say so. (RC-1, RC-2, RC-7)
+
+3. **MiniMax-M3 as a gate input is calibrated *after* the batch in Phase 3 ("calibrate the adoption gate against a hand-labeled stratified sample").** This is backwards and is the validator-overfit risk row made concrete. You will calibrate a gate that already decided 45 tiles. The MiniMax sub-gate must be calibrated on the hand-labeled stratified sample *before* Core, or it is noise injected into the decision function. The risk row for "MiniMax audit noise" names this and then the plan ignores its own mitigation. (RC-7, RC-8)
+
+4. **No pre-registered baseline for the 18 baseline-failing tiles' failure modes.** The re-run will show 18 tiles flip to ship — but without a per-tile recorded *reason* (overflow / collision / title / contrast / slop) in the baseline fixture, you cannot report "X overflow failures fixed, Y collision failures fixed" — only an aggregate count. That makes it impossible to distinguish "pipeline fixed the hard problems" from "pipeline converted 18 diagrams to lists." Phase 1 Setup snapshots SHIP/mean/delta but not per-tile RC labels. (RC-1 through RC-7)
+
+5. **`keep-prior` assumes a prior-best render exists and is preserved — but the edge case section says "Tile with no prior best render: gate blocks ship."** For the 18 baseline failures, what *is* the prior best? If it's the failing 35-58 render, `keep-prior` ships a known-bad tile and counts it as non-regression. The gate needs a `prior-best-quality` threshold below which `keep-prior` is forbidden and the tile must `downgrade` or `fail`. As written, `keep-prior` is a silent escape hatch for the exact tiles the program was built to fix. (RC-1, RC-2)
+
+6. **Cost ceiling math is optimistic and unbudgeted for the calibration pass.** "~63 GLM calls (45 + 18 repair)" assumes one repair per failure and zero repair on the calibration sample, zero skeleton recompute (step 8 best-of-3), zero GPT-5.5 escalation retries. Step 8 alone triples GLM calls on 2D failures. NFR-P01's ceiling will be breached on the first real run; the spec should report a *measured* ceiling with a breach flag, not assert a predicted one as a success criterion. (SC-004, RC-2)
+
+7. **No deterministic-repeatability statement for the external model calls.** GLM/MiniMax/GPT-5.5 at temp≈0 are not bit-reproducible. A re-run that shows +8 SHIP could be run-to-run variance, not pipeline lift. With n=45 and ~1/45 transient fails, a single re-run is underpowered to attribute lift to the program vs. model sampling noise. The plan needs either (a) 3 re-runs with a sign test, or (b) an explicit caveat that the lift point estimate has unquantified variance. GPT-5.5 flagged "n=45 over-optimism" for *angle sums* but missed it for *sampling variance*.
+
+## Strongest improvement or alternative
+
+**Split the adoption gate into two decisions and pre-register the second one before Core:**
+
+```
+decision1 = ship | keep-prior | downgrade   (correctness — current spec)
+decision2 = adopt-pipeline | iterate | reject  (program-level — currently missing/deferred)
+```
+
+Define `decision2` in `spec.md` §5 as a **tradeoff frontier**, not a single SHIP threshold, before any code runs:
+
+> ADOPT requires **both** (a) SHIP ≥ 80% **and** (b) `recovered-2D / (recovered-2D + downgraded-to-linear)` ≥ 0.5 among the 18 baseline failures — i.e. at least half the recovered pass-rate comes from genuine 2D repair, not primitive collapse.
+
+
+---- mimo ----
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence 0.72 — The structure is sound but the spec has a circular-validation trap and unresolved design questions that will make the final evidence untrustworthy without fixes.
+
+## What GPT-5.5 got right
+
+- Separating the adoption gate from the measured re-run is correct — the gate is a pure decision function, the driver is measurement, cleanly decoupled.
+- The five-sub-gate AND structure (geometry + contrast + casing + palette + MiniMax) with failing-gate recording is the right architecture. Opaque pass/fail would be worse.
+- The `recovered-2D` / `downgraded-to-linear` / `improved-linear` tagging (REQ-005) correctly identifies the inflation problem. Most specs this complex miss it entirely.
+- The paired tile-level delta requirement (REQ-003) is critical and properly called out — independent angle-sum deltas would overcount.
+- The resumable JSONL ledger with idempotent per-tile writes (NFR-R02) is practical engineering, not over-design.
+- The linear no-regression check (REQ-006) on prior winners is good defensive measurement.
+
+## Gaps / risks / errors
+
+**1. Circular validation (critical).** The gate determines SHIP. SHIP is measured against the gate. The gate's thresholds are defined by this spec. Success criteria (SC-001: 80-84%) are predictions from the same pipeline research. There is no independent ground truth. If the five sub-gates are systematically permissive for linear tiles and strict for 2D tiles, the SHIP rate rises by converting 2D → linear, the gate "validates" itself, and the report says ADOPT. The spec lists "human spot-check for slop" under Testing (plan.md §5) — that's a throwaway line, not a benchmark. **Fix:** Before the batch run, pre-label 20-30 tiles with independent human SHIP/REJECT judgments. Measure gate precision, recall, and accuracy against those labels. Report them in the lift report.
+
+**2. Open questions are load-bearing design decisions, not footnotes.** The three open questions in spec.md §10 (contrast exit-0 as headline, ADOPT vs ITERATE on downgrade-only gains, MiniMax scope) each change the recommendation output. They are listed as "open" but the acceptance criteria assume answers. REQ-007 says "report ends with exactly one recommendation tied to the decision rule thresholds in checklist.md" — but the decision rule isn't defined yet if these questions are open. **Fix:** Resolve all three before implementation begins. Write the decision rule explicitly in checklist.md as a deterministic function, not prose.
+
+**3. Over-gating as silent ADOPT path.** Requiring all five sub-gates to pass is conservative, which is fine. But the predicted lift table (iter-r4-pipeline.md) assumes the mechanism is "improve 2D tiles," not "reject 2D tiles and count linear survivors." If the gate rejects 8 of 18 baseline-failing 2D tiles and the other 10 improve enough to pass, the SHIP rate rises by ~18% — but 8 tiles are now downgraded, not recovered. The spec's SC-001 range (80-84%) doesn't distinguish this from genuine 2D recovery. **Fix:** Add a hard success criterion: at least 5 of the 18 baseline-failing 2D tiles must be tagged `recovered-2D` (not `downgraded-to-linear`). Without that, the recommendation is ITERATE regardless of SHIP rate.
+
+**4. Cost ceiling is theoretical, not measured.** The "~63 GLM calls" figure (SC-004) comes from the predicted-lift table, which assumes the A1 + gate + one-repair path. But the actual pipeline has six repair sub-stages (steps 6-10), each potentially making API calls. The cost of step 7 (skeleton computation), step 8 (best-of-3 skeletons), and step 10 (MiniMax audit) is not accounted for in the 63-call figure. **Fix:** Before the batch run, dry-run 3-5 tiles and measure actual GLM + paid-call counts. Adjust the ceiling based on observed cost, not predicted cost.
+
+**5. N=45 gives ~±10pt confidence bands, not ±3pt.** With 45 tiles, each tile is 2.2 percentage points. The conservative/optimistic bands in SC-001 (80-84% vs 87-91%) imply ±3-4pt precision. But with binomial variance on n=45 and the tile-level heterogeneity (some are easy linear winners, some are hard 2D diagrams), the 95% confidence interval on SHIP rate is roughly ±10-12 points. The predicted lift table's bands are overconfident. **Fix:** Report the actual confidence interval alongside the point estimate. Don't claim "80-84% conservative" when the real interval is 68-92%. Be honest about what n=45 can and cannot distinguish.
+
+**6. Skeleton quality bottleneck is an unmeasured dependency.** Step 7 (skeleton-first 2D) is the novel mechanism. If skeleton scoring is weak, GLM faithfully renders bad geometry, the gate rejects it, and the tile gets downgraded. The spec's risk table mentions this (Risk: "Skeleton quality bottleneck — skeleton-first moves the hard problem upstream") but the mitigation is just "keep MiniMax status in the gate + human spot-check." That's not a mitigation — it's a detection mechanism that doesn't prevent the problem. **Fix:** Add a pre-batch skeleton quality check: generate skeletons for 5 representative 2D tiles, have a human score them for geometric plausibility before running the full batch.
+
+## Strongest improvement or alternative
+
+**Add an independent human-labeled ground-truth set of 25-30 tiles before the batch run.** This is the single highest-value change because it (a) breaks the circular validation trap, (b) calibrates the adoption gate's precision/recall, (c) provides a real baseline for measuring lift, and (d) makes the adopt/iterate/recommendation credible. Without it, the entire program's evidence rests on a self-validating gate. Cost: 1-2 hours of human labeling. Value: makes the result trustworthy.
+
+## One thing to test or verify before building this phase
+
+Run the adoption gate (step 11) on the *existing* 004 baseline output — the 45 tiles already rendered. Measure what SHIP rate the gate produces on the baseline tiles *without any pipeline changes*. If the gate's SHIP rate on the baseline is already 70-75% (because it's more permissive than the human labels that produced the 60% figure), then the "lift" from the re-run is partly gate-tuning, not pipeline improvement. This calibration takes 30 minutes and prevents the biggest confound in the entire experiment.
+
+---- deepseek ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.72 — the phase is directionally correct but the gate AND the re-run design conflate "pipeline improvement" with "gate strictness," making the measured lift uninterpretable without a counterfactual.
+
+## What GPT-5.5 got right
+- The tagging scheme (`recovered-2D` / `downgraded-to-linear` / `improved-linear`) correctly guards against downgrade-inflation masking the true quality picture.
+- Paired per-tile deltas (vs. independent angle-summing) is the right statistical discipline for n=45.
+- The risk table in 004/iter-r4-risk.md naming over-optimism, validator overfit, and latency bias is thorough and honest.
+- Acknowledging contrast exit-0 as near-tautological for a hard contrast gate shows self-awareness.
+
+## Gaps / risks / errors
+
+1. **The gate IS the result (confound)**. A five-sub-gate AND with `ship / keep-prior / downgrade` doesn't just *measure* the pipeline — it *determines* the SHIP rate. If a tile passes 001-005 beautifully but fails MiniMax taste, it's blocked. If a tile is slop but passes all five, it ships. Without running the same 45 tiles through a *loose gate* (e.g., geometry + contrast only) as a counterfactual, you cannot attribute any lift to the pipeline vs. the gate itself. The spec treats these as separable — they aren't.
+
+2. **"Keep-prior" is undefined for the first re-run**. If a tile has no prior best render (which is the state before this phase runs), the edge-case spec says "record a new fail" — but then how is that scored? Excluded from the denominator? Counted as a failure? This ambiguity alone can swing SHIP by 2-4 tiles (~5-9 pts).
+
+3. **The re-run reuses the development set**. All 45 tiles were used to diagnose RCs, tune the pipeline, and calibrate expectations. Running them again is training-on-test. The predicted-lift table reflects this — there's no holdout to bound overfit. A minimum fix: split 5-8 tiles as a held-out mini-batch before running the full 45, and compare the delta.
+
+4. **MiniMax has veto power with unproven precision**. The open question about MiniMax running on every accepted tile is buried — but in the gate design, MiniMax status = unknown blocks ship (conservative). That means *every* MiniMax timeout or dispatch failure becomes a keep-prior/downgrade, inflating the apparent failure rate. The spec says "tolerate ~1/45 transient" but doesn't account for MiniMax failures *after* all deterministic gates pass — those tiles look like pipeline failures but are instrumentation failures.
+
+5. **Linear no-regression "semantically equivalent" comparator doesn't exist**. REQ-006 requires linear winners remain semantically equivalent, but there is no defined, tested mechanism for comparing tile semantics. Without it, the regression check is an eyeball promise, not a gate.
+
+6. **Cost ceiling is stated but unenforced**. The plan says 63 GLM calls for the A1+gate+one-repair path and paid calls "bounded and reported" — but there's no actual ceiling-break logic in the driver, no per-tile cost abort, and the latency tail policy ("allow 3-6 min before marking fail") was observed at 161s max in the local GLM profile. A tile that hits 161s on GLM then escalates to GPT-5.5 could breach 4+ minutes.
+
+## Strongest improvement or alternative
+
+**Add a gate-configuration ablation to the re-run.** Instead of running the re-run once with the full five-sub-gate AND, run the same 45-tile pass through 2-3 gate configurations in parallel (from a single pipeline output set):
+
+| Gate config | What it measures |
+|---|---|
+| Geometry + contrast only (loose) | How much the pipeline actually improved rendering quality |
+| Geometry + contrast + casing/glyph + palette (no MiniMax) | The deterministic-pipeline contribution, isolated from paid-auditor noise |
+| All five (full) | The program as designed |
+
+The difference between the loose gate and the full gate is the *gate tax* — the quality you sacrificed to strictness. This turns an uninterpretable single SHIP number into a diagnostic panel, costs nothing extra in API calls (same renders, different verdicts), and directly answers the open question about whether MiniMax should be a gate or a shadow audit.
+
+## One thing to test or verify before building this phase
+
+**Run the five-sub-gate truth table on 3-5 hand-labeled tiles (a known winner, a known failure, a borderline contrast case, and one where MiniMax and deterministic gates disagree) BEFORE wiring the full adoption gate.** This exposes whether the gate is actually distinguishing quality or just adding noise. If MiniMax disagrees with deterministic gates on a tile a human considers decent, the gate design needs revisiting before it's baked into the re-run.
+
+---- kimi ----
+## Verdict
+**AGREE-WITH-CHANGES** — confidence 0.75 — the measurement framing is correct, but the phase over-commits to optimistic lift targets and leaves the most load-bearing gate (MiniMax) unvalidated.
+
+## What GPT-5.5 got right
+- Correctly identifies that the program is unproven without an end-to-end re-run on the same 45 tiles.
+- The five-sub-gate adoption gate, downgrade-inflation tags, and linear no-regression checks are the right controls.
+- Demoting contrast exit-0 from headline to sub-metric is sound, given it's near-tautological for a hard contrast gate.
+- Cost accounting and paired per-tile deltas address the biggest measurement risks.
+
+## Gaps / risks / errors
+- **Over-optimistic success criteria.** SC-001 targets 80–91% SHIP and SC-002 targets an 8–20 pt diagram-vs-linear delta, but the research itself warns "Treat the predicted lift as a hypothesis, not a forecast." The phase should treat these as exploratory bands, not pass/fail gates.
+- **MiniMax hard-gate contradiction.** REQ-001 makes MiniMax status a hard ship requirement, while the open questions ask whether MiniMax should run on every tile or failure-only, given "unproven precision against human labels." You cannot both hard-gate on it and admit it is unvalidated.
+- **"Keep-prior" is underspecified.** For the 18 baseline non-SHIP tiles, there is no reliable "prior best render." The edge case says "Tile with no prior best render: a gate block records a new fail," which means the adoption gate will mechanically block many of the exact tiles the pipeline is supposed to recover.
+- **Cost ceiling ignores skeleton/GPT-5.5 overhead.** NFR-P01 cites ≤63 GLM calls for "A1 + gate + one-repair," but the full pipeline includes best-of-3 skeleton recomputation (step 8) and GPT-5.5 escalation (step 10). The cost model is not closed.
+- **Baseline comparability is fragile.** The spec locks the numeric baseline (27/45, 81.1 mean) but not the audit gate version. If phase 001's `audit-concept.sh` evolves during 001–005, paired deltas become invalid.
+- **Statistical power is unaddressed.** With n=45, one tile = 2.2 percentage points. The success criteria ignore confidence intervals; a 36/45 vs 27/45 difference needs a test, not just a count.
+- **"Validated" predecessors are undefined.** The Definition of Ready says phases 001–005 must be "shipped and pass `validate.sh --recursive`," but the phase itself notes 001–005 are currently "planning only, no code yet." This is a sequencing gap.
+
+## Strongest improvement or alternative
+**Remove MiniMax from the hard adoption gate until it is calibrated against human labels.** Run a stratified calibration on ~15 tiles first, then either (a) keep it as a hard gate with measured precision/recall, or (b) use it as a shadow diagnostic while the deterministic geometry/contrast/casing/palette gates govern ship/keep/downgrade. This is higher-leverage than building around an unvalidated auditor.
+
+## One thing to test or verify before building this phase
+**Calibrate the deterministic sub-gates against human SHIP/NO-SHIP labels on a stratified sample** (linear winners, known 2D failures, borderline contrast/casing cases) before running the full batch. If geometry/contrast gates disagree with human labels, the entire lift metric is uninterpretable.
+
+---- minimax ----
+## Verdict
+**AGREE-WITH-CHANGES** — 0.78 — the phase is necessary and directionally correct, but the central success metric (the ADOPT/ITERATE/REJECT rule) is left as an open question, the cost ceiling undercounts skeleton recompute + GPT-5.5 escalation, and a hard internal contradiction between the MiniMax-status gate requirement and the failure-only NFR will mass-block linear winners if left unresolved.
+
+## What GPT-5.5 got right
+- The phase structure is right: pure-function adoption gate + sequential driver + stateless metrics computer + idempotent JSONL ledger — clean separation of concerns.
+- The risk table is honest about the real failure modes (downgrade inflation, MiniMax noise, latency tail, validator overfit) and the `recovered-2D` vs `downgraded-to-linear` tagging in REQ-005 is the right countermeasure against pass-rate inflation.
+- Reusing `gen-tile.mjs` + the phase-001 audit gate keeps the run comparable to the 004 baseline.
+- Conservative gate ordering (geometry → contrast → casing/glyph → palette → MiniMax-status) is a reasonable defensive ordering; "keep prior best" is the correct fallback when the gate fails.
+- Acknowledging in SC-003 that contrast exit-0 is near-tautological shows the author understands the metric is a check, not a target.
+- Idempotent per-tile resume (NFR-R02) and the "transient-fail" exclusion from the quality denominator (NFR-R01) are sound measurement practice.
+
+## Gaps / risks / errors (specific)
+1. **Decision rule is an open question, not a requirement.** REQ-007 says "exactly one recommendation tied to the decision rule thresholds in `checklist.md`" — but those thresholds are not in spec/plan. §10 still lists "if SHIP hits 80% only via downgrades, ADOPT or ITERATE?" as **OPEN**. Without a pre-registered rule, the run is interpretive, not measured — the team can rationalize any outcome as ADOPT. This is exactly the kind of failure mode **RC-7 (slop)** will not be caught by, so a defaulted-ADOPT would silently regress the program.
+2. **Cost ceiling of ≤63 GLM calls undercounts the full pipeline.** The 63 = 45 first-pass + 18 repair math ignores step 8 (best-of-3 skeleton recompute) and phase 005 (GPT-5.5 escalation). If 2D-positioned tiles = ~22 and each runs best-of-3 skeletons + 1 render, that is ~66+ skeleton calls alone, before GLM renders. Realistic ceiling is 120-200 GLM calls + 5-15 GPT-5.5 + 20-40 MiniMax paid calls. REQ-004 acceptance is non-falsifiable as written.
+3. **Internal contradiction: MiniMax-status required by gate vs. failure-only by NFR-P02.** REQ-001 says ship only if "MiniMax status" passes. NFR-P02 says "Paid escalation fires failure-only, never on linear winners." If linear winners have no MiniMax audit → status=`unknown` → per the edge-case "Tile passing geometry but with `MiniMax status = unknown`: gate blocks ship" → all linear winners are now blocked. This contradicts REQ-006 (linear no-regression) and inflates the denominator of tiles needing paid audits (and cost).
+4. **`recovered-2D` is defined as "passed the gate," not "passed the gate at acceptable quality."** A tile can pass geometry/contrast/casing but still be visually mediocre (**RC-7 slop**). Without a human-labeled quality floor or a MiniMax-M3 score threshold (e.g., `taste_score ≥ 7/10`), "recovered" becomes a label that includes bland-but-valid output. The pass-rate is not the same as recovered-quality.
+5. **Linear no-regression threshold of "≥90% passing" is too permissive.** With ~18 linear winners, 90% = 16.2 tiles, so 1-2 regressions are within tolerance. Combined with "semantically equivalent" being undefined, this lets the run adopt while degrading 1-2 strong tiles — the exact opposite of the program's "don't break what works" premise.
+6. **No abort criteria or pre-registered rollback thresholds.** The plan's rollback section says "REJECT or ITERATE" but does not define what triggers aborting mid-batch (e.g., MiniMax API down >30 min, >3 transient failures, audit gate returning 0% pass rate suggesting harness regression, or any **RC-4** casing/glyph regression on locked fields).
+7. **Baseline confound: "frozen baseline" is not apples-to-apples.** The 27/45 = 60% is from the 004 run with the **original** prompt/harness. The re-run uses the new 001-005 pipeline. Measured lift conflates "new pipeline" with "new gates" — you cannot attribute lift to A1/A3/A4/A5 without also re-running the original harness on the same 45 tiles. Paired deltas assume the baseline was produced by a comparable process; it was not.
+8. **JSONL ledger schema is not specified.** REQ-002 says "45 per-tile records produced, each with final verdict, audit score, and gate flags" — but the field set, types, and serialization format (e.g., `primitive_label`, `sub_gate_verdicts{}`, `paid_call_count`, `wall_clock_ms`, `downgrade_path`, `MiniMax_score`) are not in the spec. This is a Level 2 spec — schema should be explicit, not deferred to implementation, especially because paired deltas depend on common field structure.
+9. **The 90s median wall-clock target is unvalidated for the full pipeline.** Current observation is avg ~26s for a single render. The full pipeline (contract + gate + repair + skeleton + possible escalation) is plausibly 60-180s per tile. The plan does not state the action if the target is missed, nor does it state the P99 budget for tail handling.
+10. **Human spot-check has no protocol.** §L2 testing says "human spot-check of accepted tiles for **RC-7** slop" — but the sample size, sampling method (random vs stratified across recovered/downgraded/improved-linear), raters (1? 2? calibrated?), and the action triggered by spot-check findings are all undefined. Without a protocol, the spot-check is performative.
+
+## Strongest improvement or alternative
+**Pre-register the ADOPT/ITERATE/REJECT decision rule as a typed function in spec.md REQ-007 (not in checklist.md), with explicit thresholds and tie-breakers, BEFORE the re-run starts.** Concretely:
+
+```
+ADOPT iff:
+  SHIP >= 80% (36/45)
+  AND diagram-vs-linear delta <= 20 pts
+  AND recovered-2D >= 50% of previously-failing 2D tiles
+  AND linear no-regression = 100% (not 90%)
+  AND zero locked-field regressions (RC-4)
+
+ITERATE iff:
+  60% <= SHIP < 80%
+  OR recovered-2D < 50% of previously-failing 2D
+  OR 95% <= linear no-regression < 100%
+  OR MiniMax-status = unknown on >2 tiles
+
+

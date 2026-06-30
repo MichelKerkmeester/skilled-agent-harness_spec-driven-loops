@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/021-remediation-revalidation",
+  "description": "After completing 20 feature-category audit phases covering 220+ features, a set of cross-cutting catalog hygiene issues emerged that require structure",
+  "keywords": [
+    "completing",
+    "feature-category",
+    "audit",
+    "phases",
+    "covering",
+    "220",
+    "features",
+    "set",
+    "cross-cutting",
+    "catalog",
+    "hygiene",
+    "issues",
+    "emerged",
+    "require",
+    "structure"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.841Z",
+  "specId": "021",
+  "folderSlug": "remediation-revalidation",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "007-code-audit-per-feature-catalog"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/005-deep-agent-improvement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep agent improvement command relocation",
+      "start agent improvement loop command",
+      "prompt command relocation",
+      "remove improve command group",
+      "implementation plan deep agent command relocation",
+      "deep start agent improvement loop assets",
+      "prompt root command migration",
+      "tasks deep agent command relocation",
+      "prompt command migration tasks",
+      "remove improve command group tasks",
+      "verification checklist deep agent command relocation",
+      "old improve command reference gate"
+    ],
+    "key_topics": [
+      "deep",
+      "agent",
+      "improvement",
+      "command",
+      "relocation",
+      "start",
+      "loop",
+      "prompt",
+      "remove",
+      "improve",
+      "group",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/prompt.md",
+      ".opencode/commands/README.txt",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Agent Improvement Command Surface Relocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Commands",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Move Gemini",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wide Rewrite",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populate Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The legacy agent-improvement command was moved to the deep command family and renamed, while the legacy prompt-improvement command was moved to root `/prompt`",
+    "created_at": "2026-05-24T06:47:43Z",
+    "last_save_at": "2026-06-23T03:49:50.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e8492263ce4bb85a4b12b2e8552bcb191e7cc24ea132dadf91924f379df16e4",
+    "source_doc_hashes": {
+      "spec.md": "f168223b08f578678d7905f5d68c4b3498e0ccad54589e1756a9f6423df0939d",
+      "plan.md": "8479a151bd27afa3f2f4d65195827f12f9b60468a813274945e815717183ab24",
+      "tasks.md": "b5e000c1a471563ee8157e73f68ce7c6ae6714f486992d2b630e530ef6960628",
+      "checklist.md": "22a761301bb45ff36177c0fa7ebf3c716dd2c4c08e970fab715f10df45787cf7",
+      "decision-record.md": "2ef027ec76e5d5375630100227837c9618ab1dcac45713bb0f6d1c2e111e6a9f",
+      "implementation-summary.md": "63c447c35ce5b4a2b21dec868e8fc755eddb7e43a56758e9f3ee28513d107471"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

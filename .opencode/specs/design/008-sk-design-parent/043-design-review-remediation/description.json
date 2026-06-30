@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/043-design-review-remediation",
+  "description": "The sibling deep review `042-design-work-deep-review` returned a CONDITIONAL verdict with 14 findings: 0 P0, 1 P1, and 13 P2",
+  "keywords": [
+    "sibling",
+    "deep",
+    "review",
+    "042-design-work-deep-review",
+    "returned",
+    "conditional",
+    "verdict",
+    "findings"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.323Z",
+  "specId": "043",
+  "folderSlug": "design-review-remediation",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

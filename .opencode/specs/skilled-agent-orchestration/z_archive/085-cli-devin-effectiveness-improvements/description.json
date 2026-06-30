@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/085-cli-devin-effectiveness-improvements",
+  "description": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
+  "keywords": [
+    "40-iter",
+    "cli-devin",
+    "swe-1",
+    "run",
+    "packet",
+    "999",
+    "surfaced",
+    "clear",
+    "improvement",
+    "targets"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.320Z",
+  "specId": "085",
+  "folderSlug": "cli-devin-effectiveness-improvements",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

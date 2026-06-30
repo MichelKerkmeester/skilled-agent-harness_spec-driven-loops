@@ -77,7 +77,7 @@ Defines the immutable loop contract, relevance and agreement thresholds, and the
 
 #### Current Reality
 
-`deep_context_config.json` is the config template; the auto YAML's `step_create_config` populates it with the resolved `scope`, `specFolder`, `loopType: "context"`, `maxIterations`, `convergenceThreshold`, `relevanceGate` (0.55), `agreementMin` (2), `fanout.mode: "by-model-shared-scope"`, and the resolved `executor_pool`. The default pool is 2 native `@deep-context` seats + MiMo-v2.5-pro (cli-opencode) + gpt (cli-codex) + deepseek-v4-pro (cli-opencode). Config is treated as read-only after initialization; `config.status` is set to `"complete"` at synthesis.
+`deep_context_config.json` is the config template; the auto YAML's `step_create_config` populates it with the resolved `scope`, `specFolder`, `loopType: "context"`, `maxIterations`, `convergenceThreshold`, `relevanceGate` (0.55), `agreementMin` (2), `fanout.mode: "by-model-shared-scope"`, and the resolved `executor_pool`. The default pool is 2 native `@deep-context` seats + MiMo-v2.5-pro (cli-opencode) + gpt (cli-opencode) + deepseek-v4-pro (cli-opencode). Config is treated as read-only after initialization; `config.status` is set to `"complete"` at synthesis.
 
 #### Source Files
 
@@ -129,7 +129,7 @@ Dispatches all CLI executor seats as one-shot read-only analysis passes over the
 
 #### Current Reality
 
-`step_sweep_cli_pool` uses `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out with `Promise.all` and aggregate per-seat results. Each seat issues exactly one read-only CLI call (`opencode run` / `codex exec` / `claude -p`) carrying the four-part lineage contract. cli-opencode seats require closed stdin (`</dev/null`) and no top-level `--agent`; cli-codex seats use `--sandbox read-only`; cli-claude-code seats use `--permission-mode plan`. An optional `autonomous-lineage` mode exists but is operator-opt-in only and never the default per-iteration path.
+`step_sweep_cli_pool` uses `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out with `Promise.all` and aggregate per-seat results. Each seat issues exactly one read-only CLI call (`opencode run` / `opencode run` / `claude -p`) carrying the four-part lineage contract. cli-opencode seats require closed stdin (`</dev/null`) and no top-level `--agent`; cli-opencode seats use `--sandbox read-only`; cli-claude-code seats use `--permission-mode plan`. An optional `autonomous-lineage` mode exists but is operator-opt-in only and never the default per-iteration path.
 
 #### Source Files
 

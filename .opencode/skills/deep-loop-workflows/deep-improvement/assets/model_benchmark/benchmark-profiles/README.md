@@ -33,7 +33,7 @@ Current state:
 |---|---|---|
 | `default.json` | (none) | Legacy single-pass profile. Targets `.opencode/agents/deep-improvement.md`, scores fixtures `fixture-baseline`, `fixture-improved`, `fixture-edge` with the default pattern scorer. Declares `thresholdDelta` and the `benchmark` gate; no `mode`, `frameworks`, `models`, or `scoring` block. |
 | `framework-bakeoff.json` | `framework-bakeoff` | Prompt-framework sweep. Holds one model fixed (`cli-opencode` / `minimax-coding-plan` / `MiniMax-M2.7`) and sweeps `frameworks: [rcaf, race, cidi, tidd-ec, costar]` over the T3 fixtures `t3-lower-bound` and `t3-compare-versions`. Reports `groupBy: framework` with leaderboard and history. |
-| `model-vs-model.json` | `model-vs-model` | Model sweep. Holds one framework fixed (`rcaf`) and sweeps three models (`cli-opencode` MiniMax-M2.7, `cli-codex` gpt-5.5 high, `cli-claude-code` claude-opus high) over the same two T3 fixtures. Reports `groupBy: model` with leaderboard and history. |
+| `model-vs-model.json` | `model-vs-model` | Model sweep. Holds one framework fixed (`rcaf`) and sweeps three model cells (`cli-opencode` MiniMax-M2.7, `cli-opencode` gpt-5.5 high, `cli-claude-code` claude-opus high) over the same two T3 fixtures. Reports `groupBy: model` with leaderboard and history. |
 
 Shared top-level keys (all three): `profileId`/`id`, `version`, `family`, `fixtureDir`, `fixtures`, `outputsDir`, `metrics`, `thresholdDelta`, `benchmark`. Sweep-only keys (`framework-bakeoff.json`, `model-vs-model.json`): `mode`, `fixtureSelection`, `frameworks`, `models`, `scoring`, `sampling`, `reporting`.
 

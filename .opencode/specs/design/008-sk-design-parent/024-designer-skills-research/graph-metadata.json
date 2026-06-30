@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/024-designer-skills-research",
+  "spec_folder": "design/008-sk-design-parent/024-designer-skills-research",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "designer-skills-main sk-design research",
+      "designer skills corpus sk-design",
+      "sk-design adoption research designer-skills",
+      "external design suite sk-design scope",
+      "designer-skills-main research plan",
+      "deep research execution plan designer-skills",
+      "sk-design scope research plan",
+      "designer-skills-main research tasks",
+      "deep research tasks designer-skills",
+      "sk-design scope research tasks",
+      "designer-skills-main research checklist",
+      "deep research QA designer-skills"
+    ],
+    "key_topics": [
+      "designer-skills-main",
+      "sk-design",
+      "research",
+      "designer",
+      "skills",
+      "corpus",
+      "adoption",
+      "designer-skills",
+      "external",
+      "design",
+      "suite",
+      "scope"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/resource-map.md",
+      "research/iterations/iteration-010.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` is a taste-led build/visual skill with five modes",
+    "created_at": "2026-06-27T11:19:40.876Z",
+    "last_save_at": "2026-06-27T11:38:34.509Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:deac719fe13c7f3685f66e3007a1d8a15c278777553c9f47544c0360f3bdd953",
+    "source_doc_hashes": {
+      "spec.md": "6422f2bdebbbc96d4403521f270c386587868eb7730367f0ceeaf24d7977d562",
+      "plan.md": "ae66734ddc257d523ffd3e85a7581c3b27d6df01bc96d95b623c8c9b8a7bdc0c",
+      "tasks.md": "b2ffab76929cf1b6d9ee490a1c265dd95dc4b03df69a5153348aa402bbfb9ebb",
+      "checklist.md": "7d22f9aed52d3a26a2b34c9b0112364bc9200ccc44a85e43a2ee2ab19ec7b70e",
+      "decision-record.md": "f8ad8cb33c0140a4c2918e0269ef9d30841b5fdbd35edca2b86c931073d6e0e4",
+      "implementation-summary.md": "092c0b7989bcba232214a0debce99e23db418884e73203d09ce745e16b299e62",
+      "research/research.md": "46e68ba4ea1762078bb4ead8c1f396bdac78dfc1e01312ec65ee9d36d5a5258e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -21,7 +21,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   browser: [['sk-code', 0.55]],
   checklist: [['system-spec-kit', 0.55]],
   chrome: [['mcp-chrome-devtools', 0.95]],
-  codex: [['cli-codex', 0.9]],
   commit: [['sk-git', 0.65]],
   commonjs: [['sk-code', 0.75]],
   context: [['system-spec-kit', 0.65]],

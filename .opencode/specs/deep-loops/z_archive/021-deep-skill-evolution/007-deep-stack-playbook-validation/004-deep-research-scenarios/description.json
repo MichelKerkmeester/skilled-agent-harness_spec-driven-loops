@@ -1,0 +1,28 @@
+{
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
+  "description": "`deep-research` is the autonomous iterative-investigation loop built on the shared `deep-loop-runtime` foundation (executor, prompt-pack, post-dispatc",
+  "keywords": [
+    "deep-research",
+    "autonomous",
+    "iterative-investigation",
+    "loop",
+    "built",
+    "shared",
+    "deep-loop-runtime",
+    "foundation",
+    "executor",
+    "prompt-pack",
+    "post-dispatc"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.051Z",
+  "specId": "004",
+  "folderSlug": "deep-research-scenarios",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "007-deep-stack-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

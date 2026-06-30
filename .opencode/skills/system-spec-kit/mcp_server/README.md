@@ -22,7 +22,7 @@ importance_tier: "important"
 
 Spec Kit's memory is not a feature flag. It is a running MCP server that you can stop, restart, swap out, or roll back without touching the rest of the framework. That server lives here.
 
-Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Claude and Codex prompt-submit shims delegate advisor delivery to `system-skill-advisor`, startup context is handled by session-start/session-prime paths, and OpenCode uses plugin bridges rather than an `mcp_server` prompt-submit hook.
+Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Claude and OpenCode prompt-submit shims delegate advisor delivery to `system-skill-advisor`, startup context is handled by session-start/session-prime paths, and OpenCode uses plugin bridges rather than an `mcp_server` prompt-submit hook.
 
 The package is local-first by design. No cloud round-trip. No vendor lock-in. The database, the indexes, the migration state, and the hook payloads all live inside the repository so they travel with the code.
 
@@ -31,7 +31,7 @@ The package is local-first by design. No cloud round-trip. No vendor lock-in. Th
 You rarely touch this server directly. Seven surfaces drive it for you:
 
 - **Slash commands.** `/memory:save`, `/memory:search`, `/memory:learn`, `/memory:manage`, `/speckit:resume` are the everyday entrypoints.
-- **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`. The Claude and Codex adapters carry a warm-only CLI fallback (`hooks/spec-memory-cli-fallback.ts`, `hooks/code-index-cli-fallback.ts`) that recovers a dropped MCP transport through the daemon CLI without ever cold-spawning at prompt time.
+- **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`. The Claude and OpenCode adapters carry a warm-only CLI fallback (`hooks/spec-memory-cli-fallback.ts`, `hooks/code-index-cli-fallback.ts`) that recovers a dropped MCP transport through the daemon CLI without ever cold-spawning at prompt time.
 - **The `mcp_*` tool surface.** Direct MCP callers (other agents, scripts, tests) reach the tools through `mcp__mk_spec_memory__*` after the server registers them.
 - **The daemon-backed CLI.** `node .opencode/bin/spec-memory.cjs <tool>` fronts all 39 tools over the daemon's IPC socket — the dual-stack surface for hooks, cron, CI and transport-down recovery. Exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes instead of spawning; `list-tools` answers offline. Source: `spec-memory-cli.ts`.
 - **The plugin bridge.** The OpenCode plugin (`.opencode/plugins/mk-spec-memory.js`) routes through `plugin_bridges/mk-spec-memory-bridge.mjs` using CLI transport only — it shells the same `spec-memory.cjs` front door rather than holding a second MCP connection.
@@ -165,7 +165,7 @@ mcp_server/
 | `context-server.ts` | Starts the MCP server, wires transport to the dispatcher, and enforces response token budgets. If first-call `meta.sessionPriming` pushes an envelope over budget, the server slims that metadata before dropping result rows. |
 | `spec-memory-cli.ts` | Daemon-backed CLI over the same 39 tools (built to `dist/spec-memory-cli.js`, fronted by `.opencode/bin/spec-memory.cjs`). Parses per-tool flags against `tool-schemas.ts`, probes the daemon (warm-only honors exit `75`), auto-spawns the launcher otherwise, and maps errors to the `0`/`1`/`64`/`69`/`75` exit taxonomy. |
 | `hooks/spec-memory-cli-fallback.ts` | Shared hook helper for bounded warm-only CLI recovery: probes the IPC socket first and calls the CLI only when the daemon is already warm, failing open otherwise. |
-| `hooks/code-index-cli-fallback.ts` | Same warm-only fallback contract for the mk-code-index CLI, used by the Claude/Codex hook adapters. |
+| `hooks/code-index-cli-fallback.ts` | Same warm-only fallback contract for the mk-code-index CLI, used by the Claude/OpenCode hook adapters. |
 | `tool-schemas.ts` | Defines the public MCP tool registry and schema metadata. |
 | `schemas/tool-input-schemas.ts` | Validates incoming tool arguments with strict schemas. |
 | `handlers/index.ts` | Collects handler modules for dispatcher use. |

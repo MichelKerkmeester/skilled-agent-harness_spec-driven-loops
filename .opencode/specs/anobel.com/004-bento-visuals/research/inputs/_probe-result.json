@@ -1,0 +1,12 @@
+{
+  "tp": 17,
+  "fp": 0,
+  "tn": 27,
+  "fn": 1,
+  "precision": 1,
+  "recall": 0.9444444444444444,
+  "f1": 0.9714285714285714,
+  "misclassified": [
+    "FN favorieten-3 (gate PASS, audit FIX 78) issue=Last product row (Teak reiniger & olie set) description is c"
+  ]
+}

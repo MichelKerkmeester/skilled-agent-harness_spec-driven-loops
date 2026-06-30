@@ -20,7 +20,7 @@ What `opencode run` brings that the sibling cli-* dispatches do not. Each capabi
 
 ## 1. OVERVIEW
 
-The sibling cli-* skills (cli-claude-code, cli-codex) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
+The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
 
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
@@ -109,7 +109,7 @@ The skill's smart router gates this use case behind ADR-001's self-invocation si
 
 ### Why it matters
 
-External runtimes (Claude Code, Codex, Copilot) parse the event stream incrementally to surface tool calls and partial messages without waiting for the full response. The schema is stable enough to write thin adapters that translate OpenCode events into the calling AI's native event format.
+External runtimes (Claude Code, OpenCode, Copilot) parse the event stream incrementally to surface tool calls and partial messages without waiting for the full response. The schema is stable enough to write thin adapters that translate OpenCode events into the calling AI's native event format.
 
 ### Invocation shape
 
@@ -140,7 +140,7 @@ The `--agent <slug>` flag loads an agent definition from `.opencode/agents/<slug
 
 ### Why it matters
 
-Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-codex's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter — its own routing decisions, its own tool permissions, its own constraints.
+Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-opencode's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter — its own routing decisions, its own tool permissions, its own constraints.
 
 ### Invocation shape
 
@@ -188,7 +188,7 @@ opencode run \
 | Sibling | Persistent state | Memory continuity | Plugin runtime |
 |---------|-------------------|-------------------|----------------|
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
-| cli-codex | `~/.codex/sessions/` | `codex resume <id>` / `codex fork <id>` | None (raw Codex agent) |
+| cli-opencode | `~/.opencode/sessions/` | `opencode resume <id>` / `opencode fork <id>` | None (raw OpenCode agent) |
 | **cli-opencode** | `~/.opencode/state/<session_id>/` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
 
 The persistent state directory at `~/.opencode/state/` is what makes use case 2 (parallel detached sessions) possible — each session has an independent file-system footprint that the operator can inspect, archive, or replay.

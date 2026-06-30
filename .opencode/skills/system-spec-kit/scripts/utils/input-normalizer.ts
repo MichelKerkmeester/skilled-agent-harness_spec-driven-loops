@@ -26,7 +26,7 @@ export type DataSource =
   | 'file'
   | 'opencode-capture'
   | 'claude-code-capture'
-  | 'codex-cli-capture'
+  | 'opencode-cli-capture'
   | 'copilot-cli-capture'
   | 'simulation';
 

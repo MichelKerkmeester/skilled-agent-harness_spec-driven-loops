@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning",
+  "description": "Parent skills can route operator requests to nested mode packets, but the nested packets are not independently invocable by the runtime `Skill` tool",
+  "keywords": [
+    "parent",
+    "skills",
+    "route",
+    "operator",
+    "requests",
+    "nested",
+    "mode",
+    "packets",
+    "independently",
+    "invocable",
+    "runtime",
+    "skill",
+    "tool"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.371Z",
+  "specId": "001",
+  "folderSlug": "native-invocability-planning",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "119-parent-skill-native-invocability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

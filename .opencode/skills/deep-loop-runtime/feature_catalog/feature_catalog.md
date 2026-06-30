@@ -630,7 +630,7 @@ See [`09--fanout/fanout-pool.md`](09--fanout/fanout-pool.md) for full implementa
 
 #### Description
 
-TSX-bootstrapped entry point that spawns N headless CLI subprocesses (codex, claude,
+TSX-bootstrapped entry point that spawns N headless CLI subprocesses (opencode, claude,
 opencode), each running the full loop in an isolated `lineages/{label}/`
 sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep.
 

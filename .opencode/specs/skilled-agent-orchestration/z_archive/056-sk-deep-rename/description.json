@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename",
+  "description": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
+  "keywords": [
+    "two",
+    "deep",
+    "skills",
+    "currently",
+    "use",
+    "prefix",
+    "sk-deep-review",
+    "sk-deep-research",
+    "inherited",
+    "carried"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.696Z",
+  "specId": "056",
+  "folderSlug": "sk-deep-rename",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

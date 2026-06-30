@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/005-build-subskills",
+  "spec_folder": "design/008-sk-design-parent/005-build-subskills",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "build sk-design subskills",
+      "sk-design-foundations skill",
+      "sk-design-motion skill",
+      "sk-design-audit skill",
+      "net-new design children",
+      "build sk-design subskills plan",
+      "sk-design net-new children plan",
+      "foundations motion audit build approach",
+      "build sk-design subskills tasks",
+      "foundations motion audit tasks",
+      "net-new design children steps",
+      "build sk-design subskills summary"
+    ],
+    "key_topics": [
+      "build",
+      "sk-design",
+      "subskills",
+      "sk-design-foundations",
+      "skill",
+      "sk-design-motion",
+      "sk-design-audit",
+      "net-new",
+      "design",
+      "children",
+      "plan",
+      "foundations"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design-foundations/SKILL.md",
+      ".opencode/skills/sk-design-motion/SKILL.md",
+      ".opencode/skills/sk-design-audit/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-foundations/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Umbrella",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The locked taxonomy (002) names five core children, but only two exist after onboarding: `sk-design-interface` and `sk-design-spec`",
+    "created_at": "2026-06-25T12:41:16Z",
+    "last_save_at": "2026-06-25T21:26:17.663Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c50af3db53bf5d46fd9152b11c2e73ea3468f5c2fce847da4b0c1255d44b16bc",
+    "source_doc_hashes": {
+      "spec.md": "00144c793e1d73bc9d2aba83efd38d51d3d43c011aae713dd3e07e769cb95f07",
+      "plan.md": "af069340341fb094a4584934f9e76f4385d108eb6389e9b56dbb402eabe23415",
+      "tasks.md": "12402f8a11f03d2d4ca0ee8f013e01be337a456b4c47ca7277a4f31b26115463",
+      "implementation-summary.md": "a3f77dce6e82d8047cc018f9d64ce9964eb05e46d494c597caf5c7f7363cba3b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

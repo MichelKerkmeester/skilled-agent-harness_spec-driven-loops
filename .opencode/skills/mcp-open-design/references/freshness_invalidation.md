@@ -15,24 +15,24 @@ version: 1.0.0.0
 
 This document defines the freshness consumer for `DESIGN_PROOF_TOKEN` validation. It does not define a second token schema. Token fields, boundary responsibilities, and validator acceptance are inherited by citation from [`DESIGN_PROOF_TOKEN` §2, §6, and §7](../../sk-design/references/design_proof_token.md#2-field-schema-v1).
 
-The codex boundary is token-only and stateless. It can enforce malformed-time, stale, future-issued, and unreasonable TTL-span checks because those are fully determined by `issuedAt` and `expiresAt`. Replay and payload mismatch are run-scoped residuals at that boundary: they are mandatory reject rules, but they require state or payload data held by the guarded proxy or parent.
+The opencode boundary is token-only and stateless. It can enforce malformed-time, stale, future-issued, and unreasonable TTL-span checks because those are fully determined by `issuedAt` and `expiresAt`. Replay and payload mismatch are run-scoped residuals at that boundary: they are mandatory reject rules, but they require state or payload data held by the guarded proxy or parent.
 
 ## Freshness Axes
 
 | Axis | Reject rule | Enforcement label | Enforcement home |
 |---|---|---|---|
-| Stale / expired | `now >= expiresAt` -> reject. | CODE-ENFORCED at the codex boundary. | The codex structural token check rejects tokens outside `issuedAt <= now < expiresAt`. |
-| Future-issued | `issuedAt > now` -> reject. | CODE-ENFORCED at the codex boundary. | The same codex time-window check rejects tokens minted in the future. |
-| Malformed timestamp | `issuedAt` or `expiresAt` parses to a non-finite time -> reject. | CODE-ENFORCED at the codex boundary. | The codex time parser fails closed before evaluating the window. |
-| TTL span | `expiresAt - issuedAt` is unreasonably large for a short-lived token -> reject. | CODE-ENFORCED at the codex boundary. | The codex boundary applies a generous hard ceiling; minting still follows the approximately 300s default in the proof-token contract. |
-| Replay | A `nonce` and `runId` pair has already been consumed -> reject. | RUN-SCOPED RESIDUAL at the codex boundary. | The guarded proxy or parent must maintain a consumed-set keyed by `nonce` plus `runId` and consume successful tokens exactly once. |
-| Subject / payload mismatch | Recomputed payload digests differ from the token values -> reject. | RUN-SCOPED RESIDUAL at the codex boundary. | The guarded proxy or parent must rebuild the actual outgoing subject, brief, form-answer, lineage, surface, and reachable file-hash inputs and compare them to the token. |
+| Stale / expired | `now >= expiresAt` -> reject. | CODE-ENFORCED at the opencode boundary. | The opencode structural token check rejects tokens outside `issuedAt <= now < expiresAt`. |
+| Future-issued | `issuedAt > now` -> reject. | CODE-ENFORCED at the opencode boundary. | The same opencode time-window check rejects tokens minted in the future. |
+| Malformed timestamp | `issuedAt` or `expiresAt` parses to a non-finite time -> reject. | CODE-ENFORCED at the opencode boundary. | The opencode time parser fails closed before evaluating the window. |
+| TTL span | `expiresAt - issuedAt` is unreasonably large for a short-lived token -> reject. | CODE-ENFORCED at the opencode boundary. | The opencode boundary applies a generous hard ceiling; minting still follows the approximately 300s default in the proof-token contract. |
+| Replay | A `nonce` and `runId` pair has already been consumed -> reject. | RUN-SCOPED RESIDUAL at the opencode boundary. | The guarded proxy or parent must maintain a consumed-set keyed by `nonce` plus `runId` and consume successful tokens exactly once. |
+| Subject / payload mismatch | Recomputed payload digests differ from the token values -> reject. | RUN-SCOPED RESIDUAL at the opencode boundary. | The guarded proxy or parent must rebuild the actual outgoing subject, brief, form-answer, lineage, surface, and reachable file-hash inputs and compare them to the token. |
 
 ## Boundary Contract
 
-The codex boundary MUST reject a guarded Open Design request when the structured token is absent, malformed, expired, future-issued, has non-finite timestamps, or carries an excessive `expiresAt - issuedAt` span. This applies to both the MCP-tool lane and the `od` CLI lane because both validate through the same structural token path.
+The opencode boundary MUST reject a guarded Open Design request when the structured token is absent, malformed, expired, future-issued, has non-finite timestamps, or carries an excessive `expiresAt - issuedAt` span. This applies to both the MCP-tool lane and the `od` CLI lane because both validate through the same structural token path.
 
-The codex boundary MUST NOT claim replay or payload-digest closure from token structure alone. It can require `singleUse: true`, `nonce`, `runId`, and well-formed digest fields, but that is not the same as proving the nonce was unused or that the digest inputs match the actual outgoing payload.
+The opencode boundary MUST NOT claim replay or payload-digest closure from token structure alone. It can require `singleUse: true`, `nonce`, `runId`, and well-formed digest fields, but that is not the same as proving the nonce was unused or that the digest inputs match the actual outgoing payload.
 
 The guarded proxy or parent MUST close those residuals before forwarding a design-affecting call:
 
@@ -45,7 +45,7 @@ The guarded proxy or parent MUST close those residuals before forwarding a desig
 
 | Scenario | Expected result |
 |---|---|
-| Token has finite timestamps and `issuedAt <= now < expiresAt`, with a short-lived span. | ACCEPT at the codex time-window layer, subject to the other structural checks. |
+| Token has finite timestamps and `issuedAt <= now < expiresAt`, with a short-lived span. | ACCEPT at the opencode time-window layer, subject to the other structural checks. |
 | Token has `now >= expiresAt`. | REJECT as stale or expired. |
 | Token has `issuedAt > now`. | REJECT as future-issued. |
 | Token has non-finite `issuedAt` or `expiresAt`. | REJECT as malformed-time. |
@@ -55,6 +55,6 @@ The guarded proxy or parent MUST close those residuals before forwarding a desig
 
 ## Implementation Notes
 
-The expected mint-side TTL remains approximately 300 seconds by default, per the proof-token field schema and validator acceptance. A larger codex ceiling is only a defensive upper bound against obviously non-fresh tokens, not permission to mint long-lived design authorization.
+The expected mint-side TTL remains approximately 300 seconds by default, per the proof-token field schema and validator acceptance. A larger opencode ceiling is only a defensive upper bound against obviously non-fresh tokens, not permission to mint long-lived design authorization.
 
 Consumers should cite the proof-token contract for the field schema, boundary requirements, and validator acceptance. This document only enumerates freshness invalidation responsibilities and names which boundary can enforce each one.

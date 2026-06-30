@@ -1,0 +1,26 @@
+{
+  "topic": "Deep-agent router & orchestration hardening for GPT-backed OpenCode",
+  "maxIterations": 8,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-06-30T12:43:22Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "031-001-res-1782823402",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "executor": { "type": "native", "agent": "deep-research", "model": "opus" }
+}

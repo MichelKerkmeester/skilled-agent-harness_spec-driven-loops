@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "design/008-sk-design-parent/008-nested-parent-conversion",
+  "description": "The `sk-design` family currently ships as one umbrella router skill plus five independent top-level sibling skills, each with its own `graph-metadata.",
+  "keywords": [
+    "sk-design",
+    "family",
+    "currently",
+    "ships",
+    "one",
+    "umbrella",
+    "router",
+    "skill",
+    "plus",
+    "five",
+    "independent",
+    "top-level",
+    "sibling",
+    "skills",
+    "own",
+    "graph-metadata"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.751Z",
+  "specId": "008",
+  "folderSlug": "nested-parent-conversion",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

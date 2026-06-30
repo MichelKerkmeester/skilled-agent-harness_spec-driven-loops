@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-authentication-s1",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "authentication",
+  "queryClass": "off-corpus",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 112150,
+  "bytes": 87387,
+  "stderrTail": ""
+}

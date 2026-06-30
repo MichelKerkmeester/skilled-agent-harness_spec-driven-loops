@@ -19,7 +19,7 @@ const staleDistRoots = [
 const requiredArtifacts = [
   'context-server.js',
   'api/index.js',
-  'hooks/codex/session-start.js',
+  'hooks/opencode/session-start.js',
 ];
 // Must stay in lock-step with the sourceCandidates() scan in
 // .opencode/bin/spec-memory.cjs: the shim treats this build-written hash as

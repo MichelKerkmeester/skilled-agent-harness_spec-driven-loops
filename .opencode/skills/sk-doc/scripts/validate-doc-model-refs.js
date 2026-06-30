@@ -192,7 +192,7 @@ const INTENTIONAL_MARKER_WORDS = [
 ];
 
 // Matched tokens ending in a source/file extension are file paths caught by the
-// org-prefix regex (e.g. openai/codex/.../discovery.rs), not model identifiers.
+// org-prefix regex (e.g. openai/opencode/.../discovery.rs), not model identifiers.
 const FILE_LIKE_SUFFIX = /\.(rs|ts|tsx|js|cjs|mjs|py|md|json|jsonc|ya?ml|sh|toml|sqlite|lock)$/i;
 
 // Chat/completion model ids are governed by the cli-* skills and sk-prompt model
@@ -249,7 +249,7 @@ function scanDoc(filePath, canonicalModels, verbose = false) {
       // Extract the actual model name (strip quotes if present)
       let modelName = matchedText.replace(/^["']|["']$/g, '');
 
-      // Skip file paths the org-prefix regex catches (e.g. openai/codex/.../foo.rs)
+      // Skip file paths the org-prefix regex catches (e.g. openai/opencode/.../foo.rs)
       if (FILE_LIKE_SUFFIX.test(modelName)) {
         continue;
       }

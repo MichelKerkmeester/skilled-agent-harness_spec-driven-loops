@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
+  "description": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`, `fix-completeness-check",
+  "keywords": [
+    "six",
+    "sk-code-review",
+    "references",
+    "files",
+    "codequalitychecklist",
+    "securitychecklist",
+    "solidchecklist",
+    "testqualitychecklist",
+    "fix-completeness-check"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.485Z",
+  "specId": "008",
+  "folderSlug": "sk-code-review-checklist-reclassification",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "113-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

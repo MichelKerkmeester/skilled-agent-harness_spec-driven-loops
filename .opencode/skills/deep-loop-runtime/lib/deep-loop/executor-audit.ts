@@ -45,25 +45,21 @@ type ExecutorDispatchGuardContext = {
 };
 
 const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
-  'cli-codex': 'codex',
   'cli-claude-code': 'claude',
   'cli-opencode': 'opencode',
 };
 
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
-  'cli-codex': 'CODEX_SESSION_ID',
   'cli-claude-code': 'CLAUDE_CODE_SESSION_ID',
   'cli-opencode': 'OPENCODE_SESSION_ID',
 };
 
 const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
-  'cli-codex': ['SPECKIT_CODEX_STATE_DIR', 'CODEX_HOME'],
   'cli-claude-code': ['SPECKIT_CLAUDE_CODE_STATE_DIR', 'CLAUDE_CODE_HOME', 'CLAUDE_HOME'],
   'cli-opencode': ['SPECKIT_OPENCODE_STATE_DIR', 'OPENCODE_HOME'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
-  'cli-codex': '.codex',
   'cli-claude-code': '.claude',
   'cli-opencode': '.opencode',
 };
@@ -84,7 +80,6 @@ const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
 ]);
 
 const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
-  'cli-codex': ['CODEX_', 'OPENAI_', 'AZURE_OPENAI_'],
   'cli-claude-code': ['CLAUDE_', 'CLAUDE_CODE_', 'ANTHROPIC_'],
   'cli-opencode': ['OPENCODE_'],
 };
@@ -323,8 +318,8 @@ function normalizeModelId(model: string): string {
 // stream (`opencode run --format json`). Even there, a successful run's
 // step/text events may omit the model on some builds; this parser pulls a model
 // id only when an event actually surfaces one, otherwise returns null.
-// cli-codex / cli-claude-code / native do not reliably report the actual model
-// on stdout, so they always return null and are skipped.
+// cli-claude-code / native do not reliably report the actual model on stdout,
+// so they always return null and are skipped.
 export function extractActualModel(stdout: string, kind: ExecutorKind): string | null {
   if (kind !== 'cli-opencode') {
     return null;

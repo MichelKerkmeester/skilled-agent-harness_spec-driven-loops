@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "deep-research/1.0",
+  "type": "config",
+  "loopType": "research",
+  "sessionId": "fanout-gpt55fast-1782532104406-xmcn5n",
+  "generation": 1,
+  "lineageLabel": "gpt55fast",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "specFolder": ".opencode/specs/design/008-sk-design-parent/015-per-skill-improvement-research/005-md-generator",
+  "artifactDir": ".opencode/specs/design/008-sk-design-parent/015-per-skill-improvement-research/005-md-generator/research/lineages/gpt55fast",
+  "artifactRootResolution": {
+    "source": "config.fanout_lineage_artifact_dir",
+    "resolveArtifactRootNodeSkipped": true
+  },
+  "topic": "Investigate how to improve the sk-design md-generator skill: efficiency, usefulness, UX, tooling, references, assets, and routing.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "resourceMapPresent": false,
+  "folderState": "no-spec",
+  "writeBoundary": "Only files under artifactDir were written. Inputs outside artifactDir were read-only evidence.",
+  "status": "converged"
+}

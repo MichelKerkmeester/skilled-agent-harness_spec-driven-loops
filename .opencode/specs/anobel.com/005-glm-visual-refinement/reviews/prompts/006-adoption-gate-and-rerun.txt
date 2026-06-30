@@ -1,0 +1,501 @@
+You are an INDEPENDENT second-opinion reviewer. A program to improve GLM-5.2 vision-to-code maritime-B2B "bento" dashboard tiles (560x480 self-contained HTML) was researched + proposed by GPT-5.5 (xhigh). Baseline = 27/45 = 60% SHIP; ROOT CAUSE = the LAYOUT PRIMITIVE — 2D-positioned diagrams (matrix/node/routing/funnel) score 35-58 while linear-flow tiles (table/timeline/list/donut) score 86-94 (~41pt gap). The program has 6 phases; you review ONE phase below (adoption gate + measured re-run (pipeline step 11)).
+
+Give a RIGOROUS, CRITICAL second opinion — do NOT rubber-stamp. Your value is catching what a single model (GPT-5.5) missed: hidden assumptions, gaps, cheaper alternatives, failure modes, over-optimistic predictions.
+
+=== THE PROPOSED PHASE (authored by GPT-5.5) ===
+# spec.md
+---
+title: "Feature Specification: adoption-gate-and-rerun"
+description: "Phases 001-005 implement the GLM-refinement program but its value is unproven until the full pipeline is run end-to-end on the same 45 tiles and the lift is measured. This phase adds pipeline step 11 (the final adoption gate) plus the measured re-run that proves SHIP-rate and diagram-delta lift vs the 60% / ~41-pt baseline."
+trigger_phrases:
+  - "006-adoption-gate-and-rerun"
+  - "adoption gate"
+  - "measured re-run"
+  - "ship rate lift"
+  - "diagram-vs-linear delta"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Authored Level 2 planning docs (spec/plan/tasks/checklist)"
+    next_safe_action: "Implement adoption-gate decision (T004) after 001-005 ship"
+    blockers:
+      - "Predecessor phases 001-005 must be shipped + validated before the re-run can run"
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Report contrast exit-0 as a headline metric or demote it as near-tautological for a hard gate?"
+      - "If SHIP hits 80% only via downgrades (no 2D recovery), is that ADOPT or ITERATE?"
+    answered_questions:
+      - "Baseline is fixed: 27/45 = 60% SHIP, mean 81.1, diagram-vs-linear delta ~41 pts (004/research/research.md)"
+---
+# Feature Specification: adoption-gate-and-rerun
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-06-29 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | anobel.com/005-glm-visual-refinement |
+| **Phase** | 6 of 6 (final) |
+| **Pipeline Step** | Step 11 (final adoption gate) + program validation |
+| **Predecessors** | 001-spatial-contract-and-gate, 002-primitive-routing, 003-minimax-auditor-in-loop, 004-skeleton-first-2d, 005-gpt5-5-skeleton-author (all must ship + validate first) |
+| **Successor** | None (this phase proves the program) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+Phases 001-005 implement the seven research angles and the eleven-step pipeline that should close the bento-tile quality gap, but the program's value is still a hypothesis: the 004 run shipped only 27/45 = 60% SHIP (mean audit 81.1) with a ~41-point diagram-vs-linear gap, and nothing yet runs the full hardened pipeline end-to-end against those same 45 tiles. Without a final adoption gate and a measured re-run, individual tiles can silently regress, SHIP rate can inflate by downgrading diagrams to linear layouts, and the predicted lift remains unverified.
+
+### Purpose
+Add pipeline step 11 — the final adoption gate that decides ship / keep-prior-best / downgrade per tile — then re-run all 45 tiles through the full 001-005 pipeline and report the measured lift vs the 60% / ~41-pt baseline, so the program can be adopted, iterated, or rejected on evidence rather than projection.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- **(a) Final adoption gate (step 11):** a per-tile decision that ships a tile only if deterministic geometry, contrast, casing/glyph, palette, and MiniMax-M3 status ALL pass; otherwise keeps the prior best render or downgrades to a safer primitive. Failing sub-gates are recorded, not discarded.
+- **(b) Measured re-run:** drive all 45 tiles through the full 001-005 pipeline (contract + deterministic gate -> primitive routing -> MiniMax-in-loop repair -> skeleton-first 2D -> GPT-5.5 skeleton escalation) and the adoption gate, recording per-tile telemetry.
+- **(c) Lift computation + report:** compute and report SHIP rate, diagram-vs-linear delta, contrast exit-0 rate, and token / wall-clock / paid-call cost; present new-vs-baseline with paired tile-level deltas and an adopt / iterate / reject recommendation.
+
+### Out of Scope
+- Implementing or modifying the phase 001-005 mechanisms themselves - they are consumed as-is.
+- Any executable code in this scaffolding pass - planning only, no code yet.
+- Changing the approved house style, Product register (V4/M2/D6), or palette - frozen.
+- Re-deriving the baseline - taken as fixed (27/45, mean 81.1, ~41-pt delta).
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `004-bento-visuals/research/inputs/gen-tile.mjs` | Reuse | Generation harness (confirmed present) as evolved by phases 001-005; invoked unchanged by the re-run driver |
+| `004-bento-visuals/research/inputs/audit-concept.sh` | Reuse (from 001) | Deterministic DOM/CSS audit gate produced by phase 001; invoked per tile for geometry/contrast/casing verdicts |
+| `004-bento-visuals/research/rerun/adoption-gate.mjs` | Create | Final adoption-gate decision: five-sub-gate AND -> ship / keep-prior / downgrade |
+| `004-bento-visuals/research/rerun/rerun-45.mjs` | Create | Re-run driver: iterates 45 tiles through 001-005 + adoption gate; writes per-tile JSONL |
+| `004-bento-visuals/research/rerun/compute-lift.mjs` | Create | Computes SHIP rate, diagram-vs-linear delta, contrast exit-0, cost, paired deltas |
+| `004-bento-visuals/research/rerun/rerun-results.jsonl` | Create | Per-tile machine record (verdict, audit score, gate flags, cost, latency) |
+| `004-bento-visuals/research/rerun/rerun-report.md` | Create | Human-facing lift report vs the 60% / ~41-pt baseline + recommendation |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Adoption-gate decision function (step 11) | Emits a typed decision `ship` / `keep-prior` / `downgrade` per tile; ships only when all five sub-gates (geometry, contrast, casing/glyph, palette, MiniMax status) pass; failing sub-gate names recorded on the record |
+| REQ-002 | Measured re-run of all 45 tiles through 001-005 | 45 per-tile records produced, each with final verdict, audit score, and gate flags; pipeline stages invoked in order per tile |
+| REQ-003 | Lift report vs baseline | Report shows new SHIP rate, diagram-vs-linear delta, and contrast exit-0 rate against the fixed baseline (60% / ~41 pt), with paired per-tile deltas (not independent angle sums) |
+| REQ-004 | Cost accounting | Report includes GLM call count, paid-call count (MiniMax + GPT-5.5) and wall-clock per tile and per batch; flags any tile breaching the cost ceiling |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Downgrade-inflation guard | Each newly-shipped tile is tagged `recovered-2D`, `downgraded-to-linear`, or `improved-linear`; report separates genuine 2D recovery from pass-rate gained by downgrading |
+| REQ-006 | Linear no-regression check | Prior linear winners (audit 86-94) remain >= 90% passing and semantically equivalent; any linear regression is listed explicitly |
+| REQ-007 | Adopt / iterate / reject recommendation | Report ends with exactly one recommendation tied to the decision rule thresholds in `checklist.md`, with rationale |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: SHIP rate reaches the conservative band 80-84% (36-38/45), with the optimistic target up to 87-91% (39-41/45), from the 60% baseline (per the predicted-lift table, iter-r4-pipeline.md section 2).
+- **SC-002**: Diagram-vs-linear delta drops to the conservative band 14-20 pts, optimistic 8-14 pts, from the ~41-pt baseline.
+- **SC-003**: Contrast exit-0 rate among accepted tiles is 95-100% - reported, but treated as a sub-metric, not the headline, because it is near-tautological for a hard contrast gate (per iter-r4-risk.md section 5).
+- **SC-004**: Cost stays within the predicted ceiling - <= 63 GLM calls for the A1 + gate + one-repair path on the 18 baseline failures, paid calls bounded and reported; median per-tile wall-clock < 90s.
+- **SC-005**: Zero copy / casing / glyph regressions on locked fields; linear no-regression >= 90%.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phases 001-005 shipped + validated | Re-run cannot run | Gate on `validate.sh --recursive` of the parent before starting |
+| Dependency | `gen-tile.mjs` + `audit-concept.sh` audit gate | Re-run / gating blocked | Reuse confirmed harness under `004-bento-visuals/research/`; audit gate owned by phase 001 |
+| Dependency | Z.AI multimodal, MiniMax-M3, GPT-5.5 endpoints | Partial or biased run | Record dispatch failures; ~1/45 transient failure expected; retry once before recording fail |
+| Risk | Validator overfit - gates pass dull RC-7 slop | High | bbox/contrast cannot catch slop; keep MiniMax status in the gate + human spot-check accepted tiles |
+| Risk | Downgrade inflation - SHIP rises by losing diagrams | High | Tag `recovered-2D` vs `downgraded-to-linear`; report both; encode the trade in the decision rule |
+| Risk | Over-optimism on n=45 (1 tile = 2.2 pts) | Med | Use paired tile-level deltas; do not sum A1/A3/A4/A5 gains independently (they overlap) |
+| Risk | Latency tail (observed 6-161s, avg ~26s) biases run downward | Med | Explicit timeout/slow-tail policy; allow 3-6 min tail before marking fail |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: Median per-tile wall-clock < 90s; batch GLM-call ceiling ~63 (45 first-pass + 18 repair) for the A1 + gate + one-repair path.
+- **NFR-P02**: Paid escalation (GPT-5.5 skeleton, MiniMax audit) fires failure-only, never on linear winners; paid-call count reported per batch.
+
+### Security
+- **NFR-S01**: API keys (Z.AI, MiniMax, GPT-5.5) read from environment only - never hardcoded, never written to JSONL or report.
+- **NFR-S02**: Re-run is measurement-only and writes only inside the `004-bento-visuals/research/rerun/` workspace - no production or site mutation.
+
+### Reliability
+- **NFR-R01**: Tolerate ~1/45 transient dispatch failure - retry once, then record `transient-fail` and exclude from the quality denominator (reported separately).
+- **NFR-R02**: Re-run is resumable per tile from the JSONL ledger and idempotent per tile.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- **2D tile that fails twice**: routed to the downgrade path (linear-flow / stacked-list / compact-matrix); recorded as `downgraded-to-linear`, not a free retry.
+- **Tile with no prior best render**: a gate block records a new `fail` (no prior to keep); cannot be silently shipped.
+- **Tile passing geometry but with `MiniMax status = unknown`**: gate blocks ship (conservative) and records `keep-prior`.
+
+### Error Scenarios
+- **API dispatch failure**: retry once, then record `transient-fail`; excluded from the quality denominator but counted in the failure log.
+- **MiniMax timeout**: treat status as `unknown` -> gate blocks ship; do not assume pass.
+- **Audit gate disagreement with MiniMax**: deterministic geometry/contrast verdicts win for hard facts; MiniMax governs taste-level status only.
+
+### State Transitions
+- **Partial batch**: resume from the JSONL ledger; completed tiles are not re-run.
+- **Re-run after a phase 001-005 change**: full re-run required - paired deltas are only valid against a single pipeline snapshot.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 12/25 | ~5 new harness files, no product code, reuses `gen-tile.mjs` + audit gate |
+| Risk | 10/25 | Measurement-only, but depends on 5 predecessor phases plus paid external APIs |
+| Research | 4/20 | Research already complete (iter-r4); this phase consumes it, does not extend it |
+| **Total** | **26/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Should contrast exit-0 be reported as a headline metric, or demoted to a sub-metric given it is near-tautological for a hard contrast gate (iter-r4-risk.md section 5)?
+- If SHIP reaches 80% only via downgrades with little or no genuine 2D recovery, does the decision rule return ADOPT (pass-rate met) or ITERATE (diagram richness not recovered)?
+- Should MiniMax run on every accepted tile, or failure-only as a shadow audit, given its paid cost and unproven precision against human labels?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Parent Spec**: `../spec.md` (Phase 6 row)
+- **Research source**: `../../004-bento-visuals/research/iterations/iter-r4-pipeline.md` (step 11 + predicted-lift table), `iter-r4-risk.md` (failure modes, pilot order, over-optimism), `../../004-bento-visuals/research/research.md` (exec summary + baseline)
+
+
+# plan.md
+---
+title: "Implementation Plan: adoption-gate-and-rerun"
+description: "Build a thin orchestration layer over the phase 001-005 pipeline that applies the final adoption gate to each tile, re-runs all 45 tiles, records per-tile telemetry, and computes the measured lift vs the 60% / ~41-pt baseline. No new generation logic - adoption gate plus measurement only."
+trigger_phrases:
+  - "adoption gate plan"
+  - "rerun harness"
+  - "compute lift"
+  - "measured re-run pipeline"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Authored Level 2 planning docs (spec/plan/tasks/checklist)"
+    next_safe_action: "Implement adoption-gate decision (T004) after 001-005 ship"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Plan: adoption-gate-and-rerun
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Node.js ESM (`.mjs`), reusing the existing `gen-tile.mjs` harness |
+| **Framework** | Headless Chromium (Playwright/Puppeteer, as used by phase 001's gate) for DOM/CSS geometry + contrast extraction |
+| **Storage** | JSONL per-tile ledger + a markdown lift report; no database |
+| **Testing** | Node assertions for the gate truth-table + metrics math; manual human spot-check for slop |
+
+### Overview
+This phase adds a thin orchestration layer on top of the phase 001-005 pipeline. It (1) runs each of the 45 tiles through the full hardened pipeline, (2) applies the final adoption gate to decide ship / keep-prior / downgrade, (3) records per-tile telemetry to a JSONL ledger, and (4) computes and reports the lift vs the fixed baseline. There is no new generation logic - the adoption gate is a decision function over existing sub-gate verdicts, and the rest is measurement and reporting.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [ ] Phases 001-005 shipped and pass `validate.sh --recursive`
+- [ ] `gen-tile.mjs` and the phase-001 audit gate (`audit-concept.sh`) are available and runnable
+- [ ] The 45-tile input set + prior per-tile audit scores are captured as a baseline fixture
+
+### Definition of Done
+- [ ] All 45 tiles re-run through 001-005 + the adoption gate
+- [ ] Per-tile JSONL ledger written; lift report produced (SHIP rate, diagram-vs-linear delta, contrast exit-0, cost)
+- [ ] Report carries an adopt / iterate / reject recommendation tied to the decision rule
+- [ ] spec / plan / tasks / checklist synchronized
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Pipeline orchestration + measurement/report. The adoption gate is a pure decision function; the driver is a sequential per-tile loop; the metrics computer is a stateless reducer over the JSONL ledger.
+
+### Key Components
+- **Adoption gate** (`adoption-gate.mjs`): pure function `(subGateVerdicts, priorBest) -> { decision, failingGates }` where `decision` is `ship | keep-prior | downgrade`. Ships only when geometry AND contrast AND casing/glyph AND palette AND MiniMax-status all pass.
+- **Re-run driver** (`rerun-45.mjs`): iterates the 45-tile manifest, invokes each 001-005 stage in order, calls the adoption gate, appends one record per tile to the JSONL ledger; resumable + idempotent per tile.
+- **Metrics computer** (`compute-lift.mjs`): reads the ledger, computes SHIP rate, diagram-vs-linear delta, contrast exit-0 rate, cost totals, paired per-tile deltas, `recovered-2D` vs `downgraded-to-linear` tags, and linear-regression detection.
+- **Report** (`rerun-report.md`): renders new-vs-baseline tables and the adopt / iterate / reject recommendation.
+
+### Data Flow
+1. Tile input + primitive label enter the driver.
+2. Phase 001 contract + deterministic gate runs; failure JSON captured.
+3. Phase 002 routes the tile linear-flow vs 2D-positioned.
+4. Phase 003 feeds MiniMax findings back to GLM for a failure-only repair.
+5. Phase 004 computes a coordinate skeleton for 2D-positioned tiles; GLM renders from it.
+6. Phase 005 escalates the hardest 2D skeletons to a GPT-5.5 author (cost-capped).
+7. Adoption gate consumes all sub-gate verdicts -> ship / keep-prior / downgrade.
+8. One record per tile is appended to the ledger; the metrics computer aggregates and the report renders the lift.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Confirm phases 001-005 ship + validate (`validate.sh --recursive` on the parent)
+- [ ] Snapshot the baseline: 27/45 = 60% SHIP, mean 81.1, ~41-pt delta, and prior per-tile audit scores, into a fixture
+- [ ] Assemble the 45-tile manifest with primitive labels (linear-flow vs 2D-positioned) needed for the delta computation
+
+### Phase 2: Core Implementation
+- [ ] Adoption-gate decision function (five-sub-gate AND -> ship / keep-prior / downgrade)
+- [ ] Re-run driver wiring 001-005 stages + the adoption gate + the per-tile JSONL ledger
+- [ ] Metrics computer (SHIP rate, diagram-vs-linear delta, contrast exit-0, cost)
+- [ ] Paired tile-level deltas + `recovered-2D` vs `downgraded-to-linear` tagging + linear-regression detection
+- [ ] Run the full 45-tile batch; capture the ledger and dispatch-failure log
+
+### Phase 3: Verification
+- [ ] Calibrate the adoption gate against a hand-labeled stratified sample before trusting the batch
+- [ ] Reconcile new-vs-baseline; confirm SHIP / delta / contrast / cost against the SC thresholds
+- [ ] Write `rerun-report.md` with the adopt / iterate / reject recommendation
+- [ ] Run `validate.sh --strict` on this phase folder
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | Adoption-gate truth table (all-pass -> ship; any-fail -> keep-prior/downgrade); metrics math on a fixture ledger | Node assertions |
+| Integration | Dry-run 3-5 stratified tiles (a linear winner, a known 2D failure, a borderline contrast/title case) end-to-end through 001-005 + gate before the full batch | `rerun-45.mjs` on a subset |
+| Manual | Human spot-check of accepted tiles for RC-7 slop the deterministic gates cannot catch; linear no-regression eyeball | Browser (contact sheet) |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Phases 001-005 | Internal | Red until shipped | Re-run cannot run at all |
+| `gen-tile.mjs` | Internal | Green (confirmed at `004-bento-visuals/research/inputs/`) | Re-run blocked |
+| Audit gate (`audit-concept.sh`, from 001) | Internal | Yellow (produced by phase 001) | Adoption gate blocked |
+| Headless Chromium | External | Green | Geometry + contrast extraction blocked |
+| Z.AI / MiniMax / GPT-5.5 APIs | External | Yellow | Run blocked or biased; record dispatch failures |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Re-run shows linear regressions, copy/casing/glyph regressions on locked fields, or a SHIP gain that is pure downgrade inflation.
+- **Procedure**: Report REJECT or ITERATE; keep the prior best renders. This phase ships nothing to the site, so rollback is simply not adopting the new pipeline output.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+001-005 (pipeline) ──► Setup (baseline + manifest) ──► Core (gate + driver + metrics) ──► Verify (calibrate + report)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | 001-005 shipped | Core |
+| Core | Setup | Verify |
+| Verify | Core | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup (baseline + manifest) | Low | 1-2 hours |
+| Adoption gate + driver | Medium | 3-5 hours |
+| Metrics + tagging + regression detection | Medium | 2-4 hours |
+| Batch run + report + verification | Medium | 2-3 hours (plus batch wall-clock) |
+| **Total** | | **8-14 hours + batch wall-clock** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Prior best renders preserved before the re-run overwrites any working output
+- [ ] Re-run writes only inside `004-bento-visuals/research/rerun/` (no site/production paths)
+- [ ] Baseline fixture snapshotted so paired deltas remain reproducible
+
+### Rollback Procedure
+1. Stop the batch; the JSONL ledger preserves completed tiles.
+2. Report REJECT/ITERATE rather than adopting the new pipeline.
+3. Retain prior best renders as the shipped set; no site change is required.
+
+### Data Reversal
+- **Has data migrations?** No - measurement-only, no persisted production state.
+- **Reversal procedure**: Discard the `rerun/` workspace outputs; baseline fixture is unaffected.
+<!-- /ANCHOR:enhanced-rollback -->
+
+
+=== RESEARCH GROUNDING (root-cause ledger + the angle(s) this phase implements) ===
+## §1 Root-Cause Ledger
+
+Built from STEP-3 forensic viewing of the 5 lowest tiles (accountbeheer-4 35, orders-facturen-4 52,
+goedkeuringssysteem-4 55, oci-4 58, aangepast-assortiment-3 58) and 5 highest (kwartaalcijfers-2 94,
+accountbeheer-5 93, een-factuur-5 93, accountbeheer-1 92, orders-facturen-1 90 / aangepast-assortiment-4 88),
+plus calculator-confirmed contrast and grep-confirmed anti-tells.
+
+| RC-id | Defect (render symptom + tile) | Hard-fact / refinement | Root cause | Consumed by |
+|---|---|---|---|---|
+| **RC-1** | **Vertical overflow — content exceeds the 480px height budget.** 4th matrix row (MS Vesta) spills out of the inner panel and lands ON TOP of the bottom title "Accountbeheer"+desc (accountbeheer-4, **35**); 6th matrix row + legend collide with the title (aangepast-assortiment-3, **58**); the title "Orders & facturen" is clipped clean off the bottom card edge (orders-facturen-4, **52**); panel rows overflow rounded corners (goedkeuringssysteem-1, **62**); CTA buttons bleed past panel (goedkeuringssysteem-3, **66**); panel overlaps title (een-factuur-1, **88**); last row clipped (favorieten-3, **78**). | **Hard-fact** (an overflow/bounding gate catches it; `overflow:true` in 8 audit rows). | **GLM rendering limitation** — lays out N rows/nodes at fixed pixel heights with no constraint solver, never computing cumulative-height ≤ 480px − reserved-title-block; **+ prompt-contract gap** (no per-region height budget, max-row count, or "reserve Npx for the bottom title"). | A1, A3, A5 |
+| **RC-2** | **2D node collisions** — the "Verbonden" pill overlaps the SAP card and truncates "MS V…" (oci-4, **58**); eyebrow overlaps the right flow node "Anobel-catalogus" (oci-2, **78**); branch cards crowd the card edge (goedkeuringssysteem-4, **55**); popover overflows the card's right edge and clips the eyebrow (favorieten-4, **62**). `position:absolute` count: oci-4 = **6**, accountbeheer-4 = 4, goedkeuringssysteem-4 = 4. | **Mixed** — the clip is hard-fact (overflow); node-on-node crowding is **refinement** (no gate computes bounding-box overlap). | **GLM rendering limitation** — direct numerical coordinate placement with no collision detection; external lit: "direct LLM numerical positioning → out-of-boundary errors and object collisions." | A1, A5, A3 |
+| **RC-3** | **Title-at-bottom rule breaks under diagram layouts** — title rendered TOP-left not bottom-left (goedkeuringssysteem-4, **55**, `title_at_bottom:false`); same on aangepast-assortiment-3 (**58**) and orders-facturen-4 (**52**). | **Hard-fact** (title Y-position is checkable). | **Instruction-density mismatch + GLM limitation** — once GLM commits an absolutely-positioned full-card diagram, it drops the "title bottom-left" pin (one of ~20 contract constraints); the diagram claims the whole canvas. | A1, A5 |
+| **RC-4** | **Eyebrow renders ALL-CAPS, wraps, wrong glyph** — "VLOOT-FUNCTIE" uppercase wrapped to 2 lines and crowding a node (goedkeuringssysteem-4); `text-transform:uppe
+
+--- recommended pipeline (step 11) ---
+I’ll keep this read-only and synthesize directly from the provided angle recommendations, using the local memory/advisor gates only to catch any relevant context or required skill routing.SKILL ROUTING: advisor surfaced `cli-opencode` and `sk-prompt-models` above threshold but ambiguously. I’ll load the model-prompt guidance for GLM-specific synthesis and the CLI contract only to confirm no external dispatch is needed.# Recommended Program
+
+RC legend: `RC-1` overflow, `RC-2` 2D collisions, `RC-3` title-zone failures, `RC-4` casing/glyph drift, `RC-5` contrast, `RC-6` decorative color, `RC-7` visual slop, `RC-8` discarded audit findings.
+
+## 1. END-TO-END PIPELINE
+
+| Step | What it does | Angle + RC-id | Effort | Applies to |
+|---:|---|---|---|---|
+| 1 | Replace diffuse layout prose with a short `A1_SAFE_LINEAR_560_V2` hard spatial contract: fixed visual region, reserved bottom title band, primitive caps, dark text tokens, no content `absolute`. | A1, A2, A7; `RC-1`, `RC-2`, `RC-3`, `RC-4`, `RC-5` | S | all tiles |
+| 2 | Add required preflight metadata: selected primitive, visible item count, overflow summary, `usesAbsoluteForContent=false`, contrast token inventory. Use it as metadata, not rendered content. | A2; `RC-2`, `RC-5`, `RC-6`, `RC-7` | S | all tiles |
+| 3 | Route primitives before generation: keep list/table/timeline as normal flow; flag matrix, node, branch, funnel, popover, connector-map, dense chart as `2D-positioned`. | A3, A5, A6, A7; `RC-1`, `RC-2`, `RC-3` | S | all tiles |
+| 4 | Generate first pass with direct Z.AI multimodal API, `thinking.disabled`, low temperature. Keep GLM as renderer/generator, not as verifier. | A3, A6; GLM docs/profile; `RC-8` | S | all tiles |
+| 5 | Run deterministic DOM/CSS gate after render: title band intrusion, visual bottom, overlap, clipping, `text-transform`, contrast, banned gray-on-dark text. | A1, A5, A7; LaTCoder, LaySPA, GeoSVG-RL; `RC-1` to `RC-5` | M | all tiles |
+| 6 | For failing non-2D or simple 2D tiles, run exactly one typed repair pass with failure JSON and screenshot. Lock copy, palette, title zone, glyph, and casing. | A3, A4; Self-Refine, visual critique refinement; `RC-1` to `RC-5`, `RC-8` | M | all tiles, failure-only |
+| 7 | For high-risk `2D-positioned` tiles, compute a skeleton first: regions, boxes, row caps, anchors, connector routes, AABB gaps. GLM must render from skeleton, not invent coordinates. | A5, A7; LaySPA, GeoSVG-RL, LaTCoder; `RC-1`, `RC-2`, `RC-3` | L | 2D-positioned only |
+| 8 | If skeleton render fails once, recompute best-of-3 skeletons upstream and choose the best geometry score. Do not ask GLM for free coordinate retries. | A5, A6, A7; AdaCoder; `RC-1`, `RC-2`, `RC-3` | M | 2D-positioned only |
+| 9 | If 2D fails twice, downgrade to `linear-flow`, `stacked-list`, or `compact-matrix`. Preserve semantic intent with `+N more`, not crowded geometry. | A1, A5, A7; `RC-1`, `RC-2`, `RC-7` | S | 2D-positioned only |
+| 10 | Use MiniMax-M3 as external visual auditor only after deterministic gates pass or for borderline failures. Convert MiniMax issues to typed fix JSON. | A4, A2; visual critique refinement; `RC-5`, `RC-6`, `RC-7`, `RC-8` | M | all tiles, failure-only |
+| 11 | Final adoption gate: ship only if deterministic geometry, contrast, casing/glyph, palette, and MiniMax status pass. Otherwise keep prior best or downgrade. | A1 to A7; all RCs | M | all tiles |
+
+## 2. PREDICTED LIFT
+
+| Scenario | SHIP rate | Diagram-vs-linear delta | Interpretation |
+|---|---:|---:|---|
+| Baseline | `27/45 = 60%` | `~41 pts` | Linear tiles already strong; 2D-positioned diagrams are the core defect. |
+| First move only: A1 prompt + deterministic gate + one repair | `34-37/45 = 76-82%` | `15-22 pts` | Best lift-per-effort. Converts many overflow/title/contrast failures and forces risky diagrams into safer primitives. |
+| Conservative full pipeline | `36-38/45 = 80-84%` | `14-20 pts` | Assumes overlap among A1/A3/A4/A5 gains and some remaining aesthetic/slop failu
+--- risk/cost ---
+SKILL ROUTING: advisor returned ambiguous `cli-opencode` and `sk-prompt-models` above confidence threshold. I’m loading both read-only; no external CLI dispatch is needed for the critique unless the skill contract says otherwise. 
+The OpenCode skill confirms no self-dispatch is appropriate from this runtime; the GLM path matters only as model/provider constraints. I’m reading the GLM/MiniMax prompt-craft and budget references so the cost critique is grounded in local model guidance.**Verdict**
+The pipeline is directionally right: move spatial reasoning out of prose and into validators/skeletons. Main risk is that it may raise `SHIP` by downgrading or over-gating, not by improving visual quality. Treat the predicted lift as a hypothesis, not a forecast.
+
+**1. Failure Modes**
+| Failure Mode | Risk |
+|---|---|
+| Validator overfit | DOM/CSS gates can pass technically valid but visually dull outputs. `RC-7` slop will not be solved by bbox/contrast alone. |
+| False geometry failures | Bbox overlap gates can flag intended connector proximity, shadows, icons, or decorative layering unless the rules distinguish content text from non-content geometry. |
+| False geometry passes | DOM boxes miss semantic crowding, awkward rhythm, visual imbalance, connector ambiguity, and text that is readable but compositionally bad. |
+| Contrast gate blind spots | Gradients, opacity, anti-aliasing, shadows, blend modes, and screenshots can differ from computed CSS contrast. |
+| Repair pass regression | A typed repair can fix overlap while changing copy, hierarchy, casing, glyphs, or semantic grouping. Locking helps, but models still drift. |
+| Skeleton quality bottleneck | Skeleton-first moves the hard problem upstream. If skeleton scoring is weak, GLM will faithfully render bad geometry. |
+| 2D downgrade inflation | `linear-flow`/`stacked-list` can improve pass rate while reducing the value of diagrams. This is a quality trade, not pure lift. |
+| MiniMax audit noise | External visual audit can introduce false positives or subjective taste changes unless measured against human labels first. |
+| Direct Z.AI API operational drift | GLM vision via direct API is justified, but bypasses the normal executor path. Auth, endpoint, slug, and payload behavior become pipeline dependencies. |
+| Latency tail | Local GLM profile shows observed `6-161s`, avg `~26s`, and about `1/45` transient dispatch failures. A tight timeout will bias the experiment downward. |
+
+**2. Recommendations That Might N
+
+Return ONLY this markdown (concise, concrete, independent):
+## Verdict
+AGREE | AGREE-WITH-CHANGES | DISAGREE  — confidence 0.00-1.00 — one-sentence why.
+## What GPT-5.5 got right
+## Gaps / risks / errors (specific; cite an RC-id or a concrete failure mode)
+## Strongest improvement or alternative (the single highest-value change you would make; implementable)
+## One thing to test or verify before building this phase

@@ -12,7 +12,6 @@ Surfaces walked:
 - .opencode/commands/**/<name>.md             (YAML frontmatter)
 - .opencode/agents/<name>.md                  (YAML frontmatter)
 - .claude/agents/<name>.md                   (YAML frontmatter, often a symlink)
-- .codex/agents/<name>.toml                  (TOML `description = "..."`)
 
 For agents, the repo-managed runtime mirrors usually share identical text. The audit
 reports unique-by-name with a `mirrored: N surfaces` annotation so the budget
@@ -96,7 +95,7 @@ def parse_yaml_frontmatter_description(text: str) -> Optional[str]:
 
 
 def parse_toml_description(text: str) -> Optional[str]:
-    """Extract `description = "..."` from a top-level TOML file (Codex agents).
+    """Extract `description = "..."` from a top-level TOML file.
 
     Uses tomllib when available (Python 3.11+); falls back to a regex match
     for older Pythons. The regex is deliberately conservative: top-level only,
@@ -218,7 +217,6 @@ def walk_agents(repo: Path) -> List[Item]:
     surfaces = [
         (repo / ".opencode" / "agents", "yaml"),
         (repo / ".claude" / "agents", "yaml"),
-        (repo / ".codex" / "agents", "toml"),
     ]
     by_name: Dict[str, Item] = {}
     for base, fmt in surfaces:

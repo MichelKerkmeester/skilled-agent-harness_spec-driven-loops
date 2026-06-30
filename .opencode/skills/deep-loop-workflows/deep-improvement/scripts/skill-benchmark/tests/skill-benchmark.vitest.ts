@@ -41,14 +41,14 @@ describe('Lane C — loop-host wiring (non-regression)', () => {
   });
 
   it('plans a single skill-benchmark orchestrator step', () => {
-    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex', 'outputs-dir': '/tmp/x' });
+    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-opencode', 'outputs-dir': '/tmp/x' });
     expect(plan.ok).toBe(true);
     expect(plan.steps).toHaveLength(1);
     expect(plan.steps[0].script).toBe('run-skill-benchmark.cjs');
   });
 
   it('fails closed when required skill-benchmark args are missing', () => {
-    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex' });
+    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-opencode' });
     expect(plan.ok).toBe(false);
   });
 
@@ -61,9 +61,9 @@ describe('Lane C — loop-host wiring (non-regression)', () => {
 });
 
 describe('Lane C — router-replay (Mode A)', () => {
-  it('routes a REVIEW task on cli-codex to the expected resources', () => {
+  it('routes a REVIEW task on cli-claude-code to the expected resources', () => {
     const res = routeSkillResources({
-      skillRoot: join(REPO_SKILLS, 'cli-codex'),
+      skillRoot: join(REPO_SKILLS, 'cli-claude-code'),
       taskText: 'review this diff for security vulnerabilities and give a second opinion',
     });
     expect(res.parseable).toBe(true);
@@ -83,8 +83,8 @@ describe('Lane C — router-replay (Mode A)', () => {
   });
 
   it('marks an inline-router skill with routerSource:"inline"', () => {
-    const skillMd = readFileSync(join(REPO_SKILLS, 'cli-codex', 'SKILL.md'), 'utf8');
-    const router = parseRouter(skillMd, join(REPO_SKILLS, 'cli-codex'));
+    const skillMd = readFileSync(join(REPO_SKILLS, 'cli-opencode', 'SKILL.md'), 'utf8');
+    const router = parseRouter(skillMd, join(REPO_SKILLS, 'cli-opencode'));
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('inline');
   });
@@ -129,14 +129,14 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
 
 describe('Lane C — contamination linter', () => {
   it('flags a public prompt that leaks the skill name', () => {
-    const vocab = buildBannedVocab({ skillRoot: join(REPO_SKILLS, 'cli-codex'), skillId: 'cli-codex' });
-    const res = lintFixture({ publicText: 'use the cli-codex skill to review', bannedVocab: vocab });
+    const vocab = buildBannedVocab({ skillRoot: join(REPO_SKILLS, 'cli-opencode'), skillId: 'cli-opencode' });
+    const res = lintFixture({ publicText: 'use the cli-opencode skill to review', bannedVocab: vocab });
     expect(res.passed).toBe(false);
     expect(res.hardLeaks.length).toBeGreaterThan(0);
   });
 
   it('passes a domain-language prompt with no skill identifiers', () => {
-    const res = lintFixture({ publicText: 'please double check my code for bugs', bannedVocab: ['cli-codex', 'second opinion'] });
+    const res = lintFixture({ publicText: 'please double check my code for bugs', bannedVocab: ['cli-opencode', 'second opinion'] });
     expect(res.passed).toBe(true);
   });
 });
@@ -149,9 +149,9 @@ describe('Lane C — D5 connectivity gate', () => {
   });
 
   it('does not hard-gate a router-bearing skill with valid paths', () => {
-    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-codex') });
+    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-opencode') });
     expect(res.routerParseable).toBe(true);
-    // cli-codex routed paths exist, so no P0 dead-path gate.
+    // Routed paths exist, so no P0 dead-path gate.
     expect(res.deadResourcePaths).toEqual([]);
   });
 });
@@ -453,7 +453,7 @@ describe('Lane C — malformed-fixture degradation', () => {
     const fixDir = mkdtempSync(join(tmpdir(), 'lc-badfix-'));
     writeFileSync(join(fixDir, 'broken.public.json'), '{ not valid json');
     const out = mkdtempSync(join(tmpdir(), 'lc-badout-'));
-    const code = run({ skill: 'cli-codex', 'outputs-dir': out, 'fixtures-dir': fixDir });
+    const code = run({ skill: 'cli-opencode', 'outputs-dir': out, 'fixtures-dir': fixDir });
     expect(code).toBe(0); // did not crash
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     const row = (report.scenarioRows || []).find((r: any) => r.firstFailingStage === 'unparseable-fixture');
@@ -552,7 +552,7 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
   it('emits dual report artifacts for a router-bearing skill', () => {
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-'));
     e2eDirs.push(out);
-    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-codex', '--outputs-dir', out], { encoding: 'utf8' });
+    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-opencode', '--outputs-dir', out], { encoding: 'utf8' });
     const jsonPath = join(out, 'skill-benchmark-report.json');
     const mdPath = join(out, 'skill-benchmark-report.md');
     expect(existsSync(jsonPath)).toBe(true);
@@ -563,7 +563,7 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
   });
 
   it('scores at least one real scenario end-to-end (deep-improvement ships a fixture)', () => {
-    // cli-codex ships no fixtures (scenarioRows === 0), so the artifact test
+    // cli-opencode ships no fixtures (scenarioRows === 0), so the artifact test
     // above cannot prove the scenario pipeline runs. deep-improvement ships
     // agent-improve-001, so this asserts the full lint -> route -> score path
     // actually produced a scored row.

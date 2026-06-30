@@ -1,0 +1,29 @@
+{
+  "title": "Feature Specification: add model-benchmark lane selection prompts",
+  "level": "2",
+  "specFolder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "description": "The model-benchmark lane of deep-agent-improvement runs end-to-end at the runtime layer (`loop-host.cjs --mode=model-benchmark`) but has no command en",
+  "keywords": [
+    "model-benchmark",
+    "lane",
+    "deep-agent-improvement",
+    "runs",
+    "end-to-end",
+    "runtime",
+    "layer",
+    "loop-host",
+    "cjs",
+    "mode",
+    "command"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.221Z",
+  "specId": "008",
+  "folderSlug": "add-model-benchmark-lane-selection-prompts",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

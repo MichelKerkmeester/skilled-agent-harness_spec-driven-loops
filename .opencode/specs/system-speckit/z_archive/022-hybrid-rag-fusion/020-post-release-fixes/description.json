@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes",
+  "description": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
+  "keywords": [
+    "canonical",
+    "review",
+    "now",
+    "says",
+    "packet",
+    "blocked",
+    "four",
+    "distinct",
+    "remediation",
+    "lanes"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.852Z",
+  "specId": "020",
+  "folderSlug": "post-release-fixes",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "26-03-26_18-27__implemented-spec-012-pre-release-remediation.md",
+    "26-03-26_18-47__completed-full-012-pre-release-remediation.md",
+    "27-03-26_15-38__manual-context-save.md",
+    "27-03-26_16-22__implemented-segment-2-runtime-hunt-continuation.md",
+    "27-03-26_17-07__implemented-segment-3-of-the-canonical-012-review.md"
+  ]
+}

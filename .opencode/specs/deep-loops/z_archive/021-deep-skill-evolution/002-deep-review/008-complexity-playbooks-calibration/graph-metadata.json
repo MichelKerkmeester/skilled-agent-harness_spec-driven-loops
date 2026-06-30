@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review playbook",
+      "review-depth manual scenario",
+      "SKILL version bump",
+      "116/008 resource map",
+      "review-depth resource map",
+      "deep-review complexity path catalog"
+    ],
+    "key_topics": [
+      "deep-review",
+      "playbook",
+      "review-depth",
+      "manual",
+      "scenario",
+      "skill",
+      "version",
+      "bump",
+      "116",
+      "008",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-validator.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-graph.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Constraint",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-06-23T03:49:50.832Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:af803ea8c5daba88ec7d421e94b913eb7c92b000cf00c9e73283ea6e50b8f4d6",
+    "source_doc_hashes": {
+      "spec.md": "dbe5dfd92bbf030745d59f67d9eb44b8252a94a97586cadbe939e0439d62b7fe",
+      "plan.md": "7ad492d0badfe1115f3ebe10460c63df86c09835e8829ad0b579e517aa45b361",
+      "tasks.md": "d483d99bd6612e4fb6dfefba10fbc493c6edda64c8123ca26017d85ab8c45710",
+      "checklist.md": "4d63d46236304ec040dac489b175554a8740907215587806c69314f65a86b505",
+      "implementation-summary.md": "459bdc10e7ec82a1a70d1fe82be34319c34f6167f52351ad1b4ed6101600e1d5",
+      "resource-map.md": "22473da5e1fb24d501acb5172ac896f0fb07a0af6c48d1ca87a5c5b65a16c857"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

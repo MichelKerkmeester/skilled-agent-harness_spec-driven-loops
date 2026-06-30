@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/029-cmd-create-changelog-and-releases",
+  "spec_folder": "skilled-agent-orchestration/z_archive/029-cmd-create-changelog-and-releases",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog release creation",
+      "github release command",
+      "create changelog release",
+      "tag and release workflow",
+      "gh release create command",
+      "changelog release plan",
+      "create changelog implementation",
+      "release phase implementation",
+      "gh release create integration",
+      "changelog release tasks",
+      "create changelog task list",
+      "038 tasks"
+    ],
+    "key_topics": [
+      "changelog",
+      "release",
+      "creation",
+      "github",
+      "command",
+      "create",
+      "tag",
+      "workflow",
+      "plan",
+      "implementation",
+      "phase",
+      "integration"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/commands/create/changelog.md",
+      ".opencode/skills/sk-git/references/finish_workflows.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "finish_workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/finish_workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Creation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Phase Addition",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `create:changelog` command generates changelog markdown files but stops there",
+    "created_at": "2026-04-12T09:02:50.181Z",
+    "last_save_at": "2026-06-23T03:49:49.103Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9753cb4ee7a4a3bc7783ad6e873a480a1a6ecbd4645ec8c88c6e64577f1272e6",
+    "source_doc_hashes": {
+      "spec.md": "fe579b7e6f651f42edcd692e1b3ba361332651c954e6c58bc5aac922c3980ac5",
+      "plan.md": "b8623708dc9cf5ab545951765577084cb0b24411ac18a5ca9dd8b15ca021af4e",
+      "tasks.md": "f6f1415832a30f3610e8bb1d0c89bef67dd507a05022494883e3ef85c3c0b2eb",
+      "checklist.md": "644390ee1c7a15d4a94005aa577d0315a7e6c02c7085af228c6ac2fe3da045da",
+      "implementation-summary.md": "b5eea609f377a3c28b91ac52a1177c430a39bbc113fe93cb18881e31df2ffd09"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

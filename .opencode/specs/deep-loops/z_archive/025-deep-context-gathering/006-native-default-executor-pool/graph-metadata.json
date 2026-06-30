@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/025-deep-context-gathering/006-native-default-executor-pool",
+  "spec_folder": "deep-loops/z_archive/025-deep-context-gathering/006-native-default-executor-pool",
+  "parent_id": "deep-loops/z_archive/025-deep-context-gathering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context native default pool",
+      "deep-context executor pool default",
+      "native only pool deep-context",
+      "deep-context pool question",
+      "executor pool native default",
+      "deep-context native default plan",
+      "executor pool default plan",
+      "native only pool plan",
+      "deep-context pool restructure",
+      "deep-context native default tasks",
+      "executor pool default tasks",
+      "native only pool tasks"
+    ],
+    "key_topics": [
+      "deep-context",
+      "native",
+      "default",
+      "pool",
+      "executor",
+      "only",
+      "question",
+      "plan",
+      "restructure",
+      "tasks",
+      "deep",
+      "start-context-loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/agents/deep-context.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Setup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:start-context-loop` defaulted to a heterogeneous executor pool (`2 native + MiMo + gpt + deepseek`) wired in `deepcontextconfig.json`",
+    "created_at": "2026-06-07T09:45:27Z",
+    "last_save_at": "2026-06-23T03:49:51.797Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fcf32291ee36c54d9a84e8856d36e56934fcd14ddc91a70a01c486cd5b5bef58",
+    "source_doc_hashes": {
+      "spec.md": "ae0e025e96f9a82bbff27bed8bd7c7b21d2bd67fc7ce53b0d2b13196cc1b4a2d",
+      "plan.md": "0ef8a69bce7901cfa09b837a651ca701af5f7e210511cd1a109b487c2db084a5",
+      "tasks.md": "78eec774cb6b5736e49dfcbb070f8561f0495a2801e96022893dd87893ade9d1",
+      "checklist.md": "c4220a7c43c0abb6b3bd5436aa4425ecbf3f81f841657a12276f8e37ed8f398d",
+      "implementation-summary.md": "dc122db0b865f5b8b80c1b4f3d9f71698eeb16adc85e35f05ef1d7b9491ddaa0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

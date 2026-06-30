@@ -66,7 +66,7 @@ Validate documentation quality for skill X and report which sections fail sk-doc
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: short prompt fits inline; default foreground dispatch is fine.
+- **cli-opencode (gpt-5.5/high/fast)**: short prompt fits inline; default foreground dispatch is fine.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise structured output.
 
 ## Success Criteria

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/012-cli-doc-alignment",
+  "description": "The cli- cards opened with `## 1",
+  "keywords": [
+    "cli",
+    "cards",
+    "opened"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.640Z",
+  "specId": "012",
+  "folderSlug": "cli-doc-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

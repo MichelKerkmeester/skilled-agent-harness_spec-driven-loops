@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions",
+  "spec_folder": "deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions",
+  "parent_id": "deep-loops/029-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime backend promotions",
+      "loop-lock cli adapter promotion",
+      "terminal journal taxonomy contract",
+      "deep-loop-workflows phase 002",
+      "runtime-backend-promotions",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "deep-loop-workflows phase 002 summary",
+      "runtime backend promotions complete",
+      "byte-compatible shims verified"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "backend",
+      "promotions",
+      "loop-lock",
+      "cli",
+      "adapter",
+      "promotion",
+      "terminal",
+      "journal",
+      "taxonomy",
+      "contract",
+      "deep-loop-workflows"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs",
+      ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/README.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+      ".opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions/plan.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "artifact-root.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "artifact-root.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five skills duplicate generic plumbing — a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter only in deep-context, re-inlined atomic-write/jsonl-repair mirrors across four reducers, and resolveArtifactRoot/emitResourceMap imported from system-spec-kit/shared (so the two-skill architecture is not self-contained)",
+    "created_at": "2026-06-14T20:16:09.678Z",
+    "last_save_at": "2026-06-23T03:49:48.676Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:504e81058969d7f37de8e78acc5a251c7fa565145d67adb1721bdd9275865f56",
+    "source_doc_hashes": {
+      "spec.md": "1481113419efaa6d9ce5ecbb4c50abd3802dc6875b3feb4776e901c93f11ccc5",
+      "plan.md": "58d9aee5ea4108d1a51eb804637f74fbd6cf3bb6b39856c19668c77852f6ddb9",
+      "tasks.md": "c18cb713398f9c2044a4965a642ab94b540069bf5fca9d4704a82a9b9d9db76c",
+      "checklist.md": "7dbc24ddb1d1f4a53e62d6c9bf70a77f43586a774f0e32f687a0dc290bdaf8ed",
+      "implementation-summary.md": "f43fcac46dd5e61be44fc78e3ffc22debf431aa7473e04b323c4851182848e8e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

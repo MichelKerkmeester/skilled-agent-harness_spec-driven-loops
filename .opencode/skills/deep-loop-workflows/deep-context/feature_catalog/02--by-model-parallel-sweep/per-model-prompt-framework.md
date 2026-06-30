@@ -44,7 +44,7 @@ Omitting any element degrades the seat's output quality and reduces its agreemen
 | MiMo-v2.5-Pro (Xiaomi) | COSTAR | Best framework per benchmark; applied to cli-opencode MiMo seats |
 | MiniMax M3/M2.7 | TIDD-EC | Applied to cli-opencode MiniMax seats |
 | DeepSeek-v4-pro | TIDD-EC | Applied to cli-opencode DeepSeek seats |
-| GPT (cli-codex) | None | codex exec carries its own alignment; no framework wrapper |
+| GPT (cli-opencode) | None | opencode run carries its own alignment; no framework wrapper |
 | Native @deep-context | None | Agent SKILL.md contract is the framework; no additional wrapper |
 
 ### Rendered Prompt Storage

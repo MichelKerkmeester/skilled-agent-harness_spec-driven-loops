@@ -1,0 +1,35 @@
+# Iteration 8 — gpt-5.5 (xhigh, fast) — maintainability
+Dispatched 2026-06-28T14:07:50.557Z | wall 222s
+
+---
+
+Found two fresh maintainability issues. Branch and HVR references check out; feature-catalog and deep-ai-council live paths exist. The remaining problems are stale metadata and a contradicted dead-path claim.
+
+```json
+{
+  "findings": [
+    {
+      "severity": "P1",
+      "dimension": "maintainability",
+      "title": "Zeroed session fingerprints remain in canonical packet docs",
+      "file": ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/spec.md",
+      "loc": "24",
+      "evidence": "spec.md:24 says `fingerprint: \"sha256:0000000000000000000000000000000000000000000000000000000000000000\"`; scoped rg shows the same zero fingerprint in all parent/001/002 canonical docs, while graph-metadata.json has real nonzero `source_fingerprint` values, e.g. 002 graph-metadata.json:215.",
+      "impact": "The packet presents placeholder dedup metadata as if it were real session identity. Resume/dedup consumers that read YAML frontmatter can treat unrelated saves as the same zero-fingerprint session, undermining the claimed reconciliation-to-ground-truth state.",
+      "recommendation": "Populate `session_dedup.fingerprint` with real content/session hashes or remove the field from frontmatter so the nonzero graph metadata remains the only fingerprint source."
+    },
+    {
+      "severity": "P1",
+      "dimension": "maintainability",
+      "title": "Checklist claims no broken ai-council filesystem refs remain while tests still point at the removed path",
+      "file": ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md",
+      "loc": "77",
+      "evidence": "checklist.md:77 says `No known broken `ai-council` filesystem references remain after the rename`; but `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts:14` still requires `.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/rollback.cjs`, and rg finds old `deep-loop-workflows/ai-council` paths across 8 system-spec-kit/sk-doc test files. The old folder is absent and `deep-ai-council` exists.",
+      "impact": "The closure checklist overclaims path hygiene. Future maintainers can trust CHK-011 and miss stale test pointers that will fail or exercise the wrong fixture path after the rename.",
+      "recommendation": "Either fix the stale system-spec-kit/sk-doc test references to `deep-ai-council`, or narrow CHK-011 to the scoped deep-loop live surfaces and explicitly list the remaining out-of-packet stale refs as unresolved."
+    }
+  ],
+  "new_findings_count": 2,
+  "dimension_clean": false
+}
+```

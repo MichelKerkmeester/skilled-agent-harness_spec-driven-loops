@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+  "description": "cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON",
+  "keywords": [
+    "cli-devin",
+    "registry",
+    "entries",
+    "sk-prompt-models",
+    "model-profiles",
+    "skill",
+    "graph-metadata",
+    "skill-graph",
+    "edges",
+    "across",
+    "json"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.427Z",
+  "specId": "003",
+  "folderSlug": "registry-graph-and-skill-advisor-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "111-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

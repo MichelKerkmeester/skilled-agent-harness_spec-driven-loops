@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/024-skills-index-readme",
+  "description": "The skills index is a tabular reference card that has drifted: it counts 21 skill folders when there are 22, miscategorizes system-code-graph as a sem",
+  "keywords": [
+    "skills",
+    "index",
+    "tabular",
+    "reference",
+    "card",
+    "drifted",
+    "counts",
+    "skill",
+    "folders",
+    "miscategorizes",
+    "system-code-graph",
+    "sem"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.410Z",
+  "specId": "024",
+  "folderSlug": "skills-index-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

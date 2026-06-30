@@ -1,0 +1,75 @@
+{
+  "tileId": "accountbeheer-2",
+  "arm": "a1_gate_repair",
+  "runId": "probe2",
+  "primitive": "matrix",
+  "pass": false,
+  "checks": {
+    "titleBandIntrusion": {
+      "pass": false,
+      "offenders": [
+        {
+          "role": "visual",
+          "bbox": [
+            30,
+            307,
+            500,
+            57
+          ]
+        }
+      ]
+    },
+    "visualPanelOverflow": {
+      "pass": false,
+      "offenders": [
+        {
+          "role": "visual",
+          "bottom": 364
+        }
+      ]
+    },
+    "bboxOverlap": {
+      "pass": true,
+      "offenders": []
+    },
+    "bannedContrast": {
+      "pass": true,
+      "offenders": []
+    },
+    "uppercase": {
+      "pass": false,
+      "count": 1,
+      "offenders": [
+        {
+          "role": "eyebrow",
+          "text": "LIVE",
+          "fontSize": 11,
+          "bbox": [
+            476.94,
+            50,
+            35.06,
+            14
+          ]
+        }
+      ]
+    },
+    "clipping": {
+      "pass": true,
+      "offenders": []
+    }
+  },
+  "overflowSummary": {
+    "visualBottomMax": 364,
+    "rowsRendered": 4,
+    "rowsCap": 3
+  },
+  "repair": {
+    "fired": true,
+    "attempt": 1,
+    "regated": false,
+    "convertedToPass": false
+  },
+  "tolerancePx": 2,
+  "fontsReady": true,
+  "schemaVersion": "1.0"
+}

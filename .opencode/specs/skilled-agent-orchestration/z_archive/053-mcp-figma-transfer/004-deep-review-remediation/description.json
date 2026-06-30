@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/053-mcp-figma-transfer/004-deep-review-remediation",
+  "description": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`, `",
+  "keywords": [
+    "067-mcp-figma-transfer",
+    "packet",
+    "shipped",
+    "commits",
+    "across",
+    "repos",
+    "functional",
+    "implementation",
+    "work",
+    "follow-up",
+    "66e1e87",
+    "766206b"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.584Z",
+  "specId": "004",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "053-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

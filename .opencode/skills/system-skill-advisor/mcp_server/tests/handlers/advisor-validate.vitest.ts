@@ -52,10 +52,10 @@ describe('advisor_validate handler', () => {
     writeFileSync(
       outcomesPath,
       [
-        '{"timestamp":"2026-04-24T10:08:00.000Z","runtime":"codex","outcome":"accepted","skillLabel":"system-spec-kit"}',
-        '{"timestamp":"2026-04-24T10:08:01.000Z","runtime":"codex","outcome"',
-        '{"timestamp":"2026-04-24T10:08:02.000Z","runtime":"codex","outcome":"corrected","skillLabel":"system-spec-kit","correctedSkillLabel":"sk-code"}',
-        '{"timestamp":"2026-04-24T10:08:03.000Z","runtime":"codex","outcome":"mystery","skillLabel":"system-spec-kit"}',
+        '{"timestamp":"2026-04-24T10:08:00.000Z","runtime":"opencode","outcome":"accepted","skillLabel":"system-spec-kit"}',
+        '{"timestamp":"2026-04-24T10:08:01.000Z","runtime":"opencode","outcome"',
+        '{"timestamp":"2026-04-24T10:08:02.000Z","runtime":"opencode","outcome":"corrected","skillLabel":"system-spec-kit","correctedSkillLabel":"sk-code"}',
+        '{"timestamp":"2026-04-24T10:08:03.000Z","runtime":"opencode","outcome":"mystery","skillLabel":"system-spec-kit"}',
       ].join('\n'),
       'utf8',
     );
@@ -94,7 +94,7 @@ describe('advisor_validate handler', () => {
         workspaceRoot: REPO_ROOT,
         skillSlug: 'system-spec-kit',
         outcomeEvents: Array.from({ length: 8 }, (_, index) => ({
-          runtime: 'codex',
+          runtime: 'opencode',
           outcome: index < 6 ? 'accepted' : 'ignored',
           skillId: 'system-spec-kit',
           timestamp: `2026-06-10T00:00:0${index}.000Z`,
@@ -139,13 +139,13 @@ describe('advisor_validate handler', () => {
         skillSlug: 'system-spec-kit',
         outcomeEvents: [
           {
-            runtime: 'codex',
+            runtime: 'opencode',
             outcome: 'accepted',
             skillId: 'system-spec-kit',
             timestamp: '2026-06-10T00:00:00.000Z',
           },
           {
-            runtime: 'codex',
+            runtime: 'opencode',
             outcome: 'corrected',
             skillId: 'sk-code',
             correctedSkillId: 'system-spec-kit',

@@ -35,7 +35,7 @@ PRE-BOUND SETUP ANSWERS:
   execution_mode: AUTONOMOUS  # from :auto suffix
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
-  executor: native  # native | cli-codex | cli-claude-code | cli-opencode
+  executor: native  # native | cli-opencode | cli-claude-code | cli-opencode
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
@@ -88,7 +88,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode`)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-opencode` | `cli-claude-code` | `cli-opencode`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh`)
@@ -120,7 +120,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Validation hook:
    - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
-   - Invalid combinations fail fast with clear errors, including `cli-codex` without `--model` and reserved-but-unwired executor kinds
+   - Invalid combinations fail fast with clear errors, including `cli-opencode` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
@@ -130,7 +130,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
-   - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-codex`, `codex`, or `gpt-5.4`
+   - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, ``, or `gpt-5.4`
    - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 
    Q0. Research Topic (if not in command): What topic to research deeply?
@@ -150,7 +150,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
+     B) cli-opencode — ` exec` with --model X -c model_reasoning_effort -c service_tier.
       C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
 
@@ -312,21 +312,21 @@ For code review, see `deep-review` skill (`.opencode/skills/deep-loop-workflows/
 /deep:research:confirm "distributed caching patterns for microservices"
 /deep:research:auto "API rate limiting approaches" --max-iterations 5 --convergence 0.10
 
-# Fan-out: two CLI lineages in parallel (cli-codex + cli-claude-code)
+# Fan-out: two CLI lineages in parallel (cli-opencode + cli-claude-code)
 /deep:research:auto "caching patterns" \
-  --executor=cli-codex --model=o4-mini --label=codex \
+  --executor=cli-opencode --model=o4-mini --label= \
   --executor=cli-claude-code --model=claude-opus-4-8 --label=claude \
   --concurrency=2
 
 # Fan-out: native (sequential agent dispatches) + CLI lineages mixed
 /deep:research:auto "distributed systems consensus" \
   --executor=native --count=1 --label=native \
-  --executor=cli-codex --model=o4-mini --count=2 \
+  --executor=cli-opencode --model=o4-mini --count=2 \
   --concurrency=3
 
 # Fan-out via JSON escape hatch
 /deep:research:auto "WebRTC internals" \
-  --executors='[{"kind":"cli-codex","model":"o4-mini","label":"codex","count":3},{"kind":"cli-claude-code","model":"claude-opus-4-8","label":"claude","count":2}]' \
+  --executors='[{"kind":"cli-opencode","model":"o4-mini","label":"","count":3},{"kind":"cli-claude-code","model":"claude-opus-4-8","label":"claude","count":2}]' \
   --concurrency=4
 ```
 

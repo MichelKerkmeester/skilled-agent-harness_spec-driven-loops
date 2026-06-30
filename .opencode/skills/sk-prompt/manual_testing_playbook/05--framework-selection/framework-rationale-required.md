@@ -45,7 +45,7 @@ Tighten my code documentation prompt; verify the framework rationale names the c
 ### Commands
 
 1. `sk-prompt: Tighten my prompt for code documentation generation — and tell me why you picked the framework you did instead of the others.`
-2. `agent: @prompt-improver raw_task="Improve a code documentation generation prompt and explain framework choice over alternatives." task_type=generation target_cli=codex complexity_hint=6 constraints="Rationale must include selected framework, rejected alternative, and criterion."`
+2. `agent: @prompt-improver raw_task="Improve a code documentation generation prompt and explain framework choice over alternatives." task_type=generation target_cli=opencode complexity_hint=6 constraints="Rationale must include selected framework, rejected alternative, and criterion."`
 3. `bash: rg 'alternative|reasoning|select_best|Framework Selection Algorithm' .opencode/skills/sk-prompt/references/patterns_evaluation.md`
 
 ### Expected

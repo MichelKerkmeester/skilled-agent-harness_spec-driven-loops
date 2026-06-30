@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "completionPct": 100,
+  "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 0 P0, 13 P1, 6 P2. Verdict-flip from 097 FAIL to PASS REFUTED — 098 remediation incomplete. Planning Packet ready in review-report.md §2 for /speckit:plan.",
+  "specFolder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview",
+  "description": "Packet 097 (track-review of 093-096) converged with verdict FAIL on 2026-05-07: 1 active P0 (live",
+  "keywords": [
+    "packet",
+    "097",
+    "track-review",
+    "093-096",
+    "converged",
+    "verdict",
+    "fail",
+    "2026-05-07",
+    "active",
+    "live"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.881Z",
+  "specId": "004",
+  "folderSlug": "track-rereview",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "079-rename-opencode-dirs-to-plural"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "07-05-26_19-09__099-re-review-confirmed-the-097-p0-live-runtime.md"
+  ]
+}

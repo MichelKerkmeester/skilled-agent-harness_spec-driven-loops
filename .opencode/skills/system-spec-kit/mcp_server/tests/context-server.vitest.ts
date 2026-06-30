@@ -337,11 +337,10 @@ describe('Context Server', () => {
       expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
     })
 
-    it('T16e: session tracking falls back to CODEX_THREAD_ID when request session ids are absent', () => {
+    it('T16e: session tracking falls back to the default id when request session ids are absent', () => {
       expect(sourceCode).toMatch(/function\s+resolveSessionTrackingId\s*\(/)
-      expect(sourceCode).toMatch(/process\.env\.CODEX_THREAD_ID/)
       expect(sourceCode).toMatch(/FALLBACK_SESSION_TRACKING_ID/)
-      expect(sourceCode).toMatch(/return explicitSessionId \?\? transportSessionId \?\? codexThreadId \?\? FALLBACK_SESSION_TRACKING_ID;/)
+      expect(sourceCode).toMatch(/return explicitSessionId \?\? transportSessionId \?\? FALLBACK_SESSION_TRACKING_ID;/)
     })
 
     it('T16f: first-call priming exposes a structured primePackage hint', () => {
@@ -1490,49 +1489,38 @@ describe('Context Server', () => {
     })
 
     it('REQ-014: follow_on_tool_use uses the sticky session fallback for sessionless tools', async () => {
-      const previousThreadId = process.env.CODEX_THREAD_ID
-      delete process.env.CODEX_THREAD_ID
+      expect(sourceCode).toContain('let lastKnownSessionId: string | null = null;')
+      expect(sourceCode).toContain('const followOnSessionId = sessionTrackingId ?? lastKnownSessionId;')
 
-      try {
-        expect(sourceCode).toContain('let lastKnownSessionId: string | null = null;')
-        expect(sourceCode).toContain('const followOnSessionId = sessionTrackingId ?? lastKnownSessionId;')
-
-        const logFollowOnToolUseMock = vi.fn()
-        let lastKnownSessionId: string | null = null
-        const resolveSessionTrackingId = (args: Record<string, unknown>): string | undefined => {
-          if (typeof args.sessionId === 'string') return args.sessionId
-          if (typeof args.session_id === 'string') return args.session_id
-          return undefined
-        }
-        const simulateCall = (name: string, args: Record<string, unknown>): void => {
-          const sessionTrackingId = resolveSessionTrackingId(args)
-          if (sessionTrackingId) {
-            lastKnownSessionId = sessionTrackingId
-          }
-
-          if (name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
-            const followOnSessionId = sessionTrackingId ?? lastKnownSessionId
-            if (followOnSessionId) {
-              logFollowOnToolUseMock({}, followOnSessionId)
-            }
-          }
+      const logFollowOnToolUseMock = vi.fn()
+      let lastKnownSessionId: string | null = null
+      const resolveSessionTrackingId = (args: Record<string, unknown>): string | undefined => {
+        if (typeof args.sessionId === 'string') return args.sessionId
+        if (typeof args.session_id === 'string') return args.session_id
+        return undefined
+      }
+      const simulateCall = (name: string, args: Record<string, unknown>): void => {
+        const sessionTrackingId = resolveSessionTrackingId(args)
+        if (sessionTrackingId) {
+          lastKnownSessionId = sessionTrackingId
         }
 
-        simulateCall('memory_search', { query: 'recent issues', sessionId: 'sess-sticky-1' })
-
-        expect(logFollowOnToolUseMock).not.toHaveBeenCalled()
-
-        simulateCall('memory_stats', {})
-
-        expect(logFollowOnToolUseMock).toHaveBeenCalledTimes(1)
-        expect(logFollowOnToolUseMock).toHaveBeenCalledWith(expect.any(Object), 'sess-sticky-1')
-      } finally {
-        if (previousThreadId === undefined) {
-          delete process.env.CODEX_THREAD_ID
-        } else {
-          process.env.CODEX_THREAD_ID = previousThreadId
+        if (name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
+          const followOnSessionId = sessionTrackingId ?? lastKnownSessionId
+          if (followOnSessionId) {
+            logFollowOnToolUseMock({}, followOnSessionId)
+          }
         }
       }
+
+      simulateCall('memory_search', { query: 'recent issues', sessionId: 'sess-sticky-1' })
+
+      expect(logFollowOnToolUseMock).not.toHaveBeenCalled()
+
+      simulateCall('memory_stats', {})
+
+      expect(logFollowOnToolUseMock).toHaveBeenCalledTimes(1)
+      expect(logFollowOnToolUseMock).toHaveBeenCalledWith(expect.any(Object), 'sess-sticky-1')
     })
 
     it('clears in-process caches when the DB is reinitialized externally before dispatch', async () => {
@@ -2633,7 +2621,7 @@ describe('Context Server', () => {
 
     // Startup scan runs in background
     it('T56: Startup scan runs via setImmediate', () => {
-      expect(sourceCode).toMatch(/setImmediate\(\(\)\s*=>\s*\{[\s\S]*?void startupScan\(DEFAULT_BASE_PATH\)/)
+      expect(sourceCode).toMatch(/setImmediate\(\(\)\s*=>\s*\{[\s\S]*?startupScanPromise = startupScan\(DEFAULT_BASE_PATH\)/)
     })
 
     it('T56b: boot FTS integrity check is gated on the unclean-shutdown crash marker (skipped when absent, async-after-ready when present)', () => {

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/015-per-skill-improvement-research",
+  "spec_folder": "design/008-sk-design-parent/015-per-skill-improvement-research",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [
+    "design/008-sk-design-parent/015-per-skill-improvement-research/001-interface",
+    "design/008-sk-design-parent/015-per-skill-improvement-research/002-foundations",
+    "design/008-sk-design-parent/015-per-skill-improvement-research/003-motion",
+    "design/008-sk-design-parent/015-per-skill-improvement-research/004-audit",
+    "design/008-sk-design-parent/015-per-skill-improvement-research/005-md-generator"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design per-skill improvement research",
+      "design mode improvement synthesis",
+      "shared register loading contract",
+      "design router precision research",
+      "sk-design improvement research plan",
+      "design per-skill research execution plan",
+      "sk-design improvement research tasks",
+      "design per-skill research synthesis tasks",
+      "sk-design improvement research checklist",
+      "design per-skill research verification",
+      "design plumbing synthesis checklist",
+      "sk-design improvement decisions"
+    ],
+    "key_topics": [
+      "sk-design",
+      "per-skill",
+      "improvement",
+      "research",
+      "design",
+      "mode",
+      "synthesis",
+      "shared",
+      "register",
+      "loading",
+      "contract",
+      "router"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "001-interface/research/lineages/gpt55fast/research.md",
+      "002-foundations/research/lineages/gpt55fast/research.md",
+      "003-motion/research/lineages/gpt55fast/research.md",
+      "004-audit/research/lineages/gpt55fast/research.md",
+      "005-md-generator/research/lineages/gpt55fast/research.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design family reached a strong content baseline",
+    "created_at": "2026-06-27T04:43:46.841Z",
+    "last_save_at": "2026-06-27T04:47:47.086Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dc432b0865010a83d2c8e307814b82057b31cd4ecbe1f9a0a64908aa18c254a2",
+    "source_doc_hashes": {
+      "spec.md": "13ea2f29251a1497bbc988607cf09b59a6d84532eaa813e0d17681320233ced2",
+      "plan.md": "d5edf0a8ae503211b93fc52430b40c60a82a157de2ac6484e96db59d5366f2d8",
+      "tasks.md": "f5abe0e4952c456dc0a2e0f9e774c6737d24637a8c26442c5a5e4e453fd1b45d",
+      "checklist.md": "7070030347992e7f1897c7bb384694ab28e4b8daff1803e07d27e24aec829816",
+      "decision-record.md": "5dfb9204c7365f895b4abadd3ef11633dd79c6b97e10c29f18fa14813cf084d3",
+      "implementation-summary.md": "316d9acb77f9cc02ea993722c96e5fa2b01310ae7e6607de7a88abf5fd4cdc2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

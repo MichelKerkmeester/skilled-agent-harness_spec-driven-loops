@@ -294,14 +294,14 @@ function isAgentDefinitionTarget(target) {
     .split(path.sep)
     .join('/');
   return /^(\.\/)?\.(opencode|claude)\/agents\/[^/]+\.md$/.test(normalized)
-    || /^(\.\/)?\.codex\/agents\/[^/]+\.toml$/.test(normalized);
+    || /^(\.\/)?\.opencode\/agents\/[^/]+\.toml$/.test(normalized);
 }
 
 function expectedFormatForTarget(target) {
   const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
     .split(path.sep)
     .join('/');
-  return normalized.includes('.codex/agents/') ? 'codex-toml' : 'markdown';
+  return normalized.includes('.opencode/agents/') ? 'opencode-toml' : 'markdown';
 }
 
 function writeMirrorSyncState(stateFilePath, state) {

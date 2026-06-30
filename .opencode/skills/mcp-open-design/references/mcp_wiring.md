@@ -50,7 +50,7 @@ node "$OD_BIN" mcp install claude --print --json       # PREVIEW only
 node "$OD_BIN" mcp install claude                       # actually install
 ```
 
-`od mcp install <agent>` does **not** create a global `od` shim. It registers the stdio MCP server into the target agent's config and nothing else. **[CONFIRMED - read]** The supported agent slugs include `claude codex cursor copilot openclaw antigravity gemini pi vibe hermes cline kimi trae opencode`. **[CONFIRMED - read]**
+`od mcp install <agent>` does **not** create a global `od` shim. It registers the stdio MCP server into the target agent's config and nothing else. **[CONFIRMED - read]** The supported agent slugs include `claude opencode cursor copilot openclaw antigravity gemini pi vibe hermes cline kimi trae opencode`. **[CONFIRMED - read]**
 
 Useful flags on `mcp install`: `--uninstall`, `--print` / `--dry-run`, `--json`, `--name` (override the server key), and `--daemon-url`.
 

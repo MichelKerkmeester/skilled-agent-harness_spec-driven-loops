@@ -208,7 +208,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract across Claude, Codex and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/codex/`.
+A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract across Claude, OpenCode and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/opencode/`.
 
 ---
 

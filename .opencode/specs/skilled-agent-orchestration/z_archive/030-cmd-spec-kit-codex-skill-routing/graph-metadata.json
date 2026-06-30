@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/030-cmd-spec-kit-codex-skill-routing",
+  "spec_folder": "skilled-agent-orchestration/z_archive/030-cmd-spec-kit-codex-skill-routing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex command discoverability",
+      "system-spec-kit shortlist",
+      "quick reference start here",
+      "memory command routing",
+      "039 spec",
+      "codex shortlist plan",
+      "quick reference plan",
+      "system-spec-kit discoverability plan",
+      "039 plan",
+      "039 tasks",
+      "codex shortlist tasks",
+      "research packet tasks"
+    ],
+    "key_topics": [
+      "codex",
+      "command",
+      "discoverability",
+      "system-spec-kit",
+      "shortlist",
+      "quick",
+      "reference",
+      "start",
+      "memory",
+      "routing",
+      "039",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "references/workflows/quick_reference.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research packet in `research/` already answered the core question: Codex does not mainly lack command docs",
+    "created_at": "2026-04-12T09:02:50.182Z",
+    "last_save_at": "2026-06-23T03:49:49.109Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:7cba137600574328b37b2a8d583b69078fc245a3806e8ad7e66d7e48e4f1b31d",
+    "source_doc_hashes": {
+      "spec.md": "2e6edeaa426e47cbafc08be3a82c718bb1a18d88f21c35116f1ba1af6f21d51b",
+      "plan.md": "92028c2bdca6b0c1fd26674a3d73f077e68e9c50f905a7267a8cd65593f7249a",
+      "tasks.md": "06489050c2cfe7b9fb12f9355fde3522300b5de49390796c5cb2b67fd25519f9",
+      "implementation-summary.md": "4ff91ad2d5c6d537aeddf8b4d5335195cdac9e8efeaf59daebb7018a9edb1a14",
+      "research/research.md": "9d215bb60aa657062c997d7bcce689e034ed1e13983b45d2fa3c94b136bd551a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

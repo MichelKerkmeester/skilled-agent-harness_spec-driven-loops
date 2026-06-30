@@ -43,7 +43,6 @@ development_philosophy:
 runtime_agent_path_resolution:
   default: .opencode/agent
   claude: .claude/agents
-  codex: .codex/agents
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK

@@ -1,0 +1,52 @@
+[
+  {
+    "tile": 1,
+    "score": 88,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "Bar value labels (€112.800, €98.200) are quite light grey against white, slightly low contrast; minor visual noise from reference dashed line spanning all quarters."
+  },
+  {
+    "tile": 2,
+    "score": 94,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "None"
+  },
+  {
+    "tile": 3,
+    "score": 91,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "Delta indicator (▲ €2.740 t.o.v. Q4) shown as upward green for a cost increase; semantically correct that it's status-only green, but a cost rise being green-positive is mildly counterintuitive without a down-trend red option."
+  },
+  {
+    "tile": 4,
+    "score": 86,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Category labels collide with 'Werkelijk' suffix ('OnderhoudWerkelijk' runs together with no spacing); donut segment boundaries are nearly invisible — only one navy hue used, segments lack differentiation."
+  },
+  {
+    "tile": 5,
+    "score": 89,
+    "overflow": false,
+    "readable": true,
+    "on_brand": false,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Down-delta pills (▼ 3,1% and ▼ 5,1%) are rendered in red/orange tones which violate the 'no orange / status-only green' rule; reduce-deltas should reuse neutral or the brand palette."
+  }
+]

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+    "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "085 sk-prompt playbook and agent rename",
+      "improve-prompt to prompt-improver",
+      "sk-prompt manual testing playbook",
+      "rename improve-prompt agent",
+      "prompt-improver agent"
+    ],
+    "key_topics": [
+      "085",
+      "sk-prompt",
+      "playbook",
+      "agent",
+      "rename",
+      "improve-prompt",
+      "prompt-improver",
+      "manual",
+      "testing",
+      "two",
+      "related",
+      "gaps"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/prompt.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/specs/descriptions.json",
+      ".codex/config.toml",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".claude/CLAUDE.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
+    "created_at": "2026-05-06T15:30:00Z",
+    "last_save_at": "2026-06-23T03:49:49.942Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:da6171ed6a5888e9cb22c01d505bc4644d2e34ea76d7940082908fc10615ba03",
+    "source_doc_hashes": {
+      "spec.md": "818210b82966f3d15d4af460812d573f7f4722d639fb043c6dda9f4ec8caa065"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

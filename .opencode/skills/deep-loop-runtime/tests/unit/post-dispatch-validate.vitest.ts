@@ -366,12 +366,12 @@ describe('post-dispatch-validate', () => {
           stateLogPath,
           previousStateLogSize,
           requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
-          executorKind: 'cli-codex',
+          executorKind: 'cli-claude-code',
         }),
       ).toEqual({
         ok: false,
         reason: 'executor_missing',
-        details: "missing executor provenance for non-native executor kind 'cli-codex'",
+        details: "missing executor provenance for non-native executor kind 'cli-claude-code'",
       });
     });
   });
@@ -417,7 +417,7 @@ describe('post-dispatch-validate', () => {
           stateLogPath,
           previousStateLogSize,
           requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
-          executorKind: 'cli-codex',
+          executorKind: 'cli-claude-code',
         }),
       ).toEqual({
         ok: false,

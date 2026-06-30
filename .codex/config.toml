@@ -1,67 +1,17 @@
-approval_policy = "never"
-model_auto_compact_token_limit = 750000
+# Project-scoped Codex Desktop App bridge. Codex loads this only after the
+# project is trusted, and user-level auth/provider settings stay outside git.
+
 sandbox_mode = "danger-full-access"
+approval_policy = "never"
+[mcp_servers.sequential_thinking]
+command = "npx"
+args = ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"]
 
-[agents.ai-council]
-config_file = "agents/ai-council.toml"
-description = "Multi-strategy planning architect for diverse reasoning and optimal plans."
-
-[agents.code]
-config_file = "agents/code.toml"
-description = "Application-code implementation specialist using sk-code for stack-aware execution."
-
-[agents.context]
-config_file = "agents/context.toml"
-description = "Production context retrieval specialist (memory-first, read-only)."
-
-[agents.debug]
-config_file = "agents/debug.toml"
-description = "Debugging specialist for root-cause analysis and fix validation."
-
-[agents.deep-improvement]
-config_file = "agents/deep-improvement.toml"
-description = "Proposal-only mutator for bounded deep-improvement candidate generation with evaluator-first rules"
-
-[agents.deep-research]
-config_file = "agents/deep-research.toml"
-description = "Iterative investigation specialist with convergence detection."
-
-[agents.deep-review]
-config_file = "agents/deep-review.toml"
-description = "LEAF review agent for deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
-
-[agents.markdown]
-config_file = "agents/markdown.toml"
-description = "Dedicated /create:* documentation executor using sk-doc templates."
-
-[agents.orchestrate]
-config_file = "agents/orchestrate.toml"
-description = "Senior orchestrator for decomposition, delegation, and synthesis."
-
-[agents.prompt-improver]
-config_file = "agents/prompt-improver.toml"
-description = "Prompt-improver specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
-
-[agents.review]
-config_file = "agents/review.toml"
-description = "Code review specialist focused on correctness, risk, and tests."
-
-[features]
-child_agents_md = true
-multi_agent = true
-
-[mcp_servers.code_mode]
-args = [".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"]
+[mcp_servers."mk-spec-memory"]
 command = "node"
-
-[mcp_servers.code_mode.env]
-UTCP_CONFIG_FILE = ".utcp_config.json"
-
-[mcp_servers.mk-spec-memory]
 args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
-command = "node"
 
-[mcp_servers.mk-spec-memory.env]
+[mcp_servers."mk-spec-memory".env]
 EMBEDDINGS_PROVIDER = "auto"
 HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
@@ -83,25 +33,9 @@ _NOTE_FEATURE_FLAGS = "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPEC
 _NOTE_DAEMON_REELECTION = "Daemon re-election is on by default in the launcher code: on disposal the launcher releases the shared daemon for a live secondary to adopt instead of killing it, so concurrent sessions keep MCP transport. An unadopted released daemon is bounded by SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN. Set SPECKIT_DAEMON_REELECTION=0 to restore kill-on-disposal. See ENV_REFERENCE.md."
 _NOTE_RETRY_TUNING = "Bulk re-embed retry tuning: raised pending cap + max-age + faster batch/interval so a large embedding backlog drains instead of being parked as failed (defaults park excess/old pending: cap 1000, 24h age, 5-per-5min)."
 
-[mcp_servers.mk_code_index]
-args = [".opencode/bin/mk-code-index-launcher.cjs"]
-command = "node"
-
-[mcp_servers.mk_code_index.env]
-SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
-SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
-SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
-SPECKIT_MAX_SECONDARY_CLIENTS = "64"
-_NOTE_DB = "Database lives SKILL-LOCAL at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default (shared across runtimes via the .opencode/skills symlink); SPECKIT_CODE_GRAPH_DB_DIR overrides. Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first launcher startup."
-_NOTE_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE in .env.local (gitignored) to true (forces all 5 INDEX_* to true) or to a comma-separated subset such as skills,plugins (forces only those categories); the launcher applies the selection at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
-_NOTE_RESCAN_THRESHOLD = "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
-
 [mcp_servers.mk_skill_advisor]
-args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
 command = "node"
+args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
 
 [mcp_servers.mk_skill_advisor.env]
 HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
@@ -117,16 +51,25 @@ _NOTE_DOC_TRIGGERS = "Opt-in doc-frontmatter harvest: skill_graph_scan ingests r
 _NOTE_TRUST_DEFAULT = "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected."
 _NOTE_HF_EMBED_SOCKET = "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)"
 
-[mcp_servers.sequential_thinking]
-args = ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"]
-command = "npx"
+[mcp_servers.mk_code_index]
+command = "node"
+args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
-[shell_environment_policy]
-inherit = "core"
+[mcp_servers.mk_code_index.env]
+SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
+SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
+SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
+_NOTE_DB = "Database lives SKILL-LOCAL at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default (shared across runtimes via the .opencode/skills symlink); SPECKIT_CODE_GRAPH_DB_DIR overrides. Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first launcher startup."
+_NOTE_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE in .env.local (gitignored) to true (forces all 5 INDEX_* to true) or to a comma-separated subset such as skills,plugins (forces only those categories); the launcher applies the selection at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
+_NOTE_RESCAN_THRESHOLD = "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
 
-[shell_environment_policy.set]
-CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING = "1"
-ENABLE_PROMPT_CACHING_1H = "true"
-ENABLE_TOOL_SEARCH = "true"
-MAX_THINKING_TOKENS = "999999"
-SPECKIT_ABLATION = "true"
+[mcp_servers.code_mode]
+command = "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node"
+args = [".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"]
+
+[mcp_servers.code_mode.env]
+UTCP_CONFIG_FILE = ".utcp_config.json"

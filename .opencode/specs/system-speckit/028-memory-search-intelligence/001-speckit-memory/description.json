@@ -1,0 +1,20 @@
+{
+  "level": "phase",
+  "specFolder": "001-speckit-memory",
+  "description": "OpenCode temp worker reaping and Vitest runaway prevention",
+  "keywords": [
+    "opencode",
+    "temp",
+    "worker",
+    "reaping",
+    "vitest",
+    "runaway",
+    "prevention"
+  ],
+  "lastUpdated": "2026-06-30T07:44:28.302Z",
+  "specId": "001",
+  "folderSlug": "speckit-memory",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

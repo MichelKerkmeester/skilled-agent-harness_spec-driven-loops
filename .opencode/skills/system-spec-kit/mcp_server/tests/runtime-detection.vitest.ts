@@ -5,18 +5,12 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, it, expect, afterEach } from 'vitest';
-import { clearCodexHookPolicyCacheForTests } from '../lib/codex-hook-policy.js';
 import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../lib/runtime-detection.js';
 
 function clearRuntimeEnv(): void {
   delete process.env.CLAUDE_CODE;
   delete process.env.CLAUDE_SESSION_ID;
   delete process.env.MCP_SERVER_NAME;
-  delete process.env.CODEX_CLI;
-  delete process.env.CODEX_THREAD_ID;
-  delete process.env.CODEX_TUI_RECORD_SESSION;
-  delete process.env.CODEX_TUI_SESSION_LOG_PATH;
-  delete process.env.CODEX_SANDBOX;
   delete process.env.OPENAI_API_KEY;
   delete process.env.COPILOT_CLI;
   delete process.env.GITHUB_COPILOT_TOKEN;
@@ -33,8 +27,6 @@ describe('runtime detection', () => {
       rmSync(tempDir, { recursive: true, force: true });
       tempDir = null;
     }
-    clearCodexHookPolicyCacheForTests();
-
     // Restore original env
     for (const key of Object.keys(process.env)) {
       if (!(key in originalEnv)) {
@@ -50,13 +42,6 @@ describe('runtime detection', () => {
       const result = detectRuntime();
       expect(result.runtime).toBe('claude-code');
       expect(result.hookPolicy).toBe('enabled');
-    });
-
-    it('detects codex-cli when CODEX_THREAD_ID is present', () => {
-      process.env.CODEX_THREAD_ID = 'thread-123';
-      const result = detectRuntime();
-      expect(result.runtime).toBe('codex-cli');
-      expect(['live', 'partial', 'unavailable']).toContain(result.hookPolicy);
     });
 
     it('detects copilot-cli with enabled hooks when repo hook config is present', () => {
@@ -120,10 +105,6 @@ describe('runtime detection', () => {
     it('detects unknown runtime by default', () => {
       delete process.env.CLAUDE_CODE;
       delete process.env.CLAUDE_SESSION_ID;
-      delete process.env.CODEX_CLI;
-      delete process.env.CODEX_THREAD_ID;
-      delete process.env.CODEX_TUI_RECORD_SESSION;
-      delete process.env.CODEX_TUI_SESSION_LOG_PATH;
       delete process.env.COPILOT_CLI;
       const result = detectRuntime();
       expect(result.runtime).toBe('unknown');

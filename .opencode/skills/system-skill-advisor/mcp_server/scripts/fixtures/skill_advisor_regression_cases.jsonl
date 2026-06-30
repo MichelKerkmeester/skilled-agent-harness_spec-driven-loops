@@ -30,8 +30,8 @@
 {"id":"P1-PROMPT-001","priority":"P1","prompt":"improve this prompt with COSTAR framework","confidence_only":false,"expect_result":true,"expected_top_any":["sk-prompt"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PROMPT-002","priority":"P1","prompt":"enhance my prompt using CRISPE and CRAFT","confidence_only":false,"expect_result":true,"expected_top_any":["sk-prompt"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-DOC-001","priority":"P1","prompt":"create markdown documentation and install guide","confidence_only":false,"expect_result":true,"expected_top_any":["sk-doc"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-CLI-001","priority":"P1","prompt":"use codex cli for second opinion","confidence_only":false,"expect_result":true,"expected_top_any":["cli-codex"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-CLI-002","priority":"P1","prompt":"delegate to codex for code generation","confidence_only":false,"expect_result":true,"expected_top_any":["cli-codex"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-CLI-001","priority":"P1","prompt":"use opencode cli for second opinion","confidence_only":false,"expect_result":true,"expected_top_any":["cli-opencode"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-CLI-002","priority":"P1","prompt":"delegate to opencode for code generation","confidence_only":false,"expect_result":true,"expected_top_any":["cli-opencode"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-CLI-003","priority":"P1","prompt":"use claude code cli for extended thinking","confidence_only":false,"expect_result":true,"expected_top_any":["cli-claude-code"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-FULLSTACK-001","priority":"P1","prompt":"build full stack typescript service","confidence_only":false,"expect_result":false,"expected_top_any":[],"allow_command_bridge":false}
 {"id":"P1-ABSTAIN-001","priority":"P1","prompt":"help","confidence_only":false,"expect_result":false,"expected_top_any":[],"allow_command_bridge":false}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/005-cli-opencode-readme",
+  "description": "The cli-opencode README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a skill version of 1.0.0 (the s",
+  "keywords": [
+    "cli-opencode",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "two",
+    "stale",
+    "facts",
+    "skill",
+    "version"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.319Z",
+  "specId": "005",
+  "folderSlug": "cli-opencode-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

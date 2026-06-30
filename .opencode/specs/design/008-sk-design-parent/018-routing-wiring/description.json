@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/018-routing-wiring",
+  "description": "Router and registry wiring lags the landed design content in three modes",
+  "keywords": [
+    "router",
+    "registry",
+    "wiring",
+    "lags",
+    "landed",
+    "design",
+    "content",
+    "three",
+    "modes"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.800Z",
+  "specId": "018",
+  "folderSlug": "routing-wiring",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

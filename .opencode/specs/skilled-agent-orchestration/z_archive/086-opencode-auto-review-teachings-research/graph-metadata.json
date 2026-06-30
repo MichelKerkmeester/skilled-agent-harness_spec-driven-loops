@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research",
+  "spec_folder": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "106 upstream auto-review research",
+      "dzianisv auto-review analysis",
+      "opencode-plugins auto-review teachings",
+      "session.idle auto-review pattern",
+      "cross-AI reviewer plugin",
+      "106 upstream auto-review plan",
+      "auto-review research dispatch plan",
+      "106 tasks",
+      "upstream auto-review tasks",
+      "106 implementation summary",
+      "upstream auto-review summary",
+      "106 teachings extracted"
+    ],
+    "key_topics": [
+      "106",
+      "upstream",
+      "auto-review",
+      "research",
+      "dzianisv",
+      "analysis",
+      "opencode-plugins",
+      "teachings",
+      "session",
+      "idle",
+      "pattern",
+      "cross-ai"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/review-report.md",
+      "research/iterations/iteration-020.md",
+      "research/deep-research-state.jsonl",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "research/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-020.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-020.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "campaign_start",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actual",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The upstream `dzianisv/opencode-plugins` repository ships an `auto-review` OpenCode plugin (branch `issue-136-package-auto-review`) that automatically dispatches a cross-model review session whenever an OpenCode session goes idle",
+    "created_at": "2026-05-16T06:30:00Z",
+    "last_save_at": "2026-06-23T03:49:50.324Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b413e317abcd8039e708b166dfbbc7e62922f20150ac576e9b94e4613f28b100",
+    "source_doc_hashes": {
+      "spec.md": "9a9de17c76df9f4716c1fd93ae815cf271c6967f3a00b94cae089ec29f9f667c",
+      "plan.md": "890e05682feeee8859af4869788bec797e75991953bb43695b02901aac9bef33",
+      "tasks.md": "d551e965b3f6aa8c91ccd7c96aa113abdb19aad39fda407697fde35f1cffcfff",
+      "implementation-summary.md": "be865ae03fdbc7d45153510030e106265c808c4ce457e0c9b37ba6e485bad781"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

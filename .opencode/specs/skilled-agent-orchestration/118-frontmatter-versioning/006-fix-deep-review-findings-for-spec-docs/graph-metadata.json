@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
+  "spec_folder": "skilled-agent-orchestration/118-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
+  "parent_id": "skilled-agent-orchestration/118-frontmatter-versioning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix deep review findings",
+      "spec doc accuracy remediation",
+      "frontmatter versioning metadata refresh",
+      "reconcile child continuity",
+      "populate phase plan tasks",
+      "fix deep review findings plan",
+      "spec doc remediation plan",
+      "metadata refresh backfill plan",
+      "child continuity reconcile plan",
+      "engine hardening plan",
+      "fix deep review findings tasks",
+      "spec doc remediation tasks"
+    ],
+    "key_topics": [
+      "fix",
+      "deep",
+      "review",
+      "findings",
+      "spec",
+      "doc",
+      "accuracy",
+      "remediation",
+      "frontmatter",
+      "versioning",
+      "metadata",
+      "refresh"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A two-model deep review (MiMo v2.5 Pro + DeepSeek v4 Pro, 10 iterations) returned CONDITIONAL with zero P0 and zero correctness or security defects, but flagged systematic documentation and metadata drift: the parent spec.md scope counts were estimates (`~2,500`, `~436`, `~1,700`) rather than the actual `2,222 / 457 / 1,753`; the parent and child `graph-metadata.json` were stale (`status: planned`, null active-child pointer, stale source fingerprints); child `spec.md` continuity read `completionpct: 0` while `Status: Complete`; the five child `plan.md`/`tasks.md` were unfilled scaffolds; and a",
+    "created_at": "2026-06-23T11:45:04Z",
+    "last_save_at": "2026-06-25T09:22:08.545Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e4619b4bdb7a7c4c20cac75297cc595e85d438dc21e2024e5debe8b76a46100b",
+    "source_doc_hashes": {
+      "spec.md": "fa1f5b482fed111892ea846bab305f60fb18c233addc83ebc5b8d742b7ad38d7",
+      "plan.md": "0a0459edba6166bf6e294d559d018c148ccd66dc65ec56c671021617cc6c49f8",
+      "tasks.md": "5d0504820f45fa94502226bcd3cb805de3a9f86a68c48f00a41017b1e5d2030a",
+      "implementation-summary.md": "15b1d79ba70e08b953ed040e7bb2ac4f1d453d808e5aee0133e47a4b28f96f0e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

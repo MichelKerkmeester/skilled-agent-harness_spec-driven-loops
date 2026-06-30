@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/19.png",
+ "title": "Kwartaal cijfers.",
+ "desc": "Download elk kwartaal een kostenoverzicht.",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/kwartaalcijfers-glm-1.html",
+   "brief": "A Q1-Q4 quarterly cost bar chart: four bars (Q1-Q4 2026) with amounts, the current quarter highlighted navy."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/kwartaalcijfers-glm-2.html",
+   "brief": "A download card: 'Kwartaaloverzicht Q1 2026' with a total + a navy 'Download PDF' button (the signature) + file meta."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/kwartaalcijfers-glm-3.html",
+   "brief": "A cost-trend area/line chart over the last quarters (navy line/area), with a current-value callout."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/kwartaalcijfers-glm-4.html",
+   "brief": "A quarter category breakdown: a donut or ranked bars of cost categories (Onderhoud, Verf, Tuigerij) for the quarter + center total."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/kwartaalcijfers-glm-5.html",
+   "brief": "A year-over-year comparison: Q1-Q4 paired bars 2025 vs 2026, with a % change indicator."
+  }
+ ]
+}

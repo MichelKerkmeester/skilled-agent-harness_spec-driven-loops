@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-graph-s3",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "graph",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 106325,
+  "bytes": 102164,
+  "stderrTail": ""
+}

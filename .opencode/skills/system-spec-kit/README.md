@@ -142,7 +142,7 @@ node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' 
 
 Exit codes: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn.
 
-Codex CLI note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
+OpenCode note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
 ---
 
@@ -698,7 +698,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 }
 ```
 
-OpenCode, Claude Code, Codex and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
+OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
 
 ### Feature Flags
 

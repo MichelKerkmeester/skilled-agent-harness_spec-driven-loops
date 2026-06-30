@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/036-cli-testing-playbooks",
+  "spec_folder": "skilled-agent-orchestration/z_archive/036-cli-testing-playbooks",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli testing playbook",
+      "cli playbook",
+      "manual testing playbook",
+      "048-cli-testing-playbooks",
+      "cli playbook validation",
+      "cli playbook plan",
+      "048 plan",
+      "cli testing playbook plan",
+      "048 tasks",
+      "cli playbook tasks",
+      "048 checklist",
+      "cli playbook checklist"
+    ],
+    "key_topics": [
+      "cli",
+      "testing",
+      "playbook",
+      "manual",
+      "048-cli-testing-playbooks",
+      "validation",
+      "plan",
+      "048",
+      "tasks",
+      "checklist",
+      "five",
+      "orchestrator"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-codex/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      "review/review-report.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/commands/create/testing-playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "MANUAL_TESTING_PLAYBOOK.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drafted Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
+    "created_at": "2026-04-26T08:19:52.465Z",
+    "last_save_at": "2026-06-23T03:49:49.314Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0bc612f48f903dfa0127fb8fdae20d91fb38b04e962733ad82e5c7d4d2c945a5",
+    "source_doc_hashes": {
+      "spec.md": "49914029947472b1264ce901a0a3a29d1d7ab7986a4b434eb755d9d9fc75cbec",
+      "plan.md": "676dd29f5d121f791e534d440b2035278a63db1677d46df55ad7f04480c3ba74",
+      "tasks.md": "21b72d1847338917beabd361a5cad060382cfc4ad64e5ab8b019e9a06f4ba4e5",
+      "checklist.md": "69f6d701f8d6bbfc72e2af7680b153dc2f610e47592382dafcdec86e31aee756",
+      "decision-record.md": "f3648e5ca9908e9f2f0cb63ed07f3549b8dea0b222ec9cc14e1501bb49c5071e",
+      "implementation-summary.md": "ffd8e2c61acc74b75f416373b7e21675ee417032c29d5d09558f6e1d79a5cf07"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

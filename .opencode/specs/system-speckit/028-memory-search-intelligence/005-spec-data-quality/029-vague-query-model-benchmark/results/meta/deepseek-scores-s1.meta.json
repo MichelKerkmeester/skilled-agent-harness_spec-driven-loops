@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-scores-s1",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "scores",
+  "queryClass": "generic",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 95232,
+  "bytes": 74427,
+  "stderrTail": ""
+}

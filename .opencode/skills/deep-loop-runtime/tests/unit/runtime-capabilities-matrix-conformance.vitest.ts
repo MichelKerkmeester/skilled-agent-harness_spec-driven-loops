@@ -31,9 +31,9 @@ const RESOLVER_CONFORMANT = [
 
 const COUNCIL_MATRIX = resolve(WORKFLOWS, 'deep-ai-council', 'assets', 'runtime_capabilities.json');
 
-// Every graph-backed mode mirrors the same three runtime targets, so a matrix
-// that drops one (or grows a fourth unannounced) is per-mode drift.
-const EXPECTED_RUNTIME_IDS = ['opencode', 'claude', 'codex'];
+// Every graph-backed mode mirrors the same supported runtime targets, so a matrix
+// that drops one (or grows an unannounced one) is per-mode drift.
+const EXPECTED_RUNTIME_IDS = ['opencode', 'claude'];
 
 describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
   it('every conformant matrix file exists on disk', () => {

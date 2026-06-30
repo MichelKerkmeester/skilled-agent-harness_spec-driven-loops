@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/006-sibling-discriminator",
+  "description": "Each `/design:` wrapper carried no sibling discriminator (evidence: `commands/design/interface.md:13`)",
+  "keywords": [
+    "design",
+    "wrapper",
+    "carried",
+    "sibling",
+    "discriminator",
+    "evidence",
+    "commands",
+    "interface"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.031Z",
+  "specId": "006",
+  "folderSlug": "sibling-discriminator",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

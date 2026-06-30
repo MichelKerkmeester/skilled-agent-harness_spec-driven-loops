@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-agent-s1",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "agent",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 81920,
+  "bytes": 64211,
+  "stderrTail": ""
+}

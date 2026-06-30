@@ -127,7 +127,7 @@ Validate 267d runtime instruction routing tables
 
 ### Expected
 
-All 3 runtime instruction files contain routing enforcement language for semantic vs structural queries (the Codex chain reads the root `AGENTS.md`; `.codex/AGENTS.md` is voice-only by design and defers framework matters to it)
+All 3 runtime instruction files contain routing enforcement language for semantic vs structural queries (the OpenCode chain reads the root `AGENTS.md`; `.opencode/AGENTS.md` is voice-only by design and defers framework matters to it)
 
 ### Evidence
 

@@ -1,0 +1,27 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/047-agent-implement-code",
+  "description": "The `.opencode/agents/` inventory has 10 agents (review, orchestrate, debug, write, context, deep-research, deep-review, improve-agent, improve-prompt",
+  "keywords": [
+    "opencode",
+    "agents",
+    "inventory",
+    "review",
+    "orchestrate",
+    "debug",
+    "write",
+    "context",
+    "deep-research",
+    "deep-review",
+    "improve-agent",
+    "improve-prompt"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.397Z",
+  "specId": "047",
+  "folderSlug": "agent-implement-code",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

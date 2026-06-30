@@ -1,0 +1,26 @@
+{
+  "sessionId": "fanout-opus-claude2-1781464600582-ntawto",
+  "generation": 1,
+  "openFindings": [
+    {"id": "F-OPUS-003", "severity": "P1", "category": "traceability", "finding_class": "checklist-evidence-fail", "file": ".opencode/skills/mcp-figma/SKILL.md:14", "title": "voice-sweep completion claim is false (31 em dashes + prose semicolon vs NFR-C01/CHK-013)", "firstSeenIteration": 3, "status": "active", "content_hash": "opus-f003", "adjudicatedConfidence": 0.9},
+    {"id": "F-OPUS-001", "severity": "P2", "category": "correctness", "finding_class": "script-hygiene", "file": ".opencode/skills/mcp-figma/scripts/install.sh:156", "title": "install.sh leaks v to global scope in main()", "firstSeenIteration": 1, "status": "active", "content_hash": "opus-f001"},
+    {"id": "F-OPUS-002", "severity": "P2", "category": "security", "finding_class": "defense-in-depth", "file": ".opencode/skills/mcp-figma/references/tool_surface.md:185", "title": "arbitrary/destructive gating is contract-only", "firstSeenIteration": 2, "status": "active", "content_hash": "opus-f002"},
+    {"id": "F-OPUS-004", "severity": "P2", "category": "traceability", "finding_class": "doc-drift", "file": ".opencode/specs/design/003-mcp-figma-with-direct-cli-support/002-skill-build-and-registration/spec.md:93", "title": "stale mcp-magicpath references in spec-002 docs", "firstSeenIteration": 3, "status": "active", "content_hash": "opus-f004"},
+    {"id": "F-OPUS-005", "severity": "P2", "category": "traceability", "finding_class": "continuity-freshness", "file": ".opencode/specs/design/003-mcp-figma-with-direct-cli-support/spec.md:20", "title": "zero-fingerprint session_dedup placeholder", "firstSeenIteration": 3, "status": "active", "content_hash": "opus-f005"},
+    {"id": "F-OPUS-006", "severity": "P2", "category": "maintainability", "finding_class": "house-voice-divergence", "file": ".opencode/skills/mcp-figma/SKILL.md:14", "title": "em-dash style divergence from sibling norm raises follow-on-edit cost", "firstSeenIteration": 4, "status": "active", "content_hash": "opus-f006"}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {"P0": 0, "P1": 1, "P2": 5},
+  "convergenceScore": 1.0,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "releaseReadinessState": "converged",
+  "totalIterations": 5
+}

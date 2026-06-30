@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/005-agent-orchestrate",
+  "description": "`@orchestrate` (855 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "orchestrate",
+    "855",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.501Z",
+  "specId": "005",
+  "folderSlug": "agent-orchestrate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "048-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

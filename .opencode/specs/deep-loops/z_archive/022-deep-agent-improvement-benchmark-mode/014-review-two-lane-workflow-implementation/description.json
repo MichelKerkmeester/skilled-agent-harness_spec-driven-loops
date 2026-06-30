@@ -1,0 +1,35 @@
+{
+  "title": "Feature Specification: review two-lane workflow implementation",
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
+  "description": "The two-lane program (008-013) shipped real code and command surfaces verified by the build's own gates (TST-1, vitest 133, lane smokes), but had not",
+  "keywords": [
+    "two-lane",
+    "program",
+    "008-013",
+    "shipped",
+    "real",
+    "code",
+    "command",
+    "surfaces",
+    "verified",
+    "build",
+    "own",
+    "gates",
+    "tst-1",
+    "vitest",
+    "133",
+    "lane",
+    "smokes"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.255Z",
+  "specId": "014",
+  "folderSlug": "review-two-lane-workflow-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix",
+  "spec_folder": "skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "097 cli-opencode stdin fix",
+      "opencode run hangs",
+      "opencode dev null stdin",
+      "opencode background dispatch hang",
+      "cli-opencode automation hang",
+      "097 resource map",
+      "cli-opencode stdin fix paths",
+      "dev null fix file ledger"
+    ],
+    "key_topics": [
+      "097",
+      "cli-opencode",
+      "stdin",
+      "fix",
+      "opencode",
+      "run",
+      "hangs",
+      "dev",
+      "null",
+      "background",
+      "dispatch",
+      "hang"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/references/integration_patterns.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redirect Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Constraints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "yaml",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdout",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "diff",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "corrected",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "OVERVIEW",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
+    "created_at": "2026-05-08T13:30:00Z",
+    "last_save_at": "2026-06-23T03:49:50.151Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2700796e214bcbee989b8dcacdba02e8a6dbbc69ea4387952ff7337419007872",
+    "source_doc_hashes": {
+      "spec.md": "886d2255ceecbc1c4b4255d2f34177c91e59cfdea3f18cbb7ff74814bbe95106",
+      "plan.md": "ba3ad45d4b9761de40ef31615e6a9faa878d4ffcc507348d153a50a7b2448fce",
+      "tasks.md": "742ea2d6ce68f572b5a3404bbe5f25dd559068fdc69090c16d3632af7fcfc3f3",
+      "checklist.md": "5a3cb2f3dcc3d066b785df0cd1671aaaecd101aa097446ecaedbf07222377ef6",
+      "implementation-summary.md": "db8835ac5618fe51ed586ee067bc31c6a785fade367c53ce4866638a4ad938d3",
+      "resource-map.md": "74f9dcf5fe0ba1c9b37d7b2e2d463db28a726f19ef4abf903853a86edc951126"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,516 @@
+You are an INDEPENDENT second-opinion reviewer. A program to improve GLM-5.2 vision-to-code maritime-B2B "bento" dashboard tiles (560x480 self-contained HTML) was researched + proposed by GPT-5.5 (xhigh). Baseline = 27/45 = 60% SHIP; ROOT CAUSE = the LAYOUT PRIMITIVE — 2D-positioned diagrams (matrix/node/routing/funnel) score 35-58 while linear-flow tiles (table/timeline/list/donut) score 86-94 (~41pt gap). The program has 6 phases; you review ONE phase below (A6 GPT-5.5 skeleton author).
+
+Give a RIGOROUS, CRITICAL second opinion — do NOT rubber-stamp. Your value is catching what a single model (GPT-5.5) missed: hidden assumptions, gaps, cheaper alternatives, failure modes, over-optimistic predictions.
+
+=== THE PROPOSED PHASE (authored by GPT-5.5) ===
+# spec.md
+---
+title: "Feature Specification: GPT-5.5 Geometry-Skeleton Author (2D-Risk Escalation)"
+description: "GPT-5.5 as a cost-capped geometry-skeleton author for 2D-risk bento tiles that the deterministic skeleton (phase 004) cannot recover; it authors a coordinate skeleton, never final tile code, and never runs on linear tiles."
+trigger_phrases:
+  - "gpt-5.5 skeleton author"
+  - "2d skeleton escalation"
+  - "cost-capped escalation"
+  - "geometry skeleton author"
+  - "bento 2d-risk tiles"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored Level 1 planning spec for the GPT-5.5 skeleton-author escalation (angle A6)"
+    next_safe_action: "Implement after phases 001/002/004 land; gate adoption on +3 recovery per dollar"
+    blockers:
+      - "Escalation path — depends on phase 004 (skeleton-first-2d) and the phase 001 deterministic gate landing first"
+    key_files:
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "planning-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Is a +1 to +3 tile recovery worth the paid GPT-5.5 cost vs downgrade-to-linear?"
+    answered_questions:
+      - "Executor for the GPT-5.5 role = cli-opencode openai/gpt-5.5-fast --variant xhigh"
+---
+# Feature Specification: GPT-5.5 Geometry-Skeleton Author (2D-Risk Escalation)
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+-->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | P2 |
+| **Status** | Draft |
+| **Created** | 2026-06-29 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `../spec.md` (Phase 5 of glm-visual-refinement) |
+| **Implements** | Research angle A6 + recommended-pipeline step 8 escalation |
+| **Predecessor** | Phase 004 `004-skeleton-first-2d/` (deterministic skeleton + best-of-3) |
+| **Successor** | Phase 006 `006-adoption-gate-and-rerun/` (final gate + measured re-run) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The deterministic geometry skeleton (phase 004) recovers many 2D-positioned tiles, but the hardest ones — dense matrix / node-diagram / branch / connector-map / popover tiles — still fail the phase-001 spatial gate (RC-1 overflow, RC-2 node collisions, RC-3 title-zone break) even after the best-of-3 deterministic recompute. For those residual high-value 2D tiles there is no path between "deterministic skeleton failed" and "downgrade to a linear primitive", so genuinely diagram-shaped content is lost rather than recovered. Linear-flow tiles already score 86-94 and need no help.
+
+### Purpose
+Add a cost-capped escalation that hands the hardest residual 2D-risk tiles to GPT-5.5 as a geometry-skeleton author: it computes a coordinate/safe-zone skeleton (the same JSON schema phase 004 emits) that phase 004 then compiles to a locked scaffold for GLM-5.2 to render — recovering diagram tiles that the deterministic skeleton cannot, without spending a paid model on linear tiles that are already strong.
+
+> Grounding (cite RC-ids): A6 final recommendation `../../004-bento-visuals/research/iterations/iter-r2-A6.md`; pipeline step 8 escalation `../../004-bento-visuals/research/iterations/iter-r4-pipeline.md`; cost ceiling `../../004-bento-visuals/research/iterations/iter-r4-risk.md`; dispatch contract `.opencode/skills/cli-opencode/SKILL.md`.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- An escalation branch in the phase-004 skeleton service that authors a 2D geometry skeleton with GPT-5.5 when, and only when, the deterministic skeleton path has failed on a high-risk 2D tile.
+- The escalation trigger rule (`trigger_gpt55_if` / `skip_gpt55_if`) and a hard per-tile + per-batch cost cap.
+- The GPT-5.5 dispatch via cli-opencode `opencode run --model openai/gpt-5.5-fast --variant xhigh`, with provider auth pre-flight.
+- A score-lift-per-dollar A/B measurement on 2D holdouts (GPT-5.5 skeleton vs deterministic-skeleton-only).
+
+### Out of Scope
+- Final tile HTML/CSS authoring - GPT-5.5 returns a JSON geometry skeleton only; GLM-5.2 stays the renderer.
+- Linear tiles (table / timeline / list / donut / simple-kpi / text-card) - they already score 86-94, so expected lift is ~0 and they are never escalated.
+- The deterministic skeleton compute, best-of-3, and downgrade-to-linear - owned by phase 004.
+- The spatial contract and deterministic gate - owned by phase 001.
+- Any code in this planning pass (planning only - no implementation yet).
+
+### Files to Change
+Concrete surface; deterministic-skeleton internals remain phase-004-owned.
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/gen-tile.mjs` | Modify | Wire the GPT-5.5 escalation branch into the 2D skeleton step (behind the deterministic author) |
+| skeleton service (phase-004-owned, new) | Modify | Add a `gpt55-skeleton-author` provider behind the deterministic skeleton author |
+| escalation classifier + cost-cap accountant (new) | Create | `trigger_gpt55_if` / `skip_gpt55_if` decision + per-tile and batch budget caps |
+| GPT-5.5 skeleton-author prompt asset (new) | Create | Geometry-skeleton-author prompt: canvas contract + coordinate system + JSON schema |
+| score-lift-per-dollar A/B harness (new) | Create | Measure recovered tiles and $/recovered-tile on 2D holdouts vs deterministic-only |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Escalate ONLY on high-risk 2D tiles that already failed the deterministic skeleton path (incl. best-of-3); never on linear tiles or tiles already passing the gate | In a 45-tile dry run the classifier logs a `trigger_gpt55_if` / `skip_gpt55_if` decision per tile, and GPT-5.5 calls on linear or already-SHIP tiles equal 0 |
+| REQ-002 | GPT-5.5 authors a JSON geometry skeleton in the phase-004 schema only - never final tile HTML/CSS | Output validates against the skeleton JSON schema; no HTML/CSS is emitted; the unchanged phase-004 compile + GLM-render path consumes the skeleton |
+| REQ-003 | Hard cost cap is enforced before spend | `<=1` GPT-5.5 call per tile and `<=4200` GPT-5.5 tokens per tile; the batch aborts if projected paid calls exceed the `N_2D` count reported before spend; any over-cap call is refused and logged |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-004 | Dispatch uses cli-opencode `opencode run --model openai/gpt-5.5-fast --variant xhigh` with provider auth pre-flight and no silent model substitution | Pre-flight asserts `OPENAI_OK=1`; if openai is not configured the escalation is disabled and the operator is asked - never substituted |
+| REQ-005 | Score lift is measured per GPT-5.5 dollar on 2D holdouts vs deterministic-skeleton-only | A/B report on the same failed 2D cases emits recovered-tile count and `$/recovered-tile`; linear tiles are excluded from the metric |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: On the 2D holdout set, the GPT-5.5 escalation recovers at least +3 tiles over deterministic-skeleton-only (the iter-r4-risk go/no-go bar), within the `<=1` call / `<=4200` token per-tile cap. Research predicts +1 to +3 on the hardest 2D cases at confidence 0.78, so a sub-+3 result rejects this phase in favor of downgrade-to-linear.
+- **SC-002**: Linear tiles stay flat (within +/-0-2 pts) and consume zero GPT-5.5 tokens, because they are never escalated.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | openai provider (paid premium) via cli-opencode | No escalation path | Provider auth pre-flight; if unconfigured, fall back to deterministic skeleton + downgrade-to-linear (zero paid calls) |
+| Dependency | Phase 004 skeleton service + schema | Cannot compile/render the skeleton | Reuse phase-004 schema + compile path unchanged; escalation only swaps the skeleton author |
+| Dependency | Phase 001 gate + phase 002 router | Cannot detect 2D failures to escalate | Hard predecessors; escalation consumes the gate's failure-JSON and the router's 2D classification |
+| Risk | GPT-5.5 skeleton is no better than deterministic (predicted only +1 to +3, conf 0.78) | Paid spend with little lift | Gate behind the +3 go/no-go; reject the phase if recovery is below bar |
+| Risk | Classifier over-triggers and cost blows up | Unbudgeted paid calls | Report `N_2D` before spend; batch budget gate; `<=1` call/tile cap |
+| Risk | GLM rewrites the scaffold geometry | Skeleton effort wasted | Carry the phase-001/004 render contract that forbids editing `data-layout-id`, `top`, `left`, `width`, `height`, and zone styles |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- Is a +1 to +3 tile recovery worth the paid GPT-5.5 cost, or is downgrading the hardest 2D tiles to a linear primitive (phase 004) the better trade? (mirrors the parent open question)
+- Cap at exactly 1 GPT-5.5 call per tile, or allow best-of-2 GPT-5.5 skeletons on the very hardest tiles while staying inside the batch budget?
+<!-- /ANCHOR:questions -->
+
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- Add L2/L3 addendums for complexity
+-->
+
+
+# plan.md
+---
+title: "Implementation Plan: GPT-5.5 Geometry-Skeleton Author (2D-Risk Escalation)"
+description: "Add a cost-capped GPT-5.5 skeleton-author escalation branch to the phase-004 skeleton service; GPT-5.5-fast (xhigh) authors a JSON geometry skeleton for residual high-risk 2D tiles, phase 004 compiles it and GLM renders, measured per dollar."
+trigger_phrases:
+  - "gpt-5.5 skeleton author"
+  - "2d escalation plan"
+  - "cost-capped dispatch"
+  - "opencode gpt-5.5-fast xhigh"
+  - "geometry skeleton dispatch"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored Level 1 plan: exact cli-opencode dispatch, escalation trigger, cost cap"
+    next_safe_action: "Implement after phases 001/002/004 land; gate adoption on +3 recovery per dollar"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "planning-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Cap at 1 GPT-5.5 call per tile, or allow best-of-2 within the batch budget?"
+    answered_questions:
+      - "Dispatch = opencode run --model openai/gpt-5.5-fast --variant xhigh (paid, escalation-only)"
+---
+# Implementation Plan: GPT-5.5 Geometry-Skeleton Author (2D-Risk Escalation)
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+<!--
+SELF-CHECK:
+- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
+- Match phases to the stated scope; remove setup theater that does not change the outcome.
+-->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Node.js ESM (the bento generation harness, `gen-tile.mjs`) |
+| **Framework** | None - file-emitting CLI harness; renderer is GLM-5.2 |
+| **Storage** | None - tile artifacts + per-tile skeleton/gate JSON on disk |
+| **Testing** | Phase-001 deterministic gate + a score-lift-per-dollar A/B holdout harness |
+| **Escalation model** | GPT-5.5-fast via cli-opencode (`openai` provider, paid) |
+| **Renderer model** | GLM-5.2 via Z.AI Coding Plan (subscription, dispatch cost 0) |
+
+### Overview
+When the deterministic skeleton path (phase 004, including its best-of-3 recompute) fails the phase-001 spatial gate on a high-risk 2D tile, dispatch GPT-5.5-fast at `--variant xhigh` to author a fresh coordinate/safe-zone skeleton in the existing phase-004 JSON schema. Phase 004 compiles that skeleton into the same locked HTML/CSS scaffold and GLM-5.2 renders it; the phase-001 gate re-runs. The branch is cost-capped (`<=1` call and `<=4200` tokens per tile, batch budget gated on the pre-spend `N_2D` count) and measured per GPT-5.5 dollar against deterministic-skeleton-only.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [ ] Phase 004 skeleton service + JSON schema exist and emit/consume the skeleton contract
+- [ ] Phase 001 gate emits per-tile failure-JSON; phase 002 router labels tiles linear vs 2D-positioned
+- [ ] `openai` provider configured and confirmed via `opencode models openai`
+
+### Definition of Done
+- [ ] Escalation fires only on residual high-risk 2D failures; zero calls on linear/SHIP tiles
+- [ ] Per-tile + batch cost caps enforced and logged
+- [ ] Score-lift-per-dollar A/B run on 2D holdouts; go/no-go (>=+3 recovered) recorded
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Escalation provider behind a deterministic default (strategy + failure-triggered fallback). The deterministic skeleton author stays the default; GPT-5.5 is the escalation author, fired only after deterministic failure on a qualifying tile (AdaCoder adaptive-planning principle, iter-r2-A6).
+
+### Key Components
+- **EscalationClassifier**: applies `trigger_gpt55_if` / `skip_gpt55_if` to the tile's primitive, item count, connector needs, and the phase-004 failure state; emits a per-tile decision + reason.
+- **Gpt55SkeletonAuthor**: builds the skeleton-author prompt, runs the cli-opencode dispatch, and validates the returned JSON against the phase-004 schema.
+- **CostCapAccountant**: enforces `<=1` call and `<=4200` tokens per tile and the batch budget derived from the pre-spend `N_2D`; refuses + logs over-cap calls.
+- **SkeletonAuthorRouter**: in `gen-tile.mjs`, routes the 2D skeleton step deterministic-author -> (on failure + escalate) GPT-5.5-author -> (on failure) downgrade-to-linear (phase 004).
+
+### Data Flow
+1. Phase 002 labels the tile 2D-positioned; phase 004 computes the deterministic skeleton; GLM renders; phase 001 gate runs.
+2. On gate failure, phase 004 best-of-3 recompute runs; if it still fails, control reaches the EscalationClassifier.
+3. If `trigger_gpt55_if` holds and `skip_gpt55_if` does not, and the batch budget allows, dispatch GPT-5.5 to author a skeleton.
+4. Validate the JSON skeleton -> hand to the unchanged phase-004 compile + GLM-render path -> re-run the phase-001 gate.
+5. Pass -> SHIP; fail -> downgrade-to-linear (phase 004). Either way the CostCapAccountant records the spend.
+
+### Exact dispatch (cli-opencode)
+Dispatched from the bento generation harness (a Node process), which is the legitimate external-dispatch use case - not an OpenCode self-invocation. If the harness ever runs inside OpenCode, route the openai dispatch through a sibling cli-* / fresh shell per the cli-opencode self-invocation guard.
+
+```bash
+# Provider auth pre-flight first (once per run): require openai; never substitute silently.
+PROVIDERS=$(opencode providers list 2>&1)
+echo "$PROVIDERS" | grep -q "openai" && OPENAI_OK=1 || OPENAI_OK=0
+# OPENAI_OK=0 -> disable escalation, fall back to deterministic skeleton + downgrade-to-linear, ASK operator.
+# Confirm the live slug before first dispatch: opencode models openai
+
+opencode run \
+  --model openai/gpt-5.5-fast \
+  --variant xhigh \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "$SKELETON_AUTHOR_PROMPT" </dev/null
+# Notes:
+#   - openai/gpt-5.5-fast = low-latency Fast variant (OpenAI priority service tier); paid premium provider.
+#   - --variant xhigh = max reasoning effort (gpt-5.5 effort range tops out at xhigh).
+#   - omit --agent (top-level --agent is rejected); the author role is stated in the prompt body.
+#   - </dev/null gives stdin EOF so a non-interactive run does not hang.
+```
+
+### Skeleton-author prompt (geometry only; returns JSON, never tile code)
+Faithful to iter-r2-A6; the canvas contract + coordinate system are the locked phase-004 zones.
+
+```text
+You are the geometry skeleton author for a 480px-high maritime B2B dashboard bento tile.
+You do not write final UI code. You produce a prevalidated JSON geometry skeleton that will be
+compiled into locked HTML/CSS for GLM-5.2 to render.
+
+Hard canvas contract:
+- Tile height is 480px.
+- diagramFrame = { x: 24, y: 24, w: "calc(100% - 48px)", h: 312, maxY: 336 }.
+- titleFrame   = { x: 24, y: 368, w: "calc(100% - 48px)", h: 88 }.
+- All diagram content fits inside diagramFrame; nothing may enter y=336..368; title renders bottom-left in titleFrame.
+
+Coordinate system:
+- BBoxes are relative to diagramFrame. x and w use 0..1000 horizontal units scaled to diagramFrame width; y and h are pixels 0..312.
+- A bbox is valid only if x >= 0, y >= 0, x + w <= 1000, y + h <= 312.
+
+Diagram constraints:
+- Min node gap 16px; min text-to-node gap 12px; at most 4 visible rows (collapse remainder to "+N more"); row height 36-42px; row gap 6-8px.
+- Edge labels and status pills get their own bbox and may not overlap nodes; connectors use explicit anchors (top/right/bottom/left/center); prefer orthogonal.
+- Eyebrow is Title Case; avoid CSS text-transform uppercase; use the intended anchor glyph only.
+
+Return JSON only. No prose.
+```
+
+The returned object is the phase-004 skeleton schema: `layoutPrimitive`, `riskFlags`, `zones {diagramFrame, titleFrame}`, `coordinateSystem`, `nodes[]`, `rows[]`, `edges[]`, `overflowPlan`, `textRules`, `validation`.
+
+### Escalation trigger + cost cap
+Source: iter-r2-A6 `trigger_gpt55_if` / `skip_gpt55_if` / `cost_caps`; batch ceiling from iter-r4-risk.
+
+```yaml
+escalation:
+  # Precondition: tile is 2D-positioned AND the deterministic skeleton path (incl. best-of-3) failed the phase-001 gate.
+  trigger_gpt55_if:
+    - layoutPrimitive in [matrix, flow, hub, branch, popover, node-diagram, network, connector-map]
+    - itemCount > 4 and layoutPrimitive not in [linear, stack, simple-kpi, text-card, timeline]
+    - brief requires cross-links, connector lines, branching, overlays, pills, edge labels, or popovers
+  skip_gpt55_if:
+    - layoutPrimitive in [linear, stack, simple-kpi, text-card, timeline]
+    - no connector geometry
+    - no more than 4 visible rows
+    - tile already passes the phase-001 gate
+
+cost_caps:
+  max_gpt55_calls_per_2d_tile: 1
+  max_gpt55_tokens_per_2d_tile: 4200
+  no_gpt55_for_linear_tiles: true
+  # Batch: report N_2D (qualifying failed tiles) BEFORE spend; abort batch if projected paid calls exceed N_2D.
+  # GLM render cost = 0 (Z.AI Coding Plan subscription); GPT-5.5 (openai) is paid.
+  # Worst case if all ~18 baseline failures are high-risk 2D: <=18 GPT-5.5 calls, <=75.6K tokens (18 x 4.2K).
+  # Exact dollar ceiling is UNKNOWN without live token prices: track paid_calls x avg_tokens x provider_price.
+```
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Run the openai provider auth pre-flight; confirm the live `openai/gpt-5.5-fast` slug via `opencode models openai`
+- [ ] Lock the canvas contract + skeleton JSON schema by reusing phase 004's (no new schema)
+- [ ] Define the cost-cap constants (`<=1` call, `<=4200` tokens, batch = `N_2D`)
+
+### Phase 2: Core Implementation
+- [ ] Implement the EscalationClassifier (`trigger_gpt55_if` / `skip_gpt55_if` + per-tile reason)
+- [ ] Implement the Gpt55SkeletonAuthor dispatch (exact cli-opencode invocation) + JSON-schema validation of the returned skeleton
+- [ ] Implement the CostCapAccountant (per-tile + batch budget; refuse + log over-cap)
+- [ ] Wire the SkeletonAuthorRouter into `gen-tile.mjs` behind the deterministic author, ahead of downgrade-to-linear
+
+### Phase 3: Verification
+- [ ] 45-tile dry run: assert 0 GPT-5.5 calls on linear or already-SHIP tiles; classifier decision logged per tile
+- [ ] A/B on the 2D holdout set: GPT-5.5 skeleton vs deterministic-skeleton-only on the same failed cases
+- [ ] Compute recovered-tile count and `$/recovered-tile`; record the go/no-go (`>=+3` recovered)
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | EscalationClassifier decisions; CostCapAccountant caps; skeleton-JSON schema validation | Node test runner |
+| Integration | gen-tile.mjs escalation branch end to end (deterministic fail -> GPT-5.5 -> compile -> render -> gate) | Harness on the 2D holdout set |
+| Manual | A/B score-lift-per-dollar review; linear no-regression spot-check | Phase-001 gate + audit |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| openai provider (GPT-5.5-fast, paid) | External | Yellow | No escalation; deterministic skeleton + downgrade-to-linear remains |
+| Phase 004 skeleton service + schema | Internal | Yellow | Cannot author/compile a skeleton - hard predecessor |
+| Phase 001 deterministic gate (failure-JSON) | Internal | Yellow | Cannot detect 2D failures to escalate - hard predecessor |
+| Phase 002 primitive router | Internal | Yellow | Cannot label tiles 2D-positioned - hard predecessor |
+| cli-opencode dispatch contract | Internal | Green | `.opencode/skills/cli-opencode/SKILL.md` (model + flags + pre-flight) |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: 2D recovery is below the +3 go/no-go bar, or paid spend exceeds the batch budget, or GPT-5.5 skeletons regress linear tiles.
+- **Procedure**:
+  1. Disable the escalation feature flag (deterministic skeleton + downgrade-to-linear continues; zero paid calls).
+  2. Revert the SkeletonAuthorRouter wiring in `gen-tile.mjs`.
+  3. Keep the A/B report as the rejection evidence for the parent open question.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!--
+CORE TEMPLATE (~90 lines)
+- Essential technical planning
+- Simple phase structure
+-->
+
+
+=== RESEARCH GROUNDING (root-cause ledger + the angle(s) this phase implements) ===
+## §1 Root-Cause Ledger
+
+Built from STEP-3 forensic viewing of the 5 lowest tiles (accountbeheer-4 35, orders-facturen-4 52,
+goedkeuringssysteem-4 55, oci-4 58, aangepast-assortiment-3 58) and 5 highest (kwartaalcijfers-2 94,
+accountbeheer-5 93, een-factuur-5 93, accountbeheer-1 92, orders-facturen-1 90 / aangepast-assortiment-4 88),
+plus calculator-confirmed contrast and grep-confirmed anti-tells.
+
+| RC-id | Defect (render symptom + tile) | Hard-fact / refinement | Root cause | Consumed by |
+|---|---|---|---|---|
+| **RC-1** | **Vertical overflow — content exceeds the 480px height budget.** 4th matrix row (MS Vesta) spills out of the inner panel and lands ON TOP of the bottom title "Accountbeheer"+desc (accountbeheer-4, **35**); 6th matrix row + legend collide with the title (aangepast-assortiment-3, **58**); the title "Orders & facturen" is clipped clean off the bottom card edge (orders-facturen-4, **52**); panel rows overflow rounded corners (goedkeuringssysteem-1, **62**); CTA buttons bleed past panel (goedkeuringssysteem-3, **66**); panel overlaps title (een-factuur-1, **88**); last row clipped (favorieten-3, **78**). | **Hard-fact** (an overflow/bounding gate catches it; `overflow:true` in 8 audit rows). | **GLM rendering limitation** — lays out N rows/nodes at fixed pixel heights with no constraint solver, never computing cumulative-height ≤ 480px − reserved-title-block; **+ prompt-contract gap** (no per-region height budget, max-row count, or "reserve Npx for the bottom title"). | A1, A3, A5 |
+| **RC-2** | **2D node collisions** — the "Verbonden" pill overlaps the SAP card and truncates "MS V…" (oci-4, **58**); eyebrow overlaps the right flow node "Anobel-catalogus" (oci-2, **78**); branch cards crowd the card edge (goedkeuringssysteem-4, **55**); popover overflows the card's right edge and clips the eyebrow (favorieten-4, **62**). `position:absolute` count: oci-4 = **6**, accountbeheer-4 = 4, goedkeuringssysteem-4 = 4. | **Mixed** — the clip is hard-fact (overflow); node-on-node crowding is **refinement** (no gate computes bounding-box overlap). | **GLM rendering limitation** — direct numerical coordinate placement with no collision detection; external lit: "direct LLM numerical positioning → out-of-boundary errors and object collisions." | A1, A5, A3 |
+| **RC-3** | **Title-at-bottom rule breaks under diagram layouts** — title rendered TOP-left not bottom-left (goedkeuringssysteem-4, **55**, `title_at_bottom:false`); same on aangepast-assortiment-3 (**58**) and orders-facturen-4 (**52**). | **Hard-fact** (title Y-position is checkable). | **Instruction-density mismatch + GLM limitation** — once GLM commits an absolutely-positioned full-card diagram, it drops the "title bottom-left" pin (one of ~20 contract constraints); the diagram claims the whole canvas. | A1, A5 |
+| **RC-4** | **Eyebrow renders ALL-CAPS, wraps, wrong glyph** — "VLOOT-FUNCTIE" uppercase wrapped to 2 lines and crowding a node (goedkeuringssysteem-4); `text-transform:uppe
+
+--- research angle A6 (final rec) ---
+Research-only, so I’m not going to modify files or ask for a spec folder. I’ll first route context/skill selection, then fetch the unresolved source passages and reconcile A6 against the sibling recommendations.The memory trigger call rejected `turnNumber: 0`; I’m retrying with the valid minimum and continuing with skill routing.SKILL ROUTING: advisor surfaced `cli-opencode` and `sk-prompt-models`; the task also uses a deep-research iteration frame. I’m loading the relevant workflow/model guidance but will keep this read-only and return the requested markdown directly.The skill guidance confirms no CLI self-dispatch is appropriate here; the useful model-specific facts are GLM-5.2’s prompt profile and the direct multimodal/API caveat. I’m fetching the source set now, prioritizing papers that affect the final mechanism: layout decomposition, instruction-density limits, spatial rewards, self-refine loops, and visual grounding.The first source batch confirms the main A6 direction: layout failures are a bounded spatial-planning problem, not a general prompt-quality problem. I’m fetching the sibling-specific sources now to tighten the final contract and avoid duplicating/conflicting recommendations.# A6 FINAL recommendation
+
+## The exact change (copy-pasteable: contract block / dial preset / pipeline step / schema)
+
+Use **GPT-5.5 only as a geometry-skeleton author for 2D-risk tiles**, then compile that skeleton into a locked HTML/CSS scaffold before GLM-5.2 renders. Do not ask GPT-5.5 to write final tile code. Do not spend it on linear tiles.
+
+```yaml
+A6_FINAL_PIPELINE:
+  register: Product
+  base_dials: V4/M2/D6
+  intervention: risk-gated-geometry-scaffold
+  default_renderer: glm-5.2
+  premium_model_role: gpt-5.5-skeleton-author
+  audit_order:
+    - deterministic_dom_geometry_gate
+    - deterministic_css_text_gate
+    - existing_contrast_gate
+    - minimax_visual_audit_only_if_borderline
+    - gpt-5.5_audit_only_if_deterministic_and_minimax_disagree
+
+  trigger_gpt55_if:
+    - layoutPrimitive in [matrix, flow, hub, branch, popover, node-diagram, network, connector-map]
+    - itemCount > 4 and layoutPrimitive not in [linear, stack, simple-kpi, text-card, timeline]
+    - brief requires cross-links, connector lines, branching, overlays, pills, edge labels, or popovers
+
+  skip_gpt55_if:
+    - layoutPrimitive in [linear, stack, simple-kpi, text-card, timeline]
+    - no connector geometry
+    - no more than 4 visible rows
+
+  cost_caps:
+    max_gpt55_calls_per_2d_tile: 1
+    max_gpt55_tokens_per_2d_tile: 4200
+    max_glm_render_repairs_per_tile: 1
+    no_gpt55_for_linear_tiles: true
+
+  canvas_contract:
+    tileHeightPx: 480
+    diagramFrame: { x: 24, y: 24, w: "calc(100% - 48px)", h: 312, maxY: 336 }
+    titleFrame: { x: 24, y: 368, w: "calc(100% - 48px)", h: 88 }
+    minGapBetweenDiagramAndTitlePx: 32
+```
+
+Skeleton-author prompt:
+
+```text
+You are the geometry skeleton author for a 480px-high maritime B2B dashboard bento tile.
+
+You do not write final UI code.
+You produce a prevalidated JSON geometry skeleton that will be compiled into locked HTML/CSS for GLM-5.2 to render.
+
+Hard canvas contract:
+- Tile height is 480px.
+- diagramFrame = { x: 24, y: 24, w: "calc(100% - 48px)", h: 312, maxY: 336 }.
+- titleFrame = { x: 24, y: 368, w: "calc(100% - 48px)", h: 88 }.
+- All diagram content must fit inside diagramFrame.
+- Nothing may enter y=336..368.
+- Title and description must render bottom-left inside titleFrame.
+- No node, row, legend, connector label, eyebrow, pill, or popover may exceed diagramFrame.
+
+Coordinate system:
+- BBoxes are relative to diagramFrame.
+- x and w use 0..1000 horizontal units, scaled to diagramFrame width.
+- y and h use pixels, 0..312.
+- A bbox is valid only if x >= 0, y >= 0, x + w <= 1000, y + h <= 312.
+
+Diagram constraints:
+- Minimum bbox gap between nodes: 16px after scaling.
+- Minimum gap between text labels and nodes: 12px.
+- Matrix/list diagrams may show at most 4 visible rows.
+- If source has more than 4 rows, coll
+
+Return ONLY this markdown (concise, concrete, independent):
+## Verdict
+AGREE | AGREE-WITH-CHANGES | DISAGREE  — confidence 0.00-1.00 — one-sentence why.
+## What GPT-5.5 got right
+## Gaps / risks / errors (specific; cite an RC-id or a concrete failure mode)
+## Strongest improvement or alternative (the single highest-value change you would make; implementable)
+## One thing to test or verify before building this phase

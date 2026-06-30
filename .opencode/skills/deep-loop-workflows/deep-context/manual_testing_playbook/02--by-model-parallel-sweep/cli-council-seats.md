@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates CLI Council Seats for `SWEEP-003`. It focuses on `step_sweep_cli_pool` using `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out concurrently, with correct per-kind flags: closed stdin (`</dev/null`) for cli-opencode, `--sandbox read-only` for cli-codex, and `--permission-mode plan` for cli-claude-code.
+This scenario validates CLI Council Seats for `SWEEP-003`. It focuses on `step_sweep_cli_pool` using `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out concurrently, with correct per-kind flags: closed stdin (`</dev/null`) for cli-opencode, `--sandbox read-only` for cli-opencode, and `--permission-mode plan` for cli-claude-code.
 
 ### Why This Matters
 
-CLI seat dispatch flags are critical for safety and performance. A cli-opencode seat without closed stdin hangs waiting for TTY input in non-interactive automation. A cli-codex seat without `--sandbox` can mutate files. These flags are the outer wall preventing CLI seats from violating the read-only seat contract.
+CLI seat dispatch flags are critical for safety and performance. A cli-opencode seat without closed stdin hangs waiting for TTY input in non-interactive automation. A cli-opencode seat without `--sandbox` can mutate files. These flags are the outer wall preventing CLI seats from violating the read-only seat contract.
 
 ---
 
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `SWEEP-003` and confirm 
 
 - Objective: Verify that `step_sweep_cli_pool` uses the correct per-kind CLI dispatch flags and that `multi-seat-dispatch.cjs` provides `dispatchCouncilSeats`.
 - Real user request: `Verify that CLI seats are dispatched with the correct flags and through the council scaffold.`
-- Prompt: `As a manual-testing orchestrator, validate the CLI council seats dispatch contract for deep-context against the auto YAML, loop_protocol.md, and SKILL.md §4 ALWAYS rules. Verify cli-opencode seats use closed stdin and omit top-level --agent; cli-codex seats use --sandbox read-only; and multi-seat-dispatch.cjs provides dispatchCouncilSeats. Return a concise verdict.`
+- Prompt: `As a manual-testing orchestrator, validate the CLI council seats dispatch contract for deep-context against the auto YAML, loop_protocol.md, and SKILL.md §4 ALWAYS rules. Verify cli-opencode seats use closed stdin and omit top-level --agent; cli-opencode seats use --sandbox read-only; and multi-seat-dispatch.cjs provides dispatchCouncilSeats. Return a concise verdict.`
 - Expected execution process: Read loop_protocol.md §5 for CLI seat dispatch requirements; read SKILL.md §4 ALWAYS rule 5 for cli-* contract compliance; check `multi-seat-dispatch.cjs` for `dispatchCouncilSeats` export; read auto YAML for `step_sweep_cli_pool`.
 - Expected signals: `multi-seat-dispatch.cjs` is referenced in loop_protocol.md §5; SKILL.md ALWAYS rule 5 mandates `</dev/null` for cli-opencode; `dispatchCouncilSeats` export is present in the file; `step_sweep_cli_pool` appears in the auto YAML.
 - Desired user-visible outcome: CLI seats are dispatched concurrently and read-only, with per-kind flags enforced by the dispatch scaffold so no CLI seat can hang, mutate files, or start an interactive session.

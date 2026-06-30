@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/016-register-loader-contract",
+  "description": "The sk-design mode packets declare the shared register `../shared/register.md` mandatory on every task, but the router path-guard cannot load it becau",
+  "keywords": [
+    "sk-design",
+    "mode",
+    "packets",
+    "declare",
+    "shared",
+    "register",
+    "mandatory",
+    "every",
+    "task",
+    "router",
+    "path-guard",
+    "cannot",
+    "load",
+    "becau"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.790Z",
+  "specId": "016",
+  "folderSlug": "register-loader-contract",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,82 @@
+## Verdict
+**AGREE-WITH-CHANGES** — confidence **0.62**. The direction is correct (deterministic gate > prompt prose), the RC-to-REQ mapping is solid, and "failure-only repair" is the right shape. But the spec is over-promising on lift, under-specifying the schema, and contains a coordinate bug that will silently desync the contract from the research. The repair call is the weakest link and the success criteria are not robust to repair-success-rate uncertainty.
+
+---
+
+## What GPT-5.5 got right
+- **Cause-to-control mapping**: RC-1/RC-3/RC-4/RC-5 each have a checkable invariant, and each REQ owns one. That's the right shape.
+- **Gate as authority, not prompt**: treating the headless DOM/CSS gate as the load-bearing surface (and the model's preflight as a hint, not a contract) is the correct inversion of what failed in iter-r3.
+- **Arm isolation (`control` / `a1_prompt` / `a1_gate_repair`)**: forces a real paired A/B rather than a self-report.
+- **Linearizer ceiling as risk, not goal**: correctly framed as "preserve 86-94 winners, lift 35-58" with `+N more`, not "force everything linear."
+- **Banned-token-as-stroke vs banned-token-as-text distinction** for `#8591b3` (RC-5): this is the correct way to avoid a false-positive on aangepast-assortiment-4 (88).
+- **Repair degrees of freedom** are correctly narrowed (copy/palette/title/glyph/casing locked).
+
+---
+
+## Gaps / risks / errors
+
+### 1. **Coordinate bug — the contract block silently disagrees with the research**
+- Research A1 final-rec: `--pad:24px; --visual-y:24px; --visual-bottom:328px; --title-y:352px`, `visualBox: [24, 24, 432, 304]`, `titleBox: [24, 352, 432, 104]`.
+- Spec.md REQ-001 + A1 contract: `x=30..530, y=30..328`, title band `x=30..530, y=356..456`.
+- That's **30 vs 24 padding** and **y=356 vs y=352** title-band start (4px gap shift). If the gate enforces spec.md coords but GLM honors research A1 coords (or vice versa), you get systematic false negatives or false positives — and the gate's known-good self-test (accountbeheer-5, kwartaalcijfers-2) won't catch it because those tiles don't touch the boundary.
+- Pick one. Lock it in spec.md, not plan.md.
+
+### 2. **Primitive vocabulary isn't reconciled between A1 and A2**
+- A1 caps talk about: matrix rows, approval/branch flow, integration flow nodes, legend, CTA.
+- A2 primitives: `linear-flow | stacked-ledger | compact-kpi-row | two-column-comparison | mini-table`.
+- These are different vocabularies. The gate's "exceeds cap" check (REQ-002) needs a primitive→cap lookup. Whose vocabulary wins? Spec REQ-002 lists A1 caps but doesn't map them to A2 primitives, so the gate will be ambiguous on what counts as a "branch flow" vs an "integration flow" when GLM picks `compact-kpi-row`.
+
+### 3. **The repair call is the unvalidated assumption — and it's the load-bearing one**
+- SC-001 (76-82% SHIP) is arithmetic over `18 failures × repair_success_rate`. At 40% repair success → 7 fixes → 34/45 = 76%. At 60% → 11 fixes → 38/45 = 84%. The whole SC-001 range lives in an assumption the spec never measures or bounds.
+- Worse: the repair call has copy/palette/title/glyph/casing **locked** — only layout degrees of freedom remain. The reason the tile failed was layout. You're asking the same model, with very similar freedom, to redo what it just failed at, given a JSON hint. Published evidence (and the cited CoR/IFScale) suggests single-shot spatial repair from a free-form LLM is **not** a solved problem — it's typically 30-55%.
+- Mitigation missing: a **repair success-rate gate** (e.g., "if pilot repair rate < 50%, escalate to phase 004 skeleton-first, do not ship T2").
+
+### 4. **"Fails twice → ship anyway" conflicts with the success criteria**
+- Spec edge case: *"no second repair in this phase; record the residual failure JSON and keep the best-scoring pass."* But SC-001 expects +9 to +10 SHIP. If 18 baseline failures × ~50% repair rate = 9 fixes, and the other 9 stay at their baseline score (~50-60) instead of failing the gate but still passing SHIP, you net **some SHIP, some non-SHIP**. The spec doesn't quantify how many tiles ship with `gate.fail=true` and what that means for the audit rubric.
+- Recommend: explicitly state "non-passing tiles are NOT counted in SC-001; SC-001 measures SHIP among `gate.fail=false` tiles only" OR add SC-007 "repair-recovered SHIP rate ≥ X%".
+
+### 5. **The 350-450 token contract is an IFScale-collision risk the spec doesn't measure**
+- IFScale (cited in A2 grounding) says constraint-following degrades as instruction density grows. The whole baseline analysis is "GLM dropped constraints under instruction load." The fix adds ~350-450 tokens of dense layout rules **plus** A2's ~30-line preflight JSON. Combined ~600-700 extra tokens of constraints. SC-005 caps linear-flow regression at 3 pts, but you have **no a-priori measurement of where GLM-5.2's constraint-omission cliff sits** in prompt tokens.
+- This is testable cheaply (5-tile sample at 0 / 200 / 400 / 700 added constraint tokens) and the spec skips it.
+
+### 6. **Failure-JSON schema is the most important artifact — it's deferred**
+- Spec REQ-009 says the schema is documented in `plan.md`. Plan.md puts schema definition in **Phase 1 Setup** as a deliverable. But phases 002-006 will write readers against this schema. If a downstream phase lands before the schema is frozen, you re-do readers. Lock the schema **in spec.md as part of REQ-006 acceptance**, not as a setup task.
+
+### 7. **Cost/latency disclosure missing**
+- `A1_ARM` × 3 arms × 45 tiles = **135 GLM generations**, not 45. Plus up to 18 × 1 repair calls = up to 18 more. At GLM-5.2's pricing and 24k max_tokens, this is non-trivial. SC-001 is silent on the cost envelope. Add an NFR or call out the budget explicitly.
+
+### 8. **RC-4 root cause may be the *literal*, not the contract**
+- "VLOOT-FUNCTIE" appeared 3x as uppercase in goedkeuringssysteem-4. The contract bans `text-transform:uppercase`. But did the eyebrow **literal** in `spec-*.json` arrive as "VLOOT-FUNCTIE" or "Vloot-functie"? If the literal itself is uppercase, GLM is honoring the brief and the fix is upstream (in the spec template). REQ-003 says "uses the literal string" but doesn't mandate the literal be in title case before the contract is built.
+
+### 9. **Headless-render determinism is asserted, not measured**
+- NFR-C01 says the gate is deterministic "same HTML → same JSON across runs." This is true only if Playwright/Puppeteer rendering is deterministic on the harness's OS/font stack. Font fallback, subpixel rounding, and anti-aliasing are notorious sources of off-by-1px bbox drift. You need a tolerance (±2px?) baked into the gate's overlap check; otherwise a tile that passes by 1px may flip-flop across hosts. The spec doesn't say.
+
+### 10. **Minor: known-good self-test sample is too small**
+- Two tiles (accountbeheer-5, kwartaalcijfers-2) for false-positive calibration. Both are top-of-leaderboard. The risk of false positives is highest in **mid-pack** tiles where the geometry is borderline. Add 3-5 mid-pack tiles (scores 70-80) to the self-test before you trust the gate.
+
+---
+
+## Strongest improvement
+
+**Split this phase in two and learn before committing.**
+
+Run a **Phase 001a "Characterize"** that costs ~25-30 generations, not 135:
+- (a) Hand the existing 45 tiles through the gate **as-is** (no prompt change) and measure: catch-rate on known-bad, false-positive rate on known-good + 5 mid-pack tiles, bbox tolerance needed.
+- (b) Run the T1 (`a1_prompt` only) arm on 5 representative tiles (1 known-bad diagram, 1 known-bad matrix, 1 known-good linear, 1 known-good table, 1 mid-pack) and measure whether GLM-5.2 actually honors the contract in the rendered DOM.
+- (c) Define the failure-JSON schema from what the gate actually emits, not what you predict.
+
+Only then build **Phase 001b "Combine"** (T2 arm + repair). This collapses the unvalidated repair-success-rate assumption into a measured number before you spend the full 135-generation budget, and it puts the schema in place before phases 002-006 write readers. Estimated cost: ~$30-60 and 1-2 days, vs. the current plan's $200-400 blind run.
+
+Concrete acceptance gate before T2: **gate must flag ≥3 of the 5 known-bad tiles with no false-positives on the 7 self-test tiles, AND T1 must show measurable contract-honoring on ≥4 of 5 pilot tiles, AND repair pilot on 5 failing tiles must succeed ≥50% before phase 001b starts.**
+
+---
+
+## One thing to test or verify before building this phase
+
+**Whether GLM-5.2 actually honors the `SAFE_LINEAR_560` contract block in the rendered DOM.** Take 5 tiles (one of each archetype: diagram, matrix, table, list, donut), run them with `A1_ARM=a1_prompt` and **without** the gate or repair, then inspect the generated HTML for:
+1. Do `data-a1-role` attributes appear?
+2. Do visual elements respect `y ≤ 328` and title band `y ≥ 356` (or your chosen coords)?
+3. Are primitive caps (max 3 matrix rows, etc.) observed in the rendered output?
+4. Is `text-transform:uppercase` actually absent?
+
+If 3 of 5 fail, the contract-as-prose is theater and you should re-budget — the gate becomes 100% of the strategy and the prompt block is dead weight (and IFScale-collision risk). If 4-5 of 5 pass, you have evidence SC-005 (linear-flow preservation) and SC-001 (lift) are realistic. This is a ~2-hour, 5-generation test that resolves the phase's biggest unvalidated assumption.

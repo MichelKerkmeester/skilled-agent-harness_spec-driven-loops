@@ -271,7 +271,7 @@ _memory:
   continuity:
     packet_pointer: "026/.../007-018-sk-system-spec-kit-revisit"
     last_updated_at: "2026-04-12T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
+    last_updated_by: "opencode-gpt-5"
     recent_action: "Aligned save/recovery docs to packet-first continuity"
     next_safe_action: "Run strict packet validation"
     key_files:

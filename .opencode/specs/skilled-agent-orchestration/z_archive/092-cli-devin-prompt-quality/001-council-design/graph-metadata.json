@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/001-council-design",
+  "spec_folder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/001-council-design",
+  "parent_id": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/001 council design",
+      "cli-devin council deliberation",
+      "swe 1.6 rubric design",
+      "113/001 plan",
+      "council deliberation plan",
+      "113/001 tasks",
+      "113/001 checklist",
+      "113/001 decisions",
+      "113/001 summary"
+    ],
+    "key_topics": [
+      "113",
+      "001",
+      "council",
+      "design",
+      "cli-devin",
+      "deliberation",
+      "swe",
+      "rubric",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "ai-council/council-report.md",
+      "ai-council/seat-proposals/pragmatist.md",
+      "ai-council/seat-proposals/skeptic.md",
+      "ai-council/seat-proposals/optimizer.md",
+      "ai-council/critique.md",
+      "ai-council/ai-council-state.jsonl",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "pragmatist.md",
+        "kind": "doc",
+        "path": "ai-council/seat-proposals/pragmatist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skeptic.md",
+        "kind": "doc",
+        "path": "ai-council/seat-proposals/skeptic.md",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer.md",
+        "kind": "doc",
+        "path": "ai-council/seat-proposals/optimizer.md",
+        "source": "derived"
+      },
+      {
+        "name": "critique.md",
+        "kind": "doc",
+        "path": "ai-council/critique.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-state.jsonl",
+        "kind": "file",
+        "path": "ai-council/ai-council-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-06-23T03:49:50.454Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdf32de5fd66d59bc85026d4bd70b04eba81ff9302ed7be122a4db17b16214cc",
+    "source_doc_hashes": {
+      "spec.md": "413537a814684289c3ba6ec6ff96300fbd5f56101440c0e5ed124fdb818944a5",
+      "plan.md": "6cb53ea7102abc2993225019eef339bce42cdab6f51cb07852ffc403f4cc8523",
+      "tasks.md": "cb0256f7b5b3e8ac6cccb0d4c380bdaec45321f21efdeed4677a0e6d18087278",
+      "checklist.md": "214124629997eebbb769949f4fef027bede58d750c3644bbb1ddc86da121a962",
+      "decision-record.md": "576a590b6943c27c86589eaf24bc68b8a22d13af4c96837fa8374868c6ee1531",
+      "implementation-summary.md": "df4d0bb12ad30ce3b60ed0f7716e766d43de87cd7ad0b1ff98180e0ba7570aa2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "topic": "Harden sk-design-md-generator against WRITE-phase prose hallucination + improve backend script logic, skill context engineering, and DESIGN.md generation; survey external design-token / DESIGN.md / CSS-extraction tools for borrowable fidelity techniques",
+  "maxIterations": 50,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 999,
+  "maxDurationMinutes": 1440,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/design/004-sk-design-md-generator",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-06-22T00:00:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "orchestration": {
+    "pattern": "orchestrator-writes-parallel-waves",
+    "note": "Driven manually by the host orchestrator (non-OpenCode surface). CLI seats dispatched read-only via cli-opencode; host writes all iteration/delta/state artifacts and runs reduce-state.cjs. Auto-fanout machinery intentionally not used (known serialization/race issues; memory: deep-loop-fanout-spawnsync-serialization).",
+    "trackD_web_policy": "Host gathers external-tool repo/docs and feeds seats; CLI seats do not web-search (memory: deep-loop-claude2-wave-execution)."
+  },
+  "fanout": {
+    "executors": [
+      {
+        "label": "mimo",
+        "kind": "cli-opencode",
+        "model": "opencode-go/mimo-v2.5-pro",
+        "reasoningEffort": "high",
+        "serviceTier": null,
+        "sandboxMode": null,
+        "timeoutSeconds": 1200,
+        "count": 1,
+        "iterations": 50,
+        "promptFramework": null
+      },
+      {
+        "label": "deepseek",
+        "kind": "cli-opencode",
+        "model": "opencode-go/deepseek-v4-pro",
+        "reasoningEffort": "high",
+        "serviceTier": null,
+        "sandboxMode": null,
+        "timeoutSeconds": 1200,
+        "count": 1,
+        "iterations": 50,
+        "promptFramework": null
+      }
+    ],
+    "concurrency": 2,
+    "maxRetries": 5,
+    "lagCeilingMs": 0,
+    "progressHeartbeatSeconds": 0
+  },
+  "lineage": {
+    "sessionId": "drs-152-design-md-2026-06-22",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

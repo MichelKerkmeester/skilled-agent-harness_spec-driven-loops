@@ -1,5 +1,5 @@
 ---
-title: "252 -- Runtime-aware recovery across Claude, Codex, and Copilot"
+title: "252 -- Runtime-aware recovery across Claude, OpenCode, and Copilot"
 description: "This scenario validates Cross-runtime fallback for 252. It focuses on runtime detection plus native-hook, hookless, and config-driven recovery behavior."
 audited_post_018: true
 phase_018_change: "Reframed recovery so hook-limited runtimes fall back through /speckit:resume and the canonical packet continuity ladder."
@@ -17,11 +17,11 @@ This scenario validates Cross-runtime fallback.
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that runtime detection reports the correct hook policy per runtime; Claude Code must report native hooks, Codex CLI must report `live` or `partial` based on local Codex/settings availability, and Copilot CLI must report wrapper-backed hook wiring from `.claude/settings.local.json` while delivering prompt-time context through the managed custom-instructions block.
-- Real user request: `` Please validate Runtime-aware recovery across supported runtimes against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts and tell me whether the expected signals are present: All vitest tests in `runtime-detection.vitest.ts` pass; Claude Code: `{ runtime: 'claude-code', hookPolicy: 'enabled' }`; Codex CLI: `{ runtime: 'codex-cli', hookPolicy: 'live' }` when Codex is installed and repo `.codex/settings.json` is valid; `partial` when Codex is installed but settings are missing or invalid; `unavailable` only when the probe fails.; Copilot CLI: `{ runtime: 'copilot-cli', hookPolicy: 'enabled' }` in this repo when `.claude/settings.local.json` exposes Copilot-safe top-level `type` / `bash` / `timeoutSec` wrapper fields and the `UserPromptSubmit` / `SessionStart` writer commands; `userPromptSubmitted` should print `{}` and refresh `SPEC-KIT-COPILOT-CONTEXT` in custom instructions; otherwise `disabled_by_scope`. ``
+- Objective: Verify that runtime detection reports the correct hook policy per runtime; Claude Code must report native hooks, OpenCode must report `live` or `partial` based on local OpenCode/settings availability, and Copilot CLI must report wrapper-backed hook wiring from `.claude/settings.local.json` while delivering prompt-time context through the managed custom-instructions block.
+- Real user request: `` Please validate Runtime-aware recovery across supported runtimes against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts and tell me whether the expected signals are present: All vitest tests in `runtime-detection.vitest.ts` pass; Claude Code: `{ runtime: 'claude-code', hookPolicy: 'enabled' }`; OpenCode: `{ runtime: 'opencode-cli', hookPolicy: 'live' }` when OpenCode is installed and repo `.opencode/settings.json` is valid; `partial` when OpenCode is installed but settings are missing or invalid; `unavailable` only when the probe fails.; Copilot CLI: `{ runtime: 'copilot-cli', hookPolicy: 'enabled' }` in this repo when `.claude/settings.local.json` exposes Copilot-safe top-level `type` / `bash` / `timeoutSec` wrapper fields and the `UserPromptSubmit` / `SessionStart` writer commands; `userPromptSubmitted` should print `{}` and refresh `SPEC-KIT-COPILOT-CONTEXT` in custom instructions; otherwise `disabled_by_scope`. ``
 - Prompt: `Validate cross-runtime recovery fallback with the runtime-detection vitest suite.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: All vitest tests in `runtime-detection.vitest.ts` pass; Claude Code: `{ runtime: 'claude-code', hookPolicy: 'enabled' }`; Codex CLI: `{ runtime: 'codex-cli', hookPolicy: 'live' }` when Codex is installed and repo `.codex/settings.json` is valid; `partial` when Codex is installed but settings are missing or invalid; `unavailable` only when the probe fails.; Copilot CLI: `{ runtime: 'copilot-cli', hookPolicy: 'enabled' }` in this repo when `.claude/settings.local.json` exposes Copilot-safe top-level `type` / `bash` / `timeoutSec` wrapper fields and the `UserPromptSubmit` / `SessionStart` writer commands; `userPromptSubmitted` should print `{}` and refresh `SPEC-KIT-COPILOT-CONTEXT` in custom instructions; otherwise `disabled_by_scope`
+- Expected signals: All vitest tests in `runtime-detection.vitest.ts` pass; Claude Code: `{ runtime: 'claude-code', hookPolicy: 'enabled' }`; OpenCode: `{ runtime: 'opencode-cli', hookPolicy: 'live' }` when OpenCode is installed and repo `.opencode/settings.json` is valid; `partial` when OpenCode is installed but settings are missing or invalid; `unavailable` only when the probe fails.; Copilot CLI: `{ runtime: 'copilot-cli', hookPolicy: 'enabled' }` in this repo when `.claude/settings.local.json` exposes Copilot-safe top-level `type` / `bash` / `timeoutSec` wrapper fields and the `UserPromptSubmit` / `SessionStart` writer commands; `userPromptSubmitted` should print `{}` and refresh `SPEC-KIT-COPILOT-CONTEXT` in custom instructions; otherwise `disabled_by_scope`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: Each runtime is correctly detected from env vars, hookPolicy matches the current runtime/config reality, Copilot custom-instructions refresh is recognized as the enabled prompt-time transport, and fallback only appears when hooks are unavailable or disabled_by_scope and routes through /speckit:resume; FAIL: Any runtime misidentified, hookPolicy incorrect, or hooks reported as available for a runtime/config state that should fall back
 
@@ -61,7 +61,7 @@ Check env var detection order in `runtime-detection.ts` for `CLAUDE_CODE`, `CLAU
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate Codex CLI detected with hookPolicy=live or partial against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts. Verify detectRuntime() with CODEX_CLI=1 returns { runtime: 'codex-cli', hookPolicy: 'live' } when Codex is installed and repo .codex/settings.json is valid, or partial when settings are missing/invalid. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate OpenCode detected with hookPolicy=live or partial against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts. Verify detectRuntime() with OPENCODE_CLI=1 returns { runtime: 'opencode-cli', hookPolicy: 'live' } when OpenCode is installed and repo .opencode/settings.json is valid, or partial when settings are missing/invalid. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -70,7 +70,7 @@ As a context-and-code-graph validation operator, validate Codex CLI detected wit
 
 ### Expected
 
-detectRuntime()` with `CODEX_CLI=1` returns `{ runtime: 'codex-cli', hookPolicy: 'live' }` in a repo with valid `.codex/settings.json`, or `partial` when settings are absent/invalid.
+detectRuntime()` with `OPENCODE_CLI=1` returns `{ runtime: 'opencode-cli', hookPolicy: 'live' }` in a repo with valid `.opencode/settings.json`, or `partial` when settings are absent/invalid.
 
 ### Evidence
 
@@ -78,12 +78,12 @@ Test output showing detection result
 
 ### Pass / Fail
 
-- **Pass**: codex-cli detected with live/partial hookPolicy according to local Codex/settings availability
+- **Pass**: opencode-cli detected with live/partial hookPolicy according to local OpenCode/settings availability
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
 
-Check env var detection order in `runtime-detection.ts` — CODEX_CLI or CODEX_SANDBOX
+Check env var detection order in `runtime-detection.ts` — OPENCODE_CLI or OPENCODE_SANDBOX
 
 ---
 

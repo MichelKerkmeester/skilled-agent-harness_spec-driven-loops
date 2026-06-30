@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "description": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli- + 5 sk- + 3 mcp-), most of which are playbook-only",
+  "keywords": [
+    "remaining",
+    "310",
+    "numbered",
+    "snippet",
+    "files",
+    "live",
+    "twelve",
+    "smaller",
+    "skills",
+    "system-code-graph",
+    "cli",
+    "mcp",
+    "playbook-only"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.281Z",
+  "specId": "005",
+  "folderSlug": "migrate-remaining-skills",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "108-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

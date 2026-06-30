@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging",
+  "spec_folder": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
+    "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+    "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
+    "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "108 sk-code-review auto-review uplift",
+      "auto-review teachings adoption",
+      "h1 final-line contract",
+      "h2 loop-prevention markers",
+      "h3 async-iife logging",
+      "packet 107 follow-on"
+    ],
+    "key_topics": [
+      "108",
+      "sk-code-review",
+      "auto-review",
+      "uplift",
+      "teachings",
+      "adoption",
+      "final-line",
+      "contract",
+      "loop-prevention",
+      "markers",
+      "async-iife",
+      "logging"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "ai-council/council-report.md",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Uplift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package",
+    "created_at": "2026-05-16T07:00:00Z",
+    "last_save_at": "2026-06-23T03:49:50.330Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6535023ada70e96fa9e6eb8f8057362a2f169e81a11f5983dadf05d5123ad338",
+    "source_doc_hashes": {
+      "spec.md": "fefd954abfebea4284f025239e8e7bab9c3cc3197b7c27d55bdcd4fed692a774"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

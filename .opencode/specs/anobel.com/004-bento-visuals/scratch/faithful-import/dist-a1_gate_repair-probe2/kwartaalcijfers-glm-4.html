@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Kwartaal cijfers.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    display:flex;align-items:center;justify-content:center;
+    background:#eceef0;
+    font-family:'Hanken Grotesk',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+    color:#0a1a2f;
+  }
+  .card{
+    width:560px;height:480px;
+    background:#ffffff;
+    border-radius:22px;
+    border:none;
+    box-shadow:0 1px 2px rgba(20,28,46,.04),0 26px 52px -22px rgba(20,28,46,.20);
+    padding:30px;
+    overflow:hidden;
+    position:relative;
+    display:flex;flex-direction:column;
+  }
+  .visual{
+    position:relative;
+    flex:0 0 298px;
+    display:flex;flex-direction:column;
+    gap:12px;
+  }
+  .visual-top{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    gap:10px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:11px;font-weight:700;letter-spacing:.04em;color:#4e4e4e;
+    text-transform:none;
+  }
+  .eyebrow svg{width:11px;height:11px;color:#4e4e4e;display:block;flex-shrink:0}
+  .meta-right{
+    display:flex;align-items:center;gap:10px;
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:10.5px;font-weight:700;color:#0a1a2f;
+    padding:5px 9px;
+    border-radius:999px;
+    background:#f6f8fc;
+    border:1px solid #e7e9ee;
+  }
+  .chip .dot{width:5px;height:5px;border-radius:50%;background:#367e39;display:inline-block;flex-shrink:0}
+  .visual-title{
+    display:flex;flex-direction:column;gap:2px;
+    margin-top:2px;
+  }
+  .visual-title h3{
+    font-size:14px;font-weight:700;color:#0a1a2f;letter-spacing:-.005em;
+    line-height:1.2;
+  }
+  .visual-title .sub{
+    font-size:11.5px;font-weight:500;color:#4e4e4e;line-height:1.3;
+  }
+  .panel{
+    background:#06458c;
+    background:linear-gradient(160deg,#06458c 0%,#043367 100%);
+    border-radius:14px;
+    padding:14px 16px 13px;
+    color:#E7ECF7;
+    display:flex;flex-direction:column;gap:11px;
+    position:relative;
+  }
+  .panel::before{
+    content:"";position:absolute;top:10px;right:14px;width:18px;height:18px;
+    border-radius:50%;background:rgba(255,255,255,.06);
+  }
+  .panel::after{
+    content:"";position:absolute;top:16px;right:20px;width:6px;height:6px;
+    border-radius:50%;background:rgba(255,255,255,.4);
+  }
+  .panel-top{
+    display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  }
+  .panel-ship{
+    font-size:11.5px;font-weight:600;color:#E7ECF7;letter-spacing:.01em;
+  }
+  .panel-status{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:10.5px;font-weight:700;color:#E7ECF7;
+  }
+  .panel-status .dot{width:5px;height:5px;border-radius:50%;background:#367e39;display:inline-block;flex-shrink:0}
+  .total-row{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  }
+  .total-row .lab{
+    font-size:10.5px;font-weight:600;color:#B8C2D6;letter-spacing:.01em;
+  }
+  .total-row .val{
+    font-size:20px;font-weight:700;color:#E7ECF7;letter-spacing:-.015em;
+  }
+  .total-row .val small{
+    font-size:11px;font-weight:500;color:#B8C2D6;margin-left:4px;
+  }
+  .rows{display:flex;flex-direction:column;gap:9px}
+  .row{
+    display:flex;align-items:center;gap:10px;
+  }
+  .row .name{
+    flex:0 0 70px;
+    font-size:11px;font-weight:600;color:#E7ECF7;
+  }
+  .row .bar{
+    flex:1 1 auto;height:5px;background:rgba(255,255,255,.10);border-radius:3px;overflow:hidden;
+  }
+  .row .bar span{
+    display:block;height:100%;border-radius:3px;background:#E7ECF7;
+    transform-origin:left center;animation:grow 1s cubic-bezier(.22,1,.36,1) both;
+  }
+  .row .amt{
+    flex:0 0 auto;
+    font-size:11px;font-weight:600;color:#E7ECF7;
+    min-width:54px;text-align:right;
+  }
+  .panel-foot{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding-top:10px;border-top:1px solid rgba(255,255,255,.12);
+  }
+  .panel-foot .seg{display:flex;flex-direction:column;gap:1px}
+  .panel-foot .lab{font-size:9px;font-weight:700;letter-spacing:.11em;color:#B8C2D6}
+  .panel-foot .val{font-size:11px;font-weight:700;color:#E7ECF7}
+  .panel-foot .seg.right{text-align:right}
+  .pf-bars{
+    display:flex;flex-direction:column;gap:3px;flex:1;max-width:120px;
+  }
+  .pf-bars .track{height:3px;background:rgba(255,255,255,.10);border-radius:2px;overflow:hidden}
+  .pf-bars .track span{display:block;height:100%;background:#E7ECF7;border-radius:2px;transform-origin:left center;animation:grow 1s cubic-bezier(.22,1,.36,1) both}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+    .row .bar span,.pf-bars .track span{transform:scaleX(1)}
+  }
+  .visual-bottom{
+    margin-top:auto;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    font-size:11px;font-weight:500;color:#4e4e4e;
+    padding-top:10px;
+    border-top:1px solid #ececec;
+  }
+  .visual-bottom .left{display:inline-flex;align-items:center;gap:6px}
+  .visual-bottom .left svg{width:11px;height:11px;color:#06458c}
+  .titleblock{
+    position:absolute;left:30px;bottom:30px;right:80px;
+  }
+  .titleblock h2{
+    font-size:21px;font-weight:700;color:#0a1a2f;line-height:1.1;letter-spacing:-.012em;
+  }
+  .titleblock p{
+    margin:6px 0 0;font-size:13.5px;font-weight:500;color:#4e4e4e;line-height:1.4;
+  }
+  .ghost{
+    position:absolute;right:30px;bottom:30px;width:34px;height:34px;border-radius:50%;
+    background:#ffffff;border:1px solid #e2e2e2;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .18s ease,border-color .18s ease,background .18s ease;
+  }
+  .ghost:hover{transform:translate(-1px,-1px);border-color:#4e4e4e;background:#fafbfc}
+  .ghost svg{width:13px;height:13px;color:#0a1a2f}
+  @media (prefers-reduced-motion:reduce){.ghost:hover{transform:none}}
+</style>
+</head>
+<body>
+<main class="card" role="article" aria-label="Kwartaal cijfers.">
+  <section class="visual" data-a1-role="visual" aria-label="Kostenoverzicht Q1">
+    <div class="visual-top">
+      <span class="eyebrow" data-a1-role="eyebrow">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M3.5 8.5V11.5a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V8.5"/>
+          <path d="M8 2v8.5"/>
+          <path d="M5 5l3-3 3 3"/>
+        </svg>
+        Vloot-functie
+      </span>
+      <div class="meta-right">
+        <span class="chip">
+          <span class="dot"></span>
+          In planning Q2 — 06 apr
+        </span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-top">
+        <span class="panel-ship">Kostenoverzicht Q1 — maart 2026 · MS Aldebaran</span>
+        <span class="panel-status"><span class="dot"></span>Aangevuld</span>
+      </div>
+
+      <div class="total-row">
+        <span class="lab">Totaal Q1 · 3 categorieën</span>
+        <span class="val">€31.460</span>
+      </div>
+
+      <div class="rows">
+        <div class="row" data-a1-role="row">
+          <span class="name">Onderhoud</span>
+          <span class="bar"><span style="width:100%"></span></span>
+          <span class="amt">€15.040</span>
+        </div>
+        <div class="row" data-a1-role="row">
+          <span class="name">Verf</span>
+          <span class="bar"><span style="width:62%"></span></span>
+          <span class="amt">€9.280</span>
+        </div>
+        <div class="row" data-a1-role="row">
+          <span class="name">Tuigerij</span>
+          <span class="bar"><span style="width:48%"></span></span>
+          <span class="amt">€7.140</span>
+        </div>
+      </div>
+
+      <div class="panel-foot">
+        <div class="seg">
+          <span class="lab">Budget</span>
+          <span class="val">€34.000</span>
+        </div>
+        <div class="pf-bars" aria-hidden="true">
+          <div class="track"><span style="width:92.5%"></span></div>
+          <div class="track"><span style="width:7.5%"></span></div>
+        </div>
+        <div class="seg right">
+          <span class="lab">Besteed</span>
+          <span class="val">92,5%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-bottom">
+      <span class="left">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <rect x="2.5" y="3.5" width="11" height="9.5" rx="1.5"/>
+          <path d="M5 1.5v3M11 1.5v3M2.5 6.5h11"/>
+        </svg>
+        Werkelijk
+      </span>
+      <span>Werkelijk · 3 categorieën</span>
+    </div>
+  </section>
+
+  <div class="titleblock">
+    <h2 data-a1-role="title">Kwartaal cijfers.</h2>
+    <p data-a1-role="description">Download elk kwartaal een kostenoverzicht.</p>
+  </div>
+
+  <button class="ghost" data-a1-role="shell-cta" aria-label="Downloaden">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M8 2v8.5"/>
+      <path d="M5 7.5l3 3 3-3"/>
+      <path d="M3 13.5h10"/>
+    </svg>
+  </button>
+</main>
+</body>
+</html>

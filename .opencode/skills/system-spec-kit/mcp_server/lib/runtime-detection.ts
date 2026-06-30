@@ -6,9 +6,7 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { detectCodexHookPolicy } from './codex-hook-policy.js';
-
-export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'unknown';
+export type RuntimeId = 'claude-code' | 'copilot-cli' | 'unknown';
 export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'live' | 'partial' | 'unavailable' | 'unknown';
 
 export interface RuntimeInfo {
@@ -20,16 +18,6 @@ export function detectRuntime(): RuntimeInfo {
   const env = process.env;
   if (env.CLAUDE_CODE === '1' || env.CLAUDE_SESSION_ID || env.MCP_SERVER_NAME === 'context-server') {
     return { runtime: 'claude-code', hookPolicy: 'enabled' };
-  }
-  if (
-    env.CODEX_CLI === '1'
-    || typeof env.CODEX_THREAD_ID === 'string'
-    || env.CODEX_TUI_RECORD_SESSION === '1'
-    || typeof env.CODEX_TUI_SESSION_LOG_PATH === 'string'
-    || Boolean(env.OPENAI_API_KEY && env.CODEX_SANDBOX)
-  ) {
-    const hookPolicy = detectCodexHookPolicy().hooks;
-    return { runtime: 'codex-cli', hookPolicy };
   }
   if (env.COPILOT_CLI === '1' || env.GITHUB_COPILOT_CLI === '1') {
     return { runtime: 'copilot-cli', hookPolicy: detectCopilotHookPolicy() };

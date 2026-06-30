@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "design/003-mcp-figma-with-direct-cli-support",
+  "description": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI",
+  "keywords": [
+    "figma",
+    "desktop",
+    "holds",
+    "project",
+    "real",
+    "design",
+    "systems",
+    "tokens",
+    "variables",
+    "components",
+    "coding",
+    "agent",
+    "only",
+    "reach",
+    "them"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.648Z",
+  "specId": "003",
+  "folderSlug": "mcp-figma-with-direct-cli-support",
+  "parentChain": [
+    "design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

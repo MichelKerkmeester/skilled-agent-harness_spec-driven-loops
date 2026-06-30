@@ -1,0 +1,35 @@
+{
+  "specFolder": "design/008-sk-design-parent/036-design-context-hardening",
+  "description": "The 031 evaluation proved the contract works but found a safety defect (F-005), a cross-reference robustness gap (F-003), inventory drift (F-006), and",
+  "keywords": [
+    "031",
+    "evaluation",
+    "proved",
+    "contract",
+    "works",
+    "found",
+    "safety",
+    "defect",
+    "f-005",
+    "cross-reference",
+    "robustness",
+    "gap",
+    "f-003",
+    "inventory",
+    "drift",
+    "f-006"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.908Z",
+  "specId": "036",
+  "folderSlug": "design-context-hardening",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "27-06-26_17-46__next-steps.md",
+    "27-06-26_20-38__next-steps.md",
+    "28-06-26_07-39__next-steps.md"
+  ]
+}

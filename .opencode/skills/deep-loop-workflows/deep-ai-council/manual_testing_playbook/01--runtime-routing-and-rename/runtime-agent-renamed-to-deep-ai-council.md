@@ -46,8 +46,8 @@ Operators need one current dispatch name across runtimes so council prompts do n
 
 ### Commands
 
-1. `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/`
-2. `bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/`
+1. `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/`
+2. `bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/`
 
 ### Expected
 
@@ -64,11 +64,11 @@ Capture grep output with file paths and line numbers.
 
 ### Failure Triage
 
-Check the mirror frontmatter/name first, then Codex TOML name, then any converted mirror header.
+Check the mirror frontmatter/name first, then OpenCode TOML name, then any converted mirror header.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ -> bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `deep-ai-council` | Inspect mirror name fields |
+| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/ -> bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `deep-ai-council` | Inspect mirror name fields |
 
 ---
 
@@ -87,7 +87,7 @@ Check the mirror frontmatter/name first, then Codex TOML name, then any converte
 |---|---|
 | `.opencode/agents/ai-council.md` | OpenCode runtime mirror |
 | `.claude/agents/ai-council.md` | Claude runtime mirror |
-| `.codex/agents/ai-council.toml` | Codex runtime mirror |
+| `.opencode/agents/ai-council.toml` | OpenCode runtime mirror |
 
 ---
 

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/016-sk-code-readme",
+  "description": "The sk-code README is a tabular reference card with no problem-first entry point, and it carries a material accuracy error: it presents MOTIONDEV as a",
+  "keywords": [
+    "sk-code",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "material",
+    "accuracy",
+    "error",
+    "presents",
+    "motiondev"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.370Z",
+  "specId": "016",
+  "folderSlug": "sk-code-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

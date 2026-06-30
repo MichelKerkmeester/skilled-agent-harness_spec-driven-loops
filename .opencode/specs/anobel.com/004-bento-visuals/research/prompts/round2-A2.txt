@@ -1,0 +1,295 @@
+You are a senior AI-systems + design-engineering researcher doing iteration 2 (deepening) on angle A2 for improving GLM-5.2 vision-to-code output (maritime-B2B bento tiles; baseline 27/45=60% SHIP; core defect = LAYOUT PRIMITIVE, 2D-positioned diagrams 35-58 vs linear 86-94).
+
+YOUR ROUND-1 FINDING:
+Research scope is read-only. I’ll fetch the three cited sources, extract implementation-grade mechanisms, and map them directly to the defect ledger and prompt-contract change.The DesignerlyLoop PDF endpoint exceeded the fetch size limit, so I’m checking the ArXiv abstract/HTML mirrors for the same paper before treating that candidate as failed.The original DesignerlyLoop PDF URL was not usable through `webfetch` because the response exceeded the 5MB tool limit; the ArXiv abstract page was available, and the HTML mirror returned 404.I found the SLR’s actionable parts: structured prompting, few-shot exemplars, modular decomposition, context-aware inputs, and explicit evaluation/explainability are named as best practices; prompt sensitivity, spatial-context weakness, and generic pattern convergence are named risks.The DesignerlyLoop source archive also exceeds the webfetch size limit. I’m trying the ar5iv HTML renderer for the same ArXiv ID as the last readable route.ar5iv provided a readable DesignerlyLoop rendering, including system mechanisms: context builder, editable node canvas, LLM reasoning chain viewer, reasoning-mode classification, Double Diamond phase classification, and few-shot golden examples.# A2 findings
+
+## What The Sources Actually Say
+
+**https://www.emergentmind.com/topics/chain-of-rubrics-cor-prompting-framework**
+
+Technique: turn the design prompt into ordered rubric checkpoints, not just prose constraints.
+
+Exact mechanism: CoR decomposes a task into explicit modular rubric items, applies each rubric to the candidate state, emits an intermediate assessment/correction, then aggregates into the final output. It specifically emphasizes explicitness, modularity, iterativity, evaluator/generator roles, rubric-scored criteria, and editable reasoning blocks. The useful implementation pattern is:
+
+```text
+for rubric in rubrics:
+  evaluate candidate against rubric
+  improve candidate from feedback
+  proceed only when rubric is satisfied
+```
+
+Citation: Chain-of-Rubrics describes CoR as “a sequence of explicit, modular rubric items” with “intermediate assessments” and “iterative feedback loops” [SOURCE: https://www.emergentmind.com/topics/chain-of-rubrics-cor-prompting-framework].
+
+**https://arxiv.org/html/2507.04469v1**
+
+Technique: UI/UX LLM prompting works better when prompts are structured, modular, contextual, few-shot, and evaluation-backed.
+
+Exact mechanism: the SLR identifies structured prompting as a design tool, including chain-of-thought-style reasoning, modular prompts aligned to interface elements, and few-shot learning with curated task exemplars. It also calls out a two-stage prompting pattern that separates critique generation from visual localization, and recommends detailed goal-oriented prompts with user stories, examples, or contextual variables. For control/scalability, it recommends decomposing UI/UX work into smaller interpretable modules. For trust, it recommends explainability, confidence/rationale summaries, and standardized evaluation. It also names the risks this run hit: prompt instability, weak spatial UI reasoning, and generic/conservative design convergence.
+
+Citation: SLR §4.2.1, §4.2.4, §4.2.6 and §4.3.2-4.3.4 [SOURCE: https://arxiv.org/html/2507.04469v1].
+
+**https://arxiv.org/pdf/2511.15331**
+
+Fetch status: the candidate PDF failed through `webfetch` because the response exceeded the 5MB tool limit. I continued with the ArXiv abstract and ar5iv HTML rendering for the same paper/ID.
+
+Technique: DesignerlyLoop externalizes design reasoning before generation, using editable structured reasoning rather than one-shot output.
+
+Exact mechanism: DesignerlyLoop separates design intent from LLM reasoning through a context builder, design-reasoning canvas, and LLM reasoning-chain viewer. The system classifies the user goal into reasoning modes, maps steps to Double Diamond design stages, injects prior context plus “golden examples” as few-shot references, and generates a structured multi-step thinking chain with rationales. Users can inspect, revise, delete, reorder, regenerate, and export reasoning nodes. Reported results: DesignerlyLoop improved creativity support versus baseline, CSI `95.2` vs `78.7`, `p<.001`; expert-rated quality improved, `4.05` vs `3.78`, `p=.006`.
+
+Citation: DesignerlyLoop abstract, system design, prompt appendix, and findings [SOURCE: https://arxiv.org/abs/2511.15331; fallback rendering https://ar5iv.labs.arxiv.org/html/2511.15331].
+
+## How It Maps To This Run's Defects
+
+A2 is well-supported for RC-5, RC-6, and RC-7, but it is not a complete fix for RC-1/RC-2 layout collisions.
+
+RC-5: context-blind contrast. The `#4e4e4e` on navy pair at `1.51:1` is exactly the kind of failure a value list does not prevent. The source-backed mechanism is to require a filled contrast-pair inventory before build, then gate generation on pass/fail pairs.
+
+RC-6: color-as-decoration. `accountbeheer-2` scored `78` with decorative red; the defect is judgment, not token availability. A rubric card should force the model to label every accent as semantic, navigational, or delete it.
+
+RC-7: decorative slop. `prijzen-condities-3` scored `62` because 3D extrusion reads as gradient; `aangepast-assortiment-5` scored `70` because a funnel buries content. The DesignerlyLoop mechanism maps directly: force intent articulation, primitive selection, and anti-slop checks before HTML.
+
+RC-1/RC-2/RC-3 interaction: the core layout primitive still needs a stronger layout contract, but A2 can reduce exposure by steering Product V4/M2/D6 tiles toward linear primitives. The best tiles already prove that linear-flow structures score high: `kwartaalcijfers-2` `94`, `accountbeheer-5` `93`, `een-factuur-5` `93`, `accountbeheer-1` `92`, `orders-facturen-1` `90`.
+
+## Concrete, Testable Recommendation
+
+Add this preamble to every per-tile GLM prompt before the HTML task. Keep register dials fixed: `Product`, `V4/M2/D6`.
+
+```text
+DESIGN-SKILL RUBRIC PREAMBLE — COMPLETE BEFORE HTML
+
+You are generating one maritime-B2B Product dashboard bento tile.
+Register lock: Product. Dial lock: V4/M2/D6.
+Design posture: restrained, operational, credible, content-first. No decorative drama.
+
+Before writing HTML, emit a filled PREFLIGHT block, then emit the HTML.
+
+PREFLIGHT BLOCK FORMAT:
+
+[PREFLIGHT]
+1. Intent
+- Tile job:
+- Primary user decision supported:
+- One visual idea only:
+
+2. Layout Primitive
+Choose exactly one:
+- linear-flow
+- stacked-ledger
+- compact-kpi-row
+- two-column-comparison
+- mini-table
+
+Forbidden by default:
+- freeform 2D node map
+- perspective/3D/extruded object
+- large decorative funnel
+- decorative red/orange accent
+- overlapping badges/cards
+- absolute-positioned diagram with more than 3 nodes
+
+If you think a diagram is needed, convert it to a linear-flow or stacked-ledger primitive unless every node can fit without overlap and without stealing the bottom title zone.
+
+3. Contrast-Pair Inventory
+List every text/icon/stroke pair you will use.
+
+| Element | Foreground | Background | Estimated ratio | Pass? | Fix if fail |
+|---|---:|---:|---:|---|---|
+
+Rules:
+- Body and label text must be >= 4.5:1.
+- Large display text must be >= 3:1, but prefer >= 4.5:1.
+- Do not use dark gray on navy. Specifically avoid #4e4e4e on navy.
+- If any pair fails, change the color before HTML.
+
+4. Anti-Slop Audit
+Answer yes/no.
+- Does every color encode brand, hierarchy, state, or data?
+- Is any red/orange used only as decoration? If yes, remove it.
+- Does every shape carry information? If no, delete it.
+- Is the tile flat, sharp, and B2B-operational rather than glossy/3D?
+- Is content more prominent than the motif?
+- Is the bottom-left title zone preserved?
+
+5. Build Decision
+- Final primitive:
+- Removed decorative ideas:
+- Safe accent colors:
+- Highest-risk contrast pair and fix:
+[/PREFLIGHT]
+
+Then build the HTML using the selected primitive.
+Use CSS grid/flex flow for layout. Avoid absolute positioning unless it is a small decorative background mark that cannot overlap content.
+```
+
+Add these two few-shot exemplars immediately after the preamble.
+
+```text
+FEW-SHOT EXEMPLAR 1 — LINEAR FLOW, HIGH-SCORING PATTERN
+
+Good pattern:
+A compact operational flow uses 3-4 horizontal steps in one row or vertical stack:
+"Order" -> "Controle" -> "Factuur" -> "Boeking".
+Each step is a flat card with a short label, one number/status, and a thin connector.
+No freeform node map. No badge overlapping another card. No 3D.
+The title remains bottom-left, outside the visual cluster.
+
+Why this ships:
+It keeps the content inside the visual budget, preserves the title, and makes the business process readable at a glance.
+Use this pattern for orders, invoices, approval, OCI, account setup, and assortment workflows.
+```
+
+```text
+FEW-SHOT EXEMPLAR 2 — STACKED LEDGER, HIGH-SCORING PATTERN
+
+Good pattern:
+A restrained ledger tile uses 3 compact rows inside one panel:
+left = entity or vessel/account, middle = status chip, right = amount/count/date.
+A small summary chip can sit above the rows, but nothing overlaps.
+Use muted navy/slate surfaces, white text, and one cyan/teal accent for active state.
+No red/orange unless it means error/warning. No funnel, extrusion, glass, or oversized illustration.
+
+Why this ships:
+It turns a complex relationship into a linear scan path and avoids GLM's weak 2D coordinate placement.
+Use this pattern when the model wants to draw a matrix, branch diagram, or catalog funnel.
+```
+
+Pipeline step to add:
+
+```text
+After GLM generation:
+1. Parse [PREFLIGHT].
+2. Fail/retry if PREFLIGHT is missing.
+3. Extract contrast-pair rows.
+4. Run contrast_check on every listed pair plus grep-discovered CSS pairs.
+5. Fail/retry if any pair is below threshold.
+6. Run MiniMax-M3 audit for on_brand and anti_slop.
+7. Compare against value-only control with equal token budget.
+```
+
+A/B test design:
+
+```text
+A: value-only contract
+- Existing palette/radius/font/weight rules.
+- Add equal token count of more value rules.
+
+B: reasoning-embedded contract
+- Same values.
+- Add PREFLIGHT + contrast inventory + anti-slop audit + 2 linear primitive exemplars.
+
+Sample:
+- RC-6/RC-7 target tiles: prijzen-condities-3, aangepast-assortiment-5, accountbeheer-2.
+- Include at least 2 layout-sensitive defect tiles as spillover: oci-4, goedkeuringssysteem-4.
+- Generate 5 variants per tile per condition if budget allows.
+- Hold register/dials fixed: Product V4/M2/D6.
+
+Metrics:
+- SHIP rate.
+- MiniMax-M3 `on_brand:true` rate.
+- Anti-slop dimension score.
+- `contrast_check` exit-0 rate on enumerated and actual CSS pairs.
+- PREFLIGHT compliance rate.
+- Absolute-position count.
+- Diagram-vs-linear score delta.
+```
+
+## Predicted Effect
+
+Expected improvement: moderate and targeted.
+
+SHIP rate: likely `60%` to `67-73%` if RC-5/RC-6/RC-7 are common near-threshold failures. I would not predict more without A1/A3/A5 layout-budget fixes because RC-1/RC-2 remain dominant.
+
+Contrast exit-0: likely high improvement, from occasional misses like `1.51:1` toward `90%+` on enumerated pairs, assuming the pipeline verifies actual CSS pairs and retries failures.
+
+On-brand / anti-slop: likely meaningful improvement on `prijzen-condities-3` `62`, `aangepast-assortiment-5` `70`, and `accountbeheer-2` `78`, because the new contract forces removal of decorative 3D/funnel/red choices before build.
+
+Diagram-vs-linear delta: small-to-moderate improvement. A2 can reduce diagram selection, but it does not give GLM a true layout solver. Expect maybe `+5-12` points on diagram-prone tiles when the model switches to linear-flow; no reliable fix for dense absolute 2D maps without a separate geometry/layout gate.
+
+Cost: about `+1.1k-1.6k` prompt/output tokens per tile. Latency cost is likely one extra generation-sized reasoning prefix plus parser checks; contrast parsing is negligible, MiniMax audit cost depends on existing audit pipeline. Best operational mode is retry-on-fail only for missing preflight, failed contrast, or decorative slop.
+
+## Open Questions For The Next Iteration
+
+1. Does GLM actually fill the contrast inventory accurately, or does the external `contrast_check` need to be the only trusted source?
+
+2. Should the pipeline strip `[PREFLIGHT]` before rendering, or preserve it in an HTML comment for audit traceability?
+
+3. Which is stronger: two grounded linear exemplars from current high-scoring tiles, or one positive exemplar plus one negative “do not make this 2D diagram” counterexample?
+
+4. How many failures are purely RC-5/RC-6/RC-7 versus layout-budget RC-1/RC-2? This determines whether A2 alone can move SHIP materially or only improves audit sub-scores.
+
+5. Should `freeform 2D node map` be fully banned for Product V4/M2/D6 until GLM has a collision/height gate?
+
+SIBLING ANGLES' ROUND-1 RECOMMENDATIONS (cross-reference; avoid conflicts; note synergies):
+### Sibling A1 recommendation:
+## What the sources actually say
+https://arxiv.org/html/2508.03560v1  
+Technique: reduce layout burden by decomposing layout into bounded regions, then assemble with layout-preserving rules. LaTCoder divides designs into rectangular blocks with recorded bounding boxes, generates code block-by-block, then assembles using either absolute positioning or MLLM-based assembly plus a verifier. Mechanism: smaller bounded regions reduce the model’s need to infer global cumulative layout; recorded BBoxes preserve size/position; verifier uses screenshot similarity, MAE and CLIP. It reports large gains on complex layouts, including DeepSeek-VL2 CC-HARD TreeBLEU +66.67%, Visual Score +12.5%, MAE -38.53%. It also notes direct prompting loses layout even when told “always get the layout right.”
+
+https://arxiv.org/html/2507.11538v1  
+Technique: keep hard constraints few, early, explicit, and mechanically checkable. IFScale shows instruction following degrades as instruction density rises, with exponential/linear/threshold decay patterns, primacy effects favoring earlier instructions, and omission becoming the dominant failure mode under load. Mechanism: models drop constraints rather than partially apply them; placing critical constraints early helps until saturation. For this run, the implication is not “add more prose,” but “replace diffuse prose with a short invariant block and deterministi
+
+### Sibling A3 recommendation:
+## What The Sources Actually Say
+
+All candidate URLs fetched successfully.
+
+| URL | Concrete technique | Exact mechanism to reuse |
+|---|---|---|
+| `https://github.com/madaan/self-refine` | Self-Refine uses iterative `Init` → `Feedback` → `Iterate` prompts, including visual examples where GPT-4V writes diagram code and improves it iteratively. | Split generation into three prompt roles: first draft, critique with localized/actionable findings, then refinement from the critique. The project page also points to visual self-refine examples for diagram code. Citation: GitHub README, “Each task has three different types of prompts: Init, Feedback, Iterate” and “Use GPT4-V to write tikz code for diagrams, and improve them iteratively.” |
+| `https://docs.z.ai/guides/vlm/glm-4.6v` | GLM-4.6V supports visual web-page iteration, direct screenshot/design input, and visual debugging. | Feed the rendered screenshot back to the model, optionally with circled problem areas and natural-language instructions. Citation: GLM docs, “Pixel-Level Replication” from screenshot/design to HTML/CSS/JS, plus “Visual Debugging: Users can circle an area on a generated page screenshot and give natural language instructions… The model automatically locates and corrects the corresponding code snippet.” |
+| `https://arxiv.org/html/2508.03560v1` | LaTCoder replaces monolithic design-to-code with Layout-as-Though
+
+### Sibling A4 recommendation:
+## What the sources actually say
+
+**https://arxiv.org/pdf/2412.16829**
+
+PDF fetch failed: tool response exceeded the 5MB limit. I continued with the same paper via `https://arxiv.org/html/2412.16829` and `https://arxiv.org/abs/2412.16829`.
+
+Technique: split visual critique into separate generator, filter, box-generation, refinement, validation, and text-refinement stages.
+
+Exact mechanism:
+The paper’s pipeline uses six LLM roles: `TextGen`, `TextFilter`, `BoxGen`, `BoxRefine`, `Validation`, and `TextRefine`. It first generates critique text, filters invalid comments, grounds each valid comment with a bounding box, refines the box using coordinate-marked screenshots plus a zoomed-in patch, validates the text/box pair, then routes failures back to either box or text refinement.
+
+Concrete evidence:
+In the UI critique task, each critique is explicitly a text issue plus a bounding box mapped to the relevant screenshot region. The method adds coordinate markers to screenshots for grounding, uses a zoomed-in patch around the candidate bounding box, keeps refinement history, and stops when validation says the pair is correct or max iterations is reached. Few-shot visual prompting plus iterative refinement improved bounding-box IoU from `0.120` zero-shot to `0.357` for Gemini and from `0.233` to `0.345` for GPT-4o. Source: arXiv 2412.16829, sections 3-5.3.
+
+Applicable technique:
+For thi
+
+### Sibling A5 recommendation:
+## What The Sources Actually Say
+
+| Source | Concrete technique | Exact mechanism to reuse |
+|---|---|---|
+| IFScale, `2507.11538v1` | Treat instruction density as a measurable failure mode, not a prompt-writing problem. | It evaluates prompts with 10 to 500 simultaneous constraints and grades adherence deterministically. It reports threshold, linear, and exponential degradation patterns, primacy effects, and omission-dominant failures under high load. Applicable mechanism: reduce independent prose pins and move checks into deterministic validators. Citation: https://arxiv.org/html/2507.11538v1 §3.2, §4.4, §4.6, §4.8 |
+| LaySPA, `2509.16891v2` | Make layout a structured spatial object with explicit rewards. | Layouts are JSON-like element boxes `(x, y, w, h, category)`. Rewards score format validity, boundary adherence, collision, alignment, distribution, spacing, hierarchy, and visual quality. Fine-tuning with spatial rewards reduced collision rate by 36%, improved alignment by 63%, spacing by 73%, distribution by 26%, and format correctness by 14%. Citation: https://arxiv.org/html/2509.16891v2 §2.1-§2.3, §4.1 |
+| GeoSVG-RL, `2605.25447` | Use layout-plan-first generation plus browser-backed geometry verification. | The model first receives/predicts a layout plan containing canvas dimensions, node boxes, text assignments, connector endpoints, anchors, and graph connectivity. T
+
+### Sibling A6 recommendation:
+## What the sources actually say
+
+| Source | Fetch status | Concrete technique + mechanism |
+|---|---:|---|
+| `https://docs.z.ai/guides/vlm/glm-4.6v` | Fetched | GLM-4.6V is positioned for multimodal frontend replication: upload screenshot/design file, model identifies layout/components/colors, then emits HTML/CSS/JS. It also supports visual debugging: user marks a screenshot region and gives a natural-language correction, and the model locates/corrects the corresponding code snippet. It has 128K context and Flash/FlashX variants, including a free/lightweight option. |
+| `https://arxiv.org/pdf/2504.04220` | PDF returned raw bytes via `webfetch`; used arXiv abs + HTML fallback | AdaCoder’s key mechanism is adaptive planning: first let the base model generate directly with no planning, run cheap/scripted tests, then only add a planning agent after failure. Their Phase 2 uses rule-based debugging for superficial errors plus an LLM planner that generates a step-by-step plan from specific error feedback. The paper reports planning can help, but always-on multi-plan systems are expensive; AdaCoder reports +27.69% Pass@1 over MapCoder, 16x faster inference, and 12x lower token use. Citation fallback: `https://arxiv.org/abs/2504.04220`, `https://ar5iv.labs.arxiv.org/html/2504.04220`. |
+| `https://arxiv.org/pdf/2511.15331` | PDF exceeded fetch size; used arXiv abs + HTML fallback | Desi
+
+### Sibling A7 recommendation:
+## What the sources actually say
+
+| URL | Concrete technique + exact mechanism |
+|---|---|
+| https://arxiv.org/html/2508.03560v1 | **LaTCoder / Layout-as-Thought:** split a design into rectangular BBoxes, generate each block independently, then assemble using either absolute-positioned BBoxes or MLLM assembly, with dynamic selection by `0.5 * (1 - MAE/255) + 0.5 * CLIP`. The divider uses OCR to avoid splitting text, 5px grid sampling, min dividing distance `tau=50`, recursive depth 3, and min block area `300x300`. Reported gains include DeepSeek-VL2 on CC-HARD: TreeBLEU `+66.67%`, Visual Score `+12.5%`, MAE `-38.53%`. |
+| https://arxiv.org/html/2507.11538v1 | **IFScale / instruction-density cliff:** models lose constraints as instruction count rises. It identifies threshold, linear, and exponential decay, with primacy effects peaking around `150-200` instructions. Practical mechanism: reduce simultaneous constraints, put critical constraints first, and use deterministic checks because failures become omissions under load. |
+| https://arxiv.org/html/2509.16891v2 | **LaySPA / spatial reward model:** generate layout JSON with `(x,y,w,h,type)`, then score candidates using format correctness, collision, alignment, distribution, spacing, and semantic underlay-text rewards. Collision is computed as `1 - IoU(overlap)`. Reported Qwen-7B + LaySPA: collision rate reduced from `0.692` to `
+
+NOW deepen: resolve your round-1 open questions, webfetch any remaining sources you cited but didn't fully extract, reconcile with the siblings, and produce the FINAL recommendation for angle A2.
+RETURN (markdown):
+# A2 FINAL recommendation
+## The exact change (copy-pasteable: contract block / dial preset / pipeline step / schema)
+## Why it works (mechanism + the RC-ids it fixes + cited sources)
+## Predicted effect (SHIP-rate delta from 60%, diagram-vs-linear delta from ~41pts, contrast exit-0) + cost (tokens/latency)
+## Synergies + conflicts with sibling angles (name them)
+## Confidence + residual risk
+Be implementation-ready.

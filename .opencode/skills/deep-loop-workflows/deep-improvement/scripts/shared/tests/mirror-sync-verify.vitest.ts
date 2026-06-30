@@ -50,7 +50,7 @@ function writeFile(relativePath: string, content: string): void {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
-function codexToml(body: string): string {
+function opencodeToml(body: string): string {
   return `# Agent: ${AGENT_NAME}
 name = "${AGENT_NAME}"
 description = "Mirror sync fixture"
@@ -61,11 +61,11 @@ ${body}
 `;
 }
 
-function writeAllMirrors(options: { codexBody?: string; omitCodex?: boolean } = {}): void {
+function writeAllMirrors(options: { opencodeBody?: string; omitOpenCode?: boolean } = {}): void {
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, CANONICAL);
   writeFile(`.claude/agents/${AGENT_NAME}.md`, CANONICAL.replace('.opencode/agents/*.md', '.claude/agents/*.md'));
-  if (!options.omitCodex) {
-    writeFile(`.codex/agents/${AGENT_NAME}.toml`, codexToml(options.codexBody || CANONICAL.replace(/^---[\s\S]*?---\n/, '').trim()));
+  if (!options.omitOpenCode) {
+    writeFile(`.opencode/agents/${AGENT_NAME}.toml`, opencodeToml(options.opencodeBody || CANONICAL.replace(/^---[\s\S]*?---\n/, '').trim()));
   }
 }
 
@@ -84,27 +84,27 @@ describe('mirror-sync-verify', () => {
     const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
 
     expect(result.allInSync).toBe(true);
-    expect(result.presentRuntimes.sort()).toEqual(['claude', 'codex', 'opencode']);
+    expect(result.presentRuntimes.sort()).toEqual(['claude', 'opencode', 'opencode']);
     expect(result.missingRuntimes).toEqual([]);
     expect(result.driftRuntimes).toEqual([]);
   });
 
   it('reports a missing runtime when one mirror is absent', () => {
-    writeAllMirrors({ omitCodex: true });
+    writeAllMirrors({ omitOpenCode: true });
 
     const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
 
     expect(result.allInSync).toBe(false);
-    expect(result.missingRuntimes).toEqual(['codex']);
+    expect(result.missingRuntimes).toEqual(['opencode']);
   });
 
-  it('reports Codex drift when TOML body tokens differ while markdown mirrors match', () => {
-    writeAllMirrors({ codexBody: '# Mirror Sync Fixture\n\nProposal-only agent body.\n' });
+  it('reports OpenCode drift when TOML body tokens differ while markdown mirrors match', () => {
+    writeAllMirrors({ opencodeBody: '# Mirror Sync Fixture\n\nProposal-only agent body.\n' });
 
     const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
 
     expect(result.allInSync).toBe(false);
     expect(result.missingRuntimes).toEqual([]);
-    expect(result.driftRuntimes).toEqual(['codex']);
+    expect(result.driftRuntimes).toEqual(['opencode']);
   });
 });

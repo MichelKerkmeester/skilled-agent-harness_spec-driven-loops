@@ -1,0 +1,47 @@
+{
+  "title": "deep-loop folder binding",
+  "trigger_phrases": [
+    "deep-loop spec-folder binding",
+    "named spec folder from scope",
+    "fail-closed standalone guard",
+    "deep command folder binding",
+    "context loop misroutes to standalone"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/008-deep-loop-folder-binding",
+  "status": "complete",
+  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "importance_tier": "normal",
+  "created_at": "2026-06-07T10:12:50Z",
+  "completed_at": "2026-06-07T12:21:00Z",
+  "is_phase_parent": false,
+  "children": [],
+  "specFolder": "deep-loops/z_archive/025-deep-context-gathering/008-deep-loop-folder-binding",
+  "description": "The shared `:auto`/`:confirm` setup contract (`automodecontract.md`) resolves `specfolder` only from a `--spec-folder` flag, a `PRE-BOUND` marker, or",
+  "keywords": [
+    "shared",
+    "auto",
+    "confirm",
+    "setup",
+    "contract",
+    "automodecontract",
+    "resolves",
+    "specfolder",
+    "only",
+    "spec-folder",
+    "flag",
+    "pre-bound",
+    "marker"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.811Z",
+  "specId": "008",
+  "folderSlug": "deep-loop-folder-binding",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "134-deep-context-gathering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

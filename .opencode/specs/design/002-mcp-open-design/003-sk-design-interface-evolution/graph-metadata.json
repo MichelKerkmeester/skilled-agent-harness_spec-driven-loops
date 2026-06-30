@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/002-mcp-open-design/003-sk-design-interface-evolution",
+  "spec_folder": "design/002-mcp-open-design/003-sk-design-interface-evolution",
+  "parent_id": "design/002-mcp-open-design",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design-interface de-vendor",
+      "ui-ux-pro-max apache only",
+      "open design integration parity loop",
+      "sk-design-interface de-vendor plan",
+      "ui-ux-pro-max removal plan",
+      "sk-design-interface de-vendor tasks",
+      "ui-ux-pro-max removal tasks",
+      "sk-design-interface de-vendor checklist",
+      "ui-ux-pro-max removal verification",
+      "sk-design-interface de-vendor summary",
+      "ui-ux-pro-max removal outcome"
+    ],
+    "key_topics": [
+      "sk-design-interface",
+      "de-vendor",
+      "ui-ux-pro-max",
+      "apache",
+      "only",
+      "open",
+      "design",
+      "integration",
+      "parity",
+      "loop",
+      "plan",
+      "removal"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-design-interface/SKILL.md",
+      ".opencode/skills/sk-design-interface/changelog/v1.1.0.0.md",
+      ".opencode/skills/sk-design-interface/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-interface/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design-interface/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview De",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Open Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ordered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Apache",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-design-interface` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, products, ui-reasoning, ux-guidelines, and the rest), the `designsearch` scripts that queried them, and the MIT license notices that came with them",
+    "created_at": "2026-06-14T16:30:00Z",
+    "last_save_at": "2026-06-23T03:49:48.554Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa58a9a25699fb46ca0e00aa95799e5b22f0b13d9da117971d3959dff6bcf3b8",
+    "source_doc_hashes": {
+      "spec.md": "faf3873ebbec9471d62512a3bb258c9b02bae8ca9ee68f13f0f000f67c6a12e0",
+      "plan.md": "92c3ad05fcdfd6e47f4036e46ddc3e51ce135b02deea07b336e2fd0d352cb4d8",
+      "tasks.md": "6dd9dff0463846509fed02f7ea770c0eac18c25a2948e43042c97d80515f8243",
+      "checklist.md": "7eb5ce2ff3b1d6ef223ff9666c467368b3da4ca3a8db2177c0382ae1e543ad3a",
+      "implementation-summary.md": "316235c6d715af2fc7d489769e08e130ecd46660bc83d0aa32b8b0a1f8e2ed50"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

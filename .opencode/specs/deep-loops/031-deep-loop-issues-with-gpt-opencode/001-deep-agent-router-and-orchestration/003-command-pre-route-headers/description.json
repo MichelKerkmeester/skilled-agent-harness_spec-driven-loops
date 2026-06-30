@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/003-command-pre-route-headers",
+  "description": "The research (§3) found the dominant GPT-slow mechanism is role-resolution overhead (F13), not prompt size: native dispatch names the agent but backs",
+  "keywords": [
+    "research",
+    "found",
+    "dominant",
+    "gpt-slow",
+    "mechanism",
+    "role-resolution",
+    "overhead",
+    "f13",
+    "prompt",
+    "size",
+    "native",
+    "dispatch",
+    "names",
+    "agent",
+    "backs"
+  ],
+  "lastUpdated": "2026-06-30T16:33:05.451Z",
+  "specId": "003",
+  "folderSlug": "command-pre-route-headers",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode",
+    "001-deep-agent-router-and-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

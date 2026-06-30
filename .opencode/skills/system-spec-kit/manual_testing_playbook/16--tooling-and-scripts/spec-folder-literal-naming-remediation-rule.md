@@ -78,10 +78,10 @@ Return ONLY a JSON object:
 Do NOT execute create.sh. Return only the JSON.
 ```
 
-#### cli-codex
+#### cli-opencode
 
 ```bash
-codex exec \
+opencode run \
   --model "gpt-5.5" \
   -c model_reasoning_effort="high" \
   -c approval_policy=never \
@@ -101,7 +101,7 @@ Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose
 
 Return ONLY a JSON object:
 {
-  "cli_name": "cli-codex",
+  "cli_name": "cli-opencode",
   "proposed_slug": "NNN-<descriptive-slug>",
   "source_token": "<the part of the slug naming the source>",
   "target_token": "<the part of the slug naming the target>",
@@ -112,12 +112,12 @@ Do NOT execute create.sh. Return only the JSON.
 PROMPT
 ```
 
-#### cli-codex (alternate invocation)
+#### cli-opencode (alternate invocation)
 
-The `cli-codex` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same codex invocation with a different reasoning effort:
+The `cli-opencode` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same opencode invocation with a different reasoning effort:
 
 ```bash
-codex exec \
+opencode run \
   --model "gpt-5.5" \
   -c model_reasoning_effort="medium" \
   -c approval_policy=never \
@@ -137,7 +137,7 @@ Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose
 
 Return ONLY a JSON object:
 {
-  "cli_name": "cli-codex",
+  "cli_name": "cli-opencode",
   "proposed_slug": "NNN-<descriptive-slug>",
   "source_token": "<the part of the slug naming the source>",
   "target_token": "<the part of the slug naming the target>",
@@ -186,7 +186,7 @@ Per-CLI JSON response shape:
 
 ```json
 {
-  "cli_name": "cli-codex",
+  "cli_name": "cli-opencode",
   "proposed_slug": "005-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format",
   "source_token": "deep-review-p0-p1-findings",
   "target_token": "for-skill-local-benchmarks-format",
@@ -201,8 +201,8 @@ Summary table across CLIs tested:
 ```
 | External CLI    | model            | proposed_slug                                                       | source_token              | target_token                          | verdict |
 |-----------------|------------------|---------------------------------------------------------------------|---------------------------|---------------------------------------|---------|
-| cli-codex       | gpt-5.5 high     | 005-fix-deep-review-p0-p1-for-skill-local-benchmarks-format         | deep-review-p0-p1         | for-skill-local-benchmarks-format     | PASS    |
-| cli-codex       | gpt-5.5 medium   | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
+| cli-opencode       | gpt-5.5 high     | 005-fix-deep-review-p0-p1-for-skill-local-benchmarks-format         | deep-review-p0-p1         | for-skill-local-benchmarks-format     | PASS    |
+| cli-opencode       | gpt-5.5 medium   | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
 | cli-opencode    | deepseek-v4-pro  | ...                                                                 | ...                       | ...                                   | ...     |
 ```
 

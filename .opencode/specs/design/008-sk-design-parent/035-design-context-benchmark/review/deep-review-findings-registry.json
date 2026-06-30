@@ -1,0 +1,102 @@
+{
+  "sessionId": "rvw-2026-06-27-design-context-loading",
+  "openFindings": [
+    {
+      "id": "F-001",
+      "severity": "P1",
+      "title": "Actual skill diff is larger than the packet's 18-file release claim",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/030-design-context-adoption/implementation-summary.md:95",
+        ".opencode/specs/design/008-sk-design-parent/030-design-context-adoption/implementation-summary.md:99",
+        "command: git diff --name-only 3c170c46de -- .opencode/skills returned 21 tracked files; git ls-files --others --exclude-standard .opencode/skills returned 9 untracked files"
+      ],
+      "fix": "Reconcile the packet scope with the real diff/status surface, or move unrelated changes out before making release claims.",
+      "owner": "030 packet owner"
+    },
+    {
+      "id": "F-002",
+      "severity": "P1",
+      "title": "Mandatory sk-doc validation fails on three modified reference docs",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/030-design-context-adoption/plan.md:46",
+        ".opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:18",
+        ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md:22",
+        ".opencode/skills/sk-design/design-motion/references/advanced_craft.md:17",
+        "command: python3 .opencode/skills/sk-doc/scripts/validate_document.py failed with missing_required_section overview on those three files"
+      ],
+      "fix": "Add required overview sections or remove those files from the release surface; then rerun validate_document.py on every changed Markdown file.",
+      "owner": "sk-design docs owner"
+    },
+    {
+      "id": "F-003",
+      "severity": "P1",
+      "title": "Shared contract has non-resolving bare path citations",
+      "evidence": [
+        ".opencode/skills/sk-design/shared/context_loading_contract.md:37",
+        ".opencode/skills/sk-design/shared/context_loading_contract.md:40",
+        ".opencode/skills/sk-design/shared/context_loading_contract.md:134"
+      ],
+      "fix": "Replace bare filenames with explicit relative paths such as ../design-audit/references/audit_contract.md and ../design-audit/assets/audit_evidence_worksheet.md.",
+      "owner": "sk-design contract owner"
+    },
+    {
+      "id": "F-004",
+      "severity": "P1",
+      "title": "Four-miss closure remains advisory in the executable routers",
+      "evidence": [
+        ".opencode/skills/sk-design/SKILL.md:60",
+        ".opencode/skills/sk-design/design-interface/SKILL.md:98",
+        ".opencode/skills/sk-design/design-interface/SKILL.md:116",
+        ".opencode/skills/sk-design/design-foundations/SKILL.md:121",
+        ".opencode/skills/sk-design/design-audit/SKILL.md:140"
+      ],
+      "fix": "Add the shared contract/cards/worksheet to the relevant DEFAULT_RESOURCE or RESOURCE_MAP entries, or add an executable pre-dispatch check that fails when the proof fields are absent.",
+      "owner": "sk-design router owner"
+    },
+    {
+      "id": "F-005",
+      "severity": "P1",
+      "title": "MiniMax manual scenario weakens path-guard posture and contradicts model profile guidance",
+      "evidence": [
+        ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md:205",
+        ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md:206",
+        ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md:50"
+      ],
+      "fix": "Remove --dangerously-skip-permissions from the scenario, omit --variant for MiniMax unless the accepted behavior is verified, and keep the no---agent rule.",
+      "owner": "cli-opencode and sk-prompt-models owners"
+    },
+    {
+      "id": "F-006",
+      "severity": "P2",
+      "title": "Template 16 leaves stale template-count language and is appended after related resources",
+      "evidence": [
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:580",
+        ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:575",
+        ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:579",
+        ".opencode/specs/design/008-sk-design-parent/030-design-context-adoption/implementation-summary.md:109"
+      ],
+      "fix": "Move Template 16 before related resources and update the inventory scenario/count language so CO-023 does not conflict with the template file.",
+      "owner": "cli-opencode docs owner"
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 1
+  },
+  "dimensionCoverage": {
+    "correctness": true,
+    "internalCoherence": true,
+    "crossReferenceIntegrity": true,
+    "noDuplication": true,
+    "smartRouterAnchorSafety": true,
+    "skDocQuality": true,
+    "fourMissesClosure": true,
+    "researchCompleteness": true,
+    "securityPathGuards": true,
+    "maintainabilityDriftRisk": true
+  },
+  "convergenceScore": 0.62,
+  "releaseReadinessState": "conditional"
+}

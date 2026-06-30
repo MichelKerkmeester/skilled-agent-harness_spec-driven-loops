@@ -1,0 +1,14 @@
+{"event":"round_start","round":1,"timestamp":"2026-06-30T12:00:00.000Z","seats":["seat-001","seat-002","seat-003"]}
+{"event":"artifact_written","path":"ai-council-config.json","bytes":337,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":null,"round_id":"round-001"}
+{"event":"artifact_written","path":"ai-council-strategy.md","bytes":1612,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":null,"round_id":"round-001"}
+{"event":"artifact_written","path":"seats/round-001/seat-001-analytical.md","bytes":1702,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":"seat-001","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-001","timestamp":"2026-06-30T12:00:00.000Z","status":"ok"}
+{"event":"artifact_written","path":"seats/round-001/seat-002-critical.md","bytes":1304,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":"seat-002","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-002","timestamp":"2026-06-30T12:00:00.000Z","status":"ok"}
+{"event":"artifact_written","path":"seats/round-001/seat-003-pragmatic.md","bytes":1010,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":"seat-003","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-003","timestamp":"2026-06-30T12:00:00.000Z","status":"ok"}
+{"event":"artifact_written","path":"deliberations/round-001.md","bytes":2352,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":null,"round_id":"round-001"}
+{"event":"deliberation_synthesized","round":1,"timestamp":"2026-06-30T12:00:00.000Z","convergence_score":0.87}
+{"event":"round_end","round":1,"timestamp":"2026-06-30T12:00:00.000Z","new_findings_count":0}
+{"event":"artifact_written","path":"council-report.md","bytes":7450,"checksum":"sha256:manual-council-artifact","timestamp":"2026-06-30T12:00:00.000Z","seat_id":null,"round_id":"round-001"}
+{"event":"council_complete","timestamp":"2026-06-30T12:00:00.000Z","final_report_path":"ai-council/council-report.md","convergence":true}

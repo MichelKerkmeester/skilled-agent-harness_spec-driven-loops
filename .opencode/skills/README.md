@@ -47,7 +47,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | Skill | What it does |
 |---|---|
 | [`cli-claude-code`](cli-claude-code/README.md) | Dispatch a task to Anthropic's `claude` CLI for deep reasoning, surgical edits or scheduled work |
-| [`cli-codex`](cli-codex/README.md) | Dispatch a task to OpenAI's `codex` CLI for sandboxed code generation, web research and parallel work |
+| [`cli-opencode`](cli-opencode/README.md) | Dispatch a task to OpenAI's `opencode` CLI for sandboxed code generation, web research and parallel work |
 | [`cli-opencode`](cli-opencode/README.md) | Dispatch a task into OpenCode's full project runtime in one shot from any external AI assistant |
 
 ### deep-*: Autonomous Loops and the Shared Runtime

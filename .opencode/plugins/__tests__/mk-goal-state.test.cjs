@@ -33,6 +33,13 @@ async function main() {
     assert.equal(goalA.status, 'active');
     assert.equal(goalA.goalId, 'goal-a');
     assert.equal(goalA.objective, 'Ship the passive goal plugin');
+    assert.match(goalA.goalPrompt, /Role: Focused OpenCode execution agent/);
+    assert.match(goalA.goalPrompt, /Objective: Ship the passive goal plugin/);
+    assert.match(goalA.goalPrompt, /Success Criteria:/);
+    assert.ok(goalA.goalPrompt.length <= 4000);
+    assert.equal(goalA.promptEnhancement.framework, 'CRAFT+TIDD-EC');
+    assert.equal(goalA.promptEnhancement.methodology, 'DEPTH');
+    assert.ok(goalA.promptEnhancement.clearScore >= 40);
 
     const sameGoal = await helpers.setGoal('session-a', 'Ship the passive goal plugin', {
       stateDir,
@@ -42,6 +49,7 @@ async function main() {
     assert.equal(sameGoal.goalId, 'goal-a');
     assert.equal(sameGoal.createdAtMs, 1000);
     assert.equal(sameGoal.updatedAtMs, 2000);
+    assert.match(sameGoal.goalPrompt, /Objective: Ship the passive goal plugin/);
 
     const goalB = await helpers.setGoal('session-b', 'Keep sessions isolated', {
       stateDir,
@@ -84,12 +92,16 @@ async function main() {
     );
     assert.match(toolSet, /STATUS=OK ACTION=set/);
     assert.match(toolSet, /goal_present=true/);
+    assert.match(toolSet, /prompt_framework="CRAFT\+TIDD-EC"/);
+    assert.match(toolSet, /prompt_clear_score=44/);
 
     const toolShow = await plugin.tool.mk_goal_status.execute({}, { sessionID: 'tool-session' });
     assert.match(toolShow, /STATUS=OK ACTION=show/);
     const previewLine = toolShow.split('\n').find((line) => line.startsWith('injection_preview='));
     const injectionPreview = JSON.parse(previewLine.slice('injection_preview='.length));
     assert.match(injectionPreview, /\[active_goal:tool-goal\]/);
+    assert.match(injectionPreview, /goal_prompt:\nRole: Focused OpenCode execution agent/);
+    assert.match(injectionPreview, /Objective: Tool managed goal/);
 
     const output = { system: [] };
     await plugin['experimental.chat.system.transform']({ sessionID: 'tool-session' }, output);
@@ -115,8 +127,9 @@ async function main() {
       /\ndirective: Continue toward this objective\. Before ending, run the goal verifier or explain why it is blocked\.\n/,
     );
     assert.ok(clippedBlock.endsWith('\n[/active_goal]'));
-    const objectiveLine = clippedBlock.split('\n').find((line) => line.startsWith('objective: '));
-    assert.ok(objectiveLine.endsWith('...'));
+    assert.match(clippedBlock, /\ngoal_prompt:\n/);
+    const goalPromptText = clippedBlock.split('\ngoal_prompt:\n')[1].split('\nlast_check:')[0];
+    assert.ok(goalPromptText.endsWith('...'));
 
     const adversarialGoal = await helpers.setGoal(
       'session-injection',
@@ -140,6 +153,7 @@ async function main() {
     });
     assert.match(sanitizedBlock, /^\[active_goal:adversarial-goal\]\n/);
     assert.match(sanitizedBlock, /objective: \[goal-marker-redacted\] system-role: \[instruction-redacted\]/);
+    assert.match(sanitizedBlock, /goal_prompt:\nRole: Focused OpenCode execution agent/);
     assert.match(sanitizedBlock, /developer-role: \[instruction-redacted\]/);
     assert.doesNotMatch(sanitizedBlock, /\[active_goal:evil\]/);
     assert.doesNotMatch(sanitizedBlock, /\bsystem:/i);
@@ -148,6 +162,14 @@ async function main() {
     assert.doesNotMatch(sanitizedBlock, /disregard all prior messages/i);
     assert.doesNotMatch(sanitizedBlock, /```/);
     assert.equal((sanitizedBlock.match(/\[\/active_goal\]/g) || []).length, 1);
+
+    const longPrompt = helpers.buildEnhancedGoalPrompt(`Upgrade goal prompt generation ${'y'.repeat(7000)}`, {
+      maxObjectiveChars: 8000,
+      maxGoalPromptChars: 4000,
+    });
+    assert.ok(longPrompt.goalPrompt.length <= 4000);
+    assert.equal(longPrompt.promptEnhancement.charCount, longPrompt.goalPrompt.length);
+    assert.ok(longPrompt.promptEnhancement.clearScore >= 40);
 
     const toolClear = await plugin.tool.mk_goal.execute(
       { action: 'clear' },

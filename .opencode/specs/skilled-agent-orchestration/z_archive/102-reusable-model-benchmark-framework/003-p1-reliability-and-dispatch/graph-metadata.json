@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+  "spec_folder": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+  "parent_id": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "p1 benchmark reliability",
+      "paired bootstrap ci verdict",
+      "dispatch envelope cost latency",
+      "capability table tiered fixtures",
+      "p1 reliability plan",
+      "ci verdict dispatch envelope plan",
+      "capability table tiered fixtures plan",
+      "p1 reliability tasks",
+      "ci verdict dispatch envelope tasks",
+      "capability table tiered fixtures tasks",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "benchmark",
+      "reliability",
+      "paired",
+      "bootstrap",
+      "verdict",
+      "dispatch",
+      "envelope",
+      "cost",
+      "latency",
+      "capability",
+      "table",
+      "tiered"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Harden",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "separation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The P0 MVP makes benchmarking config-driven and gates correctness, but its trust verdict uses a minimal single-sample heuristic, the dispatcher does not capture latency/tokens/cost (so \"token efficiency\" is approximated by word count), provider quirks (`--agent` omission, token-plan slugs) live in prose, and the fixture set is just a couple of T3 tasks",
+    "created_at": "2026-06-02T05:21:22.239Z",
+    "last_save_at": "2026-06-23T03:49:51.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:226b449e7c4c456444481d0b315e1d19993e562bf8d865e261b2fe9a3a6e4eb0",
+    "source_doc_hashes": {
+      "spec.md": "604d8a806e01b9dcf23d919088121286491eccd9deb58a1aee03a73f7ed04b06",
+      "plan.md": "127db274121cd1a36103ae8d53fe398e566cac4c191737b2e8db08b15015a608",
+      "tasks.md": "0c1d6f340ef9e1d2d055a576ebe92dcbe2ed9d49b677c76d70dbb4c33b36711f",
+      "checklist.md": "301554768933ab6224ba3656f97d4bf6787228bb10f68a7147e37d26b65b0fcf",
+      "implementation-summary.md": "ecff66c7e727ec51414bec4daff6263d95fe60b93ef81111d2ac3097d1606fa6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

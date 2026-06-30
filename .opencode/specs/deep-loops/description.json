@@ -1,0 +1,22 @@
+{
+  "specFolder": "deep-loops",
+  "description": "Track folder for deep-loop workflow packets - deep research, deep review, AI council, improvement loops, runtime hardening, and loop observability.",
+  "keywords": [
+    "deep-loops",
+    "track",
+    "deep-research",
+    "deep-review",
+    "ai-council",
+    "deep-improvement",
+    "runtime",
+    "workflow",
+    "observability"
+  ],
+  "lastUpdated": "2026-06-30T13:20:00.000Z",
+  "specId": "deep-loops",
+  "folderSlug": "deep-loops",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

@@ -16,10 +16,10 @@ This playbook fills that gap. The local LLM stack (Ollama `nomic-embed-text-v1.5
 - **Query intelligence** — does a paraphrased query find the right memory?
 - **Causal graph quality** — does the embedding give the edge builder enough signal to connect related memories without false-linking unrelated ones?
 - **Drift detection** — does `memory_drift_why` correctly identify contradictory memories about the same concept?
-- **Cross-AI handoff** — when Claude stores something, can Codex find it later in a separate CLI session?
+- **Cross-AI handoff** — when Claude stores something, can OpenCode find it later in a separate CLI session?
 - **Concurrent safety** — when two AIs interleave save + search against the same DB, does the substrate stay coherent?
 
-Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-claude-code) to exercise the Memory MCP through its own MCP client. The memory surface is dual-stack: `spec-memory.cjs` is the full-parity CLI front door for hooks, cron, CI, operator shell diagnostics, and transport-down recovery in addition to MCP sessions.
+Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-opencode / cli-claude-code) to exercise the Memory MCP through its own MCP client. The memory surface is dual-stack: `spec-memory.cjs` is the full-parity CLI front door for hooks, cron, CI, operator shell diagnostics, and transport-down recovery in addition to MCP sessions.
 
 ## Prompt convention: AI-to-CLI handoff
 
@@ -35,7 +35,7 @@ I need you to:
 3. Return JSON with: <required fields>
 ```
 
-The orchestrating AI invokes the external CLI through `codex exec` or `claude -p ...`. The external CLI opens its own MCP session against the same Memory MCP DB. The cross-AI nature is the point — every scenario tests behavior that depends on the substrate working consistently across AI consumers.
+The orchestrating AI invokes the external CLI through `opencode run` or `claude -p ...`. The external CLI opens its own MCP session against the same Memory MCP DB. The cross-AI nature is the point — every scenario tests behavior that depends on the substrate working consistently across AI consumers.
 
 ## Pre-flight (run once before the suite)
 
@@ -51,7 +51,7 @@ ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite 
 # call the code_graph_status MCP tool (run code_graph_scan first if the graph is empty)
 
 # Confirm at least 2 external CLIs are installed for cross-AI scenarios:
-which codex && codex --version
+which opencode && opencode --version
 which claude && claude --version
 ```
 
@@ -112,4 +112,4 @@ Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--l
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
 - Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/causal-graph.ts`
 - Drift detection: `mcp_server/handlers/causal-graph.ts` (memory_drift_why handler)
-- Cross-AI MCP wiring: `.codex/config.toml`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)
+- Cross-AI MCP wiring: `opencode.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+  "description": "The remaining phases need a single, ratified design to implement against: where per-model prompt-craft prose lives, the exact shape of the `recommende",
+  "keywords": [
+    "remaining",
+    "phases",
+    "need",
+    "single",
+    "ratified",
+    "design",
+    "implement",
+    "against",
+    "per-model",
+    "prompt-craft",
+    "prose",
+    "lives",
+    "exact",
+    "shape",
+    "recommende"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.206Z",
+  "specId": "001",
+  "folderSlug": "design-architecture-and-data-contract",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "105-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

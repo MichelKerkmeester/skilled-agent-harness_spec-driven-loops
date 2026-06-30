@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/006-reject-register-unknown",
+  "description": "The cross-CLI design dispatch path has no boundary that rejects a design dispatch whose register is unresolved",
+  "keywords": [
+    "cross-cli",
+    "design",
+    "dispatch",
+    "path",
+    "boundary",
+    "rejects",
+    "whose",
+    "register",
+    "unresolved"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.228Z",
+  "specId": "006",
+  "folderSlug": "reject-register-unknown",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "005-d5-cross-cli-survival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

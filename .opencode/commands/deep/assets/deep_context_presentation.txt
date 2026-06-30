@@ -86,7 +86,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor=<type> [--model=X] [--reasoning-effort=Y] [--prompt-framework=Z] [--label=X]
    |     (repeatable; each occurrence adds one seat to config.fanout.executors)
-   |     type = `native` | `cli-opencode` | `cli-codex` | `cli-claude-code`
+   |     type = `native` | `cli-opencode` | `cli-opencode` | `cli-claude-code`
    |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch for the full pool
    |-- --concurrency=N -> config.fanout.concurrency (default 4)
    |
@@ -367,13 +367,13 @@ STATUS=FAIL ERROR="[message]"
 /deep:context:auto "rate limiter middleware" \
   --executor=native --label=native-a \
   --executor=cli-opencode --model=xiaomi-token-plan-ams/mimo-v2.5-pro --prompt-framework=costar --label=mimo \
-  --executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --label=gpt \
+  --executor=cli-opencode --model=gpt-5.5 --reasoning-effort=high --label=gpt \
   --executor=cli-opencode --model=deepseek/deepseek-v4-pro --prompt-framework=tidd-ec --label=deepseek \
   --concurrency=4
 
 # Pool via JSON escape hatch
 /deep:context:auto "billing invoice generation" \
-  --executors='[{"kind":"native","label":"native-a"},{"kind":"native","label":"native-b"},{"kind":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","label":"gpt"}]' \
+  --executors='[{"kind":"native","label":"native-a"},{"kind":"native","label":"native-b"},{"kind":"cli-opencode","model":"gpt-5.5","reasoningEffort":"high","label":"gpt"}]' \
   --concurrency=3
 ```
 

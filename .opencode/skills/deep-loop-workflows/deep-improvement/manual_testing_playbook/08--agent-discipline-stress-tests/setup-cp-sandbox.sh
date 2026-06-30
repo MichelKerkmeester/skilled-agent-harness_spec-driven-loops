@@ -89,7 +89,7 @@ require_path "${REPO_ROOT}/.opencode/commands/deep"
 require_path "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-improvement"
 require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
-require_path "${FIXTURE_ROOT}/.codex/agents/cp-improve-target.toml"
+require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.toml"
 
 validate_sandbox_dir "$SANDBOX_DIR"
 
@@ -101,6 +101,6 @@ copy_dir "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-improvement" "$
 
 copy_file "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md" "${SANDBOX_DIR}/.opencode/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md" "${SANDBOX_DIR}/.claude/agents/cp-improve-target.md"
-copy_file "${FIXTURE_ROOT}/.codex/agents/cp-improve-target.toml" "${SANDBOX_DIR}/.codex/agents/cp-improve-target.toml"
+copy_file "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.toml" "${SANDBOX_DIR}/.opencode/agents/cp-improve-target.toml"
 
 echo "Created deep-improvement sandbox at ${SANDBOX_DIR}"

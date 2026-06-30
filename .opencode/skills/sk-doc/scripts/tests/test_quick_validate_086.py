@@ -3,7 +3,7 @@
 Tests for packet 086 — description-length budget check in quick_validate.py.
 
 Builds fixtures in a temporary directory at test time so no persistent SKILL.md
-files live under .opencode/skills/ where runtime scanners (Codex, Claude Code,
+files live under .opencode/skills/ where runtime scanners (OpenCode, Claude Code,
 opencode) would treat them as real skills and emit invalid-description errors.
 
 Verifies four cases:

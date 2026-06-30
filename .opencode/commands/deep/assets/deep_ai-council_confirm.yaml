@@ -23,7 +23,7 @@ user_inputs:
   saturation_threshold: "[SATURATION_THRESHOLD] - Default: 0.20."
   executor:
     mode: "[in-cli|external-cli] - Default: in-cli."
-    cli: "[active-runtime|cli-codex|cli-claude-code|cli-opencode] - One CLI per round."
+    cli: "[active-runtime|cli-opencode|cli-claude-code|cli-opencode] - One CLI per round."
     model: "[MODEL] - Runtime-selected default unless provided."
     reasoning: "[REASONING_LEVEL] - Optional executor-specific setting."
 

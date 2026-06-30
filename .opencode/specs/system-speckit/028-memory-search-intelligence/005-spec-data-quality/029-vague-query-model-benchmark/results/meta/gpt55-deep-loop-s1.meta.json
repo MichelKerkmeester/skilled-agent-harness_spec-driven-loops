@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-deep-loop-s1",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "deep-loop",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 150698,
+  "bytes": 112699,
+  "stderrTail": ""
+}

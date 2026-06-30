@@ -272,7 +272,7 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
 Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-research` agent with model Opus.
-- `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
+- `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
 - `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only); we override to `acceptEdits` so iteration writes succeed.
 
 All branches share:

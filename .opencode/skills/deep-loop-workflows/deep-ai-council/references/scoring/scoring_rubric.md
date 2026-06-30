@@ -300,13 +300,13 @@ Use stable labels: Analytical Seat, Creative Seat, Critical Seat, Pragmatic Seat
 When a real external vantage ran, cite it:
 
 ```text
-Analytical Seat via cli-codex
+Analytical Seat via cli-opencode
 ```
 
 When it did not run, label it:
 
 ```text
-Analytical Seat, simulated cli-codex lens
+Analytical Seat, simulated cli-opencode lens
 ```
 
 ### Simulated-Vantage Preservation

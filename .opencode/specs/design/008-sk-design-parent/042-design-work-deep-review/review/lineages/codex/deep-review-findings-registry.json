@@ -1,0 +1,146 @@
+{
+  "sessionId": "fanout-codex-1782750389509-8fbzzu",
+  "parentSessionId": "deep-review-design-work-1782750366",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Guided-run parser accepts flag values as the URL or missing flag values as output paths",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      "line": 47,
+      "evidence": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:47-65",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:136-143"
+      ],
+      "finding_class": "cli-argument-contract",
+      "content_hash": "b49aa0c068c39b16930a4dea8940c361d1c3069bde24083deeee10dd7e8ff538",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Guided-run preflight reports the exact skill root output path as safe",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      "line": 79,
+      "evidence": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:73-87",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:266-271"
+      ],
+      "finding_class": "preflight-parity",
+      "content_hash": "4f548827d6c0ff777f80346cba69c64ebc9660a3f60af585f93bbf5b27fcb15f",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Downstream extract guard catches exact root, so advisory"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Human skill-benchmark report omits advisory signals computed in the JSON aggregate",
+      "file": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      "line": 80,
+      "evidence": [
+        ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1303-1316",
+        ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/build-report.cjs:80-87"
+      ],
+      "finding_class": "dual-report-parity",
+      "content_hash": "faa7bd0db05f7473eb875e5f8d6228f4f6d6c8916794a897de2a35f109124816",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Advisory human-report visibility gap"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "OpenCode design agent has broader permissions than Claude and Codex design agents",
+      "file": ".opencode/agents/design.md",
+      "line": 13,
+      "evidence": [
+        ".opencode/agents/design.md:6-18",
+        ".claude/agents/design.md:4",
+        ".codex/agents/design.toml:5-7"
+      ],
+      "finding_class": "agent-cross-runtime-parity",
+      "content_hash": "1f4250076061346b833806e0ca6c3851fbad57bc3c662a4a66eab17206cc9a78",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Advisory runtime permission drift"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 1.0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

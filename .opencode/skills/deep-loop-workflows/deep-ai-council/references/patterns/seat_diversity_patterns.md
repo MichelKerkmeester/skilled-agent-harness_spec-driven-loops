@@ -60,7 +60,7 @@ Vantage = the CLI whose model bench supplies the round's seats. Each row below i
 | Vantage Target | Mode | Same-CLI Seat Diversity Options | Role in the Council | Typical Strategy Pairing |
 | --- | --- | --- | --- | --- |
 | `cli-claude-code` | in-CLI when active runtime is Claude Code; otherwise external | model: Opus / Sonnet / Haiku; reasoning: high / xhigh | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
-| `cli-codex` | in-CLI when active runtime is Codex; otherwise external | model: gpt-5.5 / gpt-5.5-pro / gpt-5.5-fast; reasoning: medium / high / xhigh | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
+| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | model: gpt-5.5 / gpt-5.5-pro / gpt-5.5-fast; reasoning: medium / high / xhigh | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
 | `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | direct provider models such as `deepseek/deepseek-v4-pro`, `xiaomi/mimo-v2.5-pro`, or `openai/gpt-5.5-pro`; `--variant low/medium/high` where supported | Full plugin/skill/MCP runtime, direct-provider coverage, broad model bench within one CLI | Holistic, Research, or Creative |
 | native `@deep-research` | always in-CLI (active runtime's research agent) | n/a (single-seat round) | Evidence-first investigation and citation discipline | Research or Critical |
 
@@ -98,8 +98,8 @@ when Claude Code did not run.
 
 Pair lenses and vantages to create complementary coverage. **All pairings below are SINGLE-ROUND patterns** - each entry stays within one CLI; multi-CLI rounds are not pairings, they are sequential rounds.
 
-- Analytical + `cli-codex` (gpt-5.5 high): implementation sequence and codebase fit.
-- Pragmatic + `cli-codex` (gpt-5.5 medium): minimal working path and churn control.
+- Analytical + `cli-opencode` (gpt-5.5 high): implementation sequence and codebase fit.
+- Pragmatic + `cli-opencode` (gpt-5.5 medium): minimal working path and churn control.
 - Holistic + `cli-opencode` (`deepseek/deepseek-v4-pro` high): system-wide impact, broad architectural fit via direct-provider model bench.
 - Research + `cli-opencode` (multiple direct-provider models in one round): ecosystem context and external unknowns covered by multiple models within ONE CLI invocation.
 - Analytical + `cli-claude-code` (Opus high): deep decomposition.
@@ -229,7 +229,7 @@ Task Type Received
     │   └─► Round 1 (recommended): cli-claude-code
     │       Seats: Analytical (Opus high) + Critical (Opus xhigh) + Pragmatic (Sonnet)
     │       Rationale: deep decomposition + edge-case scrutiny + minimal-fix lens.
-    │       Optional Round 2: cli-codex (gpt-5.5 high) for implementation-realism cross-check.
+    │       Optional Round 2: cli-opencode (gpt-5.5 high) for implementation-realism cross-check.
     │
     ├─► New Feature
     │   └─► Round 1: cli-opencode (direct providers)
@@ -238,7 +238,7 @@ Task Type Received
     │       Optional Round 2: cli-claude-code for correctness-scrutiny pass.
     │
     ├─► Refactoring
-    │   └─► Round 1: cli-codex
+    │   └─► Round 1: cli-opencode
     │       Seats: Holistic (gpt-5.5-pro) + Pragmatic (gpt-5.5 medium) + Critical (gpt-5.5 xhigh)
     │       Rationale: implementation-realism CLI excels at refactor sequencing.
     │       Optional Round 2: cli-claude-code for regression-risk deep dive.

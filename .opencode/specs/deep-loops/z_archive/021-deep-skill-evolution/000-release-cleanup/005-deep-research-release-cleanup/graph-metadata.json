@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research release cleanup",
+      "002-deep-research",
+      "skill audit",
+      "alignment validation gate",
+      "deep-research deep-research loop",
+      "sk-doc conformance",
+      "deep-research release cleanup plan",
+      "phase 1 spec creation",
+      "phase 2 skill audit",
+      "phase 3 readme rewrite",
+      "phase 4 alignment validation gate",
+      "phase 5 deep research and merge"
+    ],
+    "key_topics": [
+      "deep-research",
+      "release",
+      "cleanup",
+      "002-deep-research",
+      "skill",
+      "audit",
+      "alignment",
+      "validation",
+      "gate",
+      "loop",
+      "sk-doc",
+      "conformance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "resource-map.md",
+      "schemas/audit-finding.schema.json",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      "feature_catalog/feature_catalog.md",
+      "plan.md",
+      "scripts/spec/validate.sh",
+      "tasks.md",
+      "checklist.md",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/iteration-output.schema.json",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "spec.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-doc/references/skill_creation.md",
+      ".opencode/skills/sk-doc/references/readme_creation.md",
+      ".opencode/skills/sk-doc/references/feature_catalog_creation.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-output.schema.json",
+        "kind": "config",
+        "path": "schemas/iteration-output.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/readme_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-research` skill carries 412 lines of SKILL.md, 248 lines of README, 6 references (3,526 lines), 5 assets, 16 feature-catalog files, 43 manual-testing-playbook entries, and 16 changelog versions",
+    "created_at": "2026-05-23T14:11:44.282Z",
+    "last_save_at": "2026-06-23T03:49:50.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:de68ff58263604caa39bba925b3206e337b527579bde526af168a93208546864",
+    "source_doc_hashes": {
+      "spec.md": "54073d067841872b58066db3b5206e7a9571508204e5ac2741263c65fdf8ecca",
+      "plan.md": "66faff0a25f9166be7f1588b2b287fcad866e46192ef2d936c46d055422a01f6",
+      "tasks.md": "636c80c27334c02a194960db99ce289e98ff5a6f20b1155fc1f202eae5e7a69a",
+      "checklist.md": "715a414dbe7980d787479e400bf6d9fef1cc97e2b6b16727f6580e9be6720763",
+      "decision-record.md": "4b5cde495f9c6ec810fc64f7e74e72db35758c0faac94c5b708c18554828421c",
+      "implementation-summary.md": "87fb856a9abd47c0ec1a3a742afc1ada005d691287bced988eb0a76e726bba6d",
+      "resource-map.md": "3b4ed5a347111925dea75451c150ab4e2f663c1655fb96f28592f1ddb3953f0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -97,7 +97,7 @@ test -f /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md && \
 
 ## Cross-CLI Variants
 
-This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API provider. Equivalent dispatches for cli-claude-code and cli-codex are SD-018 and SD-019 respectively.
+This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API provider. Equivalent dispatches for cli-claude-code and cli-opencode are SD-018 and SD-019 respectively.
 
 ## Success Criteria
 

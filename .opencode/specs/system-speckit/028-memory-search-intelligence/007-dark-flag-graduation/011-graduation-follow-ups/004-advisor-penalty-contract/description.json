@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/004-advisor-penalty-contract",
+  "description": "The 007 graduation suite cut the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`) as redundant",
+  "keywords": [
+    "007",
+    "graduation",
+    "suite",
+    "cut",
+    "explicit",
+    "advisor",
+    "self-recommendation",
+    "guard",
+    "speckitadvisorselfrecommendationguard",
+    "redundant"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.819Z",
+  "specId": "004",
+  "folderSlug": "advisor-penalty-contract",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "007-dark-flag-graduation",
+    "011-graduation-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

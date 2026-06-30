@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/010-shared-register",
+  "description": "The sk-design family has no shared declaration of whether a given design IS the product or SERVES the product",
+  "keywords": [
+    "sk-design",
+    "family",
+    "shared",
+    "declaration",
+    "whether",
+    "given",
+    "design",
+    "product",
+    "serves"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.760Z",
+  "specId": "010",
+  "folderSlug": "shared-register",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

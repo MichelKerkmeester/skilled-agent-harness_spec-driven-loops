@@ -31,7 +31,7 @@ const CURRENT_THRESHOLDS = {
 function outcome(skillLabel: string, kind: AdvisorHookOutcomeRecord['outcome']): AdvisorHookOutcomeRecord {
   return {
     timestamp: '2026-06-10T00:00:00.000Z',
-    runtime: 'codex',
+    runtime: 'opencode',
     outcome: kind,
     skillLabel,
   };

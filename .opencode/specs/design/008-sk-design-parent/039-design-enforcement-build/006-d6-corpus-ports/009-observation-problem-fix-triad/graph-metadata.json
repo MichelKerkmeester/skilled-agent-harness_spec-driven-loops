@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r9 observation problem fix triad",
+      "observation triad design build",
+      "proof check observation triad flag",
+      "observation problem fix triad plan",
+      "audit finding triad implementation plan",
+      "observation slot audit schema",
+      "observation problem fix triad tasks",
+      "audit finding triad task list",
+      "require observation triad checker tasks",
+      "observation problem fix triad checklist",
+      "audit finding triad verification",
+      "require observation triad gate checklist"
+    ],
+    "key_topics": [
+      "d6-r9",
+      "observation",
+      "problem",
+      "fix",
+      "triad",
+      "design",
+      "build",
+      "proof",
+      "check",
+      "flag",
+      "plan",
+      "audit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Port",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Report Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An audit finding used to jump straight to the diagnosis and the fix",
+    "created_at": "2026-06-28T12:40:10.316Z",
+    "last_save_at": "2026-06-29T15:20:44.177Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:27f767f946ad35e7a73290d464a9264cfcca61483edd9067d5dc2c624b47efce",
+    "source_doc_hashes": {
+      "spec.md": "c9b84b24ba778b5bb272ff045393ea36b53c3aae37558d1c5ca6146dd31840fe",
+      "plan.md": "6cc5b765b0cba0c28182a64186f82fdf7ad92c787fd80e74c6f8514a18f64db5",
+      "tasks.md": "743479b84645316de44a2c489e729c8387e1ac9641732493640e04f52df53cab",
+      "checklist.md": "a82c7944cf6e18eff34312074d4ff784dca26ce1652e931376de216d632cad17",
+      "implementation-summary.md": "4790b7d9f2c6c3e7364c6556cd19f50fdc8db5693ba50a9568280270b68dc703"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

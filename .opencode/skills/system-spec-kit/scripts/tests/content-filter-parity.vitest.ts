@@ -12,7 +12,7 @@ describe('content filter multi-cli parity', () => {
     expect(isNoiseContent('tool.execution_complete')).toBe(true);
   });
 
-  it('treats Codex reasoning markers as built-in noise', () => {
+  it('treats OpenCode reasoning markers as built-in noise', () => {
     expect(isNoiseContent('reasoning')).toBe(true);
     expect(isNoiseContent('<reasoning>Working through the request</reasoning>')).toBe(true);
   });

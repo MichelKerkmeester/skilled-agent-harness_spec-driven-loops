@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "design/001-sk-design-interface/002-ui-ux-pro-max-merge-research",
+  "description": "`sk-design-interface` (phase 001, vendored from Anthropic's frontend-design) gives the framework an advisor-routable point of view on distinctive UI d",
+  "keywords": [
+    "sk-design-interface",
+    "phase",
+    "001",
+    "vendored",
+    "anthropic",
+    "frontend-design",
+    "gives",
+    "framework",
+    "advisor-routable",
+    "point",
+    "view",
+    "distinctive"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.552Z",
+  "specId": "002",
+  "folderSlug": "ui-ux-pro-max-merge-research",
+  "parentChain": [
+    "design",
+    "001-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

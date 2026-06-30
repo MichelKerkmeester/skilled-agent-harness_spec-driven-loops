@@ -1,1 +1,518 @@
-{"schema_version": 1, "generated_at": "2026-06-28T16:23:30.007962+00:00", "skill_count": 20, "families": {"cli": ["cli-claude-code", "cli-codex", "cli-opencode"], "deep-loop": ["deep-loop-runtime", "deep-loop-workflows"], "mcp": ["mcp-chrome-devtools", "mcp-click-up", "mcp-code-mode", "mcp-figma", "mcp-open-design"], "sk-code": ["sk-code", "sk-code-review", "sk-design"], "sk-util": ["sk-doc", "sk-git", "sk-prompt", "sk-prompt-models"], "system": ["system-code-graph", "system-skill-advisor", "system-spec-kit"]}, "adjacency": {"cli-claude-code": {"siblings": {"cli-codex": 0.5, "cli-opencode": 0.5}}, "cli-codex": {"siblings": {"cli-claude-code": 0.5, "cli-opencode": 0.5}}, "cli-opencode": {"enhances": {"sk-prompt-models": 0.5}, "siblings": {"cli-claude-code": 0.5, "cli-codex": 0.5}}, "deep-loop-runtime": {"depends_on": {"system-spec-kit": 0.7}, "enhances": {"deep-loop-workflows": 0.7}, "siblings": {"deep-loop-workflows": 0.6}, "prerequisite_for": {"deep-loop-workflows": 0.8}}, "deep-loop-workflows": {"depends_on": {"deep-loop-runtime": 0.8, "system-spec-kit": 0.6}, "enhances": {"system-spec-kit": 0.6}, "siblings": {"deep-loop-runtime": 0.7, "sk-prompt": 0.4}}, "mcp-chrome-devtools": {"depends_on": {"mcp-code-mode": 0.7}, "enhances": {"sk-code": 0.5}, "siblings": {"mcp-figma": 0.5}}, "mcp-click-up": {"depends_on": {"mcp-code-mode": 0.7}, "enhances": {"sk-code": 0.3}}, "mcp-code-mode": {"prerequisite_for": {"mcp-chrome-devtools": 0.7, "mcp-click-up": 0.7, "mcp-figma": 0.7}}, "mcp-figma": {"depends_on": {"sk-design": 0.7, "mcp-code-mode": 0.45}, "enhances": {"sk-code": 0.4}, "siblings": {"mcp-open-design": 0.55, "mcp-chrome-devtools": 0.5, "sk-design": 0.45}}, "mcp-open-design": {"depends_on": {"sk-design": 0.7}, "enhances": {"sk-code": 0.3}, "siblings": {"mcp-figma": 0.55, "sk-design": 0.45}}, "sk-code": {"enhances": {"sk-code-review": 0.4, "system-spec-kit": 0.3}, "siblings": {"sk-code-review": 0.4, "sk-design": 0.4}, "prerequisite_for": {"system-skill-advisor": 0.7}}, "sk-code-review": {"enhances": {"sk-code": 0.7}, "siblings": {"sk-code": 0.4, "sk-design": 0.4}, "prerequisite_for": {"deep-loop-workflows": 0.8}}, "sk-design": {"enhances": {"sk-code": 0.6}, "siblings": {"sk-code": 0.5, "sk-code-review": 0.4, "mcp-figma": 0.45, "mcp-open-design": 0.45}, "prerequisite_for": {"mcp-figma": 0.7, "mcp-open-design": 0.7}}, "sk-doc": {"enhances": {"system-spec-kit": 0.5}, "siblings": {"sk-git": 0.4}}, "sk-git": {"siblings": {"sk-doc": 0.4}}, "sk-prompt": {"enhances": {"cli-claude-code": 0.4, "cli-codex": 0.4, "cli-opencode": 0.4}, "siblings": {"deep-loop-workflows": 0.4}}, "sk-prompt-models": {"enhances": {"cli-opencode": 0.8}}, "system-code-graph": {"depends_on": {"system-spec-kit": 0.8}, "enhances": {"system-spec-kit": 0.6}, "siblings": {"system-spec-kit": 0.5}}, "system-skill-advisor": {"enhances": {"cli-claude-code": 0.7, "cli-codex": 0.7, "mcp-chrome-devtools": 0.7, "system-code-graph": 0.7, "mcp-code-mode": 0.7, "sk-code": 0.7, "sk-code-review": 0.7, "deep-loop-workflows": 0.7, "sk-doc": 0.7, "sk-git": 0.7, "sk-prompt": 0.7, "system-spec-kit": 0.7, "cli-opencode": 0.7}}, "system-spec-kit": {"enhances": {"sk-doc": 0.4, "sk-git": 0.3, "sk-code": 0.3}, "siblings": {"system-code-graph": 0.5}, "prerequisite_for": {"system-code-graph": 0.8, "deep-loop-workflows": 0.7, "deep-loop-runtime": 0.7}}}, "signals": {"cli-claude-code": ["claude code", "claude cli", "delegate to claude"], "cli-codex": ["codex cli", "codex exec", "delegate to codex"], "cli-opencode": ["opencode cli", "opencode run", "delegate to opencode", "parallel detached session", "spec kit runtime"], "deep-loop-runtime": ["deep-loop runtime", "deep-loop-runtime skill", "executor config", "convergence detection", "coverage-graph schema", "deep-loop runtime scripts"], "deep-loop-workflows": ["deep loop workflow", "deep-context", "deep-research", "deep-review", "deep-ai-council", "deep-improvement", "context gathering loop", "research loop", "code review loop", "ai council deliberation", "agent improvement benchmark"], "mcp-chrome-devtools": ["chrome devtools", "browser debug", "dom inspect", "lighthouse"], "mcp-click-up": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "log time", "task list", "clickup task", "complete task", "add note to task", "tag task", "start timer", "stop timer", "process queue", "clickup documents", "clickup goals", "bulk tasks"], "mcp-code-mode": ["code mode", "mcp tool", "call tool chain"], "mcp-figma": ["figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "figma variables", "extract DESIGN.md", "export from figma", "connect to figma", "figma daemon", "figma mcp"], "mcp-open-design": ["open design", "open-design", "od cli", "od mcp", "design system from open design", "drive open design from the terminal", "local-first design", "claude design alternative"], "sk-code": ["code work", "code surface detection", "webflow", "frontend", "animation", "cdn", "browser test", "opencode", "system code", "mcp", "skill", "agent", "command", "typescript", "python", "shell", "jsonc", "alignment verifier", "motion.dev integration", "motion-dev integration", "motion_dev references", "cross-stack animation", "motion api", "motion snippets", "motion decision matrix", "refactor function", "refactor the", "throw on missing", "add a flag", "add a fallback", "add a parameter", "add a method", "implement function", "handle empty", "handle null", "early return", "type annotation", "function signature", "add set -euo pipefail", "console.error fallback", "argparse block", "vitest covering", "stable jsonl keys", "lenis smooth-scroll", "gsap timeline", "hls.js video", "intersectionobserver gate", "build a tiny script", "tiny script that counts", "counts how many", "build a script that"], "sk-code-review": ["code review", "pr review", "security review", "quality gate", "findings", "audit packet docs", "audit packet", "review packet docs", "documented consistently", "scoped correctly"], "sk-design": ["design family", "sk-design", "make it look good", "interface design", "visual direction", "design tokens", "typography", "color palette", "layout system", "motion design", "micro-interactions", "design audit", "accessibility audit", "DESIGN.md", "style reference"], "sk-doc": ["create readme", "write documentation", "install guide", "feature catalog", "skill.md headline", "rewrite section", "documentation section", "headline section", "headline section to clarify", "update skill.md", "update sk-code skill.md", "update the sk-code skill.md", "clarify the routing", "clarify the routing model", "clarify the two-axis routing", "rewrite the headline", "reorganize the readme", "reorganize readme into", "reorganize the cli", "add a one-line summary", "one-line summary at the top"], "sk-git": ["git workflow", "worktree", "worktrees", "create worktree", "restructure worktrees", "branch", "branches", "conventional commit", "commit", "pull request", "merge", "rebase", "finish work"], "sk-prompt": ["improve prompt", "enhance prompt", "prompt framework", "clear score"], "sk-prompt-models": ["small model", "small-model dispatch", "deepseek-v4", "kimi-k2.7-code", "kimi-for-coding", "minimax-m3", "mimo-v2.5-pro", "glm-5.2", "zai-coding-plan", "opencode-go", "deepseek-api", "context budget", "output verification", "structured permissions"], "system-code-graph": ["code graph", "code-graph", "structural code indexing", "code graph scan", "code graph query", "code graph context", "blast radius", "impact analysis", "detect changes"], "system-skill-advisor": ["skill routing", "gate 2", "which skill", "route request"], "system-spec-kit": ["spec folder", "save context", "save memory", "spec kit", "memory search"]}, "conflicts": [], "hub_skills": ["cli-opencode", "deep-loop-workflows", "mcp-figma", "sk-code", "sk-design", "system-spec-kit"], "topology_warnings": {"weight_band": ["WEIGHT-BAND: deep-loop-workflows edges.depends_on[1] weight 0.6 outside recommended band [0.7, 1.0]", "WEIGHT-BAND: deep-loop-workflows edges.siblings[0] weight 0.7 outside recommended band [0.4, 0.6]", "WEIGHT-BAND: mcp-figma edges.depends_on[1] weight 0.45 outside recommended band [0.7, 1.0]", "WEIGHT-BAND: sk-prompt-models edges.enhances[0] weight 0.8 outside recommended band [0.3, 0.7]"], "weight_parity": ["WEIGHT-PARITY: mcp-figma depends_on mcp-code-mode weight=0.45 vs mcp-code-mode prerequisite_for mcp-figma weight=0.7 (diff > 0.1)"]}}
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-30T09:32:42.943533+00:00",
+  "skill_count": 19,
+  "families": {
+    "cli": [
+      "cli-claude-code",
+      "cli-opencode"
+    ],
+    "deep-loop": [
+      "deep-loop-runtime",
+      "deep-loop-workflows"
+    ],
+    "mcp": [
+      "mcp-chrome-devtools",
+      "mcp-click-up",
+      "mcp-code-mode",
+      "mcp-figma",
+      "mcp-open-design"
+    ],
+    "sk-code": [
+      "sk-code",
+      "sk-code-review",
+      "sk-design"
+    ],
+    "sk-util": [
+      "sk-doc",
+      "sk-git",
+      "sk-prompt",
+      "sk-prompt-models"
+    ],
+    "system": [
+      "system-code-graph",
+      "system-skill-advisor",
+      "system-spec-kit"
+    ]
+  },
+  "adjacency": {
+    "cli-claude-code": {
+      "siblings": {
+        "cli-opencode": 0.5
+      }
+    },
+    "cli-opencode": {
+      "enhances": {
+        "sk-prompt-models": 0.5
+      },
+      "siblings": {
+        "cli-claude-code": 0.5
+      }
+    },
+    "deep-loop-runtime": {
+      "depends_on": {
+        "system-spec-kit": 0.7
+      },
+      "enhances": {
+        "deep-loop-workflows": 0.7
+      },
+      "siblings": {
+        "deep-loop-workflows": 0.6
+      },
+      "prerequisite_for": {
+        "deep-loop-workflows": 0.8
+      }
+    },
+    "deep-loop-workflows": {
+      "depends_on": {
+        "deep-loop-runtime": 0.8,
+        "system-spec-kit": 0.6
+      },
+      "enhances": {
+        "system-spec-kit": 0.6
+      },
+      "siblings": {
+        "deep-loop-runtime": 0.7,
+        "sk-prompt": 0.4
+      }
+    },
+    "mcp-chrome-devtools": {
+      "depends_on": {
+        "mcp-code-mode": 0.7
+      },
+      "enhances": {
+        "sk-code": 0.5
+      },
+      "siblings": {
+        "mcp-figma": 0.5
+      }
+    },
+    "mcp-click-up": {
+      "depends_on": {
+        "mcp-code-mode": 0.7
+      },
+      "enhances": {
+        "sk-code": 0.3
+      }
+    },
+    "mcp-code-mode": {
+      "prerequisite_for": {
+        "mcp-chrome-devtools": 0.7,
+        "mcp-click-up": 0.7,
+        "mcp-figma": 0.7
+      }
+    },
+    "mcp-figma": {
+      "depends_on": {
+        "sk-design": 0.7,
+        "mcp-code-mode": 0.45
+      },
+      "enhances": {
+        "sk-code": 0.4
+      },
+      "siblings": {
+        "mcp-open-design": 0.55,
+        "mcp-chrome-devtools": 0.5,
+        "sk-design": 0.45
+      }
+    },
+    "mcp-open-design": {
+      "depends_on": {
+        "sk-design": 0.7
+      },
+      "enhances": {
+        "sk-code": 0.3
+      },
+      "siblings": {
+        "mcp-figma": 0.55,
+        "sk-design": 0.45
+      }
+    },
+    "sk-code": {
+      "enhances": {
+        "sk-code-review": 0.4,
+        "system-spec-kit": 0.3
+      },
+      "siblings": {
+        "sk-code-review": 0.4,
+        "sk-design": 0.4
+      },
+      "prerequisite_for": {
+        "system-skill-advisor": 0.7
+      }
+    },
+    "sk-code-review": {
+      "enhances": {
+        "sk-code": 0.7
+      },
+      "siblings": {
+        "sk-code": 0.4,
+        "sk-design": 0.4
+      },
+      "prerequisite_for": {
+        "deep-loop-workflows": 0.8
+      }
+    },
+    "sk-design": {
+      "enhances": {
+        "sk-code": 0.6
+      },
+      "siblings": {
+        "sk-code": 0.5,
+        "sk-code-review": 0.4,
+        "mcp-figma": 0.45,
+        "mcp-open-design": 0.45
+      },
+      "prerequisite_for": {
+        "mcp-figma": 0.7,
+        "mcp-open-design": 0.7
+      }
+    },
+    "sk-doc": {
+      "enhances": {
+        "system-spec-kit": 0.5
+      },
+      "siblings": {
+        "sk-git": 0.4
+      }
+    },
+    "sk-git": {
+      "siblings": {
+        "sk-doc": 0.4
+      }
+    },
+    "sk-prompt": {
+      "enhances": {
+        "cli-claude-code": 0.4,
+        "cli-opencode": 0.4
+      },
+      "siblings": {
+        "deep-loop-workflows": 0.4
+      }
+    },
+    "sk-prompt-models": {
+      "enhances": {
+        "cli-opencode": 0.8
+      }
+    },
+    "system-code-graph": {
+      "depends_on": {
+        "system-spec-kit": 0.8
+      },
+      "enhances": {
+        "system-spec-kit": 0.6
+      },
+      "siblings": {
+        "system-spec-kit": 0.5
+      }
+    },
+    "system-skill-advisor": {
+      "enhances": {
+        "cli-claude-code": 0.7,
+        "mcp-chrome-devtools": 0.7,
+        "system-code-graph": 0.7,
+        "mcp-code-mode": 0.7,
+        "sk-code": 0.7,
+        "sk-code-review": 0.7,
+        "deep-loop-workflows": 0.7,
+        "sk-doc": 0.7,
+        "sk-git": 0.7,
+        "sk-prompt": 0.7,
+        "system-spec-kit": 0.7,
+        "cli-opencode": 0.7
+      }
+    },
+    "system-spec-kit": {
+      "enhances": {
+        "sk-doc": 0.4,
+        "sk-git": 0.3,
+        "sk-code": 0.3
+      },
+      "siblings": {
+        "system-code-graph": 0.5
+      },
+      "prerequisite_for": {
+        "system-code-graph": 0.8,
+        "deep-loop-workflows": 0.7,
+        "deep-loop-runtime": 0.7
+      }
+    }
+  },
+  "signals": {
+    "cli-claude-code": [
+      "claude code",
+      "claude cli",
+      "delegate to claude"
+    ],
+    "cli-opencode": [
+      "opencode cli",
+      "opencode run",
+      "delegate to opencode",
+      "parallel detached session",
+      "spec kit runtime"
+    ],
+    "deep-loop-runtime": [
+      "deep-loop runtime",
+      "deep-loop-runtime skill",
+      "executor config",
+      "convergence detection",
+      "coverage-graph schema",
+      "deep-loop runtime scripts"
+    ],
+    "deep-loop-workflows": [
+      "deep loop workflow",
+      "deep-context",
+      "deep-research",
+      "deep-review",
+      "deep-ai-council",
+      "deep-improvement",
+      "context gathering loop",
+      "research loop",
+      "code review loop",
+      "ai council deliberation",
+      "agent improvement benchmark"
+    ],
+    "mcp-chrome-devtools": [
+      "chrome devtools",
+      "browser debug",
+      "dom inspect",
+      "lighthouse"
+    ],
+    "mcp-click-up": [
+      "clickup",
+      "cupt",
+      "task management",
+      "work queue",
+      "mark done",
+      "time tracking",
+      "log time",
+      "task list",
+      "clickup task",
+      "complete task",
+      "add note to task",
+      "tag task",
+      "start timer",
+      "stop timer",
+      "process queue",
+      "clickup documents",
+      "clickup goals",
+      "bulk tasks"
+    ],
+    "mcp-code-mode": [
+      "code mode",
+      "mcp tool",
+      "call tool chain"
+    ],
+    "mcp-figma": [
+      "figma cli",
+      "figma-ds-cli",
+      "figma desktop",
+      "render in figma",
+      "figma tokens",
+      "figma variables",
+      "extract DESIGN.md",
+      "export from figma",
+      "connect to figma",
+      "figma daemon",
+      "figma mcp"
+    ],
+    "mcp-open-design": [
+      "open design",
+      "open-design",
+      "od cli",
+      "od mcp",
+      "design system from open design",
+      "drive open design from the terminal",
+      "local-first design",
+      "claude design alternative"
+    ],
+    "sk-code": [
+      "code work",
+      "code surface detection",
+      "webflow",
+      "frontend",
+      "animation",
+      "cdn",
+      "browser test",
+      "opencode",
+      "system code",
+      "mcp",
+      "skill",
+      "agent",
+      "command",
+      "typescript",
+      "python",
+      "shell",
+      "jsonc",
+      "alignment verifier",
+      "motion.dev integration",
+      "motion-dev integration",
+      "motion_dev references",
+      "cross-stack animation",
+      "motion api",
+      "motion snippets",
+      "motion decision matrix",
+      "refactor function",
+      "refactor the",
+      "throw on missing",
+      "add a flag",
+      "add a fallback",
+      "add a parameter",
+      "add a method",
+      "implement function",
+      "handle empty",
+      "handle null",
+      "early return",
+      "type annotation",
+      "function signature",
+      "add set -euo pipefail",
+      "console.error fallback",
+      "argparse block",
+      "vitest covering",
+      "stable jsonl keys",
+      "lenis smooth-scroll",
+      "gsap timeline",
+      "hls.js video",
+      "intersectionobserver gate",
+      "build a tiny script",
+      "tiny script that counts",
+      "counts how many",
+      "build a script that"
+    ],
+    "sk-code-review": [
+      "code review",
+      "pr review",
+      "security review",
+      "quality gate",
+      "findings",
+      "audit packet docs",
+      "audit packet",
+      "review packet docs",
+      "documented consistently",
+      "scoped correctly"
+    ],
+    "sk-design": [
+      "design family",
+      "sk-design",
+      "make it look good",
+      "interface design",
+      "visual direction",
+      "design tokens",
+      "typography",
+      "color palette",
+      "layout system",
+      "motion design",
+      "micro-interactions",
+      "design audit",
+      "accessibility audit",
+      "DESIGN.md",
+      "style reference"
+    ],
+    "sk-doc": [
+      "create readme",
+      "write documentation",
+      "install guide",
+      "feature catalog",
+      "skill.md headline",
+      "rewrite section",
+      "documentation section",
+      "headline section",
+      "headline section to clarify",
+      "update skill.md",
+      "update sk-code skill.md",
+      "update the sk-code skill.md",
+      "clarify the routing",
+      "clarify the routing model",
+      "clarify the two-axis routing",
+      "rewrite the headline",
+      "reorganize the readme",
+      "reorganize readme into",
+      "reorganize the cli",
+      "add a one-line summary",
+      "one-line summary at the top"
+    ],
+    "sk-git": [
+      "git workflow",
+      "worktree",
+      "worktrees",
+      "create worktree",
+      "restructure worktrees",
+      "branch",
+      "branches",
+      "conventional commit",
+      "commit",
+      "pull request",
+      "merge",
+      "rebase",
+      "finish work"
+    ],
+    "sk-prompt": [
+      "improve prompt",
+      "enhance prompt",
+      "prompt framework",
+      "clear score"
+    ],
+    "sk-prompt-models": [
+      "small model",
+      "small-model dispatch",
+      "deepseek-v4",
+      "kimi-k2.7-code",
+      "kimi-for-coding",
+      "minimax-m3",
+      "mimo-v2.5-pro",
+      "glm-5.2",
+      "zai-coding-plan",
+      "opencode-go",
+      "deepseek-api",
+      "context budget",
+      "output verification",
+      "structured permissions"
+    ],
+    "system-code-graph": [
+      "code graph",
+      "code-graph",
+      "structural code indexing",
+      "code graph scan",
+      "code graph query",
+      "code graph context",
+      "blast radius",
+      "impact analysis",
+      "detect changes"
+    ],
+    "system-skill-advisor": [
+      "skill routing",
+      "gate 2",
+      "which skill",
+      "route request"
+    ],
+    "system-spec-kit": [
+      "spec folder",
+      "save context",
+      "save memory",
+      "spec kit",
+      "memory search"
+    ]
+  },
+  "conflicts": [],
+  "hub_skills": [
+    "cli-opencode",
+    "deep-loop-workflows",
+    "mcp-code-mode",
+    "mcp-figma",
+    "sk-code",
+    "sk-code-review",
+    "sk-design",
+    "system-spec-kit"
+  ],
+  "topology_warnings": {
+    "weight_band": [
+      "WEIGHT-BAND: deep-loop-workflows edges.depends_on[1] weight 0.6 outside recommended band [0.7, 1.0]",
+      "WEIGHT-BAND: deep-loop-workflows edges.siblings[0] weight 0.7 outside recommended band [0.4, 0.6]",
+      "WEIGHT-BAND: mcp-figma edges.depends_on[1] weight 0.45 outside recommended band [0.7, 1.0]",
+      "WEIGHT-BAND: sk-prompt-models edges.enhances[0] weight 0.8 outside recommended band [0.3, 0.7]"
+    ],
+    "weight_parity": [
+      "WEIGHT-PARITY: mcp-figma depends_on mcp-code-mode weight=0.45 vs mcp-code-mode prerequisite_for mcp-figma weight=0.7 (diff > 0.1)"
+    ]
+  }
+}

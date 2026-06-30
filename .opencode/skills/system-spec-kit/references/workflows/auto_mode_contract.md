@@ -18,7 +18,7 @@ This reference module defines the single canonical `:auto` setup-resolution cont
 
 Origin: shipped from the deep-review prototype and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
 
-Related memory: `feedback_auto_mode_ask_only_when_ambiguous.md`, `feedback_codex_spawnagent_allowlist.md`, `feedback_gate3_no_tmp_exemption.md`.
+Related memory: `feedback_auto_mode_ask_only_when_ambiguous.md`, `feedback_opencode_spawnagent_allowlist.md`, `feedback_gate3_no_tmp_exemption.md`.
 
 ---
 
@@ -156,7 +156,7 @@ Dispatch with one or more truly missing required inputs (and stdin closed in non
 ### Trace D — `:confirm` regression
 Dispatch with `:confirm` suffix and any inputs. Expected: existing full consolidated Q-block emitted.
 
-Live verification (when feasible) extends the dry-run traces with actual non-interactive dispatches (codex `exec </dev/null`, opencode `run --pure ... </dev/null`, claude `--print`) capturing transcripts as evidence. Live verification confirms the contract works under real runtime stdin-closure conditions.
+Live verification (when feasible) extends the dry-run traces with actual non-interactive dispatches (opencode `exec </dev/null`, opencode `run --pure ... </dev/null`, claude `--print`) capturing transcripts as evidence. Live verification confirms the contract works under real runtime stdin-closure conditions.
 
 Evidence schema (one file per dispatch):
 - Command invocation verbatim

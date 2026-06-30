@@ -27,7 +27,7 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the review YAML dispatches CLI lineages, that `step_fanout_merge` has `bind_from_output` for P0/P1/P2 counts, and that `step_derive_verdict` would use merged counts.
-- Real user request: `/deep:review:auto "skill:deep-research" --executor=cli-codex --model=o4-mini --label=codex --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
+- Real user request: `/deep:review:auto "skill:deep-research" --executor=cli-opencode --model=o4-mini --label=opencode --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
 - Expected execution process: 1. Setup binds two executors → `config.fanout`. 2. `step_fanout_spawn_cli` calls `fanout-run.cjs --loop-type review`. 3. Pool spawns two subprocesses. 4. `step_fanout_merge` calls `fanout-merge.cjs --loop-type review` and binds `active_p0/p1/p2` → `p0_count/p1_count/p2_count`. 5. `step_derive_verdict` derives verdict from bound counts.
 - Expected signals: `step_fanout_merge` YAML block has `bind_from_output: {p0_count: "active_p0", ...}`; `fanout-merge.vitest.ts` review tests pass (5 tests).
 - Pass/fail: PASS if `bind_from_output` present and review tests pass; FAIL if binding absent.

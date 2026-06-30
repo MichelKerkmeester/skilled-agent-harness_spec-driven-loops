@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
+  "description": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and m",
+  "keywords": [
+    "selected",
+    "spec",
+    "tracks",
+    "manually",
+    "moved",
+    "regrouped",
+    "leaving",
+    "gaps",
+    "duplicate",
+    "numeric",
+    "prefixes",
+    "stale",
+    "path",
+    "references",
+    "metadata"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.676Z",
+  "specId": "014",
+  "folderSlug": "spec-regrouping-renumber-reindex",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

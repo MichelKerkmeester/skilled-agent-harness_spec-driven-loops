@@ -253,7 +253,7 @@ Desired user-visible outcome: native seats run concurrently as a parallel batch 
 Verify that `step_sweep_cli_pool` uses `multi-seat-dispatch.cjs#dispatchCouncilSeats` to fan CLI seats out concurrently, with correct per-kind dispatch flags including closed stdin for cli-opencode.
 
 #### Scenario Contract
-Prompt: As a manual-testing orchestrator, validate the CLI council seats dispatch contract for `deep-context` against the auto YAML, loop_protocol.md, and SKILL.md §4 ALWAYS rules. Verify cli-opencode seats use `</dev/null` for closed stdin and omit top-level `--agent`; cli-codex seats use `--sandbox read-only`; and `multi-seat-dispatch.cjs` provides `dispatchCouncilSeats`. Return a concise verdict.
+Prompt: As a manual-testing orchestrator, validate the CLI council seats dispatch contract for `deep-context` against the auto YAML, loop_protocol.md, and SKILL.md §4 ALWAYS rules. Verify cli-opencode seats use `</dev/null` for closed stdin and omit top-level `--agent`; cli-opencode seats use `--sandbox read-only`; and `multi-seat-dispatch.cjs` provides `dispatchCouncilSeats`. Return a concise verdict.
 
 Expected signals: `multi-seat-dispatch.cjs` referenced in loop_protocol.md §5; SKILL.md ALWAYS rule 5 mandates cli-* contract compliance including `</dev/null`; `dispatchCouncilSeats` export exists in the file.
 

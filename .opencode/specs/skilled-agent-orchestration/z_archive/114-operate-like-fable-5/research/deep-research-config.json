@@ -1,0 +1,30 @@
+{
+  "topic": "Operate like Fable 5 — adopt the Fable 5 operating doctrine across the skilled-agent orchestration stack (single-executor protocol re-run).",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/z_archive/114-operate-like-fable-5",
+  "resource_map": {
+    "present": false,
+    "emit": false
+  },
+  "createdAt": "2026-06-14T07:54:09Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "single-exec-rerun",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

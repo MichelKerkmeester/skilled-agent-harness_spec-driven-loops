@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/023-cmd-create-feature-catalog",
+  "description": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there",
+  "keywords": [
+    "repo",
+    "shipped",
+    "feature-catalog",
+    "contract",
+    "sk-doc",
+    "now",
+    "teaches",
+    "dedicated",
+    "templates",
+    "creation",
+    "references"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.026Z",
+  "specId": "023",
+  "folderSlug": "cmd-create-feature-catalog",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

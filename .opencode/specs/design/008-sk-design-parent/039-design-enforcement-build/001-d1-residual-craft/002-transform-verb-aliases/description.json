@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/002-transform-verb-aliases",
+  "description": "The transform verbs bolder, quieter, distill, clarify and delight had no parseable route into the sk-design hub",
+  "keywords": [
+    "transform",
+    "verbs",
+    "bolder",
+    "quieter",
+    "distill",
+    "clarify",
+    "delight",
+    "parseable",
+    "route",
+    "sk-design",
+    "hub"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.939Z",
+  "specId": "002",
+  "folderSlug": "transform-verb-aliases",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

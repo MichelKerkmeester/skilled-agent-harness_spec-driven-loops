@@ -29,9 +29,14 @@ async function main() {
 
     const goal = await __test.readGoal(ctx.sessionID, opts);
     assert.ok(goal && String(goal.objective).includes('TOOLPATH_OBJ'), 'goal persisted via the tool path');
+    assert.ok(goal && String(goal.goalPrompt).includes('Objective: TOOLPATH_OBJ'), 'enhanced prompt persisted via the tool path');
+    assert.equal(goal.promptEnhancement.framework, 'CRAFT+TIDD-EC');
+    assert.ok(goal.goalPrompt.length <= 4000, 'enhanced prompt respects the hard cap');
 
     const statusRes = await __test.executeGoalStatus(ctx, opts);
     assert.match(String(statusRes), /TOOLPATH_OBJ/, 'status reflects the active goal');
+    assert.match(String(statusRes), /goal_prompt=/, 'status exposes the enhanced prompt');
+    assert.match(String(statusRes), /prompt_clear_score=44/, 'status exposes prompt quality metadata');
 
     const clearRes = await __test.executeGoalAction({ action: 'clear' }, ctx, opts);
     assert.match(String(clearRes), /STATUS=OK/, 'clear via ToolContext should succeed');

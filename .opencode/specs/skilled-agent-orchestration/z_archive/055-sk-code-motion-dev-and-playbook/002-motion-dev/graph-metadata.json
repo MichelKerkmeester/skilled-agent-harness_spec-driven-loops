@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "spec_folder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "parent_id": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code motion.dev references",
+      "motion.dev assets",
+      "motion_dev cross-stack",
+      "002-motion-dev",
+      "sk-code motion.dev plan",
+      "002-motion-dev plan",
+      "sk-code motion.dev tasks",
+      "002-motion-dev tasks",
+      "sk-code motion.dev checklist",
+      "002-motion-dev verification",
+      "sk-code motion.dev implementation summary",
+      "002-motion-dev complete"
+    ],
+    "key_topics": [
+      "sk-code",
+      "motion",
+      "dev",
+      "references",
+      "assets",
+      "cross-stack",
+      "002-motion-dev",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/assets/motion_dev/install_card.md",
+      ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/install_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook_entries.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Webflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Official Motion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mine Motion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
+    "created_at": "2026-05-05T08:00:00Z",
+    "last_save_at": "2026-06-23T03:49:49.664Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2092e8cc97473f35b99f602c62ecc1f9c2f52d7286fab54c1d492612542295a4",
+    "source_doc_hashes": {
+      "spec.md": "3981926bd75eebb61d126978da372eae9d4bf930998aa31c6f3d9dbcb8ecbf04",
+      "plan.md": "eaacd6d85547ad5b59b95e069f50e8977c2ac0fa04485f643c27756774c26213",
+      "tasks.md": "d5943b49ba9ff713c6a25d27bacb794c6cda4eb77db7a4c5c25bbb3d907bbea6",
+      "checklist.md": "390f12fe00cde15a7b8d4f5e0a0f39a5da137a543a340954ef6f2113db154f2f",
+      "implementation-summary.md": "5b6015c69fa8de61ff8a2e4d666b2d65869cd5e9e5425db74d352cc472d0c542"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

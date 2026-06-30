@@ -3,7 +3,7 @@
 ## Task Classification
 
 - **Type**: Architecture / implementation planning
-- **Council Seats Dispatched**: 3: Analytical / cli-codex, Critical / cli-claude-code, Pragmatic / cli-opencode
+- **Council Seats Dispatched**: 3: Analytical / cli-opencode, Critical / cli-claude-code, Pragmatic / native
 - **Dispatch Mode**: Sequential Depth 1
 - **Vantage Integrity**: Simulated external vantage lenses, labeled
 
@@ -11,11 +11,11 @@
 
 | Seat | Strategy Lens | AI Vantage Target | Distinct Mandate | Confidence |
 | --- | --- | --- | --- | --- |
-| seat-001 | Analytical | cli-codex | Verify parser and artifact shape against packet scope | 86 |
+| seat-001 | Analytical | cli-opencode | Verify parser and artifact shape against packet scope | 86 |
 | seat-002 | Critical | cli-claude-code | Attack path-scoping, idempotency, and missing-section behavior | 88 |
-| seat-003 | Pragmatic | cli-opencode | Keep the helper small enough for maintenance | 82 |
+| seat-003 | Pragmatic | native | Keep the helper small enough for maintenance | 82 |
 
-### Seat 001 - Analytical / cli-codex
+### Seat 001 - Analytical / cli-opencode
 
 #### Proposed Plan
 

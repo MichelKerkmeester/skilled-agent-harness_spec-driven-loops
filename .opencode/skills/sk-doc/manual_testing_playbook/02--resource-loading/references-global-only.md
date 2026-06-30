@@ -60,7 +60,7 @@ Apply HVR voice rules to specs/123-example/implementation-summary.md without cha
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: foreground OK; codex applies voice rewrites cleanly.
+- **cli-opencode (gpt-5.5/high/fast)**: foreground OK; opencode applies voice rewrites cleanly.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact diff output; verify rule citations.
 
 ## Success Criteria

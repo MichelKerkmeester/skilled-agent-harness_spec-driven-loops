@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/115-mcp-skill-install-doctor-standardization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/115-mcp-skill-install-doctor-standardization",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp skill install standardization",
+      "doctor.sh for mcp skills",
+      "mcp-open-design install guide",
+      "design skill cross-references",
+      "mcp-figma 1.0.0.0",
+      "mcp skill standardization plan",
+      "doctor.sh implementation",
+      "install guide parity",
+      "design skill cross-reference plan",
+      "mcp skill standardization tasks",
+      "doctor.sh tasks",
+      "install guide tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "skill",
+      "install",
+      "standardization",
+      "doctor",
+      "skills",
+      "mcp-open-design",
+      "guide",
+      "design",
+      "cross-references",
+      "mcp-figma",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
+      ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-chrome-devtools/scripts/doctor.sh",
+      ".opencode/skills/mcp-click-up/scripts/doctor.sh",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five mcp- skills had drifted out of a shared shape",
+    "created_at": "2026-06-15T05:45:12Z",
+    "last_save_at": "2026-06-23T03:49:48.735Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac27dcb4c506f7ee4ca9f3bbfd95d6032ef21bfbf5a957da07879a54f4a95014",
+    "source_doc_hashes": {
+      "spec.md": "072fb329630d19c952e4452ae2f2050b189ca61808c6cf7f2647d78c37f6bde5",
+      "plan.md": "00c37bfcf0f0719d1609459efa46fd4738d4b0fddc06e2e046969b981141ac24",
+      "tasks.md": "8d21fb8e590e75db858c4d319352c5e52e47eaf485d8e43bd1859350abc39df6",
+      "checklist.md": "c290b9d98c3612ea254163a209c6cdde0933e4574e9b4237c98864eef14529ae",
+      "implementation-summary.md": "6172a9132fcb1bece98a89efe2d06b7d73c3b37da39700c487112d2f91c59781"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

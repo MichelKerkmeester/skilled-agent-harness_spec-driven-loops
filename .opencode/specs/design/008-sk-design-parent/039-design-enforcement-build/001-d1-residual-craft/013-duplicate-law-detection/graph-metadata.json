@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r13 duplicate law detection",
+      "duplicate law detection design build",
+      "numeric_law_check duplicate detection",
+      "duplicate law detection plan",
+      "duplicate law detection tasks",
+      "duplicate law detection checklist",
+      "duplicate law detection summary",
+      "within-index duplicate law re-port gate"
+    ],
+    "key_topics": [
+      "d1-r13",
+      "duplicate",
+      "law",
+      "detection",
+      "design",
+      "build",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "within-index",
+      "re-port"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+      ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "numeric_law_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/numeric_law_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "numeric_design_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/numeric_design_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Duplicate Law Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The numeric-law index gives each already-adopted numeric law (timing, color/contrast, layout/spacing, type) exactly one canonical row so modes cite the owner instead of re-copying the value",
+    "created_at": "2026-06-28T12:40:06.787Z",
+    "last_save_at": "2026-06-29T12:14:08.579Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd7c1f33a4e17bd3569d93268b495c7a24ce6fd0f0f4e63b4e16ffadf7373002",
+    "source_doc_hashes": {
+      "spec.md": "b8c069b38fb86592df8b54b9780d0748112b782567b7db79fc8c65f8487c7079",
+      "plan.md": "ab97dd421f0e8678032d79ba1d5398728fccf0a3677adbdfd90a126101642b95",
+      "tasks.md": "cdb58d823154f7f329a4e898001aa4920eb553f4e458667317eaee5a451608cb",
+      "checklist.md": "5b377ba567c788f4aae8fee4836ebdf753ff3c0ba7693749dbb25439bb0352b2",
+      "implementation-summary.md": "4ed4bcfb51f63ad3e7ffbcb5798d142d5e389577ed9ef1d73c6159506a22d3a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

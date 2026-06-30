@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/002-executable-pretooluse-branch",
+  "description": "The Codex PreToolUse hook (`handleCodexPreToolUse`) is Bash-only: any non-Bash tool returns the empty allow object `{}` at the early `if (toolNameFor(",
+  "keywords": [
+    "codex",
+    "pretooluse",
+    "hook",
+    "handlecodexpretooluse",
+    "bash-only",
+    "non-bash",
+    "tool",
+    "returns",
+    "empty",
+    "allow",
+    "object",
+    "early",
+    "toolnamefor"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.147Z",
+  "specId": "002",
+  "folderSlug": "executable-pretooluse-branch",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

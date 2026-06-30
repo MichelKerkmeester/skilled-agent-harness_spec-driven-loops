@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/003-goal-command",
+  "description": "The state store and injection renderer needed a safe user-facing control surface",
+  "keywords": [
+    "state",
+    "store",
+    "injection",
+    "renderer",
+    "needed",
+    "safe",
+    "user-facing",
+    "control",
+    "surface"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.249Z",
+  "specId": "003",
+  "folderSlug": "goal-command",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,218 @@
+{
+  "mergedFrom": [
+    "gpt55fast",
+    "opus48-claude2"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "F5",
+      "mode": "design-audit",
+      "title": "Audit should add evidence capture and remediation lenses",
+      "priority": "P1",
+      "summary": "The mode already has score/severity; it needs stronger deterministic evidence hooks, accessibility snippets, and hardening edge-case matrices.",
+      "sources": [
+        ".opencode/skills/sk-design/design-audit/SKILL.md:312",
+        ".opencode/specs/design/008-sk-design-parent/external/critique.md:51",
+        ".opencode/specs/design/008-sk-design-parent/external/fixing-accessibility.md:33",
+        ".opencode/specs/design/008-sk-design-parent/external/harden.md:14"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F1",
+      "mode": "shared/interface/audit/foundations/motion",
+      "title": "Brand-vs-Product operating register is the first dependency",
+      "priority": "P0",
+      "summary": "A shared register should gate density, motion, color, copy, and anti-slop decisions before mode-specific references branch.",
+      "sources": [
+        ".opencode/specs/design/008-sk-design-parent/001-corpus-research/research/gap-analysis.md:16",
+        ".opencode/specs/design/008-sk-design-parent/external/colorize.md:14",
+        ".opencode/specs/design/008-sk-design-parent/external/animate.md:14"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F3",
+      "mode": "design-foundations",
+      "title": "Foundations should add register-aware color, data-viz color, and adaptation matrices",
+      "priority": "P1",
+      "summary": "Existing basics are covered; the gaps are decision matrices and domain-specific token applications.",
+      "sources": [
+        ".opencode/skills/sk-design/design-foundations/SKILL.md:269",
+        ".opencode/specs/design/008-sk-design-parent/external/colorize.md:85",
+        ".opencode/specs/design/008-sk-design-parent/external/adapt.md:37"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F2",
+      "mode": "design-interface",
+      "title": "Interface needs operational checklists more than more aesthetics",
+      "priority": "P0",
+      "summary": "Add dials, mechanical preflight, redesign intake, copy/mock-data discipline, and visual-asset strategy as references/assets.",
+      "sources": [
+        ".opencode/skills/sk-design/design-interface/SKILL.md:156",
+        ".opencode/specs/design/008-sk-design-parent/external/taste-skill.md:43",
+        ".opencode/specs/design/008-sk-design-parent/external/taste-skill.md:919"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F6",
+      "mode": "design-md-generator",
+      "title": "md-generator expansion should be forward authoring, not extraction sprawl",
+      "priority": "P1",
+      "summary": "The extractor is already mature; add a brief-to-style-reference authoring reference and prompt assets that preserve cardinal fidelity boundaries.",
+      "sources": [
+        ".opencode/skills/sk-design/design-md-generator/SKILL.md:248",
+        ".opencode/specs/design/008-sk-design-parent/external/stitch-skill.md:17",
+        ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md:27"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F4",
+      "mode": "design-motion",
+      "title": "Motion should add pattern cards and failure-mode checklists",
+      "priority": "P1",
+      "summary": "Current references cover principles; reusable assets should make state patterns, AnimatePresence review, and performance checks easier to apply.",
+      "sources": [
+        ".opencode/skills/sk-design/design-motion/SKILL.md:289",
+        ".opencode/specs/design/008-sk-design-parent/external/mastering-animate-presence.md:21",
+        ".opencode/specs/design/008-sk-design-parent/external/fixing-motion-performance.md:52"
+      ],
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "KF9",
+      "mode": "audit",
+      "text": "Audit deliverable is a report yet ships 0 assets -> AU-A1 report template is strongest first-asset",
+      "evidence": "design-audit/references/audit_contract.md",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF3",
+      "mode": "foundations",
+      "text": "Data-viz is the only real coverage hole (data only as tabular-nums)",
+      "evidence": "design-foundations/references/type/typography_system.md:44; external/designer-skills-main/README.md:72",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF1",
+      "mode": "interface",
+      "text": "Vendored base draws on NONE of the assigned taste corpus; calibration is aesthetic not mechanical",
+      "evidence": "design-interface/SKILL.md:120,154-167",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF2",
+      "mode": "interface",
+      "text": "Zero assets; the two-pass process is prose only -> IF-A1 design_plan_preflight is the first asset",
+      "evidence": "design-interface/SKILL.md:99-118; external/gpt-tasteskill.md:67-74",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF10",
+      "mode": "md-generator",
+      "text": "Most mature mode; mostly do-NOT; gap-10 forward-authoring is out-of-scope design-spec surface",
+      "evidence": "design-md-generator/SKILL.md:14,44-45; external/stitch-skill.md:7-21",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF5",
+      "mode": "motion",
+      "text": "Gesture basics covered; real 08e gap is the emil frequency-decision restraint gate",
+      "evidence": "design-motion/references/micro_interactions.md:61-66; external/emil-design-eng.md:62-79",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF8",
+      "mode": "audit",
+      "text": "Transform verbs (bolder/quieter/distill) are register-gated (AU-R3, depends on XC-1)",
+      "evidence": "external/bolder.md:13-17",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF11",
+      "mode": "cross-cutting",
+      "text": "shared/register.md (gap 05, must-add) absent; highest single leverage; gates interface+audit",
+      "evidence": "external/impeccable.md:20; sk-design/shared/ inventory",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF6",
+      "mode": "audit",
+      "text": "No model-tell catalog; impeccable supplies a concrete Codex/Gemini/2026-general one (AU-R1, highest leverage)",
+      "evidence": "external/impeccable.md:42-44,69-70,100-108",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF7",
+      "mode": "audit",
+      "text": "redesign-skill is a turnkey Scan->Diagnose->Fix remediation playbook (AU-R2)",
+      "evidence": "external/redesign-skill.md:8-70",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF4",
+      "mode": "foundations",
+      "text": "Three-dials intake (taste §0-1) is cross-cutting; ownership ambiguous",
+      "evidence": "external/taste-skill.md:13-79",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    },
+    {
+      "id": "KF12",
+      "mode": "cross-cutting",
+      "text": "Zero-assets pattern across 4 of 5 modes; N1/N2 are shared twins (author once, reference twice)",
+      "evidence": "filesystem; gap-analysis.md:26-27",
+      "_lineages": [
+        "opus48-claude2"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 16,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 18,
+    "convergenceScore": 0.485,
+    "coverageBySources": {}
+  }
+}

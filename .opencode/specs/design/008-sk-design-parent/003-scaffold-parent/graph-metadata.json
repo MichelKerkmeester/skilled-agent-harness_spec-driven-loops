@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/003-scaffold-parent",
+  "spec_folder": "design/008-sk-design-parent/003-scaffold-parent",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design umbrella scaffold",
+      "design router skeleton",
+      "sk-design parent skill",
+      "design family edges",
+      "shared design-base references",
+      "sk-design umbrella plan",
+      "design router scaffold plan",
+      "shared design-base layer",
+      "family edges plan",
+      "skill_graph_scan gate",
+      "sk-design scaffold tasks",
+      "umbrella router tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "umbrella",
+      "scaffold",
+      "design",
+      "router",
+      "skeleton",
+      "parent",
+      "skill",
+      "family",
+      "edges",
+      "shared",
+      "design-base"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/references/anti_slop_principles.md",
+      ".opencode/skills/sk-design/references/design_token_vocabulary.md",
+      ".opencode/skills/sk-design/references/cognitive_laws.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "anti_slop_principles.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/anti_slop_principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_token_vocabulary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/design_token_vocabulary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cognitive_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/cognitive_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Umbrella",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The architecture decision locks `sk-design` as an umbrella-router over a sibling family, but no parent skill exists on disk yet",
+    "created_at": "2026-06-25T12:41:15Z",
+    "last_save_at": "2026-06-25T15:01:54.188Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d1ce304b7b29d73c253e54580e57161b09b29d86ef7e3d6bd63d4369c6f5164b",
+    "source_doc_hashes": {
+      "spec.md": "5346ebbc9258b0ca6edc715be999ba608abb3d095ee5198d02c4004944d5a3c2",
+      "plan.md": "55c5d23550b62350a5450ad7fc8222011f318512753296e7d18e2fc35a779bf2",
+      "tasks.md": "359b9a4cc539d9f339dd503f9a888c2462069725c1933cc80e4b7e04fe1c48bd",
+      "implementation-summary.md": "7b5482a72b04c29e7cf5d7995f23539fe79f5977721f24a66ba41a26e634bbbc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

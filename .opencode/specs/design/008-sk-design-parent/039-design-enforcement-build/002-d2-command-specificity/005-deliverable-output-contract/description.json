@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/005-deliverable-output-contract",
+  "description": "Each `/design:` wrapper declared only a `STATUS=OK|FAIL` tail (evidence: `commands/design/audit.md:26`), so the concrete deliverable each command prod",
+  "keywords": [
+    "design",
+    "wrapper",
+    "declared",
+    "only",
+    "status",
+    "fail",
+    "tail",
+    "evidence",
+    "commands",
+    "audit",
+    "concrete",
+    "deliverable",
+    "command",
+    "prod"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.024Z",
+  "specId": "005",
+  "folderSlug": "deliverable-output-contract",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

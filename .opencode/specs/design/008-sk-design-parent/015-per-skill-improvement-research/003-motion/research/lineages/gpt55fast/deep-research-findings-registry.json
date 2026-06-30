@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "deep-research-findings-registry.v1",
+  "sessionId": "fanout-gpt55fast-1782532104406-n794vy",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "question": "Which motion improvements remain after 009 was implemented?",
+      "answer": "Do not re-add the restraint gate or cards. Residual value is advanced craft top-up, resource traceability, fixture consistency, and an on-demand advanced rendering boundary."
+    },
+    {
+      "id": "Q2",
+      "question": "Are there router/resource efficiency gaps?",
+      "answer": "Yes. The loading table says shared register and decision framework are ALWAYS resources, but the pseudocode default only loads corpus_map and guards paths inside the packet."
+    },
+    {
+      "id": "Q3",
+      "question": "Does the playbook validate the right behavior?",
+      "answer": "Mostly, but expected_resources drift from the ALWAYS contract and it lacks a hub-level mode-routing benchmark scenario."
+    },
+    {
+      "id": "Q4",
+      "question": "Which external ideas still add usefulness?",
+      "answer": "Popover transform-origin, tooltip instant follow-up, @starting-style, slow-motion debugging, Framer Motion shorthand caveat, and propose-first View Transition/advanced rendering guidance."
+    },
+    {
+      "id": "Q5",
+      "question": "What should be avoided?",
+      "answer": "Avoid bulk import, broad router overfitting, duplicate completed 009 assets, motion-rich defaults, GSAP/scroll mandates, and motion-performance release scoring inside motion."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-router-contract",
+      "priority": "P1",
+      "summary": "Align the motion router resource-loading contract with the prose ALWAYS table.",
+      "evidence": [
+        ".opencode/skills/sk-design/design-motion/SKILL.md:95-104",
+        ".opencode/skills/sk-design/design-motion/SKILL.md:114-131",
+        ".opencode/skills/sk-design/design-motion/SKILL.md:201-209"
+      ]
+    },
+    {
+      "id": "F2-current-work-complete",
+      "priority": "P0-do-not-repeat",
+      "summary": "The 009 must-add motion gate and three card assets are already implemented.",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/009-reference-asset-expansion/research/research.md:84-97",
+        ".opencode/specs/design/008-sk-design-parent/012-foundations-motion-audit/implementation-summary.md:64-69"
+      ]
+    },
+    {
+      "id": "F3-advanced-craft",
+      "priority": "P1",
+      "summary": "A small advanced-craft top-up has higher leverage than a broad advanced rendering reference.",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/external/emil-design-eng.md:234-248",
+        ".opencode/specs/design/008-sk-design-parent/external/emil-design-eng.md:252-276",
+        ".opencode/specs/design/008-sk-design-parent/external/emil-design-eng.md:642-661"
+      ]
+    },
+    {
+      "id": "F4-playbook-fixture-drift",
+      "priority": "P1",
+      "summary": "Manual playbook expected resources omit mandatory resources in several scenarios.",
+      "evidence": [
+        ".opencode/skills/sk-design/design-motion/manual_testing_playbook/01--strategy/001-purposeful-motion-plan.md:11-15",
+        ".opencode/skills/sk-design/design-motion/SKILL.md:95-99",
+        ".opencode/skills/sk-design/design-motion/manual_testing_playbook/03--reduced-motion/001-performance-and-reduced-motion.md:11-16",
+        ".opencode/skills/sk-design/design-motion/manual_testing_playbook/03--reduced-motion/001-performance-and-reduced-motion.md:30-34"
+      ]
+    },
+    {
+      "id": "F5-benchmark-gap",
+      "priority": "P2",
+      "summary": "The local benchmark evidence does not include a persisted motion Mode A report, so routing confidence should be preserved with a motion-specific artifact or fixture rather than inferred from interface.",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.md:1-6",
+        ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.md:62-65"
+      ]
+    },
+    {
+      "id": "F6-doc-freshness",
+      "priority": "P2",
+      "summary": "Motion release docs still mention old flat-skill artifacts not present in the nested packet structure.",
+      "evidence": [
+        ".opencode/skills/sk-design/design-motion/changelog/v1.0.0.0.md:14-17",
+        ".opencode/skills/sk-design/SKILL.md:74-77",
+        ".opencode/skills/sk-design/SKILL.md:90-92"
+      ]
+    },
+    {
+      "id": "F7-advanced-rendering-boundary",
+      "priority": "P3",
+      "summary": "Advanced rendering should remain on-demand and propose-first, not a default motion path.",
+      "evidence": [
+        ".opencode/specs/design/008-sk-design-parent/external/overdrive.md:19-27",
+        ".opencode/specs/design/008-sk-design-parent/external/overdrive.md:93-116"
+      ]
+    },
+    {
+      "id": "F8-stack-boundary",
+      "priority": "P2",
+      "summary": "Motion handoff should preserve the existing animation system and record mechanism choice before sk-code implementation.",
+      "evidence": [
+        ".opencode/skills/sk-design/design-motion/SKILL.md:256-259",
+        ".opencode/specs/design/008-sk-design-parent/external/fixing-motion-performance.md:116-120",
+        ".opencode/skills/sk-design/design-motion/assets/motion_performance_failure_card.md:38-40"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Rebuild the 009 motion gate and cards",
+      "reason": "Already implemented in phase 012."
+    },
+    {
+      "approach": "Bulk-import external motion corpus",
+      "reason": "Prior 009 synthesis explicitly selected operational cards and checklists over corpus volume."
+    },
+    {
+      "approach": "Make motion-performance review a motion-mode responsibility",
+      "reason": "Motion owns build guidance; audit owns findings-first release scoring."
+    },
+    {
+      "approach": "Add a separate design-interaction child",
+      "reason": "Taxonomy is settled around the parent hub and five modes."
+    },
+    {
+      "approach": "Treat all interfaces as motion-rich by default",
+      "reason": "The register and restraint gate distinguish Product from Brand and trim high-frequency motion."
+    }
+  ]
+}

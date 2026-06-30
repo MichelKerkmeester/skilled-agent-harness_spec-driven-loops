@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "description": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
+  "keywords": [
+    "688",
+    "in-scope",
+    "skill",
+    "markdown",
+    "files",
+    "carry",
+    "anchor",
+    "name",
+    "html"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.112Z",
+  "specId": "003",
+  "folderSlug": "anchor-comment-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "095-skill-anchor-toc-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

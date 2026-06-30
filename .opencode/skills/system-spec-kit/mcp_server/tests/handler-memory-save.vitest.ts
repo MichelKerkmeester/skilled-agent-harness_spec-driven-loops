@@ -332,7 +332,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
         '  continuity:',
         '    packet_pointer: "system-spec-kit/999-atomic-save-fi"',
         '    last_updated_at: "2026-04-11T12:00:00Z"',
-        '    last_updated_by: "codex-gate-c"',
+        '    last_updated_by: "opencode-gate-c"',
         '    recent_action: "Prepared canonical writer fixture"',
         '    next_safe_action: "Run atomic save"',
         `  fingerprint: "sha256:${'1'.repeat(64)}"`,

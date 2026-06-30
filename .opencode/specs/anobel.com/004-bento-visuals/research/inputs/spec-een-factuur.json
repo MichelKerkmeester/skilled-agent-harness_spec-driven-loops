@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/14.png",
+ "title": "\u00c9\u00e9n factuur.",
+ "desc": "Ontvang \u00e9\u00e9n overzichterlijke factuur met alle gemaakte kosten per maand",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/een-factuur-glm-1.html",
+   "brief": "A single consolidated invoice document: header 'Factuur \u00b7 maart 2026', per-ship line rows (MS Aldebaran \u20ac4.100, MS Castor \u20ac3.150, ...), and a bold totaal at the bottom of the panel."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/een-factuur-glm-2.html",
+   "brief": "A cost-per-ship breakdown of the month total: a horizontal stacked bar (one segment per ship) OR a small waffle, with a legend and the total."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/een-factuur-glm-3.html",
+   "brief": "A month-total hero figure: large \u20acX.XXX 'totaal maart 2026' + 2-3 supporting stats (aantal bestellingen, schepen, gem. per schip)."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/een-factuur-glm-4.html",
+   "brief": "A MANY->ONE consolidation: three small per-ship invoice slips funnel/merge into one combined invoice (the merge is the signature)."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/een-factuur-glm-5.html",
+   "brief": "A per-month invoice timeline: jan / feb / mrt rows with amounts + a 'gefactureerd' status, current month highlighted."
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+  "specFolder": "anobel.com/005-glm-visual-refinement/003-minimax-auditor-in-loop",
+  "description": "In the 45-tile 004 run, MiniMax-M3 (auditor of record) emitted 18 specific, file-grounded FIX findings (panel overflow, eyebrow overlapping a node, to",
+  "keywords": [
+    "45-tile",
+    "004",
+    "run",
+    "minimax-m3",
+    "auditor",
+    "record",
+    "emitted",
+    "specific",
+    "file-grounded",
+    "fix",
+    "findings",
+    "panel",
+    "overflow",
+    "eyebrow",
+    "overlapping",
+    "node"
+  ],
+  "lastUpdated": "2026-06-29T10:48:39.729Z",
+  "specId": "003",
+  "folderSlug": "minimax-auditor-in-loop",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "anobel.com",
+    "005-glm-visual-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

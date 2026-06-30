@@ -1,0 +1,14 @@
+{
+  "key": "kimi-deep-loop-s3",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "deep-loop",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 241325,
+  "bytes": 173691,
+  "stderrTail": ""
+}

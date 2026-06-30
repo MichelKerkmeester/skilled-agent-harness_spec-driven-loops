@@ -48,7 +48,7 @@ describe('resource-map extractor', () => {
           { iteration: 1, event: 'new_finding', finding_id: 'F-README', severity: 'P2', file: 'docs/resource-map/README.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-DOC', severity: 'P1', file: 'docs/resource-map-contract.unknownext' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-CMD', severity: 'P1', file: '.opencode/commands/speckit/deep-review.md' },
-          { iteration: 1, event: 'new_finding', finding_id: 'F-AGENT', severity: 'P2', file: '.codex/agents/deep-review.toml' },
+          { iteration: 1, event: 'new_finding', finding_id: 'F-AGENT', severity: 'P2', file: '.opencode/agents/deep-review.toml' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-SKILL', severity: 'P0', file: '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-SPEC', severity: 'P1', file: '.opencode/specs/system-spec-kit/demo/spec.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-SCRIPT', severity: 'P2', file: 'tools/resource-map-emit.cjs' },

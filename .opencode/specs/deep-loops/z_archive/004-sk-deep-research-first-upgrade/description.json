@@ -1,0 +1,25 @@
+{
+  "specFolder": "deep-loops/z_archive/004-sk-deep-research-first-upgrade",
+  "description": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
+  "keywords": [
+    "first",
+    "sk-deep-research",
+    "upgrade",
+    "needed",
+    "grounded",
+    "input",
+    "comparable",
+    "autonomous",
+    "research",
+    "systems"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.044Z",
+  "specId": "004",
+  "folderSlug": "sk-deep-research-first-upgrade",
+  "parentChain": [
+    "deep-loops",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

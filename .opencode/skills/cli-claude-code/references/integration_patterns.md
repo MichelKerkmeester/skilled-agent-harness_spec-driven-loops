@@ -15,7 +15,7 @@ version: 1.1.0.6
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI
 
-Proven patterns for orchestrating Claude Code CLI from external AI sessions (Codex, Copilot, etc.).
+Proven patterns for orchestrating Claude Code CLI from external AI sessions (OpenCode, Copilot, etc.).
 
 ---
 
@@ -23,7 +23,7 @@ Proven patterns for orchestrating Claude Code CLI from external AI sessions (Cod
 
 ### Core Principle
 
-The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-codex and cli-opencode skills where Claude Code conducts. Here, Claude Code is the executor.
+The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-opencode and cli-claude-code skills where Claude Code conducts. Here, Claude Code is the executor.
 
 ### Purpose
 
@@ -325,9 +325,9 @@ claude -p "Analyze @src/feature.ts and suggest comprehensive test cases. Identif
 CLAUDE_REVIEW=$(claude -p "Review @/tmp/feature.ts for bugs and security issues" \
   --permission-mode plan --output-format text 2>&1)
 
-# Codex CLI reviews (if available)
-CODEX_REVIEW=$(codex exec "Review @/tmp/feature.ts for bugs and security issues" \
-  --sandbox read-only --model gpt-5.3-codex 2>&1)
+# OpenCode reviews (if available)
+OPENCODE_REVIEW=$(opencode run "Review @/tmp/feature.ts for bugs and security issues" \
+  --sandbox read-only --model gpt-5.3-opencode 2>&1)
 
 # Calling AI synthesizes all reviews
 # Compare findings, prioritize issues found by multiple AIs
@@ -343,7 +343,7 @@ CODEX_REVIEW=$(codex exec "Review @/tmp/feature.ts for bugs and security issues"
 
 - Cross-validation is expensive (3x cost) — reserve for critical code
 - Focus on disagreements between AIs as areas needing human review
-- Weight each AI's strengths: Claude for reasoning, Codex for sandbox safety and web context
+- Weight each AI's strengths: Claude for reasoning, OpenCode for sandbox safety and web context
 
 ---
 

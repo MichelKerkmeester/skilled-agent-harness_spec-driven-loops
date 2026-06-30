@@ -8,7 +8,7 @@ version: 1.3.0.34
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Codex, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, OpenCode, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
 
 This document combines the full manual-validation contract for the `cli-opencode` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
@@ -38,7 +38,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/d
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Codex, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
+1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, OpenCode, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
 2. The orchestrator decides whether to delegate to OpenCode CLI via cli-opencode, picks the right model + agent + variant + format + dir and constructs a Role -> Context -> Action -> Format prompt per the prompt quality card.
 3. The operator captures both the dispatch command and the user-visible outcome (JSON event stream parsed, tool.calls surfaced, session.completed summary).
 4. The scenario passes only when the dispatch is sound, the OpenCode output matches the expected signals and the returned result would satisfy a real user.
@@ -154,7 +154,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Operational Rules
 
 1. Probe runtime capacity at start - confirm OpenCode CLI version, provider auth, MCP server registration and budget headroom.
-2. Reserve one external-AI conductor (Claude Code, Codex, Copilot or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
+2. Reserve one external-AI conductor (Claude Code, OpenCode, Copilot or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
 3. Saturate remaining worker slots only when scenarios are non-destructive AND independent.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.
@@ -165,7 +165,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Recommended Wave Plan
 
 - **Wave 1** (parallel-safe, read-only, fast): CO-001..CO-005 (CLI invocation), CO-009 (deepseek default), CO-013..CO-017 (agent routing), CO-018..CO-020 (session continuity), CO-023..CO-025 (prompt templates), CO-029, CO-030, CO-031 (cross-repo plus nested guard).
-- **Wave 2** (multi-provider, requires extra provider auth): CO-007 (Codex calling), CO-010 (OpenAI), CO-011 (Google), CO-012 (variant comparison).
+- **Wave 2** (multi-provider, requires extra provider auth): CO-007 (OpenCode calling), CO-010 (OpenAI), CO-011 (Google), CO-012 (variant comparison).
 - **Wave 3** (use-case-specific): CO-006 (Claude Code calling MCP), CO-008 (self-invocation refusal), CO-021 (cross-AI handback), CO-022 (memory epilogue).
 - **Wave 4** (parallel detached, port-isolated): CO-026 (parallel detached session), CO-027 (worker farm with `</dev/null`), CO-028 (ablation suite).
 
@@ -267,7 +267,7 @@ Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pu
 
 ## 8. EXTERNAL DISPATCH (`CO-006..CO-008`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. Use case 1 (per ADR-002) is the canonical cross-AI dispatch path. The category exercises Claude Code calling, Codex calling and the self-invocation refusal that protects against circular dispatch.
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. Use case 1 (per ADR-002) is the canonical cross-AI dispatch path. The category exercises Claude Code calling, OpenCode calling and the self-invocation refusal that protects against circular dispatch.
 
 ### CO-006 | External dispatch from Claude Code into OpenCode
 
@@ -285,21 +285,21 @@ Expected signals: Dispatch exits 0. Tool.call event for memory_health appears. S
 
 > **Feature File:** [CO-006](02--external-dispatch/from-claude-code.md)
 
-### CO-007 | External dispatch from Codex into OpenCode (use case 1)
+### CO-007 | External dispatch from OpenCode into OpenCode (use case 1)
 
 #### Description
 
-Verify a Codex-originated cli-opencode dispatch routes to use case 1 (general full-runtime) when the prompt does not name a spec-kit subsystem and the dispatched OpenCode session loads the project plugin runtime to call Code Graph structural query + Grep.
+Verify a OpenCode-originated cli-opencode dispatch routes to use case 1 (general full-runtime) when the prompt does not name a spec-kit subsystem and the dispatched OpenCode session loads the project plugin runtime to call Code Graph structural query + Grep.
 
 #### Scenario Contract
 
-Prompt summary: You are Codex dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode confirm Code Graph structural query + Grep MCP is loaded and reachable, then run a single small semantic search to validate. Context: this is use case 1 (general full-runtime), not use case 3 (spec-kit handback).
+Prompt summary: You are OpenCode dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode confirm Code Graph structural query + Grep MCP is loaded and reachable, then run a single small semantic search to validate. Context: this is use case 1 (general full-runtime), not use case 3 (spec-kit handback).
 
 Expected signals: Dispatch exits 0. Tool.call event for Code Graph search MCP appears. Session.completed references the search snippets.
 
 #### Test Execution
 
-> **Feature File:** [CO-007](02--external-dispatch/from-codex-handback.md)
+> **Feature File:** [CO-007](02--external-dispatch/from-opencode-handback.md)
 
 ### CO-008 | Self-invocation guard refusal (ADR-001)
 
@@ -532,23 +532,23 @@ Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--
 
 ## 12. INTEGRATION PATTERNS (`CO-021..CO-022`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented integration patterns. Use case 3 cross-AI handback (Codex calling OpenCode for spec-kit memory) and the Memory Epilogue handback to `generate-context.js`.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented integration patterns. Use case 3 cross-AI handback (OpenCode calling OpenCode for spec-kit memory) and the Memory Epilogue handback to `generate-context.js`.
 
 ### CO-021 | Cross-AI orchestration handback (use case 3)
 
 #### Description
 
-Verify a Codex-originated cli-opencode dispatch routes to use case 3 (cross-AI handback) when the prompt names a spec-kit subsystem (memory_search) and the dispatched OpenCode session calls the named MCP tool successfully.
+Verify a OpenCode-originated cli-opencode dispatch routes to use case 3 (cross-AI handback) when the prompt names a spec-kit subsystem (memory_search) and the dispatched OpenCode session calls the named MCP tool successfully.
 
 #### Scenario Contract
 
-Prompt summary: You are Codex (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode call memory_search for the query "self-invocation guard" and return the top 3 results filtered by importance_tier in [critical, important].
+Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode call memory_search for the query "self-invocation guard" and return the top 3 results filtered by importance_tier in [critical, important].
 
 Expected signals: Exit 0. Tool.call for memory_search appears. Session.completed references results (or no-results attestation).
 
 #### Test Execution
 
-> **Feature File:** [CO-021](06--integration-patterns/cross-ai-handback-codex.md)
+> **Feature File:** [CO-021](06--integration-patterns/cross-ai-handback-opencode.md)
 
 ### CO-022 | Memory Epilogue handback to generate-context.js
 
@@ -791,7 +791,7 @@ The cli-opencode skill is a thin orchestration wrapper around the external `open
 | Adjacent Skill | Test Coverage | Playbook Overlap |
 |---|---|---|
 | `cli-claude-code` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output, agent routing) |
-| `cli-codex` | Manual playbook only | Cross-AI delegation pattern parallels (sandbox modes, reasoning effort, agent profiles, web search) |
+| `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (sandbox modes, reasoning effort, agent profiles, web search) |
 | `system-spec-kit` | Validator script + manual playbook | Spec folder workflows (use case 3 handback target) |
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
@@ -811,7 +811,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 ### EXTERNAL DISPATCH
 
 - CO-006: [External dispatch from Claude Code into OpenCode](02--external-dispatch/from-claude-code.md)
-- CO-007: [External dispatch from Codex into OpenCode (use case 1)](02--external-dispatch/from-codex-handback.md)
+- CO-007: [External dispatch from OpenCode into OpenCode (use case 1)](02--external-dispatch/from-opencode-handback.md)
 - CO-008: [Self-invocation guard refusal (ADR-001)](02--external-dispatch/self-invocation-refusal.md)
 
 ### MULTI-PROVIDER
@@ -837,7 +837,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### INTEGRATION PATTERNS
 
-- CO-021: [Cross-AI orchestration handback (use case 3)](06--integration-patterns/cross-ai-handback-codex.md)
+- CO-021: [Cross-AI orchestration handback (use case 3)](06--integration-patterns/cross-ai-handback-opencode.md)
 - CO-022: [Memory Epilogue handback to generate-context.js](06--integration-patterns/memory-epilogue-handback.md)
 
 ### PROMPT TEMPLATES

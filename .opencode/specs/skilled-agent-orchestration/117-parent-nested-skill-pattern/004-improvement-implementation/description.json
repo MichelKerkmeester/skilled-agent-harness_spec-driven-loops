@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern/004-improvement-implementation",
+  "description": "The 5-iteration improvement research found the deep-loop architecture is sound but the C-plus routing guarantee is aspirational (the drift-guard test",
+  "keywords": [
+    "5-iteration",
+    "improvement",
+    "research",
+    "found",
+    "deep-loop",
+    "architecture",
+    "sound",
+    "c-plus",
+    "routing",
+    "guarantee",
+    "aspirational",
+    "drift-guard",
+    "test"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.812Z",
+  "specId": "004",
+  "folderSlug": "improvement-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "117-parent-nested-skill-pattern"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-06-26_15-54__phase-004-implemented-the-improvement-research.md"
+  ]
+}

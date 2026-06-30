@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization",
+  "review_target": "068-sk-doc-organization",
+  "review_target_type": "spec-folder",
+  "review_dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "maxIterations": 7,
+  "convergenceThreshold": 0.10,
+  "executor": {
+    "type": "cli-copilot",
+    "model": "claude-opus-4.7",
+    "fallback_reason": "cli-codex stalled 3 times in this session (zero output, zero file writes); fallback to cli-copilot per memory rule 'cli-codex primary + cli-copilot fallback'",
+    "concurrent_cap": 3,
+    "timeoutSeconds": 900,
+    "invocation": "copilot -p \"<prompt>\" --model claude-opus-4.7 --allow-all-tools --no-ask-user"
+  },
+  "convergence": {
+    "type": "earlyStopOnNoNewP0P1",
+    "rule": "Stop if 2 consecutive iterations report no new P0/P1 findings",
+    "hardCap": 7
+  },
+  "scope_inclusions": [
+    ".opencode/skills/sk-doc/",
+    ".opencode/commands/create/",
+    ".opencode/agents/create.md",
+    ".opencode/install_guides/SET-UP - Opencode Agents.md",
+    ".claude/commands/create/",
+    ".claude/agents/create.md",
+    ".codex/prompts/create/",
+    ".codex/agents/create.toml",
+    ".gemini/commands/create/",
+    ".gemini/agents/create.md",
+    ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/"
+  ],
+  "scope_exclusions": [
+    "barter/coder/",
+    ".opencode/specs/**/z_archive/**",
+    ".opencode/specs/**/iterations/**",
+    ".opencode/specs/**/logs/**",
+    ".opencode/specs/**/research/**",
+    ".opencode/specs/**/review/**",
+    ".opencode/skills/sk-doc/changelog/v[0-9]*.md",
+    ".opencode/skills/system-spec-kit/mcp_server/dist/**",
+    ".opencode/skills/system-spec-kit/scripts/observability/**",
+    ".tmp/**"
+  ],
+  "review_focus_per_iteration": {
+    "iteration-1": "Phase 1 relocations + agents/ rmdir + Phase 2 substring substitution coverage on canonical .opencode/",
+    "iteration-2": "Cross-runtime mirror parity (.claude/.codex symlinks, .gemini regenerated, agents byte-identity) + TOML structural integrity",
+    "iteration-3": "Spec folder structural soundness (parent + 3 children, validate.sh --strict, lean trio at parent) + path-reference completeness in active scope",
+    "iteration-4": "Documentation alignment (SKILL.md narrative, references/, install guide) + functional regression risk (template resolution post-reorg)",
+    "iteration-5": "Git history integrity (4 commits on main, no surviving branch, rename detection) + out-of-scope respect (barter/, z_archive/, specs/, changelog history)",
+    "iteration-6": "Hunter pass: what's missing? Adversarial sweep across all dimensions for unflagged P0/P1 issues",
+    "iteration-7": "Skeptic pass: what's claimed but not actually done? Cross-reference verification across spec/code boundaries"
+  },
+  "stateFiles": {
+    "stateLog": "deep-review-state.jsonl",
+    "findingsRegistry": "deep-review-findings-registry.json",
+    "strategy": "deep-review-strategy.md",
+    "dashboard": "deep-review-dashboard.md",
+    "iterationDir": "iterations/",
+    "deltaDir": "deltas/",
+    "promptDir": "prompts/",
+    "logDir": "logs/",
+    "reviewReport": "review-report.md",
+    "resourceMap": "resource-map.md"
+  }
+}

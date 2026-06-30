@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "description": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
+  "keywords": [
+    "completed",
+    "baseline",
+    "phase",
+    "preserving",
+    "original",
+    "065",
+    "reindex",
+    "live",
+    "mcp",
+    "replay",
+    "router",
+    "stress-test",
+    "evidence"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.529Z",
+  "specId": "001",
+  "folderSlug": "baseline-reindex-and-stress-results",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "051-skill-advisor-reindex-and-stress-test"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,190 @@
+---
+title: "Verification Checklist: adopt the designer-skills-main interface + motion findings into sk-design"
+description: "QA checklist for the adopt the designer-skills-main interface + motion findings into sk-design build: scope lock, no duplication of existing/phase-023 content, and strict validation."
+trigger_phrases:
+  - "026-interface-motion-adoption checklist"
+  - "sk-design adoption QA"
+  - "designer-skills build checklist"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "design/008-sk-design-parent/026-interface-motion-adoption"
+    last_updated_at: "2026-06-27T11:49:46Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Verified the build diffs against the checklist"
+    next_safe_action: "Commit phases 025-027 once all three finalize"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "build-154-026-interface-motion-adoption"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+
+---
+# Verification Checklist: adopt the designer-skills-main interface + motion findings into sk-design
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+
+---
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+
+Each item carries evidence (file, diff, grep).
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [x] CHK-001 [P0] Scope frozen to the five target files — `spec.md` §3
+- [x] CHK-002 [P0] 024 backlog items + the post-023 mode state confirmed before editing
+- [x] CHK-003 [P1] Executor confirmed (cli-codex gpt-5.5 high fast, workspace-write)
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [x] CHK-010 [P0] Exactly the five target files changed by this dispatch; additive
+- [x] CHK-011 [P0] State-machine card is net-new in motion_pattern_cards.md; icon-swap/press-scale not re-added
+- [x] CHK-012 [P1] Additions match each mode's voice and section style
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [x] CHK-020 [P0] Per-diff review confirmed scope lock (no file outside scope changed by this dispatch)
+- [x] CHK-021 [P1] Codex reported skips for already-present / phase-023 content — no duplication
+- [x] CHK-022 [P0] Packet passes `validate.sh --strict`
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-030 [P0] UX quality floor + state-machine card (P0) + copy formulas, media/illustration, earned-deviation, motion-token, gesture-a11y (P1) applied
+- [x] CHK-031 [P1] Minor refinements applied where net-new; skipped where present
+- [x] CHK-032 [P1] No new mode; the hub stays logic-free
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [x] CHK-040 [P1] Additions preserve the packet-local path-guard posture; no guard bypass
+- [x] CHK-041 [P2] No secrets in any edit
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [x] CHK-050 [P0] spec/plan/tasks reflect completion; checklist/decision-record/implementation-summary authored
+- [x] CHK-051 [P1] Each changed file stays internally consistent
+- [x] CHK-052 [P2] Skipped items recorded (already-present / phase-023 content)
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [x] CHK-060 [P1] Edits confined to the named mode references
+- [x] CHK-061 [P2] No stray files added
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Dimension | Status | Evidence |
+|-----------|--------|----------|
+| Scope lock | PASS | only the five named files; additive |
+| No duplication | PASS | codex skipped duration table, split/stagger, optical alignment, icon-swap, press-scale |
+| Mode ownership | PASS | no new mode; hub logic-free |
+| Doc validation | PASS | `validate.sh --strict` clean |
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: ARCHITECTURE VERIFICATION
+
+- [x] CHK-070 [P0] Interface + motion ownership intact; the state-machine card complements (not duplicates) micro_interactions
+- [x] CHK-071 [P1] No new mode; no hub change
+- [x] CHK-072 [P1] Already-covered and phase-023 content not re-added
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: PERFORMANCE VERIFICATION
+
+- [x] CHK-110 [P0] Guidance only; no runtime cost added
+- [x] CHK-111 [P1] Respects each mode's per-task budget
+- [x] CHK-112 [P2] Additions are compact
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: DEPLOYMENT READINESS
+
+- [x] CHK-120 [P0] Rollback documented: `git checkout -- <file>` per file
+- [x] CHK-121 [P1] Working-tree only; nothing pushed
+- [x] CHK-122 [P2] Each file independently revertible
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: COMPLIANCE VERIFICATION
+
+- [x] CHK-130 [P1] No untrusted-content read path or guard bypass introduced
+- [x] CHK-131 [P2] No new external dependency
+- [x] CHK-132 [P2] No lifecycle/governance import; in-scope additions only
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: DOCUMENTATION VERIFICATION
+
+- [x] CHK-140 [P1] spec/plan/tasks/checklist/implementation-summary synchronized; decision-record describes the decisions
+- [x] CHK-141 [P1] Backlog items trace to the changed files
+- [x] CHK-142 [P2] Skipped items recorded
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: SIGN-OFF
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Operator | requested the per-mode build (025-027, gpt-5.5 high fast) | Approved | 2026-06-27 |
+| Orchestrator | per-diff verification | Verified the diffs | 2026-06-27 |
+| cli-codex gpt-5.5 high fast | edit executor | Applied the slice | 2026-06-27 |
+<!-- /ANCHOR:sign-off -->

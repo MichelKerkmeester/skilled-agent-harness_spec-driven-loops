@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/025-deep-context-gathering/008-deep-loop-folder-binding",
+  "spec_folder": "deep-loops/z_archive/025-deep-context-gathering/008-deep-loop-folder-binding",
+  "parent_id": "deep-loops/z_archive/025-deep-context-gathering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop folder binding",
+      "spec folder extraction",
+      "standalone guard",
+      "auto mode contract scope",
+      "deep context misroute",
+      "implementation plan",
+      "scope extract plan",
+      "plan core",
+      "tasks",
+      "template",
+      "tasks core",
+      "verification"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "folder",
+      "binding",
+      "spec",
+      "extraction",
+      "standalone",
+      "guard",
+      "auto",
+      "mode",
+      "contract",
+      "scope"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+      ".opencode/agents/deep-context.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "auto_mode_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scope",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared `:auto`/`:confirm` setup contract (`automodecontract.md`) resolves `specfolder` only from a `--spec-folder` flag, a `PRE-BOUND` marker, or an interactive choice — it never extracts a spec-folder path the user names inline in the positional scope",
+    "created_at": "2026-06-07T10:12:50Z",
+    "last_save_at": "2026-06-23T03:49:51.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9ac81894a389c913e381e0e7bd5affce38933ee18871f06f2a46a157315c5d69",
+    "source_doc_hashes": {
+      "spec.md": "7647464673fd1d1e01324a5184ed302ebc55d229a50bfcfa25fb267e02a7b2dc",
+      "plan.md": "0f156a0323da86997b57b44674ccb0610a3c1fee31d03ee962a32c2c1560a7a3",
+      "tasks.md": "6cb7bc5bd668232448a159c1e02cc486847c7300f14847de55d16bc6ebc4a2f1",
+      "checklist.md": "9dda0f211b5aaa91801fb70732480d956d5bdd5852cb4bd9c09fac10529417ef",
+      "implementation-summary.md": "f8ca313c72b97936665e3b7c52a35f7decbdd4b0181aa30f886f7f347b1a4f04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

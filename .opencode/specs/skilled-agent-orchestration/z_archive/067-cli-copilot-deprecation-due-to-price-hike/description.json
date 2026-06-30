@@ -1,0 +1,36 @@
+{
+  "level": 2,
+  "specFolder": "skilled-agent-orchestration/z_archive/067-cli-copilot-deprecation-due-to-price-hike",
+  "description": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a",
+  "keywords": [
+    "github",
+    "announced",
+    "price",
+    "increase",
+    "pushes",
+    "cli-copilot",
+    "external",
+    "copilot",
+    "cli",
+    "executor",
+    "cost",
+    "ceiling",
+    "justified",
+    "keeping"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.885Z",
+  "specId": "067",
+  "folderSlug": "cli-copilot-deprecation-due-to-price-hike",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-05-26_11-28__manual-context-save.md",
+    "06-05-26_12-24__manual-context-save.md",
+    "06-05-26_12-36__manual-context-save.md",
+    "06-05-26_13-12__manual-context-save.md",
+    "06-05-26_13-53__manual-context-save.md"
+  ]
+}

@@ -13,7 +13,7 @@ import { __testing, parseCliArgs } from '../skill-advisor-cli.js';
 
 const PROMPT_TIME_ENV_KEYS = [
   'OPENCODE_PROMPT_TIME',
-  'CODEX_PROMPT_TIME',
+  'OPENCODE_PROMPT_TIME',
   'CLAUDE_CODE_PROMPT_TIME',
   'SPECKIT_CLI_PROMPT_TIME',
   'MK_SKILL_ADVISOR_CLI_PROMPT_TIME',

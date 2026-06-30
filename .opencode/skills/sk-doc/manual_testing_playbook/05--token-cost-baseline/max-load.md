@@ -81,7 +81,7 @@ Show the full sk-doc toolkit: all templates, frameworks, format guide, reference
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: stress-tests context window; record peak input tokens.
+- **cli-opencode (gpt-5.5/high/fast)**: stress-tests context window; record peak input tokens.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may truncate output; record peak input tokens.
 
 ## Success Criteria

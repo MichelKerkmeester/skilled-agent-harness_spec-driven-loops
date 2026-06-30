@@ -7,7 +7,6 @@ import { join } from 'node:path';
 import {
   parseExecutorConfig,
   resolveClaudePermissionMode,
-  resolveCodexSandboxMode,
   type ExecutorConfig,
 } from '../../lib/deep-loop/executor-config';
 import { runAuditedExecutorCommand } from '../../lib/deep-loop/executor-audit';
@@ -23,16 +22,6 @@ function buildDispatchCommand(
   switch (config.kind) {
     case 'native':
       return `TASK(agent=deep-research, model=opus, context=@${promptPath})`;
-    case 'cli-codex':
-      return [
-        'codex exec',
-        `--model "${config.model}"`,
-        `-c model_reasoning_effort="${config.reasoningEffort}"`,
-        `-c service_tier="${config.serviceTier}"`,
-        '-c approval_policy=never',
-        `--sandbox ${resolveCodexSandboxMode(config.sandboxMode)}`,
-        `- < "${promptPath}"`,
-      ].join(' ');
     case 'cli-claude-code': {
       const effortFlag = config.reasoningEffort ? ` --effort ${config.reasoningEffort}` : '';
       return [
@@ -43,6 +32,8 @@ function buildDispatchCommand(
         `--output-format text${effortFlag}`,
       ].join(' ');
     }
+    case 'cli-opencode':
+      return `opencode run --model "${config.model}" --format json "$(cat '${promptPath}')"`;
   }
 }
 
@@ -82,21 +73,21 @@ describe('cli-matrix dispatch command shape', () => {
     expect(buildDispatchCommand(config, promptPath)).toContain('TASK(agent=deep-research');
   });
 
-  it('cli-codex produces codex exec with stdin piping', () => {
+  it('rejects retired executor command shapes before command construction', () => {
+    const retiredKind = ['cli', 'gemini'].join('-');
+    expect(() => parseExecutorConfig({ kind: retiredKind, model: 'gpt-5.4' })).toThrow();
+  });
+
+  it('cli-opencode produces opencode run shape', () => {
     const config = parseExecutorConfig({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-opencode',
+      model: 'opencode-go/glm-5.1',
       reasoningEffort: 'high',
-      serviceTier: 'fast',
-      sandboxMode: 'read-only',
     });
     const cmd = buildDispatchCommand(config, promptPath);
-    expect(cmd).toContain('codex exec');
-    expect(cmd).toContain('--model "gpt-5.4"');
-    expect(cmd).toContain('model_reasoning_effort="high"');
-    expect(cmd).toContain('service_tier="fast"');
-    expect(cmd).toContain('--sandbox read-only');
-    expect(cmd).toContain(`- < "${promptPath}"`);
+    expect(cmd).toContain('opencode run');
+    expect(cmd).toContain('--model "opencode-go/glm-5.1"');
+    expect(cmd).toContain('--format json');
   });
 
   it('cli-claude-code with reasoningEffort includes --effort flag', () => {
@@ -138,8 +129,9 @@ describe('cli-matrix smoke coverage', () => {
       cwd: dir,
       timeoutSeconds: 5,
       stateLogPath,
-      executor: parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4' }),
+      executor: parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-opus-4-6' }),
       iteration: 2,
+      guardContext: { env: { PATH: process.env.PATH }, ancestryCmdlines: [], statePaths: [] },
     });
 
     const records = readJsonlRecords(stateLogPath);
@@ -151,7 +143,7 @@ describe('cli-matrix smoke coverage', () => {
       event: 'dispatch_failure',
       reason: 'crash',
       iteration: 2,
-      executor: { kind: 'cli-codex', model: 'gpt-5.4' },
+      executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6' },
     });
     expect(failure?.detail).toBe('executor exited with status 7');
   });
@@ -168,8 +160,9 @@ describe('cli-matrix smoke coverage', () => {
       cwd: dir,
       timeoutSeconds: 1,
       stateLogPath,
-      executor: parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-5.4' }),
+      executor: parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-opus-4-6' }),
       iteration: 3,
+      guardContext: { env: { PATH: process.env.PATH }, ancestryCmdlines: [], statePaths: [] },
     });
 
     const records = readJsonlRecords(stateLogPath);
@@ -181,7 +174,7 @@ describe('cli-matrix smoke coverage', () => {
       event: 'dispatch_failure',
       reason: 'timeout',
       iteration: 3,
-      executor: { kind: 'cli-codex', model: 'gpt-5.4' },
+      executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6' },
     });
   });
 });

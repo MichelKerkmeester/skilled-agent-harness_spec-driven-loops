@@ -52,7 +52,7 @@ If any mirror drifts on those invariants, treat it as a contract failure rather 
 |---------|-------------|--------------|----------------|-------------------|--------------------------|-------|
 | OpenCode / Copilot | `.opencode/agents/deep-research.md` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, memory | Yes (plugin) | Low | Yes | OpenCode uses plugin-based hooks (`@opencode-ai/plugin`); Copilot uses repo-local session-start banner hook. |
 | Claude | `.claude/agents/deep-research.md` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, MCP memory | Yes | Low | Yes | Default command YAML example path points here, but behavior is runtime-agnostic. |
-| Codex | `.codex/agents/deep-research.toml` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, memory MCP | Yes | Medium | Yes | TOML mirror must keep the same lifecycle/reducer contract as the Markdown mirrors. |
+| OpenCode | `.opencode/agents/deep-research.toml` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, memory MCP | Yes | Medium | Yes | TOML mirror must keep the same lifecycle/reducer contract as the Markdown mirrors. |
 
 ---
 

@@ -203,7 +203,7 @@ node_version_at_least() {
 
 # Check if a config file contains an MCP server entry
 # Args: $1=file path  $2=server key  $3=format
-# Formats: "json-mcp" (opencode.json), "json-mcpServers" (.claude), "json-vscode-mcp" (.vscode), "toml" (.codex)
+# Formats: "json-mcp" (opencode.json), "json-mcpServers" (.claude), "json-vscode-mcp" (.vscode)
 # Returns: 0 if server found, 1 if not
 config_has_server() {
   local file="$1" server_key="$2" format="$3"

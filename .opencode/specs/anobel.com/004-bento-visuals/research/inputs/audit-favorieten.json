@@ -1,0 +1,52 @@
+[
+  {
+    "tile": 1,
+    "score": 88,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "None"
+  },
+  {
+    "tile": 2,
+    "score": 90,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "None"
+  },
+  {
+    "tile": 3,
+    "score": 78,
+    "overflow": true,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Last product row (Teak reiniger & olie set) description is clipped at the inner panel bottom edge — '2 L reiniger · 1 L olie' is cut off mid-line."
+  },
+  {
+    "tile": 4,
+    "score": 62,
+    "overflow": true,
+    "readable": true,
+    "on_brand": false,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Popover/menu overflows the card's right edge and clips the 'Vloot-functie' eyebrow anchor; product title 'Hydraulische Besturingspo…' is also truncated behind the popover."
+  },
+  {
+    "tile": 5,
+    "score": 86,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "None"
+  }
+]

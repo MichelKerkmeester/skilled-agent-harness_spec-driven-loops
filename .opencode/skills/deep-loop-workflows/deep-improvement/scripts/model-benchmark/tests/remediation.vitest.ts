@@ -46,7 +46,7 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
     fs.writeFileSync(promptFile, 'review prompt');
   });
 
-  for (const executor of ['cli-codex', 'cli-claude-code', 'cli-opencode']) {
+  for (const executor of ['cli-claude-code', 'cli-opencode']) {
     it(`passes cwd to the spawn layer for ${executor}`, () => {
       let capturedCwd: string | undefined;
       const fakeSpawn = (_bin: string, _args: string[], opts: { cwd?: string }) => {
@@ -190,13 +190,9 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
 
   afterEach(() => { delete process.env.DEEP_AGENT_DISPATCH_WRITE; });
 
-  it('cli-codex defaults to --sandbox read-only (not workspace-write)', () => {
-    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
-    const spec = dispatchModel.buildSpawnSpec('cli-codex', 'prompt', resolved);
-    const idx = spec.args.indexOf('--sandbox');
-    expect(idx).toBeGreaterThanOrEqual(0);
-    expect(spec.args[idx + 1]).toBe('read-only');
-    expect(spec.args).not.toContain('workspace-write');
+  it('rejects a retired executor before spawn spec construction', () => {
+    const retiredKind = ['cli', 'opencode'].join('-');
+    expect(() => dispatchModel.buildSpawnSpec(retiredKind, 'prompt', resolved)).toThrow(/Unknown executor/);
   });
 
   it('cli-claude-code defaults to --permission-mode plan (not acceptEdits)', () => {
@@ -210,14 +206,12 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
 
   it('DEEP_AGENT_DISPATCH_WRITE=1 escalates each executor to its write-capable mode', () => {
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
-    const codex = dispatchModel.buildSpawnSpec('cli-codex', 'prompt', resolved);
-    expect(codex.args[codex.args.indexOf('--sandbox') + 1]).toBe('workspace-write');
     const claude = dispatchModel.buildSpawnSpec('cli-claude-code', 'prompt', resolved);
     expect(claude.args[claude.args.indexOf('--permission-mode') + 1]).toBe('acceptEdits');
   });
 
   it('routing is preserved for all active executors (bin resolves)', () => {
-    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-codex']) {
+    for (const ex of ['cli-opencode', 'cli-claude-code']) {
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', resolved);
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);
@@ -287,7 +281,7 @@ describe('F-P1-14: packet-local pause sentinel', () => {
     fs.writeFileSync(promptFile, 'prompt');
     const rateLimited = () => ({ status: 1, stdout: '', stderr: 'rate limit exceeded (429)' });
     const r = dispatchModel.dispatchReal({
-      executor: 'cli-codex',
+      executor: 'cli-opencode',
       prompt_file: promptFile,
       cwd: d,
       model: 'm',

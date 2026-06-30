@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Vloot-functie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:#eceef0;
+    display:flex;align-items:center;justify-content:center;
+    min-height:100vh;
+    font-family:'Hanken Grotesk',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+  }
+  .card{
+    width:560px;height:480px;
+    background:#ffffff;
+    border-radius:22px;
+    padding:30px;
+    overflow:hidden;
+    box-shadow:0 1px 2px rgba(20,28,46,.04),0 26px 52px -22px rgba(20,28,46,.20);
+    color:#0a1a2f;
+    margin-bottom:24px;
+    display:flex;flex-direction:column;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    height:22px;padding:0 9px;
+    background:#f6f8fc;color:#053b77;
+    border:1px solid #cbd0dc;border-radius:6px;
+    font-size:11px;font-weight:600;letter-spacing:.02em;
+    margin-bottom:10px;align-self:flex-start;
+  }
+  .eyebrow svg{display:block;flex:0 0 auto}
+  .visual{
+    position:relative;
+    width:500px;height:298px;
+    border:1px solid #e7e9ee;
+    border-radius:12px;
+    background:
+      radial-gradient(circle at 78px 60px,rgba(6,69,140,.10),transparent 55%),
+      linear-gradient(180deg,#f6f8fc 0%,#ffffff 100%);
+    overflow:hidden;
+    flex:0 0 auto;
+  }
+  .compass{
+    position:absolute;left:0;top:0;bottom:0;
+    width:172px;
+    border-right:1px solid #e7e9ee;
+    background:
+      radial-gradient(circle at 50% 50%,rgba(6,69,140,.08),transparent 62%);
+  }
+  .compass .ring{
+    position:absolute;left:50%;top:50%;
+    width:128px;height:128px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px dashed #cbd0dc;
+  }
+  .compass .ring::before{
+    content:"";position:absolute;left:50%;top:50%;
+    width:86px;height:86px;transform:translate(-50%,-50%);
+    border-radius:50%;border:1px solid #acb3c9;
+  }
+  .compass .ring::after{
+    content:"";position:absolute;left:50%;top:50%;
+    width:6px;height:6px;transform:translate(-50%,-50%);
+    background:#06458c;border-radius:50%;
+  }
+  .compass .needle{
+    position:absolute;left:50%;top:50%;
+    width:2px;height:108px;
+    transform:translate(-50%,-50%) rotate(33deg);
+    transform-origin:center;
+  }
+  .compass .needle::before{
+    content:"";position:absolute;left:0;top:0;
+    width:2px;height:54px;
+    background:linear-gradient(180deg,#c9140f,rgba(201,20,15,0));
+  }
+  .compass .needle::after{
+    content:"";position:absolute;left:0;bottom:0;
+    width:2px;height:54px;
+    background:linear-gradient(0deg,#0a1a2f,rgba(10,26,47,0));
+  }
+  .compass .n-mark{
+    position:absolute;left:50%;top:14px;transform:translateX(-50%);
+    font-size:10px;font-weight:700;color:#0a1a2f;letter-spacing:.08em;
+  }
+  .compass .e-mark{
+    position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    font-size:9px;font-weight:600;color:#4e4e4e;
+  }
+  .compass .s-mark{
+    position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+    font-size:9px;font-weight:600;color:#4e4e4e;
+  }
+  .compass .w-mark{
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    font-size:9px;font-weight:600;color:#4e4e4e;
+  }
+  .compass .cap{
+    position:absolute;left:14px;top:12px;
+    font-size:9px;font-weight:700;color:#4e4e4e;letter-spacing:.06em;
+  }
+  .metrics{
+    position:absolute;left:172px;top:0;right:0;bottom:0;
+    display:flex;flex-direction:column;
+    padding:11px 13px 12px 13px;
+    gap:7px;
+  }
+  .metric-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:6px 9px;
+    border-radius:7px;
+    background:#fefefe;
+    border:1px solid #e7e9ee;
+  }
+  .metric-row .lbl{
+    font-size:11px;font-weight:600;color:#4e4e4e;letter-spacing:.01em;
+  }
+  .metric-row .val{
+    font-size:13px;font-weight:700;color:#0a1a2f;
+  }
+  .mini-chart{
+    flex:1 1 auto;min-height:0;
+    position:relative;
+    padding:8px 9px 6px 9px;
+    border-radius:7px;
+    background:#fefefe;
+    border:1px solid #e7e9ee;
+    display:flex;flex-direction:column;
+  }
+  .chart-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:3px;
+  }
+  .chart-head .t{font-size:10px;font-weight:700;color:#4e4e4e;letter-spacing:.04em}
+  .chart-head .v{font-size:12px;font-weight:700;color:#06458c}
+  .bars{
+    flex:1;display:flex;align-items:flex-end;gap:4px;
+    min-height:0;
+  }
+  .bars .b{
+    flex:1 1 0;border-radius:3px 3px 0 0;background:#06458c;
+    position:relative;
+  }
+  .bars .b.peak{background:#367e39}
+  .bars .b.low{background:#acb3c9}
+  .legend{
+    display:flex;gap:12px;margin-top:4px;
+  }
+  .legend span{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:9.5px;font-weight:600;color:#4e4e4e;letter-spacing:.01em;
+  }
+  .legend span::before{
+    content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  }
+  .legend .a::before{background:#367e39}
+  .legend .b::before{background:#06458c}
+  .corner-tag{
+    position:absolute;top:9px;right:11px;
+    font-size:9px;font-weight:700;color:#053b77;
+    letter-spacing:.06em;
+    padding:3px 6px;border-radius:4px;
+    background:#f6f8fc;border:1px solid #cbd0dc;
+  }
+  .grid-deco{
+    position:absolute;left:172px;right:0;top:0;bottom:0;
+    background-image:
+      linear-gradient(rgba(133,145,179,.06) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(133,145,179,.06) 1px,transparent 1px);
+    background-size:24px 24px;
+    pointer-events:none;
+  }
+  .title-band{
+    margin-top:28px;
+    padding-top:0;
+    display:flex;flex-direction:column;
+  }
+  .title{
+    font-size:21px;font-weight:700;color:#0a1a2f;line-height:1.2;
+    margin-bottom:6px;
+  }
+  .description{
+    font-size:13.5px;font-weight:500;color:#4e4e4e;line-height:1.45;
+    max-width:440px;
+  }
+  .shell-cta{
+    position:absolute;right:30px;bottom:28px;
+    display:inline-flex;align-items:center;gap:6px;
+    height:30px;padding:0 12px;
+    border-radius:8px;
+    border:1px solid #06458c;color:#06458c;background:#ffffff;
+    font-size:12px;font-weight:600;
+    font-family:inherit;
+    cursor:pointer;
+    transition:background-color .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .shell-cta:hover{
+    background:#06458c;color:#ffffff;
+  }
+  .shell-cta:focus-visible{
+    outline:2px solid #06458c;outline-offset:2px;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .shell-cta{transition:none}
+  }
+</style>
+</head>
+<body>
+  <article class="card">
+    <span class="eyebrow">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="5" r="2.4" fill="currentColor"/>
+        <path d="M12 7.2v6.4M8.4 11.2 12 13.6l3.6-2.4M7.2 21.6l4.8-5.2 4.8 5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      Vloot-functie
+    </span>
+
+    <section class="visual" data-a1-role="visual" aria-label="Vloot-functie instrumentenpaneel">
+      <div class="grid-deco" aria-hidden="true"></div>
+
+      <div class="compass" aria-hidden="true">
+        <span class="cap">NAVI · 51.9°N</span>
+        <span class="n-mark">N</span>
+        <span class="e-mark">E</span>
+        <span class="s-mark">S</span>
+        <span class="w-mark">W</span>
+        <div class="ring"></div>
+        <div class="needle"></div>
+      </div>
+
+      <div class="corner-tag" data-a1-role="label">LIVE · 24u</div>
+
+      <div class="metrics">
+        <div class="metric-row">
+          <span class="lbl">Snelheid</span>
+          <span class="val">14,6 kn</span>
+        </div>
+        <div class="metric-row">
+          <span class="lbl">Koers</span>
+          <span class="val">047°</span>
+        </div>
+        <div class="mini-chart">
+          <div class="chart-head">
+            <span class="t">Verbruik · 24u</span>
+            <span class="v">312 L</span>
+          </div>
+          <div class="bars">
+            <div class="b low" style="height:28%"></div>
+            <div class="b" style="height:44%"></div>
+            <div class="b" style="height:38%"></div>
+            <div class="b peak" style="height:82%"></div>
+            <div class="b" style="height:58%"></div>
+            <div class="b" style="height:64%"></div>
+            <div class="b" style="height:46%"></div>
+            <div class="b low" style="height:30%"></div>
+            <div class="b" style="height:50%"></div>
+            <div class="b" style="height:62%"></div>
+            <div class="b" style="height:42%"></div>
+            <div class="b low" style="height:26%"></div>
+          </div>
+          <div class="legend">
+            <span class="a">Piek</span>
+            <span class="b">Gemiddeld</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="title-band">
+      <h1 class="title">UNKNOWN</h1>
+      <p class="description">UNKNOWN</p>
+    </div>
+
+    <button class="shell-cta" type="button">
+      Details bekijken
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </article>
+</body>
+</html>

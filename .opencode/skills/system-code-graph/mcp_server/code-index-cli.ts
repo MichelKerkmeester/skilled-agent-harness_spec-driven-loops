@@ -404,7 +404,7 @@ function defaultWarmOnly(): boolean {
     || envFlagEnabled('SPECKIT_CODE_INDEX_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
     || envFlagEnabled('OPENCODE_PROMPT_TIME')
-    || envFlagEnabled('CODEX_PROMPT_TIME')
+    || envFlagEnabled('OPENCODE_PROMPT_TIME')
     || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');
 }
 

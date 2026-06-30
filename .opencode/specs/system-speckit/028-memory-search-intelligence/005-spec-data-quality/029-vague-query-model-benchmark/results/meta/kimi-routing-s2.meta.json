@@ -1,0 +1,14 @@
+{
+  "key": "kimi-routing-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "routing",
+  "queryClass": "aligned",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 525050,
+  "bytes": 207413,
+  "stderrTail": ""
+}

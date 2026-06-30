@@ -48,7 +48,7 @@ ERR=1 WARN=1 | skilled-agent-orchestration/036-deep-research-review-split | rule
 ERR=3 WARN=0 | skilled-agent-orchestration/035-deep-research-path-migration | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
 CLEAN | skilled-agent-orchestration/040-deep-research-review-improvement-1/002-deep-review-improvements
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/040-deep-research-review-improvement-1
-ERR=1 WARN=1 | skilled-agent-orchestration/039-cmd-spec-kit-codex-skill-routing | rules=SPEC_DOC_INTEGRITY
+ERR=1 WARN=1 | skilled-agent-orchestration/039-cmd-spec-kit-opencode-skill-routing | rules=SPEC_DOC_INTEGRITY
 ERR=1 WARN=0 | skilled-agent-orchestration/040-deep-research-review-improvement-1/001-deep-research-improvements | rules=SPEC_DOC_INTEGRITY
 ERR=2 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY
 ERR=1 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment | rules=SPEC_DOC_INTEGRITY
@@ -64,7 +64,7 @@ ERR=1 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-re
 ERR=6 WARN=5 | skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync | rules=ANCHORS_VALID,FILE_EXISTS,FRONTMATTER_VALID,SPEC_DOC_INTEGRITY,TEMPLATE_HEADERS,TEMPLATE_SOURCE
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/046-cli-codex-tone-of-voice
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/046-cli-opencode-tone-of-voice
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/003-wave-executor
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/043-cli-skill-improved-prompting
@@ -207,7 +207,7 @@ TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/023-ablation-benchmark-i
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/017-update-install-guide
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/022-spec-doc-indexing-bypass
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/025-mcp-runtime-hardening
-TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix
+TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/024-opencode-memory-mcp-fix
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement
 TIMEOUT_OR_FAIL | system-spec-kit/023-hybrid-rag-fusion-refinement
 TIMEOUT_OR_FAIL | system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration

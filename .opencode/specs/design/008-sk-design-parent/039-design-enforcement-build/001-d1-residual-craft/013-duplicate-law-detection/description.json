@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection",
+  "description": "The numeric-law index gives each already-adopted numeric law (timing, color/contrast, layout/spacing, type) exactly one canonical row so modes cite th",
+  "keywords": [
+    "numeric-law",
+    "index",
+    "gives",
+    "already-adopted",
+    "numeric",
+    "law",
+    "timing",
+    "color",
+    "contrast",
+    "layout",
+    "spacing",
+    "type",
+    "exactly",
+    "one",
+    "canonical",
+    "row",
+    "modes",
+    "cite"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.993Z",
+  "specId": "013",
+  "folderSlug": "duplicate-law-detection",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

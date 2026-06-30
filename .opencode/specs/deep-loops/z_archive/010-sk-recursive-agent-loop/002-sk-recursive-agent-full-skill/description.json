@@ -1,0 +1,22 @@
+{
+  "specFolder": "deep-loops/z_archive/010-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill",
+  "description": "The current loop is real and safe, but it is still narrow",
+  "keywords": [
+    "current",
+    "loop",
+    "real",
+    "safe",
+    "still",
+    "narrow"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.154Z",
+  "specId": "002",
+  "folderSlug": "sk-recursive-agent-full-skill",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "041-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

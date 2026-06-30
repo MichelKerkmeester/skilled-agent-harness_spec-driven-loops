@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/002-per-mode-arg-grammar",
+  "description": "All five `/design:` wrappers (`audit`, `foundations`, `interface`, `md-generator`, `motion`) shipped the identical placeholder `argument-hint: \"<desig",
+  "keywords": [
+    "five",
+    "design",
+    "wrappers",
+    "audit",
+    "foundations",
+    "interface",
+    "md-generator",
+    "motion",
+    "shipped",
+    "identical",
+    "placeholder",
+    "argument-hint",
+    "desig"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.008Z",
+  "specId": "002",
+  "folderSlug": "per-mode-arg-grammar",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

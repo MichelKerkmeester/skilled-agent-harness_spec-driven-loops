@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking",
+  "spec_folder": "deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking",
+  "parent_id": "deep-loops/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal lifecycle",
+      "message updated",
+      "budget limited",
+      "permission asked",
+      "goal lifecycle plan",
+      "account usage",
+      "goal lifecycle tasks",
+      "goal lifecycle implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "lifecycle",
+      "message",
+      "updated",
+      "budget",
+      "limited",
+      "permission",
+      "asked",
+      "plan",
+      "account",
+      "usage",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      ".opencode/plugins/mk-spec-memory.js",
+      ".opencode/plugins/session-cleanup.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "M1 persisted and injected goals, but it did not observe session lifecycle events",
+    "created_at": "2026-06-28T20:44:10Z",
+    "last_save_at": "2026-06-30T14:53:42.452Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:23a46d9d26c2ca57cb93bfc077d124bf51aa3c61be00fad3c1ce522c95af1e0a",
+    "source_doc_hashes": {
+      "spec.md": "d31fbab776c384a7468bb8d15278d7311fb72e534b702cf51eb5ba7bcb1c1e15",
+      "plan.md": "90adfffd441c5b0f43b2e0502b7485e828dd68feab68b5f7ed850a4d500ee150",
+      "tasks.md": "eca1c5998ecdda3a68aea761aec031840632a393225f4d3537a064b8e742244e",
+      "implementation-summary.md": "cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

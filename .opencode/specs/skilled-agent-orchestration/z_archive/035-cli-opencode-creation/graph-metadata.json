@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/035-cli-opencode-creation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/035-cli-opencode-creation",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-opencode skill creation",
+      "047-cli-opencode-creation",
+      "opencode cli orchestrator skill",
+      "opencode run cli skill",
+      "cli-opencode skill plan",
+      "047-cli-opencode-creation plan",
+      "cli-opencode skill tasks",
+      "047-cli-opencode-creation tasks",
+      "cli-opencode skill checklist",
+      "047-cli-opencode-creation checklist",
+      "cli-opencode decision record",
+      "047-cli-opencode-creation decisions"
+    ],
+    "key_topics": [
+      "cli-opencode",
+      "skill",
+      "creation",
+      "047-cli-opencode-creation",
+      "opencode",
+      "cli",
+      "orchestrator",
+      "run",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/cli-claude-code/graph-metadata.json",
+      ".opencode/skills/cli-codex/graph-metadata.json",
+      ".opencode/changelog/cli-opencode/v1.0.0.0.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/references/opencode_tools.md",
+      ".opencode/skills/cli-opencode/references/integration_patterns.md",
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/cli-opencode/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Creation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drafted Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant delegate work to an external AI binary",
+    "created_at": "2026-04-26T05:00:00Z",
+    "last_save_at": "2026-06-23T03:49:49.307Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d7fb7b0fee474c25a61fd51c7438d23e88d60578eb86ab26ec1804024135327",
+    "source_doc_hashes": {
+      "spec.md": "b84a5a9af6774ed3eedcd4d00f654e7d9905d4a97f39a8843c45624bf34091a5",
+      "plan.md": "bb52c474c58ef5e142769b3c077b02edf7fe7788d481dc77d894e593591d3b54",
+      "tasks.md": "47e3c8ac1e84580f2c0114986c3bda9d050370697e89ecb465455bd7e2a96759",
+      "checklist.md": "eccd2c0cca3b05bbf118ed83d4096e7cb8e171b84fb23b2cb8a9f643e8fcfb1c",
+      "decision-record.md": "821492dcc27a69d3240402be5c7363b30de93dca95ed4b031c2da8ecae77338d",
+      "implementation-summary.md": "b02bb62774bbd3d246b58d4ef2f158db6dd0f2f613d5c33432abf898d8cdab4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

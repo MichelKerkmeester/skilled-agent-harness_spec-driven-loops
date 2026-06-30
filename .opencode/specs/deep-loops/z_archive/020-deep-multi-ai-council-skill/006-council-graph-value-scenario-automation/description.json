@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/020-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
+  "description": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-",
+  "keywords": [
+    "phase",
+    "005",
+    "shipped",
+    "value-comparison",
+    "scenarios",
+    "dac-027",
+    "dac-032",
+    "contrast",
+    "no-graph",
+    "operator",
+    "workflow",
+    "with-graph",
+    "mcp",
+    "real"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.236Z",
+  "specId": "006",
+  "folderSlug": "council-graph-value-scenario-automation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "101-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

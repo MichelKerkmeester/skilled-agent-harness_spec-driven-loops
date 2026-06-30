@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/004-agent-review",
+  "description": "`@review` (477 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "review",
+    "477",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.496Z",
+  "specId": "004",
+  "folderSlug": "agent-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "048-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -55,8 +55,8 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Use cli-codex to delegate this coding task to Codex CLI.',
-    expectedSkill: 'cli-codex',
+    prompt: 'Use cli-opencode to delegate this coding task through OpenCode CLI.',
+    expectedSkill: 'cli-opencode',
     category: 'today-correct',
   },
   {
@@ -115,8 +115,8 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'intent-described',
   },
   {
-    prompt: 'Ask the OpenAI coding CLI for an independent implementation pass on this module.',
-    expectedSkill: 'cli-codex',
+    prompt: 'Ask the OpenCode CLI for an independent implementation pass on this module.',
+    expectedSkill: 'cli-opencode',
     category: 'intent-described',
   },
   {

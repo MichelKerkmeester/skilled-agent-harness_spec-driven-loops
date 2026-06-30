@@ -37,7 +37,7 @@ PRE-BOUND SETUP ANSWERS:
   scoring_method: pattern  # pattern (default), 5dim, or reviewer
   grader: noop  # noop (default) | mock | llm
   max_iterations: 5  # positive integer; default 5
-  executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex
+  executor: cli-opencode  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-opencode
   model: gpt-5.5  # required only when grader = llm; model id for the chosen executor (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
 ```
 
@@ -129,11 +129,11 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    C) llm - real model dispatch (requires Q5)                  │
    │                                                                │
    │ **Q5. Executor + Model** (ONLY if Q4 = llm):                   │
-   │    Which executor and model? e.g. "cli-codex, gpt-5.5"         │
-   │    Executors: cli-opencode | cli-claude-code | cli-codex       │
+   │    Which executor and model? e.g. "cli-opencode, gpt-5.5"         │
+   │    Executors: cli-opencode | cli-claude-code | cli-opencode       │
    │                                                                │
    │ Reply format: "A, A, A, A, A" or                               │
-   │ "default, B, B, B, C, cli-codex gpt-5.5"                       │
+   │ "default, B, B, B, C, cli-opencode gpt-5.5"                       │
    └────────────────────────────────────────────────────────────────┘
 
 9. WAIT for user response (DO NOT PROCEED)
@@ -254,7 +254,7 @@ $ARGUMENTS
 
 #### Executor Routing (only on `--grader llm`)
 
-`dispatch-model.cjs` is the executor router. It is loaded only on the model-benchmark path and only when `grader = llm`. Supported executors: `cli-opencode`, `cli-claude-code`, `cli-codex`.
+`dispatch-model.cjs` is the executor router. It is loaded only on the model-benchmark path and only when `grader = llm`. Supported executors: `cli-opencode`, `cli-claude-code`, `cli-opencode`.
 
 #### Hardening Env Gates
 
@@ -423,7 +423,7 @@ Setup asks the remaining questions. Grader stays `noop` unless changed. Outputs 
 #### 5-Dimension Scorer with Real Model Dispatch
 
 ```
-/deep:model-benchmark :auto --spec-folder=specs/121/008 --run-label=minimax-tidd-ec --scorer=5dim --grader=llm --executor=cli-codex --model=gpt-5.5
+/deep:model-benchmark :auto --spec-folder=specs/121/008 --run-label=minimax-tidd-ec --scorer=5dim --grader=llm --executor=cli-opencode --model=gpt-5.5
 ```
 Routes graded scoring through `dispatch-model.cjs` to the named executor and model. Outputs go to `.opencode/skills/sk-prompt-models/benchmarks/minimax-tidd-ec/`.
 

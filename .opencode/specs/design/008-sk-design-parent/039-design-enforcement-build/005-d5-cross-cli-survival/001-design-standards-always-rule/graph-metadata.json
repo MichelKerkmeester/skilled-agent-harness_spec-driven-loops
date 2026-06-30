@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r1 design standards always rule",
+      "design standards loading design build",
+      "design standards loading cli plan",
+      "append-only cli design rule",
+      "d5-r1 tasks",
+      "design standards loading tasks",
+      "cli design rule insertion tasks",
+      "d5-r1 checklist",
+      "design standards loading checklist",
+      "cli design rule verification",
+      "d5-r1 implementation summary",
+      "design standards loading always rule built"
+    ],
+    "key_topics": [
+      "d5-r1",
+      "design",
+      "standards",
+      "always",
+      "rule",
+      "loading",
+      "build",
+      "cli",
+      "plan",
+      "append-only",
+      "tasks",
+      "insertion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "plan.md",
+      "spec.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Standards Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Standards Loading",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Router intent matching is phrasing-dependent and can miss",
+    "created_at": "2026-06-28T12:40:07.040Z",
+    "last_save_at": "2026-06-28T16:37:51.489Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ce620a0991c9424c8d8be4f5a97416b0de9cde92362ea4edfcbccd0fb12cdc1",
+    "source_doc_hashes": {
+      "spec.md": "b8363ace65a1cb6ccd23dc3cce414ee44026fd72a130b036ee82faf4b213a748",
+      "plan.md": "19427c31ee2ff76130253a06a0f72188d6735507dd5e130f227ee24a6fea697e",
+      "tasks.md": "0ccc828994d30a109ea45d792010a8a037c7d9265b761ab1ca184ce894522e76",
+      "checklist.md": "3aff516cff4f6a0c0ba0101afc753efa0eca01e23e863a31bbc0eeccbadc880a",
+      "implementation-summary.md": "71ffeac982403891dedf69de388619375d340e04c43e1c6e17e91d932b180ea3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

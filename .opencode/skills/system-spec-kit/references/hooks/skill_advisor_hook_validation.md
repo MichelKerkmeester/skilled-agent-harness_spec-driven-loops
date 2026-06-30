@@ -136,7 +136,7 @@ One known work-intent prompt: `implement a TypeScript hook`
 |---------|-------|
 | Claude | Start a prompt with the hook registered and confirm an advisor brief or documented no-op path |
 | Copilot | Trigger `userPromptSubmitted` with `SPECKIT_COPILOT_INSTRUCTIONS_PATH` pointed at a temp file; confirm stdout is `{}` and the file contains the managed advisor block |
-| Codex | Use native `UserPromptSubmit` (enable `[features].codex_hooks` + `~/.codex/hooks.json`) or the documented prompt-wrapper fallback, then confirm `additionalContext` |
+| OpenCode | Use native `UserPromptSubmit` (enable `[features].opencode_hooks` + `~/.opencode/hooks.json`) or the documented prompt-wrapper fallback, then confirm `additionalContext` |
 
 Copilot deterministic smoke:
 
@@ -149,7 +149,7 @@ rg -n "SPEC-KIT-COPILOT-CONTEXT|Active Advisor Brief|Advisor:" "$SPECKIT_COPILOT
 
 Expected: hook prints `{}` and the managed custom-instructions block carries the advisor brief.
 
-Pass condition: every runtime shows the same brief when the advisor is live, or a documented no-brief state. The shared render contract means Codex and OpenCode produce byte-identical brief bodies for equivalent input.
+Pass condition: every runtime shows the same brief when the advisor is live, or a documented no-brief state. The shared render contract means OpenCode and OpenCode produce byte-identical brief bodies for equivalent input.
 
 ### Step 6: Disable-Flag Verification
 
@@ -232,7 +232,7 @@ Pass condition: rollback and re-enable need no state cleanup.
 |---------|------------|-----|
 | `workspaceRoot` missing from `advisor_recommend` / `advisor_validate` output | Handler not rebuilt or `workspaceRoot` resolver returning undefined | Rebuild the MCP server, confirm the request includes `workspaceRoot`, check the resolver in `.opencode/skills/system-skill-advisor/mcp_server/lib/` |
 | `thresholdSemantics` absent from `advisor_validate` | Validator on a stale build or unified-builder path bypassed | Check `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts` and confirm it imports the shared threshold contract |
-| Different brief bodies from Codex vs OpenCode for equivalent input | One path still routes through a custom formatter | Run Step 7 grep; any `formatAdvisorBrief`/`legacyAdvisorRender` hit is drift to fix |
+| Different brief bodies from OpenCode vs OpenCode for equivalent input | One path still routes through a custom formatter | Run Step 7 grep; any `formatAdvisorBrief`/`legacyAdvisorRender` hit is drift to fix |
 | No brief appears in any runtime | Disable flag set, advisor script missing, or prompt policy skipped | Unset `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, check `skill_advisor.py`, use a work-intent prompt |
 | Brief appears in Claude but not Copilot | Runtime registration drift or Copilot custom-instructions target mismatch | Check `.github/hooks/*.json`, `SPECKIT_COPILOT_INSTRUCTIONS_PATH`, and the managed block in `$HOME/.copilot/copilot-instructions.md` |
 | JSONL sink empty or unbounded | Metrics root misconfigured, `SKILL_ADVISOR_DEBUG` unset, or rotation disabled | Check `TMPDIR`, confirm `SKILL_ADVISOR_DEBUG=1`, confirm `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts` sink wiring, and verify rotation bounds |
@@ -251,7 +251,7 @@ Advisor hook validation evidence:
 - advisor_validate contract: PASS — workspaceRoot + thresholdSemantics + accepted/corrected/ignored totals present
 - durable JSONL diagnostics: PASS — bounded sinks, read back by advisor_validate across processes
 - opencode bridge smoke: PASS — shared renderAdvisorBrief path, 0.8 / 0.35 threshold contract
-- cross-runtime smoke: PASS or documented no-op for Claude, Copilot, Codex
+- cross-runtime smoke: PASS or documented no-op for Claude, Copilot, OpenCode
 - disable flag: PASS — producer not called, no JSONL lines written
 - cross-consistency grep: PASS — no drift to legacy formatters
 - observability: PASS — metric labels closed, no prompt-bearing fields

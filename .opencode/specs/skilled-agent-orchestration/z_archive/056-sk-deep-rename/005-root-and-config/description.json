@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/005-root-and-config",
+  "description": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
+  "keywords": [
+    "packet",
+    "070",
+    "renames",
+    "old",
+    "deep-loop",
+    "skill",
+    "ids",
+    "deep-review",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.651Z",
+  "specId": "005",
+  "folderSlug": "root-and-config",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "056-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename",
+  "review_target": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename",
+  "review_target_type": "spec-folder",
+  "review_dimensions": [
+    "completeness",
+    "consistency",
+    "skill-graph-integrity",
+    "identity-preservation",
+    "documentation-hygiene",
+    "frozen-continuity-respect"
+  ],
+  "max_iterations": 5,
+  "convergence_threshold": 0.10,
+  "executor": {
+    "type": "cli-opencode",
+    "primary_model": "opencode-go/deepseek-v4-pro",
+    "fallback_model": "github-copilot/claude-sonnet-4.6",
+    "service_tier": "default",
+    "timeout_seconds": 900
+  },
+  "loop_owned": true,
+  "started_at": "2026-05-06T13:55:00Z",
+  "stop_conditions": {
+    "convergence": true,
+    "max_iterations": 5,
+    "three_consecutive_clean": true
+  }
+}

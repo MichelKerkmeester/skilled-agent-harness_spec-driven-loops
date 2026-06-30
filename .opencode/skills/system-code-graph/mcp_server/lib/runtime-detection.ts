@@ -5,10 +5,9 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { detectCodexHookPolicy } from './shared/codex-hook-policy.js';
 
 /** Supported runtime identifiers */
-export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'unknown';
+export type RuntimeId = 'claude-code' | 'copilot-cli' | 'unknown';
 
 /** Hook policy for the detected runtime */
 export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'live' | 'partial' | 'unavailable' | 'unknown';
@@ -26,18 +25,6 @@ export function detectRuntime(): RuntimeInfo {
   // Claude Code: sets CLAUDE_CODE or has specific env patterns
   if (env.CLAUDE_CODE === '1' || env.CLAUDE_SESSION_ID || env.MCP_SERVER_NAME === 'context-server') {
     return { runtime: 'claude-code', hookPolicy: 'enabled' };
-  }
-
-  // Codex CLI: sets CODEX_CLI or specific env patterns
-  if (
-    env.CODEX_CLI === '1'
-    || typeof env.CODEX_THREAD_ID === 'string'
-    || env.CODEX_TUI_RECORD_SESSION === '1'
-    || typeof env.CODEX_TUI_SESSION_LOG_PATH === 'string'
-    || env.OPENAI_API_KEY && env.CODEX_SANDBOX
-  ) {
-    const hookPolicy = detectCodexHookPolicy().hooks;
-    return { runtime: 'codex-cli', hookPolicy };
   }
 
   // Copilot CLI: sets specific env patterns

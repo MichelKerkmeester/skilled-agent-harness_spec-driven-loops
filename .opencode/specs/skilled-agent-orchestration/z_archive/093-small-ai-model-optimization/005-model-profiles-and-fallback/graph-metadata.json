@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback",
+  "spec_folder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback",
+  "parent_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model profile registry",
+      "bayesian tool scoring",
+      "quota-pool-aware fallback",
+      "small-only fallback",
+      "shared intelligence plan",
+      "shared intelligence tasks",
+      "shared intelligence checklist",
+      "shared intelligence ADRs",
+      "shared intelligence summary",
+      "phase 005 implementation"
+    ],
+    "key_topics": [
+      "model",
+      "profile",
+      "registry",
+      "bayesian",
+      "tool",
+      "scoring",
+      "quota-pool-aware",
+      "fallback",
+      "small-only",
+      "shared",
+      "intelligence",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gemini Flash",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cognition Pro",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Today",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bayesian Scoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "bayesian",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "metrics",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marked Phase",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
+    "created_at": "2026-05-18T12:40:53.971Z",
+    "last_save_at": "2026-06-23T03:49:50.530Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5bca6dba2b1d92ba69f24cee293e09a62c4c9470137ee323523f37007f89482f",
+    "source_doc_hashes": {
+      "spec.md": "f3caec9714512de9e605b9ad54a442e70d9bb29424c39c723baf250d4cc9d8aa",
+      "plan.md": "d727d4716b9d6fc6c7dd58abacfbbc51cfab0718be4732bb08bf0feda12191d1",
+      "tasks.md": "af7a42d7c0df0eab057ba9db3a01da0ef9e8adbd34f3a0f583299ca0ebe01a27",
+      "checklist.md": "a07df18924cf9025c5d87476d64271091c75b7bf7c7afffb6533f6da0bd60f10",
+      "decision-record.md": "49c155546f020a2423ce9775848caf9c05822aef8cae64af57c3a1eeb254f7b6",
+      "implementation-summary.md": "4f36059ebc9bcda4513d46336977305ed902cc232bb1ac8946b85fdb876d1fe9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/004-validator-cleanup",
+  "description": "077 surfaced 4+ findings in the validator + MCP tool docs cluster",
+  "keywords": [
+    "077",
+    "surfaced",
+    "findings",
+    "validator",
+    "mcp",
+    "tool",
+    "docs",
+    "cluster"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.716Z",
+  "specId": "004",
+  "folderSlug": "validator-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "066-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/004-doctrine-quick-wins",
+  "description": "`AGENTS.md:217` points readers at `references/hooks/skill-advisor-hook.md` (hyphens), but the real file is `skilladvisorhook.md` (underscores), so the",
+  "keywords": [
+    "agents",
+    "217",
+    "points",
+    "readers",
+    "references",
+    "hooks",
+    "skill-advisor-hook",
+    "hyphens",
+    "real",
+    "file",
+    "skilladvisorhook",
+    "underscores"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.494Z",
+  "specId": "004",
+  "folderSlug": "doctrine-quick-wins",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "144-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

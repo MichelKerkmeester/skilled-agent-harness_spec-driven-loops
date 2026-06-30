@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/001-smallcode-deep-research",
+  "description": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-",
+  "keywords": [
+    "113",
+    "arc",
+    "shipped",
+    "cli-devin",
+    "cross-model-validated",
+    "prompt",
+    "composition",
+    "rules",
+    "rcaf",
+    "default",
+    "medium",
+    "pre-plan",
+    "standard",
+    "bundle-gate",
+    "anti"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.064Z",
+  "specId": "001",
+  "folderSlug": "smallcode-deep-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "093-small-ai-model-optimization"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "18-05-26_10-01__authored-spec-md-plan-md-tasks-md-checklist-md.md",
+    "18-05-26_11-34__20-iter-deep-research-loop-completed-early-via.md",
+    "18-05-26_12-12__all-20-iters-complete.md"
+  ]
+}

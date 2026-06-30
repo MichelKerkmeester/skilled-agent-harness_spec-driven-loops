@@ -1,0 +1,26 @@
+{
+  "specFolder": "deep-loops/029-deep-loop-workflows",
+  "description": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` —",
+  "keywords": [
+    "deep-loop",
+    "capability",
+    "split",
+    "across",
+    "five",
+    "sibling",
+    "skills",
+    "deep-ai-council",
+    "deep-context",
+    "deep-improvement",
+    "deep-research",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.666Z",
+  "specId": "029",
+  "folderSlug": "deep-loop-workflows",
+  "parentChain": [
+    "deep-loops"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

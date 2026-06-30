@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/013-reorganize-script-lane-folders",
+  "spec_folder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/013-reorganize-script-lane-folders",
+  "parent_id": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scripts-physical-reorg",
+      "deep-agent-improvement scripts reorg",
+      "scripts lane subdirs",
+      "scripts-physical-reorg plan",
+      "scripts lane reorg plan",
+      "deep-agent-improvement scripts plan",
+      "scripts-physical-reorg tasks",
+      "scripts lane reorg tasks",
+      "deep-agent-improvement scripts tasks",
+      "scripts-physical-reorg checklist",
+      "scripts lane reorg checklist",
+      "deep-agent-improvement scripts checklist"
+    ],
+    "key_topics": [
+      "scripts-physical-reorg",
+      "deep-agent-improvement",
+      "scripts",
+      "reorg",
+      "lane",
+      "subdirs",
+      "plan",
+      "tasks",
+      "checklist",
+      "skill",
+      "now",
+      "exposes"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Regroup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill now exposes two co-equal lanes (agent-improvement and model-benchmark) in prose, and phases 010-012 split references, assets, the agent note, the catalog, and the advisor by lane",
+    "created_at": "2026-05-29T08:26:20Z",
+    "last_save_at": "2026-06-23T03:49:51.247Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8ae0dd931ed7267c3e5153cfc8aadce30e8f5a6dfcf783657ec7c063c0cd7f0",
+    "source_doc_hashes": {
+      "spec.md": "e336629b312e734ee9f0ee7d1af842d8310c3b41da884b36a85a92bf07a8c5a0",
+      "plan.md": "3d6aebaf567546ef91b07460dd80381e1ec5c757c0fe058adcb55359c6646cde",
+      "tasks.md": "8355bb45a6145685d132def7981a7507dfd21041cc553527c7a690faf55a5543",
+      "checklist.md": "67c57e2c281c8402aff6031cc077c649dd486aa7f3a35f4d22c420fb0b25e58e",
+      "decision-record.md": "135cac683ad1961af43a7d5585103be62713a7d60b978252ee2643392f62d059",
+      "implementation-summary.md": "09ef6cf74f807e01b0ca737a82ea526abdd58ae15984401fe0f177240a7bd069"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

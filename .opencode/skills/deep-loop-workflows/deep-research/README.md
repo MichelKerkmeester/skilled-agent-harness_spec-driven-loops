@@ -202,7 +202,7 @@ Expected output: zero issues reported.
 | [`references/state/state_jsonl.md`](./references/state/state_jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
 | [`references/state/state_outputs.md`](./references/state/state_outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
 | [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
-| [`references/guides/capability_matrix.md`](./references/guides/capability_matrix.md) | Runtime parity source of truth across OpenCode, Claude and Codex executors |
+| [`references/guides/capability_matrix.md`](./references/guides/capability_matrix.md) | Runtime parity source of truth across OpenCode, Claude and OpenCode executors |
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer, dashboard generator and convergence evaluator |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
 | [`assets/deep_research_config.json`](./assets/deep_research_config.json) | Config template with defaults for max iterations, convergence threshold and executor |

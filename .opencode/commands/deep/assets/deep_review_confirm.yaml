@@ -297,7 +297,7 @@ workflow:
             4. Find command entry points referencing this skill
             5. Set scope = all discovered files
           agent: |
-            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .codex/agents/, .agents/)
+            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .agents/)
             2. Compare agent definitions for consistency
             3. Set scope = all discovered agent files
           track: |
@@ -761,50 +761,6 @@ workflow:
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
-        if_cli_codex:
-          command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-
-            import { runAuditedExecutorCommandAsync } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveCodexSandboxMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
-
-            const executor = {
-              kind: 'cli-codex',
-              model: '{config.executor.model}',
-              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-            };
-
-            process.exit(await runAuditedExecutorCommandAsync({
-              command: 'codex',
-              args: [
-                'exec',
-                '--model',
-                executor.model,
-                '-c',
-                `model_reasoning_effort=${executor.reasoningEffort}`,
-                '-c',
-                `service_tier=${executor.serviceTier}`,
-                '-c',
-                'approval_policy=never',
-                '--sandbox',
-                resolveCodexSandboxMode(executor.sandboxMode),
-                '-',
-              ],
-              cwd: '{repo_root}',
-              timeoutSeconds: executor.timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input: readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
-            }));
-            EOF
-          working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
-          wait_for_completion: true
         if_cli_copilot:
           command: |
             PROMPT_PATH='{state_paths.prompt_dir}/iteration-{current_iteration}.md'
@@ -870,7 +826,7 @@ workflow:
             - "opencode run takes a positional message; prompt is fed via command substitution"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
@@ -1403,7 +1359,7 @@ reference_only_appendix:
       - { check: "Checklist vs Evidence", source: "[x] items", target: "cited evidence" }
     overlay_protocols:
       - { check: "SKILL.md vs Agent", source: "Skill contracts", target: "agent files" }
-      - { check: "Agent Cross-Runtime", source: ".claude", target: ".codex/.opencode/.agents" }
+      - { check: "Agent Cross-Runtime", source: ".claude", target: ".opencode/.agents" }
       - { check: "Feature Catalog vs Code", source: "Catalog claims", target: "implementation" }
       - { check: "Playbook vs Support", source: "Scenario preconditions", target: "actual support" }
 

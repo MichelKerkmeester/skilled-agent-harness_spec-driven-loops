@@ -1,0 +1,14 @@
+{
+  "key": "mimo-scores-s3",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "scores",
+  "queryClass": "generic",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 68042,
+  "bytes": 64367,
+  "stderrTail": ""
+}

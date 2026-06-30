@@ -24,7 +24,7 @@ Use this skill when the request involves:
 - Auditing or critiquing a UI, design plan, component, page, or design-system output.
 - Checking accessibility, contrast, keyboard navigation, focus, forms, ARIA, or WCAG compliance.
 - Reviewing animation performance, load performance, responsive behavior, touch targets, or production readiness.
-- Detecting AI-generated design slop, theming drift, token misuse, hard-coded values, or generic patterns, including the model-specific tell catalog for Codex, Gemini and 2026-general fingerprints.
+- Detecting AI-generated design slop, theming drift, token misuse, hard-coded values, or generic patterns, including the model-specific tell catalog for OpenCode, Gemini and 2026-general fingerprints.
 - Routing a bolder, quieter, distill or redesign direction to the right owner once a finding names the problem.
 - Producing a findings-first design quality report with P0-P3 severity and a `/20` score, including the fill-in report template.
 
@@ -100,7 +100,7 @@ DESIGN QA TASK
 | CONDITIONAL | Accessibility or performance concern | `references/accessibility_performance.md` |
 | CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique_hardening.md` |
 | CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti_patterns_production.md` |
-| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md`, `assets/ai_fingerprint_registry.json`, `assets/ai_fingerprint_self_defect_card.md` (Codex, Gemini, 2026-general fingerprints as checkable findings with structured rows and self-defect prompts) |
+| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md`, `assets/ai_fingerprint_registry.json`, `assets/ai_fingerprint_self_defect_card.md` (OpenCode, Gemini, 2026-general fingerprints as checkable findings with structured rows and self-defect prompts) |
 | CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform_remediation.md` (register-gated transform verbs mapped to findings and owners) |
 | CONDITIONAL | Resolving the target and labeling evidence | `references/evidence_capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
 | CONDITIONAL | Carrying confirmed, inferred and not-assessed labels into findings and scores | `assets/audit_evidence_worksheet.md` (target, evidence inventory, dimension coverage, probes and finding handoff rows) |

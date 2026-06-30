@@ -45,7 +45,7 @@ The config is the single source of truth for every tunable parameter in a contex
 
 ### Default Pool
 
-When no `--executor` / `--executors` flags or marker are present, the default heterogeneous pool is used: 2 native `@deep-context` Task seats + 1 MiMo-v2.5-pro seat (`cli-opencode`) + 1 gpt seat (`cli-codex`) + 1 deepseek-v4-pro seat (`cli-opencode`). All seats sweep the same focus and agreement is the confidence signal. A single-seat pool is legal but yields no agreement signal; the command warns and continues.
+When no `--executor` / `--executors` flags or marker are present, the default heterogeneous pool is used: 2 native `@deep-context` Task seats + 1 MiMo-v2.5-pro seat (`cli-opencode`) + 1 gpt seat (`cli-opencode`) + 1 deepseek-v4-pro seat (`cli-opencode`). All seats sweep the same focus and agreement is the confidence signal. A single-seat pool is legal but yields no agreement signal; the command warns and continues.
 
 ### Pool Precedence
 

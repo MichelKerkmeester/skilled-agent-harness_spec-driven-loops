@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/012-push-wave-fanout",
+  "description": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage)",
+  "keywords": [
+    "deep-loop-runtime",
+    "fan-out",
+    "pool",
+    "assigns",
+    "work",
+    "fifo",
+    "order",
+    "dependency",
+    "write-domain",
+    "metadata",
+    "blocked",
+    "slots",
+    "waiting",
+    "another",
+    "lineage"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.411Z",
+  "specId": "012",
+  "folderSlug": "push-wave-fanout",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

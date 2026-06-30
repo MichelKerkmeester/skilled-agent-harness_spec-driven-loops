@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/006-reject-register-unknown",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/006-reject-register-unknown",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r6 reject register unknown",
+      "deny-by-default register acceptance design build",
+      "d5-r6 reject register unknown plan",
+      "deny-by-default register acceptance cli plan",
+      "cross-cli register reject dispatch",
+      "d5-r6 tasks",
+      "reject register unknown tasks",
+      "register acceptance cli dispatch tasks",
+      "d5-r6 checklist",
+      "reject register unknown checklist",
+      "register acceptance cli verification",
+      "d5-r6 implementation summary"
+    ],
+    "key_topics": [
+      "d5-r6",
+      "reject",
+      "register",
+      "unknown",
+      "deny-by-default",
+      "acceptance",
+      "design",
+      "build",
+      "plan",
+      "cli",
+      "cross-cli",
+      "dispatch"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "cli_child_pairing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Acceptance Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deny Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deny Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Residual",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cross-CLI design dispatch path has no boundary that rejects a design dispatch whose register is unresolved",
+    "created_at": "2026-06-28T12:40:07.287Z",
+    "last_save_at": "2026-06-29T08:40:40.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c58ac7e03632cbfe319cae06e83791647466e53d721f3608389bf82e48be750",
+    "source_doc_hashes": {
+      "spec.md": "70daf9feda48fca57b50cbf7d7cfa665191c0959d4fc1700d13183ff30fd3fe6",
+      "plan.md": "a7a32b8115ade0a565c8711efc0fa0f5992e050b4a4503b938abbbbf346a94bd",
+      "tasks.md": "f235eee09920b90ecb07aa8822bc5d892d6454d0226e2bf59a320d2fae199c41",
+      "checklist.md": "ea930dacbf5421ca783793da1bbd5b8af83c783b0cc35a0cda8ae897a428a1bd",
+      "implementation-summary.md": "26049402e468bb8b6fefb9432b95b5f15c71d2e6f7fad96bf0d5d07af81f789b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

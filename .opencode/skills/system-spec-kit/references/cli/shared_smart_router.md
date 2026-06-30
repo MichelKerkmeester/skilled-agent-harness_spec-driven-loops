@@ -14,7 +14,7 @@ version: 3.6.0.11
 
 # Shared Smart-Router Helpers (cli-* family)
 
-The three cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all three files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
+The three cli-* sibling skills (`cli-claude-code`, `cli-opencode`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all three files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
 
 > Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/assets/skill/skill_smart_router.md).
 
@@ -136,7 +136,7 @@ def route_<PROVIDER>_resources(task):
     return result
 ```
 
-Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `opencode`).
+Replace `<PROVIDER>` with the provider slug (`claude_code`, `opencode`, `opencode`).
 
 ---
 

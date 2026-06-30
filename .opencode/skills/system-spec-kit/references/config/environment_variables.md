@@ -40,7 +40,7 @@ These variables control memory system behavior, token budgets, script execution,
 | `SPECKIT_CONTEXT_HEADERS` | `true` | Prepend contextual tree headers to markdown search content chunks |
 | `SPECKIT_FILE_WATCHER` | `false` | Enable chokidar-based real-time markdown re-indexing |
 
-Codex note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only repo paths (for example under your home directory or `/tmp`) so the MCP server can derive and create the active SQLite database safely. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
+OpenCode note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only repo paths (for example under your home directory or `/tmp`) so the MCP server can derive and create the active SQLite database safely. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
 ### CLI Transport (Dual-Stack Fallback)
 
@@ -404,6 +404,6 @@ SPECKIT_RESPONSE_TRACE=true node mcp_server/dist/context-server.js
 
 ## 10. CLEAN TRANSPORT (MCP PROTOCOL)
 
-MCP servers must keep stdout reserved for protocol traffic only. Send diagnostics, warnings and startup logs to stderr so clients such as Codex do not see extra stdout output as a broken transport handshake.
+MCP servers must keep stdout reserved for protocol traffic only. Send diagnostics, warnings and startup logs to stderr so clients such as OpenCode do not see extra stdout output as a broken transport handshake.
 
 ---

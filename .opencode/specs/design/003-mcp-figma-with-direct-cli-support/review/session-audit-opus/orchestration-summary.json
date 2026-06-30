@@ -1,0 +1,11 @@
+{
+  "run_id": "1781464600582-ntawto",
+  "loop_type": "review",
+  "spec_folder": "design/003-mcp-figma-with-direct-cli-support",
+  "base_artifact_dir": ".opencode/specs/design/003-mcp-figma-with-direct-cli-support/review/session-audit-opus",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

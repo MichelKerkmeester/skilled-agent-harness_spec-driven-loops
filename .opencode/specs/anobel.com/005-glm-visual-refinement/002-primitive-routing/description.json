@@ -1,0 +1,34 @@
+{
+  "specFolder": "anobel.com/005-glm-visual-refinement/002-primitive-routing",
+  "description": "The 45-tile GLM-5.2 run (`../../004-bento-visuals`) sends every tile down a single generation path, but the score data shows two distinct layout primi",
+  "keywords": [
+    "45-tile",
+    "glm-5",
+    "run",
+    "004-bento-visuals",
+    "sends",
+    "every",
+    "tile",
+    "single",
+    "generation",
+    "path",
+    "score",
+    "data",
+    "shows",
+    "two",
+    "distinct",
+    "layout",
+    "primi"
+  ],
+  "lastUpdated": "2026-06-29T10:45:22.293Z",
+  "specId": "002",
+  "folderSlug": "primitive-routing",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "anobel.com",
+    "005-glm-visual-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

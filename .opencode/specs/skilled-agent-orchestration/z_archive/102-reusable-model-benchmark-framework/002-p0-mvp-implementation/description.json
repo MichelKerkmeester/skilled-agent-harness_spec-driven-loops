@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+  "description": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt",
+  "keywords": [
+    "127",
+    "research",
+    "designed",
+    "reusable",
+    "config-driven",
+    "benchmark",
+    "framework",
+    "unbuilt"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.182Z",
+  "specId": "002",
+  "folderSlug": "p0-mvp-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "102-reusable-model-benchmark-framework"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

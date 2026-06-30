@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "design/001-sk-design-interface/005-claude-design-parity-research",
+  "description": "The framework has two UI-design skills: `sk-design-interface` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath",
+  "keywords": [
+    "framework",
+    "two",
+    "ui-design",
+    "skills",
+    "sk-design-interface",
+    "design",
+    "judgment",
+    "plus",
+    "merged",
+    "critique-against",
+    "data",
+    "mcp-magicpath",
+    "magicpath"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.565Z",
+  "specId": "005",
+  "folderSlug": "claude-design-parity-research",
+  "parentChain": [
+    "design",
+    "001-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

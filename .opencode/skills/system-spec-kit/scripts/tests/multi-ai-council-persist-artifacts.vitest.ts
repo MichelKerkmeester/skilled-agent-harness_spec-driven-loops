@@ -65,9 +65,9 @@ describe('ai-council persist-artifacts helper', () => {
       'ai-council/ai-council-config.json',
       'ai-council/ai-council-strategy.md',
       'ai-council/ai-council-state.jsonl',
-      'ai-council/seats/round-001/seat-001-cli-codex.md',
+      'ai-council/seats/round-001/seat-001-cli-opencode.md',
       'ai-council/seats/round-001/seat-002-cli-claude-code.md',
-      'ai-council/seats/round-001/seat-003-cli-opencode.md',
+      'ai-council/seats/round-001/seat-003-native.md',
       'ai-council/deliberations/round-001.md',
       'ai-council/council-report.md',
     ];
@@ -87,8 +87,8 @@ describe('ai-council persist-artifacts helper', () => {
     const rendered = helper.renderArtifacts(parsed, { round: 1, specFolder: packet });
     const result = helper.writeArtifacts(packet, rendered);
     expect(result.conflicts).toEqual([]);
-    expect(existsSync(join(packet, 'ai-council/seats/round-001/seat-001-cli-codex.md'))).toBe(true);
-    expect(readFileSync(join(packet, 'ai-council/seats/round-001/seat-001-cli-codex.md'), 'utf8'))
+    expect(existsSync(join(packet, 'ai-council/seats/round-001/seat-001-cli-opencode.md'))).toBe(true);
+    expect(readFileSync(join(packet, 'ai-council/seats/round-001/seat-001-cli-opencode.md'), 'utf8'))
       .toContain('derived from Council Composition table');
     expect(existsSync(join(packet, 'ai-council/council-report.md'))).toBe(true);
   });

@@ -208,7 +208,7 @@ NATIVE_BRIDGE_ENV_ALLOWLIST = {
     "SPECKIT_RUNTIME",
     "SPECKIT_ADVISOR_FRESHNESS",
     "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL",
-    "SPECKIT_CODEX_HOOK_TIMEOUT_MS",
+    "SPECKIT_OPENCODE_HOOK_TIMEOUT_MS",
     "SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST",
     "SPECKIT_ADVISOR_SHADOW_DELTA_PATH",
     "SPECKIT_METRICS_ENABLED",
@@ -1694,11 +1694,6 @@ INTENT_BOOSTERS = {
     "strict": ("sk-code", 0.5),
 
     # ─────────────────────────────────────────────────────────────────────────────────
-    # CLI-CODEX: Cross-AI orchestration via OpenAI Codex CLI
-    # ─────────────────────────────────────────────────────────────────────────────────
-    "codex": ("cli-codex", 2.0),
-
-    # ─────────────────────────────────────────────────────────────────────────────────
     # CLI-CLAUDE-CODE: Cross-AI orchestration via Anthropic Claude Code CLI
     # ─────────────────────────────────────────────────────────────────────────────────
 
@@ -1767,9 +1762,9 @@ MULTI_SKILL_BOOSTERS = {
     "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
     "review": [("sk-code-review", 0.8)],
-    "delegate": [("cli-codex", 0.5), ("cli-claude-code", 0.5)],
-    "opinion": [("cli-codex", 0.3), ("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
-    "validate": [("cli-codex", 0.2), ("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
+    "delegate": [("cli-claude-code", 0.5)],
+    "opinion": [("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
+    "validate": [("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
     "improve": [("sk-prompt", 0.6), ("sk-code", 0.2)],
     "enhance": [("sk-prompt", 0.8)],
     "refine": [("sk-prompt", 0.6), ("sk-code", 0.2)],
@@ -1937,16 +1932,7 @@ PHRASE_INTENT_BOOSTERS = {
     "sk-code-review": [("sk-code-review", 2.8)],
     "/sk-code-review": [("sk-code-review", 2.8)],
     ".opencode/skills/sk-code-review": [("sk-code-review", 3.0)],
-    # --- Codex CLI cross-AI orchestration ---
-    "use codex": [("cli-codex", 2.5)],
-    "codex cli": [("cli-codex", 2.5)],
-    "codex agent": [("cli-codex", 2.0)],
-    "codex review": [("cli-codex", 2.0), ("sk-code-review", 0.4)],
-    "cross-ai codex": [("cli-codex", 2.0)],
-    "delegate to codex": [("cli-codex", 2.5)],
-    "cli-codex": [("cli-codex", 2.8)],
-    "/cli-codex": [("cli-codex", 2.8)],
-    ".opencode/skills/cli-codex": [("cli-codex", 3.0)],
+    "opencode review": [("sk-code-review", 0.4)],
     # --- Claude Code CLI cross-AI orchestration ---
     "use claude code": [("cli-claude-code", 2.5)],
     "claude code cli": [("cli-claude-code", 2.5)],
@@ -1981,7 +1967,6 @@ PHRASE_INTENT_BOOSTERS = {
     # (tokenizer splits on hyphen via \b\w+\b — same bug as whitespace keys)
     # ─────────────────────────────────────────────────────────────────
     "proposal-only": [("deep-improvement", 1.4)],
-    "openai-cli": [("cli-codex", 1.5)],
     "claude-code": [("cli-claude-code", 2.0)],
     "claude-cli": [("cli-claude-code", 1.5)],
     "extended-thinking": [("cli-claude-code", 1.0)],
@@ -3413,7 +3398,7 @@ def _apply_iteration_loop_tiebreaker(
     """Promote command-spec-kit over cli-* when iteration-loop phrases are present.
 
     Background: when a user asks to run iterations of deep-research or deep-review with
-    a specific CLI executor (e.g. "use cli-codex for 50 iterations"), the skill advisor
+    a specific CLI executor (e.g. "use cli-opencode for 50 iterations"), the skill advisor
     previously returned command-spec-kit and the cli-* peer with similar confidence. Picking
     the cli-* peer as the primary route bypasses the skill's state machine, convergence
     detection, and deltas.

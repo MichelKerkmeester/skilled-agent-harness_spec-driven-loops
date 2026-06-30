@@ -31,9 +31,9 @@ afterEach(() => {
 describe('ai-council path-scoped write authority', () => {
   it('allows writes under ai-council/** through council writers', () => {
     const packet = makePacket();
-    const written = writers.writeSeat(packet, 'round-001/seat-001-cli-codex.md', '# Seat\n');
+    const written = writers.writeSeat(packet, 'round-001/seat-001-cli-opencode.md', '# Seat\n');
 
-    expect(written).toBe(join(packet, 'ai-council/seats/round-001/seat-001-cli-codex.md'));
+    expect(written).toBe(join(packet, 'ai-council/seats/round-001/seat-001-cli-opencode.md'));
   });
 
   it('rejects out-of-scope writes before touching the filesystem', () => {

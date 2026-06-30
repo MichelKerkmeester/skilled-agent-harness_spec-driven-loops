@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author",
+  "spec_folder": "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author",
+  "parent_id": "anobel.com/005-glm-visual-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt-5.5 skeleton author",
+      "2d skeleton escalation",
+      "cost-capped escalation",
+      "geometry skeleton author",
+      "bento 2d-risk tiles",
+      "2d escalation plan",
+      "cost-capped dispatch",
+      "opencode gpt-5.5-fast xhigh",
+      "geometry skeleton dispatch",
+      "gpt-5.5 skeleton tasks",
+      "2d escalation tasks",
+      "cost cap tasks"
+    ],
+    "key_topics": [
+      "gpt-5",
+      "skeleton",
+      "author",
+      "escalation",
+      "cost-capped",
+      "geometry",
+      "bento",
+      "2d-risk",
+      "tiles",
+      "plan",
+      "dispatch",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Selector",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Risk Skeleton Escalation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coding Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deterministic geometry skeleton (phase 004) recovers many 2D-positioned tiles, but the hardest ones — dense matrix / node-diagram / branch / connector-map / popover tiles — may still fail the phase-001 spatial gate (RC-1 overflow, RC-2 node collisions, RC-3 title-zone break) after the deterministic recompute",
+    "created_at": "2026-06-29T10:48:48.909Z",
+    "last_save_at": "2026-06-29T10:48:48.909Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d1efd5b6569058730fe2636dd07a6b3dd63f54fc77769c077518b1bb16763bf",
+    "source_doc_hashes": {
+      "spec.md": "4f4267da6b3681f8c845c7d7ed88c02139555b0852f6d697840e19b78fefc567",
+      "plan.md": "4c85cecebd39b31018546ad150b93705ad612876c062bbeaddb61e0a90c2ad61",
+      "tasks.md": "8bfed8075c1e48c917b2ef241bd3a0fd7f6cb8433702f72dba33d38181e107d3",
+      "implementation-summary.md": "354243209ae8bb5c124c6d657c1658eae9b2791cf654a157d9b3efe965fe4f58"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

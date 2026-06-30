@@ -4,7 +4,7 @@
 
 | Seat | Strategy Lens | AI Vantage Target | Distinct Mandate | Confidence |
 | --- | --- | --- | --- | --- |
-| seat-001 | Analytical | cli-codex | Confirm minimal report parsing | 80 |
+| seat-001 | Analytical | cli-opencode | Confirm minimal report parsing | 80 |
 | seat-002 | Critical | cli-claude-code | Check missing optional sections | 78 |
 
 ## Recommended Plan

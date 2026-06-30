@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Goedkeuringssysteem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#06458c;
+    --brand-deep:#053b77;
+    --brand-deeper:#043367;
+    --green:#367e39;
+    --red:#c9140f;
+    --text:#0a1a2f;
+    --muted:#4e4e4e;
+    --on-dark:#E7ECF7;
+    --on-dark-muted:#B8C2D6;
+    --line:#cbd0dc;
+    --line-2:#e7e9ee;
+    --fill:#f6f8fc;
+    --page:#eceef0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--page);min-height:100vh;font-family:'Hanken Grotesk',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:var(--text);font-variant-numeric:tabular-nums}
+  body{display:flex;align-items:center;justify-content:center}
+
+  .card{
+    width:560px;height:480px;
+    background:#ffffff;
+    border-radius:22px;
+    border:none;
+    box-shadow:0 1px 2px rgba(20,28,46,.04),0 26px 52px -22px rgba(20,28,46,.20);
+    padding:30px;
+    overflow:hidden;
+    position:relative;
+    display:flex;flex-direction:column;
+    margin-bottom:24px;
+  }
+
+  /* ============ VISUAL PANEL (instrument container) ============ */
+  /* x[30..530] y[30..328] — stays fully above the title band */
+  .visual{
+    position:relative;
+    width:500px;
+    height:298px;
+    border-radius:18px;
+    background:linear-gradient(160deg,#06458c 0%,#053b77 55%,#043367 100%);
+    overflow:hidden;
+    color:var(--on-dark);
+    box-shadow:0 10px 28px -14px rgba(4,51,103,.6);
+  }
+  /* decorative grid + glow — purely ornamental */
+  .visual::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:26px 26px;
+    mask-image:radial-gradient(120% 120% at 80% 0%,#000 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(120% 120% at 80% 0%,#000 30%,transparent 80%);
+    pointer-events:none;
+  }
+  .visual::after{
+    content:"";
+    position:absolute;
+    top:-60px;right:-60px;
+    width:200px;height:200px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.12),transparent 65%);
+    pointer-events:none;
+  }
+
+  .panel-head{
+    position:relative;z-index:2;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px 12px;
+  }
+  .panel-title{
+    font-size:13px;font-weight:600;color:var(--on-dark);letter-spacing:.01em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .panel-title .dot{
+    width:7px;height:7px;border-radius:50%;background:#7dd3fc;
+    box-shadow:0 0 0 3px rgba(125,211,252,.18);
+  }
+  .panel-meta{font-size:11.5px;color:var(--on-dark-muted);font-weight:500}
+
+  .matrix{
+    position:relative;z-index:2;
+    margin:0 14px;
+    background:#fefefe;
+    border-radius:12px;
+    border:1px solid var(--line-2);
+    overflow:hidden;
+  }
+  .row{
+    display:grid;
+    grid-template-columns:1fr 78px 92px;
+    align-items:center;
+    column-gap:10px;
+    padding:8px 14px;
+    font-size:12px;
+    color:var(--text);
+  }
+  .row + .row{border-top:1px solid var(--line-2)}
+  .row.head{
+    color:var(--muted);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding-top:8px;padding-bottom:8px;
+    background:var(--fill);
+  }
+  .row .ship{font-weight:600;display:flex;align-items:center;gap:8px}
+  .row .ship::before{
+    content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--brand);opacity:.85;flex:0 0 auto;
+  }
+  .row .amount{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .status{
+    display:inline-flex;align-items:center;gap:6px;justify-content:flex-end;
+    font-size:11px;font-weight:600;
+  }
+  .status .ico{
+    width:14px;height:14px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .status.pending .ico{background:rgba(201,20,15,.10);color:var(--red)}
+  .status.approved .ico{background:rgba(54,126,57,.10);color:var(--green)}
+  .status.pending{color:var(--red)}
+  .status.approved{color:var(--green)}
+  .status svg{width:8px;height:8px;display:block}
+
+  .more{
+    position:relative;z-index:2;
+    display:flex;justify-content:center;
+    padding:8px 0 0;
+    font-size:11px;color:var(--on-dark-muted);font-weight:500;
+  }
+  .more span{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    padding:4px 10px;border-radius:999px;
+  }
+
+  /* CTA + legend bar — inside visual region */
+  .panel-foot{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 20px 14px;
+  }
+  .legend{display:flex;align-items:center;gap:14px}
+  .legend .item{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:11px;color:var(--on-dark-muted);font-weight:500;
+  }
+  .legend .sw{width:9px;height:9px;border-radius:3px}
+  .legend .sw.r{background:var(--red)}
+  .legend .sw.g{background:var(--green)}
+
+  .shell-cta{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:11.5px;font-weight:600;color:var(--on-dark);
+    padding:6px 12px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.05);
+    cursor:pointer;text-decoration:none;
+    transition:background .18s ease,border-color .18s ease;
+  }
+  .shell-cta:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
+  .shell-cta svg{width:11px;height:11px}
+
+  /* ============ TITLE BAND (reserved) y[356..456] ============ */
+  .title-band{
+    position:absolute;
+    left:30px;right:30px;
+    bottom:24px;
+    display:flex;flex-direction:column;gap:7px;
+    pointer-events:none;
+  }
+  .title{
+    font-size:21px;font-weight:700;color:#0a1a2f;
+    line-height:1.15;letter-spacing:-.005em;
+    text-transform:none;
+  }
+  .description{
+    font-size:13.5px;font-weight:500;color:#4e4e4e;
+    line-height:1.4;max-width:500px;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+  <section class="card" role="article" aria-label="Goedkeuringssysteem">
+
+    <!-- VISUAL / INSTRUMENT PANEL  (x:30..530  y:30..328) -->
+    <div class="visual" data-a1-role="visual" aria-hidden="true">
+
+      <div class="panel-head">
+        <div class="panel-title"><span class="dot"></span>Goedkeuringen</div>
+        <div class="panel-meta">Te keuren · 2</div>
+      </div>
+
+      <div class="matrix" role="table" aria-label="Vloot-goedkeuringen">
+        <div class="row head" role="row">
+          <span>Schip</span><span class="amount">Bedrag</span><span>Status</span>
+        </div>
+
+        <div class="row" data-a1-role="row" role="row">
+          <span class="ship">MS Aldebaran</span>
+          <span class="amount">€2.480</span>
+          <span class="status pending" role="cell">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3v6"/><circle cx="8" cy="12.5" r=".6" fill="currentColor" stroke="none"/></svg>
+            </span>
+            Te keuren
+          </span>
+        </div>
+
+        <div class="row" data-a1-role="row" role="row">
+          <span class="ship">MS Castor</span>
+          <span class="amount">€1.150</span>
+          <span class="status pending" role="cell">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3v6"/><circle cx="8" cy="12.5" r=".6" fill="currentColor" stroke="none"/></svg>
+            </span>
+            Te keuren
+          </span>
+        </div>
+
+        <div class="row" data-a1-role="row" role="row">
+          <span class="ship">MS Pollux</span>
+          <span class="amount">€860</span>
+          <span class="status approved" role="cell">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-6.5"/></svg>
+            </span>
+            Goedgekeurd
+          </span>
+        </div>
+
+        <div class="row" data-a1-role="row" role="row">
+          <span class="ship">MS Vesta</span>
+          <span class="amount">€3.240</span>
+          <span class="status approved" role="cell">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-6.5"/></svg>
+            </span>
+            Goedgekeurd
+          </span>
+        </div>
+      </div>
+
+      <div class="more" data-a1-role="label"><span>+0 more · 2 te keuren · maart 2026</span></div>
+
+      <div class="panel-foot">
+        <div class="legend">
+          <span class="item"><span class="sw r"></span>Te keuren</span>
+          <span class="item"><span class="sw g"></span>Goedgekeurd</span>
+        </div>
+        <a class="shell-cta" data-a1-role="shell-cta" href="#" onclick="return false;">
+          Openen
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l6-6M5 5h6v6"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- TITLE BAND  (y:356..456) -->
+    <div class="title-band">
+      <h1 class="title" data-a1-role="title">Goedkeuringssysteem</h1>
+      <p class="description" data-a1-role="description">Controleer bestellingen van de vloot voordat ze worden verwerkt</p>
+    </div>
+
+  </section>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "key": "kimi-agent-s3",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "agent",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 124,
+  "attempts": 1,
+  "latencyMs": 600033,
+  "bytes": 362731,
+  "stderrTail": ""
+}

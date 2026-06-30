@@ -62,7 +62,7 @@ Optimize this long SKILL.md for token efficiency and generate an llms.txt summar
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: short-to-medium prompt; expect concise structured output naming both resources.
+- **cli-opencode (gpt-5.5/high/fast)**: short-to-medium prompt; expect concise structured output naming both resources.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise output with both resource paths.
 
 ## Success Criteria

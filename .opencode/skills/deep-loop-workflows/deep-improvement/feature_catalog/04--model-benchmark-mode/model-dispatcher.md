@@ -24,7 +24,7 @@ This feature is the invocation seam for model-benchmark runs. It separates which
 
 ## 2. HOW IT WORKS
 
-`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. It routes through an executor map keyed on `opts.executor` across `cli-opencode`, `cli-claude-code`, and `cli-codex`, building the spawn spec per executor instead of hard-coding a single CLI. The dispatcher is loaded only on the model-benchmark path and never in agent-improvement mode, so the default scoring route never pulls in executor-routing code.
+`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. It routes through an executor map keyed on `opts.executor` across `cli-opencode`, `cli-claude-code`, and `cli-opencode`, building the spawn spec per executor instead of hard-coding a single CLI. The dispatcher is loaded only on the model-benchmark path and never in agent-improvement mode, so the default scoring route never pulls in executor-routing code.
 
 The dispatcher forwards `cwd` to every executor so spawned CLIs run against the intended workspace. Its rate-limit backoff reuses the existing backoff schedule and pauses with a non-busy `Atomics` sleep on an un-signalled buffer, which avoids spinning the thread while waiting out a rate limit.
 

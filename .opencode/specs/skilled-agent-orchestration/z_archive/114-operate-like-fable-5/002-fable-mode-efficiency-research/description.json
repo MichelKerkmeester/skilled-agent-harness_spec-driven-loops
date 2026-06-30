@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/002-fable-mode-efficiency-research",
+  "description": "The framework absorbed only the distilled `Fable5.md` doctrine (round 1)",
+  "keywords": [
+    "framework",
+    "absorbed",
+    "only",
+    "distilled",
+    "fable5",
+    "doctrine",
+    "round"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.495Z",
+  "specId": "002",
+  "folderSlug": "fable-mode-efficiency-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "114-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

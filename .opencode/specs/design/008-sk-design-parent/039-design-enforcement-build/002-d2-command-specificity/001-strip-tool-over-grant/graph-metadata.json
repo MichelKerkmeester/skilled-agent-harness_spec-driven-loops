@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/001-strip-tool-over-grant",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/001-strip-tool-over-grant",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r1 tool over-grant",
+      "strip write edit bash design wrappers",
+      "read-and-guide least privilege spec",
+      "read-and-guide least privilege",
+      "d2-r1 tool over-grant tasks",
+      "tool-policy parity tasks",
+      "d2-r1 tool over-grant checklist",
+      "tool-policy parity checklist",
+      "strip tool over-grant implementation summary",
+      "design wrapper least privilege delivered",
+      "d2-r1 implementation summary"
+    ],
+    "key_topics": [
+      "d2-r1",
+      "tool",
+      "over-grant",
+      "strip",
+      "write",
+      "edit",
+      "bash",
+      "design",
+      "wrappers",
+      "read-and-guide",
+      "least",
+      "privilege"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Return Status",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Least",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The four read-and-guide `/design:` wrappers (`audit`, `foundations`, `interface`, `motion`) only read source and cite the shared design reference base; they never mutate the workspace",
+    "created_at": "2026-06-28T12:40:02.220Z",
+    "last_save_at": "2026-06-28T16:01:09.430Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:557b117d4e80f14d9fdb285258bd73d1a87682bc27e603c837f331ae3c1949d1",
+    "source_doc_hashes": {
+      "spec.md": "8a66a736981cf26e5b180ace523b6ac1d51b577a8c6b8deb8c7abf93cdf13e9e",
+      "plan.md": "b6b79b2d6d4e0d3df9c064b6b9dbda219ab099478d8f8f469595bdbcb5cb1684",
+      "tasks.md": "c5bc9e4174234b90740786d1dd64ef82a3029e7c90f52009f494e03d6b8f16d6",
+      "checklist.md": "3608b815033622ca3519323c346c4ea7c9e040897b6203ad27d3856e2a609fb0",
+      "implementation-summary.md": "2ff9943e09aa5196b822174b9fcbaacf418165299ffd408334e0b6fe05ecf0b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

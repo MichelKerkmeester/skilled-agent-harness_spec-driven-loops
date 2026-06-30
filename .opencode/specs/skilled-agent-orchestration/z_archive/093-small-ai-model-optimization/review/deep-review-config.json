@@ -1,0 +1,57 @@
+{
+  "topic": "Cross-validate 114 small-AI-model optimization implementation across all 6 phases (sk-small-model sentinel skill, permissions-matrix gate + schema + enforcer, cli-devin context-budget engine + output-verification pipeline + recipe updates, sk-prompt model-profiles registry + bayesian scorer + quota-pool-aware fallback router, cli-opencode propagation mirror, sk-doc template alignment) for correctness, security, traceability, maintainability. SWE-1.6 dogfood cross-validation of codex gpt-5.5-produced work.",
+  "sessionId": "114-deep-review-2026-05-18",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 20,
+  "convergenceThreshold": 0.15,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 480,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 25,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-05-18T19:30:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "type": "cli-devin",
+    "model": "swe-1.6",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1500
+  },
+  "mode": "review",
+  "reviewTarget": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime"]
+  },
+  "qualityGateThreshold": true,
+  "lineage": {
+    "sessionId": "114-deep-review-2026-05-18",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs"
+}

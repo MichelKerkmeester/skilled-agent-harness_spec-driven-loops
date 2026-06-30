@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
+  "spec_folder": "deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
+  "parent_id": "deep-loops/029-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-workflows parity baseline",
+      "runtime ownership adr",
+      "nested skill.md discovery test",
+      "deep-loop-workflows phase 001",
+      "parity-baseline-and-runtime-ownership-adr",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "deep-loop-runtime ownership adr",
+      "deep-loop-workflows backend promotions",
+      "nested graph-metadata discovery rule",
+      "deep-loop-workflows phase 001 summary"
+    ],
+    "key_topics": [
+      "deep-loop-workflows",
+      "parity",
+      "baseline",
+      "runtime",
+      "ownership",
+      "adr",
+      "nested",
+      "skill",
+      "discovery",
+      "test",
+      "phase",
+      "001"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "baseline/file-hashes.txt",
+      "baseline/advisor-routing.txt",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/plan.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/tasks.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/checklist.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/decision-record.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/implementation-summary.md",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/description.json",
+      ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "file-hashes.txt",
+        "kind": "file",
+        "path": "baseline/file-hashes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-routing.txt",
+        "kind": "file",
+        "path": "baseline/advisor-routing.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A structure-only merge can silently change behavior",
+    "created_at": "2026-06-14T20:16:09.677Z",
+    "last_save_at": "2026-06-23T03:49:48.670Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70d117b439d08105670cbc54b2ccb36fad274c078d957e56272f7242abedd5d7",
+    "source_doc_hashes": {
+      "spec.md": "058414772259803e6c11dbc71d2ce961c70eac70fe6c2148cac9419383dfc468",
+      "plan.md": "62c8961ebc237b747afbd0c2b34e7ec7e9fb1f523c946e915e52428846a2e905",
+      "tasks.md": "5d19c2a7e8a7ed6741c1717c794a9dc073f7fe34afc59b56d5223434b644c090",
+      "checklist.md": "a02087256b0c5a8db27e6e48cf6276852a75c98ad1f92fa8753157a3cb3d916e",
+      "decision-record.md": "9bf9bd23f7cc4af29512be894f5a89147033945616b3476674fb5db34d29ef07",
+      "implementation-summary.md": "bb3c8bdcaba31ac5a1150e9d8497349ffe71c0ffeabef061f1d1df84612e6faa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

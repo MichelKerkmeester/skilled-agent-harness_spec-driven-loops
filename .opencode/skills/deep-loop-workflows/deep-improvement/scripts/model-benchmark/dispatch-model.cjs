@@ -137,7 +137,6 @@ const RATE_LIMIT_PATTERNS = [
 const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
-  'cli-codex',
 ]);
 
 function sha256Hex(input) {
@@ -425,15 +424,6 @@ function buildSpawnSpec(executor, promptText, resolved) {
       if (variant) args.push('--effort', variant);
       return { bin: process.env.CLAUDE_BIN || 'claude', args, input: null };
     }
-    case 'cli-codex': {
-      // Read-only judgment: --sandbox read-only blocks workspace writes/shell.
-      // workspace-write only when the write opt-in is set.
-      const sandbox = writeCapable ? 'workspace-write' : 'read-only';
-      const args = ['exec', '--model', model, '-c', 'approval_policy=never', '--sandbox', sandbox];
-      if (variant) args.push('-c', `model_reasoning_effort=${variant}`);
-      args.push('-'); // prompt via stdin
-      return { bin: process.env.CODEX_BIN || 'codex', args, input: promptText };
-    }
     default:
       throw new Error(`Unknown executor: ${executor}`);
   }
@@ -488,8 +478,8 @@ function dispatchReal(opts) {
       // Set cwd for every executor so non-opencode CLIs do not silently inherit
       // the host process cwd.
       cwd: dir,
-      // stdin: feed prompt text for stdin-based executors (codex); otherwise close it
-      // ('ignore' == </dev/null) to avoid opencode's stdin-hang bug.
+      // Close stdin for executors that receive the prompt through argv to avoid
+      // opencode's stdin-hang bug.
       input: spec.input == null ? undefined : spec.input,
       stdio: spec.input == null ? ['ignore', 'pipe', 'pipe'] : ['pipe', 'pipe', 'pipe'],
       timeout,

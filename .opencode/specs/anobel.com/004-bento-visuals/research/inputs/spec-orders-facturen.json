@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/17.png",
+ "title": "Orders & facturen.",
+ "desc": "Bekijk, volg en download al uw bestellingen en facturen op \u00e9\u00e9n centrale plek.",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/orders-facturen-glm-1.html",
+   "brief": "A combined orders+invoices table: rows (order# \u00b7 datum \u00b7 bedrag \u00b7 status badge \u00b7 download icon) for recent orders, mixed statuses."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/orders-facturen-glm-2.html",
+   "brief": "An order-tracking timeline: Besteld -> Verzonden -> Onderweg (navy live node) -> Geleverd, for one order, with dates."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/orders-facturen-glm-3.html",
+   "brief": "A download center: a list of invoices (Factuur maart/feb/jan 2026 \u00b7 \u20ac) each with a download icon + a 'download alle' action."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/orders-facturen-glm-4.html",
+   "brief": "An order-status overview: 3 stat tiles (Open 4 / Onderweg 2 / Geleverd 18) + a small recent-orders strip."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/orders-facturen-glm-5.html",
+   "brief": "A single order detail with its invoice: order header (PO-2026-0481 \u00b7 MS Aldebaran) + 2-3 items + a 'Factuur' link/row."
+  }
+ ]
+}

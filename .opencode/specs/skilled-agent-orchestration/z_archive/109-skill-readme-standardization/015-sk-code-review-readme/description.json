@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/015-sk-code-review-readme",
+  "description": "The sk-code-review README is a tabular reference card with stray non-numbered headings (`## Findings`, `## Review Context`) breaking the section seque",
+  "keywords": [
+    "sk-code-review",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "stray",
+    "non-numbered",
+    "headings",
+    "findings",
+    "review",
+    "context",
+    "breaking",
+    "section",
+    "seque"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.365Z",
+  "specId": "015",
+  "folderSlug": "sk-code-review-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

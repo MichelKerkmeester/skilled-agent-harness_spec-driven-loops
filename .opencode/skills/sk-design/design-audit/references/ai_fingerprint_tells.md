@@ -1,10 +1,10 @@
 ---
 title: AI Fingerprint Tells
-description: Model-specific defect catalog turned into checkable P0-P3 findings. Codex tells, Gemini tells and 2026-general tells that prove a surface was AI-generated.
+description: Model-specific defect catalog turned into checkable P0-P3 findings. OpenCode tells, Gemini tells and 2026-general tells that prove a surface was AI-generated.
 trigger_phrases:
   - "AI fingerprint tells"
   - "model specific design defect"
-  - "codex design tell"
+  - "opencode design tell"
   - "looks AI generated audit"
 importance_tier: normal
 contextType: implementation
@@ -27,7 +27,7 @@ The audit reports these tells; it does not rewrite the element, which is `sk-cod
 
 ### When to Use
 
-- Checking whether a rendered or source surface shows Codex, Gemini, or 2026-general AI design tells.
+- Checking whether a rendered or source surface shows OpenCode, Gemini, or 2026-general AI design tells.
 - Converting "looks AI-generated" feedback into P0-P3 findings with exact evidence and owner routing.
 - Auditing catalog-to-registry parity against the structured fingerprint mirror.
 
@@ -49,9 +49,9 @@ Severity rule of thumb: one isolated tell with a clean rest-of-surface is P3 pol
 
 ---
 
-## 3. CODEX TELLS
+## 3. OPENCODE-LINEAGE TELLS
 
-These are the most frequent giveaways from the Codex lineage. Each one is match-and-refuse in authoring, which makes it match-and-file in audit.
+These are the most frequent giveaways from the OpenCode lineage. Each one is match-and-refuse in authoring, which makes it match-and-file in audit.
 
 ### 3.1 Ghost-card border plus shadow
 
@@ -79,7 +79,7 @@ Hand-drawn or doodle-style SVG meant to depict a real subject. Tells include cla
 
 ### 3.4 Diagonal stripe background
 
-Repeating diagonal stripes painted into a `body` pseudo-element or a section background, usually through `repeating-linear-gradient`. Pure decoration with no information and a Codex signature.
+Repeating diagonal stripes painted into a `body` pseudo-element or a section background, usually through `repeating-linear-gradient`. Pure decoration with no information and a OpenCode signature.
 
 - Check: `repeating-linear-gradient` used as a section or body background.
 - Owner: `interface` for direction, `sk-code` to remove.
@@ -87,7 +87,7 @@ Repeating diagonal stripes painted into a `body` pseudo-element or a section bac
 
 ### 3.5 Element-tracking on display type
 
-Display headings with letter-spacing tighter than -0.04em. The Codex default drifts to -0.05em through -0.085em on display H1s, which makes the letters touch and reads as cramped rather than designed. The floor is -0.04em, and -0.02em to -0.03em is plenty for tight grotesque display.
+Display headings with letter-spacing tighter than -0.04em. The OpenCode default drifts to -0.05em through -0.085em on display H1s, which makes the letters touch and reads as cramped rather than designed. The floor is -0.04em, and -0.02em to -0.03em is plenty for tight grotesque display.
 
 - Check: `letter-spacing` tighter than -0.04em on a display or hero heading.
 - Owner: `foundations`.
@@ -95,7 +95,7 @@ Display headings with letter-spacing tighter than -0.04em. The Codex default dri
 
 ### 3.6 Theater / meta-criticism copy
 
-Copy that criticizes a product surface by calling it a kind of "theater" instead of naming the concrete user harm. Phrases like "design theater", "engagement theater" or "strategy theater" sound incisive but often dodge the actual evidence: what is ornamental, what misleads the user and what should change. This is a Codex tell when the page or critique leans on meta-criticism as the voice.
+Copy that criticizes a product surface by calling it a kind of "theater" instead of naming the concrete user harm. Phrases like "design theater", "engagement theater" or "strategy theater" sound incisive but often dodge the actual evidence: what is ornamental, what misleads the user and what should change. This is a OpenCode tell when the page or critique leans on meta-criticism as the voice.
 
 - Check: body copy containing a word followed by `theater` as meta-criticism copy.
 - Owner: `interface`.

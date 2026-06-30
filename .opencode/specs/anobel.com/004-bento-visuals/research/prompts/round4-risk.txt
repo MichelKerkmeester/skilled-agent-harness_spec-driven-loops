@@ -1,0 +1,87 @@
+Critique this GLM-5.2 improvement pipeline for risk + cost.
+
+I’ll keep this read-only and synthesize directly from the provided angle recommendations, using the local memory/advisor gates only to catch any relevant context or required skill routing.SKILL ROUTING: advisor surfaced `cli-opencode` and `sk-prompt-models` above threshold but ambiguously. I’ll load the model-prompt guidance for GLM-specific synthesis and the CLI contract only to confirm no external dispatch is needed.# Recommended Program
+
+RC legend: `RC-1` overflow, `RC-2` 2D collisions, `RC-3` title-zone failures, `RC-4` casing/glyph drift, `RC-5` contrast, `RC-6` decorative color, `RC-7` visual slop, `RC-8` discarded audit findings.
+
+## 1. END-TO-END PIPELINE
+
+| Step | What it does | Angle + RC-id | Effort | Applies to |
+|---:|---|---|---|---|
+| 1 | Replace diffuse layout prose with a short `A1_SAFE_LINEAR_560_V2` hard spatial contract: fixed visual region, reserved bottom title band, primitive caps, dark text tokens, no content `absolute`. | A1, A2, A7; `RC-1`, `RC-2`, `RC-3`, `RC-4`, `RC-5` | S | all tiles |
+| 2 | Add required preflight metadata: selected primitive, visible item count, overflow summary, `usesAbsoluteForContent=false`, contrast token inventory. Use it as metadata, not rendered content. | A2; `RC-2`, `RC-5`, `RC-6`, `RC-7` | S | all tiles |
+| 3 | Route primitives before generation: keep list/table/timeline as normal flow; flag matrix, node, branch, funnel, popover, connector-map, dense chart as `2D-positioned`. | A3, A5, A6, A7; `RC-1`, `RC-2`, `RC-3` | S | all tiles |
+| 4 | Generate first pass with direct Z.AI multimodal API, `thinking.disabled`, low temperature. Keep GLM as renderer/generator, not as verifier. | A3, A6; GLM docs/profile; `RC-8` | S | all tiles |
+| 5 | Run deterministic DOM/CSS gate after render: title band intrusion, visual bottom, overlap, clipping, `text-transform`, contrast, banned gray-on-dark text. | A1, A5, A7; LaTCoder, LaySPA, GeoSVG-RL; `RC-1` to `RC-5` | M | all tiles |
+| 6 | For failing non-2D or simple 2D tiles, run exactly one typed repair pass with failure JSON and screenshot. Lock copy, palette, title zone, glyph, and casing. | A3, A4; Self-Refine, visual critique refinement; `RC-1` to `RC-5`, `RC-8` | M | all tiles, failure-only |
+| 7 | For high-risk `2D-positioned` tiles, compute a skeleton first: regions, boxes, row caps, anchors, connector routes, AABB gaps. GLM must render from skeleton, not invent coordinates. | A5, A7; LaySPA, GeoSVG-RL, LaTCoder; `RC-1`, `RC-2`, `RC-3` | L | 2D-positioned only |
+| 8 | If skeleton render fails once, recompute best-of-3 skeletons upstream and choose the best geometry score. Do not ask GLM for free coordinate retries. | A5, A6, A7; AdaCoder; `RC-1`, `RC-2`, `RC-3` | M | 2D-positioned only |
+| 9 | If 2D fails twice, downgrade to `linear-flow`, `stacked-list`, or `compact-matrix`. Preserve semantic intent with `+N more`, not crowded geometry. | A1, A5, A7; `RC-1`, `RC-2`, `RC-7` | S | 2D-positioned only |
+| 10 | Use MiniMax-M3 as external visual auditor only after deterministic gates pass or for borderline failures. Convert MiniMax issues to typed fix JSON. | A4, A2; visual critique refinement; `RC-5`, `RC-6`, `RC-7`, `RC-8` | M | all tiles, failure-only |
+| 11 | Final adoption gate: ship only if deterministic geometry, contrast, casing/glyph, palette, and MiniMax status pass. Otherwise keep prior best or downgrade. | A1 to A7; all RCs | M | all tiles |
+
+## 2. PREDICTED LIFT
+
+| Scenario | SHIP rate | Diagram-vs-linear delta | Interpretation |
+|---|---:|---:|---|
+| Baseline | `27/45 = 60%` | `~41 pts` | Linear tiles already strong; 2D-positioned diagrams are the core defect. |
+| First move only: A1 prompt + deterministic gate + one repair | `34-37/45 = 76-82%` | `15-22 pts` | Best lift-per-effort. Converts many overflow/title/contrast failures and forces risky diagrams into safer primitives. |
+| Conservative full pipeline | `36-38/45 = 80-84%` | `14-20 pts` | Assumes overlap among A1/A3/A4/A5 gains and some remaining aesthetic/slop failures. |
+| Optimistic full pipeline | `39-41/45 = 87-91%` | `8-14 pts` | Requires skeleton-first 2D renderer to work on most matrix/node/funnel failures without damaging linear winners. |
+
+Reasoning chain:
+
+| Cause | Expected effect |
+|---|---|
+| The baseline has `18` FIX tiles. A1/T2 is projected by multiple angle designs at roughly `+7` to `+10` shipped tiles. | Moves batch to `34-37/45`. |
+| Most high-value failures are `RC-1`, `RC-2`, and `RC-3`, not general taste. | Geometry gates and skeletons should outperform more prose. |
+| Linear-flow tiles already score `86-94`. | The program must preserve them, not over-plan them. |
+| A5/A7 skeleton-first should recover additional dense 2D holdouts after A1. | Adds roughly `+2` to `+4` tiles beyond first move if renderer/scaffold is implemented well. |
+| A4 repair consumes already-created MiniMax findings instead of discarding them. | Adds `+1` to `+3` net tiles after overlap, mainly contrast/palette/clipping. |
+| IFScale warns that dense instructions are omitted. | Keep prompt contract short and move checks into validators. |
+
+Contrast expectation: accepted outputs should reach `95-100%` contrast exit-0 because dark text tokens and actual CSS contrast checks are hard gates.
+
+## 3. ADOPT/ADAPT/REJECT TABLE
+
+| Item | Verdict | RC-id(s) | Predicted contribution | Why |
+|---|---|---|---|---|
+| A1 safe linear contract | ADOPT | `RC-1`, `RC-2`, `RC-3`, `RC-4`, `RC-5` | `+7` to `+10` SHIP tiles when paired with gate/repair | Highest direct match to defect: bounded visual box, title band, primitive caps, banned gray tokens. |
+| A2 reasoning-embedded rubric | ADAPT | `RC-2`, `RC-5`, `RC-6`, `RC-7` | `+2` to `+5` tiles, mostly through A1 synergy | Keep the JSON preflight and anti-slop semantics, but do not add a long rubric wall. |
+| A3 primitive-routed repair | ADOPT | `RC-1`, `RC-2`, `RC-3`, `RC-8` | `+3` to `+6` incremental after prompt gate | Strong for route-specific repair. Use one failure-triggered turn, not always-on self-refine. |
+| A4 MiniMax issue-to-repair adapter | ADOPT | `RC-1` to `RC-6`, `RC-8` | `+1` to `+3` incremental after A1/A3 overlap | Turns free-text audit into typed repair objects and prevents false-fixes with adopt-if gates. |
+| A5 skeleton-first 2D | ADOPT | `RC-1`, `RC-2`, `RC-3` | `+2` to `+4` incremental after A1; larger if many 2D holdouts remain | Correct long-term mechanism: upstream geometry owns boxes, GLM renders. |
+| A6 GPT-5.5 skeleton author | ADAPT | `RC-1`, `RC-2`, `RC-3`, `RC-4` | `+1` to `+3` on hardest 2D cases | Use only for dense/high-risk 2D or after skeleton failure. Too expensive for linear tiles. |
+| A7 Bento Geometry Kernel | ADAPT | `RC-1`, `RC-2`, `RC-3`, `RC-5`, `RC-7` | Long-term ceiling raiser to `39-41/45` | Correct architecture, but bigger engineering lift. Implement after A1 gate proves ROI. |
+| LaTCoder, `https://arxiv.org/html/2508.03560v1` | ADOPT | `RC-1`, `RC-2`, `RC-3` | High | Supports bounded regions, block-wise synthesis, and layout-preserved assembly. |
+| IFScale, `https://arxiv.org/html/2507.11538v1` | ADOPT | `RC-3`, `RC-4`, `RC-5` | High | Explains why long prompt prose fails. Put hard rules early and validate mechanically. |
+| LaySPA, `https://arxiv.org/html/2509.16891v2` | ADOPT | `RC-1`, `RC-2` | High | Supports explicit layout objects and collision/alignment/spacing rewards. |
+| GeoSVG-RL, `https://arxiv.org/html/2605.25447` | ADOPT | `RC-1`, `RC-2`, `RC-3` | High | Supports plan-first generation plus browser-backed geometry extraction. |
+| Self-Refine, `https://github.com/madaan/self-refine` | ADAPT | `RC-8`, secondary `RC-1` to `RC-5` | Medium | Use feedback/refine once after measured failure. Do not run open-ended self-refine. |
+| Visual critique refinement, `https://arxiv.org/html/2412.16829` | ADOPT | `RC-2`, `RC-5`, `RC-8` | Medium | Supports localized issue evidence, bboxes, and refinement validation. |
+| Chain-of-Rubrics | ADAPT | `RC-4`, `RC-5`, `RC-6`, `RC-7` | Medium | Useful as short gate sequence, harmful if expanded into dense prose. |
+| DesignerlyLoop, `https://arxiv.org/abs/2511.15331` | ADAPT | `RC-6`, `RC-7` | Low to medium | Supports externalized planning and curated examples, but geometry still needs validators. |
+| UI/UX LLM SLR, `https://arxiv.org/html/2507.04469v1` | ADAPT | `RC-6`, `RC-7` | Low to medium | Supports structured prompting and evaluation; also warns prompt-only spatial reasoning is weak. |
+| DesignersForest semantic-token guidance | ADOPT | `RC-5`, `RC-6`, `RC-7` | Medium | Semantic color tokens and auto-layout defaults map directly to contrast and anti-slop failures. |
+| GLM-5.2 / GLM-5V docs | ADAPT | `RC-8` | Medium operational risk reduction | Use direct Z.AI multimodal path where proven. Do not trust GLM self-audit as acceptance source. |
+| AdaCoder, `https://ar5iv.labs.arxiv.org/html/2504.04220` | ADOPT | `RC-1`, `RC-2`, `RC-8` | Medium cost control | Supports adaptive planning: escalate only when the verifier proves native generation failed. |
+| DiagramEval, `https://arxiv.org/html/2510.25761` | ADAPT | `RC-2`, `RC-7` | Medium for later kernel | Useful for graph/node/edge agreement checks once diagrams are rendered from semantic plans. |
+| DCGen, `https://arxiv.org/html/2406.16386v1` | ADOPT | `RC-1`, `RC-3` | Medium | Reinforces region ownership and decomposition for design-to-code layout. |
+
+## 4. HIGHEST-ROI FIRST MOVE
+
+Ship **A1 prompt replacement + deterministic DOM/CSS gate + one failure-only repair** first.
+
+Why this dominates lift-per-effort:
+
+| Factor | Reason |
+|---|---|
+| Highest defect coverage | Directly hits `RC-1`, `RC-2`, `RC-3`, `RC-4`, and `RC-5`, which are the recurring hard failures. |
+| Low implementation cost | Mostly prompt block replacement plus a browser bbox/contrast gate. No deterministic renderer or GPT-5.5 skeleton service required. |
+| Applies to all tiles | Protects linear winners while forcing risky diagrams away from freeform positioning. |
+| Non-additive proof point | It creates the measurement surface needed for A3/A4/A5: failure JSON, bboxes, title-zone intrusion, contrast, clipping. |
+| Expected lift | Best first experiment target is `34-37/45 SHIP`, from `60%` to `76-82%`, with diagram gap reduced to `15-22 pts`. |
+
+Next move after that: implement A5/A7 skeleton-first only for the remaining failing `2D-positioned` tiles. Keep A6 GPT-5.5 skeleton author as an escalation path, not the default.
+
+Give: (1) failure modes; (2) which recommendations might NOT lift quality and why; (3) cost ceiling (GLM dispatch=0, GPT-5.5/MiniMax paid, wall-clock per tile); (4) what to pilot first to de-risk; (5) any place the predicted lift is over-optimistic.

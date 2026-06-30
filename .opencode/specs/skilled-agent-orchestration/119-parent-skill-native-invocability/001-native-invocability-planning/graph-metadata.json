@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning",
+  "spec_folder": "skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning",
+  "parent_id": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent skill invocability plan",
+      "skill discovery extensibility probe",
+      "parent mode mechanism research",
+      "native invocation phased plan",
+      "runtime skill resolution research",
+      "parent skill invocability tasks",
+      "native invocation task list",
+      "skill discovery probe tasks",
+      "parent mode mechanism tasks",
+      "phase 1 research tasks",
+      "parent skill invocability checklist",
+      "native invocation verification"
+    ],
+    "key_topics": [
+      "parent",
+      "skill",
+      "invocability",
+      "plan",
+      "discovery",
+      "extensibility",
+      "probe",
+      "mode",
+      "mechanism",
+      "research",
+      "native",
+      "invocation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Listed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Parent skills can route operator requests to nested mode packets, but the nested packets are not independently invocable by the runtime `Skill` tool",
+    "created_at": "2026-06-30T00:00:00.000Z",
+    "last_save_at": "2026-06-30T06:12:45.681Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d7d033044f9ef1364c50c64f8586b24f74d6793ed88c42a37f7dcced8eeb9f8f",
+    "source_doc_hashes": {
+      "spec.md": "33fb74b9be32801196f0ba0e6eaf10dc0ff50517d6a525fd838c2f4d39aaff7b",
+      "plan.md": "62d75e66b7bbc8fe7ffd2da4a15084f28f06e95bfe0d3543994b1dc384b3bba6",
+      "tasks.md": "09dc63b975a100679755241c2fe69f72987b6c1b80cac4f70566be82a1845cd1",
+      "checklist.md": "6026f4b743ce7deb7de2fc04293d36ae911cb2dad400971002af3a1a4f5e2f1c",
+      "decision-record.md": "58f167ad694562dd36c4d7eabcd67d07c14139d3b48d3adfe77c05fa3b529db0",
+      "implementation-summary.md": "5822ff5237e09ad1623ff0bb9a1859538e1d07ec0f3417d3a0034a1d6ba350c7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

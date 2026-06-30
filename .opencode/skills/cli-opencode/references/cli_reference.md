@@ -23,7 +23,7 @@ Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-op
 
 ### Core Principle
 
-OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, Codex, Copilot, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, MCP, and Spec Kit Memory runtime.
+OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, OpenCode, Copilot, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, MCP, and Spec Kit Memory runtime.
 
 ### Purpose
 
@@ -260,6 +260,7 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 | `minimax-coding-plan` / `minimax` (MiniMax-M3) | `--variant` behavior unverified — omitted by default; confirm against the MiniMax API before relying on it |
 | `xiaomi-token-plan-ams` (mimo-v2.5-pro) | `--variant` maps to MiMo reasoning effort (low/medium/high); **always use `--variant high`** (confirmed accepted on opencode 1.15.13) |
 | `zai-coding-plan` (glm-5.2) | GLM has native `reasoning_effort` (high/max); whether opencode `--variant` forwards to it is unverified — smoke-test before relying on it |
+| `openai` (`gpt-5.5` / `gpt-5.5-fast` / `gpt-5.5-pro`) | `--variant` maps to OpenAI reasoning effort: `none`/`low`/`medium`/`high`/**`xhigh`** (`gpt-5.5-pro`: `medium`/`high`/`xhigh`). **`openai/gpt-5.5-fast`** is the low-latency **Fast** variant (OpenAI `priority` service tier) with the same effort range — e.g. `--model openai/gpt-5.5-fast --variant xhigh`. The cache lists it as `gpt-5.5` + `experimental.modes:['fast']`, but `opencode models openai` resolves the `openai/gpt-5.5-fast` slug directly. |
 
 Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
 

@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/001-council-design",
+  "description": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
+  "keywords": [
+    "bespoke",
+    "deep-loop",
+    "003",
+    "needs",
+    "binding",
+    "rubric",
+    "fixture",
+    "catalog",
+    "knob",
+    "set",
+    "convergence",
+    "rule",
+    "code",
+    "written"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.029Z",
+  "specId": "001",
+  "folderSlug": "council-design",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "092-cli-devin-prompt-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/001-council-design"
+  ]
+}

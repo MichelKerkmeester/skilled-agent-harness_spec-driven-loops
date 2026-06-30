@@ -62,7 +62,7 @@ Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: foreground baseline; record dispatch latency.
+- **cli-opencode (gpt-5.5/high/fast)**: foreground baseline; record dispatch latency.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: foreground baseline; record latency.
 
 ## Success Criteria

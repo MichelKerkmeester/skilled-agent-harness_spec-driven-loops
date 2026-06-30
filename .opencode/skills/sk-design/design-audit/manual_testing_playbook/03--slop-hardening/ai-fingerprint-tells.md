@@ -20,7 +20,7 @@ expected_resources:
 **Exact prompt**
 
 ```
-This dashboard looks AI-generated. Audit it for model-specific fingerprint tells (Codex, Gemini, 2026-general) and report them as checkable findings.
+This dashboard looks AI-generated. Audit it for model-specific fingerprint tells (OpenCode, Gemini, 2026-general) and report them as checkable findings.
 ```
 
 # AUDIT-SLOP-002 | AI Fingerprint Tells
@@ -56,7 +56,7 @@ Run the clean pass first. Every `clean.html` sample should report no model-speci
 
 | Fixture family | Positive samples | Expected result |
 | --- | ---: | --- |
-| Codex | 5 | Each positive fires exactly one Codex tell |
+| OpenCode | 5 | Each positive fires exactly one OpenCode tell |
 | Gemini | 1 | The positive fires exactly one Gemini tell |
 | 2026-general | 3 | Each positive fires exactly one general tell |
 | Clean samples | 9 | No tell fires |

@@ -29,7 +29,7 @@ const CATEGORY_ORDER = [
   {
     key: 'Agents',
     heading: '## 4. Agents',
-    description: '> `.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`.',
+    description: '> `.opencode/agents/**`, `.claude/agents/**`, `.opencode/agents/**`.',
   },
   {
     key: 'Skills',
@@ -59,7 +59,7 @@ const CATEGORY_ORDER = [
   {
     key: 'Meta',
     heading: '## 10. Meta',
-    description: '> Repository-wide governance artifacts such as `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `LICENSE`, and root `README.md`.',
+    description: '> Repository-wide governance artifacts such as `AGENTS.md`, `CLAUDE.md`, `LICENSE`, and root `README.md`.',
   },
 ];
 
@@ -68,7 +68,6 @@ const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const META_BASENAMES = new Set([
   'AGENTS.md',
   'CLAUDE.md',
-  'CODEX.md',
   'LICENSE',
   'LICENSE.md',
   'CHANGELOG.md',
@@ -486,7 +485,7 @@ function classifyPath(resourcePath) {
   if (
     normalized.startsWith('.opencode/agents/')
     || normalized.startsWith('.claude/agents/')
-    || normalized.startsWith('.codex/agents/')
+    || normalized.startsWith('.opencode/agents/')
   ) {
     return 'Agents';
   }

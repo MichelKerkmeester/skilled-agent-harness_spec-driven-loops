@@ -643,7 +643,7 @@ Verify final synthesis, supported memory save, LEAF-only agent behavior, and the
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical research/research.md, memory save uses generate-context.js, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, :restart segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees. Return a concise operator verdict.
 
-Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
+Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the OpenCode runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 
 #### Test Execution
 > **Feature File:** [DR-019](06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)

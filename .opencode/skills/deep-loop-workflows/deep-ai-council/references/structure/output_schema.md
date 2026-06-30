@@ -25,7 +25,7 @@ The report remains markdown, not JSON. The helper accepts normal heading variati
 Cross-references:
 
 - Agent body: `.opencode/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
-- Runtime mirrors: `.claude/agents/ai-council.md`, `.codex/agents/ai-council.toml`
+- Runtime mirrors: `.claude/agents/ai-council.md`, `.opencode/agents/ai-council.toml`
 - Helper: `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs`
 
 ---
@@ -76,7 +76,7 @@ The helper normalizes case, heading marks, leading section numbers, repeated whi
 Preferred seat extraction uses one markdown heading per seat:
 
 ```markdown
-### Seat 001 - Analytical / cli-codex
+### Seat 001 - Analytical / cli-opencode
 ...
 
 ### Seat 002 - Critical / cli-claude-code
@@ -85,9 +85,9 @@ Preferred seat extraction uses one markdown heading per seat:
 
 Accepted variations:
 
-- `### Seat 001 - Analytical / cli-codex`
-- `### Seat 1: Analytical / cli-codex`
-- `#### Seat-001 Analytical / cli-codex`
+- `### Seat 001 - Analytical / cli-opencode`
+- `### Seat 1: Analytical / cli-opencode`
+- `#### Seat-001 Analytical / cli-opencode`
 
 When no per-seat headings exist, the helper falls back to rows in the Council Composition table. The table must include a `Seat` column and should include `Strategy Lens`, `AI Vantage Target`, `Distinct Mandate`, and `Confidence` columns.
 
@@ -96,7 +96,7 @@ Fallback row example:
 ```markdown
 | Seat | Strategy Lens | AI Vantage Target | Distinct Mandate | Confidence |
 | --- | --- | --- | --- | --- |
-| seat-001 | Analytical | cli-codex | Check implementation sequence | 84 |
+| seat-001 | Analytical | cli-opencode | Check implementation sequence | 84 |
 ```
 
 Fallback seats produce `seats/round-NNN/*.md` artifacts with a clear note that the per-seat body was derived from the composition table. This preserves artifact shape without pretending the report contained detailed seat prose.

@@ -1,0 +1,25 @@
+{
+  "openQuestions": [
+    {"id": "KQ1", "text": "DEEP agent form factor: new standalone .opencode/agents/deep.md, enhancement to deep-loop-workflows mode-registry router, or both? What does OpenCode's agent dispatch model support for primary-agent dispatch to named sub-agents / specialized subagent_type?"},
+    {"id": "KQ2", "text": "Can agent files declare a per-agent subagent_type that survives dispatch as hard runtime identity, or is every dispatch normalized to 'general'? Smallest host-runtime change to enable it; in scope or follow-up?"},
+    {"id": "KQ3", "text": "How much can orchestrate.md change deep-loop dispatch behavior without breaking Claude Code parity and Claude's adaptive flexibility? What specifically carries deep dispatch today?"},
+    {"id": "KQ4", "text": "Why is GPT slower than Claude even in fast mode with deep skills? Role-negotiation overhead, prompt verbosity, redundant context carriage, or other? Quantify from YAMLs and dispatch prose."},
+    {"id": "KQ5", "text": "What concrete prompt-structure changes convert runtime role-negotiation into up-front pre-routing? Where is the role negotiated today; what does pre-resolved target look like?"},
+    {"id": "KQ6", "text": "How should DEEP router include ai-council without breaking its direct invocability, given ai-council.md is mode: primary today?"},
+    {"id": "KQ7", "text": "What must be mirrored across .opencode/agents/, .claude/agents/, .codex/agents/? Sync convention or hand-mirrored? What breaks on drift?"},
+    {"id": "KQ8", "text": "Under what conditions does the agent-layer fix prove insufficient and FIX-5 (native->CLI subprocess executor) becomes mandatory? Give a clear decision criterion."},
+    {"id": "KQ9", "text": "What specific Claude-flexible behaviors must NOT be constrained away? Identify adaptive behaviors so GPT refinements target mis-invocation signals, not legitimate flexibility."},
+    {"id": "KQ10", "text": "How to measure 'GPT invokes the correct deep agent on the first dispatch'? Dispatch provenance observable, or need a probe? Minimal before/after test."}
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

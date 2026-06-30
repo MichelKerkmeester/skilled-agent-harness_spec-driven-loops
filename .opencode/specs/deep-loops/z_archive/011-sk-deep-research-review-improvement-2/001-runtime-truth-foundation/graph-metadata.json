@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+  "spec_folder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+  "parent_id": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042",
+      "deep research",
+      "deep review",
+      "runtime improvement",
+      "claim verification ledger",
+      "coordination board",
+      "implementation plan",
+      "runtime truth",
+      "042.001",
+      "tasks",
+      "legal stop",
+      "continuedfromrun"
+    ],
+    "key_topics": [
+      "042",
+      "deep",
+      "research",
+      "review",
+      "runtime",
+      "improvement",
+      "claim",
+      "verification",
+      "ledger",
+      "coordination",
+      "board",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scratch/codex-gpt54-deep-research.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "codex-gpt54-deep-research.md",
+        "kind": "doc",
+        "path": "scratch/codex-gpt54-deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-reducer-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specif",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Runtime Improvement Bundle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current deep-loop stack is functional, but it still treats \"converged\" as a mostly inferred state instead of a strongly explained runtime truth",
+    "created_at": "2026-04-12T09:02:50.192Z",
+    "last_save_at": "2026-06-23T03:49:49.219Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d2dfd7a5b4371d53afd5f6e82e2701c13a5fc285afbf20bb6c423eef96f9c843",
+    "source_doc_hashes": {
+      "spec.md": "9daebd6f48b9d823ffbef61ab87ab0c5d6ff01ca3eee57a65bb304b3f3239514",
+      "plan.md": "366c58f3d40652e32f68f41839f992fbfa7bb97f9a23ecbe577d3d44a7f9fe68",
+      "tasks.md": "d129d6b14810aa40f3fa5e44db7e62b52ee679549b7de64584229e6ec90dc4e8",
+      "checklist.md": "6e93f286ae89b1f3b503521a5dfbff53936117bc755066b9a3db232e8b312214",
+      "decision-record.md": "f27762781c9d36718a902a35e30840d3ac734331d9e03c8a29091f8e6ba2d205",
+      "implementation-summary.md": "152a81530193709106960a5f3273c76c3bcd927c1623ae2d885fc24708e60c50"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

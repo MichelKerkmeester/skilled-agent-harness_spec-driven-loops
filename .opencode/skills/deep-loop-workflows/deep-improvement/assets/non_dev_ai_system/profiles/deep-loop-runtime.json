@@ -78,7 +78,7 @@
     ]
   },
   "models": {
-    "proposer": "openai/gpt-5-codex",
+    "proposer": "openai/gpt-5-opencode",
     "grader": "anthropic/claude-sonnet-4.5",
     "proposer_family": "openai"
   },

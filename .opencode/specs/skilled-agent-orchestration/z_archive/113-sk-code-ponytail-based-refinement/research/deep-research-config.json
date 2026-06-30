@@ -1,0 +1,107 @@
+{
+  "topic": "How to use the external 'ponytail' project's logic (6-rung lazy decision ladder), hooks (SessionStart/UserPromptSubmit + flag-file mode state), intensity sliders, ceiling comments, rule-invariant guard, ponytail-review skill, and benchmark harness to improve the sk-code and sk-code-review skills. Research-only: diagnose + recommend, do NOT implement.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement",
+  "createdAt": "2026-06-13T10:30:58Z",
+  "status": "running",
+  "executionMode": "auto",
+  "codeUnderAnalysis": {
+    "referenceProject": ".opencode/specs/skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/external/ponytail-main",
+    "targetSkillA": ".opencode/skills/sk-code",
+    "targetSkillB": ".opencode/skills/sk-code-review"
+  },
+  "executor": {
+    "kind": "multi-cli",
+    "model": "multi",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "orchestrator-driven-read-only",
+    "timeoutSeconds": 1200
+  },
+  "lanes": {
+    "opus": {
+      "label": "opus",
+      "model": "claude-opus-4-8",
+      "dispatch": "claude CLI account-2 (CLAUDE_CONFIG_DIR=~/.claude-account2), --permission-mode plan (read-only)",
+      "framework": "senior-architect-narrow"
+    },
+    "gpt": {
+      "label": "gpt",
+      "model": "openai/gpt-5.5-fast",
+      "variant": "high",
+      "dispatch": "cli-opencode opencode run, read-only analysis, narrow scope, </dev/null",
+      "framework": "costar-lean-json"
+    }
+  },
+  "roundsDesign": {
+    "style": "waves-generate-then-cross-verify",
+    "dispatch": "orchestrator-driven read-only seats (opus@claude2 + gpt-5.5-fast); orchestrator writes iteration/delta/state (Gate-3 safe)",
+    "round1_generate": {
+      "iterations": 10,
+      "waves": 5,
+      "note": "5 concurrent waves; wave k -> angle 2k-1 (opus) + angle 2k (gpt). Each iteration = one distinct angle/lens.",
+      "angles": [
+        { "iter": 1, "lane": "opus", "lens": "decision-ladder-transplant" },
+        { "iter": 2, "lane": "gpt", "lens": "hook-architecture-parity" },
+        { "iter": 3, "lane": "opus", "lens": "intensity-sliders" },
+        { "iter": 4, "lane": "gpt", "lens": "ceiling-comments-vs-comment-hygiene" },
+        { "iter": 5, "lane": "opus", "lens": "rule-invariant-validation" },
+        { "iter": 6, "lane": "gpt", "lens": "benchmark-eval-harness" },
+        { "iter": 7, "lane": "opus", "lens": "ship-then-question-and-severity" },
+        { "iter": 8, "lane": "gpt", "lens": "ponytail-review-overlap" },
+        { "iter": 9, "lane": "opus", "lens": "distribution-and-portability" },
+        { "iter": 10, "lane": "gpt", "lens": "synthesis-and-integration-risk" }
+      ]
+    },
+    "round2_verify": {
+      "mode": "adversarial-cross-verify: each lane refutes/validates the OTHER lane's top recommendations; seeded from round-1 merged findings",
+      "seats": [
+        { "label": "opus", "model": "claude-opus-4-8", "count": 1, "verifies": "gpt round-1 picks" },
+        { "label": "gpt", "model": "openai/gpt-5.5-fast", "variant": "high", "count": 1, "verifies": "opus round-1 picks" }
+      ]
+    }
+  },
+  "lineage": {
+    "sessionId": "2026-06-13-142-sk-code-ponytail-based-refinement",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

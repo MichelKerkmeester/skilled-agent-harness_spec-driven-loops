@@ -8,7 +8,7 @@ version: 3.6.0.1
 
 ## 1. OVERVIEW
 
-This scenario verifies the transport-down behavior of the 028 runtime hook integrations. Prompt-time hooks (Claude session-prime / compact-inject / session-stop, Codex session-start, and the Claude/Codex skill-advisor user-prompt-submit hooks) use warm-only CLI fallback helpers that probe the daemon socket first. When no socket exists, the hook fails open: it exits 0 quickly (measured around 1 ms for the probe itself), omits the CLI-backed extras, never blocks the prompt, and never cold-spawns a daemon from the prompt path.
+This scenario verifies the transport-down behavior of the 028 runtime hook integrations. Prompt-time hooks (Claude session-prime / compact-inject / session-stop, OpenCode session-start, and the Claude/OpenCode skill-advisor user-prompt-submit hooks) use warm-only CLI fallback helpers that probe the daemon socket first. When no socket exists, the hook fails open: it exits 0 quickly (measured around 1 ms for the probe itself), omits the CLI-backed extras, never blocks the prompt, and never cold-spawns a daemon from the prompt path.
 
 The check drives compiled hook scripts directly with a sandbox socket directory, so the no-socket path is deterministic and host daemons are never contacted.
 
@@ -87,7 +87,7 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared warm-only skill-advisor CLI fallback helper |
 | `mcp_server/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
-| `.opencode/skills/system-skill-advisor/hooks/codex/user-prompt-submit.ts` | Codex advisor hook using the fallback |
+| `.opencode/skills/system-skill-advisor/hooks/opencode/user-prompt-submit.ts` | OpenCode advisor hook using the fallback |
 
 ## 5. SOURCE METADATA
 

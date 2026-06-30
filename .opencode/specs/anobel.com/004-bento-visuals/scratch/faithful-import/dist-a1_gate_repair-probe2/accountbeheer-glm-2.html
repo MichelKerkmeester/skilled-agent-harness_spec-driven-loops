@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accountbeheer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:#eceef0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Hanken Grotesk',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    color:#0a1a2f;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .card{
+    width:560px;
+    height:480px;
+    background:#ffffff;
+    border-radius:22px;
+    box-shadow:0 1px 2px rgba(20,28,46,.04),0 26px 52px -22px rgba(20,28,46,.20);
+    padding:30px;
+    overflow:hidden;
+    position:relative;
+    margin-bottom:24px;
+  }
+
+  /* VISUAL REGION x[30..530], y[30..328] */
+  .visual{
+    position:relative;
+    width:500px;
+    height:298px;
+    margin:0 0 0 0;
+    border-radius:16px;
+    background:linear-gradient(155deg,#06458c 0%,#043367 100%);
+    color:#E7ECF7;
+    overflow:hidden;
+  }
+  .visual::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 86% 14%, rgba(231,236,247,.07) 0%, transparent 42%),
+      linear-gradient(180deg, rgba(4,51,103,0) 60%, rgba(4,51,103,.45) 100%);
+    pointer-events:none;
+  }
+
+  .panel-head{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 18px 0;
+    z-index:1;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    font-weight:600;
+    color:#E7ECF7;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.18);
+    padding:5px 9px;
+    border-radius:999px;
+    letter-spacing:.2px;
+  }
+  .eyebrow svg{width:11px;height:11px;display:block}
+  .live-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    font-weight:600;
+    color:#E7ECF7;
+  }
+  .live-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:#367e39;
+    box-shadow:0 0 0 3px rgba(54,126,57,.28);
+  }
+
+  .panel-subhead{
+    position:relative;
+    padding:8px 18px 0;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    z-index:1;
+  }
+  .vessel{
+    font-size:17px;
+    font-weight:700;
+    color:#fefefe;
+    letter-spacing:.2px;
+  }
+  .vessel-sub{
+    font-size:11.5px;
+    color:#B8C2D6;
+  }
+  .cart-tag{
+    position:relative;
+    margin:12px 18px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:7px 11px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    z-index:1;
+  }
+  .cart-tag .lab{font-size:11px;color:#B8C2D6;letter-spacing:.15px}
+  .cart-tag .val{font-size:11.5px;font-weight:600;color:#E7ECF7}
+
+  .matrix{
+    position:relative;
+    margin:10px 18px 0;
+    z-index:1;
+  }
+  .row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:14px;
+    padding:7px 0;
+    border-bottom:1px solid rgba(231,236,247,.10);
+  }
+  .row:last-of-type{border-bottom:0}
+  .row .qty{font-size:10.5px;color:#B8C2D6;font-weight:600;margin-right:6px}
+  .row .name{font-size:12px;color:#E7ECF7;line-height:1.25}
+  .row .price{font-size:12px;font-weight:600;color:#E7ECF7;font-variant-numeric:tabular-nums}
+
+  .total{
+    position:relative;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:10px 18px 0;
+    margin-top:8px;
+    border-top:1px dashed rgba(231,236,247,.18);
+    z-index:1;
+  }
+  .total .l{display:flex;align-items:baseline;gap:8px}
+  .total .big{font-size:18px;font-weight:700;color:#ffffff;letter-spacing:.2px}
+  .total .sub{font-size:10px;color:#B8C2D6}
+
+  .more{
+    position:relative;
+    margin:6px 18px 0;
+    font-size:10.5px;
+    color:#B8C2D6;
+    font-weight:500;
+    z-index:1;
+  }
+  .more b{color:#E7ECF7;font-weight:700}
+
+  .panel-foot{
+    position:relative;
+    margin-top:auto;
+    padding:12px 18px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    z-index:1;
+  }
+  .shell-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 13px 7px 11px;
+    background:#ffffff;
+    color:#06458c;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:.2px;
+    border-radius:999px;
+    text-decoration:none;
+    border:1px solid #ffffff;
+    transition:background .15s ease,color .15s ease;
+  }
+  .shell-cta .stop-dot{
+    width:6px;height:6px;border-radius:50%;background:#c9140f;display:inline-block
+  }
+  .shell-cta:hover{background:#f6f8fc}
+  .legend{margin-left:auto;display:inline-flex;gap:10px;align-items:center;font-size:10px;color:#B8C2D6}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend i{width:6px;height:6px;border-radius:50%;background:#367e39;font-style:normal;display:inline-block}
+  .legend i.alt{background:#E7ECF7}
+
+  /* internal layout helper to dock foot at bottom */
+  .visual{display:flex;flex-direction:column}
+
+  /* RESERVED TITLE BAND y[356..456] */
+  .title-band{
+    position:absolute;
+    left:30px;right:30px;
+    top:356px;
+    height:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:6px;
+  }
+  .title{
+    font-size:21px;
+    font-weight:700;
+    color:#0a1a2f;
+    line-height:1.15;
+    letter-spacing:-.2px;
+    margin:0;
+  }
+  .description{
+    font-size:13.5px;
+    font-weight:500;
+    color:#4e4e4e;
+    line-height:1.45;
+    margin:0;
+    max-width:500px;
+  }
+  .description b{font-weight:700;color:#0a1a2f}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important}
+  }
+</style>
+</head>
+<body>
+  <section class="card" aria-label="Accountbeheer">
+
+    <div class="visual" data-a1-role="visual">
+
+      <header class="panel-head">
+        <span class="eyebrow" role="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="5" r="2.2"/>
+            <path d="M12 7.2V11l-3.5 2M12 11l3.5 2M8.5 19l3.5-6 3.5 6"/>
+          </svg>
+          Vloot-functie
+        </span>
+        <span class="live-pill">
+          <span class="live-dot" aria-hidden="true"></span>
+          LIVE
+        </span>
+      </header>
+
+      <div class="panel-subhead">
+        <span class="vessel">MS Aldebaran</span>
+        <span class="vessel-sub">U bekijkt nu als</span>
+      </div>
+
+      <div class="cart-tag">
+        <span class="lab">Slimme winkelwagen</span>
+        <span class="val">Maart 2026</span>
+      </div>
+
+      <div class="matrix" role="matrix">
+        <div class="row" role="row">
+          <span class="name"><span class="qty">4×</span>Rompsensor A180 <span style="color:#B8C2D6">(Anti-fouling)</span></span>
+          <span class="price">€1.240</span>
+        </div>
+        <div class="row" role="row">
+          <span class="name"><span class="qty">15×</span>Nylon meertouw Ø 22mm <span style="color:#B8C2D6">(8-tal)</span></span>
+          <span class="price">€450</span>
+        </div>
+        <div class="row" role="row">
+          <span class="name"><span class="qty">2×</span>Ankerlier Hydrauliek Pomp</span>
+          <span class="price">€3.850</span>
+        </div>
+      </div>
+
+      <div class="more" aria-hidden="true">
+        <b>+1</b> meer artikel in deze sessie
+      </div>
+
+      <div class="total">
+        <div class="l">
+          <span class="big">€5.540</span>
+          <span class="sub">excl. BTW</span>
+        </div>
+        <span class="sub" style="color:#B8C2D6;font-size:10.5px">Totaal winkelwagen</span>
+      </div>
+
+      <div class="panel-foot">
+        <a class="shell-cta" role="shell-cta" href="#">
+          <span class="stop-dot" aria-hidden="true"></span>
+          Stop sessie
+        </a>
+        <span class="legend">
+          <span><i aria-hidden="true"></i>Actief</span>
+          <span><i class="alt" aria-hidden="true"></i>Inactief</span>
+        </span>
+      </div>
+
+    </div>
+
+    <div class="title-band">
+      <h1 class="title" role="title">Accountbeheer</h1>
+      <p class="description" role="description">Neem vloot-accounts <b>'realtime'</b> over en bekijk o.a. hun slimme winkelwagen.</p>
+    </div>
+
+  </section>
+</body>
+</html>

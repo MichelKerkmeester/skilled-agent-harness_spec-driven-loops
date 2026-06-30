@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "children_ids": [
+
+  ],
+  "manual": {
+    "depends_on": [
+
+    ],
+    "supersedes": [
+
+    ],
+    "related_to": [
+
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec regrouping",
+      "renumber specs",
+      "path references",
+      "reindex specs"
+    ],
+    "key_topics": [
+      "spec",
+      "regrouping",
+      "renumber",
+      "path",
+      "references",
+      "reindex",
+      "design",
+      "deep-loops",
+      "skilled-agent-orchestration"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Regrouping Renumber Reindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and markdown",
+    "created_at": "2026-06-30T12:13:28.471Z",
+    "last_save_at": "2026-06-30T12:40:10.395Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b1306603601d15a201bcdf6fbd1e557799a8aa328c6e9671ad581733a949bd8a",
+    "source_doc_hashes": {
+      "spec.md": "b5f39d18043de0e88e6bbe02cf2661f708b7540d6d20ff458e5026165ff97f8a",
+      "plan.md": "89d73b1fcbf6505b26fc693d8234982fd55efdd98fc4114b8e7f8eb59c8f8dfc",
+      "tasks.md": "4eb9775ab673bcc38ffc7118e00aa8ce4515a43efefdbcd940d198b36d9af338",
+      "checklist.md": "0de0d96f0b64aade636af1f6163b96010abbe0d443fe729004750f41756f89c3",
+      "implementation-summary.md": "3af1126cb6c89fb940c69ff767ccea343e56ba00d4b590232a3ad50e37a3665e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

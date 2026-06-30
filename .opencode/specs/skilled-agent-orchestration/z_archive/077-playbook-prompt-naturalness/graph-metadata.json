@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/077-playbook-prompt-naturalness",
+  "spec_folder": "skilled-agent-orchestration/z_archive/077-playbook-prompt-naturalness",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "094 playbook prompt naturalness",
+      "playbook RCAF refactor",
+      "natural human prompts in playbooks",
+      "drop As a role default",
+      "playbook prompt voice",
+      "094 plan",
+      "playbook naturalization plan",
+      "094 tasks",
+      "094 checklist",
+      "094 decision record",
+      "rcaf heuristic adr",
+      "natural human prompt heuristic"
+    ],
+    "key_topics": [
+      "094",
+      "playbook",
+      "prompt",
+      "naturalness",
+      "rcaf",
+      "refactor",
+      "natural",
+      "human",
+      "prompts",
+      "playbooks",
+      "drop",
+      "role"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
+      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+      ".opencode/commands/create/testing-playbook.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook_snippet_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Naturalize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every per-feature file across 16 `manualtestingplaybook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}",
+    "created_at": "2026-05-18T07:49:27.228Z",
+    "last_save_at": "2026-06-23T03:49:50.014Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20f00204e8efa93b93b144ae28c306f9eec78902248cb55daf5330c13de694ab",
+    "source_doc_hashes": {
+      "spec.md": "f9e785d718296c8471ce4523d94da5de0f15ee06bdf648785d2967c6161e2774",
+      "plan.md": "09bfcfb1dcb722dd76b8c211b3f4a87cc94fe02abe6400aacc3dc40622704fd3",
+      "tasks.md": "a62408e8662ff366cbd569afbbaa50693ebf036f62c3ccf4d901409be0eb06cd",
+      "checklist.md": "6eef061a832081a260acd41bebceb7a9e02c7e8b697b84399ae9afd5c3c3a472",
+      "decision-record.md": "317970b0dc6dc8104caa5fa5c8104201a9a778944a2aeec34cd03ae7cf708289",
+      "implementation-summary.md": "0743aa2d878eeeba23d7cc99a26d4c78f99ef278dbf72f5ebee6a82e050cb2f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

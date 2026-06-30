@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/085-cli-devin-effectiveness-improvements",
+  "spec_folder": "skilled-agent-orchestration/z_archive/085-cli-devin-effectiveness-improvements",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "105 spec",
+      "cli-devin effectiveness",
+      "swe-1.6 retrospective improvements",
+      "sequential_thinking mandatory",
+      "cli-devin v1.0.4.0",
+      "105 plan",
+      "cli-devin v1.0.4.0 plan",
+      "105 tasks",
+      "105 implementation"
+    ],
+    "key_topics": [
+      "105",
+      "spec",
+      "cli-devin",
+      "effectiveness",
+      "swe-1",
+      "retrospective",
+      "improvements",
+      "mandatory",
+      "plan",
+      "tasks",
+      "implementation",
+      "40-iter"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/retrospective.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrospective.md",
+        "kind": "doc",
+        "path": "research/retrospective.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adding Write",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Narrow Write",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sequential_thinking",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "inline JSONL",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actuals",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
+    "created_at": "2026-05-16T05:50:00Z",
+    "last_save_at": "2026-06-23T03:49:50.318Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a2d81bf9487df62252a4e7f1427c081f10be0c882d464e3d48c44eb5546a4501",
+    "source_doc_hashes": {
+      "spec.md": "d6d67e9f69a0110f236528907faee4be671b14eb6c47d8becd0f86767b8f8d12",
+      "plan.md": "00e3c73b23c2f57f5c91e3ed78930a8e0ce9c3f6af401eec9fe6e230824f6849",
+      "tasks.md": "554e8c99154cb715f1e32dd1fdc4b294abd73128b77cd765023b8b484ba72c94",
+      "implementation-summary.md": "2a881e68f4c25c3d31a78b74974c3232006ed86d4279a98af086dd6704d065e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

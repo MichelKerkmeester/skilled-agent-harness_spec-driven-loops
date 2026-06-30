@@ -1,0 +1,52 @@
+[
+  {
+    "tile": 1,
+    "score": 88,
+    "overflow": true,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Inner invoice panel overlaps bottom title area; title 'Één factuur.' sits beneath the dark total band, slightly tight on bottom padding."
+  },
+  {
+    "tile": 2,
+    "score": 92,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "none"
+  },
+  {
+    "tile": 3,
+    "score": 90,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "none"
+  },
+  {
+    "tile": 4,
+    "score": 82,
+    "overflow": true,
+    "readable": false,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "FIX",
+    "issue": "Funnel connector arrows visually clip into the dark 'Vloot factuur' bar (center anchor truncated); 'Vloot factuur' label and 'maart 2026' text too light/blue-on-blue inside the dark band, hard to read."
+  },
+  {
+    "tile": 5,
+    "score": 93,
+    "overflow": false,
+    "readable": true,
+    "on_brand": true,
+    "title_at_bottom": true,
+    "verdict": "SHIP",
+    "issue": "none"
+  }
+]

@@ -64,7 +64,7 @@ Author an @analyze agent and paired /create:analyze command using the standard t
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: dispatches in a single foreground turn; inlines both files.
+- **cli-opencode (gpt-5.5/high/fast)**: dispatches in a single foreground turn; inlines both files.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: produces compact output; verify wiring stanza is present.
 
 ## Success Criteria

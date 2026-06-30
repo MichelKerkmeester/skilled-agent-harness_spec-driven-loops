@@ -1,0 +1,37 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/001-initial-refinement",
+  "description": "`external/Fable5.md` is a distilled agent operating doctrine — verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline",
+  "keywords": [
+    "external",
+    "fable5",
+    "distilled",
+    "agent",
+    "operating",
+    "doctrine",
+    "verify",
+    "claim",
+    "make",
+    "confirmed-vs-inferred",
+    "claims",
+    "legible",
+    "capture",
+    "baseline"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.490Z",
+  "specId": "001",
+  "folderSlug": "initial-refinement",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "114-operate-like-fable-5"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "14-06-26_08-36__commit-landed-and-verified-90c34fc258-43-files.md",
+    "14-06-26_08-42__re-index-is-actively-scanning-my-call-coalesced.md",
+    "14-06-26_09-24__decisive-iter-2-retry-dispatching-reset-to-clean.md",
+    "14-06-26_09-33__i-ve-reached-the-point-where-continuing-to-act.md",
+    "14-06-26_09-37__verified-not-assumed-90c34fc258-is-on-origin.md"
+  ]
+}

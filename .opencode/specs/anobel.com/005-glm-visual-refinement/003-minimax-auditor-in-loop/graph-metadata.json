@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/005-glm-visual-refinement/003-minimax-auditor-in-loop",
+  "spec_folder": "anobel.com/005-glm-visual-refinement/003-minimax-auditor-in-loop",
+  "parent_id": "anobel.com/005-glm-visual-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "minimax auditor in loop",
+      "issue to fix-json adapter",
+      "failure-only round-2 repair",
+      "generator auditor separation",
+      "RC-8 audit feedback",
+      "a4 repair contract",
+      "external auditor correction loop",
+      "minimax auditor in loop tasks",
+      "a4 tasks",
+      "minimax auditor in loop summary",
+      "minimax auditor in loop status",
+      "003-minimax-auditor-in-loop planning baseline"
+    ],
+    "key_topics": [
+      "minimax",
+      "auditor",
+      "loop",
+      "issue",
+      "fix-json",
+      "adapter",
+      "failure-only",
+      "round-2",
+      "repair",
+      "generator",
+      "separation",
+      "rc-8"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern External",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX-type",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In the 45-tile 004 run, MiniMax-M3 (auditor of record) emitted 18 specific, file-grounded FIX findings (panel overflow, eyebrow overlapping a node, too-light bottom row) but the pipeline was single-shot generate -> gate -> audit -> STOP, so 18/45 = 40% of findings were discarded (RC-8 in `../../004-bento-visuals/research-angles.md` §1)",
+    "created_at": "2026-06-29T10:48:39.883Z",
+    "last_save_at": "2026-06-29T10:48:39.883Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0cdd38129093d9b10a03d448b3627caf855e249ac0ebc51f80e31413c88b3da",
+    "source_doc_hashes": {
+      "spec.md": "f1094e8d41ab51852f1afc72c0e6dc6bb14e92044b561ebdbe07e3a3932f9cda",
+      "plan.md": "cef760aa1380625669620f9956a23d7d4c420d755efce0fa19327734da7aa778",
+      "tasks.md": "40416a48ca4d492c817c76291c30f039b9f873256c300833d69e2ca899e8006f",
+      "implementation-summary.md": "d7de58913a7e1b8ade88a01f5322de4d9e120f6f6fc0360954c3ceb8d64c0109"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

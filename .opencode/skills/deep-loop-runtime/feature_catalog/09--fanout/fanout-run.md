@@ -1,6 +1,6 @@
 ---
 title: "Fan-out CLI lineage driver"
-description: "CLI lineage pool driver: TSX-bootstrapped entry point that spawns N headless CLI subprocesses (codex, claude, opencode), each running the full loop in an isolated lineages/{label}/ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep."
+description: "CLI lineage pool driver: TSX-bootstrapped entry point that spawns N headless CLI subprocesses (opencode, claude, opencode), each running the full loop in an isolated lineages/{label}/ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep."
 trigger_phrases:
   - "fan-out cli lineage driver"
   - "fanout-run.cjs"
@@ -22,7 +22,7 @@ version: 1.4.0.4
 parses the fanout config JSON, filters to CLI lineages (native lineages are handled by the
 YAML `step_fanout_spawn_native` agent dispatch), creates `{base}/lineages/{label}/` and
 `{label}/.executor-state/` directories per lineage, builds a "run the full loop" prompt,
-constructs the per-kind CLI command (`codex exec` + stdin, `claude -p`, `opencode run` +
+constructs the per-kind CLI command (`opencode run` + stdin, `claude -p`, `opencode run` +
 `</dev/null`), sets
 `SPECKIT_FANOUT_LINEAGE_ID={label}` and `SPECKIT_<KIND>_STATE_DIR={stateDir}` environment
 variables to prevent same-kind replica lockfile collisions, runs via `spawnSync` with a
@@ -39,7 +39,7 @@ the post-subprocess salvage step.
 
 ## 2. HOW IT WORKS
 
-Fully shipped. Supports all 3 CLI kinds: `cli-codex`, `cli-claude-code`, `cli-opencode`.
+Fully shipped. Supports all 3 CLI kinds: `cli-opencode`, `cli-claude-code`, `cli-opencode`.
 Per-lineage subprocess timeout = `min(iterations *
 timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit

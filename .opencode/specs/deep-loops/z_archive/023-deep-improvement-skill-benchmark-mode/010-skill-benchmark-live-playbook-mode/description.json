@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+  "description": "The Lane C benchmark grades skills with hand-invented, keyword-stripped fixtures and a pure-function router replay — not the skill being used",
+  "keywords": [
+    "lane",
+    "benchmark",
+    "grades",
+    "skills",
+    "hand-invented",
+    "keyword-stripped",
+    "fixtures",
+    "pure-function",
+    "router",
+    "replay",
+    "skill",
+    "used"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.335Z",
+  "specId": "010",
+  "folderSlug": "skill-benchmark-live-playbook-mode",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "122-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-06-26_15-22__next-steps.md"
+  ]
+}

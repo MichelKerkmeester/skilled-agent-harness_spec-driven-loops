@@ -52,7 +52,7 @@ printf '%s' '{"prompt":"help me commit my changes","workspaceRoot":"'"$PWD"'"}' 
 4. One hook adapter:
 
 ```bash
-printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
+printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/opencode/user-prompt-submit.js
 ```
 
 ### Expected Signals

@@ -11,12 +11,12 @@ off-family matches.
 
 | Fixture | Family | Tell |
 | --- | --- | --- |
-| `ai-fingerprint-ghost-card-border-plus-shadow` | codex | `ghost-card-border-plus-shadow` |
-| `ai-fingerprint-over-rounded-cards` | codex | `over-rounded-cards` |
-| `ai-fingerprint-sketchy-svg-illustration` | codex | `sketchy-svg-illustration` |
-| `ai-fingerprint-diagonal-stripe-background` | codex | `diagonal-stripe-background` |
-| `ai-fingerprint-element-tracking-on-display-type` | codex | `element-tracking-on-display-type` |
-| `ai-fingerprint-theater-meta-criticism-copy` | codex | `theater-meta-criticism-copy` |
+| `ai-fingerprint-ghost-card-border-plus-shadow` | opencode | `ghost-card-border-plus-shadow` |
+| `ai-fingerprint-over-rounded-cards` | opencode | `over-rounded-cards` |
+| `ai-fingerprint-sketchy-svg-illustration` | opencode | `sketchy-svg-illustration` |
+| `ai-fingerprint-diagonal-stripe-background` | opencode | `diagonal-stripe-background` |
+| `ai-fingerprint-element-tracking-on-display-type` | opencode | `element-tracking-on-display-type` |
+| `ai-fingerprint-theater-meta-criticism-copy` | opencode | `theater-meta-criticism-copy` |
 | `ai-fingerprint-image-hover-animation` | gemini | `image-hover-animation` |
 | `ai-fingerprint-cream-or-sand-body-background` | general | `cream-or-sand-body-background` |
 | `ai-fingerprint-eyebrow-above-every-section` | general | `eyebrow-above-every-section` |

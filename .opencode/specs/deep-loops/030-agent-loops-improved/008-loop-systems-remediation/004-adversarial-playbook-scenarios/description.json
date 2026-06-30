@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios",
+  "description": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carri",
+  "keywords": [
+    "remediation",
+    "fixed",
+    "several",
+    "state-safety",
+    "fan-out",
+    "goal-plugin",
+    "defects",
+    "backed",
+    "regression",
+    "test",
+    "manual-testing",
+    "playbooks",
+    "carri"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.504Z",
+  "specId": "004",
+  "folderSlug": "adversarial-playbook-scenarios",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "008-loop-systems-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

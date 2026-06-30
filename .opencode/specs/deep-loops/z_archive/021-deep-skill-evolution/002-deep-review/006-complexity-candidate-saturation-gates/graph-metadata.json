@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "candidate coverage gate",
+      "graphless fallback gate",
+      "review STOP blocked",
+      "candidate coverage gate plan",
+      "graphless fallback gate plan",
+      "116 candidate coverage tasks",
+      "116 graphless fallback tasks",
+      "116 candidate gate checklist",
+      "116 graphless fallback checklist",
+      "ADR candidate coverage gate",
+      "ADR graphless fallback gate",
+      "116 candidate saturation summary"
+    ],
+    "key_topics": [
+      "candidate",
+      "coverage",
+      "gate",
+      "graphless",
+      "fallback",
+      "review",
+      "stop",
+      "blocked",
+      "plan",
+      "116",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Saturation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graphless Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Legal",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase, deep-review could make dimension coverage, evidence density, and graph convergence look complete while still leaving v2 candidate-search obligations unresolved",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-06-23T03:49:50.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:987d17fa7eba4b2255eba547b5f85c39c23bd231c1bbfddf114911dd8b395cc2",
+    "source_doc_hashes": {
+      "spec.md": "487dd21e87f68e2e6455e3b1834782219b87ccc5702f10452153b04d19be9975",
+      "plan.md": "a513cb5d057c91ad842d42653e95c4360392fd7b4a031eb1325878909ad6e149",
+      "tasks.md": "785df8bbe3033baa584bc7dd76ec933e938e89a0c545a14aa5c39ce5255999f0",
+      "checklist.md": "076cb5dce3d4160e1d997522e15cfefe7cf633b48be4cf2015920f873bd9fa81",
+      "decision-record.md": "bf41cbba6c88471a07738b3b82c0b41d1c6735717fe74d544a7376ca97725600",
+      "implementation-summary.md": "0f3bee180477eeac94f77b219c16a610af1c336329855f569768975b1317872a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -17,8 +17,8 @@ Use ONLY these flags when constructing dispatch commands.
 
 ## Adversarial: do NOT use any of these (they do NOT exist)
 
-- --reasoning-effort    (Codex flag; not Devin)
-- --full-auto           (Codex flag pattern; not Devin)
+- --reasoning-effort    (OpenCode flag; not Devin)
+- --full-auto           (OpenCode flag pattern; not Devin)
 - --ask-mode            (invented)
 - --verbose-trace       (invented)
 

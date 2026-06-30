@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/004-hooks-resolver-tighten",
+  "spec_folder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/004-hooks-resolver-tighten",
+  "parent_id": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hooks resolver tighten",
+      "098 phase 004",
+      "097 remediation",
+      "infrastructure quality",
+      "098/004-hooks-resolver-tighten checklist",
+      "098/004 implementation",
+      "hooks resolver tighten summary"
+    ],
+    "key_topics": [
+      "hooks",
+      "resolver",
+      "tighten",
+      "098",
+      "phase",
+      "004",
+      "097",
+      "remediation",
+      "infrastructure",
+      "quality",
+      "004-hooks-resolver-tighten",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "dist/hooks/claude/session-stop.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "session-stop.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/session-stop.js",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Resolved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Tighten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Changing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Tighten",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`session-stop.ts:38` reads an env-selectable autosave script path and executes before canonical workflow path resolution",
+    "created_at": "2026-05-18T07:49:27.241Z",
+    "last_save_at": "2026-06-23T03:49:50.090Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:14bbb19788764323d694ff3254e68ca59a48f31731b9b4e0c526148bb312b165",
+    "source_doc_hashes": {
+      "spec.md": "acd572015c0640d0ee6d8afade897663ad814e26860dbe9c9fd2b368d15de20d",
+      "plan.md": "afb18b2852e640f02beac35cffbdc16faabdbf8db37adc40d7f3147b6106cfab",
+      "tasks.md": "512d2d2475abeea0dce3193bb7bb36ad91af6a61516b5e6db7069d2b47b09d6a",
+      "checklist.md": "98672aedadc5221a0031bd95fd5b3fabe4ccb44f0370f96dae4f79156be2ca2a",
+      "implementation-summary.md": "37734240234edfc5e1f3ff2d96937b0eb429e94995dadc065b13da13483470f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

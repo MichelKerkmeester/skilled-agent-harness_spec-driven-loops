@@ -52,16 +52,6 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter2-019",
-      "corpus": "labeled",
-      "promptHash": "sha256:ac281a8292165cbe79b7ea1584415d660aab2b66d8f7ea211363f361d8eb13f0",
-      "gold": "none",
-      "localTop": "cli-codex",
-      "nativeTop": "none",
-      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to cli-codex",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "rr-iter2-025",
       "corpus": "labeled",
       "promptHash": "sha256:43de25b4b33d11bd03e6b36e3746b74b10bd684481affb9622d9ebba8633f2ee",

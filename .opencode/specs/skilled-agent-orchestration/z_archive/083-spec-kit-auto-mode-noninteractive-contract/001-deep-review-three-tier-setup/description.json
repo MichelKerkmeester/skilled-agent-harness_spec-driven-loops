@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
+  "description": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
+  "keywords": [
+    "deep",
+    "start-review-loop",
+    "auto",
+    "advertises",
+    "itself",
+    "autonomous",
+    "suffix",
+    "executionmode"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.941Z",
+  "specId": "001",
+  "folderSlug": "deep-review-three-tier-setup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "083-spec-kit-auto-mode-noninteractive-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

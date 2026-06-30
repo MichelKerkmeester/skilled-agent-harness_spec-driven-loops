@@ -111,7 +111,7 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
       ttlMs: 300000,
       lastHeartbeatIso: now,
       packetId,
-      runtimeKind: 'cli-codex',
+      runtimeKind: 'cli-claude-code',
     });
     process.stdout.write(JSON.stringify({ acquired: result.acquired, packetId }) + '\\n');
   `;
@@ -145,7 +145,7 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
 describe('loop-lock', () => {
   it('acquires a new packet lock using the snake_case on-disk format', () => {
     withTempLock((lockPath) => {
-      const result = acquireLoopLock(lockPath, lockData({ runtimeKind: 'cli-codex' }));
+      const result = acquireLoopLock(lockPath, lockData({ runtimeKind: 'cli-claude-code' }));
 
       expect(result).toMatchObject({ acquired: true });
       if (!result.acquired) throw new Error('Expected lock acquisition');
@@ -154,7 +154,7 @@ describe('loop-lock', () => {
         owner_pid: process.pid,
         ttl_ms: 300_000,
         packet_id: 'packet-004',
-        runtime_kind: 'cli-codex',
+        runtime_kind: 'cli-claude-code',
         phase: 'running',
       });
       expect(typeof disk.acquire_nonce).toBe('string');

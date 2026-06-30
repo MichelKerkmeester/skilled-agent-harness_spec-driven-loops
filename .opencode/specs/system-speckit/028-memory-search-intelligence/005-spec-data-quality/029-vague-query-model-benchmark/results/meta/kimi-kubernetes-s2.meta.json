@@ -1,0 +1,14 @@
+{
+  "key": "kimi-kubernetes-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "kubernetes",
+  "queryClass": "off-corpus",
+  "sample": 2,
+  "exit": 1,
+  "attempts": 1,
+  "latencyMs": 317857,
+  "bytes": 250108,
+  "stderrTail": ""
+}

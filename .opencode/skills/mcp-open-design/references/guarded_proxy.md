@@ -89,7 +89,7 @@ DENY: every other case.
 
 The proxy MUST fail closed. Absence, ambiguity, stale token state, exceptions, or unmapped surfaces are denial conditions.
 
-The `od` CLI design-mutating Bash surface is enforced by the codex PreToolUse hook's `od` CLI lane; that Bash lane is enforced at the hook, not by this proxy.
+The `od` CLI design-mutating Bash surface is enforced by the opencode PreToolUse hook's `od` CLI lane; that Bash lane is enforced at the hook, not by this proxy.
 
 ## Exemption Model
 

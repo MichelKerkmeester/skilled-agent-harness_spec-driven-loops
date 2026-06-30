@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/006-sibling-discriminator",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/006-sibling-discriminator",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r6 sibling discriminator",
+      "design command discriminator spec",
+      "deferToHubWhen command layer spec",
+      "d2-r6 sibling discriminator plan",
+      "design command discriminator plan",
+      "deferToHubWhen command layer plan",
+      "d2-r6 sibling discriminator tasks",
+      "design command discriminator tasks",
+      "deferToHubWhen command layer tasks",
+      "d2-r6 sibling discriminator checklist",
+      "design command discriminator checklist",
+      "deferToHubWhen command layer checklist"
+    ],
+    "key_topics": [
+      "d2-r6",
+      "sibling",
+      "discriminator",
+      "design",
+      "command",
+      "spec",
+      "defertohubwhen",
+      "layer",
+      "plan",
+      "tasks",
+      "checklist",
+      "wrapper"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Today",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Family Boundary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each `/design:` wrapper carried no sibling discriminator (evidence: `commands/design/interface.md:13`)",
+    "created_at": "2026-06-28T12:40:01.979Z",
+    "last_save_at": "2026-06-29T05:24:58.097Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:42af30b97dfb99bd2e1d7fab932672b96831f95eebae8a4f2d48da3c08f7e170",
+    "source_doc_hashes": {
+      "spec.md": "eb80124bebc9fd4e788a78ffab7b94be299fa6969aef0ec0f05da7abc8cbed21",
+      "plan.md": "c487ac22f9bba2ff660e79642dbef40eb91037fe2ef389b8f6d08cc1b2df0814",
+      "tasks.md": "944f40e085a547dd2d0054c03d52c4222f34774e96c9f07d283d9abbbb700d6b",
+      "checklist.md": "49284fdcbc2ac7f35e9d75438e67f0fa0d8937e2e3d3efa404dd6137582b543b",
+      "implementation-summary.md": "d893bcf51a665947621d2372f0dbe980cd3ae01e696d33a17342e5184af2e83c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

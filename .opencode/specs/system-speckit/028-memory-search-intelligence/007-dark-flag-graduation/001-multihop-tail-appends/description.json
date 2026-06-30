@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends",
+  "description": "Two finished search features ship dark behind default-off flags with no measured verdict",
+  "keywords": [
+    "two",
+    "finished",
+    "search",
+    "features",
+    "ship",
+    "dark",
+    "behind",
+    "default-off",
+    "flags",
+    "measured",
+    "verdict"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.793Z",
+  "specId": "001",
+  "folderSlug": "multihop-tail-appends",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "007-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

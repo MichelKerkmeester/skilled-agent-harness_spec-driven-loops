@@ -1,0 +1,26 @@
+{
+  "specFolder": "design/002-mcp-open-design/013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands",
+  "description": "The `odclireference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete",
+  "keywords": [
+    "odclireference",
+    "verb",
+    "surface",
+    "table",
+    "section",
+    "used",
+    "mcp-open-design",
+    "skill",
+    "incomplete"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.656Z",
+  "specId": "013",
+  "folderSlug": "update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-06-26_14-36__completed-autonomous-speckit-plan-for-adding.md"
+  ]
+}

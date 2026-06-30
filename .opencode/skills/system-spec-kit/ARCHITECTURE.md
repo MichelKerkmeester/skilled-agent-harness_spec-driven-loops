@@ -36,7 +36,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │                                                                 │
 │  ┌──────────────────┐     ┌──────────────────────┐              │
 │  │   CLI Runtimes   │     │      AI Agents       │              │
-│  │ Claude / Codex   │────▶│  (Gate 1/2/3 flow)   │               │
+│  │ Claude / OpenCode   │────▶│  (Gate 1/2/3 flow)   │               │
 │  │ OpenCode         │     │                      │              │
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
@@ -45,7 +45,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
 │  │  │ claude/  │ │save/     │ │ search / resume / merge  │   │  │
-│  │  │ codex/   │ │resume/   │ │ graph / continuity       │   │  │
+│  │  │ opencode/   │ │resume/   │ │ graph / continuity       │   │  │
 │  │  │          │ │search/   │ │                          │   │  │
 │  │  │          │ │context/  │ │                          │   │  │
 │  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
@@ -143,7 +143,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Save pipeline.** `handlers/save/` runs the 3-layer save gate (intake validation, content router, post-save quality review). DQI scoring runs on every save.
 
-**Hook orchestrator.** `hooks/{claude,codex}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
+**Hook orchestrator.** `hooks/{claude,opencode}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
 
 **Matrix runners.** `matrix_runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
 
@@ -155,7 +155,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 Spec-kit ships a runtime hook surface that wires into each AI client's session lifecycle. The hooks emit compact context payloads at `SessionStart`, `UserPromptSubmit`, and (where supported) `Compact`.
 
-**Hook matrix.** Claude Code injects prompt-time briefs directly. Codex CLI supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. OpenCode delivers context through a plugin bridge under `.opencode/plugins/`.
+**Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through a plugin bridge under `.opencode/plugins/`.
 
 **Plugin bridges.** OpenCode plugin entrypoints live under `.opencode/plugins/`. Each plugin imports a thin bridge that calls into `mcp_server/lib/hooks/` and emits a payload back to the runtime.
 

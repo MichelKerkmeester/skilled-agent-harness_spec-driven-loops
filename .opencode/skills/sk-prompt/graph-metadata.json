@@ -12,11 +12,6 @@
         "context": "prompt quality card"
       },
       {
-        "target": "cli-codex",
-        "weight": 0.4,
-        "context": "prompt quality card"
-      },
-      {
         "target": "cli-opencode",
         "weight": 0.4,
         "context": "prompt quality card"
@@ -37,8 +32,7 @@
     "related_to": [
       "sk-doc",
       "sk-code",
-      "cli-claude-code",
-      "cli-codex"
+      "cli-claude-code"
     ]
   },
   "domains": [

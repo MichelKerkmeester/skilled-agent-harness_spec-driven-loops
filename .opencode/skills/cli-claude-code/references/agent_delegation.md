@@ -26,7 +26,7 @@ The calling AI decides WHAT to do, Claude Code decides HOW to do it within the d
 
 ### Purpose
 
-Documents the active Claude Code agents in `.opencode/agents/` and how external AI assistants orchestrate them. The calling AI (Codex, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
+Documents the active Claude Code agents in `.opencode/agents/` and how external AI assistants orchestrate them. The calling AI (OpenCode, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
 
 ### When to Use
 
@@ -41,7 +41,7 @@ Documents the active Claude Code agents in `.opencode/agents/` and how external 
 ## 2. ORCHESTRATION MODEL
 
 ```
-External AI (CONDUCTOR)               [Codex / Copilot / etc.]
+External AI (CONDUCTOR)               [OpenCode / Copilot / etc.]
   |
   |-- Analyzes task, selects Claude Code agent
   |-- Constructs claude CLI command with --agent flag

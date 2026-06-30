@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/011-interface-audit-core",
+  "description": "The 009 expansion research (`../009-reference-asset-expansion/research/research.md`) settled which references and assets each sk-design mode should ga",
+  "keywords": [
+    "009",
+    "expansion",
+    "research",
+    "009-reference-asset-expansion",
+    "settled",
+    "references",
+    "assets",
+    "sk-design",
+    "mode"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.765Z",
+  "specId": "011",
+  "folderSlug": "interface-audit-core",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

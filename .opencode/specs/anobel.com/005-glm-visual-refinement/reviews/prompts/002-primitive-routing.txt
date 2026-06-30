@@ -1,0 +1,427 @@
+You are an INDEPENDENT second-opinion reviewer. A program to improve GLM-5.2 vision-to-code maritime-B2B "bento" dashboard tiles (560x480 self-contained HTML) was researched + proposed by GPT-5.5 (xhigh). Baseline = 27/45 = 60% SHIP; ROOT CAUSE = the LAYOUT PRIMITIVE — 2D-positioned diagrams (matrix/node/routing/funnel) score 35-58 while linear-flow tiles (table/timeline/list/donut) score 86-94 (~41pt gap). The program has 6 phases; you review ONE phase below (A3 ORCHESTRATION / primitive routing).
+
+Give a RIGOROUS, CRITICAL second opinion — do NOT rubber-stamp. Your value is catching what a single model (GPT-5.5) missed: hidden assumptions, gaps, cheaper alternatives, failure modes, over-optimistic predictions.
+
+=== THE PROPOSED PHASE (authored by GPT-5.5) ===
+# spec.md
+---
+title: "Feature Specification: primitive-routing"
+description: "The bento pipeline treats every tile as the same layout task, so 2D-positioned diagrams (matrix/node/funnel) and linear-flow tiles (table/timeline/list) all flow down one generation path. The two primitives have a ~41-point score gap, so they need different sub-pipelines decided BEFORE generation."
+trigger_phrases:
+  - "002-primitive-routing"
+  - "primitive routing"
+  - "layout primitive classifier"
+  - "linear-flow vs 2d-positioned"
+  - "treatment primitive map"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/002-primitive-routing"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored Level 1 planning docs (spec/plan/tasks) for primitive routing"
+    next_safe_action: "Implement the treatment->primitive map + classifier in gen-tile.mjs once phase 001's gate lands"
+    blockers:
+      - "Depends on phase 001 (spatial-contract-and-gate) shipping the gate + per-tile failure-JSON measurement surface"
+    key_files:
+      - ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs"
+      - ".opencode/specs/anobel.com/004-bento-visuals/concepts.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "plan-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Where concepts.md treatment wording is ambiguous (a 'funnel/scope' or 'folder tree' that can render either way), should the map encode the curated per-tile primitive or fall back to a keyword default?"
+    answered_questions:
+      - "The route key is the layout PRIMITIVE, not the a/b/c/d/e treatment index: a '(d)' donut (aangepast-assortiment-4) scored 88 SHIP and is linear-flow, while '(d)' tiles in other concepts are 2D diagrams"
+---
+# Feature Specification: primitive-routing
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-06-29 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `../spec.md` (Phase 2 of glm-visual-refinement) |
+| **Implements** | Research angle A3 (primitive-routed repair) = pipeline step 3 |
+| **Depends On** | Phase 001 (spatial-contract-and-gate) — gate + failure-JSON surface |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The 45-tile GLM-5.2 run (`../../004-bento-visuals`) sends every tile down a single generation path, but the score data shows two distinct layout primitives with a ~41-point gap: linear-flow tiles (table/timeline/list/donut/hero) score 86-94, while 2D-positioned tiles (matrix/node/routing/funnel/popover/connector-map/dense-chart) collapse to 35-58. GLM cannot self-resolve 2D coordinate placement from prose, so those tiles need a different sub-pipeline — but the pipeline currently has no step that decides which primitive a tile is before it is generated.
+
+### Purpose
+Add a deterministic classifier that labels each tile by layout primitive before generation and routes it: linear-flow tiles continue down the normal flow path, and 2D-positioned tiles are flagged for the skeleton-first sub-pipeline (phase 004) and bound to the primitive-routed repair contract.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+This phase ships the routing decision ONLY. It does not build the skeleton service, the GPT-5.5 author, the deterministic gate, or the MiniMax fix-adapter — it produces the per-tile primitive label and route those phases consume.
+
+### In Scope
+- A deterministic `treatment -> primitive` map for all 45 tiles (9 concepts x 5 treatments), transcribed from `concepts.md` §2's per-concept treatment plan, keyed on the concept slug + treatment index.
+- A classifier in/around `gen-tile.mjs` that resolves each tile's primitive (`linear-flow` | `2d-positioned`) from the map before the generation call.
+- Two route definitions: `linear-flow` -> the current Product V4/M2/D6 normal-flow generation path; `2d-positioned` -> flagged for skeleton-first (phase 004) plus the primitive-routed repair contract.
+- The primitive-routed repair contract: a per-route repair policy attached at routing time (linear-flow = Round-2 only on a gate FIX; 2d-positioned = mandatory one Round-2 after first render).
+- Per-tile routing metadata emitted into the pipeline so downstream phases (003/004/005) read the primitive + route rather than re-deriving them.
+
+### Out of Scope
+- The coordinate/safe-zone skeleton compute service — phase 004 (skeleton-first-2d).
+- The GPT-5.5 skeleton/geometry author — phase 005.
+- The deterministic DOM/CSS gate + failure-JSON surface — phase 001 (consumed here as a dependency, not built here).
+- The MiniMax-M3 issue->fix-JSON adapter and the actual round-2 execution — phase 003.
+- Any change to the approved house style, Product register (V4/M2/D6), or palette.
+- Re-running or re-scoring the 45 tiles — phase 006.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/specs/anobel.com/004-bento-visuals/research/inputs/primitive-map.mjs` | Create | The 45-entry `(concept, treatment-n) -> primitive` map transcribed from `concepts.md` §2, each entry annotated with the source form |
+| `.opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs` | Modify | Add `slugFromOut()`, `primitiveFor()`, the route branch before the generation call, and per-tile routing metadata emission |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Every tile is classified by layout primitive before generation | For each of the 45 tiles, `primitiveFor(tile)` returns exactly one of `linear-flow` or `2d-positioned`; no tile reaches the generation call unlabeled |
+| REQ-002 | Router output matches the manual primitive labels on all 45 tiles | The classifier labels exactly these 10 tiles `2d-positioned` — `goedkeuringssysteem-4`, `oci-2`, `oci-4`, `accountbeheer-4`, `aangepast-assortiment-3`, `aangepast-assortiment-5`, `favorieten-4`, `een-factuur-4`, `prijzen-condities-3`, `kwartaalcijfers-4` — and the other 35 `linear-flow`, matching the frozen strata in `../../004-bento-visuals/research/iterations/iter-r3-A3.md` |
+| REQ-003 | The route key is the primitive, never the a/b/c/d/e index | `aangepast-assortiment-4` (treatment `(d)`, donut/ring) resolves to `linear-flow` while `aangepast-assortiment-3` `(c)` and `-5` `(e)` resolve to `2d-positioned`; within one concept three different letters yield route-by-form, not route-by-letter |
+| REQ-004 | Each route carries its repair policy and downstream flag | A `linear-flow` tile is tagged `repair=failure-only` and stays on the normal path; a `2d-positioned` tile is tagged `repair=mandatory-round-2` and `skeletonFirst=true` (consumed by phase 004) |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Routing metadata is emitted per tile for downstream phases | Each tile run records `{ tileId, primitive, route, repair, skeletonFirst }` so phases 003/004/005 read it rather than re-classifying |
+| REQ-006 | The map is auditable against `concepts.md` §2 | Each `primitive-map.mjs` entry names the `concepts.md` §2 form it was derived from (e.g. `aangepast-assortiment-3 = "ship x category matrix"`), so a reviewer can verify the label against the source |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: Running the classifier over the 45 tiles produces a 10/35 split that matches the manual primitive labels exactly (0 mismatches against the `iter-r3-A3.md` frozen strata).
+- **SC-002**: The `(d)` proof holds — `aangepast-assortiment-4` is labeled `linear-flow` and is the only `(d)` tile in its concept routed away from 2D, demonstrating the classifier keys on primitive form rather than treatment index.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 001 gate + failure-JSON surface | The `failure-only` linear repair policy has nothing to trigger on until the gate emits FIX verdicts | Treat 001 as a hard predecessor; the classifier can land first but the repair policy is inert until 001's gate is live |
+| Risk | Borderline `concepts.md` §2 wording (e.g. `aangepast-assortiment-2` "funnel/scope", `favorieten-2` "folder tree") | A naive keyword match would over-classify these as 2D and break the 10/35 split | The map encodes the curated per-tile primitive matching the manual labels, not a raw keyword guess; borderline entries are annotated as curation decisions |
+| Risk | Map drifts from `concepts.md` §2 if treatments are re-briefed | Router labels could silently diverge from the rendered tiles | Keep the map a single transcribed source-of-truth file with per-entry source annotations; re-verify against the frozen strata if concepts change |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- For genuinely ambiguous forms (a 2-count "funnel/scope" or a "folder tree" that can render linear), should the map hard-code the manual primitive, or should the classifier expose a per-tile override layer so re-briefed tiles can be re-routed without editing the base map?
+- Should the routing metadata live inline in `gen-tile.mjs` output or in a sidecar JSONL the downstream phases already read (aligning with the `iter-r3-A3.md` metrics format)?
+<!-- /ANCHOR:questions -->
+
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- No boilerplate sections
+- Add L2/L3 addendums for complexity
+-->
+
+
+# plan.md
+---
+title: "Implementation Plan: primitive-routing"
+description: "Add a deterministic treatment->primitive map (transcribed from concepts.md §2) plus a classifier in gen-tile.mjs that labels each tile linear-flow or 2d-positioned before generation and routes it down the matching sub-pipeline."
+trigger_phrases:
+  - "primitive routing plan"
+  - "treatment primitive map"
+  - "gen-tile classifier"
+  - "linear-flow 2d-positioned route"
+  - "primitive-routed repair contract"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "anobel.com/005-glm-visual-refinement/002-primitive-routing"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored Level 1 plan for the primitive classifier + routes"
+    next_safe_action: "Transcribe concepts.md §2 into primitive-map.mjs, then wire primitiveFor() into gen-tile.mjs"
+    blockers:
+      - "Depends on phase 001 gate for the linear failure-only repair trigger"
+    key_files:
+      - ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs"
+      - ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/primitive-map.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "plan-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Plan: primitive-routing
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!--
+SELF-CHECK:
+- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
+- Match phases to the stated scope; remove setup theater that does not change the outcome.
+FAILURE MODES:
+- Over-planning, missing rollback, and treating assumptions as dependencies.
+-->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Node.js ESM (`.mjs`) |
+| **Framework** | None — standalone tile-generation harness (`gen-tile.mjs`) calling the Z.AI GLM-5.2 API |
+| **Storage** | Filesystem: `spec-*.json` inputs, HTML outputs, JSONL run metadata |
+| **Testing** | Node assertion over the 45-tile map vs the frozen manual labels; manual run of `gen-tile.mjs` |
+
+### Overview
+Introduce a deterministic primitive classifier upstream of the GLM generation call. A new `primitive-map.mjs` transcribes `concepts.md` §2 into a `(concept, treatment-n) -> primitive` lookup; `gen-tile.mjs` derives each tile's slug, resolves its primitive via `primitiveFor()`, and branches: `linear-flow` keeps the existing normal-flow path, `2d-positioned` is flagged for skeleton-first (phase 004) and bound to the primitive-routed repair contract. The label, route, and repair policy are emitted per tile for downstream phases.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
+
+### Definition of Done
+- [ ] Classifier labels all 45 tiles with a 10/35 split matching the manual labels
+- [ ] `(d)` proof passes (`aangepast-assortiment-4` = `linear-flow`)
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Deterministic lookup + branch, inserted as a pre-generation step in the existing single-file harness. No new service.
+
+### Key Components
+- **`primitive-map.mjs` (new)**: exports `PRIMITIVE_MAP`, a `concept -> { 1..5: 'linear-flow' | '2d-positioned' }` table transcribed from `concepts.md` §2, each cell annotated with the source form. This is where the curated per-tile primitive lives.
+- **`slugFromOut(out)` (in `gen-tile.mjs`)**: derives `<concept>-<n>` from a treatment's `out` path (`dist/<concept>-glm-<n>.html`), giving the `tileId` and the `(concept, n)` lookup key.
+- **`primitiveFor(t)` (in `gen-tile.mjs`)**: returns the primitive for treatment `t` by looking up `PRIMITIVE_MAP[concept][n]`; throws on an unmapped tile so no tile is silently generated unlabeled (REQ-001).
+- **Route branch (in `gen(t)` / the per-treatment loop)**: `linear-flow` -> existing `body`/`contract()` path, `repair=failure-only`; `2d-positioned` -> same generation call but tagged `skeletonFirst=true` + `repair=mandatory-round-2`, the metadata that phase 004 consumes.
+
+### Data Flow
+1. `gen-tile.mjs` loads a `spec-*.json` and iterates `spec.treatments`.
+2. For each treatment `t`: `slugFromOut(t.out)` -> `tileId` + `(concept, n)`.
+3. `primitiveFor(t)` -> `linear-flow` | `2d-positioned` from `PRIMITIVE_MAP`.
+4. Route branch sets `{ route, repair, skeletonFirst }`.
+5. Generation proceeds on the resolved route; `{ tileId, primitive, route, repair, skeletonFirst }` is emitted to the run metadata for phases 003/004/005.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Map (treatment -> primitive)
+- [ ] Transcribe `concepts.md` §2 into `primitive-map.mjs` for all 9 concepts x 5 treatments
+- [ ] Annotate each cell with its source form (e.g. `kwartaalcijfers-4 = "quarter category breakdown / dense chart"`)
+- [ ] Cross-check the 10 `2d-positioned` entries against the `iter-r3-A3.md` frozen stratum
+
+### Phase 2: Classifier + routes
+- [ ] Add `slugFromOut(out)` to `gen-tile.mjs`
+- [ ] Add `primitiveFor(t)` resolving via `PRIMITIVE_MAP`, throwing on unmapped tiles
+- [ ] Add the route branch (linear -> normal path + `failure-only`; 2d -> `skeletonFirst=true` + `mandatory-round-2`)
+- [ ] Emit per-tile routing metadata `{ tileId, primitive, route, repair, skeletonFirst }`
+
+### Phase 3: Verification
+- [ ] Assert the 45-tile classifier output is a 10/35 split equal to the manual labels (0 mismatches)
+- [ ] Assert `aangepast-assortiment-4` = `linear-flow` and `-3`/`-5` = `2d-positioned`
+- [ ] Confirm no generation call runs before a primitive is resolved
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | `primitiveFor()` over all 45 `(concept, n)` keys vs the frozen manual labels | Node `assert` |
+| Unit | `(d)` route-by-form proof (aangepast-assortiment 3/4/5) | Node `assert` |
+| Manual | Dry run of `gen-tile.mjs` printing the resolved `{ primitive, route }` per tile without calling the API | Node CLI |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Phase 001 gate + failure-JSON | Internal | Yellow | Linear `failure-only` repair has no trigger; classifier + routes still land, repair stays inert |
+| `concepts.md` §2 treatment plan | Internal | Green | The map cannot be transcribed; routing is undefined |
+| `gen-tile.mjs` harness | Internal | Green | No insertion point for the classifier |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: The classifier mislabels tiles (split != 10/35) or the route branch breaks the existing linear generation path.
+- **Procedure**:
+  1. Revert the `gen(t)` route branch so all tiles flow down the original single path (delete the `primitiveFor()` call and metadata emission).
+  2. Leave `primitive-map.mjs` in place (pure data, no runtime effect when unused) or remove it.
+  3. Re-run `gen-tile.mjs` on one concept to confirm the original behavior is restored.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!--
+CORE TEMPLATE (~90 lines)
+- Essential technical planning
+- Simple phase structure
+- Add L2/L3 addendums for complexity
+-->
+
+
+=== RESEARCH GROUNDING (root-cause ledger + the angle(s) this phase implements) ===
+## §1 Root-Cause Ledger
+
+Built from STEP-3 forensic viewing of the 5 lowest tiles (accountbeheer-4 35, orders-facturen-4 52,
+goedkeuringssysteem-4 55, oci-4 58, aangepast-assortiment-3 58) and 5 highest (kwartaalcijfers-2 94,
+accountbeheer-5 93, een-factuur-5 93, accountbeheer-1 92, orders-facturen-1 90 / aangepast-assortiment-4 88),
+plus calculator-confirmed contrast and grep-confirmed anti-tells.
+
+| RC-id | Defect (render symptom + tile) | Hard-fact / refinement | Root cause | Consumed by |
+|---|---|---|---|---|
+| **RC-1** | **Vertical overflow — content exceeds the 480px height budget.** 4th matrix row (MS Vesta) spills out of the inner panel and lands ON TOP of the bottom title "Accountbeheer"+desc (accountbeheer-4, **35**); 6th matrix row + legend collide with the title (aangepast-assortiment-3, **58**); the title "Orders & facturen" is clipped clean off the bottom card edge (orders-facturen-4, **52**); panel rows overflow rounded corners (goedkeuringssysteem-1, **62**); CTA buttons bleed past panel (goedkeuringssysteem-3, **66**); panel overlaps title (een-factuur-1, **88**); last row clipped (favorieten-3, **78**). | **Hard-fact** (an overflow/bounding gate catches it; `overflow:true` in 8 audit rows). | **GLM rendering limitation** — lays out N rows/nodes at fixed pixel heights with no constraint solver, never computing cumulative-height ≤ 480px − reserved-title-block; **+ prompt-contract gap** (no per-region height budget, max-row count, or "reserve Npx for the bottom title"). | A1, A3, A5 |
+| **RC-2** | **2D node collisions** — the "Verbonden" pill overlaps the SAP card and truncates "MS V…" (oci-4, **58**); eyebrow overlaps the right flow node "Anobel-catalogus" (oci-2, **78**); branch cards crowd the card edge (goedkeuringssysteem-4, **55**); popover overflows the card's right edge and clips the eyebrow (favorieten-4, **62**). `position:absolute` count: oci-4 = **6**, accountbeheer-4 = 4, goedkeuringssysteem-4 = 4. | **Mixed** — the clip is hard-fact (overflow); node-on-node crowding is **refinement** (no gate computes bounding-box overlap). | **GLM rendering limitation** — direct numerical coordinate placement with no collision detection; external lit: "direct LLM numerical positioning → out-of-boundary errors and object collisions." | A1, A5, A3 |
+| **RC-3** | **Title-at-bottom rule breaks under diagram layouts** — title rendered TOP-left not bottom-left (goedkeuringssysteem-4, **55**, `title_at_bottom:false`); same on aangepast-assortiment-3 (**58**) and orders-facturen-4 (**52**). | **Hard-fact** (title Y-position is checkable). | **Instruction-density mismatch + GLM limitation** — once GLM commits an absolutely-positioned full-card diagram, it drops the "title bottom-left" pin (one of ~20 contract constraints); the diagram claims the whole canvas. | A1, A5 |
+| **RC-4** | **Eyebrow renders ALL-CAPS, wraps, wrong glyph** — "VLOOT-FUNCTIE" uppercase wrapped to 2 lines and crowding a node (goedkeuringssysteem-4); `text-transform:uppe
+
+--- research angle A3 (final rec) ---
+I’ll treat this as research-only, use the deep-research route the prompt names, and verify the cited mechanisms before producing the final A3 contract.SKILL ROUTING: User directed by the deepening/iteration context and the prior “deep research iteration” route, so I’m using `deep-research` and keeping the output research-only.I’m going to fetch the primary sources plus the sibling-cited layout/instruction-density sources, with special attention to whether GLM-5.2 itself documents visual-debugging parity or only GLM-4.6V does.GLM-5.2V at the guessed docs path returned 404. I’m checking the Z.ai documentation index rather than assuming model parity.The docs clarify an important constraint: `glm-5.2` is documented as text-in/text-out, while the vision chat schema lists `glm-5v-turbo`, `glm-4.6v`, and `glm-4.5v`. I’ll fold that into the final as a model-dial guardrail instead of assuming screenshot support on `glm-5.2`.# A3 FINAL recommendation
+
+## The exact change (copy-pasteable: contract block / dial preset / pipeline step / schema)
+
+```md
+### A3 Primitive-Routed Render Repair Contract
+
+Goal: stop treating all 480x480 bento tiles as the same layout task. Route by layout primitive before generation.
+
+Model dial:
+- Code/skeleton model: `glm-5.2`, `thinking.enabled`, `reasoning_effort=max`, `response_format=json_object` for skeleton turns.
+- Visual repair model: `glm-5v-turbo` preferred, `glm-4.6v` fallback.
+- Guardrail: `glm-5.2` is documented as text-only. If the direct API is used, do not send screenshots to `glm-5.2`; send screenshots to `glm-5v-turbo`/`glm-4.6v`, or send `glm-5.2` only structured audit JSON with BBoxes/selectors.
+- Temperature: `0.2` for skeleton and repair. Use higher temperature only for first-pass visual concept generation.
+
+Classify every treatment as:
+- `linear-flow`: stacked cards, KPI bands, rows, timelines, simple left-to-right flows, or layouts expressible with flex/grid and no coordinate diagram.
+- `2d-positioned`: node-link, hub/spoke, matrix, branching approval flow, connector lines, map-like layouts, legends, overlaid pills, popovers, or any design likely to need x/y placement.
+
+Route:
+- `linear-flow`: use current Product V4/M2/D6 path. Render and audit. Run Round-2 only if a gate returns FIX.
+- `2d-positioned`: run skeleton-first before code. Always run one Round-2 visual repair after first render.
+
+480px tile invariant:
+- Canvas: `480x480`.
+- Safe x range: `24..456`.
+- Eyebrow zone: `y=24..56`.
+- Diagram zone: `y=72..324`.
+- Diagram/title gutter: `20px`.
+- Bottom title zone: `x=24..456`, `y=344..456`, height `112px`.
+- No diagram, connector, legend, row, pill, or node may enter `y>=344`.
+- Keep the title zone reserved even if the title is only 1-2 lines.
+
+2D skeleton requirements:
+- Emit JSON only.
+- Every visual element gets a bbox: node, pill, label, connector group, legend, row group, icon group.
+- BBoxes use `{ "x": number, "y": number, "w": number, "h": number }`.
+- Non-connector bboxes must not overlap.
+- Minimum gap between non-connector bboxes: `12px`.
+- Minimum gap between text bboxes and connector strokes: `8px`.
+- Max visible matrix/table rows: `3`; aggregate extras into `+N` or a summary chip.
+- Connector layer must render below text and nodes.
+- Prefer CSS grid/flex inside each bbox. Use absolute positioning only to place the validated diagram blocks within the diagram zone.
+
+Deterministic skeleton validators:
+- `inside_canvas_safe_area`
+- `inside_assigned_zone`
+- `no_nonconnector_overlap`
+- `min_gap_12`
+- `title_zone_reserved`
+- `max_visible_rows_3`
+- `connector_underlay_only`
+- `contrast_exit_0`
+
+Round-2 visual repair input:
+- Reference target/spec.
+- Rendered v1 screenshot.
+- V1 code.
+- V1 skeleton JSON.
+- Audit findings with `RC-id`, bbox, DOM selector if available, visible evidence, and exact repair instruction.
+
+Round-2 instruction:
+"Fix only the named visual gaps. Preserve the concept, palette, copy intent, and bottom-left title rule. Do not add new content. Do not change ap
+
+Return ONLY this markdown (concise, concrete, independent):
+## Verdict
+AGREE | AGREE-WITH-CHANGES | DISAGREE  — confidence 0.00-1.00 — one-sentence why.
+## What GPT-5.5 got right
+## Gaps / risks / errors (specific; cite an RC-id or a concrete failure mode)
+## Strongest improvement or alternative (the single highest-value change you would make; implementable)
+## One thing to test or verify before building this phase

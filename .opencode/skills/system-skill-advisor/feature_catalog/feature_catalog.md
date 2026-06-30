@@ -30,7 +30,7 @@ The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness
 | [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
 | [06--mcp-surface](./06--mcp-surface/) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 4 | Claude and Codex hooks, OpenCode plugin bridge and the `/goal` plugin |
+| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 4 | Claude and OpenCode hooks, OpenCode plugin bridge and the `/goal` plugin |
 | [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
@@ -123,7 +123,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Feature | File |
 | --- | --- |
 | Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/claude-hook.md](./07--hooks-and-plugin/claude-hook.md) |
-| Codex CLI native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/codex-hook.md](./07--hooks-and-plugin/codex-hook.md) |
+| OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/opencode-hook.md](./07--hooks-and-plugin/opencode-hook.md) |
 | OpenCode plugin bridge | [07--hooks-and-plugin/opencode-plugin-bridge.md](./07--hooks-and-plugin/opencode-plugin-bridge.md) |
 | Goal OpenCode plugin (`/goal`, `mk_goal`, `mk_goal_status`) | [07--hooks-and-plugin/goal-opencode-plugin.md](./07--hooks-and-plugin/goal-opencode-plugin.md) |
 

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/004-validator-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/004-validator-cleanup",
+  "parent_id": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "078/004",
+      "validator-cleanup",
+      "graph-metadata-shape",
+      "ROLLOUT_FLAGS",
+      "078/004 plan",
+      "078/004 tasks",
+      "078/004 summary",
+      "mcp-coco-index v1.1.1",
+      "validator shape rules"
+    ],
+    "key_topics": [
+      "078",
+      "004",
+      "validator-cleanup",
+      "graph-metadata-shape",
+      "plan",
+      "tasks",
+      "summary",
+      "mcp-coco-index",
+      "validator",
+      "shape",
+      "rules",
+      "077"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "references/config/environment_variables.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": "references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Registry Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Coverage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.1.0.md",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "proper",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdin",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "077 surfaced 4+ findings in the validator + MCP tool docs cluster",
+    "created_at": "2026-05-05T17:36:54Z",
+    "last_save_at": "2026-06-23T03:49:49.859Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ed1c59f0aa5a9e1a87596de85929339321b567bae5cb0439b8767f115fc2556",
+    "source_doc_hashes": {
+      "spec.md": "f89d2b3d197776e4b25b8230b392bd01887433a0fe288babaf71eab96c1ac2cd",
+      "plan.md": "e8f1c7d4b8f40cc8840f0dcf5d9ad1f9603e77120662912f04d5f09848a0917d",
+      "tasks.md": "d3f975b1bb14c7be5672baf98ed0803a0afd6ce191277291ba4e3ad675912f81",
+      "implementation-summary.md": "c7b200abf97de0d8ac5e5b611b52e2d82ba0c39bafaaa7c34d466b46cc68f1d5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

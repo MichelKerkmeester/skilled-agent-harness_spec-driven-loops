@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/001-agent-context",
+  "description": "`@context` (444 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "context",
+    "444",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.485Z",
+  "specId": "001",
+  "folderSlug": "agent-context",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "048-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

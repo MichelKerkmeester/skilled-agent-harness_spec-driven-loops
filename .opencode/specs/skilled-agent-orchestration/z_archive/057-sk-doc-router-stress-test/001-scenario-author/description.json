@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/001-scenario-author",
+  "description": "sk-doc has a smart router with 11 distinct intents but NO test playbook to verify router behavior across model interpretations",
+  "keywords": [
+    "sk-doc",
+    "smart",
+    "router",
+    "distinct",
+    "intents",
+    "test",
+    "playbook",
+    "verify",
+    "behavior",
+    "across",
+    "model",
+    "interpretations"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.760Z",
+  "specId": "001",
+  "folderSlug": "scenario-author",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "071-sk-doc-router-stress-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "description": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release",
+  "keywords": [
+    "packet",
+    "028",
+    "shipped",
+    "many",
+    "features",
+    "three",
+    "daemon-backed",
+    "system",
+    "skills",
+    "system-spec-kit",
+    "system-code-graph",
+    "system-skill-advisor",
+    "release"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.661Z",
+  "specId": "010",
+  "folderSlug": "catalog-playbook-coverage-audit",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

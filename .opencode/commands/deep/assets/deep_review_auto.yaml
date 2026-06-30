@@ -33,6 +33,8 @@ user_inputs:
   lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop_protocol.md §Lifecycle Branches."
   max_iterations: 7
   convergence_threshold: 0.10
+  stop_policy: "[convergence|max-iterations] - Stop behavior. Default: convergence. max-iterations treats convergence as telemetry until the hard iteration ceiling."
+  config.fanout_lineage_artifact_dir: "[optional internal path] - Fan-out lineage artifact override for command-owned single-lineage execution."
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -131,41 +133,53 @@ workflow:
         - artifact_dir: "Resolved review packet directory for this target"
         - artifact_archive_root: "Resolved local review archive directory for this target"
 
+  step_apply_lifecycle_request:
+    description: "Honor explicit auto-mode restart before fan-out or normal initialization"
+    skip_when: "lineage_mode != 'restart'"
+    instructions: |
+      This is the autonomous equivalent of the confirm-mode restart choice. Run it
+      immediately after artifact resolution and before fan-out so old packet files
+      cannot be merged with fresh lineage outputs. A restart request must never
+      fall back to auto-resume. In auto mode, the explicit restart flag is operator
+      authorization to archive the resolved review packet, so do not ask for a
+      second confirmation. Rollback is to move the timestamped archive back to
+      the packet directory.
+    command: "if [ -d \"{state_paths.packet_dir}\" ]; then mkdir -p \"{state_paths.archive_root}\" && mv \"{state_paths.packet_dir}\" \"{state_paths.archive_root}/{timestamp_slug}\"; fi; mkdir -p \"{state_paths.packet_dir}\""
+    outputs:
+      - archived_path: "{state_paths.archive_root}/{timestamp_slug} when a prior packet existed, else null"
+      - lineage_mode: "restart"
+    on_fail: "Halt with STATUS=FAIL; do not continue as resume or auto."
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode
+      session with a separate lineage directory and session id; it is not the single-executor
+      self-invocation path. fanout-run.cjs owns the stack-only recursion guard for that
+      first-level detached lineage and still blocks recursive same-kind dispatch from inside it.
+      fanout-run.cjs owns native and CLI lineage execution; native is run through the
+      deep/review command surface with config.fanout_lineage_artifact_dir so the LEAF
+      deep-review agent is used only for individual iterations, never as a full-loop
+      sub-agent or pasted phase-running prompt.
       After all lineages complete, jump directly to phase_synthesis — skip phase_init and
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
       step_fanout_spawn_cli:
-        description: "Spawn all CLI lineages in capped worker pool"
-        skip_when: "no entries in config.fanout.executors with kind != 'native'"
+        description: "Spawn all native and CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors"
         command: |
           node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type review \
             --fanout-config-json '{config.fanout_json}' \
-            --base-artifact-dir {artifact_dir}
+            --base-artifact-dir {artifact_dir} \
+            --convergence-threshold {convergence_threshold} \
+            --stop-policy {stop_policy}
         working_directory: "{repo_root}"
-        wait_for_completion: true
-      step_fanout_spawn_native:
-        description: "Dispatch each native lineage as a sequential deep-review sub-agent"
-        skip_when: "no entries in config.fanout.executors with kind == 'native'"
-        for_each: "lineage in expanded native entries of config.fanout"
-        dispatch:
-          agent: deep-review
-          model: opus
-          context: |
-            Execute the deep-review loop with these parameters:
-              spec_folder: {spec_folder}
-              config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}
-              session_id: fanout-{lineage.label}-{fanout_run_id}
-              executor: native
-            Run to convergence. Write all outputs to the override directory.
         wait_for_completion: true
 
   # ═══════════════════════════════════════════════════════════════
@@ -178,7 +192,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, max_iterations, convergence_threshold]
+          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, lineage_mode, max_iterations, convergence_threshold, stop_policy]
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
@@ -265,6 +279,9 @@ workflow:
           invalid-state: "Any partial, missing, or contradictory combination"
         outputs:
           - session_state: "fresh | resume | completed-session | invalid-state"
+        lifecycle_routing:
+          - "If lineage_mode == restart and session_state is resume or completed-session, execute on_restart before on_resume or on_completed_session."
+          - "If lineage_mode == auto or lineage_mode == resume, preserve the existing resume/completed/fresh behavior."
         on_resume:
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
           append_jsonl: '{"type":"event","event":"resumed","mode":"review","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
@@ -303,7 +320,7 @@ workflow:
             4. Find command entry points referencing this skill
             5. Set scope = all discovered files
           agent: |
-            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .codex/agents/, .agents/)
+            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .agents/)
             2. Compare agent definitions for consistency
             3. Set scope = all discovered agent files
           track: |
@@ -371,6 +388,7 @@ workflow:
           maxIterations: "{max_iterations}"
           # Semantic: weighted P0/P1/P2 severity ratio. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
+          stopPolicy: "{stop_policy}"
           stuckThreshold: 2
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
@@ -389,7 +407,7 @@ workflow:
         note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
         # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_create_findings_registry:
@@ -408,6 +426,7 @@ workflow:
           cross_reference_targets: "{cross_reference_targets}"
           max_iterations: "{max_iterations}"
           convergence_threshold: "{convergence_threshold}"
+          stop_policy: "{stop_policy}"
         output: "{state_paths.strategy}"
 
       step_seed_coverage_graph:
@@ -486,6 +505,7 @@ workflow:
           - security_sensitive_fix_scope: "Boolean true when the current review is a rerun after fixes involving security, path disclosure, auth/authz, sandboxing, env precedence, public schemas, persistence, or user-visible error payloads; derive from the latest review report, remediation notes, or planning packet when present, else false."
           - fix_completeness_replay_required_rows: "Count prior active or remediated P0/P1 findings, plus any prior security/path P2 findings, that require closed-gate replay before STOP."
           - fix_completeness_replay_passing_rows: "Count required replay rows marked PASS with file:line or command evidence and producer/consumer/matrix coverage."
+          - stop_policy: "Extract stopPolicy from deep-review-config.json, default 'convergence'. Valid values: convergence, max-iterations."
 
       step_check_pause_sentinel:
         action: "Check for pause sentinel file"
@@ -534,7 +554,8 @@ workflow:
                Skip hard stops (1) and composite convergence (4); proceed directly to step 5 legal-stop decision-tree assembly so blocked_by_json, gate outputs, and the blocked_stop event still populate consistently.
           1. HARD STOPS:
              a) if iteration_count >= max_iterations: set decision = "STOP", stopReason = "maxIterationsReached", hard_stop_reason = "max_iterations_reached", preserve any failed legal-stop gates as terminal evidence, and proceed to synthesis without legal-stop veto
-             b) if all dimensions clean AND required traceability protocols are covered AND p0_count == 0 AND p1_count == 0 AND coverage_age >= 1 AND all quality gates pass (evidence: every P0/P1 has file:line; scope: all findings within target; coverage: all dimensions reviewed): mark hard_stop_reason = "all_dimensions_clean" and promote to STOP candidate
+             b) if stop_policy == "max-iterations" AND iteration_count < max_iterations: do not allow all-dimensions-clean or composite convergence to stop; treat convergence signals as telemetry, set decision = "CONTINUE", and broaden the next review angle.
+             c) if all dimensions clean AND required traceability protocols are covered AND p0_count == 0 AND p1_count == 0 AND coverage_age >= 1 AND all quality gates pass (evidence: every P0/P1 has file:line; scope: all findings within target; coverage: all dimensions reviewed): mark hard_stop_reason = "all_dimensions_clean" and promote to STOP candidate
              Operator stop reasons (`maxIterationsReached`, `manualStop`, `userPaused`, unrecoverable `error`) are terminal ceilings. They do not hide failed gates; they record them in synthesis and stop dispatch.
           2. STUCK DETECTION (threshold 2):
              if stuck_count >= 2: STUCK_RECOVERY
@@ -555,7 +576,8 @@ workflow:
                   stop if coverage >= 1.0 AND required traceability protocols are covered AND coverage_age >= 1
                Redistribute weights for unavailable signals.
                if latest ratio <= 0.05: mark no_progress_threshold_reached
-               if weighted_stop_score >= 0.60: inline STOP becomes a candidate and binary gates must run
+               if stop_policy == "max-iterations" AND iteration_count < max_iterations: convergence votes are telemetry only; set weighted_stop_score for diagnostics, keep decision = "CONTINUE", and choose a broader next focus.
+               else if weighted_stop_score >= 0.60: inline STOP becomes a candidate and binary gates must run
           5. LEGAL-STOP DECISION TREE (review-specific gates; runs whenever step 0, all-dimensions-clean, or the composite vote promotes STOP to a candidate; terminal max-iteration/manual/error stops bypass veto and record failed gates as evidence):
                a) convergenceGate: pass when a hard-stop condition is met OR weighted_stop_score >= 0.60; record score
                b) dimensionCoverageGate: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1; record covered and missing dimensions
@@ -783,51 +805,6 @@ workflow:
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
-        if_cli_codex:
-          command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-
-            import { runAuditedExecutorCommandAsync } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveCodexSandboxMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
-
-            const executor = {
-              kind: 'cli-codex',
-              model: '{config.executor.model}',
-              configDir: '{config.executor.configDir}' === 'null' ? null : '{config.executor.configDir}',
-              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-            };
-
-            process.exit(await runAuditedExecutorCommandAsync({
-              command: 'codex',
-              args: [
-                'exec',
-                '--model',
-                executor.model,
-                '-c',
-                `model_reasoning_effort=${executor.reasoningEffort}`,
-                '-c',
-                `service_tier=${executor.serviceTier}`,
-                '-c',
-                'approval_policy=never',
-                '--sandbox',
-                resolveCodexSandboxMode(executor.sandboxMode),
-                '-',
-              ],
-              cwd: '{repo_root}',
-              timeoutSeconds: executor.timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input: readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
-            }));
-            EOF
-          working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
-          wait_for_completion: true
         if_cli_copilot:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
@@ -937,7 +914,7 @@ workflow:
             - "opencode run takes a positional message; prompt is fed via command substitution"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
@@ -1455,6 +1432,6 @@ reference_only_appendix:
       - { check: "Checklist vs Evidence", source: "[x] items", target: "cited evidence" }
     overlay_protocols:
       - { check: "SKILL.md vs Agent", source: "Skill contracts", target: "agent files" }
-      - { check: "Agent Cross-Runtime", source: ".claude", target: ".codex/.opencode/.agents" }
+      - { check: "Agent Cross-Runtime", source: ".claude", target: ".opencode/.agents" }
       - { check: "Feature Catalog vs Code", source: "Catalog claims", target: "implementation" }
       - { check: "Playbook vs Support", source: "Scenario preconditions", target: "actual support" }

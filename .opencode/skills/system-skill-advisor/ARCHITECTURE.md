@@ -37,7 +37,7 @@ The recommendation surface is `advisor_recommend`. The trust surface is `advisor
 │                                                                 │
 │  ┌──────────────────┐     ┌──────────────────────┐              │
 │  │   CLI Runtimes   │     │      AI Agents       │              │
-│  │ Claude / Codex   │────▶│  (Gate 2 routing)    │              │
+│  │ Claude / OpenCode   │────▶│  (Gate 2 routing)    │              │
 │  │    OpenCode      │     │                      │              │
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
@@ -140,7 +140,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships matching prompt-submit hooks for Claude Code and Codex, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The Claude hook applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to the native advisor subprocess and the remaining CLI fallback window. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
+The advisor ships matching prompt-submit hooks for Claude Code and OpenCode, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The Claude hook applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to the native advisor subprocess and the remaining CLI fallback window. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
 
 ---
 

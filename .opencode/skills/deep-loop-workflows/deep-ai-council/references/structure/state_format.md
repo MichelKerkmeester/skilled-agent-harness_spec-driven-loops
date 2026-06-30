@@ -159,9 +159,9 @@ v1.2 adds audit events to the same append-only JSONL. Each artifact write record
 
 ```jsonl
 {"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_written","path":"ai-council-state.jsonl","bytes":842,"checksum":"sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef","timestamp":"2026-05-08T22:30:00.000Z","seat_id":null,"round_id":"round-001"}
-{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_written","path":"seats/round-001/seat-001-cli-codex.md","bytes":2048,"checksum":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","timestamp":"2026-05-08T22:30:01.000Z","seat_id":"seat-001","round_id":"round-001"}
-{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"rollback","round_id":"round-001","reason":"seat-002 timed out","timestamp":"2026-05-08T22:31:00.000Z","rollback_event_id":"rollback-round-001-20260508T223100Z","supersedes":["seats/round-001/seat-001-cli-codex.md"]}
-{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_superseded","original_path":"seats/round-001/seat-001-cli-codex.md","round_id":"round-001","rollback_event_id":"rollback-round-001-20260508T223100Z","superseded_by":"rollback","timestamp":"2026-05-08T22:31:00.000Z"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_written","path":"seats/round-001/seat-001-cli-opencode.md","bytes":2048,"checksum":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","timestamp":"2026-05-08T22:30:01.000Z","seat_id":"seat-001","round_id":"round-001"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"rollback","round_id":"round-001","reason":"seat-002 timed out","timestamp":"2026-05-08T22:31:00.000Z","rollback_event_id":"rollback-round-001-20260508T223100Z","supersedes":["seats/round-001/seat-001-cli-opencode.md"]}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_superseded","original_path":"seats/round-001/seat-001-cli-opencode.md","round_id":"round-001","rollback_event_id":"rollback-round-001-20260508T223100Z","superseded_by":"rollback","timestamp":"2026-05-08T22:31:00.000Z"}
 ```
 
 v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded` events without error. v1.2 readers use them for completeness summaries, checksum verification, and rollback forensics.

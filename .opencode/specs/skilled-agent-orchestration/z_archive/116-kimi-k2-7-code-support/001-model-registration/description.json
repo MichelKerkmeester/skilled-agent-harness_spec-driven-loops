@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/001-model-registration",
+  "description": "Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated \"Kimi For Coding\" coding-plan provider but is not registered anywhere",
+  "keywords": [
+    "kimi",
+    "code",
+    "live",
+    "slug",
+    "kimi-for-coding",
+    "k2p7",
+    "available",
+    "dedicated",
+    "coding",
+    "coding-plan",
+    "provider",
+    "registered",
+    "anywhere"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.506Z",
+  "specId": "001",
+  "folderSlug": "model-registration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

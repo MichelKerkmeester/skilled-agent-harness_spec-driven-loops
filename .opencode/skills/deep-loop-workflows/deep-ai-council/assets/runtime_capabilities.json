@@ -21,12 +21,6 @@
       "supportsInCliSeats": true,
       "supportsExternalCliCapture": true,
       "notes": "Claude Code seats must stay within one CLI per round."
-    },
-    "codex": {
-      "agentPath": ".codex/agents/ai-council.toml",
-      "supportsInCliSeats": true,
-      "supportsExternalCliCapture": true,
-      "notes": "Codex seats use the active runtime unless a caller explicitly delegates an external round."
     }
   },
   "validation": {

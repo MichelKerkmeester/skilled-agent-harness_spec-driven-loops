@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/012-foundations-motion-audit",
+  "spec_folder": "design/008-sk-design-parent/012-foundations-motion-audit",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design foundations motion audit expansion",
+      "design data viz foundations",
+      "design motion restraint gate",
+      "design audit evidence hardening",
+      "sk-design foundations motion audit plan",
+      "design data viz motion restraint plan",
+      "design audit evidence hardening plan",
+      "sk-design foundations motion audit tasks",
+      "design data viz motion restraint tasks",
+      "design audit evidence hardening tasks",
+      "sk-design foundations motion audit status",
+      "design data viz motion restraint outcome"
+    ],
+    "key_topics": [
+      "sk-design",
+      "foundations",
+      "motion",
+      "audit",
+      "expansion",
+      "design",
+      "data",
+      "viz",
+      "restraint",
+      "gate",
+      "evidence",
+      "hardening"
+    ],
+    "importance_tier": "supporting",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-foundations/references/data_viz.md",
+      ".opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md",
+      ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+      ".opencode/skills/sk-design/design-motion/references/animation_decision_framework.md",
+      ".opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md",
+      ".opencode/skills/sk-design/design-motion/assets/animate_presence_checklist.md",
+      ".opencode/skills/sk-design/design-motion/assets/motion_performance_failure_card.md",
+      ".opencode/skills/sk-design/design-audit/references/evidence_capture.md",
+      ".opencode/skills/sk-design/design-audit/assets/a11y_quick_fixes.md",
+      ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "data_viz.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/data_viz.md",
+        "source": "derived"
+      },
+      {
+        "name": "adaptation_matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "token_starter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+        "source": "derived"
+      },
+      {
+        "name": "animation_decision_framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/references/animation_decision_framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion_pattern_cards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md",
+        "source": "derived"
+      },
+      {
+        "name": "animate_presence_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/animate_presence_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion_performance_failure_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/motion_performance_failure_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence_capture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/evidence_capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "a11y_quick_fixes.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/a11y_quick_fixes.md",
+        "source": "derived"
+      },
+      {
+        "name": "hardening_edge_cases.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Round",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research deliverable in `../009-reference-asset-expansion/research/research.md` ranked the highest-leverage expansions for each sk-design mode and found three substance gaps that remained after the shared register and the interface/audit first-assets landed",
+    "created_at": "2026-06-26T17:41:25.819Z",
+    "last_save_at": "2026-06-26T19:08:39.674Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0940a454a1c4379dc909044a9c6806641f3c1fab4bd8ba3ee959e2f9c6c254fb",
+    "source_doc_hashes": {
+      "spec.md": "863bb42c59447b8cbd10a9b90a0e61e3d8a1dbac7e6cac02e5247f97a9237b3b",
+      "plan.md": "7224919b9f4c19dff9712480d276a610b2faf4e2590a5a42f07ac15fd58bd7f8",
+      "tasks.md": "a41d3248ff4be2ddcf36f2d7f756fdde3a74ecb2da9b765b63eceecac4e0781c",
+      "implementation-summary.md": "3a3f0e96e62a9180d1b1bf68a995f452c950117ecda12880ed0a5ee4b6ea1a99"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

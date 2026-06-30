@@ -1,9 +1,9 @@
 ---
 title: "Cross-AI validation fixes"
-description: "Covers 14 issues found by independent Codex reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations."
+description: "Covers 14 issues found by independent OpenCode reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations."
 trigger_phrases:
   - "cross-ai validation fixes"
-  - "codex independent review fixes"
+  - "opencode independent review fixes"
   - "test false-pass pattern fix"
   - "deletion exception propagation fix"
   - "cross-model code review findings"
@@ -16,7 +16,7 @@ version: 3.6.0.17
 
 ## 1. OVERVIEW
 
-Covers 14 issues found by independent Codex reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations.
+Covers 14 issues found by independent OpenCode reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations.
 
 Independent AI reviewers checked the codebase and found 14 issues that the original review missed. This is like getting a second opinion from a different doctor: each one catches things the others overlooked. The fixes addressed problems ranging from tests that secretly passed when they should have failed to errors that were silently swallowed instead of reported.
 
@@ -24,7 +24,7 @@ Independent AI reviewers checked the codebase and found 14 issues that the origi
 
 ## 2. HOW IT WORKS
 
-Independent reviews by Codex gpt-5.3-codex identified 14 issues missed by the original audit. Key fixes:
+Independent reviews by OpenCode gpt-5.3-opencode identified 14 issues missed by the original audit. Key fixes:
 
 - **CR-P0-1:** Test suite false-pass patterns. 21 silent-return guards converted to `it.skipIf()`, fail-fast imports with throw on required handler/vectorIndex missing.
 - **CR-P1-1:** Deletion exception propagation. Causal edge cleanup errors in single-delete now propagate (previously swallowed).
@@ -37,7 +37,7 @@ Independent reviews by Codex gpt-5.3-codex identified 14 issues missed by the or
 - **CR-P2-3:** Dashboard row limit configurable via `SPECKIT_DASHBOARD_LIMIT` (default 10000) with NaN guard.
 - **CR-P2-5:** `Number.isFinite` guards on evidence gap detector scores.
 
-All 14 items verified through staged review: Codex implemented, Claude final-reviewed.
+All 14 items verified through staged review: OpenCode implemented, Claude final-reviewed.
 
 ---
 

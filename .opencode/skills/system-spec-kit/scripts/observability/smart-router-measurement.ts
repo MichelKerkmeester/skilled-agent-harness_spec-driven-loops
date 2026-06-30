@@ -688,7 +688,7 @@ export async function runMeasurement(options: MeasurementOptions = {}): Promise<
   for (const row of rows) {
     const hook = await buildBrief(row.prompt, {
       workspaceRoot,
-      runtime: 'codex',
+      runtime: 'opencode',
     });
     const top = hook.recommendations[0] ?? null;
     const advisorTopSkill = top?.skill ?? null;

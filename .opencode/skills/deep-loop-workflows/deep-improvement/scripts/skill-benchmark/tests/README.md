@@ -20,7 +20,7 @@ Current state:
 
 - Each suite resolves the lane under test from `SKILL_ROOT` (`resolve(__dirname, '..', '..', '..')`) and reads sibling skills from `REPO_SKILLS` (`resolve(SKILL_ROOT, '..')`), so they are position-stable within this `tests/` dir.
 - `skill-benchmark.vitest.ts` and `playbook-mode.vitest.ts` cover the lane's two modes plus scoring; `sk-code-router-sync.vitest.ts` is a drift guard that reads the live `sk-code` skill on disk.
-- Fixture skills used as routing targets are real in-repo skills (`cli-codex`, `sk-code`, `deep-improvement`); router-less negative cases are built from a throwaway temp `SKILL.md`.
+- Fixture skills used as routing targets are real in-repo skills (`cli-opencode`, `sk-code`, `deep-improvement`); router-less negative cases are built from a throwaway temp `SKILL.md`.
 - End-to-end cases write reports under OS temp dirs and clean them up in `afterAll`.
 
 ---
@@ -40,8 +40,8 @@ Current state:
 | Boundary | Rule |
 |---|---|
 | Imports | Suites `require` lane modules from `skill-benchmark/` and `shared/loop-host.cjs` by absolute join off `SKILL_ROOT`; only Node builtins (`fs`, `os`, `path`, `child_process`) are used otherwise. No production code imports these tests. |
-| Fixtures | Routing targets are real in-repo skills under `REPO_SKILLS` (`cli-codex`, `sk-code`, `deep-improvement`). Negative router-less cases are synthesized as throwaway temp `SKILL.md` dirs, not committed fixtures. |
-| Write policy | Read-only against the repo. Any writes (reports, malformed fixtures, custom playbook dirs) go to OS temp dirs and are removed in `afterAll`; the `sk-code` and `cli-codex` skill trees are read but never mutated. |
+| Fixtures | Routing targets are real in-repo skills under `REPO_SKILLS` (`cli-opencode`, `sk-code`, `deep-improvement`). Negative router-less cases are synthesized as throwaway temp `SKILL.md` dirs, not committed fixtures. |
+| Write policy | Read-only against the repo. Any writes (reports, malformed fixtures, custom playbook dirs) go to OS temp dirs and are removed in `afterAll`; the `sk-code` and `cli-opencode` skill trees are read but never mutated. |
 | Ownership | These suites are co-located with the Lane C lane they cover. The cross-lane index and shared fixtures live in `../../shared/tests/`. |
 
 ---

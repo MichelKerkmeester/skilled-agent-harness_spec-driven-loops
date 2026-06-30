@@ -45,7 +45,7 @@ Improve my sentiment-analysis prompt; verify a failing first framework switches 
 ### Commands
 
 1. `sk-prompt: Improve my prompt for sentiment analysis — if the first framework you try doesn't hit CLEAR 40, switch and try another.`
-2. `agent: @prompt-improver raw_task="Improve a sentiment-analysis prompt and switch frameworks if first attempt fails CLEAR." task_type=analyze target_cli=codex complexity_hint=8 constraints="If first framework fails Test, log first->second framework and restart from Engineer."`
+2. `agent: @prompt-improver raw_task="Improve a sentiment-analysis prompt and switch frameworks if first attempt fails CLEAR." task_type=analyze target_cli=opencode complexity_hint=8 constraints="If first framework fails Test, log first->second framework and restart from Engineer."`
 3. `bash: rg 'Try alternative framework|Framework selected|Test|CLEAR 40' .opencode/skills/sk-prompt/references/depth_framework.md .opencode/skills/sk-prompt/references/patterns_evaluation.md`
 
 ### Expected

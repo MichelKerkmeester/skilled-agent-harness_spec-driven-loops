@@ -62,7 +62,7 @@ Improve doc quality and add flowcharts for the new feature docs.
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: tends to pick top-1 silently — verify it surfaces both.
+- **cli-opencode (gpt-5.5/high/fast)**: tends to pick top-1 silently — verify it surfaces both.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may run both intents in sequence; verify resource loads.
 
 ## Success Criteria

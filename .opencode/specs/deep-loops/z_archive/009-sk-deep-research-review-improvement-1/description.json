@@ -1,0 +1,27 @@
+{
+  "specFolder": "deep-loops/z_archive/009-sk-deep-research-review-improvement-1",
+  "description": "`sk-deep-research` and `sk-deep-review` had sound packet-first loop architectures but implicit contracts: lineage and lifecycle branches were undocume",
+  "keywords": [
+    "sk-deep-research",
+    "sk-deep-review",
+    "sound",
+    "packet-first",
+    "loop",
+    "architectures",
+    "implicit",
+    "contracts",
+    "lineage",
+    "lifecycle",
+    "branches",
+    "undocume"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.117Z",
+  "specId": "009",
+  "folderSlug": "sk-deep-research-review-improvement-1",
+  "parentChain": [
+    "deep-loops",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

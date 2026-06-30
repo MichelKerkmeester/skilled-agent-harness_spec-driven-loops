@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "description": "We have no empirical evidence for which prompt framework yields the best MiMo-V2.5-Pro output when another AI drives it through cli-opencode",
+  "keywords": [
+    "empirical",
+    "evidence",
+    "prompt",
+    "framework",
+    "yields",
+    "best",
+    "mimo-v2",
+    "5-pro",
+    "output",
+    "another",
+    "drives",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.173Z",
+  "specId": "004",
+  "folderSlug": "mimo-prompt-framework-benchmark",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "101-cli-opencode-mimo-pro-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

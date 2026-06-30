@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+  "spec_folder": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
+  "parent_id": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "h2 loop-prevention markers",
+      "review marker header",
+      "review-of-review defense",
+      "108 phase h2-markers plan",
+      "108 phase h2-markers tasks",
+      "108 phase 2 summary",
+      "h2 loop prevention markers",
+      "h4 anti-repetition"
+    ],
+    "key_topics": [
+      "loop-prevention",
+      "markers",
+      "review",
+      "marker",
+      "header",
+      "review-of-review",
+      "defense",
+      "108",
+      "phase",
+      "h2-markers",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Adopt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-tests",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Prevention Markers",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion",
+    "created_at": "2026-05-16T07:00:00Z",
+    "last_save_at": "2026-06-23T03:49:50.342Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:56aab77b8581cb82060a2f7429560bb2034867a1cd72d7600f27a992935abdad",
+    "source_doc_hashes": {
+      "spec.md": "c5abe1af541e8c43eb4ed7e2801449d30ecdae8e21bdfbd8080d6d3ca21c265e",
+      "plan.md": "61569a15240cb81e83c1cad1794d594d34261b4fa64fd09585e1878df45718d7",
+      "tasks.md": "9db0b1216ebceddd17ef777d7a809ee5af0fbb7d65404fd490676953ff007d94",
+      "implementation-summary.md": "6999def15b6e3db3738585ffc7d7b3098b2131c1505bfa2d8e0c2bca9d21e874"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

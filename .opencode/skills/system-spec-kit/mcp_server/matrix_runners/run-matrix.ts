@@ -7,7 +7,6 @@ import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { adapterCliClaudeCode } from './adapter-cli-claude-code.js';
-import { adapterCliCodex } from './adapter-cli-codex.js';
 import { adapterCliOpencode } from './adapter-cli-opencode.js';
 
 import type { AdapterInput, AdapterResult, AdapterStatus } from './adapter-common.js';
@@ -16,7 +15,7 @@ import type { AdapterInput, AdapterResult, AdapterStatus } from './adapter-commo
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-type MatrixExecutor = 'cli-codex' | 'cli-claude-code' | 'cli-opencode';
+type MatrixExecutor = 'cli-claude-code' | 'cli-opencode';
 
 interface MatrixCell {
   readonly featureId: string;
@@ -63,7 +62,6 @@ const RUNNER_DIR = dirname(CURRENT_FILE);
 const MANIFEST_PATH = join(RUNNER_DIR, 'matrix-manifest.json');
 const DEFAULT_CONCURRENCY = 3;
 const EXECUTORS: readonly MatrixExecutor[] = [
-  'cli-codex',
   'cli-claude-code',
   'cli-opencode',
 ];
@@ -129,8 +127,6 @@ function resolvePromptTemplate(template: string): string {
 
 function adapterFor(executor: MatrixExecutor): (input: AdapterInput) => Promise<AdapterResult> {
   switch (executor) {
-    case 'cli-codex':
-      return adapterCliCodex;
     case 'cli-claude-code':
       return adapterCliClaudeCode;
     case 'cli-opencode':

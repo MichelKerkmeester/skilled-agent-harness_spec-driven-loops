@@ -1,0 +1,29 @@
+## Verdict
+
+**AGREE-WITH-CHANGES** — confidence 0.72. The core insight (route by layout primitive, not treatment letter) is correct and the `(d)` donut proof is well-chosen, but the proposal has a critical blind spot: it assumes the 10 static labels are complete and correct, with no feedback loop for tiles that are misclassified or that *should* have been 2D-positioned but weren't.
+
+## What GPT-5.5 got right
+
+- **Primitive key > treatment letter.** The `aangepast-assortiment-4` example (donut = `linear-flow` at 88, while `-3`/`-5` are `2d-positioned` at 58) is the single most important design decision in this phase. Routing by letter would have sent the donut down the skeleton path unnecessarily.
+- **Deterministic map + source annotations.** Transcribing from `concepts.md` §2 with per-entry form annotations makes the map auditable and prevents silent drift — this is the right pattern for a gate that downstream phases consume.
+- **Repair policy per route.** `failure-only` for linear-flow vs `mandatory-round-2` for 2D is correctly asymmetric and locks the spending to where it pays off.
+
+## Gaps / risks / errors
+
+1. **RC-1 (vertical overflow) is NOT a 2D-only problem.** The root-cause ledger shows `accountbeheer-1` (92 — linear-flow winner), `goedkeuringssysteem-1` (62), `een-factuur-1` (88), and `favorieten-3` (78) all overflow. None are in the 10-tile 2D set. The routing sends these through the normal path with `repair=failure-only`, but the phase 001 gate may not catch *all* overflow cases (only 8 of 45 tiles have `overflow:true` in the audit rows). Tiles that overflow but don't trigger a gate FIX get no repair — the ~41pt gap conflates 2D-positioning failures with general spatial failures.
+
+2. **The donut is a 2D-primitive masquerading as linear-flow.** A donut/ring chart computes arc paths, center coordinates, slice angles, and label radial placement — it IS a 2D-positioned diagram mechanically, even if GLM happened to render one correctly. The classification is scoredriven (`88 → linear-flow`) rather than mechanics-driven. If a different concept's donut scores 50 next run, the classifier (which hard-codes donut as linear-flow) silently routes it down the wrong path with no skeleton support.
+
+3. **`primitiveFor()` throws on unmapped tiles = pipeline crash.** Adding a 10th concept or renaming a treatment halts all 45 generations. A default route (with a loud warning and a "triage-me" flag) is safer and costs one line of code. This is especially risky because the map is transcribed from a human-authored doc that can drift.
+
+4. **The skeleton validators are defined in the A3 recommendation but phase 001 owns the gate.** Eight validators (`inside_canvas_safe_area`, `title_zone_reserved`, `max_visible_rows_3`, etc.) appear in the A3 final recommendation as "deterministic skeleton validators," but the spec says phase 001 ships the gate and phase 004 ships the skeleton service. This creates a three-way ownership split where no single phase is accountable for the validator implementations working end-to-end.
+
+5. **No evidence GLM-5.2 can produce valid non-overlapping bbox JSON.** The skeleton requirements demand `{x, y, w, h}` for every element with minimum 12px gaps and zero overlaps — this is a constraint-solving problem disguised as JSON generation. The model-dial guardrail correctly notes GLM-5.2 is text-only, but doesn't address whether it can actually satisfy spatial constraints in JSON form. If the skeleton output needs multiple repair rounds itself, the "one mandatory Round-2" assumption breaks.
+
+## Strongest improvement or alternative
+
+**Add a post-generation reclassification gate.** After each tile renders, run a lightweight check: count `position: absolute` declarations and measure cumulative element heights. If a tile tagged `linear-flow` produces ≥3 absolute-positioned elements or overflows the 480px canvas, flip its classification to `2d-positioned` and re-route it through the skeleton path. This closes the gap between the static map and real rendering behavior, catches the RC-1 overflow tiles that are currently misrouted, and costs ~30 lines of JS. The static map becomes a *prior*, not a prison — the actual render is the arbiter.
+
+## One thing to test or verify before building this phase
+
+**Run the 10 "linear-flow" tiles that scored <70 through a manual `position:absolute` count.** If tiles like `goedkeuringssysteem-1` (62), `goedkeuringssysteem-3` (66), or `favorieten-3` (78) use absolute positioning despite being labeled linear-flow, the 10/35 split is incomplete and the routing boundary is drawn in the wrong place. This takes 10 minutes — open each tile's HTML, search for `position: absolute`, and compare against the classifier's label. If more than 1-2 false negatives exist, the static map needs expansion before any skeleton pipeline code is written.

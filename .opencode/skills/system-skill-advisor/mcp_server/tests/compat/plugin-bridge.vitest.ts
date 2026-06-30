@@ -194,7 +194,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
 
   it('returns a prompt-safe silent fail-open for the shared disabled flag', async () => {
     // Disabled mode now silently fails open (brief is null), aligning
-    // OpenCode with every other runtime (Codex, Claude, Copilot). Callers
+    // OpenCode with every other runtime (OpenCode, Claude, Copilot). Callers
     // still detect the disabled state via metadata.route === 'disabled'. Privacy
     // guard preserved: prompt content must not leak to stdout.
     const bridge = await loadBridge();
@@ -220,14 +220,14 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
     const bridge = await loadBridge();
     const env = bridge.createChildEnv({
       PATH: '/bin',
-      SPECKIT_RUNTIME: 'codex',
+      SPECKIT_RUNTIME: 'opencode',
       SECRET_TOKEN: 'should-not-leak',
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
     });
 
     expect(env).toEqual({
       PATH: '/bin',
-      SPECKIT_RUNTIME: 'codex',
+      SPECKIT_RUNTIME: 'opencode',
     });
   });
 });

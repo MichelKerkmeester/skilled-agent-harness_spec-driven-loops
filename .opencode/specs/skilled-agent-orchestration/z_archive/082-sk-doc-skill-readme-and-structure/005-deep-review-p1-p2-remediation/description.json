@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation",
+  "description": "The 102 phase-parent deep-review (5 iterations, converged at iter 4) returned verdict CONDITIONAL with 0 P0, 7 P1, and 9 P2 findings",
+  "keywords": [
+    "102",
+    "phase-parent",
+    "deep-review",
+    "iterations",
+    "converged",
+    "iter",
+    "returned",
+    "verdict",
+    "conditional",
+    "findings"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.935Z",
+  "specId": "005",
+  "folderSlug": "deep-review-p1-p2-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "082-sk-doc-skill-readme-and-structure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

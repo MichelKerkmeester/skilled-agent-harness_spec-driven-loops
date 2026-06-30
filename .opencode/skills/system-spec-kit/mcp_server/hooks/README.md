@@ -19,7 +19,7 @@ trigger_phrases:
 
 Current state:
 
-- Runtime startup hooks transport compact startup context for Claude and Codex.
+- Runtime startup hooks transport compact startup context for Claude and OpenCode.
 - Prompt-time hooks call the native advisor and inject a brief through each runtime surface.
 - `index.ts` exports helper modules used inside MCP responses and mutation flows.
 - OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in this directory.
@@ -35,7 +35,7 @@ Current state:
 
 ┌────────────────┐      ┌────────────────────┐      ┌────────────────────┐
 │ Claude         │ ───▶ │ runtime hook files │ ───▶ │ startup or prompt   │
-│ Codex          │      │ per runtime        │      │ context transport  │
+│ OpenCode          │      │ per runtime        │      │ context transport  │
 └────────────────┘      └─────────┬──────────┘      └─────────┬──────────┘
                                   │                           │
                                   ▼                           ▼
@@ -60,7 +60,7 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 ```text
 mcp_server/hooks/
 ├── claude/                        # Claude session, prompt, compaction, and transcript hooks
-├── codex/                         # Codex session, prompt, pre-tool, and wrapper hooks
+├── opencode/                         # OpenCode session, prompt, pre-tool, and wrapper hooks
 ├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
 ├── index.ts                       # Public helper exports
 ├── memory-surface.ts              # Context extraction and constitutional cache helpers
@@ -79,7 +79,7 @@ mcp_server/hooks/
 | File or directory | Responsibility |
 |---|---|
 | `claude/` | Claude runtime hook scripts and README. |
-| `codex/` | Codex native hook scripts plus prompt-wrapper fallback. |
+| `opencode/` | OpenCode native hook scripts plus prompt-wrapper fallback. |
 | `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |
@@ -137,7 +137,7 @@ Main flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `claude/session-prime.ts` | Hook script | Claude startup context injection. |
-| `codex/session-start.ts` | Hook script | Codex native session-start injection. |
+| `opencode/session-start.ts` | Hook script | OpenCode native session-start injection. |
 | `*/user-prompt-submit.ts` | Hook script | Prompt-time skill advisor delivery for supported runtimes. |
 | `index.ts` | Module | Public exports for in-process helper functions. |
 

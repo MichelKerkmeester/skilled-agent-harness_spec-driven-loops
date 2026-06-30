@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "design/002-mcp-open-design/005-sk-design-interface-variation-diversity",
+  "description": "`sk-design-interface` grounds a single design in the subject and critiques it against AI-default looks, but it has no defense for the moment it is mos",
+  "keywords": [
+    "sk-design-interface",
+    "grounds",
+    "single",
+    "design",
+    "subject",
+    "critiques",
+    "against",
+    "ai-default",
+    "looks",
+    "defense",
+    "moment",
+    "mos"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.619Z",
+  "specId": "005",
+  "folderSlug": "sk-design-interface-variation-diversity",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

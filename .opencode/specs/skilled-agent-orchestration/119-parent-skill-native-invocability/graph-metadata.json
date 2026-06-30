@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+  "spec_folder": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning",
+    "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism",
+    "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent skill native invocability",
+      "nested packet skill invocation",
+      "invokable hub routing parent skill",
+      "deep-loop parent skill alignment",
+      "parent skill phase parent"
+    ],
+    "key_topics": [
+      "parent",
+      "skill",
+      "native",
+      "invocability",
+      "nested",
+      "packet",
+      "invocation",
+      "invokable",
+      "hub",
+      "routing",
+      "deep-loop",
+      "alignment"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose Coordinate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Files The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for parent-skill native invocability. Coordinates initial planning, the accepted invokable-hub mechanism, and deep-loop alignment while keeping the parent root lean.",
+    "created_at": "2026-06-26T11:31:00.291Z",
+    "last_save_at": "2026-06-30T06:12:45.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6da5178e427c8c143efbfcb45498e3e0e41c74a4130d183156d3db467e2135da",
+    "source_doc_hashes": {
+      "spec.md": "254b17f865a311876dd7b52ae63684faa3a92b21e4e7fd145c4e080a669d7d77"
+    },
+    "last_active_child_id": "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment",
+    "last_active_at": "2026-06-30T00:00:00Z"
+  }
+}

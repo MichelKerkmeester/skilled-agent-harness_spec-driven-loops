@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live guardrail documentation.`
 - Expected execution process: Inspect the command and skill save rules first, then the runtime agent LEAF-only boundary, then the loop protocol and state-format references for reference-only features.
 - Desired user-visible outcome: The user is told what final artifacts are produced, how memory is preserved, and which advanced ideas are not yet part of the live executable contract.
-- Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
+- Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the OpenCode runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 - Pass/fail posture: PASS if finalization and memory save use the supported contract, LEAF-only behavior remains enforced, and reference-only features are clearly documented as non-live; FAIL if any non-live feature is presented as a shipped executable guarantee.
 
 ---
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live guardrail documentation.
 ### Commands
 1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/commands/deep/research.md .opencode/skills/deep-loop-workflows/deep-research/SKILL.md .opencode/skills/deep-loop-workflows/deep-research/README.md`
-2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .codex/agents/deep-research.toml .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
+2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .opencode/agents/deep-research.toml .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
 3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml .opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md`
 ### Expected
-Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
+Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the OpenCode runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 ### Evidence
 Capture the final synthesis/save contract, the runtime LEAF-only prohibition, and the reference-only feature markings in one evidence set.
 ### Pass/Fail
 PASS if finalization and memory save use the supported contract, LEAF-only behavior remains enforced, and reference-only features are clearly documented as non-live; FAIL if any non-live feature is presented as a shipped executable guarantee.
 ### Failure Triage
-Privilege the Codex runtime agent and skill rules for LEAF-only behavior, and the loop/state references for reference-only boundaries.
+Privilege the OpenCode runtime agent and skill rules for LEAF-only behavior, and the loop/state references for reference-only boundaries.
 ---
 
 ## 4. SOURCE FILES
@@ -74,7 +74,7 @@ Privilege the Codex runtime agent and skill rules for LEAF-only behavior, and th
 | `.opencode/commands/deep/research.md` | Synthesis and memory integration contract; use `## 5. OUTPUT FORMATS`, `## 6. MEMORY INTEGRATION`, and `## 10. ERROR HANDLING` |
 | `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Supported save path and reference-only features; use `ANCHOR:rules` |
 | `.opencode/skills/deep-loop-workflows/deep-research/README.md` | User-facing reference-only notes and FAQ; use `ANCHOR:overview`, `ANCHOR:faq`, and `ANCHOR:related-documents` |
-| `.codex/agents/deep-research.toml` | Canonical runtime guardrails; inspect `## 0. ILLEGAL NESTING (HARD BLOCK)` and `SPEC FOLDER PERMISSION` |
+| `.opencode/agents/deep-research.toml` | Canonical runtime guardrails; inspect `## 0. ILLEGAL NESTING (HARD BLOCK)` and `SPEC FOLDER PERMISSION` |
 | `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference-only wave, checkpoint, and direct-mode sections; use `ANCHOR:phase-iteration-loop` and `ANCHOR:wave-orchestration-protocol` |
 | `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reference-only segment model and active events; use `ANCHOR:state-log` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Final synthesis/save steps and workflow events |

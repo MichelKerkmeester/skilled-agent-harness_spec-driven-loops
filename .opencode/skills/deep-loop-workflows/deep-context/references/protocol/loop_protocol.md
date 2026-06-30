@@ -37,7 +37,7 @@ Load this reference when:
 ## 2. ROLES
 
 - **Host** (the `/deep:context` command / orchestrating agent): owns the frontier, dispatch, merge, state writes, convergence, synthesis. The host is the ONLY writer of merged state.
-- **Seat** (one executor in the pool): a READ-ONLY analyzer — native `@deep-context` Task subagent, or a CLI executor (cli-opencode / cli-codex / cli-claude-code). Returns structured findings; writes nothing outside its own artifact dir.
+- **Seat** (one executor in the pool): a READ-ONLY analyzer — native `@deep-context` Task subagent, or a CLI executor (cli-opencode / cli-claude-code). Returns structured findings; writes nothing outside its own artifact dir.
 
 ---
 

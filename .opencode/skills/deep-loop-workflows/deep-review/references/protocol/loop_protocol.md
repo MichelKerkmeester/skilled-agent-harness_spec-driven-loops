@@ -277,7 +277,7 @@ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-review` agent with model Opus.
-- `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
+- `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
 - `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed.
 
 All branches share:
@@ -306,7 +306,7 @@ During iterations focused on the Traceability dimension, the agent executes appl
 | `spec_code` | Compare normative claims in spec.md against shipped implementation | Pass/partial/fail per claim with file:line evidence |
 | `checklist_evidence` | Verify every `[x]` mark in checklist.md has supporting evidence | Pass/partial/fail per checked item |
 | `skill_agent` | Compare SKILL.md contracts against runtime agent definitions | Agreement/drift/disagreement per capability |
-| `agent_cross_runtime` | Compare agent definitions across runtimes (.opencode, .claude, .codex) | Parity/drift/divergence per runtime pair |
+| `agent_cross_runtime` | Compare agent definitions across runtimes (.opencode, .claude, .opencode) | Parity/drift/divergence per runtime pair |
 | `feature_catalog_code` | Compare catalog claims against discoverable implementation | Match/stale/missing per feature |
 | `playbook_capability` | Validate playbook scenarios against executable reality | Executable/needs-update/impossible per scenario |
 
@@ -721,7 +721,7 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 Runtime paths:
 - OpenCode / Copilot: `.opencode/agents/deep-review.md`
 - Claude: `.claude/agents/deep-review.md`
-- Codex: `.codex/agents/deep-review.toml`
+- OpenCode: `.opencode/agents/deep-review.toml`
 
 ---
 
@@ -752,7 +752,7 @@ Non-native executor runs append an `executor` block with model and runtime setti
 
 ### Template And Config Surface
 
-The executor-agnostic iteration prompt lives at `assets/prompt_pack_iteration.md.tmpl`, rendered by `prompt-pack.ts` before dispatch and either injected as the agent's context (native) or piped to `codex exec` stdin (cli-codex). Config is in `assets/deep_review_config.json` under the `executor` key; schema in `deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
+The executor-agnostic iteration prompt lives at `assets/prompt_pack_iteration.md.tmpl`, rendered by `prompt-pack.ts` before dispatch and either injected as the agent's context (native) or piped to `opencode run` stdin (cli-opencode). Config is in `assets/deep_review_config.json` under the `executor` key; schema in `deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
 
 ### What Never Changes Regardless Of Executor Route
 

@@ -28,7 +28,7 @@ interface LaneStats {
 const workspaceRoot = '/tmp/advisor-timing';
 const options = {
   workspaceRoot,
-  runtime: 'codex' as const,
+  runtime: 'opencode' as const,
 };
 
 function freshness(sourceSignature = 'sig-live'): AdvisorFreshnessResult {

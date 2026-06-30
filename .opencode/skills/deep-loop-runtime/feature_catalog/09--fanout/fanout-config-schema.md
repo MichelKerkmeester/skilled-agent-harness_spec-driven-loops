@@ -57,7 +57,7 @@ conditionally spread so records are byte-identical when absent (parity guarantee
 
 | File | Role |
 |---|---|
-| `tests/unit/executor-config.vitest.ts` | 9 fan-out tests added to the existing 27: happy path, unique-label enforcement, expanded-label collision detection, count expansion (label-1…label-N), per-entry kind validation reuse (cli-codex requires model) |
+| `tests/unit/executor-config.vitest.ts` | 9 fan-out tests added to the existing 27: happy path, unique-label enforcement, expanded-label collision detection, count expansion (label-1…label-N), per-entry kind validation reuse (cli-opencode requires model) |
 
 ---
 

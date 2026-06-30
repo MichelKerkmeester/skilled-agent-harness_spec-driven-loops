@@ -29,7 +29,7 @@ Outsourced-agent handback is now implemented and aligned across runtime behavior
 Current behavior is enforced in four slices:
 1. `EXPLICIT_DATA_FILE_LOAD_FAILED` hard-fail in `data-loader.ts` for missing files, invalid JSON and validation failures when `dataFile` is provided explicitly.
 2. `nextSteps` / `next_steps` persistence in normalization and extraction flow, producing `Next: ...`, `Follow-up: ...` and `NEXT_ACTION`.
-3. 4 CLI handback docs (`cli-codex`, `cli-claude-code`, `SKILL.md` + `prompt_templates.md`) documenting redact/scrub guidance, the accepted snake_case fields, the `INSUFFICIENT_CONTEXT_ABORT` and `CONTAMINATION_GATE_ABORT` outcomes, and minimum viable payload guidance.
+3. 4 CLI handback docs (`cli-opencode`, `cli-claude-code`, `SKILL.md` + `prompt_templates.md`) documenting redact/scrub guidance, the accepted snake_case fields, the `INSUFFICIENT_CONTEXT_ABORT` and `CONTAMINATION_GATE_ABORT` outcomes, and minimum viable payload guidance.
 4. File-backed handbacks skip runtime-capture alignment and `QUALITY_GATE_ABORT`, but they still hit the shared sufficiency and contamination gates after normalization.
 
 Status: Implemented. Spec folder `015-outsourced-agent-handback` is complete and supersedes the earlier `013-outsourced-agent-memory` pass.
@@ -57,8 +57,8 @@ Status: Implemented. Spec folder `015-outsourced-agent-handback` is complete and
 
 | File | Type | Role |
 |---|---|---|
-| .opencode/skills/cli-codex/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
-| .opencode/skills/cli-codex/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
+| .opencode/skills/cli-opencode/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
+| .opencode/skills/cli-opencode/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
 | .opencode/skills/cli-claude-code/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
 | .opencode/skills/cli-claude-code/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
 

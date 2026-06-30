@@ -1,0 +1,42 @@
+{
+  "title": "Feature Catalog Standards — Templates & Retroactive Rework",
+  "level": 1,
+  "id": "125-feature-catalog-template-improvements",
+  "status": "complete",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "is_phase_parent": true,
+  "tags": [
+    "sk-doc",
+    "templates",
+    "feature-catalog",
+    "retroactive-rework",
+    "docs"
+  ],
+  "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements",
+  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 cate",
+  "keywords": [
+    "cross-analysis",
+    "370",
+    "feature",
+    "catalog",
+    "files",
+    "across",
+    "three",
+    "skills",
+    "system-spec-kit",
+    "314",
+    "categories",
+    "system-skill-advisor",
+    "cate"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.429Z",
+  "specId": "100",
+  "folderSlug": "feature-catalog-template-improvements",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

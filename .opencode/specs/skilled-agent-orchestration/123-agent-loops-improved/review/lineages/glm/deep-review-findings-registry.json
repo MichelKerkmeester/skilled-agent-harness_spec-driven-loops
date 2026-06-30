@@ -1,0 +1,159 @@
+{
+  "sessionId": "fanout-glm-1782805948784-ypcv5r",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "status": "active",
+      "category": "traceability",
+      "dimension": "traceability",
+      "findingClass": "spec_drift",
+      "title": "Phase 009 spec is marked Complete while retaining scaffold placeholders",
+      "file": ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:50",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:50",
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:25",
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:85",
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:97",
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:121",
+        ".opencode/specs/skilled-agent-orchestration/123-agent-loops-improved/009-loop-systems-remediation/spec.md:191"
+      ],
+      "content_hash": "glm-f001-7a3e9c1b",
+      "firstIteration": 1
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "status": "active",
+      "category": "correctness",
+      "dimension": "correctness",
+      "findingClass": "state_identity_drift",
+      "title": "Fan-out lineage session id is discarded during review init",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1281",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1281",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:788",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:373",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:410",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:415"
+      ],
+      "content_hash": "glm-f002-2b8f4d6e",
+      "firstIteration": 2
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "status": "active",
+      "category": "traceability",
+      "dimension": "traceability",
+      "findingClass": "agent_contract_conflict",
+      "title": "CLI fan-out prompt names the deep-review agent and instructs it to run the full loop",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:806",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:806",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:816",
+        ".opencode/agents/deep-review.md:34",
+        ".opencode/agents/deep-review.md:54",
+        ".opencode/agents/deep-review.md:64"
+      ],
+      "content_hash": "glm-f003-9c1d5e2a",
+      "firstIteration": 3
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "status": "active",
+      "category": "correctness",
+      "dimension": "correctness",
+      "findingClass": "test_contract_drift",
+      "title": "Native-only fan-out test no longer matches the flat-pool implementation",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1174",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1174",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1177",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:323",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:344",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:351"
+      ],
+      "content_hash": "glm-f004-4e7a1b9c",
+      "firstIteration": 4
+    },
+    {
+      "id": "F005",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "status": "active",
+      "category": "maintainability",
+      "dimension": "maintainability",
+      "findingClass": "comment_hygiene_violation",
+      "title": "Review workflow YAML carries ephemeral finding-id comments",
+      "file": ".opencode/commands/deep/assets/deep_review_auto.yaml:395",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:395",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:408"
+      ],
+      "content_hash": "glm-f005-1d6c8a3f",
+      "firstIteration": 5
+    },
+    {
+      "id": "F006",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "status": "active",
+      "category": "security",
+      "dimension": "security",
+      "findingClass": "defense_in_depth_gap",
+      "title": "Lineage write boundary is enforced by prompt text, not a path-scoped sandbox",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1287",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1287",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1291",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1294"
+      ],
+      "content_hash": "glm-f006-8b2e7f41",
+      "firstIteration": 6
+    },
+    {
+      "id": "F007",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "status": "active",
+      "category": "maintainability",
+      "dimension": "maintainability",
+      "findingClass": "recovery_fragility",
+      "title": "Salvage recovery depends on stdout parsing and re-runs the same weak executor on retry",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1382",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1382",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1388",
+        "review/orchestration-status.log:5"
+      ],
+      "content_hash": "glm-f007-5a9d3e2c",
+      "firstIteration": 7
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 2
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "finalVerdict": "CONDITIONAL",
+  "releaseReadinessState": "in-progress"
+}

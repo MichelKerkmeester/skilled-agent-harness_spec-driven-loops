@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/062-test-alignment-validator-esm-migration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/062-test-alignment-validator-esm-migration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "074",
+      "test-alignment-validator-esm-migration",
+      "ESM test fix",
+      "074 plan",
+      "074 tasks",
+      "074 summary"
+    ],
+    "key_topics": [
+      "074",
+      "test-alignment-validator-esm-migration",
+      "esm",
+      "test",
+      "fix",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "073",
+      "deferred",
+      "test-alignment-validator"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.js",
+      "scripts/package.json",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "test-alignment-validator.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-alignment-validator.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.js",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "scripts/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Migrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ESM",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pathToFileURL",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`",
+    "created_at": "2026-05-05T15:20:01Z",
+    "last_save_at": "2026-06-23T03:49:49.811Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dc13d9657b31479bd94a4e8f14367ee1d3b6fd453b5db4e4139443299692422d",
+    "source_doc_hashes": {
+      "spec.md": "0ce950179987238efbe2cd67da3643a83b95fa6b3c5ac459d98731663243eef3",
+      "plan.md": "fe6ecceaa748b33fcd60f8e873da39832769d779dee2481602f277e6c5eef9a4",
+      "tasks.md": "d6415452ac278b5f55bc0a67ab016610e7e21dd79d8042879bedf2046a13be6d",
+      "implementation-summary.md": "e667b8d569ea1607c59e696739416bf877cdeed8e447ce5f1300ec15ae1f17ba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

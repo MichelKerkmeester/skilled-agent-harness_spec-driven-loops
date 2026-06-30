@@ -1,0 +1,229 @@
+You are a senior AI-systems + design-engineering researcher doing iteration 2 (deepening) on angle A6 for improving GLM-5.2 vision-to-code output (maritime-B2B bento tiles; baseline 27/45=60% SHIP; core defect = LAYOUT PRIMITIVE, 2D-positioned diagrams 35-58 vs linear 86-94).
+
+YOUR ROUND-1 FINDING:
+Research-only task; no spec-folder gate is needed because I won’t modify files. I’ll load the deep-research workflow guidance, then fetch each listed source URL and extract implementation-level mechanisms.The GLM docs fetched cleanly. The AdaCoder PDF returned raw PDF bytes and DesignerlyLoop exceeded the fetch size limit, so I’m fetching the corresponding arXiv/HTML views to recover the paper mechanisms while preserving the failed-PDF note.# A6 findings
+
+## What the sources actually say
+
+| Source | Fetch status | Concrete technique + mechanism |
+|---|---:|---|
+| `https://docs.z.ai/guides/vlm/glm-4.6v` | Fetched | GLM-4.6V is positioned for multimodal frontend replication: upload screenshot/design file, model identifies layout/components/colors, then emits HTML/CSS/JS. It also supports visual debugging: user marks a screenshot region and gives a natural-language correction, and the model locates/corrects the corresponding code snippet. It has 128K context and Flash/FlashX variants, including a free/lightweight option. |
+| `https://arxiv.org/pdf/2504.04220` | PDF returned raw bytes via `webfetch`; used arXiv abs + HTML fallback | AdaCoder’s key mechanism is adaptive planning: first let the base model generate directly with no planning, run cheap/scripted tests, then only add a planning agent after failure. Their Phase 2 uses rule-based debugging for superficial errors plus an LLM planner that generates a step-by-step plan from specific error feedback. The paper reports planning can help, but always-on multi-plan systems are expensive; AdaCoder reports +27.69% Pass@1 over MapCoder, 16x faster inference, and 12x lower token use. Citation fallback: `https://arxiv.org/abs/2504.04220`, `https://ar5iv.labs.arxiv.org/html/2504.04220`. |
+| `https://arxiv.org/pdf/2511.15331` | PDF exceeded fetch size; used arXiv abs + HTML fallback | DesignerlyLoop’s mechanism is curated reasoning: separate design intent from LLM reasoning, expose both as editable node-link structures, and let users add/delete/reorder/regenerate reasoning nodes. The system maps a design goal into structured prompts with task, requirements, context, output, and examples; then generates sequential/parallel reasoning chains classified by reasoning mode and design stage. Citation fallback: `https://arxiv.org/abs/2511.15331`, `https://ar5iv.labs.arxiv.org/html/2511.15331`. |
+
+## How it maps to THIS run’s defects
+
+| Defect | Mapping |
+|---|---|
+| RC-1 vertical overflow | AdaCoder says don’t spend planning where native generation works; add planning when direct generation fails. Here, linear tiles already score 86-94, while 2D diagram tiles hit 35-58. The “failure-triggered planning” analogue is GPT-5.5 geometry planning only for diagram-risk tiles. |
+| RC-2 node collisions | DesignerlyLoop supports externalizing reasoning as editable node-link structure. For this project, the missing reasoning object is not prose intent; it is a prevalidated geometry skeleton: explicit boxes, rows, edges, gaps, and reserved title area before GLM renders. |
+| RC-3 title-at-bottom break | The diagram claims the whole 480px canvas. The fix is a skeleton-level reserved zone: GLM must receive a hard `diagramFrame` and `titleFrame`, not a soft prose reminder. |
+| RC-4 uppercase/glyph drift | This is a prompt-contract/detail-loss issue. The skeleton/spec should carry explicit text constraints: Title Case eyebrow, no CSS `text-transform: uppercase`, fixed glyph token, and grep gate. |
+| GLM render-leg question | GLM-4.6V has documented frontend replication and visual debugging strengths, but the source does not show it solves constraint planning/collision avoidance. Test it as a shadow renderer, not as the first fix. |
+
+## Concrete, testable recommendation
+
+Recommended role: **GPT-5.5 as A5 coordinate-skeleton author for 2D-risk tiles only**.
+
+Do not use GPT-5.5 as an all-tile spec author. Do not use GPT-5.5 as the primary co-auditor. Use cheap deterministic gates plus MiniMax for audit; reserve GPT audit only for disagreement cases.
+
+Copy-pasteable pipeline step:
+
+```yaml
+A6_GPT55_PAIRING:
+  register: Product
+  base_dials: V4/M2/D6
+  role: gpt-5.5-skeleton-author
+  trigger:
+    use_gpt55_if:
+      - layoutPrimitive in [matrix, flow, hub, branch, popover, node-diagram]
+      - itemCount > 4 and layout is not linear
+      - brief requires cross-links, pills, overlays, branching, or connector lines
+    skip_gpt55_if:
+      - layoutPrimitive in [linear, stack, simple-kpi, timeline, text-card]
+  cost_rule:
+    max_gpt55_calls_per_tile: 1
+    max_gpt55_tokens_per_2d_tile: 3700
+    max_gpt55_calls_per_incremental_ship: 5
+    no_gpt55_for_linear_tiles: true
+  render_leg:
+    default: glm-5.2
+    shadow_test: glm-4.6v-flash-or-flashx on same skeleton only
+    promote_shadow_renderer_only_if: diagram_score_delta >= 5 and no linear regression
+```
+
+Skeleton prompt contract:
+
+```text
+You are the geometry skeleton author for a 480px-high maritime B2B dashboard bento tile.
+You do not write final UI code. You produce a prevalidated JSON layout skeleton for GLM to render.
+
+Hard canvas contract:
+- Tile height is 480px.
+- Reserve bottom title block: titleFrame = { x: 24, y: 368, w: "calc(100% - 48px)", h: 88 }.
+- Diagram content must fit inside diagramFrame = { x: 24, y: 24, w: "calc(100% - 48px)", h: 312, maxY: 336 }.
+- Keep at least 32px vertical gap between diagramFrame and titleFrame.
+- No node, row, legend, connector label, eyebrow, pill, or popover may exceed diagramFrame.
+- Title and description must render bottom-left inside titleFrame.
+
+Diagram constraints:
+- Minimum bbox gap between nodes: 16px.
+- Minimum bbox gap between text labels and nodes: 12px.
+- Matrix/list diagrams may show at most 4 visible rows.
+- If source has more than 4 rows, collapse the remainder into one "+N more" row.
+- Row height must be 36-42px; row gap must be 6-8px.
+- Legend is optional; include it only if it fits inside diagramFrame.
+- Edge labels and status pills need their own bbox and may not overlap nodes.
+- Avoid CSS text-transform uppercase. Eyebrow must be Title Case.
+- Use the intended anchor glyph only; never substitute a move/cross-arrows glyph.
+- Prefer CSS grid/flex. If absolute positioning is needed, use only the emitted bboxes.
+
+Return JSON only:
+{
+  "layoutPrimitive": "...",
+  "riskFlags": ["RC-1", "RC-2", "RC-3", "RC-4"],
+  "zones": {
+    "diagramFrame": { "x": 24, "y": 24, "w": "calc(100% - 48px)", "h": 312, "maxY": 336 },
+    "titleFrame": { "x": 24, "y": 368, "w": "calc(100% - 48px)", "h": 88 }
+  },
+  "nodes": [
+    { "id": "...", "text": "...", "bbox": { "x": 0, "y": 0, "w": 0, "h": 0 }, "role": "..." }
+  ],
+  "rows": [],
+  "edges": [],
+  "overflowPlan": { "maxVisibleRows": 4, "collapseRemainderAs": "+N more" },
+  "textRules": { "eyebrowCase": "Title Case", "forbidUppercaseTransform": true, "glyph": "anchor" },
+  "validation": {
+    "allContentWithinDiagramFrame": true,
+    "titleAtBottom": true,
+    "overlapPairs": [],
+    "minGapPx": 16,
+    "maxContentY": 0
+  }
+}
+```
+
+Post-render gates:
+
+```text
+Required SHIP gates for A6:
+- overflow == false
+- title_at_bottom == true
+- bbox_overlap_pairs == []
+- diagram.maxY <= 336
+- titleFrame.y >= 368
+- grep("text-transform: uppercase") == 0
+- absolute_position_count <= skeleton.nodes.length + skeleton.edges.length
+- MiniMax score improves or remains >= baseline arm
+```
+
+## Predicted effect + cost
+
+| Arm | Expected lift | Cost profile |
+|---|---:|---|
+| GPT-5.5 skeleton-author for 2D only | Best value. Expected +18 to +28 points on failing diagram tiles; +5 to +8 additional SHIPs over 45 if most current failures are diagram-layout failures. Overall SHIP rate likely moves from 27/45 = 60% to roughly 32-35/45 = 71-78%. | One GPT-5.5 call only on 2D-risk tiles. Target ≤3.7K GPT tokens per 2D tile. If half the subset is 2D, average GPT load is ≤1.85K tokens/tile. |
+| GPT-5.5 per-tile spec author | Lower value. Likely helps RC-4 and some RC-3, but prose specs still leave RC-1/RC-2 geometry underspecified. Linear tiles at 86-94 likely get near-zero lift. | One paid call for every tile, including already-good linear tiles. Worse cost per adopted SHIP. |
+| GPT-5.5 co-auditor | Useful as a tie-breaker, not primary lift. It detects RC-1/RC-2/RC-3 after GLM has already rendered; without a rerender loop it does not improve SHIP rate. | One paid call per audited tile plus possible rerender. Use only when deterministic gates and MiniMax disagree. |
+| GLM-4.6V/Flash render swap | Worth a shadow test because docs claim frontend replication and visual debugging, but no evidence it fixes planning geometry. | Cheap/free variants may reduce render cost, but should not replace GLM-5.2 unless same-skeleton A/B shows ≥5 diagram-score lift with no linear regression. |
+
+Contrast prediction: no meaningful change if palette stays unchanged. The A6 intervention targets layout geometry; contrast exit-0 should remain exit-0 unless the renderer changes colors.
+
+Diagram-vs-linear delta prediction: current gap is roughly 35-58 vs 86-94. Skeleton-author should compress the gap by about half if GLM follows the skeleton, moving weak diagram tiles into the 70s/low 80s while linear tiles stay flat.
+
+## Open questions for the next iteration
+
+- How many of the 45 tiles are truly 2D-risk by the trigger rule? That determines GPT spend.
+- Does GLM-5.2 obey JSON skeletons, or does GPT-5.5 need to output an HTML/CSS scaffold instead of only geometry JSON?
+- What is the actual GPT-5.5 price table in this environment? Use it to convert the `max_gpt55_calls_per_incremental_ship: 5` rule into dollars.
+- Can the audit add a real bbox-overlap gate? RC-2 is currently partly refinement, not fully machine-gated.
+- Does GLM-4.6V Flash/FlashX beat GLM-5.2 on the same skeleton? The docs justify testing, not replacing.
+
+SIBLING ANGLES' ROUND-1 RECOMMENDATIONS (cross-reference; avoid conflicts; note synergies):
+### Sibling A1 recommendation:
+## What the sources actually say
+https://arxiv.org/html/2508.03560v1  
+Technique: reduce layout burden by decomposing layout into bounded regions, then assemble with layout-preserving rules. LaTCoder divides designs into rectangular blocks with recorded bounding boxes, generates code block-by-block, then assembles using either absolute positioning or MLLM-based assembly plus a verifier. Mechanism: smaller bounded regions reduce the model’s need to infer global cumulative layout; recorded BBoxes preserve size/position; verifier uses screenshot similarity, MAE and CLIP. It reports large gains on complex layouts, including DeepSeek-VL2 CC-HARD TreeBLEU +66.67%, Visual Score +12.5%, MAE -38.53%. It also notes direct prompting loses layout even when told “always get the layout right.”
+
+https://arxiv.org/html/2507.11538v1  
+Technique: keep hard constraints few, early, explicit, and mechanically checkable. IFScale shows instruction following degrades as instruction density rises, with exponential/linear/threshold decay patterns, primacy effects favoring earlier instructions, and omission becoming the dominant failure mode under load. Mechanism: models drop constraints rather than partially apply them; placing critical constraints early helps until saturation. For this run, the implication is not “add more prose,” but “replace diffuse prose with a short invariant block and deterministi
+
+### Sibling A2 recommendation:
+## What The Sources Actually Say
+
+**https://www.emergentmind.com/topics/chain-of-rubrics-cor-prompting-framework**
+
+Technique: turn the design prompt into ordered rubric checkpoints, not just prose constraints.
+
+Exact mechanism: CoR decomposes a task into explicit modular rubric items, applies each rubric to the candidate state, emits an intermediate assessment/correction, then aggregates into the final output. It specifically emphasizes explicitness, modularity, iterativity, evaluator/generator roles, rubric-scored criteria, and editable reasoning blocks. The useful implementation pattern is:
+
+```text
+for rubric in rubrics:
+  evaluate candidate against rubric
+  improve candidate from feedback
+  proceed only when rubric is satisfied
+```
+
+Citation: Chain-of-Rubrics describes CoR as “a sequence of explicit, modular rubric items” with “intermediate assessments” and “iterative feedback loops” [SOURCE: https://www.emergentmind.com/topics/chain-of-rubrics-cor-prompting-framework].
+
+**https://arxiv.org/html/2507.04469v1**
+
+Technique: UI/UX LLM prompting works better when prompts are structured, modular, contextual, few-shot, and evaluation-backed.
+
+Exact mechanism: the SLR identifies structured prompting as a design tool, including chain-of-thought-style reasoning, modular prompts aligned to interface elements, and few-shot learning with curated task exemplars. It also calls out a two
+
+### Sibling A3 recommendation:
+## What The Sources Actually Say
+
+All candidate URLs fetched successfully.
+
+| URL | Concrete technique | Exact mechanism to reuse |
+|---|---|---|
+| `https://github.com/madaan/self-refine` | Self-Refine uses iterative `Init` → `Feedback` → `Iterate` prompts, including visual examples where GPT-4V writes diagram code and improves it iteratively. | Split generation into three prompt roles: first draft, critique with localized/actionable findings, then refinement from the critique. The project page also points to visual self-refine examples for diagram code. Citation: GitHub README, “Each task has three different types of prompts: Init, Feedback, Iterate” and “Use GPT4-V to write tikz code for diagrams, and improve them iteratively.” |
+| `https://docs.z.ai/guides/vlm/glm-4.6v` | GLM-4.6V supports visual web-page iteration, direct screenshot/design input, and visual debugging. | Feed the rendered screenshot back to the model, optionally with circled problem areas and natural-language instructions. Citation: GLM docs, “Pixel-Level Replication” from screenshot/design to HTML/CSS/JS, plus “Visual Debugging: Users can circle an area on a generated page screenshot and give natural language instructions… The model automatically locates and corrects the corresponding code snippet.” |
+| `https://arxiv.org/html/2508.03560v1` | LaTCoder replaces monolithic design-to-code with Layout-as-Though
+
+### Sibling A4 recommendation:
+## What the sources actually say
+
+**https://arxiv.org/pdf/2412.16829**
+
+PDF fetch failed: tool response exceeded the 5MB limit. I continued with the same paper via `https://arxiv.org/html/2412.16829` and `https://arxiv.org/abs/2412.16829`.
+
+Technique: split visual critique into separate generator, filter, box-generation, refinement, validation, and text-refinement stages.
+
+Exact mechanism:
+The paper’s pipeline uses six LLM roles: `TextGen`, `TextFilter`, `BoxGen`, `BoxRefine`, `Validation`, and `TextRefine`. It first generates critique text, filters invalid comments, grounds each valid comment with a bounding box, refines the box using coordinate-marked screenshots plus a zoomed-in patch, validates the text/box pair, then routes failures back to either box or text refinement.
+
+Concrete evidence:
+In the UI critique task, each critique is explicitly a text issue plus a bounding box mapped to the relevant screenshot region. The method adds coordinate markers to screenshots for grounding, uses a zoomed-in patch around the candidate bounding box, keeps refinement history, and stops when validation says the pair is correct or max iterations is reached. Few-shot visual prompting plus iterative refinement improved bounding-box IoU from `0.120` zero-shot to `0.357` for Gemini and from `0.233` to `0.345` for GPT-4o. Source: arXiv 2412.16829, sections 3-5.3.
+
+Applicable technique:
+For thi
+
+### Sibling A5 recommendation:
+## What The Sources Actually Say
+
+| Source | Concrete technique | Exact mechanism to reuse |
+|---|---|---|
+| IFScale, `2507.11538v1` | Treat instruction density as a measurable failure mode, not a prompt-writing problem. | It evaluates prompts with 10 to 500 simultaneous constraints and grades adherence deterministically. It reports threshold, linear, and exponential degradation patterns, primacy effects, and omission-dominant failures under high load. Applicable mechanism: reduce independent prose pins and move checks into deterministic validators. Citation: https://arxiv.org/html/2507.11538v1 §3.2, §4.4, §4.6, §4.8 |
+| LaySPA, `2509.16891v2` | Make layout a structured spatial object with explicit rewards. | Layouts are JSON-like element boxes `(x, y, w, h, category)`. Rewards score format validity, boundary adherence, collision, alignment, distribution, spacing, hierarchy, and visual quality. Fine-tuning with spatial rewards reduced collision rate by 36%, improved alignment by 63%, spacing by 73%, distribution by 26%, and format correctness by 14%. Citation: https://arxiv.org/html/2509.16891v2 §2.1-§2.3, §4.1 |
+| GeoSVG-RL, `2605.25447` | Use layout-plan-first generation plus browser-backed geometry verification. | The model first receives/predicts a layout plan containing canvas dimensions, node boxes, text assignments, connector endpoints, anchors, and graph connectivity. T
+
+### Sibling A7 recommendation:
+## What the sources actually say
+
+| URL | Concrete technique + exact mechanism |
+|---|---|
+| https://arxiv.org/html/2508.03560v1 | **LaTCoder / Layout-as-Thought:** split a design into rectangular BBoxes, generate each block independently, then assemble using either absolute-positioned BBoxes or MLLM assembly, with dynamic selection by `0.5 * (1 - MAE/255) + 0.5 * CLIP`. The divider uses OCR to avoid splitting text, 5px grid sampling, min dividing distance `tau=50`, recursive depth 3, and min block area `300x300`. Reported gains include DeepSeek-VL2 on CC-HARD: TreeBLEU `+66.67%`, Visual Score `+12.5%`, MAE `-38.53%`. |
+| https://arxiv.org/html/2507.11538v1 | **IFScale / instruction-density cliff:** models lose constraints as instruction count rises. It identifies threshold, linear, and exponential decay, with primacy effects peaking around `150-200` instructions. Practical mechanism: reduce simultaneous constraints, put critical constraints first, and use deterministic checks because failures become omissions under load. |
+| https://arxiv.org/html/2509.16891v2 | **LaySPA / spatial reward model:** generate layout JSON with `(x,y,w,h,type)`, then score candidates using format correctness, collision, alignment, distribution, spacing, and semantic underlay-text rewards. Collision is computed as `1 - IoU(overlap)`. Reported Qwen-7B + LaySPA: collision rate reduced from `0.692` to `
+
+NOW deepen: resolve your round-1 open questions, webfetch any remaining sources you cited but didn't fully extract, reconcile with the siblings, and produce the FINAL recommendation for angle A6.
+RETURN (markdown):
+# A6 FINAL recommendation
+## The exact change (copy-pasteable: contract block / dial preset / pipeline step / schema)
+## Why it works (mechanism + the RC-ids it fixes + cited sources)
+## Predicted effect (SHIP-rate delta from 60%, diagram-vs-linear delta from ~41pts, contrast exit-0) + cost (tokens/latency)
+## Synergies + conflicts with sibling angles (name them)
+## Confidence + residual risk
+Be implementation-ready.

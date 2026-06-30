@@ -45,7 +45,7 @@ $yaml improve my CI/CD config prompt; verify YAML guide loading appears in the t
 ### Commands
 
 1. `sk-prompt: $yaml improve my CI/CD config prompt — load the YAML format guide and apply YAML-specific structure.`
-2. `agent: @prompt-improver raw_task="Improve a CI/CD config prompt for YAML delivery and apply YAML format-guide rules." task_type=generation target_cli=codex complexity_hint=6 constraints="Load YAML guide; output YAML-specific structure."`
+2. `agent: @prompt-improver raw_task="Improve a CI/CD config prompt for YAML delivery and apply YAML format-guide rules." task_type=generation target_cli=opencode complexity_hint=6 constraints="Load YAML guide; output YAML-specific structure."`
 3. `bash: rg 'ON_DEMAND_KEYWORDS|format guide|format_guide_yaml' .opencode/skills/sk-prompt/SKILL.md .opencode/skills/sk-prompt/assets/format_guide_yaml.md`
 
 ### Expected

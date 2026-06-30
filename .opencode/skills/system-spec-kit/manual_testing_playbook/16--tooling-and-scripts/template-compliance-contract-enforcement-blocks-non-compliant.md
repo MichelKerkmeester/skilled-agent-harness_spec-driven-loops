@@ -56,7 +56,7 @@ Contract-reference excerpts + agent-definition excerpts + strict-validation outp
 
 ### Failure Triage
 
-Inspect `references/validation/template_compliance_contract.md`, `.codex/agents/speckit.toml`, `scripts/spec/validate.sh`, and `scripts/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
+Inspect `references/validation/template_compliance_contract.md`, `.opencode/agents/speckit.toml`, `scripts/spec/validate.sh`, and `scripts/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

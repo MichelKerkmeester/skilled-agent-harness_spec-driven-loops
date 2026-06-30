@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/009-filename-residual-cleanup",
+  "description": "The rename swapped file CONTENT but not a few FILENAMES that embed the old skill name (2 playbook docs + a changelog entry)",
+  "keywords": [
+    "rename",
+    "swapped",
+    "file",
+    "content",
+    "filenames",
+    "embed",
+    "old",
+    "skill",
+    "name",
+    "playbook",
+    "docs",
+    "changelog",
+    "entry"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.457Z",
+  "specId": "009",
+  "folderSlug": "filename-residual-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

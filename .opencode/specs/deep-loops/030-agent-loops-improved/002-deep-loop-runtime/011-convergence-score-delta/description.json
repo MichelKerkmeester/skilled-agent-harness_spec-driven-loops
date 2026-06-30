@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/011-convergence-score-delta",
+  "description": "The convergence signal reports current novelty but carries no signal for whether the loop is actually improving across iterations; a run can generate",
+  "keywords": [
+    "convergence",
+    "signal",
+    "reports",
+    "current",
+    "novelty",
+    "carries",
+    "whether",
+    "loop",
+    "actually",
+    "improving",
+    "across",
+    "iterations",
+    "run",
+    "generate"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.318Z",
+  "specId": "011",
+  "folderSlug": "convergence-score-delta",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

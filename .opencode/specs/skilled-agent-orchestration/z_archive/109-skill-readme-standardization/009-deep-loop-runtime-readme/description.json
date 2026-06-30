@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/009-deep-loop-runtime-readme",
+  "description": "The deep-loop-runtime README is a tabular reference card with no problem-first entry point, and its Key Features table carries stale counts (27 vitest",
+  "keywords": [
+    "deep-loop-runtime",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "key",
+    "features",
+    "table",
+    "carries",
+    "stale",
+    "counts",
+    "vitest"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.337Z",
+  "specId": "009",
+  "folderSlug": "deep-loop-runtime-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

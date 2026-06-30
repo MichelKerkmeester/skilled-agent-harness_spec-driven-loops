@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/005-host-hard-identity-fix5",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/005-host-hard-identity-fix5",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "host hard identity",
+      "fix-5 process isolation",
+      "subagent_type specialization",
+      "deep dispatch ceiling",
+      "plan",
+      "host-hard-identity-fix5",
+      "tasks"
+    ],
+    "key_topics": [
+      "host",
+      "hard",
+      "identity",
+      "fix-5",
+      "process",
+      "isolation",
+      "specialization",
+      "deep",
+      "dispatch",
+      "ceiling",
+      "plan",
+      "host-hard-identity-fix5"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Host Hard Identity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "STATUS: PARKED",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: Host Hard Identity / FIX-5 (PARKED)",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases: [",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": ",",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "] importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Host Hard Identity Escalation Trigger",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Risk Host",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task boundary, auto-load/enforce, reject unknown, stamp provenance) — NOT a frontmatter-only or config-only change (F33)",
+    "created_at": "2026-06-30T15:25:00Z",
+    "last_save_at": "2026-06-30T16:37:31.876Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:cc18a802b343bc8a439ecb843503ab0ba08ac4c7ec4ccbe3fdd03a66ee41c661",
+    "source_doc_hashes": {
+      "spec.md": "9e7d7250e797e847204f9d4c26c06d6ca0b6d3680db97796b9f04c4df77de722",
+      "plan.md": "68254a322f02c59858985db04b118cf831196637ab50c5c87160bbe457d87c49",
+      "tasks.md": "91a3d1b49d5290b2fb8dd68e7318cf371fceff4cfc8c4ffc4b148ccee8500db5",
+      "decision-record.md": "1d1818359aa7568a7ed2c8e3ad5e696a2cf73b7d6b07a1778c27df323011e66f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

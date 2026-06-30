@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/023-cmd-create-feature-catalog",
+  "spec_folder": "skilled-agent-orchestration/z_archive/023-cmd-create-feature-catalog",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create feature catalog command",
+      "/create:feature-catalog",
+      "feature catalog scaffold",
+      "sk-doc feature catalog template",
+      "feature catalog command plan",
+      "/create:feature-catalog plan",
+      "feature catalog command tasks",
+      "/create:feature-catalog tasks",
+      "feature catalog command checklist",
+      "/create:feature-catalog checklist",
+      "feature catalog command adr",
+      "/create:feature-catalog decision record"
+    ],
+    "key_topics": [
+      "create",
+      "feature",
+      "catalog",
+      "command",
+      "feature-catalog",
+      "scaffold",
+      "sk-doc",
+      "template",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/create/feature-catalog.md",
+      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+      ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/README.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_feature_catalog_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_feature_catalog_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there is no dedicated create command that can scaffold it consistently",
+    "created_at": "2026-04-12T09:02:50.173Z",
+    "last_save_at": "2026-06-23T03:49:49.024Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b05fdf40cbc21e172fe83aa004ccced6c508394189a0568b602f8a42405594f1",
+    "source_doc_hashes": {
+      "spec.md": "c1e9e15f854a11ed6a4baca5b580e45fc8c10af1ab6f3b0bab5178f21898c211",
+      "plan.md": "5ead7034ad1fe2903559189f983bfef233923e1ad24124f96df2ed7809826cfc",
+      "tasks.md": "5bc9ef7984a5fab13ae0b226d0a05a7fa4742757e8575e98e27eabfc414bbb0a",
+      "checklist.md": "4ccaee20133a3053e757b1d584c2a8bf185ee15180f2d3b4cd99601dc0ed3147",
+      "decision-record.md": "34a43dbc81b2794ecf536b208b31b5ba92a4ae2a45b87de7e23aa44fb6659073",
+      "implementation-summary.md": "3b467473de16221634a0a0c8bb9c936af56c89e1514bba7f1657c1d225efa603"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

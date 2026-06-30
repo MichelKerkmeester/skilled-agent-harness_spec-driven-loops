@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/019-handoff-card",
+  "description": "A required structured handoff to sk-code recurs in four of five modes under different names, which the 015 synthesis flagged as one need served by one",
+  "keywords": [
+    "required",
+    "structured",
+    "handoff",
+    "sk-code",
+    "recurs",
+    "four",
+    "five",
+    "modes",
+    "different",
+    "names",
+    "015",
+    "synthesis",
+    "flagged",
+    "one",
+    "need",
+    "served"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.805Z",
+  "specId": "019",
+  "folderSlug": "handoff-card",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

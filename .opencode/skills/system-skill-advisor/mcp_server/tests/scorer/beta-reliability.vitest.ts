@@ -236,7 +236,7 @@ describe('decay un-promotion (reversible, audit-tagged)', () => {
 // changes only what it should.
 describe('asymmetric threshold wiring stays default-off', () => {
   function outcome(skillLabel: string, kind: AdvisorHookOutcomeRecord['outcome']): AdvisorHookOutcomeRecord {
-    return { timestamp: '2026-06-10T00:00:00.000Z', runtime: 'codex', outcome: kind, skillLabel };
+    return { timestamp: '2026-06-10T00:00:00.000Z', runtime: 'opencode', outcome: kind, skillLabel };
   }
   const records = [
     ...Array.from({ length: 4 }, () => outcome('alpha', 'accepted')),

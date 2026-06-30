@@ -45,7 +45,7 @@ Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers anoth
 ### Commands
 
 1. `sk-prompt: Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise iterate up to 3 times.`
-2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and enforce CLEAR >= 40 before success." task_type=generation target_cli=codex complexity_hint=8 constraints="Iterate on total CLEAR <40; cap at 3 attempts."`
+2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and enforce CLEAR >= 40 before success." task_type=generation target_cli=opencode complexity_hint=8 constraints="Iterate on total CLEAR <40; cap at 3 attempts."`
 3. `bash: rg '40\\+/50|required|30-39|Max 3 iterations|CLEAR >= 40' .opencode/skills/sk-prompt/references/depth_framework.md .opencode/skills/sk-prompt/references/patterns_evaluation.md`
 
 ### Expected

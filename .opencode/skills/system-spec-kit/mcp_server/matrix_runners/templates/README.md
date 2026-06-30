@@ -10,7 +10,7 @@ trigger_phrases:
 
 # Matrix Runner Templates: F1-F14 Prompt Payloads
 
-> Template-only directory that provides standardized prompt payloads for the system-spec-kit matrix runner, enabling systematic cross-CLI feature validation across 14 key features and 3 CLI executors.
+> Template-only directory that provides standardized prompt payloads for the system-spec-kit matrix runner, enabling systematic cross-CLI feature validation across 14 key features and supported CLI executors.
 
 ---
 
@@ -23,7 +23,7 @@ Current state:
 - 14 markdown files provide the full template surface. No subdirectories or executable code exist.
 - Each template follows the naming pattern `F{N}-{feature-name}.md` and contains the exact pass signal `MATRIX_CELL_PASS F{N}`.
 - Templates are inspection-only payloads. They do not modify files.
-- The matrix covers 14 features across 3 CLI executors (cli-codex, cli-claude-code, cli-opencode), producing up to 39 test cells with selective applicability rules.
+- The matrix covers 14 features across `cli-claude-code` and `cli-opencode`, producing up to 26 test cells with selective applicability rules.
 - Features covered: spec folder workflow (F1), skill advisor (F2), memory search (F3), memory context (F4), code graph query (F5), code graph scan (F6), causal graph (F7), Code Graph (F8), continuity (F9), deep loop (F10), hooks (F11), validators (F12), stress cycle (F13), search W3-W13 (F14).
 - Each template is self-contained and loaded independently by the matrix runner.
 

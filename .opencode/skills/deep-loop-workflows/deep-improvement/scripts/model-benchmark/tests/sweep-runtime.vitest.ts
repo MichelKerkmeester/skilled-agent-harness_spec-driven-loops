@@ -188,7 +188,7 @@ describe('sweep matrix expansion: pure config, one code path', () => {
     // 2 models x 1 (variant singleton) x 1 (framework singleton) x 1 fixture.
     const minimal = {
       mode: 'model-vs-model',
-      models: [{ executor: 'cli-opencode' }, { executor: 'cli-codex' }],
+      models: [{ executor: 'cli-opencode' }, { executor: 'cli-claude-code' }],
     };
     const cells = sweep.expandCells(minimal, [FX_LOWER_BOUND]);
     expect(cells.length).toBe(2);

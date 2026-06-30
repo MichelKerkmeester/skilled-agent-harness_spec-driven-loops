@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
+  "description": "The internal Memory MCP has no off-turn memory reorganization",
+  "keywords": [
+    "internal",
+    "memory",
+    "mcp",
+    "off-turn",
+    "reorganization"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.717Z",
+  "specId": "018",
+  "folderSlug": "sleeptime-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

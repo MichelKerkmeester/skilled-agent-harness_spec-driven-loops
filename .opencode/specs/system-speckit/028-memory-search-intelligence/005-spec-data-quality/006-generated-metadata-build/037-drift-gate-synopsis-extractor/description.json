@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
+  "description": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
+  "keywords": [
+    "spec-kit",
+    "generated",
+    "metadata",
+    "silently",
+    "fall",
+    "sync",
+    "docs",
+    "summarizes",
+    "nothing",
+    "proves",
+    "otherwise"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.883Z",
+  "specId": "037",
+  "folderSlug": "drift-gate-synopsis-extractor",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality",
+    "006-generated-metadata-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

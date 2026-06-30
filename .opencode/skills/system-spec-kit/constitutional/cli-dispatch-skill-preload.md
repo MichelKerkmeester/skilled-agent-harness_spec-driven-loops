@@ -6,10 +6,10 @@ last_confirmed: "2026-06-08"
 last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # CLI binaries
-  - cli-codex
+  - cli-opencode
   - cli-claude-code
   - cli-opencode
-  - codex
+  - opencode
   # Model names that imply a CLI route
   - DeepSeek v4
   - deepseek-v4
@@ -20,7 +20,7 @@ triggerPhrases:
   - gpt-5.5
   - gpt 5.5
   # Dispatch verbs
-  - dispatch codex
+  - dispatch opencode
   - dispatch cli
   - cli dispatch
   - cli prompt
@@ -31,7 +31,7 @@ triggerPhrases:
 
 ## Rule
 
-**Before composing any prompt for `cli-X` (codex / claude-code / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first.**
+**Before composing any prompt for `cli-X` (opencode / claude-code / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first.**
 
 Advisor confidence ≥ 0.8 recommending the skill does NOT waive this. The recommendation is a routing signal; loading the file is the enforcement step.
 
@@ -39,7 +39,7 @@ Advisor confidence ≥ 0.8 recommending the skill does NOT waive this. The recom
 
 Each cli-X skill carries a **model-specific prompt-quality contract** that is NOT in the binary's `--help` output. Skipping skill load = skipping contract = degraded output. Concrete examples:
 
-- **Codex gpt-5.5 high fast** (cli-codex/SKILL.md): requires `service_tier=fast` explicit pass; never relies on global config default.
+- **OpenCode direct-provider models** (cli-opencode/SKILL.md): require the skill's invocation shape and self-dispatch guard.
 - **DeepSeek-backed opencode models** (cli-opencode/SKILL.md): require `--pure` flag because DeepSeek API rejects `:` in MCP tool names.
 
 These rules ONLY live in the skill files. Authoring a dispatch without reading them produces underwhelming output that's hard to diagnose after the fact.
@@ -55,7 +55,7 @@ These rules ONLY live in the skill files. Authoring a dispatch without reading t
 
 ## When this rule does NOT apply
 
-- Read-only `codex --version` / `cli-X --help` calls (no prompt composition involved)
+- Read-only `opencode --version` / `cli-X --help` calls (no prompt composition involved)
 - The current runtime IS the target CLI (self-invocation guard per each cli-X skill's §2 — different concern, but skill load still avoids self-dispatch loop)
 
 ## Failure mode signal

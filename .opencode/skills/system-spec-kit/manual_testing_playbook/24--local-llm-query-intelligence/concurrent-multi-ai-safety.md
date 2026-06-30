@@ -56,10 +56,10 @@ Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
 ### Phase 2 — Launch concurrent reader
 
-External CLI-A (use cli-codex):
+External CLI-A (use cli-opencode):
 
 ```bash
-codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
+opencode run --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
 You are <CLI-A>. Run this tight loop for 30 seconds:
 
   for i in 1..50:
@@ -84,7 +84,7 @@ PROMPT
 External CLI-B (use a different CLI than CLI-A):
 
 ```bash
-codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
+opencode run --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
 You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back (no delay between them). For each i in 1..10:
 
   a. Write `<spec-folder>{i}/research.md`:

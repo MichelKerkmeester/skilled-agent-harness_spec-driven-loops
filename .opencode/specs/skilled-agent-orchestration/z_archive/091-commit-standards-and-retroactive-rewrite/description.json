@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite",
+  "description": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commitmessagetemplate.md`, but t",
+  "keywords": [
+    "sk-git",
+    "skill",
+    "documents",
+    "conventional-commit-style",
+    "standards",
+    "opencode",
+    "skills",
+    "assets",
+    "commitmessagetemplate"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.404Z",
+  "specId": "091",
+  "folderSlug": "commit-standards-and-retroactive-rewrite",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

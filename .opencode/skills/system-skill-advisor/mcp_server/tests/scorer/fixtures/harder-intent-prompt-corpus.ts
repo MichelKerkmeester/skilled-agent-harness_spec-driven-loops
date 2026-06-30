@@ -95,16 +95,16 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
     reason: 'Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work.',
   },
   {
-    prompt: 'Ask Codex with web search to sweep the architecture and report what this repo is missing.',
-    expectedSkill: 'cli-codex',
+    prompt: 'Ask OpenCode with a small-model executor to sweep the architecture and report what this repo is missing.',
+    expectedSkill: 'cli-opencode',
     category: 'lexical-mis-route',
-    reason: 'Codex web search should route to cli-codex, but repo architecture terms can route to sk-code.',
+    reason: 'OpenCode executor language should route to cli-opencode, but repo architecture terms can route to sk-code.',
   },
   {
-    prompt: 'Use a Codex second opinion for a wide-context read before we decide on the design.',
-    expectedSkill: 'cli-codex',
+    prompt: 'Use an OpenCode second opinion for a wide-context read before we decide on the design.',
+    expectedSkill: 'cli-opencode',
     category: 'lexical-mis-route',
-    reason: 'Second-opinion language should route to cli-codex when Codex is named explicitly.',
+    reason: 'Second-opinion language should route to cli-opencode when OpenCode is named explicitly.',
   },
   {
     prompt: 'Run repeated evidence-gathering passes until the question stops producing new information, then synthesize.',

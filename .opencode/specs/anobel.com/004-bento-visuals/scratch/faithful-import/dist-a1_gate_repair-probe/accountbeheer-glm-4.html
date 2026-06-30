@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Accountbeheer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100%; }
+  body {
+    background: #eceef0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Hanken Grotesk', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #0a1a2f;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card {
+    width: 560px;
+    height: 480px;
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 1px 2px rgba(20,28,46,.04), 0 26px 52px -22px rgba(20,28,46,.20);
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .visual {
+    height: 298px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #f6f8fc;
+    color: #053b77;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .eyebrow svg { display: block; }
+  .legend-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #4e4e4e;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .legend-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .legend-dot::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #367e39;
+    flex-shrink: 0;
+  }
+  .legend-dot.alt::before {
+    background: #c9140f;
+  }
+
+  .matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #ececec;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr 0.85fr 0.55fr;
+    padding: 8px 12px;
+    background: #f6f8fc;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #4e4e4e;
+    letter-spacing: 0.01em;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr 0.85fr 0.55fr;
+    align-items: center;
+    padding: 8px 12px;
+    background: #ffffff;
+    font-size: 12.5px;
+  }
+  .row .ship {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0a1a2f;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ship .node {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #cbd0dc;
+    flex-shrink: 0;
+  }
+  .row .account {
+    color: #4e4e4e;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .row .budget {
+    color: #0a1a2f;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #367e39;
+  }
+  .status svg { flex-shrink: 0; }
+  .status.alert { color: #c9140f; }
+
+  .summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 4px;
+    font-size: 12px;
+  }
+  .summary-text {
+    color: #4e4e4e;
+    font-weight: 500;
+  }
+  .summary-text strong {
+    color: #0a1a2f;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .shell-cta {
+    background: transparent;
+    border: 1px solid #cbd0dc;
+    color: #053b77;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .shell-cta:hover {
+    border-color: #06458c;
+    background: #f6f8fc;
+  }
+  .shell-cta svg { display: block; }
+  @media (prefers-reduced-motion: reduce) {
+    .shell-cta { transition: none; }
+  }
+
+  .titleband {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #0a1a2f;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .description {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #4e4e4e;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+  <article class="card">
+    <div class="visual" data-a1-role="visual">
+      <div class="legend">
+        <span class="eyebrow" data-a1-role="eyebrow">
+          <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false">
+            <path d="M12 2L4 5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="12" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          Vloot-functie
+        </span>
+        <span class="legend-right">
+          <span class="legend-dot">Live</span>
+          <span class="legend-dot alt">Overname</span>
+        </span>
+      </div>
+
+      <div class="matrix">
+        <div class="header">
+          <span>Schip / Account</span>
+          <span>Bestellen / Goedkeuren</span>
+          <span>Budget</span>
+          <span>Zien</span>
+        </div>
+
+        <div class="row" data-a1-role="row">
+          <span class="ship"><span class="node" data-a1-role="node"></span>MS Aldebaran</span>
+          <span class="account">C. Visser</span>
+          <span class="budget">€8.500</span>
+          <span>
+            <svg class="status" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+              <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="row" data-a1-role="row">
+          <span class="ship"><span class="node" data-a1-role="node" style="background:#c9140f;"></span>MS Castor</span>
+          <span class="account">Live overgenomen</span>
+          <span class="budget">€12.300</span>
+          <span>
+            <svg class="status alert" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+              <path d="M12 8v5M12 16.5v.2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="row" data-a1-role="row">
+          <span class="ship"><span class="node" data-a1-role="node"></span>MS Pollux</span>
+          <span class="account">J. de Boer</span>
+          <span class="budget">€4.200</span>
+          <span>
+            <svg class="status" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+              <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="summary">
+        <span class="summary-text">
+          <strong>1 actieve overname</strong> · 4 van 4 schepen gekoppeld · Totaal: <strong>€40.000</strong>
+        </span>
+        <button type="button" class="shell-cta" data-a1-role="shell-cta">
+          +1 schip
+          <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden="true" focusable="false">
+            <path d="M8 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="titleband">
+      <h1 class="title" data-a1-role="title">Accountbeheer</h1>
+      <p class="description" data-a1-role="description">Vloot-functie Actieve Sessies &amp; Rechten Maart 2026 Schip / Account Bestellen Goedkeuren Budget Zien MS Aldebaran C. Visser €8.500 MS Castor Live overgenomen €12.300 MS Pollux J. de Boer €4.200 MS Vesta A. Smit €15.000 1 actieve overname • 4 van 4 schepen gekoppeld Totaal: €40.000 Accountbeheer Neem vloot-accounts 'realtime' over en bekijk o.a. hun slimme winkelwagen</p>
+    </div>
+  </article>
+</body>
+</html>

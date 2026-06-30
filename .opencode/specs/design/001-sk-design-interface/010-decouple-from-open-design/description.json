@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "design/001-sk-design-interface/010-decouple-from-open-design",
+  "description": "`sk-design-interface` is vendored from Anthropic's Apache-2.0 `frontend-design` skill and is meant to be reusable standalone, but it accumulated ~101",
+  "keywords": [
+    "sk-design-interface",
+    "vendored",
+    "anthropic",
+    "apache-2",
+    "frontend-design",
+    "skill",
+    "meant",
+    "reusable",
+    "standalone",
+    "accumulated",
+    "101"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.588Z",
+  "specId": "010",
+  "folderSlug": "decouple-from-open-design",
+  "parentChain": [
+    "design",
+    "001-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
+  "description": "sk-code routes to the correct surface (`surfaceMatch` true 3/3 live) but over-loads: the `RESOURCEMAP[intent]` value unions Webflow + Motion.dev + Ope",
+  "keywords": [
+    "sk-code",
+    "routes",
+    "correct",
+    "surface",
+    "surfacematch",
+    "true",
+    "live",
+    "over-loads",
+    "resourcemap",
+    "intent",
+    "value",
+    "unions",
+    "webflow",
+    "motion",
+    "dev",
+    "ope"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.348Z",
+  "specId": "012",
+  "folderSlug": "sk-code-surface-nested-router",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "122-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

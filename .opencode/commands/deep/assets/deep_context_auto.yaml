@@ -441,7 +441,7 @@ workflow:
                 kind != 'native', each carrying its rendered prompt path and the SHARED current_focus.
               dispatch_seat: |
                 The injected per-seat dispatch function issues a SINGLE one-shot read-only CLI analysis
-                call — one `opencode run` / `codex exec` / `claude -p` per seat — NOT a
+                call — one `opencode run` / ` exec` / `claude -p` per seat — NOT a
                 loop. Build each invocation's per-kind flag shape by reusing
                 scripts/fanout-run.cjs#buildLineageCommand(lineage, prompt, sandbox, permission); the
                 difference is the PROMPT (one-shot analysis contract below, NOT buildLoopPrompt's
@@ -473,7 +473,7 @@ workflow:
                 lineage reports afterward (via scripts/fanout-merge.cjs), not per-iteration findings.
             cli_contract:
               - "cli-opencode seats: dispatched with closed stdin (</dev/null) and NO top-level --agent (current opencode rejects --agent general); model id form per cli-opencode SKILL.md."
-              - "cli-codex seats: codex exec --model X -c model_reasoning_effort -c approval_policy=never --sandbox read-only (read-only analyzer)."
+              - "cli-opencode seats:  exec --model X -c model_reasoning_effort -c approval_policy=never --sandbox read-only (read-only analyzer)."
               - "cli-claude-code seats: claude -p ... --model X --permission-mode plan (read-only)."
               - "Self-invocation guards: cli-opencode branches must only run from a non-self dispatch surface; the executor skill SKILL.md §SELF-INVOCATION PROHIBITED contract is authoritative."
               - "Executor-audit recursion guard: spawn each CLI seat with the deep-loop-runtime executor-audit dispatch env (SPECKIT_CLI_DISPATCH_STACK appended with this loop's kind via buildExecutorDispatchEnv) so a seat cannot recursively launch another deep-context loop; record seat provenance per the runtime executor-audit contract."

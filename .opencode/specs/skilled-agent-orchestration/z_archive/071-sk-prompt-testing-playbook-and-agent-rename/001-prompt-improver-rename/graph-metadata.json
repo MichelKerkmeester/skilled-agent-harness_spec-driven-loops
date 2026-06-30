@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "parent_id": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "085 phase 001",
+      "improve-prompt to prompt-improver agent rename",
+      "noun-form agent name",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "085 phase 001 summary",
+      "improve-prompt to prompt-improver complete"
+    ],
+    "key_topics": [
+      "085",
+      "phase",
+      "001",
+      "improve-prompt",
+      "prompt-improver",
+      "agent",
+      "rename",
+      "noun-form",
+      "name",
+      "implementation",
+      "plan",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".codex/config.toml",
+      ".codex/agents/prompt-improver.toml",
+      ".opencode/commands/prompt.md",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".opencode/commands/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".codex/agents/README.txt",
+      ".opencode/specs/descriptions.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`)",
+    "created_at": "2026-05-06T13:19:25Z",
+    "last_save_at": "2026-06-23T03:49:49.947Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48eee915137ca27f2122b0d09c9662af3008baa770fde9833152f1d6ef28b77b",
+    "source_doc_hashes": {
+      "spec.md": "f4349c17a95d9c7d0ec0093f4b15b4c9f6ddbefc1fee4a554815c58ceaa852d0",
+      "plan.md": "e91e3d79edd84a18c04c6b039af4d4ae07ef83130a4798ef858211822876d961",
+      "tasks.md": "9c9a1f97a4885154ad9d73a21113e750443069c9229455da7e0d62fd4438e36e",
+      "implementation-summary.md": "c0d4a5ba7ab0412d2a9aff355b3e98c9c305e309c853f4ce5027b247aa34567a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

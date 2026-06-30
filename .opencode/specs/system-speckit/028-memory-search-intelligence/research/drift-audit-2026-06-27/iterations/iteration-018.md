@@ -1,0 +1,15 @@
+# Iteration 18 — mimo
+
+**Angle:** Tool-name convention drift: .claude uses mcp__mk_code_index__detect_changes (review) vs mcp__mk_code_index__code_graph_query (deep-context) — audit whether these granular forms are deliberate or should be unified
+
+**Findings:** 3
+
+- **[P1] misalignment** `.claude/agents/deep-review.md:4` — tools: line only exposes detect_changes but body declares code_graph_query + code_graph_context as available tools
+  - evidence: Line 4: `tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes` — body line 247: `code_graph_query / code_graph_context: structural navigation and traceability support; never a substitute for file:line evidence` and line 249: `code_graph_query: semantic discovery when exact symbols are unknown; verify hits with direct reads.`
+  - fix: Change tools line to: `tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context` — OR remove the body references to code_graph_query/code_graph_context if they are genuinely not exposed.
+- **[P1] misalignment** `.claude/agents/review.md:4` — tools: line only exposes detect_changes but .opencode/agents/review.md body references it without any code_graph permissions declared
+  - evidence: `.claude/agents/review.md:4`: `tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes`. `.opencode/agents/review.md:6-19`: permission block declares NO code_graph tools and NO detect_changes — yet body line 53: `Use detect_changes with the unified diff` and line 100: `| detect_changes | Structural impact | Review local diffs by feeding the unified diff...`
+  - fix: Add `detect_changes: allow` and `code_graph_query: allow` to `.opencode/agents/review.md` permission block (matching `.opencode/agents/deep-review.md` lines 15-17), OR remove detect_changes references from `.opencode/agents/review.md` body.
+- **[P1] drift** `.claude/agents/context.md:4` — tools: line has zero code_graph tools but body extensively references code_graph_query, code_graph_context, and code_graph_status as available
+  - evidence: Line 4: `tools: Read, Grep, Glob, mcp__mk_spec_memory__*`. Body line 58: `code_graph_query plus Grep | Structure | Semantic and exact discovery`. Body line 65: `code_graph_query | Structure | Graph traversal`. Body line 87: `Semantic concept / how is X implemented / similar patterns -> code_graph_query plus Grep`. Body line 134: `Default Tool Sequence: ... code_graph_query/context for structure -> code_graph_query plus Grep for concepts`. The `.opencode` counterpart declares `mcpServers: code_graph` at lines 20-22 making these tools implicitly available, but `.claude` has no equivalent declaration.
+  - fix: Either add `mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_status` to the `.claude/agents/context.md` tools line, or remove all code_graph references from the body if this agent intentionally cannot access code graph.

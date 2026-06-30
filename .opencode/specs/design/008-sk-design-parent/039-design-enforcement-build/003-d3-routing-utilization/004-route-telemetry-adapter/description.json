@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/004-route-telemetry-adapter",
+  "description": "Hub routing was structurally scorable (the D1 hub-router projection and the D2 gated `hubRoute` stage already landed) but it was unobserved: `routeSki",
+  "keywords": [
+    "hub",
+    "routing",
+    "structurally",
+    "scorable",
+    "hub-router",
+    "projection",
+    "gated",
+    "hubroute",
+    "stage",
+    "already",
+    "landed",
+    "unobserved",
+    "routeski"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.090Z",
+  "specId": "004",
+  "folderSlug": "route-telemetry-adapter",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

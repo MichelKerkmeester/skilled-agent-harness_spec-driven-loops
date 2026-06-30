@@ -75,7 +75,7 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'MK_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
-  'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
+  'SPECKIT_OPENCODE_HOOK_TIMEOUT_MS',
   'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
   'SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST',
   'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
@@ -867,7 +867,7 @@ async function buildBrief(input, dependencies = {}) {
   if (env[DISABLED_ENV] === '1') {
     // Silent fail-open in disabled mode. Previously this branch
     // returned a model-visible `Advisor: disabled by ...` brief, but every
-    // other runtime (Codex, Claude, Copilot) fails open silently when
+    // other runtime (OpenCode, Claude, Copilot) fails open silently when
     // the disabled flag is set. Aligning OpenCode with the dominant pattern
     // removes the runtime-specific surface inconsistency. Callers can still
     // detect the disabled state via `metadata.route === 'disabled'`.

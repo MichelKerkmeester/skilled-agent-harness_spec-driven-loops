@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/002-mcp-open-design",
+  "spec_folder": "design/002-mcp-open-design",
+  "parent_id": null,
+  "children_ids": [
+    "design/002-mcp-open-design/001-terminal-control-and-integration-research",
+    "design/002-mcp-open-design/002-mcp-open-design-skill-build",
+    "design/002-mcp-open-design/003-sk-design-interface-evolution",
+    "design/002-mcp-open-design/004-validation-and-docs",
+    "design/002-mcp-open-design/005-sk-design-interface-variation-diversity",
+    "design/002-mcp-open-design/006-sk-prompt-design-tool-usecases",
+    "design/002-mcp-open-design/007-mcp-open-design-generation-flow-correction",
+    "design/002-mcp-open-design/008-mcp-magicpath-deprecation",
+    "design/002-mcp-open-design/009-design-skill-integration-test",
+    "design/002-mcp-open-design/010-design-playbook-live-run-and-refinement",
+    "design/002-mcp-open-design/011-mandatory-interface-design-coupling",
+    "design/002-mcp-open-design/012-catalog-playbook-realignment",
+    "design/002-mcp-open-design/013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open design terminal control",
+      "mcp-open-design skill",
+      "sk-design-interface open design integration"
+    ],
+    "key_topics": [
+      "open",
+      "design",
+      "terminal",
+      "control",
+      "mcp-open-design",
+      "skill",
+      "sk-design-interface",
+      "integration",
+      "installed",
+      "desktop",
+      "app",
+      "nexu-io"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidate Opus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI",
+    "created_at": "2026-06-14T12:30:00Z",
+    "last_save_at": "2026-06-23T03:49:48.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e08db4edf230cb0d5f0daf66c5f67425cfddb30f6d169970f0a38c2b5ffd72b3",
+    "source_doc_hashes": {
+      "spec.md": "2bc93c273ed99ac17e9920a300c30d75403185b18d5b695b41c30e1a674bc464"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

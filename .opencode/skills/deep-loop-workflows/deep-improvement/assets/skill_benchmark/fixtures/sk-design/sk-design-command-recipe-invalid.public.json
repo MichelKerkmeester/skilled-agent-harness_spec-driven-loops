@@ -3,7 +3,7 @@
   "tier": "T1",
   "public": {
     "prompt": "redesign the ui for a dashboard shell",
-    "runtime": "codex",
+    "runtime": "opencode",
     "mutationBoundary": "routing-only",
     "outputContract": "select the appropriate design workflow without editing files"
   },

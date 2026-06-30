@@ -298,7 +298,7 @@ const NOISE_PATTERNS: readonly RegExp[] = [
   // Copilot CLI lifecycle noise
   /^tool\.execution_start/i,
   /^tool\.execution_complete/i,
-  // Codex CLI reasoning block markers
+  // OpenCode reasoning block markers
   /^reasoning$/i,
   /^<reasoning>.*<\/reasoning>$/s,
 ] as const;

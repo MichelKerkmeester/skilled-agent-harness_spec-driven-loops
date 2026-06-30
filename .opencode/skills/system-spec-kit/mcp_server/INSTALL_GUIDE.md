@@ -18,7 +18,7 @@ I want to install Spec Kit Memory MCP server from .opencode/skills/system-spec-k
 Please help me:
 1. Verify I have Node.js >=20.11.0 and npm installed
 2. Install dependencies and build the MCP server
-3. Configure for my environment (I'm using: [OpenCode / Claude Code / Codex / Copilot / Claude Desktop])
+3. Configure for my environment (I'm using: [OpenCode / Claude Code / OpenCode / Copilot / Claude Desktop])
 4. Verify the installation with a test search query
 5. Handle any native module rebuild issues if they occur
 
@@ -51,7 +51,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│        AI Clients (OpenCode, Claude Code, Codex, Copilot)         │
+│        AI Clients (OpenCode, Claude Code, OpenCode, Copilot)         │
 └─────────────────────────────────┬───────────────────────────────┘
                                   │ MCP stdio
                                   ▼
@@ -145,13 +145,13 @@ Current code-graph behavior is intentionally bounded:
 
 ### Runtime Coverage Note (2026-04-04)
 
-The repo contains checked-in MCP wiring for OpenCode, Claude Code, Codex, and VS Code / Copilot, but startup-context surfacing is not identical across those runtimes:
+The repo contains checked-in MCP wiring for OpenCode, Claude Code, OpenCode, and VS Code / Copilot, but startup-context surfacing is not identical across those runtimes:
 
 | Runtime | Checked-in MCP config | Startup / recovery surface currently visible in repo |
 |---|---|---|
 | OpenCode | `opencode.json` | MCP wiring is checked in. A plugin-based startup digest implementation exists under `.opencode/plugins/`, but repo registration of that plugin is runtime-dependent and not shown in `opencode.json`. |
 | Claude Code | `.claude/mcp.json` | Checked-in SessionStart / PreCompact / Stop hooks in `.claude/settings.local.json`. |
-| Codex | `.codex/config.toml` | Checked-in MCP config plus native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. When those hooks are unavailable, recover via `/spec_kit:resume` or `session_bootstrap`. |
+| OpenCode | `opencode.json` | Checked-in MCP config plus native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. When those hooks are unavailable, recover via `/spec_kit:resume` or `session_bootstrap`. |
 | Copilot | `.vscode/mcp.json` | Checked-in MCP wrapper config plus merged `.claude/settings.local.json` matcher wrappers. Copilot reads the top-level `type` / `bash` / `timeoutSec` fields there, with writer-backed `UserPromptSubmit` and `SessionStart` commands handling managed custom-instructions refresh. |
 
 `Claude Desktop` remains documented here as a generic MCP configuration example, but it is outside the repo-checked runtime set above. Treat this table as repository configuration evidence, not as a blanket claim of live startup parity in every client.
@@ -176,7 +176,7 @@ Phase 1 verifies the required software on your machine.
    # Must show a version number
    ```
 
-3. **MCP client**: OpenCode, Claude Code, Codex CLI, or Copilot MCP/VS Code integration
+3. **MCP client**: OpenCode, Claude Code, OpenCode, or Copilot MCP/VS Code integration
 
 `Claude Desktop` is also shown below as a generic MCP configuration example.
 
@@ -304,11 +304,11 @@ Checklist:
 
 Phase 4 connects Spec Kit Memory to your AI assistant.
 
-The repo ships checked-in configuration examples for OpenCode, Claude Code, Codex, and Copilot. This guide keeps full copy-paste walkthroughs for OpenCode and Claude surfaces, while the checked-in project configs are the canonical setup references for the other repo-backed CLIs:
+The repo ships checked-in configuration examples for OpenCode, Claude Code, OpenCode, and Copilot. This guide keeps full copy-paste walkthroughs for OpenCode and Claude surfaces, while the checked-in project configs are the canonical setup references for the other repo-backed CLIs:
 
 - `opencode.json`
 - `.claude/mcp.json`
-- `.codex/config.toml`
+- `opencode.json`
 - `.vscode/mcp.json`
 
 ### Option A: OpenCode
@@ -340,7 +340,7 @@ The MCP `command` points at the front-proxy launcher (`.opencode/bin/mk-spec-mem
 Paths are relative to the project root. Use absolute paths if your client requires them:
 `/Users/YOUR_USERNAME/path/to/project/.opencode/...`
 
-> **Codex CLI users**: If running in a read-only workspace, point `SPEC_KIT_DB_DIR` at a writable directory outside the repo (for example `~/.speckit/database`). The runtime will derive the provider-specific sqlite filename there automatically. Use `MEMORY_DB_PATH` only for an intentional single-file override. See `.codex/config.toml` for the checked-in configuration shape.
+> **OpenCode users**: If running in a read-only workspace, point `SPEC_KIT_DB_DIR` at a writable directory outside the repo (for example `~/.speckit/database`). The runtime will derive the provider-specific sqlite filename there automatically. Use `MEMORY_DB_PATH` only for an intentional single-file override. See `opencode.json` for the checked-in configuration shape.
 
 ### Option B: Claude Code CLI
 
@@ -911,21 +911,21 @@ sqlite3 "$ACTIVE_DB" \
 # Restart your AI client after indexing completes
 ```
 
-### Example 8: Troubleshooting Codex MCP Startup Failure
+### Example 8: Troubleshooting OpenCode MCP Startup Failure
 
 ```bash
-# Symptom: Codex cannot initialize mk-spec-memory MCP server
+# Symptom: OpenCode cannot initialize mk-spec-memory MCP server
 
 # Check 1: SPEC_KIT_DB_DIR must be writable
-# In .codex/config.toml, verify the directory is writable:
-ls -ld "$(grep SPEC_KIT_DB_DIR .codex/config.toml | cut -d'\"' -f2)"
+# In opencode.json, verify the directory is writable:
+ls -ld "$(grep SPEC_KIT_DB_DIR opencode.json | cut -d'\"' -f2)"
 
 # Check 2: No stdout contamination
 # All MCP server logging must use stderr (console.error).
 # stdout is reserved for MCP JSON-RPC protocol messages.
 
 # Fix: Override SPEC_KIT_DB_DIR to a writable location:
-# In .codex/config.toml, set:
+# In opencode.json, set:
 #   SPEC_KIT_DB_DIR = "/Users/YOUR_USERNAME/.speckit/database"
 ```
 

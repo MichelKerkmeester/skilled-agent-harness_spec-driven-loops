@@ -14,11 +14,11 @@ Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack_de
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: A maintainer wants to harden the executor-config parser to throw early when an invalid model is supplied for cli-codex.
+**Realistic user request**: A maintainer wants to harden the executor-config parser to throw early when an invalid model is supplied for cli-opencode.
 
 **Exact prompt**:
 ```
-Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-codex.
+Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.
 ```
 
 **Expected detection**:

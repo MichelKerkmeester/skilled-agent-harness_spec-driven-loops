@@ -22,7 +22,7 @@ Please help me:
 1. Verify Node.js and npm are installed
 2. Install dependencies and build the advisor MCP server
 3. Confirm the @spec-kit/shared package is linked (a missing link breaks startup with ERR_MODULE_NOT_FOUND)
-4. Register or refresh the mk_skill_advisor server in my runtime (I'm using: [OpenCode / Claude Code / Codex])
+4. Register or refresh the mk_skill_advisor server in my runtime (I'm using: [OpenCode / Claude Code / OpenCode])
 5. Verify advisor_status and advisor_recommend respond
 
 Guide me through each step with the exact commands I need to run.
@@ -131,7 +131,7 @@ Prompt-time routing is available across runtime adapters:
 | Runtime | Hook Surface |
 | --- | --- |
 | Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
-| Codex CLI | `.opencode/skills/system-skill-advisor/hooks/codex/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/codex-hook-policy.ts` |
+| OpenCode | `.opencode/skills/system-skill-advisor/hooks/opencode/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/opencode-hook-policy.ts` |
 | OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` |
 
 The OpenCode bridge must use the stable package entrypoint:
@@ -193,7 +193,7 @@ Use rollback only long enough to diagnose or recover the native path.
 
 | Control | Scope |
 | --- | --- |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disables prompt-time advisor surfaces and native recommendations across Claude, Codex, OpenCode hooks. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disables prompt-time advisor surfaces and native recommendations across Claude, OpenCode, OpenCode hooks. |
 | `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Forces Python fallback in shim or plugin bridge diagnostics. |
 | `--force-local` | CLI-only Python scorer path. |
 | `--force-native` | CLI-only native-required path. |
@@ -393,6 +393,6 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | --- | --- |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
-| [Hook reference](./references/hooks/skill_advisor_hook.md) | Claude, Copilot, Codex and OpenCode plugin hook contract. |
+| [Hook reference](./references/hooks/skill_advisor_hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |

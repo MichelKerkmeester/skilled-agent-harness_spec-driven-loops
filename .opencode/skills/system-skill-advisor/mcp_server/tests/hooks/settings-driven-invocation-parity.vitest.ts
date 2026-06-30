@@ -46,7 +46,7 @@
 // ALWAYS-ON JSON SHAPE
 // --------------------
 // The JSON shape contract is runtime-independent: CI and autonomous runs on
-// Codex / Copilot must still assert the committed `.claude/settings.json`
+// OpenCode / Copilot must still assert the committed `.claude/settings.json`
 // contents. Only true Claude interpreter behavior belongs behind a Claude
 // runtime guard; this suite intentionally stays at the checked-in JSON
 // boundary. The committed commands use the portable form
@@ -180,11 +180,11 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect((hook?.command ?? '').length).toBeGreaterThan(0);
         });
 
-        it('command points at the claude/ adapter, NOT copilot/codex', () => {
+        it('command points at the claude/ adapter, NOT copilot/opencode', () => {
           const cmd = getHook()?.command ?? '';
           expect(cmd).toContain(EXPECTED_HANDLER_FRAGMENTS[event]);
           expect(cmd).not.toContain('hooks/copilot/');
-          expect(cmd).not.toContain('hooks/codex/');
+          expect(cmd).not.toContain('hooks/opencode/');
         });
 
         it('command is anchored to the portable project dir and invokes the claude adapter via node', () => {

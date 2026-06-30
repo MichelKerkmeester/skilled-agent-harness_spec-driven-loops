@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "design/005-sk-design-interface-rename",
+  "description": "The interface-design judgment skill is named `sk-interface-design`, which predates the `sk-design-` family now forming around the new `sk-design-md-ge",
+  "keywords": [
+    "interface-design",
+    "judgment",
+    "skill",
+    "named",
+    "sk-interface-design",
+    "predates",
+    "sk-design",
+    "family",
+    "now",
+    "forming",
+    "around",
+    "new",
+    "sk-design-md-ge"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.862Z",
+  "specId": "005",
+  "folderSlug": "sk-design-interface-rename",
+  "parentChain": [
+    "design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -23,7 +23,7 @@ vi.mock('../../lib/subprocess.js', () => ({
 const workspaceRoot = '/tmp/advisor-brief-producer';
 const options = {
   workspaceRoot,
-  runtime: 'codex' as const,
+  runtime: 'opencode' as const,
 };
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // Appended in full after the capped advisor portion (lib/render.ts), so every

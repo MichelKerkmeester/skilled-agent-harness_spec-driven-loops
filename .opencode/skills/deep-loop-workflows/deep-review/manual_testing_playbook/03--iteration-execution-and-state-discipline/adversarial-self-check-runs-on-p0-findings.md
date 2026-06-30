@@ -47,7 +47,7 @@ Validate that deep-review runs adversarial self-checks on P0 findings before acc
 ### Commands
 1. `bash: rg -n 'adversarial\|self.check\|Hunter\|Skeptic\|Referee\|Rule 10\|re-read.*P0' .opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
 2. `bash: rg -n 'adversarial\|self.check\|P0.*check\|claim_adjudication' .opencode/commands/deep/assets/deep_review_auto.yaml`
-3. `bash: rg -n 'adversarial\|self.check\|P0\|Hunter\|Skeptic\|Referee' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .codex/agents/deep-review.toml .claude/agents/deep-review.md`
+3. `bash: rg -n 'adversarial\|self.check\|P0\|Hunter\|Skeptic\|Referee' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/agents/deep-review.toml .claude/agents/deep-review.md`
 ### Expected
 Rule 10 in SKILL.md mandates adversarial self-check. Iteration checklist includes it as step 5. YAML has claim adjudication. Agent definitions describe the protocol.
 ### Evidence
@@ -74,7 +74,7 @@ If the agent definition lacks explicit Hunter/Skeptic/Referee roles, check wheth
 | `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Rule 10: adversarial self-check mandate, use `ANCHOR:rules` |
 | `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Post-iteration claim adjudication, inspect `step_post_iteration_claim_adjudication` |
-| `.codex/agents/deep-review.toml` | Codex runtime agent, inspect adversarial self-check protocol |
+| `.opencode/agents/deep-review.toml` | OpenCode runtime agent, inspect adversarial self-check protocol |
 | `.claude/agents/deep-review.md` | Claude runtime agent, inspect adversarial self-check protocol |
 
 ---

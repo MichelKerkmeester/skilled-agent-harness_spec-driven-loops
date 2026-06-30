@@ -1,0 +1,62 @@
+You are an adversarial spec-review agent performing iteration 8/10 of a deep review of a Spec-Kit planning packet. You are MODEL MiniMax-M3. Frame your review as TIDD-EC with dense pre-planning: Task, Instructions, Do/Don't, Examples, Context. List the exact checks you will run BEFORE running them, then execute each.
+
+REVIEW TARGET (read every file; paths are relative to repo root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, which is your --dir):
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/description.json
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/graph-metadata.json
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/spec.md
+  - .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md
+
+This packet is child "002-deep-loop-alignment" of phase-parent 155-parent-skill-native-invocability. You MAY also read the parent docs (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/spec.md, graph-metadata.json) and any referenced implementation files under .opencode/skills/ to VERIFY claims.
+
+THIS ITERATION'S DIMENSION — SECURITY:
+security: SECURITY / safety contracts: tool-permission widening, secrets, path handling, and whether NFR security claims (e.g. "no mechanism widens a tool-permission contract") are actually upheld by the described change. For a docs packet this is usually light; report only real issues, do not invent.
+
+FINDINGS ALREADY RECORDED IN EARLIER ITERATIONS (do NOT repeat these; either add NEW distinct findings, or if you find decisive new evidence about one, note it as a refinement):
+- [P0/correctness] implementation-summary.md: 'R5 validated' (line 45) contradicts 'Not run' (line 89) on the same page (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:lines 45 vs 89)
+- [P0/correctness] implementation-summary.md: 'EXECUTED' (line 54) contradicts 'No source tree changed' (line 57) and 'nothing was implemented' (line 65) (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:lines 54, 57, 65)
+- [P0/correctness] checklist.md: Verification Summary says 0/11 P0 verified but ALL individual items are [x] (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md:lines 136-139 (Summary) vs lines 60-209 (items))
+- [P1/correctness] tasks.md: completion_pct YAML = 0 but ALL 17 tasks and ALL 3 completion criteria marked [x] (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md:YAML line 23 vs task/criteria checkboxes lines 57-103)
+- [P1/correctness] Cross-document completion state split: tasks.md [x] vs spec.md 'Draft'/0% vs plan.md phases unchecked (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/:tasks.md T001-T017 [x]; spec.md line 65 'Status: Draft' + YAML completion_pct:0; plan.md lines 123-133 all phases '[ ]')
+- [P1/correctness] implementation-summary.md YAML recent_action says 'Executed' but completion_pct is still 0 (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:lines 14 vs 25)
+- [P1/correctness] decision-record.md ADR-001 status 'Accepted (executed)' contradicts own Implementation section (002-deep-loop-alignment/decision-record.md:line 44 vs line 107)
+- [P1/correctness] ADR-001 status contradicts between decision-record.md and plan.md (002-deep-loop-alignment/decision-record.md + plan.md:decision-record.md:44 vs plan.md:294)
+- [P1/security] Hub allowed-tools union conflicts with NFR-S01 no-widening claim (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/spec.md:line 165 (NFR-S01))
+- [P1/traceability] Tasks T010–T017 marked both [B] (Blocked) and [x] (Completed) — impossible task state (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md:lines 75, 76, 77, 78, 88, 89, 90, 91 (also definition lines 40-43))
+- [P1/traceability] tasks.md narrative asserts pending state while every checkbox asserts Completed (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md:line 47 vs lines 57-91, 99-102)
+- [P1/traceability] ADR-002 status claims acceptance but Decision text is conditional and Stage-4-gated (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md:line 122 (Status) vs line 139 (Decision))
+- [P1/traceability] plan.md 'L3 ARCHITECTURE DECISION RECORD' section only carries ADR-001; ADR-002 and ADR-003 are absent (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md:lines 290-305)
+- [P1/traceability] spec.md Branch field points to an unrelated packet (028), not this packet's lineage (155) (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/spec.md:line 67 (also graph-metadata.json:18 lastUpdated drift unrelated))
+- [P1/traceability] HVR_REFERENCE path `.opencode/skills/sk-doc/references/hvr_rules.md` is dead in all 6 packet docs (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/{spec.md:38,plan.md:33,tasks.md:31,decision-record.md:33,checklist.md:32,implementation-summary.md:35}:all 6 docs each carry the identical comment on the line indicated)
+- [P1/traceability] Three different statuses for the same packet across graph-metadata, parent phase map, and implementation-summary (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/{graph-metadata.json:42, spec.md:65, implementation-summary.md:14} + parent spec.md:50:graph-metadata.json:42 '"status": "draft"' vs spec.md:65 'Status: Draft' vs implementation-summary.md:14 'Executed: rename + invokable-hub routing done' vs parent .opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/spec.md:50 'Planned (gated)')
+- [P1/traceability] plan.md Definition of Ready and Definition of Done are all unchecked while recent_action claims 'Executed' (.opencode/specs/skilled-agent-ochestration/155-parent-skill-native-invocability/002-deep-loop-alignment/plan.md:lines 65-73)
+- [P1/traceability] ADR-003 status 'Accepted (executed)' claims completion but no feature-catalog removal occurred (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md:line 199 (ADR-003 Status) vs lines 260-265 (Implementation) vs plan.md:132)
+- [P1/traceability] implementation-summary.md internally contradicts itself on R3/ADR-003 outcome (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:line 54 vs line 78)
+- [P1/traceability] deep-loop-workflows graph-metadata.json carries stale pre-rename source_docs path that does not resolve (.opencode/skills/deep-loop-workflows/graph-metadata.json:line 160 (source_docs) vs line 128 (key_files))
+- [P1/traceability] plan.md was never reconciled with the execution — all phases remain unchecked post-execution (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md:lines 123-133 (phase checkboxes) vs commit b0cbbe7b67)
+- [P1/maintainability] deep-loop-workflows graph-metadata source_docs still references pre-rename 'ai-council/SKILL.md' (.opencode/skills/deep-loop-workflows/graph-metadata.json:line 160)
+- [P1/maintainability] Zeroed placeholder session_dedup fingerprints in all 6 packet docs block deduplication (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/{spec.md,plan.md,tasks.md,decision-record.md,checklist.md,implementation-summary.md}:each file's YAML frontmatter session_dedup.fingerprint)
+- [P1/maintainability] spec.md open_questions list contradicts decision-record.md which already answered them (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/spec.md:lines 30-31 (YAML) + lines 227-228 (section 12))
+- [P2/maintainability] checklist.md description text says 'All items unchecked' but items are [x] (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md:line 3 (YAML description) + line 52 (protocol note))
+- [P2/maintainability] description.json memorySequence is 0 and memoryNameHistory is empty — stale metadata (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/description.json:lines 27-28)
+- [P1/correctness] spec.md problem statement is stale relative to executed repo state (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/spec.md:line 78)
+- [P1/correctness] deep-loop-workflows/SKILL.md mislabels deep-ai-council as grandfathered (.opencode/skills/deep-loop-workflows/SKILL.md:line 73)
+- [P1/correctness] T008 falsely claims ADR-003 earned-keep test was applied (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/tasks.md:line 64)
+- [P1/correctness] CHK-020 falsely claims all acceptance criteria R1–R5 are met (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/checklist.md:line 81)
+- [P1/correctness] implementation-summary.md falsely claims package_skill.py --check was not run (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:line 89)
+- [P1/traceability] create_parent_skill templates still cite ai-council/deep-ai-council as the folder!=packetSkillName canonical example (.opencode/commands/create/assets/create_parent_skill_auto.yaml:lines 185, 219, 256)
+
+RULES:
+- READ-ONLY. Do not modify any file.
+- Every finding MUST cite concrete evidence: a file path plus a line/anchor/section and a short quoted snippet. No evidence => do not report it.
+- Verify "executed"/"done"/"validated"/"renamed"/"accepted" claims against the ACTUAL repo before trusting them. If a doc claims something was executed (e.g. a folder rename or routing retrofit), check the real files; a claim you cannot confirm is itself a P0/P1 finding.
+- Severity: P0 = blocking integrity/correctness defect or false completion claim; P1 = required fix (traceability gap, contradiction, unverifiable claim); P2 = suggestion/polish.
+- Be precise and skeptical. Quality over quantity. It is fine to return few or zero NEW findings if the dimension is clean.
+
+OUTPUT FORMAT (MANDATORY): First a 2-4 sentence prose summary of what you checked and concluded. Then EXACTLY ONE fenced json code block, nothing after it:
+```json
+{"findings":[{"severity":"P0|P1|P2","dimension":"security","title":"short","file":"relative/path","loc":"line/anchor/section","evidence":"short quote","impact":"why it matters","recommendation":"concrete fix"}],"new_findings_count":<int>,"dimension_clean":<true|false>}
+```

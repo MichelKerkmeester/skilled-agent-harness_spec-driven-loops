@@ -1,0 +1,217 @@
+I’ll verify the cited mechanisms against the live sources, then collapse A4 into an implementation-ready pipeline that avoids duplicating sibling layout-planning work.SKILL ROUTING: deep-loop-workflows recommended with confidence 0.886, uncertainty 0.16. I’m loading it to follow the research workflow constraints before fetching sources.The request routes to the `research` mode, so I’ll use the deep-research packet for the source-verification pass and keep it read-only: no spec artifacts or workspace writes.I’m going to re-check the core A4 sources plus the sibling mechanisms that affect A4’s boundaries: external localized critique, self-refinement, correction/false-fix metrics, instruction density, layout decomposition, spatial layout rewards, and GLM visual debugging.Verified so far: A4 should remain an external, localized correction loop, not a general self-critique loop. The source evidence also tightens the guardrails: keep the prompt’s hard constraints short, move most checks into validators, and measure misjudgment/false-fix explicitly.# A4 FINAL recommendation
+
+## The exact change
+
+Add **`A4: minimax_issue_to_glm_repair_contract`** between MiniMax audit and GLM round-2. Run it only for `FIX` tiles or deterministic-gate failures.
+
+```yaml
+a4_round2_repair:
+  scope: FIX_ONLY
+  retry_depth: 1
+  max_fixes_per_tile: 3
+  ship_rule:
+    primary: existing_minimax_status == "SHIP"
+    fallback: score >= current_audit_config.ship_min_score
+  layout_policy:
+    rc1_rc2_tiles: force_linear_stack_or_bounded_lanes
+    free_absolute_2d_positioning: forbidden
+    absolute_allowed_only_for: decorative_backgrounds_or_A1_A5_layout_plan_boxes
+  required_gates:
+    - proof_check.py
+    - contrast_check.py
+    - geometry_check.py
+    - minimax_rescore
+  adopt_if:
+    proof_check_pass: true
+    contrast_check_pass: true
+    geometry_check_pass: true
+    minimax_status: SHIP
+    false_fix_allowed: false
+```
+
+Copy-paste schema:
+
+```json
+{
+  "tile_id": "accountbeheer-4",
+  "round": 2,
+  "source_auditor": "MiniMax-M3",
+  "round1_status": "FIX",
+  "round1_score": 35,
+  "render": {
+    "image_path": "renders/accountbeheer-4.png",
+    "optional_region_bbox_2d": null
+  },
+  "non_regression_snapshot": {
+    "title_position": "bottom-left",
+    "overflow": false,
+    "contrast_exit_0": true,
+    "eyebrow_uppercase": false,
+    "glyph_contract": "matches_original"
+  },
+  "fixes": [
+    {
+      "id": "fix-001",
+      "defect_type": "vertical_overflow",
+      "rc_ids": ["RC-1", "RC-3"],
+      "severity": "blocking",
+      "target_region": "inner matrix panel and reserved title area",
+      "evidence": "MiniMax says matrix content spills past inner panel and overlaps bottom title/description.",
+      "required_change": "Reserve bottom title block first. Replace dense matrix with at most three stacked rows or grouped summary rows.",
+      "layout_contract": {
+        "tile_height_px": 480,
+        "reserved_bottom_title_block_px": 104,
+        "diagram_max_bottom_y_px": 348,
+        "preferred_primitives": ["stacked-list", "linear-flow", "bounded-lanes"],
+        "forbidden": [
+          "free 2D absolute node placement",
+          "content overlapping title or description",
+          "title above diagram"
+        ]
+      },
+      "verification": [
+        "proof_check.py:overflow=false",
+        "proof_check.py:title_at_bottom=true",
+        "geometry_check.py:node_overlap=false"
+      ]
+    }
+  ]
+}
+```
+
+GLM round-2 prompt block:
+
+```text
+You are regenerating one maritime-B2B dashboard bento tile.
+
+Apply only the typed repair contract. Do not reinterpret the product story.
+
+Hard invariants:
+1. Canvas height is 480px.
+2. Reserve the bottom 104px for title and description.
+3. Title and description stay bottom-left and unobstructed.
+4. Diagram content must end at or above y=348px.
+5. For overflow or node-collision fixes, use stacked-list, linear-flow, or bounded-lane primitives. Do not use free 2D absolute node placement.
+6. Preserve the original title, icon/glyph contract, product meaning, and palette.
+7. Do not use uppercase eyebrow text.
+8. Body/detail text must pass contrast_check.py.
+
+Typed repair contract:
+{{A4_FIXLIST_JSON}}
+
+Previous MiniMax evidence:
+{{MINIMAX_ISSUES}}
+
+Previous code:
+{{ROUND1_CODE}}
+
+Return only the corrected tile code.
+```
+
+Adapter rules:
+
+```text
+spill | clipped | overlaps bottom title | past panel | bleed | outside rounded corners
+=> vertical_overflow, RC-1, add bottom reservation + diagram_max_bottom_y constraints
+
+overlaps | collides | crowding | popover clipped | node truncates text
+=> node_collision, RC-2, force linear/stacked/bounded-lane primitive
+
+title missing | title clipped | title top | bottom card edge
+=> title_position, RC-3, reserve bottom-left title block
+
+uppercase | all-caps | wrong glyph | icon mismatch
+=> typography_or_icon_contract, RC-4, preserve original casing/glyph
+
+low contrast | too light | near illegible
+=> contrast, RC-5, require contrast_check.py exit 0
+```
+
+## Why it works
+
+A4 turns MiniMax from a prose reviewer into an external correction source with typed, localized, validator-backed repair objects.
+
+It fixes the RCs this run actually exposed:
+
+| RC | A4 mechanism |
+|---|---|
+| RC-1 vertical overflow | Bottom reservation, diagram max-y, row cap, stacked fallback |
+| RC-2 2D node collisions | Ban free 2D absolute placement for failing diagram tiles |
+| RC-3 title-bottom failure | Bottom-left title block becomes a hard invariant |
+| RC-4 uppercase/glyph drift | Explicit contract preservation and false-fix guard |
+| RC-5 contrast | Deterministic `contrast_check.py`, not MiniMax-only judgment |
+| RC-8 free-text audit gap | MiniMax issue strings become structured fix JSON |
+
+Source grounding:
+
+| Source | Mechanism reused |
+|---|---|
+| `arxiv.org/html/2412.16829` | UI critique improves when feedback is split into text issue, filtering, bbox/region grounding, refinement, and validation. Their visual prompting + iterative refinement improved bounding-box IoU from `0.120` to `0.357` for Gemini and `0.233` to `0.345` for GPT-4o. |
+| `github.com/madaan/self-refine` | Use `Init -> Feedback -> Iterate`, but with MiniMax as external auditor rather than GLM self-critiquing. |
+| `arxiv.org/html/2510.16062v1` | External correction is more stable than pure intrinsic correction; measure both correction rate and misjudgment/false-fix rate. |
+| `docs.z.ai/guides/vlm/glm-4.6v` | GLM visual debugging supports screenshot-region correction; A4 keeps `optional_region_bbox_2d` for circled/cropped repair when available. |
+| `arxiv.org/html/2507.11538v1` | IFScale shows instruction adherence degrades with instruction density and omissions dominate, so A4 keeps eight hard invariants early and moves the rest into JSON/gates. |
+| `arxiv.org/html/2508.03560v1` | LaTCoder shows layout preservation improves when regions/BBoxes bound generation; A4 consumes bounded layout contracts instead of relying on prose like “make layout right.” |
+| `arxiv.org/html/2509.16891v2` and `arxiv.org/abs/2605.25447` | Spatial layout improves with explicit box specs and executable geometry rewards; A4 adopts this at inference time via `geometry_check.py`, not training. |
+
+## Predicted effect
+
+A4 alone should convert **5-7 of the 18 FIX tiles**.
+
+Expected batch result:
+
+```text
+baseline: 27/45 = 60% SHIP
+A4 alone: 32-34/45 = 71-76% SHIP
+A4 + A1/A5 layout-plan support: 34-36/45 = 76-80% SHIP
+```
+
+Diagram-vs-linear gap:
+
+```text
+current gap: ~41 pts
+A4 alone: reduce by ~16-24 pts
+expected low 2D diagram band: 35-58 -> 62-78
+remaining gap: ~17-25 pts
+```
+
+Contrast:
+
+```text
+contrast-labeled FIX subset: +25-40pp contrast_check.py exit-0
+full 45-tile batch: likely +8-15pp, depending on how many current failures are contrast-related
+```
+
+Cost:
+
+```text
+affected tiles only: ~1.7-2.2x latency
+full batch, if only 18/45 enter A4: ~1.3-1.5x latency
+tokens per repaired tile: previous code + 0.7-1.5k fix JSON + ~0.5k invariant prompt + generated code
+extra scoring: deterministic gates + one MiniMax rescore
+```
+
+## Synergies + conflicts with sibling angles
+
+| Angle | Synergy | Conflict / boundary |
+|---|---|---|
+| A1 | A4 consumes A1-style bounded regions and layout decomposition. | A4 should not own global block decomposition or assembly. |
+| A2 | A4’s fix-list is a Chain-of-Rubrics repair sequence. | Cap at 3 fixes per tile to avoid instruction-density failure. |
+| A3 | A4 uses visual debugging and iterative repair. | Do not let GLM critique itself; MiniMax remains auditor. |
+| A5 | A4 uses spatial JSON and geometry gates. | Do not turn A4 into RL/fine-tuning; keep it inference-time. |
+| A6 | A4 matches adaptive planning: only add repair after failure. | Do not run round-2 for SHIP tiles. |
+| A7 | A4 aligns with layout-as-thought and deterministic spatial checks. | A4 should not duplicate A7’s layout-plan-first primitive work. |
+
+## Confidence + residual risk
+
+Confidence: **0.78**.
+
+Main residual risks:
+
+| Risk | Mitigation |
+|---|---|
+| GLM still fails RC-1/RC-2 geometry despite typed fixes | Force linear/stacked/bounded-lane primitives for those fixes. |
+| MiniMax free text is misclassified by adapter | Keep raw evidence in JSON and log failed fix IDs. |
+| Multiple fixes cause false-fixes | Max 3 fixes, non-regression snapshot, adopt-only-if gates pass. |
+| `proof_check.py` does not detect node overlap | Add or require `geometry_check.py` before trusting A4 on RC-2. |
+| A4 cannot reach the 86-94 linear high band alone | Pair with A1/A5 layout-plan primitives for the remaining gap. |

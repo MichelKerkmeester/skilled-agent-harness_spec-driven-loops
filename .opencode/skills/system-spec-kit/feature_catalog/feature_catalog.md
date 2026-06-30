@@ -38,7 +38,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 | Code graph | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`, `.opencode/skills/system-code-graph/README.md` |
 | Code graph | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
 | Code graph | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
-| Code graph | Shared startup payload parity across Claude/Copilot/Codex | [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
+| Code graph | Shared startup payload parity across Claude/Copilot/OpenCode | [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
 | Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook.md` |
 | Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook_validation.md` |
 | Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill_advisor_hook.md`, `references/hooks/skill_advisor_hook_validation.md` (Step 3) |
@@ -58,7 +58,7 @@ The Spec Kit Memory MCP server exposes **39 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 39-tool `TOOL_DEFINITIONS` surface counted above.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the OpenCode `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 39-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -1616,7 +1616,7 @@ Independent AI reviewers checked the codebase and found 14 issues that the origi
 
 #### How It Works
 
-Independent reviews by Codex gpt-5.3-codex identified 14 issues missed by the original audit. Key fixes:
+Independent reviews by OpenCode gpt-5.3-opencode identified 14 issues missed by the original audit. Key fixes:
 
 - **CR-P0-1:** Test suite false-pass patterns. 21 silent-return guards converted to `it.skipIf()`, fail-fast imports with throw on required handler/vectorIndex missing.
 - **Deletion exception propagation. Causal edge cleanup errors in single-delete now propagate (previously swallowed).
@@ -1629,7 +1629,7 @@ Independent reviews by Codex gpt-5.3-codex identified 14 issues missed by the or
 - **CR-P2-3:** Dashboard row limit configurable via `SPECKIT_DASHBOARD_LIMIT` (default 10000) with NaN guard.
 - **CR-P2-5:** `Number.isFinite` guards on evidence gap detector scores.
 
-All 14 items verified through staged review: Codex implemented, Claude final-reviewed.
+All 14 items verified through staged review: OpenCode implemented, Claude final-reviewed.
 
 #### Source Files
 
@@ -2937,7 +2937,7 @@ Outsourced-agent memory capture is now implemented and aligned across runtime be
 Current behavior is enforced in three slices:
 1. `EXPLICIT_DATA_FILE_LOAD_FAILED` hard-fail in `data-loader.ts` for missing files, invalid JSON and validation failures when `dataFile` is provided explicitly.
 2. `nextSteps` / `next_steps` persistence in normalization and extraction flow, producing `Next: ...`, `Follow-up: ...` and `NEXT_ACTION`.
-3. 4 CLI handback docs (`cli-codex`, `cli-claude-code`, `SKILL.md` + `prompt_templates.md`) documenting redact/scrub guidance before writing `/tmp/save-context-data-<session-id>.json`.
+3. 4 CLI handback docs (`cli-opencode`, `cli-claude-code`, `SKILL.md` + `prompt_templates.md`) documenting redact/scrub guidance before writing `/tmp/save-context-data-<session-id>.json`.
 
 Status: Implemented. Spec folder `015-outsourced-agent-handback` is complete and supersedes the earlier `013-outsourced-agent-memory` pass.
 
@@ -4084,11 +4084,11 @@ See [`16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`](16--t
 
 #### Description
 
-Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and Codex prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `mk-spec-memory` plugin, a repaired `mk-code-graph` bridge on the CLI route, and CLI fallback routing in `mk-skill-advisor`.
+Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and OpenCode prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `mk-spec-memory` plugin, a repaired `mk-code-graph` bridge on the CLI route, and CLI fallback routing in `mk-skill-advisor`.
 
 #### How It Works
 
-The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier mk-code-graph revert cannot return. `.codex/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
+The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier mk-code-graph revert cannot return. `.opencode/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
 
 #### Source Files
 
@@ -4306,7 +4306,7 @@ See [`16--tooling-and-scripts/template-compliance-contract-enforcement.md`](16--
 
 #### Description
 
-The CLI matrix adapter runners turn the F1-F14 executor matrix into runnable cells for `cli-codex`, `cli-claude-code`, and `cli-opencode`.
+The CLI matrix adapter runners turn the F1-F14 executor matrix into runnable cells for `cli-opencode`, `cli-claude-code`, and `cli-opencode`.
 
 #### How It Works
 
@@ -4320,19 +4320,19 @@ See [`16--tooling-and-scripts/cli-matrix-adapter-runners.md`](16--tooling-and-sc
 
 ---
 
-### Codex hook freshness smoke check
+### OpenCode hook freshness smoke check
 
 #### Description
 
-The Codex hook freshness smoke check verifies that cold-start Codex context is populated from a ready code graph without blocking hook startup.
+The OpenCode hook freshness smoke check verifies that cold-start OpenCode context is populated from a ready code graph without blocking hook startup.
 
 #### How It Works
 
-`smokeCheckCodexColdStartContext()` builds the startup brief, checks that the startup surface is non-empty and backed by `graphState: "ready"`, and returns `fresh`, `lastUpdateAt`, and `latencyMs`. Failures report `fresh: false` instead of throwing, so hooks can degrade cleanly while still exposing a freshness probe for runtime diagnostics.
+`smokeCheckOpenCodeColdStartContext()` builds the startup brief, checks that the startup surface is non-empty and backed by `graphState: "ready"`, and returns `fresh`, `lastUpdateAt`, and `latencyMs`. Failures report `fresh: false` instead of throwing, so hooks can degrade cleanly while still exposing a freshness probe for runtime diagnostics.
 
 #### Source Files
 
-See [`16--tooling-and-scripts/codex-hook-freshness-smoke-check.md`](16--tooling-and-scripts/codex-hook-freshness-smoke-check.md) for full implementation and test file listings.
+See [`16--tooling-and-scripts/opencode-hook-freshness-smoke-check.md`](16--tooling-and-scripts/opencode-hook-freshness-smoke-check.md) for full implementation and test file listings.
 
 ---
 
@@ -4346,7 +4346,7 @@ The orphan MCP sweeper gives operators a dry-run-first way to inspect and later 
 
 `.opencode/scripts/orphan-mcp-sweeper.sh` supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, log rotation, SIGTERM then SIGKILL in real mode, and `/tmp` cleanup. `.opencode/scripts/claude-session-cleanup.sh` handles the Claude Stop-hook side by walking only the current session descendants. `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is checked in as a template only; it is not installed or loaded by default.
 
-**026 rename and multi-runtime update (Track 006):** `.opencode/scripts/claude-session-cleanup.sh` is now a back-compat shim. The canonical script is `.opencode/scripts/session-cleanup.sh`, which resolves PID trees across all three supported runtimes: `claude`, `opencode` and `codex`. Both paths are safe to call from any Stop hook.
+**026 rename and multi-runtime update (Track 006):** `.opencode/scripts/claude-session-cleanup.sh` is now a back-compat shim. The canonical script is `.opencode/scripts/session-cleanup.sh`, which resolves PID trees across all three supported runtimes: `claude`, `opencode` and `opencode`. Both paths are safe to call from any Stop hook.
 
 #### Worktree-per-session isolation
 

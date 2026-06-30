@@ -1,10 +1,10 @@
 ---
 title: "Claude Code CLI Built-in Tools Reference"
-description: "Reference for Claude Code CLI unique capabilities including extended thinking, Edit tool, Agent tool, structured output, permission modes, and comparison with Codex CLI."
+description: "Reference for Claude Code CLI unique capabilities including extended thinking, Edit tool, Agent tool, structured output, permission modes, and comparison with OpenCode."
 trigger_phrases:
   - "claude code built-in tools"
   - "claude extended thinking dispatch"
-  - "claude code vs codex comparison"
+  - "claude code vs opencode comparison"
   - "claude code structured output schema"
   - "claude code budget cap flag"
   - "claude code plan mode read-only"
@@ -15,7 +15,7 @@ version: 1.1.0.5
 
 # Claude Code CLI Built-in Tools Reference
 
-Reference for all Claude Code CLI capabilities, highlighting unique features and comparison with Codex CLI.
+Reference for all Claude Code CLI capabilities, highlighting unique features and comparison with OpenCode.
 
 ---
 
@@ -69,7 +69,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Algorithm design requiring correctness proofs or edge case analysis
 - Technical decisions that will be hard to reverse
 
-**Compared to other CLIs:** Codex CLI has reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
+**Compared to other CLIs:** OpenCode has reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
 
 ---
 
@@ -95,7 +95,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Bug fixes that require changing specific lines without touching others
 - Multi-file changes where files have interdependencies
 
-**Compared to other CLIs:** Codex CLI has workspace-write sandbox but operates at file level. Claude Code's Edit tool is the most precise for surgical changes.
+**Compared to other CLIs:** OpenCode has workspace-write sandbox but operates at file level. Claude Code's Edit tool is the most precise for surgical changes.
 
 ---
 
@@ -148,7 +148,7 @@ claude -p "Audit @src/auth.ts for security issues" \
 - Data extraction tasks that feed into automated workflows
 - API response analysis with consistent output format
 
-**Compared to other CLIs:** Codex CLI requests JSON via prompt instructions (no schema validation). Claude Code's `--json-schema` provides the strongest structural guarantee.
+**Compared to other CLIs:** OpenCode requests JSON via prompt instructions (no schema validation). Claude Code's `--json-schema` provides the strongest structural guarantee.
 
 ---
 
@@ -179,7 +179,7 @@ claude -p "Review @src/auth.ts for security issues" \
 - Review and audit tasks where file modification would be inappropriate
 - Exploration tasks before committing to implementation approach
 
-**Compared to other CLIs:** Codex CLI has `--sandbox read-only` (similar concept).
+**Compared to other CLIs:** OpenCode has `--sandbox read-only` (similar concept).
 
 ---
 
@@ -203,7 +203,7 @@ claude -p "Full security audit of the entire src/ directory" \
 - Experimentation without runaway spend
 - CI/CD pipelines with cost budgets
 
-**Compared to other CLIs:** Codex CLI has no built-in budget cap mechanism.
+**Compared to other CLIs:** OpenCode has no built-in budget cap mechanism.
 
 ---
 
@@ -233,28 +233,28 @@ claude -p "Full security audit of the entire src/ directory" \
 
 ## 3. COMPARISON TABLE
 
-### Claude Code vs Codex CLI
+### Claude Code vs OpenCode
 
-| Capability | Claude Code | Codex CLI |
+| Capability | Claude Code | OpenCode |
 |------------|-------------|-----------|
 | **Deep Reasoning** | Extended thinking (`--effort high`) | `xhigh` reasoning effort |
 | **Code Editing** | Edit tool (surgical diff-based) | Workspace-write sandbox |
 | **Structured Output** | `--json-schema` (validated) | Prompt-based JSON |
 | **Read-Only Mode** | `--permission-mode plan` | `--sandbox read-only` |
-| **Web Search** | N/A (use Codex) | `--search` flag |
+| **Web Search** | N/A (use OpenCode) | `--search` flag |
 | **Cost Control** | `--max-budget-usd` | N/A |
 | **Agent System** | 9 agents via `--agent` | 9 agents via `-p` profiles |
 | **Session Continuity** | `--continue`, `--resume` | `resume`, `fork` |
 | **Image Input** | N/A | `--image` / `-i` |
 | **Memory System** | Spec Kit Memory MCP | N/A |
 | **Hooks** | Pre/post tool hooks | N/A |
-| **Model Count** | 3 (opus, sonnet, haiku) | 1 (gpt-5.3-codex) |
+| **Model Count** | 3 (opus, sonnet, haiku) | 1 (gpt-5.3-opencode) |
 | **Auth Methods** | API key, OAuth, setup-token | API key, OAuth |
 | **Nesting Guard** | `$CLAUDECODE` env var | N/A |
 | **Non-Interactive** | `-p "prompt"` | `exec "prompt"` |
 | **Review Workflow** | Via `--agent review` | `/review` command (TUI) |
 | **Background Exec** | `& 2>&1` (shell) | `& 2>&1` (shell) |
-| **MCP Support** | Built-in | `codex mcp` |
+| **MCP Support** | Built-in | `opencode mcp` |
 
 ### When to Choose Each
 
@@ -263,12 +263,12 @@ claude -p "Full security audit of the entire src/ directory" \
 | Deep extended thinking | **Claude Code** | Explicit chain-of-thought with `--effort high` |
 | Surgical code edits | **Claude Code** | Edit tool operates at diff level |
 | Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure |
-| Read-only exploration | **Claude Code** or **Codex** | Both have enforced read-only modes |
-| Live web search | **Codex** | `--search` flag; Claude Code lacks web search |
+| Read-only exploration | **Claude Code** or **OpenCode** | Both have enforced read-only modes |
+| Live web search | **OpenCode** | `--search` flag; Claude Code lacks web search |
 | Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in |
-| Diff-aware code review | **Codex** | `/review` command is diff-native |
+| Diff-aware code review | **OpenCode** | `/review` command is diff-native |
 | Multi-model flexibility | **Claude Code** | 3 tiers (opus/sonnet/haiku) |
-| Visual input (screenshots) | **Codex** | Supports `--image` |
+| Visual input (screenshots) | **OpenCode** | Supports `--image` |
 | Persistent project memory | **Claude Code** | Spec Kit Memory MCP |
 
 ---
@@ -280,13 +280,13 @@ claude -p "Full security audit of the entire src/ directory" \
 External AIs can leverage multiple CLIs in a single workflow:
 
 ```text
-1. Codex CLI: Web research (--search flag)
+1. OpenCode: Web research (--search flag)
    → Gather current information about a library or vulnerability
 
 2. Claude Code: Deep reasoning (extended thinking)
    → Analyze the research and design an implementation approach
 
-3. Codex CLI: Code generation (sandbox-write)
+3. OpenCode: Code generation (sandbox-write)
    → Generate implementation based on Claude's plan
 
 4. Claude Code: Code review (--permission-mode plan)

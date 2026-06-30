@@ -1053,7 +1053,7 @@ function shouldAutoSave(messageCount: number): boolean {
 ------------------------------------------------------------------*/
 
 // Single helper for spec-folder resolution — replaces redundant resolution points.
-// CODEX2-004: Returns both the relative folder name AND the matched specs root
+// Returns both the relative folder name AND the matched specs root.
 //             so callers can reuse the winning root without re-calling findActiveSpecsDir().
 interface SpecFolderResolution {
   relative: string;

@@ -1,0 +1,198 @@
+I’ll treat this as research-only, use the deep-research route the prompt names, and verify the cited mechanisms before producing the final A3 contract.SKILL ROUTING: User directed by the deepening/iteration context and the prior “deep research iteration” route, so I’m using `deep-research` and keeping the output research-only.I’m going to fetch the primary sources plus the sibling-cited layout/instruction-density sources, with special attention to whether GLM-5.2 itself documents visual-debugging parity or only GLM-4.6V does.GLM-5.2V at the guessed docs path returned 404. I’m checking the Z.ai documentation index rather than assuming model parity.The docs clarify an important constraint: `glm-5.2` is documented as text-in/text-out, while the vision chat schema lists `glm-5v-turbo`, `glm-4.6v`, and `glm-4.5v`. I’ll fold that into the final as a model-dial guardrail instead of assuming screenshot support on `glm-5.2`.# A3 FINAL recommendation
+
+## The exact change (copy-pasteable: contract block / dial preset / pipeline step / schema)
+
+```md
+### A3 Primitive-Routed Render Repair Contract
+
+Goal: stop treating all 480x480 bento tiles as the same layout task. Route by layout primitive before generation.
+
+Model dial:
+- Code/skeleton model: `glm-5.2`, `thinking.enabled`, `reasoning_effort=max`, `response_format=json_object` for skeleton turns.
+- Visual repair model: `glm-5v-turbo` preferred, `glm-4.6v` fallback.
+- Guardrail: `glm-5.2` is documented as text-only. If the direct API is used, do not send screenshots to `glm-5.2`; send screenshots to `glm-5v-turbo`/`glm-4.6v`, or send `glm-5.2` only structured audit JSON with BBoxes/selectors.
+- Temperature: `0.2` for skeleton and repair. Use higher temperature only for first-pass visual concept generation.
+
+Classify every treatment as:
+- `linear-flow`: stacked cards, KPI bands, rows, timelines, simple left-to-right flows, or layouts expressible with flex/grid and no coordinate diagram.
+- `2d-positioned`: node-link, hub/spoke, matrix, branching approval flow, connector lines, map-like layouts, legends, overlaid pills, popovers, or any design likely to need x/y placement.
+
+Route:
+- `linear-flow`: use current Product V4/M2/D6 path. Render and audit. Run Round-2 only if a gate returns FIX.
+- `2d-positioned`: run skeleton-first before code. Always run one Round-2 visual repair after first render.
+
+480px tile invariant:
+- Canvas: `480x480`.
+- Safe x range: `24..456`.
+- Eyebrow zone: `y=24..56`.
+- Diagram zone: `y=72..324`.
+- Diagram/title gutter: `20px`.
+- Bottom title zone: `x=24..456`, `y=344..456`, height `112px`.
+- No diagram, connector, legend, row, pill, or node may enter `y>=344`.
+- Keep the title zone reserved even if the title is only 1-2 lines.
+
+2D skeleton requirements:
+- Emit JSON only.
+- Every visual element gets a bbox: node, pill, label, connector group, legend, row group, icon group.
+- BBoxes use `{ "x": number, "y": number, "w": number, "h": number }`.
+- Non-connector bboxes must not overlap.
+- Minimum gap between non-connector bboxes: `12px`.
+- Minimum gap between text bboxes and connector strokes: `8px`.
+- Max visible matrix/table rows: `3`; aggregate extras into `+N` or a summary chip.
+- Connector layer must render below text and nodes.
+- Prefer CSS grid/flex inside each bbox. Use absolute positioning only to place the validated diagram blocks within the diagram zone.
+
+Deterministic skeleton validators:
+- `inside_canvas_safe_area`
+- `inside_assigned_zone`
+- `no_nonconnector_overlap`
+- `min_gap_12`
+- `title_zone_reserved`
+- `max_visible_rows_3`
+- `connector_underlay_only`
+- `contrast_exit_0`
+
+Round-2 visual repair input:
+- Reference target/spec.
+- Rendered v1 screenshot.
+- V1 code.
+- V1 skeleton JSON.
+- Audit findings with `RC-id`, bbox, DOM selector if available, visible evidence, and exact repair instruction.
+
+Round-2 instruction:
+"Fix only the named visual gaps. Preserve the concept, palette, copy intent, and bottom-left title rule. Do not add new content. Do not change approved colors unless contrast validation fails. Recompute layout so all content fits the 480px tile. Keep all diagram elements out of the reserved title zone. Prefer grid/flex constraints inside validated BBoxes; use absolute positioning only for validated diagram block placement. Return complete code only."
+
+SHIP gate:
+- `overflow=false`
+- `title_at_bottom_left=true`
+- `contrast_exit_code=0`
+- `no RC-1 vertical overflow visible`
+- `no RC-2 node/pill/text collision visible`
+- `no RC-3 title-zone violation visible`
+```
+
+```json
+{
+  "layoutSkeletonSchema": {
+    "tileId": "string",
+    "layoutPrimitive": "linear-flow | 2d-positioned",
+    "canvas": { "w": 480, "h": 480 },
+    "zones": {
+      "eyebrow": { "x": 24, "y": 24, "w": 432, "h": 32 },
+      "diagram": { "x": 24, "y": 72, "w": 432, "h": 252 },
+      "title": { "x": 24, "y": 344, "w": 432, "h": 112 }
+    },
+    "elements": [
+      {
+        "id": "string",
+        "type": "node | pill | label | connectorGroup | legend | rowGroup | iconGroup | title | eyebrow",
+        "bbox": { "x": 0, "y": 0, "w": 0, "h": 0 },
+        "zone": "eyebrow | diagram | title",
+        "text": "string",
+        "maxLines": 1,
+        "priority": "primary | secondary | decorative",
+        "mayOverlap": false
+      }
+    ],
+    "connectors": [
+      {
+        "id": "string",
+        "from": "elementId",
+        "to": "elementId",
+        "route": "straight | elbow | arc",
+        "strokeBbox": { "x": 0, "y": 0, "w": 0, "h": 0 }
+      }
+    ],
+    "aggregations": [
+      {
+        "sourceItems": 0,
+        "visibleItems": 0,
+        "summaryLabel": "+N"
+      }
+    ],
+    "validation": {
+      "insideCanvas": true,
+      "insideZones": true,
+      "noOverlap": true,
+      "minGapPx": 12,
+      "titleZoneReserved": true,
+      "maxVisibleRows": 3,
+      "connectorUnderlayOnly": true
+    }
+  }
+}
+```
+
+## Why it works (mechanism + the RC-ids it fixes + cited sources)
+
+The root defect is not GLM “bad at design” in general. The data says linear tiles already score `86-94`, while 2D-positioned diagrams collapse to `35-58`. So the fix is primitive routing, not another larger prose prompt.
+
+Mechanism:
+
+- `RC-1 vertical overflow`: fixed by reserving a non-negotiable `112px` title zone and limiting diagram content to `y=72..324`.
+- `RC-2 2D collisions`: fixed by requiring a pre-code bbox skeleton and deterministic overlap/gap validation before code exists.
+- `RC-3 title-at-bottom failures`: fixed by making the bottom title zone a structural region, not a reminder in prose.
+- `RC-8 discarded FIX findings`: fixed by adding a bounded Self-Refine-style render feedback turn instead of stopping after generate/audit.
+
+Source grounding:
+
+- Self-Refine supports `Init -> Feedback -> Iterate`, actionable feedback, localization, and refinement loops. It reports broad task gains from at least 5% to more than 40%, with the public page citing the 20% average claim. Source: `https://selfrefine.info`, `https://github.com/madaan/self-refine`.
+- GLM-4.6V docs explicitly describe frontend replication and visual debugging: upload screenshot/design, generate HTML/CSS/JS, circle a generated screenshot region, and correct the corresponding code. Source: `https://docs.z.ai/guides/vlm/glm-4.6v`.
+- GLM-5.2 docs list input modality as text, while GLM-5V-Turbo is the documented multimodal coding model for screenshots, frontend recreation, code debugging, visual grounding, and bbox-style outputs. Source: `https://docs.z.ai/guides/llm/glm-5.2`, `https://docs.z.ai/guides/vlm/glm-5v-turbo`, `https://docs.z.ai/api-reference/llm/chat-completion`.
+- LaTCoder shows why monolithic design-to-code loses layout, and why bbox division, block-wise synthesis, layout-preserved assembly, and screenshot verification improve complex layouts. It reports CC-HARD gains including TreeBLEU `+66.67%`, Visual Score `+12.5%`, and MAE `-38.53%` for DeepSeek-VL2. Source: `https://arxiv.org/html/2508.03560v1`.
+- IFScale shows high instruction density causes degradation, primacy effects, and omission-dominant failure. This supports moving layout constraints into a short invariant block plus deterministic validators instead of adding more prompt prose. Source: `https://arxiv.org/html/2507.11538v1`.
+- LaySPA supports layout-as-structured-object: element boxes plus rewards for format, collision, alignment, distribution, spacing, and hierarchy. It reports Qwen-7B + LaySPA collision reduction of 36%, alignment +63%, spacing +73%. Source: `https://arxiv.org/html/2509.16891v2`.
+- Visual critique refinement supports BBoxes plus zoomed patches, coordinate markers, validation, and refinement. It improves UI critique grounding IoU from `0.120` to `0.357` for Gemini and `0.233` to `0.345` for GPT-4o. Source: `https://arxiv.org/html/2412.16829`.
+
+## Predicted effect (SHIP-rate delta from 60%, diagram-vs-linear delta from ~41pts, contrast exit-0) + cost (tokens/latency)
+
+Predicted, not confirmed until the 18 FIX tiles are rerun.
+
+- Baseline: `27/45 = 60% SHIP`.
+- Expected A3 result: convert `8-11` of the `18` FIX tiles.
+- Expected SHIP rate: `35-38/45 = 78-84%`.
+- Conservative lower bound: `33-35/45 = 73-78%` if visual repair works but skeleton validation catches fewer 2D cases.
+- Upside: `39-40/45 = 87-89%` if most 2D failures are geometry-only and copy/contrast stay stable.
+- Diagram band: expected lift from roughly `35-58` to `68-82`.
+- Diagram-vs-linear delta: expected shrink from about `41pts` to `10-20pts`.
+- Contrast exit-0: should remain unchanged if color mutation is forbidden in Round-2 and contrast remains a hard gate. Treat any contrast regression as a blocked SHIP, not a tradeoff.
+
+Cost:
+
+- Linear FIX tile: one extra render/audit and one extra model repair call only if gate fails.
+- 2D tile: one skeleton call, one skeleton validation/repair loop if needed, one code call, one render/audit, one visual repair call.
+- Practical token multiplier: about `1.4x-1.8x` for all tiles if routed, about `2.0x-2.6x` for 2D FIX tiles.
+- API-equivalent pricing from Z.ai docs: `glm-5.2` is `$1.4/M input` and `$4.4/M output`; `glm-5v-turbo` is `$1.2/M input` and `$4/M output`.
+- Exact image token cost is UNKNOWN without pipeline logs.
+- Latency: add one GLM latency tail for linear FIX repair; add up to two GLM latency tails for 2D tiles. Using the prior observed `6-161s` tail, budget roughly `+1-3 minutes` per repaired 2D tile serially, lower with safe concurrency.
+
+## Synergies + conflicts with sibling angles (name them)
+
+Synergies:
+
+- A1: Strong synergy. A3 operationalizes A1’s LaTCoder and IFScale recommendation by using layout regions, BBoxes, and deterministic checks instead of diffuse prose.
+- A2: Strong synergy. A3 turns Chain-of-Rubrics into concrete gates: classify, skeleton, validate, code, render, repair, ship.
+- A4: Strong synergy. A3 uses A4’s visual grounding lesson: audit findings should include BBoxes and zoomable regions. For implementation, include both BBoxes and DOM selectors.
+- A5: Strong synergy. A3 adopts LaySPA’s structured spatial object and geometric rewards, but as prompt-time JSON plus validators rather than RL fine-tuning.
+- A6: Strong synergy with adaptive planning. A3 is adaptive for `linear-flow` and mandatory only for `2d-positioned`, where the run data shows the defect cluster.
+- A7: Strong synergy. A7 independently reinforces LaTCoder, IFScale, and LaySPA, matching A3’s final shape.
+
+Conflicts:
+
+- A6 cost-minimization vs A3 mandatory 2D Round-2: resolved by routing. Do not run heavy repair for all tiles; run it only after FIX for linear and always for 2D because 2D is the observed failure primitive.
+- A1/A5 absolute-positioning advice vs maintainable CSS: resolved by allowing absolute positioning only for validated diagram block placement inside the diagram zone, while using grid/flex inside each block.
+- GLM-5.2 “vision-to-code” label vs Z.ai docs: docs show `glm-5.2` is text-only and `glm-5v-turbo` is the vision coding model. If the current product wrapper truly accepts images under a GLM-5.2 label, test it directly; otherwise, use `glm-5v-turbo`/`glm-4.6v` for visual turns and `glm-5.2` for structured code.
+
+## Confidence + residual risk
+
+Confidence: `0.78`.
+
+Reason: the recommendation is strongly supported by the defect pattern and by multiple independent sources on layout decomposition, iterative repair, visual grounding, and instruction-density limits.
+
+Residual risks:
+
+- Exact split of the 18 FIX tiles into `linear-flow` vs `2d-positioned` is not available from the prompt excerpt. The router removes the need for manual certainty, but the expected SHIP lift depends on that split.
+- GLM-5.2 screenshot support is not source-confirmed. Direct API docs say use `glm-5v-turbo` or `glm-4.6v` for visual input.
+- Skeleton validators can prevent collisions but cannot guarantee aesthetic polish. Keep one visual repair turn for 2D.
+- Over-constraining the skeleton may make diagrams too sparse. Cap visible rows at 3, but preserve semantic intent through aggregation chips.
+- If Round-2 is allowed to change palette or copy, contrast and brand consistency may regress. Keep those locked.

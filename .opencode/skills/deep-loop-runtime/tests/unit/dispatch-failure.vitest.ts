@@ -32,8 +32,8 @@ function withTempPaths(run: (paths: TempPaths) => void): void {
 describe('dispatch-failure end-to-end', () => {
   it('returns dispatch_failure_logged when a crash happens before the iteration record is written', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
@@ -53,7 +53,7 @@ describe('dispatch-failure end-to-end', () => {
           stateLogPath,
           previousStateLogSize,
           requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
-          executorKind: 'cli-codex',
+          executorKind: 'cli-claude-code',
         }),
       ).toEqual({
         ok: false,
@@ -65,8 +65,8 @@ describe('dispatch-failure end-to-end', () => {
 
   it('preserves executor provenance on the dispatch_failure record after a crash', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4-mini',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'medium',
       serviceTier: 'standard',
@@ -87,8 +87,8 @@ describe('dispatch-failure end-to-end', () => {
         reason: 'missing_output',
         detail: 'no stdout or file output',
         executor: {
-          kind: 'cli-codex',
-          model: 'gpt-5.4-mini',
+          kind: 'cli-claude-code',
+          model: 'claude-opus-4-6',
           reasoningEffort: 'medium',
           serviceTier: 'standard',
         },

@@ -1,0 +1,14 @@
+{
+  "key": "mimo-agent-s1",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "agent",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 105511,
+  "bytes": 70131,
+  "stderrTail": ""
+}

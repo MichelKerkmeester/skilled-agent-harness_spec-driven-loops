@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-context-s2",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "context",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 59150,
+  "bytes": 66968,
+  "stderrTail": ""
+}

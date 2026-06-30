@@ -1,0 +1,32 @@
+{
+ "refImage": "/Users/michelkerkmeester/.claude/image-cache/3c459601-d79e-47a4-9e2d-dea18effd59c/18.png",
+ "title": "Prijzen & condities.",
+ "desc": "Bekijk direct uw persoonlijke prijzen en condities voor de meeste productgroepen in de webshop.",
+ "treatments": [
+  {
+   "n": 1,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/prijzen-condities-glm-1.html",
+   "brief": "A per-product-group price list: rows (Dekverf / Tuigerij / Filters) with 'uw prijs' and a green korting % badge."
+  },
+  {
+   "n": 2,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/prijzen-condities-glm-2.html",
+   "brief": "A personal-vs-list price comparison for a product: lijstprijs (struck through) vs uw prijs, with the savings highlighted."
+  },
+  {
+   "n": 3,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/prijzen-condities-glm-3.html",
+   "brief": "A staffel/volume-discount ladder: quantity tiers (1-9 / 10-49 / 50+) mapping to a per-stuk price that drops, as a stepped ladder."
+  },
+  {
+   "n": 4,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/prijzen-condities-glm-4.html",
+   "brief": "A product card with the personal price highlighted: product image-placeholder + name + big 'uw prijs \u20acX,XX' + small crossed list price."
+  },
+  {
+   "n": 5,
+   "out": ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/dist/prijzen-condities-glm-5.html",
+   "brief": "A conditions/agreement summary: key terms (betaaltermijn 30 dagen, gratis levering > \u20ac500, vaste korting) as labeled rows."
+  }
+ ]
+}

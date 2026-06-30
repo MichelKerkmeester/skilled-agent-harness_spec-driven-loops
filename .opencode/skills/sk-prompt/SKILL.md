@@ -383,7 +383,7 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 |-------|----------|-------------|
 | `raw_task` | Yes | Raw task description or draft prompt to improve |
 | `task_type` | No | One of `generation`, `review`, `research`, `edit`, `analyze` |
-| `target_cli` | No | One of `claude-code`, `codex`, `copilot` |
+| `target_cli` | No | One of `claude-code`, `opencode`, `copilot` |
 | `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
 | `constraints` | No | Compliance, security, audience, or output requirements |
 

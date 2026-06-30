@@ -68,13 +68,13 @@ function nativeExecutor(): ExecutorConfig {
   };
 }
 
-function codexExecutor(model: string): ExecutorConfig {
+function claudeExecutor(model: string): ExecutorConfig {
   return {
-    kind: 'cli-codex',
+    kind: 'cli-claude-code',
     model,
     configDir: null,
     reasoningEffort: 'high',
-    serviceTier: 'priority',
+    serviceTier: null,
     sandboxMode: null,
     timeoutSeconds: 900,
   };
@@ -115,7 +115,6 @@ describe('executor provenance mismatch (008 fail-loud)', () => {
     // A clean opencode run that surfaces no model field is "cannot tell" (null),
     // matching the live `opencode run --format json` success stream.
     expect(extractActualModel('{"type":"text","part":{"type":"text","text":"ok"}}\n', 'cli-opencode')).toBeNull();
-    expect(extractActualModel(event, 'cli-codex')).toBeNull();
     expect(extractActualModel(event, 'cli-claude-code')).toBeNull();
     expect(extractActualModel(event, 'native')).toBeNull();
   });
@@ -198,17 +197,17 @@ describe('executor provenance mismatch (008 fail-loud)', () => {
     });
   });
 
-  it('skips the check when the actual model cannot be extracted (codex/claude)', () => {
+  it('skips the check when the actual model cannot be extracted for Claude Code', () => {
     withTempPaths(({ tempDir, stateLogPath }) => {
-      // codex prints a model id in its stream too, but extractActualModel only
-      // trusts opencode, so this never produces a false model_mismatch.
+      // Claude Code may print model-like text, but extractActualModel only trusts
+      // opencode events, so this never produces a false model_mismatch.
       runAuditedExecutorCommand({
         command: 'node',
         args: fakeOpencodeArgs('gpt-9-substituted'),
         cwd: tempDir,
         timeoutSeconds: 30,
         stateLogPath,
-        executor: codexExecutor('gpt-5.5'),
+        executor: claudeExecutor('claude-opus-4-6'),
         iteration: 5,
         guardContext: cleanGuard,
       });

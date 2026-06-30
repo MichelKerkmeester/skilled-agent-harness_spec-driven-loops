@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/004-sk-design-md-generator/005-doc-as-view-architecture",
+  "spec_folder": "design/004-sk-design-md-generator/005-doc-as-view-architecture",
+  "parent_id": "design/004-sk-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc as view architecture",
+      "deterministic formatters",
+      "prompt builder",
+      "citation gating",
+      "three-class section partition"
+    ],
+    "key_topics": [
+      "doc",
+      "view",
+      "architecture",
+      "deterministic",
+      "formatters",
+      "prompt",
+      "builder",
+      "citation",
+      "gating",
+      "three-class",
+      "section",
+      "partition"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Even",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Invert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ship Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the AI-written",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "line",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even with phases 002-004, the AI still hand-assembles value tables (colors, type, shadows) from raw JSON — the assembly step where fabrication enters and which the validator can only partially catch",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-25T09:22:07.035Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:543d587b82e294cd465acb78619a3ce2334be40913c35ca7e7a24636cf340f40",
+    "source_doc_hashes": {
+      "spec.md": "522d312d80c930588f7f3f25074d3e117ca0cf9a6df7b446a9c6237d9de6f2a1",
+      "plan.md": "47bd199b5d68627cd6b049e1aff1d26f965836dd7ee24d0c6be0f78790125ad6",
+      "tasks.md": "f3822011a8b3184d719ae83384e805b0a0c397c0fad1b7f64b7241a32c26f767",
+      "checklist.md": "ca41e81d680d3ecdb83cbb5f2509d3cc05b95b2a4cd528d6a26aa00965d3010d",
+      "implementation-summary.md": "28e9307c99198cce97d809642fa340db558acc1df89891492268c6d67e82cc0a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

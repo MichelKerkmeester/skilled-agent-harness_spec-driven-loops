@@ -367,7 +367,7 @@ Cross-subsystem consumers use two intentional paths:
 |---------------|-------------|
 | `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
 | MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*` and `mcp__mk_code_index__detect_changes`. |
-| CLI callers (hooks, scripts, CI, transport-down recovery) | Daemon-backed `node .opencode/bin/code-index.cjs <tool>` over the same daemon. The Claude/Codex hook adapters fall back through `system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts` (warm-only), and the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`) routes through the CLI with `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME=1`. |
+| CLI callers (hooks, scripts, CI, transport-down recovery) | Daemon-backed `node .opencode/bin/code-index.cjs <tool>` over the same daemon. The Claude/OpenCode hook adapters fall back through `system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts` (warm-only), and the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`) routes through the CLI with `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME=1`. |
 
 The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 

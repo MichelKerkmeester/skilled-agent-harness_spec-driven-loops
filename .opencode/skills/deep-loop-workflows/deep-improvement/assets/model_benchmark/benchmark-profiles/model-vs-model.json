@@ -13,7 +13,7 @@
   "frameworks": ["rcaf"],
   "models": [
     { "executor": "cli-opencode", "provider": "minimax-coding-plan", "model_slug": "MiniMax-M2.7", "variant": "default" },
-    { "executor": "cli-codex", "provider": "openai", "model_slug": "gpt-5.5", "variant": "high" },
+    { "executor": "cli-opencode", "provider": "openai", "model_slug": "gpt-5.5", "variant": "high" },
     { "executor": "cli-claude-code", "provider": "anthropic", "model_slug": "claude-opus", "variant": "high" }
   ],
   "scoring": {

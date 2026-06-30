@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "description": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
+  "keywords": [
+    "sk-prompt",
+    "assets",
+    "model-profiles",
+    "json",
+    "contained",
+    "per-model",
+    "framework",
+    "guidance"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.215Z",
+  "specId": "003",
+  "folderSlug": "land-recommended-frameworks-data",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "105-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

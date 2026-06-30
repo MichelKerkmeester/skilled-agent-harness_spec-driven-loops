@@ -2,7 +2,7 @@
 // MODULE: Runtime Parity Tests — Advisor brief shape across runtimes
 // ───────────────────────────────────────────────────────────────────
 // Asserts that buildSkillAdvisorBrief produces a consistent brief
-// shape regardless of the runtime tag (claude, codex, opencode).
+// shape regardless of the runtime tag (claude, opencode, opencode).
 // The brief is rendered via renderAdvisorBrief; the test verifies:
 //   - Brief is non-null and contains "Advisor:" marker
 //   - Brief contains the expected skill slug
@@ -22,7 +22,7 @@ function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
 }
 
-const RUNTIMES = ['claude', 'codex', 'opencode'] as const;
+const RUNTIMES = ['claude', 'opencode', 'opencode'] as const;
 
 describe('3-runtime advisor brief parity', () => {
   it('produces byte-equivalent brief for a known passing fixture across all 3 runtimes', async () => {

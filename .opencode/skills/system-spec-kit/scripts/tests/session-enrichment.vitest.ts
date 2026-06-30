@@ -112,7 +112,7 @@ describe('stateless enrichment guardrails', () => {
     expect(transformed.recentContext).toEqual([]);
   });
 
-  it('keeps Codex tool evidence when command/output reference target spec files without direct filePath fields', () => {
+  it('keeps OpenCode tool evidence when command/output reference target spec files without direct filePath fields', () => {
     const transformed = transformOpencodeCapture({
       exchanges: [
         {
@@ -133,10 +133,10 @@ describe('stateless enrichment guardrails', () => {
         },
       ],
       metadata: {},
-      sessionTitle: 'Codex stateless evidence preservation',
-      sessionId: 'codex-evidence',
+      sessionTitle: 'OpenCode stateless evidence preservation',
+      sessionId: 'opencode-evidence',
       capturedAt: '2026-03-15T12:00:30Z',
-    }, 'system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing', 'codex-cli-capture');
+    }, 'system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing', 'opencode-cli-capture');
 
     expect(transformed._toolCallCount).toBe(1);
     expect(transformed.observations).toEqual(expect.arrayContaining([

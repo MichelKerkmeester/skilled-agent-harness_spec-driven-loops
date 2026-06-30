@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/006-agent-multi-ai-council",
+  "description": "`@ultra-think` (526 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "ultra-think",
+    "526",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.506Z",
+  "specId": "006",
+  "folderSlug": "agent-multi-ai-council",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "048-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

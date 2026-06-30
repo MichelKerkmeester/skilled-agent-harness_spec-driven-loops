@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "description": "The shipped 3-layer architecture drifted at its seams: the Tier-3 escalation rule was hand-copied",
+  "keywords": [
+    "shipped",
+    "3-layer",
+    "architecture",
+    "drifted",
+    "seams",
+    "tier-3",
+    "escalation",
+    "rule",
+    "hand-copied"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.623Z",
+  "specId": "009",
+  "folderSlug": "refine-hub-cli-connections",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-06-26_08-05__implemented-all-10-consolidated-items-c1-c10-from.md"
+  ]
+}

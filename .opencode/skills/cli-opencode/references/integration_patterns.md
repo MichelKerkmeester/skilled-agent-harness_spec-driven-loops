@@ -21,15 +21,15 @@ How cli-opencode positions itself relative to the three sibling cli-* skills, th
 
 ## 1. OVERVIEW
 
-The three sibling cli-* skills exist because their target binaries are external runtimes — Claude Code, Codex, Copilot do not own this repo. OpenCode owns this repo. A naive "delegate to opencode" skill makes no sense for an in-OpenCode operator (it would create a circular dispatch).
+The three sibling cli-* skills exist because their target binaries are external runtimes — Claude Code, OpenCode, Copilot do not own this repo. OpenCode owns this repo. A naive "delegate to opencode" skill makes no sense for an in-OpenCode operator (it would create a circular dispatch).
 
 cli-opencode resolves this by documenting THREE orthogonal use cases. The smart router selects between them based on the calling AI's runtime context.
 
 | Use case | Calling runtime | Target | Self-invocation? |
 |----------|-----------------|--------|------------------|
-| 1. External runtime to OpenCode | Claude Code, Codex, Copilot, raw shell | OpenCode for full plugin / skill / MCP runtime | No |
+| 1. External runtime to OpenCode | Claude Code, OpenCode, Copilot, raw shell | OpenCode for full plugin / skill / MCP runtime | No |
 | 2. In-OpenCode parallel detached session | OpenCode itself (TUI / web / serve / acp) | New OpenCode session via `--share --port N` | No (different session id) |
-| 3. Cross-AI orchestration handback | Codex / Copilot | OpenCode for spec-kit specific workflows | No |
+| 3. Cross-AI orchestration handback | OpenCode / Copilot | OpenCode for spec-kit specific workflows | No |
 
 The cycle ADR-001 protects against is the operator inside OpenCode asking cli-opencode to "delegate this exact prompt to OpenCode" — that case is REFUSED at the routing layer.
 
@@ -39,7 +39,7 @@ The cycle ADR-001 protects against is the operator inside OpenCode asking cli-op
 
 ### When to use
 
-The calling AI is Claude Code, Codex, Copilot, or a raw shell. The task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime — not just a raw model dispatch. Examples:
+The calling AI is Claude Code, OpenCode, Copilot, or a raw shell. The task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime — not just a raw model dispatch. Examples:
 
 - Run `memory_search` against the project's spec-doc database
 - Call Code Graph for semantic code search across the repo
@@ -157,11 +157,11 @@ Per CHK-033, the calling AI MUST confirm with the operator before passing `--sha
 
 ### When to use
 
-The calling AI is a non-Anthropic CLI (Codex, Copilot). The task requires OpenCode-specific plugins or skills (e.g. spec-kit workflows, the Spec Kit Memory MCP database, the structural code graph). The non-Anthropic CLI cannot load the project's plugins on its own — cli-opencode is the documented bridge.
+The calling AI is a non-Anthropic CLI (OpenCode, Copilot). The task requires OpenCode-specific plugins or skills (e.g. spec-kit workflows, the Spec Kit Memory MCP database, the structural code graph). The non-Anthropic CLI cannot load the project's plugins on its own — cli-opencode is the documented bridge.
 
 ### Smart-router signal
 
-ADR-001's detection signal does NOT trip (the calling AI is Codex / Copilot, not OpenCode). The prompt mentions a project-specific subsystem:
+ADR-001's detection signal does NOT trip (the calling AI is OpenCode / Copilot, not OpenCode). The prompt mentions a project-specific subsystem:
 
 - "spec kit" / "spec-kit" / "spec_kit"
 - "spec kit memory"
@@ -209,7 +209,7 @@ The invocation shape is identical to use case 1 — the difference is the prompt
 
 ### Why it matters
 
-Codex and Copilot cannot load this project's plugin / skill / MCP runtime on their own. cli-opencode is the documented bridge that lets a Codex-led orchestration call into the project's spec-kit workflows without leaving the Codex session.
+OpenCode and Copilot cannot load this project's plugin / skill / MCP runtime on their own. cli-opencode is the documented bridge that lets a OpenCode-led orchestration call into the project's spec-kit workflows without leaving the OpenCode session.
 
 ---
 
@@ -236,7 +236,7 @@ INPUT: prompt + calling runtime
    +----+----+    +-----+-----+
    |         |    |           |
 Anthropic  Other  parallel   self-dispatch
-(Claude    (Codex words    only
+(Claude    (OpenCode words    only
 Code)      Copilot)        |           |
    |         |             v           v
    v         v        USE CASE 2   REFUSE
@@ -266,7 +266,7 @@ Asking cli-opencode to delegate this exact prompt back to OpenCode would create
 a circular dispatch.
 
 Options:
-1. Use a sibling cli-* skill (cli-claude-code, cli-codex)
+1. Use a sibling cli-* skill (cli-claude-code, cli-opencode)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate
@@ -369,7 +369,7 @@ The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entry
 
 cli-opencode dispatches that produce evidence for a Spec Kit Memory save MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
 
-The full Memory Handback Protocol is shared with cli-claude-code and cli-codex. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
+The full Memory Handback Protocol is shared with cli-claude-code and cli-opencode. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
 
 ---
 

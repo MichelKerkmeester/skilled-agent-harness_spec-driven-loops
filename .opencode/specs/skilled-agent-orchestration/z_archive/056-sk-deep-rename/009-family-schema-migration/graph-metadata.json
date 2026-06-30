@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/009-family-schema-migration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/009-family-schema-migration",
+  "parent_id": "skilled-agent-orchestration/z_archive/056-sk-deep-rename",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 009",
+      "family schema migration",
+      "deep-loop family",
+      "skill graph check constraint",
+      "skill-graph sqlite reset",
+      "070 phase 009 plan",
+      "family schema migration plan",
+      "deep-loop schema plan",
+      "070 phase 009 tasks",
+      "family schema migration tasks",
+      "deep-loop schema tasks",
+      "070 phase 009 checklist"
+    ],
+    "key_topics": [
+      "070",
+      "phase",
+      "009",
+      "family",
+      "schema",
+      "migration",
+      "deep-loop",
+      "skill",
+      "graph",
+      "check",
+      "constraint",
+      "skill-graph"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js",
+      "dist/tool-schemas.js",
+      "schemas/tool-input-schemas.ts",
+      "dist/schemas/tool-input-schemas.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Family Schema Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts because `skill-graph-db.ts` and its dist mirror hardcode a SQL `CHECK` constraint that still lists `sk-deep`",
+    "created_at": "2026-05-05T18:25:00Z",
+    "last_save_at": "2026-06-23T03:49:49.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T18:25:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:932f33ca74a3e1eb57c07792dcdc59d9dedda757ee2766ce8c42fe56b57f9b77",
+    "source_doc_hashes": {
+      "spec.md": "7c56d1e3e390c1a144ac5a431bddbba4c3c371134bce6729c208fc2cfb026dc9",
+      "plan.md": "adbab5bc4290856adabc349148e12d234beffef1ecb3255795a44a4e5a8b7290",
+      "tasks.md": "ae2f8a635153f83732feeaab29bb357e3dc85147a5ee6a6662a5e2d110f98027",
+      "checklist.md": "3dbbb94872bc6eb6eab65a60b2f4567864eb00f60117ccc31a1672562ee9d01e",
+      "decision-record.md": "4ac904e571be14ee6c1b4109fd504282d384b488823fb5e02c6b24b9dd93f828",
+      "implementation-summary.md": "33f8c8f52a2299d0b11b62e4ac124146dc554e43e7c26c4496d8b954d1048e3d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "description": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-ge",
+  "keywords": [
+    "phase",
+    "001-runtime-surface-and-skill-deletion",
+    "deleted",
+    "cli-gemini",
+    "skill",
+    "project",
+    "gemini",
+    "runtime",
+    "surface",
+    "left",
+    "orphaned",
+    "cli-ge"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.246Z",
+  "specId": "002",
+  "folderSlug": "command-yaml-gemini-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "107-cli-gemini-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

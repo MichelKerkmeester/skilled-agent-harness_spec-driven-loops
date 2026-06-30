@@ -1,0 +1,28 @@
+{
+  "specFolder": "design/008-sk-design-parent/042-design-work-deep-review",
+  "description": "The sk-design work needed a review packet that collected the review artifacts, verdict, and handoff into the phase-parent track",
+  "keywords": [
+    "sk-design",
+    "work",
+    "needed",
+    "review",
+    "packet",
+    "collected",
+    "artifacts",
+    "verdict",
+    "handoff",
+    "phase-parent",
+    "track"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.319Z",
+  "specId": "042",
+  "folderSlug": "design-work-deep-review",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-06-26_10-11__all-deep-review-findings-for-154-sk-design-parent.md"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/003-command-metadata-ssot",
+  "description": "The design command metadata is scattered across three unsynchronized places: the wrapper frontmatter, the hub `SKILL.md`, and `mode-registry.json`",
+  "keywords": [
+    "design",
+    "command",
+    "metadata",
+    "scattered",
+    "across",
+    "three",
+    "unsynchronized",
+    "places",
+    "wrapper",
+    "frontmatter",
+    "hub",
+    "skill",
+    "mode-registry",
+    "json"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.013Z",
+  "specId": "003",
+  "folderSlug": "command-metadata-ssot",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/029-deep-loop-workflows/010-deep-loop-skill-system-review",
+  "description": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9",
+  "keywords": [
+    "three",
+    "sibling",
+    "packets",
+    "landed",
+    "close",
+    "succession",
+    "need",
+    "release-readiness",
+    "check",
+    "trio",
+    "called",
+    "done",
+    "147-deep-loop-workflows"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.224Z",
+  "specId": "010",
+  "folderSlug": "deep-loop-skill-system-review",
+  "parentChain": [
+    "deep-loops",
+    "029-deep-loop-workflows"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-06-26_19-14__comprehensive-deep-review-of-the-deep-loop-skill.md"
+  ]
+}

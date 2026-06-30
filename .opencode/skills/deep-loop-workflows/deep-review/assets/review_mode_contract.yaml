@@ -410,13 +410,13 @@ render:
         - quality-gates
         - cross-reference-protocols
         - outputs
-    - id: agent-codex
-      path: .codex/agents/deep-review.toml
+    - id: agent-opencode
+      path: .opencode/agents/deep-review.toml
       ownership: mixed
       format: toml
       markers:
-        begin: "# BEGIN GENERATED: review-mode-contract/agent-codex"
-        end: "# END GENERATED: review-mode-contract/agent-codex"
+        begin: "# BEGIN GENERATED: review-mode-contract/agent-opencode"
+        end: "# END GENERATED: review-mode-contract/agent-opencode"
       sections:
         - dimensions
         - severities

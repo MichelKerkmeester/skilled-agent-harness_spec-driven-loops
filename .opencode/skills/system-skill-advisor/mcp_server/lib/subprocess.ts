@@ -75,7 +75,7 @@ function parsePositiveInt(value: string | undefined, fallback: number): number {
 }
 
 function defaultTimeoutMs(): number {
-  return parsePositiveInt(process.env.SPECKIT_CODEX_HOOK_TIMEOUT_MS, DEFAULT_TIMEOUT_MS);
+  return parsePositiveInt(process.env.SPECKIT_OPENCODE_HOOK_TIMEOUT_MS, DEFAULT_TIMEOUT_MS);
 }
 
 function thresholdArgs(thresholdConfig: AdvisorThresholds | undefined): string[] {

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge",
+  "description": "The deep-context and deep-review loops start with an empty coverage graph",
+  "keywords": [
+    "deep-context",
+    "deep-review",
+    "loops",
+    "start",
+    "empty",
+    "coverage",
+    "graph"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.389Z",
+  "specId": "008",
+  "folderSlug": "code-graph-coverage-bridge",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

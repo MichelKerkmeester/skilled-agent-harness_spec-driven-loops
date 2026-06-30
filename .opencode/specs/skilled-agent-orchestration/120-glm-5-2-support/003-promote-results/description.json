@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/003-promote-results",
+  "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/<run-label>/`",
+  "keywords": [
+    "phase",
+    "002",
+    "runs",
+    "bakeoff",
+    "empirical",
+    "winner",
+    "exists",
+    "only",
+    "run",
+    "output",
+    "benchmarks",
+    "run-label"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.398Z",
+  "specId": "003",
+  "folderSlug": "promote-results",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "120-glm-5-2-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

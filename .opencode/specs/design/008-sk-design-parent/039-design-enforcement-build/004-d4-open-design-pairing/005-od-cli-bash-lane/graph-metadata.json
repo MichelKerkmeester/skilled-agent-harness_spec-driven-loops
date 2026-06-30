@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r5 od cli bash lane",
+      "bash lane gate file design build",
+      "guarded od commands precondition",
+      "od cli bash lane plan",
+      "design proof gate file bash",
+      "od cli bash lane tasks",
+      "od cli bash lane checklist",
+      "od cli bash lane implementation summary",
+      "guarded od commands precondition record",
+      "design proof gate file bash summary"
+    ],
+    "key_topics": [
+      "d4-r5",
+      "cli",
+      "bash",
+      "lane",
+      "gate",
+      "file",
+      "design",
+      "build",
+      "guarded",
+      "commands",
+      "precondition",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".codex/policy.json",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
+      "tests/codex-pre-tool-use.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-open-design/references/guarded_proxy.md"
+    ],
+    "entities": [
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": ".codex/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "pre-tool-use.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex-pre-tool-use.vitest.ts",
+        "kind": "test",
+        "path": "tests/codex-pre-tool-use.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "guarded_proxy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Bash",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Item",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guarded Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Open Design is driven not only through MCP tools but also through the `od` CLI, which the agent runs as a Bash command",
+    "created_at": "2026-06-28T12:39:55.959Z",
+    "last_save_at": "2026-06-28T20:23:17.947Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa3d35a525bdadaef3faa0f53906a217d7a22e4cb6a8abc3c7b72a18ab0c9496",
+    "source_doc_hashes": {
+      "spec.md": "e0305221a69fe48a42ede9288e830836ade4a1faa37d266bf17f0d7d2fb4939f",
+      "plan.md": "4b27d21fdebb09573f21988f77a8516443a0da48d5ed5ee5fad4047db3e55c96",
+      "tasks.md": "8804c6dd887b3f5a95ef418c46d1322ad505b9ba5a73b72ef87548ac830242fd",
+      "checklist.md": "2f75035962e883d528db520c25503fe63487d032c0d96cbb7492ad008b0ab5a1",
+      "implementation-summary.md": "4afd4b6949b612a0cfda4b2d5853abe8c8d5a5dda528760658eaf46484c0ca2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

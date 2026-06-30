@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test",
+  "description": "sk-doc has a smart router (§2 of SKILL.md) with INTENTMODEL, RESOURCEMAP, scoreintents(), selectintents() — but NO manualtestingplaybook to verify it",
+  "keywords": [
+    "sk-doc",
+    "smart",
+    "router",
+    "skill",
+    "intentmodel",
+    "resourcemap",
+    "scoreintents",
+    "selectintents",
+    "manualtestingplaybook",
+    "verify"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.755Z",
+  "specId": "057",
+  "folderSlug": "sk-doc-router-stress-test",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

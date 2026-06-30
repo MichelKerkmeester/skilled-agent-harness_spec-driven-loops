@@ -505,37 +505,37 @@ Expected signals: Plan asks before workspace choice, uses `git worktree add -b` 
 
 > **Feature File:** [GIT-020](06--cross-cli-orchestration/native-claude-code-invocation.md)
 
-### GIT-021 | cli-codex delegation
+### GIT-021 | cli-opencode delegation
 
 #### Description
 
-Verify cli-codex can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope.
+Verify cli-opencode can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope.
 
 #### Scenario Contract
 
-Prompt: `As a cross-CLI conductor, delegate a sk-git commit-plan review against cli-codex. Verify the response preserves Conventional Commit determinism and refuses unsafe git shortcuts. Return the handback summary and pass/fail verdict.`
+Prompt: `As a cross-CLI conductor, delegate a sk-git commit-plan review against cli-opencode. Verify the response preserves Conventional Commit determinism and refuses unsafe git shortcuts. Return the handback summary and pass/fail verdict.`
 
 Expected signals: Handback includes deterministic commit subject, targeted staging, and no bypass/force-push advice.
 
 #### Test Execution
 
-> **Feature File:** [GIT-021](06--cross-cli-orchestration/cli-codex-delegation.md)
+> **Feature File:** [GIT-021](06--cross-cli-orchestration/cli-opencode-delegation.md)
 
-### GIT-022 | cli-codex and cli-copilot handback
+### GIT-022 | cli-opencode and cli-copilot handback
 
 #### Description
 
-Verify Codex or Copilot delegation returns a safe handback rather than executing risky git commands directly.
+Verify OpenCode or Copilot delegation returns a safe handback rather than executing risky git commands directly.
 
 #### Scenario Contract
 
-Prompt: `As a cross-CLI conductor, request a second-opinion handback against cli-codex or cli-copilot. Verify the external response is advisory only and sk-git performs the final safety check. Return accepted commands, rejected suggestions, and evidence.`
+Prompt: `As a cross-CLI conductor, request a second-opinion handback against cli-opencode or cli-copilot. Verify the external response is advisory only and sk-git performs the final safety check. Return accepted commands, rejected suggestions, and evidence.`
 
 Expected signals: External response is advisory; final command plan is filtered through sk-git; unsafe suggestions are named and rejected.
 
 #### Test Execution
 
-> **Feature File:** [GIT-022](06--cross-cli-orchestration/cli-codex-and-cli-copilot-handback.md)
+> **Feature File:** [GIT-022](06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md)
 
 ---
 
@@ -579,5 +579,5 @@ The current sk-doc validator checks this root document's markdown structure. It 
 | GIT-018 | Recovery And Edge Cases | [Empty commit or no changes](05--recovery-and-edge-cases/empty-commit-or-no-changes.md) | verify commit flow refuses no-op commits unless the user explicitly asks for an empty commit with rationale. |
 | GIT-019 | Recovery And Edge Cases | [Rebase vs merge decision](05--recovery-and-edge-cases/rebase-vs-merge-decision.md) | verify divergence recovery chooses rebase only for safe local/unpushed work and merge for shared history. |
 | GIT-020 | Cross CLI Orchestration | [Native Claude Code invocation](06--cross-cli-orchestration/native-claude-code-invocation.md) | verify sk-git guidance can be executed by a native Claude Code conductor without losing safety gates. |
-| GIT-021 | Cross CLI Orchestration | [cli-codex delegation](06--cross-cli-orchestration/cli-codex-delegation.md) | verify cli-codex can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope. |
-| GIT-022 | Cross CLI Orchestration | [cli-codex and cli-copilot handback](06--cross-cli-orchestration/cli-codex-and-cli-copilot-handback.md) | verify Codex or Copilot delegation returns a safe handback rather than executing risky git commands directly. |
+| GIT-021 | Cross CLI Orchestration | [cli-opencode delegation](06--cross-cli-orchestration/cli-opencode-delegation.md) | verify cli-opencode can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope. |
+| GIT-022 | Cross CLI Orchestration | [cli-opencode and cli-copilot handback](06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md) | verify OpenCode or Copilot delegation returns a safe handback rather than executing risky git commands directly. |

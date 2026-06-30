@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "description": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`,",
+  "keywords": [
+    "memory",
+    "mcp",
+    "memorycontext",
+    "static",
+    "mode",
+    "router",
+    "zero",
+    "tool-calling",
+    "executestrategy",
+    "switch",
+    "dispatches",
+    "quick",
+    "deep",
+    "focused",
+    "resume"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.707Z",
+  "specId": "016",
+  "folderSlug": "iterative-agentic-recall",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

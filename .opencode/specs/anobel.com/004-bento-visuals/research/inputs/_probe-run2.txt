@@ -1,0 +1,31 @@
+Running gate on 148 baseline tiles ...
+
+=== CONFUSION MATRIX (positive = FIX) ===
+TP=18 FP=10 TN=17 FN=0  (n=45)
+precision=0.64 recall=1.00 F1=0.78
+
+=== SENTINELS ===
+  accountbeheer-4: gate=FAIL [titleBandIntrusion,visualPanelOverflow,bboxOverlap,uppercase] | audit=FIX 35
+  oci-4: gate=FAIL [bboxOverlap] | audit=FIX 58
+  goedkeuringssysteem-4: gate=FAIL [bannedContrast] | audit=FIX 55
+  accountbeheer-5: gate=PASS | audit=SHIP 93
+  kwartaalcijfers-2: gate=PASS | audit=SHIP 94
+
+=== PER-CHECK CORRELATION ===
+  visualPanelOverflow vs audit.overflow: 35/45 agree
+  bannedContrast vs audit.readable: 32/45 agree
+  titleBandIntrusion vs audit.title_at_bottom: 40/45 agree
+
+=== MISCLASSIFIED / MISSING ===
+  FP aangepast-assortiment-2 (gate FAIL, audit SHIP 90) checks=bannedContrast
+  FP aangepast-assortiment-4 (gate FAIL, audit SHIP 88) checks=uppercase
+  FP een-factuur-2 (gate FAIL, audit SHIP 92) checks=bannedContrast
+  FP favorieten-2 (gate FAIL, audit SHIP 90) checks=clipping
+  FP kwartaalcijfers-1 (gate FAIL, audit SHIP 88) checks=visualPanelOverflow,bboxOverlap
+  FP oci-1 (gate FAIL, audit SHIP 92) checks=bannedContrast,uppercase
+  FP orders-facturen-1 (gate FAIL, audit SHIP 90) checks=uppercase
+  FP orders-facturen-5 (gate FAIL, audit SHIP 89) checks=clipping
+  FP prijzen-condities-4 (gate FAIL, audit SHIP 87) checks=uppercase
+  FP prijzen-condities-5 (gate FAIL, audit SHIP 90) checks=bannedContrast
+
+wrote _probe-result.json

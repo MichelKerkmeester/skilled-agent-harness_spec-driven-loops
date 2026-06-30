@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation/006-loop-wide-dry-run",
+  "description": "There is no safe way for an operator to inspect what a deep-loop run would do without executing it: setup, focus selection, and convergence reads cann",
+  "keywords": [
+    "safe",
+    "way",
+    "operator",
+    "inspect",
+    "deep-loop",
+    "run",
+    "without",
+    "executing",
+    "setup",
+    "focus",
+    "selection",
+    "convergence",
+    "reads",
+    "cann"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.466Z",
+  "specId": "006",
+  "folderSlug": "loop-wide-dry-run",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "006-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

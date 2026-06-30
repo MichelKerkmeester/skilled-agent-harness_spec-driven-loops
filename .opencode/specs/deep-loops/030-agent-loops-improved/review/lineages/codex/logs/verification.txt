@@ -1,0 +1,4 @@
+Focused verification command:
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts ../../deep-loop-runtime/tests/unit/fanout-merge.vitest.ts --reporter=verbose
+
+Result: exit 1. fanout-run.vitest.ts failed 3 tests; fanout-merge.vitest.ts passed.

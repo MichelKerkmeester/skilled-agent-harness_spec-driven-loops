@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/072-skill-description-guardrails",
+  "spec_folder": "skilled-agent-orchestration/z_archive/072-skill-description-guardrails",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill description guardrails",
+      "doctor skill-budget",
+      "description budget audit",
+      "frontmatter description trim",
+      "skill creation validation",
+      "skill description plan",
+      "doctor skill-budget plan",
+      "086 implementation plan",
+      "086 tasks",
+      "skill description guardrails tasks",
+      "086 implementation summary",
+      "skill description guardrails summary"
+    ],
+    "key_topics": [
+      "skill",
+      "description",
+      "guardrails",
+      "doctor",
+      "skill-budget",
+      "budget",
+      "audit",
+      "frontmatter",
+      "trim",
+      "creation",
+      "validation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+      ".opencode/skills/sk-doc/assets/agent_template.md",
+      ".opencode/skills/sk-doc/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
+      ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/create/agent.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_md_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_quick_validate_086.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
+        "source": "derived"
+      },
+      {
+        "name": "create_sk_skill_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Description Budget Guardrails",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bake",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASHCOMMANDTOOLCHARBUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc",
+    "created_at": "2026-05-06T13:33:18.960Z",
+    "last_save_at": "2026-06-23T03:49:49.959Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b5d6fd5470ac16003290606a98b92fa79206cac89b7ea234d3ef2ea38310610",
+    "source_doc_hashes": {
+      "spec.md": "01142b77b5944d5f496ce99dec116359a92e07780a38bf22681ea43d6cdbb355",
+      "plan.md": "d2dedffb4170d79e3607ad540266ed024b285977cc9c4e7c3699ca114c9818b5",
+      "tasks.md": "5ac34b4abc4100c7f3129e158f5ae1bfa3d3022ac5b4422eb5416533657ef5d4",
+      "implementation-summary.md": "a661a75f56dd8bb3f29e364e7a0a47369db38f134de7fe3d6ee254367be7596b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

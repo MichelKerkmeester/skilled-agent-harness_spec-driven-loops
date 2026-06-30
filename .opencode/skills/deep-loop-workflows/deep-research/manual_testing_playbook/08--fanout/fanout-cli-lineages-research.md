@@ -25,8 +25,8 @@ two executors are specified, no fan-out dispatch happens silently.
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the research YAML dispatches CLI lineages via `fanout-run.cjs` when two executor flags are present, that both lineages are isolated, and that the merged registry feeds `step_compile_research`.
-- Real user request: `/deep:research:auto "test topic" --executor=cli-codex --model=o4-mini --label=codex --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
-- Expected execution process: 1. Setup binds two executors → `config.fanout` (not `config.executor`). 2. `step_resolve_artifact_root` resolves base `artifact_dir`. 3. `step_fanout_spawn_cli` calls `fanout-run.cjs` with both CLI lineages. 4. Pool spawns two subprocesses in parallel. 5. Each writes to `lineages/codex/` and `lineages/claude/`. 6. `step_fanout_merge` reads both lineage registries, deduplicates. 7. `step_compile_research` emits canonical `research.md`.
+- Real user request: `/deep:research:auto "test topic" --executor=cli-opencode --model=o4-mini --label=opencode --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
+- Expected execution process: 1. Setup binds two executors → `config.fanout` (not `config.executor`). 2. `step_resolve_artifact_root` resolves base `artifact_dir`. 3. `step_fanout_spawn_cli` calls `fanout-run.cjs` with both CLI lineages. 4. Pool spawns two subprocesses in parallel. 5. Each writes to `lineages/opencode/` and `lineages/claude/`. 6. `step_fanout_merge` reads both lineage registries, deduplicates. 7. `step_compile_research` emits canonical `research.md`.
 - Expected signals: `step_fanout_spawn` present in YAML with `skip_when`; `step_fanout_merge` present in `phase_synthesis` with `skip_when`; `--executor` docs list 2+ → `config.fanout` default policy; `fanout-run.vitest.ts` confirms pool isolation.
 - Pass/fail: PASS if source inspection confirms the full dispatch chain and unit tests agree; FAIL if any step is missing, `skip_when` guard absent, or docs lack the fan-out default policy.
 

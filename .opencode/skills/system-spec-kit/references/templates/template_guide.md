@@ -656,7 +656,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 
 2. MODEL SELECTION (MANDATORY)
    ├── Claude - Anthropic (Sonnet/Opus)
-   ├── Codex - OpenAI (GPT-4/o1)
+   ├── OpenCode - OpenAI (GPT-4/o1)
    └── Other - User specified
 
 3. REPORT GENERATION
@@ -694,7 +694,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 | Type errors, syntax issues | Claude |
 | Architectural problems | Claude |
 | Complex state management | Claude |
-| Logic puzzles, algorithms | Codex |
+| Logic puzzles, algorithms | OpenCode |
 | Large codebase context | Claude |
 
 **Example Usage:**
@@ -997,7 +997,7 @@ mkdir -p specs/122-skill-standardization/spec-enforcement-improvements
 
 ### Sub-Folder Naming Conventions
 
-- **Lowercase with hyphens:** `spec-enforcement-improvements`, `cli-codex-alignment`
+- **Lowercase with hyphens:** `spec-enforcement-improvements`, `cli-opencode-alignment`
 - **Descriptive:** Clearly indicates the sub-folder's purpose
 - **Consistent with sibling folders:** Follow established patterns in the parent spec
 - **Avoid generic names:** `analysis`, `work` (too vague)
@@ -1011,8 +1011,8 @@ mkdir -p specs/122-skill-standardization/spec-enforcement-improvements
 **Sub-Folders:**
 ```text
 specs/122-skill-standardization/
-  cli-codex-alignment/
-    README.md           # Purpose: Align cli-codex skill with standards
+  cli-opencode-alignment/
+    README.md           # Purpose: Align cli-opencode skill with standards
     analysis.md         # Current state analysis
     changes_summary.md  # Changes needed
     validation_report.md # Post-change validation

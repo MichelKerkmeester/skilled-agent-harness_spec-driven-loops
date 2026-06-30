@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/040-design-playbook-filename-denumbering",
+  "description": "The sk-design manual testing playbooks use globally-numbered per-feature filenames (`001-live-extraction.md`, `007-report-generation.md`)",
+  "keywords": [
+    "sk-design",
+    "manual",
+    "testing",
+    "playbooks",
+    "use",
+    "globally-numbered",
+    "per-feature",
+    "filenames",
+    "001-live-extraction",
+    "007-report-generation"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.308Z",
+  "specId": "040",
+  "folderSlug": "design-playbook-filename-denumbering",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-06-26_10-22__all-findings-with-gpt.md",
+    "30-06-26_10-11__all-deep-review-findings-for-154-sk-design-parent.md"
+  ]
+}

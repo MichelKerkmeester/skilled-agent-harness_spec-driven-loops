@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates",
+  "description": "Before this phase, deep-review could make dimension coverage, evidence density, and graph convergence look complete while still leaving v2 candidate-s",
+  "keywords": [
+    "phase",
+    "deep-review",
+    "make",
+    "dimension",
+    "coverage",
+    "evidence",
+    "density",
+    "graph",
+    "convergence",
+    "look",
+    "complete",
+    "while",
+    "still",
+    "leaving",
+    "candidate-s"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.822Z",
+  "specId": "006",
+  "folderSlug": "complexity-candidate-saturation-gates",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "002-deep-review"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_13-12__phase-005-reducer-registry-exposes.md"
+  ]
+}

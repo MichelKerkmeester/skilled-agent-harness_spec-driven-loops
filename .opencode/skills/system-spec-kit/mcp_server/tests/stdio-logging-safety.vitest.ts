@@ -15,7 +15,7 @@ const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}matrix_runners${path.sep}run-matrix.ts`,
   `${path.sep}hooks${path.sep}claude${path.sep}`,
   `${path.sep}hooks${path.sep}copilot${path.sep}`,
-  `${path.sep}hooks${path.sep}codex${path.sep}`,
+  `${path.sep}hooks${path.sep}opencode${path.sep}`,
   `${path.sep}skill-advisor${path.sep}bench${path.sep}`,
   `${path.sep}skill_advisor${path.sep}bench${path.sep}`,
 ];

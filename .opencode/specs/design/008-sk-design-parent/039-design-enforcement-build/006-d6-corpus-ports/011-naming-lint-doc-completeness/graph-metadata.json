@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/011-naming-lint-doc-completeness",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/011-naming-lint-doc-completeness",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r11 naming lint doc completeness",
+      "naming lint design build",
+      "design-system artifact contract",
+      "d6-r11 naming lint implementation summary",
+      "naming doc check build record",
+      "design-system artifact contract summary"
+    ],
+    "key_topics": [
+      "d6-r11",
+      "naming",
+      "lint",
+      "doc",
+      "completeness",
+      "design",
+      "build",
+      "design-system",
+      "artifact",
+      "contract",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/naming_doc_check.py",
+      ".opencode/skills/sk-design/design-foundations/scripts/fixtures/naming_doc/compliant.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/fixtures/naming_doc/violating.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+      ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "design_system_artifact_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming_doc_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/naming_doc_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "compliant.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/fixtures/naming_doc/compliant.md",
+        "source": "derived"
+      },
+      {
+        "name": "violating.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/fixtures/naming_doc/violating.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_token_vocabulary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+        "source": "derived"
+      },
+      {
+        "name": "token_starter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design has a token-category vocabulary (`shared/designtokenvocabulary.md`) and a fill-in token scaffold (`assets/tokenstarter.md`), but no enforceable contract for how design-system outputs must be named or which documentation sections they must carry",
+    "created_at": "2026-06-28T12:40:11.129Z",
+    "last_save_at": "2026-06-29T13:32:31.867Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13d157b12fb31850da55fa53ce86ad0b340c39ff1bac24a2256764a6386a1555",
+    "source_doc_hashes": {
+      "spec.md": "c51205c7ad32e00100e735ad73c588e64597ea4787e7f59deda848c1eeddd1d7",
+      "plan.md": "52324716129aa7f86bc1787789450f1375e62feee0099d467effdc79a099f13b",
+      "tasks.md": "3f5769c788c07ee108cc015669e45ab0205d5c1d432906264577136484a089c2",
+      "checklist.md": "9c169a31977f17e57603ab4ba72432fdd117ec9b4956dc4d69f10044d06d18d1",
+      "implementation-summary.md": "776708a382dd380164aec8342d034597b6e89bbffbd6fb8709856f46dacad85a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

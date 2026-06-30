@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
+  "spec_folder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
+  "parent_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "migrate system-spec-kit snippets denumber",
+      "wave A system-spec-kit catalog playbook",
+      "133 phase 003",
+      "133 phase 003 plan",
+      "system-spec-kit migration batches",
+      "003-migrate-system-spec-kit completion"
+    ],
+    "key_topics": [
+      "migrate",
+      "system-spec-kit",
+      "snippets",
+      "denumber",
+      "wave",
+      "catalog",
+      "playbook",
+      "133",
+      "phase",
+      "003",
+      "plan",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-spec-kit` is the largest catalog/playbook package: 673 numbered snippet files (308 featurecatalog + 365 manualtestingplaybook) across ~67 category folders",
+    "created_at": "2026-06-06T06:46:12.387Z",
+    "last_save_at": "2026-06-23T03:49:51.727Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1e2fcc9a2659be87f7176d41976cd254562a93e48d0c3054b864b8e5c5cedbf",
+    "source_doc_hashes": {
+      "spec.md": "c78ba263a44e719b4ed7af145405e27c6c99c78125b80bd72d09a835abb02800",
+      "plan.md": "44408fb8baa3d1126546f91329a8e5fe79fcf91cc53b0d69d08214baffa449f7",
+      "tasks.md": "bd7a618f522429e7aed96ec726d4d0807a7273619f3d4aa2becaf8db6f488a9d",
+      "checklist.md": "15c4fc0d0497a1e7ea8f88f9ba3c365a4261f7e8b5ffd83cab735677b6ff7def",
+      "implementation-summary.md": "f66fd0ae616d916ff7061e1deb7a7072b1d6a4753437569425c0d7bb19d3e912"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

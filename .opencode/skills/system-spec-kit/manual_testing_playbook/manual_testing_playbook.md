@@ -215,11 +215,11 @@ Rule: keep global verdict logic in the root playbook. Put feature-specific accep
 
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
-This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for Codex or any other CLI.
+This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for OpenCode or any other CLI.
 
 The wave plans here apply to the split playbook package: the root `manual_testing_playbook.md` acts as the directory, review surface, and orchestration guide, while the detailed scenario contracts live in the numbered category folders at the playbook root.
 
-### Run A: Codex 5.3 xhigh (Observed)
+### Run A: OpenCode 5.3 xhigh (Observed)
 
 Observed orchestration:
 - Hard cap detected: 6 total sub-agent threads
@@ -228,7 +228,7 @@ Observed orchestration:
 
 | Runtime | Reported/Observed Capacity | Workers Used | Coordinator | Wave Count | Saturation |
 |---|---:|---:|---:|---:|---:|
-| Codex 5.3 xhigh | 6 total | 5 | 1 | 2 | 100% while active |
+| OpenCode 5.3 xhigh | 6 total | 5 | 1 | 2 | 100% while active |
 
 ### Merged Operational Rule
 
@@ -3475,7 +3475,7 @@ Expected signals: severity-ranked findings and final verdict.
 Outsourced agent output round-trips into searchable saved context.
 
 #### Scenario Contract
-Prompt: `Validate outsourced agent memory capture round-trip against cli-codex.`
+Prompt: `Validate outsourced agent memory capture round-trip against cli-opencode.`
 
 Expected signals: Agent output contains structured memory section; saved context is discoverable via search.
 

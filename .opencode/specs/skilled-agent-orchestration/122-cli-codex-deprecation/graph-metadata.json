@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/122-cli-codex-deprecation",
+  "spec_folder": "skilled-agent-orchestration/122-cli-codex-deprecation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex deprecation",
+      "codex cli skill retirement",
+      "remove cli-codex references",
+      "skill executor retirement",
+      "cli-codex deprecation plan",
+      "codex cli skill retirement plan",
+      "remove cli-codex executor",
+      "skill graph cleanup",
+      "cli-codex deprecation tasks",
+      "codex cli retirement tasks",
+      "executor cleanup tasks",
+      "cli-codex deprecation checklist"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "deprecation",
+      "codex",
+      "cli",
+      "skill",
+      "retirement",
+      "remove",
+      "references",
+      "executor",
+      "plan",
+      "graph",
+      "cleanup"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".codex/config.toml",
+      ".agents/skills/system-spec-kit/SKILL.md",
+      ".codex/README.md",
+      ".opencode/skills/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml"
+    ],
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".agents/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Desktop App",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validate Codex Desktop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Codex Desktop App",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
+    "created_at": "2026-06-30T06:25:16Z",
+    "last_save_at": "2026-06-30T13:09:37.784Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e9cf52ae1c2fc3fe578e8ca3565df2890372b3a6a672b4911f42159705f658c",
+    "source_doc_hashes": {
+      "spec.md": "ee278351d09af0314d925bf9c381e66510074fafdaea5a4d6a3070adf9e5c258",
+      "plan.md": "c879523294b8efb3af7e04d6434e0118ac4a04ced60c68ff83fc2c457456cead",
+      "tasks.md": "c5f5e1ce5d855d84a40274c08c74eb1ebb2b33839a54d559cba2bfd78fae6a60",
+      "checklist.md": "9914005d86aab17204275bb12ec6742f803ff3deb4d6889f4a2956dc3f048ae5",
+      "decision-record.md": "d499e999d9eff7d43a1408cd45df7c68372fd7ebd6a7b5ddbefd91f892b8ef73",
+      "implementation-summary.md": "0df761b1de6a2f58cc97f9213e0d963ccafa8ecf6b9a8f43b9fe66506c8ea74c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

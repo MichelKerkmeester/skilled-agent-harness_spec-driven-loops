@@ -177,8 +177,8 @@ describe('file-watcher path filters', () => {
   });
 
   it('scopes hidden-path checks relative to the watched root', () => {
-    const watchRoot = '/workspace/.tmp-codex-vitest/project';
-    const filePath = '/workspace/.tmp-codex-vitest/project/specs/001-test/spec.md';
+    const watchRoot = '/workspace/.tmp-opencode-vitest/project';
+    const filePath = '/workspace/.tmp-opencode-vitest/project/specs/001-test/spec.md';
     const scopedPath = __testables.getWatchScopedPath(filePath, [watchRoot]);
 
     expect(scopedPath).toBe('specs/001-test/spec.md');

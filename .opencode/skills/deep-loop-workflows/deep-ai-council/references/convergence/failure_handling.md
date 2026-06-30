@@ -182,7 +182,7 @@ When that happens:
 Honest labels:
 
 ```text
-simulated cli-codex lens
+simulated cli-opencode lens
 simulated cli-opencode lens
 native inline Research lens
 ```
@@ -190,7 +190,7 @@ native inline Research lens
 Unsafe claims:
 
 ```text
-cli-codex recommended...
+cli-opencode recommended...
 cli-opencode confirmed...
 Claude Code found...
 ```
@@ -239,7 +239,7 @@ Unsalvageable means:
 Rollback row shape:
 
 ```jsonl
-{"event":"rollback","round_id":"round-001","reason":"seat quorum failed","timestamp":"<ISO>","supersedes":["seats/round-001/seat-001-cli-codex.md"]}
+{"event":"rollback","round_id":"round-001","reason":"seat quorum failed","timestamp":"<ISO>","supersedes":["seats/round-001/seat-001-cli-opencode.md"]}
 ```
 
 After rollback, move failed round artifacts into:

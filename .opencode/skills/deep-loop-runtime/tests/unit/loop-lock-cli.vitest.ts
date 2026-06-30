@@ -56,7 +56,7 @@ afterEach(() => {
 describe('loop-lock CLI adapter mirrors the library', () => {
   it('acquire writes the snake_case on-disk format the library produces', () => {
     const lockPath = tempLock();
-    const result = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A', '--runtime-kind', 'cli-codex', '--owner-pid', String(process.pid)]);
+    const result = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A', '--runtime-kind', 'cli-claude-code', '--owner-pid', String(process.pid)]);
 
     expect(result.exitCode).toBe(0);
     expect(result.json).toMatchObject({ command: 'acquire', acquired: true });
@@ -66,7 +66,7 @@ describe('loop-lock CLI adapter mirrors the library', () => {
       owner_pid: process.pid,
       ttl_ms: 300_000,
       packet_id: 'pkt-A',
-      runtime_kind: 'cli-codex',
+      runtime_kind: 'cli-claude-code',
     });
   });
 

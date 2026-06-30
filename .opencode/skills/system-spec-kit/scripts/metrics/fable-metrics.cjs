@@ -8,7 +8,7 @@
 // signal lives in deep-loop state: the per-lineage opencode JSON event stream
 // (logs/fanout-lineage.out) carries text + tool parts, and the iteration
 // markdown carries the agent's prose. This reads those by path, so it works
-// across Claude, Codex, and OpenCode runs. It NEVER writes unless --baseline is
+// across Claude, OpenCode, and OpenCode runs. It NEVER writes unless --baseline is
 // given, and even then only to the named snapshot file — a /doctor run is read-only.
 
 const fs = require('node:fs');

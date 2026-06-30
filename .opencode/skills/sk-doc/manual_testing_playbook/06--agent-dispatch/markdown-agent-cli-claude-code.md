@@ -79,7 +79,7 @@ test -f /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md && \
 
 ## Cross-CLI Variants
 
-This scenario is fixed to `cli-claude-code`. Equivalent dispatches for cli-codex and cli-opencode are SD-019 and SD-020 respectively.
+This scenario is fixed to `cli-claude-code`. Equivalent dispatches for cli-opencode and cli-claude-code are SD-019 and SD-020 respectively.
 
 ## Success Criteria
 

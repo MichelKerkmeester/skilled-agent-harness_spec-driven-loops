@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/008-deep-improvement-readme",
+  "description": "The deep-improvement README is a tabular reference card with no problem-first entry point, and its stats carry stale facts (a feature-catalog count of",
+  "keywords": [
+    "deep-improvement",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "stats",
+    "carry",
+    "stale",
+    "facts",
+    "feature-catalog",
+    "count"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.332Z",
+  "specId": "008",
+  "folderSlug": "deep-improvement-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "109-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

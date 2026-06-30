@@ -130,7 +130,7 @@ Query examples should reflect live MCP semantics and remain tied to the package-
   "skillId": "system-skill-advisor",
   "relationships": [
     { "target": "cli-claude-code", "weight": 0.7, "context": "routes claude delegation requests" },
-    { "target": "cli-codex", "weight": 0.7, "context": "routes codex delegation requests" }
+    { "target": "cli-opencode", "weight": 0.7, "context": "routes opencode delegation requests" }
   ]
 }
 ```
@@ -206,7 +206,7 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 **Input**:
 
 ```json
-{ "queryType": "conflicts", "skillId": "cli-codex" }
+{ "queryType": "conflicts", "skillId": "cli-opencode" }
 ```
 
 **Output shape**:
@@ -214,7 +214,7 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 ```json
 {
   "queryType": "conflicts",
-  "skillId": "cli-codex",
+  "skillId": "cli-opencode",
   "relationships": []
 }
 ```

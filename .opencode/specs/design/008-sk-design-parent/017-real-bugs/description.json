@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "design/008-sk-design-parent/017-real-bugs",
+  "description": "Two concrete bugs block documented behavior in the sk-design family",
+  "keywords": [
+    "two",
+    "concrete",
+    "bugs",
+    "block",
+    "documented",
+    "behavior",
+    "sk-design",
+    "family"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.795Z",
+  "specId": "017",
+  "folderSlug": "real-bugs",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

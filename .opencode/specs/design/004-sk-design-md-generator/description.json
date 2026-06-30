@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "design/004-sk-design-md-generator",
+  "description": "Root packet for the sk-design-md-generator skill (a live-CSS to DESIGN.md extraction engine) and its research-driven anti-fabrication hardening. Phase",
+  "keywords": [
+    "root",
+    "packet",
+    "sk-design-md-generator",
+    "skill",
+    "live-css",
+    "design",
+    "extraction",
+    "engine",
+    "research-driven",
+    "anti-fabrication",
+    "hardening",
+    "phase"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.818Z",
+  "specId": "004",
+  "folderSlug": "sk-design-md-generator",
+  "parentChain": [
+    "design"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "22-06-26_16-13__hardened-the-sk-design-md-generator-skill-against.md",
+    "22-06-26_18-09__overhauled-the-sk-design-md-generator-output-to-a.md"
+  ]
+}

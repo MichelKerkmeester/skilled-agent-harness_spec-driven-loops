@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/048-agent-optimization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/048-agent-optimization",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/001-agent-context",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/002-agent-debug",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/004-agent-review",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/005-agent-orchestrate",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/006-agent-multi-ai-council",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/007-agent-improve-prompt",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/008-agent-deep-review",
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/009-agent-deep-research"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "061 root",
+      "061 phase parent",
+      "agent optimization",
+      "agent fleet improvement",
+      "improve agents"
+    ],
+    "key_topics": [
+      "061",
+      "root",
+      "phase",
+      "parent",
+      "agent",
+      "optimization",
+      "fleet",
+      "improvement",
+      "improve",
+      "agents",
+      "phase-parent",
+      "spec"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Fleet Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "structural",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase-parent root spec. Apply the validated sk-improve-agent v2 substrate (proven in packet 060 → final composite PASS 6/0/0) to the remaining 9 agents in the fleet. One sub-phase per agent. Sub-phase 006 also renames @ultra-think → @multi-ai-council across all 4 runtime mirrors and every reference.",
+    "created_at": "2026-05-18T07:49:27.101Z",
+    "last_save_at": "2026-06-23T03:49:49.442Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9b4cfd260e0d486352d0d476d9cb458b5f2861b751635fe45efed0a6a866dc14",
+    "source_doc_hashes": {
+      "spec.md": "e88847eb073af2fc1bf07b7050df0d8d229498c75bd995220b1844f322554089"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

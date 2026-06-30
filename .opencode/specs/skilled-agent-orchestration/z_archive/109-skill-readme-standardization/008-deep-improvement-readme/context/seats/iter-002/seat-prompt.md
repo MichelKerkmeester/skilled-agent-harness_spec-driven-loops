@@ -1,0 +1,16 @@
+Spec folder: skilled-agent-orchestration/z_archive/109-skill-readme-standardization/008-deep-improvement-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
+
+Role: You are verifying exact facts about the `.opencode/skills/deep-improvement/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.
+
+Context: Read `.opencode/skills/deep-improvement/SKILL.md` in full and its current `README.md`. Read the reference, asset and script files that define the 5-dimension scoring, candidate generation, guarded promotion and any benchmark lanes (skill-benchmark and model-benchmark). Verify against real file contents, not memory.
+
+Action: Report under exactly these six headings, every claim cited to a real file path:
+
+1. EXACT INVOCATION — the precise command or agent (slash command, modes, key inputs), quoted. Note what it writes and where.
+2. CAPABILITY ROSTER — the exact 5 scoring dimensions, the benchmark lanes and the promotion gate, copied from the skill.
+3. KEY FILES — a table of the real files (path + one-line role): SKILL.md, every references/ file, assets, scripts, mcp_server.
+4. SCORING & PROMOTION — how candidates are scored across 5 dimensions and what gates promotion, cited.
+5. TROUBLESHOOTING & FAQ — the concrete failure modes and the 3 to 5 questions a user most likely asks, with short grounded answers.
+6. STALE FACTS IN CURRENT README — list every claim in the current `README.md` that disagrees with `SKILL.md` or the real files, including any leftover "deep-agent-improvement" old name. Write "none found" if clean.
+
+Format: One structured markdown report under those six numbered headings. Cite real file paths verbatim. Mark anything unverifiable as UNKNOWN. No preamble.

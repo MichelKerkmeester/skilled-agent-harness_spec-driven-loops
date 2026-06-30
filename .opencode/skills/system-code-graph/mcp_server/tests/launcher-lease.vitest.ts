@@ -15,6 +15,12 @@ interface LauncherRun {
   stderr: string;
 }
 
+interface OwnerLease {
+  ownerPid?: unknown;
+  startedAtIso?: unknown;
+  childSpawnedAtIso?: unknown;
+}
+
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const launcherRelativePath = '.opencode/bin/mk-code-index-launcher.cjs';
 const launcherLibRelativePaths = [
@@ -147,13 +153,17 @@ function readLeasePid(pidFilePath: string): number | null {
   }
 }
 
-function readOwnerLeasePid(root: string): number | null {
+function readOwnerLease(root: string): OwnerLease | null {
   try {
-    const parsed = JSON.parse(readFileSync(join(root, ownerLeaseRelativePath), 'utf8')) as { ownerPid?: unknown };
-    return typeof parsed.ownerPid === 'number' ? parsed.ownerPid : null;
+    return JSON.parse(readFileSync(join(root, ownerLeaseRelativePath), 'utf8')) as OwnerLease;
   } catch {
     return null;
   }
+}
+
+function readOwnerLeasePid(root: string): number | null {
+  const parsed = readOwnerLease(root);
+  return typeof parsed?.ownerPid === 'number' ? parsed.ownerPid : null;
 }
 
 async function waitForLeasePid(pidFilePath: string, pid: number | undefined): Promise<void> {
@@ -243,6 +253,26 @@ describe('mk-code-index launcher lease', () => {
     expect(ownerPid).not.toBeNull();
     expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+  });
+
+  it('stamps childSpawnedAtIso when the owner lease is patched to the child pid', async () => {
+    const workspace = createWorkspace();
+    const run = spawnLauncher(workspace.launcherPath, workspace.root);
+
+    await waitFor(
+      () => typeof readOwnerLease(workspace.root)?.childSpawnedAtIso === 'string',
+      4000,
+      'child spawn timestamp in owner lease',
+    );
+
+    const lease = readOwnerLease(workspace.root);
+    expect(typeof lease?.startedAtIso).toBe('string');
+    expect(typeof lease?.childSpawnedAtIso).toBe('string');
+    expect(lease?.ownerPid).not.toBe(run.child.pid);
+
+    const childSpawnedAtIso = lease?.childSpawnedAtIso as string;
+    expect(Number.isFinite(Date.parse(childSpawnedAtIso))).toBe(true);
+    expect(new Date(childSpawnedAtIso).toISOString()).toBe(childSpawnedAtIso);
   });
 
   it('lets exactly one concurrent launcher own the lease', async () => {

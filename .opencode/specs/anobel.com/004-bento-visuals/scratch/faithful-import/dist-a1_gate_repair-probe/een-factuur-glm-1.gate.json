@@ -1,0 +1,60 @@
+{
+  "tileId": "een-factuur-1",
+  "arm": "a1_gate_repair",
+  "runId": "probe",
+  "primitive": "matrix",
+  "pass": false,
+  "checks": {
+    "titleBandIntrusion": {
+      "pass": true,
+      "offenders": []
+    },
+    "visualPanelOverflow": {
+      "pass": true,
+      "offenders": []
+    },
+    "bboxOverlap": {
+      "pass": true,
+      "offenders": []
+    },
+    "bannedContrast": {
+      "pass": true,
+      "offenders": []
+    },
+    "uppercase": {
+      "pass": false,
+      "count": 1,
+      "offenders": [
+        {
+          "role": "title",
+          "text": "UNKNOWN",
+          "fontSize": 21,
+          "bbox": [
+            30,
+            356,
+            378.3,
+            24.14
+          ]
+        }
+      ]
+    },
+    "clipping": {
+      "pass": true,
+      "offenders": []
+    }
+  },
+  "overflowSummary": {
+    "visualBottomMax": 328,
+    "rowsRendered": 5,
+    "rowsCap": 3
+  },
+  "repair": {
+    "fired": true,
+    "attempt": 1,
+    "regated": false,
+    "convertedToPass": false
+  },
+  "tolerancePx": 2,
+  "fontsReady": true,
+  "schemaVersion": "1.0"
+}

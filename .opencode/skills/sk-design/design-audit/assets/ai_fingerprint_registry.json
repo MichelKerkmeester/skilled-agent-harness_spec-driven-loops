@@ -1,7 +1,7 @@
 [
   {
     "tell_id": "ghost-card-border-plus-shadow",
-    "model_family": "codex",
+    "model_family": "opencode",
     "self_defect_prompt": "Find any card, panel, or button that uses both a 1px solid border and a soft wide shadow. If the shadow blur is 16px or more on the same element, flag it as a ghost-card border-plus-shadow tell.",
     "deterministic_check": "Detect any single element with border: 1px solid and a box-shadow blur radius of 16px or more.",
     "fixture_id": "ai-fingerprint-ghost-card-border-plus-shadow",
@@ -10,7 +10,7 @@
   },
   {
     "tell_id": "over-rounded-cards",
-    "model_family": "codex",
+    "model_family": "opencode",
     "self_defect_prompt": "Find cards, sections, panels, and text inputs with border-radius values of 24px or more. Treat pill tags and buttons separately; flag large containers that look inflated rather than designed.",
     "deterministic_check": "Detect border-radius values of 24px or more on cards, sections, panels, or text inputs.",
     "fixture_id": "ai-fingerprint-over-rounded-cards",
@@ -19,7 +19,7 @@
   },
   {
     "tell_id": "sketchy-svg-illustration",
-    "model_family": "codex",
+    "model_family": "opencode",
     "self_defect_prompt": "Find hand-drawn or doodle-style SVGs that stand in for a real subject. Flag sketch or doodle class names, turbulence or displacement filters, and crude low-path scenes used as trust-building visuals.",
     "deterministic_check": "Detect SVGs with sketch or doodle class names, feTurbulence or feDisplacementMap grain filters, or crude low-path scene illustrations.",
     "fixture_id": "ai-fingerprint-sketchy-svg-illustration",
@@ -28,8 +28,8 @@
   },
   {
     "tell_id": "diagonal-stripe-background",
-    "model_family": "codex",
-    "self_defect_prompt": "Find decorative diagonal stripe backgrounds on the body or top-level sections. If repeating-linear-gradient is used as surface decoration rather than information, flag the Codex stripe tell.",
+    "model_family": "opencode",
+    "self_defect_prompt": "Find decorative diagonal stripe backgrounds on the body or top-level sections. If repeating-linear-gradient is used as surface decoration rather than information, flag the OpenCode stripe tell.",
     "deterministic_check": "Detect repeating-linear-gradient used as a section or body background.",
     "fixture_id": "ai-fingerprint-diagonal-stripe-background",
     "severity_floor": "P3",
@@ -37,7 +37,7 @@
   },
   {
     "tell_id": "element-tracking-on-display-type",
-    "model_family": "codex",
+    "model_family": "opencode",
     "self_defect_prompt": "Find display or hero headings with letter-spacing tighter than -0.04em. Flag cramped tracking, especially when letters touch or the heading loses legibility.",
     "deterministic_check": "Detect letter-spacing values tighter than -0.04em on display or hero headings.",
     "fixture_id": "ai-fingerprint-element-tracking-on-display-type",
@@ -46,7 +46,7 @@
   },
   {
     "tell_id": "theater-meta-criticism-copy",
-    "model_family": "codex",
+    "model_family": "opencode",
     "self_defect_prompt": "Find body copy that criticizes a product surface by calling it a kind of theater instead of naming concrete user harm. Flag it as advisory and confirm the surrounding context before filing.",
     "deterministic_check": "Detect body copy containing a word followed by theater as meta-criticism copy.",
     "fixture_id": "ai-fingerprint-theater-meta-criticism-copy",

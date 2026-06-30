@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+    "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+    "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+    "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "126-cli-opencode-mimo-pro-optimization",
+      "phase parent",
+      "mimo",
+      "mimo-v2.5-pro",
+      "xiaomi token plan"
+    ],
+    "key_topics": [
+      "126-cli-opencode-mimo-pro-optimization",
+      "phase",
+      "parent",
+      "mimo",
+      "mimo-v2",
+      "5-pro",
+      "xiaomi",
+      "token",
+      "plan",
+      "cli-opencode",
+      "supports",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Plan Europe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Xiaomi Token Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode supports three provider families (`opencode-go` default, `deepseek` direct-API, and MiniMax via the Token Plan `minimax-coding-plan` / Direct API `minimax`)",
+    "created_at": "2026-06-01T20:21:29.312Z",
+    "last_save_at": "2026-06-23T03:49:51.480Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6474640cba6f53df1a132d902b946b0d36ac65c7169f6e3c02ebf6b3f5d06d04",
+    "source_doc_hashes": {
+      "spec.md": "7724de5b5fe49586c1d61c968c71fe3b17e3b6878c173c8b2a391065dfc2205c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-01T21:27:52.168Z"
+  }
+}

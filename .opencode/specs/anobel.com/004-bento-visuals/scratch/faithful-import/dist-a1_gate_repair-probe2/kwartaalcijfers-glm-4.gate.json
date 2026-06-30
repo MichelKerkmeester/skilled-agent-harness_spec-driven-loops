@@ -1,0 +1,48 @@
+{
+  "tileId": "kwartaalcijfers-4",
+  "arm": "a1_gate_repair",
+  "runId": "probe2",
+  "primitive": "unknown",
+  "pass": true,
+  "checks": {
+    "titleBandIntrusion": {
+      "pass": true,
+      "offenders": []
+    },
+    "visualPanelOverflow": {
+      "pass": true,
+      "offenders": []
+    },
+    "bboxOverlap": {
+      "pass": true,
+      "offenders": []
+    },
+    "bannedContrast": {
+      "pass": true,
+      "offenders": []
+    },
+    "uppercase": {
+      "pass": true,
+      "count": 0,
+      "offenders": []
+    },
+    "clipping": {
+      "pass": true,
+      "offenders": []
+    }
+  },
+  "overflowSummary": {
+    "visualBottomMax": 328,
+    "rowsRendered": 5,
+    "rowsCap": 3
+  },
+  "repair": {
+    "fired": true,
+    "attempt": 1,
+    "regated": true,
+    "convertedToPass": true
+  },
+  "tolerancePx": 2,
+  "fontsReady": true,
+  "schemaVersion": "1.0"
+}

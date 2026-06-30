@@ -35,37 +35,37 @@ function withTempStateLog(content: string, run: (stateLogPath: string) => void):
 }
 
 /**
- * Returns a default cli-codex ExecutorConfig for use in tests.
+ * Returns a default CLI executor config for use in tests.
  */
-function cliCodexExecutor(): ExecutorConfig {
+function cliClaudeExecutor(): ExecutorConfig {
   return {
-    kind: 'cli-codex',
-    model: 'gpt-5.4',
+    kind: 'cli-claude-code',
+    model: 'claude-opus-4-6',
     configDir: null,
     reasoningEffort: 'high',
-    serviceTier: 'priority',
+    serviceTier: null,
     sandboxMode: null,
     timeoutSeconds: 900,
   };
 }
 
 describe('executor-audit', () => {
-  it('buildExecutorAuditRecord returns all four audit fields for a cli-codex executor', () => {
+  it('buildExecutorAuditRecord returns all audit fields for a CLI executor', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'high',
-      serviceTier: 'priority',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
 
     expect(buildExecutorAuditRecord(executor)).toEqual({
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       reasoningEffort: 'high',
-      serviceTier: 'priority',
+      serviceTier: null,
     });
   });
 
@@ -91,11 +91,11 @@ describe('executor-audit', () => {
 
   it('writeFirstRecordExecutor appends an iteration_start sentinel when no iteration record exists yet', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'high',
-      serviceTier: 'priority',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -109,10 +109,10 @@ describe('executor-audit', () => {
         type: 'iteration_start',
         iteration: 7,
         executor: {
-          kind: 'cli-codex',
-          model: 'gpt-5.4',
+          kind: 'cli-claude-code',
+          model: 'claude-opus-4-6',
           reasoningEffort: 'high',
-          serviceTier: 'priority',
+          serviceTier: null,
         },
       });
       expect(typeof lastRecord.timestamp).toBe('string');
@@ -121,11 +121,11 @@ describe('executor-audit', () => {
 
   it('writeFirstRecordExecutor merge-patches the iteration record when executor provenance is missing', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4-mini',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'medium',
-      serviceTier: 'fast',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -139,17 +139,17 @@ describe('executor-audit', () => {
         iteration: 4,
         status: 'continue',
         executor: {
-          kind: 'cli-codex',
-          model: 'gpt-5.4-mini',
+          kind: 'cli-claude-code',
+          model: 'claude-opus-4-6',
           reasoningEffort: 'medium',
-          serviceTier: 'fast',
+          serviceTier: null,
         },
       });
     });
   });
 
   it('writeFirstRecordExecutor repairs a corrupt tail before scanning iteration records', () => {
-    const executor = cliCodexExecutor();
+    const executor = cliClaudeExecutor();
 
     withTempStateLog(
       '{"type":"event","event":"start"}\n{"type":"iteration","iteration":4,"status":"continue"}\n{"type":"event","iteration":4',
@@ -162,8 +162,8 @@ describe('executor-audit', () => {
           type: 'iteration',
           iteration: 4,
           executor: {
-            kind: 'cli-codex',
-            model: 'gpt-5.4',
+            kind: 'cli-claude-code',
+            model: 'claude-opus-4-6',
           },
         });
       },
@@ -172,17 +172,17 @@ describe('executor-audit', () => {
 
   it('writeFirstRecordExecutor is a no-op when the iteration record already has executor provenance', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4-mini',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'low',
-      serviceTier: 'fast',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
 
     withTempStateLog(
-      '{"type":"iteration","iteration":4,"status":"continue","executor":{"kind":"cli-codex","model":"gpt-5.4-mini","reasoningEffort":"low","serviceTier":"fast"}}\n',
+      '{"type":"iteration","iteration":4,"status":"continue","executor":{"kind":"cli-claude-code","model":"claude-opus-4-6","reasoningEffort":"low","serviceTier":null}}\n',
       (stateLogPath) => {
         const before = readFileSync(stateLogPath, 'utf8');
 
@@ -215,11 +215,11 @@ describe('executor-audit', () => {
 
   it('merges the executor audit block into the last JSONL line for non-native executors', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'medium',
-      serviceTier: 'standard',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -233,10 +233,10 @@ describe('executor-audit', () => {
         iteration: 2,
         status: 'continue',
         executor: {
-          kind: 'cli-codex',
-          model: 'gpt-5.4',
+          kind: 'cli-claude-code',
+          model: 'claude-opus-4-6',
           reasoningEffort: 'medium',
-          serviceTier: 'standard',
+          serviceTier: null,
         },
       });
     });
@@ -244,11 +244,11 @@ describe('executor-audit', () => {
 
   it('persists the updated last line so subsequent reads include the executor field', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4-mini',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'low',
-      serviceTier: 'fast',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -258,21 +258,21 @@ describe('executor-audit', () => {
 
       const persisted = JSON.parse(readFileSync(stateLogPath, 'utf8').trim());
       expect(persisted.executor).toEqual({
-        kind: 'cli-codex',
-        model: 'gpt-5.4-mini',
+        kind: 'cli-claude-code',
+        model: 'claude-opus-4-6',
         reasoningEffort: 'low',
-        serviceTier: 'fast',
+        serviceTier: null,
       });
     });
   });
 
   it('throws when the last JSONL line is malformed', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'high',
-      serviceTier: 'priority',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -284,11 +284,11 @@ describe('executor-audit', () => {
 
   it('emitDispatchFailure writes a typed dispatch_failure event with executor provenance', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'high',
-      serviceTier: 'priority',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -304,17 +304,17 @@ describe('executor-audit', () => {
         reason: 'crash',
         detail: 'worker exited early',
         executor: {
-          kind: 'cli-codex',
-          model: 'gpt-5.4',
+          kind: 'cli-claude-code',
+          model: 'claude-opus-4-6',
           reasoningEffort: 'high',
-          serviceTier: 'priority',
+          serviceTier: null,
         },
       });
     });
   });
 
   it('emitDispatchFailure repairs a corrupt tail before checking duplicate failure events', () => {
-    const executor = cliCodexExecutor();
+    const executor = cliClaudeExecutor();
 
     withTempStateLog('{"type":"event","event":"start"}\n{"type":"event","iteration":3', (stateLogPath) => {
       emitDispatchFailure(stateLogPath, executor, 'crash', 3, 'worker exited early');
@@ -332,11 +332,11 @@ describe('executor-audit', () => {
 
   it('emitDispatchFailure is idempotent on repeat calls for the same iteration', () => {
     const executor: ExecutorConfig = {
-      kind: 'cli-codex',
-      model: 'gpt-5.4',
+      kind: 'cli-claude-code',
+      model: 'claude-opus-4-6',
       configDir: null,
       reasoningEffort: 'medium',
-      serviceTier: 'standard',
+      serviceTier: null,
       sandboxMode: null,
       timeoutSeconds: 900,
     };
@@ -379,20 +379,20 @@ describe('executor-audit', () => {
   });
 
   it('detectSameKindFromStack rejects same-runtime loops across two-hop stacks', () => {
-    expect(detectSameKindFromStack('cli-opencode:cli-codex', 'cli-codex')).toBe(true);
-    expect(detectSameKindFromStack('cli-claude-code:cli-opencode', 'cli-codex')).toBe(false);
-    expect(detectSameKindFromStack('cli-codex', 'native')).toBe(false);
+    expect(detectSameKindFromStack('cli-opencode:cli-claude-code', 'cli-claude-code')).toBe(true);
+    expect(detectSameKindFromStack('cli-claude-code:cli-opencode', 'cli-opencode')).toBe(true);
+    expect(detectSameKindFromStack('cli-claude-code', 'native')).toBe(false);
   });
 
   it('detectFromAncestry matches the executor binary in ancestor command lines', () => {
-    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/codex exec'])).toBe(true);
-    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/opencode'])).toBe(false);
+    expect(detectFromAncestry('cli-claude-code', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/claude -p'])).toBe(true);
+    expect(detectFromAncestry('cli-claude-code', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/opencode'])).toBe(false);
   });
 
   it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
-    expect(detectFromRuntimeEnv('cli-codex', { CODEX_SESSION_ID: 'session-1' })).toBe(true);
-    expect(detectFromRuntimeEnv('cli-codex', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
-    expect(detectFromRuntimeEnv('native', { CODEX_SESSION_ID: 'session-1' })).toBe(false);
+    expect(detectFromRuntimeEnv('cli-claude-code', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(true);
+    expect(detectFromRuntimeEnv('cli-claude-code', { OPENCODE_SESSION_ID: 'session-1' })).toBe(false);
+    expect(detectFromRuntimeEnv('native', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
   });
 
   it('detectFromLockfile rejects executor lockfiles in runtime state paths', () => {
@@ -400,9 +400,9 @@ describe('executor-audit', () => {
 
     try {
       mkdirSync(join(tempDir, 'locks'));
-      writeFileSync(join(tempDir, 'locks', 'speckit-cli-dispatch-cli-codex.lock'), 'pid=123\n', 'utf8');
+      writeFileSync(join(tempDir, 'locks', 'speckit-cli-dispatch-cli-claude-code.lock'), 'pid=123\n', 'utf8');
 
-      expect(detectFromLockfile('cli-codex', [tempDir])).toBe(true);
+      expect(detectFromLockfile('cli-claude-code', [tempDir])).toBe(true);
       expect(detectFromLockfile('cli-opencode', [tempDir])).toBe(false);
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
@@ -411,8 +411,8 @@ describe('executor-audit', () => {
 
   it('validateExecutorDispatchAllowed reports stack guard rejections before spawn', () => {
     expect(
-      validateExecutorDispatchAllowed(cliCodexExecutor(), {
-        env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-codex' },
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-claude-code' },
         ancestryCmdlines: [],
         statePaths: [],
       }),
@@ -420,15 +420,15 @@ describe('executor-audit', () => {
       allowed: false,
       layer: 'stack',
       reason: 'recursion-guard-stack',
-      detail: 'cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK',
+      detail: 'cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK',
     });
   });
 
   it('validateExecutorDispatchAllowed reports ancestry guard rejections', () => {
     expect(
-      validateExecutorDispatchAllowed(cliCodexExecutor(), {
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
         env: {},
-        ancestryCmdlines: ['/opt/homebrew/bin/codex exec'],
+        ancestryCmdlines: ['/opt/homebrew/bin/claude -p'],
         statePaths: [],
       }),
     ).toMatchObject({
@@ -440,8 +440,8 @@ describe('executor-audit', () => {
 
   it('validateExecutorDispatchAllowed reports env guard rejections', () => {
     expect(
-      validateExecutorDispatchAllowed(cliCodexExecutor(), {
-        env: { CODEX_SESSION_ID: 'session-1' },
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { CLAUDE_CODE_SESSION_ID: 'session-1' },
         ancestryCmdlines: [],
         statePaths: [],
       }),
@@ -456,10 +456,10 @@ describe('executor-audit', () => {
     const tempDir = mkdtempSync(join(tmpdir(), 'executor-guard-lock-'));
 
     try {
-      writeFileSync(join(tempDir, 'cli-codex.lock'), 'pid=123\n', 'utf8');
+      writeFileSync(join(tempDir, 'cli-claude-code.lock'), 'pid=123\n', 'utf8');
 
       expect(
-        validateExecutorDispatchAllowed(cliCodexExecutor(), {
+        validateExecutorDispatchAllowed(cliClaudeExecutor(), {
           env: {},
           ancestryCmdlines: [],
           statePaths: [tempDir],
@@ -478,22 +478,22 @@ describe('executor-audit', () => {
     const parentEnv = {
       PATH: '/usr/bin',
       HOME: '/tmp/home',
-      OPENAI_API_KEY: 'needed',
+      CLAUDE_CODE_HOME: '/tmp/claude-home',
       GITHUB_TOKEN: 'unrelated-secret',
-      ANTHROPIC_API_KEY: 'wrong-provider',
+      OPENAI_API_KEY: 'wrong-provider',
       SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode',
     };
 
-    const nextEnv = buildExecutorDispatchEnv(cliCodexExecutor(), parentEnv);
+    const nextEnv = buildExecutorDispatchEnv(cliClaudeExecutor(), parentEnv);
 
     expect(nextEnv).toMatchObject({
       PATH: '/usr/bin',
       HOME: '/tmp/home',
-      OPENAI_API_KEY: 'needed',
-      SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-codex',
+      CLAUDE_CODE_HOME: '/tmp/claude-home',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-opencode:cli-claude-code',
     });
     expect(nextEnv.GITHUB_TOKEN).toBeUndefined();
-    expect(nextEnv.ANTHROPIC_API_KEY).toBeUndefined();
+    expect(nextEnv.OPENAI_API_KEY).toBeUndefined();
     expect(parentEnv.SPECKIT_CLI_DISPATCH_STACK).toBe('cli-opencode');
   });
 
@@ -505,10 +505,10 @@ describe('executor-audit', () => {
         cwd: tmpdir(),
         timeoutSeconds: 5,
         stateLogPath,
-        executor: cliCodexExecutor(),
+        executor: cliClaudeExecutor(),
         iteration: 9,
         guardContext: {
-          env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-codex' },
+          env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-claude-code' },
           ancestryCmdlines: [],
           statePaths: [],
         },
@@ -521,8 +521,8 @@ describe('executor-audit', () => {
         event: 'dispatch_failure',
         iteration: 9,
         reason: 'recursion-guard-stack',
-        detail: 'cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK',
-        executor: { kind: 'cli-codex' },
+        detail: 'cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK',
+        executor: { kind: 'cli-claude-code' },
       });
     });
   });

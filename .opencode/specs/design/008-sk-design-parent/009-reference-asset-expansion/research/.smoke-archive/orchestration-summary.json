@@ -1,0 +1,22 @@
+{
+  "run_id": "1782485686835-ykwdkd",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/design/008-sk-design-parent/009-reference-asset-expansion",
+  "base_artifact_dir": ".opencode/specs/design/008-sk-design-parent/009-reference-asset-expansion/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

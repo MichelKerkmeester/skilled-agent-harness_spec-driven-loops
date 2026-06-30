@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/002-injection-plugin",
+  "description": "Persisted goal state is inert unless the assistant receives it during a turn",
+  "keywords": [
+    "persisted",
+    "goal",
+    "state",
+    "inert",
+    "unless",
+    "assistant",
+    "receives",
+    "turn"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.245Z",
+  "specId": "002",
+  "folderSlug": "injection-plugin",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

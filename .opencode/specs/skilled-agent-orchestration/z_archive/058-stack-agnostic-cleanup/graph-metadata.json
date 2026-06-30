@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup/001-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stack agnostic cleanup",
+      "non sk-code skills",
+      "public template cleanup",
+      "skill examples",
+      "skill graph validation",
+      "non sk-code cleanup",
+      "phase 071 tasks",
+      "stack agnostic cleanup tasks",
+      "skill cleanup",
+      "phase 071 verification",
+      "stack agnostic cleanup checklist",
+      "agnostic skill layer rule"
+    ],
+    "key_topics": [
+      "stack",
+      "agnostic",
+      "cleanup",
+      "non",
+      "sk-code",
+      "skills",
+      "public",
+      "template",
+      "skill",
+      "examples",
+      "graph",
+      "validation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/README.md",
+      "scratch/initial-inventory.md",
+      "decision-record.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "initial-inventory.md",
+        "kind": "doc",
+        "path": "scratch/initial-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agnostic Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Non",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Content",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Non-`sk-code` skills currently include frontend stack names, library names, repo-specific paths, and internal surface tag examples",
+    "created_at": "2026-05-05T19:14:28Z",
+    "last_save_at": "2026-06-23T03:49:49.782Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6302cbee34b8e9449f0d93bfcd263417e639dc2f3dbbc1c139c7966e24110c73",
+    "source_doc_hashes": {
+      "spec.md": "a0eadcca7e407cb589128ab1fc4a40ee3f62b8658bc24d9ef1d11e654ab1617b",
+      "plan.md": "03f4ee43fb335a93cfb8c7507f748c773d2e873b3aefab32df2ff6067f367881",
+      "tasks.md": "5869626535653c422fcedb7c323eb6f7253cade6661efefaa66dfc1e751b48d5",
+      "checklist.md": "f561933339007182c7af18a1a69f48a0ae25d8c3bb6d072eb9cd35cb443725a8",
+      "decision-record.md": "ae55c9d36d237b238ecc12ff8c075eb6bfd7282f1ef471502c4c51798d2cec54",
+      "implementation-summary.md": "16790c507e9e4d7ce7c3f521a5ffab7a782f1582897dee1bee6b987fdf385548"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

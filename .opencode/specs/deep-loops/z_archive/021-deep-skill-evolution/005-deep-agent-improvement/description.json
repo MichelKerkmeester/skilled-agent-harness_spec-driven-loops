@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/005-deep-agent-improvement",
+  "description": "This cluster groups 9 sub-phases that share a single thematic focus",
+  "keywords": [
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.946Z",
+  "specId": "005",
+  "folderSlug": "deep-agent-improvement",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

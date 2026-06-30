@@ -1,0 +1,32 @@
+{
+  "title": "Feature Specification: label catalog, playbook, and advisor lanes",
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
+  "description": "The skill now runs two lanes (agent-improvement and model-benchmark) through one agent, but the feature catalog and the manual testing playbook do not",
+  "keywords": [
+    "skill",
+    "now",
+    "runs",
+    "two",
+    "lanes",
+    "agent-improvement",
+    "model-benchmark",
+    "one",
+    "agent",
+    "feature",
+    "catalog",
+    "manual",
+    "testing",
+    "playbook"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.243Z",
+  "specId": "012",
+  "folderSlug": "label-catalog-playbook-and-advisor-lanes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

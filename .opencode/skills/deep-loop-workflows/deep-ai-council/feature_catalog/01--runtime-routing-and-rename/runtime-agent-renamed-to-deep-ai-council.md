@@ -42,7 +42,7 @@ The user-visible contract is concrete: Verify active runtime mirrors use deep-ai
 |------|-------|------|
 | `.opencode/agents/ai-council.md` | Runtime Mirror | OpenCode runtime mirror |
 | `.claude/agents/ai-council.md` | Runtime Mirror | Claude runtime mirror |
-| `.codex/agents/ai-council.toml` | Runtime Mirror | Codex runtime mirror |
+| `.opencode/agents/ai-council.toml` | Runtime Mirror | OpenCode runtime mirror |
 
 ### Validation And Tests
 

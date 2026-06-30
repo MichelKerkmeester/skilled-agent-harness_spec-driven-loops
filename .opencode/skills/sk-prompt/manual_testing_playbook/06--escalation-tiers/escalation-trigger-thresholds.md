@@ -45,7 +45,7 @@ Run sk-prompt on a HIPAA-bound, high-complexity prompt. Verify it escalates to @
 ### Commands
 
 1. `sk-prompt: Help with a compliance-sensitive prompt for HIPAA-bound data handling -- escalate to @prompt-improver.`
-2. `agent: @prompt-improver raw_task="Enhance a HIPAA-bound data-handling prompt for safe dispatch." task_type=review target_cli=codex complexity_hint=8 constraints="HIPAA compliance; preserve privacy and safety requirements."`
+2. `agent: @prompt-improver raw_task="Enhance a HIPAA-bound data-handling prompt for safe dispatch." task_type=review target_cli=opencode complexity_hint=8 constraints="HIPAA compliance; preserve privacy and safety requirements."`
 3. `bash: rg 'ESCALATE IF|@prompt-improver|complexity_hint|Standard DEPTH energy' .opencode/skills/sk-prompt/SKILL.md`
 
 ### Expected

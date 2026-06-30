@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard",
+  "spec_folder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard",
+  "parent_id": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement rollback hash guard",
+      "rollback candidate accepted state hash",
+      "promote candidate benchmark rollback",
+      "deep improvement rollback hash guard plan",
+      "rollback accepted state hash plan",
+      "promote candidate benchmark rollback plan",
+      "deep improvement rollback hash guard tasks",
+      "rollback candidate accepted state hash tasks",
+      "promote candidate benchmark rollback tasks",
+      "deep improvement rollback hash guard summary",
+      "rollback candidate accepted state hash summary",
+      "promote candidate benchmark rollback summary"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "rollback",
+      "hash",
+      "guard",
+      "candidate",
+      "accepted",
+      "state",
+      "promote",
+      "benchmark",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/spec.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/plan.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/tasks.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs"
+    ],
+    "entities": [
+      {
+        "name": "rollback-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Rollback Hash Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored accepted-state hash",
+    "created_at": "2026-06-29T10:43:17Z",
+    "last_save_at": "2026-06-30T14:53:29.835Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d4143f1fafd5653889d0ffa70cb08c9f0d7b7b52efe6df30ad3700734a859f75",
+    "source_doc_hashes": {
+      "spec.md": "81d74aad3653f66eebcd90ece85eb6019542d8106eb8c08b87c88efbd9fb9f55",
+      "plan.md": "c4dd57de78d232f5aba76c9762e77b340defac4d609f928074e170537e17afcd",
+      "tasks.md": "9d47a217eeeab07ccae0dd97d88e0e816bb7f19cf395ec4721a4997ece479584",
+      "implementation-summary.md": "3e0fc796efcce7633915f22c7bea73d5f1e20a404fa43a315f2c1f3e97a4a45d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

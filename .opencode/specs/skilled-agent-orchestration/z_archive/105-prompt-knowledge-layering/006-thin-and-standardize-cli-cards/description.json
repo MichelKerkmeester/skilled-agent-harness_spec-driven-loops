@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "description": "The 4 CLI prompt-quality cards (cli-opencode, cli-gemini, cli-codex, cli-claude-code) each inlined the complete framework table from the canonical car",
+  "keywords": [
+    "cli",
+    "prompt-quality",
+    "cards",
+    "cli-opencode",
+    "cli-gemini",
+    "cli-codex",
+    "cli-claude-code",
+    "inlined",
+    "complete",
+    "framework",
+    "table",
+    "canonical",
+    "car"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.228Z",
+  "specId": "006",
+  "folderSlug": "thin-and-standardize-cli-cards",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "105-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

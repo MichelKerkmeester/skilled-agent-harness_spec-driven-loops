@@ -31,9 +31,9 @@ describe('validation rule metadata', () => {
 
     expect(metadata.blockOnWrite).toBe(true);
     expect(metadata.blockOnIndex).toBe(true);
-    expect(shouldBlockWrite('V8', 'codex-cli-capture')).toBe(true);
-    expect(shouldBlockIndex('V8', 'codex-cli-capture')).toBe(true);
-    expect(determineValidationDisposition(['V8'], 'codex-cli-capture')).toMatchObject({
+    expect(shouldBlockWrite('V8', 'opencode-cli-capture')).toBe(true);
+    expect(shouldBlockIndex('V8', 'opencode-cli-capture')).toBe(true);
+    expect(determineValidationDisposition(['V8'], 'opencode-cli-capture')).toMatchObject({
       disposition: 'abort_write',
       blockingRuleIds: ['V8'],
       indexBlockingRuleIds: ['V8'],
@@ -113,7 +113,7 @@ describe('source capabilities', () => {
   it('limits transcript-style tool-title downgrades to the capable source set', () => {
     expect(getSourceCapabilities('claude-code-capture').toolTitleWithPathExpected).toBe(true);
     expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);
-    expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);
+    expect(getSourceCapabilities('opencode-cli-capture').toolTitleWithPathExpected).toBe(false);
     expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(true); // O4-13: Copilot CLI uses Claude models that produce tool titles
   });
 });

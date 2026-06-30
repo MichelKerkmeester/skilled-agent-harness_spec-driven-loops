@@ -152,7 +152,7 @@ describe('skill_advisor.py compat shim', () => {
       'spec.loader.exec_module(module)',
       'print(json.dumps(module._native_bridge_env({',
       '  "PATH": "/bin",',
-      '  "SPECKIT_RUNTIME": "codex",',
+      '  "SPECKIT_RUNTIME": "opencode",',
       '  "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "1",',
       '  "SECRET_TOKEN": "should-not-leak"',
       '}), sort_keys=True))',
@@ -166,7 +166,7 @@ describe('skill_advisor.py compat shim', () => {
     expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
     expect(parseJson(result.stdout)).toEqual({
       PATH: '/bin',
-      SPECKIT_RUNTIME: 'codex',
+      SPECKIT_RUNTIME: 'opencode',
     });
   });
 });

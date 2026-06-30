@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+  "description": "Phase 001 registered `mimo-v2.5-pro` with placeholder capability metadata (`contextlength: null`, `--variant` unverified)",
+  "keywords": [
+    "phase",
+    "001",
+    "registered",
+    "mimo-v2",
+    "5-pro",
+    "placeholder",
+    "capability",
+    "metadata",
+    "contextlength",
+    "null",
+    "variant",
+    "unverified"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.168Z",
+  "specId": "003",
+  "folderSlug": "mimo-efficiency-deep-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "101-cli-opencode-mimo-pro-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

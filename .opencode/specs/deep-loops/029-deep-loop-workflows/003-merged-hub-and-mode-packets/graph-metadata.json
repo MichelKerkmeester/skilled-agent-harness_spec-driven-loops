@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/029-deep-loop-workflows/003-merged-hub-and-mode-packets",
+  "spec_folder": "deep-loops/029-deep-loop-workflows/003-merged-hub-and-mode-packets",
+  "parent_id": "deep-loops/029-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-workflows hub skill build",
+      "mode-registry.json build",
+      "verbatim mode packets",
+      "deep-loop-workflows phase 003",
+      "merged-hub-and-mode-packets",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "deep-loop-workflows phase 003 summary",
+      "merged hub mode packets built",
+      "five mode packets verbatim"
+    ],
+    "key_topics": [
+      "deep-loop-workflows",
+      "hub",
+      "skill",
+      "build",
+      "mode-registry",
+      "json",
+      "verbatim",
+      "mode",
+      "packets",
+      "phase",
+      "003",
+      "merged-hub-and-mode-packets"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/graph-metadata.json",
+      ".opencode/skills/deep-loop-workflows/README.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau)",
+    "created_at": "2026-06-14T20:16:09.678Z",
+    "last_save_at": "2026-06-23T03:49:48.683Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a2f78c0404ceaaa410db25645b59650dc595321c8d8a1bacc583659ffa11c07",
+    "source_doc_hashes": {
+      "spec.md": "e686da18ddc1aff56468264c107a41ece2e16b76001b08e472f0bf213398b71e",
+      "plan.md": "1b22643ee48b141b85c55943987ce582b77b8fee20c75f4057679e4db66b4e56",
+      "tasks.md": "1a30873df56ef48c87516bcde567baf0f9adcfd15f20722cac446f76e00e2c2a",
+      "checklist.md": "f1c796f06f46a8547b88ff865f821d3778feaa91d4b8456cef865a2fcdfb0865",
+      "implementation-summary.md": "1cbcb6ebe4ef0406421e49deb86ee4349a3774193ce20296bc6d71d216c71cbb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

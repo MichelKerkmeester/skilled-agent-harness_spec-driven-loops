@@ -13,7 +13,7 @@ version: 3.6.0.14
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all three sibling skills. All emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->` as the Step 2 extraction delimiter. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
+When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-opencode`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all three sibling skills. All emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->` as the Step 2 extraction delimiter. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
 
 ---
 

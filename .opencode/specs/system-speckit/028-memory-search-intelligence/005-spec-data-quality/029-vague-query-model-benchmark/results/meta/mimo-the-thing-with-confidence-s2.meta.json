@@ -1,0 +1,14 @@
+{
+  "key": "mimo-the-thing-with-confidence-s2",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "the-thing-with-confidence",
+  "queryClass": "max-vague",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 102588,
+  "bytes": 99627,
+  "stderrTail": ""
+}

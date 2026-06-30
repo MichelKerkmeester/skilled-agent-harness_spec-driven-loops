@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/003-coco-priority",
+  "description": "077 finding F-001-002: `DEFAULTEXCLUDEDPATTERNS` includes `/.` (hidden directories) which excludes `.opencode/skills/sk-code/assets/opencode/` from de",
+  "keywords": [
+    "077",
+    "finding",
+    "f-001-002",
+    "defaultexcludedpatterns",
+    "includes",
+    "hidden",
+    "directories",
+    "excludes",
+    "opencode",
+    "skills",
+    "sk-code",
+    "assets"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.711Z",
+  "specId": "003",
+  "folderSlug": "coco-priority",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "066-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

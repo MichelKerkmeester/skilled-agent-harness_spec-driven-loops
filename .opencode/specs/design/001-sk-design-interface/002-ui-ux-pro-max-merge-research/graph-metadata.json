@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/002-ui-ux-pro-max-merge-research",
+  "spec_folder": "design/001-sk-design-interface/002-ui-ux-pro-max-merge-research",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ui-ux-pro-max merge research",
+      "sk-design-interface improvement research",
+      "ui ux pro max skill",
+      "design data merge recommendation",
+      "ui-ux-pro-max merge plan",
+      "sk-design-interface research plan",
+      "design data merge research",
+      "ui-ux-pro-max merge tasks",
+      "sk-design-interface research tasks",
+      "ui-ux-pro-max merge summary",
+      "sk-design-interface research outcome",
+      "sk-design-interface merge recommendation"
+    ],
+    "key_topics": [
+      "ui-ux-pro-max",
+      "merge",
+      "research",
+      "sk-design-interface",
+      "improvement",
+      "pro",
+      "max",
+      "skill",
+      "design",
+      "data",
+      "recommendation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Recommendation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Merge Recommendation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design-interface` (phase 001, vendored from Anthropic's frontend-design) gives the framework an advisor-routable point of view on distinctive UI design, but it is largely prose guidance",
+    "created_at": "2026-06-13T16:30:00Z",
+    "last_save_at": "2026-06-23T03:49:48.392Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d60c9226ba0066c1141b8b2cf3bb64095d8bed6439577a040882383afa93b61e",
+    "source_doc_hashes": {
+      "spec.md": "4be60c1c709630155214712a1187ef8f5e34df18c42c25f10103e66d34048252",
+      "plan.md": "020d4c0c14299f1ec02fe74b157d242a1847c8ede1d042f43eae829b4f1d16e7",
+      "tasks.md": "1f8a350ce77f96d1b2c76c3d73516a6e69ff3da7590bb21a20c44f339cc248b3",
+      "implementation-summary.md": "863efe5469567dc4ae1fee63c0e1ad60a4272258f18834206834496758350381",
+      "research/research.md": "7611961f6b2ca37313c0774cb99ce29e3ed6974dfdaff2db9608b44231ebf6cd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

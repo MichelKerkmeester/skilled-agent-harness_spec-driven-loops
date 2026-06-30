@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent",
+  "spec_folder": "design/008-sk-design-parent",
+  "parent_id": null,
+  "children_ids": [
+    "design/008-sk-design-parent/001-corpus-research",
+    "design/008-sk-design-parent/002-architecture-decision",
+    "design/008-sk-design-parent/003-scaffold-parent",
+    "design/008-sk-design-parent/004-onboard-existing",
+    "design/008-sk-design-parent/005-build-subskills",
+    "design/008-sk-design-parent/006-integration-validation",
+    "design/008-sk-design-parent/007-family-deep-review",
+    "design/008-sk-design-parent/008-nested-parent-conversion",
+    "design/008-sk-design-parent/009-reference-asset-expansion",
+    "design/008-sk-design-parent/010-shared-register",
+    "design/008-sk-design-parent/011-interface-audit-core",
+    "design/008-sk-design-parent/012-foundations-motion-audit",
+    "design/008-sk-design-parent/013-mdgen-boundary-cleanup",
+    "design/008-sk-design-parent/014-routing-benchmark",
+    "design/008-sk-design-parent/015-per-skill-improvement-research",
+    "design/008-sk-design-parent/016-register-loader-contract",
+    "design/008-sk-design-parent/017-real-bugs",
+    "design/008-sk-design-parent/018-routing-wiring",
+    "design/008-sk-design-parent/019-handoff-card",
+    "design/008-sk-design-parent/020-benchmark-fixtures",
+    "design/008-sk-design-parent/021-content-topups",
+    "design/008-sk-design-parent/022-mifb-design-research",
+    "design/008-sk-design-parent/023-mifb-design-adoption",
+    "design/008-sk-design-parent/024-designer-skills-research",
+    "design/008-sk-design-parent/025-audit-adoption",
+    "design/008-sk-design-parent/026-interface-motion-adoption",
+    "design/008-sk-design-parent/027-foundations-adoption",
+    "design/008-sk-design-parent/028-impeccable-design-research",
+    "design/008-sk-design-parent/029-design-context-loading",
+    "design/008-sk-design-parent/030-design-context-adoption",
+    "design/008-sk-design-parent/031-foundations-impeccable-adoption",
+    "design/008-sk-design-parent/032-interface-impeccable-adoption",
+    "design/008-sk-design-parent/033-audit-impeccable-adoption",
+    "design/008-sk-design-parent/034-motion-mdgen-impeccable-adoption",
+    "design/008-sk-design-parent/035-design-context-benchmark",
+    "design/008-sk-design-parent/036-design-context-hardening",
+    "design/008-sk-design-parent/037-design-context-enforcement",
+    "design/008-sk-design-parent/038-design-context-router",
+    "design/008-sk-design-parent/039-design-enforcement-build",
+    "design/008-sk-design-parent/040-design-playbook-filename-denumbering",
+    "design/008-sk-design-parent/041-sk-design-overview-conformance",
+    "design/008-sk-design-parent/042-design-work-deep-review",
+    "design/008-sk-design-parent/043-design-review-remediation",
+    "design/008-sk-design-parent/044-design-routing-and-integration-research",
+    "design/008-sk-design-parent/045-design-command-upgrade"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design parent skill",
+      "design skill family",
+      "sk-design sub-skills",
+      "sk-design parent resource map",
+      "154 resource map"
+    ],
+    "key_topics": [
+      "sk-design",
+      "parent",
+      "skill",
+      "design",
+      "family",
+      "sub-skills",
+      "resource",
+      "map",
+      "154",
+      "capability",
+      "today",
+      "lives"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/design/008-sk-design-parent/spec.md",
+      ".opencode/specs/design/008-sk-design-parent/042-design-work-deep-review/spec.md",
+      ".opencode/specs/design/008-sk-design-parent/042-design-work-deep-review/plan.md",
+      ".opencode/specs/design/008-sk-design-parent/042-design-work-deep-review/tasks.md",
+      ".opencode/specs/design/008-sk-design-parent/042-design-work-deep-review/implementation-summary.md",
+      ".opencode/specs/design/008-sk-design-parent/040-design-playbook-filename-denumbering/spec.md",
+      "spec.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/008-sk-design-parent/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "planned",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map: sk-design parent track",
+        "kind": "quoted",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
+    "created_at": "2026-06-25T10:04:30Z",
+    "last_save_at": "2026-06-30T09:16:33.282Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:8fb852f2f67e0cf4caa003714289a45dc68b053899f82e109dbe4bf2996977ea",
+    "source_doc_hashes": {
+      "spec.md": "c10f2011a7aaf0bd8fbe3aeb9969120009cfc9620eb988cf07f0228a4e1b3137",
+      "resource-map.md": "89412f62b9baefeff8b355815ccd57e57ee1418440fac5f23ba89b7a30ec9f06"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-30T09:16:33.282Z"
+  }
+}

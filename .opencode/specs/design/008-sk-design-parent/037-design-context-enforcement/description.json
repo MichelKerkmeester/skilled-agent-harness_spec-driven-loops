@@ -1,0 +1,31 @@
+{
+  "specFolder": "design/008-sk-design-parent/037-design-context-enforcement",
+  "description": "The contract works when handed to a delegate (035 benchmark) but is not enforced for the orchestrator's own path, and a weak model's contrast arithmet",
+  "keywords": [
+    "contract",
+    "works",
+    "handed",
+    "delegate",
+    "035",
+    "benchmark",
+    "enforced",
+    "orchestrator",
+    "own",
+    "path",
+    "weak",
+    "model",
+    "contrast",
+    "arithmet"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.914Z",
+  "specId": "037",
+  "folderSlug": "design-context-enforcement",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "28-06-26_07-49__next-steps.md"
+  ]
+}

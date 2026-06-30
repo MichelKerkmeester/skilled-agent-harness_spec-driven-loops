@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-routing-s2",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "routing",
+  "queryClass": "aligned",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 125270,
+  "bytes": 126677,
+  "stderrTail": ""
+}

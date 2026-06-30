@@ -48,7 +48,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 ### Expected Outcome
 
-36/36 pass. Fan-out tests cover: happy path, unique-label rejection, expanded-label collision, count expansion (label-1…label-N), per-entry kind validation reuse (cli-codex requires model). Audit records byte-identical when `lineageId` absent.
+36/36 pass. Fan-out tests cover: happy path, unique-label rejection, expanded-label collision, count expansion (label-1…label-N), per-entry kind validation reuse (cli-opencode requires model). Audit records byte-identical when `lineageId` absent.
 
 ### Failure Modes
 

@@ -1,0 +1,7 @@
+[
+  {"tile":1,"score":92,"overflow":false,"readable":true,"on_brand":true,"title_at_bottom":true,"verdict":"SHIP","issue":"none"},
+  {"tile":2,"score":78,"overflow":false,"readable":true,"on_brand":true,"title_at_bottom":true,"verdict":"FIX","issue":"'Vloot-functie' eyebrow overlaps the right flow node (Anobel-catalogus icon), colliding with the diagram"},
+  {"tile":3,"score":72,"overflow":false,"readable":false,"on_brand":true,"title_at_bottom":true,"verdict":"FIX","issue":"bottom PO row (MS Vesta, €1.150) is rendered in too-light grey, near-illegible on white"},
+  {"tile":4,"score":58,"overflow":true,"readable":true,"on_brand":true,"title_at_bottom":true,"verdict":"FIX","issue":"left SAP card text 'MS V...' is clipped/cut off by the overlapping Verbonden pill; 'Vloot-functie' eyebrow icon (pin) renders as broken glyph"},
+  {"tile":5,"score":90,"overflow":false,"readable":true,"on_brand":true,"title_at_bottom":true,"verdict":"SHIP","issue":"none; gauge arc and figure crisp, palette clean"}
+]

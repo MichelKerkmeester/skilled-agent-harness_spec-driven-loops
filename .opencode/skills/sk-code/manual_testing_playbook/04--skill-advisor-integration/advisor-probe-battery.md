@@ -20,7 +20,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 
 | ID | Surface | Sub-language | Prompt |
 |---|---|---|---|
-| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-codex.` |
+| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
 | P2 | OPENCODE | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
 | P3 | OPENCODE | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
 | P4 | OPENCODE | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |
@@ -43,7 +43,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 | N1 | sk-doc | doc edit | `Update the sk-code SKILL.md headline section to clarify the two-axis routing model.` (RD-002 prompt) |
 | N2 | none | read-only analysis | `Explain how skill_advisor.py computes uncertainty.` (golden set rr-iter2-013) |
 | N3 | spec_kit:resume | session continuity | `Resume the deep-review iteration from the last save point.` |
-| N4 | sk-doc | doc structure | `Reorganize the cli-codex README into Quick Start, Architecture, and Reference sections.` |
+| N4 | sk-doc | doc structure | `Reorganize the cli-opencode README into Quick Start, Architecture, and Reference sections.` |
 | N5 | deep-research | research, not code | `Investigate why the gate-3 classifier mis-categorizes resume prompts and report findings as a research summary.` |
 
 ### Pass/Fail Aggregate Rules
@@ -98,7 +98,7 @@ If positive accuracy < 0.80:
    - sk-code-review or system-spec-kit captured the prompt due to higher signal weight on shared keywords
 2. Propose `signals` array additions to sk-code (Phase E5 gate — DO NOT commit without user approval). Candidate additions based on lost prompts:
    - "verify alignment", "alignment verifier" (covers verify_alignment_drift.py prompts)
-   - "executor config", "executor type" (covers cli-codex config prompts)
+   - "executor config", "executor type" (covers cli-opencode config prompts)
    - "Gate 3", "classifier" (covers gate-3-classifier.ts prompts)
 3. Or propose adjacency adjustments (e.g. lower `enhances.system-spec-kit` weight to reduce competition).
 
@@ -126,7 +126,7 @@ If negative FPR > 0:
 | Run | Positive (top-1 ≥ 0.80) | Negative (correct reject) | Combined | Notes |
 |---|---|---|---|---|
 | Baseline (smart-router-measurement-results.jsonl, 2026-05-03) | 50% (4/8) | n/a | n/a | Pre-remediation |
-| V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-codex/system-spec-kit/deep-review on most code-work prompts; N01 false-positive |
+| V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-opencode/system-spec-kit/deep-review on most code-work prompts; N01 false-positive |
 | V2 (after sk-code intent_signals additions, before DB re-index) | 5/15 = 33.3% | 4/5 = 80.0% | 9/20 = 45% | Identical scores — confirmed advisor reads from DB not JSON |
 | V3 (after `mcp__mk_spec_memory__skill_graph_scan` re-index) | 10/15 = 66.7% | 4/5 = 80.0% | 14/20 = 70% | +33pp positive jump from DB sync alone |
 | V4 (after sk-doc strong signals + sk-code script-build signals + re-index) | **11/15 = 73.3%** | **5/5 = 100%** | **16/20 = 80%** | **N01 false-positive RESOLVED**; P10 fixed via "build a tiny script" + "counts how many" signals |
@@ -154,4 +154,4 @@ These are domain-specific skills winning over the general sk-code router. The pr
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` recompiled
 - `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` re-indexed via `skill_graph_scan` MCP tool
 
-**Note on global impact**: These changes affect global advisor routing across all skills. The N04 prompt ("Reorganize the cli-codex README into Quick Start, Architecture, and Reference sections") now routes to `sk-doc` (correct) instead of `cli-codex` — beneficial collateral effect. No regressions detected in v4 vs baseline.
+**Note on global impact**: These changes affect global advisor routing across all skills. The N04 prompt ("Reorganize the cli-opencode README into Quick Start, Architecture, and Reference sections") now routes to `sk-doc` (correct) instead of `cli-opencode` — beneficial collateral effect. No regressions detected in v4 vs baseline.

@@ -66,7 +66,7 @@ Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffold
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: foreground OK; codex tends to inline both templates verbatim.
+- **cli-opencode (gpt-5.5/high/fast)**: foreground OK; opencode tends to inline both templates verbatim.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may shorten template prose; verify both files still emitted.
 
 ## Success Criteria

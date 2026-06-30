@@ -86,7 +86,7 @@ arguments:
   runtime_filter:
     flag: "--runtime"
     value: "<name>"
-    valid_values: [opencode, claude, codex, vscode]
+    valid_values: [opencode, claude, vscode]
     default: null
     effect: "Only configure for the specified runtime"
 
@@ -242,11 +242,6 @@ config_files:
     format: "json-mcpServers"
     label: "Claude Code"
     guide_section: "Option E: Claude CLI"
-  codex:
-    path: ".codex/config.toml"
-    format: "toml"
-    label: "Codex CLI"
-    guide_section: "Option F: Codex CLI"
   vscode:
     path: ".vscode/mcp.json"
     format: "json-mcpServers"

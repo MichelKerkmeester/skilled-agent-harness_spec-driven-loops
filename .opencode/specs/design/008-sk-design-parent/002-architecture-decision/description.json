@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/002-architecture-decision",
+  "description": "The 001 corpus research recommends restructuring `sk-design-interface` into an `sk-design` family but explicitly leaves the call to a decision gate: i",
+  "keywords": [
+    "001",
+    "corpus",
+    "research",
+    "recommends",
+    "restructuring",
+    "sk-design-interface",
+    "sk-design",
+    "family",
+    "explicitly",
+    "leaves",
+    "call",
+    "decision",
+    "gate"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.722Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

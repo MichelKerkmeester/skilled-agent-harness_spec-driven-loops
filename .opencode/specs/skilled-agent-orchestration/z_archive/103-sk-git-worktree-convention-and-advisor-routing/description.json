@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing",
+  "description": "sk-git's documented worktree convention is directory `.worktrees/{short-desc}` plus branch `type/{short-desc}` with no number and no single grouping n",
+  "keywords": [
+    "sk-git",
+    "documented",
+    "worktree",
+    "convention",
+    "directory",
+    "worktrees",
+    "short-desc",
+    "plus",
+    "branch",
+    "type",
+    "number",
+    "single",
+    "grouping"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.555Z",
+  "specId": "103",
+  "folderSlug": "sk-git-worktree-convention-and-advisor-routing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

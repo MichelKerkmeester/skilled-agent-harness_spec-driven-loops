@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/001-reference-inventory",
+  "description": "The rename touches ~799 files",
+  "keywords": [
+    "rename",
+    "touches",
+    "799",
+    "files"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.417Z",
+  "specId": "001",
+  "folderSlug": "reference-inventory",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

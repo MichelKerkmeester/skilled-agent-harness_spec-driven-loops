@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/007-claude-design-parity-build",
+  "spec_folder": "design/001-sk-design-interface/007-claude-design-parity-build",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude design parity build",
+      "shared design parity protocol",
+      "reuse before generate fidelity check",
+      "claude design parity build plan",
+      "shared design parity protocol plan",
+      "claude design parity build tasks",
+      "claude design parity build checklist",
+      "claude design parity build summary"
+    ],
+    "key_topics": [
+      "claude",
+      "design",
+      "parity",
+      "build",
+      "shared",
+      "protocol",
+      "reuse",
+      "generate",
+      "fidelity",
+      "check",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Functional Requirements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core References",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005 (hardened) and 006 research converged on a keystone: wire `sk-design-interface` (judgment) and `mcp-magicpath` (canvas/CLI) into the loop Claude Design has, grounded in a real design system, without cloning a hosted product or adding a style chooser",
+    "created_at": "2026-06-14T09:35:00Z",
+    "last_save_at": "2026-06-23T03:49:48.425Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4c08b153318cd68170d85d1972a126d7e996d1b6b340bed569023eb16f697eea",
+    "source_doc_hashes": {
+      "spec.md": "a2b0719ad0f5840fcbf14dd4e1fc5a3f439ce6c3d1e387a81a6d360d5b65097b",
+      "plan.md": "2b0e41fece648db1fc7bb58a480888f4359cc6d418b601b2e393c4702e0cad4b",
+      "tasks.md": "d6433a5001ddae015410b922f2ce8808e72b5e4d3be35df66e2cf7d1a6eb0ff0",
+      "checklist.md": "3301c14044467c1f9fcd8c999639b243e5923fc3330db7b708d51588139fce29",
+      "implementation-summary.md": "a830ad176eeb268c4fc894677222144605e4a8239d6dc9f383e16194f6af91e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

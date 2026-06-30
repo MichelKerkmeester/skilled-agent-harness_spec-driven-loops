@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/002-framework-bakeoff",
+  "description": "`kimi-k2.7-code` was registered in Phase 001 with a reasoned-but-unverified prompt framework: `recommendedframeworks.primary` is `rcaf` and `status` i",
+  "keywords": [
+    "kimi-k2",
+    "7-code",
+    "registered",
+    "phase",
+    "001",
+    "reasoned-but-unverified",
+    "prompt",
+    "framework",
+    "recommendedframeworks",
+    "primary",
+    "rcaf",
+    "status"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.511Z",
+  "specId": "002",
+  "folderSlug": "framework-bakeoff",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

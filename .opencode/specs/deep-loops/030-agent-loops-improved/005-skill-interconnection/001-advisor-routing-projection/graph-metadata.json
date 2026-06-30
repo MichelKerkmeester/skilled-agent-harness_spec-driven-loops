@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/005-skill-interconnection/001-advisor-routing-projection",
+  "spec_folder": "deep-loops/030-agent-loops-improved/005-skill-interconnection/001-advisor-routing-projection",
+  "parent_id": "deep-loops/030-agent-loops-improved/005-skill-interconnection",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor routing projection",
+      "workflowMode publication",
+      "mode registry drift guard",
+      "advisor alias table",
+      "001 advisor routing projection",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "advisor",
+      "routing",
+      "projection",
+      "workflowmode",
+      "publication",
+      "mode",
+      "registry",
+      "drift",
+      "guard",
+      "alias",
+      "table",
+      "001"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
+      ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create_parent_skill_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Routing Projection Generator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time",
+    "created_at": "2026-06-28T20:06:50.952Z",
+    "last_save_at": "2026-06-30T14:53:29.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bf68ec3e5ec4a639ba1854dec8bb42a59bfef93ec1e4eeeb833c51aa9d0a24d5",
+    "source_doc_hashes": {
+      "spec.md": "c0180f8a73d1969483afb915550a9eb5ededfe9ece88a9a8df45c3548051cdf9",
+      "plan.md": "767132ac1b2785aec5e062c5c82d2a69d83a204337ab8a8848ddd34437cd9257",
+      "tasks.md": "4653a8b38044ae772712bd310e3c4793e4dc694a746c14ac967d5e37c7fae56c",
+      "implementation-summary.md": "715604f85b286631faf625425750d594265fdab58fd3ef57ff8bb74302ca5d73"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

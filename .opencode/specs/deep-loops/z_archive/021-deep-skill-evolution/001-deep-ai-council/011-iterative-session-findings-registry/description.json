@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "status": "draft",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/010-iterative-per-topic-multi-round"
+    ],
+    "related_to": []
+  },
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "description": "Implement session-level topic sequencing, council-findings-registry.json, and cross-topic priors",
+  "keywords": [
+    "implement",
+    "session-level",
+    "topic",
+    "sequencing",
+    "council-findings-registry",
+    "json",
+    "cross-topic",
+    "priors"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.767Z",
+  "specId": "011",
+  "folderSlug": "iterative-session-findings-registry",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry"
+  ]
+}

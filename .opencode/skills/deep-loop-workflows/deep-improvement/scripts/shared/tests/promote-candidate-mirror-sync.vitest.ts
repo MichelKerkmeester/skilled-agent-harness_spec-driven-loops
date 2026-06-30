@@ -47,7 +47,7 @@ function canonicalMd(body: string): string {
   return `---\nname: ${AGENT_NAME}\ndescription: Demo agent\n---\n\n${body}`;
 }
 
-function codexToml(body: string): string {
+function opencodeToml(body: string): string {
   return `# Agent: ${AGENT_NAME}\nname = "${AGENT_NAME}"\ndescription = "Demo agent"\n\ndeveloper_instructions = '''\n${body.trim()}\n'''\n`;
 }
 
@@ -81,8 +81,8 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, canonicalMd(CURRENT_BODY));
   // Claude mirror: in-sync by default, or a drifted body when requested.
   writeFile(`.claude/agents/${AGENT_NAME}.md`, canonicalMd(opts.driftClaudeBody || CURRENT_BODY));
-  // Codex mirror: TOML wrapper around the same in-sync body.
-  writeFile(`.codex/agents/${AGENT_NAME}.toml`, codexToml(CURRENT_BODY));
+  // OpenCode mirror: TOML wrapper around the same in-sync body.
+  writeFile(`.opencode/agents/${AGENT_NAME}.toml`, opencodeToml(CURRENT_BODY));
 
   // The staged candidate is a real agent body change.
   writeFile('staged-candidate.md', canonicalMd(CANDIDATE_BODY));

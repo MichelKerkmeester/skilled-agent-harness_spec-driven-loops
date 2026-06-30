@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/061-test-and-toolchain-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/061-test-and-toolchain-cleanup",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "073",
+      "test-and-toolchain-cleanup",
+      "post-save EISDIR fix",
+      "run-matrix.sh fix",
+      "073 plan",
+      "073 tasks",
+      "073 summary"
+    ],
+    "key_topics": [
+      "073",
+      "test-and-toolchain-cleanup",
+      "post-save",
+      "eisdir",
+      "fix",
+      "run-matrix",
+      "plan",
+      "tasks",
+      "summary",
+      "packets",
+      "071",
+      "072"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js",
+      "spec.md",
+      "implementation-summary.md",
+      "scripts/package.json",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "post-save-review.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-save-review.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "scripts/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Toolchain Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigate Fix",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues",
+    "created_at": "2026-05-05T15:06:20Z",
+    "last_save_at": "2026-06-23T03:49:49.805Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T17:25:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da66634fc94c5adf99398da6cb3b458ce4fa289301b4494ec2c81c18c6eb03f5",
+    "source_doc_hashes": {
+      "spec.md": "628ac0e36212cdebba939df044d948c0f5872f6d68d0f3f9eacf13e677faac00",
+      "plan.md": "f58b88f6a7c2a8cb6ef8eaaa7871b75cd6e04093b586507a2569355b8cbdab21",
+      "tasks.md": "ff26c0a994ecceeec93b86905cda0791e1c8c9f8a54cdbf82d0cdea8eb29fbfa",
+      "implementation-summary.md": "e6acfeca7d47a2463a755748db44cc06ed36a06c2fdebaf8169b6f5a9b635ce6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

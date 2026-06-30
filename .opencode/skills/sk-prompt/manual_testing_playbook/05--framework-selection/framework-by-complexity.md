@@ -45,7 +45,7 @@ Improve my customer-support response prompt; verify framework selection evaluate
 ### Commands
 
 1. `sk-prompt: Pick the right framework for my customer support response prompt — and explain why.`
-2. `agent: @prompt-improver raw_task="Improve a customer support response prompt and select the right framework." task_type=generation target_cli=codex complexity_hint=5 constraints="Return complexity score, selected framework, and rejected alternative."`
+2. `agent: @prompt-improver raw_task="Improve a customer support response prompt and select the right framework." task_type=generation target_cli=opencode complexity_hint=5 constraints="Return complexity score, selected framework, and rejected alternative."`
 3. `bash: rg 'Framework Selection Matrix|Complete Framework Matrix|Complexity' .opencode/skills/sk-prompt/SKILL.md .opencode/skills/sk-prompt/references/patterns_evaluation.md`
 
 ### Expected

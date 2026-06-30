@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/005-skill-interconnection",
+  "description": "New deep-loop lexical modes added to `mode-registry.json` are born inert: the advisor's alias tables and drift-guard test are not automatically regene",
+  "keywords": [
+    "new",
+    "deep-loop",
+    "lexical",
+    "modes",
+    "added",
+    "mode-registry",
+    "json",
+    "born",
+    "inert",
+    "advisor",
+    "alias",
+    "tables",
+    "drift-guard",
+    "test",
+    "automatically",
+    "regene"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.426Z",
+  "specId": "006",
+  "folderSlug": "skill-interconnection",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

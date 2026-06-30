@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r6 accessibility coverage matrix",
+      "accessibility coverage design build",
+      "seven layer a11y matrix contract",
+      "accessibility coverage matrix plan",
+      "seven layer a11y coverage design build",
+      "audit contract accessibility gate plan",
+      "accessibility coverage matrix tasks",
+      "a11y layered matrix build tasks",
+      "audit contract a11y gate tasks",
+      "accessibility coverage matrix checklist",
+      "a11y layered matrix verification",
+      "audit contract a11y gate checklist"
+    ],
+    "key_topics": [
+      "d6-r6",
+      "accessibility",
+      "coverage",
+      "matrix",
+      "design",
+      "build",
+      "seven",
+      "layer",
+      "a11y",
+      "contract",
+      "plan",
+      "audit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+      ".opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility_performance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_evidence_worksheet.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Accessibility",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reshape",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dimension Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Accessibility Coverage Matrix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Accessibility",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Modality Coverage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Accessibility used to collapse into a single field",
+    "created_at": "2026-06-28T12:40:10.852Z",
+    "last_save_at": "2026-06-29T14:56:47.243Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a38ad67b990c1cb08fb022e6efe0d77ae493c164ce86ca60a311ef37515f10e",
+    "source_doc_hashes": {
+      "spec.md": "e9c80af90c4cb475b641b4d8ea9b058332aafe166b3c3a794f37d52f2895d7d1",
+      "plan.md": "d3c92f5573518aa47e334970e49bb5009f0b52c7d8e15e9b610f029d4e6e9b46",
+      "tasks.md": "1cf8aab5cb5bbc3f86719342b35105bb256ee8c6ebac5b2c366f3c5fbd2383ce",
+      "checklist.md": "807f42c3dd1a54693c420c8eebead45a89e6af98287663bcd8cdada72f8273dc",
+      "implementation-summary.md": "6fa3a7844b3f4fef5e95e18c93ada2986ddb981fa303b35e054e896a88c03ee1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

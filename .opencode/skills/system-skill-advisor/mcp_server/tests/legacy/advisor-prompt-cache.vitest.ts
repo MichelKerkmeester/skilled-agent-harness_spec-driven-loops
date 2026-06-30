@@ -15,7 +15,7 @@ describe('skill advisor prompt cache', () => {
     const key = cache.makeKey({
       canonicalPrompt: 'implement feature x',
       sourceSignature: 'sig-a',
-      runtime: 'codex',
+      runtime: 'opencode',
       thresholdConfig: { confidenceThreshold: 0.8, uncertaintyThreshold: 0.35 },
     });
 
@@ -36,12 +36,12 @@ describe('skill advisor prompt cache', () => {
     const staleKey = cache.makeKey({
       canonicalPrompt: 'same prompt',
       sourceSignature: 'old',
-      runtime: 'codex',
+      runtime: 'opencode',
     });
     const liveKey = cache.makeKey({
       canonicalPrompt: 'same prompt',
       sourceSignature: 'new',
-      runtime: 'codex',
+      runtime: 'opencode',
     });
     cache.set({ key: staleKey, sourceSignature: 'old', value: 'old', skillLabels: [], nowMs: 0 });
     cache.set({ key: liveKey, sourceSignature: 'new', value: 'new', skillLabels: [], nowMs: 0 });
@@ -69,7 +69,7 @@ describe('skill advisor prompt cache', () => {
     const base = {
       canonicalPrompt: 'implement feature x',
       sourceSignature: 'sig-a',
-      runtime: 'codex',
+      runtime: 'opencode',
     };
     const compact = createAdvisorPromptCacheKey({
       ...base,

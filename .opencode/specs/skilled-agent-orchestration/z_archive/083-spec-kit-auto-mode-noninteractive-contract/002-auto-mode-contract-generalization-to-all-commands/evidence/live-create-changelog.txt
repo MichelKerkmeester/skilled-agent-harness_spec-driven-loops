@@ -1,0 +1,494 @@
+=== Live setup-phase test: /create:changelog:auto ===
+Started: 2026-05-11T14:30:05+0200
+Command: .opencode/commands/create/changelog.md
+
+Reading additional input from stdin...
+OpenAI Codex v0.130.0
+--------
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/michelkerkmeester/.codex/memories] (network access enabled)
+reasoning effort: medium
+reasoning summaries: none
+session id: 019e1704-1eef-7d93-9166-dd364ae71e8c
+--------
+user
+You are testing the setup-phase contract of the migrated command /create:changelog.
+
+# RUNTIME RULES
+- Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
+- Gate 3 answer: D) Skip spec-folder creation. Stdin is closed.
+- Do NOT load the paired YAML workflow. Stop at the end of section zero setup resolution.
+- Do NOT write any files outside /tmp/. Read-only inspection of the command markdown is allowed.
+
+# YOUR TASK
+
+1. Read .opencode/commands/create/changelog.md section zero (UNIFIED SETUP PHASE or equivalent).
+2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
+3. SIMULATE a dispatch of /create:changelog:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+
+```
+PRE-BOUND SETUP ANSWERS:
+  spec_folder_or_component: sk-test-dummy
+  version: v0.2.0
+  execution_mode: AUTONOMOUS
+  release: false
+```
+
+4. Walk through Tier-1 logic step by step. Determine which Tier the resolution lands in.
+5. Report:
+   - Citation present: yes/no with line number
+   - Section zero Tier reached: 1 / 2 / 3
+   - Setup question emitted: yes / no (CRITICAL — yes under Tier 1 means migration failed)
+   - Resolved field map: list each setup field with its final value
+   - STATUS value: PASSED / BLOCKED / fail-fast error
+   - Verdict: PASS or PARTIAL or FAIL
+     - PASS = Tier 1 resolved without question
+     - PARTIAL = Tier 2 reached logically
+     - FAIL = legacy Q-block emitted or hang
+
+# OUTPUT
+One markdown message with the 6 report fields. Do not edit files. Do not call SpawnAgent.
+
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+codex
+I’ll inspect only the command markdown and stop at the setup-resolution layer, using the pre-bound answers exactly as given.
+exec
+/bin/zsh -lc "nl -ba .opencode/commands/create/changelog.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	description: Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.
+     3	argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+     4	allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
+     5	---
+     6	
+     7	> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+     8	>
+     9	> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+    10	>
+    11	> **YOUR FIRST ACTION:**
+    12	>
+    13	> 1. Run Phase 0: @markdown agent self-verification (below)
+    14	> 2. Run Setup Phase: consolidated prompt to gather inputs
+    15	> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+    16	> 4. Load the corresponding YAML file from `assets/`:
+    17	>    - Auto mode → `create_changelog_auto.yaml`
+    18	>    - Confirm mode → `create_changelog_confirm.yaml`
+    19	> 5. Execute the YAML workflow step by step
+    20	>
+    21	> The @markdown references below are self-verification checks — not dispatch instructions.
+    22	> All content after the Setup Phase is reference context for the YAML workflow.
+    23	
+    24	---
+    25	
+    26	# 🚨 PHASE 0: @MARKDOWN AGENT VERIFICATION
+    27	
+    28	**STATUS: ☐ BLOCKED**
+    29	
+    30	```
+    31	EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+    32	
+    33	SELF-CHECK: Are you operating as the @markdown agent?
+    34	│
+    35	├─ INDICATORS that you ARE @markdown agent:
+    36	│   ├─ You were invoked with "@markdown" prefix
+    37	│   ├─ You have template-first workflow capabilities
+    38	│   ├─ You load templates BEFORE creating content
+    39	│   ├─ You validate template alignment AFTER creating
+    40	│
+    41	├─ IF YES (all indicators present):
+    42	│   └─ create_agent_verified = TRUE → Continue to Setup Phase
+    43	│
+    44	└─ IF NO or UNCERTAIN:
+    45	    │
+    46	    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    47	    │
+    48	    ├─ DISPLAY to user:
+    49	    │   ┌────────────────────────────────────────────────────────────┐
+    50	    │   │ ⛔ MARKDOWN AGENT REQUIRED                                      │
+    51	    │   │                                                            │
+    52	    │   │ This command requires the @markdown agent for:              │
+    53	    │   │   • Template-first workflow (loads before creating)          │
+    54	    │   │   • Changelog format validation                            │
+    55	    │   │   • Version number verification                             │
+    56	    │   │                                                            │
+    57	    │   │ To proceed, restart with:                                  │
+    58	    │   │   @markdown /create:changelog [spec-folder-or-component]    │
+    59	    │   │                                                            │
+    60	    │   │ Reference: [runtime_agent_path]/markdown.md                 │
+    61	    │   └────────────────────────────────────────────────────────────┘
+    62	    │
+    63	    └─ RETURN: STATUS=FAIL ERROR="Markdown agent required"
+    64	```
+    65	
+    66	**Phase Output:**
+    67	
+    68	- `create_agent_verified = ________________`
+    69	
+    70	---
+    71	
+    72	# 🔒 UNIFIED SETUP PHASE
+    73	
+    74	**STATUS: ☐ BLOCKED**
+    75	
+    76	**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+    77	
+    78	This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
+    79	
+    80	**Round-trip optimization:** This workflow requires only 1 user interaction.
+    81	
+    82	### `:auto` Setup Resolution
+    83	
+    84	Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+    85	
+    86	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+    87	
+    88	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/create-changelog-config.json` when source is a spec folder, otherwise `/tmp/create-changelog-config.json` (shape: `sourceType`, `specFolder`, `componentHint`, `versionBump`, `executionMode: "auto"`, `publishRelease`, `nested`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_changelog_auto.yaml`. End §0.
+    89	
+    90	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `source_type`, `version_bump`. **Ordering rule**: ask `source_type` before `version_bump` when both are ambiguous — the source artifacts may make the version bump self-evident on the next Tier 1 pass.
+    91	
+    92	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/create:changelog:auto` as the command name. Exit non-zero. Do not load YAML.
+    93	
+    94	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+    95	
+    96	### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+    97	
+    98	The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+    99	
+   100	```yaml
+   101	PRE-BOUND SETUP ANSWERS:
+   102	  source_type: spec_folder  # spec_folder | component | git_history
+   103	  spec_folder: .opencode/specs/103-example/001-finished-work/  # explicit path for spec_folder source
+   104	  component_hint: system-spec-kit  # component slug/name when source_type is component
+   105	  version_bump: minor  # major | minor | patch | build | auto
+   106	  execution_mode: AUTONOMOUS  # from :auto suffix
+   107	  publish_release: false  # boolean; true when --release present
+   108	  nested: false  # boolean; true when --nested present
+   109	```
+   110	
+   111	Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+   112	
+   113	### Default Resolution Table
+   114	
+   115	| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+   116	|-------|----------|--------------|---------|------------------|
+   117	| `source_type` | Y | `$ARGUMENTS` positional source, marker `source_type`, or auto-detect path-vs-component from positional source | inferred only | Y, when positional source is present but ambiguous |
+   118	| `spec_folder` | Conditional | `$ARGUMENTS` spec-folder path, marker `spec_folder`, or null when source is not `spec_folder` | none | N |
+   119	| `component_hint` | Conditional | `$ARGUMENTS` component name, marker `component_hint`, or auto-detect from spec artifacts | none | N |
+   120	| `version_bump` | Y | flag `--bump`, marker `version_bump`, or targeted bump choice | none | Y |
+   121	| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+   122	| `publish_release` | Y | flag `--release`, marker `publish_release`, or default | `false` | N |
+   123	| `nested` | N | flag `--nested`, marker `nested`, or default | `false` | N |
+   124	
+   125	```
+   126	EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+   127	
+   128	1. CHECK for mode suffix in $ARGUMENTS or command invocation:
+   129	   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   130	   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   131	   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
+   132	
+   133	2. CHECK if $ARGUMENTS contains a spec folder path or component name (ignoring flags):
+   134	   ├─ IF $ARGUMENTS has a path to a spec folder:
+   135	   │   ├─ spec_folder = extracted path
+   136	   │   ├─ Read implementation-summary.md, tasks.md, spec.md from that folder
+   137	   │   ├─ Extract: work summary, files changed, change type
+   138	   │   ├─ component_hint = "auto-detect from spec artifacts"
+   139	   │   └─ Omit Q0 (spec folder already provided)
+   140	   │
+   141	   ├─ IF $ARGUMENTS has a component name (e.g., "sk-doc", "commands"):
+   142	   │   ├─ component_hint = extracted name
+   143	   │   ├─ spec_folder = null (will use git history instead)
+   144	   │   └─ Omit Q0 (component already provided)
+   145	   │
+   146	   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+   147	
+   148	3. CHECK for --bump flag:
+   149	   ├─ IF --bump <type> present → version_bump = extracted type, omit Q1
+   150	   └─ IF no --bump flag → include Q1 in prompt
+   151	
+   152	3b. CHECK for --release flag:
+   153	   ├─ IF --release present → publish_release = YES, omit Q3
+   154	   └─ IF no --release flag → include Q3 in prompt
+   155	
+   156	4. Search for recent spec folders with implementation-summary.md:
+   157	   $ find .opencode/specs -name "implementation-summary.md" -mtime -7 2>/dev/null | head -5
+   158	
+   159	5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+   160	
+   161	   ┌────────────────────────────────────────────────────────────────────┐
+   162	   │ **Before proceeding, please answer:**                              │
+   163	   │                                                                    │
+   164	   │ **Q0. Source** (if not provided in command):                       │
+   165	   │    What should we create a changelog for?                          │
+   166	   │    A) Spec folder path: [suggest recent specs if found]            │
+   167	   │    B) Component name (e.g., sk-doc, commands, system-spec-kit)     │
+   168	   │    C) Recent git commits (auto-detect from history)                │
+   169	   │                                                                    │
+   170	   │ **Q1. Version Bump** (if no --bump flag):                           │
+   171	   │    What type of version change is this?                            │
+   172	   │    A) Minor - New feature or significant addition (Recommended)     │
+   173	   │    B) Patch - Bug fix, refactor, or incremental improvement         │
+   174	   │    C) Major - Breaking change or architectural overhaul            │
+   175	   │    D) Build - Hotfix on an already-published version                │
+   176	   │    E) Auto-detect from change type                                 │
+   177	   │                                                                    │
+   178	   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):                │
+   179	   │    A) Autonomous - Execute without prompts (Recommended)           │
+   180	   │    B) Interactive - Confirm at each step                            │
+   181	   │                                                                    │
+   182	   │ **Q3. Publish Release?** (if no --release flag):                    │
+   183	   │    A) Yes - Create git tag + GitHub release after changelog        │
+   184	   │    B) No - Only create the changelog file (default)                 │
+   185	   │                                                                    │
+   186	   │ Reply with answers, e.g.: "A specs/01.../042..., E, A, A"          │
+   187	   └────────────────────────────────────────────────────────────────────┘
+   188	
+   189	6. WAIT for user response (DO NOT PROCEED)
+   190	
+   191	7. Parse response and store ALL results:
+   192	   - source_type = [spec_folder / component / git_history]
+   193	   - spec_folder = [path or null]
+   194	   - component_hint = [name or null]
+   195	   - version_bump = [major / minor / patch / build / auto]
+   196	   - execution_mode = [AUTONOMOUS / INTERACTIVE from suffix or Q2]
+   197	   - publish_release = [YES / NO from --release flag or Q3]
+   198	
+   199	8. SET STATUS: ✅ PASSED
+   200	
+   201	**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+   202	
+   203	⛔ HARD STOP: DO NOT proceed until user explicitly answers
+   204	⛔ NEVER auto-create changelog files without completing the workflow
+   205	⛔ NEVER auto-select execution mode without suffix or explicit choice
+   206	⛔ NEVER split these questions into multiple prompts
+   207	⛔ NEVER infer the source from context, screenshots, or conversation history
+   208	```
+   209	
+   210	**Phase Output:**
+   211	
+   212	- `create_agent_verified = ________________`
+   213	- `source_type = ________________`
+   214	- `spec_folder = ________________`
+   215	- `component_hint = ________________`
+   216	- `version_bump = ________________`
+   217	- `execution_mode = ________________`
+   218	- `publish_release = ________________`
+   219	
+   220	---
+
+codex
+The section zero does cite the shared contract. One subtlety in the simulation: the provided pre-bound block uses legacy or alias-like field names, so I’m checking the command’s own schema instead of assuming those aliases are accepted.
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: Auto Mode Contract Reference
+     3	description: Canonical three-tier `:auto` setup-resolution contract shared by every user-invokable `/command:*:auto` surface. Defines tier semantics (resolve → targeted ask → fail-fast), `PRE-BOUND SETUP ANSWERS:` marker grammar, default-resolution table format, fail-fast error template, `:confirm` invariance, and verification protocol.
+     4	---
+     5	
+     6	# Auto Mode Contract Reference
+     7	
+     8	This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+     9	
+    10	Origin: shipped in `.opencode/specs/skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
+    11	
+    12	Related memory: `feedback_auto_mode_ask_only_when_ambiguous.md`, `feedback_codex_spawnagent_allowlist.md`, `feedback_gate3_no_tmp_exemption.md`.
+    13	
+    14	---
+    15	
+    16	## §1. Three-Tier Flow
+    17	
+    18	`:auto` mode does NOT mean "never ask" (too rigid) and does NOT mean "always ask the full setup block" (too soft). It means "ask only when uncertain or ambiguous." This is achieved via three tiers, evaluated in order:
+    19	
+    20	### Tier 1 — Resolve Confidently
+    21	
+    22	When `execution_mode = AUTONOMOUS` (from `:auto` suffix), the command's §0 MUST attempt to resolve every required input from these sources in order:
+    23	
+    24	1. **`$ARGUMENTS` flags** — explicit user-passed flags (e.g. `--max-iterations=10`, `--spec-folder=PATH`, command-specific flags)
+    25	2. **`PRE-BOUND SETUP ANSWERS:` block in the prompt body** — see §2 for grammar. Caller's explicit prompt-body binding wins over `$ARGUMENTS` when both are present
+    26	3. **Documented per-field defaults** — see the command's own Default Resolution Table (§3) for which fields carry sensible defaults
+    27	
+    28	After resolution: if every required field has a value, persist the resolved map to the command's working-config file (e.g. `deep-review-config.json`, `plan-config.json`), set `STATUS: PASSED`, load the paired YAML workflow. Do NOT emit any setup question. End §0.
+    29	
+    30	### Tier 2 — Targeted Ask
+    31	
+    32	Use Tier 2 ONLY when Tier 1 leaves one or two required inputs unresolved AND each unresolved field is genuinely ambiguous AND no sensible default exists.
+    33	
+    34	Constraints:
+    35	- Emit ONE narrow question per ambiguous field, naming only the ambiguous field. NEVER the full consolidated Q-block from the legacy setup phase.
+    36	- If two fields are ambiguous but one's resolution likely makes the other obvious (e.g. `review_target_type` may make `spec_folder` self-evident), ask the first one first; do not bundle multiple ambiguities into a single prompt.
+    37	- Missing required input (e.g. empty `$ARGUMENTS` with no marker for a required positional) is NOT ambiguity. Absence is a Tier 3 case.
+    38	- Wait briefly for user reply. If an answer arrives, merge it into the resolved map and re-run Tier 1 from the default-application step. If stdin is closed (`</dev/null`, redirected output, non-interactive dispatch) and no answer arrives, fall through to Tier 3. Never wait indefinitely.
+    39	
+    40	### Tier 3 — Fail Fast
+    41	
+    42	Use Tier 3 when `:auto` still has unresolved required inputs after Tier 1 and Tier 2, OR when Tier 2 produced no answer because stdin is closed.
+    43	
+    44	Emit the named-missing-inputs error format (§4), exit non-zero, do NOT load the YAML workflow, do NOT emit any further setup question.
+    45	
+    46	---
+    47	
+    48	## §2. PRE-BOUND SETUP ANSWERS Schema
+    49	
+    50	The `PRE-BOUND SETUP ANSWERS:` block is a structured marker the dispatched AI parses out of the prompt body. It allows callers to pre-bind setup field values without using individual `$ARGUMENTS` flags.
+    51	
+    52	Grammar (YAML-style key/value, one field per line):
+    53	
+    54	```
+    55	PRE-BOUND SETUP ANSWERS:
+    56	  <field_name>: <value>  # optional inline comment
+    57	  <field_name>: <value>
+    58	  ...
+    59	```
+    60	
+    61	Rules:
+    62	
+    63	- The block opens with `PRE-BOUND SETUP ANSWERS:` (exact case-sensitive heading, followed by colon). Indentation MAY be inside a markdown fenced code block or inline in the prompt text.
+    64	- Each field is `  <key>: <value>` indented two spaces, one per line.
+    65	- Values are interpreted by the command's Default Resolution Table (§3). Field types and value enums are command-specific.
+    66	- Comments after `#` on a value line are ignored.
+    67	- Unknown fields produce a warning (do not abort), so callers may include forward-compatible fields.
+    68	- Fields not specified fall back to: command-specific Default Resolution Table → command-specific default value → unresolved (triggers Tier 2 or Tier 3 per §1).
+    69	- Malformed lines (e.g. missing `:`, malformed value type) emit a parse error naming the line. Known fields parsed before the error may still be used; remaining unresolved fields continue to Tier 2 or Tier 3.
+    70	- A second `PRE-BOUND SETUP ANSWERS:` block in the same prompt body produces a duplicate-block error.
+    71	
+    72	The marker block applies ONLY under `:auto`. Under `:confirm`, the block is informational and does not skip the consolidated question prompt.
+    73	
+    74	---
+    75	
+    76	## §3. Default Resolution Table
+    77	
+    78	Every command MUST publish a Default Resolution Table in its §0 (after citing this contract). The table lists each setup field with the following columns:
+    79	
+    80	| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+    81	|-------|----------|--------------|---------|------------------|
+    82	
+    83	Column meanings:
+    84	
+    85	- **Field**: the field name (matches the schema in §2 and the question label in the legacy consolidated Q-block).
+    86	- **Required**: `Y` (must be resolved before YAML load) or `N` (optional).
+    87	- **Resolves Via**: ordered list of resolution sources, e.g. `flag → $ARGUMENTS` / `marker → PRE-BOUND` / `default → "<value>"` / `auto-detect from <other field>` / `requires-ask`.
+    88	- **Default**: the documented default value when no flag, marker, or auto-detection applies. May be `none` (no default — Tier 2 or Tier 3 candidate).
+    89	- **Tier-2 Candidate**: `Y` if a missing value can be resolved by ONE targeted question (per §1); `N` if absence triggers fail-fast (Tier 3).
+    90	
+    91	A field is a Tier-2 candidate only when ALL of:
+    92	- No flag exists for it.
+    93	- No marker is provided.
+    94	- No sensible default exists.
+    95	- The field is genuinely required (Required=`Y`).
+    96	- A user choice is the only resolution path (ambiguity, not absence).
+    97	
+    98	---
+    99	
+   100	## §4. Tier 3 Fail-Fast Error Template
+   101	
+   102	When Tier 3 fires, the command emits this exact format and exits non-zero:
+   103	
+   104	```
+   105	[ERROR] /<command>:auto — required inputs unresolved under autonomous mode:
+   106	  - <field>: <why-unresolved>
+   107	  - <field>: <why-unresolved>
+   108	Resolution: provide via $ARGUMENTS flags, PRE-BOUND SETUP ANSWERS: block, or switch to :confirm mode for interactive setup.
+   109	```
+   110	
+   111	Rules:
+   112	
+   113	- Replace `<command>` with the canonical command name (e.g. `spec_kit:deep-review`).
+   114	- One bulleted line per unresolved required field.
+   115	- `<why-unresolved>` is one short phrase: "missing — no flag, no marker, no default" or "ambiguous — Tier 2 received no answer (stdin closed)".
+   116	- Final line cites the three resolution paths verbatim.
+   117	- Do NOT load the YAML workflow.
+   118	- Do NOT emit setup questions in Tier 3.
+   119	- Exit code: non-zero (1 is the convention).
+   120	
+   121	---
+   122	
+   123	## §5. `:confirm` Invariance
+   124	
+   125	The `:confirm` mode (interactive, with full consolidated Q-block) is unaffected by this contract. Commands MUST preserve their existing `:confirm` behavior exactly. The contract applies ONLY when `execution_mode = AUTONOMOUS` (from `:auto` suffix or explicit `--mode=AUTONOMOUS` flag).
+   126	
+   127	Test invariant: a `:confirm` dispatch against any contract-adopting command MUST emit the original consolidated Q-block (Q0..Qn). Regression-check this per command after migration.
+   128	
+   129	---
+   130	
+   131	## §6. Verification Protocol
+   132	
+   133	Each contract-adopting command requires four verification traces (dry-run mental dispatch traces against the command's §0):
+   134	
+   135	### Trace A — Tier 1 pass
+   136	Dispatch with all required inputs resolvable (flags + markers + defaults). Expected: STATUS PASSED, YAML loaded, no question emitted.
+   137	
+   138	### Trace B — Tier 2 targeted ask
+   139	Dispatch with exactly one ambiguous required field. Expected: ONE narrow question naming only that field; NEVER the full consolidated block.
+   140	
+   141	### Trace C — Tier 3 fail fast
+   142	Dispatch with one or more truly missing required inputs (and stdin closed in non-interactive runtimes). Expected: error format from §4, exit non-zero, no YAML load.
+   143	
+   144	### Trace D — `:confirm` regression
+   145	Dispatch with `:confirm` suffix and any inputs. Expected: existing full consolidated Q-block emitted.
+   146	
+   147	Live verification (when feasible) extends the dry-run traces with actual non-interactive dispatches (codex `exec </dev/null`, opencode `run --pure ... </dev/null`, claude `--print`) capturing transcripts as evidence. Live verification confirms the contract works under real runtime stdin-closure conditions.
+   148	
+   149	Evidence schema (one file per dispatch):
+   150	- Command invocation verbatim
+   151	- Full transcript
+   152	- Verdict footer: PASS / PARTIAL / FAIL / SKIP
+   153	- Optional: timing, model, runtime gotchas observed
+   154	
+   155	Stored under `<packet>/evidence/<command-slug>-<trace>.txt`.
+   156	
+   157	---
+   158	
+   159	## §7. Adoption Checklist
+   160	
+   161	For each command adopting this contract, the §0 of the command markdown:
+   162	
+   163	- [ ] Adds a one-line citation: `Setup contract: see references/workflows/auto_mode_contract.md`
+   164	- [ ] Provides its own per-field Default Resolution Table (§3) listing every Q-block field with the four columns
+   165	- [ ] Provides its own `PRE-BOUND SETUP ANSWERS:` field list (one row per setup field, matching the Default Resolution Table)
+   166	- [ ] Documents any command-specific Tier-2 ordering rule (e.g. "ask review_target_type before spec_folder")
+   167	- [ ] Updates frontmatter `argument-hint` to reference the new bypass capability
+   168	- [ ] Preserves the existing `:confirm` consolidated Q-block path untouched
+   169	- [ ] Authors §0 dry-run traces (A/B/C/D) and stores them under the adopting packet's `evidence/`
+   170	
+   171	Commands that have adopted this contract:
+   172	
+   173	- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+   174	- (to be appended as `.../103/002-...` rolls out)
+   175	
+   176	---
+   177	
+   178	## §8. Out of Scope
+   179	
+   180	- Commands without paired YAML workflows (`/prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
+
+codex
+- **Citation present:** yes, line 84.
+- **Section zero Tier reached:** 3.
+- **Setup question emitted:** no.
+- **Resolved field map:** `source_type = unresolved`; `spec_folder = null`; `component_hint = unresolved`; `version_bump = unresolved`; `execution_mode = AUTONOMOUS`; `publish_release = false`; `nested = false`. Unknown marker fields: `spec_folder_or_component`, `version`, `release`.
+- **STATUS value:** fail-fast error.
+- **Verdict:** FAIL. Tier 1 did not resolve because the provided pre-bound keys do not match the command’s documented schema, so the command cannot reach the required no-question Tier 1 pass.
+hook: Stop
+hook: Stop Completed
+tokens used
+41,594
+- **Citation present:** yes, line 84.
+- **Section zero Tier reached:** 3.
+- **Setup question emitted:** no.
+- **Resolved field map:** `source_type = unresolved`; `spec_folder = null`; `component_hint = unresolved`; `version_bump = unresolved`; `execution_mode = AUTONOMOUS`; `publish_release = false`; `nested = false`. Unknown marker fields: `spec_folder_or_component`, `version`, `release`.
+- **STATUS value:** fail-fast error.
+- **Verdict:** FAIL. Tier 1 did not resolve because the provided pre-bound keys do not match the command’s documented schema, so the command cannot reach the required no-question Tier 1 pass.
+
+
+=== EXIT 0; WALL 50s ===

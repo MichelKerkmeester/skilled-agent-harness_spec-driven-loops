@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/029-deep-loop-workflows/005-agent-mirror-repoint",
+  "spec_folder": "deep-loops/029-deep-loop-workflows/005-agent-mirror-repoint",
+  "parent_id": "deep-loops/029-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep agent mirror repoint",
+      "three-way agent parity",
+      "codex toml agent mirror",
+      "deep-loop-workflows phase 005",
+      "agent-mirror-repoint",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "deep-loop-workflows phase 005 summary",
+      "agent mirror repoint shipped",
+      "three-way agent parity done"
+    ],
+    "key_topics": [
+      "deep",
+      "agent",
+      "mirror",
+      "repoint",
+      "three-way",
+      "parity",
+      "codex",
+      "toml",
+      "deep-loop-workflows",
+      "phase",
+      "005",
+      "agent-mirror-repoint"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      ".codex/agents/README.txt",
+      ".opencode/agents/deep-context.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-context.md",
+      ".codex/agents/deep-context.toml",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/agents/deep-improvement.md",
+      ".claude/agents/deep-improvement.md",
+      ".codex/agents/deep-improvement.toml",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".codex/agents/ai-council.toml"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".codex/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-improvement.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Repoint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Convention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repoint",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
+    "created_at": "2026-06-14T20:16:09.679Z",
+    "last_save_at": "2026-06-23T03:49:48.696Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2936ed01d5961918a345b65fdcea44b0b164ddd41d2bdbf5a43b3466cbd17177",
+    "source_doc_hashes": {
+      "spec.md": "39708d68f7633252444bae9f5b35ed89feecbd0e86a4bb1b83dd453d0fe13475",
+      "plan.md": "8a7cd2e45736caaa34902eaa4f69c2be34b3f9af7c7524cee8be53017ddf7151",
+      "tasks.md": "232942f6c902ae5e01bc82a65ad42fc3825a8261a698561073a9eb6309ebdf69",
+      "checklist.md": "25057112d59ee0164a1fc3dd9b75fdcf91cb41d8631a49d3b348eae8ca394e6b",
+      "implementation-summary.md": "cab3407f419527cf31389b71e89ad752e0f451b48be474ed562a0f88624b391d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

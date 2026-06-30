@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support",
+  "description": "The small-model rotation needs Kimi K2.7 Code (the \"Kimi For Coding\" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class s",
+  "keywords": [
+    "small-model",
+    "rotation",
+    "needs",
+    "kimi",
+    "code",
+    "coding",
+    "coding-plan",
+    "model",
+    "live",
+    "slug",
+    "kimi-for-coding",
+    "k2p7",
+    "available",
+    "first-class"
+  ],
+  "lastUpdated": "2026-06-23T03:49:48.743Z",
+  "specId": "116",
+  "folderSlug": "kimi-k2-7-code-support",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-06-26_17-19__added-kimi-k2-7-code-slug-kimi-for-coding-k2p7.md"
+  ]
+}

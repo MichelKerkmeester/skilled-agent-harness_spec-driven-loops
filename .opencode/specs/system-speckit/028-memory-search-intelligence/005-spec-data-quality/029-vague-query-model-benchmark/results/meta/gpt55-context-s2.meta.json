@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-context-s2",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "context",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": null,
+  "attempts": 1,
+  "latencyMs": 76671,
+  "bytes": 85568,
+  "stderrTail": ""
+}

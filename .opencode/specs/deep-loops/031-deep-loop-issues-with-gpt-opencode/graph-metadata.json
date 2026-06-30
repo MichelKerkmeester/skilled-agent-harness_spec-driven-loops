@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "parent_id": null,
+  "children_ids": [
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt deep agent",
+      "deep loop gpt",
+      "deep skills gpt opencode",
+      "deep agent router"
+    ],
+    "key_topics": [
+      "gpt",
+      "deep",
+      "agent",
+      "loop",
+      "skills",
+      "opencode",
+      "router",
+      "parent",
+      "packet",
+      "fixing",
+      "deep-skill",
+      "invocation"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Issues",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "GPT-backed OpenCode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening, and the structural deep-agent router.",
+    "created_at": "2026-06-30T11:58:13.600Z",
+    "last_save_at": "2026-06-30T16:38:45.215Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4abb02c9e6bce64e601c08e7910d861a52fcea8a3b29292aa27d1c84505bf3b9",
+    "source_doc_hashes": {
+      "spec.md": "fdde8f5758634ddf80a1752eb937cbadf712a00f8b1fda34057ff366f0d442a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-kubernetes-s3",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "kubernetes",
+  "queryClass": "off-corpus",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 98539,
+  "bytes": 89511,
+  "stderrTail": ""
+}

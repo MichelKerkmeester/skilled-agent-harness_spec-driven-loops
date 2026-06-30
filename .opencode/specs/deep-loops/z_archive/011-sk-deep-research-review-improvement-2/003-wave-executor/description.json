@@ -1,0 +1,24 @@
+{
+  "specFolder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/003-wave-executor",
+  "description": "The deep-loop products are currently optimized for one iteration stream at a time",
+  "keywords": [
+    "deep-loop",
+    "products",
+    "currently",
+    "optimized",
+    "one",
+    "iteration",
+    "stream",
+    "time"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.235Z",
+  "specId": "003",
+  "folderSlug": "wave-executor",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

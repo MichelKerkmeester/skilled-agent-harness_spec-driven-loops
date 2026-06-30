@@ -718,12 +718,7 @@ function resolveSessionTrackingId(
     : typeof args.session_id === 'string'
       ? args.session_id
       : null;
-  const codexThreadId = typeof process.env.CODEX_THREAD_ID === 'string'
-    && process.env.CODEX_THREAD_ID.trim().length > 0
-    ? process.env.CODEX_THREAD_ID.trim()
-    : null;
-
-  return explicitSessionId ?? transportSessionId ?? codexThreadId ?? FALLBACK_SESSION_TRACKING_ID;
+  return explicitSessionId ?? transportSessionId ?? FALLBACK_SESSION_TRACKING_ID;
 }
 
 // Sticky session for follow_on_tool_use correlation.

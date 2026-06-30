@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
+  "spec_folder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
+  "parent_id": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lane legend",
+      "lane note",
+      "mode mix",
+      "reduce-state",
+      "F-P2-5",
+      "plan",
+      "tasks",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "lane",
+      "legend",
+      "note",
+      "mode",
+      "mix",
+      "reduce-state",
+      "f-p2-5",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reducer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill now runs two lanes (agent-improvement and model-benchmark) through one agent, but the feature catalog and the manual testing playbook do not say which lane each entry serves, so operators cannot tell agent-improvement features apart from model-benchmark features",
+    "created_at": "2026-05-29T07:37:38Z",
+    "last_save_at": "2026-06-23T03:49:51.242Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1db04a08b975d258d670e17459194e2233004e9e814dc1a487e3d97ca00da297",
+    "source_doc_hashes": {
+      "spec.md": "ba38aebc7ef907cb9098c4f917d1a43c39fa6db7a60bca0161d28d15642d447c",
+      "plan.md": "5220fcdbd53be1bcc28345a68f262bd31f7d9f724292ec088bbd176c94c98ced",
+      "tasks.md": "7698a6450215569ce971fafaceb8032a88eee33b37e6753a7aed0b61a17861be",
+      "implementation-summary.md": "6924e102e54311884a160457c66d3b6e8cf9528b674835b24c854c551d9589f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

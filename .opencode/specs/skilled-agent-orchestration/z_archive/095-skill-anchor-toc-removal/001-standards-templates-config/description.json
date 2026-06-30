@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/001-standards-templates-config",
+  "description": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` marke",
+  "keywords": [
+    "sk-doc",
+    "standards",
+    "doc",
+    "templates",
+    "templaterules",
+    "json",
+    "config",
+    "currently",
+    "mandate",
+    "allow",
+    "table",
+    "contents",
+    "blocks",
+    "treat",
+    "anchor",
+    "marke"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.102Z",
+  "specId": "001",
+  "folderSlug": "standards-templates-config",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "095-skill-anchor-toc-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

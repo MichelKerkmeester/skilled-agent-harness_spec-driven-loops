@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/120-glm-5-2-support/006-vision-frontend-input",
+  "spec_folder": "skilled-agent-orchestration/120-glm-5-2-support/006-vision-frontend-input",
+  "parent_id": "skilled-agent-orchestration/120-glm-5-2-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "glm-5.2 vision",
+      "glm-5.2 multimodal image input",
+      "glm-5.2 vision to code",
+      "glm-5.2 frontend screenshot",
+      "opencode file image attachment vision",
+      "glm-5.2 vision plan",
+      "glm-5.2 image input transport",
+      "opencode 20802 workaround",
+      "tasks",
+      "glm-5.2 vision tasks",
+      "glm-5.2 image input",
+      "glm-5.2 vision findings"
+    ],
+    "key_topics": [
+      "glm-5",
+      "vision",
+      "multimodal",
+      "image",
+      "input",
+      "code",
+      "frontend",
+      "screenshot",
+      "opencode",
+      "file",
+      "attachment",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+      ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "glm-5.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "model_profiles.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coding Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Capability",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GLM-5.2 is the newest GLM (released 2026-06-16), is natively multimodal, and is widely cited for strong visual-frontend / \"vision-to-code\" work (design taste rated above Claude on design benchmarks)",
+    "created_at": "2026-06-28T14:52:33.357Z",
+    "last_save_at": "2026-06-28T15:49:15.600Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04223d1c90b651c482c78872404b81819d623a03e192f462e93a97d59d9cff88",
+    "source_doc_hashes": {
+      "spec.md": "5195257eb08a9645d4556e63ff6b2a1467d19e983b182c2c4b06f237f2fa982a",
+      "plan.md": "13afd7d3ee4c99af3f19b05febae0f1f506599109fdbda3f708a6ecfb35dd6ae",
+      "tasks.md": "82cdd0d06aabc442c2d575d4d731cb3bb5746b8910beb3fafc450efd72be3c8f",
+      "implementation-summary.md": "479e1c262eea3564a990c42691bc7d56ef93497035748fce59e73331c8e1a818"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

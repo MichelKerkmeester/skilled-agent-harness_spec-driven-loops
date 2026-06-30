@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+  "description": "Phase parent for parent-skill native invocability. Coordinates initial planning, the accepted invokable-hub mechanism, and deep-loop alignment while k",
+  "keywords": [
+    "phase",
+    "parent",
+    "parent-skill",
+    "native",
+    "invocability",
+    "coordinates",
+    "initial",
+    "planning",
+    "accepted",
+    "invokable-hub",
+    "mechanism",
+    "deep-loop",
+    "alignment",
+    "while"
+  ],
+  "lastUpdated": "2026-06-30T06:12:45.673Z",
+  "specId": "152",
+  "folderSlug": "parent-skill-native-invocability",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

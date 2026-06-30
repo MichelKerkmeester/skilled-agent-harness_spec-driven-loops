@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/008-doc-realignment",
+  "spec_folder": "design/001-sk-design-interface/008-doc-realignment",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design-interface doc realignment",
+      "parity keystone doc alignment",
+      "feature catalog playbook readme realign",
+      "doc realignment plan",
+      "parity keystone doc alignment plan",
+      "doc realignment tasks",
+      "doc realignment summary"
+    ],
+    "key_topics": [
+      "sk-design-interface",
+      "doc",
+      "realignment",
+      "parity",
+      "keystone",
+      "alignment",
+      "feature",
+      "catalog",
+      "playbook",
+      "readme",
+      "realign",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Realign",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Realign",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 keystone added the Claude Design parity protocol (`claudedesignparity.md`), the `previewImageUrl` fidelity loop, reuse-before-generate, and the `designfidelity.py` helper",
+    "created_at": "2026-06-14T10:00:00Z",
+    "last_save_at": "2026-06-23T03:49:48.433Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39d51d0bd78fa96ba4a3f8b4d0697e08ada2558e0ca34e0a6a7f15fff7cc1f4c",
+    "source_doc_hashes": {
+      "spec.md": "9a37bc6c67430dbbee862c69d69af407da93660535271b1cce11b155d88d3cf8",
+      "plan.md": "17b92515428c1ae27afdbfccf032c8809ff48021256150e519b3c11bc2c44523",
+      "tasks.md": "2beda76da1b3de27c1842d39aee9328eb821c89d20a5a4ecbf35f23f793b1a13",
+      "implementation-summary.md": "30eff3241ee2e04d6fbda329d48d23c58afa5c00559be698b6d974a3a9159229"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

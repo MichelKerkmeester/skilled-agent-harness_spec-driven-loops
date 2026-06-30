@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+    "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+    "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/003-cli-gemini-full-purge",
+    "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gemini deprecation",
+      "remove gemini surface",
+      "cli-gemini cleanup"
+    ],
+    "key_topics": [
+      "gemini",
+      "deprecation",
+      "remove",
+      "surface",
+      "cli-gemini",
+      "cleanup",
+      "project",
+      "longer",
+      "supports",
+      "active",
+      "tooling",
+      "still"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gemini Deprecation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references",
+    "created_at": "2026-06-08T16:11:50.603Z",
+    "last_save_at": "2026-06-23T03:49:51.674Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f7e678d130c36090889c08a742af166c58f7bd09bc46fed5833ab2002508e2ed",
+    "source_doc_hashes": {
+      "spec.md": "48a2ce70e49d1e8b761548bba10f931fcad2575af8a9168e807e2f92396cb0b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

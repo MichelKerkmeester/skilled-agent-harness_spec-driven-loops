@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/008-register-pinning",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/008-register-pinning",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r8 register pinning",
+      "register pinning design build",
+      "brand product register command entry spec",
+      "d2-r8 register pinning plan",
+      "design command register policy plan",
+      "brand product register command entry plan",
+      "d2-r8 register pinning tasks",
+      "design command register policy tasks",
+      "brand product register command entry tasks",
+      "d2-r8 register pinning checklist",
+      "design command register policy checklist",
+      "brand product register command entry checklist"
+    ],
+    "key_topics": [
+      "d2-r8",
+      "register",
+      "pinning",
+      "design",
+      "build",
+      "brand",
+      "product",
+      "command",
+      "entry",
+      "spec",
+      "plan",
+      "policy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/skills/sk-design/shared/register.md",
+      ".opencode/skills/sk-design/shared/assets/register_card.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "register.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/register.md",
+        "source": "derived"
+      },
+      {
+        "name": "register_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/register_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Let",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Today",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A caller could not pin the Brand-vs-Product register at command entry",
+    "created_at": "2026-06-28T12:40:03.243Z",
+    "last_save_at": "2026-06-29T05:59:51.205Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e88fb12a7c3bdd2227bdd26a86e1a9e5bc859a4a06e2355165820d2e8c6c7ec2",
+    "source_doc_hashes": {
+      "spec.md": "f38cf4ab022b9561084eb68abeafa1d3d1ff2a7c8e17331f0361c9d45956ec1b",
+      "plan.md": "19558aba196b67f0261035b1f8a1cfbf116567e7c3cdc06e192a080b8dd37f12",
+      "tasks.md": "e6f1f4806716ca1ba450ac21e7bd184a01b5cb31af0473afa6af065ed7732d9a",
+      "checklist.md": "11aa016e38f751e85667fdc8e690e97b8cbf95dccb7b00880b3bbfa57ae4335d",
+      "implementation-summary.md": "e18346dd774034a86687c22c24786d8f31f727f9380c9fddd64df4e85c3ad9c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 Use these prompts before filing or clearing the model-specific Anti-Patterns finding. Each prompt mirrors one row in `ai_fingerprint_registry.json`.
 
-## Codex
+## OpenCode
 
 ### ghost-card-border-plus-shadow
 Find any card, panel, or button that uses both a 1px solid border and a soft wide shadow. If the shadow blur is 16px or more on the same element, flag it as a ghost-card border-plus-shadow tell.
@@ -26,7 +26,7 @@ Find cards, sections, panels, and text inputs with border-radius values of 24px 
 Find hand-drawn or doodle-style SVGs that stand in for a real subject. Flag sketch or doodle class names, turbulence or displacement filters, and crude low-path scenes used as trust-building visuals.
 
 ### diagonal-stripe-background
-Find decorative diagonal stripe backgrounds on the body or top-level sections. If repeating-linear-gradient is used as surface decoration rather than information, flag the Codex stripe tell.
+Find decorative diagonal stripe backgrounds on the body or top-level sections. If repeating-linear-gradient is used as surface decoration rather than information, flag the OpenCode stripe tell.
 
 ### element-tracking-on-display-type
 Find display or hero headings with letter-spacing tighter than -0.04em. Flag cramped tracking, especially when letters touch or the heading loses legibility.

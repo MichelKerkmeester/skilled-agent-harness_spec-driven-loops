@@ -1,0 +1,136 @@
+{
+  "tileId": "favorieten-4",
+  "arm": "a1_gate_repair",
+  "runId": "probe",
+  "primitive": "chart",
+  "pass": false,
+  "checks": {
+    "titleBandIntrusion": {
+      "pass": false,
+      "offenders": [
+        {
+          "role": "visual",
+          "bbox": [
+            30,
+            62,
+            500,
+            298
+          ]
+        },
+        {
+          "role": "element",
+          "bbox": [
+            31,
+            63,
+            172,
+            296
+          ]
+        },
+        {
+          "role": "card",
+          "bbox": [
+            203,
+            63,
+            326,
+            296
+          ]
+        }
+      ]
+    },
+    "visualPanelOverflow": {
+      "pass": false,
+      "offenders": [
+        {
+          "role": "visual",
+          "bottom": 360
+        },
+        {
+          "role": "element",
+          "bottom": 359
+        },
+        {
+          "role": "card",
+          "bottom": 359
+        },
+        {
+          "role": "visual",
+          "bottom": 347
+        }
+      ]
+    },
+    "bboxOverlap": {
+      "pass": false,
+      "offenders": [
+        {
+          "roleA": "label",
+          "roleB": "card",
+          "bbox": [
+            457.83,
+            72,
+            60.17,
+            20
+          ]
+        },
+        {
+          "roleA": "label",
+          "roleB": "label",
+          "bbox": [
+            463.05,
+            81,
+            42.95,
+            11
+          ]
+        },
+        {
+          "roleA": "description",
+          "roleB": "shell-cta",
+          "bbox": [
+            401.44,
+            422,
+            68.56,
+            16.75
+          ]
+        }
+      ]
+    },
+    "bannedContrast": {
+      "pass": true,
+      "offenders": []
+    },
+    "uppercase": {
+      "pass": false,
+      "count": 1,
+      "offenders": [
+        {
+          "role": "title",
+          "text": "UNKNOWN",
+          "fontSize": 21,
+          "bbox": [
+            30,
+            388,
+            500,
+            25.19
+          ]
+        }
+      ]
+    },
+    "clipping": {
+      "pass": true,
+      "offenders": []
+    }
+  },
+  "overflowSummary": {
+    "visualBottomMax": 360,
+    "rowsRendered": 3,
+    "rowsCap": 3
+  },
+  "repair": {
+    "fired": true,
+    "attempt": 1,
+    "regated": false,
+    "convertedToPass": false
+  },
+  "tolerancePx": 2,
+  "fontsReady": true,
+  "schemaVersion": "1.0"
+}

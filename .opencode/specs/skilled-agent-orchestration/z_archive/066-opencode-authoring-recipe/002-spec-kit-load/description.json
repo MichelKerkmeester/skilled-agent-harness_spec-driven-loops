@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/002-spec-kit-load",
+  "description": "077 finding F-009-001: `/speckit:complete` workflow loads sk-code only at REVIEW TIME (Phase A \"Pre-Commit code review\", auto YAML lines 311-318), not",
+  "keywords": [
+    "077",
+    "finding",
+    "f-009-001",
+    "speckit",
+    "complete",
+    "workflow",
+    "loads",
+    "sk-code",
+    "only",
+    "review",
+    "time",
+    "phase",
+    "pre-commit",
+    "code",
+    "auto",
+    "yaml",
+    "lines",
+    "311-318"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.706Z",
+  "specId": "002",
+  "folderSlug": "spec-kit-load",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "066-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

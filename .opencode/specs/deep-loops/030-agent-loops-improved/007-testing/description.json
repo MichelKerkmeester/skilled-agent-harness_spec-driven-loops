@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/007-testing",
+  "description": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution an",
+  "keywords": [
+    "tests",
+    "loop-lock",
+    "atomic-state",
+    "fanout-pool",
+    "cjs",
+    "share",
+    "real",
+    "home",
+    "database",
+    "paths",
+    "temp",
+    "dirs",
+    "preventing",
+    "parallel",
+    "execution"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.473Z",
+  "specId": "008",
+  "folderSlug": "testing",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

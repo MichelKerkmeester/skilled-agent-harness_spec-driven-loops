@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/063-cli-copilot-hallucination-caveat",
+  "description": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like `dqirubric.",
+  "keywords": [
+    "packet",
+    "072",
+    "review-report-v2",
+    "surfaced",
+    "p1-072-001",
+    "cli-copilot",
+    "claude-opus-4",
+    "hallucinates",
+    "sk-doc",
+    "resource",
+    "paths",
+    "citing",
+    "files",
+    "like",
+    "dqirubric"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.818Z",
+  "specId": "063",
+  "folderSlug": "cli-copilot-hallucination-caveat",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

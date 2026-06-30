@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council scenarios",
+      "deep ai council playbook run",
+      "007 phase 002 deep-ai-council",
+      "deep-ai-council scenarios plan",
+      "deep ai council playbook plan",
+      "007 phase 002 plan",
+      "deep-ai-council scenarios tasks",
+      "deep ai council playbook tasks",
+      "007 phase 002 tasks",
+      "deep-ai-council checklist",
+      "deep ai council verdict ledger",
+      "007 phase 002 checklist"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "scenarios",
+      "deep",
+      "council",
+      "playbook",
+      "run",
+      "007",
+      "phase",
+      "002",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "scratch/evidence/dac-01-05.txt",
+      ".opencode/agents/ai-council.md",
+      "scratch/evidence/dac-06-07.txt",
+      "scratch/evidence/dac-08-graph.txt",
+      "scratch/evidence/dac-09-codex.txt",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dac-01-05.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-01-05.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "dac-06-07.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-06-07.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dac-08-graph.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-08-graph.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dac-09-codex.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-09-codex.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-ai-council` is the multi-seat planning skill (seat diversity, cross-seat critique, convergence/rollback, artifact persistence, state JSONL, output-schema fail-close, five-dimension scoring, Hunter/Skeptic/Referee critique, derived graph projection, and the council-graph value comparison)",
+    "created_at": "2026-05-27T07:08:08.393Z",
+    "last_save_at": "2026-06-23T03:49:51.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab57d0999c07f7970ed0b91d3319669e66bfc2ba5e91dfecc29225f02680f5f6",
+    "source_doc_hashes": {
+      "spec.md": "f31f0ba0b1333b8c8cc58b8aadaae3e4477f8dd79e0d848e91ce2752f8839a93",
+      "plan.md": "0b3e9069094753a8b69c66427c0c9170bf5cb8418858cc0c2dc2d145c02f940f",
+      "tasks.md": "7aff8b2df72233a3ccf14ec7be6fde816d91d9021c9afb6cb279f944e858d8cb",
+      "checklist.md": "f1c19777820346a73389653cd4574070cdb78ca2657e770f5fa931ee6ce1ef75",
+      "implementation-summary.md": "29c6533ff7b476bd740266c5492408473c02c2de80cf6fb73ed18b459e796f96"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

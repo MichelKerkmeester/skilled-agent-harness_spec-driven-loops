@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/001-numeric-law-index",
+  "description": "The shared base is only conceptual today",
+  "keywords": [
+    "shared",
+    "base",
+    "only",
+    "conceptual",
+    "today"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.934Z",
+  "specId": "001",
+  "folderSlug": "numeric-law-index",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

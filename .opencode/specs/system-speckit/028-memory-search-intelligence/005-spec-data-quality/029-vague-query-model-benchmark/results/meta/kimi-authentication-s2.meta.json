@@ -1,0 +1,14 @@
+{
+  "key": "kimi-authentication-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "authentication",
+  "queryClass": "off-corpus",
+  "sample": 2,
+  "exit": 1,
+  "attempts": 1,
+  "latencyMs": 98814,
+  "bytes": 110792,
+  "stderrTail": ""
+}

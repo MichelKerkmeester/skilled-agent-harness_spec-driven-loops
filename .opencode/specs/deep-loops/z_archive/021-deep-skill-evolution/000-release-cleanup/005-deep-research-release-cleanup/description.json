@@ -1,0 +1,34 @@
+{
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup",
+  "description": "The `deep-research` skill carries 412 lines of SKILL.md, 248 lines of README, 6 references (3,526 lines), 5 assets, 16 feature-catalog files, 43 manua",
+  "keywords": [
+    "deep-research",
+    "skill",
+    "carries",
+    "412",
+    "lines",
+    "248",
+    "readme",
+    "references",
+    "526",
+    "assets",
+    "feature-catalog",
+    "files",
+    "manua"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.609Z",
+  "specId": "005",
+  "folderSlug": "deep-research-release-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-05-26_15-11__deep-research-skill-is-mature-v1-12-0-0-412-loc.md",
+    "23-05-26_15-40__all-findings-and-deferred-operator-override-of.md",
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research"
+  ]
+}

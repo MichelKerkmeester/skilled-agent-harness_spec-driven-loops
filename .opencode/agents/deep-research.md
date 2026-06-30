@@ -2,6 +2,9 @@
 name: deep-research
 description: "Autonomous deep research agent executing single iteration cycles with externalized state"
 mode: subagent
+model: openai/gpt-5.5
+reasoningEffort: high
+textVerbosity: low
 temperature: 0.1
 permission:
   read: allow

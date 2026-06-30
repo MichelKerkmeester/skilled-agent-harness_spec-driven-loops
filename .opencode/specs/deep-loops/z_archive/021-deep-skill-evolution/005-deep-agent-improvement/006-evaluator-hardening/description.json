@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
+  "description": "Level 3 specification for scorer reproducibility, promotion gates, dedup hardening, mirror coverage, and dashboard transparency.",
+  "keywords": [
+    "level",
+    "specification",
+    "scorer",
+    "reproducibility",
+    "promotion",
+    "gates",
+    "dedup",
+    "hardening",
+    "mirror",
+    "coverage",
+    "dashboard",
+    "transparency"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.966Z",
+  "specId": "006",
+  "folderSlug": "evaluator-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "005-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

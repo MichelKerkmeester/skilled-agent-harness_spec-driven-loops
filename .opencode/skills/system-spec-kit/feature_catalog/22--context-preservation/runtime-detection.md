@@ -18,7 +18,7 @@ version: 3.6.0.15
 
 Runtime detection identifies the active AI runtime and classifies its hook policy as enabled, disabled_by_scope, unavailable, or unknown.
 
-Runtime-signal detection reads environment variables to identify claude-code, codex-cli, or copilot-cli. It then inspects the current repo/config where needed: Copilot checks `.github/hooks/*.json` for repo hook wiring, including `sessionStart` and the `userPromptSubmitted` wrapper that refreshes the managed Copilot custom-instructions block. Returns both runtime ID and hookPolicy. `areHooksAvailable()` and `getRecoveryApproach()` helpers simplify usage. Copilot `hookPolicy: enabled` is a file-based context path, not SDK `additionalContext`.
+Runtime-signal detection reads environment variables to identify claude-code, opencode-cli, or copilot-cli. It then inspects the current repo/config where needed: Copilot checks `.github/hooks/*.json` for repo hook wiring, including `sessionStart` and the `userPromptSubmitted` wrapper that refreshes the managed Copilot custom-instructions block. Returns both runtime ID and hookPolicy. `areHooksAvailable()` and `getRecoveryApproach()` helpers simplify usage. Copilot `hookPolicy: enabled` is a file-based context path, not SDK `additionalContext`.
 
 ---
 

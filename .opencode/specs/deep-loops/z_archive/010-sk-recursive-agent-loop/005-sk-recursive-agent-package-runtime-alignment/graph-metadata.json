@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/010-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+  "spec_folder": "deep-loops/z_archive/010-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+  "parent_id": "deep-loops/z_archive/010-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recursive agent package runtime alignment",
+      "041 phase 005",
+      "recursive agent template parity",
+      "041 phase 005 plan",
+      "recursive agent package runtime alignment plan",
+      "041 phase 005 tasks",
+      "recursive agent package runtime alignment tasks",
+      "041 phase 005 checklist",
+      "recursive agent package runtime alignment checklist",
+      "041 phase 005 implementation summary",
+      "recursive agent package runtime alignment summary"
+    ],
+    "key_topics": [
+      "recursive",
+      "agent",
+      "package",
+      "runtime",
+      "alignment",
+      "041",
+      "phase",
+      "005",
+      "template",
+      "parity",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/descriptions.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent Package",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates",
+    "created_at": "2026-04-12T09:02:50.187Z",
+    "last_save_at": "2026-06-23T03:49:49.170Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d6d134d74a2f10ec43ab39a56681689076956ada707d7a3bf0535f4eefc7bdf",
+    "source_doc_hashes": {
+      "spec.md": "586fcb74932cc1e254fb23cd9d17c9592bf24f10e815a761fd94f186c00c8a94",
+      "plan.md": "b4d062596408dccb1c401a56ae352435b4da84ca6b4a2344499a890aa42e5aa9",
+      "tasks.md": "1125fa35c662361f3d6b9725405406e55db9dc5189c42b84fd792813f0a0a4e3",
+      "checklist.md": "97bb00445603a91fe508f75a1191f29d38b6da38062bb952af6e4514f8cf59c8",
+      "implementation-summary.md": "516269657fc4574e944d6b0712f2a796b4b538fb69c7feeafa05f4717beb2399"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

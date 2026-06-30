@@ -31,7 +31,7 @@ Templates are numbered for cross-reference from `references/integration_patterns
 ## 2. TEMPLATE 1 — EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
 
 **Framework:** RCAF
-**Calling runtime:** Claude Code, Codex, Copilot, raw shell
+**Calling runtime:** Claude Code, OpenCode, Copilot, raw shell
 
 ```text
 You are dispatching from <calling-runtime> into a fresh OpenCode session via cli-opencode.
@@ -126,7 +126,7 @@ opencode run \
 ## 4. TEMPLATE 3 — CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
 
 **Framework:** RCAF + TIDD-EC
-**Calling runtime:** Codex, Copilot
+**Calling runtime:** OpenCode, Copilot
 
 ```text
 You are dispatching from <calling-runtime> into OpenCode for a spec-kit-specific workflow.
@@ -434,7 +434,7 @@ Asking cli-opencode to delegate this exact prompt back to OpenCode would create
 a circular dispatch.
 
 Options:
-1. Use a sibling cli-* skill (cli-claude-code, cli-codex)
+1. Use a sibling cli-* skill (cli-claude-code, cli-opencode)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate

@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "description": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
+  "keywords": [
+    "memory",
+    "side",
+    "already",
+    "computes",
+    "provenance",
+    "sourcekind",
+    "every",
+    "saved",
+    "row",
+    "two",
+    "metadata",
+    "jsons",
+    "never",
+    "expose",
+    "them",
+    "first-class",
+    "fields"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.715Z",
+  "specId": "008",
+  "folderSlug": "surface-provenance-fields",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality",
+    "001-on-write-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

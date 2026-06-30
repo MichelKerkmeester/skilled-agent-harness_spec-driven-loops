@@ -26,7 +26,7 @@ Config management keeps the packet honest about what may change during the loop 
 
 `deep-research-config.json` is created during initialization and then treated as immutable. It stores the topic, iteration and time budgets, convergence and stuck thresholds, `progressiveSynthesis`, execution mode, lineage state, reducer file paths, pause sentinel path, archive root, migration window, and file-protection rules such as append-only JSONL and auto-generated dashboard or registry outputs.
 
-The config also points at the runtime capability matrix and resolver script. `runtime_capabilities.json` lists the OpenCode, Claude, and Codex mirrors with their tool surfaces, hook behavior, and schema-adaptation notes. `runtime-capabilities.cjs` loads and validates that machine-readable matrix so the runtime documentation stays synchronized with the same capability source.
+The config also points at the runtime capability matrix and resolver script. `runtime_capabilities.json` lists the OpenCode, Claude, and OpenCode mirrors with their tool surfaces, hook behavior, and schema-adaptation notes. `runtime-capabilities.cjs` loads and validates that machine-readable matrix so the runtime documentation stays synchronized with the same capability source.
 
 ---
 

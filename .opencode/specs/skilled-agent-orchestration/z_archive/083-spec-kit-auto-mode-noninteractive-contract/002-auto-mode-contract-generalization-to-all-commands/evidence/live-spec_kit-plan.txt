@@ -1,0 +1,328 @@
+=== Live setup-phase test: /speckit:plan:auto ===
+Started: 2026-05-11T14:29:41+0200
+Command: .opencode/commands/speckit/plan.md
+
+Reading additional input from stdin...
+OpenAI Codex v0.130.0
+--------
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/michelkerkmeester/.codex/memories] (network access enabled)
+reasoning effort: medium
+reasoning summaries: none
+session id: 019e1703-be4a-79f1-82cb-55b30e9fc6b0
+--------
+user
+You are testing the setup-phase contract of the migrated command /speckit:plan.
+
+# RUNTIME RULES
+- Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
+- Gate 3 answer: D) Skip spec-folder creation. Stdin is closed.
+- Do NOT load the paired YAML workflow. Stop at the end of section zero setup resolution.
+- Do NOT write any files outside /tmp/. Read-only inspection of the command markdown is allowed.
+
+# YOUR TASK
+
+1. Read .opencode/commands/speckit/plan.md section zero (UNIFIED SETUP PHASE or equivalent).
+2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
+3. SIMULATE a dispatch of /speckit:plan:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+
+```
+PRE-BOUND SETUP ANSWERS:
+  spec_folder: specs/skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands
+  execution_mode: AUTONOMOUS
+```
+
+4. Walk through Tier-1 logic step by step. Determine which Tier the resolution lands in.
+5. Report:
+   - Citation present: yes/no with line number
+   - Section zero Tier reached: 1 / 2 / 3
+   - Setup question emitted: yes / no (CRITICAL — yes under Tier 1 means migration failed)
+   - Resolved field map: list each setup field with its final value
+   - STATUS value: PASSED / BLOCKED / fail-fast error
+   - Verdict: PASS or PARTIAL or FAIL
+     - PASS = Tier 1 resolved without question
+     - PARTIAL = Tier 2 reached logically
+     - FAIL = legacy Q-block emitted or hang
+
+# OUTPUT
+One markdown message with the 6 report fields. Do not edit files. Do not call SpawnAgent.
+
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+codex
+I’ll keep this read-only and stop at section-zero setup resolution, as requested. I’m going straight to the command markdown and the shared contract citation check; no agents, no YAML workflow, no writes.
+exec
+/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|setup" .opencode/commands/speckit/plan.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+11:> **Ownership:** Markdown owns setup (resolves all inputs). YAML owns execution (dispatches steps). Setup values resolved here are passed to the YAML workflow.
+27:- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+36:## 0. UNIFIED SETUP PHASE
+38:**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
+40:Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
+42:For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+46:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+50:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
+52:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
+54:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+56:`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+58:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+60:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+63:PRE-BOUND SETUP ANSWERS:
+84:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+88:| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+485:Runs after setup, before Step 1:
+
+exec
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/plan.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
+     3	argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+     4	allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
+     5	---
+     6	
+     7	> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+     8	>
+     9	> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+    10	>
+    11	> **Ownership:** Markdown owns setup (resolves all inputs). YAML owns execution (dispatches steps). Setup values resolved here are passed to the YAML workflow.
+    12	>
+    13	> **YOUR FIRST ACTION:**
+    14	> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+    15	>    Note: `:with-phases` is a feature flag, not an execution mode. It modifies the workflow but does not change the base execution mode.
+    16	> 2. Load the corresponding YAML file from `assets/`:
+    17	>    - Auto mode → `speckit_plan_auto.yaml`
+    18	>    - Confirm mode → `speckit_plan_confirm.yaml`
+    19	> 3. Execute the YAML workflow step by step
+    20	>
+    21	> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+    22	
+    23	## CONSTRAINTS
+    24	
+    25	- **DO NOT** dispatch any agent (`@deep-research`, `@context`) from this document
+    26	- **DO NOT** dispatch `@deep-research` unless confidence < 60% during planning (Step 5)
+    27	- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+    28	- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+    29	
+    30	# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
+    31	
+    32	This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
+    33	
+    34	---
+    35	
+    36	## 0. UNIFIED SETUP PHASE
+    37	
+    38	**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
+    39	
+    40	Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
+    41	
+    42	For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+    43	
+    44	### `:auto` Setup Resolution
+    45	
+    46	Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+    47	
+    48	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+    49	
+    50	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
+    51	
+    52	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
+    53	
+    54	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+    55	
+    56	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+    57	
+    58	### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+    59	
+    60	The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+    61	
+    62	```yaml
+    63	PRE-BOUND SETUP ANSWERS:
+    64	  feature_description: Add passwordless login  # string
+    65	  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # existing | new | update-related | skip | phase-folder | explicit path
+    66	  execution_mode: AUTONOMOUS  # from :auto suffix
+    67	  dispatch_mode: single_agent  # single_agent | multi_small | multi_large
+    68	  memory_choice: skip  # latest | recent3 | skip | n/a
+    69	  research_intent: add_feature  # add_feature | fix_bug | refactor | understand
+    70	  phase_decomposition: false  # boolean, true when :with-phases present
+    71	  phase_count: 3  # positive integer
+    72	  phase_names: ""  # optional comma-separated names
+    73	  phase_folder: ""  # optional explicit phase child path
+    74	  intake_only: false  # boolean, true when --intake-only present
+    75	  selected_level: ""  # optional intake level: 1 | 2 | 3 | 3+
+    76	  start_state: ""  # optional intake folder state
+    77	  repair_mode: ""  # optional intake repair mode
+    78	  record_relationships: false  # boolean
+    79	  depends_on: ""  # optional comma-separated packet ids
+    80	  related_to: ""  # optional comma-separated packet ids
+    81	  supersedes: ""  # optional comma-separated packet ids
+    82	```
+    83	
+    84	Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+    85	
+    86	### Default Resolution Table
+    87	
+    88	| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+    89	|-------|----------|--------------|---------|------------------|
+    90	| `feature_description` | Y | `$ARGUMENTS` positional feature description, or marker `feature_description` | none | N |
+    91	| `spec_folder` | Y | flag `--spec-folder`, flag `--phase-folder`, marker `spec_folder` / `phase_folder`, or targeted choice among existing/new/update-related/skip/phase folder | none | Y, when feature is present but folder choice is ambiguous |
+    92	| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+    93	| `dispatch_mode` | Y | marker `dispatch_mode` or default recommended option | `single_agent` | N |
+    94	| `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
+    95	| `research_intent` | Y | marker `research_intent` or targeted classification question | none | Y |
+    96	| `phase_decomposition` | Y | suffix `:with-phases`, marker `phase_decomposition`, or default | `false` | N |
+    97	| `phase_count` | N | flag `--phases`, marker `phase_count`, or default | `3` | N |
+    98	| `phase_names` | N | flag `--phase-names`, marker `phase_names`, or auto-generate | none | N |
+    99	| `phase_folder` | N | flag `--phase-folder`, marker `phase_folder`, or default | none | N |
+   100	| `intake_only` | N | flag `--intake-only`, marker `intake_only`, or default | `false` | N |
+   101	| `selected_level` | N | flag `--level`, marker `selected_level`, or inline intake contract when required | none | N |
+   102	| `start_state` | N | flag `--start-state`, marker `start_state`, folder-state classification, or inline intake contract when required | auto-detect | N |
+   103	| `repair_mode` | N | flag `--repair-mode`, marker `repair_mode`, or inline intake contract when required | none | N |
+   104	| `record_relationships` | N | flag `--record-relationships`, marker `record_relationships`, or inline intake contract when required | `false` | N |
+   105	| `depends_on` | N | flag `--depends-on`, marker `depends_on`, or inline intake relationship capture | none | N |
+   106	| `related_to` | N | flag `--related-to`, marker `related_to`, or inline intake relationship capture | none | N |
+   107	| `supersedes` | N | flag `--supersedes`, marker `supersedes`, or inline intake relationship capture | none | N |
+   108	
+   109	**STATUS: BLOCKED**
+   110	
+   111	```
+   112	EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+   113	
+   114	1. CHECK mode suffix:
+   115	   ├─ ":auto"    → execution_mode = "AUTONOMOUS" (omit Q2)
+   116	   ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q2)
+   117	   └─ No suffix  → execution_mode = "ASK" (include Q2)
+   118	
+   119	1a. CHECK :with-phases flag:
+   120	   ├─ ":with-phases" present → phase_decomposition = TRUE (omit Q6)
+   121	   │   Parse additional flags: --phases N (default 3), --phase-names "a,b,c" (optional)
+   122	   │   Include Q7 (Phase Count) and Q8 (Phase Names) if not provided via flags
+   123	   └─ Not present → phase_decomposition = "ASK" (include Q6)
+   124	
+   125	1a-b. CHECK --intake-only flag:
+   126	   ├─ present → intake_only = TRUE; workflow halts after Emit phase, does not proceed to planning Steps 2–8
+   127	   └─ absent → intake_only = FALSE
+   128	
+   129	1a-c. PARSE intake contract flags (see .opencode/skills/system-spec-kit/references/intake-contract.md §1):
+   130	   ├─ --spec-folder=PATH → spec_path = PATH (bypass auto-discovery)
+   131	   ├─ --level=N → selected_level = N
+   132	   ├─ --start-state=STATE → requested_start_state = STATE
+   133	   ├─ --repair-mode=MODE → repair_mode = MODE
+   134	   ├─ --record-relationships=yes|no → collect_relationships = [true|false]
+   135	   ├─ --depends-on=PACKET_ID[,...] → seed manual_relationships.depends_on[]
+   136	   ├─ --related-to=PACKET_ID[,...] → seed manual_relationships.related_to[]
+   137	   └─ --supersedes=PACKET_ID[,...] → seed manual_relationships.supersedes[]
+   138	
+   139	1b. CHECK --phase-folder flag:
+   140	   ├─ --phase-folder=<path> provided → auto-resolve spec_path to that child folder path
+   141	   │   Set spec_choice = "E", spec_path = <path>, omit Q1
+   142	   │   Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+   143	   │   Show parent context: "Phase folder: <path> (parent: <parent-folder>)"
+   144	   └─ Not provided → continue normally
+   145	
+   146	2. CHECK $ARGUMENTS for feature description:
+   147	   ├─ Has content (ignoring :auto/:confirm) → feature_description = $ARGUMENTS, omit Q0
+   148	   └─ Empty → include Q0
+   149	
+   150	3. Search for related spec folders:
+   151	   $ ls -d specs/*/ 2>/dev/null | tail -10
+   152	
+   153	4. Search for prior work (background):
+   154	   - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
+   155	   > Gate 1 trigger matching handled at agent level (AGENTS.md).
+   156	   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   157	   - Store: prior_work_found = [yes/no], prior_work_count = [N]
+   158	
+   159	5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
+   160	
+   161	5a. CHECK intake contract requirement when `spec_path` is explicit or can be derived from Q1 / `--phase-folder`:
+   162	   ├─ Inspect `{spec_path}` for `spec.md`, `description.json`, `graph-metadata.json`, and tracked placeholder markers per intake-contract.md §3 Folder State Classification
+   163	   ├─ Normalize `folder_state` to one of: `empty-folder` | `partial-folder` | `repair-mode` | `placeholder-upgrade` | `populated-folder`
+   164	   ├─ `folder_state == populated-folder` AND `intake_only == FALSE` → `intake_required = FALSE` and preserve the current prompt unchanged
+   165	   ├─ `folder_state == populated-folder` AND `intake_only == TRUE` → no-op exit with informational message
+   166	   └─ Otherwise → `intake_required = TRUE`, inherit the parent `execution_mode`, and run the intake contract inline before Step 1 continues (or halt after Emit phase if `intake_only == TRUE`)
+   167	
+   168	6. ASK with SINGLE prompt (include only applicable questions):
+   169	
+   170	   Q0. Feature Description (if not in command): What feature to plan?
+   171	
+   172	   Q1. Spec Folder (required):
+   173	     A) Use existing [suggest if found]  B) Create new: specs/[###]-[slug]/
+   174	     C) Update related [if match found]  D) Skip documentation
+   175	     E) Phase folder — target a specific phase child (e.g., specs/NNN-name/001-phase/)
+   176	
+   177	   Q2. Execution Mode (if no suffix):
+   178	     A) Autonomous - all 8 steps without approval
+   179	     B) Interactive - pause at each step
+   180	
+   181	   Q3. Dispatch Mode (required):
+   182	     A) Single Agent (Recommended)  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
+   183	
+   184	   Q4. Prior Work Context (when prior continuity records exist for this spec):
+   185	     A) Load most recent spec-doc record  B) Load up to 3 most recent spec-doc records  C) Skip
+   186	
+   187	   Q5. Research Intent (required):
+   188	     A) add_feature  B) fix_bug  C) refactor  D) understand
+   189	
+   190	   Q6. Phase Decomposition (if :with-phases not in command):
+   191	     Create phased spec structure (parent + N child folders)?
+   192	     A) No — single spec folder (default)
+   193	     B) Yes — decompose into phases before planning
+   194	
+   195	   Q7. Phase Count (if phase_decomposition == TRUE and --phases not provided):
+   196	     How many phases? (Default: 3)
+   197	
+   198	   Q8. Phase Names (if phase_decomposition == TRUE and --phase-names not provided):
+   199	     Provide phase names? (Optional — auto-generated if skipped)
+   200	     Example: "data-model, api-layer, ui-components"
+   201	
+   202	   **Intake contract block** (ONLY if `intake_required = TRUE`; keep this inside the SAME prompt, not a second command flow):
+   203	
+   204	   Execute the Q0–Q4+ consolidated intake interview per `.opencode/skills/system-spec-kit/references/intake-contract.md §5`. Questions cover: feature description, target folder state, documentation level, relationship capture, and relationship entries (grouped `depends_on` / `related_to` / `supersedes` by `packet_id`).
+   205	
+   206	   Reply format: "B, A, A, C, A" or "Add auth, B, A, C, A"
+   207	
+   208	7. WAIT for user response (DO NOT PROCEED)
+   209	
+   210	8. Parse response and store ALL results:
+   211	   - feature_description = [from Q0 or $ARGUMENTS]
+   212	   - spec_choice = [A/B/C/D/E from Q1]
+   213	   - spec_path = [derived path or null if D]
+   214	   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   215	   - dispatch_mode = [single/multi_small/multi_large from Q3]
+   216	   - memory_choice = [A/B/C from Q4, or N/A]
+   217	   - research_intent = [add_feature/fix_bug/refactor/understand from Q5]
+   218	   - IF `intake_required = TRUE`: bind `selected_level`, `start_state`, `repair_mode`, and `manual_relationships` from the inline intake-contract block (see intake-contract.md §6 for trio-publication semantics)
+   219	   - IF intake contract adjusts the target: update `feature_description` and `spec_path` from the returned contract before Step 1
+   220	   - IF `intake_only = TRUE`: halt here with STATUS=OK after intake Emit phase completes; do not proceed to Step 1
+
+codex
+- **Citation present:** yes, line 46: `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`
+- **Section zero Tier reached:** 3
+- **Setup question emitted:** no
+- **Resolved field map:** `spec_folder` = `specs/skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands`; `execution_mode` = `AUTONOMOUS`; `dispatch_mode` = `single_agent`; `memory_choice` = `skip`; `phase_decomposition` = `false`; `phase_count` = `3`; `intake_only` = `false`; `feature_description` = missing; `research_intent` = unresolved
+- **STATUS value:** fail-fast error, because `feature_description` is required, has no default, and missing feature description routes to Tier 3 rather than Tier 2
+- **Verdict:** FAIL
+hook: Stop
+hook: Stop Completed
+tokens used
+9,181
+- **Citation present:** yes, line 46: `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`
+- **Section zero Tier reached:** 3
+- **Setup question emitted:** no
+- **Resolved field map:** `spec_folder` = `specs/skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands`; `execution_mode` = `AUTONOMOUS`; `dispatch_mode` = `single_agent`; `memory_choice` = `skip`; `phase_decomposition` = `false`; `phase_count` = `3`; `intake_only` = `false`; `feature_description` = missing; `research_intent` = unresolved
+- **STATUS value:** fail-fast error, because `feature_description` is required, has no default, and missing feature description routes to Tier 3 rather than Tier 2
+- **Verdict:** FAIL
+
+
+=== EXIT 0; WALL 24s ===

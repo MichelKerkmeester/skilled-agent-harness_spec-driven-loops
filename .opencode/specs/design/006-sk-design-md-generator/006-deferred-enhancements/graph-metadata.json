@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/006-sk-design-md-generator/006-deferred-enhancements",
+  "spec_folder": "design/006-sk-design-md-generator/006-deferred-enhancements",
+  "parent_id": "design/006-sk-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deferred enhancements",
+      "DTCG typed tokens",
+      "tokens.css output",
+      "gradient decomposition",
+      "MCP token endpoint"
+    ],
+    "key_topics": [
+      "deferred",
+      "enhancements",
+      "dtcg",
+      "typed",
+      "tokens",
+      "css",
+      "output",
+      "gradient",
+      "decomposition",
+      "mcp",
+      "token",
+      "endpoint"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Changes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "line",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several improvements are real but were deferred to avoid blocking the anti-fabrication fixes: DTCG migration is high-disruption and does NOT itself fix prose fabrication; some sections (§0/§1/§7/§8) need semantic data the tokens don't carry; and several borrow-list techniques are medium-cost niceties",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-23T03:49:48.855Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de450e125e554b6695f7fd93a7604e3c7cf21cd0547d992bceb57f68eaeaf77c",
+    "source_doc_hashes": {
+      "spec.md": "9d568de60188338c1a8bf146820106257b6a24e70c44e9acc17ebdf7814ae03b",
+      "plan.md": "7506e8736aace56086f78541fa5b37d88b86495a6649f23de5eaeb73b5382ef1",
+      "tasks.md": "4a53cd2d8de42b964b5ccde9116ee51905032700a3acec1b0419454cf1eef973",
+      "checklist.md": "9b0c2f6704197e9a8dfec69ff795172191142ffe42c072c3228bbbb48184fdb8",
+      "implementation-summary.md": "4f8675f4d46d43d74c2dba7b4c02e20c34e2e7c8b3e69b35d6279974b4cf828f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

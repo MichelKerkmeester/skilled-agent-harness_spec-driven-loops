@@ -1,0 +1,14 @@
+{
+  "key": "kimi-semantic-search-s1",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "semantic-search",
+  "queryClass": "generic",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 215611,
+  "bytes": 138726,
+  "stderrTail": ""
+}

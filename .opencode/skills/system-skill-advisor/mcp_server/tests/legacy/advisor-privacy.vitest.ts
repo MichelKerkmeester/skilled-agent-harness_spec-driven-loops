@@ -83,17 +83,17 @@ describe('advisor privacy audit', () => {
     for (const prompt of sensitivePrompts) {
       const result = await buildSkillAdvisorBrief(prompt, {
         workspaceRoot,
-        runtime: 'codex',
+        runtime: 'opencode',
       });
       const rendered = renderAdvisorBrief(result);
       const cacheKey = createAdvisorPromptCacheKey({
         canonicalPrompt: prompt,
         sourceSignature: 'privacy-source-signature',
-        runtime: 'codex',
+        runtime: 'opencode',
       }, Buffer.from('privacy-test-secret'));
       const diagnostic = createAdvisorHookDiagnosticRecord({
         timestamp: '2026-04-19T10:00:00.000Z',
-        runtime: 'codex',
+        runtime: 'opencode',
         status: result.status,
         freshness: result.freshness,
         durationMs: result.metrics.durationMs,

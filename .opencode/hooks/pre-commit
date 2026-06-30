@@ -34,7 +34,7 @@ if [[ $VIOLATIONS -gt 0 ]]; then
 fi
 
 # Agent mirror-sync gate (independent of comment hygiene)
-# Agents are authored in .opencode/agents/ and mirrored to .claude and .codex.
+# Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only STAGED agent files are checked,
 # so commits that touch no agents are never affected by this gate.
 MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/deep-loop-workflows/deep-improvement/scripts/check-agent-mirror-sync.cjs"
@@ -42,14 +42,14 @@ MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/deep-loop-workflows/deep-improvement
 STAGED_AGENTS=()
 while IFS= read -r file; do
   [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
-done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|claude|codex)/agents/' || true)
+done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|claude)/agents/' || true)
 
 if [[ ${#STAGED_AGENTS[@]} -gt 0 ]]; then
   if ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
     echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
   elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
     echo ""
-    echo "BLOCKED: staged agent files desync the .opencode / .claude / .codex mirrors."
+    echo "BLOCKED: staged agent files desync the .opencode / .claude mirrors."
     echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
     exit 1
   fi

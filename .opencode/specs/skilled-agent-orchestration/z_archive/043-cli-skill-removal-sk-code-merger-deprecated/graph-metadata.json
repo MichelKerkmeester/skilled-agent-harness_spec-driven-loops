@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/043-cli-skill-removal-sk-code-merger-deprecated",
+  "spec_folder": "skilled-agent-orchestration/z_archive/043-cli-skill-removal-sk-code-merger-deprecated",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/z_archive/042-sk-code-merger",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration/z_archive/041-cli-skill-removal-mcp-clickup",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove sk-code-full-stack",
+      "remove sk-code-web",
+      "055 sk-code-merger cleanup",
+      "plan 055",
+      "sk-code-merger cleanup plan",
+      "tasks 055",
+      "checklist 055",
+      "055 implementation summary",
+      "sk-code-merger deprecated removed"
+    ],
+    "key_topics": [
+      "remove",
+      "sk-code-full-stack",
+      "sk-code-web",
+      "055",
+      "sk-code-merger",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "deprecated"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+      ".opencode/skills/README.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+      "mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/agents/deep-review.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "compliance.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_md_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "w8-search-decision-envelope.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella skill `sk-code` and gated the deprecated pair to advisor weight 0",
+    "created_at": "2026-04-30T10:00:00Z",
+    "last_save_at": "2026-06-23T03:49:49.364Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7a29f1cd10d0376a0d78b665507659ea6cdc7e63ddcbb9e9f34444230e70301d",
+    "source_doc_hashes": {
+      "spec.md": "344e13814dd96ec6084bd07b148a5383694569514fecc366e03e9a2b9f67592c",
+      "plan.md": "0815fecdca86842034b0b77945ac161c88b011fddb2f2d3ba5fb0897c8bdcb6d",
+      "tasks.md": "950a16bbb9dde93094b68a19a00c06f92be759dc0fc795160e8de28e3655cf64",
+      "checklist.md": "499ccabf419aae67345674557755d81a23cf75abea7513141b727d3079ff7491",
+      "implementation-summary.md": "fa2a732859163d4afbbe218186261196c049e21ccb03aa657e8b8641da85a39c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

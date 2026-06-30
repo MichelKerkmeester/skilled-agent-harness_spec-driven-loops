@@ -266,7 +266,7 @@ STEP 5: Synthesize
 
 **Output**: a Context Report — REUSE catalog (verified `file:symbol` + signature + how-to-extend + confidence-by-agreement + freshness), integration points, touch list, conventions, pruned dependency subgraph, and gaps/unknowns. It ships **pointers, not source bodies** (the consumer pulls bodies just-in-time), which avoids context rot and stale-reference failure.
 
-**Heterogeneous pool example** (opt-in Custom — NOT the default; the default pool is native-only, 2 seats): 2 native agents + 1 MiMo-v2.5-pro (cli-opencode) + 1 gpt (cli-codex) + 1 deepseek-v4-pro (cli-opencode), all sweeping the same scope in parallel; a reuse candidate confirmed by 3 of 5 executors outranks a single-executor find.
+**Heterogeneous pool example** (opt-in Custom — NOT the default; the default pool is native-only, 2 seats): 2 native agents + 1 MiMo-v2.5-pro (cli-opencode) + 1 gpt (cli-opencode) + 1 deepseek-v4-pro (cli-opencode), all sweeping the same scope in parallel; a reuse candidate confirmed by 3 of 5 executors outranks a single-executor find.
 
 **Script**: `scripts/reduce-state.cjs` — the agreement-weighted context reducer. Reads the host-written state log + per-seat findings and produces the `findings-registry.json` and human-readable dashboard. Run from the repository root:
 
@@ -282,9 +282,9 @@ The native `@deep-context` seat is dispatched **by name** (`agent: deep-context`
 |---------|------|-------------|
 | OpenCode | `.opencode/agents/deep-context.md` | **canonical source** — `mode: subagent` + `permission:` block |
 | Claude Code | `.claude/agents/deep-context.md` | mirror — `tools:` allow-list (read-only), same body |
-| Codex | `.codex/agents/deep-context.toml` | mirror — `developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode = "read-only"`, same body |
+| OpenCode | `.opencode/agents/deep-context.toml` | mirror — `developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode = "read-only"`, same body |
 
-The body is identical across all three; only the frontmatter format differs. The command and loop YAML are **shared** — the `.claude/` and `.codex/` `commands`/`prompts`/`skills` directories are symlinks to `.opencode/` — so they intentionally reference the canonical `.opencode/` paths and dispatch by name; do NOT fork them per runtime. If a mirror is missing for a runtime, the native seats silently fail to dispatch there (the CLI seats still run, but the cross-executor agreement signal degrades). When you edit the canonical agent, re-sync both mirrors in the same change.
+The body is identical across all three; only the frontmatter format differs. The command and loop YAML are **shared** — the `.claude/` and `.opencode/` `commands`/`prompts`/`skills` directories are symlinks to `.opencode/` — so they intentionally reference the canonical `.opencode/` paths and dispatch by name; do NOT fork them per runtime. If a mirror is missing for a runtime, the native seats silently fail to dispatch there (the CLI seats still run, but the cross-executor agreement signal degrades). When you edit the canonical agent, re-sync both mirrors in the same change.
 
 ---
 
@@ -299,7 +299,7 @@ The body is identical across all three; only the frontmatter format differs. The
 5. **Honor the cli-* skill contracts for dispatch** (model id form, `</dev/null` for opencode, omit top-level `--agent`). Read the relevant `cli-X/SKILL.md` before composing any CLI prompt.
 6. **Ship pointers + signatures, not source bodies.** Context rot begins when full source is pasted into reports.
 7. **The host applies the deep-loop-runtime robustness layer** (shared with `deep-research` and `deep-review`): state writes are atomic (temp+fsync+rename via `writeStateAtomic`), the JSONL state log is repaired before each reduce (`repairJsonlTail`), each seat's output is validated before merge (`post-dispatch-validate`, surfacing `seatValidationWarnings`), a single-writer advisory loop-lock is held via `scripts/loop-lock.cjs` for the duration of the session, and CLI seats are dispatched with the runtime recursion-guard env so no seat can launch a nested deep-context loop.
-8. **Keep the native agent's runtime mirrors in sync** — when editing `.opencode/agents/deep-context.md` (canonical), update `.claude/agents/deep-context.md` and `.codex/agents/deep-context.toml` in the same change. The loop dispatches the native seat by name from each runtime's own `agents/` dir, so a missing mirror means native seats silently fail to dispatch in that runtime. See **Runtime Mirrors** in §3.
+8. **Keep the native agent's runtime mirrors in sync** — when editing `.opencode/agents/deep-context.md` (canonical), update `.claude/agents/deep-context.md` and `.opencode/agents/deep-context.toml` in the same change. The loop dispatches the native seat by name from each runtime's own `agents/` dir, so a missing mirror means native seats silently fail to dispatch in that runtime. See **Runtime Mirrors** in §3.
 
 ### NEVER
 
@@ -388,7 +388,7 @@ References are organized into subfolder families (`guides/ protocol/ convergence
 **Pairs with**:
 - `deep-loop-runtime` — coverage-graph (`loop_type='context'`), convergence script, parallel seat dispatch, executor config.
 - `sk-prompt-models` — per-model prompt framing for the heterogeneous pool.
-- `cli-opencode` / `cli-codex` / `cli-claude-code` — CLI seat dispatch contracts.
+- `cli-opencode` / `cli-opencode` / `cli-claude-code` — CLI seat dispatch contracts.
 - `system-code-graph` — frontier seeding + reference verification.
 - `/speckit:plan` and `/speckit:implement` — downstream consumers of the Context Report.
 

@@ -44,10 +44,10 @@ describe('ai-council round rollback', () => {
     const statePath = join(packet, 'ai-council/ai-council-state.jsonl');
     mkdirSync(seatDir, { recursive: true });
     mkdirSync(deliberationDir, { recursive: true });
-    writeFileSync(join(seatDir, 'seat-001-cli-codex.md'), '# Seat\n');
+    writeFileSync(join(seatDir, 'seat-001-cli-opencode.md'), '# Seat\n');
     writeFileSync(join(deliberationDir, 'round-001.md'), '# Deliberation\n');
     audit.appendArtifactWrittenEvent(statePath, {
-      path: 'seats/round-001/seat-001-cli-codex.md',
+      path: 'seats/round-001/seat-001-cli-opencode.md',
       bytes: 7,
       checksum: audit.computeChecksum('# Seat\n'),
       round_id: 'round-001',
@@ -65,8 +65,8 @@ describe('ai-council round rollback', () => {
 
     expect(moved.moved.length).toBeGreaterThanOrEqual(2);
     expect(existsSync(seatDir)).toBe(false);
-    expect(existsSync(join(packet, 'ai-council/failed/round-001-2026-05-08T22-31-00-000Z/seats/round-001/seat-001-cli-codex.md'))).toBe(true);
-    expect(marked.superseded).toEqual(['seats/round-001/seat-001-cli-codex.md']);
+    expect(existsSync(join(packet, 'ai-council/failed/round-001-2026-05-08T22-31-00-000Z/seats/round-001/seat-001-cli-opencode.md'))).toBe(true);
+    expect(marked.superseded).toEqual(['seats/round-001/seat-001-cli-opencode.md']);
     const state = readFileSync(statePath, 'utf8');
     expect(state).toContain('"event":"rollback"');
     expect(state).toContain('"event":"artifact_superseded"');

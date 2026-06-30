@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
+  "description": "Accessibility used to collapse into a single field",
+  "keywords": [
+    "accessibility",
+    "used",
+    "collapse",
+    "single",
+    "field"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.276Z",
+  "specId": "006",
+  "folderSlug": "accessibility-coverage-matrix",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

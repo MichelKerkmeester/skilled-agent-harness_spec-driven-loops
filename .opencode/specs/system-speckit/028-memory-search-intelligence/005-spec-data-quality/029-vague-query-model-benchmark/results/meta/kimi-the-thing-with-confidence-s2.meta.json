@@ -1,0 +1,14 @@
+{
+  "key": "kimi-the-thing-with-confidence-s2",
+  "model": "kimi",
+  "slug": "kimi-for-coding/k2p7",
+  "variant": "high",
+  "query": "the-thing-with-confidence",
+  "queryClass": "max-vague",
+  "sample": 2,
+  "exit": 1,
+  "attempts": 1,
+  "latencyMs": 10744,
+  "bytes": 1456,
+  "stderrTail": ""
+}

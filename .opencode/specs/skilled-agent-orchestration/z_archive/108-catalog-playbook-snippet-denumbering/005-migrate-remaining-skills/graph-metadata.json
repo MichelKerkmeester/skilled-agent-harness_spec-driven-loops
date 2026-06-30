@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "spec_folder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "parent_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "migrate remaining skills denumber",
+      "wave C cli sk mcp skills",
+      "133 phase 005",
+      "133 phase 005 plan",
+      "wave C remaining skills migration",
+      "005-migrate-remaining-skills completion"
+    ],
+    "key_topics": [
+      "migrate",
+      "remaining",
+      "skills",
+      "denumber",
+      "wave",
+      "cli",
+      "mcp",
+      "133",
+      "phase",
+      "005",
+      "plan",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migrate Remaining Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Finish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli- + 5 sk- + 3 mcp-), most of which are playbook-only",
+    "created_at": "2026-06-06T06:46:12.388Z",
+    "last_save_at": "2026-06-23T03:49:51.739Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:62da9f618e5c4811527531376971feba4702fbbe610ada152921ef13e1eb0d1d",
+    "source_doc_hashes": {
+      "spec.md": "73702985a7cace495594e7ea217ceb828ce57a2ace5003d6290cf5179033466c",
+      "plan.md": "1fc5b85b0fa073fc36830a187d400d8455af03d99b3ecd71c2556529bd68e485",
+      "tasks.md": "3ae1809be9c83bd459982d42f96aedaa61641c559d90f066c20eb76336869f79",
+      "checklist.md": "a2a046931b26625784402ef2940c8ebbc34dc4f6d6ae5e800f934df95dcb66a3",
+      "implementation-summary.md": "17731ea52623ed9eb1e7bf58fc99ee6b3abb309df612e3df33c8c324ae3336ec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

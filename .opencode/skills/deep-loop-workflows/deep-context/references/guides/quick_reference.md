@@ -49,7 +49,7 @@ Operator contract source of truth for this page:
 | `--agreement-min` | 2 | Distinct executors required to confirm a finding |
 | `--concurrency` | 4 | CLI-pool concurrency cap |
 | `--spec-folder` | auto | Target spec folder path (E = standalone run dir) |
-| `--executor=<type>` | default pool | Repeatable seat (`native`/`cli-opencode`/`cli-codex`/`cli-claude-code`); accepts `--model`, `--reasoning-effort`, `--prompt-framework`, `--label` |
+| `--executor=<type>` | default pool | Repeatable seat (`native`/`cli-opencode`/`cli-opencode`/`cli-claude-code`); accepts `--model`, `--reasoning-effort`, `--prompt-framework`, `--label` |
 | `--executors=<json>` | default pool | JSON escape hatch for the full by-model-shared-scope pool |
 
 ---

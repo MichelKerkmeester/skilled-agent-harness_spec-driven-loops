@@ -1,0 +1,25 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
+  "specFolder": "skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
+  "description": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
+  "keywords": [
+    "sk-code-review",
+    "findings-first",
+    "review",
+    "baseline",
+    "used",
+    "deep-review",
+    "speckit"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.796Z",
+  "specId": "001",
+  "folderSlug": "sk-code-review-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "076-testing-playbooks-code-review-and-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

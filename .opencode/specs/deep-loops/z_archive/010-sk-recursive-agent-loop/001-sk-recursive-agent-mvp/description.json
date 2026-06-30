@@ -1,0 +1,29 @@
+{
+  "specFolder": "deep-loops/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+  "description": "This repo now has enough orchestration, state, and packaging infrastructure to attempt automatic agent iteration, but it does not yet have the one thi",
+  "keywords": [
+    "repo",
+    "now",
+    "enough",
+    "orchestration",
+    "state",
+    "packaging",
+    "infrastructure",
+    "attempt",
+    "automatic",
+    "agent",
+    "iteration",
+    "one",
+    "thi"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.146Z",
+  "specId": "001",
+  "folderSlug": "sk-recursive-agent-mvp",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "041-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

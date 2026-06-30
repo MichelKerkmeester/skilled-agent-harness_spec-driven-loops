@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/003-promote-results",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/003-promote-results",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "kimi promote bakeoff results",
+      "registry empirical framework",
+      "kimi-k2.7-code profile update",
+      "promote-results phase",
+      "spec core",
+      "kimi promote plan",
+      "registry profile edit plan",
+      "card-sync guard rerun",
+      "promote-results plan",
+      "plan core",
+      "kimi promote tasks",
+      "registry edit task list"
+    ],
+    "key_topics": [
+      "kimi",
+      "promote",
+      "bakeoff",
+      "results",
+      "registry",
+      "empirical",
+      "framework",
+      "kimi-k2",
+      "7-code",
+      "profile",
+      "update",
+      "promote-results"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "kimi-k2.7-code.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Framework",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Principle",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`",
+    "created_at": "2026-06-15T09:21:02Z",
+    "last_save_at": "2026-06-23T03:49:48.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ff302759d5c8164cb7c41ef686e5c93798ffda448f5a3c96f39c0a67062e582d",
+    "source_doc_hashes": {
+      "spec.md": "1df6fbc38b22693ba0cf2b00d619530f9492d815e7b830a73b226e4cf30c45e1",
+      "plan.md": "2c7633f0275c6242de0a55542edd4980edf184f3039f997af1985dced1b7d088",
+      "tasks.md": "659d18d3c3338a281ae50b0c528a9e684d1455369d9a852e61e305e856c21d34",
+      "implementation-summary.md": "cf8a3419a9f3db228aa47772faf1c05417c1168370ad9caeaf52903c9cf4ec33"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

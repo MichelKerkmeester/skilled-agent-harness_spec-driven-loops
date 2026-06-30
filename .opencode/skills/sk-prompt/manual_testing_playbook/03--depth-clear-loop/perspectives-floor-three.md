@@ -45,7 +45,7 @@ Tighten my code-review feedback prompt; verify Discover evaluates at least 3 per
 ### Commands
 
 1. `sk-prompt: Tighten my prompt for code review feedback — I want at least 3 perspectives evaluated before you commit.`
-2. `agent: @prompt-improver raw_task="Improve a code review feedback prompt with explicit Discover perspective evidence." task_type=review target_cli=codex complexity_hint=7 constraints="Do not proceed past Discover with fewer than 3 named perspectives."`
+2. `agent: @prompt-improver raw_task="Improve a code review feedback prompt with explicit Discover perspective evidence." task_type=review target_cli=opencode complexity_hint=7 constraints="Do not proceed past Discover with fewer than 3 named perspectives."`
 3. `bash: rg '3 minimum|Perspectives|BLOCKING' .opencode/skills/sk-prompt/references/depth_framework.md`
 
 ### Expected

@@ -45,7 +45,9 @@ Use this quick reference when you need the command shape, artifact names, conver
 |-----------|---------|-------------|
 | `--max-iterations` | 7 | Maximum review iterations |
 | `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--stop-policy` | convergence | Use `max-iterations` when convergence must not end the run before the iteration ceiling |
 | `--spec-folder` | auto | Target spec folder path |
+| `--restart` | off | Archive the current review packet and start a fresh lineage |
 | `--severity-threshold` | P2 | Minimum severity to report |
 
 ---
@@ -195,6 +197,7 @@ Each @deep-review iteration:
 | Goal | Adjustment |
 |------|------------|
 | Deeper review | Lower convergence (0.05), raise max iterations (10) |
+| Forced iteration ceiling | Set `--stop-policy=max-iterations` with the desired `--max-iterations` |
 | Faster completion | Raise convergence (0.15), lower max iterations (5) |
 | Focus on security | Specify `--dimensions security,correctness` |
 | Broad coverage | Use all 4 default dimensions and allow the stabilization pass to run |
@@ -205,7 +208,7 @@ Each @deep-review iteration:
 
 | Problem | Fix |
 |---------|-----|
-| Stops too early | Lower `--convergence` from 0.10 to 0.05 |
+| Stops too early | Lower `--convergence` from 0.10 to 0.05, or use `--stop-policy=max-iterations` when early convergence is unacceptable |
 | Stuck on one dimension | Check strategy.md "Next Focus" rotation |
 | P0 findings blocking convergence | Expected behavior: P0 override prevents premature stop |
 | Review-report missing sections | Verify synthesis phase completed (check state.jsonl for synthesis event) |

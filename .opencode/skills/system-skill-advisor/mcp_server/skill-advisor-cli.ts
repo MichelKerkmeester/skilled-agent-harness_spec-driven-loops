@@ -360,7 +360,7 @@ function defaultPromptTime(): boolean {
     || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
     || envFlagEnabled('OPENCODE_PROMPT_TIME')
-    || envFlagEnabled('CODEX_PROMPT_TIME')
+    || envFlagEnabled('OPENCODE_PROMPT_TIME')
     || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');
 }
 

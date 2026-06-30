@@ -285,7 +285,7 @@ Dispatch mode: sequential inline; external vantages simulated.
 Dishonest label:
 
 ```text
-cli-opencode agreed with cli-codex.
+cli-opencode agreed with cli-opencode.
 ```
 
 This also violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.

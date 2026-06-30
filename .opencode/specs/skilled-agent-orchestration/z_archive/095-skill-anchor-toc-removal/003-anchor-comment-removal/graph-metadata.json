@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "spec_folder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "parent_id": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bulk anchor comment removal",
+      "remove ANCHOR comments from skills",
+      "anchor comment removal plan",
+      "003-anchor-comment-removal tasks",
+      "anchor comment removal summary"
+    ],
+    "key_topics": [
+      "bulk",
+      "anchor",
+      "comment",
+      "removal",
+      "remove",
+      "comments",
+      "skills",
+      "plan",
+      "003-anchor-comment-removal",
+      "tasks",
+      "summary",
+      "688"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bulk Comment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anchor Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Whole",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
+    "created_at": "2026-05-26T09:40:16.339Z",
+    "last_save_at": "2026-06-23T03:49:51.106Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:693fccd0a59ac6f0e5e6bd68cbf93dd0381b809f9a13ae78892154659455de12",
+    "source_doc_hashes": {
+      "spec.md": "4c927f4565734850dfd0007ba260190c5a70e5876183ddb6144340e2e81011b7",
+      "plan.md": "bd91fc71ed98def1cd099b452a89beebe4ae6d5146622351f9ccc363877714d7",
+      "tasks.md": "c4c538276e70407296b0861dc83466d19639fdac313842e5c3d4512e3dc5e6d1",
+      "implementation-summary.md": "014b3a355e0b8e9917e403e97c60b34503d8e96d28d4c6060a6bc11eaccfdd25"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

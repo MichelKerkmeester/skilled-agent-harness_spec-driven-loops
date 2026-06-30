@@ -163,7 +163,7 @@ Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON
 | `scripts/query.cjs` | `deep_loop_graph_query` | Inspects uncovered questions, unverified claims, contradictions | 0=ok, 1=script, 2=DB, 3=input |
 | `scripts/status.cjs` | `deep_loop_graph_status` | Session-scoped health report | 0=ok, 1=script, 2=DB, 3=input |
 | `scripts/fanout-pool.cjs` | n/a (new) | Concurrency-capped worker pool + status ledger for fan-out lineages | exports only (no main) |
-| `scripts/fanout-run.cjs` | n/a (new) | CLI lineage pool driver — spawns N headless CLI subprocesses (codex, claude, opencode), each running the full loop in `lineages/{label}/`; salvage sweep via fanout-salvage.cjs after each subprocess exits | 0=all ok, 2=some failed, 3=all failed |
+| `scripts/fanout-run.cjs` | n/a (new) | CLI lineage pool driver — spawns N headless CLI subprocesses (opencode, claude, opencode), each running the full loop in `lineages/{label}/`; salvage sweep via fanout-salvage.cjs after each subprocess exits | 0=all ok, 2=some failed, 3=all failed |
 | `scripts/fanout-salvage.cjs` | n/a (new) | Write-failure salvage: recovers missing iteration .md files from captured subprocess stdout; per-sessionId isolation preserved | exports only (no main) |
 | `scripts/fanout-merge.cjs` | n/a (new) | Cross-lineage merge: research (dedup by id + attribution) or review (strongest-restriction P0 rollup) → consolidated registry + fanout-attribution.md | 0=ok, 3=input |
 
@@ -256,9 +256,9 @@ This runtime is MCP-free and owns no agents, but every deep loop that consumes i
 
 - `.opencode/agents/<name>.md` — **canonical** (OpenCode frontmatter: `mode: subagent` + `permission:` block)
 - `.claude/agents/<name>.md` — Claude mirror (`tools:` allow-list frontmatter)
-- `.codex/agents/<name>.toml` — Codex mirror (`developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode`)
+- `.opencode/agents/<name>.toml` — OpenCode mirror (`developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode`)
 
-The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.codex/` `commands`/`prompts`/`skills` dirs are symlinks to `.opencode/`), so they reference canonical `.opencode/` paths and dispatch by name on purpose — do NOT fork them per runtime. A deep-loop agent present in `.opencode/agents/` but missing its `.claude/` or `.codex/` mirror silently fails to dispatch in that runtime (CLI seats still run; only the native seats drop). **When adding or renaming a deep-loop native agent, create/update all three files and verify three-way parity** (e.g. compare `ls .opencode/agents .claude/agents .codex/agents`).
+The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.opencode/` `commands`/`prompts`/`skills` dirs are symlinks to `.opencode/`), so they reference canonical `.opencode/` paths and dispatch by name on purpose — do NOT fork them per runtime. A deep-loop agent present in `.opencode/agents/` but missing its `.claude/` or `.opencode/` mirror silently fails to dispatch in that runtime (CLI seats still run; only the native seats drop). **When adding or renaming a deep-loop native agent, create/update all three files and verify three-way parity** (e.g. compare `ls .opencode/agents .claude/agents .opencode/agents`).
 
 ---
 

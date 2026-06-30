@@ -1,0 +1,24 @@
+# Iteration 29 — deepseek
+
+**Angle:** Run the same flag/property lint on `/doctor` route `allowed_flags`, especially memory and causal-graph targets.
+
+**Findings:** 6
+
+- **[P1] misalignment** `.opencode/commands/doctor/assets/doctor_memory.yaml:50-53` — memory YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
+  - evidence: _routes.yaml:29-30 declares setup_vars including no_snapshot and dry_run, and allowed_flags: ["--incremental=true|false", "--no-snapshot", "--dry-run"]. But doctor_memory.yaml:50-53 user_inputs lists only execution_mode, intent, incremental — no no_snapshot, no dry_run, and no field_handling defaults for either. A grep for no_snapshot|dry_run in doctor_memory.yaml returns zero hits.
+  - fix: Add no_snapshot and dry_run to doctor_memory.yaml user_inputs and field_handling.defaults (e.g. no_snapshot_empty: "false", dry_run_empty: "false") or remove them from _routes.yaml setup_vars/allowed_flags if unused.
+- **[P1] misalignment** `.opencode/commands/doctor/assets/doctor_causal-graph.yaml:57-60` — causal-graph YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
+  - evidence: _routes.yaml:62-63 declares setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run] and allowed_flags: ["--confidence-threshold=N", "--no-snapshot", "--dry-run"]. But doctor_causal-graph.yaml:57-60 user_inputs lists only execution_mode, intent, confidence_threshold. Grep for no_snapshot|dry_run returns zero hits in the entire YAML.
+  - fix: Add no_snapshot and dry_run to doctor_causal-graph.yaml user_inputs and field_handling.defaults, or drop them from _routes.yaml if unused.
+- **[P1] misalignment** `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:59-62` — deep-loop YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
+  - evidence: _routes.yaml:103-104 declares setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run] and allowed_flags: ["--scope=research|review|council|both|all", "--no-snapshot", "--dry-run"]. But doctor_deep-loop.yaml:59-62 user_inputs lists only execution_mode, intent, scope. Grep returns zero hits for no_snapshot|dry_run in the YAML.
+  - fix: Add no_snapshot and dry_run to doctor_deep-loop.yaml user_inputs and field_handling.defaults, or drop them from _routes.yaml if unused.
+- **[P0] contradiction** `.opencode/commands/doctor/_routes.yaml:79-85` — code-graph --operation allowed flag lists mutating actions while route declares mutating: read-only
+  - evidence: _routes.yaml:85: gate3_location is "n/a (Phase A diagnostic is read-only; … never scans or writes the index)". But _routes.yaml:81: allowed_flags includes "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply" — all values map to code_graph_scan or code_graph_apply mutations. The code-graph YAML:85 enforces "never invoke code_graph_scan" yet the router advertises --operation=rescan as valid. Also --confirm (line 84) implies a mutation gate that cannot fire in a read-only route.
+  - fix: Either remove --operation (and --confirm) from code-graph's allowed_flags until Phase B apply mode is promoted, or split the route into read-only diagnostic (current) and a separate mutating apply sub-route.
+- **[P1] misalignment** `.opencode/commands/doctor/_routes.yaml:78-84` — code-graph --operation, --dry-run, --confirm in allowed_flags but not in setup_vars or user_inputs
+  - evidence: _routes.yaml:78: setup_vars: [execution_mode, scope] — only 2 vars. _routes.yaml:79-84: allowed_flags lists --scope, --operation, --dry-run, --confirm (4 flags). doctor_code-graph.yaml:44-45: user_inputs has only scope. So --operation, --dry-run, and --confirm are accepted by the router but have no setup variable to pipe into the workflow YAML and no user_inputs field to receive the resolved value.
+  - fix: Either add operation, dry_run, confirm to setup_vars in _routes.yaml:78 and corresponding user_inputs + field_handling in doctor_code-graph.yaml, or remove them from allowed_flags.
+- **[P2] misalignment** `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt:69-97` — presentation contract missing parent-skill and fable-mode targets from valid-targets list and subsystem manifest
+  - evidence: _routes.yaml defines 9 route targets (lines 27-186) including parent-skill (line 157) and fable-mode (line 172). But doctor_speckit_presentation.txt:73 lists only 7 valid targets: "memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget" — omitting parent-skill and fable-mode. Same in the startup menu (lines 12-23) and subsystem manifest table (lines 89-97). These targets are unreachable through the presentation layer.
+  - fix: Add parent-skill and fable-mode rows to the startup menu (as options 9-10 or renumber), the valid-targets error string, and the subsystem manifest table in doctor_speckit_presentation.txt.

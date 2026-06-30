@@ -89,7 +89,7 @@ Examples:
 ```text
 .opencode/agents/my-agent.md
 .claude/agents/my-agent.md
-.codex/agents/my-agent.md
+.opencode/agents/my-agent.md
 ```
 
 **Invariants**:
@@ -101,7 +101,7 @@ Examples:
 **Runtime placement rule**:
 - Copilot/default OpenCode profile -> `.opencode/agents/`
 - Claude profile -> `.claude/agents/`
-- Codex CLI profile -> `.codex/agents/`
+- OpenCode profile -> `.opencode/agents/`
 
 Do not create the file in one runtime directory and document it as if it belongs to another. The runtime path is part of the contract.
 

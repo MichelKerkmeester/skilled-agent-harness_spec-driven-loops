@@ -147,7 +147,7 @@ describe('skill-advisor CLI aliases and unknown command recovery', () => {
       args: {
         confirmHeavyRun: true,
         outcomeEvents: [{
-          runtime: 'codex',
+          runtime: 'opencode',
           outcome: 'accepted',
           skillId: 'system-spec-kit',
           timestamp: '2026-06-10T00:00:00.000Z',

@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "description": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and sea",
+  "keywords": [
+    "generated-metadata",
+    "build",
+    "subgroup",
+    "spec-data-quality",
+    "track",
+    "full-repo",
+    "migration",
+    "flag-graduation",
+    "benchmark",
+    "sea"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.861Z",
+  "specId": "006",
+  "folderSlug": "generated-metadata-build",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,114 @@
+{
+  "topic": "Review: specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename",
+  "sessionId": "review-087-2026-05-06T13-43-00Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename",
+  "createdAt": "2026-05-06T13:43:00Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/spec.md",
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/plan.md",
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/tasks.md",
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/checklist.md",
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/resource-map.md",
+    "specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename/implementation-summary.md",
+    ".opencode/agents/deep-agent-improvement.md",
+    ".claude/agents/deep-agent-improvement.md",
+    ".gemini/agents/deep-agent-improvement.md",
+    ".codex/agents/deep-agent-improvement.toml",
+    ".opencode/commands/deep/start-agent-improvement-loop.md",
+    ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
+    ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
+    ".claude/commands/deep/start-agent-improvement-loop.md",
+    ".claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
+    ".claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
+    ".gemini/commands/deep/start-agent-improvement-loop.toml",
+    ".opencode/skills/deep-agent-improvement/SKILL.md",
+    ".opencode/skills/deep-agent-improvement/README.md",
+    ".opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md",
+    "AGENTS.md",
+    "README.md",
+    ".opencode/agents/README.txt"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/001-sk-design-interface/006-competitor-design-tools-research",
+  "spec_folder": "design/001-sk-design-interface/006-competitor-design-tools-research",
+  "parent_id": "design/001-sk-design-interface",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "competitor design tool research",
+      "v0 lovable figma make subframe ideas",
+      "ai ui generation tool comparison",
+      "competitor design tools plan",
+      "v0 lovable subframe research plan",
+      "competitor design tools tasks",
+      "v0 lovable subframe research tasks",
+      "competitor design tools summary",
+      "v0 lovable subframe research outcome"
+    ],
+    "key_topics": [
+      "competitor",
+      "design",
+      "tool",
+      "research",
+      "lovable",
+      "figma",
+      "make",
+      "subframe",
+      "ideas",
+      "generation",
+      "comparison",
+      "tools"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-design-interface/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Make",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Survey",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005 research targeted parity with one product (Claude Design)",
+    "created_at": "2026-06-14T08:50:00Z",
+    "last_save_at": "2026-06-23T03:49:48.419Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d831ed59a994a1779ee4b0dd081b850f755272ca236dc962c065f89a50e9af59",
+    "source_doc_hashes": {
+      "spec.md": "a9d354115b2e5c004926c2bd28de1131d2da02067f1ee601ec69164d3d6018d8",
+      "plan.md": "8f271a5360ebe654ba7b2db88ebd8bad576708c874d9de278fb06fbde660cbc1",
+      "tasks.md": "36465d639dc7e9b4607e840ed5d36d11e9629a362d4855dc377375e8836060ee",
+      "implementation-summary.md": "c975582da2b36d992e472c3442f33106ac5ee11173d400273902312705ee7892",
+      "research/research.md": "7dea8bdcc79eef8bd2a1852dbeaa82ed0d6d02cce99271a682574aaa1eb39c20"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

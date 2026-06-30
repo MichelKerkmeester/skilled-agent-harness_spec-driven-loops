@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "design/002-mcp-open-design/002-mcp-open-design-skill-build",
+  "description": "The installed Open Design desktop app (nexu-io/open-design, Electron plus Next.js) holds rich local-first design systems and a generation engine, but",
+  "keywords": [
+    "installed",
+    "open",
+    "design",
+    "desktop",
+    "app",
+    "nexu-io",
+    "open-design",
+    "electron",
+    "plus",
+    "next",
+    "holds",
+    "rich",
+    "local-first",
+    "systems",
+    "generation",
+    "engine"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.605Z",
+  "specId": "002",
+  "folderSlug": "mcp-open-design-skill-build",
+  "parentChain": [
+    "design",
+    "002-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

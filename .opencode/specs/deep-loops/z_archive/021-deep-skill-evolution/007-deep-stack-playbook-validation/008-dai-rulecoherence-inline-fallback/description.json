@@ -1,0 +1,27 @@
+{
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
+  "description": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations",
+  "keywords": [
+    "phase",
+    "005",
+    "surfaced",
+    "one",
+    "confirmed",
+    "code",
+    "bug",
+    "four",
+    "stale-scenario",
+    "expectations"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.073Z",
+  "specId": "008",
+  "folderSlug": "dai-rulecoherence-inline-fallback",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "007-deep-stack-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

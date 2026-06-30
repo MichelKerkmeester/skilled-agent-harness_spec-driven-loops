@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/z_archive/021-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill",
+  "description": "The `deep-ai-council` skill needs to move to the `sk-ai-council` name per parent 115/spec.md naming convention rationale",
+  "keywords": [
+    "deep-ai-council",
+    "skill",
+    "needs",
+    "move",
+    "sk-ai-council",
+    "name",
+    "per",
+    "parent",
+    "115",
+    "spec",
+    "naming",
+    "convention",
+    "rationale"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.712Z",
+  "specId": "002",
+  "folderSlug": "rename-sk-skill",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/002-rename-sk-skill"
+  ]
+}

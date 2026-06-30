@@ -10,7 +10,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const mirrors = [
   '.opencode/agents/ai-council.md',
   '.claude/agents/ai-council.md',
-  '.codex/agents/ai-council.toml',
+  '.opencode/agents/ai-council.toml',
 ];
 
 function stripMarkdownFrontmatter(text: string): string {

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/013-card-relocation-and-guard",
+  "description": "`clipromptqualitycard.md` (model overrides, precedence, per-cli mirrors) lived inside `sk-prompt`,",
+  "keywords": [
+    "clipromptqualitycard",
+    "model",
+    "overrides",
+    "precedence",
+    "per-cli",
+    "mirrors",
+    "lived",
+    "inside",
+    "sk-prompt"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.647Z",
+  "specId": "013",
+  "folderSlug": "card-relocation-and-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

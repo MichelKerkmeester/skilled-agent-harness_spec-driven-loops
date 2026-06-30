@@ -24,7 +24,7 @@ version: 1.4.0.10
 |---|---|
 | **Use it for** | Wiring Open Design's MCP server into a terminal agent, reading local projects and design-systems read-only, grounding a design in one resolved system, and commissioning headless generation runs |
 | **Invoke with** | "open design", "open-design", "od mcp", "od cli", "drive open design from the terminal", or auto-routing on Open Design keywords |
-| **Works on** | The installed Open Design desktop app (v0.9.0+) while it is running, since the app hosts the local daemon every tool call depends on. Needs Node.js; MCP install is CLI-driven for `claude`, `codex`, `gemini`, and `kimi`, writes JSON config for `cursor`, `copilot`, `cline`, `opencode`, `openclaw`, `antigravity`, and `trae`, and prints manual setup snippets for `vibe`, `pi`, and `hermes` |
+| **Works on** | The installed Open Design desktop app (v0.9.0+) while it is running, since the app hosts the local daemon every tool call depends on. Needs Node.js; MCP install is CLI-driven for `claude`, `opencode`, `gemini`, and `kimi`, writes JSON config for `cursor`, `copilot`, `cline`, `opencode`, `openclaw`, `antigravity`, and `trae`, and prints manual setup snippets for `vibe`, `pi`, and `hermes` |
 | **Produces** | A wired `open-design` MCP entry in your agent config, read-only design content (DESIGN.md, tokens.css, components.html, artifacts), and gated generation runs that land artifacts in your projects |
 
 ---
@@ -91,7 +91,7 @@ Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELE
 
 ### The Wire Direction
 
-`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `codex`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
+`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `opencode`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
 
 ### The Read Direction
 
@@ -143,7 +143,7 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 
 **Q: Do I need to install anything first?**
 
-A: You need the Open Design desktop app (v0.9.0+) installed and running, plus Node.js. There is no separate install for the `od` CLI, since it ships inside the app bundle and runs under Node or the bundled Electron. For wiring, the target agent CLI must be on PATH only for CLI-driven plans (`claude`, `codex`, `gemini`, and `kimi`); JSON config targets (`cursor`, `copilot`, `cline`, `opencode`, `openclaw`, `antigravity`, and `trae`) are written directly, and `vibe`, `pi`, and `hermes` are manual setup snippet targets.
+A: You need the Open Design desktop app (v0.9.0+) installed and running, plus Node.js. There is no separate install for the `od` CLI, since it ships inside the app bundle and runs under Node or the bundled Electron. For wiring, the target agent CLI must be on PATH only for CLI-driven plans (`claude`, `opencode`, `gemini`, and `kimi`); JSON config targets (`cursor`, `copilot`, `cline`, `opencode`, `openclaw`, `antigravity`, and `trae`) are written directly, and `vibe`, `pi`, and `hermes` are manual setup snippet targets.
 
 **Q: Why is there no `od` command on my PATH?**
 

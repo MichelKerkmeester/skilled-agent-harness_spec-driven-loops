@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
+  "spec_folder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
+  "parent_id": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.004",
+      "offline loop optimizer",
+      "replay corpus",
+      "optimizer manifest",
+      "advisory promotion gate",
+      "implementation plan",
+      "phase 4a",
+      "phase 4b",
+      "tasks",
+      "verification checklist",
+      "decision record",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "042",
+      "004",
+      "offline",
+      "loop",
+      "optimizer",
+      "replay",
+      "corpus",
+      "manifest",
+      "advisory",
+      "promotion",
+      "gate",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/search.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "replay-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "rubric.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "search.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/search.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "replay-runner.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promote.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-replay-corpus.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-rubric.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-search.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-replay-runner.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-promote.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offline Loop Optimizer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliver Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escalation, and related numeric controls are adjusted by human judgment and one-off testing",
+    "created_at": "2026-04-12T09:02:50.194Z",
+    "last_save_at": "2026-06-23T03:49:49.239Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01ff272cd2b8066b1a416a463dd913f6deeb8c245b4539ec420fc53ca1c9fda1",
+    "source_doc_hashes": {
+      "spec.md": "3b1f781c17c373d613b33ba3ad143e8bd5899de40edc189a5ea89a98acaf0afb",
+      "plan.md": "5ac4250a51c7beddee8f7c62a05ac6f69ffce312dda90e2b104f44ec6e08e66a",
+      "tasks.md": "04100f16060c4dc90106d628aaa0d44bf89a81cde9d4fff9cc6468038ad154d8",
+      "checklist.md": "b883a9f286688645f56981a190be087ab222b8d83beea9c18ff7acb2ada32def",
+      "decision-record.md": "188ed43a121615669e8a64bc297e4836de3cc1f94371ecbc3518a970abb92402",
+      "implementation-summary.md": "331a63d2b8720116a16d1c18313b0e11bfb59977177afc94e45555788db66539"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

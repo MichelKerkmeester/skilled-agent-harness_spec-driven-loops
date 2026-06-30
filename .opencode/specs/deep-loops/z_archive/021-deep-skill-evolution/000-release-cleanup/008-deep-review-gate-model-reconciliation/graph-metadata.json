@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate model reconciliation",
+      "001-gate-model-reconciliation",
+      "legal-stop gate bundle",
+      "9-gate authoritative model",
+      "gate count drift",
+      "gate model reconciliation plan",
+      "9-gate alignment",
+      "gate model reconciliation tasks",
+      "gate model reconciliation checklist",
+      "gate model reconciliation summary"
+    ],
+    "key_topics": [
+      "gate",
+      "model",
+      "reconciliation",
+      "001-gate-model-reconciliation",
+      "legal-stop",
+      "bundle",
+      "9-gate",
+      "authoritative",
+      "count",
+      "drift",
+      "plan",
+      "alignment"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one-line",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces",
+    "created_at": "2026-05-23T18:38:12.948Z",
+    "last_save_at": "2026-06-23T03:49:50.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:50b7063a11495ddd3653351425bae6d1bf47ef4e5e945f50060e390db93d3034",
+    "source_doc_hashes": {
+      "spec.md": "9d8977dc8be33d91b6896bcff189f07d08bffa23cefdb38de2881ffe739ff746",
+      "plan.md": "1c9a06856f8d1523359f2ba9f435abe91081ce5ade3a40b3379f0b640f44994b",
+      "tasks.md": "c03ae7634a8c8e5d78b3ad91f850b91fc784dfe32f6674554556717e5d529e83",
+      "checklist.md": "bacd639deadfcfdfa599a56a13b28f1be7f384192b40a92e4ab81f9b31520aed",
+      "implementation-summary.md": "2343ef21d10c92be488ad9c6301d70f7afc7206e32ef041ce316f399a03b4c1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

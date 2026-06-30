@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/122-cli-codex-deprecation",
+  "description": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
+  "keywords": [
+    "cli-codex",
+    "remains",
+    "first-class",
+    "skill",
+    "executor",
+    "active",
+    "opencode",
+    "surfaces",
+    "even",
+    "though",
+    "user",
+    "wants",
+    "deprecated"
+  ],
+  "lastUpdated": "2026-06-30T13:09:37.784Z",
+  "specId": "155",
+  "folderSlug": "cli-codex-deprecation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "30-06-26_13-20__ai-council-guided-cleanup-removed-active-codex.md",
+    "30-06-26_13-37__final-double-check-reran-strict-packet-validation.md",
+    "30-06-26_14-04__codex-desktop-shares-codex-project-configuration.md",
+    "30-06-26_14-09__final-codex-desktop-bridge-shape-preserves-the.md"
+  ]
+}

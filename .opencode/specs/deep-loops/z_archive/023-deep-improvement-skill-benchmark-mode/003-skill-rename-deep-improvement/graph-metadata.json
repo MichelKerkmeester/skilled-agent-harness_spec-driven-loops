@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
+  "spec_folder": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
+  "parent_id": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-improvement rename",
+      "122 phase 003",
+      "rename deep-agent-improvement",
+      "122 phase 003 implementation summary",
+      "deep-improvement rename results"
+    ],
+    "key_topics": [
+      "deep-improvement",
+      "rename",
+      "122",
+      "phase",
+      "003",
+      "deep-agent-improvement",
+      "implementation",
+      "summary",
+      "results",
+      "skill",
+      "across",
+      "dir"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".codex/config.toml",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Scope (surface list — confirmed/expanded by Phase 001 RQ6)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. Approach",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. Success criteria",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. What was done",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Scope honored (NARROW)",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. Verification evidence (all green)",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions.json, and cross-references; zero dangling refs; green advisor rebuild.",
+    "created_at": "2026-05-30T07:27:05.680Z",
+    "last_save_at": "2026-06-23T03:49:51.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:426ad23f037f61c63331fa69f11a9fdef8d1e882ad16340869a30c7f026cfbb1",
+    "source_doc_hashes": {
+      "spec.md": "128c9325725295042651b3511bdc28d320d6655e37177de40a5eb8ce7252b0bf",
+      "implementation-summary.md": "872f8d7ef926c34b64e4e912a48c3b394145f0581dfb6c665610cc44fd572292"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

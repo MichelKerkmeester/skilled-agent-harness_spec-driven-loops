@@ -1,0 +1,33 @@
+{
+  "completionPct": 100,
+  "lastOutcome": "CP-100 now routes to sk-code-review top-1 at confidence 0.82; clear implementation prompts still route to sk-code.",
+  "specFolder": "skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
+  "description": "Plan phase to improve ambiguous code/problem prompts so review or debug candidates outrank broad sk-code without overconfidence.",
+  "keywords": [
+    "plan",
+    "phase",
+    "improve",
+    "ambiguous",
+    "code",
+    "problem",
+    "prompts",
+    "review",
+    "debug",
+    "candidates",
+    "outrank",
+    "broad",
+    "sk-code",
+    "without",
+    "overconfidence"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.561Z",
+  "specId": "005",
+  "folderSlug": "ambiguous-debug-review-routing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "051-skill-advisor-reindex-and-stress-test"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": []
+}

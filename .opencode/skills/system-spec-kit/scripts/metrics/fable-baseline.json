@@ -3,7 +3,7 @@
   "generatedFrom": "deep-loop state (json stream + iteration markdown)",
   "lineages": [
     {
-      "label": "codex-xhigh",
+      "label": "opencode-xhigh",
       "source": "iteration-markdown",
       "toolTextRatio": null,
       "toolActions": 0,

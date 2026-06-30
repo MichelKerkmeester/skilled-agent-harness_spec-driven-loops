@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+  "spec_folder": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+  "parent_id": "deep-loops/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-agent-improvement scenarios",
+      "deep agent improvement playbook run",
+      "007 phase 005 deep-agent-improvement",
+      "deep-agent-improvement scenarios plan",
+      "deep agent improvement playbook plan",
+      "007 phase 005 plan",
+      "deep-agent-improvement scenarios tasks",
+      "deep agent improvement playbook tasks",
+      "007 phase 005 tasks",
+      "deep-agent-improvement checklist",
+      "deep agent improvement verdict ledger",
+      "007 phase 005 checklist"
+    ],
+    "key_topics": [
+      "deep-agent-improvement",
+      "scenarios",
+      "deep",
+      "agent",
+      "improvement",
+      "playbook",
+      "run",
+      "007",
+      "phase",
+      "005",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "scratch/evidence/dai-01-02.txt",
+      "scratch/logs/dai-05-06-codex.log",
+      "scratch/evidence/rd-e2e-spotcheck.txt",
+      "scratch/logs/dai-07-rt-codex.log",
+      "scratch/evidence/rt-025-034-spotcheck.txt",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dai-01-02.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dai-01-02.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dai-05-06-codex.log",
+        "kind": "file",
+        "path": "scratch/logs/dai-05-06-codex.log",
+        "source": "derived"
+      },
+      {
+        "name": "rd-e2e-spotcheck.txt",
+        "kind": "file",
+        "path": "scratch/evidence/rd-e2e-spotcheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dai-07-rt-codex.log",
+        "kind": "file",
+        "path": "scratch/logs/dai-07-rt-codex.log",
+        "source": "derived"
+      },
+      {
+        "name": "rt-025-034-spotcheck.txt",
+        "kind": "file",
+        "path": "scratch/evidence/rt-025-034-spotcheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improvement Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-agent-improvement` is the evaluator-first bounded agent improvement skill (integration scanner, dynamic profile generator, 5-dimension scorer, benchmark integration, dimensional reducer/dashboard, end-to-end loop, runtime-truth surfaces, and agent-discipline stress tests)",
+    "created_at": "2026-05-27T07:08:08.397Z",
+    "last_save_at": "2026-06-23T03:49:51.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:12f450834d1a823320ce4ac55096fa2073509d8c677544c021c3df6b1c424d9a",
+    "source_doc_hashes": {
+      "spec.md": "1bd6e52c2eecd5ab662d4c88187993711cb57b97e68c6a51ab8027bb1d6226ed",
+      "plan.md": "091c0358c0777fa55ff3ecffb642a8ff36389be9c99c8420a636a8ca83c0dd34",
+      "tasks.md": "297ea89416b91a3b69369547c6837ef6cc93e1d6146994fee99ef95420dabd6c",
+      "checklist.md": "200c7a1042ee4e306fb94eff6c20e3d4c4cf065650ed999f734ec051165a530d",
+      "implementation-summary.md": "2b5e7bb6c5bb71535fb5744d976b66ab13642543e8318fb7b2af110320fef22a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

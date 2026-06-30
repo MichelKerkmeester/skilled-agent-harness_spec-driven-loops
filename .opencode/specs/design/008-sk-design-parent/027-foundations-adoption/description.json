@@ -1,0 +1,22 @@
+{
+  "specFolder": "design/008-sk-design-parent/027-foundations-adoption",
+  "description": "The 024 backlog's foundations items had not been applied",
+  "keywords": [
+    "024",
+    "backlog",
+    "foundations",
+    "items",
+    "applied"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.856Z",
+  "specId": "027",
+  "folderSlug": "foundations-adoption",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-06-26_13-05__build-phase-027-foundations-adoption-applied-a.md"
+  ]
+}

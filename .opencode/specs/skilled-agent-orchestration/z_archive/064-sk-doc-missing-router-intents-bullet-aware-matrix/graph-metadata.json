@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix",
+  "spec_folder": "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "076",
+      "sk-doc-router-coverage-v3",
+      "extract_metrics_v3",
+      "076 plan",
+      "076 tasks",
+      "076 summary"
+    ],
+    "key_topics": [
+      "076",
+      "sk-doc-router-coverage-v3",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "071",
+      "stress-matrix",
+      "covered",
+      "scenarios",
+      "exercised",
+      "only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/run-matrix-076.sh",
+      "scripts/extract_metrics_v3.py",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-matrix-076.sh",
+        "kind": "script",
+        "path": "scripts/run-matrix-076.sh",
+        "source": "derived"
+      },
+      {
+        "name": "extract_metrics_v3.py",
+        "kind": "file",
+        "path": "scripts/extract_metrics_v3.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Authoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Index",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown-bullet-aware",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents",
+    "created_at": "2026-05-05T15:34:50Z",
+    "last_save_at": "2026-06-23T03:49:49.824Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1f1b144f00839acdda9a802a76ce16476d1ca60bb0fb8444fa8d20781aa01db",
+    "source_doc_hashes": {
+      "spec.md": "a170caf9c57a263af002dcef5112951032f4d54c103964ee467fe3c2b380cd91",
+      "plan.md": "901e12db66b9b365d82974967ef2302e3c754a3ed6097d763d2efb3e6edfb904",
+      "tasks.md": "3fa85f5801c2dda481d60f81649c22b971203af4b9193d815fd41f9e36284345",
+      "implementation-summary.md": "35c568daad853ba6f9c1a29757f391503847b0b69c1fd6e9d3b0e12e52c0e7f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

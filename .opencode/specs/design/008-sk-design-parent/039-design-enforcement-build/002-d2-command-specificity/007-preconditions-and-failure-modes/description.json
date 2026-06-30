@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/007-preconditions-and-failure-modes",
+  "description": "Each `/design:` wrapper declared no required input kind, no tool-readiness condition, and no named failure route (evidence: `commands/design/md-genera",
+  "keywords": [
+    "design",
+    "wrapper",
+    "declared",
+    "required",
+    "input",
+    "kind",
+    "tool-readiness",
+    "condition",
+    "named",
+    "failure",
+    "route",
+    "evidence",
+    "commands",
+    "md-genera"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.036Z",
+  "specId": "007",
+  "folderSlug": "preconditions-and-failure-modes",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

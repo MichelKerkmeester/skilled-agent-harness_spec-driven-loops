@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r9 pipeline handoff",
+      "pipeline handoff design build",
+      "d2-r9 pipeline handoff plan",
+      "design command pipeline visibility plan",
+      "design build handoff plan",
+      "d2-r9 pipeline handoff tasks",
+      "design command pipeline visibility tasks",
+      "design build handoff tasks",
+      "d2-r9 pipeline handoff checklist",
+      "design command pipeline visibility checklist",
+      "design build handoff checklist",
+      "d2-r9 pipeline handoff summary"
+    ],
+    "key_topics": [
+      "d2-r9",
+      "pipeline",
+      "handoff",
+      "design",
+      "build",
+      "plan",
+      "command",
+      "visibility",
+      "tasks",
+      "checklist",
+      "summary",
+      "five"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/commands/design/audit.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_code_handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wrapper Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five `/design:` commands gave no handoff visibility",
+    "created_at": "2026-06-28T12:40:02.475Z",
+    "last_save_at": "2026-06-29T06:14:49.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6c4e9a01d4bd7efa99220c6632d4b907b2ffee162e2aeae09333bdb8475cecfc",
+    "source_doc_hashes": {
+      "spec.md": "386c3fe387d75898b4093582a56d0e87f008bcd0d17788d185ba0528be11c3eb",
+      "plan.md": "f32b027301891a9f1d06766e2b44ea00a35c04f07e942d6d49cf66a012ded71b",
+      "tasks.md": "5b9ccacd024369491f6712c6c9f4ac6a83ac1a1d699bc1183ed5bedb98138847",
+      "checklist.md": "2bbea371076af7ebd233e07028d616a3dbd6c547c45590496bc008146c8161c1",
+      "implementation-summary.md": "bda9244312444661e6cb8d904f3ec573a450259a46ab2c4671eb5eb454762b68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

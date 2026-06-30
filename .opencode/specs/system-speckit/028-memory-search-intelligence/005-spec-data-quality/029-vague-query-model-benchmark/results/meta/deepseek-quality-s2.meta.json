@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-quality-s2",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "quality",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 98625,
+  "bytes": 90045,
+  "stderrTail": ""
+}

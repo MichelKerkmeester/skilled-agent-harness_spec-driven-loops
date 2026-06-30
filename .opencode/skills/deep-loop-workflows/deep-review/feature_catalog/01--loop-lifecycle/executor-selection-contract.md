@@ -6,7 +6,7 @@ trigger_phrases:
   - "parseExecutorConfig"
   - "select review executor"
   - "per-kind flag compatibility"
-  - "native cli-codex dispatch"
+  - "native cli-opencode dispatch"
 version: 1.11.0.6
 ---
 
@@ -29,7 +29,7 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-codex` | rendered prompt piped via stdin to `codex exec` with reasoning-effort, service-tier, and `--sandbox workspace-write` |
+| `cli-opencode` | rendered prompt piped via stdin to `opencode run` with reasoning-effort, service-tier, and `--sandbox workspace-write` |
 | `cli-claude-code` | `claude -p` with `--permission-mode acceptEdits` (overriding the read-only `plan` default so iteration writes succeed) |
 
 ### Core Behavior

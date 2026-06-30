@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/005-host-hard-identity-fix5",
+  "description": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task b",
+  "keywords": [
+    "research",
+    "found",
+    "hard",
+    "per-agent",
+    "subagenttype",
+    "identity",
+    "requires",
+    "host-runtime",
+    "dispatch-primitive",
+    "change",
+    "bind",
+    "agentslug",
+    "task"
+  ],
+  "lastUpdated": "2026-06-30T16:33:05.885Z",
+  "specId": "005",
+  "folderSlug": "host-hard-identity-fix5",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode",
+    "001-deep-agent-router-and-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

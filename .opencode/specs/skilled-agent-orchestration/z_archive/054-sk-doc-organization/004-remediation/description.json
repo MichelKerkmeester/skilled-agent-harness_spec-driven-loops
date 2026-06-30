@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization/004-remediation",
+  "description": "Phase 2's substring sweep used 4 fixed-string patterns prefixed with `assets/`",
+  "keywords": [
+    "phase",
+    "substring",
+    "sweep",
+    "used",
+    "fixed-string",
+    "patterns",
+    "prefixed",
+    "assets"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.594Z",
+  "specId": "004",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "054-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

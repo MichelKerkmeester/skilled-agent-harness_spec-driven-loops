@@ -24,11 +24,11 @@ This category documents the post-014 local-LLM stack as a shared memory substrat
 
 ## 2. HOW IT WORKS
 
-The shipped surface now includes the BGE local fallback embedder (300M Q8 via ollama on Apple Silicon Metal), the hf-local ONNX fallback for hosts without ollama, profile-keyed memory databases under `mcp_server/database/context-index__*.sqlite`, a causal-graph builder backed by embedding similarity, a `memory_drift_why` handler that ranks contradicting memories, and a cross-AI MCP wiring layer that points cli-codex, cli-claude-code, and opencode at the same Memory MCP database.
+The shipped surface now includes the BGE local fallback embedder (300M Q8 via ollama on Apple Silicon Metal), the hf-local ONNX fallback for hosts without ollama, profile-keyed memory databases under `mcp_server/database/context-index__*.sqlite`, a causal-graph builder backed by embedding similarity, a `memory_drift_why` handler that ranks contradicting memories, and a cross-AI MCP wiring layer that points cli-opencode, cli-claude-code, and opencode at the same Memory MCP database.
 
 The playbook peer at `manual_testing_playbook/24--local-llm-query-intelligence/` covers fifteen operator scenarios across two bands. Band A (361-370) probes query intelligence, including paraphrase recall, synonymy across vocabularies, code-intent matching, polysemy disambiguation, multi-aspect synthesis, the specificity ladder, adversarial near-miss separation, compound-concept synthesis, LLM-made memory recall, and latency and throughput under load. Band B (371-375) probes the causal graph and substrate behavior, including link quality on a three-step chain, coverage under bulk save with intra-cluster cohesion and inter-cluster separation, drift detection ranking, cross-AI memory handoff, and concurrent multi-AI safety with interleaved reads and writes.
 
-Every scenario uses the AI-to-CLI handoff prompt shape that mirrors production usage: one orchestrating AI dispatches an external CLI through `codex exec` or `claude -p`, and the external CLI opens its own MCP session against the same Memory MCP database. The substrate is never exercised by a human typing directly; it is always exercised by AI assistants invoking each other.
+Every scenario uses the AI-to-CLI handoff prompt shape that mirrors production usage: one orchestrating AI dispatches an external CLI through `opencode run` or `claude -p`, and the external CLI opens its own MCP session against the same Memory MCP database. The substrate is never exercised by a human typing directly; it is always exercised by AI assistants invoking each other.
 
 ---
 
@@ -47,7 +47,7 @@ Every scenario uses the AI-to-CLI handoff prompt shape that mirrors production u
 | `manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Playbook | Why-this-category brief, prompt convention, pre-flight, scenario inventory, grading rubric |
 | `manual_testing_playbook/24--local-llm-query-intelligence/36[1-9].md`, `37[0-5].md` | Playbook | Per-scenario Markdown specs for query intelligence (361-370) and substrate (371-375) |
 | `manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json` | Fixture | Deterministic fixture rows for the LLM-made memory recall scenario |
-| `.codex/config.toml`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` | Wiring | Cross-AI MCP client configs that point at the same Memory MCP database |
+| `opencode.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` | Wiring | Cross-AI MCP client configs that point at the same Memory MCP database |
 
 ### Validation
 

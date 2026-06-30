@@ -27,9 +27,9 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | 1 | Intent Detection | `01--intent-detection/` | SD-001 .. SD-003, SD-016 .. SD-017 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION / INSTALL_GUIDE prompts. |
 | 2 | Resource Loading | `02--resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
 | 3 | Unknown Fallback | `03--unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
-| 4 | Cross-CLI Dispatch | `04--cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (codex stdin mitigation), multi-step dispatch stability. |
+| 4 | Cross-CLI Dispatch | `04--cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (opencode stdin mitigation), multi-step dispatch stability. |
 | 5 | Token Cost Baseline | `05--token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
-| 6 | Agent Dispatch | `06--agent-dispatch/` | SD-018 .. SD-020 | `@markdown` agent dispatch across cli-claude-code, cli-codex, and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from sections 1-5 which are routing-trace probes. |
+| 6 | Agent Dispatch | `06--agent-dispatch/` | SD-018 .. SD-020 | `@markdown` agent dispatch across cli-claude-code, cli-opencode, and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from sections 1-5 which are routing-trace probes. |
 
 ---
 
@@ -54,7 +54,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 04 — Cross-CLI Dispatch
 - **SD-010** — `04--cross-cli-dispatch/short-prompt-baseline.md` — Short-prompt CHANGELOG baseline across all 3 CLIs.
-- **SD-011** — `04--cross-cli-dispatch/large-prompt-stress.md` — ~3000-char prompt; cli-codex stdin-redirection mitigation.
+- **SD-011** — `04--cross-cli-dispatch/large-prompt-stress.md` — ~3000-char prompt; cli-opencode stdin-redirection mitigation.
 - **SD-012** — `04--cross-cli-dispatch/multi-step-dispatch.md` — 3 sequential sk-doc invocations with shared session context.
 
 ### 05 — Token Cost Baseline
@@ -64,7 +64,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 06 — Agent Dispatch
 - **SD-018** — `06--agent-dispatch/markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
-- **SD-019** — `06--agent-dispatch/markdown-agent-cli-codex.md` — `@markdown` agent inline-contract execution via cli-codex (gpt-5.5/xhigh/fast). Verifies codex follows `.codex/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
+- **SD-019** — `06--agent-dispatch/markdown-agent-cli-opencode.md` — `@markdown` agent inline-contract execution via cli-opencode (gpt-5.5/xhigh/fast). Verifies opencode follows `.opencode/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
 - **SD-020** — `06--agent-dispatch/markdown-agent-cli-opencode.md` — `@markdown` agent dispatch via cli-opencode with DeepSeek v4 Pro through the DIRECT DeepSeek API.
 
 ---
@@ -74,7 +74,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
 2. All `references/global/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent_template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --help` exits 0.
-4. Each of the 3 CLI runtimes (cli-codex, cli-opencode, cli-claude-code) is installed and authenticated.
+4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.
 6. **Section 6 (Agent Dispatch) scenarios EXECUTE real work** — unlike sections 1–5 which are routing-trace probes (`DO NOT execute the work below`). SD-018/019/020 actually dispatch `@markdown` to scaffold a changelog. They MUST run sequentially (not in parallel) per the CLI-dispatch reliability constraint, and they MUST forbid installation of the stub skill into the `.opencode/skills/` tree.
 

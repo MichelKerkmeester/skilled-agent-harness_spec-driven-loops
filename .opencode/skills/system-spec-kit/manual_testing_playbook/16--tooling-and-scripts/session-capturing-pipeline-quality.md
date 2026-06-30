@@ -49,7 +49,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - `M-007d` Spec-folder and git-context enrichment presence
   - `M-007e` OpenCode precedence
   - `M-007f` Claude fallback
-  - `M-007g` Codex fallback
+  - `M-007g` OpenCode fallback
   - `M-007h` Copilot fallback
   - `M-007j` Final `NO_DATA_FILE` hard-fail
   - `M-007k` V10-only captured-session save warns and proceeds
@@ -71,14 +71,14 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 - Part I hardening spot checks:
     - `grep -n 'crypto.randomBytes' .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`
     - `grep -n 'qualityAbortThreshold' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/config.ts`
-    - `grep -n 'claude-code-capture\|codex-cli-capture\|copilot-cli-capture' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
+    - `grep -n 'claude-code-capture\|opencode-cli-capture\|copilot-cli-capture' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
     - `grep -n 'INSUFFICIENT_CONTEXT_ABORT\|evaluateMemorySufficiency' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts`
     - `grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/scripts/core/workflow.ts`
     - `grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
   - Targeted automated closure suite:
     - `cd .opencode/skills/system-spec-kit/scripts && npm run check`
     - `cd .opencode/skills/system-spec-kit/scripts && npm run build`
-    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/codex-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+    - `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/spec-affinity.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/runtime-memory-inputs.vitest.ts tests/session-enrichment.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
   - JS verification suites:
     - `cd .opencode/skills/system-spec-kit/scripts && npm run test:legacy`
     - `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
@@ -99,8 +99,8 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
     - `M-007d` Git/spec-folder enrichment and render quality: inspect generated output and confirm provenance-tagged observations/files from both git and spec-folder enrichment are present, ANCHOR comments remain in the rendered file, frontmatter `trigger_phrases` no longer contain `memory dashboard`, `session summary`, or `context template`, and the rendered-memory contract remains valid.
     - `M-007e` OpenCode precedence: when a usable OpenCode session exists, verify the loader selects OpenCode first. If the session is same-workspace but off-spec, discovery may still succeed, but the run must still pass the later alignment, contamination, sufficiency, and quality gates before indexing.
     - `M-007f` Claude fallback: temporarily force the OpenCode path empty and run direct mode with `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=claude`, then verify a matching Claude transcript is selected when its stored repo-root or `.opencode` path resolves to the same workspace identity. After selection, the save outcome must be driven by the later gates: missing spec anchors should warn when the CLI target is explicit, low file-path overlap may still `ALIGNMENT_BLOCK`, foreign-spec-dominated output may still `QUALITY_GATE_ABORT` via `V8`, and sufficiently rich aligned output may index.
-    - `M-007g` Codex fallback: temporarily force OpenCode and Claude empty and run direct mode with `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=codex`, then verify a matching Codex transcript is selected when `session_meta.payload.cwd` resolves to the same workspace identity. For an aligned tool-rich transcript, verify the run no longer false-fails `V7` and may validate/index if it is otherwise sufficient.
-    - `M-007h` Copilot fallback: temporarily force OpenCode, Claude, and Codex empty and run direct mode with `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=copilot`, then verify a matching Copilot workspace/session is selected when `cwd` or `git_root` resolves to the same workspace identity. The save must then follow the normal later gates: thin sessions fail `INSUFFICIENT_CONTEXT_ABORT`, while sufficiently rich aligned sessions may validate/index.
+    - `M-007g` OpenCode fallback: temporarily force OpenCode and Claude empty and run direct mode with `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=opencode`, then verify a matching OpenCode transcript is selected when `session_meta.payload.cwd` resolves to the same workspace identity. For an aligned tool-rich transcript, verify the run no longer false-fails `V7` and may validate/index if it is otherwise sufficient.
+    - `M-007h` Copilot fallback: temporarily force OpenCode, Claude, and OpenCode empty and run direct mode with `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=copilot`, then verify a matching Copilot workspace/session is selected when `cwd` or `git_root` resolves to the same workspace identity. The save must then follow the normal later gates: thin sessions fail `INSUFFICIENT_CONTEXT_ABORT`, while sufficiently rich aligned sessions may validate/index.
     - `M-007j` Full hard-fail: ensure no usable JSON input or native backend is available and verify the loader returns explicit `NO_DATA_FILE` rather than partial or contaminated output.
     - `M-007k` V10-only captured-session quality warning: verify a captured-session save whose only failed validation rule is V10 now continues with `QUALITY_GATE_WARN` and can still complete the save path.
     - `M-007l` V8/V9 hard-block retention: verify a captured-session save with foreign-spec contamination still aborts with `QUALITY_GATE_ABORT`.
@@ -135,7 +135,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - Passing `mcp_server` lint/build/targeted/full-test output for the package-clean closure bar.
   - Passing alignment drift output.
   - Passing `spec/validate.sh` output.
-  - Fresh per-CLI transcripts or artifacts generated during this run for OpenCode, Claude Code, Codex CLI, and Copilot CLI whenever a universal live-proof claim is made.
+  - Fresh per-CLI transcripts or artifacts generated during this run for OpenCode, Claude Code, OpenCode, and Copilot CLI whenever a universal live-proof claim is made.
   - `generate-context.js` output or capture logs showing results for `M-007a` through `M-007j`.
   - `generate-context.js` output or targeted Vitest evidence showing results for `M-007k` through `M-007q`.
 ### Pass/Fail

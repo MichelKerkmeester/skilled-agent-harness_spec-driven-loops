@@ -1,0 +1,34 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/075-command-description-trim",
+  "description": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-promp",
+  "keywords": [
+    "packets",
+    "083",
+    "skills",
+    "commands",
+    "first",
+    "pass",
+    "086",
+    "audit",
+    "tooling",
+    "shipped",
+    "090",
+    "agent",
+    "trims",
+    "items",
+    "remain",
+    "over-soft",
+    "sk-promp"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.987Z",
+  "specId": "075",
+  "folderSlug": "command-description-trim",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-04__manual-context-save.md"
+  ]
+}

@@ -1,11 +1,11 @@
 ---
 title: "CLI matrix adapter runners"
-description: "Definition-driven F1-F14 matrix runner package for cli-codex, cli-claude-code, and cli-opencode executor cells."
+description: "Definition-driven F1-F14 matrix runner package for cli-opencode and cli-claude-code executor cells."
 trigger_phrases:
   - "matrix_runners"
   - "CLI matrix adapters"
   - "F1-F14 matrix"
-  - "adapter-cli-codex"
+  - "adapter-cli-opencode"
 version: 3.6.0.13
 ---
 
@@ -41,10 +41,9 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 | `mcp_server/matrix_runners/README.md:31-45` | Docs | Documents matrix definition fields and applicability rules |
 | `mcp_server/matrix_runners/README.md:54-71` | Docs | Documents adapter status vocabulary and smoke verification command |
 | `mcp_server/matrix_runners/run-matrix.ts:21-45` | Meta-runner | Defines executor, matrix definition, and CLI option contracts |
-| `mcp_server/matrix_runners/run-matrix.ts:63-73` | Meta-runner | Registers the three supported CLI executors |
+| `mcp_server/matrix_runners/run-matrix.ts:63-73` | Meta-runner | Registers the supported CLI executors |
 | `mcp_server/matrix_runners/run-matrix.ts:134-147` | Meta-runner | Routes each executor to its adapter |
 | `mcp_server/matrix_runners/run-matrix.ts:172-190` | Meta-runner | Writes JSONL cell records and TSV summary rows |
-| `mcp_server/matrix_runners/adapter-cli-codex.ts:13-37` | Adapter | Runs a matrix cell through Codex CLI with model, reasoning effort, service tier, and workspace-write sandbox |
 | `mcp_server/matrix_runners/adapter-cli-claude-code.ts:11-28` | Adapter | Runs a matrix cell through Claude Code CLI |
 | `mcp_server/matrix_runners/adapter-cli-opencode.ts:13-36` | Adapter | Runs a matrix cell through OpenCode CLI |
 
@@ -52,7 +51,6 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/matrix-adapter-codex.vitest.ts` | Vitest | Mocked adapter coverage for Codex CLI cells |
 | `mcp_server/tests/matrix-adapter-claude-code.vitest.ts` | Vitest | Mocked adapter coverage for Claude Code CLI cells |
 | `mcp_server/tests/matrix-adapter-opencode.vitest.ts` | Vitest | Mocked adapter coverage for OpenCode CLI cells |
 
@@ -66,4 +64,4 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 - Packet source: `011-cli-matrix-adapter-runners`
 Related references:
 - [strict-validation-addons-continuity-freshness-and-evidence-markers.md](strict-validation-addons-continuity-freshness-and-evidence-markers.md) — Strict validation add-ons: continuity freshness and evidence markers
-- [codex-hook-freshness-smoke-check.md](codex-hook-freshness-smoke-check.md) — Codex hook freshness smoke check
+- [opencode-hook-freshness-smoke-check.md](opencode-hook-freshness-smoke-check.md) — OpenCode hook freshness smoke check

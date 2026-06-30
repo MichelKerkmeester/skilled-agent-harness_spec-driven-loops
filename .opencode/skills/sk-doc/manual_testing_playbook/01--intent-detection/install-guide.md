@@ -62,7 +62,7 @@ Create an MCP-Postgres install guide with prerequisites, npm setup, env config, 
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: medium prompt; expect concise structured output with both resource paths and a section outline.
+- **cli-opencode (gpt-5.5/high/fast)**: medium prompt; expect concise structured output with both resource paths and a section outline.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise output with both resource paths.
 
 ## Success Criteria

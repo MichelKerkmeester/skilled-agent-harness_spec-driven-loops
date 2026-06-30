@@ -3,7 +3,7 @@
   "tier": "T2",
   "public": {
     "prompt": "fix the visual hierarchy of the dashboard",
-    "runtime": "codex",
+    "runtime": "opencode",
     "mutationBoundary": "routing-only",
     "outputContract": "select the appropriate design workflow without editing files"
   },

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "spec-folder-migration"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/022-mcp-coco-integration"
+    packet_pointer: "skilled-agent-orchestration/z_archive/022-mcp-coco-integration"
     last_updated_at: "2026-05-01T14:42:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Phase-parent transition documented as 059 child registered"

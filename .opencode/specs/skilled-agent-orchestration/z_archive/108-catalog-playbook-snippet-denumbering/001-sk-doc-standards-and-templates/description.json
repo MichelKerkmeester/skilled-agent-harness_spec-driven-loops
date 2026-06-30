@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
+  "description": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`)",
+  "keywords": [
+    "sk-doc",
+    "creation",
+    "standards",
+    "templates",
+    "mandate",
+    "globally-sequential",
+    "numeric",
+    "prefix",
+    "per-feature",
+    "snippet",
+    "filenames",
+    "nnn-feature-name"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.262Z",
+  "specId": "001",
+  "folderSlug": "sk-doc-standards-and-templates",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "108-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

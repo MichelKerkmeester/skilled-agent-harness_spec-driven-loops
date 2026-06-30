@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/002-skill-folder-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/002-skill-folder-rename",
+  "parent_id": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "082 phase 002",
+      "sk-improve-prompt skill folder rename",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "082 phase 002 checklist",
+      "sk-prompt rename verification",
+      "summary"
+    ],
+    "key_topics": [
+      "082",
+      "phase",
+      "002",
+      "sk-improve-prompt",
+      "skill",
+      "folder",
+      "rename",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/README.md",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".opencode/skills/sk-prompt/references/depth_framework.md",
+      ".opencode/skills/sk-prompt/changelog/v1.0.0.0.md",
+      ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
+      ".opencode/skills/sk-prompt/changelog/v1.2.0.0.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "depth_framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/references/depth_framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Folder Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
+    "created_at": "2026-05-06T10:22:40Z",
+    "last_save_at": "2026-06-23T03:49:49.902Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1da8d85cdb42037618f841f2039d76c957266612642fd422ea0ed8b54f4e8515",
+    "source_doc_hashes": {
+      "spec.md": "7f5048413968748d327f69501399b254a62a0d45f53224ce3aaba4f91916c8a2",
+      "plan.md": "9dda9732fd8bad147b14b5fbcef1ebb32428393252833c03d9be69f4eb018c62",
+      "tasks.md": "0c1c57e0aa4f843b720ec6d0fb839ed9bd202e95dbd2cc04f36e4f8bd9d5b07d",
+      "checklist.md": "0b5d2e2c99b624fda879d08f3662612b45c1ea883733d2774fc1ef31aea57dc6",
+      "implementation-summary.md": "8b964f81908ed04bce55e9aa9ce8b83ba01ef6a966496083ae59c17742d5a0dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

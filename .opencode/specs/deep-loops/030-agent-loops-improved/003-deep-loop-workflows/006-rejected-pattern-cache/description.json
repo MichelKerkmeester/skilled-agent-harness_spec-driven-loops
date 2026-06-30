@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/006-rejected-pattern-cache",
+  "description": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the ver",
+  "keywords": [
+    "deep-research",
+    "loop",
+    "memory",
+    "rejected",
+    "ideas",
+    "across",
+    "iterations",
+    "pattern",
+    "explicitly",
+    "surfaced",
+    "re-emerge",
+    "ver"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.380Z",
+  "specId": "006",
+  "folderSlug": "rejected-pattern-cache",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

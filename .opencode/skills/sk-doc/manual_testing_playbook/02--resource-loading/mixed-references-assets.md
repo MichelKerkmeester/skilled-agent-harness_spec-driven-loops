@@ -62,7 +62,7 @@ Create a README for packages/auth/ covering purpose, install, usage, configurati
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: foreground OK; produces filled scaffold inline.
+- **cli-opencode (gpt-5.5/high/fast)**: foreground OK; produces filled scaffold inline.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact README; verify section completeness.
 
 ## Success Criteria

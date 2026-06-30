@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/037-design-context-enforcement",
+  "spec_folder": "design/008-sk-design-parent/037-design-context-enforcement",
+  "parent_id": "design/008-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context contract enforcement",
+      "proof check gate",
+      "apca contrast checker",
+      "design contract deterministic gate",
+      "context contract enforcement plan",
+      "proof check apca plan",
+      "context contract enforcement tasks",
+      "proof check apca tasks",
+      "context contract enforcement summary",
+      "proof check gate added",
+      "memory indexing fixed"
+    ],
+    "key_topics": [
+      "context",
+      "contract",
+      "enforcement",
+      "proof",
+      "check",
+      "gate",
+      "apca",
+      "contrast",
+      "checker",
+      "design",
+      "deterministic",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "contrast_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "calculators",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The contract works when handed to a delegate (035 benchmark) but is not enforced for the orchestrator's own path, and a weak model's contrast arithmetic can mislabel a fail as a pass",
+    "created_at": "2026-06-28T06:49:47.589Z",
+    "last_save_at": "2026-06-28T06:49:47.589Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ea063b4a323a3437f34c5d4aa94c36260fe474ba152f4cf3a05a018c797a77c",
+    "source_doc_hashes": {
+      "spec.md": "a81e12f6b301456c37703cfeb5e4ead541d68a529e3afef1c93154093664417f",
+      "plan.md": "2ea39dd0874b16105fb0f898190872b84f624e92fab7c174dfe0016ae1a89b7b",
+      "tasks.md": "c0c4320b44b95367d9e43f99425c9e0c7ad1136c4caf41a7ed94e5d47e330a6f",
+      "implementation-summary.md": "75f9835c863ead396f1c3fe0a39a70cf221b4fe8a822e79d104fe9e91c2854df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

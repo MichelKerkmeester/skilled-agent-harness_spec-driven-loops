@@ -1,0 +1,11 @@
+{
+  "owner_pid": 26594,
+  "started_at_iso": "2026-06-30T06:11:49.372Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-06-30T06:11:49.372Z",
+  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-06-30T06:11:49.372Z",
+  "acquire_nonce": "26594-1782799909373-6eb12fec-7607-4a0b-b1a2-be8d2f9c2592"
+}

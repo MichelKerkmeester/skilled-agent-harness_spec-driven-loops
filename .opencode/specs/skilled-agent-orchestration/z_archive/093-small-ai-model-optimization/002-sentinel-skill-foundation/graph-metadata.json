@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/002-sentinel-skill-foundation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/002-sentinel-skill-foundation",
+  "parent_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-small-model sentinel",
+      "small-model dispatch rule",
+      "swe-1.6 dispatch",
+      "kimi dispatch",
+      "deepseek dispatch",
+      "qwen dispatch",
+      "haiku dispatch",
+      "gemini flash dispatch",
+      "foundation routing 114",
+      "foundation routing plan",
+      "sentinel skill plan",
+      "foundation routing tasks"
+    ],
+    "key_topics": [
+      "sk-small-model",
+      "sentinel",
+      "small-model",
+      "dispatch",
+      "rule",
+      "swe-1",
+      "kimi",
+      "deepseek",
+      "qwen",
+      "haiku",
+      "gemini",
+      "flash"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cognition Pro",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Haiku",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gemini Flash",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Today",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refined Verdict",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sentinel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "supported",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today the skill-advisor has no routing target for small-model concerns",
+    "created_at": "2026-05-18T12:27:06.089Z",
+    "last_save_at": "2026-06-23T03:49:50.512Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c94aec2a2d23f69c33363caa8f60185c0f0525fed8b772adb2e34a2da76e8b72",
+    "source_doc_hashes": {
+      "spec.md": "7419d9c48d46c3819a0050f74dfefa1f3727290180fc1a6268e08e0b55b95b7e",
+      "plan.md": "7b76d738a583626601330b7451c09b734180cdc8695c9412035e88842da5ba8d",
+      "tasks.md": "1d608f1394ef021f78d1c426a0a08fe40075f2344ee628f0bd3a47a806969483",
+      "checklist.md": "41e697a0149a87a5bfc043dd39a8cf3764edd57b8751baaaaf1869f21b9fe205",
+      "implementation-summary.md": "e96d3007634f60e0c54b1e4c8d0f4c96da94a9fac72e39daf9ba5e6fe3787f68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
+  "spec_folder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
+  "parent_id": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor python",
+      "098 phase 006",
+      "097 remediation",
+      "infrastructure quality",
+      "098/006-skill-advisor-python checklist",
+      "098/006 implementation",
+      "skill advisor migration summary"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "python",
+      "098",
+      "phase",
+      "006",
+      "097",
+      "remediation",
+      "infrastructure",
+      "quality",
+      "006-skill-advisor-python",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      ".opencode/skills/.advisor-state/skill-graph-generation.json",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-generation.json",
+        "kind": "config",
+        "path": ".opencode/skills/.advisor-state/skill-graph-generation.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Resolved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Migrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Patch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Changing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Migrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Advisor freshness still writes `.opencode/skill/.advisor-state`, regenerating a stale survivor directory",
+    "created_at": "2026-05-18T07:49:27.244Z",
+    "last_save_at": "2026-06-23T03:49:50.102Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd176a759d74b6ab30788292cfa3f6e1c8fe9c989561b02f98dcb40845a36415",
+    "source_doc_hashes": {
+      "spec.md": "5d67bc70634fd9866e65c9de85b6bfc671b7c4ed93f8e8fec90e7d1226f67c04",
+      "plan.md": "68314156d3ff065d947635c975fd6bbf55f996be56eaf568a52584afa6c61ee7",
+      "tasks.md": "0d36bb4a4c4e914bbcc3066343361963f684e7ab2739d00df3f7e5ec2ec0f0d0",
+      "checklist.md": "894f4c2acc5313e0b9c2e8601ef3c79298741e866a02ac86e1b8b0046469da77",
+      "implementation-summary.md": "8d1434b5052e3818e5a399463149f5dc8788be66c9e684395e4d8ccf4eb36e2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

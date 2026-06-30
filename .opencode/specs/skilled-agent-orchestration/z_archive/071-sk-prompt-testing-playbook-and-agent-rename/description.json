@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
+  "description": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
+  "keywords": [
+    "two",
+    "related",
+    "gaps",
+    "surfaced",
+    "packet",
+    "082",
+    "renamed",
+    "skill",
+    "sk-improve-prompt",
+    "sk-prompt"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.943Z",
+  "specId": "071",
+  "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-05-26_18-02__manual-context-save.md",
+    "06-05-26_18-40__manual-context-save.md"
+  ]
+}

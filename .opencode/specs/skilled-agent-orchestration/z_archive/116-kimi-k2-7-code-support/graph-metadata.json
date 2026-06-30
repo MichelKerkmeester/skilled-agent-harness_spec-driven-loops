@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/001-model-registration",
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/002-framework-bakeoff",
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/003-promote-results",
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/004-discriminating-bakeoff",
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/005-filename-underscore-alignment",
+    "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/006-broad-scope-timeout-caveat"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "149-kimi-k2-7-code-support",
+      "phase parent"
+    ],
+    "key_topics": [
+      "149-kimi-k2-7-code-support",
+      "phase",
+      "parent",
+      "small-model",
+      "rotation",
+      "needs",
+      "kimi",
+      "code",
+      "coding",
+      "coding-plan",
+      "model",
+      "live"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The small-model rotation needs Kimi K2.7 Code (the \"Kimi For Coding\" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class small model in the cli-opencode and sk-prompt-models surfaces",
+    "created_at": "2026-06-15T09:21:00Z",
+    "last_save_at": "2026-06-23T03:49:48.742Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0e40120028bff635fee6b235d8cf6086f19b6425ceed7a5809518ab2df3dc8cf",
+    "source_doc_hashes": {
+      "spec.md": "ee84e8c1f96b83a30de6f0821d39f640e8f2930436804c6db1c05100f77f7f06"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-15T16:19:19.651Z"
+  }
+}

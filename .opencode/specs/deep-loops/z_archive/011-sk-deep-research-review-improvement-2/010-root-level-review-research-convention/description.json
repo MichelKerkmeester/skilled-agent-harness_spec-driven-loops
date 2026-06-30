@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/z_archive/011-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
+  "description": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`",
+  "keywords": [
+    "running",
+    "speckit",
+    "deep-review",
+    "deep-research",
+    "child",
+    "phase",
+    "inside",
+    "parent",
+    "spec",
+    "tree",
+    "skills",
+    "create",
+    "output",
+    "folders"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.278Z",
+  "specId": "010",
+  "folderSlug": "root-level-review-research-convention",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

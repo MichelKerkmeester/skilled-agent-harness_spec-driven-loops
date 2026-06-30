@@ -1,0 +1,14 @@
+{
+  "key": "mimo-context-s2",
+  "model": "mimo",
+  "slug": "xiaomi/mimo-v2-pro",
+  "variant": "high",
+  "query": "context",
+  "queryClass": "generic",
+  "sample": 2,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 58364,
+  "bytes": 66620,
+  "stderrTail": ""
+}

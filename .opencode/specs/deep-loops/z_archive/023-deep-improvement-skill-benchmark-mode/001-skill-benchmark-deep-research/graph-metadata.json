@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "spec_folder": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "parent_id": "deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark deep research",
+      "122 phase 001",
+      "multi-model deep research skill benchmark",
+      "122 phase 001 implementation summary",
+      "skill-benchmark deep research results"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "deep",
+      "research",
+      "122",
+      "phase",
+      "001",
+      "multi-model",
+      "skill",
+      "benchmark",
+      "implementation",
+      "summary",
+      "results"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/orchestration-status.log",
+      "spec.md",
+      ".codex/config.toml",
+      ".opencode/skills/README.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "consistent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "RQ1",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Accuracy",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unprompted Reference",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Discovery",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "20-iteration multi-model deep research (5x MiniMax-2.7, 5x DeepSeek-v4-pro, 5x GPT-5.5-xhigh-fast, 5x Opus-4.8-native) investigating Lane C skill-benchmark design and the deep-agent-improvement->deep-improvement rename impact map.",
+    "created_at": "2026-05-30T07:27:05.679Z",
+    "last_save_at": "2026-06-23T03:49:51.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:cfac0f922e6b0ddc0346205893710b6a69a15b57deb6771f2ecc04e6cdb31fa6",
+    "source_doc_hashes": {
+      "spec.md": "5dc4ff2726ce4cfd6a3ea76fc56f8e60b0733d2db06fde81a4ab0daa91efb9e0",
+      "plan.md": "3c7b5e628c53df93242b8e56277f4372b3ef1f6d45d2e10d6862419ac6954df8",
+      "tasks.md": "a840a26b8751d38c42315b6d154084e08ee7704f85408b8cda4f379520c3a39b",
+      "implementation-summary.md": "c594c20589e664f9143a87f626ca91a2ada4babec6c93117ea05ee23a1e9a692",
+      "research/research.md": "9cc0a7d8fb68b2bbaf520e9b1cf7eb5fd90f709ef9c0812ebdcfdcbee118a09f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

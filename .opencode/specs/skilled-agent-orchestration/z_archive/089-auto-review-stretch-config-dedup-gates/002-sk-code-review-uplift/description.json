@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift",
+  "description": "Two waste vectors in sk-code-review:",
+  "keywords": [
+    "two",
+    "waste",
+    "vectors",
+    "sk-code-review"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.984Z",
+  "specId": "002",
+  "folderSlug": "sk-code-review-uplift",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "089-auto-review-stretch-config-dedup-gates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

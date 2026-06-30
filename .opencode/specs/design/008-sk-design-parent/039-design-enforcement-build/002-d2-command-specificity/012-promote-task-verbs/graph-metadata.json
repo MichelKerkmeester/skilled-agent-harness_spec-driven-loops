@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+  "spec_folder": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+  "parent_id": "design/008-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r12 task verbs",
+      "task verbs design build",
+      "d2-r12 promote task verbs plan",
+      "design command task projections plan",
+      "transform verbs command surface plan",
+      "d2-r12 promote task verbs tasks",
+      "design command task projections tasks",
+      "transform verbs command surface tasks",
+      "d2-r12 promote task verbs checklist",
+      "design command task projections checklist",
+      "transform verbs command surface checklist",
+      "d2-r12 promote task verbs summary"
+    ],
+    "key_topics": [
+      "d2-r12",
+      "task",
+      "verbs",
+      "design",
+      "build",
+      "promote",
+      "plan",
+      "command",
+      "projections",
+      "transform",
+      "surface",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/md-generator.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Projections",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wrapper Task Projections",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight high-value transform verbs — `typeset`, `colorize`, `bolder`, `quieter`, `distill`, `delight`, `harden`, `polish` — are the action words a user actually types, yet they live buried in the design modes' `references/` and alias surfaces, invisible at the `/design:` command surface",
+    "created_at": "2026-06-28T12:40:01.470Z",
+    "last_save_at": "2026-06-29T07:10:50.129Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0acf2da9f9258f39bcf0faa4cb997dc5bc14ad405b0642b1b29a495b6e086e01",
+    "source_doc_hashes": {
+      "spec.md": "3e5d864472384a47c73ac425902f6b40746749c545d258f6ffe0217aa2993407",
+      "plan.md": "68c3dc559dc003010e77c5498acde259fc0c3713abeb63442a9c902c28089b06",
+      "tasks.md": "0d8cf73135c4dbaad84c7024f45a17e01d1044603d865d8c40c6bf97545f9907",
+      "checklist.md": "6b2b7b9a6a64d166cc91b29861cd0733537e2eb0028a74dc4eadfa3d14ca5268",
+      "implementation-summary.md": "fb51d5bb1ccc00c4eaf12914e2b8b0d4e38761f916ef67b0ba2d424e58aa08b2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

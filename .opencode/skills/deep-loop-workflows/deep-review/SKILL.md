@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
-argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
 version: 1.11.0.0
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
@@ -16,7 +16,7 @@ Iterative code review and quality auditing protocol with fresh context per itera
 Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
-- Codex runtime: `.codex/agents/*.toml` (when dispatched through `cli-codex`, keep the required `gpt-5.5` model pin)
+- OpenCode runtime: `.opencode/agents/*.toml` when running directly in OpenCode; external OpenCode dispatch uses `cli-opencode`.
 
 Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
@@ -47,7 +47,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations (ad-hoc shell fan-out)
-- Invoke cli-codex / cli-claude-code directly in a loop to simulate iterations
+- Invoke cli-opencode / cli-claude-code directly in a loop to simulate iterations
 - Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
 - Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
@@ -481,7 +481,7 @@ The release-readiness handoff is valid when:
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, or CODEX.md).
+This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md or AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)

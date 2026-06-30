@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/003-ai-fingerprint-registry",
+  "description": "The audit mode detects model-specific AI tells from a prose catalog only (`design-audit/references/aifingerprinttells.md`)",
+  "keywords": [
+    "audit",
+    "mode",
+    "detects",
+    "model-specific",
+    "tells",
+    "prose",
+    "catalog",
+    "only",
+    "design-audit",
+    "references",
+    "aifingerprinttells"
+  ],
+  "lastUpdated": "2026-06-30T12:42:35.944Z",
+  "specId": "003",
+  "folderSlug": "ai-fingerprint-registry",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

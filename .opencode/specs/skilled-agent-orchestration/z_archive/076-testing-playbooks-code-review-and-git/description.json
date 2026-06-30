@@ -1,0 +1,28 @@
+{
+  "completionPct": 100,
+  "lastOutcome": "Both child phases complete. sk-code-review playbook (18 scenarios across 6 categories) and sk-git playbook (22 scenarios across 6 categories) authored by cli-codex (gpt-5.5 high, normal mode); 6 P1 findings from @review DQI passes resolved; all sk-doc and structural gates clean.",
+  "specFolder": "skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git",
+  "description": "`sk-code-review` (findings-first review baseline used by `@review`, `@deep-review`, `/speckit:deep-review`) and `sk-git` (three-phase git lifecycle or",
+  "keywords": [
+    "sk-code-review",
+    "findings-first",
+    "review",
+    "baseline",
+    "used",
+    "deep-review",
+    "speckit",
+    "sk-git",
+    "three-phase",
+    "git",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.998Z",
+  "specId": "076",
+  "folderSlug": "testing-playbooks-code-review-and-git",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

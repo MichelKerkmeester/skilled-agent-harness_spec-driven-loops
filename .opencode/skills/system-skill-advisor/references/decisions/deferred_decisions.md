@@ -88,9 +88,9 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 ### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
 
-> **Update (2026-06-08).** The Devin runtime was subsequently removed from the framework entirely (see the F4 supersession note above): the `hooks/devin/` sources + dist and `.devin/hooks.v1.json` no longer exist. All Devin rows and steps below are retained as historical record only; the remaining F6 removal scope concerns the claude/codex entries.
+> **Update (2026-06-08).** The Devin runtime was subsequently removed from the framework entirely (see the F4 supersession note above): the `hooks/devin/` sources + dist and `.devin/hooks.v1.json` no longer exist. All Devin rows and steps below are retained as historical record only; the remaining F6 removal scope concerns the claude/opencode entries.
 
-All 4 OLD hook READMEs (`system-spec-kit/mcp_server/hooks/{claude,codex,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
+All 4 OLD hook READMEs (`system-spec-kit/mcp_server/hooks/{claude,opencode,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
 
 ### F6 audit progress (2026-05-18)
 
@@ -98,7 +98,7 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 
 **Runtime configs — ALL migrated to NEW:**
 - `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
-- `.codex/config.toml` — no hook entries.
+- `opencode.json` — no hook entries.
 - `.devin/hooks.v1.json` — `UserPromptSubmit` points at `system-skill-advisor/mcp_server/dist/...`; `SessionStart` points at `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js` (corrected 2026-05-27 — see §2 Correction; the previously-recorded `system-code-graph/dist/system-spec-kit/...` path never existed and the hook did not fire until packet 029 phase 004 repointed it).
 - OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
 - Cross-runtime grep for `system-spec-kit/mcp_server/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
@@ -111,17 +111,17 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 
 | OLD path | Still in use by | Disposition for 2026-08-16 |
 |---|---|---|
-| `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
-| `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp_server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp_server/hooks/{claude,opencode,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
 | `system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Documented in `DEPLOYMENT.md` L7 as the project-hash source. | Keep until separate migration packet. |
-| `system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
+| `system-spec-kit/mcp_server/hooks/opencode/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
 | `system-spec-kit/mcp_server/hooks/devin/session-prime.ts` + `session-start.ts` | Code-graph SKILL.md §8.2 explicitly documents these as still-in-use under spec-kit (ADR-001 hook ownership asymmetry). | Keep — not in scope for the F6 90-day removal. |
 | `system-spec-kit/mcp_server/hooks/{shared,session-stop,claude-transcript,compact-inject}.ts` | Unverified consumers. | Audit case-by-case in the removal packet. |
 
 **Revised F6 removal scope (after 2026-08-16):**
 
 The removal at 2026-08-16 should be limited to:
-- The 4 per-runtime entry-point files `system-spec-kit/mcp_server/hooks/{claude,codex,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
+- The 4 per-runtime entry-point files `system-spec-kit/mcp_server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
 
 NOT included in the F6 removal:
 - `hook-state.ts` (per DEPLOYMENT.md consumer)
@@ -135,8 +135,8 @@ A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) 
 
 Hooks exist at TWO locations:
 
-- OLD: `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,devin}/` with source TS plus compiled JS
-- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,codex,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/{claude,codex}/` with compiled JS (devin missing session-start.js per F4)
+- OLD: `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
+- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
 
 No README or doc explains which location is canonical or when OLD will deprecate.
 
@@ -155,7 +155,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
    | Runtime | OLD path used by | NEW path ready | Action |
    |---|---|---|---|
    | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
-   | Codex | `.codex/config.toml` hooks section | yes | Update Codex config |
+   | OpenCode | `opencode.json` hooks section | yes | Update OpenCode config |
    | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
    | OpenCode plugin | `.opencode/plugins/mk-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
 

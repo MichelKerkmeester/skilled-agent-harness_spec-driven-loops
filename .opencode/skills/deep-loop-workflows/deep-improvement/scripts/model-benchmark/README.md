@@ -34,7 +34,7 @@ Current state:
 ┌──────────────────┐      ┌─────────────────────┐      ┌──────────────────┐
 │ loop-host.cjs    │ ───▶ │ dispatch-model.cjs  │ ───▶ │ executor CLI     │
 │ (../shared)      │      │ executor router     │      │ opencode/claude/ │
-│ router           │      │ read-only default   │      │ codex             │
+│ router           │      │ read-only default   │      │ opencode             │
 └────────┬─────────┘      └─────────────────────┘      └──────────────────┘
          │
          ▼
@@ -72,7 +72,7 @@ model-benchmark/
 
 | File | Responsibility |
 |---|---|
-| `dispatch-model.cjs` | Routes a prompt file to one of `cli-opencode`, `cli-claude-code`, `cli-codex`. Read-only by default. Handles rate-limit backoff and writes a run-scoped pause sentinel. |
+| `dispatch-model.cjs` | Routes a prompt file to `cli-opencode` or `cli-claude-code`. Read-only by default. Handles rate-limit backoff and writes a run-scoped pause sentinel. |
 | `run-benchmark.cjs` | Loads a profile, scores fixture outputs, writes `report.json` plus an immutable history snapshot, and appends a `benchmark_run` row to the state log. Sanitizes `fixture.id` and bounds authored regex patterns. |
 | `scorer/` | The 5-dimension scoring engine. `run-benchmark.cjs` lazy-requires `scorer/score-model-variant.cjs` only on `--scorer=5dim`, so the default path never loads the subtree. |
 

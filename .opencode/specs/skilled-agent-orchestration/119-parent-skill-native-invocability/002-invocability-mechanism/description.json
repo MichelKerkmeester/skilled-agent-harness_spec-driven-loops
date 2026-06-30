@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism",
+  "description": "Parent skills route to nested mode packets, but those packets are not invocable through the runtime `Skill` tool",
+  "keywords": [
+    "parent",
+    "skills",
+    "route",
+    "nested",
+    "mode",
+    "packets",
+    "invocable",
+    "runtime",
+    "skill",
+    "tool"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.376Z",
+  "specId": "002",
+  "folderSlug": "invocability-mechanism",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "119-parent-skill-native-invocability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

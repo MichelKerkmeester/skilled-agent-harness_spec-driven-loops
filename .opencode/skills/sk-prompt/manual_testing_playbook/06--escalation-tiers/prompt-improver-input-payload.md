@@ -25,8 +25,8 @@ The payload is the handoff contract between CLI orchestrators and the prompt-imp
 Operators run the exact prompt and command sequence for `SP-025` and confirm the expected signals without contradictory evidence.
 
 - Objective: Confirm `@prompt-improver` accepts `raw_task` and the four optional fields.
-- Real user request: `Use @prompt-improver to enhance my prompt with task_type=review, target_cli=codex, complexity_hint=8, and constraints around safety.`
-- Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
+- Real user request: `Use @prompt-improver to enhance my prompt with task_type=review, target_cli=opencode, complexity_hint=8, and constraints around safety.`
+- Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=opencode, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
 - Expected execution process: The orchestrator builds the payload, `@prompt-improver` consumes it, applies DEPTH/CLEAR, and carries the constraints into `ENHANCED_PROMPT` or `ESCALATION_NOTES`.
 - Expected signals: Payload fields echoed or reflected; structured output block present.
 - Desired user-visible outcome: Enhanced prompt that visibly respects safety constraints.
@@ -39,13 +39,13 @@ Operators run the exact prompt and command sequence for `SP-025` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.
+As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=opencode, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.
 ```
 
 ### Commands
 
-1. `sk-prompt: Use @prompt-improver to enhance my prompt with task_type=review, target_cli=codex, complexity_hint=8, and constraints around safety.`
-2. `agent: @prompt-improver raw_task="Improve a safety-sensitive review prompt for CLI dispatch." task_type=review target_cli=codex complexity_hint=8 constraints="Preserve safety requirements; include verification and do-not-change boundaries."`
+1. `sk-prompt: Use @prompt-improver to enhance my prompt with task_type=review, target_cli=opencode, complexity_hint=8, and constraints around safety.`
+2. `agent: @prompt-improver raw_task="Improve a safety-sensitive review prompt for CLI dispatch." task_type=review target_cli=opencode complexity_hint=8 constraints="Preserve safety requirements; include verification and do-not-change boundaries."`
 3. `bash: rg 'Expected Input Payload|raw_task|task_type|target_cli|complexity_hint|constraints' .opencode/skills/sk-prompt/SKILL.md`
 
 ### Expected
@@ -69,7 +69,7 @@ Capture the payload, structured output block, and constraint-preservation eviden
 
 ### Optional Supplemental Checks
 
-Verify `target_cli=codex` influences output wording toward Codex-compatible verification expectations.
+Verify `target_cli=opencode` influences output wording toward OpenCode-compatible verification expectations.
 
 ---
 

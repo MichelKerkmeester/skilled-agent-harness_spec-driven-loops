@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/005-filename-underscore-alignment",
+  "description": "The house convention for descriptive markdown and asset filenames is underscores (`documentname.md`), matching peer skills such as `mcp-open-design` (",
+  "keywords": [
+    "house",
+    "convention",
+    "descriptive",
+    "markdown",
+    "asset",
+    "filenames",
+    "underscores",
+    "documentname",
+    "matching",
+    "peer",
+    "skills",
+    "mcp-open-design"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.526Z",
+  "specId": "005",
+  "folderSlug": "filename-underscore-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

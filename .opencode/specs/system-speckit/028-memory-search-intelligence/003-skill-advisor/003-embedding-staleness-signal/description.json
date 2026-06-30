@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal",
+  "description": "The Skill Advisor has a load-time staleness blind spot",
+  "keywords": [
+    "skill",
+    "advisor",
+    "load-time",
+    "staleness",
+    "blind",
+    "spot"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.759Z",
+  "specId": "003",
+  "folderSlug": "embedding-staleness-signal",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -17,8 +17,8 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-005`.
-- Real user request: `Please validate Outsourced Agent Memory Capture Round-Trip against cli-codex and tell me whether the expected signals are present: Agent output contains structured memory section; saved context is discoverable via search.`
-- Prompt: `Validate outsourced agent memory capture round-trip against cli-codex.`
+- Real user request: `Please validate Outsourced Agent Memory Capture Round-Trip against cli-opencode and tell me whether the expected signals are present: Agent output contains structured memory section; saved context is discoverable via search.`
+- Prompt: `Validate outsourced agent memory capture round-trip against cli-opencode.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Agent output contains structured memory section; saved context is discoverable via search
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,9 +30,9 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 ### Prompt
 
-`Validate outsourced agent memory capture round-trip against cli-codex.`
+`Validate outsourced agent memory capture round-trip against cli-opencode.`
 ### Commands
-- Dispatch task via `cli-codex` (or any cli-* skill) with memory epilogue in prompt
+- Dispatch task via `cli-opencode` (or any cli-* skill) with memory epilogue in prompt
   - Extract structured memory section from agent stdout
   - Write JSON to `/tmp/save-context-data-<session-id>.json`
   - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/<target-spec>`

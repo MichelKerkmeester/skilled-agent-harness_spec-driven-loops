@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/006-sk-design-md-generator",
+  "spec_folder": "design/006-sk-design-md-generator",
+  "parent_id": null,
+  "children_ids": [
+    "design/006-sk-design-md-generator/001-skill-build-and-deep-review",
+    "design/006-sk-design-md-generator/002-extraction-data-fixes",
+    "design/006-sk-design-md-generator/003-doc-prompt-routing-fixes",
+    "design/006-sk-design-md-generator/004-validator-semantic-checks",
+    "design/006-sk-design-md-generator/005-doc-as-view-architecture",
+    "design/006-sk-design-md-generator/006-deferred-enhancements",
+    "design/006-sk-design-md-generator/007-reference-format-overhaul"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design-md-generator packet",
+      "design md generator hardening",
+      "prose fabrication remediation",
+      "design extraction phase parent",
+      "DESIGN.md anti-hallucination phases"
+    ],
+    "key_topics": [
+      "sk-design-md-generator",
+      "packet",
+      "design",
+      "generator",
+      "hardening",
+      "prose",
+      "fabrication",
+      "remediation",
+      "extraction",
+      "phase",
+      "parent",
+      "anti-hallucination"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SCOPE BOUNDARY (PARENT)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Against Prose Fabrication",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Causes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hallucination Class",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Value Fabrication",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extraction Bugs",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Root packet for the sk-design-md-generator skill (a live-CSS to DESIGN.md extraction engine) and its research-driven anti-fabrication hardening. Phase children cover the original build, then the remediation phases derived from a 50-iteration deep-research loop.",
+    "created_at": "2026-06-21T07:44:10Z",
+    "last_save_at": "2026-06-23T03:49:48.816Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:830cf33d73470824d8b0c99302b3efbd3cea8e48fa8afedc6d7596912d341a1a",
+    "source_doc_hashes": {
+      "spec.md": "34e99c1f33042a344e380c53a82bbf7263392a6a698cb97715b1b00b19d8aaaa",
+      "research/research.md": "3016070c9233af17b6e62aff95ff2e192963b8303e31e6210244d2c45ed0fa7e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-22T17:09:52.853Z"
+  }
+}

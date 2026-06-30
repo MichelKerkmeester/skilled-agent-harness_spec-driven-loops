@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "design/008-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/007-cross-child-laundering-guard",
+  "description": "The proof-token contract names a \"cross-delegation laundering guard\" as a consumer but never builds it",
+  "keywords": [
+    "proof-token",
+    "contract",
+    "names",
+    "cross-delegation",
+    "laundering",
+    "guard",
+    "consumer",
+    "never",
+    "builds"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.172Z",
+  "specId": "007",
+  "folderSlug": "cross-child-laundering-guard",
+  "parentChain": [
+    "design",
+    "008-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

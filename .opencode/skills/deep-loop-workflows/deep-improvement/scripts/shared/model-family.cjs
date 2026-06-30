@@ -28,7 +28,7 @@ const FAMILY_TOKENS = {
   haiku: 'anthropic',
   gpt: 'openai',
   openai: 'openai',
-  codex: 'openai',
+  opencode: 'openai',
   gemini: 'google',
   google: 'google',
   kimi: 'moonshot',

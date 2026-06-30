@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun",
+  "spec_folder": "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun",
+  "parent_id": "anobel.com/005-glm-visual-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-adoption-gate-and-rerun",
+      "adoption gate",
+      "measured re-run",
+      "ship rate lift",
+      "diagram-vs-linear delta",
+      "adoption gate plan",
+      "rerun harness",
+      "compute lift",
+      "measured re-run pipeline",
+      "adoption gate tasks",
+      "rerun tasks",
+      "measured re-run task list"
+    ],
+    "key_topics": [
+      "006-adoption-gate-and-rerun",
+      "adoption",
+      "gate",
+      "measured",
+      "re-run",
+      "ship",
+      "rate",
+      "lift",
+      "diagram-vs-linear",
+      "delta",
+      "plan",
+      "rerun"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pipeline Step",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Headless Chromium",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "primitive",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CIs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001-005 implement the seven research angles and the eleven-step pipeline that should close the bento-tile quality gap, but the program's value is still a hypothesis: the 004 run shipped only 27/45 = 60% SHIP (mean audit 81.1) with a ~41-point diagram-vs-linear gap, and nothing yet runs the full hardened pipeline end-to-end against those same 45 tiles",
+    "created_at": "2026-06-29T10:48:51.485Z",
+    "last_save_at": "2026-06-29T10:48:51.485Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0c2216f437c8587fcad9989882c5c582c95efaab6aef1276048961bab1665c6",
+    "source_doc_hashes": {
+      "spec.md": "eeeea4b9307bc80ebc5602bb55dcfb94fc20df66183c1a7dffb95f2f862fe626",
+      "plan.md": "5476169e899b689ad3762ece60c631c05345fd6e0aa166adaa5a790e2e8ffefd",
+      "tasks.md": "c3f1b9a532a7c56fea1834646be86dbed6fb4ffca9a2b1b2dacaa7d4726f68d6",
+      "checklist.md": "938cb30a8e8db1b867dfacd98f067e876ba356a7d3a932962a9cacf92edee41f",
+      "implementation-summary.md": "e816ac6ab81d12e2ae997dc9f9175167f9c64530cc9ca5be4f8570e6618d9773"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

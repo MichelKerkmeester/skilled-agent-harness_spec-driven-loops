@@ -64,7 +64,7 @@ Trace routing for three sequential sk-doc turns: create sk-foo, add validation r
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: foreground 3-step; verify session-id reuse.
+- **cli-opencode (gpt-5.5/high/fast)**: foreground 3-step; verify session-id reuse.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: session-scoped state; verify no stale resource bleed.
 
 ## Success Criteria

@@ -19,7 +19,7 @@ trigger_phrases:
 | --- | --- | --- |
 | Explicit JSON | `dataFile` option | Parsed and normalized session data |
 | Preferred capture | `preferredCaptureSource` option or `SYSTEM_SPEC_KIT_CAPTURE_SOURCE` | Normalized native capture data |
-| Capture fallback | OpenCode, Claude Code, Codex CLI, Copilot CLI | First usable native capture payload |
+| Capture fallback | OpenCode, Claude Code, OpenCode, Copilot CLI | First usable native capture payload |
 | No data | Empty or unusable sources | `NO_DATA_AVAILABLE` hard stop |
 
 ## 3. ENTRYPOINTS

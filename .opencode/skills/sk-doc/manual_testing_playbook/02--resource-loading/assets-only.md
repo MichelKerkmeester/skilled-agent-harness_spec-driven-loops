@@ -63,7 +63,7 @@ Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod,
 
 ## Cross-CLI Variants
 
-- **cli-codex (gpt-5.5/high/fast)**: produces clean ASCII grid; foreground OK.
+- **cli-opencode (gpt-5.5/high/fast)**: produces clean ASCII grid; foreground OK.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact; expect a single fenced block.
 
 ## Success Criteria

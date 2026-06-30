@@ -1,0 +1,101 @@
+{
+  "sessionId": "fanout-gpt55fast-1782532104406-wgsfs7",
+  "loopType": "research",
+  "status": "complete",
+  "openQuestions": [
+    {
+      "id": "oq-redesign-placement",
+      "question": "Should redesign intake be standalone or folded into real_ui_loop.md?",
+      "recommendedResolution": "Standalone only if the router loads it narrowly for redesign prompts; otherwise fold into real_ui_loop.md to avoid D3 overload."
+    },
+    {
+      "id": "oq-preflight-benchmark-expectation",
+      "question": "Should benchmark fixtures expect brief_to_dials.md for ID-011?",
+      "recommendedResolution": "Add brief_to_dials.md to MECHANICAL_PREFLIGHT and rerun benchmark; keep only if ID-011 improves without excessive D3 regression."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "rq-path",
+      "question": "What is the current interface skill path?",
+      "answer": "The hub mode is interface, but the physical packet is .opencode/skills/sk-design/design-interface/."
+    },
+    {
+      "id": "rq-benchmark",
+      "question": "What benchmark score should research ground in?",
+      "answer": "The current report artifact says aggregate 70/100 conditional; the prompt's 78/100 appears stale or from a different run."
+    },
+    {
+      "id": "rq-priority",
+      "question": "What is highest leverage?",
+      "answer": "Fix routing precision and route-away behavior before adding new references."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f1-current-packet-mature",
+      "title": "Current interface packet is already reference-rich after 009",
+      "priority": "context",
+      "sources": [".opencode/skills/sk-design/design-interface/SKILL.md:73", ".opencode/specs/design/008-sk-design-parent/009-reference-asset-expansion/research/research.md:55"]
+    },
+    {
+      "id": "f2-router-bottleneck",
+      "title": "Benchmark bottleneck is intra-router behavior, not missing connectivity",
+      "priority": "P0",
+      "sources": [".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.md:17", ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.md:21"]
+    },
+    {
+      "id": "f3-route-away",
+      "title": "Pure logic prompt needs an explicit sk-code route-away outcome",
+      "priority": "P0",
+      "sources": [".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.json:590", ".opencode/skills/sk-design/design-interface/SKILL.md:36"]
+    },
+    {
+      "id": "f4-grounding-overload",
+      "title": "Grounding branch should split design-system grounding from Mobbin/Refero references",
+      "priority": "P1",
+      "sources": [".opencode/skills/sk-design/design-interface/SKILL.md:119", ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.json:421"]
+    },
+    {
+      "id": "f5-preflight-recall",
+      "title": "Preflight routing should include dial context and the card as a first-class asset",
+      "priority": "P1",
+      "sources": [".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:16", ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.json:280"]
+    },
+    {
+      "id": "f6-redesign-intake",
+      "title": "Redesign work needs a preserve/overhaul intake before visual changes",
+      "priority": "P1",
+      "sources": [".opencode/specs/design/008-sk-design-parent/external/taste-skill.md:783", ".opencode/specs/design/008-sk-design-parent/external/taste-skill.md:804"]
+    },
+    {
+      "id": "f7-verification",
+      "title": "Follow-up changes need benchmark and playbook structural verification",
+      "priority": "P1",
+      "sources": [".opencode/skills/sk-design/design-interface/manual_testing_playbook/manual_testing_playbook.md:501", ".opencode/specs/design/008-sk-design-parent/014-routing-benchmark/design-interface/skill-benchmark-report.md:64"]
+    }
+  ],
+  "ruledOutDirections": [
+    "More aesthetic preset files as the primary improvement",
+    "Bulk-importing the external corpus",
+    "Requiring Mobbin/Refero lookups for every design task",
+    "Mixing implementation ownership into interface rather than handing to sk-code",
+    "Trusting stale prompt benchmark values over report artifacts"
+  ],
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "keyFindings": 7,
+    "convergenceScore": 0.65,
+    "coverageBySources": {
+      "skill": 8,
+      "references": 11,
+      "assets": 2,
+      "manualPlaybook": 5,
+      "priorResearch": 4,
+      "externalCorpus": 6,
+      "benchmark": 10
+    }
+  }
+}

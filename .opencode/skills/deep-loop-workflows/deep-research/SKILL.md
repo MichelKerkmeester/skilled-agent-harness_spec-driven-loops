@@ -17,7 +17,7 @@ Iterative research protocol with fresh context per iteration, externalized state
 Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
-- Codex runtime: `.codex/agents/*.toml`
+- OpenCode runtime: `.opencode/agents/*.toml`
 
 Operator contract precedence for this skill surface:
 - Command entrypoint syntax in `.opencode/commands/deep/research.md`
@@ -128,7 +128,7 @@ INTENT_SIGNALS = {
     "RECOVERY": {"weight": 4, "keywords": ["stuck", "recovery", "timeout", "reconstruct", "blocked stop", "blocked_stop"]},
     "STATE": {"weight": 4, "keywords": ["state file", "jsonl", "strategy", "dashboard", "registry", "lineage"]},
     "SPEC_ANCHORING": {"weight": 3, "keywords": ["spec.md", "generated fence", "folder_state", "lock", "spec anchoring"]},
-    "RUNTIME_PARITY": {"weight": 3, "keywords": ["runtime", "capability", "parity", "codex", "claude"]},
+    "RUNTIME_PARITY": {"weight": 3, "keywords": ["runtime", "capability", "parity", "opencode", "claude"]},
     "RESOURCE_MAP": {"weight": 3, "keywords": ["resource map", "resource-map", "inventory", "coverage gate"]},
 }
 
@@ -467,7 +467,7 @@ Every completed loop produces a convergence report:
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md, AGENTS.md, or CODEX.md).
+This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md or AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: autoresearch, deep research)

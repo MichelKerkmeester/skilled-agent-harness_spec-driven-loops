@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/004-commands-scripts-data",
+  "description": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes",
+  "keywords": [
+    "deep",
+    "model-benchmark",
+    "context",
+    "workflows",
+    "hardcode",
+    "opencode",
+    "skills",
+    "sk-prompt-small-model",
+    "paths",
+    "benchmark",
+    "workflow",
+    "writes"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.432Z",
+  "specId": "004",
+  "folderSlug": "commands-scripts-data",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

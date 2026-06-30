@@ -3,7 +3,7 @@
   "tier": "T2",
   "public": {
     "prompt": "this landing page feels generic and templated; give it a point of view",
-    "runtime": "codex",
+    "runtime": "opencode",
     "mutationBoundary": "routing-only",
     "outputContract": "select the appropriate design workflow without editing files"
   },

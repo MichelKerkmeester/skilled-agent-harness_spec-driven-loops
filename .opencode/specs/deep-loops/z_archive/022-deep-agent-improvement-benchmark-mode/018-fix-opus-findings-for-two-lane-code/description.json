@@ -1,0 +1,26 @@
+{
+  "title": "Feature Specification: fix Opus review findings for two-lane code",
+  "level": "3",
+  "specFolder": "deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
+  "description": "The 017 deep review returned CONDITIONAL with four active P1 defects",
+  "keywords": [
+    "017",
+    "deep",
+    "review",
+    "returned",
+    "conditional",
+    "four",
+    "active",
+    "defects"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.279Z",
+  "specId": "018",
+  "folderSlug": "fix-opus-findings-for-two-lane-code",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

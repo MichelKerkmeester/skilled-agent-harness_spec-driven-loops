@@ -22,7 +22,7 @@ Current state:
 - `benchmark-fixtures/` holds two fixture shapes: pattern-scoring evidence contracts (`fixture-*.json`) and 5-dimension code tasks (`t3-*.json`).
 - Evidence-contract fixtures declare `requiredHeadings`, `requiredPatterns`, and `forbiddenPatterns` for the default pattern scorer.
 - Code-task fixtures (`t3-*`) declare a function signature, a `task` prompt, plus visible `tests` and `hidden_tests` for the opt-in `5dim` scorer.
-- `benchmark-profiles/` holds three profiles: `default` (pattern scoring of the deep-improvement agent), `framework-bakeoff` (one model across five prompt frameworks), and `model-vs-model` (three executors on one framework).
+- `benchmark-profiles/` holds three profiles: `default` (pattern scoring of the deep-improvement agent), `framework-bakeoff` (one model across five prompt frameworks), and `model-vs-model` (three model cells on one framework).
 - Profiles reference fixtures by `id` and point `fixtureDir` at `benchmark-fixtures/`.
 
 ---
@@ -40,7 +40,7 @@ model-benchmark/
 `-- benchmark-profiles/                # Profiles that drive a run
     +-- default.json                   # Pattern scoring of the deep-improvement agent
     +-- framework-bakeoff.json         # One model across five prompt frameworks, 5dim
-    `-- model-vs-model.json            # Three executors on one framework, 5dim
+    `-- model-vs-model.json            # Three model cells on one framework, 5dim
 ```
 
 ---
@@ -63,7 +63,7 @@ model-benchmark/
 |---|---|
 | `default.json` | Pattern-scoring profile (`profileId: default`) targeting `.opencode/agents/deep-improvement.md`. Selects `fixture-baseline`, `fixture-improved`, `fixture-edge`; sets `thresholdDelta` and `benchmark` gate thresholds. |
 | `framework-bakeoff.json` | `mode: framework-bakeoff` profile running one `cli-opencode` model across `frameworks` `[rcaf, race, cidi, tidd-ec, costar]` on the `t3-*` fixtures with the weighted `5dim` scorer. |
-| `model-vs-model.json` | `mode: model-vs-model` profile running three executors (`cli-opencode`, `cli-codex`, `cli-claude-code`) on one framework (`rcaf`) over the `t3-*` fixtures, grouped by model with leaderboard and history. |
+| `model-vs-model.json` | `mode: model-vs-model` profile running three model cells across `cli-opencode` and `cli-claude-code` on one framework (`rcaf`) over the `t3-*` fixtures, grouped by model with leaderboard and history. |
 
 ---
 

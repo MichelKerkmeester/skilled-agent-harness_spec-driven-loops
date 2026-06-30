@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/005-sk-design-interface-rename",
+  "spec_folder": "design/005-sk-design-interface-rename",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename sk-interface-design",
+      "sk-design-interface",
+      "skill rename",
+      "design skill family",
+      "skill-graph rebuild",
+      "rename plan",
+      "reciprocal edges",
+      "history rewrite",
+      "rename tasks",
+      "design-interface skill",
+      "tasks core",
+      "rename verification"
+    ],
+    "key_topics": [
+      "rename",
+      "sk-interface-design",
+      "sk-design-interface",
+      "skill",
+      "design",
+      "family",
+      "skill-graph",
+      "rebuild",
+      "plan",
+      "reciprocal",
+      "edges",
+      "history"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/README.md",
+      ".opencode/specs/descriptions.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The interface-design judgment skill is named `sk-interface-design`, which predates the `sk-design-` family now forming around the new `sk-design-md-generator` skill",
+    "created_at": "2026-06-21T07:44:03Z",
+    "last_save_at": "2026-06-25T09:19:37.793Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94aeeb62d702179fe774d568223ddd5315e075e2ef67ee09e3cae6fc0fb996c3",
+    "source_doc_hashes": {
+      "spec.md": "7f16b1a694ddd0e95bde7c9c89edc484f30da5175130305dad7a4f49e575c6e3",
+      "plan.md": "e33ad00b6083a860d7dee1ea1e5782f2d6025adc002cd3b3a639928fbcdaa9d8",
+      "tasks.md": "39f6496bf3bd5b2a2fea2c93da0e2435fc1c6322e99016c6c35009373543c567",
+      "checklist.md": "03f3030776398f5bea7e728f7b32852fe00a2c58c215fbe47f6293aff6e2a50d",
+      "implementation-summary.md": "c7c530e87337a4e50bf88bebc1d2c3fca3fa825be8e289cd09e8fd9f62c09f2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

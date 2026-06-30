@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/110-nested-mcp-readme-sync",
+  "description": "The packet-135 QA audit (two read-only gpt-5.5-fast reviewers) found three nested `mcpserver` READMEs that had drifted behind their real tool sets",
+  "keywords": [
+    "packet-135",
+    "audit",
+    "two",
+    "read-only",
+    "gpt-5",
+    "5-fast",
+    "reviewers",
+    "found",
+    "three",
+    "nested",
+    "mcpserver",
+    "readmes",
+    "drifted",
+    "behind",
+    "real",
+    "tool",
+    "sets"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.964Z",
+  "specId": "110",
+  "folderSlug": "nested-mcp-readme-sync",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

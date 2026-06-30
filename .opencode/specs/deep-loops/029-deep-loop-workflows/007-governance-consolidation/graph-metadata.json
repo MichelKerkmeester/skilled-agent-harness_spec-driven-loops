@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/029-deep-loop-workflows/007-governance-consolidation",
+  "spec_folder": "deep-loops/029-deep-loop-workflows/007-governance-consolidation",
+  "parent_id": "deep-loops/029-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop governance consolidation",
+      "feature catalog playbook merge",
+      "cp- id collision mode qualify",
+      "deep-loop-workflows phase 007",
+      "governance-consolidation",
+      "deep loop merge implementation plan",
+      "deep loop merge tasks",
+      "deep loop merge verification checklist",
+      "supersede r1 consolidated governance root",
+      "per-mode feature catalog playbook intentional",
+      "cp- id collision moot per-mode partitioning",
+      "deep-loop-workflows phase 007 summary"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "governance",
+      "consolidation",
+      "feature",
+      "catalog",
+      "playbook",
+      "merge",
+      "collision",
+      "mode",
+      "qualify",
+      "deep-loop-workflows",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/skills/deep-loop-workflows/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Consolidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All five skills ship a featurecatalog and a manualtestingplaybook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council)",
+    "created_at": "2026-06-14T20:16:09.680Z",
+    "last_save_at": "2026-06-23T03:49:48.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f74079c268f9e82b102ba3b096c95b2b6ebae9f9adfdb3abb4c0f93d1825f7b8",
+    "source_doc_hashes": {
+      "spec.md": "1c83a6a220ebb6307d0666d6de673cee8efad7dd2c9297afdbd9139942783c65",
+      "plan.md": "8d68584eddc61f44e426dcacc5f0dd46abccbf5b19393e0406d282d315fcc68f",
+      "tasks.md": "c57e1ca1c7f366525fbc207b3f42eaebcdf50330a70d32309b433ccb00080179",
+      "checklist.md": "431596ede273b3ca746d0b4f689481601443a776086249e0dbd33d09908e34ce",
+      "decision-record.md": "6a5cb8a8a2a554b1d357708c7dd3dc676cd5a8ffdf692a14243b9ab76780ecbc",
+      "implementation-summary.md": "d61ad010c10ecaf4d7c5890c150a7ae81fdd801dd0b84875745be423d723d442"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
