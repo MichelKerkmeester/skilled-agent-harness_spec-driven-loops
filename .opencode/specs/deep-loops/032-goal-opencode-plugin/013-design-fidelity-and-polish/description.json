@@ -19,12 +19,10 @@
     "status",
     "set"
   ],
-  "lastUpdated": "2026-07-01T10:18:54.499Z",
+  "lastUpdated": "2026-07-01T14:44:36.501Z",
   "specId": "013",
   "folderSlug": "design-fidelity-and-polish",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

@@ -1,0 +1,311 @@
+{
+  "sessionId": "dr-goal-docs-audit-032-20260701-143644",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-is-opencode-commands-goal-opencode-md-still-the-live-command-filename-not-goal-m",
+      "inboxId": null,
+      "text": "Is `.opencode/commands/goal_opencode.md` still the live command filename (not `goal.md`), and does anything reference the old/wrong name?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-do-other-skills-own-skill-md-references-assets-cli-opencode-cli-claude-code-sk-c",
+      "inboxId": null,
+      "text": "Do other skills' own SKILL.md/references/assets (cli-opencode, cli-claude-code, sk-code, sk-prompt-models, system-skill-advisor's own SKILL.md, deep-loop-workflows, etc.) mention mk-goal.js/`/goal`/mk_goal, and are those mentions still accurate post-remediation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-do-any-repo-level-or-skill-level-readme-md-files-describe-the-goal-plugin-comman",
+      "inboxId": null,
+      "text": "Do any repo-level or skill-level README.md files describe the goal plugin/command, and are they stale on new env vars, `store_health` status field, `mutation` field, or command filename?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-is-env-reference-md-complete-for-the-3-new-env-vars-mk-goal-state-archive-retent",
+      "inboxId": null,
+      "text": "Is ENV_REFERENCE.md complete for the 3 new env vars (MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS, MK_GOAL_STATE_ACTIVE_RETENTION_DAYS, MK_GOAL_STATE_SWEEP_INTERVAL_MS)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-does-any-doc-still-claim-usage-limited-is-unimplemented-dead-now-that-phase-013-",
+      "inboxId": null,
+      "text": "Does any doc still claim `usage_limited` is unimplemented/dead now that phase 013 wired `recordProviderUsageLimit`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-does-any-doc-still-claim-goal-state-never-gets-cleaned-up-now-that-phase-014-add",
+      "inboxId": null,
+      "text": "Does any doc still claim goal-state never gets cleaned up now that phase 014 added `archiveGoalStateFile`/`pruneArchive`/`sweepOrphanedActiveStates`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-are-the-already-updated-docs-goal-plugin-md-system-spec-kit-skill-md-hook-system",
+      "inboxId": null,
+      "text": "Are the already-updated docs (goal_plugin.md, system-spec-kit SKILL.md, hook_system.md, feature_catalog entries, manual_testing_playbook entries, goal-prompting-runtime-specific.md) still internally accurate after cross-checking against the current mk-goal.js source?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-are-there-any-stale-references-to-old-function-names-old-status-fields-or-old-be",
+      "inboxId": null,
+      "text": "Are there any stale references to old function names, old status fields, or old behaviors anywhere else in the repo (grep sweep for mk-goal.js, mk_goal, goal_opencode, recordProviderUsageLimit, archiveGoalStateFile, pruneArchive, sweepOrphanedActiveStates)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-is-opencode-commands-goal-opencode-md-still-the-live-command-filename-not-goal-m",
+      "inboxId": null,
+      "text": "Is `.opencode/commands/goal_opencode.md` still the live command filename (not `goal.md`), and does anything reference the old/wrong name?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-do-other-skills-own-skill-md-references-assets-cli-opencode-cli-claude-code-sk-c",
+      "inboxId": null,
+      "text": "Do other skills' own SKILL.md/references/assets (cli-opencode, cli-claude-code, sk-code, sk-prompt-models, system-skill-advisor's own SKILL.md, deep-loop-workflows, etc.) mention mk-goal.js/`/goal`/mk_goal, and are those mentions still accurate post-remediation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-do-any-repo-level-or-skill-level-readme-md-files-describe-the-goal-plugin-comman",
+      "inboxId": null,
+      "text": "Do any repo-level or skill-level README.md files describe the goal plugin/command, and are they stale on new env vars, `store_health` status field, `mutation` field, or command filename?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-is-env-reference-md-complete-for-the-3-new-env-vars-mk-goal-state-archive-retent",
+      "inboxId": null,
+      "text": "Is ENV_REFERENCE.md complete for the 3 new env vars (MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS, MK_GOAL_STATE_ACTIVE_RETENTION_DAYS, MK_GOAL_STATE_SWEEP_INTERVAL_MS)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-does-any-doc-still-claim-usage-limited-is-unimplemented-dead-now-that-phase-013-",
+      "inboxId": null,
+      "text": "Does any doc still claim `usage_limited` is unimplemented/dead now that phase 013 wired `recordProviderUsageLimit`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-does-any-doc-still-claim-goal-state-never-gets-cleaned-up-now-that-phase-014-add",
+      "inboxId": null,
+      "text": "Does any doc still claim goal-state never gets cleaned up now that phase 014 added `archiveGoalStateFile`/`pruneArchive`/`sweepOrphanedActiveStates`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-are-the-already-updated-docs-goal-plugin-md-system-spec-kit-skill-md-hook-system",
+      "inboxId": null,
+      "text": "Are the already-updated docs (goal_plugin.md, system-spec-kit SKILL.md, hook_system.md, feature_catalog entries, manual_testing_playbook entries, goal-prompting-runtime-specific.md) still internally accurate after cross-checking against the current mk-goal.js source?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-are-there-any-stale-references-to-old-function-names-old-status-fields-or-old-be",
+      "inboxId": null,
+      "text": "Are there any stale references to old function names, old status fields, or old behaviors anywhere else in the repo (grep sweep for mk-goal.js, mk_goal, goal_opencode, recordProviderUsageLimit, archiveGoalStateFile, pruneArchive, sweepOrphanedActiveStates)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Do repo-level or skill-level `README.md` files describe the goal plugin/command and miss the new env vars, `store_health`, `mutation`, or filename?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `ENV_REFERENCE.md` complete for the three cleanup/archive env vars?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does any doc still claim `usage_limited` is unimplemented/dead or that goal-state never gets cleaned up?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do other skills' own `SKILL.md`, `references/`, and `assets/` mention `mk-goal.js`, `/goal`, or `mk_goal`, and are those mentions still accurate post-remediation?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the root README document the OpenCode command as `/goal_opencode`, or should it keep `/goal` but include a runtime-specific caveat pointing to the live command filename?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should archive README staleness be fixed in place, annotated as historical, or left untouched because it is review archive context?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "A later iteration should sweep `feature_catalog`, `manual_testing_playbook`, and `constitutional/` as distinct doc classes again for consistency, because this iteration focused primarily on skill docs and README surfaces.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `.opencode/plugins/README.md` remain only an entrypoint inventory, or should it be expanded because the root README points to it as the plugin contract?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the follow-up fix expand `.opencode/plugins/README.md`, or should the root README be changed to point at `goal_plugin.md` as the detailed contract while `.opencode/plugins/README.md` stays an inventory?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `.opencode/plugins/README.md:70` be corrected from \"Both plugins\" to wording that matches the five current entrypoints even if the `mk-goal` contract is documented elsewhere?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should iteration 10 sweep the distinct non-README doc classes requested by the strategy again: `feature_catalog`, `manual_testing_playbook`, and `constitutional/`?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should follow-up implementation expand `.opencode/plugins/README.md`, or retarget root `README.md` to `references/hooks/goal_plugin.md` as the detailed contract?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should old-name and old-behavior references inside archive/phase materials be fixed in place, annotated as historical, or left untouched?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Is `.opencode/commands/goal_opencode.md` still the live command filename (not `goal.md`), and does anything reference the old/wrong name?",
+    "Do other skills' own SKILL.md/references/assets (cli-opencode, cli-claude-code, sk-code, sk-prompt-models, system-skill-advisor's own SKILL.md, deep-loop-workflows, etc.) mention mk-goal.js/`/goal`/mk_goal, and are those mentions still accurate post-remediation?",
+    "Do any repo-level or skill-level README.md files describe the goal plugin/command, and are they stale on new env vars, `store_health` status field, `mutation` field, or command filename?",
+    "Is ENV_REFERENCE.md complete for the 3 new env vars (MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS, MK_GOAL_STATE_ACTIVE_RETENTION_DAYS, MK_GOAL_STATE_SWEEP_INTERVAL_MS)?",
+    "Does any doc still claim `usage_limited` is unimplemented/dead now that phase 013 wired `recordProviderUsageLimit`?",
+    "Does any doc still claim goal-state never gets cleaned up now that phase 014 added `archiveGoalStateFile`/`pruneArchive`/`sweepOrphanedActiveStates`?",
+    "Are the already-updated docs (goal_plugin.md, system-spec-kit SKILL.md, hook_system.md, feature_catalog entries, manual_testing_playbook entries, goal-prompting-runtime-specific.md) still internally accurate after cross-checking against the current mk-goal.js source?",
+    "Are there any stale references to old function names, old status fields, or old behaviors anywhere else in the repo (grep sweep for mk-goal.js, mk_goal, goal_opencode, recordProviderUsageLimit, archiveGoalStateFile, pruneArchive, sweepOrphanedActiveStates)?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 8,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 13,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.34,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/032-goal-opencode-plugin/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

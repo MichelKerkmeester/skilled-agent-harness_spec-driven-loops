@@ -29,7 +29,11 @@
       "goal opencode plugin",
       "slash goal command",
       "session goal injection",
-      "thread goals opencode"
+      "thread goals opencode",
+      "goal plugin documentation staleness",
+      "goal opencode plugin doc audit",
+      "mk-goal.js documentation gaps",
+      "goal_opencode.md filename references"
     ],
     "key_topics": [
       "goal",
@@ -41,9 +45,9 @@
       "injection",
       "thread",
       "goals",
-      "completion-condition",
-      "system",
-      "feature"
+      "documentation",
+      "staleness",
+      "doc"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -52,9 +56,22 @@
       ".opencode/commands/goal_opencode.md",
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
       ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "research/research.md",
       ".opencode/plugins/mk-spec-memory.js",
       ".opencode/commands/memory/learn.md",
-      "spec.md"
+      "references/hooks/goal_plugin.md",
+      ".opencode/plugins/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "constitutional/goal-prompting-runtime-specific.md",
+      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+      ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
+      ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md"
     ],
     "entities": [
       {
@@ -82,6 +99,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "mk-spec-memory.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-spec-memory.js",
@@ -94,9 +117,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-prompting-runtime-specific.md",
+        "kind": "doc",
+        "path": "constitutional/goal-prompting-runtime-specific.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": "feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
         "source": "derived"
       },
       {
@@ -134,21 +193,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Plugin Documentation Staleness Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Post Phases",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-01T13:41:05.421Z",
+    "last_save_at": "2026-07-01T17:23:56.982Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:de2eb75140c2761efefb1a6df6beac00f1d59be02900287d9d8c38e0910bfd08",
+    "source_fingerprint": "sha256:940d118ba786ebe6c7fd2d88dda3e4bcad583a5a12b79925ae37689aa44d7db7",
     "source_doc_hashes": {
-      "spec.md": "bae59f66142da87cef297a22878567e29a08fd60bec072bcf2077a6c31b026f4"
+      "spec.md": "bae59f66142da87cef297a22878567e29a08fd60bec072bcf2077a6c31b026f4",
+      "research/research.md": "e605621d84837840c64727d30b15da5a33fc3cef532236e825b8cae0d597a18c"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-01T09:40:41.560Z"
+    "last_active_at": "2026-07-01T17:23:56.982Z"
   }
 }

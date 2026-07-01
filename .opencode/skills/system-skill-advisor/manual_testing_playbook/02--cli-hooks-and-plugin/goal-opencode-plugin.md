@@ -26,7 +26,7 @@ Validate that `/goal` routes through the OpenCode plugin tools, persists per-ses
 - OpenCode plugin host can load `.opencode/plugins/mk-goal.js`.
 - `/goal` command exists at `.opencode/commands/goal_opencode.md`.
 - Use a disposable session or temporary `stateDir` so existing session goals are not overwritten.
-- Known limitation: live OpenCode-run tool invocation is under investigation; when unavailable, execute the plugin tool path directly and record the limitation as the runtime blocker.
+- Live OpenCode-run tool invocation is verified (an `opencode serve` run lists `mk_goal`/`mk_goal_status` and a live model turn persists per-session state); when a live session is unavailable in this run, execute the plugin tool path directly and record that as the fallback, not as an open blocker.
 
 ---
 
@@ -57,15 +57,17 @@ node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
 /goal clear
 ```
 
-4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state.
+4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state, including `mutation=created|refreshed|replaced` on `/goal set` and `store_health=` on status/set output.
 5. Verify `mk_goal_status` includes `injection_preview=` and that the preview contains `[active_goal:<goal-id>]` only while the goal is active.
 6. With `MK_GOAL_AUTONOMY` unset, confirm continuation is suppressed with `autonomy_disabled`.
 7. With `MK_GOAL_AUTONOMY=smoke`, confirm the decision is `would_fire` and no prompt is submitted.
-8. With `MK_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes, or document the live-runtime blocker if OpenCode-run invocation is unavailable.
+8. With `MK_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes; if a live OpenCode session is unavailable in this run, fall back to the plugin tool path directly (see §1).
 
 ### Expected Signals
 
 - `/goal` does not read or write `.opencode/skills/.goal-state` directly; all state access goes through `mk_goal` or `mk_goal_status`.
+- `/goal set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
+- Status/set output includes `store_health=no_active_goal` or `store_health=state_age_ms:<N>`.
 - Per-session JSON state is isolated by session id.
 - Passive injection is bounded and sanitized.
 - Supervisor verdicts map to durable goal state: `met` completes, `blocked` blocks, and ambiguous evidence remains active.

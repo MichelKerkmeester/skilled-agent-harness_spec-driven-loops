@@ -49,8 +49,20 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | `MK_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | Caps generated `goalPrompt`; values above 4000 are clamped. |
 | `MK_GOAL_MAX_INJECTION_CHARS` | `4800` | Caps the active-goal injection block. |
 | `MK_GOAL_MAX_EVIDENCE_CHARS` | `1200` | Caps verifier evidence retained in state. |
+| `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
+| `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `30` | Age threshold before an orphaned active-state file is swept and archived. |
+| `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
 
-## 5. Boundaries
+## 5. Output Fields
+
+`mk_goal_status` and `/goal set` responses expose these status fields in addition to the injection preview and prompt metadata:
+
+| Field | Values | Meaning |
+|---|---|---|
+| `store_health` | `no_active_goal`, `state_age_ms:<N>` | Diagnostic on the active-goal state file: absent, or its age in milliseconds. |
+| `mutation` | `created`, `refreshed`, `replaced` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal. |
+
+## 6. Boundaries
 
 - Keep `.opencode/commands/goal_opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `mk-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
@@ -58,7 +70,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
 - Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, or this plugin's load-time configuration.
 
-## 6. Verification
+## 7. Verification
 
 Run these checks after modifying goal-plugin behavior or docs that describe the plugin:
 
@@ -75,7 +87,7 @@ python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .opencode/plug
 
 For documentation-only changes under `system-spec-kit`, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
 
-## 7. Related References
+## 8. Related References
 
 - `references/config/hook_system.md` - cross-runtime hook and plugin transport map.
 - `feature_catalog/18--ux-hooks/goal-opencode-plugin.md` - current feature catalog entry.

@@ -656,6 +656,9 @@ Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugi
 | `MK_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_INJECTION_CHARS` | `4800` | number (positive int) | Maximum `[active_goal]` system-injection block length. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_EVIDENCE_CHARS` | `1200` | number (positive int) | Maximum verifier evidence retained in goal state. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived goal-state file is pruned. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `30` | number (positive int, days) | Age threshold before an orphaned active-state file is swept and archived. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-active-state sweep passes. | `.opencode/plugins/mk-goal.js` |
 
 Detailed operator guidance lives in `references/hooks/goal_plugin.md`.
 
@@ -769,4 +772,4 @@ export SPECKIT_LLM_REFORMULATION=false
 
 ---
 
-*Generated from source code analysis. Last updated: 2026-06-10.*
+*Generated from source code analysis. Last updated: 2026-07-01.*

@@ -8,17 +8,18 @@
     "completion-condition",
     "system"
   ],
-  "lastUpdated": "2026-07-01T12:49:13.345Z",
+  "lastUpdated": "2026-07-01T17:23:54.971Z",
   "specId": "032",
   "folderSlug": "goal-opencode-plugin",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops"
   ],
-  "memorySequence": 2,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "01-07-26_09-56__deep-review-cli-opencode-openai-gpt-5-5-fast-13.md",
-    "01-07-26_10-40__deep-review-cli-opencode-openai-gpt-5-5-fast-of.md"
+    "01-07-26_10-40__deep-review-cli-opencode-openai-gpt-5-5-fast-of.md",
+    "01-07-26_17-10__deep-research-10-forced-iterations-cli-opencode.md",
+    "01-07-26_17-10__deep-research-10-forced-iterations-cli-opencode.md",
+    "01-07-26_18-23__deep-review-10-forced-iterations-cli-opencode.md"
   ]
 }

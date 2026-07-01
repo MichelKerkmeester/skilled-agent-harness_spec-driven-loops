@@ -82,7 +82,7 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --fo
 node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 ```
 
-**OpenCode plugin note.** The Skill Advisor bridge plugin injects routing advice at prompt time. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `mk_goal` / `mk_goal_status`; active continuation remains opt-in through `MK_GOAL_AUTONOMY`, with live OpenCode-run tool invocation still under investigation.
+**OpenCode plugin note.** The Skill Advisor bridge plugin injects routing advice at prompt time. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `mk_goal` / `mk_goal_status`; active continuation remains opt-in through `MK_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `mk_goal`/`mk_goal_status` in the session tool set and a live model turn persists per-session state.
 
 ---
 

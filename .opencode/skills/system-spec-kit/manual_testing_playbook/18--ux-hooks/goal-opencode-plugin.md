@@ -20,7 +20,7 @@ This scenario validates that the local `/goal` OpenCode plugin owns session-goal
 - Real user request: `Set a goal to finish the goal plugin docs integration, then show me the active goal status and the injection preview.`
 - Prompt: `Validate the /goal plugin active-goal injection and status surface.`
 - Expected execution process: Restart OpenCode after plugin edits, run `/goal set <objective>`, run `/goal show`, inspect the status envelope, and compare it with the plugin unit tests when a direct runtime check is unavailable.
-- Expected signals: `STATUS=OK ACTION=set`, `STATUS=OK ACTION=show`, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, and an injection preview containing `[active_goal:<goalId>]` plus `goal_prompt:`.
+- Expected signals: `STATUS=OK ACTION=set`, `STATUS=OK ACTION=show`, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, `mutation=created|refreshed|replaced` on set, `store_health=` on status/set output, and an injection preview containing `[active_goal:<goalId>]` plus `goal_prompt:`.
 - Desired user-visible outcome: A concise pass/fail verdict with the exact status lines or unit-test evidence.
 - Pass/fail: PASS if tool status and injection preview include the active goal plus prompt metadata; FAIL if `/goal` reads state directly from command markdown, omits `goal_prompt`, or requires MCP daemon state.
 
@@ -43,7 +43,7 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 
 ### Expected
 
-Status output includes active goal state, `goal_prompt=`, prompt metadata, and an injection preview containing `[active_goal:<goalId>]` and `goal_prompt:`.
+Status output includes active goal state, `goal_prompt=`, prompt metadata, `mutation=created|refreshed|replaced` on set, `store_health=` on status/set output, and an injection preview containing `[active_goal:<goalId>]` and `goal_prompt:`.
 
 ### Evidence
 
@@ -52,7 +52,7 @@ Capture the `/goal show` status envelope or the two Node test transcripts.
 ### Pass / Fail
 
 - **Pass**: active goal state, prompt metadata, and injection preview are visible and owned by plugin tools.
-- **Fail**: command markdown reads state directly, status lacks prompt metadata, or injection preview omits `goal_prompt:`.
+- **Fail**: command markdown reads state directly, status lacks prompt metadata, set output omits `mutation=`, status/set output omits `store_health=`, or injection preview omits `goal_prompt:`.
 
 ### Failure Triage
 

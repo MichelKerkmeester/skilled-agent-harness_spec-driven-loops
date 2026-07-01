@@ -57,6 +57,18 @@ async function main() {
     const registeredGoal = await __test.readGoal(registeredCtx.sessionID, opts);
     assert.ok(registeredGoal && registeredGoal.objective === 'REGISTERED_TOOL_OBJ');
 
+    const registeredRefresh = await plugin.tool.mk_goal.execute(
+      { action: 'set', objective: 'REGISTERED_TOOL_OBJ' },
+      registeredCtx,
+    );
+    assert.match(String(registeredRefresh), /mutation=refreshed/, 're-setting the same objective reports mutation=refreshed');
+
+    const registeredReplace = await plugin.tool.mk_goal.execute(
+      { action: 'set', objective: 'REGISTERED_TOOL_OBJ_REPLACED' },
+      registeredCtx,
+    );
+    assert.match(String(registeredReplace), /mutation=replaced/, 'setting a different objective reports mutation=replaced');
+
     const commandPath = join(opencodeRoot, 'commands', 'goal_opencode.md');
     const commandDoc = await readFile(commandPath, 'utf8');
     assert.match(commandDoc, /^# \/goal/m);

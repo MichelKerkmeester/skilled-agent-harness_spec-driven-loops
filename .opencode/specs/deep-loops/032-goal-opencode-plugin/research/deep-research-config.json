@@ -1,0 +1,101 @@
+{
+  "topic": "Investigate whether related skill documentation (SKILL.md files, references/, assets/) and README files (skill READMEs, code READMEs) across the repo describe now-stale behavior for the /goal OpenCode plugin, following the phases 010-014 remediation completed in this session plus the goal_opencode.md filename correction.\n\nContext: .opencode/plugins/mk-goal.js gained new functions (recordProviderUsageLimit, archiveGoalStateFile, pruneArchive, sweepOrphanedActiveStates), new env vars (MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS, MK_GOAL_STATE_ACTIVE_RETENTION_DAYS, MK_GOAL_STATE_SWEEP_INTERVAL_MS), a new store_health status field, a mutation field on /goal set output, hardened sanitizer/redaction, and the command file is now finally named .opencode/commands/goal_opencode.md (NOT goal.md -- confirm this is still the live name at execution time).\n\nAlready-updated docs this session (do not re-flag, but DO verify they are still accurate): .opencode/skills/system-spec-kit/references/hooks/goal_plugin.md, .opencode/skills/system-spec-kit/SKILL.md, .opencode/skills/system-spec-kit/references/config/hook_system.md, .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md + feature_catalog/18--ux-hooks/goal-opencode-plugin.md, .opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md, .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md + manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md, .opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md.\n\nFind what's still missed: (1) other skills' own SKILL.md/references/assets that mention mk-goal.js, /goal, mk_goal, or the goal plugin even in passing (e.g. cli-opencode, cli-claude-code, sk-code, sk-prompt-models, system-skill-advisor's own SKILL.md, deep-loop-workflows) and whether their mentions are still accurate; (2) any repo-level or skill-level README.md files (root README, .opencode/plugins/README.md if one exists, per-skill README.md files) that describe the goal plugin/command and might be stale on the new env vars, status fields, or command filename; (3) ENV_REFERENCE.md's completeness for the 3 new env vars; (4) any doc that still says 'usage_limited is unimplemented/dead' now that phase 013 wired it, or 'goal-state never gets cleaned up' now that phase 014 added archive/sweep.\n\nANTI-CONVERGENCE: target exactly 10 iterations; do not converge early unless every related-skill/README avenue is genuinely exhausted. Under convergence pressure before iteration 10, rotate to an unexamined skill directory or doc class (SKILL.md vs references/ vs assets/ vs README.md vs ENV_REFERENCE.md vs feature_catalog vs manual_testing_playbook vs constitutional) instead of stopping.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "minIterations": 10,
+  "convergenceMode": "default",
+  "minIdeaObservations": 2,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/deep-loops/032-goal-opencode-plugin",
+  "createdAt": "2026-07-01T14:36:44Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "dr-goal-docs-audit-032-20260701-143644",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

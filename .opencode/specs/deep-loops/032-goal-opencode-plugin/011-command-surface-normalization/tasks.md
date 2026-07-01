@@ -63,7 +63,7 @@ _memory:
 ## Phase 2: Implementation
 
 <!-- agent: direct | deps: [T002, T003] | touched-files: [".opencode/commands/"] -->
-- [x] T004 Rename the command file to the final canonical name (plain `goal.md` unless T003 surfaces a reason to pick differently) (.opencode/commands/)
+- [x] T004 Rename the command file to the final canonical name (plain `goal.md` unless T003 surfaces a reason to pick differently) (.opencode/commands/) — **superseded same-day**: operator confirmed `.opencode/commands/goal_opencode.md` as the final name instead; see `implementation-summary.md`'s Amendment note.
 <!-- agent: direct | deps: [T004] | touched-files: ["032-goal-opencode-plugin/003-goal-command/spec.md", "032-goal-opencode-plugin/003-goal-command/plan.md", "032-goal-opencode-plugin/003-goal-command/tasks.md", "032-goal-opencode-plugin/003-goal-command/implementation-summary.md"] -->
 - [x] T005 [P] Update all filename references in phase 003's docs (032-goal-opencode-plugin/003-goal-command/*.md)
 <!-- agent: direct | deps: [T004] | touched-files: ["032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/tasks.md"] -->
@@ -106,7 +106,7 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Repo-wide stale-reference grep returns zero hits (T014)
+- [x] Repo-wide stale-reference grep returns zero hits (T014) — as of this phase's own completion; the file was renamed again after, see the Amendment note in `implementation-summary.md`
 - [x] Test suite passes on a fresh run (T015)
 <!-- /ANCHOR:completion -->
 

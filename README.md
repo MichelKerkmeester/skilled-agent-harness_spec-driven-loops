@@ -1228,9 +1228,10 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 - Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
 
 **Goal**
-- `/goal <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
+- Claude Code: use the built-in native `/goal <condition>` — do not route through `mk_goal` (that tool does not exist in Claude Code sessions)
+- OpenCode: `/goal_opencode <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
 - Backed by the `mk-goal` OpenCode plugin: per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
-- Autonomous continuation is **default-off** and gated (caps, cooldown, kill-switch). See `.opencode/plugins/README.md` for the plugin contract
+- Autonomous continuation is **default-off** and gated (caps, cooldown, kill-switch). See `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` for the plugin contract (OpenCode only)
 
 ---
 
