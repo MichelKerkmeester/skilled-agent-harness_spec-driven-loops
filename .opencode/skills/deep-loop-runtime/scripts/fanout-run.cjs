@@ -430,6 +430,7 @@ const WAIT_CHECKPOINT_FILENAME = 'orchestration-wait-checkpoint.json';
 const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
 const WAIT_SLEEP_CHUNK_MS = 200;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
+const DEFAULT_POST_EXIT_GRACE_MS = 5 * 60 * 1000;
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
@@ -998,6 +999,23 @@ function normalizeProgressHeartbeatMs(seconds) {
   return Math.max(1, Math.floor(value * 1000));
 }
 
+function normalizePostExitGraceMs(rawConfig, progressHeartbeatMs = 0) {
+  const explicit = readRawConfigNumber(rawConfig, [
+    'postExitGraceMs',
+    'post_exit_grace_ms',
+    'postSubprocessExitGraceMs',
+    'post_subprocess_exit_grace_ms',
+    'orchestratorPostExitGraceMs',
+    'orchestrator_post_exit_grace_ms',
+  ], 'postExitGraceMs');
+  if (explicit !== null) return explicit;
+
+  const heartbeatDerived = Number.isFinite(progressHeartbeatMs) && progressHeartbeatMs > 0
+    ? progressHeartbeatMs * 2
+    : 0;
+  return Math.max(DEFAULT_POST_EXIT_GRACE_MS, heartbeatDerived);
+}
+
 function slotDurationMsFromHrtime(hrStart) {
   const [seconds, nanoseconds] = process.hrtime(hrStart);
   return Math.max(0, (seconds * 1000) + (nanoseconds / 1e6));
@@ -1126,6 +1144,9 @@ function runLineageProcess(command, cmdArgs, opts) {
       return;
     }
     activeLineageProcesses.add(child);
+    if (typeof opts.onSpawn === 'function') {
+      opts.onSpawn({ pid: child.pid });
+    }
 
     let stdout = '';
     let stdoutBytes = 0;
@@ -1176,6 +1197,9 @@ function runLineageProcess(command, cmdArgs, opts) {
       clearTimeout(timer);
       opts.abortSignal?.removeEventListener?.('abort', abortHandler);
       const effectiveSignal = timedOut ? 'SIGTERM' : signal;
+      if (typeof opts.onExit === 'function') {
+        opts.onExit({ status: timedOut ? null : code, signal: effectiveSignal, pid: child.pid, exitedAtMs: Date.now() });
+      }
       resolvePromise({
         status: timedOut ? null : code,
         signal: effectiveSignal,
@@ -1328,6 +1352,7 @@ async function main() {
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
   const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
+  const postExitGraceMs = normalizePostExitGraceMs(rawGuardConfig, progressHeartbeatMs);
   const slotIntervalMs = progressHeartbeatMs;
 
   logFlatPoolGuardRejections({
@@ -1388,6 +1413,7 @@ async function main() {
 
   const lineageSnapshots = new Map();
   const lineageSlotAccounting = new Map();
+  const lineageProcessLiveness = new Map();
   let latestGauges = { lag: cliLineages.length, pending: cliLineages.length, failed: 0 };
   let stoppedSummaryWritten = false;
 
@@ -1431,7 +1457,9 @@ async function main() {
     concurrency: fanoutConfig.concurrency,
     maxRetries: fanoutConfig.maxRetries,
     lagCeilingMs: fanoutConfig.lagCeilingMs,
+    postExitGraceMs,
     initialRetryCounts,
+    getAttemptLiveness: (attempt) => lineageProcessLiveness.get(`${attempt.label}:${attempt.attempt}`) ?? { alive: true },
     onEvent: (event) => {
       const enrichedEvent = decorateSlotAccountingEvent(event, lineageSlotAccounting);
       updateLineageSnapshot(lineageSnapshots, enrichedEvent);
@@ -1440,6 +1468,8 @@ async function main() {
     },
     worker: async (lineage, context) => {
       const hrStart = process.hrtime();
+      const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
+      const livenessKey = `${lineage.label}:${attempt}`;
       const lineageDir = path.join(lineagesDir, lineage.label);
       const stateDir = path.join(lineageDir, '.executor-state');
       fs.mkdirSync(lineageDir, { recursive: true });
@@ -1566,6 +1596,12 @@ async function main() {
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
           abortSignal: context.signal,
+          onSpawn: ({ pid }) => {
+            lineageProcessLiveness.set(livenessKey, { alive: true, pid });
+          },
+          onExit: ({ pid, exitedAtMs }) => {
+            lineageProcessLiveness.set(livenessKey, { alive: false, pid, exitedAtMs });
+          },
           ...(typeof input === 'string' ? { input } : {}),
         });
       } finally {
@@ -1695,6 +1731,7 @@ module.exports = {
   computeLineageBudgetUpperBound,
   evaluateLineageBudgetCap,
   normalizeProgressHeartbeatMs,
+  normalizePostExitGraceMs,
   normalizeLineageBudgetGuards,
   normalizeStallWatchdogMs,
   computeSkippedCount,

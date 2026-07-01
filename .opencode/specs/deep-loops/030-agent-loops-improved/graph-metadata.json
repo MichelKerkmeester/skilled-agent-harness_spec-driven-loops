@@ -12,7 +12,8 @@
     "deep-loops/030-agent-loops-improved/006-ux-observability-automation",
     "deep-loops/030-agent-loops-improved/007-testing",
     "deep-loops/030-agent-loops-improved/008-loop-systems-remediation",
-    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation"
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+    "deep-loops/030-agent-loops-improved/010-documentation-truth-audit"
   ],
   "manual": {
     "depends_on": [],
@@ -41,7 +42,7 @@
       "deep-loop-runtime"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "001-reference-research/research/research.md",
@@ -113,12 +114,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -132,6 +127,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,16 +176,16 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-01T12:49:29.053Z",
+    "last_save_at": "2026-07-01T18:45:10.873Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:88a1fb79d3752d5f5189582c1ee6776cf7fc0706e69b6869f1108bfc192220a2",
+    "source_fingerprint": "sha256:8a0310e9a572aac5563168caa03bf0e9477f0a4ab95c6b73cf61a695fa85c18a",
     "source_doc_hashes": {
-      "spec.md": "cc7dc9d1b309e59e320f186c7fac59b3327ca5bf50bd58e7f732d478a41ee9d7",
+      "spec.md": "a1bd7717d98c4402ec92427503e9cb7010814d11daf9b59cabb85dc0ca4854f3",
       "research/research.md": "73c2699967a24c01361151391beeff2996efff5e553a2b40283697a8d860b6d6"
     },
     "last_active_child_id": null,

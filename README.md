@@ -30,7 +30,7 @@
 - [OVERVIEW](#1--overview)
 - [QUICK START](#2--quick-start)
 - [FEATURES](#3--features)
-  - [SPEC KIT DOCUMENTATION](#spec-kit-documentation)
+  - [SPEC KIT FRAMEWORK](#spec-kit-framework)
   - [MEMORY ENGINE](#memory-engine)
   - [CODE GRAPH](#code-graph)
   - [SKILL ADVISOR](#skill-advisor)
@@ -38,6 +38,7 @@
   - [SKILLS LIBRARY](#skills-library)
   - [AGENT NETWORK](#agent-network)
   - [COMMANDS](#commands)
+  - [GOAL PLUGIN](#goal-plugin)
   - [CODE MODE MCP](#code-mode-mcp)
 - [CONFIGURATION](#4--configuration)
 - [FAQ](#5--faq)
@@ -205,7 +206,7 @@ The standalone `mk_code_index` MCP server indexes **your project's production co
 
 ## 3. FEATURES
 
-### 📋 Spec Kit Documentation
+### 📋 Spec Kit Framework
 
 The Spec Kit enforces structured spec folders for every file-modifying conversation. Gate 3 requires a spec folder answer before any file modification begins (only typo/whitespace fixes under 5 characters are exempt).
 
@@ -815,6 +816,7 @@ One engine under every loop, so they all work the same way and you learn the wor
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
+- **Bounded autonomy:** cross-AI fan-out lineages can run with elevated CLI permissions in their own sandboxed workdir; a stall watchdog, a per-lineage cost cap and a lag-ceiling guard bound and observe those subprocesses so autonomy stays supervised, not unattended
 - **Self-contained and MCP-free:** the runtime declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`, with no reach-ins into a sibling skill. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts
 
 &nbsp;
@@ -1228,10 +1230,17 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 - Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
 
 **Goal**
-- Claude Code: use the built-in native `/goal <condition>` — do not route through `mk_goal` (that tool does not exist in Claude Code sessions)
-- OpenCode: `/goal_opencode <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
-- Backed by the `mk-goal` OpenCode plugin: per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
-- Autonomous continuation is **default-off** and gated (caps, cooldown, kill-switch). See `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` for the plugin contract (OpenCode only)
+- Sets a session completion condition the agent keeps working toward across turns. See the [Goal Plugin](#goal-plugin) section above for the full contract.
+
+---
+
+### 🎯 Goal Plugin
+
+Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
+- **Claude Code:** use the built-in native `/goal <condition>` — do not route through `mk_goal` (that tool does not exist in Claude Code sessions)
+- **OpenCode:** `/goal_opencode <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
+- **Backed by the `mk-goal` OpenCode plugin:** per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
+- **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` for the plugin contract (OpenCode only)
 
 ---
 

@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the existing `PLACEHOLDER_FILLED` rule implementation as the pattern reference
+- [x] T001 Read `check-comment-hygiene.sh` (the standalone-rule pattern from child 003) as the structural reference instead of `PLACEHOLDER_FILLED` (which is a Node-orchestrator-internal check, not a standalone registry rule) — correctly matched the actually-relevant pattern
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Implement `SCAFFOLD_NEVER_TOUCHED`: check title `[template:`, `packet_pointer: "scaffold/`, `last_updated_by: "template-author"` against a Complete-status claim
-- [ ] T003 Wire the new rule into the severity table and summary output alongside existing rules
+- [x] T002 Implemented `check-scaffold-never-touched.sh`: checks `plan.md`/`tasks.md`/`implementation-summary.md`/`checklist.md` for title `[template:`, `packet_pointer: "scaffold/`, or `last_updated_by: "template-author"`, flagged only when the folder's own `spec.md` status is Complete-prefixed. Correctly avoids false-positiving on non-Complete folders (verified against an existing Review-status fixture that still legitimately has `[template:...]` markers)
+- [x] T003 Registered in `validator-registry.json` alongside `COMMENT_HYGIENE_MARKER` — no `validate.sh` edit needed this time, since the `SPECKIT_RULES` routing fix from child 003 already generically covers new standalone rules
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,10 +57,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Test fixture: scaffold-signature + Complete claim → new rule fails
-- [ ] T005 Test fixture: genuinely complete folder → new rule passes
-- [ ] T006 Confirm existing rules' behavior is unchanged (no regressions in validate.sh's own test coverage, if any)
-- [ ] T007 Run validate.sh against `008-loop-systems-remediation` (post child-007 fix) — confirm it now passes the new rule
+- [x] T004 Fixture `072-scaffold-never-touched-violation` added: scaffold-signature + Complete claim → fails, independently re-confirmed
+- [x] T005 Fixture `073-scaffold-never-touched-clean` added: genuinely complete folder → passes, independently re-confirmed
+- [x] T006 Ran the full extended validation harness, independently re-run: **112/112 pass**, zero regressions to any existing rule
+- [x] T007 Ran the new rule against `008-loop-systems-remediation` (parent-level docs), independently re-confirmed: **passes** (this orchestrating session's earlier fix of 008's own plan.md/tasks.md/implementation-summary.md, done just before this dispatch, is exactly what makes this pass). **New finding from this same check**: one of 008's own 7 children, `003-model-benchmark-reducer-ledger`, still has genuine scaffold markers in all 3 of its own docs — confirmed real, evidence-based proof the new detector works, correctly out of scope to fix in this phase (same class as the many other pre-existing, deliberately-deferred instances across phases 002-007)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-All 7 tasks complete; new rule catches the exact drift class from F-010; no regressions to existing rules.
+All 7 tasks complete; new rule catches the exact drift class from F-010, verified against both synthetic fixtures and a real newly-discovered live instance (008's own child 003); no regressions to existing rules. **Important caveat discovered and documented**: the rule is only reachable via `SPECKIT_RULES=SCAFFOLD_NEVER_TOUCHED` (or `SPECKIT_VALIDATE_LEGACY=1`) — the default Node-orchestrator validate.sh path does not dynamically read the shell rule registry at all, so this new rule (and `COMMENT_HYGIENE_MARKER` from child 003) is invisible to the vast majority of real invocations. This is a pre-existing architectural gap, not something introduced by this child, and fixing it (porting registry rules into the Node orchestrator, or making the orchestrator dynamically discover them) is a separate, larger undertaking outside this phase's scope.
 <!-- /ANCHOR:completion -->
 
 ---

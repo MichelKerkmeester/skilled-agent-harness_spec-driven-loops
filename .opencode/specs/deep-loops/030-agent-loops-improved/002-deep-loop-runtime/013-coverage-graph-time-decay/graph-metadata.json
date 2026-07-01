@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Old FINDING/SOURCE nodes accumulate in the coverage graph and continue to exert full convergence force long after their evidence is stale; this causes premature stop signals on runs that revisit old territory",
     "created_at": "2026-06-28T14:02:01Z",
-    "last_save_at": "2026-06-30T14:53:29.760Z",
+    "last_save_at": "2026-07-01T15:47:37.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:754c3cbc6abfe34e7d6d142da73efaea5b52d076514d05a7bb9b01950da8ecdb",
+    "source_fingerprint": "sha256:e4e3a7b697430c32a737fbdd48144b8d930a4cd5654cae5597720a58ce7f1cf8",
     "source_doc_hashes": {
-      "spec.md": "15732b5d05bbcff28da8067e3051f2505d6e9879c8856ab23438403bd3e0612d",
+      "spec.md": "bd86efe4204738438a37e843f8edcb9f22cd5c267079e935cd421910196eabde",
       "plan.md": "49f23afc3b0b9d17ebeacabc587aa64dc3ab5a931fd5120993ea971b01d6e4b0",
       "tasks.md": "74a68fea3b27b09587f30651f526c9f8d39153f1a623000e8450fa6be9c50614",
       "implementation-summary.md": "ee8fbf490e40cb423e1df517c184ec6cc9998e13458cd66d47a36a424c6a794c"

@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/009-loop-quality-benchmark",
   "description": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better",
   "keywords": [
@@ -15,10 +14,12 @@
     "candidate",
     "better"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.396Z",
+  "lastUpdated": "2026-07-01T15:48:15.076Z",
   "specId": "009",
   "folderSlug": "loop-quality-benchmark",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "003-deep-loop-workflows"

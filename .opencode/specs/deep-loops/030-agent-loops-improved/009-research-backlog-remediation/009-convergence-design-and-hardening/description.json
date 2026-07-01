@@ -11,7 +11,7 @@
     "20260701t071133z-gen1",
     "3-4"
   ],
-  "lastUpdated": "2026-07-01T14:25:31.789Z",
+  "lastUpdated": "2026-07-01T15:48:14.186Z",
   "specId": "009",
   "folderSlug": "convergence-design-and-hardening",
   "parentChain": [
@@ -22,6 +22,5 @@
     "009-research-backlog-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

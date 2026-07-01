@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
   "description": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across",
   "keywords": [
@@ -20,10 +19,12 @@
     "literals",
     "across"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.924Z",
+  "lastUpdated": "2026-07-01T15:48:20.103Z",
   "specId": "005",
   "folderSlug": "lifecycle-taxonomy-guards",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

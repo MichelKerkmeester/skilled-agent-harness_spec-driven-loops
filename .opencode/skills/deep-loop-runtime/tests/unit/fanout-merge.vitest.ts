@@ -13,6 +13,7 @@ const {
   mergeReviewRegistries,
   buildAttributionMd,
   reconstructReviewRegistryFromState,
+  reconstructResearchRegistryFromState,
   normalizeRegistrySchema,
 } = require('../../scripts/fanout-merge.cjs') as {
   mergeResearchRegistries: (
@@ -28,6 +29,10 @@ const {
     stateRecords: Array<Record<string, unknown>>,
     label: string,
   ) => { openFindings: unknown[]; resolvedFindings: unknown[]; findingsBySeverity: Record<string, number>; _reconstructed: true } | null;
+  reconstructResearchRegistryFromState: (
+    stateRecords: Array<Record<string, unknown>>,
+    label: string,
+  ) => { keyFindings: unknown[]; metrics: Record<string, number>; _reconstructed: true } | null;
   normalizeRegistrySchema: (
     registry: Record<string, unknown> | null,
     opts: { canonicalKey: string; aliases: Record<string, string>; lineage: string },
@@ -752,6 +757,27 @@ describe('reconstructReviewRegistryFromState — leaf-only lineage fallback', ()
   });
 });
 
+describe('reconstructResearchRegistryFromState — leaf-only lineage fallback', () => {
+  it('rebuilds a keyFindings registry from state-log findings when no registry file exists', () => {
+    const stateRecords = [
+      { type: 'iteration', run: 2, findingsCount: 2, findings: ['cache TTL is never refreshed', 'retry budget masks failures'], newInfoRatio: 0.8 },
+    ];
+    const registry = reconstructResearchRegistryFromState(stateRecords as never, 'glm');
+    expect(registry).not.toBeNull();
+    expect(registry!.keyFindings).toHaveLength(2);
+    expect(registry!.metrics).toMatchObject({ iterationsCompleted: 1, keyFindings: 2, convergenceScore: 0.8 });
+    expect(registry!.keyFindings[0]).toMatchObject({ title: 'cache TTL is never refreshed', addedAtIteration: 2, _lineages: ['glm'] });
+  });
+
+  it('returns null when the state log carries no findings, so the lineage stays skipped', () => {
+    const registry = reconstructResearchRegistryFromState(
+      [{ type: 'iteration', run: 1, findingsCount: 0, findings: [] }] as never,
+      'glm',
+    );
+    expect(registry).toBeNull();
+  });
+});
+
 describe('fanout-merge.cjs — script', () => {
   it('exits 0 with ok when no lineages directory exists', async () => {
     const baseDir = makeTempDir('fanout-merge-empty-');
@@ -827,5 +853,32 @@ describe('fanout-merge.cjs — script', () => {
     const merged = JSON.parse(readFileSync(join(baseDir, 'deep-research-findings-registry.json'), 'utf8'));
     expect(merged.keyFindings).toHaveLength(1);
     expect(merged.metrics.keyFindings).toBe(1);
+  });
+
+  it('reconstructs a missing research registry from deep-research-state.jsonl during merge', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-reconstruct-');
+    const lineagesDir = join(baseDir, 'lineages');
+    const linADir = join(lineagesDir, 'glm');
+    mkdirSync(linADir, { recursive: true });
+    writeFileSync(
+      join(linADir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 35, findingsCount: 1, findings: ['synthesis event can lie about missing artifacts'], newInfoRatio: 0.6 })}\n`,
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'deep-research-findings-registry.json'), 'utf8'));
+    expect(merged.keyFindings).toHaveLength(1);
+    expect(merged.keyFindings[0]).toMatchObject({
+      title: 'synthesis event can lie about missing artifacts',
+      _lineages: ['glm'],
+    });
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload).toMatchObject({ merged_lineages: 1, skipped_no_registry: 0, key_findings: 1 });
   });
 });

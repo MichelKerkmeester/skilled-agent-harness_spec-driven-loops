@@ -196,7 +196,7 @@
     ],
     "causal_summary": "All reducers and fan-out callers invoke the atomic write unconditionally, producing redundant whole-snapshot rewrites even when state has not changed — amplifying I/O across every iteration",
     "created_at": "2026-06-28T14:01:51Z",
-    "last_save_at": "2026-06-30T14:53:29.730Z",
+    "last_save_at": "2026-07-01T15:47:37.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66bd1f5e7572649b65070c07f1b191d62a6d176302ce1687564e843e387dfb8d",
+    "source_fingerprint": "sha256:8ab42530d49bf93fb6ee02290ed95dd2b60344079d68518070c99fe8a9bb922e",
     "source_doc_hashes": {
-      "spec.md": "ae1d45be7478a6bd333eab8df903711d2a42ae22039d93f78d0a46b515bc4d89",
+      "spec.md": "ec1b21941bcdc019c10e4423d37819f77d0941f4f033c9c4312203a8250067a9",
       "plan.md": "d373cea7ede3232b8ed6808a771796df5a32d8bbc06bbf81dd02b2b0ea104303",
       "tasks.md": "09835286d5c209617a181f322073b8c4927a93ee4ae2acd43137211e50d43ae6",
       "implementation-summary.md": "d36fc91f11a235cde1700515efb1775dd77f36890083305740fe6db97454261a"

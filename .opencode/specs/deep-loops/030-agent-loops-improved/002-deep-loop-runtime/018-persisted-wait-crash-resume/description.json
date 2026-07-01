@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume",
   "description": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed",
   "keywords": [
@@ -17,10 +16,12 @@
     "remaining",
     "delay"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.984Z",
+  "lastUpdated": "2026-07-01T15:48:19.641Z",
   "specId": "018",
   "folderSlug": "persisted-wait-crash-resume",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

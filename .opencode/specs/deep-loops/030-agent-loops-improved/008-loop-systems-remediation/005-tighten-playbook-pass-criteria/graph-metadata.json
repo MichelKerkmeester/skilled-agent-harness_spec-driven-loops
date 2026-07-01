@@ -36,8 +36,8 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -45,15 +45,15 @@
     ],
     "entities": [
       {
-        "name": "single-loop-telemetry-heartbeat.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
-        "source": "derived"
-      },
-      {
         "name": "speckit-autopilot-lifecycle.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "single-loop-telemetry-heartbeat.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
     "created_at": "2026-06-29T10:43:20Z",
-    "last_save_at": "2026-06-30T14:53:29.844Z",
+    "last_save_at": "2026-07-01T15:47:37.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

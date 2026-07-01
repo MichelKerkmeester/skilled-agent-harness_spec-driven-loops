@@ -24,6 +24,14 @@
     "description": "Rejects ephemeral finding markers inside HTML comments in authored spec documents."
   },
   {
+    "rule_id": "SCAFFOLD_NEVER_TOUCHED",
+    "aliases": ["SCAFFOLD_MARKERS", "TEMPLATE_SCAFFOLD"],
+    "script_path": "rules/check-scaffold-never-touched.sh",
+    "severity": "error",
+    "category": "authored_template",
+    "description": "Rejects scaffold-signature markers in required docs when spec.md claims Complete status."
+  },
+  {
     "rule_id": "SECTIONS_PRESENT",
     "aliases": ["SECTIONS"],
     "script_path": "rules/check-sections.sh",

@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute",
   "description": "On executor failure the fallback router retries flat without knowing the failure kind, routing all failures identically and producing no trace of the",
   "keywords": [
@@ -18,10 +17,12 @@
     "producing",
     "trace"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.336Z",
+  "lastUpdated": "2026-07-01T15:48:19.298Z",
   "specId": "015",
   "folderSlug": "fallback-router-typed-reroute",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

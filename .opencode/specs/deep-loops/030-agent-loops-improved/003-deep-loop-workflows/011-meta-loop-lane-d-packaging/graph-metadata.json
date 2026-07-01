@@ -41,10 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
       ".opencode/commands/deep/ai-system-improvement.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
       ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
       "spec.md",
@@ -53,18 +53,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "packaging_config.schema.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "loop_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
-        "source": "derived"
-      },
       {
         "name": "deep-loop-runtime.json",
         "kind": "config",
@@ -75,6 +63,18 @@
         "name": "ai-system-improvement.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/ai-system-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "packaging_config.schema.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
     "created_at": "2026-06-28T14:02:14Z",
-    "last_save_at": "2026-06-30T14:53:29.802Z",
+    "last_save_at": "2026-07-01T15:47:37.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe70b9f886df73a56142a9c6684a82cd4391cad7713017ebaeb694b0e320a027",
+    "source_fingerprint": "sha256:334481eb14693e0b01445121002bbbc89049c46300944f0718057687ca0989ae",
     "source_doc_hashes": {
-      "spec.md": "45eddb1cb00d442d2a63d57f5cd82d97d9a00cfc7d333bda26453e2b9b264ab5",
+      "spec.md": "ef786084cbe9caf6260e51c9ada7d663072999731fb73b2f2f9dea1f113e64a1",
       "plan.md": "56f3491355529708581511ae394639e59972d985cad2b7feae9220e11a7f4b4c",
       "tasks.md": "f8876ff89f59135c70de090a61703c5121a897d04e0649c3845f4c9c689d1f5a",
       "implementation-summary.md": "0a2e1d00b7ccd6180970451eaac27627f8d04a58cf3a2ce20a1b81c58aa195d3"

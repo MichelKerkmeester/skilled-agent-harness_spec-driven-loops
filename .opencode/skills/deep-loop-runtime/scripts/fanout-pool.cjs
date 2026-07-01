@@ -31,6 +31,7 @@ const LAG_CEILING_ACTION_ABORT_REQUEUE = 'abort-requeue';
 const WAVE_ASSIGNMENT_MODEL = 'wave';
 const WAVE_PLANNER_STATUS_DORMANT = 'dormant';
 const WAVE_PLANNER_DORMANT_MESSAGE = 'wave planner is dormant until conflict-safety substrate is available';
+const POST_EXIT_ORPHAN_REASON = 'orphaned_after_subprocess_exit';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -146,11 +147,55 @@ function buildFailureClassRollup(results) {
 
 function normalizeError(error) {
   const classification = classifyLineageFailure(error);
+  const reason = error && typeof error === 'object' && typeof error.reason === 'string'
+    ? error.reason
+    : undefined;
   return {
     name: error && error.name ? String(error.name) : 'Error',
     message: error && error.message ? String(error.message) : String(error),
     ...classification,
+    ...(reason ? { reason } : {}),
   };
+}
+
+function normalizePositiveDuration(value, fallback) {
+  const n = Number(value);
+  if (!Number.isFinite(n) || n <= 0) {
+    return fallback;
+  }
+  return Math.floor(n);
+}
+
+function normalizeAttemptLiveness(value) {
+  if (!isRecord(value)) {
+    return { alive: true };
+  }
+
+  if (value.alive === false || value.exited === true || value.status === 'exited') {
+    const exitedAtMs = Number(value.exitedAtMs ?? value.exited_at_ms ?? value.exitedAt);
+    const pid = Number(value.pid);
+    return {
+      alive: false,
+      ...(Number.isFinite(exitedAtMs) ? { exitedAtMs } : {}),
+      ...(Number.isInteger(pid) && pid > 0 ? { pid } : {}),
+    };
+  }
+
+  return { alive: true };
+}
+
+function buildPostExitOrphanError({ label, graceMs, liveness }) {
+  const error = new Error(
+    `lineage ${label} subprocess exited but worker did not settle within ${graceMs}ms`,
+  );
+  error.name = 'OrphanedAfterSubprocessExitError';
+  error.exitCode = null;
+  error.timedOut = false;
+  error.reason = POST_EXIT_ORPHAN_REASON;
+  if (Number.isInteger(liveness?.pid) && liveness.pid > 0) {
+    error.pid = liveness.pid;
+  }
+  return error;
 }
 
 function buildLagCeilingTimeoutError({ label, lagMs, lagCeilingMs }) {
@@ -316,7 +361,8 @@ async function settleItem({
   }
 
   try {
-    const workerContext = abortSignal ? { index, signal: abortSignal } : { index };
+    const baseContext = { index, label, attempt };
+    const workerContext = abortSignal ? { ...baseContext, signal: abortSignal } : baseContext;
     const output = await worker(item, workerContext);
     const completedAtIso = normalizeTimestamp(now());
     const durationMs = Math.max(0, Date.now() - startedAtMs);
@@ -391,10 +437,22 @@ function runCappedPool(options) {
   const lagCeilingMs = normalizeNonNegativeDuration(options.lagCeilingMs ?? options.lag_ceiling_ms ?? options.lag_ceiling);
   const lagCeilingAction = normalizeLagCeilingAction(options.lagCeilingAction ?? options.lag_ceiling_action);
   const shouldAbortStalledLineages = lagCeilingAction === LAG_CEILING_ACTION_ABORT_REQUEUE;
+  const postExitGraceMs = normalizeNonNegativeDuration(
+    options.postExitGraceMs ?? options.post_exit_grace_ms ?? options.postSubprocessExitGraceMs,
+  );
+  const postExitPollMs = normalizePositiveDuration(
+    options.postExitPollMs ?? options.post_exit_poll_ms,
+    postExitGraceMs > 0 ? Math.min(postExitGraceMs, 1000) : 1000,
+  );
+  const getAttemptLiveness = typeof options.getAttemptLiveness === 'function'
+    ? options.getAttemptLiveness
+    : null;
+  const shouldWatchPostExitOrphans = postExitGraceMs > 0 && getAttemptLiveness !== null;
   if (shouldAbortStalledLineages && lagCeilingMs <= 0) {
     throw new TypeError('lagCeilingAction "abort-requeue" requires lagCeilingMs > 0');
   }
   let lagCeilingTimer = null;
+  let postExitWatchdogTimer = null;
   let lagCeilingExceeded = false;
   let nextAttemptId = 1;
 
@@ -443,6 +501,12 @@ function runCappedPool(options) {
       if (lagCeilingTimer) {
         clearTimeout(lagCeilingTimer);
         lagCeilingTimer = null;
+      }
+    };
+    const clearPostExitWatchdogTimer = () => {
+      if (postExitWatchdogTimer) {
+        clearTimeout(postExitWatchdogTimer);
+        postExitWatchdogTimer = null;
       }
     };
 
@@ -508,6 +572,27 @@ function runCappedPool(options) {
           ...normalizeError(error),
           aborted: true,
           abort_reason: 'lag_ceiling_exceeded',
+        },
+      };
+    };
+
+    const buildPostExitOrphanResult = (activeAttempt, liveness, error) => {
+      const completedAtIso = normalizeTimestamp(now());
+      const durationMs = Math.max(0, Date.now() - activeAttempt.startedAtMs);
+      return {
+        label: activeAttempt.label,
+        status: 'rejected',
+        index: activeAttempt.index,
+        attempt: activeAttempt.attempt,
+        started_at_iso: activeAttempt.startedAtIso,
+        completed_at_iso: completedAtIso,
+        duration_ms: durationMs,
+        error: {
+          ...normalizeError(error),
+          reason: POST_EXIT_ORPHAN_REASON,
+          post_exit_grace_ms: postExitGraceMs,
+          ...(Number.isInteger(liveness.pid) && liveness.pid > 0 ? { pid: liveness.pid } : {}),
+          ...(Number.isFinite(liveness.exitedAtMs) ? { subprocess_exited_at_ms: Math.floor(liveness.exitedAtMs) } : {}),
         },
       };
     };
@@ -633,6 +718,54 @@ function runCappedPool(options) {
       abortStalledAttempt(gauges);
     };
 
+    const handlePostExitWatchdog = () => {
+      if (!shouldWatchPostExitOrphans || activeAttempts.size === 0) return false;
+      const nowMs = Date.now();
+      let nextDelayMs = postExitPollMs;
+      for (const activeAttempt of activeAttempts.values()) {
+        if (!activeAttempt || activeAttempt.settled) continue;
+        let liveness;
+        try {
+          liveness = normalizeAttemptLiveness(getAttemptLiveness(activeAttempt));
+        } catch {
+          continue;
+        }
+        if (liveness.alive !== false) {
+          activeAttempt.subprocessExitedAtMs = null;
+          continue;
+        }
+
+        const exitedAtMs = Number.isFinite(liveness.exitedAtMs)
+          ? liveness.exitedAtMs
+          : (activeAttempt.subprocessExitedAtMs ?? nowMs);
+        activeAttempt.subprocessExitedAtMs = exitedAtMs;
+        liveness.exitedAtMs = exitedAtMs;
+        const elapsedMs = Math.max(0, nowMs - exitedAtMs);
+        if (elapsedMs < postExitGraceMs) {
+          nextDelayMs = Math.min(nextDelayMs, postExitGraceMs - elapsedMs);
+          continue;
+        }
+
+        const error = buildPostExitOrphanError({ label: activeAttempt.label, graceMs: postExitGraceMs, liveness });
+        const result = buildPostExitOrphanResult(activeAttempt, liveness, error);
+        activeAttempt.abortController?.abort(error);
+        settleActiveAttempt(activeAttempt, result);
+        return true;
+      }
+
+      schedulePostExitWatchdogCheck(nextDelayMs);
+      return false;
+    };
+
+    const schedulePostExitWatchdogCheck = (delayMs = postExitPollMs) => {
+      clearPostExitWatchdogTimer();
+      if (!shouldWatchPostExitOrphans || resolved || activeAttempts.size === 0) return;
+      postExitWatchdogTimer = setTimeout(() => {
+        postExitWatchdogTimer = null;
+        if (!resolved) handlePostExitWatchdog();
+      }, Math.max(1, Math.floor(delayMs)));
+    };
+
     const pump = () => {
       if (resolved) {
         return;
@@ -640,6 +773,7 @@ function runCappedPool(options) {
       if (queue.length === 0 && active === 0) {
         resolved = true;
         clearLagCeilingTimer();
+        clearPostExitWatchdogTimer();
         resolve(buildPoolSummary(results));
         return;
       }
@@ -650,7 +784,7 @@ function runCappedPool(options) {
         const attempt = retryCount + 1;
         const startedAtIso = normalizeTimestamp(now());
         const startedAtMs = Date.now();
-        const abortController = shouldAbortStalledLineages ? new AbortController() : null;
+        const abortController = shouldAbortStalledLineages || shouldWatchPostExitOrphans ? new AbortController() : null;
         const activeAttempt = {
           id: nextAttemptId,
           index,
@@ -687,6 +821,7 @@ function runCappedPool(options) {
           });
       }
       scheduleLagCeilingCheck();
+      schedulePostExitWatchdogCheck();
     };
 
     pump();

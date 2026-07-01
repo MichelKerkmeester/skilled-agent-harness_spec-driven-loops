@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Operators and analyst agents can inject questions mid-run only by editing the `key-questions` markdown block directly, which bypasses the state machine",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-06-30T14:53:29.788Z",
+    "last_save_at": "2026-07-01T15:47:37.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:657a0950c19f16def77c5d5f55d30837bbd189e0e53eb9751bed16d5c8eb7fe8",
+    "source_fingerprint": "sha256:ff7cfb0a5558e827f354c1a6af864c13825f490482d400229827a3d8eaee49c8",
     "source_doc_hashes": {
-      "spec.md": "abbfbd9f5c9f74ad07ea447f857192974c65066159fc80ed78fba8a6ffa5e559",
+      "spec.md": "b2d9f729cc469c5cb66b933231fc56639d3b15bffc3af770f74afc32b0da155b",
       "plan.md": "d30f4072494edeb607df382ece4406ac245ce48224804cd57e6a0c476cab5170",
       "tasks.md": "ec365578c154a60cc246f40c654cf5b7d914b26736155748f39720227b01c4d3",
       "implementation-summary.md": "a53d42306c1d122fa9c56af17faa2c53fcadcb22d7cefdbb703e60c4d30389fb"

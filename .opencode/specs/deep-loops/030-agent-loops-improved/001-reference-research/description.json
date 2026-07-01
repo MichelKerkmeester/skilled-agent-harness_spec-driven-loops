@@ -1,5 +1,4 @@
 {
-  "level": "2",
   "specFolder": "deep-loops/030-agent-loops-improved/001-reference-research",
   "description": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
   "keywords": [
@@ -14,10 +13,12 @@
     "safety",
     "interconnection"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.229Z",
+  "lastUpdated": "2026-07-01T15:48:10.849Z",
   "specId": "001",
   "folderSlug": "reference-research",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved"
   ],

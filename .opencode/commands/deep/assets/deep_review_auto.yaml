@@ -1290,7 +1290,158 @@ workflow:
 
       step_convergence_report:
         action: "Append convergence report to JSONL"
-        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+        command: |
+          node --input-type=module <<'EOF'
+          import { appendFileSync, existsSync, readFileSync, statSync } from 'node:fs';
+
+          const paths = {
+            stateLog: String.raw`{state_paths.state_log}`,
+            registry: String.raw`{state_paths.findings_registry}`,
+            review: String.raw`{state_paths.review_output}`,
+            dashboard: String.raw`{state_paths.dashboard}`,
+          };
+
+          function hasFile(filePath) {
+            try {
+              return existsSync(filePath) && statSync(filePath).isFile();
+            } catch {
+              return false;
+            }
+          }
+
+          function readJson(filePath) {
+            try {
+              return JSON.parse(readFileSync(filePath, 'utf8'));
+            } catch {
+              return null;
+            }
+          }
+
+          function readJsonl(filePath) {
+            if (!hasFile(filePath)) return [];
+            return readFileSync(filePath, 'utf8')
+              .split(/\r?\n/)
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .flatMap((line) => {
+                try {
+                  return [JSON.parse(line)];
+                } catch {
+                  return [];
+                }
+              });
+          }
+
+          function countIterationFindings(record) {
+            if (!record || record.type !== 'iteration') return 0;
+            const numeric = Number(record.findingsCount);
+            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
+            if (Array.isArray(record.findingDetails)) return record.findingDetails.length;
+            return 0;
+          }
+
+          function normalizeFindingKey(value) {
+            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+          }
+
+          function findingKeys(candidate) {
+            if (typeof candidate === 'string') {
+              const key = normalizeFindingKey(candidate);
+              return key ? [key] : [];
+            }
+            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
+            return [...new Set([
+              candidate.id,
+              candidate.findingId,
+              candidate.title,
+              candidate.summary,
+              candidate.text,
+              candidate.finding,
+              candidate.description,
+            ].map(normalizeFindingKey).filter(Boolean))];
+          }
+
+          function collectIterationFindingGroups(record) {
+            if (!record || record.type !== 'iteration' || !Array.isArray(record.findingDetails)) return [];
+            return record.findingDetails
+              .map(findingKeys)
+              .filter((keys) => keys.length > 0);
+          }
+
+          function collectRegistryFindingKeys(registry) {
+            return [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
+              .filter(Array.isArray)
+              .flatMap((findings) => findings)
+              .flatMap(findingKeys);
+          }
+
+          function appendEvent(event) {
+            appendFileSync(paths.stateLog, `${JSON.stringify(event)}\n`, 'utf8');
+          }
+
+          const registry = readJson(paths.registry);
+          const openCount = Array.isArray(registry?.openFindings) ? registry.openFindings.length : null;
+          const resolvedCount = Array.isArray(registry?.resolvedFindings) ? registry.resolvedFindings.length : 0;
+          const repeatedCount = Array.isArray(registry?.repeatedFindings) ? registry.repeatedFindings.length : 0;
+          const registryFindingCount = openCount === null ? null : openCount + resolvedCount + repeatedCount;
+          const stateRecords = readJsonl(paths.stateLog);
+          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
+          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
+          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
+          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
+          const identifiableFindingCount = identifiableFindingGroups.length;
+          const missingArtifacts = [
+            ['registry', paths.registry],
+            ['review', paths.review],
+            ['dashboard', paths.dashboard],
+          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
+          const invariantFailures = [];
+          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
+          if (registryFindingCount === null) invariantFailures.push('registry_missing_openFindings');
+          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
+          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
+          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
+
+          if (invariantFailures.length > 0) {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_incomplete',
+              mode: 'review',
+              severity: 'warning',
+              totalIterations: Number('{iteration_count}'),
+              activeP0: Number('{active_p0}'),
+              activeP1: Number('{active_p1}'),
+              activeP2: Number('{active_p2}'),
+              dimensionCoverage: Number('{dimension_coverage}'),
+              verdict: '{verdict}',
+              releaseReadinessState: '{release_readiness_state}',
+              stopReason: '{reason}',
+              reason: 'synthesis_artifact_invariant_failed',
+              invariantFailures,
+              missingArtifacts,
+              registryFindingCount,
+              iterationFindingCount,
+              identifiableFindingCount,
+              missingStructuredFindingCount,
+              timestamp: '{ISO_8601_NOW}',
+            });
+          } else {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_complete',
+              mode: 'review',
+              totalIterations: Number('{iteration_count}'),
+              activeP0: Number('{active_p0}'),
+              activeP1: Number('{active_p1}'),
+              activeP2: Number('{active_p2}'),
+              dimensionCoverage: Number('{dimension_coverage}'),
+              verdict: '{verdict}',
+              releaseReadinessState: '{release_readiness_state}',
+              stopReason: '{reason}',
+              timestamp: '{ISO_8601_NOW}',
+            });
+          }
+          EOF
         note: "Emit as numeric ratio (e.g., 0.75), not quoted string. Compute: dimensions_covered / total_dimensions."
 
       step_update_config_status:

@@ -1,6 +1,6 @@
 # What Changed in Agent Loops Improved: The Full 156 Program
 
-> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation and a final remediation track. Every phase in this record shipped and the packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs and safer around state mutation.
+> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation, a remediation track, a phase that turned a deep-research fan-out on the packet itself, and a final documentation-truth audit that checked the public README against everything the packet had shipped. Every phase in this record shipped and the packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs, safer around state mutation, more honest about its own claimed-versus-actual state and more resilient in its own research and fan-out tooling, with public documentation that matches what actually shipped.
 
 ---
 
@@ -163,3 +163,43 @@ The final track tightened the packet's own safety story. Rollback refuses to ove
 **Why**
 
 The remediation phase treated release safety as part of the product, not cleanup after it. The earlier phases hardened the loop system and this final track made the safety checks, playbook gates and concurrency tests prove the failure modes they were meant to catch.
+
+## 9. RESEARCH BACKLOG REMEDIATION
+
+This is the phase that closed the loop on the packet itself. A deep-research fan-out ran against the packet's own state, then a deeper forced-depth pass found two more critical bugs in the research runtime's own completion and hang-handling logic, and this phase shipped every finding as one of 11 independently verified children.
+
+**Before**
+
+The fan-out merge tool silently dropped a lineage's findings on a schema mismatch, the per-lineage timeout ceiling had no operator override and ephemeral finding-id markers sat in source comments alongside a salvage-filename padding bug. Six phase-parents claimed every child was Draft despite real completion, 40 grandchild files carried a stale zero completion percentage, several folders still pointed at the packet's old pre-migration name, an abandoned review lineage held a dead lock, 14 review findings sat undispositioned, graph-metadata omitted real runtime surfaces a folder's own frontmatter already named and the description generator cut generated text off mid-word. One phase-parent's own governance docs were still raw templates, two ADR sub-phases had no decision-record, a convergence-threshold default disagreed across loop types, a working forced-depth flag had no documentation and no detector caught a Complete folder with untouched scaffold docs. Most severely, a lineage could narrate synthesis complete without ever writing its registry or output files, and the fan-out orchestrator could hang indefinitely after a lineage's subprocess had already exited, both directly observed during this same phase's own operational work.
+
+**After**
+
+The merge tool now tolerates known schema aliases and warns instead of silently dropping findings, the timeout ceiling has a documented override and the comment-hygiene and salvage-filename bugs are fixed with a new lint rule guarding recurrence. Every phase-map row and completion percentage now matches real state, every live old-name reference points at the current path, the dead lock is removed with its lineage archived, all 14 review findings carry an evidence-backed disposition, graph-metadata reflects real runtime surfaces packet-wide and the description generator no longer truncates mid-word. Phase 008's own governance docs are real aggregates, both missing ADR decision-records are authored from real shipped content, the convergence-threshold default is now loop-type-aware, the forced-depth flag is documented and a new validate.sh rule catches untouched-scaffold drift automatically. A real synthesis-completion invariant now gates the completion event on real artifact state, and a genuinely new post-exit watchdog stops the orchestrator from hanging after a lineage's subprocess has already exited.
+
+**Impact**
+
+The packet's own research and remediation tooling is now trustworthy in the exact ways this phase found it was not. A future research pass against this packet, or any other, will not silently lose a lineage's findings to a schema mismatch, will not hang forever after a subprocess exits and will not narrate a completion that never happened. The drift between what the packet claimed and what it actually shipped is closed everywhere this phase looked.
+
+**Why**
+
+This phase existed because the packet's own claim of being shipped had never been tested against itself. Running the deep-research process on the packet surfaced real, previously invisible bugs in the very tooling used to build and verify every earlier phase, and fixing those bugs first was the only way to trust that the drift-closure and hardening work that followed was itself correct.
+
+## 10. DOCUMENTATION TRUTH AUDIT
+
+This phase dispatched a genuine 10-iteration deep-review to `openai/gpt-5.5-fast` to check whether the public root README and the project's agent-instruction files had drifted from everything packet 030 shipped, then fixed every confirmed gap.
+
+**Before**
+
+The public README still called the Spec Kit section "Documentation" after the framework had already been renamed elsewhere in the same file. The Goal plugin, a first-class capability with its own contract, sat as a 3-line bullet under Commands rather than getting a feature section like every comparable capability. The public Deep Loop section described autonomous, hands-off execution without disclosing that fan-out can run with elevated CLI permissions, or naming the stall watchdog, cost cap and lag-ceiling guardrails phase 009 shipped to bound that autonomy. This phase's own draft graph metadata still carried the retired Spec Kit label as a live entity.
+
+**After**
+
+The README's Spec Kit section now reads "Framework" everywhere, TOC, heading and anchor alike, with a whole-repo check confirming no dangling reference to the old name. The Goal plugin has its own FEATURES subsection, carrying the accurate wording a separate concurrent session had already corrected mid-review, with the old Commands bullet trimmed to a cross-reference instead of duplicated. The Deep Loop section now names the permission boundary and the shipped guardrails directly, not just by link. This phase's own metadata was regenerated after its task wording was corrected, and a grep confirmed the retired label is gone.
+
+**Impact**
+
+The public-facing documentation now matches what the packet actually shipped, not what it shipped several phases ago. A reader following the README's own Deep Loop section now sees the safety guardrails that back its autonomy claims, and the Goal plugin gets the same visibility as every other first-class feature in the packet.
+
+**Why**
+
+The prior remediation phase fixed the packet's internal tooling and internal docs. This phase closed the same kind of gap on the surface a real user or operator actually reads first, verified by an independently dispatched review rather than a single manual pass, since a packet that fixes its own internals but leaves its public face stale has only solved half the problem.

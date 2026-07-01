@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deep-loop dashboard and status tooling reads `orchestration-status.log` rows emitted by fan-out runs",
     "created_at": "2026-06-28T17:09:26.615Z",
-    "last_save_at": "2026-06-30T14:53:29.817Z",
+    "last_save_at": "2026-07-01T15:47:37.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e86795fd170d5302553f2ea12ed7e2a431ba089153d3625e8407b7c3ae3756d",
+    "source_fingerprint": "sha256:9e6961f971825b74c8ae78613dee3c7583e2b3e369b66b3973d934eab64143b7",
     "source_doc_hashes": {
-      "spec.md": "2a7aaca720520463a56fa24e00a00c6be229f122d1fa3d0210fcc079083e7f07",
+      "spec.md": "893cf55c7f5c7d056096b9303e3c814e96c5d64dfd217db2ac80a5d16854429b",
       "plan.md": "0b481ee9a0c54909e99dc32d636e46652f14b3046b9e98578e6183469c5d21e7",
       "tasks.md": "108c2bdece2e98551065b9b3ad635079fac613ca4435f1bd32c0633c81738c2f",
       "implementation-summary.md": "f2b68772acb3d6f97dee98734b4621377e66d60b62a269c1cbb2b97941cce3cc"

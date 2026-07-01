@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/007-testing/001-hermetic-test-isolation",
   "description": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`, `database/`, and system temp directories because there is no",
   "keywords": [
@@ -17,10 +16,12 @@
     "directories",
     "because"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.067Z",
+  "lastUpdated": "2026-07-01T15:48:11.838Z",
   "specId": "001",
   "folderSlug": "hermetic-test-isolation",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "007-testing"

@@ -37,15 +37,15 @@
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-comment-hygiene.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
       ".opencode/skills/deep-loop-runtime/tests/unit/fanout-salvage.vitest.ts",
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "scripts/rules/check-comment-hygiene.sh",
       "spec.md",
       "plan.md",
@@ -57,6 +57,18 @@
         "name": "deep_review_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
         "source": "derived"
       },
       {
@@ -90,12 +102,6 @@
         "source": "derived"
       },
       {
-        "name": "fanout-salvage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
-        "source": "derived"
-      },
-      {
         "name": "fanout-salvage.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-salvage.vitest.ts",
@@ -105,12 +111,6 @@
         "name": "agent_delegation.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three related but distinct hygiene defects, all confirmed live:",
     "created_at": "2026-07-01T07:19:07.520Z",
-    "last_save_at": "2026-07-01T10:25:39.504Z",
+    "last_save_at": "2026-07-01T15:47:37.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

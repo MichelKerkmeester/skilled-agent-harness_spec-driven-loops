@@ -1,0 +1,33 @@
+{
+  "specFolder": "deep-loops/030-agent-loops-improved/010-documentation-truth-audit",
+  "description": "Packet 030 shipped nine phases of loop-system work, most recently an 11-child research-backlog remediation phase that changed fan-out merge behavior,",
+  "keywords": [
+    "packet",
+    "030",
+    "shipped",
+    "nine",
+    "phases",
+    "loop-system",
+    "work",
+    "recently",
+    "11-child",
+    "research-backlog",
+    "remediation",
+    "phase",
+    "changed",
+    "fan-out",
+    "merge",
+    "behavior"
+  ],
+  "lastUpdated": "2026-07-01T18:43:32.678Z",
+  "specId": "010",
+  "folderSlug": "documentation-truth-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "030-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

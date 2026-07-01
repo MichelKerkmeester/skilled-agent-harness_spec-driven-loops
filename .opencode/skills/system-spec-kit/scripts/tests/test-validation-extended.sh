@@ -697,6 +697,11 @@ if begin_category "Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygien
     run_isolated_rule_test "Marker detected" "check-comment-hygiene.sh" "071-comment-hygiene-marker-violation" "fail" 1
 fi
 
+if begin_category "Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh)"; then
+    run_isolated_rule_test "Scaffold marker with Complete status detected" "check-scaffold-never-touched.sh" "072-scaffold-never-touched-violation" "fail" 1
+    run_isolated_rule_test "Genuinely complete docs pass" "check-scaffold-never-touched.sh" "073-scaffold-never-touched-clean" "pass" 1
+fi
+
 if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
     run_isolated_rule_test "Optional template anchors warn in shell fallback" "check-anchors.sh" "053-template-compliant-level2" "warn" 2
     run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1

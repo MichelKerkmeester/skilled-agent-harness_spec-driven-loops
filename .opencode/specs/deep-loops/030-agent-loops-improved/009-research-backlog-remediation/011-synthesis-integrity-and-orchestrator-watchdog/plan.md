@@ -50,7 +50,7 @@ Three independent fixes sharing one theme (don't trust self-reported completion 
 ---
 
 <!-- ANCHOR:architecture -->
-## 3. ARCHITECTURE / KEY DECISIONS
+## 3. ARCHITECTURE
 
 - **Verify-then-log, not log-then-hope.** The completion event itself becomes conditional on real artifact state, rather than being an unconditional narration step.
 - **Grace period keyed off confirmed subprocess death, not elapsed time alone.** The watchdog should only intervene once a lineage's subprocess is confirmed gone (PID no longer live) AND the ledger hasn't caught up within a bounded window — not simply "this lineage has been running a long time," which would incorrectly penalize legitimately slow-but-alive workers.
@@ -103,7 +103,7 @@ None — independent of the other 009 children, though thematically related to `
 ---
 
 <!-- ANCHOR:rollback -->
-## 8. ROLLBACK
+## 8. ROLLBACK PLAN
 
 Revert the commit. All three changes are additive (new checks, new function) with no data migration.
 <!-- /ANCHOR:rollback -->

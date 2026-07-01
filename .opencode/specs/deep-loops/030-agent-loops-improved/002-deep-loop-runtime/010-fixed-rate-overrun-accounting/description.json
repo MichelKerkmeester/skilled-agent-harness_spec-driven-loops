@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting",
   "description": "When a loop iteration overruns its scheduled fixed-rate slot, the next slot starts immediately without any record of the overrun; missed slots are",
   "keywords": [
@@ -18,10 +17,12 @@
     "missed",
     "slots"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.948Z",
+  "lastUpdated": "2026-07-01T15:48:20.466Z",
   "specId": "010",
   "folderSlug": "fixed-rate-overrun-accounting",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

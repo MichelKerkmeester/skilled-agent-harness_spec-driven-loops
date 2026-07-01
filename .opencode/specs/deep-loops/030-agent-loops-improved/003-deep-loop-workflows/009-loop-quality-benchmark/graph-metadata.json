@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts",
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "promote-candidate.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better than what was there before?)",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-06-30T14:53:29.798Z",
+    "last_save_at": "2026-07-01T15:47:37.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d657d861638574f74009d58f0947c159dccc16f55f0a23260e415039200ef48d",
+    "source_fingerprint": "sha256:8166b51261a73d898d6f7d66b62fd2274e074c4f7b260a575bc7430029d79a1c",
     "source_doc_hashes": {
-      "spec.md": "7988b0ee405e572247485698794b50a7cdc992272d11a362f5ecc343b1258cfa",
+      "spec.md": "27c73d4fda55aebaae3e63eb1a193b4410bb2cf727e39dc4fc542dbe4ca3a00e",
       "plan.md": "aa610eb2332d7cc97ec7d59f67e931eedfa86c4d11ad9917c3b20f1c9d497510",
       "tasks.md": "2d03e9e9e24046dc1d70f76ebf95dbe0f42cda94775dacc184d0ffe0aa15777f",
       "implementation-summary.md": "a9b0b602219eb10fdeb3f490c9d744e748fd843d2b92636c70cdcd72c8d2aba5"

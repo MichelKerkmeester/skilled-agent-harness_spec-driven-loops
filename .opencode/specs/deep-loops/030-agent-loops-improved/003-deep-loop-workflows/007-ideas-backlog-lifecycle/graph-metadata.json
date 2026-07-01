@@ -41,8 +41,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/agents/deep-research.md",
@@ -54,15 +54,15 @@
     ],
     "entities": [
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "loop_protocol.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle record",
     "created_at": "2026-06-28T14:02:11Z",
-    "last_save_at": "2026-06-30T14:53:29.794Z",
+    "last_save_at": "2026-07-01T15:47:37.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da439fecb889972eb4ed963753d98382c63d4888f7250f967eee3e86f2b43b9c",
+    "source_fingerprint": "sha256:47f269dd55e28fc27f28a236d2979b596cd155d08d095956d2dbc168b258793f",
     "source_doc_hashes": {
-      "spec.md": "ebbeecee7e523f2551347c464ea1058e90059d3b0763e59b1de8d4f1188bb14f",
+      "spec.md": "142783f1acc793272ada41ca7b59e13f03162e33d93f2e5c09b4594bbea3fd8c",
       "plan.md": "7c3a77ea21b4429a3f9c5cb9f3aa0207a5f9451632c296bc7054688b418e3594",
       "tasks.md": "bac51b17fb3d95e824140a54cabfccae7c64339478cb7f87c1383a523f23bd65",
       "implementation-summary.md": "0055eaad9fc75776cf29073a85c909daae627eb4bc02fa0deda3805121e62736"

@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation/001-dashboard-sparkline-trend",
   "description": "The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary",
   "keywords": [
@@ -16,10 +15,12 @@
     "trend",
     "summary"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.442Z",
+  "lastUpdated": "2026-07-01T15:48:12.512Z",
   "specId": "001",
   "folderSlug": "dashboard-sparkline-trend",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "006-ux-observability-automation"

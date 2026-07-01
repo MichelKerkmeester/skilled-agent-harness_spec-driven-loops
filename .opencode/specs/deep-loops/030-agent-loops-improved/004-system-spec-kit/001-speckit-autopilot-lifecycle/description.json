@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/004-system-spec-kit/001-speckit-autopilot-lifecycle",
   "description": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
   "keywords": [
@@ -15,10 +14,12 @@
     "unattended",
     "execution"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.421Z",
+  "lastUpdated": "2026-07-01T15:48:12.130Z",
   "specId": "001",
   "folderSlug": "speckit-autopilot-lifecycle",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "004-system-spec-kit"

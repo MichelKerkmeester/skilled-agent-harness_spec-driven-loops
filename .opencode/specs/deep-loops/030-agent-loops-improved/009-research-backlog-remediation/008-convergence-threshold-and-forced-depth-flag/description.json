@@ -14,7 +14,7 @@
     "value",
     "supplied"
   ],
-  "lastUpdated": "2026-07-01T13:51:57.630Z",
+  "lastUpdated": "2026-07-01T15:48:14.463Z",
   "specId": "008",
   "folderSlug": "convergence-threshold-and-forced-depth-flag",
   "parentChain": [
@@ -25,6 +25,5 @@
     "009-research-backlog-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
     "created_at": "2026-06-28T16:59:37.521Z",
-    "last_save_at": "2026-06-30T14:53:29.822Z",
+    "last_save_at": "2026-07-01T15:47:37.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b84f84dc5544f4e4fa565672d1576d658fe0c9b70f65660c0a7ebe4b9b27e366",
+    "source_fingerprint": "sha256:49d04ede32fcf4a90abdf7a6286632c0b530b7d3f75788240850250e5e43e18f",
     "source_doc_hashes": {
-      "spec.md": "5336dd20f0b1b0e0600415cc98f154dc429ab2737ea35bd74535c067a45aafa6",
+      "spec.md": "6a6c20f0925345f3aec04cc0b9574694d4a30ce4645c5ebfb75b1dc4051f8c9b",
       "plan.md": "ab023a485aabb32c1f0ac33104f6055ba8c70155b2b193245dd07404a33e3a68",
       "tasks.md": "c376c660b650b827a8f5190b32f7a29150fae882778f2cb4f662634d3f8316e4",
       "implementation-summary.md": "f8668ac3d3fb537b9c1898d87ff095be42d3a158a46c55feaa0b15f0917d1224"

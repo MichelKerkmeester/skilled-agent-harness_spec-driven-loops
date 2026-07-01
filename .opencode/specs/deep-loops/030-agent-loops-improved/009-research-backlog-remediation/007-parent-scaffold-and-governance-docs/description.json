@@ -13,7 +13,7 @@
     "unmodified",
     "templates"
   ],
-  "lastUpdated": "2026-07-01T13:24:50.383Z",
+  "lastUpdated": "2026-07-01T15:48:14.040Z",
   "specId": "007",
   "folderSlug": "parent-scaffold-and-governance-docs",
   "parentChain": [
@@ -24,6 +24,5 @@
     "009-research-backlog-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

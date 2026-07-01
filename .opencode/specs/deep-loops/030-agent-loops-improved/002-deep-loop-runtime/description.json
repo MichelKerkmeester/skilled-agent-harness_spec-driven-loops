@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime",
   "description": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded",
   "keywords": [
@@ -20,10 +19,12 @@
     "writes",
     "unguarded"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.057Z",
+  "lastUpdated": "2026-07-01T15:48:10.263Z",
   "specId": "002",
   "folderSlug": "deep-loop-runtime",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved"
   ],

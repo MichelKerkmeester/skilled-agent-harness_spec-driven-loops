@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation/006-loop-wide-dry-run",
   "description": "There is no safe way for an operator to inspect what a deep-loop run would do without executing it: setup, focus selection, and convergence reads",
   "keywords": [
@@ -17,10 +16,12 @@
     "convergence",
     "reads"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.055Z",
+  "lastUpdated": "2026-07-01T15:48:12.644Z",
   "specId": "006",
   "folderSlug": "loop-wide-dry-run",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "006-ux-observability-automation"

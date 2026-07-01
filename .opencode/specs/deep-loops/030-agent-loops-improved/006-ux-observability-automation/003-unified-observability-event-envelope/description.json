@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation/003-unified-observability-event-envelope",
   "description": "Each deep-loop producer appends events in a different native format",
   "keywords": [
@@ -11,10 +10,12 @@
     "native",
     "format"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.452Z",
+  "lastUpdated": "2026-07-01T15:48:12.951Z",
   "specId": "003",
   "folderSlug": "unified-observability-event-envelope",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "006-ux-observability-automation"

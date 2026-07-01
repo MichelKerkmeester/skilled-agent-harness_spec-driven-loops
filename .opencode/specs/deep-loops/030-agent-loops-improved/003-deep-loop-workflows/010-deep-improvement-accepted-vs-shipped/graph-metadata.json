@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "rollback-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
-        "source": "derived"
-      },
-      {
         "name": "promotion_gate_contract.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
     "created_at": "2026-06-28T14:02:13Z",
-    "last_save_at": "2026-06-30T14:53:29.801Z",
+    "last_save_at": "2026-07-01T15:47:37.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:872b837615de2efaa03cf71fad3120b806862ae434f38d48c5bd6c4d6e01197d",
+    "source_fingerprint": "sha256:4a44a77e251e8641867c9cf42631542677aee9aefe3268a708674f9d44c64ff1",
     "source_doc_hashes": {
-      "spec.md": "1ca613efaee5b65af0bdce3b319796c621cfef4f12921bebe9ca78f3532cd667",
+      "spec.md": "965cbb68a5660abb00a915bbe19ef42af2fe05b3d440885c70bde0a6068a8bde",
       "plan.md": "cb4f9e92efc21fb79908bbd5da49f04cd43325365b058400c2d70afe32e0c15f",
       "tasks.md": "4d79dc1e388051c5d83b2d496bd62155da014fd021c61d9676c68d14ed793add",
       "implementation-summary.md": "09ae1ad621b71930f0df09930bac8cbee6c8ce7089cde1d7ba0ae76e5d4f145e"

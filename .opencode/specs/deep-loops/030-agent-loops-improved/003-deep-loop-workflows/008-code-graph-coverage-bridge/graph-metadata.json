@@ -41,9 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/commands/deep/assets/deep_context_auto.yaml",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
       ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
-      ".opencode/commands/deep/assets/deep_context_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
       ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-db.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/integration/upsert-script.vitest.ts",
@@ -54,6 +54,12 @@
     ],
     "entities": [
       {
+        "name": "deep_context_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+        "source": "derived"
+      },
+      {
         "name": "coverage-graph-db.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
@@ -63,12 +69,6 @@
         "name": "upsert.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deep-context and deep-review loops start with an empty coverage graph",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-06-30T14:53:29.796Z",
+    "last_save_at": "2026-07-01T15:47:37.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f2979b342b97c2672fb6986bd5b176b96e5110f73020f7601d8e07b5ebef72e",
+    "source_fingerprint": "sha256:0617bf386b8cc233196b6bccb560eb0e47d5eaf7f8c67182b0f55c424bb08bca",
     "source_doc_hashes": {
-      "spec.md": "01d381b3fb199c7217d108540519fb8afda04462ae99bfa0c175ee598bf8c968",
+      "spec.md": "b4c16ecc0bbcc029c63be32945f77704f90b6d03699eb908d20c308d2839093c",
       "plan.md": "98bb957487eef79ad26e8d5b13beb0bcc1486ce4fbe523de74e22327f2b3ace2",
       "tasks.md": "11f9a07a94a3eeff941a905c2dbdc5c2a65579cee552b1d5f3c5438b2e75ced7",
       "implementation-summary.md": "b24969645f3e711bdadbbca68ac5a59920120046ef4b0ccc399470e8054fc018"

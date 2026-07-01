@@ -794,6 +794,115 @@ function reconstructReviewRegistryFromState(stateRecords, label) {
   return { openFindings, resolvedFindings, findingsBySeverity: bySeverity, _reconstructed: true };
 }
 
+function firstNonEmptyString(values) {
+  for (const value of values) {
+    if (typeof value === 'string' && value.trim() !== '') return value.trim();
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      const objectText = firstNonEmptyString([value.title, value.summary, value.text, value.finding, value.description]);
+      if (objectText) return objectText;
+    }
+  }
+  return '';
+}
+
+function normalizeResearchFindingCandidate(candidate, record, index) {
+  const run = Number.isFinite(Number(record.run ?? record.iteration)) ? Math.floor(Number(record.run ?? record.iteration)) : 0;
+  if (typeof candidate === 'string') {
+    const text = candidate.trim();
+    if (!text) return null;
+    return {
+      id: `state-finding-${run}-${index + 1}-${crypto.createHash('sha256').update(text).digest('hex').slice(0, 12)}`,
+      title: text,
+      text,
+      addedAtIteration: run,
+      _reconstructed_from_state: true,
+    };
+  }
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return null;
+  const text = firstNonEmptyString([candidate.title, candidate.summary, candidate.text, candidate.finding, candidate.description]);
+  if (!text) return null;
+  return {
+    id: candidate.id || candidate.findingId || `state-finding-${run}-${index + 1}-${crypto.createHash('sha256').update(text).digest('hex').slice(0, 12)}`,
+    title: candidate.title || text,
+    ...(candidate.summary ? { summary: candidate.summary } : {}),
+    ...(candidate.text ? { text: candidate.text } : { text }),
+    ...(candidate.confidence ? { confidence: candidate.confidence } : {}),
+    addedAtIteration: candidate.addedAtIteration ?? run,
+    _reconstructed_from_state: true,
+  };
+}
+
+function researchCandidatesFromIteration(record) {
+  if (!record || record.type !== 'iteration') return [];
+  const structured = [record.keyFindings, record.findings, record.findingDetails]
+    .find((value) => Array.isArray(value) && value.length > 0);
+  if (Array.isArray(structured)) {
+    return structured;
+  }
+
+  const findingsCount = Number(record.findingsCount);
+  if (!Number.isFinite(findingsCount) || findingsCount <= 0) return [];
+  const run = Number.isFinite(Number(record.run ?? record.iteration)) ? Math.floor(Number(record.run ?? record.iteration)) : 0;
+  const narrative = firstNonEmptyString([
+    record.summary,
+    record.findingsSummary,
+    record.focus,
+    record.nextFocus,
+    record.reflection,
+  ]);
+  return [{
+    id: `state-finding-${run}-1-${crypto.createHash('sha256').update(narrative || String(run)).digest('hex').slice(0, 12)}`,
+    title: narrative || `Iteration ${run} recorded ${Math.floor(findingsCount)} finding(s)`,
+    summary: narrative || `State log recorded ${Math.floor(findingsCount)} finding(s) but no structured finding text.`,
+    addedAtIteration: run,
+  }];
+}
+
+/**
+ * Reconstruct a minimal research findings registry from a lineage state log.
+ *
+ * Leaf-only research lineages may have substantive iteration records but no
+ * registry file on disk. This maps state-log findings into keyFindings so the
+ * research merge does not silently drop a registry-absent lineage.
+ *
+ * @param {Array<Object>} stateRecords - Parsed JSONL state records.
+ * @param {string} label - Lineage label, for attribution.
+ * @returns {{keyFindings:Array,Object}|null} Reconstructed registry, or null when no findings exist.
+ */
+function reconstructResearchRegistryFromState(stateRecords, label) {
+  if (!Array.isArray(stateRecords)) return null;
+  const keyFindings = [];
+  for (const record of stateRecords) {
+    const candidates = researchCandidatesFromIteration(record);
+    candidates.forEach((candidate, index) => {
+      const mapped = normalizeResearchFindingCandidate(candidate, record, index);
+      if (!mapped) return;
+      keyFindings.push({ ...mapped, _lineages: [label] });
+    });
+  }
+  if (keyFindings.length === 0) return null;
+  const iterationsCompleted = stateRecords.filter((record) => record?.type === 'iteration').length;
+  const latestIteration = stateRecords.filter((record) => record?.type === 'iteration').at(-1);
+  const convergenceScore = latestIteration?.convergenceSignals?.compositeStop
+    ?? latestIteration?.newInfoRatio
+    ?? 0;
+  return {
+    keyFindings,
+    openQuestions: [],
+    resolvedQuestions: [],
+    ruledOutDirections: [],
+    metrics: {
+      iterationsCompleted,
+      openQuestions: 0,
+      resolvedQuestions: 0,
+      keyFindings: keyFindings.length,
+      convergenceScore,
+      coverageBySources: {},
+    },
+    _reconstructed: true,
+  };
+}
+
 async function main() {
   const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
@@ -829,13 +938,16 @@ async function main() {
     const lineageDir = path.join(lineagesDir, label);
     let registry = tryReadJson(path.join(lineageDir, registryName));
     const stateRecords = readStateLog(path.join(lineageDir, stateLogName));
-    // Leaf-only review lineages (orchestrator-managed direct-leaf convention) may carry
+    // Leaf-only review/research lineages (orchestrator-managed direct-leaf convention) may carry
     // active findings only in their state log's findingDetails, with no registry file.
     // Without a registry, such a lineage was silently skipped by the registry-only merge,
-    // dropping its findings from synthesis. Reconstruct a minimal review registry from
-    // the state log so leaf-only lineages reach merge without a separate reducer step.
+    // dropping its findings from synthesis. Reconstruct a minimal registry from the
+    // state log so leaf-only lineages reach merge without a separate reducer step.
     if (!registry && loopType === 'review') {
       registry = reconstructReviewRegistryFromState(stateRecords, label);
+    }
+    if (!registry && loopType === 'research') {
+      registry = reconstructResearchRegistryFromState(stateRecords, label);
     }
     // Infer kind/model from state log executor records
     const executorRecord = stateRecords.find((r) => r.type === 'event' && r.event === 'executor_start');
@@ -882,7 +994,7 @@ async function main() {
 }
 
 // Exports for unit testing
-module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, normalizeRegistrySchema };
+module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, reconstructResearchRegistryFromState, normalizeRegistrySchema };
 
 if (require.main === module) {
   main().catch((err) => {

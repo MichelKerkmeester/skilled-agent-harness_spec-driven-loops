@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger",
   "description": "The autonomous model-benchmark workflow sends benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{runlabel}`, outside",
   "keywords": [
@@ -16,10 +15,12 @@
     "runlabel",
     "outside"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.092Z",
+  "lastUpdated": "2026-07-01T15:48:16.911Z",
   "specId": "003",
   "folderSlug": "model-benchmark-reducer-ledger",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "008-loop-systems-remediation"

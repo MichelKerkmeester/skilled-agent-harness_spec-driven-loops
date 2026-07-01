@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage) and overlapping slots (both writing to the same path) consume concurrency slots without making progress and risk file conflicts",
     "created_at": "2026-06-28T14:02:15Z",
-    "last_save_at": "2026-06-30T14:53:29.804Z",
+    "last_save_at": "2026-07-01T15:47:37.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:245423012399b1f02ac6bf5e3991d33ea5d8d1b454d60baed2e0b1de3dc79fb0",
+    "source_fingerprint": "sha256:0c6a8901fda483b9c257f1818515cf896426ab5d8d86757ba8b97574c1d16cac",
     "source_doc_hashes": {
-      "spec.md": "143f7a3689fe9a1c05bf1ce51094923289da0287be9eedf5b54b93418f2d7e5b",
+      "spec.md": "ca3328a06601b082313bbbbd827e6bd3e370ded4db48978ec90becc3232651a0",
       "plan.md": "c98d0cb5259dffe9aa19f8880e264b92497a5c745290e656ecc5a53d9d162477",
       "tasks.md": "c21f10e8694035e1bbc9f34326382eb47a5b22eec5c5e84493ae7e63f3e51e1a",
       "implementation-summary.md": "a58059bc9cf556cd4236933860521f98a440ab5dc82b0b02a5e030ac86280231"

@@ -43,7 +43,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/specs/deep-loops/030-agent-loops-improved/research/research.md",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
@@ -90,12 +90,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -118,19 +112,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research fan-out against this packet found: (1) a critical, silent data-loss bug in the fan-out merge tool itself (`fanout-merge.cjs` drops registries whose schema doesn't use the exact `keyFindings` key, with no warning), (2) three more confirmed bugs in the shared deep-loop-runtime fan-out/convergence machinery (convergence-threshold propagation gap, 4-hour lineage timeout with no override, a salvage/duplicate-filename naming defect), and (3) systemic drift across this packet's own documentation between claimed-Complete status and actual evidence (stale Phase Documentation Map rows,",
     "created_at": "2026-07-01T06:19:05.217Z",
-    "last_save_at": "2026-07-01T14:25:32.255Z",
+    "last_save_at": "2026-07-01T15:31:09.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dfd98bd56c2c1a234136b9496a7d2936447cdc65d37ef31ecf77f3fa57b042c7",
+    "source_fingerprint": "sha256:28f8ddcebaf3962d70ee2380f657601639166d97243cd5335b8b105dc86df816",
     "source_doc_hashes": {
-      "spec.md": "ce26df054211214cd157ff271b1608afde57cd636dcf4d0255a0f2bcf0a05b37"
+      "spec.md": "38491bbb7c734889f1615ab36bb6cb663cdbc6c65bf8a19b7376d4974986edcb"
     },
     "last_active_child_id": null,
     "last_active_at": null

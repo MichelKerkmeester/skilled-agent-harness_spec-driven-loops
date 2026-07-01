@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
     "created_at": "2026-06-28T20:06:47.253Z",
-    "last_save_at": "2026-06-30T14:53:29.808Z",
+    "last_save_at": "2026-07-01T15:47:37.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +210,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3f86e4e69ac580760d64a92071f9e3bb92647d016d2ff476b01ff4d1d7ac5db",
+    "source_fingerprint": "sha256:059608aa08ae585fb9a15226586ab0a69e4ce7ba5453825c67f916a2ee3d4f9e",
     "source_doc_hashes": {
-      "spec.md": "d4695ceab8956f2695020f2419a89a530a059a69e2866e85681348f4d5002992",
+      "spec.md": "346ee28790face057dd2eb610daa4a201396077cf4383846362c7ac15807835e",
       "plan.md": "00f41f9ab76c0bb15ea33dde3d921923bc0284cc6afc231e89a36984d19fb41d",
       "tasks.md": "a7f3832c5cef34ff617c54884405047f775990ef832472ed60b91ce1c08e98f2",
       "implementation-summary.md": "165b7c80388801cf511bd2643ae55a2b6a75b62d05f860793051cc9b9da60f99"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "High-frequency reducers (registry, strategy, dashboard) issue rapid successive writes to the same path that overwrite each other wastefully and may race with each other",
     "created_at": "2026-06-28T14:01:53Z",
-    "last_save_at": "2026-06-30T14:53:29.735Z",
+    "last_save_at": "2026-07-01T15:47:37.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b19b07b481745e8ea4df85b7a7d5f74375d6b8274f6c05a5344ae61e4643da97",
+    "source_fingerprint": "sha256:a4801a6560ab49f1f0bb0343475f1bf7b900aed77e538da9dd09e1b2c26710d6",
     "source_doc_hashes": {
-      "spec.md": "a062a8bad10920abddabb2c079a09a6386d5e9eed00139292743fd3201ed6f36",
+      "spec.md": "2feb077e3e51c9ddf350502b14c6d0007d4069b604a8c76bccb272be0732c6a4",
       "plan.md": "e95af8814e06043da7c7e051107360fd28009ad239608bdeac2191efc026a324",
       "tasks.md": "b8ea8339ed4d660bdeabd7c5df200a1d722ad472ac169ab4261c3f9d478d9fca",
       "implementation-summary.md": "186bda0b5d892d1f98982e2c551cf9356059eb370438fbc9ca59518584b7fbf6"

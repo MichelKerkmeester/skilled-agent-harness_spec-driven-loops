@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/011-convergence-score-delta",
   "description": "The convergence signal reports current novelty but carries no signal for whether the loop is actually improving across iterations; a run can generate",
   "keywords": [
@@ -18,10 +17,12 @@
     "run",
     "generate"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.318Z",
+  "lastUpdated": "2026-07-01T15:48:19.146Z",
   "specId": "011",
   "folderSlug": "convergence-score-delta",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

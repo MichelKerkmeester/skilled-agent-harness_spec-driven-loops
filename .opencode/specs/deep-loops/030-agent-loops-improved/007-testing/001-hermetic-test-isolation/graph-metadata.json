@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`, `database/`, and system temp directories because there is no shared hermetic helper",
     "created_at": "2026-06-28T16:15:21.565Z",
-    "last_save_at": "2026-06-30T14:53:29.829Z",
+    "last_save_at": "2026-07-01T15:47:37.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24d82eee1127711ad527dd08f43ef0e38c5afba933b17984e41d1421bef30c04",
+    "source_fingerprint": "sha256:414debdfea07fcc8d88ee9417a02d908bc2b41ccd65b95d86feda72316e46409",
     "source_doc_hashes": {
-      "spec.md": "f6dcc6225c33c719e47c0c426ca20dc7b57f60b1537acb7f7bf9e897c1128dee",
+      "spec.md": "a35a1cf64e78e8afb568b4488937cf47d60493657b3d3a234cac7db7fba37a84",
       "plan.md": "e99097b38107e3bd84cd1f731152da08d6b64b84875a4493b3e7078e50c13bc5",
       "tasks.md": "8a9d57bdb4e15cc7c511f51dc0494e3481b561b86667462485b08d69a7795538",
       "implementation-summary.md": "40c95fc66d7772745f8efe86f7849f2683b3a7f512761194b7561faef41085da"

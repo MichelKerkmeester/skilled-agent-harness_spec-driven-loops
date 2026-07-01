@@ -40,8 +40,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
@@ -61,15 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "cli-guards.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-        "source": "derived"
-      },
-      {
         "name": "fanout-merge.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The detached CLI fan-out path had: (1) review init bindings missing from CLI prompts, (2) unrecoverable salvage yielding false-fulfilled lineages, (3) mixed-salvage failures treated as fatal instead of retryable, (4) prompt-only write isolation via unconditional `--dangerously-skip-permissions`, (5) a playbook regression that did not exercise the documented exit-0/no-artifact path, (6) registry-only merge silently skipping leaf-only lineages, and (7) lag-ceiling observability events normalizing to `unknown`",
     "created_at": "2026-06-30T13:35:53.863Z",
-    "last_save_at": "2026-06-30T14:53:29.848Z",
+    "last_save_at": "2026-07-01T15:47:37.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

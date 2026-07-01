@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/001-anti-convergence-floor",
   "description": "The deep-research loop's `stepcheckconvergence` step can trigger a STOP after a single candidate forms, with no minimum iteration floor enforced",
   "keywords": [
@@ -17,10 +16,12 @@
     "floor",
     "enforced"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.359Z",
+  "lastUpdated": "2026-07-01T15:48:14.921Z",
   "specId": "001",
   "folderSlug": "anti-convergence-floor",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "003-deep-loop-workflows"

@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `reconstructReviewRegistryFromState` (fanout-merge.cjs) in full as the reference pattern
-- [ ] T002 Read the current `lagCeilingMs`/pool-settle logic in `fanout-run.cjs` and the `synthesis_complete` logging point in both `deep_research_auto.yaml` and `deep_review_auto.yaml`
+- [x] T001 Read `reconstructReviewRegistryFromState` in full as the reference pattern
+- [x] T002 Read the pool/ledger logic and the `synthesis_complete` logging points; correctly identified the existing `lagCeilingMs` mechanism is a distinct queue-lag heuristic (not the confirmed-subprocess-death check this task needs) and did not conflate the two
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,9 +49,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Implement the synthesis-completion invariant (gate `synthesis_complete` behind artifact-existence + finding-count check; log `synthesis_incomplete` on failure)
-- [ ] T004 Implement the post-exit watchdog (non-zero `lagCeilingMs` default or documented opt-out; bounded grace-period force-fail for a dead-subprocess/no-ledger-event worker)
-- [ ] T005 Implement `reconstructResearchRegistryFromState`, wired into `mergeResearchRegistries`
+- [x] T003 Implemented the synthesis-completion invariant in both `deep_research_auto.yaml` and `deep_review_auto.yaml`: an inline Node script checks artifact existence (registry/research-or-review-output/dashboard) and cross-checks state-log iteration finding counts against the registry's own finding count. Logs `synthesis_incomplete` (with `invariantFailures`/`missingArtifacts`/counts) when the check fails, `synthesis_complete` normally otherwise — verified the "genuinely zero findings but artifacts exist" case correctly still passes
+- [x] T004 Implemented the post-exit watchdog as a distinct, new mechanism (not a `lagCeilingMs` default flip): `fanout-pool.cjs` gained an injected `getAttemptLiveness` callback + `postExitGraceMs` grace period, keyed off confirmed subprocess death time (not overall elapsed time); `fanout-run.cjs` wires real `onSpawn`/`onExit` callbacks from the actual subprocess lifecycle into a `lineageProcessLiveness` map. Default grace period: `max(5 minutes, 2× progressHeartbeatSeconds)` — a documented, conservative choice matching both of the spec's own suggested defaults
+- [x] T005 Implemented `reconstructResearchRegistryFromState`, mirroring `reconstructReviewRegistryFromState`'s exact shape; wired into `mergeResearchRegistries` analogously to the review-side wiring. Prefers structured `keyFindings`/`findings`/`findingDetails` state-log data when present, falls back to synthesizing minimal entries from `findingsCount` + narrative text otherwise
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -59,10 +59,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Write and pass the synthesis-invariant tests (both the failure case and the legitimate-zero-findings case)
-- [ ] T007 Write and pass the watchdog tests (force-fail case and the must-not-false-positive case)
-- [ ] T008 Write and pass the `reconstructResearchRegistryFromState` test (mirroring the review-side test)
-- [ ] T009 Run the full `deep-loop-runtime` Vitest suite; confirm no regressions
+- [x] T006 Synthesis-invariant tests added to `run-now-yaml-control.vitest.ts` (both the invariant-fails case and the legitimate-zero-findings-passes case); independently re-run, passing
+- [x] T007 Watchdog tests added to `fanout-pool.vitest.ts` (force-fail after grace period on confirmed dead subprocess; must-not-false-positive on a genuinely-alive worker within the grace period); independently re-run, passing
+- [x] T008 `reconstructResearchRegistryFromState` test added to `fanout-merge.vitest.ts`, mirroring the review-side test; independently re-run, passing
+- [x] T009 Ran the full `deep-loop-runtime` Vitest suite, independently re-run: **570/572 pass** (up from a pre-change baseline of 563/565 the dispatch itself captured first) — the 2 failures are the same pre-existing, unrelated baseline confirmed throughout this whole remediation phase (`dependency-seams.vitest.ts`, `executor-provenance-mismatch.vitest.ts`), no new regressions
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-All 9 tasks complete; all 3 new fixes tested; full suite green with no regressions to normal-completion paths.
+All 9 tasks complete; all 3 new fixes independently verified and tested (68 new/adjusted test assertions across 3 files); full suite green (570/572, same 2 pre-existing unrelated baseline failures) with no regressions to normal-completion paths. Dispatch's own subprocess was interrupted before delivering its final structured report; this orchestrating session independently confirmed the actual implementation, wiring, and test results directly from the repo state rather than relying on the incomplete self-report.
 <!-- /ANCHOR:completion -->
 
 ---

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The convergence signal reports current novelty but carries no signal for whether the loop is actually improving across iterations; a run can generate novel findings while scores plateau at the same value each iteration",
     "created_at": "2026-06-28T14:01:59Z",
-    "last_save_at": "2026-06-30T14:53:29.756Z",
+    "last_save_at": "2026-07-01T15:47:37.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdc48e62461bba000541897af144ad0380e1c98575ebf77c31b8ebe34104f23d",
+    "source_fingerprint": "sha256:e538c8d2d05d1ec9dcb0d07996b1109390c377ca4186b6ca74ed111510290ebf",
     "source_doc_hashes": {
-      "spec.md": "415caa1e573054e07ec9834ecb051512b2acb3403938743494d1075655235d46",
+      "spec.md": "a1af6286b5ed13a07cfe19a8b511049bff8a7788168f9b1628127c2253ba666b",
       "plan.md": "ccdfdbbde98255bf599fa3dd222ef8e2c8ec3a22b8282395f3150de7673fe844",
       "tasks.md": "99298d82e256223d4233b028b3fcfd4eea7e47222d5151969db47fce1a44d2a5",
       "implementation-summary.md": "8972017f5e0a6fc36541c598e96d6db44bc11a9e10bf643f3cb2f62ee1a6eee2"

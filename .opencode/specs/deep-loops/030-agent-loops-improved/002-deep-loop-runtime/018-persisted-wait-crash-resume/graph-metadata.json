@@ -197,7 +197,7 @@
     ],
     "causal_summary": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed lineages cannot distinguish \"killed mid-wait\" from \"killed mid-dispatch.\" This causes duplicate dispatch and incorrect lineage attribution on restart",
     "created_at": "2026-06-28T14:02:05Z",
-    "last_save_at": "2026-06-30T14:53:29.774Z",
+    "last_save_at": "2026-07-01T15:47:37.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4efe07ea19156dacf1df5972465fd877b9e908e213da5fb4d74ff1c1007c4975",
+    "source_fingerprint": "sha256:6d19ce0a62df4f1466bbb9ee86d2290b30460115b58381c52395df1d23ba59f9",
     "source_doc_hashes": {
-      "spec.md": "f504c1ca2ea0b39c425d3407aed82babb760f60d52905b2c1cee22144c37c8f0",
+      "spec.md": "26d3bd669a2bb851ed7a9727801416b7a67590ad8f7b6daa4c400bda00410945",
       "plan.md": "0bc415ca269666ceee26ef1a669a5bc27dfe339fea9290caaf6070a0c1d8afbf",
       "tasks.md": "4a32aa8a29733ec5ba8753c28ff84d4af9bb257171f74f14186cdb4dd2266ecd",
       "implementation-summary.md": "0ac18f33f7660b9d14b96dd806252a690734bf5f520c2a4bdb4a1714656cdcb0"

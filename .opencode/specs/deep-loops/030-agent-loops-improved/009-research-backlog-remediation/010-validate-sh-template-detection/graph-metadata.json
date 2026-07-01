@@ -15,7 +15,8 @@
       "scaffold never touched check",
       "template author last_updated_by",
       "validate.sh template detection plan",
-      "validate.sh template detection tasks"
+      "validate.sh template detection tasks",
+      "validate.sh template detection implementation summary"
     ],
     "key_topics": [
       "validate",
@@ -28,18 +29,29 @@
       "author",
       "plan",
       "tasks",
-      "several",
-      "folders"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "medium",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "spec.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "mcp_server/lib/validation/orchestrator.ts"
     ],
     "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -53,15 +65,39 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "validate.sh",
+        "name": "check-scaffold-never-touched.sh",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
@@ -72,12 +108,6 @@
       },
       {
         "name": "Scaffold Detection",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -96,6 +126,12 @@
       },
       {
         "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,19 +193,21 @@
     ],
     "causal_summary": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical, untouched scaffold templates — confirmed directly for `008-loop-systems-remediation/tasks.md` and `implementation-summary.md` (title literally `\"[template:level1/tasks.md]\"`, `packetpointer: \"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"`), and for 3 other folders per `research/researcharchive/20260701T071133Z-gen1/research.md` §4.2 (F-010)",
     "created_at": "2026-07-01T07:28:44.272Z",
-    "last_save_at": "2026-07-01T07:34:55.070Z",
+    "last_save_at": "2026-07-01T14:57:20.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb932c81296fdce862b3f0af651052735328d67b6e877e12d9c2ea33c15085e9",
+    "source_fingerprint": "sha256:013901c76a51eba35ed612f767a1a062f0b92701aacecec65c173f79958f4df7",
     "source_doc_hashes": {
-      "spec.md": "aeaed1cc5d837c3ebc687108dfec0e5a5b518598ba3134951a19e5918798b6fe",
+      "spec.md": "9f819dec0adb88336737f3c8ae8b87bbf3d99f34ab914858d4801973dc3d230f",
       "plan.md": "bd31631fad8673ac9b83fe23aaf71fb5584c65e3729f15f3bfe84ff82d9dd961",
-      "tasks.md": "843f61ade9bb42f6306e5c24ada06669e6e056c77fe1258361bbbced77faec0a"
+      "tasks.md": "05a38a2e797f2c5038018a1d52cfbbd80022405e0b9fa01540dfd6802f013277",
+      "implementation-summary.md": "c2552a21eaaf13948a37660f4cdd27a8cbde24156a3056edc5207316ce2fcfe7"
     },
     "last_active_child_id": null,
     "last_active_at": null

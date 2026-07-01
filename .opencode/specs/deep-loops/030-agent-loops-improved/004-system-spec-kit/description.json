@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/004-system-spec-kit",
   "description": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
   "keywords": [
@@ -15,10 +14,12 @@
     "execution",
     "envelope"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.085Z",
+  "lastUpdated": "2026-07-01T15:48:10.452Z",
   "specId": "004",
   "folderSlug": "system-spec-kit",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved"
   ],

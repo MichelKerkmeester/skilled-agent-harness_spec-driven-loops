@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/007-testing/002-record-replay-cassette-harness",
   "description": "Convergence math in `convergence.cjs` is modified frequently (score-delta, observation-threshold, time-decay, fuzzy-merge) but there is no way to",
   "keywords": [
@@ -14,10 +13,12 @@
     "fuzzy-merge",
     "way"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.073Z",
+  "lastUpdated": "2026-07-01T15:48:11.987Z",
   "specId": "002",
   "folderSlug": "record-replay-cassette-harness",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "007-testing"

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary",
     "created_at": "2026-06-28T16:46:11.837Z",
-    "last_save_at": "2026-06-30T14:53:29.815Z",
+    "last_save_at": "2026-07-01T15:47:37.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:454d786ac239243a5266dbe96ae069dec17d83976e8d3e95b58f71b836528aa4",
+    "source_fingerprint": "sha256:7e443350139aeebb818d38cabd2d55952e008c787fa8c874f4251488ba77300f",
     "source_doc_hashes": {
-      "spec.md": "c00229861053a597cf150ba3df4a4d737fd356a32eb3680d663196c63b493ec4",
+      "spec.md": "dfcf5639aefb240fba296fa0b70c219f2925bab8c3477db2bd9fb07cfbfc8400",
       "plan.md": "30c402e571d4bd227c205fe8b77715d83e782dd018acae1877eb1e2b7be04a4a",
       "tasks.md": "5da73d57800c2a8592905392e4349d3ec690d133b09907a56de277483e718a4b",
       "implementation-summary.md": "a4cfed5d89832d9ff024e86c457041c3b63fc8cea91185a70bf4144ab566dd2e"

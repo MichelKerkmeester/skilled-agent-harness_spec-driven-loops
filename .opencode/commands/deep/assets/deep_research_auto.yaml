@@ -1279,7 +1279,148 @@ workflow:
           - Last 3 iteration summaries: {last_3_summaries}
           - Convergence threshold: {convergence_threshold}
           - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
-        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+        command: |
+          node --input-type=module <<'EOF'
+          import { appendFileSync, existsSync, readFileSync, statSync } from 'node:fs';
+
+          const paths = {
+            stateLog: String.raw`{state_paths.state_log}`,
+            registry: String.raw`{state_paths.registry}`,
+            research: String.raw`{state_paths.research_output}`,
+            dashboard: String.raw`{state_paths.dashboard}`,
+          };
+
+          function hasFile(filePath) {
+            try {
+              return existsSync(filePath) && statSync(filePath).isFile();
+            } catch {
+              return false;
+            }
+          }
+
+          function readJson(filePath) {
+            try {
+              return JSON.parse(readFileSync(filePath, 'utf8'));
+            } catch {
+              return null;
+            }
+          }
+
+          function readJsonl(filePath) {
+            if (!hasFile(filePath)) return [];
+            return readFileSync(filePath, 'utf8')
+              .split(/\r?\n/)
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .flatMap((line) => {
+                try {
+                  return [JSON.parse(line)];
+                } catch {
+                  return [];
+                }
+              });
+          }
+
+          function countIterationFindings(record) {
+            if (!record || record.type !== 'iteration') return 0;
+            const numeric = Number(record.findingsCount);
+            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
+            if (Array.isArray(record.keyFindings)) return record.keyFindings.length;
+            if (Array.isArray(record.findings)) return record.findings.length;
+            return 0;
+          }
+
+          function normalizeFindingKey(value) {
+            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+          }
+
+          function findingKeys(candidate) {
+            if (typeof candidate === 'string') {
+              const key = normalizeFindingKey(candidate);
+              return key ? [key] : [];
+            }
+            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
+            return [...new Set([
+              candidate.id,
+              candidate.title,
+              candidate.summary,
+              candidate.text,
+              candidate.finding,
+              candidate.description,
+            ].map(normalizeFindingKey).filter(Boolean))];
+          }
+
+          function collectIterationFindingGroups(record) {
+            if (!record || record.type !== 'iteration') return [];
+            const structured = [record.keyFindings, record.findings]
+              .find((value) => Array.isArray(value) && value.length > 0);
+            if (!Array.isArray(structured)) return [];
+            return structured
+              .map(findingKeys)
+              .filter((keys) => keys.length > 0);
+          }
+
+          function collectRegistryFindingKeys(registry) {
+            if (!Array.isArray(registry?.keyFindings)) return [];
+            return registry.keyFindings
+              .flatMap(findingKeys);
+          }
+
+          function appendEvent(event) {
+            appendFileSync(paths.stateLog, `${JSON.stringify(event)}\n`, 'utf8');
+          }
+
+          const registry = readJson(paths.registry);
+          const registryFindingCount = Array.isArray(registry?.keyFindings) ? registry.keyFindings.length : null;
+          const stateRecords = readJsonl(paths.stateLog);
+          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
+          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
+          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
+          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
+          const identifiableFindingCount = identifiableFindingGroups.length;
+          const missingArtifacts = [
+            ['registry', paths.registry],
+            ['research', paths.research],
+            ['dashboard', paths.dashboard],
+          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
+          const invariantFailures = [];
+          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
+          if (registryFindingCount === null) invariantFailures.push('registry_missing_keyFindings');
+          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
+          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
+          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
+
+          if (invariantFailures.length > 0) {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_incomplete',
+              mode: 'research',
+              severity: 'warning',
+              totalIterations: Number('{iteration_count}'),
+              answeredCount: Number('{answered_count}'),
+              totalQuestions: Number('{total_questions}'),
+              stopReason: '{reason}',
+              reason: 'synthesis_artifact_invariant_failed',
+              invariantFailures,
+              missingArtifacts,
+              registryFindingCount,
+              iterationFindingCount,
+              identifiableFindingCount,
+              missingStructuredFindingCount,
+              timestamp: '{ISO_8601_NOW}',
+            });
+          } else {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_complete',
+              totalIterations: Number('{iteration_count}'),
+              answeredCount: Number('{answered_count}'),
+              totalQuestions: Number('{total_questions}'),
+              stopReason: '{reason}',
+              timestamp: '{ISO_8601_NOW}',
+            });
+          }
+          EOF
 
       step_writeback_spec_findings:
         action: "Write or replace the bounded generated findings block in spec.md before config completion"

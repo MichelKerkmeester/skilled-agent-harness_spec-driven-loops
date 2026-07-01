@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
   "description": "The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName,",
   "keywords": [
@@ -16,10 +15,12 @@
     "verifymirrorsync",
     "agentname"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.086Z",
+  "lastUpdated": "2026-07-01T15:48:16.765Z",
   "specId": "002",
   "folderSlug": "deep-improvement-promotion-safety",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "008-loop-systems-remediation"

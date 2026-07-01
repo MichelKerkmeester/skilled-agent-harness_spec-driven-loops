@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr",
   "description": "Convergence math is spread across `convergence.cjs`, `lib/council/convergence.cjs`, and `lib/coverage-graph/coverage-graph-signals.ts` with no shared",
   "keywords": [
@@ -14,10 +13,12 @@
     "coverage-graph-signals",
     "shared"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.363Z",
+  "lastUpdated": "2026-07-01T15:48:15.588Z",
   "specId": "002",
   "folderSlug": "convergence-profile-unification-adr",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "003-deep-loop-workflows"

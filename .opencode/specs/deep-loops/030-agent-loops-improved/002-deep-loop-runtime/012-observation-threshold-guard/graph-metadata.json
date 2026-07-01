@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A single-observation finding can trigger a STOP decision or auto-promotion without any confirmation; this causes premature convergence on noise — a spurious finding from one iteration halts a run that would have produced substantially better results in subsequent iterations",
     "created_at": "2026-06-28T14:02:00Z",
-    "last_save_at": "2026-06-30T14:53:29.758Z",
+    "last_save_at": "2026-07-01T15:47:37.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f07d55c9be260e5c491422adb05fff058dfc11cd9192c4b3ee3daf0c9b0c5a12",
+    "source_fingerprint": "sha256:c308d3d903256af6b4aad4927c99f12a8cbddaf3a10eb09ebedd3285496ba9b7",
     "source_doc_hashes": {
-      "spec.md": "2eb7ec3dbd9266d3881a5984ec7ae11752cf535a264c5a2ca537775055b12ecb",
+      "spec.md": "3f88c0340ffdf4e2a081d972f650af844466190760714aa8a505e62ece3bbc5c",
       "plan.md": "7d7f7ba7629d12fd8956adbdf779b6aa0840fa86b3fbb4794d642a75f8ef8ba8",
       "tasks.md": "30c4e265bb823923cd351efeb96721079f9dab3e07da94753949d72263b4f162",
       "implementation-summary.md": "c8146ea6636f0848cda0d85e6fce10571f9db331e7ee037420947211621a2464"

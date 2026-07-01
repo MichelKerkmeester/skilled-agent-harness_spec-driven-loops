@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before either acquires it",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-06-30T14:53:29.749Z",
+    "last_save_at": "2026-07-01T15:47:37.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffa8c1e180cfab6d358dc4bdebdc5ff79b05eb2a1ae53824d26329daa0e00dd8",
+    "source_fingerprint": "sha256:bab6b71e3648547117d4e379f4e6a1471ed75ff17f5eb161b53e7d03c5ae52a0",
     "source_doc_hashes": {
-      "spec.md": "7b17ff1eeb78d4edde03a9c80b9b0aaade0255c2617df14fc91f08d44e3e17c7",
+      "spec.md": "050bca9c255ad6a10fbfc7d822bdb6d9a710bebd2d41fb1e90a0c8e0514e6d3f",
       "plan.md": "15a1676ddd506bfb2ee7c0a9d6aa1a17705c5e65fa3901ccd904e347da958e0f",
       "tasks.md": "33992538e4e51e9eb8286c1ef174557dd7e6b902d5b5292f0620cc355862fd01",
       "implementation-summary.md": "214e7ccf80ef5b0a1c10c9f9da6cf6582ee264f26b06cf70adf215dd220f6926"

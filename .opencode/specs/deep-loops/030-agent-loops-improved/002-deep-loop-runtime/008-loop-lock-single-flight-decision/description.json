@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
   "description": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before",
   "keywords": [
@@ -18,10 +17,12 @@
     "tight",
     "window"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.936Z",
+  "lastUpdated": "2026-07-01T15:48:17.820Z",
   "specId": "008",
   "folderSlug": "loop-lock-single-flight-decision",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

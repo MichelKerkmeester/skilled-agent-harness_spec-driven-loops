@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/012-observation-threshold-guard",
   "description": "A single-observation finding can trigger a STOP decision or auto-promotion without any confirmation; this causes premature convergence on noise — a",
   "keywords": [
@@ -16,10 +15,12 @@
     "convergence",
     "noise"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.957Z",
+  "lastUpdated": "2026-07-01T15:48:18.778Z",
   "specId": "012",
   "folderSlug": "observation-threshold-guard",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

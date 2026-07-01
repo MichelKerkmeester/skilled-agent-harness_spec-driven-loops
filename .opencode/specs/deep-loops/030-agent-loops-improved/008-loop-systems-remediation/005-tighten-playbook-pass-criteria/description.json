@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria",
   "description": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
   "keywords": [
@@ -15,10 +14,12 @@
     "inspection",
     "alone"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.508Z",
+  "lastUpdated": "2026-07-01T15:48:17.340Z",
   "specId": "005",
   "folderSlug": "tighten-playbook-pass-criteria",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "008-loop-systems-remediation"

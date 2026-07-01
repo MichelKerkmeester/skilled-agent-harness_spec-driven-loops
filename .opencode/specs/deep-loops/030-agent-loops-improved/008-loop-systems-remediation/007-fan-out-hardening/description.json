@@ -17,10 +17,12 @@
     "false-fulfilled",
     "lineages"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.115Z",
+  "lastUpdated": "2026-07-01T15:48:17.179Z",
   "specId": "007",
   "folderSlug": "fan-out-hardening",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "008-loop-systems-remediation"

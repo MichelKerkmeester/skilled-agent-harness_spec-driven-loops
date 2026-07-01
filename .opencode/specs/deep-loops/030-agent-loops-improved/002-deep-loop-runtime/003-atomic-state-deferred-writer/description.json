@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer",
   "description": "High-frequency reducers (registry, strategy, dashboard) issue rapid successive writes to the same path that overwrite each other wastefully and may",
   "keywords": [
@@ -17,10 +16,12 @@
     "overwrite",
     "wastefully"
   ],
-  "lastUpdated": "2026-07-01T12:31:46.913Z",
+  "lastUpdated": "2026-07-01T15:48:19.465Z",
   "specId": "003",
   "folderSlug": "atomic-state-deferred-writer",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "002-deep-loop-runtime"

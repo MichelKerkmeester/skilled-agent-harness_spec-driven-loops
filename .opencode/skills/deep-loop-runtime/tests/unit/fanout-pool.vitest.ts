@@ -25,6 +25,9 @@ const {
     initialRetryCounts?: Record<string, number>;
     lagCeilingMs?: number;
     lagCeilingAction?: 'abort-requeue';
+    postExitGraceMs?: number;
+    postExitPollMs?: number;
+    getAttemptLiveness?: (attempt: { label: string; attempt: number }) => { alive: boolean; exitedAtMs?: number; pid?: number };
   }) => Promise<{
     results: Array<{
       label: string;
@@ -37,6 +40,7 @@ const {
         retryable?: boolean;
         aborted?: boolean;
         abort_reason?: string;
+        reason?: string;
       };
       retry_attempts?: number;
       retry_exhausted?: boolean;
@@ -425,6 +429,65 @@ describe('runCappedPool', () => {
     gated.releaseAll();
     const result = await run;
     expect(result.summary).toMatchObject({ succeeded: 2, failed: 0 });
+  });
+
+  it('force-fails a dead subprocess attempt that never records a terminal ledger event', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const liveness = new Map<string, { alive: boolean; exitedAtMs?: number; pid?: number }>();
+
+    const result = await runCappedPool({
+      items: [{ label: 'orphan' }],
+      concurrency: 1,
+      postExitGraceMs: 10,
+      postExitPollMs: 2,
+      getAttemptLiveness: (attempt) => liveness.get(`${attempt.label}:${attempt.attempt}`) ?? { alive: true },
+      worker: async (item: { label: string }, ctx: { attempt?: number }) => {
+        liveness.set(`${item.label}:${ctx.attempt ?? 1}`, { alive: false, exitedAtMs: Date.now() - 20, pid: 12345 });
+        return new Promise(() => {});
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(result.summary).toMatchObject({ total: 1, succeeded: 0, failed: 1, all_failed: true });
+    expect(result.results[0]).toMatchObject({
+      status: 'rejected',
+      error: {
+        retryable: false,
+        reason: 'orphaned_after_subprocess_exit',
+        post_exit_grace_ms: 10,
+        pid: 12345,
+      },
+    });
+    expect(events.filter((event) => event.event === 'failed')).toEqual([
+      expect.objectContaining({
+        label: 'orphan',
+        terminal: true,
+        error: expect.objectContaining({ reason: 'orphaned_after_subprocess_exit' }),
+      }),
+    ]);
+  });
+
+  it('does not force-fail a genuinely alive worker inside the post-exit grace window', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const gated = makeGatedWorker();
+    const run = runCappedPool({
+      items: [{ label: 'alive' }],
+      concurrency: 1,
+      postExitGraceMs: 10,
+      postExitPollMs: 2,
+      getAttemptLiveness: () => ({ alive: true, pid: 23456 }),
+      worker: gated.worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    await flush();
+    await sleep(25);
+    expect(gated.inFlight()).toEqual(['alive']);
+    expect(events.filter((event) => event.event === 'failed')).toEqual([]);
+
+    gated.releaseAll();
+    const result = await run;
+    expect(result.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
   });
 
   it('surfaces bounded failure classes and rolls them up in the summary', async () => {

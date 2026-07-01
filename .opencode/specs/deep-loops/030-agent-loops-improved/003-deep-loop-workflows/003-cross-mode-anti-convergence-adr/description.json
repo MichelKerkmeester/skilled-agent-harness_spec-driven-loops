@@ -1,5 +1,4 @@
 {
-  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
   "description": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no",
   "keywords": [
@@ -16,7 +15,7 @@
     "miniterations",
     "maxiterations"
   ],
-  "lastUpdated": "2026-07-01T13:22:18.801Z",
+  "lastUpdated": "2026-07-01T15:48:14.764Z",
   "specId": "003",
   "folderSlug": "cross-mode-anti-convergence-adr",
   "parentChain": [
