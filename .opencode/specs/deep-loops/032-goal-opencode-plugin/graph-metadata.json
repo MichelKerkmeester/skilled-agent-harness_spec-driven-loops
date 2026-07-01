@@ -49,7 +49,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/commands/goal.md",
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
       ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
       ".opencode/plugins/mk-spec-memory.js",
@@ -61,12 +60,6 @@
         "name": "mk-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "goal.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal.md",
         "source": "derived"
       },
       {
@@ -138,15 +131,15 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-01T12:49:13.483Z",
+    "last_save_at": "2026-07-01T13:24:44.515Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d73c63ddd0c745784c9a087f7650680febe838a58f9884bf2b77dbfb6196cc89",
+    "source_fingerprint": "sha256:90734de0ebc0257be9de6fc7838d6f62acaa9d21e451d77b1682b35e5c6c2615",
     "source_doc_hashes": {
-      "spec.md": "27946a3613cdf537cdb1bd53955e757cb0bda7816238ed28d89b24a98ab8f206"
+      "spec.md": "afe567abeda80672b72ad36bb257c33d14bc531f2b48646998ad4c843743f54a"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-01T09:40:41.560Z"

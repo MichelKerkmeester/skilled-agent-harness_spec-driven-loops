@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin"
     last_updated_at: "2026-06-30T16:30:00Z"
     last_updated_by: "opencode-gpt"
-    recent_action: "Landed phases 010-012; recorded phase 013 decision; created phase 014"
-    next_safe_action: "Implement phase 013, then phase 014 (both independent, either order)"
+    recent_action: "Landed all 5 remediation phases (010-014); audit-driven work complete"
+    next_safe_action: "No further action required; phase 009 remains owned by a separate session"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -44,14 +44,14 @@ _memory:
 |-------|-------|
 | **Level** | phase parent |
 | **Priority** | P1 |
-| **Status** | In Progress (phases 001-008, 010-012 complete; 013-014 pending; phase 009 owned by a separate session) |
+| **Status** | In Progress (phases 001-008, 010-014 complete; phase 009 owned by a separate session, in progress) |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet under deep-loops) |
 | **Phase** | N/A |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | Design research and implementation sub-phases (001-008, 010-013; phase 009 tracked separately) are complete and independently validated |
+| **Handoff Criteria** | Design research and implementation sub-phases (001-008, 010-014; phase 009 tracked separately) are complete and independently validated |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -182,8 +182,8 @@ REQ-005
 | 10 | 010-security-and-correctness-fixes/ | Fix 5 confirmed P1 security/correctness defects (DR-001 injection clamp, DR-003 stale-verifier race, DR-004-P1 RICCE metadata, DR-005 sanitizer hardening, DR-006 secret redaction) in mk-goal.js | Complete |
 | 11 | 011-command-surface-normalization/ | Normalize the twice-renamed /goal command filename to its final evidence-backed name and sweep all referencing surfaces (specs, catalogs, playbooks, env docs); resolve DR-004-P2/DR-010-P1/P2 | Complete |
 | 12 | 012-regression-test-backfill/ | Backfill regression tests pinning phases 010/011 fixes plus research's untested code paths (transform hook, event branches, autonomy smoke, export contract, tool-registration) | Complete |
-| 13 | 013-design-fidelity-and-polish/ | Wire a real usage_limited detector (operator chose wire over collapse); fix packet-wide fingerprint placeholders, phase 006 completion overclaim, fsync error logging, store-health status field | Pending |
-| 14 | 014-goal-state-cleanup-and-archive/ | Archive-then-prune goal state on session.deleted plus a throttled orphan sweep on session.created, so .goal-state/ stops growing unboundedly | Pending |
+| 13 | 013-design-fidelity-and-polish/ | Wire a real usage_limited detector (operator chose wire over collapse); fix packet-wide fingerprint placeholders, phase 006 completion overclaim, fsync error logging, store-health status field | Complete |
+| 14 | 014-goal-state-cleanup-and-archive/ | Archive-then-prune goal state on session.deleted plus a throttled orphan sweep on session.created, so .goal-state/ stops growing unboundedly | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
