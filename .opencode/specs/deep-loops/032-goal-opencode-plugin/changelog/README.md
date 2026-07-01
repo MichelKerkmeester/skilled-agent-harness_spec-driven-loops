@@ -12,7 +12,7 @@ contextType: "implementation"
 
 > Packet-local changelog index for the dedicated `/goal` OpenCode plugin spec and its phase children.
 
-Spec 032 owns the `/goal` OpenCode plugin and command. The changelog mirrors the packet's eight implementation sub-phases and one root rollup.
+Spec 032 owns the `/goal` OpenCode plugin and command. Phases 001-008 shipped the original passive-goal implementation plus its prompt-enhancement and system-spec-kit integration. Phase 009 (`/speckit:*` goal-prompt-offer integration) is owned by a separate, concurrently in-flight session and has no changelog here. Phases 010-014 are a remediation track that closed a dual deep-research/deep-review audit's findings, normalized the command surface, backfilled regression tests, wired the `usage_limited` detector, and added goal-state cleanup. The chronological view of the same work lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md).
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -36,3 +36,9 @@ Spec 032 owns the `/goal` OpenCode plugin and command. The changelog mirrors the
 | 006 active continuation | [changelog-032-006-active-continuation.md](./changelog-032-006-active-continuation.md) |
 | 007 sk-prompt goal enhancement | [changelog-032-007-sk-prompt-goal-enhancement.md](./changelog-032-007-sk-prompt-goal-enhancement.md) |
 | 008 system-spec-kit integration | [changelog-032-008-system-spec-kit-integration.md](./changelog-032-008-system-spec-kit-integration.md) |
+| 009 speckit goal-prompt-offer | _owned by a separate session, no changelog here_ |
+| 010 security and correctness fixes | [changelog-032-010-security-and-correctness-fixes.md](./changelog-032-010-security-and-correctness-fixes.md) |
+| 011 command surface normalization | [changelog-032-011-command-surface-normalization.md](./changelog-032-011-command-surface-normalization.md) |
+| 012 regression test backfill | [changelog-032-012-regression-test-backfill.md](./changelog-032-012-regression-test-backfill.md) |
+| 013 design fidelity and polish | [changelog-032-013-design-fidelity-and-polish.md](./changelog-032-013-design-fidelity-and-polish.md) |
+| 014 goal-state cleanup and archive | [changelog-032-014-goal-state-cleanup-and-archive.md](./changelog-032-014-goal-state-cleanup-and-archive.md) |
