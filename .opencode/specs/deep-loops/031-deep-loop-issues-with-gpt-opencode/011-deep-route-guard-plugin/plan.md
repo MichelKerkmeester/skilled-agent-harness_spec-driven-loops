@@ -25,8 +25,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Plugin home: .opencode/plugins/deep-route-guard.js, matching the 5 existing plugins already there (repo's established convention, per .opencode/plugins/README.md)."
-      - "Fail-closed vs mutate-and-warn: BOTH confirmed working via live opencode CLI tests. Kept as a configurable toggle (default warn, DEEP_ROUTE_GUARD_REJECT=1 for reject) rather than removing either."
+      - "Plugin home: .opencode/plugins/mk-deep-loop-guard.js (renamed 2026-07-01 from deep-route-guard.js), matching the 5 existing plugins already there (repo's established convention, per .opencode/plugins/README.md)."
+      - "Fail-closed vs mutate-and-warn: BOTH confirmed working via live opencode CLI tests. Kept as a configurable toggle (default warn, MK_DEEP_LOOP_GUARD_REJECT=1 for reject, renamed 2026-07-01 from DEEP_ROUTE_GUARD_REJECT) rather than removing either."
 ---
 # Implementation Plan: Detection-Layer Sub-Agent-Routing Enforcement Plugin
 
@@ -59,7 +59,7 @@ Detection-only enforcement, not a new source of truth: the plugin reads `mode-re
 
 ### Definition of Ready
 - [x] Phases 008-010 confirmed complete (routing identity correct before enforcing against it).
-- [x] Plugin home decided (system-skill-advisor subpath vs. standalone `.opencode/plugins/deep-route-guard/`) with rationale recorded.
+- [x] Plugin home decided (system-skill-advisor subpath vs. standalone `.opencode/plugins/mk-deep-loop-guard/`) with rationale recorded.
 - [x] OpenCode plugin API's `tool.execute.before` hook signature confirmed via existing plugin examples in the repo (if any) or OpenCode docs.
 
 ### Definition of Done

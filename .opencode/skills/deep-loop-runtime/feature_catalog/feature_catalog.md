@@ -16,13 +16,13 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 49 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 50 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | [01--executor](01--executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [02--prompt-rendering](02--prompt-rendering/) | 1 features | `lib/deep-loop/prompt-pack.ts` |
-| [03--validation](03--validation/) | 2 features | `lib/deep-loop/post-dispatch-validate.ts` |
+| [03--validation](03--validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js` |
 | [04--state-safety](04--state-safety/) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [05--scoring](05--scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [06--coverage-graph](06--coverage-graph/) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
@@ -158,6 +158,22 @@ Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, 
 #### Source Files
 
 See [`03--validation/llm-judge-hardening.md`](03--validation/llm-judge-hardening.md) for full implementation and validation file listings.
+
+---
+
+### mk-deep-loop-guard
+
+#### Description
+
+Detection-layer OpenCode plugin that flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the actual `subagent_type` being dispatched.
+
+#### How It Works
+
+A `tool.execute.before` hook resolves the target `subagent_type` against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt. Default is mutate-and-warn; `MK_DEEP_LOOP_GUARD_REJECT=1` switches to fail-closed (throws, blocking the dispatch — confirmed live against the installed OpenCode host). Fails open on its own internal errors.
+
+#### Source Files
+
+See [`03--validation/mk-deep-loop-guard.md`](03--validation/mk-deep-loop-guard.md) for full implementation and validation file listings.
 
 ---
 

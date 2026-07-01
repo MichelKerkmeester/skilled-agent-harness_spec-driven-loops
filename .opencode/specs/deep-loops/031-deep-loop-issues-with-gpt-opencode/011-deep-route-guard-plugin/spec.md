@@ -89,7 +89,7 @@ Build the plugin as a detection layer that inspects/rewrites Task-dispatch args 
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/plugins/deep-route-guard.js` | Create | Plugin implementation (default-export-only, per repo convention) |
+| `.opencode/plugins/mk-deep-loop-guard.js` | Create | Plugin implementation (default-export-only, per repo convention); renamed 2026-07-01 from `deep-route-guard.js` for `mk-*` naming parity |
 | Hard-limits documentation | Create | Header comment inside the plugin file itself |
 <!-- /ANCHOR:scope -->
 

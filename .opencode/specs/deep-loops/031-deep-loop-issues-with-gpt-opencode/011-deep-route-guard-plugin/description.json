@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
   "description": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of",
   "keywords": [
@@ -17,14 +18,15 @@
     "enforce",
     "moment"
   ],
-  "lastUpdated": "2026-07-01T10:56:21.380Z",
+  "lastUpdated": "2026-07-01T14:53:26.976Z",
   "specId": "011",
   "folderSlug": "deep-route-guard-plugin",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "031-deep-loop-issues-with-gpt-opencode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

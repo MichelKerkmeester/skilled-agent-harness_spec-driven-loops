@@ -49,7 +49,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirm phases 008-010 are complete.
-- [x] T002 Plugin home: `.opencode/plugins/deep-route-guard.js`, matching the repo's own established convention (5 existing plugins there, per `.opencode/plugins/README.md`: "OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session start... default export only.")
+- [x] T002 Plugin home: `.opencode/plugins/mk-deep-loop-guard.js` (renamed 2026-07-01 from `deep-route-guard.js` for `mk-*` naming parity), matching the repo's own established convention (5 existing plugins there, per `.opencode/plugins/README.md`: "OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session start... default export only.")
 - [x] T003 Confirmed from `@opencode-ai/plugin` SDK types: `"tool.execute.before"?: (input: {tool, sessionID, callID}, output: {args: any}) => Promise<void>`. Default-export-only confirmed both from the SDK's `PluginModule`/`Plugin` types and explicitly from `.opencode/plugins/README.md`'s own load-bearing warning (a stray named export drops the entire file).
 <!-- /ANCHOR:phase-1 -->
 
@@ -60,7 +60,7 @@ _memory:
 
 - [x] T004 Implemented: reads `mode-registry.json`, builds an `agent -> mode` map, and for any `task` dispatch whose `subagent_type` matches a registry entry, extracts a `mode=X` token from the prompt text and compares it against the entry's `workflowMode`.
 - [x] T005 Implemented: registry load wrapped in try/catch returning `null` on failure (missing file, malformed JSON); the mismatch check short-circuits (returns, no action) whenever the registry is unavailable, an unexpected arg shape is seen, or `subagent_type`/`mode` tokens are absent.
-- [x] T006 Implemented both: default is mutate-and-warn (`console.error`, no blocking); `DEEP_ROUTE_GUARD_REJECT=1` env var switches to throw-based rejection. Kept both as a permanent, intentional toggle rather than removing one -- see `implementation-summary.md` Key Decisions for the reasoned deviation from the plan's "remove the unused path" instruction.
+- [x] T006 Implemented both: default is mutate-and-warn (`console.error`, no blocking); `MK_DEEP_LOOP_GUARD_REJECT=1` env var (renamed 2026-07-01 from `DEEP_ROUTE_GUARD_REJECT`) switches to throw-based rejection. Kept both as a permanent, intentional toggle rather than removing one -- see `implementation-summary.md` Key Decisions for the reasoned deviation from the plan's "remove the unused path" instruction.
 - [x] T007 Hard limits documented in the plugin's own header comment (no hard identity; no semantic-content catch; fails open on its own errors).
 <!-- /ANCHOR:phase-2 -->
 

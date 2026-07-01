@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Deep Route Guard OpenCode Plugin                              ║
+// ║ COMPONENT: mk-deep-loop-guard OpenCode Plugin                            ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Detection-layer enforcement for Task-tool dispatches targeting  ║
 // ║          deep-loop sub-agents -- flags/blocks a Deep Route header whose  ║
@@ -20,7 +20,7 @@ import { join } from 'node:path';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REGISTRY_RELATIVE_PATH = '.opencode/skills/deep-loop-workflows/mode-registry.json';
-const REJECT_MODE_ENV = 'DEEP_ROUTE_GUARD_REJECT';
+const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -47,7 +47,7 @@ function declaredModeFromPrompt(promptText) {
 
 function mismatchDetail(subagentType, registryMode, declaredMode) {
   return [
-    'deep-route-guard: Deep Route mode mismatch --',
+    'mk-deep-loop-guard: Deep Route mode mismatch --',
     `dispatch targets subagent_type="${subagentType}"`,
     `(registry mode="${registryMode}")`,
     `but the prompt declares mode="${declaredMode}"`,
@@ -59,7 +59,7 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Create the deep-route-guard OpenCode plugin hooks.
+ * Create the mk-deep-loop-guard OpenCode plugin hooks.
  *
  * Hard limits (by design, not oversight):
  * - Cannot create hard runtime identity; that remains host/FIX-5 territory.
@@ -71,7 +71,7 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function deepRouteGuardPlugin(ctx) {
+export default async function MkDeepLoopGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const registryPath = join(projectDir, REGISTRY_RELATIVE_PATH);
 
@@ -99,9 +99,9 @@ export default async function deepRouteGuardPlugin(ctx) {
         if (process.env[REJECT_MODE_ENV] === '1') {
           throw new Error(detail);
         }
-        console.error(`[deep-route-guard] WARN: ${detail}`);
+        console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
       } catch (err) {
-        if (err instanceof Error && err.message.startsWith('deep-route-guard:')) throw err;
+        if (err instanceof Error && err.message.startsWith('mk-deep-loop-guard:')) throw err;
         // Fail open on any unexpected internal error -- never block unrelated dispatches.
       }
     },

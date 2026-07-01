@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 51 deterministic scenarios across 12 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 52 deterministic scenarios across 12 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -99,7 +99,7 @@ Scenario verdict:
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
 - `SKIP`: concrete sandbox blocker prevents execution and is documented
 
-Release is `READY` only when all 51 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is `READY` only when all 52 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -184,7 +184,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ## 8. VALIDATION
 
-This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-005 | Post-dispatch validate
 
@@ -213,6 +213,21 @@ Expected signals: Retry behavior, neutral fallback card shape, quarantine skip p
 
 #### Test Execution
 > **Feature File:** [DLR-045](03--validation/llm-judge-hardening.md)
+
+---
+
+### DLR-052 | mk-deep-loop-guard
+
+#### Description
+Detection-layer OpenCode plugin that flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the actual `subagent_type` being dispatched.
+
+#### Scenario Contract
+Prompt: `Verify mk-deep-loop-guard still detects a Deep Route mode mismatch and respects MK_DEEP_LOOP_GUARD_REJECT.`
+
+Expected signals: Hook fires and logs a warning on mismatch (default); throws and blocks the dispatch when `MK_DEEP_LOOP_GUARD_REJECT=1` is set; stays silent on matching modes, non-deep `subagent_type` values, and when the registry is unreadable.
+
+#### Test Execution
+> **Feature File:** [DLR-052](03--validation/mk-deep-loop-guard.md)
 
 ---
 
@@ -902,3 +917,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-049 | [F047 Unified observability event envelope](../feature_catalog/11--observability/unified-observability-event-envelope.md) | [11--observability/unified-observability-event-envelope.md](11--observability/unified-observability-event-envelope.md) |
 | DLR-050 | [F048 Hermetic test isolation](../feature_catalog/12--testing/hermetic-test-isolation.md) | [12--testing/hermetic-test-isolation.md](12--testing/hermetic-test-isolation.md) |
 | DLR-051 | [F049 Record-replay cassette harness](../feature_catalog/12--testing/record-replay-cassette-harness.md) | [12--testing/record-replay-cassette-harness.md](12--testing/record-replay-cassette-harness.md) |
+| DLR-052 | [F050 mk-deep-loop-guard](../feature_catalog/03--validation/mk-deep-loop-guard.md) | [03--validation/mk-deep-loop-guard.md](03--validation/mk-deep-loop-guard.md) |

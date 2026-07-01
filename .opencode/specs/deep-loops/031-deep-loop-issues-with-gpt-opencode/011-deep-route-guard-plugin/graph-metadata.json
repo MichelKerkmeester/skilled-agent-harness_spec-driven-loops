@@ -40,7 +40,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/plugins/deep-route-guard.js",
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs",
       "spec.md",
       ".opencode/plugins/README.md",
       "implementation-summary.md",
@@ -56,9 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "deep-route-guard.js",
+        "name": "mk-deep-loop-guard.js",
         "kind": "code",
-        "path": ".opencode/plugins/deep-route-guard.js",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of dispatch — a model can still construct a Task-tool call with a mismatched `mode`/`targetagent` pair and nothing currently stops it before the dispatch happens",
     "created_at": "2026-07-01T10:56:27.071Z",
-    "last_save_at": "2026-07-01T13:46:29.409Z",
+    "last_save_at": "2026-07-01T14:54:46.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbdbaed5a030996b352e8875f13f4ca999067a4a8f1c4b08d78f2f624aa9a78c",
+    "source_fingerprint": "sha256:3a2b7892bd12616176abee0b37d15741631e0ce90420b6870624b9dd66ca410d",
     "source_doc_hashes": {
-      "spec.md": "44c2e38e0189cd533f834c565246c110cd22add1779541912be6840a7b3a94f2",
-      "plan.md": "0a19e7bcf3c9d45c4c32b28391cb5f7cbcbd75c995d53c2b8f512137aeff8aa3",
-      "tasks.md": "3520ef4d29870e75aed5f0b6ef21fc4d6cc6ffe8648954fbab5eed6f6001d408",
+      "spec.md": "fddf96c972b6542678d0d7d395f63b1dd553539a5141e0f82d3b1929aea69309",
+      "plan.md": "9009d29036bef14f4d197e4ffd2e67818a822d4b90e74c5aa550307d4c520023",
+      "tasks.md": "5078d9c07edd65e6c1fd76cfe114c1ee3f3ac5500780bbf7d2c121533004b2bf",
       "checklist.md": "dc947d2352156a121d201aa88e36baf2b1ca5b35128522bb352de0fed3298f1f",
-      "implementation-summary.md": "01f5f86031d3e69356e828d111d5193dc74439cd68a89bbfca8cecd181f17a7b"
+      "implementation-summary.md": "f3c57d4393db564a65d6b07c7e10bdb422b9358424865279645ba68270219846"
     },
     "last_active_child_id": null,
     "last_active_at": null
