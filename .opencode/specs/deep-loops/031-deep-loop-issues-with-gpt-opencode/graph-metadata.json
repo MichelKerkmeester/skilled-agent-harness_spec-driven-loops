@@ -19,7 +19,8 @@
     "deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint",
     "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
     "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening"
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation"
   ],
   "manual": {
     "depends_on": [],
@@ -53,6 +54,8 @@
       "007-gpt-behavioral-hardening-research/research/research.md",
       "012-gpt-claude-benchmark/benchmark-results.md",
       "006-host-hard-identity-fix5/decision-record.md",
+      "016-mk-deep-loop-guard-hardening/implementation-summary.md",
+      "017-loop-guard-implementation/implementation-summary.md",
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".opencode/plugins/README.md",
       "spec.md"
@@ -121,15 +124,15 @@
     ],
     "causal_summary": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening, and the structural deep-agent router.",
     "created_at": "2026-06-30T11:58:13.600Z",
-    "last_save_at": "2026-07-01T17:22:51.738Z",
+    "last_save_at": "2026-07-01T17:42:38.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b2dd7e029ba266bfc22681221b3cea8611ac0e65fa3d009793e20e5e989561bf",
+    "source_fingerprint": "sha256:68fbea6ba97efdc874d44a8b63e9481bf93462203da9a15787c448c4562cda59",
     "source_doc_hashes": {
-      "spec.md": "7dc6c2d58b54e44437aee61709b9780daec7e37c31499af4b3538ac7c7a76037"
+      "spec.md": "5c07e94080b569881fa1bac04dda02b65f370e8e0fb2aae33913140618eddb16"
     },
     "last_active_child_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
     "last_active_at": "2026-07-01T05:45:00.000Z"

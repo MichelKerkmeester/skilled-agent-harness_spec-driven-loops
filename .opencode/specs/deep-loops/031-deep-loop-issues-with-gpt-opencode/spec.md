@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode"
-    last_updated_at: "2026-07-01T17:15:00Z"
+    last_updated_at: "2026-07-01T21:15:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Packet complete: phases 008-013 implemented, 006 closed"
+    recent_action: "Packet complete: phases 008-017 implemented, 006 closed"
     next_safe_action: "None -- packet complete"
     blockers: []
     key_files:
@@ -21,6 +21,8 @@ _memory:
       - "007-gpt-behavioral-hardening-research/research/research.md"
       - "012-gpt-claude-benchmark/benchmark-results.md"
       - "006-host-hard-identity-fix5/decision-record.md"
+      - "016-mk-deep-loop-guard-hardening/implementation-summary.md"
+      - "017-loop-guard-implementation/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "031-parent-init"
@@ -31,6 +33,7 @@ _memory:
       - "Phase 007's 9 KQs all answered with file:line evidence across 6 lineages, 2 rounds (research/research.md)."
       - "Phase ordering resolved and executed: 008 (Mode-D + ai-council identity) -> 009 (orchestrate routing) -> 010 (ai-council subagent-only, operator override) -> 011 (plugin) -> 012 (benchmark) -> 013 (FIX-5 checkpoint)."
       - "Should phase 006/FIX-5 unpark? No -- closed by phase 013's gate against phase 012's real benchmark results (zero semantic wrong-mode artifacts, zero route-proof mismatches)."
+      - "Phases 014-015 (skill-doc drift audit + remediation) and 016-017 (mk-deep-loop-guard loop-detection research + implementation) closed out the packet's remaining follow-up work."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase Parent: Deep-Loop Issues with GPT-backed OpenCode
@@ -87,5 +90,6 @@ Phases 002-004 (route-proof validation, `deep.md` primary router, `orchestrate.m
 | `013-fix5-checkpoint` | Complete | Applied research's cross-validated negative gate against phase 012's real results. No trigger condition met on grounds FIX-5 would remedy. **006/FIX-5 closed as "agent-layer fix sufficient."** Packet complete. |
 | `014-skill-doc-drift-audit` | Complete | 10-iteration deep-review + 10-iteration deep-research fan-outs (`cli-opencode openai/gpt-5.5-fast`, reasoning=high, `stopPolicy: max-iterations`) audited 45 candidate `SKILL.md`/`references/`/`assets/`/README files for staleness. All 20 iterations independently re-verified by fresh Claude Sonnet 5 agents (zero fabrications). Confirmed 6 real drift clusters: stale `ai-council` direct-invoke guidance across `cli-opencode` docs/templates/playbooks; stale `.opencode/agents/*.toml` mirror claims across 5 deep-loop `SKILL.md` docs (one code-coupled via `deep-improvement/scripts/agent-improvement/scan-integration.cjs:18`); a stale `.opencode/plugins/README.md` entrypoint count missing `mk-deep-loop-guard.js`; and an orchestrate-routing tension in `cli-opencode/SKILL.md:292`. Findings-only; recommended follow-up phase `015-skill-doc-drift-remediation` (now complete). |
 | `015-skill-doc-drift-remediation` | Complete | Patched all 6 confirmed drift clusters from phase 014. A dedicated Cluster 6 investigation found orchestrate's `@deep-review` row is load-bearing (`deep-review.md`'s own Caller contract depends on it) -- fixed `cli-opencode/SKILL.md`'s internal self-contradiction instead of touching `orchestrate.md`. Post-fix re-scan found and fixed 13 additional real `.toml`-mirror references beyond phase 014's citation sample, plus a pre-existing `REPO_ROOT` path bug in two sandbox scripts found during live verification. `deep-improvement` vitest suite: 411/413 (2 pre-existing unrelated failures). A follow-up 10-iteration dual-model review (GPT-5.5-fast + GLM-5.2-max, 5/5) confirmed 2 more real residuals (a missed Cluster-1 instance, stale packet-completion metadata) -- both fixed; 1 GLM claim independently verified false and rejected. |
-| `016-mk-deep-loop-guard-hardening` | Complete (research) | 5-iteration dual-model research (`gpt-fast-high` 3 iters + `glm-max` 2 iters) on hardening `mk-deep-loop-guard.js` to mechanically detect loop-like repeated `orchestrate`-to-loop-executor dispatches. Both lineages independently converged on session-scoped state + an iteration-aware heuristic. Surfaced and independently re-verified a load-bearing fact: `orchestrate`'s Task dispatches always set `subagent_type: "general"`, which also means phase 011's existing mode-mismatch guard silently no-ops on real `orchestrate`-routed dispatches (flagged, not yet fixed). Recommends a new phase 017 to implement once the operator picks Option A or B. |
+| `016-mk-deep-loop-guard-hardening` | Complete (research) | 5-iteration dual-model research (`gpt-fast-high` 3 iters + `glm-max` 2 iters) on hardening `mk-deep-loop-guard.js` to mechanically detect loop-like repeated `orchestrate`-to-loop-executor dispatches. Both lineages independently converged on session-scoped state + an iteration-aware heuristic. Surfaced and independently re-verified a load-bearing fact: `orchestrate`'s Task dispatches always set `subagent_type: "general"`, which also means phase 011's existing mode-mismatch guard silently no-ops on real `orchestrate`-routed dispatches. Recommended a new phase 017 to implement Option B; done below. |
+| `017-loop-guard-implementation` | Complete | Implemented phase 016's Design Option B: `resolveTargetIdentity()` (prompt-text-first identity resolution, fixing the `subagent_type="general"` no-op gap for both checks) + session-scoped, iteration-aware loop-repeat detection (`.opencode/skills/.loop-guard-state/{hex(sessionID)}.json`, new `MK_DEEP_LOOP_GUARD_REJECT_LOOP` env var). Hermetic suite extended (original 8 scenarios + identity/loop/fail-open scenarios, all passing); live re-verified against the real installed `opencode` v1.17.11 host with zero regression in the throw-blocks-dispatch mechanism. Feature catalog (F050) and manual testing playbook (DLR-052) updated. |
 <!-- /ANCHOR:phases -->

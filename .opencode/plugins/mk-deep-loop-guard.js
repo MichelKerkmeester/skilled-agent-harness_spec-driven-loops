@@ -4,7 +4,9 @@
 // ║ PURPOSE: Detection-layer enforcement for Task-tool dispatches targeting  ║
 // ║          deep-loop sub-agents -- flags/blocks a Deep Route header whose  ║
 // ║          declared mode disagrees with mode-registry.json's entry for    ║
-// ║          the actual subagent_type being dispatched.                     ║
+// ║          the resolved target agent, and flags/blocks repeated/loop-like ║
+// ║          orchestrate-to-command-owned-loop-executor dispatches within a ║
+// ║          session while allowing exactly one legitimate bounded hand-off.║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -12,7 +14,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -20,10 +22,29 @@ import { join } from 'node:path';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REGISTRY_RELATIVE_PATH = '.opencode/skills/deep-loop-workflows/mode-registry.json';
+const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.loop-guard-state';
 const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
+const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+
+// Command-owned loop executors: dispatched only by their parent /deep:* command,
+// which owns iteration state and convergence. orchestrate may perform exactly one
+// bounded hand-off to these -- repeated hand-offs re-implement the loop outside
+// its owning command. Generic subagents (context/review/write/debug) and
+// ai-council (also reachable via /deep:ai-council for multi-turn planning) are
+// intentionally excluded from loop-repeat counting.
+const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement', 'prompt-improver']);
+
+// A dispatch carrying one of these markers originates from the parent command's
+// own iteration loop (e.g. the rendered prompt pack for iteration N), not from
+// orchestrate re-implementing the loop -- so it must not count toward the
+// loop-repeat threshold.
+const ITERATION_MARKER_REGEX = /(?:^|\n)\s*Iteration:\s*\d+\s*of\s*\d+|STATE SUMMARY/i;
+
+const WARN_AT_COUNT = 2;
+const BLOCK_AT_COUNT = 3;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
+// 3. HELPERS -- registry + mode mismatch
 // ─────────────────────────────────────────────────────────────────────────────
 
 function loadRegistryAgents(registryPath) {
@@ -55,7 +76,117 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. PLUGIN FACTORY
+// 4. HELPERS -- target identity resolution
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Resolve the real dispatch target's agent identity.
+ *
+ * orchestrate's own dispatch convention sets subagent_type="general" for every
+ * Task call regardless of target (the specialized agent's definition file is
+ * pasted into the prompt body instead), so subagent_type alone cannot identify
+ * the target. Parse the prompt's "Agent: @<name>" / "Deep Route: ... target_agent=@<name>"
+ * fields first; fall back to subagent_type only when it is not the generic
+ * "general" placeholder (covers callers that do set it directly, e.g. this
+ * repo's own fan-out lineage prompts).
+ *
+ * @param {string} subagentType - raw args.subagent_type / args.subagentType value
+ * @param {string} promptText - raw args.prompt value
+ * @returns {string|null} resolved agent identity, or null if unresolvable
+ */
+function resolveTargetIdentity(subagentType, promptText) {
+  const text = promptText || '';
+  const deepRouteMatch = /target_agent=@?([a-z0-9-]+)/i.exec(text);
+  if (deepRouteMatch) return deepRouteMatch[1];
+
+  const agentLineMatch = /(?:^|\n)\s*Agent:\s*@?([a-z0-9-]+)/i.exec(text);
+  if (agentLineMatch) return agentLineMatch[1];
+
+  if (subagentType && subagentType !== 'general') return subagentType;
+  return null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. HELPERS -- session-scoped loop-repeat state (atomic file persistence)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function sessionStateKey(sessionID) {
+  return Buffer.from(String(sessionID), 'utf8').toString('hex');
+}
+
+function loopStatePath(stateDir, sessionID) {
+  return join(stateDir, `${sessionStateKey(sessionID)}.json`);
+}
+
+function readLoopState(stateDir, sessionID) {
+  try {
+    const raw = readFileSync(loopStatePath(stateDir, sessionID), 'utf8');
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function writeLoopStateAtomic(stateDir, sessionID, state) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+  } catch (_) {
+    return; // Fail open: cannot create state dir, skip persistence this call.
+  }
+  const finalPath = loopStatePath(stateDir, sessionID);
+  const tempPath = `${finalPath}.${process.pid}.${Date.now()}.tmp`;
+  try {
+    writeFileSync(tempPath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+    renameSync(tempPath, finalPath);
+  } catch (_) {
+    try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
+    // Fail open: a persistence error must never block the dispatch it guards.
+  }
+}
+
+/**
+ * Record one dispatch to a loop-executor target and return the updated
+ * non-command-driven count for that target in this session.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} sessionID - current session id
+ * @param {string} targetAgent - resolved loop-executor identity
+ * @param {boolean} commandDriven - true when the dispatch carries iteration-state markers
+ * @returns {number} updated non-command-driven dispatch count for targetAgent
+ */
+function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
+  const state = readLoopState(stateDir, sessionID);
+  const dispatches = state.dispatches && typeof state.dispatches === 'object' ? state.dispatches : {};
+  const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
+    ? dispatches[targetAgent]
+    : { count: 0 };
+
+  if (!commandDriven) entry.count = (entry.count || 0) + 1;
+  entry.lastCommandDriven = commandDriven;
+  entry.lastTimestamp = new Date().toISOString();
+  dispatches[targetAgent] = entry;
+
+  writeLoopStateAtomic(stateDir, sessionID, {
+    sessionId: sessionID,
+    dispatches,
+  });
+
+  return entry.count;
+}
+
+function loopRepeatDetail(targetAgent, count) {
+  return [
+    'mk-deep-loop-guard: loop-like repeated dispatch --',
+    `orchestrate has dispatched "${targetAgent}" ${count} times`,
+    'in this session without a command-driven iteration marker;',
+    'command-owned loop executors should be dispatched by their parent /deep:* command,',
+    'not repeatedly hand off from orchestrate.',
+  ].join(' ');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -65,8 +196,12 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
  * - Cannot create hard runtime identity; that remains host/FIX-5 territory.
  * - Does not catch a schema-valid, route-matched artifact that internally
  *   does semantically wrong-mode work.
- * - Fails open on its own errors (missing/unreadable registry, unexpected
- *   arg shapes) so a bug here never blocks unrelated, correctly-routed work.
+ * - Loop-repeat detection is session-scoped and per-target-agent; it cannot
+ *   detect a cross-executor meta-loop (e.g. deep-research, deep-review,
+ *   deep-research again) -- only repeated hand-offs to the SAME executor.
+ * - Fails open on its own errors (missing/unreadable registry or state,
+ *   unexpected arg shapes) so a bug here never blocks unrelated, correctly-
+ *   routed work.
  *
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
@@ -74,6 +209,7 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
 export default async function MkDeepLoopGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const registryPath = join(projectDir, REGISTRY_RELATIVE_PATH);
+  const loopStateDir = join(projectDir, LOOP_GUARD_STATE_DIR_RELATIVE_PATH);
 
   return {
     async 'tool.execute.before'(input, output) {
@@ -82,24 +218,37 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
         const args = output && output.args;
         if (!args || typeof args !== 'object') return;
 
-        const subagentType = args.subagent_type || args.subagentType;
-        if (!subagentType) return;
+        const rawSubagentType = args.subagent_type || args.subagentType;
+        const targetAgent = resolveTargetIdentity(rawSubagentType, args.prompt);
+        if (!targetAgent) return;
 
+        // -- Check 1: Deep Route mode mismatch (existing behavior, identity-fixed) --
         const registry = loadRegistryAgents(registryPath);
-        if (!registry) return;
-
-        const entry = registry.get(subagentType);
-        if (!entry) return;
-
-        const declaredMode = declaredModeFromPrompt(args.prompt);
-        if (!declaredMode || declaredMode === entry.workflowMode) return;
-
-        const detail = mismatchDetail(subagentType, entry.workflowMode, declaredMode);
-
-        if (process.env[REJECT_MODE_ENV] === '1') {
-          throw new Error(detail);
+        if (registry) {
+          const entry = registry.get(targetAgent);
+          if (entry) {
+            const declaredMode = declaredModeFromPrompt(args.prompt);
+            if (declaredMode && declaredMode !== entry.workflowMode) {
+              const detail = mismatchDetail(targetAgent, entry.workflowMode, declaredMode);
+              if (process.env[REJECT_MODE_ENV] === '1') throw new Error(detail);
+              console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
+            }
+          }
         }
-        console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
+
+        // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
+        if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && input.sessionID) {
+          const commandDriven = ITERATION_MARKER_REGEX.test(args.prompt || '');
+          const count = recordLoopDispatch(loopStateDir, input.sessionID, targetAgent, commandDriven);
+
+          if (!commandDriven && count >= WARN_AT_COUNT) {
+            const detail = loopRepeatDetail(targetAgent, count);
+            if (count >= BLOCK_AT_COUNT && process.env[REJECT_LOOP_ENV] === '1') {
+              throw new Error(detail);
+            }
+            console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
+          }
+        }
       } catch (err) {
         if (err instanceof Error && err.message.startsWith('mk-deep-loop-guard:')) throw err;
         // Fail open on any unexpected internal error -- never block unrelated dispatches.

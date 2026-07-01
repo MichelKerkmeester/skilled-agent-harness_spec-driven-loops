@@ -219,12 +219,12 @@ Expected signals: Retry behavior, neutral fallback card shape, quarantine skip p
 ### DLR-052 | mk-deep-loop-guard
 
 #### Description
-Detection-layer OpenCode plugin that flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the actual `subagent_type` being dispatched.
+Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch.
 
 #### Scenario Contract
-Prompt: `Verify mk-deep-loop-guard still detects a Deep Route mode mismatch and respects MK_DEEP_LOOP_GUARD_REJECT.`
+Prompt: `Verify mk-deep-loop-guard still detects a Deep Route mode mismatch and a loop-like repeated dispatch, and respects MK_DEEP_LOOP_GUARD_REJECT / MK_DEEP_LOOP_GUARD_REJECT_LOOP.`
 
-Expected signals: Hook fires and logs a warning on mismatch (default); throws and blocks the dispatch when `MK_DEEP_LOOP_GUARD_REJECT=1` is set; stays silent on matching modes, non-deep `subagent_type` values, and when the registry is unreadable.
+Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (default); throws and blocks the dispatch when the matching reject env var is set; stays silent on matching modes, command-driven iterations, non-deep/non-loop-executor `subagent_type` values, and when the registry/state directory is unreadable.
 
 #### Test Execution
 > **Feature File:** [DLR-052](03--validation/mk-deep-loop-guard.md)

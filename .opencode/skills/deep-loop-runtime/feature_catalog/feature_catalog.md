@@ -165,11 +165,11 @@ See [`03--validation/llm-judge-hardening.md`](03--validation/llm-judge-hardening
 
 #### Description
 
-Detection-layer OpenCode plugin that flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the actual `subagent_type` being dispatched.
+Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch.
 
 #### How It Works
 
-A `tool.execute.before` hook resolves the target `subagent_type` against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt. Default is mutate-and-warn; `MK_DEEP_LOOP_GUARD_REJECT=1` switches to fail-closed (throws, blocking the dispatch — confirmed live against the installed OpenCode host). Fails open on its own internal errors.
+A `tool.execute.before` hook resolves the real target agent (`orchestrate` always dispatches with `subagent_type: "general"`, so identity is parsed from `Agent: @X` / `Deep Route: ... target_agent=@X` prompt text) against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt (Check 1). It also tracks per-session, per-target-agent dispatch counts for command-owned loop executors, exempting command-driven iterations, and flags non-command-driven repeats (Check 2). Default is mutate-and-warn for both; `MK_DEEP_LOOP_GUARD_REJECT=1` / `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switch each check to fail-closed (throws, blocking the dispatch — confirmed live against the installed OpenCode host). Fails open on its own internal errors.
 
 #### Source Files
 

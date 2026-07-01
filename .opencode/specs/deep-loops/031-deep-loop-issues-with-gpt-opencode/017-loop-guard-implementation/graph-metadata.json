@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-deep-loop-guard hardening implementation",
+      "loop-repeat detection plugin",
+      "subagent_type general identity fix",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "mk-deep-loop-guard",
+      "hardening",
+      "implementation",
+      "loop-repeat",
+      "detection",
+      "plugin",
+      "general",
+      "identity",
+      "fix",
+      "plan",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs",
+      "spec.md",
+      ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolution Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement Design Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extends",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewired Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
+    "created_at": "2026-07-01T17:42:33.780Z",
+    "last_save_at": "2026-07-01T17:42:33.780Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:757d8fbdf9cfae943765609507d37e0f617d387e85104f507cc5e87b2bdfe562",
+    "source_doc_hashes": {
+      "spec.md": "a1a4862b010f1ef50d5ebe781f5b432a658a4b8980fb01e03041548d1bbc7167",
+      "plan.md": "3cbab81456b8e298d94720a0556610909b79395e8879e3958b2dfc2e747880a3",
+      "tasks.md": "676b7e0cffd41a97a4bc46d36a75fef47c8dee875064458eb8b9ccc3fec7263a",
+      "checklist.md": "c57eed7b4e4c695fcf7b4f318b8b4a09fb5e49dfdeefed8ec014f8b52640202c",
+      "implementation-summary.md": "87828344f0b273b80dc32071086bcf333fee6a31d69ad8b7635f7bfb26d1f246"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
