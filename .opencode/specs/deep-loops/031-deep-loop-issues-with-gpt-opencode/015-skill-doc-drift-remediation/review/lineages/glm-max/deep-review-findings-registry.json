@@ -1,0 +1,60 @@
+{
+  "sessionId": "fanout-glm-max-1782925103545-7vw78n",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Residual ai-council 'primary' classification contradicts Cluster 1 intent, SKILL.md, and the agent registry",
+      "file": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      "line": 362,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery: factual contradiction between playbook.md:362 and registry/SKILL.md in a file the phase edited" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "CHK-010 verification command non-reproducible (python3 on a .sh; ambiguous path)",
+      "file": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/checklist.md",
+      "line": 59,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery: cited command cannot reproduce; substance (hygiene) is clean" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.78,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

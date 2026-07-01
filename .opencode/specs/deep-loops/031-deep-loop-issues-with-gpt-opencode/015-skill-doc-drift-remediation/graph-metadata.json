@@ -37,7 +37,7 @@
       "plugins"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/README.md",
@@ -152,18 +152,6 @@
         "source": "derived"
       },
       {
-        "name": "Implement Clusters",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,6 +159,18 @@
       },
       {
         "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Patch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,15 +200,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Key Components",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift clusters across skill documentation and one scanner script, all caused by packet 031's real behavior changes (ai-council `mode: subagent`, orchestrate routing, the mk-deep-loop-guard rename, `.opencode/agents/.toml` mirror removal)",
     "created_at": "2026-07-01T16:44:05.130Z",
-    "last_save_at": "2026-07-01T16:44:25.849Z",
+    "last_save_at": "2026-07-01T17:19:14.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc0901d810a1627d5ab398d9f70207401a616f23a211aa6914e99ce57ca59dae",
+    "source_fingerprint": "sha256:e04ab3a0317d8c83163ca762ca01c6b33d5518234083af97cc9fff9e55eae56e",
     "source_doc_hashes": {
-      "spec.md": "d11d5448dc85617f58b82fe290b829cf8b1ae3b52e8c65c84e2ba12e77521d12",
-      "plan.md": "094f957276277607374a43fef156ea54d6b6495adc1c535f027b0ad86d476195",
+      "spec.md": "4e66bf6f14ad505fdd6e685f1bdfc8ff721ee9891feb69ab1f129292515b47de",
+      "plan.md": "009337fa5d089a76c9ff30bc96dde665430dd53e8dfd58da40c2a78d54c65e68",
       "tasks.md": "3ab36fea3275f1a1533e2071e00467112ac8667c35077bdc8ab92c53320e5e16",
-      "checklist.md": "b72d35d8cb9f3704240d063a4302dc6577117d605852769c03aa5b19bcce17ee",
-      "implementation-summary.md": "2ec1ed2828fd46f91ef2ac88353ac43059c388a53d9256b54599a6195297ebc5"
+      "checklist.md": "4237a52961f728888256d42e7c37c8459ba860b512847535dd6558db246e4eca",
+      "implementation-summary.md": "1005f8c8ed9b50e7857577021ca18d5cabab54be475d5a7943013358db292a5b"
     },
     "last_active_child_id": null,
     "last_active_at": null

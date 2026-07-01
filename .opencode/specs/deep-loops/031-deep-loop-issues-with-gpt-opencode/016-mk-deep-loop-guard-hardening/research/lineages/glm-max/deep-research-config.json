@@ -1,0 +1,49 @@
+{
+  "topic": "Investigate whether .opencode/plugins/mk-deep-loop-guard.js can be extended to mechanically detect and optionally block repeated/loop-like orchestrate-to-command-owned-loop-executor dispatches while allowing exactly one legitimate bounded hand-off.",
+  "maxIterations": 2,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 60,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
+  "createdAt": "2026-07-01T19:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-max-1782925116331-6rt4hp",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/lineages/glm-max/findings-registry.json",
+    "dashboardFile": "research/lineages/glm-max/deep-research-dashboard.md",
+    "strategyFile": "research/lineages/glm-max/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions", "answered-questions", "what-worked", "what-failed",
+      "exhausted-approaches", "ruled-out-directions", "next-focus"
+    ]
+  },
+  "fanout_lineage_artifact_dir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening/research/lineages/glm-max",
+  "resource_map_present": false
+}

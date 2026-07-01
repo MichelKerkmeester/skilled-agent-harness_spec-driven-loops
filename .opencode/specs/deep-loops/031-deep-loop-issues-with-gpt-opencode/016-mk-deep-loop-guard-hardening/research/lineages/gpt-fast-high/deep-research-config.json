@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "deep-research-config/v1",
+  "status": "complete",
+  "mode": "research",
+  "loopType": "research",
+  "sessionId": "fanout-gpt-fast-high-1782925116331-6rt4hp",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
+  "artifactDir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening/research/lineages/gpt-fast-high",
+  "topic": "Investigate extending mk-deep-loop-guard.js to detect repeated/loop-like orchestrate-to-command-owned-loop-executor dispatches while allowing exactly one bounded hand-off.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "createdAt": "2026-07-01T17:00:00Z",
+  "completedAt": "2026-07-01T17:00:00Z",
+  "protection": {
+    "config": "immutable-after-init",
+    "state": "append-only",
+    "iterations": "write-once",
+    "strategy": "workflow-managed",
+    "registry": "workflow-managed",
+    "dashboard": "auto-generated",
+    "research": "workflow-owned"
+  }
+}

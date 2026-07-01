@@ -1,0 +1,1 @@
+STATE SUMMARY: Iteration 3 of 5. Focus traceability. Compare spec, plan, tasks, checklist, implementation summary, and graph metadata. Write output to iterations/iteration-003.md. Do not modify target files.

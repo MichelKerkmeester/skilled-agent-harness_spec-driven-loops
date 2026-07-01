@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "deep-research-findings-registry/v1",
+  "sessionId": "fanout-gpt-fast-high-1782925116331-6rt4hp",
+  "openQuestions": [
+    {
+      "id": "q-prompt-improver-registry",
+      "question": "Which checked-in registry should provide prompt-improver's command-owned loop identity?",
+      "status": "open",
+      "risk": "Current mode-registry covers deep-research, deep-review, ai-council, and deep-improvement modes, but not prompt-improver."
+    },
+    {
+      "id": "q-task-after-metadata",
+      "question": "What exact Task-tool output metadata shape should classify after-hook outcomes as ok/error/timeout?",
+      "status": "open",
+      "risk": "SDK exposes tool.execute.after but not the semantic schema of each tool's metadata."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "REQ-001",
+      "answer": "Session tracking is feasible without OpenCode core changes. tool.execute.before exposes sessionID and callID, and mk-goal demonstrates both plugin-local runtime maps and durable sessionID-keyed state files.",
+      "evidence": [
+        ".opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:235-241",
+        ".opencode/plugins/mk-goal.js:647-649",
+        ".opencode/plugins/mk-goal.js:1728-1736"
+      ]
+    },
+    {
+      "id": "REQ-002",
+      "answer": "Loop-like should mean repeated non-retry hand-offs for the same session, caller, and command-owned loop target. The safest strict design allows one hand-off, allows retry only after recorded error/timeout or explicit retry token, and warns/blocks subsequent repeats by env-gated policy.",
+      "evidence": [
+        ".opencode/skills/cli-opencode/SKILL.md:279-295",
+        ".opencode/agents/orchestrate.md:186-210",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark/benchmark-results.md:47-60"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-sdk-sessionid",
+      "finding": "The before-hook exposes sessionID and mutable args, so per-session Task dispatch history is technically available at plugin level."
+    },
+    {
+      "id": "f-target-resolution",
+      "finding": "The guard must parse Deep Route target_agent/mode, not only args.subagent_type, because orchestrate's schema can wrap custom agents under subagent_type=general."
+    },
+    {
+      "id": "f-after-hook-needed",
+      "finding": "Legitimate retry support needs after-hook outcome tracking or explicit retry tokens; before-hook-only state cannot distinguish failed first hand-offs from successful ones."
+    },
+    {
+      "id": "f-phase012-scope",
+      "finding": "Phase 012 evidence shows enforcement inconsistency across deep-research and deep-review, but not a confirmed multi-iteration loop; hardening should target repeated hand-offs mechanically, not latency alone."
+    }
+  ],
+  "ruledOutDirections": [
+    "Unconditional block on second same-target dispatch",
+    "Latency-based blocking",
+    "Subagent-type-only target resolution",
+    "OpenCode core changes as a prerequisite"
+  ],
+  "designOptions": [
+    "Option A: durable per-session ledger with strict exactly-one plus retry exceptions",
+    "Option B: volatile Map with warn-second/block-third policy",
+    "Option C: prompt-shape guard for execution=single_iteration"
+  ]
+}

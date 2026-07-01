@@ -1,0 +1,10 @@
+{
+  "type": "iteration_delta",
+  "iteration": 1,
+  "dimension": "correctness",
+  "findingsNew": 1,
+  "newFindingsRatio": 0.5,
+  "findingsSummary": { "P0": 0, "P1": 1, "P2": 0 },
+  "findingRefs": ["F001"],
+  "verdict": "CONDITIONAL"
+}

@@ -1,0 +1,1 @@
+STATE SUMMARY: Iteration 5 of 5. Focus stabilization. Replay active findings, record convergence telemetry, and stop at max iterations. Write output to iterations/iteration-005.md. Do not modify target files.

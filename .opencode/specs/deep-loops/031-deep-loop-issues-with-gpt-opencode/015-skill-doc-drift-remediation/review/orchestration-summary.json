@@ -1,0 +1,22 @@
+{
+  "run_id": "1782925103545-7vw78n",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
+  "base_artifact_dir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 0,
+  "failed": 2,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 2
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 2,
+    "salvage_miss": 0
+  }
+}

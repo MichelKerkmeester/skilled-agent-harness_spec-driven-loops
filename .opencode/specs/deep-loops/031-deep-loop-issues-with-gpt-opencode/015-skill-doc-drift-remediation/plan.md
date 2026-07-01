@@ -10,19 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation"
-    last_updated_at: "2026-07-01T18:30:00Z"
+    last_updated_at: "2026-07-01T19:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase scaffolded"
-    next_safe_action: "Implement Clusters 1, 2/3/4, 5; Cluster 6 pending investigation"
+    recent_action: "All clusters implemented and verified"
+    next_safe_action: "None -- packet complete"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "031-015-plan"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Cluster 4: retire the .toml mirror check entirely (2-mirror model)."
+      - "Cluster 6: keep orchestrate's row; narrow cli-opencode's wording instead."
 ---
 # Implementation Plan: Skill Documentation Drift Remediation
 
@@ -55,13 +56,13 @@ Patches every confirmed finding from phase 014's audit to match current runtime 
 ### Definition of Ready
 - [x] Phase 014's 20-iteration audit complete and independently verified (zero fabrications).
 - [x] Operator decision recorded for Cluster 4 (retire the TOML check).
-- [ ] Cluster 6 investigation complete with an operator-confirmed direction.
+- [x] Cluster 6 investigation complete with an operator-confirmed direction.
 
 ### Definition of Done
-- [ ] All 5 non-blocked clusters patched and re-grepped clean.
-- [ ] Cluster 6 patched per its investigation's confirmed direction.
-- [ ] `deep-improvement` vitest suite still passes after the scanner code edit.
-- [ ] `validate.sh --strict` passes for this phase folder and any touched spec-kit phase folders.
+- [x] All 5 non-blocked clusters patched and re-grepped clean.
+- [x] Cluster 6 patched per its investigation's confirmed direction.
+- [x] `deep-improvement` vitest suite still passes after the scanner code edit.
+- [x] `validate.sh --strict` passes for this phase folder and any touched spec-kit phase folders.
 <!-- /ANCHOR:quality-gates -->
 ---
 
@@ -76,7 +77,7 @@ Direct, scoped text edits per cluster — no new abstractions, no refactors beyo
 - **Deep-loop SKILL.md docs** (Clusters 2/3): `deep-research`, `deep-review` (+`loop_protocol.md`), `deep-context`, `deep-loop-runtime`, `deep-ai-council` (+`output_schema.md`).
 - **deep-improvement scanner** (Cluster 4): `scan-integration.cjs` (code) + 6 supporting docs.
 - **plugins/README.md** (Cluster 5): entrypoint count/table.
-- **orchestrate.md / cli-opencode/SKILL.md** (Cluster 6): pending investigation outcome.
+- **orchestrate.md / cli-opencode/SKILL.md** (Cluster 6): resolved -- cli-opencode's wording narrowed, orchestrate.md untouched.
 
 ### Data Flow
 1. Re-confirm current file:line for each citation (files may have shifted slightly since phase 014's audit ran).
@@ -93,19 +94,19 @@ Direct, scoped text edits per cluster — no new abstractions, no refactors beyo
 
 ### Phase 1: Setup
 - [x] Phase scaffolded, decisions recorded
-- [ ] Cluster 6 investigation launched
+- [x] Cluster 6 investigation launched
 
 ### Phase 2: Implementation
-- [ ] Cluster 1: cli-opencode direct-invoke fixes
-- [ ] Clusters 2/3/4: `.toml` mirror removal (docs + code)
-- [ ] Cluster 5: plugins/README.md entrypoint fix
-- [ ] Cluster 6: orchestrate/cli-opencode routing fix (per investigation)
+- [x] Cluster 1: cli-opencode direct-invoke fixes
+- [x] Clusters 2/3/4: `.toml` mirror removal (docs + code)
+- [x] Cluster 5: plugins/README.md entrypoint fix
+- [x] Cluster 6: orchestrate/cli-opencode routing fix (per investigation)
 
 ### Phase 3: Verification
-- [ ] Scoped grep re-scans per cluster
-- [ ] `deep-improvement` vitest suite
-- [ ] `validate.sh --strict`
-- [ ] Commit + push
+- [x] Scoped grep re-scans per cluster
+- [x] `deep-improvement` vitest suite
+- [x] `validate.sh --strict`
+- [x] Commit + push
 
 <!-- /ANCHOR:phases -->
 ---
@@ -128,7 +129,7 @@ Direct, scoped text edits per cluster — no new abstractions, no refactors beyo
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 014's audit findings | Internal | Green (complete, verified) | Would need to re-derive scope from scratch |
-| Cluster 6 routing investigation | Internal | Pending | Cluster 6 edit blocked until it resolves; other 4 clusters unaffected |
+| Cluster 6 routing investigation | Internal | Green (resolved) | N/A -- resolved, all clusters complete |
 | `deep-improvement` vitest suite | Internal | Green | Would need manual inspection instead of automated regression check |
 
 <!-- /ANCHOR:dependencies -->

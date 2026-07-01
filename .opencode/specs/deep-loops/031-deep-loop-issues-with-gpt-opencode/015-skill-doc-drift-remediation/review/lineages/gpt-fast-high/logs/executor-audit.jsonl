@@ -1,0 +1,5 @@
+{"iteration":1,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","lineage":"gpt-fast-high","status":"complete","output":"iterations/iteration-001.md"}
+{"iteration":2,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","lineage":"gpt-fast-high","status":"complete","output":"iterations/iteration-002.md"}
+{"iteration":3,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","lineage":"gpt-fast-high","status":"complete","output":"iterations/iteration-003.md"}
+{"iteration":4,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","lineage":"gpt-fast-high","status":"complete","output":"iterations/iteration-004.md"}
+{"iteration":5,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","lineage":"gpt-fast-high","status":"complete","output":"iterations/iteration-005.md"}

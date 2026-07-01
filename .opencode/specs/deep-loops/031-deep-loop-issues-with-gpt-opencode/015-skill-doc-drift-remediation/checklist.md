@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P1] `scan-integration.cjs` edit (Cluster 4) has no comment-hygiene violations. `python3 check-comment-hygiene.sh` exit 0.
+- [x] CHK-010 [P1] `scan-integration.cjs` edit (Cluster 4) has no comment-hygiene violations. `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` exit 0 (the script's shebang is `#!/usr/bin/env python3` despite the `.sh` extension -- `python3` is the correct interpreter).
 - [x] CHK-011 [P1] `scan-integration.cjs` edit is minimal (removed only the one stale `.toml` template entry, no unrelated refactor).
 <!-- /ANCHOR:code-quality -->
 

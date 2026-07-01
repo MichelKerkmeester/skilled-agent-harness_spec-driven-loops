@@ -1,0 +1,93 @@
+{
+  "sessionId": "fanout-gpt-fast-high-1782925103545-7vw78n",
+  "generation": 1,
+  "lineageMode": "auto",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "cli-opencode-agent-routing-drift",
+      "finding_class": "spec_alignment",
+      "status": "active",
+      "content_hash": "gpt-fast-high-f001-v1",
+      "summary": "cli-opencode's main SKILL/README now say to omit --agent general and not direct-route context/review/debug, but living reference/playbook files still publish those direct invocations as canonical.",
+      "evidence": [
+        ".opencode/skills/cli-opencode/SKILL.md:261",
+        ".opencode/skills/cli-opencode/SKILL.md:285",
+        ".opencode/skills/cli-opencode/README.md:105",
+        ".opencode/skills/cli-opencode/README.md:125",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:197",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:222",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:225",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:229",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:231",
+        ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:190",
+        ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:368"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "packet-completion-state-drift",
+      "finding_class": "traceability",
+      "status": "active",
+      "content_hash": "gpt-fast-high-f002-v1",
+      "summary": "The packet's canonical status surfaces disagree: spec/plan/graph still say in-progress or pending while tasks/checklist/implementation-summary say complete.",
+      "evidence": [
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/spec.md:14",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/spec.md:17",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/spec.md:25",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/spec.md:44",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/plan.md:58",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/plan.md:61",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/plan.md:96",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/tasks.md:75",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/tasks.md:85",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/checklist.md:114",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/implementation-summary.md:15",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/graph-metadata.json:40"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "category": "metadata-key-file-coverage",
+      "finding_class": "maintainability",
+      "status": "active",
+      "content_hash": "gpt-fast-high-f003-v1",
+      "summary": "graph-metadata key_files only captures the originally scoped file set, while implementation-summary records 13 additional files and two sandbox scripts as part of the delivered fix.",
+      "evidence": [
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/graph-metadata.json:41",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/graph-metadata.json:61",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/implementation-summary.md:92",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/implementation-summary.md:104",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation/implementation-summary.md:106"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0.75,
+  "graphDecision": "STOP_FOR_MAX_ITERATIONS",
+  "graphBlockers": [
+    "active_p1_findings"
+  ],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,10 @@
+{
+  "type": "iteration_delta",
+  "iteration": 4,
+  "dimension": "maintainability",
+  "findingsNew": 1,
+  "newFindingsRatio": 0.08,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingRefs": ["F003"],
+  "verdict": "PASS"
+}
