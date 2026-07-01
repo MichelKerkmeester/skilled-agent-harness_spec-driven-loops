@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 13: design-fidelity-and-polish [template:level_1/spec.md]"
-description: "Close the remaining design-fidelity gap (usage_limited enum, requires an operator decision) plus packet-wide metadata/observability polish items."
+description: "Wire a real usage_limited detector (operator-chosen resolution) plus packet-wide metadata/observability polish items."
 trigger_phrases:
   - "usage_limited status decision"
   - "session_dedup fingerprint fix"
@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish"
     last_updated_at: "2026-07-01T10:04:53Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored spec from deep-research F-003/010/012/014/016/017"
-    next_safe_action: "Get operator decision on the usage_limited fork before implementing REQ-001"
-    blockers:
-      - "REQ-001 requires an explicit operator decision (collapse enum vs wire detector) before implementation, not just execution"
+    recent_action: "Recorded operator decision: wire a real usage_limited detector"
+    next_safe_action: "Run /speckit:implement on this phase"
+    blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
@@ -25,7 +24,8 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "REQ-001: operator chose wire-the-detector over collapse-the-enum"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 13: design-fidelity-and-polish
@@ -85,7 +85,7 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 ## 3. SCOPE
 
 ### In Scope
-- F-003/F-014: present the two `usage_limited` remediation forks (collapse the enum vs wire a provider-usage-limit detector) to the operator and implement whichever is chosen.
+- F-003/F-014: implement the operator-chosen resolution — wire a real provider-usage-limit detector (not collapse the enum). Evidence: `@opencode-ai/sdk`'s `AssistantMessage.error` union includes `ApiError` with `data.statusCode` and `data.isRetryable`; HTTP 429 on `data.statusCode` is the concrete, stable signal for a provider rate-limit/usage-cap refusal, available on the `message.updated` event's message payload (same event `recordMessageUpdated`/`extractUsageFromEvent` already read for token accounting).
 - F-012: recompute real `session_dedup.fingerprint` values across all 8 original phase docs' `_memory.continuity` blocks (packet-wide, not per-phase logic).
 - F-010: downgrade phase 006's `implementation-summary.md` `completion_pct` from 100 to reflect the never-exercised live `session.idle` smoke test; align `recent_action` wording with the already-correct `next_safe_action`.
 - F-016: add `MK_GOAL_DEBUG`-gated logging to `fsyncDirectory`'s currently-silent error swallowing.
@@ -99,8 +99,7 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/plugins/mk-goal.js` | Modify | `usage_limited` implementation (per operator decision), `fsyncDirectory` logging, store-health status field |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modify (conditional) | Only if the operator chooses to collapse the enum — remove the `usage_limited` first-class mention |
+| `.opencode/plugins/mk-goal.js` | Modify | Wire the `usage_limited` detector on `message.updated`, `fsyncDirectory` logging, store-health status field |
 | `032-goal-opencode-plugin/00{1-8}-*/{spec,plan,tasks,implementation-summary}.md` (`_memory.continuity.session_dedup.fingerprint`) | Modify | Recompute real fingerprints, packet-wide |
 | `032-goal-opencode-plugin/006-active-continuation/implementation-summary.md` | Modify | Downgrade `completion_pct`, align `recent_action` wording |
 <!-- /ANCHOR:scope -->
@@ -114,13 +113,13 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [F-003/F-014] Get an explicit operator decision on the `usage_limited` fork before implementing anything for it. | The operator has chosen collapse-the-enum or wire-the-detector, in writing, before any code/doc change for this item lands. Do not silently pick one. |
+| REQ-001 | [F-003/F-014] Operator decision on the `usage_limited` fork. | RESOLVED: operator chose wire-the-detector over collapse-the-enum (recorded 2026-07-01). |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [F-003/F-014] Implement the operator's chosen `usage_limited` resolution. | If collapse: `usage_limited` removed from `VALID_STATUSES` and the feature-catalog doc, all references updated. If wire: a provider/runtime usage-limit detector added on the `session.idle`/`message.updated` path, transitioning the goal to `usage_limited` + `continuationSuppressed:true`, matching the design's original intent. |
+| REQ-002 | [F-003/F-014] Wire a real provider-usage-limit detector on the `message.updated` path. | A new detector (mirroring `recordContinuationBudgetStop`'s pattern) inspects the assistant message's `error` field for `error.name === 'APIError'` with `error.data.statusCode === 429`; on match, transitions the goal to `status: 'usage_limited'`, `continuationSuppressed: true`, `continuationSuppressedReason: 'usage_limited'`. A test fires `message.updated` with a synthetic `429` `ApiError` payload and confirms the transition; a second test confirms a non-429 error (e.g. `ProviderAuthError`, or `ApiError` with a different `statusCode`) does NOT trigger it. |
 | REQ-003 | [F-012] Recompute real `session_dedup.fingerprint` values across all 8 phase docs. | No `_memory.continuity.session_dedup.fingerprint` in phases 001-008 remains the placeholder `sha256:0000...0000`; each reflects a real computed value. |
 | REQ-004 | [F-010] Downgrade phase 006's completion metadata to match its own honestly-disclosed live-smoke gap. | `006-active-continuation/implementation-summary.md`'s `completion_pct` is ≤90 (not 100), and `recent_action` no longer overstates unit-only verification as full verification. |
 | REQ-005 | [F-016] Log `fsyncDirectory` failures instead of silently swallowing them. | Under `MK_GOAL_DEBUG=1`, a simulated fsync failure (e.g. via a read-only directory) produces an observable log line rather than nothing. |
@@ -132,7 +131,7 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: REQ-001's operator decision is recorded (in this phase's `implementation-summary.md` or a decision note) before REQ-002 is implemented.
+- **SC-001**: REQ-001's operator decision (wire) is recorded in this phase's `implementation-summary.md`.
 - **SC-002**: `grep -rn "sha256:0000000000000000000000000000000000000000000000000000000000000000"` across the 8 original phase docs returns zero hits after REQ-003.
 - **SC-003**: Existing 6-file test suite (plus phase 012's additions, if that phase has landed by then) still passes after all 5 requirements land.
 <!-- /ANCHOR:success-criteria -->
@@ -144,8 +143,8 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Silently picking a `usage_limited` resolution without operator input would violate REQ-001's explicit intent. | High | Treat REQ-001 as a hard gate — do not proceed to REQ-002 without a recorded decision. |
-| Risk | Wiring a real provider-usage-limit detector (if chosen) requires defining a provider-error shape OpenCode doesn't yet expose in a stable way — genuinely harder than collapsing the enum. | Medium | If the operator chooses "wire," budget for this being a bigger lift than the other 4 items in this phase; consider spinning it into its own follow-up if scope grows. |
+| Risk | A false-positive detector could mistakenly mark a goal `usage_limited` on a transient/retryable error unrelated to a real usage cap. | Medium | Gate strictly on `statusCode === 429` (HTTP "Too Many Requests"), not on `isRetryable` alone — the latter also covers unrelated transient failures. |
+| Risk | `AssistantMessage.error`'s shape is SDK-version-dependent; a future SDK upgrade could rename/restructure it. | Low | Read the field defensively (optional chaining, no assumption fields exist); a missing/unrecognized shape simply means the detector doesn't fire, not a crash. |
 | Dependency | None on phases 010/011/012 — this phase can run any time, though it's sequenced last since it's lowest priority. | Low | N/A |
 <!-- /ANCHOR:risks -->
 
@@ -154,5 +153,5 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- REQ-001: present both forks to the operator with the trade-offs research already documented (collapse = lowest cost, loses external-vs-internal distinction; wire = matches design intent, requires defining the provider-error shape) and get a decision before this phase can complete.
+- RESOLVED — REQ-001: operator chose wire-the-detector. The previously-open "provider-error shape" question is answered: `@opencode-ai/sdk`'s `AssistantMessage.error` union's `ApiError` variant carries `data.statusCode`; `429` is the detection signal.
 <!-- /ANCHOR:questions -->
