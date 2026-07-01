@@ -1,0 +1,31 @@
+{
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "description": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained",
+  "keywords": [
+    "packet",
+    "031",
+    "phases",
+    "008-013",
+    "changed",
+    "real",
+    "runtime",
+    "behavior",
+    "ai-council",
+    "converted",
+    "mode",
+    "subagent",
+    "orchestrate",
+    "gained"
+  ],
+  "lastUpdated": "2026-07-01T15:17:15.930Z",
+  "specId": "014",
+  "folderSlug": "skill-doc-drift-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

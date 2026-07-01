@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill doc drift audit",
+      "stale skill docs",
+      "mk-deep-loop-guard integration audit",
+      "031 documentation follow-up",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "skill",
+      "doc",
+      "drift",
+      "audit",
+      "stale",
+      "docs",
+      "mk-deep-loop-guard",
+      "integration",
+      "031",
+      "documentation",
+      "follow-up",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/plugins/README.md",
+      "tasks.md",
+      ".claude/agents/ai-council.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "review/lineages/gpt-fast-high/review-report.md",
+      "research/lineages/gpt-fast-high/research.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/cli-claude-code/README.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/README.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/lib/README.md",
+      ".opencode/skills/deep-loop-runtime/lib/council/README.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+      ".opencode/skills/deep-loop-runtime/scripts/README.md",
+      ".opencode/skills/deep-loop-runtime/tests/council/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".claude/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/gpt-fast-high/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Documentation Drift Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Sonnet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolved Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Follow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained deep-mode routing rows and was later bloat-reduced, a new `mk-deep-loop-guard.js` plugin was added and later renamed (from `deep-route-guard.js`), and `.opencode/agents/.toml` mirrors were removed as an obsolete requirement",
+    "created_at": "2026-07-01T15:17:20.938Z",
+    "last_save_at": "2026-07-01T15:42:58.337Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:917cc89182a7b0a439fd049490660c562bc028387db0e027a92a71482f600ad2",
+    "source_doc_hashes": {
+      "spec.md": "9f4ee0c2a744fec53e5960b39a167acf42dd7ec10c03631267b67e4bd605c090",
+      "plan.md": "0ac150f1c790b7fd9129ded4856af343cd9ae885300b3673d64add50b3cdf2a5",
+      "tasks.md": "936a51999cc758c057dcfba1fd9297623060296311230c729a0aebafddf3b801",
+      "checklist.md": "52c724f8c0f2ddaaa362a04c40f2aaf2398e7a0b9b4a2b3e871a2668c58e33d7",
+      "implementation-summary.md": "c57a3b871cc5069004458e7d7ca4ccb80278b3afc821571d4cc1af59914d4100"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

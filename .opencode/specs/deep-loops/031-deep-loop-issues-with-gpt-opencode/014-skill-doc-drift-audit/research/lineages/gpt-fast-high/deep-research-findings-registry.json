@@ -1,0 +1,93 @@
+{
+  "sessionId": "fanout-gpt-fast-high-1782918918795-uy16r9",
+  "lineage": "gpt-fast-high",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "rq-ai-council-direct",
+      "question": "Do docs still describe ai-council as direct/top-level after phase 010?",
+      "answer": "Yes. cli-opencode SKILL, README, and prompt template still teach direct or primary ai-council dispatch.",
+      "evidence": [
+        ".opencode/skills/cli-opencode/SKILL.md:31",
+        ".opencode/skills/cli-opencode/SKILL.md:285",
+        ".opencode/skills/cli-opencode/README.md:76",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:386-392",
+        ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only/implementation-summary.md:48-60"
+      ]
+    },
+    {
+      "id": "rq-plugin-guard",
+      "question": "Do docs still reference the old guard or omit the renamed guard?",
+      "answer": "No live skill docs with stale old-name references were found, but .opencode/plugins/README.md omits mk-deep-loop-guard.js and has an outdated entrypoint count.",
+      "evidence": [
+        ".opencode/plugins/README.md:1-4",
+        ".opencode/plugins/README.md:42-50",
+        ".opencode/plugins/mk-deep-loop-guard.js:1-8"
+      ]
+    },
+    {
+      "id": "rq-toml-mirrors",
+      "question": "Do docs still require removed .opencode/agents/*.toml mirrors?",
+      "answer": "Yes. Core deep-loop docs, deep-ai-council SKILL, and deep-improvement scanner docs still encode TOML mirror surfaces.",
+      "evidence": [
+        ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md:20",
+        ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md:19",
+        ".opencode/skills/deep-loop-workflows/deep-context/SKILL.md:279-287",
+        ".opencode/skills/deep-loop-runtime/SKILL.md:253-261",
+        ".opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:42-47"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-A",
+      "severity": "stale-doc",
+      "title": "cli-opencode still teaches direct ai-council dispatch",
+      "contradicts": "031 phase 010 ai-council mode: subagent conversion"
+    },
+    {
+      "id": "F-B",
+      "severity": "stale-doc",
+      "title": "cli-opencode partially contradicts orchestrate deep-review routing",
+      "contradicts": "031 phase 009 orchestrate universal routing"
+    },
+    {
+      "id": "F-C",
+      "severity": "stale-doc",
+      "title": "plugins README omits mk-deep-loop-guard and has stale entrypoint count",
+      "contradicts": "031 phase 011 mk-deep-loop-guard plugin addition and rename"
+    },
+    {
+      "id": "F-D",
+      "severity": "stale-doc",
+      "title": "core deep-loop docs still require .opencode/agents/*.toml mirrors",
+      "contradicts": "031/014 chartered removal of obsolete .opencode/agents/*.toml mirror requirement"
+    },
+    {
+      "id": "F-E",
+      "severity": "stale-doc-plus-code",
+      "title": "deep-improvement scanner docs and scanner template still encode .opencode/agents/{name}.toml",
+      "contradicts": "031/014 chartered removal of obsolete .opencode/agents/*.toml mirror requirement"
+    },
+    {
+      "id": "F-F",
+      "severity": "stale-doc",
+      "title": "deep-ai-council SKILL calls ai-council primary and lists nonexistent TOML mirror",
+      "contradicts": "031 phase 010 and TOML mirror removal"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "claim": "All ai-council artifact mentions are stale",
+      "reason": "Packet-local ai-council/** artifacts remain current."
+    },
+    {
+      "claim": "Old deep-route-guard mentions in phase summaries are stale",
+      "reason": "Phase 011 preserves old names as historical records; living docs checked did not contain stale old-name instructions."
+    },
+    {
+      "claim": "AGENTS.md is stale for phase 010",
+      "reason": "It references /deep:ai-council and ai-council/** artifacts, not direct --agent reachability."
+    }
+  ]
+}

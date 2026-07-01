@@ -1,0 +1,53 @@
+{
+  "topic": "Skill Documentation Drift Audit (Packet 031 Follow-Up)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-gpt-fast-high-1782918860442-kktrzm",
+  "parentSessionId": null,
+  "lineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "executor": "cli-opencode model=openai/gpt-5.5-fast",
+  "loopType": "review",
+  "maxIterations": 10,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "release-blocking",
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "artifactDir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit/review/lineages/gpt-fast-high",
+  "createdAt": "2026-07-01T15:30:00Z",
+  "status": "complete",
+  "executionMode": "AUTONOMOUS",
+  "lineageBindings": {
+    "review_target": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+    "review_target_type": "spec-folder",
+    "review_dimensions": "all",
+    "lineage_mode": "auto"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

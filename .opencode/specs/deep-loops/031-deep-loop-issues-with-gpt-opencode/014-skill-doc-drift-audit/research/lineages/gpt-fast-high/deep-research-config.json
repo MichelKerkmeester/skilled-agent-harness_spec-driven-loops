@@ -1,0 +1,24 @@
+{
+  "type": "config",
+  "sessionId": "fanout-gpt-fast-high-1782918918795-uy16r9",
+  "loopType": "research",
+  "lineage": "gpt-fast-high",
+  "executor": {
+    "skill": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "artifactDir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit/research/lineages/gpt-fast-high",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "resource_map_present": false,
+  "createdAt": "2026-07-01T15:45:00Z",
+  "completedAt": "2026-07-01T16:20:00Z",
+  "status": "complete",
+  "notes": [
+    "artifact_dir bound directly from config.fanout_lineage_artifact_dir; resolveArtifactRoot command intentionally not run",
+    "convergence before iteration 10 treated as telemetry only per operator instruction"
+  ]
+}

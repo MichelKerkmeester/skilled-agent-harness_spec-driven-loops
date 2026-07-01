@@ -1,0 +1,116 @@
+{
+  "sessionId": "fanout-gpt-fast-high-1782918860442-kktrzm",
+  "generation": 1,
+  "lineageMode": "auto",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "stale-direct-agent-routing",
+      "title": "cli-opencode SKILL still lists ai-council as directly invokable",
+      "evidence": [".opencode/skills/cli-opencode/SKILL.md:31", ".opencode/skills/cli-opencode/SKILL.md:285", ".opencode/agents/ai-council.md:4", ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only/implementation-summary.md:48-60"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111001",
+      "status": "open"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "stale-direct-agent-routing",
+      "title": "cli-opencode README still permits ai-council as a primary top-level agent",
+      "evidence": [".opencode/skills/cli-opencode/README.md:76", ".opencode/skills/cli-opencode/README.md:164", ".opencode/agents/ai-council.md:4"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111002",
+      "status": "open"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "playbook-capability",
+      "finding_class": "stale-test-contract",
+      "title": "CO-017 playbook expects direct --agent ai-council dispatch to pass",
+      "evidence": [".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:362", ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417-423", ".opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:27-33", ".opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:43", ".opencode/agents/ai-council.md:4"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111003",
+      "status": "open"
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "stale-command-template",
+      "title": "cli-opencode prompt template hard-codes --agent ai-council",
+      "evidence": [".opencode/skills/cli-opencode/assets/prompt_templates.md:385-392", ".opencode/skills/cli-opencode/references/agent_delegation.md:197", ".opencode/skills/cli-opencode/references/agent_delegation.md:229", ".opencode/agents/ai-council.md:4"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111004",
+      "status": "open"
+    },
+    {
+      "id": "F005",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "absent-runtime-mirror-reference",
+      "title": "deep-context still requires an absent .opencode/agents/deep-context.toml mirror",
+      "evidence": [".opencode/skills/deep-loop-workflows/deep-context/SKILL.md:279-287", ".opencode/skills/deep-loop-workflows/deep-context/SKILL.md:302", ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit/spec.md:56", "Glob .opencode/agents/*.toml: no files found"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111005",
+      "status": "open"
+    },
+    {
+      "id": "F006",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "stale-agent-identity-and-mirror-contract",
+      "title": "deep-ai-council success checklist still calls ai-council primary and lists an absent TOML mirror",
+      "evidence": [".opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md:431-432", ".opencode/agents/ai-council.md:4", "Glob .opencode/agents/*.toml: no files found"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111006",
+      "status": "open"
+    },
+    {
+      "id": "F007",
+      "severity": "P2",
+      "category": "doc-drift",
+      "finding_class": "absent-runtime-mirror-cross-reference",
+      "title": "deep-ai-council output schema cross-reference names an absent ai-council.toml mirror",
+      "evidence": [".opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md:27-29", "Glob .opencode/agents/*.toml: no files found"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111007",
+      "status": "open"
+    },
+    {
+      "id": "F008",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "absent-runtime-mirror-reference",
+      "title": "deep-review loop protocol still lists an absent .opencode/agents/deep-review.toml runtime path",
+      "evidence": [".opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md:721-724", "Glob .opencode/agents/*.toml: no files found"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111008",
+      "status": "open"
+    },
+    {
+      "id": "F009",
+      "severity": "P1",
+      "category": "doc-drift",
+      "finding_class": "absent-runtime-mirror-reference",
+      "title": "deep-research capability matrix still lists an absent .opencode/agents/deep-research.toml mirror",
+      "evidence": [".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md:51-55", "Glob .opencode/agents/*.toml: no files found"],
+      "content_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111009",
+      "status": "open"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 1
+  },
+  "convergenceScore": 0.75,
+  "releaseReadinessState": "release-blocking",
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true
+}
