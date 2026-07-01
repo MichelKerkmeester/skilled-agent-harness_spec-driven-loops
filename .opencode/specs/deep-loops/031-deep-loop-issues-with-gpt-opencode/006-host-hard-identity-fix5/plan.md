@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/005-host-hard-identity-fix5"
+    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5"
     last_updated_at: "2026-06-30T15:30:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "PARKED — plan stub only; activate via decision-record.md trigger"

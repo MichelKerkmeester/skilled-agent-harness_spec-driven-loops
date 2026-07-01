@@ -8,7 +8,7 @@ date: "2026-06-30"
 
 ## Context
 
-The research (`../../research/research.md`) established two structural-prevention ceilings for GPT deep-skill mis-dispatch:
+The research (`../001-deep-agent-router-and-orchestration/research/research.md`) established two structural-prevention ceilings for GPT deep-skill mis-dispatch:
 
 1. **Host-runtime hard identity** — a dispatch-primitive change binding `agent_slug` as runtime identity (auto-load, reject unknown, stamp provenance). Architectural, not PR-sized (research §8b, F33-F35).
 2. **FIX-5** — native→CLI subprocess executor, process isolation (research §5).

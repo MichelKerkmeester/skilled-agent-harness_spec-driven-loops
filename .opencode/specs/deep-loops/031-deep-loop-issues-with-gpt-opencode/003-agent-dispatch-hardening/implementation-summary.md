@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/002-agent-dispatch-hardening"
+    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening"
     last_updated_at: "2026-06-30T20:05:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Agent dispatch hardening implemented"

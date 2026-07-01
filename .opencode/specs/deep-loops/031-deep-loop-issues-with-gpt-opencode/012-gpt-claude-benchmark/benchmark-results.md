@@ -64,7 +64,7 @@ This is a **smoke-level** benchmark: single-dispatch reachability/route-proof/la
 
 | Bucket | Count | Cells |
 |--------|-------|-------|
-| pass | 7 | context (both models), research (Claude + GPT Phase-0), review (both models direct), ai-council (both models) |
+| pass | 8 | context (both models), research (Claude + GPT Phase-0), review (both models direct), ai-council (both models) |
 | timeout_latency | 2 | research (GPT, full `/deep:research` command run), review (GPT, full `/deep:review` command run) |
 | phase0_self_check (Mode D) | 0 | None observed -- this is the headline result: the fix confirmed holding, zero recurrences across all GPT cells tested |
 | route_mismatch | 0 | None observed |

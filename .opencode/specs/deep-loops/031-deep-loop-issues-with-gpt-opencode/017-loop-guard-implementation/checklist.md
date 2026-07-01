@@ -120,8 +120,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 8 | 8/8 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-07-01

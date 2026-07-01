@@ -17,7 +17,6 @@ _memory:
     next_safe_action: "None -- packet complete"
     blockers: []
     key_files:
-      - "goal-prompt.md"
       - "007-gpt-behavioral-hardening-research/research/research.md"
       - "012-gpt-claude-benchmark/benchmark-results.md"
       - "006-host-hard-identity-fix5/decision-record.md"
@@ -63,7 +62,7 @@ GPT-backed models running inside OpenCode do not properly invoke deep skills (de
 
 ### Operator symptom report (2026-07-01, real-world OpenCode usage)
 
-Phases 002-004 (route-proof validation, `deep.md` primary router, `orchestrate.md` Deep Route field, pre-route headers) are code-complete, but phase 005's GPT verification smoke never reached a clean pass — 0/4 command-owned smokes reached a real leaf dispatch (all blocked upstream by `cli-opencode` self-invocation guards). The operator now independently reports the same underlying problem persisting in real usage: GPT is very slow as `@orchestrate` primary agent; frequently fails to invoke the correct deep sub-agent; gets stuck on pre-defined flows (deep-loop commands especially, possibly others); and overthinks, needing literal, deterministic instructions rather than prose/judgment. This is corroborating evidence, not new information — it points at the same gap phase 005 already flagged as unresolved. Full charter for the follow-up investigation: `goal-prompt.md` (this folder) and phase `007` (pending).
+Phases 002-004 (route-proof validation, `deep.md` primary router, `orchestrate.md` Deep Route field, pre-route headers) are code-complete, but phase 005's GPT verification smoke never reached a clean pass — 0/4 command-owned smokes reached a real leaf dispatch (all blocked upstream by `cli-opencode` self-invocation guards). The operator now independently reports the same underlying problem persisting in real usage: GPT is very slow as `@orchestrate` primary agent; frequently fails to invoke the correct deep sub-agent; gets stuck on pre-defined flows (deep-loop commands especially, possibly others); and overthinks, needing literal, deterministic instructions rather than prose/judgment. This is corroborating evidence, not new information — it points at the same gap phase 005 already flagged as unresolved. The follow-up investigation was carried out and completed in phase `007` (`007-gpt-behavioral-hardening-research/research/research.md`); the original `goal-prompt.md` charter document that seeded phase 007 has since been removed from the packet root.
 <!-- /ANCHOR:problem -->
 
 ---

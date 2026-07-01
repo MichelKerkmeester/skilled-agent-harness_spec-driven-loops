@@ -124,17 +124,17 @@
     ],
     "causal_summary": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening, and the structural deep-agent router.",
     "created_at": "2026-06-30T11:58:13.600Z",
-    "last_save_at": "2026-07-01T17:42:38.592Z",
+    "last_save_at": "2026-07-01T18:59:54.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:68fbea6ba97efdc874d44a8b63e9481bf93462203da9a15787c448c4562cda59",
+    "source_fingerprint": "sha256:db50d0b1f9108ff5bde33eba120f4c1d185adb62b44cdc2529fcea451d4f74af",
     "source_doc_hashes": {
-      "spec.md": "5c07e94080b569881fa1bac04dda02b65f370e8e0fb2aae33913140618eddb16"
+      "spec.md": "4b0b3ac5f698abd3ef6a87ae47c4d775190026bd35501dba3ad96b76f48dcdff"
     },
-    "last_active_child_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
-    "last_active_at": "2026-07-01T05:45:00.000Z"
+    "last_active_child_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
+    "last_active_at": "2026-07-01T19:55:00.000Z"
   }
 }
