@@ -648,7 +648,7 @@ Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugi
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection and goal plugin behavior for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection, event-driven goal behavior, and manual `mk_goal` / `mk_goal_status` tool execution for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_AUTONOMY` | unset (continuation suppressed) | enum (`active`, `smoke`, `passive`, unset) | `active` enables guarded continuation, `smoke` logs would-fire decisions without sending a prompt, `passive` explicitly suppresses continuation, and unset is treated as disabled. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.goal-state/.goal-events.log`. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | number (positive int) | Maximum stored raw objective length. | `.opencode/plugins/mk-goal.js` |

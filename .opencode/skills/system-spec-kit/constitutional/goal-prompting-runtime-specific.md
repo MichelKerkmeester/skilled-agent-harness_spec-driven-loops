@@ -23,7 +23,7 @@ triggerPhrases:
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
 session goal, use Claude Code's own **native** `/goal` goal-prompting feature. Do NOT
-route through the OpenCode `mk-goal` plugin command (currently named `/goal_opencode` —
+route through the OpenCode `mk-goal` plugin command (currently named `/goal` —
 **verify the live filename before relying on it; it has already been renamed twice**).
 
 ## Why

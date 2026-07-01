@@ -1446,7 +1446,7 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
 // 7. TOOL OUTPUT
 // ─────────────────────────────────────────────────────────────────────────────
 
-function goalStateLines(action, goal, rawOptions = {}) {
+function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
   const injectionPreview = renderGoalInjection(goal, rawOptions);
   if (!goal) {
     return [
@@ -1456,7 +1456,7 @@ function goalStateLines(action, goal, rawOptions = {}) {
     ].join('\n');
   }
 
-  return [
+  const lines = [
     `STATUS=OK ACTION=${action}`,
     'goal_present=true',
     `plugin_id=${PLUGIN_ID}`,
@@ -1486,7 +1486,9 @@ function goalStateLines(action, goal, rawOptions = {}) {
     `continuation_attempts=${goal.autoTurnsUsed}`,
     `continuation_suppressed_reason=${quoteValue(goal.continuationSuppressedReason || '')}`,
     `injection_preview=${JSON.stringify(injectionPreview)}`,
-  ].join('\n');
+  ];
+  if (mutation) lines.splice(1, 0, `mutation=${mutation}`);
+  return lines.join('\n');
 }
 
 function failureLines(error) {
@@ -1501,32 +1503,38 @@ function failureLines(error) {
 async function executeGoalAction(args, context, rawOptions = {}) {
   const action = GOAL_ACTIONS.includes(args?.action) ? args.action : 'show';
   const sessionID = sessionIdFromContext(context);
+  const options = normalizeOptions(rawOptions);
 
   try {
+    if (!options.enabled) {
+      throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal plugin tool execution`);
+    }
     if (action === 'set') {
+      const previousGoal = await readGoal(sessionID, options);
       const goal = await setGoal(sessionID, args?.objective, {
-        ...rawOptions,
+        ...options,
         tokenBudget: args?.tokenBudget,
       });
-      return goalStateLines(action, goal, rawOptions);
+      const mutation = previousGoal ? (previousGoal.objective === goal.objective ? 'refreshed' : 'replaced') : 'created';
+      return goalStateLines(action, goal, options, mutation);
     }
     if (action === 'clear') {
-      await clearGoal(sessionID, rawOptions);
-      return goalStateLines(action, null, rawOptions);
+      await clearGoal(sessionID, options);
+      return goalStateLines(action, null, options);
     }
     if (action === 'complete') {
-      const goal = await markGoalStatus(sessionID, 'complete', rawOptions);
-      return goalStateLines(action, goal, rawOptions);
+      const goal = await markGoalStatus(sessionID, 'complete', options);
+      return goalStateLines(action, goal, options);
     }
     if (action === 'pause') {
       const goal = await markGoalStatus(sessionID, 'paused', {
-        ...rawOptions,
+        ...options,
         reason: args?.reason,
       });
-      return goalStateLines(action, goal, rawOptions);
+      return goalStateLines(action, goal, options);
     }
-    const goal = await readGoal(sessionID, rawOptions);
-    return goalStateLines('show', goal, rawOptions);
+    const goal = await readGoal(sessionID, options);
+    return goalStateLines('show', goal, options);
   } catch (error) {
     return failureLines(error);
   }
@@ -1534,9 +1542,13 @@ async function executeGoalAction(args, context, rawOptions = {}) {
 
 async function executeGoalStatus(context, rawOptions = {}) {
   try {
+    const options = normalizeOptions(rawOptions);
+    if (!options.enabled) {
+      throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal plugin tool execution`);
+    }
     const sessionID = sessionIdFromContext(context);
-    const goal = await readGoal(sessionID, rawOptions);
-    return goalStateLines('show', goal, rawOptions);
+    const goal = await readGoal(sessionID, options);
+    return goalStateLines('show', goal, options);
   } catch (error) {
     return failureLines(error);
   }

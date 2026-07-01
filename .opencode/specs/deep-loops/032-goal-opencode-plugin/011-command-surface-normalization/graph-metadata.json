@@ -17,9 +17,7 @@
       "implementation",
       "plan",
       "tasks",
-      "summary",
-      "template",
-      "impl summary core"
+      "phase 011 implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -31,13 +29,18 @@
       "implementation",
       "plan",
       "tasks",
-      "summary",
-      "template",
-      "impl"
+      "phase",
+      "011",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
+      ".opencode/commands/goal.md",
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,11 +49,39 @@
       ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
       ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/plugins/mk-goal.js"
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md"
     ],
     "entities": [
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-prompting-runtime-specific.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,21 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
         "name": "goal-opencode-plugin.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
         "source": "derived"
       },
       {
@@ -176,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "actual",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003's docs mandated `.opencode/commands/goal.md`",
     "created_at": "2026-07-01T10:04:51Z",
-    "last_save_at": "2026-07-01T10:20:36.823Z",
+    "last_save_at": "2026-07-01T11:38:12.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c026c2a9eba8c691b1a6e300a622152323d71c9f6c486229979e6f83e7c8c27",
+    "source_fingerprint": "sha256:b4cc95c205f76882137237bf0401b72f700c553c6410a82805247f8a922472d2",
     "source_doc_hashes": {
       "spec.md": "354885337124e37c8069c6af7fd525d6a65012eb8cd5a21498688a1802d176fa",
       "plan.md": "21f987ac2c2c1d94771153ac879826ba3a5f9c656200ddbc5dfbdc4b52850bce",
-      "tasks.md": "5ee98d28c1e274898c7c26de7999b0b611b889a7be9ae33d60f86bb91e25d8ea",
-      "implementation-summary.md": "458e5cae15276c5991c9f539a1fe0ed4837def257ef98607d35a02a4292fa69f"
+      "tasks.md": "5985a5cb4753b9c2995521a4155f769a5e830ed65bfdd7a296f70079a389b5f9",
+      "implementation-summary.md": "1b56c2f0c45c7fb17401689a65beea13909f64878156b185691239cf2db70fa6"
     },
     "last_active_child_id": null,
     "last_active_at": null
