@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin"
     last_updated_at: "2026-06-30T16:30:00Z"
     last_updated_by: "opencode-gpt"
-    recent_action: "Completed dual audit of phases 001-008; created remediation phases 010-013"
-    next_safe_action: "Plan phase 010 first; phases 011-013 depend on it via their Predecessor fields"
+    recent_action: "Landed phases 010-012; recorded phase 013 decision; created phase 014"
+    next_safe_action: "Implement phase 013, then phase 014 (both independent, either order)"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | phase parent |
 | **Priority** | P1 |
-| **Status** | In Progress (phases 001-008 complete; audit-driven remediation phases 010-013 pending; phase 009 owned by a separate session) |
+| **Status** | In Progress (phases 001-008, 010-012 complete; 013-014 pending; phase 009 owned by a separate session) |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet under deep-loops) |
@@ -179,10 +179,11 @@ REQ-005
 | 7 | 007-sk-prompt-goal-enhancement/ | Transform raw `/goal set` input into a deterministic sk-prompt-style `goalPrompt` under 4000 chars | Complete |
 | 8 | 008-system-spec-kit-integration/ | Integrate `mk-goal` into system-spec-kit routing, references, catalog assets, manual playbook, and env docs | Complete |
 | 9 | 009-speckit-command-goal-prompt-offer/ | [Phase 9 scope] | Pending |
-| 10 | 010-security-and-correctness-fixes/ | Fix 5 confirmed P1 security/correctness defects (DR-001 injection clamp, DR-003 stale-verifier race, DR-004-P1 RICCE metadata, DR-005 sanitizer hardening, DR-006 secret redaction) in mk-goal.js | Pending |
-| 11 | 011-command-surface-normalization/ | Normalize the twice-renamed /goal command filename to its final evidence-backed name and sweep all referencing surfaces (specs, catalogs, playbooks, env docs); resolve DR-004-P2/DR-010-P1/P2 | Pending |
-| 12 | 012-regression-test-backfill/ | Backfill regression tests pinning phases 010/011 fixes plus research's untested code paths (transform hook, event branches, autonomy smoke, export contract, tool-registration) | Pending |
-| 13 | 013-design-fidelity-and-polish/ | Resolve the usage_limited design-fork decision with operator input; fix packet-wide fingerprint placeholders, phase 006 completion overclaim, fsync error logging, store-health status field | Pending |
+| 10 | 010-security-and-correctness-fixes/ | Fix 5 confirmed P1 security/correctness defects (DR-001 injection clamp, DR-003 stale-verifier race, DR-004-P1 RICCE metadata, DR-005 sanitizer hardening, DR-006 secret redaction) in mk-goal.js | Complete |
+| 11 | 011-command-surface-normalization/ | Normalize the twice-renamed /goal command filename to its final evidence-backed name and sweep all referencing surfaces (specs, catalogs, playbooks, env docs); resolve DR-004-P2/DR-010-P1/P2 | Complete |
+| 12 | 012-regression-test-backfill/ | Backfill regression tests pinning phases 010/011 fixes plus research's untested code paths (transform hook, event branches, autonomy smoke, export contract, tool-registration) | Complete |
+| 13 | 013-design-fidelity-and-polish/ | Wire a real usage_limited detector (operator chose wire over collapse); fix packet-wide fingerprint placeholders, phase 006 completion overclaim, fsync error logging, store-health status field | Pending |
+| 14 | 014-goal-state-cleanup-and-archive/ | Archive-then-prune goal state on session.deleted plus a throttled orphan sweep on session.created, so .goal-state/ stops growing unboundedly | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -208,4 +209,5 @@ REQ-005
 | 010-security-and-correctness-fixes | 011-command-surface-normalization | All 5 phase-010 fixes land with the existing 6-file test suite passing | Fresh `node` execution evidence (not cited) in phase 010's implementation-summary.md |
 | 011-command-surface-normalization | 012-regression-test-backfill | Command filename normalized to its final form; zero stale references to retired filenames outside historical changelogs/research archives | Repo-wide grep for retired filenames returns zero hits outside historical docs |
 | 012-regression-test-backfill | 013-design-fidelity-and-polish | Regression suite (existing + backfilled) passes fresh, with at least one new test proven capable of failing against pre-fix behavior | Full suite run plus T014 revert-and-fail spot-check evidence in phase 012's implementation-summary.md |
+| 013-design-fidelity-and-polish | 014-goal-state-cleanup-and-archive | N/A — phase 014 is independent of phase 013; no handoff dependency, either order works | N/A |
 <!-- /ANCHOR:phase-map -->

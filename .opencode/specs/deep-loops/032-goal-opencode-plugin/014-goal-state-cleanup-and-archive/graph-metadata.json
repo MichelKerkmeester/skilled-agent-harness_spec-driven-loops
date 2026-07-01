@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+  "spec_folder": "deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+  "parent_id": "deep-loops/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal state cleanup",
+      "goal state archive",
+      "session deleted state file",
+      "orphaned goal state sweep",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "goal",
+      "state",
+      "cleanup",
+      "archive",
+      "session",
+      "deleted",
+      "file",
+      "orphaned",
+      "sweep",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context New",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/.goal-state/.json` files are created per session (`goalPathForSession`) but never removed by the plugin's own lifecycle handling",
+    "created_at": "2026-07-01T12:44:45Z",
+    "last_save_at": "2026-07-01T12:49:13.208Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:131485cd520786d0a842cfab94553706b3a149e382ebff2885a627aa853247fc",
+    "source_doc_hashes": {
+      "spec.md": "5992f56582b76aa7480c71eabfbcd655acbd82c3be46f59b82fb3e594ca25237",
+      "plan.md": "1fff10dde285079b6959b28d0a7a6ed3c8f52dec15f50ea5411e359e2a8ee74e",
+      "tasks.md": "8827f5edc62eae3de4c0db5c21e29b4e8c255ee0944644ef79f2499a5c5e133e",
+      "implementation-summary.md": "e17cb0c39f9068b2c7d17d455e66174d5f61f9eced8e4e820fc1028e6ed2b93d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
