@@ -410,19 +410,6 @@ render:
         - quality-gates
         - cross-reference-protocols
         - outputs
-    - id: agent-opencode
-      path: .opencode/agents/deep-review.toml
-      ownership: mixed
-      format: toml
-      markers:
-        begin: "# BEGIN GENERATED: review-mode-contract/agent-opencode"
-        end: "# END GENERATED: review-mode-contract/agent-opencode"
-      sections:
-        - dimensions
-        - severities
-        - quality-gates
-        - cross-reference-protocols
-        - outputs
     - id: quick-reference-review-mode
       path: .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md
       ownership: mixed

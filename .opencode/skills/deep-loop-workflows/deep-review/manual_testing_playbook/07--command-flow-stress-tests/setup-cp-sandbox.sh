@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../../.." && pwd)"
 SANDBOX_DIR="/tmp/cp-deep-review-sandbox"
 
 usage() {
@@ -90,7 +90,6 @@ require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/skills/sk-code-review"
 require_path "${REPO_ROOT}/.opencode/agents/deep-review.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-review.md"
-require_path "${REPO_ROOT}/.opencode/agents/deep-review.toml"
 
 validate_sandbox_dir "$SANDBOX_DIR"
 
@@ -104,7 +103,6 @@ copy_dir "${REPO_ROOT}/.opencode/skills/sk-code-review" "${SANDBOX_DIR}/.opencod
 
 copy_file "${REPO_ROOT}/.opencode/agents/deep-review.md" "${SANDBOX_DIR}/.opencode/agents/deep-review.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-review.md" "${SANDBOX_DIR}/.claude/agents/deep-review.md"
-copy_file "${REPO_ROOT}/.opencode/agents/deep-review.toml" "${SANDBOX_DIR}/.opencode/agents/deep-review.toml"
 
 mkdir -p "${SANDBOX_DIR}/targets"
 cat > "${SANDBOX_DIR}/targets/review-target.js" <<'TARGET'

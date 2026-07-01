@@ -73,7 +73,7 @@ opencode run \
   </dev/null
 ```
 
-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review` and `debug` are subagents that route through a primary/orchestrate path, and direct top-level `--agent` use is only conditionally allowed for primary agents such as `plan`, `orchestrate` or `ai-council` after `opencode run --help` confirms acceptance.
+You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review`, `debug`, and `ai-council` are subagents that route through a primary/orchestrate path (or, for `ai-council`, through its own `/deep:ai-council` command), and direct top-level `--agent` use is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance.
 
 **Step 4: Spawn a parallel detached session (inside OpenCode only).**
 
@@ -161,7 +161,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|---|
 | `command not found: opencode` | CLI not installed or PATH not updated | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart your terminal |
 | Dispatch hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` before any `> stdout.log 2> stderr.log` redirect |
-| `--agent general` fails or warns | The default/general path is selected by omitting `--agent` | Omit `--agent general`; use `orchestrate` or `ai-council` only when they are the documented primary route and help-verified. Route `context`, `review` and `debug` through the documented primary/Task path instead of direct top-level `--agent` examples. |
+| `--agent general` fails or warns | The default/general path is selected by omitting `--agent` | Omit `--agent general`; use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug`, and `ai-council` through the documented primary/Task path (or, for `ai-council`, `/deep:ai-council`) instead of direct top-level `--agent` examples. |
 | `provider/model not found` or `401 Unauthorized` | The default `deepseek` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |

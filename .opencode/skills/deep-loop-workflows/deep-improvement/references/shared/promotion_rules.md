@@ -91,7 +91,7 @@ Promotion is allowed only when:
 - accept/ship evidence is present when using the two-phase path
 - the explicit approval gate is passed
 - the target is not classified `fixed` or `forbidden` in the manifest
-- agent-definition targets are present and content-aligned across all four runtime mirrors; OpenCode TOML is checked by extracted body tokens, not by byte-equivalence of the TOML wrapper
+- agent-definition targets are present and content-aligned across both runtime mirrors (`.opencode/agents/`, `.claude/agents/`)
 
 If mirror verification fails, promotion rejects with a structured `MIRROR_SYNC_GATE_FAILED` error. The optional promotion state file records `mirror_sync_state` as `all_landed`, `partial:<runtime-list>`, or `verification_failed`. Resume behavior defaults to rolling back partial mirror landings before another promotion attempt; operators may instead retry failed mirrors or pause for an explicit decision.
 

@@ -252,13 +252,12 @@ Shipped layout:
 
 ### Per-runtime agent mirrors (consumer convention)
 
-This runtime is MCP-free and owns no agents, but every deep loop that consumes it ships a **native agent** that the loop dispatches **by name** (`agent: <name>` in the loop YAML), which each host runtime resolves from its OWN `agents/` dir. Each such agent — `deep-context`, `deep-research`, `deep-review`, `deep-improvement`, `ai-council` — is one canonical source plus two runtime mirrors carrying the same body:
+This runtime is MCP-free and owns no agents, but every deep loop that consumes it ships a **native agent** that the loop dispatches **by name** (`agent: <name>` in the loop YAML), which each host runtime resolves from its OWN `agents/` dir. Each such agent — `deep-context`, `deep-research`, `deep-review`, `deep-improvement`, `ai-council` — is one canonical source plus one runtime mirror carrying the same body:
 
 - `.opencode/agents/<name>.md` — **canonical** (OpenCode frontmatter: `mode: subagent` + `permission:` block)
 - `.claude/agents/<name>.md` — Claude mirror (`tools:` allow-list frontmatter)
-- `.opencode/agents/<name>.toml` — OpenCode mirror (`developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode`)
 
-The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.opencode/` `commands`/`prompts`/`skills` dirs are symlinks to `.opencode/`), so they reference canonical `.opencode/` paths and dispatch by name on purpose — do NOT fork them per runtime. A deep-loop agent present in `.opencode/agents/` but missing its `.claude/` or `.opencode/` mirror silently fails to dispatch in that runtime (CLI seats still run; only the native seats drop). **When adding or renaming a deep-loop native agent, create/update all three files and verify three-way parity** (e.g. compare `ls .opencode/agents .claude/agents .opencode/agents`).
+The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.opencode/` `commands`/`prompts`/`skills` dirs are symlinks to `.opencode/`), so they reference canonical `.opencode/` paths and dispatch by name on purpose — do NOT fork them per runtime. A deep-loop agent present in `.opencode/agents/` but missing its `.claude/` mirror silently fails to dispatch in that runtime (CLI seats still run; only the native seat drops). **When adding or renaming a deep-loop native agent, create/update both files and verify two-way parity** (e.g. compare `ls .opencode/agents .claude/agents`).
 
 ---
 

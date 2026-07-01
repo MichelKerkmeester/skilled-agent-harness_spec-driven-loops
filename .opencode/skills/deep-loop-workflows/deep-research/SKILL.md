@@ -17,7 +17,6 @@ Iterative research protocol with fresh context per iteration, externalized state
 Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
-- OpenCode runtime: `.opencode/agents/*.toml`
 
 Operator contract precedence for this skill surface:
 - Command entrypoint syntax in `.opencode/commands/deep/research.md`

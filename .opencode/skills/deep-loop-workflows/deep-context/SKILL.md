@@ -276,15 +276,14 @@ node .opencode/skills/deep-loop-workflows/deep-context/scripts/reduce-state.cjs 
 
 ### Runtime Mirrors (native seat dispatch)
 
-The native `@deep-context` seat is dispatched **by name** (`agent: deep-context` in the loop YAML), resolved by each host runtime from its OWN `agents/` directory. It therefore lives as one canonical source plus two runtime mirrors that must stay in sync:
+The native `@deep-context` seat is dispatched **by name** (`agent: deep-context` in the loop YAML), resolved by each host runtime from its OWN `agents/` directory. It therefore lives as one canonical source plus one runtime mirror that must stay in sync:
 
 | Runtime | File | Frontmatter |
 |---------|------|-------------|
 | OpenCode | `.opencode/agents/deep-context.md` | **canonical source** — `mode: subagent` + `permission:` block |
 | Claude Code | `.claude/agents/deep-context.md` | mirror — `tools:` allow-list (read-only), same body |
-| OpenCode | `.opencode/agents/deep-context.toml` | mirror — `developer_instructions = '''…'''` + `# Converted from:` header + `sandbox_mode = "read-only"`, same body |
 
-The body is identical across all three; only the frontmatter format differs. The command and loop YAML are **shared** — the `.claude/` and `.opencode/` `commands`/`prompts`/`skills` directories are symlinks to `.opencode/` — so they intentionally reference the canonical `.opencode/` paths and dispatch by name; do NOT fork them per runtime. If a mirror is missing for a runtime, the native seats silently fail to dispatch there (the CLI seats still run, but the cross-executor agreement signal degrades). When you edit the canonical agent, re-sync both mirrors in the same change.
+The body is identical across both; only the frontmatter format differs. The command and loop YAML are **shared** — the `.claude/` and `.opencode/` `commands`/`prompts`/`skills` directories are symlinks to `.opencode/` — so they intentionally reference the canonical `.opencode/` paths and dispatch by name; do NOT fork them per runtime. If the mirror is missing for a runtime, the native seat silently fails to dispatch there (the CLI seats still run, but the cross-executor agreement signal degrades). When you edit the canonical agent, re-sync the mirror in the same change.
 
 ---
 
@@ -299,7 +298,7 @@ The body is identical across all three; only the frontmatter format differs. The
 5. **Honor the cli-* skill contracts for dispatch** (model id form, `</dev/null` for opencode, omit top-level `--agent`). Read the relevant `cli-X/SKILL.md` before composing any CLI prompt.
 6. **Ship pointers + signatures, not source bodies.** Context rot begins when full source is pasted into reports.
 7. **The host applies the deep-loop-runtime robustness layer** (shared with `deep-research` and `deep-review`): state writes are atomic (temp+fsync+rename via `writeStateAtomic`), the JSONL state log is repaired before each reduce (`repairJsonlTail`), each seat's output is validated before merge (`post-dispatch-validate`, surfacing `seatValidationWarnings`), a single-writer advisory loop-lock is held via `scripts/loop-lock.cjs` for the duration of the session, and CLI seats are dispatched with the runtime recursion-guard env so no seat can launch a nested deep-context loop.
-8. **Keep the native agent's runtime mirrors in sync** — when editing `.opencode/agents/deep-context.md` (canonical), update `.claude/agents/deep-context.md` and `.opencode/agents/deep-context.toml` in the same change. The loop dispatches the native seat by name from each runtime's own `agents/` dir, so a missing mirror means native seats silently fail to dispatch in that runtime. See **Runtime Mirrors** in §3.
+8. **Keep the native agent's runtime mirror in sync** — when editing `.opencode/agents/deep-context.md` (canonical), update `.claude/agents/deep-context.md` in the same change. The loop dispatches the native seat by name from each runtime's own `agents/` dir, so a missing mirror means the native seat silently fails to dispatch in that runtime. See **Runtime Mirrors** in §3.
 
 ### NEVER
 

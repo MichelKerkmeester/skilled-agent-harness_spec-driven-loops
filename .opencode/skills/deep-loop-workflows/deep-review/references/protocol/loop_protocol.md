@@ -721,7 +721,6 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 Runtime paths:
 - OpenCode / Copilot: `.opencode/agents/deep-review.md`
 - Claude: `.claude/agents/deep-review.md`
-- OpenCode: `.opencode/agents/deep-review.toml`
 
 ---
 

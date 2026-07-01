@@ -47,7 +47,7 @@ Validate each deep-research iteration reads JSONL and strategy state before any 
 ### Commands
 1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-research/SKILL.md`
 2. `bash: rg -n 'step_read_state|current_iteration|next_focus' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
-3. `bash: sed -n '1,220p' .opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md && sed -n '1,220p' .opencode/agents/deep-research.toml`
+3. `bash: sed -n '1,220p' .opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md && sed -n '1,220p' .opencode/agents/deep-research.md`
 ### Expected
 Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 ### Evidence
@@ -75,7 +75,7 @@ Check the agent sequence under `Single Iteration Protocol` if the higher-level d
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Loop state extraction; inspect `step_read_state` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Loop state extraction; inspect `step_read_state` |
 | `.opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
-| `.opencode/agents/deep-research.toml` | Canonical runtime agent sequence; inspect `## 1. CORE WORKFLOW` |
+| `.opencode/agents/deep-research.md` | Canonical runtime agent sequence; inspect `## 1. CORE WORKFLOW` |
 
 ---
 

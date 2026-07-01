@@ -369,7 +369,7 @@ opencode run \
 ## 11. TEMPLATE 10 — MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
 
 **Framework:** CRAFT
-**Agent:** `ai-council`
+**Agent:** `ai-council` (`mode: subagent` — dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
 **Use case:** 1 or 3
 
 ```text
@@ -385,11 +385,11 @@ Target: an implementation-ready plan that another agent can execute.
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent ai-council \
+  --agent orchestrate \
   --variant high \
   --format json \
   --dir /repo \
-  "<prompt>" 2>&1
+  "Dispatch @ai-council: <prompt>" 2>&1
 ```
 
 ---

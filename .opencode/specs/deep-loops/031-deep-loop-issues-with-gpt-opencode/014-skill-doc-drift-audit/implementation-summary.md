@@ -10,10 +10,10 @@ contextType: "review"
 _memory:
   continuity:
     packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit"
-    last_updated_at: "2026-07-01T18:00:00Z"
+    last_updated_at: "2026-07-01T19:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All 20 iterations verified; consolidated findings written"
-    next_safe_action: "Operator decides whether to open a follow-up fix phase"
+    recent_action: "Follow-up fix phase 015-skill-doc-drift-remediation completed"
+    next_safe_action: "None -- packet complete"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -142,4 +142,8 @@ Open a new fix phase (e.g. `015-skill-doc-drift-remediation` under packet 031) s
 5. Resolve the orchestrate-routing tension in Cluster 6 with an explicit operator decision before editing either file.
 
 This phase does not implement any of the above — per `spec.md` §3, fixes are explicitly out of scope here.
+
+## Follow-Up: Fix Phase Completed (2026-07-01)
+
+`../015-skill-doc-drift-remediation/` implemented all 5 recommended items. Cluster 6's actual resolution differed from this doc's original framing: a dedicated investigation found orchestrate's `@deep-review` row is load-bearing (removing it would reopen the exact gap phase 009 closed and break `deep-review.md`'s own documented Caller contract), so the fix narrowed `cli-opencode/SKILL.md`'s internal self-contradiction instead of touching `orchestrate.md`. See `015-skill-doc-drift-remediation/implementation-summary.md` for full before/after evidence per cluster, plus 13 additional real `.toml`-mirror references found and fixed during that phase's own post-fix re-scan (beyond this audit's original citation sample) and a pre-existing `REPO_ROOT` path bug found and fixed in two manual-testing sandbox scripts.
 <!-- /ANCHOR:followup -->

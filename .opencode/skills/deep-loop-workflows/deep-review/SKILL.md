@@ -16,7 +16,6 @@ Iterative code review and quality auditing protocol with fresh context per itera
 Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
-- OpenCode runtime: `.opencode/agents/*.toml` when running directly in OpenCode; external OpenCode dispatch uses `cli-opencode`.
 
 Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 

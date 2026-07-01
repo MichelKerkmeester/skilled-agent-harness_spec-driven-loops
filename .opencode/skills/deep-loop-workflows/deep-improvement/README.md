@@ -78,7 +78,7 @@ The loop never touches the canonical file until you tell it to. It copies the ta
 
 ### The Integration Scan
 
-An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition, three runtime mirrors (`.opencode/agents/`, `.claude/agents/`, `.opencode/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation. Mirror parity is also enforced repo-wide outside a scoring run: `scripts/check-agent-mirror-sync.cjs` gates commits (through `.opencode/hooks/pre-commit`) and pull requests into `main` (through `.github/workflows/agent-mirror-sync.yml`), so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable so it never blocks an unrelated commit; the CI gate on `main` is the fail-closed backstop.
+An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition (`.opencode/agents/`), its Claude runtime mirror (`.claude/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation. Mirror parity is also enforced repo-wide outside a scoring run: `scripts/check-agent-mirror-sync.cjs` gates commits (through `.opencode/hooks/pre-commit`) and pull requests into `main` (through `.github/workflows/agent-mirror-sync.yml`), so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable so it never blocks an unrelated commit; the CI gate on `main` is the fail-closed backstop.
 
 ### Five Scoring Dimensions (Lane A)
 
@@ -158,7 +158,7 @@ A: The point is to prove improvement before mutation. Direct edits skip the evid
 
 **Q: How does the integration scanner work?**
 
-A: It finds every file that references an agent: the canonical definition, three runtime mirrors, command dispatch files, YAML workflow references, skill SKILL.md mentions and the skill-advisor routing entry. It extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear.
+A: It finds every file that references an agent: the canonical definition, its Claude runtime mirror, command dispatch files, YAML workflow references, skill SKILL.md mentions and the skill-advisor routing entry. It extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear.
 
 **Q: What do the five dimensions measure?**
 

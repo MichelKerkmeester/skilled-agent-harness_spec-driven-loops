@@ -40,7 +40,7 @@ Mirror drift is real maintenance work, but it is downstream from experiment trut
 
 Runtime mirrors are not phase-one experiment targets. They are downstream packaging surfaces.
 
-For guarded promotion of agent definitions, downstream does not mean optional. Before an agent-definition candidate can be promoted, `.opencode/agents/`, `.claude/agents/`, and `.opencode/agents/` must all contain the corresponding agent and must match the proposed body. OpenCode TOML is compared by its extracted `developer_instructions` body tokens so runtime wrapper metadata does not create false drift.
+For guarded promotion of agent definitions, downstream does not mean optional. Before an agent-definition candidate can be promoted, `.opencode/agents/` and `.claude/agents/` must both contain the corresponding agent and must match the proposed body.
 
 ---
 

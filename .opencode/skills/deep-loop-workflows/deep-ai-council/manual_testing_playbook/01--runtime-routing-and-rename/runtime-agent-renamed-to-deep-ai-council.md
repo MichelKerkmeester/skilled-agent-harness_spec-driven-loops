@@ -87,7 +87,6 @@ Check the mirror frontmatter/name first, then OpenCode TOML name, then any conve
 |---|---|
 | `.opencode/agents/ai-council.md` | OpenCode runtime mirror |
 | `.claude/agents/ai-council.md` | Claude runtime mirror |
-| `.opencode/agents/ai-council.toml` | OpenCode runtime mirror |
 
 ---
 

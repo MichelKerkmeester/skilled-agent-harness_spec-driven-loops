@@ -47,7 +47,7 @@ Validate stuck recovery widens focus, uses deferred ideas, and continues before 
 ### Commands
 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
-3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .opencode/agents/deep-research.toml`
+3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .opencode/agents/deep-research.md`
 ### Expected
 Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery.
 ### Evidence
@@ -75,7 +75,7 @@ Check the convergence reference and loop protocol together because one defines t
 | `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Ideas backlog and stuck recovery; use `ANCHOR:phase-iteration-loop` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Recovery logic; inspect `step_handle_convergence` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Recovery logic; inspect `step_handle_convergence` |
-| `.opencode/agents/deep-research.toml` | Runtime recovery behavior; inspect `Recovery Mode` |
+| `.opencode/agents/deep-research.md` | Runtime recovery behavior; inspect `Recovery Mode` |
 
 ---
 

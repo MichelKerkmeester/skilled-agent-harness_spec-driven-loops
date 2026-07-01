@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill doc drift remediation",
+      "ai-council direct invoke fix",
+      "toml mirror removal",
+      "plugins readme fix",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "skill",
+      "doc",
+      "drift",
+      "remediation",
+      "ai-council",
+      "direct",
+      "invoke",
+      "fix",
+      "toml",
+      "mirror",
+      "removal",
+      "plugins"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+      ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-loop-workflows/deep-context/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/README.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+      ".opencode/plugins/README.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-multi-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability_matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "output_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "scan-integration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-mirrors.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_scanning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror_drift_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "promotion_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Documentation Drift Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Clusters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Patches",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift clusters across skill documentation and one scanner script, all caused by packet 031's real behavior changes (ai-council `mode: subagent`, orchestrate routing, the mk-deep-loop-guard rename, `.opencode/agents/.toml` mirror removal)",
+    "created_at": "2026-07-01T16:44:05.130Z",
+    "last_save_at": "2026-07-01T16:44:25.849Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dc0901d810a1627d5ab398d9f70207401a616f23a211aa6914e99ce57ca59dae",
+    "source_doc_hashes": {
+      "spec.md": "d11d5448dc85617f58b82fe290b829cf8b1ae3b52e8c65c84e2ba12e77521d12",
+      "plan.md": "094f957276277607374a43fef156ea54d6b6495adc1c535f027b0ad86d476195",
+      "tasks.md": "3ab36fea3275f1a1533e2071e00467112ac8667c35077bdc8ab92c53320e5e16",
+      "checklist.md": "b72d35d8cb9f3704240d063a4302dc6577117d605852769c03aa5b19bcce17ee",
+      "implementation-summary.md": "2ec1ed2828fd46f91ef2ac88353ac43059c388a53d9256b54599a6195297ebc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

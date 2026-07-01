@@ -414,11 +414,11 @@ Expected signals: Exit 0. Severity tag present. Line reference present. Target f
 
 #### Description
 
-Verify `--agent ai-council` produces at least 3 distinct solution strategies scored across at least 3 dimensions with an explicit recommendation, AND respects the planning-only constraint (no file modifications).
+Verify `--agent orchestrate` dispatching `ai-council` (`mode: subagent`) produces at least 3 distinct solution strategies scored across at least 3 dimensions with an explicit recommendation, AND respects the planning-only constraint (no file modifications).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor planning a CommonJS-to-ESM migration of a single hypothetical module, dispatch --agent ai-council to compare three strategies (big-bang rewrite, incremental wrapper, dual-build). Verify the response presents three distinct strategies, scores each across risk/effort/timeline/reversibility, recommends one with rationale and does NOT modify any files in the repo.
+Prompt summary: As an external-AI conductor planning a CommonJS-to-ESM migration of a single hypothetical module, dispatch `--agent orchestrate` with a prompt requesting `@ai-council` to compare three strategies (big-bang rewrite, incremental wrapper, dual-build). Verify the response presents three distinct strategies, scores each across risk/effort/timeline/reversibility, recommends one with rationale and does NOT modify any files in the repo.
 
 Expected signals: Exit 0. Sentinel mtimes unchanged. Zero Edit/Write tool.calls. >=3 distinct strategies. >=3 dimensions scored. Explicit recommendation.
 

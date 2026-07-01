@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate progressive synthesis updates research/research.md during the loop while final synthesis still owns completion.
 ### Commands
 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/deep-loop-workflows/deep-research/README.md .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md .opencode/skills/deep-loop-workflows/deep-research/SKILL.md`
-2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .opencode/agents/deep-research.toml`
+2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .opencode/agents/deep-research.md`
 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
 ### Expected
 The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
@@ -74,7 +74,7 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 | `.opencode/skills/deep-loop-workflows/deep-research/README.md` | Progressive synthesis defaults and state-file table; use `ANCHOR:overview` and `ANCHOR:configuration` |
 | `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
 | `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
-| `.opencode/agents/deep-research.toml` | Runtime progressive update rules; inspect `Step 7: Update Research` |
+| `.opencode/agents/deep-research.md` | Runtime progressive update rules; inspect `Step 7: Update Research` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Synthesis and save workflow |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Synthesis and save workflow |
 
