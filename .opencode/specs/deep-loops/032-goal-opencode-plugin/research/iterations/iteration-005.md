@@ -1,43 +1,61 @@
-# Iteration 5: G5 OpenCode Goal Lifecycle
+# Iteration 005 — Close F-010 disposition + expose the idle→continuation test seam
+
+- **Segment:** 1 | **Iteration:** 5 of 15
+- **Focus:** Run the phase-006 live `MK_GOAL_AUTONOMY=smoke` idle smoke, OR formally downgrade the 006 completion metadata, to close F-010.
+- **newInfoRatio:** 0.74
+
+---
 
 ## Focus
 
-[G5] Which OpenCode event/lifecycle hooks should track and drive a goal, and whether `session.idle` is the autonomy seam for `.opencode/plugins/mk-goal.js`.
+F-010 (iteration 4): phase-006 completion overclaim — the live `session.idle` continuation path was never exercised end-to-end. This iteration was tasked to either (a) run the live `MK_GOAL_AUTONOMY=smoke` idle smoke and observe a `would_fire` row in `.continuation.log`, or (b) formally downgrade the phase-006 completion metadata.
 
 ## Actions Taken
 
-- Read the deep-research workflow contract and state output contract for this leaf iteration.
-- Read the current goal research state and strategy to avoid repeating the prior G1-G4 passes.
-- Inspected local OpenCode plugin patterns in `.opencode/plugins/mk-spec-memory.js`, `.opencode/plugins/mk-code-graph.js`, `.opencode/plugins/mk-skill-advisor.js`, and `.opencode/plugins/session-cleanup.js`.
-- Checked installed OpenCode version with `opencode --version`; current local CLI reports `1.17.11`.
-- Searched the installed OpenCode binary for event names because the npm package ships a native/bundled binary with no readable TypeScript API files.
+1. Read `deep-research-findings-registry.json` (unsynced / empty — reducer has not projected machine-owned sections; strategy.md is the live surface) and `deep-research-strategy.md` to re-anchor on F-010 + carried-forward test-coverage questions.
+2. Located phase-006 docs (`006-active-continuation/{spec,plan,tasks,implementation-summary}.md`) and grepped `mk-goal.js` for `session.idle` / `MK_GOAL_AUTONOMY` / `smoke` / `promptAsync` / `continuationSuppressed`.
+3. Read the phase-006 `implementation-summary.md` in full — established the exact overclaim (`completion_pct: 100`, `Completed: 2026-06-28`, `status`-implicit-complete) versus the honest body concession (`Known Limitations #1: "Live idle smoke is still required"`; `_memory.continuity.next_safe_action: "Run live idle smoke"`; `open_questions: ["Whether session.idle is observable in one-shot opencode run"]`).
+4. Read the autonomy decision block (`mk-goal.js:1280–1337`): confirmed `smoke` mode (line 1302) returns `would_fire` *before* calling `promptAsync` — i.e. log-only, no prompt sent. Read the event handler `session.idle` branch (`mk-goal.js:1574–1599`): `session.idle` → `maybeVerifyGoal` → `maybeContinueGoal({client, directory, runtimeState})`.
+5. Grepped the `mk-goal-*.test.cjs` suite for the event-handler seam. `mk-goal-continuation.test.cjs` calls `helpers.maybeContinueGoal(...)` directly 15× (never `plugin.event`); only `mk-goal-supervisor.test.cjs` fires `session.idle` events (4×). Read `mk-goal-supervisor.test.cjs` lines 1–145 to confirm it constructs the plugin with `pluginModule.default({}, {...})` — **no `MK_GOAL_AUTONOMY` / autonomy option** — so `session.idle` → `maybeContinueGoal` runs with autonomy *disabled* and returns at the autonomy gate before reaching `smoke`/`active` logic; assertions are verifier-only (status/verdict/secret-redaction), continuation is never asserted.
 
-## Findings (evidence + OUR target + decision + risk)
+## Findings
 
-1. Existing local plugins prove the OpenCode plugin lifecycle has a generic `event` hook and that current repo plugins use it for session lifecycle/cache invalidation, not autonomy. `mk-spec-memory` returns an `event` hook at `.opencode/plugins/mk-spec-memory.js:417`, marks runtime ready on `session.created` at `.opencode/plugins/mk-spec-memory.js:419`, invalidates per-session cache on `session.deleted` at `.opencode/plugins/mk-spec-memory.js:423`, and invalidates on any `message.*` or `session.*` event at `.opencode/plugins/mk-spec-memory.js:427`. `mk-code-graph` has the same broad invalidation rule for `session.*` and `message.*` at `.opencode/plugins/mk-code-graph.js:371`. OUR target: `.opencode/plugins/mk-goal.js` should expose a single `event({ event })` switch and reuse the same normalization/extraction helpers. Decision: use `session.created`, `session.deleted`, `message.updated`, `session.idle`, `session.error`, `permission.asked/replied`, `question.asked/replied`, `server.instance.disposed`, and `global.disposed` as the lifecycle set. Risk: local repo evidence proves event receipt and cache invalidation patterns, but not that a plugin can safely submit a new assistant turn.
+### F-010 — RESOLVED (disposition: formal metadata downgrade recommended)
 
-2. `session.idle` is real in the installed OpenCode event stream and is treated by the TUI as the response-ready signal. The installed CLI is `1.17.11` from `opencode --version`. The bundled binary contains a listener that ignores all events except `session.idle` and `session.error`, then on `session.idle` reads `T.properties.sessionID` before creating the "turn complete" notification; this appears in `/opt/homebrew/lib/node_modules/opencode-ai/bin/opencode.exe` strings output at line `84952`. OUR target: `.opencode/plugins/mk-goal.js` should treat `session.idle` as the only lifecycle hook allowed to drive autonomous continuation. Decision: `session.idle` runs `maybeContinueGoal(sessionID)` after checking active status, no pending permission/question, no in-flight continuation lock, loop cap, token/time budget, and kill-switch. Risk: this is evidence from the bundled TUI event consumer, not a plugin smoke test; first implementation phase should log plugin-observed event types before enabling active continuation.
+A deterministic live `MK_GOAL_AUTONOMY=smoke` idle smoke is **not runnable** by this LEAF research agent within a single-iteration dispatch: it requires an interactive `opencode serve`/TUI session where the host runtime genuinely emits `session.idle` and the resulting `would_fire` row in `.opencode/skills/.goal-state/.continuation.log` is observable. In a one-shot/automated dispatch the host does not deterministically reach an idle boundary that this agent controls, and forcing one would not yield a reproducible artifact.
 
-3. `message.updated` should track goal progress, not drive continuation. The installed binary's sync reducer handles `message.updated` by reading `C.properties.info.sessionID` and `C.properties.info.id`, updating the per-session message list, and pruning old message state; this is also in `/opt/homebrew/lib/node_modules/opencode-ai/bin/opencode.exe` strings output at line `84952`. OUR target: `.opencode/plugins/mk-goal.js` should use `message.updated` to refresh the goal record's `last_message_id`, `last_activity_at`, and possibly usage counters if present, then invalidate any rendered active-goal cache. Decision: never call continuation from `message.updated`; streaming or intermediate message updates would make that race-prone. Risk: token/usage data may not be present in the event payload, so G10 budget accounting may need a fallback source.
+**Recommendation (the offered alternative path):** formally downgrade the phase-006 completion metadata rather than claim the live smoke as done.
+- `implementation-summary.md` frontmatter: `completion_pct: 100` → **≤90**; remove/qualify the unconditional `Completed: 2026-06-28` reading.
+- `_memory.continuity`: `recent_action: "Implemented and verified default-off active continuation"` overstates — the verification is *unit-only*. Align `recent_action` with `next_safe_action: "Run live idle smoke"` (which is already correct).
+- The body `Known Limitations` and `Verification` table are honest and need no change; only the *metadata* overclaims. The overclaim is an integrity bug, not a code bug — F-010 severity stays **P1** (completion-integrity / trust-in-metadata), downgraded from "blocks shipping" to "blocks a clean audit sign-off."
 
-4. Teardown is explicit and should only reset volatile plugin state. `session-cleanup` documents that OpenCode lacks Claude's JSON `SessionEnd` hook and uses dispose lifecycle events as the session-end equivalent at `.opencode/plugins/session-cleanup.js:31`; its event hook is called for every lifecycle event at `.opencode/plugins/session-cleanup.js:47` and acts on `server.instance.disposed` / `global.disposed` at `.opencode/plugins/session-cleanup.js:52`. `mk-skill-advisor` also resets runtime state on those events at `.opencode/plugins/mk-skill-advisor.js:705`. OUR target: `.opencode/plugins/mk-goal.js` should flush in-memory locks/caches on dispose, while durable goal state stays in the goal state store unless `/goal clear` or `/goal complete` changes it. Decision: lifecycle teardown is not a completion signal. Risk: if state writes are buffered, dispose must synchronously flush or use atomic writes on every mutation.
+Note: implementing this downgrade is an **audit follow-up doc change**, out of scope for this do-not-implement iteration. Logged as a recommendation only.
 
-5. Permission and question events are lifecycle blockers for autonomy. The installed binary's event reducer handles `permission.asked`, `permission.replied`, `question.asked`, `question.replied`, and `question.rejected` before session/message updates in the same event stream evidence at `/opt/homebrew/lib/node_modules/opencode-ai/bin/opencode.exe` strings output line `84952`. OUR target: `.opencode/plugins/mk-goal.js` should set per-session `blocked_by_prompt=true` on `permission.asked` or `question.asked`, clear it on corresponding replies, and refuse `session.idle` continuation while blocked. Decision: this avoids auto-continuing into an approval/question wait. Risk: if the plugin hook does not receive permission/question events even though the TUI does, the guard must also inspect `session.status` or another live status source before continuing.
+### F-013 — NEW (P1): the `session.idle → maybeContinueGoal` autonomy-enabled seam is covered by NO test
+
+The integration seam that the F-010 live smoke would exercise is itself unverified:
+
+- `mk-goal-continuation.test.cjs` invokes `helpers.maybeContinueGoal(...)` **directly** (15 call sites) — it never routes through `plugin.event({event:{type:'session.idle'}})`. So the unit tests prove the pure decision function in isolation but **not** the event-handler wiring at `mk-goal.js:1574–1599` that connects a real `session.idle` to it.
+- `mk-goal-supervisor.test.cjs` is the only suite that fires `session.idle` events (4×, lines 71/100/118/135), but it constructs the plugin with **autonomy disabled** (`pluginModule.default({}, {stateDir, nowMs, supervisorVerifier})` — no `MK_GOAL_AUTONOMY`, no autonomy option). Consequently `session.idle` → `maybeContinueGoal` returns at the autonomy gate long before the `smoke`/`active`/`promptAsync` logic (line 1302+), and the assertions verify only the supervisor path (verdict→status, secret redaction). Continuation outcomes (`would_fire`/`fired`/`prompt_async_*`) are never asserted from a `session.idle` entry point.
+
+**Implication:** even the *wiring* the live smoke is meant to validate — a real `session.idle` flowing through `handleEvent` into an autonomy-enabled `maybeContinueGoal` — has no automated coverage. So F-010's "live smoke still required" understates the gap: the seam is doubly unverified (runtime observability **and** no integration test). Recommended remediation (out of scope here): add an integration test that fires `plugin.event({event:{type:'session.idle', properties:{sessionID}}})` against a plugin constructed with `autonomy:'smoke'` (or env `MK_GOAL_AUTONOMY=smoke`) and an active goal, then asserts a `would_fire`/`smoke_mode` row in `.continuation.log`.
+
+### F-012 — CONFIRMED recurring in phase 006
+
+`006-active-continuation/implementation-summary.md:22` carries the packet-wide zeroed session_dedup fingerprint (`sha256:0000…0000`), identical to the other phases flagged in iteration 4. Reinforces F-012 as a packet-wide metadata defect, not a single-phase slip.
 
 ## Questions Answered
 
-- [G5] Yes, `session.idle` is the right autonomy seam if active continuation is implemented. It is post-response, session-scoped, and already used as a response-ready signal by the installed OpenCode TUI.
-- [G5] `message.updated` is a tracking/cache invalidation hook, not a driver, because it can fire during message mutation and streaming.
-- [G5] `session.created`, `session.deleted`, and dispose events are lifecycle hygiene hooks for readiness, cache eviction, and volatile reset.
-- [G5] Permission/question events must pause any idle-driven continuation loop.
+- **(Carried, iter 1–4) "Does the `mk-goal-*.test.cjs` suite exercise the event handler / cover the unverified tail?"** — Partially answered: the supervisor suite fires `session.idle` through the real `plugin.event` handler (so the idle→verification wiring IS covered), but the **idle→continuation-with-autonomy seam is not covered** — continuation is tested only by direct `maybeContinueGoal` calls, and the idle-driven path always runs with autonomy off. The specifically unverified tail is precisely the F-010 live-smoke path.
 
 ## Questions Remaining
 
-- [G8] Which autonomy tier should ship first: passive injection only, gated `session.idle` continuation, or continuation plus supervisor verification?
-- [G9] What exact prompt-submission API should `maybeContinueGoal(sessionID)` call, and can it be invoked safely from a plugin hook?
-- [G10] Does `message.updated` expose token usage, or does budget accounting need another source?
-- [G13] What sanitizer/fencing rule should wrap user-authored goal text before injection?
+- (Carried) **F-004:** read `mk-goal.js` injection/transform wiring (`renderGoalInjection`/`appendGoalBrief`/`experimental.chat.system.transform`) — lines 1350+ now partially seen (transform at 1620, `__test` exports at 1658–1676 confirm `renderGoalInjection`/`maybeContinueGoal`/`maybeVerifyGoal` are the test seams); the 002 injection body still wants a dedicated read.
+- (Carried) **Cross-check the 9 resolved design forks** against shipped behavior — heavily carried since iter 1, still untouched; richest remaining novel axis. Fork #8 "command style = root /goal" is implicated by F-005/F-007/F-008/F-009; forks #1 (autonomy), #5 (completion detection), #6 (status set) are now well-evidenced by code reads and can be formally closed cheaply.
+- (Carried) **F-003:** trace `status:` writes — is `usage_limited` ever set in production paths, or dead?
+- (Carried) Confirm the opencode command-resolution rule for `.opencode/commands/*.md` (`opencode_goal.md` → `/opencode_goal`?) — refines F-008.
+- (Carried) Verify `ENV_REFERENCE.md` `MK_GOAL_*` entries vs the code's env reads (`MK_GOAL_AUTONOMY` confirmed in code at line 34; `MK_GOAL_DEBUG` referenced in impl summary; remaining budget knobs unverified).
 
-## Next Focus
+## Next Focus (proposed for iteration 6)
 
-[G6] Define the `/goal` command contract and the command-to-plugin/state handoff for `set`, `show`, `clear`, `complete`, and `pause`.
+**Cross-check the 9 resolved design forks** from `research_archive/2026-06-28-goal-design-synthesis/research.md` §4 against shipped behavior — the largest untouched novel axis, carried since iteration 1. Prioritize forks #1 (autonomy tier — now well-evidenced), #5/#6 (completion detection + status set — verifier code seen this iteration), #8 (command style — already implicated), and the under-examined #2/#3/#4/#7/#9. This rotates off the per-phase drift axis onto the design-fidelity axis, satisfying the anti-convergence directive.

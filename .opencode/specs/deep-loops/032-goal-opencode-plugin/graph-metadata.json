@@ -11,7 +11,12 @@
     "deep-loops/032-goal-opencode-plugin/005-completion-supervisor",
     "deep-loops/032-goal-opencode-plugin/006-active-continuation",
     "deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
-    "deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration"
+    "deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration",
+    "deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+    "deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes",
+    "deep-loops/032-goal-opencode-plugin/011-command-surface-normalization",
+    "deep-loops/032-goal-opencode-plugin/012-regression-test-backfill",
+    "deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish"
   ],
   "manual": {
     "depends_on": [],
@@ -42,30 +47,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       ".opencode/plugins/mk-goal.js",
-      ".opencode/commands/goal.md",
       ".opencode/plugins/mk-spec-memory.js",
       ".opencode/commands/memory/learn.md",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "mk-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "goal.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal.md",
         "source": "derived"
       },
       {
@@ -95,7 +86,13 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -115,59 +112,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Design Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Design Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Executive Summary",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirmed Mechanics",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Recommended Design",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-06-30T17:54:07.696Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-01T10:22:31.252Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "research/research.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:10a85e05a0f812e1be545466863bb3193602b9e4ae76d9723471222a1624c29d",
+    "source_fingerprint": "sha256:4bbfd44afc72a0f846ef599af849109ecccf6cc984d8e92b51374701cb558467",
     "source_doc_hashes": {
-      "spec.md": "28b629e974931c73858662f2a660c26174997d0556c320c72f5a8f0b511618d1",
-      "research/research.md": "a8dc4b09e8ecdc1196316588759864680037401a28c39301b70d463bf87fe3b9"
+      "spec.md": "75c9de1a6c812283be6ed557e392e264d69e05917462d3958848b45f6c92b74e"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-07-01T09:40:41.560Z"
   }
 }

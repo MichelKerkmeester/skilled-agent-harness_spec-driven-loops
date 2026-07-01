@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish",
+  "description": "Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set)",
+  "keywords": [
+    "research",
+    "9-design-fork",
+    "cross-check",
+    "iteration",
+    "found",
+    "shipped",
+    "plugin",
+    "faithfully",
+    "realizes",
+    "original",
+    "design",
+    "forks",
+    "fork",
+    "status",
+    "set"
+  ],
+  "lastUpdated": "2026-07-01T10:18:54.499Z",
+  "specId": "013",
+  "folderSlug": "design-fidelity-and-polish",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

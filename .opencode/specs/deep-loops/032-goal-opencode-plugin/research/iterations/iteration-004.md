@@ -1,91 +1,97 @@
-# Iteration 4: G4 OpenCode System-Transform Injection
+# Iteration 004 — Per-phase `plan.md`/`tasks.md` task-level drift (phases 001, 002, 004–008)
+
+**Segment:** 1 | **Iteration:** 4 of 15 | **Mode:** research | **newInfoRatio:** 0.72
+
+---
 
 ## Focus
 
-[G4] How OpenCode injects context via `experimental.chat.system.transform`, using `.opencode/plugins/mk-spec-memory.js` as the concrete pattern for `.opencode/plugins/mk-goal.js`.
+Execute the carried focus since iteration 2: read every in-scope phase's `tasks.md` (and `plan.md` for phase 001) to find **task-level** drift — completion-claim mismatches, cross-reference errors, and verification gaps — beyond the spec-level map produced in iteration 1. Phase 003 was handled in iteration 2 (the command-namespace findings F-005/F-006); this iteration covers 001, 002, 004, 005, 006, 007, 008.
+
+---
 
 ## Actions Taken
 
-- Read the deep-research quick reference and output contract to keep this as a leaf iteration that writes only the iteration narrative and delta file.
-- Read the packet strategy and state log. The strategy's next focus is G4, specifically the exact OpenCode `experimental.chat.system.transform` signature and how to push an `[active_goal]` block.
-- Read `.opencode/plugins/mk-spec-memory.js` with line numbers, then checked sibling plugins and the installed `@opencode-ai/plugin` type definition for the actual hook signature.
-- Read the hook-system documentation and prior hook-parity decision record to distinguish prompt-time injection from lifecycle/event handling.
+1. **Read `plan.md` + `tasks.md` for phase 001 (state-store)** — fully `[x]`, 100%, state helpers (`ensureGoalStateDir`, `goalPathForSession`, `readGoal`, `writeGoalAtomic`, `mutateGoal`, `setGoal`, `clearGoal`) + two test files. No task-level drift.
+2. **Read `tasks.md` for phases 002, 004, 005, 006, 007, 008** (6 parallel reads). All claim 100% / all `[x]`, but three carry hidden caveats (see Findings F-010, F-012, O-003).
+3. **Globbed `.opencode/commands/*`** to settle the `goal.md` vs `opencode_goal.md` cross-reference: confirmed ONLY `opencode_goal.md` exists; `goal.md` does **not**.
+4. **Globbed phase-008 deliverables** (`references/hooks/goal_plugin.md`, `feature_catalog/18--ux-hooks/*`, `manual_testing_playbook/18--ux-hooks/*`): all three goal files **exist** — resolves the carried F-008 doc-deliverable verification sub-question.
 
-## Findings (evidence + OUR target + decision + risk)
+(14 tool calls used; over the 12 soft target because the two verification globs were essential to resolve the highest-value drift signals and confirm phase-008 deliverables.)
 
-### Finding 1 - The system-transform hook is the right injection mechanism, and it is string-only.
+---
 
-Evidence: the installed OpenCode `Hooks` interface defines `"experimental.chat.system.transform"` with `input.sessionID?: string` and `input.model`, and `output.system: string[]`. [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts`:197] [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts`:201] The existing memory plugin returns the hook key as `'experimental.chat.system.transform': appendContinuityBrief`. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:436]
+## Findings
 
-OUR target: `.opencode/plugins/mk-goal.js`, specifically the per-turn injection path.
+### F-009 — P1: Cross-phase command-filename drift (later phases reference a non-existent `goal.md`)
 
-Decision: Implement `.opencode/plugins/mk-goal.js` with an async `appendGoalBrief(input, output = { system: [] })` function registered under `'experimental.chat.system.transform'`. The function should render one plain string, not mutate chat messages: a compact `[active_goal]` block containing `status`, `goalId`, `objective`, budget/usage summary when present, and a short directive.
+**Classification:** doc drift / latent functional hazard (confirmed).
 
-Risk: `sessionID` is optional in the OpenCode type. If the hook receives no session id, falling back to a global goal could leak a goal across sessions. The safer v1 behavior is to skip injection when no session id is available, while the status tool can report `missing_session_id`.
+Phases 007 (`007-sk-prompt-goal-enhancement`) and 008 (`008-system-spec-kit-integration`) — both authored 2026-06-30 by agent **`opencode-gpt`** — reference `.opencode/commands/goal.md` in their `tasks.md` T002 ("Read … `.opencode/commands/goal.md`"). A glob of `.opencode/commands/*` confirms the file **does not exist**: the shipped command file is `opencode_goal.md` (alongside `README.txt`, `prompt.md`, `agent_router.md`).
 
-### Finding 2 - `mk-spec-memory` shows the exact append pattern: guard output, normalize `system`, look up session state, clamp, dedupe, push.
+This is direct corroboration of F-005/F-007/F-008 (iterations 2–3): the intended `/goal` namespace was never realized on disk, and the later phase docs are **internally inconsistent** about the filename. The later agent assumed the rename had already landed. Any operator or follow-up implementer following phase 007/008 docs literally would open a path that does not exist. This widens the filename fix from "rename one file + amend phase-003 docs" to "also correct the cross-references in phase 007 and 008."
 
-Evidence: `appendContinuityBrief` first rejects invalid output, normalizes `output.system` to an array, skips disabled state, derives `sessionID`, fetches the brief, clamps it, dedupes against existing system entries, and finally pushes the brief. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:404] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:406] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:408] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:411] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:412] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:413]
+### F-010 — P2: Phase 006 completion overclaim — live `session.idle` continuation never verified
 
-OUR target: `.opencode/plugins/mk-goal.js`, especially `appendGoalBrief`.
+**Classification:** completion-claim drift / verification gap (confirmed).
 
-Decision: Mirror this control flow for goals. `appendGoalBrief` should ensure `output.system` exists, skip when disabled, resolve the session id, load the session goal, skip statuses that should not steer (`paused`, `complete`, absent record), render and clamp the block, then dedupe by a stable sentinel such as `[active_goal:${goalId}]` before pushing.
+Phase 006 (`006-active-continuation`) `tasks.md` frontmatter stamps `completion_pct: 100` and all 16 tasks `[x]`, but:
+- `open_questions: ["Live one-shot session.idle observability"]` (non-empty).
+- Completion criteria item: *"Verification passed **except for the documented live serve/TUI idle-smoke gap**."*
+- `next_safe_action`: *"Run a live `MK_GOAL_AUTONOMY=smoke` session.idle smoke in `opencode serve`."*
 
-Risk: Unlike memory continuity, goal changes are user-facing and must feel immediate after `/goal pause`, `/goal clear`, or `/goal complete`. A long cache TTL would be wrong here. Either read the small JSON state fresh on every transform, or use a very short cache invalidated by command/event updates.
+The single most behaviorally critical path of phase 006 — the **idle-triggered auto-continuation** (`session.idle` → verifier → `maybeContinueGoal` → `promptAsync`) — has only **unit-test** coverage (mocked handlers); it was never exercised against a real opencode runtime. The phase claims done while the feature's end-to-end contract is unverified. Under the COMPLETION VERIFICATION RULE this is a P2 (not P0/P1) because the code path exists and unit tests pass, but the overclaim should be reconciled: either run the live smoke and clear the open question, or downgrade the completion metadata to reflect the residual verification debt.
 
-### Finding 3 - Prompt-time injection and lifecycle observation are separate OpenCode surfaces.
+### F-012 — P2: Zeroed `session_dedup.fingerprint` across ALL eight in-scope phases
 
-Evidence: the hook-system reference maps OpenCode prompt-time advisor injection to `experimental.chat.system.transform`, while session priming and cleanup use `event` startup/cleanup handlers. [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md`:62] [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md`:63] [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md`:65] The same document states OpenCode can inject runtime-visible context in-turn via `experimental.chat.system.transform`. [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md`:71] `mk-spec-memory` follows that split by returning both `event` and the system transform. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:416] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:417] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:436]
+**Classification:** metadata-quality / continuity-integrity drift (confirmed, packet-wide).
 
-OUR target: `.opencode/plugins/mk-goal.js` hook layout.
+Every phase's `tasks.md` (and 001's `plan.md`) `_memory.continuity.session_dedup.fingerprint` is the hardcoded placeholder `sha256:0000…0000` (64 zeros). A genuine content fingerprint would never be all-zeros. This indicates the fingerprints were stamped by template/generation scaffolding, never recomputed from real content. Consequence: under `SPECKIT_COMPLETION_FRESHNESS`, the `CONTINUITY_FRESHNESS` check (fingerprint must match recomputed content) would **fail for every phase**, so any "completion" claim on this packet is technically unverifiable through the freshness gate. This is a packet-wide metadata debt, not per-phase logic drift.
 
-Decision: Keep G4 injection passive and prompt-time: `experimental.chat.system.transform` only places the active goal into model context. Lifecycle/autonomy belongs in the `event` handler and should be finalized in G5. This avoids mixing "tell the model the active goal" with "decide whether to continue autonomously."
+### O-003 — Observation: multi-agent authorship boundary coincides with the filename-drift introduction
 
-Risk: The hook runs before each LLM call, not only when the user submits a prompt. Prior hook-parity notes call out that this recomputes the brief on each LLM turn. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge/decision-record.md`:231] That is good for freshness, but budget usage and cache metrics may update more often than a user-turn mental model expects.
+Phases 001–006 were authored by **`codex`** (2026-06-28/29); phases 007–008 by **`opencode-gpt`** (2026-06-30). The handoff boundary at phase 007 is exactly where the `goal.md` cross-reference (F-009) appears — the second agent assumed the intended rename had landed. No shared ground-truth file check bridged the handoff. Not a bug per se, but it explains the F-009 drift mechanism and is a process finding worth recording.
 
-### Finding 4 - Session id normalization and event cache invalidation are reusable, but goal injection should not over-cache.
+### O-004 — Observation: phase 008 deliverables confirmed present (resolves carried F-008 sub-question)
 
-Evidence: `mk-spec-memory` extracts a session id from direct input, nested session objects, or event `properties` before falling back to `__global__`. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:128] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:131] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:134] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:137] It invalidates a session cache by key prefix and clears cache on session deletion or broad message/session events. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:392] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:397] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:423] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:427]
+Glob confirms existence of `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `feature_catalog/18--ux-hooks/goal-opencode-plugin.md`, and `manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`. The only residual naming wrinkle: the references/hooks file uses underscore (`goal_plugin.md`) while the catalog/playbook entries use hyphens (`goal-opencode-plugin.md`) — cosmetic, both resolve. `ENV_REFERENCE.md` `MK_GOAL_*` entries were **not** re-globbed this iteration (still carried).
 
-OUR target: `.opencode/plugins/mk-goal.js` state lookup and cache behavior.
-
-Decision: Reuse the same `sessionIdFrom`, `eventPayloadFrom`, `eventTypeFrom`, and `invalidateSession` style helpers, but change fallback policy: for goal injection, `__global__` should be valid only for status/debug output, not for active per-session steering. Prefer no injection if session identity is missing.
-
-Risk: OpenCode event payload shapes are normalized defensively in existing plugins, but G5 still needs to verify whether `session.idle` and `message.updated` carry enough stable identifiers for active continuation and budget accounting.
-
-### Finding 5 - The goal plugin should expose a status tool beside the injected context.
-
-Evidence: `mk-spec-memory` registers `tool` alongside the hook and exposes `mk_spec_memory_status`. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:438] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:439] The status output includes plugin id, enabled state, cache settings, readiness, last bridge status, lookup counts, and cache hit rate. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:447] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:453] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:458] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:462] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:466]
-
-OUR target: `.opencode/plugins/mk-goal.js` and `.opencode/commands/goal.md`.
-
-Decision: Add a plugin tool such as `mk_goal_status` in `.opencode/plugins/mk-goal.js`. `/goal show` in `.opencode/commands/goal.md` should route to the same state fields, while the tool gives model-visible diagnostics: plugin enabled, active session id present, active goal status, last injection result, last error, and store health.
-
-Risk: Status output can leak local implementation details if it prints absolute paths. `mk-spec-memory` already masks its bridge path as `[spec-memory-bridge]`. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:457] `mk-goal.js` should similarly report a logical store label instead of the full state-store path unless an explicit debug option is enabled.
-
-### Finding 6 - A bridge subprocess is not needed for local goal state, but fail-open behavior still is.
-
-Evidence: `mk-spec-memory` spawns a bridge subprocess for continuity lookups and status, with timeout handling and fail-open responses. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:273] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:277] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:286] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:315] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:323] The hook then simply returns when no brief is available. [SOURCE: `.opencode/plugins/mk-spec-memory.js`:409] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:410]
-
-OUR target: `.opencode/plugins/mk-goal.js` state-store integration.
-
-Decision: Do not introduce a bridge for v1 goal injection. Read the local goal state store directly with async filesystem APIs, render the block in-process, and fail open by skipping injection plus recording `lastError` for `mk_goal_status` if the store is unreadable or malformed.
-
-Risk: Direct filesystem reads in a prompt-time hook put latency on the hot path. The G7 store decision should require atomic writes, small per-session files, and bounded read/parse cost so the hook remains cheap enough to run before every LLM call.
+---
 
 ## Questions Answered
 
-- [G4] Answered: OpenCode prompt-time context injection is an async plugin hook named `experimental.chat.system.transform`. It receives an optional `sessionID` and mutates `output.system`, a string array. The buildable `mk-goal.js` design is to render a compact `[active_goal]` string and push it to `output.system`, mirroring `mk-spec-memory`'s output guard, session lookup, clamping, dedupe, and fail-open behavior.
-- The injection mechanism is not the autonomy mechanism. `experimental.chat.system.transform` should only steer the model with current goal state; event-driven continuation remains G5.
+- **Per-phase task-level drift for 001, 002, 004, 005, 006, 007, 008 — ANSWERED.** All phases mark all tasks `[x]` / 100%. Genuine drifts found: F-009 (007/008 cross-ref `goal.md`), F-010 (006 live-verification gap + overclaim), F-012 (packet-wide zeroed fingerprint). Phases 001, 002, 004, 005 are clean at the task level.
+- **Phase 008 doc deliverables exist? — ANSWERED (YES).** goal_plugin.md + catalog + playbook all present.
+
+---
+
+## Confirmed vs Inferred
+
+- **CONFIRMED:** Only `opencode_goal.md` exists in `.opencode/commands/`; `goal.md` absent (direct glob).
+- **CONFIRMED:** Phase 006 carries an open question + a documented live-verification gap while claiming 100% (direct read of its `tasks.md`).
+- **CONFIRMED:** All 8 phases stamp the all-zero `session_dedup.fingerprint` (direct read of each `tasks.md`).
+- **CONFIRMED:** Phase 008 deliverable files exist (direct glob).
+- **INFERRED:** The zeroed fingerprints indicate scaffolding-stamped, never-recomputed hashes (strong inference from the all-zeros signature; would be confirmed by running `generate-context.js` and observing a non-zero fingerprint).
+
+---
 
 ## Questions Remaining
 
-- [G5] Verify exact event payloads and whether `session.idle` can drive safe continuation without racing user input.
-- [G6] Verify whether `.opencode/commands/goal.md` can route through a plugin tool/helper or must instruct file-state mutation through normal command tooling.
-- [G7] Finalize the state-store path, atomic write strategy, and cache policy.
-- [G11] Decide the exact `mk_goal_status` fields and how `/goal show` should differ from model-visible diagnostics.
-- [G13] Decide how to sanitize or fence the user-authored objective before injecting it into every turn.
+- [ ] (Carried) **F-004:** read `mk-goal.js` lines 1244+ — phase 002 injection (`renderGoalInjection`/`appendGoalBrief`/transform), phase 003 tool registration, phase 004/006 `event()` wiring.
+- [ ] (Carried) Examine `mk-goal-*.test.cjs` suite — does it exercise the command *namespace*, and does it cover the unverified code tail?
+- [ ] (Carried) Cross-check the 9 resolved design forks against shipped behavior (fork #8 "command style = root /goal" is now directly implicated by F-005/F-007/F-008/F-009).
+- [ ] (Carried) Confirm the exact opencode command-resolution rule for `.opencode/commands/*.md` → invocation string (`opencode_goal.md` → `/opencode_goal`?). Refines F-008.
+- [ ] (Carried) **F-003:** trace `status:` writes — is `usage_limited` ever set in production paths, or dead?
+- [ ] **NEW:** Verify `ENV_REFERENCE.md` `MK_GOAL_*` env entries exist and are consistent with the code's env reads (e.g. `MK_GOAL_AUTONOMY`, `MK_GOAL_*` budget knobs). O-004 left this open.
+- [ ] **NEW:** Run the phase-006 live `MK_GOAL_AUTONOMY=smoke` idle smoke (or formally downgrade the 006 completion metadata) to close F-010.
+
+---
 
 ## Next Focus
 
-[G5] Which OpenCode event/lifecycle hooks track and drive a goal, especially whether `session.idle` can safely serve as the autonomy seam.
+Two large unexamined surfaces remain (both high novelty, both carried since iteration 1) and both would push past the iteration-10 anti-convergence floor:
+
+1. **`mk-goal.js` tail (lines 1244+, F-004)** — verify the phase 002/003/004/006 wiring that the task lists claim is done but no reviewer has read. This is the highest-confidence "claims vs reality" gap left.
+2. **`mk-goal-*.test.cjs` suite** — determine whether any test guards the command **namespace** (it almost certainly does not, explaining how F-005/F-009 shipped), and whether the suite covers the unverified tail.
+
+Recommend iteration 5 reads `mk-goal.js` lines 1244–end (F-004) to cover the injection/transform/event-wiring code, since that is the single largest unverified shipped surface and ties directly to the phase 002/004/006 task claims just confirmed.

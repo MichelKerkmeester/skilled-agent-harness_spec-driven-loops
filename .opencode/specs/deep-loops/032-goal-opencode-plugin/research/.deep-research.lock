@@ -1,0 +1,11 @@
+{
+  "owner_pid": 1586,
+  "started_at_iso": "2026-07-01T05:43:53.099Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-01T05:43:53.099Z",
+  "packet_id": ".opencode/specs/deep-loops/032-goal-opencode-plugin",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-01T05:43:53.099Z",
+  "acquire_nonce": "1586-1782884633100-c363670e-5151-42a8-898a-e870f6467e7c"
+}

@@ -1,78 +1,103 @@
-# Focus
+# Iteration 002 — Filename & Namespace Audit (F-001 follow-up)
 
-G2: Claude Code `/goal` behavior: completion condition, autonomous continue-until-met behavior, independent verification, and status-line-style surfacing.
+**Segment:** 1 | **Iteration:** 2 of 15 | **Mode:** research | **newInfoRatio:** 0.80
 
-# Actions Taken
+---
 
-- Confirmed the local Claude wrapper reports `2.1.195 (Claude Code)`, while the installed native app's embedded version strings include `VERSION:"2.1.169"`. I did not find an unpacked `2.1.139` source tree locally.
-- Searched npm cache metadata for `2.1.139`; cache metadata confirms Claude Code packages include a `2.1.139` release, but that is package availability evidence, not behavior implementation evidence.
-- Extracted targeted strings from `/Users/michelkerkmeester/.local/share/claude/ClaudeCode.app/Contents/MacOS/claude` with `strings -n 4 ... | rg -n -C 4 ...` for `/goal`, `goal_status`, `active_goal`, Stop hook, and status overlay terms.
-- Read iteration 1 to avoid repeating G1's Codex state-model findings.
+## Focus
 
-# Findings
+Resolve carried-forward **F-001**: Confirm whether `.opencode/commands/goal.md` coexists with `opencode_goal.md`, determine the actual `/goal` invocation namespace, and decide whether spec 003 needs amending.
 
-## 1. `/goal` is a hooks/trust feature, not a plain command.
+---
 
-Evidence: binary-string extraction from `/Users/michelkerkmeester/.local/share/claude/ClaudeCode.app/Contents/MacOS/claude` returned `/goal is only available in trusted workspaces. Restart, accept the trust dialog, and try again.` at strings line `143046`, followed by `/goal can't run while hooks are restricted (disableAllHooks or allowManagedHooksOnly is set in settings or by policy).` at line `143047`.
+## Actions Taken
 
-OUR target: `.opencode/commands/goal.md` should be a thin router, but `.opencode/plugins/mk-goal.js` must own the actual behavior because the feature depends on hooks/lifecycle. The command should fail loudly when the plugin cannot install or run the hook path, rather than silently storing an objective that will not drive continuation.
+1. **Globbed `.opencode/commands/*.md`** and `.opencode/commands/**/*goal*` to inventory command files.
+2. **Read `.opencode/commands/opencode_goal.md`** (the only goal command file on disk) — frontmatter, routing contract, body heading.
+3. **Read phase 003 `spec.md`** — deliverables, scope, files-to-change, success criteria.
+4. **Read phase 003 `implementation-summary.md`** — "Files Changed" claims.
+5. **Read phase 003 `tasks.md`** — T004 task record + key_files.
+6. **Read phase 003 `plan.md`** — architecture, affected-surfaces, rollback.
 
-Decision: Treat `/goal` as a plugin-backed command. `set` validates hook/plugin availability before writing an active goal, while `show`, `pause`, `complete`, and `clear` can still operate on stored state.
+(6 tool calls; 8 of 12 budget used; 3 reserved for artifact writes.)
 
-Risk: OpenCode may not expose a direct equivalent of Claude's hook restriction flags. If plugin availability cannot be checked synchronously from the command, the first implementation should write state and immediately have `.opencode/plugins/mk-goal.js` publish a `lastError`/`hooksUnavailable` status.
+---
 
-## 2. Completion detection is verifier-driven by a Stop hook, not trusted assistant self-report.
+## Findings
 
-Evidence: binary strings around `goal_status` include `Last check:`, `Stop`, `hooks_gate`, `trust_gate`, and `goal_set` at lines `187412-187420`. Another cluster includes `active_goal`, `goal_status`, `tengu_goal_failed`, `goal_met`, `impossible`, and `tengu_goal_achieved` at lines `188035-188040`. The clearest implementation note is at strings lines `313053-313054`: `active_goal` is an internal event emitted when the user's `/goal` Stop hook reports met or not-yet-met; when not yet met, it bumps iterations plus `last_reason`.
+### F-005 — P1: Command filename drift (spec 003 mandates `goal.md`; shipped as `opencode_goal.md`)
 
-OUR target: `.opencode/plugins/mk-goal.js` should not mark a goal complete because the assistant says it is done in normal prose. It needs a separate verification step after each assistant turn, storing `lastCheck`, `lastReason`, and `iterations`.
+**Classification:** regression / unresolved gap (spec↔code drift).
 
-Decision: Model Claude's verifier as an OpenCode idle verifier. After an assistant turn, if the goal is active, the plugin runs a bounded check that returns one of `met`, `not_met`, or `impossible`. Only `met` transitions the state to `complete`; `not_met` increments `iterations` and creates the next continuation prompt; `impossible` transitions to `blocked` with `lastReason`.
+Every phase-003 document unanimously names the deliverable `.opencode/commands/goal.md` and marks it `[x]` complete:
 
-Risk: If OpenCode lacks a true Stop hook equivalent, using `session.idle` plus `message.updated` can lag behind the assistant's stop point or race with user input. The plugin must bail out if a new user message arrives before the verifier finishes.
+| Doc | Line | Claim |
+|-----|------|-------|
+| `spec.md` | 72, 98, 113 | Deliverable + In-Scope + Files-to-Change = `.opencode/commands/goal.md` |
+| `plan.md` | 80, 96, 102, 119, 160 | Architecture + Affected-Surfaces + Phases + Rollback = `.opencode/commands/goal.md` |
+| `tasks.md` | 18, 65 | `key_files` + `[x] T004 Create .opencode/commands/goal.md` |
+| `implementation-summary.md` | 18, 57, 67, 78 | `key_files` + "Files Changed: `.opencode/commands/goal.md` \| Created" |
 
-## 3. Continue-until-met is implemented as a stop-prevention loop with an explicit user escape.
+**Actual disk state:** Glob of `.opencode/commands/*.md` returns only `opencode_goal.md`, `prompt.md`, `agent_router.md`. **`goal.md` does not exist.** They do **not** coexist — there is exactly one goal command file, named `opencode_goal.md`.
 
-Evidence: binary strings show `/goal clear to stop early` at line `210099`, `Goal active` at line `210105`, and `Goal achieved` at line `210108`. The verifier cluster includes `hook_additional_context` and `Stop hook prevented continuation` at lines `188043-188044`, which matches a loop where a not-yet-met verifier result injects additional context and prevents the assistant from ending the goal run.
+All four continuity `key_files` blocks (spec/plan/tasks/summary) also list the non-existent `goal.md`, so the drift is propagated into memory/index metadata.
 
-OUR target: `.opencode/plugins/mk-goal.js` should drive active continuation on the lifecycle edge closest to "assistant tried to stop". The OpenCode mechanism to test in G5 is `session.idle -> session.prompt`, with `message.updated` used to capture completion/usage evidence.
+**Status:** unresolved gap. No documentation anywhere in phase 003 records a rename decision or a namespace rationale.
 
-Decision: Choose active continuation as the behavior spec, but implement it with hard caps: max iterations per idle chain, max wall-clock span, budget-aware cutoff, and `/goal clear` as an immediate kill switch. Passive injection alone would not match Claude's `/goal` behavior.
+### F-006 — P2: Command file self-describes as `/goal` but is named `opencode_goal.md`
 
-Risk: An active continuation loop can run away, repeat low-value prompts, or continue after the user's intent changes. The state record needs `runId` or `generation` guards so stale idle callbacks cannot continue an old goal after `clear`, `pause`, or a new `set`.
+**Classification:** drift / internal inconsistency.
 
-## 4. Claude surfaces the goal through an active status indicator with last-check state.
+The shipped `opencode_goal.md` body contradicts its own filename:
+- Heading line 7: `# /goal`
+- Line 9: "Thin root router for the session goal plugin."
+- Line 15: "`/goal` is a state-free router…"
+- Lines 51–59: instructions repeatedly reference the `/goal` verb surface (`/goal set …`).
 
-Evidence: binary strings include the status/UI labels `Goal`, `Last check`, `Goal active`, `Goal achieved`, `/goal <condition> to set another`, `/goal <condition> to set one`, and `No goal set` at lines `210102-210111`. Another status marker appears as ` /goal active` at line `218886`. The internal `active_goal` event says any surface with a goal indicator re-renders from that event at lines `313053-313054`.
+So the file *claims* to be `/goal` while bearing the `opencode_` prefix. The intent (per body + all phase-003 docs + success criteria SC-001 "`/goal set <objective>` routes to…") is unambiguously the **`/goal`** namespace. The filename defeats that intent.
 
-OUR target: OpenCode likely cannot clone Claude's status-line overlay directly in `.opencode/plugins/mk-goal.js`, so the buildable substitute should be three surfaces: inject the active goal into every turn, implement `/goal show` in `.opencode/commands/goal.md`, and expose a lightweight `goal_status` context/tool output if OpenCode plugin APIs allow it.
+### O-001 — Observation: `opencode_` prefix is anomalous
 
-Decision: Define v1 UX as "status substitute" rather than status-line parity: active injection plus `/goal show` must display objective, status, last check, iterations, and budget fields. A later UI/status-line integration can consume the same `active_goal` state event if OpenCode exposes one.
+No other command file uses an `opencode_` prefix: siblings are `prompt.md` and `agent_router.md`. The prefix on `opencode_goal.md` is singular, reinforcing that it is either a collision-avoidance rename or an error — neither of which is recorded.
 
-Risk: Without a persistent overlay, users may miss that a goal is active until the next model turn or `/goal show`. This increases the importance of concise injected text and explicit command output after `set`, `pause`, `complete`, and `clear`.
+---
 
-## 5. Goals restore on resume and command output is short, stateful, and condition-limited.
+## Questions Answered
 
-Evidence: binary strings include `tengu_goal_restored_on_resume` beside `goal_status`, `goal_set`, `Stop`, and `prompt` at lines `221799-221803`. Command-facing strings include `No goal set`, `Goal cleared:`, `Goal set:`, `Goal condition is limited to ... characters`, `No goal set. Usage: /goal <condition>`, `not yet evaluated`, and `Goal active:` at lines `343969-343989`.
+- **F-001 — ANSWERED.** `.opencode/commands/goal.md` does **not** exist and does **not** coexist with `opencode_goal.md`. Only `opencode_goal.md` ships. **Spec 003 DOES need amending** — see "Amendment Recommendation" below.
 
-OUR target: the goal state store should persist active goals across OpenCode resume for the same session identifier. `.opencode/commands/goal.md` should keep the command surface terse: bare `/goal <condition>` sets/replaces, `/goal show` reads, `/goal clear` deletes, `/goal complete` marks complete, and `/goal pause` pauses.
+---
 
-Decision: Persist by session/thread key and restore active goals during `.opencode/plugins/mk-goal.js` session initialization. Add an objective length cap to the command contract, with the exact limit chosen in G6/G7 after store shape and command-router constraints are known.
+## Namespace Determination (confirmed vs inferred)
 
-Risk: Resume persistence can resurrect stale work after a long gap. The injected block and `/goal show` should include age/last-check data, and the plugin should avoid auto-continuing an old active goal until a fresh user turn confirms the session is live.
+- **CONFIRMED:** The *intended* namespace is `/goal` — established by all four phase-003 docs, the success criteria, and the command file's own body (`# /goal`).
+- **CONFIRMED:** The shipped filename is `opencode_goal.md`.
+- **INFERRED (unconfirmed):** The *actual resolved* invocation string produced by `opencode_goal.md`. In opencode, a command file's invocation is derived from its filename; `opencode_goal.md` resolves to something **other than a bare `/goal`** (most likely `/opencode_goal`). This inference was **not** verified against opencode's command-resolution source this iteration.
 
-# Questions Answered
+---
 
-- G2 answered: Claude `/goal` is a trusted-workspace, hook-backed feature. It stores a user completion condition, checks completion through a Stop-hook verifier, continues when the verifier says not yet met, exposes a visible active/achieved/no-goal status surface, and restores active goal state on resume.
-- The behavior spec for OpenCode should be active continuation with an independent verifier and a visible status substitute, not passive prompt injection alone.
+## Amendment Recommendation (spec 003)
 
-# Questions Remaining
+Two resolution paths; decision hinges on one unverified fact:
 
-- Exact Claude `2.1.139` implementation source was not available locally. The behavior evidence comes from the installed native Claude app's embedded strings; npm cache only confirms that `2.1.139` existed.
-- G5 must verify whether OpenCode has a true Stop-hook equivalent or whether `session.idle -> session.prompt` is the closest buildable continuation mechanism.
-- G6/G7 must decide the objective length cap, command parsing details, and whether state persistence is flat JSON or SQLite.
-- G9 must define the verifier prompt/schema and whether the verifier should run in the same model, a cheaper model, or a shell-backed gate when available.
+- **Path A (recommended) — rename file to match docs/intent:** Rename `opencode_goal.md` → `goal.md`. Realizes the spec's intended `/goal` namespace; makes shipped code match all four docs with zero spec rewrites; lowest friction. **Preferred unless `/goal` is a reserved built-in.**
+- **Path B — amend docs to match file:** Keep `opencode_goal.md`; rewrite spec/plan/tasks/summary filenames + the command body heading + SC-001 to document the actual namespace; record *why* `/goal` was abandoned.
 
-# Next Focus
+**Blocking verification needed before choosing:** Does opencode ship a **built-in `/goal` command** that forced the `opencode_` prefix to avoid a collision? If yes → Path B is intentional (but docs still need fixing). If no → Path A. The command body still saying `# /goal` suggests the rename was likely **not** propagated to the body/docs, favoring Path A as the accidental-drift fix.
 
-G3: mine the vendored OpenHuman reference for `thread_goals`, `goalsApi`, and `ThreadGoalChip` to compare lifecycle, UI surfacing, and resume semantics against the Claude behavior spec.
+---
+
+## Questions Remaining
+
+- [ ] **NEW:** Verify the exact opencode command-resolution rule for `opencode_goal.md` → resolved invocation string (confirm or refute `/opencode_goal`).
+- [ ] **NEW:** Determine whether a built-in `/goal` command exists in opencode (collision check) — this decides Path A vs B.
+- [ ] Do the `mk-goal-*.test.cjs` files exercise the command *namespace* at all, or only the `mk_goal`/`mk_goal_status` tool paths? (Likely the latter; the filename drift would not be caught by tool-path tests.)
+- [ ] (Carried) Per-phase plan.md/tasks.md drift for phases 001, 002, 004–008 (003 done this iteration).
+- [ ] (Carried) F-004: read `mk-goal.js` lines 1244+ (injection/transform/event wiring).
+- [ ] (Carried) Cross-check 9 resolved design forks (esp. "command style" + "reuse vs standalone") against shipped behavior.
+
+---
+
+## Next Focus
+
+Rotate to an unexamined axis (anti-convergence). Next iteration: read the `mk-goal-*.test.cjs` suite to (a) determine whether any test guards the command *filename/namespace* (testing the gap surfaced by F-005) and (b) begin covering the unverified `mk-goal.js` tail per F-004, since the test suite and the code tail are the two largest unexamined surfaces.

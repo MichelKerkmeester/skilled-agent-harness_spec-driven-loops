@@ -1,92 +1,125 @@
 {
-  "sessionId": "dr-goal-001-20260628-164019",
+  "sessionId": "dr-goal-audit-032-20260701-054353",
   "parentSessionId": null,
   "lineageMode": "new",
   "generation": 1,
   "continuedFromRun": null,
   "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-for-each-phase-001-008-does-the-shipped-code-mk-goal-js-opencode-goal-md-test-su",
+      "inboxId": null,
+      "text": "For each phase 001-008, does the shipped code (`mk-goal.js`, `opencode_goal.md`, test suite, `goal_plugin.md`) match what that phase's `spec.md`/`plan.md`/`tasks.md` specified — where is the drift, and is it a regression, an intentional improvement, or an unresolved gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-does-the-shipped-implementation-faithfully-realize-the-9-resolved-design-forks-f",
+      "inboxId": null,
+      "text": "Does the shipped implementation faithfully realize the 9 resolved design forks from the original design synthesis (autonomy tier, scope/keying, state store, budget governance, completion detection, status set, surfacing substitute, command style, reuse vs standalone)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-refinements-missing-upgrades-or-safety-automation-gaps-exist-in-the-current",
+      "inboxId": null,
+      "text": "What refinements, missing upgrades, or safety/automation gaps exist in the current `/goal` plugin that block it from being feature-complete and low-friction (UX rough edges, error handling, edge cases, race conditions)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-is-the-system-spec-kit-integration-goal-plugin-md-hook-doc-any-memory-continuity",
+      "inboxId": null,
+      "text": "Is the system-spec-kit integration (`goal_plugin.md` hook doc + any `_memory.continuity` / spec-folder wiring) complete, consistent, and low-friction — does it correctly interoperate with the rest of the plugin ecosystem (`mk-spec-memory.js` patterns, event hooks, session lifecycle)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-new-additions-beyond-anything-originally-planned-does-the-actual-shipped-co",
+      "inboxId": null,
+      "text": "What new additions — beyond anything originally planned — does the actual shipped code reveal are needed for the `/goal` plugin to be genuinely flawless (issues discoverable only by reading real code, not anticipated at design time)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
   "openQuestions": [
     {
-      "id": "question-1-g1-what-is-codex-s-thread-goals-data-model-lifecycle-codex-goals-1-sqlite-status",
-      "text": "[G1] What is Codex's thread_goals data model + lifecycle (~/.codex/goals_1.sqlite: status enum, token/time budget fields, per-thread key)? -> our goal state model",
+      "id": "question-1-for-each-phase-001-008-does-the-shipped-code-mk-goal-js-opencode-goal-md-test-su",
+      "inboxId": null,
+      "text": "For each phase 001-008, does the shipped code (`mk-goal.js`, `opencode_goal.md`, test suite, `goal_plugin.md`) match what that phase's `spec.md`/`plan.md`/`tasks.md` specified — where is the drift, and is it a regression, an intentional improvement, or an unresolved gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     },
     {
-      "id": "question-2-g2-what-exactly-does-claude-code-goal-v2-1-139-do-completion-condition-autonomou",
-      "text": "[G2] What exactly does Claude Code /goal (v2.1.139) do (completion condition, autonomous continue-until-met, independent supervisor, status-line overlay)? -> behavior spec",
+      "id": "question-2-does-the-shipped-implementation-faithfully-realize-the-9-resolved-design-forks-f",
+      "inboxId": null,
+      "text": "Does the shipped implementation faithfully realize the 9 resolved design forks from the original design synthesis (autonomy tier, scope/keying, state store, budget governance, completion detection, status set, surfacing substitute, command style, reuse vs standalone)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     },
     {
-      "id": "question-3-g3-what-does-the-vendored-z-future-openhuman-reference-thread-goals-goalsapi-thr",
-      "text": "[G3] What does the vendored z_future/openhuman reference (thread_goals + goalsApi + ThreadGoalChip) model for goal state + UI? -> reuse ideas",
+      "id": "question-3-what-refinements-missing-upgrades-or-safety-automation-gaps-exist-in-the-current",
+      "inboxId": null,
+      "text": "What refinements, missing upgrades, or safety/automation gaps exist in the current `/goal` plugin that block it from being feature-complete and low-friction (UX rough edges, error handling, edge cases, race conditions)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     },
     {
-      "id": "question-4-g4-how-does-opencode-inject-context-via-experimental-chat-system-transform-the-o",
-      "text": "[G4] How does OpenCode inject context via experimental.chat.system.transform (the .opencode/plugins/mk-spec-memory.js pattern)? -> mk-goal.js injection",
+      "id": "question-4-is-the-system-spec-kit-integration-goal-plugin-md-hook-doc-any-memory-continuity",
+      "inboxId": null,
+      "text": "Is the system-spec-kit integration (`goal_plugin.md` hook doc + any `_memory.continuity` / spec-folder wiring) complete, consistent, and low-friction — does it correctly interoperate with the rest of the plugin ecosystem (`mk-spec-memory.js` patterns, event hooks, session lifecycle)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     },
     {
-      "id": "question-5-g5-which-opencode-event-lifecycle-hooks-session-created-idle-deleted-message-upd",
-      "text": "[G5] Which OpenCode event/lifecycle hooks (session.created/idle/deleted, message.updated) track + drive a goal; is session.idle the autonomy seam? -> mk-goal.js lifecycle",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-6-g6-what-is-the-goal-command-contract-thin-router-like-opencode-commands-memory-l",
-      "text": "[G6] What is the /goal command contract (thin-router like .opencode/commands/memory/learn.md; $ARGUMENTS set|show|clear|complete|pause)? -> goal.md",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-7-g7-which-state-store-flat-json-goal-state-vs-sqlite-vs-spec-kit-memory-mcp-port-",
-      "text": "[G7] Which state store (flat JSON .goal-state vs sqlite vs spec-kit memory MCP; port thread_goals; key by sessionID)? -> state store decision",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-8-g8-which-autonomy-tier-passive-inject-active-continuation-via-session-idle-sessi",
-      "text": "[G8] Which autonomy tier (passive inject / active continuation via session.idle->session.prompt / +supervisor) and what loop caps + kill-switch? -> decision",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-9-g9-how-is-completion-detected-model-self-report-vs-verifiable-shell-gate-vs-supe",
-      "text": "[G9] How is completion detected (model self-report vs verifiable shell gate vs supervisor model)? -> decision",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-10-g10-how-to-govern-budget-token-budget-tokens-used-time-used-usage-limited-budget",
-      "text": "[G10] How to govern budget (token_budget/tokens_used/time_used + usage_limited/budget_limited states)? -> state + lifecycle",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-11-g11-how-to-surface-the-active-goal-inject-every-turn-an-mk-goal-status-tool-as-a",
-      "text": "[G11] How to surface the active goal (inject-every-turn + an mk_goal_status tool) as a substitute for Claude's status-line overlay? -> UX",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-12-g12-what-status-set-scope-keying-per-session-thread-id-vs-global-decision",
-      "text": "[G12] What status set + scope/keying (per-session thread_id vs global)? -> decision",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-13-g13-should-injected-goal-text-pass-a-prompt-injection-sanitizer-before-entering-",
-      "text": "[G13] Should injected goal text pass a prompt-injection sanitizer before entering context (kasper sanitizer idea)? -> safety",
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-14-g14-synthesis-the-recommended-end-to-end-design-mk-goal-js-goal-md-state-store-c",
-      "text": "[G14] SYNTHESIS: the recommended end-to-end design (mk-goal.js + goal.md + state store), chosen autonomy tier with guardrails, and ordered build sub-phases -> research.md",
+      "id": "question-5-what-new-additions-beyond-anything-originally-planned-does-the-actual-shipped-co",
+      "inboxId": null,
+      "text": "What new additions — beyond anything originally planned — does the actual shipped code reveal are needed for the `/goal` plugin to be genuinely flawless (issues discoverable only by reading real code, not anticipated at design time)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": null
     }
@@ -94,228 +127,497 @@
   "resolvedQuestions": [],
   "carriedForwardOpenQuestions": [
     {
-      "text": "[G7] Finalize the state-store path and locking strategy.",
+      "text": "[ ] Read `plan.md`/`tasks.md`/`checklist.md` per phase to find task-level drift (spec-level only this iteration).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **F-004 follow-up:** Read `mk-goal.js` lines 1244+ to verify phase 002 injection (`renderGoalInjection`/`appendGoalBrief`/transform), phase 003 tool registration, and phase 004/006 `event()` wiring.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] Examine the `mk-goal-*.test.cjs` suite to see whether tests cover the unverified tail and the flagged drifts.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] Cross-check the 9 resolved design forks from `research_archive/2026-06-28-goal-design-synthesis/research.md` against shipped behavior (deferred to a dedicated iteration).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] Verify phase 008 doc deliverables actually exist on disk (`goal_plugin.md`, catalog, playbook, `ENV_REFERENCE` `MK_GOAL_*`).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **F-003 follow-up:** Trace every `status:` write to confirm whether `usage_limited` is ever set in production paths (or is dead).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **F-001 follow-up:** Confirm whether `.opencode/commands/goal.md` coexists with `opencode_goal.md`, and determine the actual `/goal` invocation namespace + whether spec 003 needs amending.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] (Carried) Per-phase plan.md/tasks.md drift for phases 001, 002, 004–008 (003 done this iteration).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **NEW:** Verify the exact opencode command-resolution rule for `opencode_goal.md` → resolved invocation string (confirm or refute `/opencode_goal`).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] Do the `mk-goal-*.test.cjs` files exercise the command *namespace* at all, or only the `mk_goal`/`mk_goal_status` tool paths? (Likely the latter; the filename drift would not be caught by tool-path tests.)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] (Carried) F-004: read `mk-goal.js` lines 1244+ (injection/transform/event wiring).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] (Carried) Cross-check 9 resolved design forks (esp. \"command style\" + \"reuse vs standalone\") against shipped behavior.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **NEW:** Determine whether a built-in `/goal` command exists in opencode (collision check) — this decides Path A vs B.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] Confirm the exact opencode command-resolution rule for `.opencode/commands/*.md` → invocation string (does `opencode_goal.md` → `/opencode_goal`?). Non-blocking for Path A; refines F-008.",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G5] Verify whether `session.idle` can safely trigger a continuation turn, and whether OpenCode exposes no-in-flight, approval, and event-status signals.",
+      "text": "[ ] (Carried) **F-004:** read `mk-goal.js` lines 1244+ (injection/transform/event wiring).",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G1] Confirm the exact Codex `thread_goals` SQLite schema and status set, especially `blocked` and `usage_limited`.",
+      "text": "[ ] (Carried) Examine `mk-goal-*.test.cjs` suite — does it exercise the command *namespace* at all, and does it cover the unverified code tail?",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G6] Verify whether markdown commands can call a plugin helper/tool or must route through model-visible file edits.",
+      "text": "[ ] (Carried) Cross-check the 9 resolved design forks against shipped behavior (fork #8 \"command style = root /goal\" is now *directly* implicated by F-007/F-008).",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G13] Decide the sanitizer/fencing rule before inserting user-authored objective text into every turn.",
+      "text": "[ ] (Carried) Per-phase `plan.md`/`tasks.md` drift for phases 001, 002, 004–008 (003 done in iter 2).",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G4] Verify the exact OpenCode `experimental.chat.system.transform` signature and how to push the `[active_goal]` block.",
-      "addedAtIteration": 3,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "[G7] Finalize the state-store path, atomic write strategy, and cache policy.",
+      "text": "[ ] **NEW:** Verify `ENV_REFERENCE.md` `MK_GOAL_*` env entries exist and are consistent with the code's env reads (e.g. `MK_GOAL_AUTONOMY`, `MK_GOAL_*` budget knobs). O-004 left this open.",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G5] Verify exact event payloads and whether `session.idle` can drive safe continuation without racing user input.",
+      "text": "[ ] (Carried) **F-004:** read `mk-goal.js` lines 1244+ — phase 002 injection (`renderGoalInjection`/`appendGoalBrief`/transform), phase 003 tool registration, phase 004/006 `event()` wiring.",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G13] Decide how to sanitize or fence the user-authored objective before injecting it into every turn.",
+      "text": "[ ] (Carried) Cross-check the 9 resolved design forks against shipped behavior (fork #8 \"command style = root /goal\" is now directly implicated by F-005/F-007/F-008/F-009).",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G6] Verify whether `.opencode/commands/goal.md` can route through a plugin tool/helper or must instruct file-state mutation through normal command tooling.",
+      "text": "[ ] (Carried) **F-003:** trace `status:` writes — is `usage_limited` ever set in production paths, or dead?",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G11] Decide the exact `mk_goal_status` fields and how `/goal show` should differ from model-visible diagnostics.",
+      "text": "[ ] (Carried) Examine `mk-goal-*.test.cjs` suite — does it exercise the command *namespace*, and does it cover the unverified code tail?",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G10] Does `message.updated` expose token usage, or does budget accounting need another source?",
+      "text": "[ ] (Carried) Confirm the exact opencode command-resolution rule for `.opencode/commands/*.md` → invocation string (`opencode_goal.md` → `/opencode_goal`?). Refines F-008.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "[ ] **NEW:** Run the phase-006 live `MK_GOAL_AUTONOMY=smoke` idle smoke (or formally downgrade the 006 completion metadata) to close F-010.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(Carried) Verify `ENV_REFERENCE.md` `MK_GOAL_*` entries vs the code's env reads (`MK_GOAL_AUTONOMY` confirmed in code at line 34; `MK_GOAL_DEBUG` referenced in impl summary; remaining budget knobs unverified).",
       "addedAtIteration": 5,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G9] What exact prompt-submission API should `maybeContinueGoal(sessionID)` call, and can it be invoked safely from a plugin hook?",
+      "text": "(Carried) **F-004:** read `mk-goal.js` injection/transform wiring (`renderGoalInjection`/`appendGoalBrief`/`experimental.chat.system.transform`) — lines 1350+ now partially seen (transform at 1620, `__test` exports at 1658–1676 confirm `renderGoalInjection`/`maybeContinueGoal`/`maybeVerifyGoal` are the test seams); the 002 injection body still wants a dedicated read.",
       "addedAtIteration": 5,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G8] Which autonomy tier should ship first: passive injection only, gated `session.idle` continuation, or continuation plus supervisor verification?",
+      "text": "(Carried) **Cross-check the 9 resolved design forks** against shipped behavior — heavily carried since iter 1, still untouched; richest remaining novel axis. Fork #8 \"command style = root /goal\" is implicated by F-005/F-007/F-008/F-009; forks #1 (autonomy), #5 (completion detection), #6 (status set) are now well-evidenced by code reads and can be formally closed cheaply.",
       "addedAtIteration": 5,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G13] What sanitizer/fencing rule should wrap user-authored goal text before injection?",
+      "text": "(Carried) Confirm the opencode command-resolution rule for `.opencode/commands/*.md` (`opencode_goal.md` → `/opencode_goal`?) — refines F-008.",
       "addedAtIteration": 5,
       "source": "iteration-markdown"
     },
     {
-      "text": "G10: exact budget governance and how to populate `tokensUsed` / `timeUsedSeconds` from OpenCode events.",
+      "text": "(Carried) **F-003:** trace `status:` writes — is `usage_limited` ever set in production paths, or dead?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(Carried) **F-004:** dedicated read of `mk-goal.js` injection/transform wiring (`renderGoalInjection`/`appendGoalBrief`/`experimental.chat.system.transform`) — partially seen at L1350–1676 but not examined as a dedicated axis.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(Carried) **F-013:** `session.idle` → `maybeContinueGoal` autonomy-enabled seam has zero test coverage (iter 5).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NEW:** Decide F-014 remediation direction (collapse vs wire) — needs a design decision, not research.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(Carried) **9 Resolved Design Forks cross-check** against shipped behavior — richest remaining novel axis; forks #1 (autonomy), #5 (completion detection), #6 (status set — now *almost* closable modulo F-014) are well-evidenced, but forks #2 (keying), #3 (state store atomicity), #4 (budget governance), #7 (surfacing), #9 (reuse) deserve a formal pass.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(Carried) Confirm opencode command-resolution rule for `.opencode/commands/*.md` (`opencode_goal.md` → `/opencode_goal`?) — refines F-008.",
       "addedAtIteration": 7,
       "source": "iteration-markdown"
     },
     {
-      "text": "G13: prompt-injection sanitizer/fencing for the user-authored objective before every-turn injection.",
+      "text": "(Carried) **F-004 remainder:** dedicated read of `mk-goal.js` L1510–1676 — plugin factory hooks (`experimental.chat.system.transform`, `event`, `tool` registration), `mk_goal`/`mk_goal_status` tool schemas, `__test` export seams.",
       "addedAtIteration": 7,
       "source": "iteration-markdown"
     },
     {
-      "text": "G12: final status set, especially `blocked` and `usage_limited`.",
+      "text": "(Carried) **F-014:** decide remediation direction (collapse `usage_limited` enum vs wire the provider-cap detector) — design decision, not research.",
       "addedAtIteration": 7,
       "source": "iteration-markdown"
     },
     {
-      "text": "G8: autonomy tier and loop caps for `session.idle` continuation.",
+      "text": "(Carried) Examine `mk-goal-*.test.cjs` suite — does it exercise the command *namespace*, and does it cover the unverified code tail (L1510–1676)?",
       "addedAtIteration": 7,
       "source": "iteration-markdown"
     },
     {
-      "text": "G9: completion detection: model self-report, verifier/supervisor, or shell gate.",
-      "addedAtIteration": 7,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "[G10] Budget governance: how to populate and enforce `tokensUsed`, `timeUsedSeconds`, `budget_limited`, and `usage_limited`.",
+      "text": "(Carried) **F-014:** collapse `usage_limited` enum vs wire provider-cap detector — design decision.",
       "addedAtIteration": 8,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G9] Completion detection: what exact verifier/supervisor or shell-gate rule turns a completion candidate into `complete`?",
+      "text": "(Carried) **9 design forks formal pass** (iter 7 did 7/9; forks #2 keying, #3 store atomicity, #4 budget, #7 surfacing, #9 reuse deserve a formal close).",
       "addedAtIteration": 8,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G13] Prompt-injection sanitizer/fencing for the user-authored objective before every-turn injection and before autonomous continuation text.",
+      "text": "(Carried) Confirm opencode command-resolution rule for `.opencode/commands/*.md` → invocation string (refines F-008).",
       "addedAtIteration": 8,
       "source": "iteration-markdown"
     },
     {
-      "text": "[G12] Final status set, especially when cap-hit should be `blocked` versus a budget/usage status.",
+      "text": "(Carried) **F-003:** is `usage_limited` ever set in production paths (dead code)? Continuation test sets `budget_limited`, never `usage_limited`.",
       "addedAtIteration": 8,
       "source": "iteration-markdown"
     },
     {
-      "text": "Protocol gap: the prompt asked for iteration 9, but local artifacts for iteration 8 are missing and the shared state log only reaches iteration 7.",
-      "addedAtIteration": 9,
+      "text": "(Carried) **F-013:** session.idle→maybeContinueGoal autonomy-enabled seam has zero coverage.",
+      "addedAtIteration": 8,
       "source": "iteration-markdown"
     },
     {
-      "text": "G11: exact `mk_goal_status` and `/goal show` display format for verifier fields.",
-      "addedAtIteration": 9,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "G12: final status set and whether OpenCode v1 keeps Codex's full six statuses.",
-      "addedAtIteration": 9,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "G10: exact budget governance, including whether `usage_limited` is distinct from `budget_limited` in OpenCode state transitions.",
-      "addedAtIteration": 9,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "G13: prompt-injection sanitizer/fencing for the user-authored objective and verifier evidence.",
-      "addedAtIteration": 9,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Implementation smoke: verify real OpenCode `message.updated` payloads include token totals or identify the persisted message/session field that does.",
-      "addedAtIteration": 10,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "G11: exact `mk_goal_status` and `/goal show` presentation text, especially how terse the injected budget block should be.",
-      "addedAtIteration": 10,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "G12: final status set and command behavior for `blocked` versus `paused` versus `usage_limited`.",
-      "addedAtIteration": 10,
+      "text": "(Carried) **F-018 deep-dive:** read `appendGoalBrief`/`renderGoalInjection` body to characterize the injection behavior and confirm F-015 (full goal_prompt embedded) + whether `options.enabled` gating + `maxInjectionChars` cap are honored.",
+      "addedAtIteration": 8,
       "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
-    "[G1] What is Codex's thread_goals data model + lifecycle (~/.codex/goals_1.sqlite: status enum, token/time budget fields, per-thread key)? -> our goal state model",
-    "[G2] What exactly does Claude Code /goal (v2.1.139) do (completion condition, autonomous continue-until-met, independent supervisor, status-line overlay)? -> behavior spec",
-    "[G3] What does the vendored z_future/openhuman reference (thread_goals + goalsApi + ThreadGoalChip) model for goal state + UI? -> reuse ideas",
-    "[G4] How does OpenCode inject context via experimental.chat.system.transform (the .opencode/plugins/mk-spec-memory.js pattern)? -> mk-goal.js injection",
-    "[G5] Which OpenCode event/lifecycle hooks (session.created/idle/deleted, message.updated) track + drive a goal; is session.idle the autonomy seam? -> mk-goal.js lifecycle",
-    "[G6] What is the /goal command contract (thin-router like .opencode/commands/memory/learn.md; $ARGUMENTS set|show|clear|complete|pause)? -> goal.md",
-    "[G7] Which state store (flat JSON .goal-state vs sqlite vs spec-kit memory MCP; port thread_goals; key by sessionID)? -> state store decision",
-    "[G8] Which autonomy tier (passive inject / active continuation via session.idle->session.prompt / +supervisor) and what loop caps + kill-switch? -> decision",
-    "[G9] How is completion detected (model self-report vs verifiable shell gate vs supervisor model)? -> decision",
-    "[G10] How to govern budget (token_budget/tokens_used/time_used + usage_limited/budget_limited states)? -> state + lifecycle",
-    "[G11] How to surface the active goal (inject-every-turn + an mk_goal_status tool) as a substitute for Claude's status-line overlay? -> UX",
-    "[G12] What status set + scope/keying (per-session thread_id vs global)? -> decision",
-    "[G13] Should injected goal text pass a prompt-injection sanitizer before entering context (kasper sanitizer idea)? -> safety",
-    "[G14] SYNTHESIS: the recommended end-to-end design (mk-goal.js + goal.md + state store), chosen autonomy tier with guardrails, and ordered build sub-phases -> research.md"
+    "For each phase 001-008, does the shipped code (`mk-goal.js`, `opencode_goal.md`, test suite, `goal_plugin.md`) match what that phase's `spec.md`/`plan.md`/`tasks.md` specified — where is the drift, and is it a regression, an intentional improvement, or an unresolved gap?",
+    "Does the shipped implementation faithfully realize the 9 resolved design forks from the original design synthesis (autonomy tier, scope/keying, state store, budget governance, completion detection, status set, surfacing substitute, command style, reuse vs standalone)?",
+    "What refinements, missing upgrades, or safety/automation gaps exist in the current `/goal` plugin that block it from being feature-complete and low-friction (UX rough edges, error handling, edge cases, race conditions)?",
+    "Is the system-spec-kit integration (`goal_plugin.md` hook doc + any `_memory.continuity` / spec-folder wiring) complete, consistent, and low-friction — does it correctly interoperate with the rest of the plugin ecosystem (`mk-spec-memory.js` patterns, event hooks, session lifecycle)?",
+    "What new additions — beyond anything originally planned — does the actual shipped code reveal are needed for the `/goal` plugin to be genuinely flawless (issues discoverable only by reading real code, not anticipated at design time)?"
   ],
   "keyFindings": [
     {
-      "id": "finding-10-2-budget-accounting-should-be-a-guarded-post-turn-mutation-not-a-free-running-coun",
-      "text": "Budget accounting should be a guarded post-turn mutation, not a free-running counter. OpenHuman's store serializes load-mutate-save, guards stale writes by `expected_goal_id`, saturating-adds token/time deltas, and flips an active goal to `BudgetLimited` once `over_budget()` is true [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:9`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:403`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:433`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:437`].",
-      "addedAtIteration": 10,
+      "id": "finding-1-8-match-rows-are-confirmed-against-in-window-code-symbols-only-tail-region-deliver",
+      "text": "\"MATCH\" rows are confirmed against in-window code symbols only; tail-region deliverables remain unverified (see F-004).",
+      "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-10-1-codex-s-canonical-model-has-the-exact-fields-this-plugin-should-preserve-token-b",
-      "text": "Codex's canonical model has the exact fields this plugin should preserve: `token_budget`, `tokens_used DEFAULT 0`, `time_used_seconds DEFAULT 0`, and statuses `active`, `paused`, `blocked`, `usage_limited`, `budget_limited`, `complete`. Evidence: `sqlite3 ~/.codex/goals_1.sqlite '.schema thread_goals'` output. OpenHuman's adapted type keeps `token_budget`, `tokens_used`, and `time_used_seconds` as durable fields and computes remaining budget from `token_budget - tokens_used` [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/types.rs:73`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/types.rs:95`].",
-      "addedAtIteration": 10,
+      "id": "finding-1-1-f-001-p2-command-filename-drift-phase-003-spec-mandates-opencode-commands-goal-m",
+      "text": "**[F-001, P2] Command filename drift.** Phase 003 spec mandates `.opencode/commands/goal.md`; shipped file is `opencode_goal.md`. Either (a) an intentional rename to fit OpenCode's namespaced command convention, or (b) the planned `goal.md` was never created / was renamed. Impact: discoverability of the `/goal` invocation path; spec-vs-disk inconsistency. *Confidence: confirmed filename; intent inferred.*",
+      "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-10-4-setting-the-same-objective-should-not-reset-counters-but-raising-the-budget-abov",
-      "text": "Setting the same objective should not reset counters, but raising the budget above current usage should reopen a budget-limited goal. OpenHuman preserves counters and `goal_id` for the same objective while refreshing the budget [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:146`], keeps the goal budget-limited while still over budget [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:190`], and its tests assert that raising budget above usage returns the goal to active [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:491`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/store.rs:511`].",
-      "addedAtIteration": 10,
+      "id": "finding-1-2-f-002-p2-phase-count-metadata-inconsistency-specs-self-label-phase-1-6-of-6-001-",
+      "text": "**[F-002, P2] Phase-count metadata inconsistency.** Specs self-label \"Phase 1–6 of 6\" (001–006), but 007 declares \"7 of 7\", 008 declares \"8 of 8\". The packet actually has 9 phase children. Each late phase re-declared itself terminal. Metadata drift, not a code bug, but it muddies the handoff chain (e.g. 006's Successor=None yet 007 exists).",
+      "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-10-3-the-runtime-should-stop-autonomous-continuation-before-creating-another-expensiv",
-      "text": "The runtime should stop autonomous continuation before creating another expensive turn once the configured budget is exhausted. OpenHuman's runtime only charges active goals and emits a status update when accounting changes the lifecycle [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/runtime.rs:143`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/runtime.rs:192`]. Its budget stop hook projects already-accounted plus current-turn tokens and stops when the projection meets budget [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/runtime.rs:207`, `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/runtime.rs:257`].",
-      "addedAtIteration": 10,
+      "id": "finding-1-3-f-003-p2-possibly-dead-status-usage-limited-valid-statuses-includes-usage-limite",
+      "text": "**[F-003, P2] Possibly-dead status `usage_limited`.** `VALID_STATUSES` includes `usage_limited`, but in-window code only ever *sets* `budget_limited` (via `budgetWasCrossed`, `recordContinuationBudgetStop`, `markGoalStatus`). No production path was observed transitioning to `usage_limited`. Either dead enum, or set in the unverified tail. *Confidence: inferred from read window.*",
+      "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-10-5-user-visible-budget-surfacing-should-be-model-visible-plus-command-visible-not-u",
-      "text": "User-visible budget surfacing should be model-visible plus command-visible, not UI overlay dependent. OpenHuman injects budget into `[active_goal]` context [SOURCE: `.opencode/specs/z_future/openhuman/external/src/openhuman/thread_goals/runtime.rs:106`] and displays `tokensUsed / tokenBudget` in the chip [SOURCE: `.opencode/specs/z_future/openhuman/external/app/src/pages/conversations/components/ThreadGoalChip.tsx:231`]. OpenCode plugins can register tools and transform system context [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:108`, `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:197`], and `mk-spec-memory` appends context through `output.system.push(...)` [SOURCE: `.opencode/plugins/mk-spec-memory.js:404`, `.opencode/plugins/mk-spec-memory.js:436`].",
-      "addedAtIteration": 10,
+      "id": "finding-1-4-f-004-p1-read-truncation-blinds-3-phases-the-50-kb-cap-cut-mk-goal-js-at-line-12",
+      "text": "**[F-004, P1] Read truncation blinds 3 phases.** The 50 KB cap cut `mk-goal.js` at line 1243. Three deliverables are therefore **unverified at ground-truth level**: (1) phase 002 injection renderer + transform, (2) phase 003 tool registration, (3) phase 004/006 `event()` lifecycle + continuation wiring. This is the single largest threat to drift-map accuracy.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-obs-001-injection-char-budget-vs-prompt-char-budget-default-max-injection-chars-",
+      "text": "**[OBS-001] Injection-char budget vs prompt-char budget.** `DEFAULT_MAX_INJECTION_CHARS=4800` > `DEFAULT_MAX_GOAL_PROMPT_CHARS=4000`. Continuation prompt clamps to injection budget; goal prompt clamps tighter. Likely intentional (injection carries extra framing lines) but worth a consistency check in a later iteration.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-obs-002-secret-redaction-is-thorough-redactevidence-masks-sk-gh-pousr-xox-akia-a",
+      "text": "**[OBS-002] Secret redaction is thorough.** `redactEvidence` masks `sk-…`, `gh[pousr]_…`, `xox[…]`, `AKIA…`, and generic `api_key=…`/`token=…`/`password=…`/`secret=…`. Matches phase 005 REQ-004 and exceeds it. Positive.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-obs-003-prompt-injection-defense-is-layered-sanitizeinlinetext-sanitizeprompttex",
+      "text": "**[OBS-003] Prompt-injection defense is layered.** `sanitizeInlineText`/`sanitizePromptText` neutralize role-labels (`system:`→`system-role:`), triple backticks, goal-marker injection, and \"ignore previous instructions\" phrases. Matches phase 002/007 risk mitigations.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-9-design-forks-autonomy-tier-scope-keying-state-store-budget-governance-completi",
+      "text": "9 design forks (autonomy tier, scope/keying, state store, budget governance, completion detection, status set, surfacing substitute, command style, reuse vs standalone) — only partially cross-checkable this iteration; a dedicated design-synthesis-vs-shipped comparison is queued.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-heading-line-7-goal",
+      "text": "Heading line 7: `# /goal`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-line-15-goal-is-a-state-free-router",
+      "text": "Line 15: \"`/goal` is a state-free router…\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-line-9-thin-root-router-for-the-session-goal-plugin",
+      "text": "Line 9: \"Thin root router for the session goal plugin.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-lines-51-59-instructions-repeatedly-reference-the-goal-verb-surface-goal-set",
+      "text": "Lines 51–59: instructions repeatedly reference the `/goal` verb surface (`/goal set …`).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-next-safe-action-run-a-live-mk-goal-autonomy-smoke-session-idle-smoke-in-opencod",
+      "text": "`next_safe_action`: *\"Run a live `MK_GOAL_AUTONOMY=smoke` session.idle smoke in `opencode serve`.\"*",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-open-questions-live-one-shot-session-idle-observability-non-empty",
+      "text": "`open_questions: [\"Live one-shot session.idle observability\"]` (non-empty).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-completion-criteria-item-verification-passed-except-for-the-documented-live-serv",
+      "text": "Completion criteria item: *\"Verification passed **except for the documented live serve/TUI idle-smoke gap**.\"*",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-memory-continuity-recent-action-implemented-and-verified-default-off-active-cont",
+      "text": "`_memory.continuity`: `recent_action: \"Implemented and verified default-off active continuation\"` overstates — the verification is *unit-only*. Align `recent_action` with `next_safe_action: \"Run live idle smoke\"` (which is already correct).",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-implementation-summary-md-frontmatter-completion-pct-100-90-remove-qualify-the-u",
+      "text": "`implementation-summary.md` frontmatter: `completion_pct: 100` → **≤90**; remove/qualify the unconditional `Completed: 2026-06-28` reading.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-mk-goal-continuation-test-cjs-invokes-helpers-maybecontinuegoal-directly-15-call",
+      "text": "`mk-goal-continuation.test.cjs` invokes `helpers.maybeContinueGoal(...)` **directly** (15 call sites) — it never routes through `plugin.event({event:{type:'session.idle'}})`. So the unit tests prove the pure decision function in isolation but **not** the event-handler wiring at `mk-goal.js:1574–1599` that connects a real `session.idle` to it.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-mk-goal-supervisor-test-cjs-is-the-only-suite-that-fires-session-idle-events-4-l",
+      "text": "`mk-goal-supervisor.test.cjs` is the only suite that fires `session.idle` events (4×, lines 71/100/118/135), but it constructs the plugin with **autonomy disabled** (`pluginModule.default({}, {stateDir, nowMs, supervisorVerifier})` — no `MK_GOAL_AUTONOMY`, no autonomy option). Consequently `session.idle` → `maybeContinueGoal` returns at the autonomy gate long before the `smoke`/`active`/`promptAsync` logic (line 1302+), and the assertions verify only the supervisor path (verdict→status, secret redaction). Continuation outcomes (`would_fire`/`fired`/`prompt_async_*`) are never asserted from a `session.idle` entry point.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-the-body-known-limitations-and-verification-table-are-honest-and-need-no-change-",
+      "text": "The body `Known Limitations` and `Verification` table are honest and need no change; only the *metadata* overclaims. The overclaim is an integrity bug, not a code bug — F-010 severity stays **P1** (completion-integrity / trust-in-metadata), downgraded from \"blocks shipping\" to \"blocks a clean audit sign-off.\"",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-a-collapse-the-enum-remove-usage-limited-treat-all-caps-as-budget-limited-and-up",
+      "text": "(A) **Collapse the enum** — remove `usage_limited`, treat all caps as `budget_limited`, and update `goal-opencode-plugin.md` + the catalog. Lowest-cost; loses the external-vs-internal distinction the design wanted.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-b-wire-the-seam-add-a-provider-usage-limit-detector-on-the-session-idle-message-",
+      "text": "(B) **Wire the seam** — add a provider-usage-limit detector on the `session.idle`/`message.updated` event path (analogous to `recordContinuationBudgetStop`) that maps a recognized external cap payload to `status: 'usage_limited'` + `continuationSuppressed: true`. Matches design intent; requires defining the provider-error shape OpenCode exposes.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-accepted-as-valid-by-markgoalstatus-l880-and-the-state-loader-l622-status-rawgoa",
+      "text": "**Accepted** as valid by `markGoalStatus` (L880) and the state loader (L622 `status: rawGoal.status`).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-never-tested-rg-usage-limited-cjs-no-files-found-rg-markgoalstatus-cjs-no-files-",
+      "text": "**Never tested.** `rg usage_limited *.cjs` → no files found; `rg markGoalStatus *.cjs` → no files found (tests touch `maybeContinueGoal` directly per iter 5, never the status mutator).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-never-written-by-any-code-path-no-recordcontinuationusagestop-no-external-provid",
+      "text": "**Never written** by any code path. No `recordContinuationUsageStop`, no external-provider-error detector, nothing in the `session.idle`/`message.updated` event handler maps a provider usage-limit refusal to this status.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-continuation-gate-reservecontinuationturn-requires-status-active-l1194-no-auto-c",
+      "text": "Continuation gate: `reserveContinuationTurn` requires `status === 'active'` (L1194) → **no auto-continue**.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-injection-gate-getactivegoal-returns-the-goal-only-when-status-active-l1004-no-i",
+      "text": "Injection gate: `getActiveGoal` returns the goal only when `status === 'active'` (L1004) → **no injection** for `usage_limited`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-verifier-gate-transitions-only-run-when-current-status-active-l1080-no-verificat",
+      "text": "Verifier gate: transitions only run when `current.status === 'active'` (L1080) → **no verification churn**.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-code-tail-coverage-l1510-1676-partial-the-helper-bodies-executegoalaction-execut",
+      "text": "**Code-tail coverage (L1510-1676)**: Partial. The *helper bodies* (`executeGoalAction`, `executeGoalStatus`, `maybeContinueGoal`, `maybeVerifyGoal`) are well-tested. The *factory hooks that bind them* (transform, event dispatch, tool registration, error swallowing, `flushVolatileLocks`) are NOT (see F-018/F-019/F-021/F-022). (Closes the iter-1/3/4/5/7 carried question.)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-command-namespace-not-exercised-all-6-files-test-mk-goal-mk-goal-status-tool-exe",
+      "text": "**Command namespace**: **NOT exercised.** All 6 files test `mk_goal`/`mk_goal_status` tool execute paths + `__test` helper seams. None invoke `/goal` or `/opencode_goal`. The `opencode_goal.md` command spec (a markdown file) would only be exercised by an opencode runtime integration test, which does not exist. **The filename drift (F-008: opencode_goal.md → /opencode_goal vs intended /goal) is therefore invisible to the entire suite.** (Closes the iter-2/3/4/5/7 carried question.)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-disposed-flushvolatilelocks-global",
+      "text": "`*.disposed` → `flushVolatileLocks()` (global)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-message-updated-recordmessageupdated",
+      "text": "`message.updated` → `recordMessageUpdated`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-permission-asked-question-asked-setblockedbyprompt-true-continuation-test-sets-b",
+      "text": "`permission.asked`/`question.asked` → `setBlockedByPrompt(true)` (continuation test sets `blockedByPrompt` via `writeGoalAtomic` instead)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-permission-replied-question-replied-question-rejected-clear",
+      "text": "`permission.replied`/`question.replied`/`question.rejected` → clear",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-session-created-restoreactivegoal",
+      "text": "`session.created` → `restoreActiveGoal`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-session-deleted-flushvolatilelocks-sessionid",
+      "text": "`session.deleted` → `flushVolatileLocks(sessionID)`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-session-status-sessionstatuses-tests-inject-runtimestate-directly-instead",
+      "text": "`session.status` → `sessionStatuses` (tests inject `runtimeState` directly instead)",
+      "addedAtIteration": 8,
       "sources": []
     }
   ],
   "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
   "blockedStopHistory": [],
   "graphConvergenceScore": 0,
-  "graphDecision": null,
+  "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [],
   "metrics": {
-    "iterationsCompleted": 11,
-    "openQuestions": 14,
+    "iterationsCompleted": 8,
+    "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 32,
-    "keyFindings": 5,
-    "convergenceScore": 0.58,
+    "carriedForwardOpenQuestions": 44,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.78,
     "coverageBySources": {}
   },
   "corruptionWarnings": [],
-  "status": "INITIALIZED"
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/032-goal-opencode-plugin/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
 }

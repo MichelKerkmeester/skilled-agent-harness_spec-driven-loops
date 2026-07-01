@@ -1,147 +1,76 @@
-# Focus
+# Iteration 006 — `usage_limited` write-path trace
 
-[G6] Define the `/goal` command contract for `.opencode/commands/goal.md`: thin-router shape, `$ARGUMENTS` parsing, supported verbs, plugin handoff, result envelope, and risks.
+## Focus
 
-# Actions Taken
+**(Carried F-003):** Trace every `status:` write in `mk-goal.js` to confirm whether `usage_limited` is ever set in production paths, or is a dead enum value.
 
-- Read the deep-research quick reference and current research state/strategy to stay inside the iteration contract.
-- Compared existing OpenCode command patterns in `.opencode/commands/memory/learn.md`, `.opencode/commands/memory/search.md`, `.opencode/commands/memory/manage.md`, `.opencode/commands/memory/save.md`, `.opencode/commands/deep/research.md`, and root `.opencode/commands/prompt.md`.
-- Checked OpenCode plugin and tool type definitions to verify whether a command can hand off session-scoped goal mutation to a plugin tool without requiring the markdown command to know the session id.
-- Checked existing plugin implementations and prior hook-parity research for `tool` registration and `experimental.chat.system.transform` evidence.
+## Actions Taken
 
-# Findings
+1. Grepped `.opencode` for every `usage_limited` occurrence across plugins, docs, specs, and research archives — isolated the production-code surface to a single line in `mk-goal.js`.
+2. Grepped `mk-goal.js` for all `status\s*[:=]` writes and cross-referenced with a targeted `usage_limited|budget_exhausted|budget\.status|.status =` pass to avoid missing assignment variants.
+3. Read the four status-mutation regions of `mk-goal.js`: the enum/constants block (lines 40–61), `markGoalStatus` + `accountUsage` (lines 879–955), the verifier transition block (lines 1080–1112), and `recordContinuationBudgetStop`/`recordContinuationReason` (lines 1146–1187).
+4. Verified `markGoalStatus` call sites (entire repo) and the test suite (`*.cjs`) for any `usage_limited`/`markGoalStatus` reference.
 
-## Finding 1: `/goal` should be a root command file with subcommands in `$ARGUMENTS`
+## Findings
 
-Evidence:
-- `.opencode/commands/prompt.md:1`-`.opencode/commands/prompt.md:4` shows root command files can define frontmatter directly under `.opencode/commands/`, so `.opencode/commands/goal.md` is the right root-command target.
-- `.opencode/commands/memory/learn.md:7`-`.opencode/commands/memory/learn.md:10` establishes the "thin router" style for a command that owns routing but not heavy implementation.
-- `.opencode/commands/memory/learn.md:24`-`.opencode/commands/memory/learn.md:31` treats empty args and first-token subcommands as router inputs; `.opencode/commands/memory/learn.md:39` explicitly starts by parsing `$ARGUMENTS`.
+### F-003 RESOLVED — `usage_limited` has zero production writers (dead enum value)
 
-OUR target/mechanism:
-- Add `.opencode/commands/goal.md` as a root `/goal` command.
-- Recommended frontmatter:
+Exhaustive enumeration of every `status:` write in `mk-goal.js`:
 
-```yaml
-description: Set and manage the active OpenCode session goal.
-argument-hint: "[objective] | set <objective> | show | clear | complete | pause [reason]"
-allowed-tools: Read, mk_goal, mk_goal_status
-```
+| # | Line | Context | Value written | Trigger |
+|---|------|---------|---------------|---------|
+| 1 | 794 | `buildNewGoal` | `'active'` | new goal (user set) |
+| 2 | 853 | `setGoal` (objective-change branch) | `'active'` | same objective re-set |
+| 3 | 889 | `markGoalStatus` | caller-supplied | **only called with `'complete'` (L1471) and `'paused'` (L1475)** |
+| 4 | 944 | `accountUsage` | `nextStatus` | `nextStatus` is `'budget_limited'` or unchanged `current.status` (L941) |
+| 5 | 1097 | verifier `met` branch | `'complete'` | supervisor verdict met |
+| 6 | 1106 | verifier `blocked` branch | `'blocked'` | supervisor verdict blocked |
+| 7 | 1180 | `recordContinuationBudgetStop` | `'budget_limited'` | continuation preflight budget exhausted |
 
-Decision:
-- Use root `/goal`, not `/goal:*`, for Claude parity and low-friction session use.
-- Route verbs inside `$ARGUMENTS`: empty/show, set, clear, complete, pause.
-- Treat any non-empty argument whose first token is not a known verb as `set <objective>`, matching Claude-style `/goal finish this refactor` ergonomics.
+The string `usage_limited` appears exactly **once** in the entire production file — line 54, the `VALID_STATUSES` set declaration. It is:
+- **Accepted** as valid by `markGoalStatus` (L880) and the state loader (L622 `status: rawGoal.status`).
+- **Never written** by any code path. No `recordContinuationUsageStop`, no external-provider-error detector, nothing in the `session.idle`/`message.updated` event handler maps a provider usage-limit refusal to this status.
+- **Never tested.** `rg usage_limited *.cjs` → no files found; `rg markGoalStatus *.cjs` → no files found (tests touch `maybeContinueGoal` directly per iter 5, never the status mutator).
 
-Risk:
-- Root command namespace could collide with a future upstream OpenCode `/goal`. Mitigation: keep the behavior behind one file, and make the command's result envelope explicit enough to swap to `/goal:*` later if the runtime introduces a native command.
+**Verdict: `usage_limited` is dead / unreachable in shipped production code.** F-003 closed.
 
-## Finding 2: `goal.md` needs deterministic argument resolution before policy text
+### F-014 (P2) — `usage_limited` is reserved-but-unwired (design drift)
 
-Evidence:
-- `.opencode/commands/memory/search.md:15`-`.opencode/commands/memory/search.md:17` uses a shell prelude to bind `$ARGUMENTS` into `ARGS_PRESENT` and `QUERY`, avoiding accidental shell expansion or prompt-time re-derivation.
-- `.opencode/commands/memory/search.md:19`-`.opencode/commands/memory/search.md:22` makes those bound values authoritative for control flow.
-- `.opencode/commands/memory/manage.md:22` sets a safe default mode when `$ARGUMENTS` is empty.
+The design synthesis (archived `research_archive/2026-06-28-goal-design-synthesis/iterations/iteration-010.md` line 21; synthesis `research.md` line 157, fork #6) explicitly reserved `usage_limited`:
 
-OUR target/mechanism:
-- In `.opencode/commands/goal.md`, add a short argument-resolution prelude equivalent to `/memory:search`:
+> `budget_limited` means our configured goal budget was reached. `usage_limited` means the provider/session/runtime refused further work because of an external usage cap.
 
-```md
-!`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
-```
+The shipped code implements the `budget_limited` half (post-turn accounting L941, continuation preflight L1146–1150, status transition L944/L1180) but **never implements the `usage_limited` half**: there is no detection seam that observes a provider/runtime usage-limit error (e.g. a rate-limit / quota / 429 payload in `session.idle` or `message.updated`) and transitions the goal. The reservation survives only as enum membership.
 
-Decision:
-- Bind command control flow to `ARGS_PRESENT` and `QUERY`.
-- Empty `QUERY` routes to `show`, not setup text.
-- Known first token routes:
-  - `show` -> show active session goal.
-  - `set <objective>` -> set/replace active goal.
-  - `<objective>` -> set/replace active goal.
-  - `pause [reason]` -> pause active goal.
-  - `complete` -> mark active goal complete.
-  - `clear` -> remove/deactivate the active goal without asserting success.
-- Unknown verb plus extra text should be treated as an objective unless it exactly matches a malformed known verb shape; this favors the common "set a goal quickly" workflow.
+This is not a regression (the feature was never built), but it is a **planned-but-unimplemented design contract** that leaves the enum value misleading: a reader of `VALID_STATUSES` (or the catalog doc `goal-opencode-plugin.md:35`, which lists it as a first-class status) would infer a runtime capability that does not exist.
 
-Risk:
-- Multi-line objectives and shell-sensitive text can still be awkward in markdown-command argument passing. Mitigation: command should treat the resolved `QUERY` as opaque objective text after first-token routing and let `mk_goal` sanitize/fence before persistence and injection.
+**Remediation fork (reported only, not implemented):**
+- (A) **Collapse the enum** — remove `usage_limited`, treat all caps as `budget_limited`, and update `goal-opencode-plugin.md` + the catalog. Lowest-cost; loses the external-vs-internal distinction the design wanted.
+- (B) **Wire the seam** — add a provider-usage-limit detector on the `session.idle`/`message.updated` event path (analogous to `recordContinuationBudgetStop`) that maps a recognized external cap payload to `status: 'usage_limited'` + `continuationSuppressed: true`. Matches design intent; requires defining the provider-error shape OpenCode exposes.
 
-## Finding 3: the command should delegate all state changes to a plugin tool, not edit storage itself
+### Invariant confirmed — dormant-but-safe
 
-Evidence:
-- `.opencode/plugins/README.md:8` says OpenCode auto-loads `.js` files in `.opencode/plugins/` at session start; `.opencode/plugins/README.md:32`-`.opencode/plugins/README.md:36` gives the entrypoint pattern for a new plugin.
-- `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:108`-`.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts:115` shows OpenCode plugins expose a `tool` map.
-- `.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts:2`-`.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts:15` shows plugin tool execution receives `context.sessionID`, `directory`, and `worktree`.
-- `.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts:33`-`.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts:37` shows tool definitions receive typed args plus `ToolContext`.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge/decision-record.md:180`-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge/decision-record.md:190` records `tool: { ... }` as an OpenCode-recognized plugin surface.
+If `usage_limited` were set by any means (direct state-file edit, a future caller of `markGoalStatus('usage_limited')`, or external tooling), the shipped gates already handle it correctly and consistently with design intent ("never auto-continue a limited goal"):
 
-OUR target/mechanism:
-- In `.opencode/plugins/mk-goal.js`, expose:
-  - `mk_goal` with args `{ action: "set"|"show"|"clear"|"complete"|"pause", objective?: string, reason?: string }`.
-  - `mk_goal_status` for plugin/runtime diagnostics and a compact active-goal status readout.
-- In `.opencode/commands/goal.md`, use `mk_goal` for user actions and reserve `mk_goal_status` for diagnostics or fallback show output.
+- Injection gate: `getActiveGoal` returns the goal only when `status === 'active'` (L1004) → **no injection** for `usage_limited`.
+- Verifier gate: transitions only run when `current.status === 'active'` (L1080) → **no verification churn**.
+- Continuation gate: `reserveContinuationTurn` requires `status === 'active'` (L1194) → **no auto-continue**.
 
-Decision:
-- The markdown command is only a router. The plugin tool owns state I/O, session keying, objective sanitization, status transitions, and cache invalidation.
-- The command does not need to infer a session id from text because `ToolContext.sessionID` is available at execution time.
+So the value is dormant-but-safe: it behaves as a quiet terminal status, not a hazard. The defect is absence-of-writer, not mishandling.
 
-Risk:
-- Need an implementation smoke to confirm local plugin tool names can be listed directly in command `allowed-tools`. If OpenCode requires another naming form for plugin tools in command frontmatter, the fallback is to keep the same `mk_goal` implementation and route through a small plugin-owned CLI helper, but that is a build-time verification risk rather than a design blocker.
+## Questions Answered
 
-## Finding 4: result envelopes should be terse and parseable
+- **[F-003] Is `usage_limited` ever set in production paths, or dead?** → **Dead.** Enum-declared at L54, accepted by the loader/mutator, but no production writer exists. Confirmed via exhaustive status-write enumeration (7 write sites) + zero call sites passing `usage_limited` + zero test coverage.
+- **[Q-status-set] Does the shipped enum match the design?** → Enum *membership* matches Codex's six (fork #6 ✓), but the **runtime contract** for `usage_limited` is unimplemented (F-014). `blocked`/`complete` are supervisor-driven (L1097/L1106); `budget_limited` is accountant + preflight driven (L944/L1180); `paused`/`complete` are user-driven (L1471/L1475); `usage_limited` has no driver at all.
 
-Evidence:
-- `.opencode/commands/memory/learn.md:32`-`.opencode/commands/memory/learn.md:35` defines parseable `STATUS=OK`, `STATUS=CANCELLED`, and `STATUS=FAIL` outputs.
-- `.opencode/commands/memory/manage.md:38` returns `STATUS=FAIL ERROR="Unknown mode: <mode>"` for unknown modes.
-- `.opencode/commands/memory/search.md:53`-`.opencode/commands/memory/search.md:66` enforces a fixed command-output shape, including a `STATUS` footer.
+## Questions Remaining
 
-OUR target/mechanism:
-- `.opencode/commands/goal.md` should require these terminal shapes:
+- (Carried) **F-004:** dedicated read of `mk-goal.js` injection/transform wiring (`renderGoalInjection`/`appendGoalBrief`/`experimental.chat.system.transform`) — partially seen at L1350–1676 but not examined as a dedicated axis.
+- (Carried) **9 Resolved Design Forks cross-check** against shipped behavior — richest remaining novel axis; forks #1 (autonomy), #5 (completion detection), #6 (status set — now *almost* closable modulo F-014) are well-evidenced, but forks #2 (keying), #3 (state store atomicity), #4 (budget governance), #7 (surfacing), #9 (reuse) deserve a formal pass.
+- (Carried) Confirm the opencode command-resolution rule for `.opencode/commands/*.md` (`opencode_goal.md` → `/opencode_goal`?) — refines F-008.
+- (Carried) **F-013:** `session.idle` → `maybeContinueGoal` autonomy-enabled seam has zero test coverage (iter 5).
+- **NEW:** Decide F-014 remediation direction (collapse vs wire) — needs a design decision, not research.
 
-```text
-STATUS=OK ACTION=<set|show|clear|complete|pause> GOAL_STATUS=<active|paused|complete|none> SESSION=<current>
-STATUS=FAIL ERROR="<message>"
-```
+## Next Focus
 
-Decision:
-- Keep command output machine-readable and minimal. The active-goal "overlay" is not the command's job; it belongs to plugin injection plus `mk_goal_status`.
-- `complete` marks the current goal complete.
-- `clear` stops injection without claiming the goal was achieved. Storage retention for cleared goals is a G7 state-store decision.
-
-Risk:
-- `clear` has no direct Codex-like status enum equivalent. If the state store keeps history, it needs an `ended_reason:"cleared"` or archive record outside the primary status enum; otherwise `clear` risks destroying useful audit history.
-
-## Finding 5: avoid a workflow YAML or presentation asset for v1
-
-Evidence:
-- `.opencode/commands/memory/learn.md:15` says no workflow YAML exists and keeps routing in the command file until a separate workflow-asset change exists.
-- `.opencode/commands/memory/learn.md:47`-`.opencode/commands/memory/learn.md:52` has hard rules that prevent the command from inventing workflow YAML.
-- `.opencode/commands/memory/save.md:31`-`.opencode/commands/memory/save.md:39` shows a thin command can resolve routing and call actual tooling without owning the data layer.
-
-OUR target/mechanism:
-- Add only `.opencode/commands/goal.md` for the command surface in the first build.
-- Do not add `.opencode/commands/goal/assets/*` or workflow YAML unless later UX work makes the command display large enough to justify a presentation boundary.
-
-Decision:
-- Inline the compact `/goal` router contract in `goal.md`; keep all durable behavior in `.opencode/plugins/mk-goal.js` and its state helper.
-
-Risk:
-- If `/goal show` grows into a richer dashboard, inline wording can drift. The trigger for adding a presentation asset should be a multi-section dashboard or confirmation UI, not the initial five verbs.
-
-# Questions Answered
-
-- [G6] The `/goal` command contract should be a root `.opencode/commands/goal.md` thin router.
-- [G6] Supported `$ARGUMENTS` routes are: empty/show, `set <objective>`, bare `<objective>`, `clear`, `complete`, and `pause [reason]`.
-- [G6] The command should delegate to `mk_goal` / `mk_goal_status` plugin tools because plugin tool context includes `sessionID`, so state mutation can remain session-scoped without command-side session inference.
-- [G6] The command should emit parseable `STATUS=... ACTION=...` envelopes and keep the persistent active-goal UX in the plugin injection/status tool.
-
-# Questions Remaining
-
-- [G7] Choose the exact state-store path, retention behavior for `clear`, and lock/write strategy.
-- [G8] Decide whether `pause` is only user-triggered or also a kill-switch for active continuation loops.
-- [G10] Define whether `/goal set` accepts budget flags in v1, such as `--token-budget` or `--time-budget`.
-- [G11] Decide the exact `mk_goal_status` output shape and how much of it should appear in injected context.
-- [G13] Finalize objective sanitization/fencing before `mk_goal` persists user-authored text and before `mk-goal.js` injects it every turn.
-
-# Next Focus
-
-[G7] State store decision: flat JSON vs SQLite vs Spec Kit memory, with session keying, locking, clear/archive semantics, and schema fields needed by the command contract.
+Rotate to the **9 Resolved Design Forks cross-check** (longest-carried, highest-novelty axis) and close forks #2 (scope/keying — hex(sessionID)), #3 (state store atomicity — temp+fsync+rename, mutation queue), and #7 (surfacing = injection + `/goal show` + `mk_goal_status`) against shipped code in a single dedicated iteration. This directly serves the core audit question "does shipped code faithfully realize the 9 resolved forks" and is the last major unexamined phase-comparison axis.

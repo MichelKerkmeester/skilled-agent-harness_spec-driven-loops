@@ -1,83 +1,79 @@
-# Iteration 8: G8 Autonomy Tier And Loop Brakes
+# Iteration 008 — Test-Suite Coverage of the Code Tail & Command Namespace
 
 ## Focus
 
-[G8] Which autonomy tier should `.opencode/plugins/mk-goal.js` ship: passive injection only, active continuation via `session.idle -> session.prompt`, or active continuation plus supervisor; and what loop caps plus kill-switch should bound it?
+(Carried since iter 1) Examine the `mk-goal-*.test.cjs` suite (6 files in `.opencode/plugins/__tests__/`) — does it exercise the command *namespace* (`/goal` / `/opencode_goal`), and does it cover the unverified code tail (`mk-goal.js` L1510–1676: plugin factory hooks, event dispatch, `experimental.chat.system.transform`, tool registration, `__test` seam)?
 
 ## Actions Taken
 
-- Read the deep-research skill contract and state/output references to keep this as a leaf iteration that writes only `iteration-008.md` and `iter-008.jsonl`.
-- Read the current research state and prior G4-G7 narratives to avoid re-deciding injection, lifecycle, command routing, and state store.
-- Read `.opencode/plugins/mk-spec-memory.js`, `.opencode/plugins/mk-code-graph.js`, and `.opencode/plugins/mk-skill-advisor.js` for the local event/system-transform plugin pattern.
-- Read the project-scoped OpenCode plugin and SDK type definitions under `.opencode/node_modules/@opencode-ai/*` to verify whether a plugin can submit a continuation prompt.
+1. Located the suite: 6 files under `.opencode/plugins/__tests__/` (`mk-goal-state`, `-export-contract`, `-lifecycle`, `-supervisor`, `-tool-path`, `-continuation`). No suite exists inside the packet spec folder.
+2. Read 4 of 6 test files in full (`tool-path`, `continuation`, `supervisor`, `export-contract`) — the four that touch the tail region. (`state`/`lifecycle` test the helper bodies, not the factory hooks.)
+3. Re-read the code tail `mk-goal.js` L1490–1676 (plugin factory `MkGoalPlugin`, `handleEvent`, transform hook, tool registration, `__test` seam) to build a line-by-line coverage map.
 
-## Findings (evidence + OUR target + decision + risk)
+## Findings
 
-### Finding 1: Tier 2 active continuation is buildable because the plugin receives a client and the SDK exposes `promptAsync`.
+### F-018 (P1) — The `experimental.chat.system.transform` hook is entirely untested
+The core passive-injection feature — `experimental.chat.system.transform` (L1620-1623) → `appendGoalBrief` → `renderGoalInjection` — has **zero** test coverage. No test invokes the transform hook, and `renderGoalInjection`/`appendGoalBrief` are exported on `__test` but never called by any test. Combined with F-015 (iter 7: injection embeds the full `goal_prompt`), this is the single largest blind spot: the headline feature (goal brief injected into every chat turn) is unverified.
 
-Evidence: `PluginInput` includes `client: ReturnType<typeof createOpencodeClient>` [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts`:10] [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts`:11]. The SDK `Session` client exposes `prompt` to create and send a message [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.d.ts`:172] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.d.ts`:174] and `promptAsync` to create/send a message, start if needed, and return immediately [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.d.ts`:180] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.d.ts`:182]. The generated client posts `promptAsync` to `/session/{id}/prompt_async` [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.js`:380] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.js`:384].
+### F-019 (P1) — The plugin `event` handler swallows all errors silently
+`event: async (input) => { try { await handleEvent(...) } catch { return; } }` (L1612-1617). Every exception inside `handleEvent` — `restoreActiveGoal`, `recordMessageUpdated`, `maybeVerifyGoal`, `maybeContinueGoal`, `setBlockedByPrompt` — is silently dropped with no log, no continuation-log entry, no metric. A failing verifier or atomic write inside `session.idle` would be invisible, masking F-016 (fsync error swallowing) and any runtime regression. No test exercises the error path.
 
-OUR target: `.opencode/plugins/mk-goal.js`, specifically `maybeContinueGoal(sessionID)`.
+### F-020 (P2) — The `__test` export contract is not key-pinned
+`mk-goal-export-contract.test.cjs` asserts only that `default` is a function and `default.__test` is truthy (L16-18). It does **not** pin the 14 exported seam names (L1658-1674). A renamed/removed helper would pass. A `deepEqual(Object.keys(__test).sort(), [...14 names])` would close it.
 
-Decision: Choose Tier 2 for v1: active continuation from `session.idle` by calling `ctx.client.session.promptAsync({ path: { id: sessionID }, query: { directory: projectDir }, body: { parts: [...] } })`. Passive injection remains the fallback mode when autonomy is disabled. Use `promptAsync`, not blocking `prompt`, so the event hook does not wait for the full assistant turn.
+### F-021 (P1) — The event-driven state machine is untested end-to-end
+`handleEvent` (L1536-1609) wires 9 opencode events to durable/volatile state. Of these, only `session.idle` is exercised (supervisor test) — and only the verify sub-path (autonomy off). Untested branches:
+- `session.created` → `restoreActiveGoal`
+- `message.updated` → `recordMessageUpdated`
+- `session.status` → `sessionStatuses` (tests inject `runtimeState` directly instead)
+- `permission.asked`/`question.asked` → `setBlockedByPrompt(true)` (continuation test sets `blockedByPrompt` via `writeGoalAtomic` instead)
+- `permission.replied`/`question.replied`/`question.rejected` → clear
+- `session.deleted` → `flushVolatileLocks(sessionID)`
+- `*.disposed` → `flushVolatileLocks()` (global)
 
-Risk: This proves the SDK surface exists, not that recursive prompt submission from inside a plugin event hook is harmless. The first build must include a smoke mode that logs the would-send continuation prompt, then a single-turn real `promptAsync` test before enabling multi-turn active continuation.
+Tests bypass the state machine by writing goal/runtime state directly, so the actual opencode integration surface — what determines whether the plugin works in a real session — has no coverage. This is why F-013 (session.idle→maybeContinueGoal w/ autonomy on) is also uncatchable here.
 
-### Finding 2: `session.idle` is the only event that should drive continuation, with status and prompt-blocker gates before sending.
+### F-022 (P2) — `mk_goal` tool is exercised only indirectly
+`plugin.tool.mk_goal_status.execute` is called directly (supervisor), but `plugin.tool.mk_goal.execute` is never invoked; tests call the internal `__test.executeGoalAction` instead (tool-path). So the `mk_goal` tool's schema binding (`tool.schema.enum(GOAL_ACTIONS)`, `tokenBudget` nullable) is never validated through the real tool registration path — an asymmetry vs `mk_goal_status`.
 
-Evidence: the SDK event type has `EventSessionIdle` with `type: "session.idle"` and `properties.sessionID` [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:413] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:417]. Session status is explicitly one of `idle`, `retry`, or `busy`, surfaced through `session.status` with `sessionID` [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:396] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:410]. Permission events carry session and message identifiers [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:369] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:375], and permission replies carry `sessionID`, `permissionID`, and `response` [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:388] [SOURCE: `.opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts`:394]. Prior G5 already ruled that `message.updated` tracks progress rather than drives continuation [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-005.md`:21].
-
-OUR target: `.opencode/plugins/mk-goal.js` event handler and per-session volatile runtime state.
-
-Decision: Only `session.idle` calls `maybeContinueGoal(sessionID)`. That function must check, in order: plugin enabled, autonomy enabled, real session ID, durable goal status is `active`, `continuationSuppressed` is false, no in-flight continuation lock, no permission/question blocker, last observed session status is not `busy` or `retry`, cooldown elapsed, caps not exceeded, and budgets not exceeded. `message.updated` only refreshes `lastMessageId`, `lastActivityAt`, and usage if available.
-
-Risk: The SDK types prove permission events, but not question events in the excerpt read this iteration. If question events are not available to the plugin, approval/question waits must be guarded through observed session status plus `permission.*` events, and G9/G10 should not assume complete prompt-blocker coverage.
-
-### Finding 3: Do not ship the supervisor as part of the idle loop; make it a completion-candidate verifier in G9.
-
-Evidence: G4 separated prompt-time injection from lifecycle/autonomy: `experimental.chat.system.transform` should only inject the active goal, while event handling owns continuation [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-004.md`:42]. G7 gave the goal record an OpenCode-specific `continuationSuppressed` guard field [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-007.md`:21] [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-007.md`:23]. The live state still lists G9 as the unresolved completion-detection question [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/deep-research-state.jsonl`:8].
-
-OUR target: `.opencode/plugins/mk-goal.js` autonomy architecture and future G9 verifier hook.
-
-Decision: Tier 3 is not the G8 choice. The idle loop should continue work, not verify completion. A supervisor/verifier belongs only after the main agent claims completion or calls `/goal complete`; it can decide whether to mark `complete`, keep `active`, or set `blocked`. That keeps the hot loop simple and leaves G9 to define completion evidence.
-
-Risk: Without a supervisor in the loop, v1 may continue one or more extra turns after the work is substantively done if the assistant does not self-report completion clearly. The loop caps below are required, and G9 should add a completion-candidate verifier before any final "complete" transition becomes automatic.
-
-### Finding 4: Loop caps should be per-goal, per-session, and stored durably enough to survive plugin reload.
-
-Evidence: G7 chose a per-session JSON record under `.opencode/skills/.goal-state/<hex(sessionID)>.json` [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-007.md`:31] [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-007.md`:33]. The same decision included atomic writes and a mutation queue as required hardening [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-007.md`:72]. Local plugins already use an event hook plus per-session cache invalidation on `session.*` and `message.*` events [SOURCE: `.opencode/plugins/mk-spec-memory.js`:416] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:429].
-
-OUR target: `.opencode/plugins/mk-goal.js` state schema and `maybeContinueGoal(sessionID)` caps.
-
-Decision: Add these fields to the G7 record: `autoTurnsUsed`, `maxAutoTurns`, `startedAtMs`, `lastContinuationAtMs`, `lastContinuationMessageId`, `lastContinuationError`, and `continuationSuppressedReason`. Defaults: `maxAutoTurns = 8`, `maxWallMs = 30 * 60 * 1000`, `cooldownMs = 1500`, and one in-flight continuation per session. When a cap is hit, set `status: "blocked"` if work needs user input, or `status: "budget_limited"` / `status: "usage_limited"` when G10 budget rules say so; always set `continuationSuppressed = true` before returning.
-
-Risk: `autoTurnsUsed` can become inaccurate if `promptAsync` succeeds but the process dies before the next state write. Increment before sending and persist `lastContinuationAtMs`; this is conservative because it may stop one turn early, which is safer than an unbounded loop.
-
-### Finding 5: The kill-switch must exist at three levels: process, session, and current idle event.
-
-Evidence: existing plugins use config/env disabled state before hook work [SOURCE: `.opencode/plugins/mk-spec-memory.js`:407] and report disabled/plugin health through status tools [SOURCE: `.opencode/plugins/mk-spec-memory.js`:438] [SOURCE: `.opencode/plugins/mk-spec-memory.js`:447]. The `/goal` command decision already includes `pause` and `clear` routes [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-006.md`:56] [SOURCE: `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/iterations/iteration-006.md`:62]. Tool context includes `sessionID`, `directory`, and `worktree`, so command tools can mutate the current session's goal without text-side session inference [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts`:3] [SOURCE: `.opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts`:15].
-
-OUR target: `.opencode/plugins/mk-goal.js` options/env, `mk_goal` command tool, and `mk_goal_status`.
-
-Decision: Implement three kill-switches. Process-wide: `MK_GOAL_AUTONOMY=passive` or `MK_GOAL_DISABLE_AUTONOMY=1` disables active continuation while leaving injection/status intact. Session-level: `/goal pause [reason]` sets `status: "paused"` plus `continuationSuppressed = true`; `/goal clear` deletes or archives the record so injection stops. Event-level: `session.error`, missing session ID, permission pending, busy/retry status, cap hit, or promptAsync failure suppresses that idle continuation and records `lastContinuationError` for `mk_goal_status`.
-
-Risk: A process-wide env kill-switch only applies after OpenCode is started with that environment. The reliable user-facing emergency stop is `/goal pause`; `mk_goal_status` should print both the process autonomy mode and the session suppression reason so the operator can see which brake fired.
+### Definitive answers to carried questions
+- **Command namespace**: **NOT exercised.** All 6 files test `mk_goal`/`mk_goal_status` tool execute paths + `__test` helper seams. None invoke `/goal` or `/opencode_goal`. The `opencode_goal.md` command spec (a markdown file) would only be exercised by an opencode runtime integration test, which does not exist. **The filename drift (F-008: opencode_goal.md → /opencode_goal vs intended /goal) is therefore invisible to the entire suite.** (Closes the iter-2/3/4/5/7 carried question.)
+- **Code-tail coverage (L1510-1676)**: Partial. The *helper bodies* (`executeGoalAction`, `executeGoalStatus`, `maybeContinueGoal`, `maybeVerifyGoal`) are well-tested. The *factory hooks that bind them* (transform, event dispatch, tool registration, error swallowing, `flushVolatileLocks`) are NOT (see F-018/F-019/F-021/F-022). (Closes the iter-1/3/4/5/7 carried question.)
 
 ## Questions Answered
 
-- [G8] Answered: choose Tier 2 active continuation for v1, implemented as `session.idle -> maybeContinueGoal(sessionID) -> ctx.client.session.promptAsync(...)`.
-- [G8] Passive injection remains the fallback mode when autonomy is disabled or suppressed.
-- [G8] Do not put the supervisor in the idle loop. Supervisor verification belongs to G9 completion detection.
-- [G8] Loop caps: default `maxAutoTurns = 8`, `maxWallMs = 30 minutes`, `cooldownMs = 1500`, one in-flight continuation per session, plus budget gates from G10.
-- [G8] Kill-switches: process env/config, `/goal pause` or `/goal clear`, and event-level suppression on prompt blockers, busy/retry/error, cap hit, missing session id, or promptAsync failure.
+- [x] Do the `mk-goal-*.test.cjs` files exercise the command namespace? **No.** Tool/helper paths only.
+- [x] Does the suite cover the unverified code tail (L1510-1676)? **Partially** — helper bodies yes; factory hooks (transform/event/tool-binding/error-swallow/flush) no.
 
 ## Questions Remaining
 
-- [G9] Completion detection: what exact verifier/supervisor or shell-gate rule turns a completion candidate into `complete`?
-- [G10] Budget governance: how to populate and enforce `tokensUsed`, `timeUsedSeconds`, `budget_limited`, and `usage_limited`.
-- [G12] Final status set, especially when cap-hit should be `blocked` versus a budget/usage status.
-- [G13] Prompt-injection sanitizer/fencing for the user-authored objective before every-turn injection and before autonomous continuation text.
+- (Carried) **F-018 deep-dive:** read `appendGoalBrief`/`renderGoalInjection` body to characterize the injection behavior and confirm F-015 (full goal_prompt embedded) + whether `options.enabled` gating + `maxInjectionChars` cap are honored.
+- (Carried) **9 design forks formal pass** (iter 7 did 7/9; forks #2 keying, #3 store atomicity, #4 budget, #7 surfacing, #9 reuse deserve a formal close).
+- (Carried) **F-003:** is `usage_limited` ever set in production paths (dead code)? Continuation test sets `budget_limited`, never `usage_limited`.
+- (Carried) **F-014:** collapse `usage_limited` enum vs wire provider-cap detector — design decision.
+- (Carried) Confirm opencode command-resolution rule for `.opencode/commands/*.md` → invocation string (refines F-008).
+- (Carried) **F-013:** session.idle→maybeContinueGoal autonomy-enabled seam has zero coverage.
 
 ## Next Focus
 
-[G9] Completion detection: model self-report versus verifiable shell gate versus supervisor model, and how that interacts with the Tier 2 idle continuation loop.
+Read the injection body (`appendGoalBrief` + `renderGoalInjection`) directly. F-018 makes this the highest-value untested surface, and it confirms F-015 (full goal_prompt in injection) plus whether the `enabled`/`maxInjectionChars` guards hold — feeding the design-fork #7 (surfacing substitute) formal close.
+
+## Coverage Map (code tail L1498-1676 → tests)
+
+| Code region | Lines | Covered? | By |
+|---|---|---|---|
+| `executeGoalStatus` wrapper | 1488-1496 | Yes | tool-path (`__test`), supervisor (`plugin.tool`) |
+| `MkGoalPlugin` factory | 1513-1647 | Partial | — |
+| `handleEvent` session.created | 1542-1545 | No | — |
+| `handleEvent` message.updated | 1547-1550 | No | — |
+| `handleEvent` session.status | 1552-1556 | No (direct inject) | — |
+| `handleEvent` permission/question asked | 1558-1564 | No (direct write) | — |
+| `handleEvent` permission/question replied | 1566-1572 | No | — |
+| `handleEvent` session.idle (verify) | 1574-1591 | Yes (autonomy off) | supervisor |
+| `handleEvent` session.idle (continue) | 1592-1597 | No (autonomy on) | F-013 |
+| `handleEvent` session.deleted / .disposed | 1601-1608 | No | — |
+| `event` `catch { return; }` | 1612-1617 | No | F-019 |
+| `experimental.chat.system.transform` | 1620-1623 | No | F-018 |
+| `tool.mk_goal.execute` | 1634-1636 | Indirect (`__test`) | F-022 |
+| `tool.mk_goal_status.execute` | 1641-1643 | Yes | supervisor |
+| `__test` seam keys | 1658-1674 | Truthy-only | F-020 |
