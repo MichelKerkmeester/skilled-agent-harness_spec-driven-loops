@@ -20,7 +20,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3850fc5b9e80d5b048f71d1b6a71316b65caf87463545afbfa593c3ed3483d70"
       session_id: "goal-m3-continuation-20260628"
       parent_session_id: null
     completion_pct: 100

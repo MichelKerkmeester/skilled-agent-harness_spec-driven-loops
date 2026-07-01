@@ -556,6 +556,19 @@ function extractUsageFromEvent(event) {
   };
 }
 
+function extractErrorFromEvent(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  return [
+    payload?.error,
+    payload?.message?.error,
+    properties.error,
+    properties.info?.error,
+    properties.message?.error,
+    properties.part?.error,
+  ].find((candidate) => candidate && typeof candidate === 'object') || null;
+}
+
 function roleFromObject(value) {
   if (!value || typeof value !== 'object') return null;
   return sanitizeInlineText(value.role || value.author?.role || value.sender?.role || '', 80).toLowerCase() || null;
@@ -722,12 +735,19 @@ async function readGoal(sessionID, rawOptions = {}) {
   }
 }
 
-async function fsyncDirectory(directoryPath) {
+async function fsyncDirectory(directoryPath, rawOptions = {}) {
   let handle = null;
   try {
     handle = await open(directoryPath, 'r');
     await handle.sync();
-  } catch {
+  } catch (error) {
+    if (process.env[DEBUG_ENV] === '1') {
+      await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+        type: 'fsync_directory_error',
+        directory: sanitizeInlineText(directoryPath, 1000),
+        error: redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS),
+      }, { ...rawOptions, stateDir: directoryPath });
+    }
     return;
   } finally {
     if (handle) await handle.close().catch(() => {});
@@ -756,7 +776,7 @@ async function writeGoalAtomic(goal, rawOptions = {}) {
     await handle.close();
     handle = null;
     await rename(tempPath, finalPath);
-    await fsyncDirectory(stateDir);
+    await fsyncDirectory(stateDir, options);
     return normalized;
   } catch (error) {
     if (handle) await handle.close().catch(() => {});
@@ -1005,6 +1025,10 @@ async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const goalAfterActivity = await refreshGoalActivity(sessionID, event, options);
   if (!goalAfterActivity) return null;
+  const error = extractErrorFromEvent(event);
+  if (error?.name === 'APIError' && error?.data?.statusCode === 429) {
+    return recordProviderUsageLimit(sessionID, goalAfterActivity.goalId, options);
+  }
   const usage = extractUsageFromEvent(event);
   const eventGoalID = extractEventGoalID(event);
   return accountUsage(sessionID, eventGoalID || goalAfterActivity.goalId, {
@@ -1219,6 +1243,23 @@ async function recordContinuationBudgetStop(sessionID, goalID, rawOptions = {}) 
       status: 'budget_limited',
       continuationSuppressed: true,
       continuationSuppressedReason: 'budget_exhausted',
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, rawOptions);
+}
+
+async function recordProviderUsageLimit(sessionID, goalID, rawOptions = {}) {
+  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
+  if (!normalizedGoalID) return null;
+  return mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== normalizedGoalID) return current;
+    const timestamp = nowMs(rawOptions);
+    return {
+      ...current,
+      status: 'usage_limited',
+      continuationSuppressed: true,
+      continuationSuppressedReason: 'usage_limited',
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
     };
@@ -1462,10 +1503,12 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
     return [
       `STATUS=OK ACTION=${action}`,
       'goal_present=false',
+      'store_health=no_active_goal',
       `injection_preview=${JSON.stringify(injectionPreview)}`,
     ].join('\n');
   }
 
+  const stateAgeMs = Math.max(0, nowMs(rawOptions) - goal.updatedAtMs);
   const lines = [
     `STATUS=OK ACTION=${action}`,
     'goal_present=true',
@@ -1488,6 +1531,7 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
     `budget_usage_source=${goal.usageSource || 'unavailable'}`,
     `created_at_ms=${goal.createdAtMs}`,
     `updated_at_ms=${goal.updatedAtMs}`,
+    `store_health=state_age_ms:${stateAgeMs}`,
     `last_check=${goal.lastVerifierVerdict || 'not_evaluated'}`,
     `verifier_last_verdict=${goal.lastVerifierVerdict || 'not_evaluated'}`,
     `verifier_last_evidence=${quoteValue(redactEvidence(goal.lastEvidence || '', normalizeOptions(rawOptions).maxEvidenceChars))}`,

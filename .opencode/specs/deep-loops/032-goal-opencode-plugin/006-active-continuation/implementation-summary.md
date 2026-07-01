@@ -12,17 +12,17 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin/006-active-continuation"
     last_updated_at: "2026-06-28T21:46:31Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified default-off active continuation"
+    recent_action: "Unit-tested active continuation; live idle smoke still pending"
     next_safe_action: "Run live idle smoke"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b2f803a737e545a4cf05215f8ed3da62c47de4274e63b268ca69584e302deaa3"
       session_id: "goal-m3-continuation-20260628"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions:
       - "Whether session.idle is observable in one-shot opencode run"
     answered_questions:

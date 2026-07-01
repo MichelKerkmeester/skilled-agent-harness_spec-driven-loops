@@ -193,7 +193,7 @@
     ],
     "causal_summary": "M1 persisted and injected goals, but it did not observe session lifecycle events",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-01T12:06:58.990Z",
+    "last_save_at": "2026-07-01T13:04:42.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36ac645d2483ad738d32e5e15c9b588802cafe8f3e05f38d3f6286ae209e403c",
+    "source_fingerprint": "sha256:ef00e0865ac65e4d13b92b3295b7908ad5513f5c2f1cd1356f96c26b6f87a309",
     "source_doc_hashes": {
-      "spec.md": "d31fbab776c384a7468bb8d15278d7311fb72e534b702cf51eb5ba7bcb1c1e15",
-      "plan.md": "c051a6c16a973a44f789ee62b846a4e7a7fb3fb7a78cc2e647cfe21bf5fec1f5",
-      "tasks.md": "eca1c5998ecdda3a68aea761aec031840632a393225f4d3537a064b8e742244e",
-      "implementation-summary.md": "cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
+      "spec.md": "5ab9153902d8e444bde2a5b5f51e64eb9ebc9599fcaaba482f12c5e2ca8165a9",
+      "plan.md": "911b610c94b95ce6ec7cabd28a6ef20373c3945557efc6f5ed7ea83d851b61d6",
+      "tasks.md": "ae1fb21186485a34cecb2fd426a87ebfb249a84a6f150f430cdd689e9b41833d",
+      "implementation-summary.md": "7a9e45ecbf7b49f7087f7d97f7cf0c398c55714da7f181dcfafeee6ab5619f3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

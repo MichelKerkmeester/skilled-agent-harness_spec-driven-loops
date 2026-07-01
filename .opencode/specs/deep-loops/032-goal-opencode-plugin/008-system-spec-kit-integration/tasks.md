@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f81ea6b5135398414319c9e07f124145b03d0178cbc439bc3e0a5cdc6fbdf38e"
       session_id: "goal-system-spec-kit-integration-20260630"
       parent_session_id: null
     completion_pct: 100

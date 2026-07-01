@@ -188,6 +188,62 @@ async function main() {
     assert.equal(goal.lastAccountedMessageID, null);
     assert.match(goal.lastEvidence, /No usage payload/);
 
+    await helpers.setGoal('session-usage-limited', 'Stop when provider usage is limited', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'usage-limited-goal',
+    });
+    await plugin.event({
+      event: {
+        type: 'message.updated',
+        properties: {
+          sessionID: 'session-usage-limited',
+          info: {
+            error: {
+              name: 'APIError',
+              data: {
+                statusCode: 429,
+                message: 'rate limited',
+                isRetryable: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    goal = await helpers.readGoal('session-usage-limited', { stateDir });
+    assert.equal(goal.status, 'usage_limited');
+    assert.equal(goal.continuationSuppressed, true);
+    assert.equal(goal.continuationSuppressedReason, 'usage_limited');
+
+    await helpers.setGoal('session-non-usage-error', 'Ignore non-usage provider errors', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'non-usage-error-goal',
+    });
+    await plugin.event({
+      event: {
+        type: 'message.updated',
+        properties: {
+          sessionID: 'session-non-usage-error',
+          info: {
+            error: {
+              name: 'ProviderAuthError',
+              data: {
+                providerID: 'openai',
+                message: 'bad key',
+              },
+            },
+          },
+        },
+      },
+    });
+
+    goal = await helpers.readGoal('session-non-usage-error', { stateDir });
+    assert.equal(goal.status, 'active');
+    assert.equal(goal.continuationSuppressed, false);
+
     await plugin.event({
       event: {
         type: 'permission.asked',

@@ -41,21 +41,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/.goal-state/.continuation.log",
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
+      ".opencode/skills/.goal-state/.continuation.log",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": ".continuation.log",
-        "kind": "file",
-        "path": ".opencode/skills/.goal-state/.continuation.log",
-        "source": "derived"
-      },
       {
         "name": "mk-goal.js",
         "kind": "code",
@@ -66,6 +60,12 @@
         "name": "mk-goal-continuation.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": ".continuation.log",
+        "kind": "file",
+        "path": ".opencode/skills/.goal-state/.continuation.log",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
     "created_at": "2026-06-28T20:44:11Z",
-    "last_save_at": "2026-06-30T14:53:42.457Z",
+    "last_save_at": "2026-07-01T13:04:42.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4189ff9c8c897a20c85821f69ebfa207286300c3678cce89a9e15a2a33bf0a31",
+    "source_fingerprint": "sha256:44bb9d511f0b5f1d16bd204ca98d9aac75f25d1f0dc884c61865ba689ce8090a",
     "source_doc_hashes": {
-      "spec.md": "3850fc5b9e80d5b048f71d1b6a71316b65caf87463545afbfa593c3ed3483d70",
-      "plan.md": "1d6b0f045a8462a7f91a27f8f2237b0d60281f0ba99e64f694d78d2439ad7f89",
-      "tasks.md": "6b15815b5e910bb38b1c05ad18d1dc3dd65351fc572deb73ed362f2763e24c92",
-      "implementation-summary.md": "fb11c1fe179612a8ce5e2fc0ea7f840594ba71bf7b9997c837334ef3c1d49add"
+      "spec.md": "c32d97958de2c1ddced5362c7b36e6e4f66a1bc9600cfb4ceaafdfeb77ef1643",
+      "plan.md": "07bf9d91e0ed3717d972ab13af79d5018b41e886795a9ab8fb8853669f3e84c4",
+      "tasks.md": "e8e288eee0c57ae88a90d12615335d206935b0e606d6d1f84363ec487987b53b",
+      "implementation-summary.md": "c02e288f85eb4e09e2b3cfa255cffdce122353489558a426b7a0b60139bf4daa"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,7 +18,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c95d5705ead5885e38f83e2a5834dd27c30dbccc13c839a4c6b94d7262c89427"
       session_id: "goal-m2-supervisor-20260628"
       parent_session_id: null
     completion_pct: 100

@@ -39,7 +39,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/goal.md",
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
       ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "goal.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal.md",
-        "source": "derived"
-      },
       {
         "name": "mk-goal.js",
         "kind": "code",
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The state store and injection renderer needed a safe user-facing control surface",
     "created_at": "2026-06-28T20:44:09Z",
-    "last_save_at": "2026-06-30T14:53:42.450Z",
+    "last_save_at": "2026-07-01T13:04:42.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bebea282cc6374a1a34fc1a41a4c96f8f4491e94c5216f75e8768ce6e6d6cfe",
+    "source_fingerprint": "sha256:85e338079004a00cbb5e834fd143eb5ad8e39e8e95ca7a171385d8caa82e6871",
     "source_doc_hashes": {
-      "spec.md": "80d1d117cdabac445f222cfebbc77cbe8747f9e7e395711688b3c090e709962b",
-      "plan.md": "51b165e229f411c585fb34566e817e6486da9e1d45de34bfb83ae35850be76cc",
-      "tasks.md": "b15e83014f4ba349f944d4384ec4211923491d1798115fcf6c06dfca018bdf31",
-      "implementation-summary.md": "0b8f11b664ed5c350036ae787c81c544572a7e445fe3805fe46dd2c80618f921"
+      "spec.md": "3a9ed5e796806cf03024f67222ee15a68a9603bc58fd42ce01820eb9de111d62",
+      "plan.md": "cb976098bf3cefac0a5197b08d62abed14d0dbb3ea04c29ab11ac0507b3bcf39",
+      "tasks.md": "d53e51c0c1f7aee355be6702d018765d27789f92998f2d0c4411c843e6598d49",
+      "implementation-summary.md": "863cc644285bddad7a303d10198b6d49e62f01dacb2479420b56b4c73ee0eec7"
     },
     "last_active_child_id": null,
     "last_active_at": null

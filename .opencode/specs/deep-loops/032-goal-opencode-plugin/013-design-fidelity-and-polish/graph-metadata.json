@@ -41,6 +41,10 @@
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation/implementation-summary.md",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/implementation-summary.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -54,9 +58,21 @@
         "source": "derived"
       },
       {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,12 +85,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -184,17 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set) is only partially realized: `usagelimited` is declared in the enum and documented as first-class in the feature catalog, but has zero production writers — a planned-but-unimplemented contract",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-01T12:43:03.870Z",
+    "last_save_at": "2026-07-01T13:04:43.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ec1ebb2ceafa36cf0854019bf2309ba888cf51c4b2fb37ae509205e9f9e38cd",
+    "source_fingerprint": "sha256:c7d2418a702061e161df5e1acf9922a40b4f52c78e04abf225afd6a4f170be28",
     "source_doc_hashes": {
       "spec.md": "3848a5af3063870f96519061727ca9683fe6e658dd55d3a326678eeb0e12ba2b",
       "plan.md": "5c09464bfb7dcef4207324b15f1998f01432d3c78b4795e7bd9b12e162fbc4b3",
-      "tasks.md": "226a97232216a3ff965875f74ba5fc92903813b31d5b5771495413e99929ba32",
-      "implementation-summary.md": "da1393c37c687a0a68dd4d7f502b6bcc2a35b4bc5ed5afb9536f63e1bfca2708"
+      "tasks.md": "715da92e6cabb855b25383c2cc453153ccff941fa562e1eb2be0738972dc06fb",
+      "implementation-summary.md": "b6694960815b0003235c622a9ad44344e6007e8decc276dbae7b7963b46b8ae4"
     },
     "last_active_child_id": null,
     "last_active_at": null

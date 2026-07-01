@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
       - ".opencode/skills/system-spec-kit/references/config/hook_system.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d7f9897a1b0c171fbcea51fcbca27de263b1d59012460d22d05fae9c695d2e65"
       session_id: "goal-system-spec-kit-integration-20260630"
       parent_session_id: null
     completion_pct: 100
