@@ -23,7 +23,7 @@ This is the **structural-invocation** counterpart to the prior **detection** res
 - GPT-backed models absorb the LEAF role, re-dispatch incorrectly, or advance state without a real leaf. Claude is more faithful because it weights the role/protocol contract more strongly.
 - Three mis-route modes: A (general/build absorbs leaf role), B (leaf re-dispatches from injected prose), C (loop advances on fabricated JSONL without a canonical narrative file).
 
-Prior research packet: `.opencode/specs/deep-loops/030-agent-loops-improved/010-gpt-deep-agent-routing/research/research.md` (read it; it is the evidence base).
+Prior research packet: `.opencode/specs/deep-loops/030-agent-loops-improved/010-gpt-deep-agent-routing/research/research.md` (MISSING FROM DISK as of this phase; treat the taxonomy and fix ranking as operator-asserted axioms unless recovered).
 
 ---
 
@@ -41,7 +41,7 @@ Each question is a research thread. Prioritize in order; answer with file:line e
 
 **KQ5 — Pre-route vs. negotiate.** What concrete prompt-structure changes convert "runtime role negotiation" into "up-front pre-routing"? Where in the deep command YAMLs / skill SKILL.md files is the role currently negotiated, and what would a pre-resolved target look like? Propose specific, minimal edits.
 
-**KQ6 — ai-council dual reachability.** `deep-ai-council` must be reachable both (a) as a sub-agent target of the DEEP primary agent and (b) directly as its own primary agent. Today `ai-council.md` is `mode: primary`. How should the DEEP router include council without breaking direct invocability? Cite `.opencode/agents/ai-council.md`.
+**KQ6 — ai-council dual reachability.** `deep-ai-council` must be reachable both (a) as a sub-agent target of the DEEP primary agent and (b) directly as its own primary agent. Today `ai-council.md` is `mode: all`. How should the DEEP router include council without breaking direct invocability? Cite `.opencode/agents/ai-council.md`.
 
 **KQ7 — Cross-runtime parity.** What must be mirrored across `.opencode/agents/`, `.claude/agents/`, and `.codex/agents/`? Is there a generation/sync convention, or are these hand-mirrored? What breaks if they drift?
 
@@ -58,7 +58,7 @@ Each question is a research thread. Prioritize in order; answer with file:line e
 **Agent surfaces (OpenCode profile):**
 - `.opencode/agents/orchestrate.md` — primary orchestrator; dispatches LEAF agents via `task`; `mode: primary`; enforces single-hop (max depth 2).
 - `.opencode/agents/deep-research.md`, `deep-review.md`, `deep-context.md` — deep LEAF sub-agents.
-- `.opencode/agents/ai-council.md` — `mode: primary` council agent.
+- `.opencode/agents/ai-council.md` — `mode: all` council agent.
 - `.opencode/agents/CONTEXT.md` — context agent (LEAF, read-only retrieval).
 - **No `deep.md` primary agent exists yet** — this is the proposed addition.
 
@@ -70,7 +70,7 @@ Each question is a research thread. Prioritize in order; answer with file:line e
 - `.opencode/skills/deep-loop-workflows/SKILL.md` — mode-registry router (research/review/context/council/improvement). The DEEP primary agent should mirror this routing logic.
 - `.opencode/skills/deep-loop-runtime/` — shared executor/state/validator runtime.
 
-**Prior research:** `.opencode/specs/deep-loops/030-agent-loops-improved/010-gpt-deep-agent-routing/research/research.md` — 10-iteration synthesis with mis-route taxonomy and fix ranking.
+**Prior research:** `.opencode/specs/deep-loops/030-agent-loops-improved/010-gpt-deep-agent-routing/research/research.md` — cited 10-iteration synthesis with mis-route taxonomy and fix ranking; missing from disk as of this phase.
 
 **Prior plan:** `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/spec.md` — the implementation spec this research informs.
 

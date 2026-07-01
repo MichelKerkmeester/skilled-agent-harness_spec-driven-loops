@@ -703,7 +703,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |
 | `@deep-improvement` | `deep-improvement.md` | LEAF proposal mutator | Bounded candidate generation, evaluator-first promotion discipline |
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
-| `@ai-council` | `ai-council.md` | Planning agent, `mode: all` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
+| `@ai-council` | `ai-council.md` | LEAF planning subagent, `mode: subagent` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@markdown` | `markdown.md` | LEAF write-capable documentation executor | Template-first `/create:*`, spec-doc, and scoped markdown authoring |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |
 | `@review` | `review.md` | LEAF review subagent | Findings-first code review, quality rubric, read-only target discipline |

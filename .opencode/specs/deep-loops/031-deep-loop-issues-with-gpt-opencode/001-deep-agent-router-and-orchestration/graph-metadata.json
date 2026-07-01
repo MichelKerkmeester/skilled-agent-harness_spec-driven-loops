@@ -3,18 +3,7 @@
   "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
   "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
   "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
-  "children_ids": [
-    "001-route-proof-validation",
-    "002-agent-dispatch-hardening",
-    "003-command-pre-route-headers",
-    "004-gpt-verification-smoke",
-    "005-host-hard-identity-fix5",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/001-route-proof-validation",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/002-agent-dispatch-hardening",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/003-command-pre-route-headers",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/005-host-hard-identity-fix5"
-  ],
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -45,15 +34,23 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      ".opencode/agents/deep.md",
       ".opencode/agents/orchestrate.md",
       "plan.md",
       "research/research.md",
+      ".claude/agents/deep.md",
       ".claude/agents/orchestrate.md",
       "spec.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "deep.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep.md",
+        "source": "derived"
+      },
       {
         "name": "orchestrate.md",
         "kind": "doc",
@@ -109,12 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -122,6 +113,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -191,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Deep Route",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council)",
     "created_at": "2026-06-30T11:47:52.750Z",
-    "last_save_at": "2026-06-30T16:37:30.738Z",
+    "last_save_at": "2026-07-01T05:49:16.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +202,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ebb716750f65a3688f7d3a42600c8b263685352ac7eb0a7116df9856de5c20fa",
+    "source_fingerprint": "sha256:27434acc1e65b84d560a5875dff4da0a20dd49469d09f872a6f6f28819783a28",
     "source_doc_hashes": {
-      "spec.md": "85c930dcea6a352965ba60b1000b7741b6d59f9073c49755f4b1cec94ee3a3ab",
+      "spec.md": "9936f342d8a9671c882e605b9cd36ec45f3a04af6514f7fac5fd41ef03ffbef9",
       "plan.md": "39f9bdb86736b9893773587b687d20243629ff3ad2f7d10869035d77cc9a3162",
       "tasks.md": "67ec984ff1a3bc9287bfabfa6a74a77e7e00368cdfd1302a8fcbdf6ee5325fac",
-      "implementation-summary.md": "e5cdc09724df36d27109b6f04dbeac68f1d37f72091842e707fc07d1f299fa7a",
+      "implementation-summary.md": "e463cd9e9860860486a12c4b18513a28c6cc3d4fea6eda6c23a2762a92645046",
       "research/research.md": "075024bd0222550a7cabe9996cd7617b00455b6798917c472c6512beaf6167e3"
     },
     "last_active_child_id": null,

@@ -65,3 +65,21 @@ This phase shipped the Skill Advisor reliability-learning path as a shadow-only 
 - Build the runtime micro-benchmark that must clear before any live lane weight moves.
 - Wire a daemon reload trigger so the warm process picks up new shadow weights without a restart (Q-002).
 - Capture a real per-lane attribution signal before quoting any benefit or live-promotion claim.
+
+## 2026-07-01
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor`
+
+### Summary
+
+A deep-history correction to the prior drift-audit record: `shadow-weight-promoter.ts` (339 lines) was committed alongside `beta-reliability.ts` at commit `10c5b61493`, then deleted at commit `8efcde0e6b`, the same commit that removed `outcome-weighted-rerank.ts`, the promoter's only consumer.
+
+### Fixed
+
+- Corrected a prior drift-audit pass-1 finding that stated this code "was never committed." Git history disproves that claim: the file was committed and later deleted alongside its only consumer. This entry replaces that record with the verified history.
+
+### Follow-Ups
+
+- Q-002 (daemon reload semantics) remains open and unresolved, independent of the deletion.
+- No revival of `shadow-weight-promoter.ts` is planned. The operator explicitly declined to revive it.

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/009-byte-offset-log-regions",
-  "description": "Log analysis tools must scan and parse entire transcript files by markdown headers to locate a specific iteration's output; on long runs with many ite",
+  "description": "Log analysis tools must scan and parse entire transcript files by markdown headers to locate a specific iteration's output; on long runs with many",
   "keywords": [
     "log",
     "analysis",
@@ -20,10 +20,9 @@
     "output",
     "long",
     "runs",
-    "many",
-    "ite"
+    "many"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.308Z",
+  "lastUpdated": "2026-07-01T12:31:46.942Z",
   "specId": "009",
   "folderSlug": "byte-offset-log-regions",
   "parentChain": [

@@ -36,7 +36,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-> **STATUS: COMPLETE (no-go).** The substrate/root work was delivered shadow-only and default-off. Semantic dedup/merge, cross-pair invalidation and post-reindex benchmark/promotion stayed pending, then the whole edge flag family and its code were removed in the flag-resolution reckoning because the layer stayed recall-inert at K=20. See Known Limitations item 1 for the full no-go detail.
+> **STATUS: NO-GO (PARTIAL).** The substrate/root work was delivered shadow-only and default-off. Semantic dedup/merge, cross-pair invalidation and post-reindex benchmark/promotion stayed pending, then the whole edge flag family and its code were removed in the flag-resolution reckoning because the layer stayed recall-inert at K=20. See Known Limitations item 1 for the full no-go detail.
 
 ---
 
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer |
-| **Status** | Complete |
+| **Status** | No-Go (Partial) |
 | **Completed** | 2026-06-19 (substrate landed shadow-only, then removed as a no-go) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

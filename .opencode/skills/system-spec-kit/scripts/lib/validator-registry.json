@@ -16,6 +16,14 @@
     "description": "Rejects unfilled template placeholders in authored spec documents."
   },
   {
+    "rule_id": "COMMENT_HYGIENE_MARKER",
+    "aliases": ["COMMENT_HYGIENE"],
+    "script_path": "rules/check-comment-hygiene.sh",
+    "severity": "error",
+    "category": "authored_template",
+    "description": "Rejects ephemeral finding markers inside HTML comments in authored spec documents."
+  },
+  {
     "rule_id": "SECTIONS_PRESENT",
     "aliases": ["SECTIONS"],
     "script_path": "rules/check-sections.sh",

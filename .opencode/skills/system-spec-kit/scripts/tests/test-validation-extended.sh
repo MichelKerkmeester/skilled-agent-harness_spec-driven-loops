@@ -692,6 +692,11 @@ if begin_category "Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)";
     run_isolated_rule_test "In memory/ (skipped)" "check-placeholders.sh" "048-with-memory-placeholders" "pass" 1
 fi
 
+if begin_category "Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh)"; then
+    run_isolated_rule_test "No markers" "check-comment-hygiene.sh" "070-comment-hygiene-marker" "pass" 1
+    run_isolated_rule_test "Marker detected" "check-comment-hygiene.sh" "071-comment-hygiene-marker-violation" "fail" 1
+fi
+
 if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
     run_isolated_rule_test "Optional template anchors warn in shell fallback" "check-anchors.sh" "053-template-compliant-level2" "warn" 2
     run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1

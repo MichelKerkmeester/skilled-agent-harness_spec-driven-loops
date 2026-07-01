@@ -99,6 +99,23 @@ describe('T009 extractDescription', () => {
     const result = extractDescription(longTitle);
     expect(result.length).toBe(150);
   });
+
+  it('does not cut legacy descriptions mid-word when the drift gate is off', () => {
+    const previous = process.env.SPECKIT_GENERATED_METADATA_DRIFT_GATE;
+    process.env.SPECKIT_GENERATED_METADATA_DRIFT_GATE = 'false';
+    try {
+      const prefix = 'word '.repeat(29);
+      const content = `## Problem Statement\n\n${prefix}resilience`;
+
+      expect(extractDescription(content)).toBe(prefix.trim());
+    } finally {
+      if (previous === undefined) {
+        delete process.env.SPECKIT_GENERATED_METADATA_DRIFT_GATE;
+      } else {
+        process.env.SPECKIT_GENERATED_METADATA_DRIFT_GATE = previous;
+      }
+    }
+  });
 });
 
 /* ───────────────────────────────────────────────────────────────

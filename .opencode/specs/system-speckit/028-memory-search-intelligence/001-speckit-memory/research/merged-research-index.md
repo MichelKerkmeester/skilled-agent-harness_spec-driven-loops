@@ -2,7 +2,7 @@
 
 ## 028 research phases folded into subsystem parents
 
-Packet 028 now has four top-level children. These archives preserve the research-only phases that were removed as top-level children.
+Packet 028 now has eight top-level children. These archives preserve the research-only phases that were removed as top-level children.
 
 | Source phase | Merged research location | Routing reason |
 |--------------|--------------------------|----------------|

@@ -9,18 +9,34 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [],
     "key_topics": [],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
     "entities": [],
-    "causal_summary": "Phase 1: opencode-temp-worker-reaping",
+    "causal_summary": "OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully",
     "created_at": "2026-06-30T07:44:28Z",
     "last_save_at": "2026-06-30T07:44:28Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a65d5e677ec1067830d8d3e633a2b462c12c41a5840b74da757f802eec8529c",
+    "source_doc_hashes": {
+      "spec.md": "f9991c76638892b76f3de625b7c4a7b790168bff86d29978b28341c36e8e0c2f",
+      "plan.md": "90eec89c212803d3131cbc04b282ef4380e0dab6acd7d5bbc539c0cf161ff06a",
+      "tasks.md": "0f5341f62ed1158d3f25614b3bcae00dd87e7ff28510f06f299557facb93d5a4",
+      "implementation-summary.md": "2476348dfc17181be28781ea1863b107be8de9b05a329ed3f938630b18e7033c"
+    }
   }
 }

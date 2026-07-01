@@ -101,15 +101,15 @@
     ],
     "causal_summary": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, collapsed accept/ship promotion steps, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-06-30T14:53:29.777Z",
+    "last_save_at": "2026-07-01T11:50:21.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9d56b3b292c52ad030b8a965b0271106f479c2dd4cef5e0aae160db96a3c0cce",
+    "source_fingerprint": "sha256:3c4a03a0a05c5ed646447739f94b9df71385d14aace2a2713b3fb6b275785520",
     "source_doc_hashes": {
-      "spec.md": "41992fe5c5c1d6b5c08fef11c31973eb65070ffc7d364bd0ab8205763bdfd35d"
+      "spec.md": "334fd33d95bc8a721c66c29899670c69e6eb674a9cfa8ad6e1788deb4043206c"
     },
     "last_active_child_id": null,
     "last_active_at": null

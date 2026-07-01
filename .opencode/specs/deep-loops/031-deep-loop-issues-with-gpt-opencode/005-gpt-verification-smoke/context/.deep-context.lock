@@ -1,0 +1,11 @@
+{
+  "owner_pid": 70981,
+  "started_at_iso": "2026-06-30T20:45:20.009Z",
+  "ttl_ms": 3600000,
+  "last_heartbeat_iso": "2026-06-30T20:45:20.009Z",
+  "packet_id": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-06-30T20:45:20.009Z",
+  "acquire_nonce": "70981-1782852320010-cae90bd3-c77e-46d7-9549-69c242fbd543"
+}

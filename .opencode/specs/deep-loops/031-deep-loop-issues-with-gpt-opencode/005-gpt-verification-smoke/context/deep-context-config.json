@@ -1,0 +1,47 @@
+{
+  "scope": "Phase 004 route proof smoke for context",
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke",
+  "loopType": "context",
+  "executionMode": "auto",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.01,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxToolCallsPerIteration": 12,
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "fanout": {
+    "mode": "by-model-shared-scope",
+    "concurrency": 1,
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "openai/gpt-5.5",
+        "reasoningEffort": "high",
+        "label": "gpt-context-smoke"
+      }
+    ]
+  },
+  "report": {
+    "path": "context/context-report.md",
+    "jsonPath": "context/context-report.json"
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "context/findings-registry.json",
+    "dashboardFile": "context/deep-context-dashboard.md"
+  },
+  "createdAt": "2026-06-30T20:45:20.009Z",
+  "status": "partial",
+  "lineage": {
+    "sessionId": "deep-context-20260630T204520Z-gpt-context-smoke",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

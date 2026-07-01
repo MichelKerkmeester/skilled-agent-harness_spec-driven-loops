@@ -377,6 +377,8 @@ workflow:
         ensure_dirs: "mkdir -p {state_paths.prompt_dir}/iter-{current_iteration} {state_paths.seat_dir}/iter-{current_iteration}"
         for_each: "seat in config.fanout.executors"
         contract_per_seat: |
+          Resolved route: mode=context; target_agent=@deep-context; execution=parallel_read_only_sweep; seat_label={seat.label}; do_not_run_full_loop=true
+
           Every seat prompt MUST carry the four-part lineage contract (a seat told only "analyze"
           returns generic noise):
             1. gather-subject: "{scope}"
@@ -448,6 +450,8 @@ workflow:
                 "run phase_init/phase_main_loop/phase_synthesis" text). The host then writes each seat's
                 returned findings JSON to {state_paths.seat_dir}/iter-{current_iteration}/{seat.label}.json.
               one_shot_prompt_contract: |
+                Resolved route: mode=context; target_agent=@deep-context; execution=parallel_read_only_sweep; seat_label={seat.label}; do_not_run_full_loop=true
+
                 Each seat's one-shot prompt carries the four-part lineage contract from
                 step_render_seat_prompts (gather-subject {scope} + SHARED current_focus + known-context +
                 seat_output_schema) and instructs the seat to return ONLY the structured-finding JSON for
@@ -526,10 +530,35 @@ workflow:
           content: "Iteration {current_iteration} narrative: focus swept, per-seat contribution, merged findings with agreement, contradictions, slice coverage delta."
         append_iteration_jsonl:
           target: "{state_paths.state_log}"
-          record: '{"type":"iteration","run":{current_iteration},"mode":"context","status":"evidence","focus":"{current_focus_label}","findingsCount":{merged_findings_count},"newAgreementEligible":{new_agreement_eligible_count},"agreementEligible":{cumulative_agreement_eligible_count},"sliceCoverage":{slice_coverage},"reuseCatalogCoverage":{reuse_catalog_coverage},"agreementRate":{agreement_rate},"relevanceFloor":{relevance_floor},"dependencyCompleteness":{dependency_completeness},"contradictions":{contradictions_count},"seatsSucceeded":{seats_succeeded_count},"durationMs":{sweep_duration_ms},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          record: '{"type":"iteration","run":{current_iteration},"mode":"context","target_agent":"deep-context","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=context target_agent=deep-context","status":"evidence","focus":"{current_focus_label}","findingsCount":{merged_findings_count},"newAgreementEligible":{new_agreement_eligible_count},"agreementEligible":{cumulative_agreement_eligible_count},"sliceCoverage":{slice_coverage},"reuseCatalogCoverage":{reuse_catalog_coverage},"agreementRate":{agreement_rate},"relevanceFloor":{relevance_floor},"dependencyCompleteness":{dependency_completeness},"contradictions":{contradictions_count},"seatsSucceeded":{seats_succeeded_count},"durationMs":{sweep_duration_ms},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
         append_delta:
           path: "{state_paths.delta_pattern}"
-          note: "Must contain at least one record whose type === 'iteration' (host-written) so state can be rehydrated after a partial run."
+          note: "Must contain at least one record whose type === 'iteration' (host-written) with the same route-proof fields as the state log so state can be rehydrated after a partial run."
+        post_dispatch_validate:
+          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          assert_exists: "{state_paths.iteration_pattern}"
+          assert_appended: "{state_paths.state_log}"
+          assert_jsonl_fields: [type, run, mode, status, focus, target_agent, agent_definition_loaded, resolved_route]
+          assert_canonical_type: "iteration"
+          assert_delta_file_exists: "{state_paths.delta_pattern}"
+          assert_delta_file_has_iteration_record: true
+          route_proof:
+            mode: context
+            target_agent: deep-context
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=context target_agent=deep-context"
+          failure_reasons:
+            - iteration_file_missing
+            - iteration_file_empty
+            - jsonl_not_appended
+            - jsonl_missing_fields
+            - jsonl_parse_error
+            - jsonl_wrong_type
+            - delta_file_missing
+            - delta_file_empty
+            - delta_file_missing_iteration_record
+            - route_proof_missing
+            - route_proof_mismatch
 
       step_graph_upsert:
         action: "Persist this iteration's coverage-graph nodes/edges (loop_type=context)"

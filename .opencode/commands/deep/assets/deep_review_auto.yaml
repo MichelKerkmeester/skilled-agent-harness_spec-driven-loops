@@ -392,7 +392,6 @@ workflow:
           stuckThreshold: 2
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
-          # <!-- F-010-B5-04 -->
           # Honor the parsed --no-resource-map flag from deep-review.md:71 (default true; false when flag is set).
           # The markdown command parses $ARGUMENTS and binds {resource_map_emit} before this step runs.
           resource_map.emit: "{resource_map_emit}"
@@ -405,7 +404,6 @@ workflow:
       step_create_state_log:
         action: "Initialize JSONL state log with config record including review fields and lineage metadata"
         note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
-        # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
         content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
@@ -901,7 +899,7 @@ workflow:
               --pure \
               --dir "{repo_root}" \
               {optional_variant_flag} \
-              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
+              "$(printf '%s\n\n' 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'; cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
               </dev/null
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
@@ -920,7 +918,12 @@ workflow:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
+          assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs, target_agent, agent_definition_loaded, resolved_route]
+          route_proof:
+            mode: review
+            target_agent: deep-review
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=review target_agent=deep-review"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
@@ -942,6 +945,8 @@ workflow:
             - v2_shallow_finding_details
             - delta_iteration_id_mismatch
             - state_delta_iteration_mismatch
+            - route_proof_missing
+            - route_proof_mismatch
           warning_surface:
             source: "result.warnings"
             action: "emit schema_advisory canonical conflict event"
@@ -978,7 +983,6 @@ workflow:
           - traceability_checks: "From latest JSONL iteration record when present"
         on_missing_outputs:
           action: "Mark iteration as 'error', continue to next"
-          # <!-- F-010-B5-03 -->
           # Canonical iteration record: include sessionId, generation, durationMs so the reducer can persist
           # the failure without dropping the iteration. Schema source: state_format.md §Iteration Records.
           append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}'

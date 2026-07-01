@@ -26,6 +26,7 @@ import {
   parseIndexScopePolicyFromFingerprint,
   resolveIndexScopePolicy,
 } from '../lib/index-scope-policy.js';
+import { CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV } from '../lib/edge-confidence-flags.js';
 import {
   closeDb,
   ensureFreshFiles,
@@ -111,6 +112,25 @@ function mapResolver(entries: Record<string, string>): ModuleResolver {
       return entries[specifier];
     },
   };
+}
+
+function withEdgeConfidenceDifferentiation<T>(value: string | undefined, callback: () => T): T {
+  const previousValue = process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+  if (value === undefined) {
+    delete process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+  } else {
+    process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV] = value;
+  }
+
+  try {
+    return callback();
+  } finally {
+    if (previousValue === undefined) {
+      delete process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+    } else {
+      process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV] = previousValue;
+    }
+  }
 }
 
 function persistIndexResults(results: ParseResult[]): void {
@@ -1477,6 +1497,99 @@ describe('structural-indexer', () => {
           process.env.SPECKIT_PARSER = previousParser;
         }
       }
+    });
+
+    it('differentiates same-file CALLS metadata for a single candidate when enabled', () => {
+      withEdgeConfidenceDifferentiation('true', () => {
+        const content = [
+          'function helper() { return 1; }',
+          '',
+          'function run() {',
+          '  return helper();',
+          '}',
+        ].join('\n');
+        const nodes = capturesToNodes([
+          { name: 'helper', kind: 'function', startLine: 1, endLine: 1, startColumn: 0, endColumn: 31 },
+          { name: 'run', kind: 'function', startLine: 3, endLine: 5, startColumn: 0, endColumn: 1 },
+        ], '/test.ts', 'typescript', content);
+        const helper = nodes.find((node) => node.name === 'helper' && node.kind === 'function');
+        const edges = extractEdges(nodes, content.split('\n'));
+        const callEdge = edges.find((edge) => edge.edgeType === 'CALLS' && edge.targetId === helper?.symbolId);
+
+        expect(callEdge?.metadata).toMatchObject({
+          confidence: 0.75,
+          detectorProvenance: 'heuristic',
+          evidenceClass: 'INFERRED',
+        });
+      });
+    });
+
+    it('differentiates same-file CALLS metadata for multiple same-name candidates when enabled', () => {
+      withEdgeConfidenceDifferentiation('true', () => {
+        const content = [
+          'function helper() { return 1; }',
+          'const helper = 1;',
+          '',
+          'function run() {',
+          '  return helper();',
+          '}',
+        ].join('\n');
+        const nodes = capturesToNodes([
+          { name: 'helper', kind: 'function', startLine: 1, endLine: 1, startColumn: 0, endColumn: 31 },
+          { name: 'helper', kind: 'variable', startLine: 2, endLine: 2, startColumn: 0, endColumn: 17 },
+          { name: 'run', kind: 'function', startLine: 4, endLine: 6, startColumn: 0, endColumn: 1 },
+        ], '/test.ts', 'typescript', content);
+        const helper = nodes.find((node) => node.name === 'helper' && node.kind === 'function');
+        const edges = extractEdges(nodes, content.split('\n'));
+        const callEdge = edges.find((edge) => edge.edgeType === 'CALLS' && edge.targetId === helper?.symbolId);
+
+        expect(callEdge?.metadata).toMatchObject({
+          confidence: 0.35,
+          detectorProvenance: 'heuristic',
+          evidenceClass: 'AMBIGUOUS',
+        });
+      });
+    });
+
+    it('preserves legacy same-file CALLS metadata with confidence differentiation disabled', () => {
+      withEdgeConfidenceDifferentiation(undefined, () => {
+        const singleCandidateContent = [
+          'function helper() { return 1; }',
+          '',
+          'function run() { return helper(); }',
+        ].join('\n');
+        const singleCandidateNodes = capturesToNodes([
+          { name: 'helper', kind: 'function', startLine: 1, endLine: 1, startColumn: 0, endColumn: 31 },
+          { name: 'run', kind: 'function', startLine: 3, endLine: 3, startColumn: 0, endColumn: 35 },
+        ], '/single.ts', 'typescript', singleCandidateContent);
+
+        const multiCandidateContent = [
+          'function helper() { return 1; }',
+          'const helper = 1;',
+          '',
+          'function run() { return helper(); }',
+        ].join('\n');
+        const multiCandidateNodes = capturesToNodes([
+          { name: 'helper', kind: 'function', startLine: 1, endLine: 1, startColumn: 0, endColumn: 31 },
+          { name: 'helper', kind: 'variable', startLine: 2, endLine: 2, startColumn: 0, endColumn: 17 },
+          { name: 'run', kind: 'function', startLine: 4, endLine: 4, startColumn: 0, endColumn: 35 },
+        ], '/multi.ts', 'typescript', multiCandidateContent);
+        const callEdges = [
+          ...extractEdges(singleCandidateNodes, singleCandidateContent.split('\n')),
+          ...extractEdges(multiCandidateNodes, multiCandidateContent.split('\n')),
+        ].filter((edge) => edge.edgeType === 'CALLS');
+
+        expect(callEdges).toHaveLength(2);
+        for (const edge of callEdges) {
+          expect(edge.metadata).toMatchObject({
+            confidence: 0.8,
+            detectorProvenance: 'heuristic',
+            evidenceClass: 'INFERRED',
+            reason: 'heuristic-name-match',
+            step: 'resolve',
+          });
+        }
+      });
     });
 
     it('round-trips graph-local reason and step metadata on extracted edges', async () => {

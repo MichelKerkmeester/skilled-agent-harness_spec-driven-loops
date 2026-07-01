@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
-  "description": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts c",
+  "description": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts",
   "keywords": [
     "near-duplicate",
     "findings",
@@ -19,7 +19,7 @@
     "graph",
     "over-counts"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.332Z",
+  "lastUpdated": "2026-07-01T12:31:46.964Z",
   "specId": "014",
   "folderSlug": "coverage-graph-fuzzy-merge",
   "parentChain": [

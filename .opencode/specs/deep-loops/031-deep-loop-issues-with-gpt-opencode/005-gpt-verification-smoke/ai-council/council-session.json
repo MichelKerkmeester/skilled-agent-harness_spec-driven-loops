@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "session_id": "council-session-2026-06-30T21-00-52-770Z",
+  "deliberationTopic": "Phase 004 route proof smoke for ai-council",
+  "topics": [
+    "Phase 004 route proof smoke for ai-council"
+  ],
+  "maxRoundsPerTopic": 1,
+  "maxTopicsPerSession": 1,
+  "saturationThreshold": 0.2,
+  "convergenceThreshold": 0.2,
+  "executor": {
+    "mode": "external-cli",
+    "cli": "cli-opencode",
+    "model": "openai/gpt-5.5",
+    "reasoning": "high",
+    "service_tier": "",
+    "timeout": 900
+  },
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke",
+  "workflowAsset": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+  "generalAgentVerified": true,
+  "agentDefinitionLoaded": true,
+  "agentDefinitionPath": ".opencode/agents/ai-council.md",
+  "createdAt": "2026-06-30T21:00:52.770Z",
+  "status": "failed",
+  "failure": {
+    "phase": "phase_loop.step_orchestrate_session.pre_dispatch",
+    "reason": "cli-opencode self-invocation guard blocked literal opencode subprocess from inside OpenCode",
+    "selfInvocationSignal": {
+      "layer": "env",
+      "value": "OPENCODE_PID"
+    }
+  }
+}

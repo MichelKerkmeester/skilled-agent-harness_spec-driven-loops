@@ -1,0 +1,12 @@
+All lineage artifacts are present and complete:
+- `deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, `deep-research-findings-registry.json`
+- `deep-research-state.jsonl` (config record + 10 iteration records + `maxIterationsReached` event)
+- `iterations/iteration-001.md` … `iteration-010.md` (10)
+- `deltas/iter-001.jsonl` … `iter-010.jsonl` (10)
+- `research.md` (synthesis)
+
+The `opus-critical` lineage ran phase_init → phase_main_loop (10/10 iterations, `stopPolicy: max-iterations`, convergence treated as telemetry only) → phase_synthesis, writing exclusively inside the bound `opus-critical` artifact dir. It performed a genuine non-GPT critical re-review grounded in the operator-confirmed symptom set (§9.1), verifying every load-bearing claim against source `file:line` rather than the prior syntheses.
+
+**Headline result:** independently **overturned** `sonnet-critical`'s single most-confident claim — the ai-council route-proof is *not* a "guaranteed FAIL." Reading the record emitter (`orchestrate-topic.cjs:310-313`) the prior critical round never opened, `record.mode` is a hardcoded `'council'` that matches the validator (`deep_ai-council_auto.yaml:132-136`), so `validateRouteProofRecord` **passes**. The real defect is re-characterized as a naming-integrity false-negative (route-proof green on a `target_agent` naming no real agent), live and uncommitted. Also: resolved sonnet-critical's open plugin fail-closed residual, surfaced a new default-export build landmine, confirmed the KQ4 NDP violation (sharpening its origin to `glm-max:55`), shrank the KQ4 fix, confirmed Mode D, and confirmed "wait on FIX-5" via a bias-independent coverage argument.
+
+FANOUT_LINEAGE_COMPLETE:opus-critical

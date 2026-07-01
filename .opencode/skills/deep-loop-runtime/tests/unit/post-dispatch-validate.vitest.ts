@@ -60,6 +60,91 @@ describe('post-dispatch-validate', () => {
     });
   });
 
+  it('rejects schema-valid records when the state-log route proof has the wrong mode', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+        mode: 'review',
+        target_agent: 'deep-research',
+        agent_definition_loaded: true,
+        resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+          routeProof: {
+            mode: 'research',
+            targetAgent: 'deep-research',
+            resolvedRoute: 'Resolved route: mode=research target_agent=deep-research',
+          },
+        }),
+      ).toEqual({
+        ok: false,
+        reason: 'route_proof_mismatch',
+        details: "state_log.mode='review' expected 'research'",
+      });
+    });
+  });
+
+  it('rejects schema-valid records when the delta route proof has the wrong target agent', () => {
+    withTempPaths(({ tempDir, iterationFile, stateLogPath }) => {
+      const deltaFilePath = join(tempDir, 'iter-001.jsonl');
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const stateRecord = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+        mode: 'research',
+        target_agent: 'deep-research',
+        agent_definition_loaded: true,
+        resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      };
+      const deltaRecord = {
+        ...stateRecord,
+        target_agent: 'deep-review',
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(stateRecord)}\n`, 'utf8');
+      writeFileSync(deltaFilePath, `${JSON.stringify(deltaRecord)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+          deltaFilePath,
+          routeProof: {
+            mode: 'research',
+            targetAgent: 'deep-research',
+            resolvedRoute: 'Resolved route: mode=research target_agent=deep-research',
+          },
+        }),
+      ).toEqual({
+        ok: false,
+        reason: 'route_proof_mismatch',
+        details: "delta.target_agent='deep-review' expected 'deep-research'",
+      });
+    });
+  });
+
   it('stamps byte log region metadata onto a validated iteration record', () => {
     const hermetic = createHermeticEnv('post-dispatch-log-region');
     try {

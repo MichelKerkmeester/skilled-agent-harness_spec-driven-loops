@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/003-deep-loop-workflows",
-  "description": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration referenc",
+  "description": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration",
   "keywords": [
     "deep-loop-workflows",
     "layer",
@@ -15,11 +15,10 @@
     "distinct",
     "gaps",
     "identified",
-    "51-iteration",
-    "referenc"
+    "51-iteration"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.355Z",
-  "specId": "004",
+  "lastUpdated": "2026-07-01T12:31:46.990Z",
+  "specId": "003",
   "folderSlug": "deep-loop-workflows",
   "parentChain": [
     "deep-loops",

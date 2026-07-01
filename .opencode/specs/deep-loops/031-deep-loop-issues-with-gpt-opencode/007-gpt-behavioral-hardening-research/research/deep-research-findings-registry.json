@@ -1,0 +1,276 @@
+{
+  "mergedFrom": [
+    "glm-critical",
+    "glm-max",
+    "gpt-critical",
+    "gpt-fast-high",
+    "opus-critical",
+    "sonnet-critical"
+  ],
+  "openQuestions": [
+    {
+      "id": "fail-closed-plugin-capability",
+      "question": "Can OpenCode `tool.execute.before` reject a Task call directly, or only mutate args?",
+      "status": "open",
+      "source": "iteration-005",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "mode-d-magnitude",
+      "question": "How often does Phase-0/advisory-gate literalism occur across all deep modes and models?",
+      "status": "open",
+      "source": "iteration-006",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "CR-2",
+      "question": "Mechanism + concrete fix for each confirmed symptom, cited file:line",
+      "status": "open",
+      "_lineages": [
+        "glm-critical"
+      ]
+    },
+    {
+      "id": "CR-1",
+      "question": "Name every soft/deferential/self-protective framing in gpt-fast-high; correct each",
+      "status": "open",
+      "_lineages": [
+        "glm-critical"
+      ]
+    },
+    {
+      "id": "CR-3",
+      "question": "Sharpen / find weak point / confirm each consolidated KQ under adversarial pressure",
+      "status": "open",
+      "_lineages": [
+        "glm-critical"
+      ]
+    },
+    {
+      "id": "CR-4",
+      "question": "Update prior 'not proven' verdicts the operator evidence now settles",
+      "status": "open",
+      "_lineages": [
+        "glm-critical"
+      ]
+    },
+    {
+      "id": "CR-5",
+      "question": "Where did glm-max + gpt-fast-high agree for the wrong reason (shared blind spot)?",
+      "status": "open",
+      "_lineages": [
+        "glm-critical"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "operator-symptoms-real",
+      "answer": "Confirmed first-hand by operator; route-proof evidence is no longer required to acknowledge the behavioral problem.",
+      "source": "research-prompt.md:91-104",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "orchestrate-deep-fix",
+      "answer": "NDP-safe fix is registry reuse inside orchestrate plus direct leaf dispatch, not a depth-1 Task dispatch to primary @deep.",
+      "source": "iteration-004",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "phase0-mode-d",
+      "answer": "Phase 0 general-agent self-assessment is a concrete Mode-D mechanism and already fired in phase 005 research smoke.",
+      "source": "iteration-002",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "council-route-proof",
+      "answer": "The ai-council route-proof issue is a false-pass risk against noncanonical identity, not just naming drift.",
+      "source": "iteration-003",
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "KQ1",
+      "text": "Decisive external smoke (8-run, route-proof-augmented, baseline-controlled) — iter 5",
+      "resolvedAtRun": 5,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ2",
+      "text": "Symptoms = MIX: mis-routing (A/B/C, orchestrate rows incomplete) + new mode D (GPT-vs-state-machine literalism) + latency (role-resolution overhead) — iter 6,7,8",
+      "resolvedAtRun": 8,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ3",
+      "text": "Keep ai-council mode:all; do NOT convert; add route-proof header — iter 9,10,11",
+      "resolvedAtRun": 11,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ4",
+      "text": "Orchestrate delegates deep-dispatch to deep.md via single deterministic rule (dispatch @deep + STOP) — iter 12,13",
+      "resolvedAtRun": 13,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ5",
+      "text": "Feasible hook-based enforcement plugin in system-skill-advisor; detection-layer, not hard identity — iter 14,15",
+      "resolvedAtRun": 15,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ6",
+      "text": "8-run, 2-metric benchmark (latency + route-proof) reusable as baseline now + regression gate after fixes — iter 16,17",
+      "resolvedAtRun": 17,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ7",
+      "text": "Literal-safe pattern = table + bounded clarification + structured header + hard boundaries; apply to ROUTING surfaces only — iter 18,19",
+      "resolvedAtRun": 19,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ8",
+      "text": "6 in-scope paths (orchestrate, 4 command seams, CLI seam, advisor plugin) + .claude mirrors; Codex + improvement-family deferred — iter 20,21,22",
+      "resolvedAtRun": 22,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "KQ9",
+      "text": "WAIT on KQ1 external smoke + cheaper layers; unpark FIX-5 only on measured negative-gate (GPT<4/4 vs Claude=4/4 after KQ4+KQ5) — iter 23,24",
+      "resolvedAtRun": 24,
+      "_lineages": [
+        "glm-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-plugin-guardrail",
+      "question": "KQ5",
+      "summary": "A plugin can inject/validate prompt route contracts but cannot provide hard runtime identity from current hook surfaces.",
+      "_lineages": [
+        "gpt-fast-high"
+      ]
+    },
+    {
+      "id": "F3",
+      "title": "ai-council route-proof currently validates noncanonical council identity",
+      "confidence": 0.94,
+      "iterations": [
+        3
+      ],
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "f-fix5-wait",
+      "question": "KQ9",
+      "summary": "Do not unpark FIX-5 immediately; trigger it on external route-proof failure or benchmark-confirmed persistent regression after route-unification.",
+      "_lineages": [
+        "gpt-fast-high"
+      ]
+    },
+    {
+      "id": "f-ext-smoke",
+      "question": "KQ1",
+      "summary": "External non-OpenCode shell smoke is the only clean PASS/FAIL path for phase 005's blocked gate.",
+      "_lineages": [
+        "gpt-fast-high"
+      ]
+    },
+    {
+      "id": "F1",
+      "title": "gpt-fast-high softened confirmed behavioral failures into missing route-proof artifacts",
+      "confidence": 0.86,
+      "iterations": [
+        1
+      ],
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "F4",
+      "title": "orchestrate should reuse registry resolution, not Task-dispatch a primary @deep worker",
+      "confidence": 0.82,
+      "iterations": [
+        4,
+        9
+      ],
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "F2",
+      "title": "Phase 0 self-assessment gates are a literal-model trap across 8 deep commands",
+      "confidence": 0.92,
+      "iterations": [
+        2
+      ],
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "F5",
+      "title": "plugin guard is feasible as mutation/injection; fail-closed and semantic correctness remain limits",
+      "confidence": 0.78,
+      "iterations": [
+        5,
+        9
+      ],
+      "_lineages": [
+        "gpt-critical"
+      ]
+    },
+    {
+      "id": "f-orchestrate-v2",
+      "question": "KQ4",
+      "summary": "Smallest orchestrate hardening is to delegate deep routes to deep.md/mode-registry rather than duplicate inference rules.",
+      "_lineages": [
+        "gpt-fast-high"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 50,
+    "openQuestions": 7,
+    "resolvedQuestions": 13,
+    "keyFindings": 9,
+    "convergenceScore": 0.333,
+    "coverageBySources": {}
+  }
+}

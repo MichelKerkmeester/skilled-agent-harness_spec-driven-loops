@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/006-ux-observability-automation",
-  "description": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry pari",
+  "description": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry",
   "keywords": [
     "operators",
     "running",
@@ -18,11 +18,10 @@
     "score",
     "history",
     "invisible",
-    "telemetry",
-    "pari"
+    "telemetry"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.436Z",
-  "specId": "007",
+  "lastUpdated": "2026-07-01T12:31:47.042Z",
+  "specId": "006",
   "folderSlug": "ux-observability-automation",
   "parentChain": [
     "deep-loops",

@@ -1,0 +1,339 @@
+{
+  "mergedFrom": [
+    "glm",
+    "gpt"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "F-015",
+      "severity": "high",
+      "category": "doc-drift",
+      "title": "008 parent tasks.md and implementation-summary.md are pure unmodified templates despite Complete status (P1-006 still live)",
+      "iteration": 15,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-011",
+      "severity": "high",
+      "category": "migration-residue",
+      "title": "14 references to old packet number 123-agent-loops-improved across 7 phase parent spec.md files",
+      "iteration": 11,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-008",
+      "severity": "high",
+      "category": "missing-docs",
+      "title": "2 of 3 ADR phases missing decision-record.md; no checklist.md across any sub-phase",
+      "iteration": 8,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-010",
+      "severity": "high",
+      "category": "weak-evidence",
+      "title": "3 template-default plan.md under Complete folders; 3 phases with no test-run evidence; root completion_pct:50 despite 87.5% done",
+      "iteration": 10,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-016",
+      "severity": "medium",
+      "category": "hardening",
+      "title": "4 new safety/observability recommendations: stall alerting, merge dedup, token budget, obs status mapping",
+      "iteration": 16,
+      "status": "active",
+      "disposition": "needs-design",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-003",
+      "severity": "high",
+      "category": "metadata-drift",
+      "title": "50+ files with stale completion_pct:0 while implementation-summary.md says 100",
+      "iteration": 3,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-002",
+      "severity": "high",
+      "category": "comment-hygiene",
+      "title": "6 ephemeral F-010-B5-0x finding-ID markers in deep_review_auto.yaml and deep_research_auto.yaml",
+      "iteration": 2,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-017",
+      "severity": "high",
+      "category": "validation-gap",
+      "title": "6 missing validate.sh checks that would have prevented all 16 prior drift patterns",
+      "iteration": 17,
+      "status": "active",
+      "disposition": "needs-implementation",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-007",
+      "severity": "high",
+      "category": "stale-lock",
+      "title": "Abandoned native review lineage with >21h stale lock referencing non-existent old packet path",
+      "iteration": 7,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-007",
+      "severity": "P1",
+      "title": "ADR/checklist governance artifacts are missing for Complete Level 2/3 ADR-style phases",
+      "iterations": [
+        6
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "F-012",
+      "severity": "high",
+      "category": "salvage-bug",
+      "title": "Codex review lineage has 100 iteration files (50 real + 50 salvage-failure placeholders with non-padded naming)",
+      "iteration": 12,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-014",
+      "severity": "high",
+      "category": "registry-bug",
+      "title": "Codex zero-finding registry likely caused by F-012 naming collision confusing reducer glob",
+      "iteration": 14,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-001",
+      "severity": "P1",
+      "title": "Complete status conflicts with Draft child maps and stale continuity",
+      "iterations": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "F-006",
+      "severity": "critical",
+      "category": "fanout-timeout",
+      "title": "computeLineageTimeoutMs 4-hour hard cap kills 35-iteration loops at iteration 8; NO override flag exists",
+      "iteration": 6,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-004",
+      "severity": "P1",
+      "title": "Deep-research fan-out does not pass resolved convergence threshold into fanout-run",
+      "iterations": [
+        4
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "F-004",
+      "severity": "high",
+      "category": "review-debt",
+      "title": "Deep-review lineages ended CONDITIONAL (7 dims); 9 GLM findings unset; 0 codex findings; registries never updated post-hardening",
+      "iteration": 4,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-013",
+      "severity": "medium",
+      "category": "convergence-math",
+      "title": "Denominator-drag suppresses late discoveries in 30+ iteration loops; fan-out native default 0.1 wrong for research",
+      "iteration": 13,
+      "status": "active",
+      "disposition": "needs-design",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-005",
+      "severity": "medium",
+      "category": "fanout-config",
+      "title": "Fan-out convergence threading correct when explicit, but CLI vs native dispatch paths disagree on implicit default (0.05 vs 0.1)",
+      "iteration": 5,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-009",
+      "severity": "high",
+      "category": "metadata-drift",
+      "title": "Parent graph-metadata.json key_files omit all impl surfaces; last_active_child_id null; description.json truncated mid-word",
+      "iteration": 9,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-005",
+      "severity": "P1",
+      "title": "Per-lineage timeout hard-caps at 4h with no override, undercutting 30+ high-effort iterations",
+      "iterations": [
+        4
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "F-001",
+      "severity": "high",
+      "category": "doc-drift",
+      "title": "Phase Documentation Map tables stuck at Draft across 002-007 despite Complete parent status (40 rows)",
+      "iteration": 1,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-002",
+      "severity": "P1",
+      "title": "Review lineages remain CONDITIONAL/active after 007 fan-out-hardening claims fixes shipped",
+      "iterations": [
+        3
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "G-006",
+      "severity": "P1",
+      "title": "Root and remediation graph metadata omit real implementation surfaces",
+      "iterations": [
+        3,
+        5
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "F-018",
+      "severity": "low",
+      "category": "metadata-drift",
+      "title": "Root spec.md key_files empty; 008 parent Level annotation non-standard",
+      "iteration": 18,
+      "status": "active",
+      "disposition": "needs-fix",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "G-008",
+      "severity": "P2",
+      "title": "Validator and workflow gaps allow recurrence",
+      "iterations": [
+        7
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "G-003",
+      "severity": "P1",
+      "title": "Workflow YAML still contains ephemeral F-010-B5 markers",
+      "iterations": [
+        4,
+        8
+      ],
+      "_lineages": [
+        "gpt"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 26,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "glm",
+      "message": "Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 18 entries.",
+      "aliasKey": "findings",
+      "canonicalKey": "keyFindings",
+      "coercedCount": 18
+    }
+  ]
+}

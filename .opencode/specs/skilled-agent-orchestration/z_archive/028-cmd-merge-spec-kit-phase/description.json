@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/028-cmd-merge-spec-kit-phase",
-  "description": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or im",
+  "description": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or",
   "keywords": [
     "speckit",
     "phase",
@@ -18,7 +18,7 @@
     "doing",
     "planning"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.099Z",
+  "lastUpdated": "2026-07-01T12:31:47.407Z",
   "specId": "028",
   "folderSlug": "cmd-merge-spec-kit-phase",
   "parentChain": [

@@ -32,7 +32,7 @@ _memory:
       - "Is there any consumer for as-of/time-travel code-graph reads, or does the shipped readiness gate already cover the safety case?"
       - "Should 1.0-confidence structural edges (CONTAINS/IMPORTS) stay replace-in-place while only heuristic edges (CALLS/TESTED_BY) get versioning?"
     answered_questions:
-      - "Whole cluster is DEFER-speculative and ships nothing in this phase (030 §3/§14)"
+      - "Schema foundation shipped (columns, migration helpers, default-off gate); wider consumer cluster remains DEFER-speculative (030 §3/§14)"
       - "standalone CG-edge-bitemporal-lifecycle is REFUTED (per-scan rebuild + tombstones already cover deletion-history; 002 iter-013)"
 ---
 
@@ -44,6 +44,8 @@ _memory:
 ---
 
 ## EXECUTIVE SUMMARY
+
+**Original problem statement (2026-06-16, superseded by the 2026-06-19 implementation update immediately below - the schema foundation described as missing here has since shipped):**
 
 The code-graph reindex is destructive DELETE+INSERT with **no temporal columns**: `code_edges(id, source_id, target_id, edge_type, weight, metadata)` carries no validity window, and currentness equals physical edge presence (`code-graph-db.ts:177-184`, SCHEMA_VERSION 5). This phase captures the heavy schema-migration cluster that would make code structure *explicitly* bi-temporal, a symbol/edge valid for a commit range (event-time) and indexed at scan-time (transaction-time), mirroring Memory's causal four-timestamp window (C3-B). The cluster is: **Q1-C1** (`valid_at`/`invalid_at` columns, replace reindex DELETEs with `UPDATE ... SET invalid_at = <generation>` + INSERT new, default read filters `invalid_at IS NULL`), **Q1-C1-views** (the `code_nodes_live`/`code_edges_live` current-view chokepoint that localizes the migration, the keystone), **CG-edge-bitemporal-lifecycle** (the edge-granularity validity + relabel-revision layer) and **CG-symbol-timeline-query** (the timeline/as-of read). Q1-C1 and Q1-C1-views MUST co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary. The whole cluster depends on **Q6-C1 (the hard generation watermark) landing first**.
 
@@ -63,7 +65,7 @@ The wider lifecycle/timeline cluster remains gated. Research is still deflationa
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | P3 (DEFER-speculative) |
+| **Priority** | P3 (schema foundation shipped; wider consumer cluster DEFER-speculative) |
 | **Status** | Complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
@@ -81,7 +83,7 @@ The wider lifecycle/timeline cluster remains gated. Research is still deflationa
 The code-graph reindex mutates edges destructively. `replaceNodes(fileId, nodes)` does `DELETE FROM code_nodes WHERE file_id = ?` then re-INSERT and hard-deletes node-touching edges, `replaceEdges` deletes-per-source then re-inserts, and deferred dangling-delete and `pruneDanglingEdges()` physically delete edges whose endpoint is no longer a live node (`code-graph-db.ts:936,:941,:985,:1012,:1027,:1031`). `code_edges` carries NO `valid_from`/`valid_to`/`generation`/`superseded_by` (`:177-184`), so currentness equals physical presence and a broken or partial scan can only **block** reads (binary `freshness !== 'fresh'` gate, `code-graph-context.ts:313-321`), never serve as-of-last-green-scan results. There is no way to ask "what did the call graph look like at commit X" or "when was this CALLS edge superseded".
 
 ### Purpose
-Capture, faithfully and gated, the schema-migration cluster that would make `code_edges` bi-temporally explicit (validity window + live-view chokepoint + edge-lifecycle + symbol-timeline read), sharing the validity-window column shape with Memory's causal C3-B, so the plan is ready IF a consumer for as-of/time-travel ever materializes. This phase makes the DEFER decision legible and ships no migration.
+Capture, faithfully and gated, the schema-migration cluster that would make `code_edges` bi-temporally explicit (validity window + live-view chokepoint + edge-lifecycle + symbol-timeline read), sharing the validity-window column shape with Memory's causal C3-B, so the plan is ready IF a consumer for as-of/time-travel ever materializes. This phase shipped the schema foundation (nullable `valid_at`/`invalid_at` columns, SCHEMA_VERSION 6→7, UP/DOWN/BACKFILL helpers, default-off temporal reads) and makes the DEFER decision legible for the wider consumer cluster.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -106,7 +108,7 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 - **Q3-C1 seeded PPR**, net-new query-seeded impact ranking, read-side, must intersect the `invalid_at IS NULL` current set but is a separate candidate. Belongs to the cluster on the read side only, not built here.
 - **CRDT order-independent merge**, needs-benchmark, the last node in the build sequence after edge-lifecycle (002 iter-023 Phase 3), explicitly deferred. aionforge `trust_fold.rs:183-259` reference, no consumer.
 
-### Files to Change (IF the cluster is ever un-deferred, none changed this phase)
+### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
@@ -124,13 +126,13 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-> All requirements are **gated**, none are satisfied this phase. They define the contract the cluster MUST meet IF it is ever un-deferred. The phase's deliverable is the gated plan + the DEFER decision, not the migration.
+> The schema-foundation requirements (nullable `valid_at`/`invalid_at` columns, SCHEMA_VERSION 7, UP/DOWN/BACKFILL helpers, default-off temporal reads) are satisfied. The wider consumer-cluster requirements below remain gated and define the contract the cluster MUST meet IF it is ever un-deferred.
 
 ### P0 - Blockers (MUST complete IF un-deferred)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Q1-C1 + Q1-C1-views co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary, and the validity columns AND the live-view land in a single SCHEMA_VERSION 5->6 migration. | A single migration adds `valid_at`/`invalid_at` (`code-graph-db.ts:177-184`) AND the `code_*_live` views, and partial application is impossible (one `d.transaction()` on the serialized WAL connection, `:511`). |
+| REQ-001 | Q1-C1 + Q1-C1-views co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary, and the validity columns AND the live-view land in a single SCHEMA_VERSION migration. | A single migration adds `valid_at`/`invalid_at` (`code-graph-db.ts:177-184`) AND the `code_*_live` views, and partial application is impossible (one `d.transaction()` on the serialized WAL connection, `:511`). |
 | REQ-002 | Reindex DELETEs are replaced by `UPDATE ... SET invalid_at = <generation>` + INSERT new, not physical delete, at all four sites (`:941,:985,:1012,:1031`). | A superseded edge is closed (History-readable), not destroyed, and an as-of read at the prior generation still resolves it. |
 | REQ-003 | The apply-once G2 invariant holds: a rescan of unchanged content is a no-op, same edge ids, same windows, generation unchanged. | Test: scan a file twice with no content change → zero new edge rows, zero `invalid_at` writes, generation unchanged. |
 | REQ-004 | Q6-C1 (hard generation watermark) lands FIRST, and the generation bumps atomically with the reindex swap and is the value stamped into `invalid_at`. | The cluster does not start until Q6-C1 exists, and `invalid_at` holds a generation value, not a wall-clock timestamp. |
@@ -163,7 +165,7 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Building the cluster with no consumer for as-of/time-travel | Pure cost, zero realized value, a speculative migration on the read/resolve/prune surface | DEFER until a real consumer is named (REQ-007), ship nothing this phase |
+| Risk | Building the cluster with no consumer for as-of/time-travel | Pure cost, zero realized value, a speculative migration on the read/resolve/prune surface | DEFER until a real consumer is named (REQ-007); schema foundation shipped, consumer cluster deferred |
 | Risk | Treating it as a staleness fix | It does NOT fix the real bug (dependency-transitivity) | Route the real bug to sibling `002-edge-staleness-correctness`, this cluster is orthogonal |
 | Risk | Attempting standalone edge-versioning against the per-scan rebuild | The rebuild model fights never-delete, and tombstones already cover deletion-history | Only layer CG-edge-bitemporal-lifecycle on Q1-C1 columns (REQ-006), standalone is REFUTED (002 iter-013) |
 | Risk | Q1-C1 without the live-view | Migration leaks across the whole read surface, high blast-radius | The live-view chokepoint localizes it, co-ship atomically (REQ-001/005) |
@@ -208,7 +210,7 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 20/25 | Files: ~4 prod + tests, whole read/resolve/prune surface (NOT 4 DELETE lines), SCHEMA_VERSION 5->6 |
+| Scope | 20/25 | Files: ~4 prod + tests, whole read/resolve/prune surface (NOT 4 DELETE lines), SCHEMA_VERSION 6->7 |
 | Risk | 19/25 | Breaking: schema migration on the singleton WAL connection, blast-radius MEDIUM-HIGH, per-scan-rebuild model fights versioning |
 | Research | 12/20 | Seams CONFIRMED, standalone lifecycle REFUTED, aionforge schema reference present, bi-temporal "commit-time = event-time" mapping is INFERRED (dangling-prune + cross-file CALLS resolver not traced end-to-end) |
 | Multi-Agent | 4/15 | Single-stream IF built, cluster co-ships through one txn |
@@ -221,7 +223,7 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Cluster built with no as-of/time-travel consumer (speculative spend) | H | H | DEFER (REQ-007), ship nothing this phase |
+| R-001 | Cluster built with no as-of/time-travel consumer (speculative spend) | H | H | DEFER (REQ-007); schema foundation shipped, consumer cluster deferred |
 | R-002 | Mistaken for a staleness fix, the real bug (dependency-transitivity) stays open | M | M | Route to sibling `002-edge-staleness-correctness` |
 | R-003 | Standalone edge-versioning attempted against per-scan rebuild | M | M | Only layer on Q1-C1 columns (REQ-006), standalone REFUTED |
 | R-004 | Q1-C1 lands without the live-view, migration leaks across the read surface | H | M | Co-ship atomically, live-view localizes (REQ-001/005) |
@@ -238,7 +240,7 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 
 **Acceptance Criteria**:
 1. Given a superseded edge closed at generation N, When an as-of read at generation N-1 runs, Then the edge resolves (it is closed, not destroyed).
-2. Given no as-of consumer is named, Then the cluster stays DEFERRED and ships nothing.
+2. Given no as-of consumer is named, Then the consumer cluster stays DEFERRED (schema foundation is already shipped).
 
 ### US-002: Call graph at commit X (Priority: P3, gated)
 
@@ -270,4 +272,4 @@ Capture, faithfully and gated, the schema-migration cluster that would make `cod
 - **Research (Code Graph)**: `../research/research.md`, `../research/iterations/iteration-018.md` (aionforge schema reference), `iteration-023.md` (build sequence), `iteration-013.md` (standalone lifecycle REFUTED), `iteration-009.md` (edge-governance cluster).
 - **Cross-cutting research**: `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md` (Wave-2 + DEFER), `../../research/synthesis/04-sibling-and-cross-cutting.md` (Q1-C1/Q6-C1 DEFER-speculative).
 - **Shared bi-temporal sibling (Memory)**: `../../001-speckit-memory/007-bitemporal-window/` (C3-B validity-window shape, build once, reconcile).
-- **Wave-0 shipped record**: Wave-0 record (Code Graph shipped Q4-C1 only, Q1-C1 listed DEFER-speculative, never implemented).
+- **Wave-0 shipped record**: Wave-0 record (Code Graph shipped Q4-C1 only; Q1-C1 schema foundation subsequently shipped as this phase, wider consumer cluster remains DEFER-speculative).

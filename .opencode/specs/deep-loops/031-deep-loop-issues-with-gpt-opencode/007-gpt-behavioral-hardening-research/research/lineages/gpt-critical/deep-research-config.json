@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "deep-research-config/v1",
+  "mode": "research",
+  "sessionId": "fanout-gpt-critical-1782897047002-qhoaax",
+  "lineageLabel": "gpt-critical",
+  "lineageMode": "new",
+  "generation": 1,
+  "specFolder": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
+  "artifactDir": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research/research/lineages/gpt-critical",
+  "researchTopic": "Critical re-review of GPT behavioral hardening research (packet 031) -- operator-confirmed symptoms, correct for GPT-self-assessment bias, find concrete fixes -- see research-prompt.md section 9",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "loopType": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "convergenceSignalsAreTelemetryOnly": true,
+  "resource_map_present": false,
+  "createdAt": "2026-07-01T09:12:00Z",
+  "completedAt": "2026-07-01T09:45:00Z",
+  "status": "complete",
+  "writeBoundary": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research/research/lineages/gpt-critical"
+}

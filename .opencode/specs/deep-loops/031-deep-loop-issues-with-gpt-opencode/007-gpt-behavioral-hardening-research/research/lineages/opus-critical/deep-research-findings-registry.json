@@ -1,0 +1,50 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "KQ-OPUS-1", "KQ-OPUS-2", "KQ-OPUS-3", "KQ-OPUS-4", "KQ-OPUS-5",
+    "KQ-OPUS-6", "KQ-OPUS-7", "KQ-OPUS-8", "KQ-OPUS-9", "KQ-OPUS-10"
+  ],
+  "keyFindings": [
+    "Phase 005's outcome is FAIL/FAIL-BLOCKED x4 (verification-smoke.md:117-124); 'inconclusive' is a downstream reframing; only the native/Claude baseline arm of the FIX-5 trigger (decision-record.md:22) was never run (iter 1, independent confirmation of sonnet-critical).",
+    "OVERTURN: the ai-council route-proof is NOT a guaranteed FAIL. The round_completed record emitter (orchestrate-topic.cjs:310-313) writes mode:'council'/target_agent:'deep-ai-council', which exactly matches the validator route_proof (deep_ai-council_auto.yaml:132-136); validateRouteProofRecord (post-dispatch-validate.ts:636-663) therefore PASSES. sonnet-critical assumed record.mode='ai-council' without reading the emitter (iter 2).",
+    "The real ai-council defect is a naming-integrity FALSE-NEGATIVE: route-proof passes green on target_agent:'deep-ai-council', which is the packet name (mode-registry.json:69), not any real agent (the agent is 'ai-council', mode-registry.json:71). Also mode:'council' is the runtimeLoopType, not the workflowMode 'ai-council' (iter 3).",
+    "The ai-council header-vs-record contradiction is a LIVE, UNCOMMITTED working-tree state (git diff shows both mode:'ai-council' header block and mode:'council' record block as + additions); the fix must edit BOTH sides (emitter + validator) together toward the registry, or a one-sided edit creates a real FAIL (iter 3).",
+    "Empirical corroboration: phase 005's ai-council leg never produced a round_completed record at all (verification-smoke.md:122, blocked at step_orchestrate_session.pre_dispatch by OPENCODE_PID), so there is no empirical route-proof FAIL for ai-council either (iter 3).",
+    "CONFIRMED + SHARPENED: Task-dispatching @deep from orchestrate is NDP-illegal (orchestrate.md:148 ILLEGAL Orch(0)->Sub-Orch(1)->@leaf(2); deep.md:4 mode:primary). The NDP-unsafe 'dispatch @deep and STOP' phrasing originates at glm-max/research.md:55, not just the consolidation (iter 4).",
+    "SHARPENED (smaller fix): orchestrate already carries the Deep Route field (orchestrate.md:207) and agent-definition paths (:184-185); the Priority table (:97-105) is missing only the @deep-context/@deep-review rows. Minimal KQ4 fix = add 2 rows + make the Deep Route field registry-resolved; no @deep dispatch (iter 5).",
+    "RESOLVED residual: tool.execute.before (index.d.ts:235-241) returns Promise<void> with mutable output.args -> the plugin can rewrite args or throw, but cannot return a deny verdict; fail-closed is possible only by throwing and its host semantics are undetermined from the type (must smoke-test). Detection-only, not hard identity (iter 6).",
+    "NEW build landmine for KQ5: OpenCode auto-loads every export as a plugin; a stray named export silently drops the ENTIRE plugin file including its hooks (README.md:28). The enforcement plugin must be default-export-only (reference mk-goal.js); executable hook lives under .opencode/plugins/, metadata may live in system-skill-advisor (iter 6).",
+    "CONFIRMED + SHARPENED: Mode D smoking-gun (commands/deep/research.md:44-71 Phase-0 self-check <-> verification-smoke.md:119 'GENERAL AGENT REQUIRED failure'). New: the self-check is redundant with deep.md's registry routing, so for a literal model it is a halt-risk with no incremental routing value -> replace with a deterministic dispatch-context signal (iter 7).",
+    "CONFIRMED + SHARPENED: do not unpark FIX-5 now. Coverage argument (independent of self-assessment bias): FIX-5 addresses at most 1 of the operator's 4 confirmed symptoms and may worsen latency; three non-GPT models (glm-max, sonnet-critical, opus-critical) converge, controlling for GPT bias (iter 8).",
+    "Adversarial self-check: the headline overturn (KQ-OPUS-2) survives; two confidence phrasings downgraded ('validator passes' -> 'passes by static trace'; Phase-0 'pure downside' -> 'no incremental value + halt risk'); one conditional added (KQ-OPUS-3 mis-certification conditional on benchmark reusing the current validator). No proposed fix changed (iter 9).",
+    "Final consolidation: per-claim confirmed/sharpened/overturned table vs BOTH prior round and sonnet-critical, plus 5 implementation-ready deliverables with corrected ai-council rationale (iter 10)."
+  ],
+  "ruledOutDirections": [
+    "Treating a second critical lineage as licensed to re-derive sonnet-critical's findings unchanged (iter 1).",
+    "Treating sonnet-critical's 'ai-council guaranteed FAIL / benchmark leg uninterpretable' as a settled correction (iter 2, OVERTURNED).",
+    "Treating the ai-council fix as cosmetic/zero-value now that the validator passes (iter 3).",
+    "Treating a one-sided value change (validator OR emitter) as a sufficient ai-council fix (iter 3).",
+    "Treating the 'dispatch @deep and STOP' recommendation as NDP-safe under its literal Task-dispatch reading (iter 4).",
+    "Attributing the NDP-unsafe phrasing solely to the consolidation layer rather than glm-max/research.md:55 (iter 4).",
+    "Treating 'add a new registry-resolution routing rule to orchestrate' as the minimal KQ4 fix (iter 5).",
+    "Treating plugin fail-closed capability as fully 'unconfirmed' rather than 'possible-by-throw, host-undetermined' (iter 6).",
+    "Treating the Phase-0 self-check as a necessary safety gate whose only flaw is fuzziness (iter 7).",
+    "Treating 'wait on FIX-5' as primarily a GPT self-protective artifact, or as justified mainly by missing external-smoke evidence (iter 8).",
+    "Treating this lineage's static code-trace of the ai-council validator as equivalent to an observed workflow run (iter 9)."
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 13,
+    "convergenceScore": 1.0,
+    "coverageBySources": {
+      "primary_agent_and_command_files": 4,
+      "workflow_yaml_and_emitter_scripts": 3,
+      "validator_and_plugin_sdk_code": 2,
+      "registry_and_git_working_tree": 2,
+      "packet_005_006_evidence": 2,
+      "prior_lineage_syntheses": 3
+    }
+  }
+}

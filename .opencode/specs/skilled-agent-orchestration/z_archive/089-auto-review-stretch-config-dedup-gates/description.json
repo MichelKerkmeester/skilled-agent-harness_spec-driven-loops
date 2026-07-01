@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates",
-  "description": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5 (3-t",
+  "description": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5",
   "keywords": [
     "packet",
     "108",
@@ -19,10 +19,9 @@
     "stretch",
     "remain",
     "unadopted",
-    "h-5",
-    "3-t"
+    "h-5"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.368Z",
+  "lastUpdated": "2026-07-01T12:31:47.636Z",
   "specId": "089",
   "folderSlug": "auto-review-stretch-config-dedup-gates",
   "parentChain": [

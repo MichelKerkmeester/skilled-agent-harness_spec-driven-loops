@@ -109,7 +109,7 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
 
 2. For each result, extract:
     - `agent_folder` — the parent directory of the AGENTS.md file
-    - `system_name` — the folder name, with number prefix stripped (e.g., `1. Copywriter` → `Copywriter`)
+    - `system_name` — the folder name, with number prefix stripped (e.g., `1. Barter - Copywriter` → `Barter - Copywriter`)
     - `group` — the first directory under `ai_systems_root` for nested systems (e.g., `MCP`), otherwise the workspace name (e.g., `Barter`)
 
 3. **Deduplication:** If the same system name exists in multiple locations, prefer the shallower path under `ai_systems_root`. If depth is equal, prefer the non-archive/non-backup path.
@@ -121,8 +121,8 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
 ### Name Normalization
 
 Strip number prefixes to derive the canonical system name:
-- `1. Copywriter` → `Copywriter`
-- `3. TikTok SEO & Creative Strategy` → `TikTok SEO & Creative Strategy`
+- `1. Barter - Copywriter` → `Barter - Copywriter`
+- `3. TikTok SEO` → `TikTok SEO`
 - `4. Pieter Bertram` → `Pieter Bertram`
 - `Media Editor` → `Media Editor` (no prefix to strip)
 
@@ -149,9 +149,9 @@ $ARGUMENTS
     │   │
     │   │   Match algorithm (applied against discovered registry):
     │   │   1. EXACT match on normalized system_name (case-insensitive)
-    │   │      e.g., "copywriter" → Copywriter
+    │   │      e.g., "copywriter" → Barter - Copywriter
     │   │   2. PARTIAL match: first word(s) appear in system_name
-    │   │      e.g., "tiktok" → TikTok SEO & Creative Strategy
+    │   │      e.g., "tiktok" → TikTok SEO
     │   │   3. WORD match: any significant word from system_name
     │   │      e.g., "pieter" → Pieter Bertram
     │   │      e.g., "nigel" → Nigel de Lange
@@ -228,7 +228,7 @@ Reply with letter:
       - If `agent_folder` is a direct child of `ai_systems_root`, use the workspace folder name (for this repo: `Barter`)
       - If nested, use the first directory under `ai_systems_root` (for example, `MCP`)
     - Extract raw folder name and normalize to `system_name`:
-      - Strip leading number prefix: `\d+\.\s*` → empty (e.g., `3. TikTok SEO & Creative Strategy` → `TikTok SEO & Creative Strategy`)
+      - Strip leading number prefix: `\d+\.\s*` → empty (e.g., `3. TikTok SEO` → `TikTok SEO`)
 4. **Exclude** folders where the name starts with `z` or `0.`
 5. **Deduplicate** by `system_name`: prefer the shallower path under `ai_systems_root`; avoid archive/backup paths
 6. Store as `discovered_systems[]`

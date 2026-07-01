@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/006-vision-frontend-input",
-  "description": "GLM-5.2 is the newest GLM (released 2026-06-16), is natively multimodal, and is widely cited for strong visual-frontend / \"vision-to-code\" work (desig",
+  "description": "GLM-5.2 is the newest GLM (released 2026-06-16), is natively multimodal, and is widely cited for strong visual-frontend / \"vision-to-code\" work",
   "keywords": [
     "glm-5",
     "newest",
@@ -15,10 +15,9 @@
     "strong",
     "visual-frontend",
     "vision-to-code",
-    "work",
-    "desig"
+    "work"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.412Z",
+  "lastUpdated": "2026-07-01T12:31:47.354Z",
   "specId": "006",
   "folderSlug": "vision-frontend-input",
   "parentChain": [

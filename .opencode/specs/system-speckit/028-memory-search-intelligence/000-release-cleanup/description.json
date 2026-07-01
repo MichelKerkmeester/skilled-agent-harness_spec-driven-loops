@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "description": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
   "keywords": [
     "packet",
@@ -15,11 +15,11 @@
     "validation",
     "phases"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.623Z",
+  "lastUpdated": "2026-07-01T10:41:59.065Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,

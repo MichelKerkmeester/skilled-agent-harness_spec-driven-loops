@@ -1,35 +1,41 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Loop Systems Remediation Parent Aggregate"
+description: "Aggregate implementation summary for the seven completed loop-systems remediation children, with fresh strict validation evidence."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "loop systems remediation summary"
+  - "008 parent aggregate summary"
+  - "deep loop remediation verification"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-loop-systems-remediation"
-    last_updated_at: "2026-06-29T10:43:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/008-loop-systems-remediation"
+    last_updated_at: "2026-07-01T12:50:56Z"
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Rewrote parent aggregate summary from seven verified children"
+    next_safe_action: "Use child implementation summaries for implementation-level detail"
     blockers: []
-    key_files: []
+    key_files:
+      - "001-deep-improvement-rollback-hash-guard/implementation-summary.md"
+      - "002-deep-improvement-promotion-safety/implementation-summary.md"
+      - "003-model-benchmark-reducer-ledger/implementation-summary.md"
+      - "004-adversarial-playbook-scenarios/implementation-summary.md"
+      - "005-tighten-playbook-pass-criteria/implementation-summary.md"
+      - "006-p2-test-adequacy-and-source-only-audit/implementation-summary.md"
+      - "007-fan-out-hardening/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-loop-systems-remediation"
+      session_id: "opencode-008-parent-aggregate-2026-07-01"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "All seven child folders passed strict spec validation independently on 2026-07-01."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
+# Implementation Summary: Loop Systems Remediation Parent Aggregate
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -38,9 +44,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-loop-systems-remediation |
-| **Completed** | 2026-06-29 |
-| **Level** | 1 |
+| **Spec Folder** | `deep-loops/030-agent-loops-improved/008-loop-systems-remediation` |
+| **Completed** | 2026-07-01 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +54,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The loop-systems remediation parent now records the real seven-child delivery instead of a placeholder scaffold. The implementation work remains owned by the child folders; this parent summary aggregates what shipped and points readers to the detailed child task and summary files.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Child Delivery Map
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+| Child | What Shipped | Detailed Source |
+|-------|--------------|-----------------|
+| `001-deep-improvement-rollback-hash-guard` | Rollback now verifies accepted-state SHA-256 hashes before restoring backups, allowing legitimate pre-ship and post-ship states while refusing unrelated drift. | `001-deep-improvement-rollback-hash-guard/implementation-summary.md` |
+| `002-deep-improvement-promotion-safety` | The pre-mutation mirror-sync gate compares runtime mirrors against the current canonical body instead of the candidate, with a missing-target fallback. | `002-deep-improvement-promotion-safety/implementation-summary.md` |
+| `003-model-benchmark-reducer-ledger` | The autonomous model-benchmark command now passes the improvement state log so benchmark runs append reducer-visible `benchmark_run` rows. | `003-model-benchmark-reducer-ledger/implementation-summary.md` |
+| `004-adversarial-playbook-scenarios` | Eight adversarial regression scenarios were added to runtime and goal-plugin manual playbooks, each naming the regression test that must stay green. | `004-adversarial-playbook-scenarios/implementation-summary.md` |
+| `005-tighten-playbook-pass-criteria` | High-risk manual testing pass criteria now require EXIT 0 test evidence plus source confirmation, closing the inspection-only loophole. | `005-tighten-playbook-pass-criteria/implementation-summary.md` |
+| `006-p2-test-adequacy-and-source-only-audit` | The JSONL append concurrency test now races two child processes through the production append path behind a barrier. | `006-p2-test-adequacy-and-source-only-audit/implementation-summary.md` |
+| `007-fan-out-hardening` | Detached CLI fan-out now has review setup bindings, partial-output salvage retry handling, opt-in dangerous sandbox bypass, leaf-only merge reconstruction, typed lag statuses, and regression/playbook coverage. | `007-fan-out-hardening/implementation-summary.md` |
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `tasks.md` | Modified | Replace scaffold tasks with a parent aggregate that references each child's own task file. |
+| `implementation-summary.md` | Modified | Replace scaffold summary with the seven-child delivery and verification aggregate. |
+| `spec.md` | Modified | Correct the parent Level annotation to the phase-parent convention. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +82,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The parent aggregate was authored from the seven child implementation summaries and task files, then each child folder was revalidated independently with `validate.sh --strict` before this summary cited the aggregate validation result.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +90,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep implementation detail in child folders | Each child is independently scoped, independently validated, and already contains the concrete implementation tasks and verification detail. |
+| Aggregate parent tasks by child, not by copied implementation detail | Copying child task lists into the parent would create stale duplicate state; the parent should route readers to child-owned task files. |
+| Treat child `validate.sh --strict` runs as the parent verification floor | The parent is an audit-trail aggregate, so its load-bearing claim is that every child still validates cleanly. |
+| Do not create ADR-folder checklists from this parent update | The two ADR folders touched by the same remediation use the Level 1 machine marker, and Level 1 folders do not require `checklist.md`. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +103,15 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `validate.sh --strict` on `001-deep-improvement-rollback-hash-guard` | PASS: 0 errors, 0 warnings. Child summary also reports the deep-improvement suite passing with 405 tests and rollback hash-guard regressions. |
+| `validate.sh --strict` on `002-deep-improvement-promotion-safety` | PASS: 0 errors, 0 warnings. Child summary also reports RED-before/GREEN-after mirror-sync regression coverage and the deep-improvement suite passing with 405 tests. |
+| `validate.sh --strict` on `003-model-benchmark-reducer-ledger` | PASS: 0 errors, 0 warnings. Child summary reports direct YAML, loop-host, and runtime ledger checks passing; targeted Vitest remained blocked in that original child phase because the local runner/network was unavailable. |
+| `validate.sh --strict` on `004-adversarial-playbook-scenarios` | PASS: 0 errors, 0 warnings. Child summary also reports the deep-loop-runtime suite passing with 545 tests, goal-plugin tests passing, and edited playbook docs validating. |
+| `validate.sh --strict` on `005-tighten-playbook-pass-criteria` | PASS: 0 errors, 0 warnings. Child summary also reports targeted runnable tests passing with 32 tests plus playbook validators and grep checks passing. |
+| `validate.sh --strict` on `006-p2-test-adequacy-and-source-only-audit` | PASS: 0 errors, 0 warnings. Child summary also reports the JSONL test passing in isolation, the full deep-loop-runtime suite passing with 545 tests, and five consecutive isolated reruns passing. |
+| `validate.sh --strict` on `007-fan-out-hardening` | PASS: 0 errors, 0 warnings. Child summary also reports the full deep-loop-runtime suite passing with 549 tests after the fan-out hardening fixes. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +119,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **This parent did not rerun child code test suites.** It revalidated child spec folders and cites each child's own recorded test evidence.
+2. **The parent `spec.md` still has older narrative references to six children in places outside the requested Level annotation.** Those lines were left untouched because this remediation only allowed two specific Level edits in `spec.md`.
+3. **Generated metadata was not refreshed by this edit.** The allowed write paths exclude `description.json` and `graph-metadata.json`.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

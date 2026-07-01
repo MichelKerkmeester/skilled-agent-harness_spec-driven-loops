@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "route-proof validation",
+      "fix-5 false negative",
+      "deep dispatch validator",
+      "prior research evidence base",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "operator asserted axioms",
+      "decision record",
+      "summary"
+    ],
+    "key_topics": [
+      "route-proof",
+      "validation",
+      "fix-5",
+      "false",
+      "negative",
+      "deep",
+      "dispatch",
+      "validator",
+      "prior",
+      "research",
+      "evidence",
+      "base"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/commands/deep/assets/deep_context_auto.yaml",
+      ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proof Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Citation Corrections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator signal if it writes schema-correct artifacts in expected paths while doing semantically wrong-mode work",
+    "created_at": "2026-06-30T15:05:00Z",
+    "last_save_at": "2026-07-01T05:43:59.528Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:92e6183518c8d3e0faeaffb7b49a5737e6e8e18916ab8331b3c4b2d8afcf2e9e",
+    "source_doc_hashes": {
+      "spec.md": "b7849578f5586ea13dac9c1b68d1ce60c0813dd00508d56d6bce87a06f14c2d8",
+      "plan.md": "69e4cb3957c287779fc2612016f405bd4c6a4bdc082a2826c5b62e3c5e690f46",
+      "tasks.md": "77709a1cf4b999f16a665855efd5af585e684b66bfc99a3dd748004d1f19f265",
+      "checklist.md": "4dbce286600735771ffcb33f86ec21f7ebfccc564124e4214ea4e00e01917c0d",
+      "decision-record.md": "34e92474b2ea04702170245eba726193c965755ced3b90050ca5237581771310",
+      "implementation-summary.md": "68a8efa9f3a28e69eac31238c868c909ab939129086c2fe2af382c6a914b1b24"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

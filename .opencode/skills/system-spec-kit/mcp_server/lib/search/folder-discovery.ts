@@ -19,7 +19,7 @@ import {
   isIdentityMergeSafetyEnabled,
   isIdempotentDescriptionWritesEnabled,
 } from '../config/capability-flags.js';
-import { derivePacketSynopsis } from '../description/packet-synopsis.js';
+import { derivePacketSynopsis, truncateSynopsisAtWordBoundary } from '../description/packet-synopsis.js';
 import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -561,7 +561,7 @@ export function extractDescription(specContent: string): string {
     if (line.startsWith('# ')) {
       const title = line.replace(/^#+\s+/, '').trim();
       if (title.length > 0) {
-        return title.slice(0, MAX_DESCRIPTION_LENGTH);
+        return truncateSynopsisAtWordBoundary(title, MAX_DESCRIPTION_LENGTH);
       }
     }
   }
@@ -581,7 +581,7 @@ export function extractDescription(specContent: string): string {
         if (clean.length > 0) {
           // Take first sentence (split on '. ') and strip trailing period
           const sentence = clean.split(/\.\s/)[0].trim().replace(/\.$/, '');
-          return sentence.slice(0, MAX_DESCRIPTION_LENGTH);
+          return truncateSynopsisAtWordBoundary(sentence, MAX_DESCRIPTION_LENGTH);
         }
       }
     }
@@ -594,7 +594,7 @@ export function extractDescription(specContent: string): string {
     const clean = line.replace(/\*+/g, '').replace(/_+/g, '').replace(/^[-*>]\s+/, '').trim();
     if (clean.length > 0) {
       const sentence = clean.split(/\.\s/)[0].trim().replace(/\.$/, '');
-      return sentence.slice(0, MAX_DESCRIPTION_LENGTH);
+      return truncateSynopsisAtWordBoundary(sentence, MAX_DESCRIPTION_LENGTH);
     }
   }
 

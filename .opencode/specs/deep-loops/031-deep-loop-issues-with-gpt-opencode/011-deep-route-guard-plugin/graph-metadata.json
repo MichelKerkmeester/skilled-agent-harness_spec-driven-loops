@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep route guard plugin",
+      "tool execute before hook",
+      "sub-agent enforcement plugin",
+      "detection only enforcement",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "deep",
+      "route",
+      "guard",
+      "plugin",
+      "tool",
+      "execute",
+      "hook",
+      "sub-agent",
+      "enforcement",
+      "detection",
+      "only",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/plugins/deep-route-guard.js",
+      "spec.md",
+      ".opencode/plugins/README.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-route-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/deep-route-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Enforcement Plugin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Detection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Detection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of dispatch — a model can still construct a Task-tool call with a mismatched `mode`/`targetagent` pair and nothing currently stops it before the dispatch happens",
+    "created_at": "2026-07-01T10:56:27.071Z",
+    "last_save_at": "2026-07-01T13:46:29.409Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fbdbaed5a030996b352e8875f13f4ca999067a4a8f1c4b08d78f2f624aa9a78c",
+    "source_doc_hashes": {
+      "spec.md": "44c2e38e0189cd533f834c565246c110cd22add1779541912be6840a7b3a94f2",
+      "plan.md": "0a19e7bcf3c9d45c4c32b28391cb5f7cbcbd75c995d53c2b8f512137aeff8aa3",
+      "tasks.md": "3520ef4d29870e75aed5f0b6ef21fc4d6cc6ffe8648954fbab5eed6f6001d408",
+      "checklist.md": "dc947d2352156a121d201aa88e36baf2b1ca5b35128522bb352de0fed3298f1f",
+      "implementation-summary.md": "01f5f86031d3e69356e828d111d5193dc74439cd68a89bbfca8cecd181f17a7b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

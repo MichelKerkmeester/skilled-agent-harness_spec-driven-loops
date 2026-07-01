@@ -63,7 +63,7 @@ The Skill Advisor ships an end-to-end *shadow* feedback pipeline, durable outcom
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | complete |
+| **Status** | complete (pending P0 CHK-120 rollback) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |

@@ -2,12 +2,13 @@
 // MODULE: Cross-File CALLS Edge Tests
 // ───────────────────────────────────────────────────────────────
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import { closeDb, getDb, initDb } from '../lib/code-graph-db.js';
 import { resolveCrossFileCallEdges } from '../lib/cross-file-edge-resolver.js';
+import { CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV } from '../lib/edge-confidence-flags.js';
 import { handleCodeGraphQuery } from '../handlers/query.js';
 import { handleCodeGraphScan } from '../handlers/scan.js';
 
@@ -26,9 +27,19 @@ interface CallEdgeRow {
   target_fq_name: string;
   target_kind: string;
   target_name: string;
+  metadata: string | null;
 }
 
 let originalCwd = process.cwd();
+let originalEdgeConfidenceDifferentiationEnv: string | undefined;
+
+function setEdgeConfidenceDifferentiation(value: string | undefined): void {
+  if (value === undefined) {
+    delete process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+  } else {
+    process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV] = value;
+  }
+}
 
 function createFixture(label: string): Fixture {
   const rootDir = mkdtempSync(join(tmpdir(), `code-graph-cross-file-${label}-`));
@@ -82,7 +93,8 @@ function callEdgesByTargetName(name: string): CallEdgeRow[] {
       target.file_path AS target_file_path,
       target.fq_name AS target_fq_name,
       target.kind AS target_kind,
-      target.name AS target_name
+      target.name AS target_name,
+      edge.metadata AS metadata
     FROM code_edges edge
     INNER JOIN code_nodes source ON source.symbol_id = edge.source_id
     INNER JOIN code_nodes target ON target.symbol_id = edge.target_id
@@ -90,6 +102,11 @@ function callEdgesByTargetName(name: string): CallEdgeRow[] {
       AND target.name = ?
     ORDER BY source.file_path, source.fq_name, target.file_path, target.fq_name
   `).all(name) as CallEdgeRow[];
+}
+
+function parseCallEdgeMetadata(edge: CallEdgeRow): Record<string, unknown> {
+  expect(edge.metadata).toBeTypeOf('string');
+  return JSON.parse(edge.metadata ?? '{}') as Record<string, unknown>;
 }
 
 function allCallEdges(): Array<{ source_id: string; target_id: string; edge_type: string }> {
@@ -101,8 +118,14 @@ function allCallEdges(): Array<{ source_id: string; target_id: string; edge_type
   `).all() as Array<{ source_id: string; target_id: string; edge_type: string }>;
 }
 
+beforeEach(() => {
+  originalEdgeConfidenceDifferentiationEnv = process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+  delete process.env[CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION_ENV];
+});
+
 afterEach(() => {
   process.chdir(originalCwd);
+  setEdgeConfidenceDifferentiation(originalEdgeConfidenceDifferentiationEnv);
   closeDb();
 });
 
@@ -143,6 +166,48 @@ describe('cross-file CALLS edge resolution', () => {
       expect(helperEdges).toHaveLength(1);
       expect(helperEdges[0].target_kind).toBe('function');
       expect(relative(fixture.workspaceDir, helperEdges[0].target_file_path)).toBe('lib/util.ts');
+      expect(parseCallEdgeMetadata(helperEdges[0])).toMatchObject({
+        confidence: 0.8,
+        detectorProvenance: 'heuristic',
+        evidenceClass: 'INFERRED',
+      });
+    } finally {
+      rmSync(fixture.rootDir, { recursive: true, force: true });
+    }
+  });
+
+  it('updates resolved cross-file CALLS metadata when confidence differentiation is enabled', async () => {
+    setEdgeConfidenceDifferentiation('true');
+    const fixture = createFixture('happy-confidence');
+    try {
+      writeWorkspaceFile(
+        fixture.workspaceDir,
+        'lib/util.ts',
+        'export function helper() { return 1; }\n',
+      );
+      writeWorkspaceFile(
+        fixture.workspaceDir,
+        'handlers/main.ts',
+        [
+          "import { helper } from '../lib/util.js';",
+          '',
+          'export function run() {',
+          '  return helper();',
+          '}',
+          '',
+        ].join('\n'),
+      );
+
+      await runFullScan(fixture.workspaceDir);
+
+      const helperEdges = callEdgesByTargetName('helper');
+      expect(helperEdges).toHaveLength(1);
+      expect(helperEdges[0].target_kind).toBe('function');
+      expect(parseCallEdgeMetadata(helperEdges[0])).toMatchObject({
+        confidence: 0.9,
+        detectorProvenance: 'heuristic',
+        evidenceClass: 'EXTRACTED',
+      });
     } finally {
       rmSync(fixture.rootDir, { recursive: true, force: true });
     }
@@ -172,6 +237,45 @@ describe('cross-file CALLS edge resolution', () => {
       expect(processEdges).toHaveLength(1);
       expect(processEdges[0].target_kind).toBe('import');
       expect(relative(fixture.workspaceDir, processEdges[0].target_file_path)).toBe('handlers/main.ts');
+      expect(parseCallEdgeMetadata(processEdges[0])).toMatchObject({
+        confidence: 0.8,
+        detectorProvenance: 'heuristic',
+        evidenceClass: 'INFERRED',
+      });
+    } finally {
+      rmSync(fixture.rootDir, { recursive: true, force: true });
+    }
+  });
+
+  it('updates ambiguous cross-file CALLS metadata when confidence differentiation is enabled', async () => {
+    setEdgeConfidenceDifferentiation('true');
+    const fixture = createFixture('ambiguous-confidence');
+    try {
+      writeWorkspaceFile(fixture.workspaceDir, 'lib/a.ts', 'export function process() { return 1; }\n');
+      writeWorkspaceFile(fixture.workspaceDir, 'lib/b.ts', 'export function process() { return 2; }\n');
+      writeWorkspaceFile(
+        fixture.workspaceDir,
+        'handlers/main.ts',
+        [
+          "import { process } from '../lib/a.js';",
+          '',
+          'export function run() {',
+          '  return process();',
+          '}',
+          '',
+        ].join('\n'),
+      );
+
+      await runFullScan(fixture.workspaceDir);
+
+      const processEdges = callEdgesByTargetName('process');
+      expect(processEdges).toHaveLength(1);
+      expect(processEdges[0].target_kind).toBe('import');
+      expect(parseCallEdgeMetadata(processEdges[0])).toMatchObject({
+        confidence: 0.3,
+        detectorProvenance: 'heuristic',
+        evidenceClass: 'AMBIGUOUS',
+      });
     } finally {
       rmSync(fixture.rootDir, { recursive: true, force: true });
     }

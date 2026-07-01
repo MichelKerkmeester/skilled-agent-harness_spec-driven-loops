@@ -109,7 +109,7 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
   const recoveredText = extractTextFromOpencodeJson(savedStdout);
 
   for (const iterNum of iterationNumbers) {
-    const iterFile = path.join(iterDir, `iteration-${iterNum}.md`);
+    const iterFile = path.join(iterDir, `iteration-${String(iterNum).padStart(3, '0')}.md`);
 
     // Skip iterations that already have a non-empty file.
     if (fs.existsSync(iterFile)) {

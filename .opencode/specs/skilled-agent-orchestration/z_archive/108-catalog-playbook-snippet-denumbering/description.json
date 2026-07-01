@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering",
-  "description": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`, `NNN-fea",
+  "description": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`,",
   "keywords": [
     "per-feature",
     "snippet",
@@ -16,10 +16,9 @@
     "sequential",
     "numeric",
     "prefix",
-    "001-feature-name",
-    "nnn-fea"
+    "001-feature-name"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.711Z",
+  "lastUpdated": "2026-07-01T12:31:47.772Z",
   "specId": "108",
   "folderSlug": "catalog-playbook-snippet-denumbering",
   "parentChain": [

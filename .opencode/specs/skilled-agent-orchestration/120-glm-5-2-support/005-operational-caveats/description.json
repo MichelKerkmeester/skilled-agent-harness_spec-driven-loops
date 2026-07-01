@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/005-operational-caveats",
-  "description": "The phase-1 profile records GLM-5.2's documented capabilities, but real dispatch behavior (reasoning-effort cost, thinking preservation, tool-streamin",
+  "description": "The phase-1 profile records GLM-5.2's documented capabilities, but real dispatch behavior (reasoning-effort cost, thinking preservation,",
   "keywords": [
     "phase-1",
     "profile",
@@ -15,10 +15,9 @@
     "reasoning-effort",
     "cost",
     "thinking",
-    "preservation",
-    "tool-streamin"
+    "preservation"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.407Z",
+  "lastUpdated": "2026-07-01T12:31:47.345Z",
   "specId": "005",
   "folderSlug": "operational-caveats",
   "parentChain": [

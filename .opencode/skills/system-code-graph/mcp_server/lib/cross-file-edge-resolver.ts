@@ -6,6 +6,8 @@
 // when the global graph has exactly one safe match.
 
 import * as graphDb from './code-graph-db.js';
+import { isCodeGraphEdgeConfidenceDifferentiationEnabled } from './edge-confidence-flags.js';
+import type { CodeEdgeMetadata } from './indexer-types.js';
 import type { SymbolKind } from './indexer-types.js';
 
 const CALL_TARGET_KINDS = new Set<SymbolKind>(['function', 'method', 'class']);
@@ -39,6 +41,28 @@ interface ImportTargetedCallEdgeRow {
   id: number;
   import_name: string;
   import_file_path: string;
+  metadata: string | null;
+}
+
+function updateEdgeMetadata(
+  rawMetadata: string | null,
+  confidence: number,
+  evidenceClass: CodeEdgeMetadata['evidenceClass'],
+): string {
+  let metadata: CodeEdgeMetadata = {};
+  if (rawMetadata) {
+    try {
+      metadata = JSON.parse(rawMetadata) as CodeEdgeMetadata;
+    } catch {
+      metadata = {};
+    }
+  }
+
+  return JSON.stringify({
+    ...metadata,
+    confidence,
+    evidenceClass,
+  });
 }
 
 function emptyStats(): CrossFileCallResolutionStats {
@@ -61,6 +85,7 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
   const d = graphDb.getDb();
 
   return d.transaction(() => {
+    const confidenceDifferentiationEnabled = isCodeGraphEdgeConfidenceDifferentiationEnabled();
     const stats = emptyStats();
     const nodes = d.prepare(`
       SELECT symbol_id, file_path, kind, name
@@ -81,7 +106,8 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
       SELECT
         edge.id AS id,
         target.name AS import_name,
-        target.file_path AS import_file_path
+        target.file_path AS import_file_path,
+        edge.metadata AS metadata
       FROM code_edges edge
       INNER JOIN code_nodes target ON target.symbol_id = edge.target_id
       WHERE edge.edge_type = 'CALLS'
@@ -91,6 +117,16 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
     const updateTarget = d.prepare(`
       UPDATE code_edges
       SET target_id = ?
+      WHERE id = ?
+    `);
+    const updateMetadata = d.prepare(`
+      UPDATE code_edges
+      SET metadata = ?
+      WHERE id = ?
+    `);
+    const updateTargetAndMetadata = d.prepare(`
+      UPDATE code_edges
+      SET target_id = ?, metadata = ?
       WHERE id = ?
     `);
 
@@ -106,12 +142,23 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
       const candidates = productionCandidates.length > 0 ? productionCandidates : allCandidates;
 
       if (candidates.length === 1) {
-        updateTarget.run(candidates[0].symbol_id, edge.id);
+        if (confidenceDifferentiationEnabled) {
+          updateTargetAndMetadata.run(
+            candidates[0].symbol_id,
+            updateEdgeMetadata(edge.metadata, 0.9, 'EXTRACTED'),
+            edge.id,
+          );
+        } else {
+          updateTarget.run(candidates[0].symbol_id, edge.id);
+        }
         stats.resolved++;
         continue;
       }
 
       if (candidates.length > 1) {
+        if (confidenceDifferentiationEnabled) {
+          updateMetadata.run(updateEdgeMetadata(edge.metadata, 0.3, 'AMBIGUOUS'), edge.id);
+        }
         stats.ambiguousSkipped++;
       } else {
         stats.unresolved++;

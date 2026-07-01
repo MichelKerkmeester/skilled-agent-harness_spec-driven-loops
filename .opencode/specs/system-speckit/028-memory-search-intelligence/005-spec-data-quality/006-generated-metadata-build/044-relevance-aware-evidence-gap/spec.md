@@ -72,7 +72,7 @@ Replace the gap decision, behind a default-off flag, with the verdict banding's 
 - Five new focused tests and a re-benchmark over the 18 labeled queries with the results and verdict committed in the phase folder
 
 ### Out of Scope
-- Graduating `SPECKIT_RELEVANCE_AWARE_GAP` to default-on, which is a separate decision the benchmark recommends but does not enact
+- **CORRECTION (2026-07-01, drift audit remediation):** graduation to default-on was originally out of scope for this spec, but per `implementation-summary.md`'s verdict and `lib/search/search-flags.ts` (`isRelevanceAwareGapEnabled`, "Default: TRUE"), `SPECKIT_RELEVANCE_AWARE_GAP` was later graduated and now defaults to ON. That decision happened after this spec was authored and is no longer out of scope - it shipped.
 - Any change to the verdict banding, the `resolveNoiseFloor` calculation or the `LOW_THRESHOLD` value, which are reused as-is
 - The noise-floor calibration for off-corpus high-background queries, which is consistent with the verdict and is its own benchmark
 - A reindex of the corpus. The re-benchmark reads a read-only backup as-is

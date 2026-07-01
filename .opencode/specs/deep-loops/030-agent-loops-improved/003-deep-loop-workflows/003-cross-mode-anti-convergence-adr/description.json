@@ -16,10 +16,12 @@
     "miniterations",
     "maxiterations"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.368Z",
+  "lastUpdated": "2026-07-01T13:22:18.801Z",
   "specId": "003",
   "folderSlug": "cross-mode-anti-convergence-adr",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "003-deep-loop-workflows"

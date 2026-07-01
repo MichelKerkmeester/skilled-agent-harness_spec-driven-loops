@@ -1,6 +1,7 @@
 {
+  "level": "phase",
   "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
-  "description": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening",
+  "description": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator",
   "keywords": [
     "parent",
     "packet",
@@ -14,16 +15,14 @@
     "children",
     "implement",
     "research",
-    "validator",
-    "hardening"
+    "validator"
   ],
-  "lastUpdated": "2026-06-30T11:58:13.386Z",
+  "lastUpdated": "2026-07-01T12:31:47.148Z",
   "specId": "031",
   "folderSlug": "deep-loop-issues-with-gpt-opencode",
   "parentChain": [
     "deep-loops"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

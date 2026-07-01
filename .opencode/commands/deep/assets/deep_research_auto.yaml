@@ -298,7 +298,6 @@ workflow:
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
           resource_map_present: "{resource_map_present}"
-          # <!-- F-010-B5-04 -->
           # Honor the parsed --no-resource-map flag from deep-research.md:73 (default true; false when flag is set).
           # The markdown command parses $ARGUMENTS and binds {resource_map_emit} before this step runs.
           resource_map.emit: "{resource_map_emit}"
@@ -316,7 +315,6 @@ workflow:
 
       step_create_state_log:
         action: "Initialize JSONL state log with config record"
-        # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
         content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"convergenceMode":"default","minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
@@ -922,7 +920,7 @@ workflow:
               --pure \
               --dir "{repo_root}" \
               {optional_variant_flag} \
-              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
+              "$(printf '%s\n\n' 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'; cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
               </dev/null
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
@@ -941,7 +939,12 @@ workflow:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus]
+          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode, target_agent, agent_definition_loaded, resolved_route]
+          route_proof:
+            mode: research
+            target_agent: deep-research
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=research target_agent=deep-research"
           optional_jsonl_fields:
             logOffset: "Byte offset where the seekable log region starts"
             logSize: "Byte length of the seekable log region"
@@ -964,6 +967,8 @@ workflow:
             - "delta_file_missing — per-iteration deltas/iter-NNN.jsonl not written"
             - "delta_file_empty — per-iteration delta file exists but has zero bytes"
             - "delta_file_missing_iteration_record — delta file lacks any record with type='iteration'"
+            - "route_proof_missing — state-log or delta iteration record omits route-proof fields"
+            - "route_proof_mismatch — state-log or delta iteration record does not match the resolved deep route"
             - "executor_missing — non-native executor did not record provenance"
             - "dispatch_failure_logged — last record is an explicit dispatch_failure event"
 
@@ -1089,7 +1094,6 @@ workflow:
           - latest_focus: "From latest JSONL iteration record"
         on_missing_outputs:
           action: "Mark iteration as 'error', continue to next"
-          # <!-- F-010-B5-02 -->
           # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
           # so the reducer can persist the failure without dropping the iteration. Schema source: state_format.md §Iteration Records.
           append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'

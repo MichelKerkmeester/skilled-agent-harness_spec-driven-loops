@@ -65,7 +65,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 7** of the 123-agent-loops-improved subsystem groups.
+This is **Phase 7** of the deep-loops/030-agent-loops-improved subsystem groups.
 
 **Scope Boundary**: Test infrastructure only — `spawn-cjs.ts` helper, integration test scaffold, and convergence-script vitest. No changes to production runtime code.
 
@@ -195,8 +195,8 @@ REQ-008
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-hermetic-test-isolation/` | Shared `spawn-cjs.ts` helper: isolate HOME/runtime-DB/temp-dir/child-env per test; enable parallel vitest runs (**global dependency floor** for all state/lock/crash-resume changes) | Draft |
-| 2 | `002-record-replay-cassette-harness/` | `recordScriptRun()` / `replayScriptRun()` capturing normalized dispatch envelopes; convergence-script regression baseline | Draft |
+| 1 | `001-hermetic-test-isolation/` | Shared `spawn-cjs.ts` helper: isolate HOME/runtime-DB/temp-dir/child-env per test; enable parallel vitest runs (**global dependency floor** for all state/lock/crash-resume changes) | Complete |
+| 2 | `002-record-replay-cassette-harness/` | `recordScriptRun()` / `replayScriptRun()` capturing normalized dispatch envelopes; convergence-script regression baseline | Complete |
 
 ### Phase Transition Rules
 

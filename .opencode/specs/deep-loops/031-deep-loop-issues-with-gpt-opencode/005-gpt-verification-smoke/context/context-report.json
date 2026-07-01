@@ -1,0 +1,77 @@
+{
+  "scope": "Phase 004 route proof smoke for context",
+  "executorPool": [
+    {
+      "label": "gpt-context-smoke",
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.5",
+      "reasoningEffort": "high",
+      "status": "blocked"
+    }
+  ],
+  "iterations": 1,
+  "stop": {
+    "status": "cap/partial",
+    "reason": "maxIterationsReached",
+    "blockers": [
+      "cli-opencode self-invocation guard",
+      "agreementMin requires 2 executors but pool has 1",
+      "code graph stale; fallback frontier used"
+    ]
+  },
+  "reuseCandidates": [],
+  "integrationPoints": [
+    {
+      "path": ".opencode/commands/deep/context.md",
+      "symbol": "general-agent verification and mode routing",
+      "hard": true,
+      "freshness": "unverified"
+    },
+    {
+      "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+      "symbol": "auto workflow",
+      "hard": true,
+      "freshness": "unverified"
+    },
+    {
+      "path": ".opencode/skills/cli-opencode/SKILL.md",
+      "symbol": "self-invocation guard",
+      "hard": true,
+      "freshness": "verified-by-read"
+    }
+  ],
+  "touchList": [],
+  "conventions": [
+    "Host writes state under context/; seats are read-only analyzers.",
+    "Fallback frontier/citations are labeled unverified when the code graph is stale."
+  ],
+  "dependencySubgraph": {
+    "nodes": [],
+    "edges": []
+  },
+  "priorArt": [
+    ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke/verification-smoke.md",
+    ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke/implementation-summary.md"
+  ],
+  "gaps": [
+    {
+      "id": "gap-001",
+      "summary": "Configured cli-opencode seat blocked by self-invocation guard."
+    },
+    {
+      "id": "gap-002",
+      "summary": "One-seat pool cannot satisfy agreementMin=2."
+    },
+    {
+      "id": "gap-003",
+      "summary": "Code graph stale; fallback frontier used."
+    }
+  ],
+  "signals": {
+    "sliceCoverage": 0,
+    "reuseCatalogCoverage": 0,
+    "agreementRate": 0,
+    "relevanceFloor": 0,
+    "dependencyCompleteness": 0
+  }
+}

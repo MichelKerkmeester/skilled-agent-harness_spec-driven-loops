@@ -76,3 +76,20 @@ The stale planning-only summary is corrected: this phase delivered a shadow-only
 - Decide which runtime post-task signal fires the execution-success emitter.
 - Wire the shared Beta posterior primitive, now landed in the sibling reliability phase, into the rerank adapter.
 - Benchmark with real execution-success data before any live rerank or default promotion.
+
+## 2026-07-01
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor`
+
+### Summary
+
+A deep-history correction to the prior drift-audit record: `skill-outcome-store.ts` (364 lines) and `outcome-weighted-rerank.ts` (124 lines) were built at commit `03d0b01eb6` and wired live-adjacent at `09626fc921`, then deleted at commit `8efcde0e6b`. The measured result at deletion was an MRR delta of +0.005 to +0.008 against the metric's own noise band of SD 0.0237 (4x larger) and a right-skill@3 of 0.000 across all 90 runs, recorded in the delete commit as "structurally inert despite being fully wired." Of the four related features corrected in the same audit, this is the strongest negative result. The operator explicitly decided not to revive it.
+
+### Fixed
+
+- Corrected a prior drift-audit pass-1 finding that stated this code "was never committed." Git history disproves that claim: both files were committed, wired live-adjacent and measured before being deleted for cause. This entry replaces that record with the verified history.
+
+### Follow-Ups
+
+- No revival planned. The question is closed.

@@ -43,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness |
-| **Status** | complete |
+| **Status** | in-progress |
 | **Level** | 3 |
 | **Scope** | Five temporal candidates, C3-A shipped and four pending |
 | **Branch** | system-speckit/028-memory-search-intelligence |

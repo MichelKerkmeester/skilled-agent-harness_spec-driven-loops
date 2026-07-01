@@ -1106,6 +1106,11 @@ function normalizeUnique(values: string[]): string[] {
 }
 
 function deriveKeyFiles(specFolderPath: string, specFolder: string, docs: ParsedSpecDoc[]): string[] {
+  const specDoc = docs.find((doc) => doc.relativePath === 'spec.md');
+  const frontmatterKeyFiles = specDoc
+    ? extractFrontmatterArray(specDoc.content, 'key_files').filter(keepKeyFile)
+    : [];
+
   const preferredDoc = docs.find((doc) => doc.relativePath === 'implementation-summary.md');
   const referenced = preferredDoc
     ? extractReferencedFilePaths(preferredDoc.content).filter(keepKeyFile)
@@ -1114,7 +1119,7 @@ function deriveKeyFiles(specFolderPath: string, specFolder: string, docs: Parsed
   const fallbackRefs = docs
     .flatMap((doc) => extractReferencedFilePaths(doc.content))
     .filter(keepKeyFile);
-  const merged = normalizeUnique([...referenced, ...fallbackRefs, ...docs.map((doc) => doc.relativePath)]);
+  const merged = normalizeUnique([...frontmatterKeyFiles, ...referenced, ...fallbackRefs, ...docs.map((doc) => doc.relativePath)]);
   const resolved = merged
     .map((candidate) => resolveKeyFileCandidate(specFolderPath, specFolder, candidate))
     .filter((candidate): candidate is string => Boolean(candidate));

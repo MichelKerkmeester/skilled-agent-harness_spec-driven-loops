@@ -55,7 +55,7 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
-| **Parent Spec** | ../spec.md (123-agent-loops-improved) |
+| **Parent Spec** | ../spec.md (deep-loops/030-agent-loops-improved) |
 | **Parent Packet** | deep-loops/030-agent-loops-improved |
 | **Predecessor** | 001-reference-research |
 | **Successor** | 003-deep-loop-workflows |
@@ -87,7 +87,7 @@ Implement all 18 evidence-backed improvements mined from the reference codebases
 - Each leaf is self-contained: it modifies only the files listed in its own Files to Change table
 
 ### Out of Scope
-- Improvements targeting `deep-loop-workflows`, `system-spec-kit`, or `skill-interconnection` subsystems (other subsystem groups in `123-agent-loops-improved`)
+- Improvements targeting `deep-loop-workflows`, `system-spec-kit`, or `skill-interconnection` subsystems (other subsystem groups in `deep-loops/030-agent-loops-improved`)
 - The "deep variant" parts explicitly called out per leaf (LLM consolidation, multi-hop fallback chains, no-backlog catch-up, full JSONL end-to-end integrity, socket-bind as default, 4-stage JSON extraction cascade) — these are deferred to follow-on specs
 - Any new capability outside the 18 research.md §5.1 items
 
@@ -120,24 +120,24 @@ Audit-trail summary only; per-leaf detail lives in each child's Files to Change 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-atomic-state-serialize-diff/` | Write-only-on-change diff guard for `atomic-state.ts` | Draft |
-| 002 | `002-atomic-state-integrity-helpers/` | SHA-256 stamp/verify helpers for `atomic-state.ts` | Draft |
-| 003 | `003-atomic-state-deferred-writer/` | Debounced per-path coalescing writer for `atomic-state.ts` | Draft |
-| 004 | `004-abortable-chunked-sleep/` | New cancellation-safe `sleep.ts` primitive | Draft |
-| 005 | `005-lifecycle-taxonomy-guards/` | State-machine taxonomy + legal transition table in `lifecycle-taxonomy.cjs` | Draft |
-| 006 | `006-jsonl-lock-held-merge/` | Lock-held read-merge-write set-union in `jsonl-repair.ts` | Draft |
-| 007 | `007-loop-lock-heartbeat-hardening/` | Owner-scoped heartbeat driver + pause-aware metadata in `loop-lock.ts` | Draft |
-| 008 | `008-loop-lock-single-flight-decision/` | ADR: optional socket-bind single-flight guard for `loop-lock.ts` | Draft |
-| 009 | `009-byte-offset-log-regions/` | Optional `logOffset`/`logSize`/`logPath` fields per iteration record | Draft |
-| 010 | `010-fixed-rate-overrun-accounting/` | Slot overrun measurement + `skippedCount` metadata in `fanout-run.cjs` | Draft |
-| 011 | `011-convergence-score-delta/` | `scoreDelta` improvement-effect signal in `convergence.cjs` | Draft |
-| 012 | `012-observation-threshold-guard/` | `min_observations` actionability guard in `convergence.cjs` | Draft |
-| 013 | `013-coverage-graph-time-decay/` | Time-decay weighting in `coverage-graph-signals.ts` | Draft |
-| 014 | `014-coverage-graph-fuzzy-merge/` | Deterministic fuzzy node-merge in `coverage-graph-query.ts` | Draft |
-| 015 | `015-fallback-router-typed-reroute/` | Typed `failureKind` routing + `validateFallbackGraph()` preflight | Draft |
-| 016 | `016-llm-judge-hardening/` | Retry + neutral fallback card + timeout races in `post-dispatch-validate.ts` | Draft |
-| 017 | `017-fanout-stall-watchdog/` | Opt-in stall watchdog abort/requeue in `fanout-pool.cjs` | Draft |
-| 018 | `018-persisted-wait-crash-resume/` | Nullable wait-checkpoint schema + `resume-waiting` classifier in `fanout-run.cjs` | Draft |
+| 001 | `001-atomic-state-serialize-diff/` | Write-only-on-change diff guard for `atomic-state.ts` | Complete |
+| 002 | `002-atomic-state-integrity-helpers/` | SHA-256 stamp/verify helpers for `atomic-state.ts` | Complete |
+| 003 | `003-atomic-state-deferred-writer/` | Debounced per-path coalescing writer for `atomic-state.ts` | Complete |
+| 004 | `004-abortable-chunked-sleep/` | New cancellation-safe `sleep.ts` primitive | Complete |
+| 005 | `005-lifecycle-taxonomy-guards/` | State-machine taxonomy + legal transition table in `lifecycle-taxonomy.cjs` | Complete |
+| 006 | `006-jsonl-lock-held-merge/` | Lock-held read-merge-write set-union in `jsonl-repair.ts` | Complete |
+| 007 | `007-loop-lock-heartbeat-hardening/` | Owner-scoped heartbeat driver + pause-aware metadata in `loop-lock.ts` | Complete |
+| 008 | `008-loop-lock-single-flight-decision/` | ADR: optional socket-bind single-flight guard for `loop-lock.ts` | Complete |
+| 009 | `009-byte-offset-log-regions/` | Optional `logOffset`/`logSize`/`logPath` fields per iteration record | Complete |
+| 010 | `010-fixed-rate-overrun-accounting/` | Slot overrun measurement + `skippedCount` metadata in `fanout-run.cjs` | Complete |
+| 011 | `011-convergence-score-delta/` | `scoreDelta` improvement-effect signal in `convergence.cjs` | Complete |
+| 012 | `012-observation-threshold-guard/` | `min_observations` actionability guard in `convergence.cjs` | Complete |
+| 013 | `013-coverage-graph-time-decay/` | Time-decay weighting in `coverage-graph-signals.ts` | Complete |
+| 014 | `014-coverage-graph-fuzzy-merge/` | Deterministic fuzzy node-merge in `coverage-graph-query.ts` | Complete |
+| 015 | `015-fallback-router-typed-reroute/` | Typed `failureKind` routing + `validateFallbackGraph()` preflight | Complete |
+| 016 | `016-llm-judge-hardening/` | Retry + neutral fallback card + timeout races in `post-dispatch-validate.ts` | Complete |
+| 017 | `017-fanout-stall-watchdog/` | Opt-in stall watchdog abort/requeue in `fanout-pool.cjs` | Complete |
+| 018 | `018-persisted-wait-crash-resume/` | Nullable wait-checkpoint schema + `resume-waiting` classifier in `fanout-run.cjs` | Complete |
 
 ### Phase Transition Rules
 
@@ -185,7 +185,7 @@ Audit-trail summary only; per-leaf detail lives in each child's Files to Change 
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-leaf spec.md
-- **Parent Spec**: `../spec.md` (123-agent-loops-improved)
-- **Root Packet**: `../../spec.md` (123-agent-loops-improved)
+- **Parent Spec**: `../spec.md` (deep-loops/030-agent-loops-improved)
+- **Root Packet**: `../../spec.md` (deep-loops/030-agent-loops-improved)
 - **Research source**: `../../001-reference-research/research/research.md` — §5.1 is the source of truth for all 18 items
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

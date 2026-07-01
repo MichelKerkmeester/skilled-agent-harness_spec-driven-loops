@@ -43,8 +43,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness` |
-| **Status** | complete |
-| **Completed** | Built default-off / tombstone-gated, fan-in benchmark gates default-on (pending) |
+| **Status** | pending — fan-in re-parse benchmark gates default-on |
+| **Completed** | Built default-off / tombstone-gated; fan-in benchmark gates default-on (pending) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

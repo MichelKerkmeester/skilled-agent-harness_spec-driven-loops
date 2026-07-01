@@ -305,3 +305,37 @@ describe('schema tolerance and strict read under grandfather (REQ-004, REQ-005)'
     expect(report.violations.some((v) => v.code === 'SOURCE_FINGERPRINT_MISMATCH')).toBe(true);
   });
 });
+
+describe('key_files derivation honors frontmatter continuity references', () => {
+  it('includes a real file only named in spec.md frontmatter key_files, not in doc prose', () => {
+    const trackRoot = makeTrackRoot();
+    const repoRoot = path.dirname(path.dirname(path.dirname(trackRoot)));
+    const runtimeFilePath = path.join(repoRoot, '.opencode', 'skills', 'fake-runtime', 'real-file.cjs');
+    fs.mkdirSync(path.dirname(runtimeFilePath), { recursive: true });
+    fs.writeFileSync(runtimeFilePath, 'module.exports = {};\n', 'utf-8');
+
+    const folder = path.join(trackRoot, '050-key-files-frontmatter');
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'spec.md'), [
+      '---',
+      'title: "Key Files Frontmatter Fixture"',
+      'description: "Fixture for frontmatter-sourced key_files derivation."',
+      'trigger_phrases: ["key files frontmatter fixture"]',
+      'importance_tier: "important"',
+      '_memory:',
+      '  continuity:',
+      '    key_files:',
+      '      - ".opencode/skills/fake-runtime/real-file.cjs"',
+      '---',
+      '',
+      '# Fixture',
+      '',
+      'This body never mentions the runtime file by path.',
+      '',
+    ].join('\n'), 'utf-8');
+
+    const graph = deriveGraphMetadata(folder, null, { now: NOW });
+
+    expect(graph.derived.key_files).toContain('.opencode/skills/fake-runtime/real-file.cjs');
+  });
+});

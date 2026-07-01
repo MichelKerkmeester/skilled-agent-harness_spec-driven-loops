@@ -1,0 +1,16 @@
+{
+  "openQuestions": [
+    {"id": "CR-1", "question": "Name every soft/deferential/self-protective framing in gpt-fast-high; correct each", "status": "open"},
+    {"id": "CR-2", "question": "Mechanism + concrete fix for each confirmed symptom, cited file:line", "status": "open"},
+    {"id": "CR-3", "question": "Sharpen / find weak point / confirm each consolidated KQ under adversarial pressure", "status": "open"},
+    {"id": "CR-4", "question": "Update prior 'not proven' verdicts the operator evidence now settles", "status": "open"},
+    {"id": "CR-5", "question": "Where did glm-max + gpt-fast-high agree for the wrong reason (shared blind spot)?", "status": "open"}
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "promotedIdeas": [],
+  "blockedStopHistory": []
+}

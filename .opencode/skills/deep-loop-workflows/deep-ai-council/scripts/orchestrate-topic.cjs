@@ -22,6 +22,15 @@ const { validateSessionStateHierarchy } = require('../../../deep-loop-runtime/li
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_TOPIC_ID = 'topic-001-topic';
+const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
+const COUNCIL_ROUTE_FIELDS = Object.freeze({
+  mode: 'ai-council',
+  target_agent: '@ai-council',
+  execution: 'multi_topic_session_round',
+  state_source: 'ai-council/session-state.jsonl',
+  depth_aware: true,
+  do_not_switch_mode: true,
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -56,7 +65,21 @@ function normalizeOptions(input = {}) {
     throw new TypeError('executor_config must be an object');
   }
   validateSessionStateHierarchy(sessionState);
-  return { topicId, sessionState, executorConfig };
+  return { topicId, sessionState, executorConfig: withCouncilRouteConfig(executorConfig) };
+}
+
+function withCouncilRouteConfig(executorConfig) {
+  const configuredFields = isRecord(executorConfig.route_fields) ? executorConfig.route_fields : {};
+  return {
+    ...executorConfig,
+    resolved_route_header: typeof executorConfig.resolved_route_header === 'string'
+      ? executorConfig.resolved_route_header
+      : COUNCIL_RESOLVED_ROUTE_HEADER,
+    route_fields: {
+      ...COUNCIL_ROUTE_FIELDS,
+      ...configuredFields,
+    },
+  };
 }
 
 function findTopic(sessionState, topicId) {
@@ -249,6 +272,8 @@ async function orchestrateTopic(options = {}) {
         round_number: roundNumber,
         session_state: sessionState,
         executor_config: executorConfig,
+        resolved_route_header: executorConfig.resolved_route_header,
+        route_fields: executorConfig.route_fields,
       },
     });
     const adjudicatorVerdict = await adjudicateRound({
@@ -282,6 +307,10 @@ async function orchestrateTopic(options = {}) {
       topic_id: topicId,
       round_id: roundId,
       round_number: roundNumber,
+      mode: 'ai-council',
+      target_agent: 'ai-council',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=ai-council target_agent=ai-council',
       seats: seats.map((seat) => (typeof seat === 'string' ? seat : seat.id)),
       dispatch_summary: dispatchResult.summary,
       adjudicator_verdict: adjudicatorVerdict,

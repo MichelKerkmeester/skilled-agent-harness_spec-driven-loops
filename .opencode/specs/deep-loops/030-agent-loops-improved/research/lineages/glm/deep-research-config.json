@@ -1,0 +1,33 @@
+{
+  "topic": "Continue and deepen Round-2 research into perfecting the deep-loops/030-agent-loops-improved packet across all 8 phases plus deep-loop tooling, with stopPolicy=max-iterations forcing the full 35-iteration budget.",
+  "specFolder": ".opencode/specs/deep-loops/030-agent-loops-improved",
+  "loopType": "research",
+  "executor": "cli-opencode",
+  "model": "zai-coding-plan/glm-5.2",
+  "sessionId": "fanout-glm-1782890147566-yg06ab",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 2,
+  "continuedFromRun": null,
+  "maxIterations": 35,
+  "convergenceThreshold": 0.01,
+  "stopPolicy": "max-iterations",
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "stuckThreshold": 3,
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "status": "in_progress",
+  "createdAt": "2026-07-01T09:15:00Z",
+  "round": 2,
+  "round1_baseline_findings": 12,
+  "protection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -65,7 +65,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the 123-agent-loops-improved subsystem groups.
+This is **Phase 4** of the deep-loops/030-agent-loops-improved subsystem groups.
 
 **Scope Boundary**: Unattended/autopilot lifecycle for the speckit commands (`complete`, `plan`, `implement`). No changes to deep-loop-runtime or other subsystems.
 
@@ -194,7 +194,7 @@ REQ-008
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-speckit-autopilot-lifecycle/` | Unattended/autopilot speckit lifecycle: branch-first envelope, typed terminal reasons, branch-preserved failure | Draft |
+| 1 | `001-speckit-autopilot-lifecycle/` | Unattended/autopilot speckit lifecycle: branch-first envelope, typed terminal reasons, branch-preserved failure | Complete |
 
 ### Phase Transition Rules
 

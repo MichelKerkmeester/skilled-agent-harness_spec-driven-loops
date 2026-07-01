@@ -1,0 +1,27 @@
+{
+  "specFolder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/005-packet-identity-cleanup",
+  "description": "The packet was migrated from `skilled-agent-orchestration/123-agent-loops-improved` to `deep-loops/030-agent-loops-improved` (with an intermediate/par",
+  "keywords": [
+    "packet",
+    "migrated",
+    "skilled-agent-orchestration",
+    "123-agent-loops-improved",
+    "deep-loops",
+    "030-agent-loops-improved",
+    "intermediate",
+    "par"
+  ],
+  "lastUpdated": "2026-07-01T11:54:14.535Z",
+  "specId": "005",
+  "folderSlug": "packet-identity-cleanup",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "030-agent-loops-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,5 @@
+{
+  "seatStatus": "blocked",
+  "error": "cli-opencode self-invocation guard tripped: OPENCODE_PID is set in the host environment",
+  "findingsProduced": false
+}

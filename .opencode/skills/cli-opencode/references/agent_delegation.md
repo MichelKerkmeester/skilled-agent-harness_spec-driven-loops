@@ -194,6 +194,8 @@ The repo ships these agents under `.opencode/agents/`. The cli-opencode skill ca
 
 **Best for:** Architecture decisions, complex planning that benefits from comparing 3+ solution strategies.
 
+**Command-only (as of `mode: subagent`).** Direct `opencode run --agent ai-council` is no longer reachable — `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent general "..."` and let `general`/`orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass.
+
 **Delegate when:** The calling AI needs a fundamentally different planning approach or wants to compare strategies before committing to one.
 
 ---
@@ -222,10 +224,10 @@ Pick the agent that matches the task type. Default to `general` when no speciali
 | Documentation generation | `write` | `opencode run --agent write --variant high --format json --dir /repo "Generate README for the cli-opencode skill"` |
 | Code review | `review` | `opencode run --agent review --variant high --format json --dir /repo "Review @src/auth.ts for security issues"` |
 | Root cause debugging | `debug` | `opencode run --agent debug --variant high --format json --dir /repo "Debug this error: <error>"` |
-| Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. <!-- F-007-B2-02 --> |
-| Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. <!-- F-007-B2-02 --> |
-| Multi-strategy planning | `ai-council` | `opencode run --agent ai-council --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` |
-| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
+| Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. |
+| Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. |
+| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or `opencode run --agent general --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` and let orchestrate's routing Task-dispatch `@ai-council`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. |
 | Default / unspecified | `general` | `opencode run --agent general --variant high --format json --dir /repo "<prompt>"` |
 
 ---

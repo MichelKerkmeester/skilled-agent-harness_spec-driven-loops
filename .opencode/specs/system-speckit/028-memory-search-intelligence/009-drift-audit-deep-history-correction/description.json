@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/009-drift-audit-deep-history-correction",
+  "description": "Pass 1 of the drift audit corrected four feature docs to say their claimed shipped code was \"GENUINELYABSENT\" from the current tree",
+  "keywords": [
+    "pass-2",
+    "doc",
+    "corrections",
+    "git-history",
+    "drift",
+    "audit",
+    "028-memory-search-intelligence",
+    "built",
+    "benchmarked",
+    "deleted"
+  ],
+  "lastUpdated": "2026-07-01T00:00:00.000Z",
+  "specId": "009",
+  "folderSlug": "drift-audit-deep-history-correction",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

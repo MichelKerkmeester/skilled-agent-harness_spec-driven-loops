@@ -1,0 +1,46 @@
+{
+  "reuseCandidates": [],
+  "integrationPoints": [],
+  "conventions": [],
+  "dependencies": [],
+  "gaps": [],
+  "lowConfidence": [],
+  "contradictions": [],
+  "metrics": {
+    "findings": 0,
+    "gatedFindings": 0,
+    "lowConfidenceFindings": 0,
+    "agreementEligible": 0,
+    "contradictions": 0,
+    "agreementRate": 0,
+    "relevanceFloor": 0,
+    "reuseCandidates": 0,
+    "integrationPoints": 0,
+    "conventions": 0,
+    "dependencies": 0,
+    "gaps": 0
+  },
+  "sessionId": "deep-context-20260630T204520Z-gpt-context-smoke",
+  "lineageMode": "new",
+  "generation": 1,
+  "status": "ITERATING",
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "executorPool": [],
+  "iterationsCompleted": 1,
+  "seatsByIteration": {
+    "1": {
+      "succeeded": [],
+      "failed": [
+        "gpt-context-smoke"
+      ]
+    }
+  },
+  "graphDecision": "STOP_BLOCKED",
+  "corruptionWarnings": [],
+  "seatValidationWarnings": [],
+  "stateLogRepair": {
+    "repaired": false,
+    "droppedBytes": 0
+  }
+}

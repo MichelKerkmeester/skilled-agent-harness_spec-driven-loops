@@ -1,7 +1,7 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization",
-  "description": "cli-opencode currently supports two providers (`opencode-go` default, `deepseek` direct-API) and the shared small-model registry (`sk-prompt/assets/mo",
+  "description": "cli-opencode currently supports two providers (`opencode-go` default, `deepseek` direct-API) and the shared small-model registry",
   "keywords": [
     "cli-opencode",
     "currently",
@@ -14,11 +14,9 @@
     "direct-api",
     "shared",
     "small-model",
-    "registry",
-    "sk-prompt",
-    "assets"
+    "registry"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.144Z",
+  "lastUpdated": "2026-07-01T12:31:47.706Z",
   "specId": "098",
   "folderSlug": "cli-opencode-minimax-optimization",
   "parentChain": [

@@ -22,6 +22,7 @@ import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.j
 import { runPhases } from './phase-runner.js';
 import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 import { extractDocSymbols } from './doc-symbol-extractor.js';
+import { isCodeGraphEdgeConfidenceDifferentiationEnabled } from './edge-confidence-flags.js';
 import {
   addToSkipList,
   classifyParserErrorClass,
@@ -169,6 +170,16 @@ function buildEdgeMetadata(
     reason,
     step,
   };
+}
+
+function buildDifferentiatedCallsEdgeMetadata(
+  candidates: CodeNode[],
+  callerSymbolId: string,
+): NonNullable<CodeEdge['metadata']> {
+  const matchingCandidates = candidates.filter((candidate) => candidate.symbolId !== callerSymbolId);
+  const confidence = matchingCandidates.length > 1 ? 0.35 : 0.75;
+  const evidenceClass = matchingCandidates.length > 1 ? 'AMBIGUOUS' : 'INFERRED';
+  return buildEdgeMetadata(confidence, 'heuristic', evidenceClass);
 }
 
 export interface RawCapture {
@@ -1021,6 +1032,7 @@ export function extractEdges(
   };
   const nodesByName = new Map<string, CodeNode[]>();
   const nodesByFqName = new Map<string, CodeNode>();
+  const confidenceDifferentiationEnabled = isCodeGraphEdgeConfidenceDifferentiationEnabled();
   for (const node of nodes) {
     const group = nodesByName.get(node.name) ?? [];
     group.push(node);
@@ -1151,7 +1163,9 @@ export function extractEdges(
           edges.push({
             sourceId: caller.symbolId, targetId: target.symbolId,
             edgeType: 'CALLS', weight: resolvedWeights.CALLS,
-            metadata: buildEdgeMetadata(resolvedWeights.CALLS, 'heuristic', 'INFERRED'),
+            metadata: confidenceDifferentiationEnabled
+              ? buildDifferentiatedCallsEdgeMetadata(nodesByName.get(calledName) ?? [], caller.symbolId)
+              : buildEdgeMetadata(resolvedWeights.CALLS, 'heuristic', 'INFERRED'),
           });
         }
       }

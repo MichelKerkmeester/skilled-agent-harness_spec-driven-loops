@@ -39,7 +39,7 @@
       "cross"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in-progress",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",

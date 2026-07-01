@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Dark-flag graduation complete: 4 graduated, 4 cut, 1 refined"
-    next_safe_action: "None — track complete; production flips remain separate evidence-gated decisions"
+    next_safe_action: "One deferred item remains: 011-graduation-follow-ups/003-search-append-citation-probe is at 90% completion with CHK-021 (cli executor test pass) unchecked, deliberately deferred to the cli executor. Otherwise the track is complete; production flips remain separate evidence-gated decisions."
     blockers: []
     key_files:
       - "spec.md"

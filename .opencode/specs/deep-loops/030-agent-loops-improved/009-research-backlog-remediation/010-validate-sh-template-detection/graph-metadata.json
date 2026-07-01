@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+  "spec_folder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+  "parent_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate.sh template detection",
+      "scaffold never touched check",
+      "template author last_updated_by",
+      "validate.sh template detection plan",
+      "validate.sh template detection tasks"
+    ],
+    "key_topics": [
+      "validate",
+      "template",
+      "detection",
+      "scaffold",
+      "never",
+      "touched",
+      "check",
+      "author",
+      "plan",
+      "tasks",
+      "several",
+      "folders"
+    ],
+    "importance_tier": "medium",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical, untouched scaffold templates — confirmed directly for `008-loop-systems-remediation/tasks.md` and `implementation-summary.md` (title literally `\"[template:level1/tasks.md]\"`, `packetpointer: \"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"`), and for 3 other folders per `research/researcharchive/20260701T071133Z-gen1/research.md` §4.2 (F-010)",
+    "created_at": "2026-07-01T07:28:44.272Z",
+    "last_save_at": "2026-07-01T07:34:55.070Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:eb932c81296fdce862b3f0af651052735328d67b6e877e12d9c2ea33c15085e9",
+    "source_doc_hashes": {
+      "spec.md": "aeaed1cc5d837c3ebc687108dfec0e5a5b518598ba3134951a19e5918798b6fe",
+      "plan.md": "bd31631fad8673ac9b83fe23aaf71fb5584c65e3729f15f3bfe84ff82d9dd961",
+      "tasks.md": "843f61ade9bb42f6306e5c24ada06669e6e056c77fe1258361bbbced77faec0a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

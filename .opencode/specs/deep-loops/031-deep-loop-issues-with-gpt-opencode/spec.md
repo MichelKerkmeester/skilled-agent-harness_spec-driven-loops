@@ -11,19 +11,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode"
-    last_updated_at: "2026-06-30T13:55:00Z"
-    last_updated_by: "opencode-gpt"
-    recent_action: "Backfilled phase-parent lean trio"
-    next_safe_action: "Run deep research in child 001, then implement"
+    last_updated_at: "2026-07-01T17:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Packet complete: phases 008-013 implemented, 006 closed"
+    next_safe_action: "None -- packet complete"
     blockers: []
-    key_files: []
+    key_files:
+      - "goal-prompt.md"
+      - "007-gpt-behavioral-hardening-research/research/research.md"
+      - "012-gpt-claude-benchmark/benchmark-results.md"
+      - "006-host-hard-identity-fix5/decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "031-parent-init"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Phase 007's 9 KQs all answered with file:line evidence across 6 lineages, 2 rounds (research/research.md)."
+      - "Phase ordering resolved and executed: 008 (Mode-D + ai-council identity) -> 009 (orchestrate routing) -> 010 (ai-council subagent-only, operator override) -> 011 (plugin) -> 012 (benchmark) -> 013 (FIX-5 checkpoint)."
+      - "Should phase 006/FIX-5 unpark? No -- closed by phase 013's gate against phase 012's real benchmark results (zero semantic wrong-mode artifacts, zero route-proof mismatches)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase Parent: Deep-Loop Issues with GPT-backed OpenCode
@@ -39,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | phase |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-30 |
 | **Parent Packet** | None (top-level packet under deep-loops track) |
 <!-- /ANCHOR:metadata -->
@@ -50,6 +57,10 @@ _memory:
 ## 2. PURPOSE
 
 GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council). The deep-loop dispatch path relies on prose/prompt contracts rather than a hard runtime identity boundary, so GPT absorbs or misinterprets deep LEAF roles, re-dispatches incorrectly, and is often slower than Claude even in fast mode. This parent packet owns the research and phased implementation that fix deep-skill invocation, routing, orchestration, and adherence for GPT while preserving Claude's flexibility.
+
+### Operator symptom report (2026-07-01, real-world OpenCode usage)
+
+Phases 002-004 (route-proof validation, `deep.md` primary router, `orchestrate.md` Deep Route field, pre-route headers) are code-complete, but phase 005's GPT verification smoke never reached a clean pass — 0/4 command-owned smokes reached a real leaf dispatch (all blocked upstream by `cli-opencode` self-invocation guards). The operator now independently reports the same underlying problem persisting in real usage: GPT is very slow as `@orchestrate` primary agent; frequently fails to invoke the correct deep sub-agent; gets stuck on pre-defined flows (deep-loop commands especially, possibly others); and overthinks, needing literal, deterministic instructions rather than prose/judgment. This is corroborating evidence, not new information — it points at the same gap phase 005 already flagged as unresolved. Full charter for the follow-up investigation: `goal-prompt.md` (this folder) and phase `007` (pending).
 <!-- /ANCHOR:problem -->
 
 ---
@@ -57,12 +68,21 @@ GPT-backed models running inside OpenCode do not properly invoke deep skills (de
 <!-- ANCHOR:phases -->
 ## 3. PHASE MAP
 
+> All phases below are flat siblings directly under this parent folder (not nested under `001/`). Prior docs described a nested `001/00N-*` layout that never matched the actual filesystem; this table and the packet's graph-metadata now reflect the real flat structure.
+
 | Phase | Status | Purpose |
 |-------|--------|---------|
-| `001-deep-agent-router-and-orchestration` | Phase Parent (research complete) | Owns the research (DONE — `research/research.md` v2) + the phased implementation of the DEEP router, orchestrate hardening, pre-route headers, and verification. Research decomposed the work into 5 single-concern child phases below. |
-| `001/001-route-proof-validation` | Draft | Route-proof validator fields (close the FIX-5 false-negative) + recover/confirm prior-research evidence base + citation corrections. Lands first. |
-| `001/002-agent-dispatch-hardening` | Draft | Land `deep.md` (from iter-4 draft) + `.claude` mirror + `Deep Route:` field in `orchestrate.md`. |
-| `001/003-command-pre-route-headers` | Draft | `Resolved route:` headers across all 4 deep modes (research/review/context/council) — prompt templates + CLI/inline dispatch. |
-| `001/004-gpt-verification-smoke` | Draft | GPT before/after smoke per mode with route-proof assertions — the acceptance gate; produces the FIX-5 escalation decision. |
-| `001/005-host-hard-identity-fix5` | Parked | Host-runtime hard identity (architectural) + FIX-5 process isolation. Escalated only if 004's trigger fires. |
+| `001-deep-agent-router-and-orchestration` | Complete (research) | Owns the completed research (`research/research.md` v2, 6 iterations, 10/10 KQs) that decomposed the implementation into phases 002-006 below. |
+| `002-route-proof-validation` | Complete | Route-proof validator fields (closes the FIX-5 false-negative) + prior-research evidence base + citation corrections. Independently re-verified (30/30 vitest, clean typecheck, `validate.sh --strict` PASS). |
+| `003-agent-dispatch-hardening` | Complete | `deep.md` primary router (deterministic table lookup) + `.claude` mirror + `Deep Route:` field in `orchestrate.md`. Landed but currently uncommitted/untracked in the working tree. |
+| `004-command-pre-route-headers` | Complete | `Resolved route:` headers across all 4 deep modes (research/review/context/council) — prompt templates + CLI/inline dispatch. |
+| `005-gpt-verification-smoke` | **Blocked/inconclusive — not a clean pass** | GPT before/after smoke per mode with route-proof assertions. 0/4 command-owned smokes reached a real leaf dispatch — all blocked upstream by `cli-opencode` self-invocation guards before routing behavior could be observed. Does **not** prove phases 002-004 are sufficient; does not disprove it either. |
+| `006-host-hard-identity-fix5` | **Closed (2026-07-01)** | Host-runtime hard identity (architectural) + FIX-5 process isolation. Closed by phase 013's gate evaluation against phase 012's real benchmark results: zero semantic wrong-mode artifacts, zero route-proof mismatches. Agent-layer fix (phases 002-004, 008-011) confirmed sufficient. See `decision-record.md` Final Resolution. Reopenable on fresh contrary evidence. |
+| `007-gpt-behavioral-hardening-research` | Complete (research) | Six-lineage, two-round research (round 1: `glm-max` + `gpt-fast-high`, 30/30 each; round 2 operator-directed critical re-review: `sonnet-critical`, `glm-critical` partial, `opus-critical`, `gpt-critical`). Final consolidated verdict (`research/research.md`): do not unpark 006/FIX-5 yet (negative gate, very high confidence); keep `ai-council` as `mode: all` (unanimous 6/6 — see 010 for the operator's deliberate override); harden `@orchestrate` NDP-safely via registry delegation; corrected the ai-council route-proof finding (§2: record and validator agree with each other but both disagree with the registry); a detection-only enforcement plugin is feasible; run an external smoke + GPT-vs-Claude benchmark only after the cheaper fixes land. Proposes phases 008-012 (research's own numbering); implemented below as 008-013 after inserting a dedicated ai-council-conversion phase (010) for the operator's override. |
+| `008-mode-d-ai-council-identity-fix` | Complete | Replaced the Phase-0 self-classification gate (Mode D) in all 8 `/deep:*` command files with an evidence-based dispatch-context check; reconciled the ai-council route-proof identity (`orchestrate-topic.cjs` + `deep_ai-council_auto.yaml`) toward `mode-registry.json`, both files together (completed live in-flight WIP found on both files rather than duplicating it). `validate.sh --strict` PASS, vitest 76/76 PASS. |
+| `009-orchestrate-universal-routing` | Complete | Completed orchestrate's Priority table with the 2 missing deep-mode rows (`@deep-context` priority 2, `@deep-review` priority 7); made the Deep Route field explicitly registry-resolved; added an explicit NDP boundary against dispatching `@deep` itself as a worker. Verified live via `opencode run --agent orchestrate` -- correctly resolved "Agent: @ai-council per §2 Priority 4". Both runtime mirrors updated. |
+| `010-ai-council-subagent-only` | Complete | Converted `ai-council.md` from `mode: all` to `mode: subagent` -- **explicit, deliberate operator override** of research's unanimous 6/6 recommendation, documented in `decision-record.md`. Verified live: direct `opencode run --agent ai-council` now correctly rejected; Task-dispatch reachability (orchestrate, general) confirmed still working. Redirected 2 real documentation callers found depending on the removed direct-invoke path. |
+| `011-deep-route-guard-plugin` | Complete | Built `.opencode/plugins/deep-route-guard.js` (`tool.execute.before` hook). Live-tested against the real opencode CLI: hook fires correctly; **fail-closed (throw) rejection genuinely blocks dispatch** (confirmed, task status became error); default mutate-and-warn path confirmed not blocking; fail-open guard confirmed (missing registry doesn't accidentally block); non-deep dispatches confirmed unaffected. Kept both warn/reject paths as a configurable toggle. |
+| `012-gpt-claude-benchmark` | Complete | External-shell precondition **confirmed satisfied** (this Claude Code shell). Ran live smoke dispatches across 4 modes x 2 models: zero semantic wrong-mode artifacts, zero route-proof mismatches, zero Mode-D recurrences; measured 3-10x GPT latency gap corroborating the operator's original symptom report. Full results in `benchmark-results.md`. |
+| `013-fix5-checkpoint` | Complete | Applied research's cross-validated negative gate against phase 012's real results. No trigger condition met on grounds FIX-5 would remedy. **006/FIX-5 closed as "agent-layer fix sufficient."** Packet complete. |
 <!-- /ANCHOR:phases -->

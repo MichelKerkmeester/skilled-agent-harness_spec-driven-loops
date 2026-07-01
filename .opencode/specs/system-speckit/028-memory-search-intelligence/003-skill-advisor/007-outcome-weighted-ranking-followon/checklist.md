@@ -85,6 +85,8 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
+> Drift correction pointer (2026-07-01): the checklist evidence citing `03d0b01eb6` describes files that were later deleted at `8efcde0e6b`; see `implementation-summary.md` for the pass-2 reconciliation and the delete-commit result, MRR delta +0.005 to +0.008 versus SD 0.0237 and right-skill@3 = 0.000 across all 90 runs.
+
 - [ ] CHK-020 [P0] All acceptance criteria met (SC-001 emitter+store, SC-002 shadow re-rank live-byte-identical, SC-003 ambient-tick + bm25 + NO-GO)
   - **LEFT-PENDING**: SC-002/SC-003 verified, but SC-001 needs the emitter to actually fire - the Q-001 runtime seam is undecided (`tasks.md` T002 `[B]`), so no execution-success data accumulates yet.
 - [x] CHK-021 [P0] Beta-blend unit tests pass: cold-start 0.5, anti-flood (low-vs-high count NOT identical), fresh-skill neutrality (blend == pure similarity on empty store)

@@ -968,6 +968,9 @@ run_strict_validators() {
 
 run_node_orchestrator() {
     [[ "${SPECKIT_VALIDATE_LEGACY:-}" == "1" ]] && return 1
+    # Rule-subset runs must use the registry-backed shell framework so newly
+    # registered standalone rules are available before the Node orchestrator mirrors them.
+    [[ -n "${SPECKIT_RULES:-}" ]] && return 1
 
     local orchestrator_js="$SCRIPT_DIR/../../mcp_server/dist/lib/validation/orchestrator.js"
     local orchestrator_ts="$SCRIPT_DIR/../../mcp_server/lib/validation/orchestrator.ts"

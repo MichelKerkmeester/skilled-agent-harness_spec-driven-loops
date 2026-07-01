@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Code Graph Phase Parent"
-description: "Phase parent for 8 code graph implementation plans derived from packet 028 research."
+description: "Phase parent for 9 code graph implementation plans derived from packet 028 research."
 trigger_phrases:
   - "028 code graph implementation parent"
   - "code graph child phase map"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired Code Graph as a phase parent with 8 implementation sub-phases"
+    recent_action: "Wired Code Graph as a phase parent with 9 implementation sub-phases"
     next_safe_action: "Use the child map to implement PENDING code graph candidates in dependency order"
     blockers: []
     key_files:
@@ -22,6 +22,7 @@ _memory:
       - "research/research.md"
       - "001-determinism-walk-order/spec.md"
       - "008-doc-symbol-lane/spec.md"
+      - "009-daemon-reclaim-hardening/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-code-graph-parent"
@@ -29,7 +30,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The code graph research child now routes to 8 implementation child folders."
+      - "The code graph research child now routes to 9 implementation child folders."
       - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
 ---
 
@@ -72,7 +73,7 @@ Provide the subsystem root purpose and implementation phase map for the Code Gra
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 8 Code Graph implementation child folders.
+- Root-level routing for the 9 Code Graph implementation child folders.
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -108,6 +109,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 006 | `006-edge-governance-vocab/` | Shared edge governance vocabulary | Done (core shipped) |
 | 007 | `007-parser-resilience/` | Parser failure recovery and quarantine | Implemented |
 | 008 | `008-doc-symbol-lane/` | Documentation symbol extraction lane | Implemented |
+| 009 | `009-daemon-reclaim-hardening/` | Daemon reclaim hardening | Complete |
 
 ### Phase Transition Rules
 

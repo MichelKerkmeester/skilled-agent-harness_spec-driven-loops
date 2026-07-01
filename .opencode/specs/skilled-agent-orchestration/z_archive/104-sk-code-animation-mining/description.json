@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/104-sk-code-animation-mining",
-  "description": "sk-code's Motion.dev surface is strong on API how-to (animate/timelines, scroll/gestures, integration, a decision matrix, performance pitfalls) but li",
+  "description": "sk-code's Motion.dev surface is strong on API how-to (animate/timelines, scroll/gestures, integration, a decision matrix, performance pitfalls) but",
   "keywords": [
     "sk-code",
     "motion",
@@ -20,7 +20,7 @@
     "performance",
     "pitfalls"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.562Z",
+  "lastUpdated": "2026-07-01T12:31:47.753Z",
   "specId": "104",
   "folderSlug": "sk-code-animation-mining",
   "parentChain": [

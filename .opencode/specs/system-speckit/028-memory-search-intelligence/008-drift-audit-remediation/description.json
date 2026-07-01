@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/008-drift-audit-remediation",
+  "description": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced",
+  "keywords": [
+    "fixed",
+    "findings",
+    "gpt-5",
+    "5-fast",
+    "drift",
+    "audit",
+    "028-memory-search-intelligence",
+    "packet",
+    "across",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-01T07:28:15.818Z",
+  "specId": "008",
+  "folderSlug": "drift-audit-remediation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

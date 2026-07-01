@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:30:35.956Z",
-    "last_save_at": "2026-06-30T14:56:50.645Z",
+    "last_save_at": "2026-07-01T11:50:20.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,9 +218,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e392fdeb0d2798d7131feecf60f871c336f992db3495b3300926c260a01efc94",
+    "source_fingerprint": "sha256:2ded1e1d9730e0de1a0f47a1b2be8ccfc47724edf9736bb9278406fad320e843",
     "source_doc_hashes": {
-      "spec.md": "c379c8def6e1283900bb4b18532388848b60b1769826f55844cf20c66e00fff1",
+      "spec.md": "4731f5b7d56d896e4ae90144bbf6b27c162e45f881dfde34ec2aa50e598f942e",
       "plan.md": "5fbf3386dae8daf17f412e1c6ec8c14d909da872bc2dd5bce2ac3d2597a58849",
       "tasks.md": "d769a240f531f8e35b4459049dfe0fd00e8a7ebdadb3c742e33b73437139d846",
       "implementation-summary.md": "d23d34ca398e7c70aaec37bf529ab2572c3a8b958d50b63b183adceeed3688ba",

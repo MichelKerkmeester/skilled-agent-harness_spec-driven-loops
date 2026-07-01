@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Spec-Kit Memory MCP Phase Parent"
-description: "Phase parent for 29 Spec-Kit Memory MCP child phases derived from packet 028 research and follow-on builds."
+description: "Phase parent for 30 Spec-Kit Memory MCP child phases derived from packet 028 research and follow-on builds."
 trigger_phrases:
   - "028 speckit memory implementation parent"
   - "memory mcp child phase map"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 29 child phases"
+    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 30 child phases"
     next_safe_action: "Use the child map to implement PENDING memory candidates in gate order"
     blockers: []
     key_files:
@@ -23,6 +23,7 @@ _memory:
       - "001-corpus-reindex-gate-zero/spec.md"
       - "021-residual-correctness/spec.md"
       - "029-substrate-sandbox-cleanup/spec.md"
+      - "030-opencode-temp-worker-reaping/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-speckit-memory-parent"
@@ -30,8 +31,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The memory research child now routes to 29 child folders."
-      - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
+      - "The memory research child now routes to 30 child folders, the 30th (030-opencode-temp-worker-reaping) still a planned scaffold."
+      - "Packet 030 (a separate top-level packet, the Wave-0 shipped evidence record) is unrelated to this parent's own 030-opencode-temp-worker-reaping child and remains out of scope for this parent."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -73,7 +74,7 @@ Provide the subsystem root purpose and implementation phase map for the Memory M
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 29 Memory MCP child folders.
+- Root-level routing for the 30 Memory MCP child folders.
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -131,7 +132,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 028 | `028-scoring-hardening/` | Verdict-path scoring hardening flags | Complete, three graduated and one deleted |
 | 029 | `029-substrate-sandbox-cleanup/` | Substrate stress-harness sandbox cleanup | Complete |
 
-| 30 | 030-opencode-temp-worker-reaping/ | [Phase 30 scope] | Pending |
+| 030 | `030-opencode-temp-worker-reaping/` | OpenCode temp worker reaping and Vitest runaway prevention | Planned (scaffold only, not yet started) |
 ### Phase Transition Rules
 
 - Each child folder owns its own `spec.md`, `plan.md`, `tasks.md` and level-required validation docs.
@@ -144,7 +145,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 |------|-----|----------|--------------|
 | parent | child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
 | child | parent | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
-| 029-substrate-sandbox-cleanup | 030-opencode-temp-worker-reaping | [Criteria TBD] | [Verification TBD] |
+| 029-substrate-sandbox-cleanup | 030-opencode-temp-worker-reaping | To be defined once child 030 is planned | Not applicable until planning begins |
 <!-- /ANCHOR:phase-map -->
 
 ---

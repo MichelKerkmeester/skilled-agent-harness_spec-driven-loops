@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/018-persisted-wait-crash-resume"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Nullable schema migration: should existing state files without nextRunAt be treated as 'not waiting' (safe default) or prompt the operator?"
     answered_questions:

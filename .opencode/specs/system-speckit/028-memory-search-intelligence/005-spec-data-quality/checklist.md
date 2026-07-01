@@ -134,9 +134,9 @@ FAILURE MODES:
 |----------|-------|----------|
 | P0 Items | 9 | 9/9 |
 | P1 Items | 11 | 11/11 |
-| P2 Items | 2 | 2/2 |
+| P2 Items | 3 | 2/3 (CHK-143 knowledge-transfer capture still open) |
 
-**Verification Date**: 2026-06-21
+**Verification Date**: 2026-06-21 for P0/P1 and CHK-142; CHK-143 and the sign-off table below remain open
 <!-- /ANCHOR:summary -->
 
 ---

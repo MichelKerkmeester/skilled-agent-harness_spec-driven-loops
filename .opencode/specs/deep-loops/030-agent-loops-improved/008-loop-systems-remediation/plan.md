@@ -1,42 +1,39 @@
 ---
-title: "Implementation Plan: Phase 1: loop-systems-remediation [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Loop Systems Remediation Parent Aggregate"
+description: "Aggregate implementation plan for the seven completed loop-systems remediation children."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "loop systems remediation plan"
+  - "008 parent aggregate plan"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-loop-systems-remediation"
-    last_updated_at: "2026-06-29T10:43:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/008-loop-systems-remediation"
+    last_updated_at: "2026-07-01T16:35:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Wrote real parent aggregate plan from seven completed children"
+    next_safe_action: "Use child plan.md files for implementation-level detail"
     blockers: []
-    key_files: []
+    key_files:
+      - "001-deep-improvement-rollback-hash-guard/plan.md"
+      - "002-deep-improvement-promotion-safety/plan.md"
+      - "003-model-benchmark-reducer-ledger/plan.md"
+      - "004-adversarial-playbook-scenarios/plan.md"
+      - "005-tighten-playbook-pass-criteria/plan.md"
+      - "006-p2-test-adequacy-and-source-only-audit/plan.md"
+      - "007-fan-out-hardening/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-loop-systems-remediation"
+      session_id: "sonnet-009-remediation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: loop-systems-remediation
+# Implementation Plan: Loop Systems Remediation Parent Aggregate
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -45,15 +42,17 @@ FAILURE MODES:
 
 ### Technical Context
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+This parent aggregates seven independently-planned, independently-shipped remediation children. Each child owns its own detailed technical approach in its own `plan.md`; this parent-level plan records only the aggregate scope and points readers to child-owned detail, mirroring the pattern already established in this folder's own `tasks.md` and `implementation-summary.md`.
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+| Child | Technical Approach (see child's own plan.md for detail) |
+|-------|-----------------------------------------------------------|
+| `001-deep-improvement-rollback-hash-guard` | Verify accepted-state SHA-256 hashes before restoring backups; allow legitimate pre-/post-ship states while refusing unrelated drift |
+| `002-deep-improvement-promotion-safety` | Pre-mutation mirror-sync gate compares runtime mirrors against the current canonical body, with a missing-target fallback |
+| `003-model-benchmark-reducer-ledger` | Autonomous model-benchmark command passes the improvement state log so benchmark runs append reducer-visible `benchmark_run` rows |
+| `004-adversarial-playbook-scenarios` | Eight adversarial regression scenarios added to runtime and goal-plugin manual playbooks, each naming the regression test that must stay green |
+| `005-tighten-playbook-pass-criteria` | High-risk manual testing pass criteria require EXIT 0 test evidence plus source confirmation, closing the inspection-only loophole |
+| `006-p2-test-adequacy-and-source-only-audit` | JSONL append concurrency test races two child processes through the production append path behind a barrier |
+| `007-fan-out-hardening` | Detached CLI fan-out gets review setup bindings, partial-output salvage retry, opt-in dangerous-sandbox bypass, leaf-only merge reconstruction, typed lag statuses, and regression/playbook coverage |
 <!-- /ANCHOR:summary -->
 
 ---
@@ -61,15 +60,8 @@ FAILURE MODES:
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
-### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-
-### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- Each child validates independently via `validate.sh --strict` before being marked Complete.
+- Each child names a runnable regression guard that fails when its fixed bug returns (adversarial-playbook contract, per this parent's own SC-002).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -77,55 +69,22 @@ FAILURE MODES:
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Aggregate, don't duplicate.** This parent plan references each child's own architecture decisions rather than re-deriving them.
+- **Independent shipping.** Each child is scoped, tested, and validated on its own; the parent's role is sequencing and aggregate verification, not shared implementation.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
-
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
-
-### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+1. `001-deep-improvement-rollback-hash-guard` — rollback hash-guard integrity.
+2. `002-deep-improvement-promotion-safety` — promotion safety gate.
+3. `003-model-benchmark-reducer-ledger` — benchmark reducer ledger.
+4. `004-adversarial-playbook-scenarios` — adversarial playbook scenarios.
+5. `005-tighten-playbook-pass-criteria` — tightened playbook pass-criteria.
+6. `006-p2-test-adequacy-and-source-only-audit` — P2 test-adequacy and source-only audit.
+7. `007-fan-out-hardening` — detached CLI fan-out hardening.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -133,11 +92,7 @@ Required inventories:
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+Each child owns its own test suite and regression guard (see each child's own `plan.md` §5 for detail). Parent-level verification is `validate.sh --strict` on all 7 children independently, confirmed in this folder's own `implementation-summary.md`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,9 +100,7 @@ Required inventories:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+Phases 002-007 (loop-system improvements) must ship before this remediation phase, per this folder's own `spec.md` Dependencies note.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +108,5 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Each child has its own rollback plan (revert its own commit; no shared state migration across children). This parent aggregate has no rollback of its own beyond reverting this documentation update.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

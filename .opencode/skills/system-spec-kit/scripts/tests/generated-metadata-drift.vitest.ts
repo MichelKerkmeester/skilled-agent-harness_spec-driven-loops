@@ -140,6 +140,26 @@ describe('shared synopsis extractor (REQ-004, SC-003)', () => {
     const content = ['---', 'title: "t"', '---', '# Only A Title Here', ''].join('\n');
     expect(derivePacketSynopsis(content, 'description')).toBe('Only A Title Here');
   });
+
+  it('does not cut an over-limit synopsis mid-word', () => {
+    const prefix = 'word '.repeat(29);
+    const content = specWithOverview(`${prefix}resilience`);
+
+    expect(derivePacketSynopsis(content, 'description')).toBe(prefix.trim());
+  });
+
+  it('preserves an over-limit synopsis when the cut lands on a word boundary', () => {
+    const boundaryWord = 'a'.repeat(SYNOPSIS_FIELD_LIMITS.description);
+    const content = specWithOverview(`${boundaryWord} trailing words`);
+
+    expect(derivePacketSynopsis(content, 'description')).toBe(boundaryWord);
+  });
+
+  it('passes shorter synopsis strings through unchanged', () => {
+    const overview = 'Short synopsis under the limit';
+
+    expect(derivePacketSynopsis(specWithOverview(overview), 'description')).toBe(overview);
+  });
 });
 
 describe('source_doc_hashes freshness key (REQ-003, SC-004)', () => {

@@ -68,7 +68,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the 123-agent-loops-improved subsystem groups.
+This is **Phase 6** of the deep-loops/030-agent-loops-improved subsystem groups.
 
 **Scope Boundary**: All UX, observability, and automation improvements to the deep-loop commands and runtime. Changes are additive and non-breaking with respect to existing ledger formats.
 
@@ -208,12 +208,12 @@ REQ-008
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-dashboard-sparkline-trend/` | Pure reducer change: `renderSparkline()` for newInfoRatio/score history in `## 5. TREND` terminal gate | Draft |
-| 2 | `002-single-loop-telemetry-heartbeat/` | `started`/`progress`/terminal rows with `label:"single"` in deep_research_auto.yaml; parity with fan-out dashboard | Draft |
-| 3 | `003-unified-observability-event-envelope/` | New `observability-events.cjs` with `normalizeObservabilityEvent()` / `appendObservabilityEvent()`; additive | Draft |
-| 4 | `004-run-now-control/` | `.deep-research-run-now` sentinel: consume-once, pause precedence, JSONL lifecycle events | Draft |
-| 5 | `005-per-iteration-memory-upsert/` | `step_memory_upsert_iteration` after validate/reduce/graph-upsert; non-fatal `memory_save` call | Draft |
-| 6 | `006-loop-wide-dry-run/` | `--dry-run` as first-class input; halt at every mutation boundary with no dispatch/state mutation | Draft |
+| 1 | `001-dashboard-sparkline-trend/` | Pure reducer change: `renderSparkline()` for newInfoRatio/score history in `## 5. TREND` terminal gate | Complete |
+| 2 | `002-single-loop-telemetry-heartbeat/` | `started`/`progress`/terminal rows with `label:"single"` in deep_research_auto.yaml; parity with fan-out dashboard | Complete |
+| 3 | `003-unified-observability-event-envelope/` | New `observability-events.cjs` with `normalizeObservabilityEvent()` / `appendObservabilityEvent()`; additive | Complete |
+| 4 | `004-run-now-control/` | `.deep-research-run-now` sentinel: consume-once, pause precedence, JSONL lifecycle events | Complete |
+| 5 | `005-per-iteration-memory-upsert/` | `step_memory_upsert_iteration` after validate/reduce/graph-upsert; non-fatal `memory_save` call | Complete |
+| 6 | `006-loop-wide-dry-run/` | `--dry-run` as first-class input; halt at every mutation boundary with no dispatch/state mutation | Complete |
 
 ### Phase Transition Rules
 

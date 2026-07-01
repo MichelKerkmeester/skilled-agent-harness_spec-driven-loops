@@ -193,7 +193,7 @@ Ship the code seams as reversible, default-off scorer changes so they are testab
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 10/25 | Three scorer-seam candidates in `fusion.ts` (+ `graph-causal.ts` for C1, `semantic-shadow.ts` reuse for C6). Each effort M per research, but ALL deferred, this sub-phase authors the deferred plan, not code |
+| Scope | 10/25 | Three scorer-seam candidates in `fusion.ts` (+ `graph-causal.ts` for C1, `semantic-shadow.ts` reuse for C6). Each effort M per research. Default-off code seams shipped; live/default promotion remains gated on conflict-edge evidence, held-out benchmark and C3 spine |
 | Risk | 12/25 | QCR alters weighting on every call (Med conflict-risk, benchmark-gated). C1 is Low-risk (inert under empty edges). C6 ordering-stability depends on C3. No schema migration |
 | Research | 6/20 | Fully researched (18-iteration campaign, adversarial-verified). Residual is calibration/benchmark detail, not investigation |
 | **Total** | **28/70** | **Level 2** |

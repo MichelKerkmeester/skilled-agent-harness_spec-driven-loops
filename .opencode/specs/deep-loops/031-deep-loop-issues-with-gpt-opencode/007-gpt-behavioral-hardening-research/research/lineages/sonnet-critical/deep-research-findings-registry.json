@@ -1,0 +1,50 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "KQ-CRIT-1", "KQ-CRIT-2", "KQ-CRIT-3", "KQ-CRIT-4", "KQ-CRIT-5",
+    "KQ-CRIT-6", "KQ-CRIT-7", "KQ-CRIT-8", "KQ-CRIT-9"
+  ],
+  "keyFindings": [
+    "Phase 005's 'inconclusive' label is a downstream reframing of a 4/4 FAIL/FAIL-BLOCKED result table; the decision-record trigger's dispatch_failure clause fired but the required native/Claude baseline comparison was never run (iter 1).",
+    "The cli-opencode ADR-001 self-invocation guard is scoped to opencode-invoking-opencode dispatch and does not gate native or cli-claude-code dispatch, making a partial Claude-leg comparison runnable now without an external shell (iter 2).",
+    "The tool.execute.before OpenCode plugin hook is the actual load-bearing mechanism for KQ5's enforcement plugin (neither prior lineage cited it); its fail-closed-vs-mutate-only capability is unconfirmed and is a named residual (iter 2).",
+    "Mode D is CONFIRMED-in-at-least-one-instance, not merely inferred: the Phase 0 'GENERAL AGENT REQUIRED' self-check present across all 8 /deep:* command files is the exact, cited mechanism behind phase 005's research-mode failure (iter 3).",
+    "The ai-council 'route-proof naming drift' is a code-traced, deterministic emitter-vs-validator self-contradiction inside deep_ai-council_auto.yaml (lines 117-118 vs 132-136) that would fail for any executor, not a registry-vs-YAML mismatch (iter 4, iter 8).",
+    "KQ4's top-ranked, full-agreement recommendation ('orchestrate dispatches @deep and STOP') in its literal Task-dispatch reading violates orchestrate.md's own documented NDP depth cap; a corrected, NDP-safe registry-reuse fix is proposed (iter 5, softened via iter 9 self-check).",
+    "KQ9's 'wait' verdict on FIX-5 is independently reached by the non-GPT glm-max lineage and is reinforced by a coverage argument (FIX-5 does not fix Mode D or latency) — not primarily a self-protective GPT artifact; the 'gate cannot fire' residual is less severe than characterized (iter 6).",
+    "Four implementation-ready diffs (Mode D self-check rewrite, ai-council validator fix, orchestrate NDP-safe routing rule, sequencing correction) with an internal precedence ordering (iter 7).",
+    "Citation accuracy across both prior lineages is high; this round's corrections come from incomplete cross-referencing and framing choices, not fabricated or misattributed evidence (iter 8).",
+    "Adversarial self-check downgrades four of this round's own findings' confidence framing without changing the proposed fixes, applying the charter's own standard reflexively (iter 9).",
+    "Per-original-KQ confirmed/sharpened/overturned verdict table and two new KQ6 benchmark-design preconditions (iter 10)."
+  ],
+  "ruledOutDirections": [
+    "Treating 'Phase 005 was inconclusive' as an evidence-neutral summary (iter 1).",
+    "Treating a full external-shell 8-run harness as required before any GPT-vs-Claude comparison evidence can be gathered (iter 2).",
+    "Treating both prior lineages' plugin-hook citations (chat-transform hooks) as sufficient mechanism evidence for KQ5 (iter 2).",
+    "Treating Mode D as still purely hypothetical/unmeasured (iter 3).",
+    "Treating glm-max's loop_protocol.md citation as the strongest available Mode D evidence (iter 3).",
+    "Treating the ai-council fix as registry-vs-YAML drift rather than an internal emitter/validator contradiction (iter 4).",
+    "Treating the ai-council naming fix as independent of KQ1/KQ6 benchmark validity (iter 4).",
+    "Treating 'orchestrate dispatches @deep and STOP' as NDP-safe in its literal reading (iter 5).",
+    "Treating gpt-fast-high's vaguer 'resolve via deep.md' phrasing as interchangeable with glm-max's explicit dispatch wording (iter 5).",
+    "Treating 'wait on FIX-5' as primarily evidence of GPT self-protective bias (iter 6).",
+    "Treating the KQ1 gate as entirely unreachable without an external shell (iter 6).",
+    "Treating this round's corrections as evidence of prior-lineage citation inaccuracy (iter 8).",
+    "Treating the ai-council validator failure as merely probable rather than code-traced-certain (iter 8, upgrade not rule-out).",
+    "Treating iteration 5's NDP violation claim as certain against both possible readings of the prior recommendation (iter 9)."
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 9,
+    "keyFindings": 11,
+    "convergenceScore": 1.0,
+    "coverageBySources": {
+      "primary_agent_and_command_files": 9,
+      "packet_005_006_evidence": 2,
+      "prior_lineage_syntheses": 2,
+      "opencode_plugin_sdk_types": 1,
+      "workflow_yaml_and_validator_code": 3
+    }
+  }
+}

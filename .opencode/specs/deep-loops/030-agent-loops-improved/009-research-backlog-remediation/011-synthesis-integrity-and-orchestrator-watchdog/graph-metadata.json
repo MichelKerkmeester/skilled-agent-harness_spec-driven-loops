@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
+  "spec_folder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
+  "parent_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "synthesis completion invariant",
+      "fanout orchestrator hang watchdog",
+      "lagCeilingMs stall detector",
+      "reconstructResearchRegistryFromState",
+      "synthesis integrity orchestrator watchdog plan",
+      "synthesis integrity orchestrator watchdog tasks"
+    ],
+    "key_topics": [
+      "synthesis",
+      "completion",
+      "invariant",
+      "fanout",
+      "orchestrator",
+      "hang",
+      "watchdog",
+      "lagceilingms",
+      "stall",
+      "detector",
+      "reconstructresearchregistryfromstate",
+      "integrity"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestrator Watchdog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Generation-2 forced-depth research (35 iterations/lineage) against this exact packet directly reproduced two critical bugs in the deep-research/fan-out runtime itself, discovered only because the orchestrating session cross-checked live process state rather than trusting self-reported completion:",
+    "created_at": "2026-07-01T09:14:13.890Z",
+    "last_save_at": "2026-07-01T09:14:13.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:2cc2dde482f5afdd0464175f036ee0e96484f2f25a23410f64f91a669c8803bf",
+    "source_doc_hashes": {
+      "spec.md": "a3e0fda0aad8d192da9d1567225277151dda135fb7c0bca0a95e2b72020ea965",
+      "plan.md": "3e804ba442feb8d63d45fdc436564bc0c9d4490cf9f65fa3c949e2070fc97b46",
+      "tasks.md": "1f707bf1cbc83daf0e263120473f8ce517437e5d359240e3ac868339f6041031"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

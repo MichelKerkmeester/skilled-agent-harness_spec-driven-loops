@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "deep-research-findings-registry/v1",
+  "lineageLabel": "gpt-critical",
+  "sessionId": "fanout-gpt-critical-1782897047002-qhoaax",
+  "openQuestions": [
+    {
+      "id": "fail-closed-plugin-capability",
+      "question": "Can OpenCode `tool.execute.before` reject a Task call directly, or only mutate args?",
+      "status": "open",
+      "source": "iteration-005"
+    },
+    {
+      "id": "mode-d-magnitude",
+      "question": "How often does Phase-0/advisory-gate literalism occur across all deep modes and models?",
+      "status": "open",
+      "source": "iteration-006"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "operator-symptoms-real",
+      "answer": "Confirmed first-hand by operator; route-proof evidence is no longer required to acknowledge the behavioral problem.",
+      "source": "research-prompt.md:91-104"
+    },
+    {
+      "id": "phase0-mode-d",
+      "answer": "Phase 0 general-agent self-assessment is a concrete Mode-D mechanism and already fired in phase 005 research smoke.",
+      "source": "iteration-002"
+    },
+    {
+      "id": "council-route-proof",
+      "answer": "The ai-council route-proof issue is a false-pass risk against noncanonical identity, not just naming drift.",
+      "source": "iteration-003"
+    },
+    {
+      "id": "orchestrate-deep-fix",
+      "answer": "NDP-safe fix is registry reuse inside orchestrate plus direct leaf dispatch, not a depth-1 Task dispatch to primary @deep.",
+      "source": "iteration-004"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1",
+      "title": "gpt-fast-high softened confirmed behavioral failures into missing route-proof artifacts",
+      "confidence": 0.86,
+      "iterations": [1]
+    },
+    {
+      "id": "F2",
+      "title": "Phase 0 self-assessment gates are a literal-model trap across 8 deep commands",
+      "confidence": 0.92,
+      "iterations": [2]
+    },
+    {
+      "id": "F3",
+      "title": "ai-council route-proof currently validates noncanonical council identity",
+      "confidence": 0.94,
+      "iterations": [3]
+    },
+    {
+      "id": "F4",
+      "title": "orchestrate should reuse registry resolution, not Task-dispatch a primary @deep worker",
+      "confidence": 0.82,
+      "iterations": [4, 9]
+    },
+    {
+      "id": "F5",
+      "title": "plugin guard is feasible as mutation/injection; fail-closed and semantic correctness remain limits",
+      "confidence": 0.78,
+      "iterations": [5, 9]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Relitigate whether GPT symptoms exist",
+      "reason": "Operator-confirmed symptoms are ground truth for this round.",
+      "iterations": [1]
+    },
+    {
+      "approach": "Benchmark ai-council before route-proof fix",
+      "reason": "Current route-proof path can validate noncanonical values and contaminate benchmark interpretation.",
+      "iterations": [3, 6]
+    },
+    {
+      "approach": "Treat plugin guard as hard identity",
+      "reason": "Available hook surface can inject/mutate prompt or tool args; it does not bind runtime custom-agent identity.",
+      "iterations": [5]
+    },
+    {
+      "approach": "Immediate FIX-5 solely because symptoms are confirmed",
+      "reason": "FIX-5 does not target Phase-0 literalism or generic latency; use conditional unpark after cheap targeted fixes unless post-fix failures persist.",
+      "iterations": [7]
+    }
+  ]
+}

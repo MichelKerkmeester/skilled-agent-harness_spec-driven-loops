@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Summary Fusion and World-Summary Grounding"
-description: "Verification checklist for promoting built community/summary evidence into a first-class weighted RRF lane and adding a two-tier world-summary grounding prelude, both shadow-gated and baseline-validated. Planning state - implementation not started."
+description: "Verification checklist for promoting built community/summary evidence into a first-class weighted RRF lane and adding a two-tier world-summary grounding prelude, both shadow-gated and baseline-validated. Partial implementation shipped; hierarchy and baseline delta pending."
 trigger_phrases:
   - "summary fusion checklist"
   - "fused summary channel verification"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Prepared verification checklist, implementation not started"
+    recent_action: "Updated checklist to reflect shipped shadow-gated fused lane and prelude"
     next_safe_action: "Capture the retrieval baseline (CHK-020 precondition)."
     blockers: []
     key_files:
@@ -87,7 +87,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-FIX-001 [P0] Both candidates have an explicit status
-  - **Evidence**: `MEM-fused-summary-channel` and `CG-global-context-summary-hierarchy` are each marked PENDING with their gate in `spec.md` §9.
+  - **Evidence**: `MEM-fused-summary-channel` is marked **DONE (shadow-gated code)** and `CG-global-context-summary-hierarchy` is marked **PENDING** with their respective gates in `spec.md` §9; see `spec.md` pass-2 correction for the later measured `Recall@20 -0.036` rejection.
 - [x] CHK-FIX-002 [P0] All five hardcoded channel-list sites updated
   - **Evidence**: `query-router.ts:36,68,74,106-107`, `routing-telemetry.ts:17`, `hybrid-search.ts:1310,951` all carry the new channel.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for the new lane
@@ -140,8 +140,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 9 | 0/9 |
+| P0 Items | 13 | 10/13 (CHK-020, CHK-022, CHK-031 unchecked) |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: Pending

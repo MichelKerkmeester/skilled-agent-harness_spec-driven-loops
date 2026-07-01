@@ -1,0 +1,30 @@
+{
+  "type": "config",
+  "topic": "Round 2 forced-depth research into deep-loops/030-agent-loops-improved phases 001-009 and deep-loop tooling",
+  "maxIterations": 35,
+  "convergenceThreshold": 0.01,
+  "stopPolicy": "max-iterations",
+  "loopType": "research",
+  "executor": {
+    "type": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "specFolder": ".opencode/specs/deep-loops/030-agent-loops-improved",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-agent-loops-improved/research/lineages/gpt",
+  "lineage": {
+    "sessionId": "fanout-gpt-1782890147566-yg06ab",
+    "label": "gpt",
+    "lineageMode": "auto",
+    "generation": 2
+  },
+  "createdAt": "2026-07-01T07:16:36.000Z",
+  "resource_map_present": false,
+  "status": "complete",
+  "protection": {
+    "config": "immutable-after-init",
+    "stateLog": "append-only",
+    "iterations": "write-once",
+    "registry": "generated",
+    "research": "generated"
+  }
+}

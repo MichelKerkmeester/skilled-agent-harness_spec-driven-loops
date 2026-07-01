@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework",
-  "description": "The repo's prompt-framework benchmarks are one-off, model-specific rigs (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each re-impl",
+  "description": "The repo's prompt-framework benchmarks are one-off, model-specific rigs (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each",
   "keywords": [
     "repo",
     "prompt-framework",
@@ -17,10 +17,9 @@
     "004",
     "mimo",
     "lean",
-    "2-fixture",
-    "re-impl"
+    "2-fixture"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.513Z",
+  "lastUpdated": "2026-07-01T12:31:47.738Z",
   "specId": "102",
   "folderSlug": "reusable-model-benchmark-framework",
   "parentChain": [

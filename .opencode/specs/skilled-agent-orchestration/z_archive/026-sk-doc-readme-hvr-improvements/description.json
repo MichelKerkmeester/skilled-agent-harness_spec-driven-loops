@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements",
-  "description": "The sk-doc HVR rules (`../../../skill/sk-doc/references/global/hvrrules.md`) cover word-level and punctuation-level AI tells but lack structural patte",
+  "description": "The sk-doc HVR rules (`../../../skill/sk-doc/references/global/hvrrules.md`) cover word-level and punctuation-level AI tells but lack structural",
   "keywords": [
     "sk-doc",
     "hvr",
@@ -14,10 +14,9 @@
     "punctuation-level",
     "tells",
     "lack",
-    "structural",
-    "patte"
+    "structural"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.068Z",
+  "lastUpdated": "2026-07-01T12:31:47.399Z",
   "specId": "026",
   "folderSlug": "sk-doc-readme-hvr-improvements",
   "parentChain": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal",
   "description": "The code-graph reindex mutates edges destructively",
   "keywords": [
     "code-graph",
@@ -8,11 +8,11 @@
     "edges",
     "destructively"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.386Z",
+  "lastUpdated": "2026-07-01T10:41:59.084Z",
   "specId": "004",
   "folderSlug": "code-edge-bitemporal",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "002-code-graph"
   ],

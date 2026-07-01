@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine",
   "description": "The Skill Advisor fuses five lanes (`explicitauthor 0.42` / `lexical 0.28` / `graphcausal 0.13` / `derivedgenerated 0.12` / `semanticshadow 0.05`, `la",
   "keywords": [
     "skill",
@@ -13,11 +13,11 @@
     "derivedgenerated",
     "semanticshadow"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.428Z",
+  "lastUpdated": "2026-07-01T10:41:59.094Z",
   "specId": "001",
   "folderSlug": "rrf-determinism-spine",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "003-skill-advisor"
   ],

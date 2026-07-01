@@ -27,7 +27,7 @@
     ".opencode/agent"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/045-cmd-spec-kit-ux-upgrade",
-  "description": "Our internal `system-spec-kit` surface area has accumulated UX friction over 56 packets of evolution: mode/flag overlap (`:auto` vs `:confirm` vs `:wi",
+  "description": "Our internal `system-spec-kit` surface area has accumulated UX friction over 56 packets of evolution: mode/flag overlap (`:auto` vs `:confirm` vs",
   "keywords": [
     "internal",
     "system-spec-kit",
@@ -43,7 +43,7 @@
     "auto",
     "confirm"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.381Z",
+  "lastUpdated": "2026-07-01T12:31:47.463Z",
   "specId": "045",
   "folderSlug": "cmd-spec-kit-ux-upgrade",
   "parentChain": [

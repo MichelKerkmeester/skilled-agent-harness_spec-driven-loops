@@ -45,7 +45,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
-| **Parent Spec** | ../../spec.md (123-agent-loops-improved) |
+| **Parent Spec** | ../../spec.md (deep-loops/030-agent-loops-improved) |
 | **Parent Packet** | deep-loops/030-agent-loops-improved |
 | **Predecessor** | 002-deep-loop-runtime (sibling subsystem) |
 | **Successor** | 004-system-spec-kit (sibling subsystem) |
@@ -102,18 +102,18 @@ Per-phase detail lives in each child's plan.md. Subsystem-level audit trail:
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-anti-convergence-floor/` | `minIterations` + `convergenceMode:"off"` guard in research config and YAML | Draft |
-| 002 | `002-convergence-profile-unification-adr/` | ADR freezing shared convergence profile shape + parity test | Draft |
-| 003 | `003-cross-mode-anti-convergence-adr/` | `antiConvergence` contract projected across all four mode configs + optimizer invariant group | Draft |
-| 004 | `004-injection-inbox-provenance/` | `research/inbox.jsonl` canonical injection surface with durable provenance records | Draft |
-| 005 | `005-anchor-ownership-conflict-adr/` | `resolveQuestionConflicts()` + `question_conflict` event; `key-questions` as generated projection | Draft |
-| 006 | `006-rejected-pattern-cache/` | Bounded `ideaRejected` event index with exact + fuzzy check before candidates | Draft |
-| 007 | `007-ideas-backlog-lifecycle/` | Three-part idea lifecycle: `idea_observed` → `idea_promoted` → `idea_rejected` with reducer ownership | Draft |
-| 008 | `008-code-graph-coverage-bridge/` | Code-graph → coverage-graph seeding before first convergence check; `seed_source`/`seed_confidence` | Draft |
-| 009 | `009-loop-quality-benchmark/` | `outcomeScoreDelta` + `fixtureDeltas[]` in benchmark; promotion gate on improvement-over-baseline | Draft |
-| 010 | `010-deep-improvement-accepted-vs-shipped/` | Split accept (preserve) from ship (merge); `promotion_blocked_branch_preserved`; `rollback-candidate.cjs` | Draft |
-| 011 | `011-meta-loop-lane-d-packaging/` | Lane D packaging profile for `deep-loop-runtime` + `--self-target` guard | Draft |
-| 012 | `012-push-wave-fanout/` | `depends_on`/`touches` schema + `flat_pool` guard; wave planner interface stub (not activated) | Draft |
+| 001 | `001-anti-convergence-floor/` | `minIterations` + `convergenceMode:"off"` guard in research config and YAML | Complete |
+| 002 | `002-convergence-profile-unification-adr/` | ADR freezing shared convergence profile shape + parity test | Complete |
+| 003 | `003-cross-mode-anti-convergence-adr/` | `antiConvergence` contract projected across all four mode configs + optimizer invariant group | Complete |
+| 004 | `004-injection-inbox-provenance/` | `research/inbox.jsonl` canonical injection surface with durable provenance records | Complete |
+| 005 | `005-anchor-ownership-conflict-adr/` | `resolveQuestionConflicts()` + `question_conflict` event; `key-questions` as generated projection | Complete |
+| 006 | `006-rejected-pattern-cache/` | Bounded `ideaRejected` event index with exact + fuzzy check before candidates | Complete |
+| 007 | `007-ideas-backlog-lifecycle/` | Three-part idea lifecycle: `idea_observed` → `idea_promoted` → `idea_rejected` with reducer ownership | Complete |
+| 008 | `008-code-graph-coverage-bridge/` | Code-graph → coverage-graph seeding before first convergence check; `seed_source`/`seed_confidence` | Complete |
+| 009 | `009-loop-quality-benchmark/` | `outcomeScoreDelta` + `fixtureDeltas[]` in benchmark; promotion gate on improvement-over-baseline | Complete |
+| 010 | `010-deep-improvement-accepted-vs-shipped/` | Split accept (preserve) from ship (merge); `promotion_blocked_branch_preserved`; `rollback-candidate.cjs` | Complete |
+| 011 | `011-meta-loop-lane-d-packaging/` | Lane D packaging profile for `deep-loop-runtime` + `--self-target` guard | Complete |
+| 012 | `012-push-wave-fanout/` | `depends_on`/`touches` schema + `flat_pool` guard; wave planner interface stub (not activated) | Complete |
 
 ### Phase Transition Rules
 
@@ -154,7 +154,7 @@ Per-phase detail lives in each child's plan.md. Subsystem-level audit trail:
 
 - **Phase children**: See `[0-9][0-9][0-9]-*/` sub-folders for per-phase spec.md, plan.md, tasks.md
 - **Source research**: `../../../001-reference-research/research/research.md` §5.2
-- **Parent Spec**: `../../spec.md` (123-agent-loops-improved)
+- **Parent Spec**: `../../spec.md` (deep-loops/030-agent-loops-improved)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
 
 <!-- SCAFFOLD_VALIDATION_COUNTS:

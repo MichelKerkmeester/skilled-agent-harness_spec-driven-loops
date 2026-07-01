@@ -19,37 +19,39 @@ Load the presentation contract before showing startup questions, dashboards, che
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
 > **YOUR FIRST ACTION:**
-> 1. Run Phase 0: @general agent self-verification (below)
+> 1. Run Phase 0: dispatch-context check (below)
 > 2. Run the Unified Setup Phase through the presentation contract
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load matching YAML workflow and execute
 >
 > This command is **general-agent based** — orchestrates deep-improvement skill invocation.
 
-### PHASE 0: @GENERAL AGENT VERIFICATION
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
-**STATUS: ☐ BLOCKED**
+**STATUS: ☐ CHECKED**
 
 ```
-EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+This gate checks actual dispatch context, not self-reported capability -- the prior
+self-assessment version of this check produced a confirmed false-positive block (a
+capable agent judged itself "uncertain" on an abstract question and hard-stopped).
 
-SELF-CHECK: Are you operating as the @general agent?
-│
-├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate deep-improvement invocation
-│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
-│   ├─ You can load skill references and execute defined logic
-│
-├─ IF YES (all indicators present):
+CHECK: was this file invoked directly as /deep:agent-improvement (typed by the user,
+or an explicit Task delegation naming this exact command) -- as opposed to another
+agent pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
+instructions for a worker to follow (that worker should follow its own dispatch
+prompt, not re-run this command's full setup contract)?
+
+├─ YES, or no concrete evidence of the pasted-inline case:
 │   └─ general_agent_verified = TRUE → Continue to Setup Phase
 │
-└─ IF NO or UNCERTAIN:
+└─ NO, with concrete evidence this file's content was pasted inline rather than
+   invoked as the command itself:
     │
     ├─ ⛔ HARD BLOCK - DO NOT PROCEED
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
     │   │                                                            │
     │   │ This command orchestrates deep-improvement skill           │
     │   │ invocation and runs general-agent based.                   │
@@ -58,7 +60,12 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │   /deep:agent-improvement [arguments]           │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
+
+Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
+capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
+from the inside and is what caused the original false-positive block. Block only on
+concrete evidence of the pasted-inline case above.
 ```
 
 **Phase Output:**

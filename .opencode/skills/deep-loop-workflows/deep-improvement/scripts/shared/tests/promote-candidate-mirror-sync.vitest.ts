@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: promote-candidate 4-runtime mirror-sync gate
+// MODULE: promote-candidate 2-runtime mirror-sync gate
 //   The pre-mutation mirror-sync gate must verify the runtime mirrors against
 //   the CURRENT canonical body (the state being replaced), not the candidate.
 //   Comparing against the candidate flags every real body change as drift and
@@ -47,10 +47,6 @@ function canonicalMd(body: string): string {
   return `---\nname: ${AGENT_NAME}\ndescription: Demo agent\n---\n\n${body}`;
 }
 
-function opencodeToml(body: string): string {
-  return `# Agent: ${AGENT_NAME}\nname = "${AGENT_NAME}"\ndescription = "Demo agent"\n\ndeveloper_instructions = '''\n${body.trim()}\n'''\n`;
-}
-
 let work: string;
 
 function writeFile(relativePath: string, content: string): void {
@@ -65,8 +61,8 @@ function writeJson(relativePath: string, value: unknown): void {
 
 /**
  * Lay down an agent-definition promotion packet inside a hermetic repo-root.
- * The 3 runtime mirrors land in-sync with the current canonical body; the
- * caller can override a single mirror to simulate genuine drift.
+ * Both runtime mirrors land in-sync with the current canonical body; the
+ * caller can override the Claude mirror to simulate genuine drift.
  */
 function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
   const target = path.join(work, `.opencode/agents/${AGENT_NAME}.md`);
@@ -81,8 +77,6 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, canonicalMd(CURRENT_BODY));
   // Claude mirror: in-sync by default, or a drifted body when requested.
   writeFile(`.claude/agents/${AGENT_NAME}.md`, canonicalMd(opts.driftClaudeBody || CURRENT_BODY));
-  // OpenCode mirror: TOML wrapper around the same in-sync body.
-  writeFile(`.opencode/agents/${AGENT_NAME}.toml`, opencodeToml(CURRENT_BODY));
 
   // The staged candidate is a real agent body change.
   writeFile('staged-candidate.md', canonicalMd(CANDIDATE_BODY));
@@ -145,7 +139,7 @@ function runPromote(p: ReturnType<typeof buildAgentPacket>) {
 beforeEach(() => { work = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'promote-mirror-'))); });
 afterEach(() => { fs.rmSync(work, { recursive: true, force: true }); });
 
-describe('promote-candidate 4-runtime mirror-sync gate', () => {
+describe('promote-candidate 2-runtime mirror-sync gate', () => {
   it('promotes a candidate when every runtime mirror is in sync with the current canonical', () => {
     const p = buildAgentPacket();
     const result = runPromote(p);

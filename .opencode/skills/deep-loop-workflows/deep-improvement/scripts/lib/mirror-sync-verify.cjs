@@ -17,7 +17,6 @@ const path = require('node:path');
 const RUNTIME_MIRRORS = Object.freeze([
   { runtime: 'opencode', template: '.opencode/agents/{name}.md', format: 'markdown' },
   { runtime: 'claude', template: '.claude/agents/{name}.md', format: 'markdown' },
-  { runtime: 'opencode', template: '.opencode/agents/{name}.toml', format: 'opencode-toml' },
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,45 +37,27 @@ function stripFrontmatter(content) {
   return String(content || '').replace(/^---[\s\S]*?---\n/, '');
 }
 
-function extractOpenCodeDeveloperInstructions(content) {
-  const text = String(content || '');
-  const tripleSingle = text.match(/developer_instructions\s*=\s*'''([\s\S]*?)'''/);
-  if (tripleSingle) {
-    return tripleSingle[1];
-  }
-  const tripleDouble = text.match(/developer_instructions\s*=\s*"""([\s\S]*?)"""/);
-  if (tripleDouble) {
-    return tripleDouble[1];
-  }
-  return null;
-}
-
 /**
  * Extract the agent body from runtime-mirror content by format.
  *
  * @param {string} content - Raw mirror file content.
- * @param {string} [format] - Mirror format ('markdown' or 'opencode-toml').
+ * @param {string} [format] - Mirror format (always 'markdown'; kept as a
+ *   parameter so a future non-markdown runtime mirror can extend this
+ *   without changing the call sites).
  * @returns {string|null} Trimmed agent body, or null if not extractable.
  */
 function extractAgentBody(content, format = 'markdown') {
-  if (format === 'opencode-toml') {
-    const body = extractOpenCodeDeveloperInstructions(content);
-    return body === null ? null : body.trim();
-  }
+  void format;
   return stripFrontmatter(content).trim();
 }
 
 function normalizeRuntimeSpecificText(body) {
   return String(body || '')
-    .replace(/\.(?:opencode|claude)\/agents\/\*\.md/g, '<runtime-agent-path>')
-    .replace(/\.opencode\/agents\/\*\.toml/g, '<runtime-agent-path>')
     // Agent-file references include literal placeholders like `<name>`, so the
-    // name class allows < and >. This normalizes the per-runtime path AND its
-    // extension together — keeping the extension scoped to the agents-path
-    // construct, so a real body difference (e.g. "config.md" vs "config.toml")
-    // outside an agents path still registers as drift.
+    // name class allows < and >. This normalizes the per-runtime path so a
+    // real body difference elsewhere still registers as drift.
+    .replace(/\.(?:opencode|claude)\/agents\/\*\.md/g, '<runtime-agent-path>')
     .replace(/\.(?:opencode|claude)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
-    .replace(/\.opencode\/agents\/[A-Za-z0-9_<>-]+\.toml/g, '<runtime-agent-file>')
     // Each mirror describes itself ("this runtime's mirror; the canonical source
     // lives in .opencode/agents/") in a parenthetical the .opencode canonical
     // omits. That is legitimate per-runtime self-description, not body drift, so

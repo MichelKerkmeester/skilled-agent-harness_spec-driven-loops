@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene",
-  "description": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and tas",
+  "description": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and",
   "keywords": [
     "assistants",
     "routinely",
@@ -18,10 +18,9 @@
     "feature-catalog",
     "entries",
     "adr",
-    "ids",
-    "tas"
+    "ids"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.126Z",
+  "lastUpdated": "2026-07-01T12:31:47.696Z",
   "specId": "097",
   "folderSlug": "comment-ref-hygiene",
   "parentChain": [

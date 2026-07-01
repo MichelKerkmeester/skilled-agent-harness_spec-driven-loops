@@ -1,0 +1,16 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": ["KQ1", "KQ2", "KQ3", "KQ4", "KQ5", "KQ6", "KQ7", "KQ8", "KQ9"],
+  "keyFindings": [
+    { "id": "f-ext-smoke", "question": "KQ1", "summary": "External non-OpenCode shell smoke is the only clean PASS/FAIL path for phase 005's blocked gate." },
+    { "id": "f-orchestrate-v2", "question": "KQ4", "summary": "Smallest orchestrate hardening is to delegate deep routes to deep.md/mode-registry rather than duplicate inference rules." },
+    { "id": "f-plugin-guardrail", "question": "KQ5", "summary": "A plugin can inject/validate prompt route contracts but cannot provide hard runtime identity from current hook surfaces." },
+    { "id": "f-fix5-wait", "question": "KQ9", "summary": "Do not unpark FIX-5 immediately; trigger it on external route-proof failure or benchmark-confirmed persistent regression after route-unification." }
+  ],
+  "ruledOutDirections": [
+    "Treat phase 005 as accepted",
+    "Convert ai-council to subagent-only immediately",
+    "Claim plugin-level prompt transform equals host hard identity",
+    "Implement FIX-5 before external smoke/benchmark evidence"
+  ]
+}

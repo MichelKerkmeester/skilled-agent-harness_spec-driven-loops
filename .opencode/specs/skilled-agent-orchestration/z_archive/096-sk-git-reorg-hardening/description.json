@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening",
-  "description": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the s",
+  "description": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the",
   "keywords": [
     "026",
     "wave-4",
@@ -20,7 +20,7 @@
     "failure",
     "modes"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.120Z",
+  "lastUpdated": "2026-07-01T12:31:47.689Z",
   "specId": "096",
   "folderSlug": "sk-git-reorg-hardening",
   "parentChain": [

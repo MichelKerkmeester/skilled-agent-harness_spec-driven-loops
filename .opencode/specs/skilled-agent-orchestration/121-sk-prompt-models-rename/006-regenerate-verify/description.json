@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/006-regenerate-verify",
-  "description": "After the text rename, the derived indexes (advisor skill-graph + SQLite, spec-memory index, packet metadata `derived` blocks) still hold the old `ski",
+  "description": "After the text rename, the derived indexes (advisor skill-graph + SQLite, spec-memory index, packet metadata `derived` blocks) still hold the old",
   "keywords": [
     "text",
     "rename",
@@ -17,10 +17,9 @@
     "blocks",
     "still",
     "hold",
-    "old",
-    "ski"
+    "old"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.442Z",
+  "lastUpdated": "2026-07-01T12:31:47.366Z",
   "specId": "006",
   "folderSlug": "regenerate-verify",
   "parentChain": [

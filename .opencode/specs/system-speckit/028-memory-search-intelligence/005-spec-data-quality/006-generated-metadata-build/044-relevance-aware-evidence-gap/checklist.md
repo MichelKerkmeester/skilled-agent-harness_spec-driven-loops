@@ -61,7 +61,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] The relevance-aware path is gated behind `SPECKIT_RELEVANCE_AWARE_GAP` default-off
+**Note (2026-07-01, drift audit remediation):** the checked items below describe the flag as "default-off", which was accurate when verified. `SPECKIT_RELEVANCE_AWARE_GAP` was later graduated to default-on (see `implementation-summary.md` and `lib/search/search-flags.ts`); the checkmarks stand as historical verification evidence, not a claim about the flag's current default.
+
+- [x] CHK-010 [P0] The relevance-aware path is gated behind `SPECKIT_RELEVANCE_AWARE_GAP`, default-off at time of verification (later graduated to default-on)
 - [x] CHK-011 [P1] The gated decision is `gapDetected = max(0, topRelevance - noiseFloor) < LOW_THRESHOLD`, reusing `resolveNoiseFloor` and `LOW_THRESHOLD`
 - [x] CHK-012 [P1] The relevance-aware path fails closed to the Z-score path when no floor resolves
 <!-- /ANCHOR:code-quality -->

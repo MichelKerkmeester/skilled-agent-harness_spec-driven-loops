@@ -4,11 +4,11 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // Every agent is authored once under .opencode/agents/<name>.md and mirrored to
-// .claude/agents/<name>.md and .opencode/agents/<name>.toml so each runtime ships
-// the same behavior. Editing one copy without the others makes the runtimes
-// silently disagree. This gate takes the changed agent files (or --all) and
-// fails when any agent's mirrors drift from its .opencode canonical body, so the
-// divergence is caught at commit / PR time instead of in production routing.
+// .claude/agents/<name>.md so each runtime ships the same behavior. Editing one
+// copy without the other makes the runtimes silently disagree. This gate takes
+// the changed agent files (or --all) and fails when any agent's mirror drifts
+// from its .opencode canonical body, so the divergence is caught at commit /
+// PR time instead of in production routing.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -28,8 +28,8 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
 
 // A changed path counts as an agent definition only when it sits directly inside
-// one of the three runtime agent directories.
-const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|claude|opencode)\/agents\/[^/]+$/;
+// one of the two runtime agent directories.
+const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|claude)\/agents\/[^/]+$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -74,12 +74,11 @@ function main() {
     const canonicalPath = path.join(AGENTS_DIR, `${name}.md`);
     if (!fs.existsSync(canonicalPath)) {
       // A missing .opencode canonical is only "not ours" when NO runtime mirror
-      // exists either. If a .claude/.opencode mirror is still present, the canonical
-      // was deleted (or never created) while a mirror lingers — an orphan, which
+      // exists either. If the .claude mirror is still present, the canonical
+      // was deleted (or never created) while the mirror lingers — an orphan, which
       // is the kind of desync this gate must catch, not treat as in sync.
       const orphanMirrors = [
         path.join(REPO_ROOT, '.claude', 'agents', `${name}.md`),
-        path.join(REPO_ROOT, '.opencode', 'agents', `${name}.toml`),
       ].filter((p) => fs.existsSync(p));
       if (orphanMirrors.length > 0) {
         drifted.push(name);
@@ -130,7 +129,7 @@ function main() {
       `BLOCKED: ${uniqueDrifted.length} agent(s) have out-of-sync runtime mirrors: ` +
         uniqueDrifted.join(', ')
     );
-    console.log('Fix: re-sync the .opencode / .claude / .opencode copies so each agent body matches.');
+    console.log('Fix: re-sync the .opencode / .claude copies so each agent body matches.');
     process.exit(1);
   }
 

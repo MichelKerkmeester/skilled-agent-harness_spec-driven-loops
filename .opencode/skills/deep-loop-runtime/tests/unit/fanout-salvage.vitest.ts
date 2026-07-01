@@ -42,7 +42,7 @@ function makeLineageDir(
   writeFileSync(stateLogPath, lines.join('\n') + '\n', 'utf8');
 
   for (const n of writtenIterations) {
-    writeFileSync(join(iterDir, `iteration-${n}.md`), `# Iteration ${n}\n\nContent here.`, 'utf8');
+    writeFileSync(join(iterDir, `iteration-${String(n).padStart(3, '0')}.md`), `# Iteration ${n}\n\nContent here.`, 'utf8');
   }
 
   return base;
@@ -104,7 +104,7 @@ describe('runSalvageSweep — unit', () => {
 
   it('salvages a missing iteration file from recoverable opencode stdout', () => {
     const dir = makeTempDir('salvage-opencode-');
-    makeLineageDir(dir, 'research', [1, 2], [1]); // iteration-2 is missing
+    makeLineageDir(dir, 'research', [1, 2], [1]); // iteration-002 is missing
 
     const stdout = [
       JSON.stringify({ type: 'text', part: { text: '# Iteration 2 research findings\n\n- Finding A\n- Finding B' } }),
@@ -115,7 +115,7 @@ describe('runSalvageSweep — unit', () => {
     expect(result.failed).toBe(0);
 
     // Iteration file should now exist and contain the recovered text
-    const iterFile = join(dir, 'iterations', 'iteration-2.md');
+    const iterFile = join(dir, 'iterations', 'iteration-002.md');
     expect(existsSync(iterFile)).toBe(true);
     expect(readFileSync(iterFile, 'utf8')).toContain('Finding A');
 
@@ -127,20 +127,35 @@ describe('runSalvageSweep — unit', () => {
 
   it('writes a failed marker when stdout has no recoverable content', () => {
     const dir = makeTempDir('salvage-no-recover-');
-    makeLineageDir(dir, 'review', [1], []); // iteration-1 is missing, no recoverable stdout
+    makeLineageDir(dir, 'review', [1], []); // iteration-001 is missing, no recoverable stdout
 
     const result = runSalvageSweep(dir, 'review', 'hi'); // too short to recover
     expect(result.salvaged).toBe(0);
     expect(result.failed).toBe(1);
 
-    const iterFile = join(dir, 'iterations', 'iteration-1.md');
+    const iterFile = join(dir, 'iterations', 'iteration-001.md');
     expect(existsSync(iterFile)).toBe(true);
     expect(readFileSync(iterFile, 'utf8')).toContain('fanout_salvage_failed');
   });
 
+  it('writes failed marker placeholders with zero-padded iteration filenames', () => {
+    const dir = makeTempDir('salvage-zero-padded-failed-');
+    makeLineageDir(dir, 'review', [1], []);
+
+    const result = runSalvageSweep(dir, 'review', 'hi');
+    expect(result.salvaged).toBe(0);
+    expect(result.failed).toBe(1);
+
+    const paddedFile = join(dir, 'iterations', 'iteration-001.md');
+    const unpaddedFile = join(dir, 'iterations', 'iteration-1.md');
+    expect(existsSync(paddedFile)).toBe(true);
+    expect(existsSync(unpaddedFile)).toBe(false);
+    expect(readFileSync(paddedFile, 'utf8')).toContain('fanout_salvage_failed');
+  });
+
   it('salvages missing iteration and leaves present ones untouched (mixed case)', () => {
     const dir = makeTempDir('salvage-mixed-');
-    makeLineageDir(dir, 'research', [1, 2, 3], [1, 3]); // iteration-2 missing
+    makeLineageDir(dir, 'research', [1, 2, 3], [1, 3]); // iteration-002 missing
 
     const stdout = Array.from({ length: 60 }).map(() => 'x').join(''); // raw fallback, > 50 chars
     const result = runSalvageSweep(dir, 'research', stdout);
@@ -148,12 +163,12 @@ describe('runSalvageSweep — unit', () => {
     expect(result.salvaged).toBe(1);
     expect(result.failed).toBe(0);
 
-    // iteration-1 and iteration-3 are unchanged
-    expect(readFileSync(join(dir, 'iterations', 'iteration-1.md'), 'utf8')).toContain('Content here');
-    expect(readFileSync(join(dir, 'iterations', 'iteration-3.md'), 'utf8')).toContain('Content here');
+    // iteration-001 and iteration-003 are unchanged
+    expect(readFileSync(join(dir, 'iterations', 'iteration-001.md'), 'utf8')).toContain('Content here');
+    expect(readFileSync(join(dir, 'iterations', 'iteration-003.md'), 'utf8')).toContain('Content here');
 
-    // iteration-2 now exists
-    expect(existsSync(join(dir, 'iterations', 'iteration-2.md'))).toBe(true);
+    // iteration-002 now exists
+    expect(existsSync(join(dir, 'iterations', 'iteration-002.md'))).toBe(true);
   });
 });
 

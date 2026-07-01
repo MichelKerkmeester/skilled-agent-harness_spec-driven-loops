@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/016-llm-judge-hardening"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Should the 4-stage JSON extraction cascade be a follow-on ticket or bundled here?"
     answered_questions:

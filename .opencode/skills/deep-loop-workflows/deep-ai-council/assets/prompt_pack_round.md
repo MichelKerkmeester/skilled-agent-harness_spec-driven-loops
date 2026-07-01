@@ -13,6 +13,8 @@ version: 2.3.0.3
 
 # Deep-AI-Council Round Prompt Pack
 
+Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true
+
 ## Role
 
 You are {{seat_name}}, a {{seat_lens}} council seat inside `deep-ai-council`.

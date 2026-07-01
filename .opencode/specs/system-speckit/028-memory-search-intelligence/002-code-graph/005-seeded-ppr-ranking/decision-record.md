@@ -34,7 +34,9 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-> DELETED, superseded by measurement. The `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` flag and its code were removed in the flag-resolution reckoning because PPR went negative on the real forward-CALLS graph where uniform edges make it equal to the prior ranking. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record for why the mechanism was built and gated.
+> DELETED, superseded by measurement. The `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` flag and its code were removed in the flag-resolution reckoning because PPR went negative on the real forward-CALLS graph where uniform edges make it equal to the prior ranking. See [`../../007-dark-flag-graduation/005-codegraph-seeded-ppr/`](../../007-dark-flag-graduation/005-codegraph-seeded-ppr/) (`../../007-kept-off-flag-resolution/` no longer exists, this is its successor). The ADRs below are retained as the design-of-record for why the mechanism was built and gated.
+
+> **Pass-2 pointer (2026-07-01):** See the pass-2 correction note in `spec.md` and the operator-approved follow-on project now **IN PROGRESS** at `../010-edge-confidence-and-ppr-revisit/`. The commit `277c35344c` deletion verdict still stands on the benchmark's exact `0.0000` deltas until that new phase builds the named prerequisite, non-uniform edge weighting, and runs a new benchmark.
 
 ---
 
@@ -130,7 +132,7 @@ Q3-C1 needs a multi-hop spread engine to push seed mass across the structural gr
 - `code-graph-context.ts`: a new bounded-PPR primitive whose spread runs over 027's `collectWeightedWalk` (consumed, after the reuse gate).
 - `system-spec-kit/.../lib/graph/bfs-traversal.ts`: CONSUMED only, not modified, not re-implemented.
 
-**How to roll back**: PPR is reversible by a default-off flag. With it off, the flat enumeration returns byte-identical. The 027 substrate is untouched, so there is nothing to revert there.
+**How to roll back**: at the time this was written, PPR was reversible by a default-off flag (with it off, the flat enumeration returns byte-identical). **Update (2026-07-01, pass-2): the rollback already happened, and it went further than flipping the flag - the code itself was deleted at commit `277c35344c`, not merely disabled.** The 027 substrate remains untouched. The module is recoverable via `git show 277c35344c^:<path>` and is being re-wired under `../010-edge-confidence-and-ppr-revisit/`.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -230,7 +232,7 @@ aionforge's hard, named lesson is that indiscriminate graph expansion measurably
 - `query-intent-classifier.ts`: add a SingleHop/MultiHop/Entity taxonomy on top of `QueryIntent='structural'`.
 - `code-graph-context.ts`: the gate routes PPR ON for impact/multi-hop, OFF for the single-hop default, and the bounded power-method runs inside the 400ms budget with a best-prefix fallback.
 
-**How to roll back**: disable the PPR default-off flag (the flat enumeration returns byte-identical), and the gate failing OFF on ambiguity is the safe default.
+**How to roll back**: at the time this was written, disabling the PPR default-off flag was the described rollback (the flat enumeration returns byte-identical), with the gate failing OFF on ambiguity as the safe default. **Update (2026-07-01, pass-2): this rollback already happened via full code deletion at commit `277c35344c`, not just a flag flip** - see the ADR-001 update above for the recovery path.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 

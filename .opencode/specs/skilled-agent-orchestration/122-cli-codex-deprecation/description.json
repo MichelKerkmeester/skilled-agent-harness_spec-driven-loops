@@ -17,8 +17,8 @@
     "wants",
     "deprecated"
   ],
-  "lastUpdated": "2026-06-30T13:09:37.784Z",
-  "specId": "155",
+  "lastUpdated": "2026-07-01T05:32:33.222Z",
+  "specId": "122",
   "folderSlug": "cli-codex-deprecation",
   "parentChain": [
     "skilled-agent-orchestration"

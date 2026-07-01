@@ -150,4 +150,33 @@ describe('deep-ai-council topic orchestration', () => {
       expect(result.stability_score).toBeGreaterThan(0.2);
     });
   });
+
+  it('passes the resolved route contract into seat dispatch context', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const state = sessionState(packetSpecFolder, 1);
+      const seenContexts: Array<Record<string, unknown>> = [];
+
+      await orchestrateTopic({
+        topic_id: 'topic-001-runtime-boundary',
+        session_state: state,
+        executor_config: {
+          dispatchSeat: async (seat: { id: string }, dispatchContext: { context: Record<string, unknown> }) => {
+            seenContexts.push(dispatchContext.context);
+            return { verdict: { ...baseVerdict, seat_id: seat.id } };
+          },
+          adjudicateRound: async () => ({ ...baseVerdict, stability_score: 0.05 }),
+        },
+      });
+
+      expect(seenContexts).toHaveLength(3);
+      expect(seenContexts[0].resolved_route_header).toBe('Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true');
+      expect(seenContexts[0].route_fields).toMatchObject({
+        mode: 'ai-council',
+        target_agent: '@ai-council',
+        execution: 'multi_topic_session_round',
+        depth_aware: true,
+        do_not_switch_mode: true,
+      });
+    });
+  });
 });

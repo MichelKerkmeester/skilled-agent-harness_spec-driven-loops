@@ -97,6 +97,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 | `011-daemon-skills-playbook-validation/spec.md` | Executed | 011 | Daemon skills playbook validation |
 | `012-playbook-findings-remediation/spec.md` | Executed | 012 | Playbook findings remediation |
 | `013-drift-remediation/spec.md` | Executed | 013 | Drift-remediation findings closure |
+| `014-spec-regrouping-renumber-reindex/spec.md` | In Progress | 014 | Spec regrouping, renumbering and reindex sweep |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,6 +120,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 | 011 | `011-daemon-skills-playbook-validation/` | Daemon skills playbook validation | COMPLETE, salvaged |
 | 012 | `012-playbook-findings-remediation/` | Playbook findings remediation | COMPLETE |
 | 013 | `013-drift-remediation/` | Drift-audit findings remediation relocated from the former 028/008 track | COMPLETE |
+| 014 | `014-spec-regrouping-renumber-reindex/` | Spec regrouping, renumbering and reindex sweep | In Progress |
 
 ### Phase Transition Rules
 

@@ -58,7 +58,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Migration command completes without unhandled errors. Evidence: migration script reported `renamedFolders: 135`, `totalFolders: 161`, and `editedFiles: 3446`; second reference pass reported `editedFiles: 2275` and `totalHits: 30357`; correction renamed active orchestration `150`-`156` to `117`-`123`.
-- [x] CHK-011 [P0] Directory listings match expected final maps. Evidence: reads showed `design` as `001`-`008`, active orchestration as `117`-`123`, orchestration archive as `001`-`116`, active deep-loops as `029`-`031`, and deep-loops archive as `001`-`028`.
+- [x] CHK-011 [P0] Directory listings match expected final maps. Evidence: reads showed `design` as `001`-`008`, active orchestration as `117`-`123`, orchestration archive as `001`-`116`, active deep-loops as `029`-`032`, and deep-loops archive as `001`-`028`.
 - [x] CHK-012 [P1] Reference replacement is scoped to affected roots. Evidence: replacement script walked only `.opencode/specs/design`, `.opencode/specs/skilled-agent-orchestration`, `.opencode/specs/deep-loops`, and this phase folder.
 - [x] CHK-013 [P1] No delete operations are used for spec packets. Evidence: migration used rename operations; no packet delete command was run.
 <!-- /ANCHOR:code-quality -->
@@ -127,7 +127,7 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 13 | 12/13 |
-| P1 Items | 12 | 12/12 |
+| P1 Items | 12 | 11/12 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-06-30

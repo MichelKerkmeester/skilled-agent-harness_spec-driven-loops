@@ -14,7 +14,7 @@
     "docs"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements",
-  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 cate",
+  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7",
   "keywords": [
     "cross-analysis",
     "370",
@@ -27,10 +27,9 @@
     "system-spec-kit",
     "314",
     "categories",
-    "system-skill-advisor",
-    "cate"
+    "system-skill-advisor"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.429Z",
+  "lastUpdated": "2026-07-01T12:31:47.717Z",
   "specId": "100",
   "folderSlug": "feature-catalog-template-improvements",
   "parentChain": [

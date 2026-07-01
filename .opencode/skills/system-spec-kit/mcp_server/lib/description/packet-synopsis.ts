@@ -104,6 +104,31 @@ function extractFirstBodyLine(lines: string[]): string | null {
 }
 
 /**
+ * Clamp a generated synopsis to a length limit without cutting the final word when possible.
+ *
+ * @param synopsis - Candidate synopsis text
+ * @param limit - Maximum character length
+ * @returns The original string when at or below the limit, otherwise a word-boundary clamp
+ */
+export function truncateSynopsisAtWordBoundary(synopsis: string, limit: number): string {
+  if (synopsis.length <= limit) {
+    return synopsis;
+  }
+
+  const truncated = synopsis.slice(0, limit);
+  const nextChar = synopsis[limit];
+  if (nextChar === undefined || /\s/.test(nextChar)) {
+    return truncated.trim();
+  }
+
+  const boundary = truncated.search(/\s+\S*$/);
+  if (boundary > 0) {
+    return truncated.slice(0, boundary).trim();
+  }
+  return truncated.trim();
+}
+
+/**
  * Derive a packet synopsis from spec.md content with one shared precedence.
  *
  * Precedence (first match wins): the Overview section paragraph, the Problem/Purpose first
@@ -133,5 +158,5 @@ export function derivePacketSynopsis(specContent: string, field: SynopsisField):
     ?? extractFirstBodyLine(lines)
     ?? '';
 
-  return synopsis.slice(0, limit).trim();
+  return truncateSynopsisAtWordBoundary(synopsis, limit);
 }

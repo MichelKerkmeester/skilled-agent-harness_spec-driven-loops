@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
+  "description": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator signa",
+  "keywords": [
+    "research",
+    "found",
+    "critical",
+    "false-negative",
+    "f27",
+    "gpt",
+    "mis-dispatch",
+    "pass",
+    "every",
+    "existing",
+    "fix-5",
+    "validator",
+    "signa"
+  ],
+  "lastUpdated": "2026-07-01T05:32:33.121Z",
+  "specId": "002",
+  "folderSlug": "route-proof-validation",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 005-spec-data-quality |
 | **Status** | complete |
-| **Completed** | Research complete, 28 implementation child phases scaffolded, no build shipped |
+| **Completed** | Research complete 2026-06-21, 28 implementation child phases scaffolded, no build shipped at that point - superseded, see correction note below |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet ran the full spec-kit data-quality research as the official multi-lineage loop and produced a canonical synthesis. Nothing was shipped. The value is a verified evidence base and a tiered go or no-go program that a build stage can act on without re-deriving the corpus facts.
+**CORRECTION (2026-07-01, drift audit remediation):** the "Nothing was shipped" framing below describes this packet's state as of the 2026-06-21 research-complete pass. It is now stale. This packet later shipped real code: 13 built feature-flag switches (12 kept/graduated, 1 deleted) spanning children 029 through 044, covering the vague-query benchmark, generated-metadata build, full-repo JSON migration, and flag-graduation and search-quality tail. See `SUMMARY.md` for the current, accurate 44-child breakdown, and `../feature-flags.md` and `../timeline.md` for the shipped-flag evidence. The narrative below is preserved for historical reference only.
+
+This packet ran the full spec-kit data-quality research as the official multi-lineage loop and produced a canonical synthesis. Nothing was shipped as of 2026-06-21. The value is a verified evidence base and a tiered go or no-go program that a build stage can act on without re-deriving the corpus facts.
 
 ### Stage 0 external-findings brief
 

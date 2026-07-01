@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
   "description": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05` (`lane-regis",
   "keywords": [
     "skill",
@@ -14,11 +14,11 @@
     "semanticshadow",
     "lane-regis"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.457Z",
+  "lastUpdated": "2026-07-01T10:41:59.104Z",
   "specId": "005",
   "folderSlug": "conflict-rerank-query-routing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "003-skill-advisor"
   ],

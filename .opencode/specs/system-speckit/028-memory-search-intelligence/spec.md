@@ -61,7 +61,7 @@ Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `be
 | **Status** | complete|
 | **Created** | 2026-06-16 |
 | **Updated** | 2026-06-19 |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../description.json` |
 | **Parent Packet** | `system-spec-kit` |
 <!-- /ANCHOR:metadata -->
 
@@ -71,7 +71,7 @@ Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `be
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its eight top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent and the dark-flag graduation program so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029.
+Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its eight top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent and the dark-flag graduation program so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029, and a 30th child, `030-opencode-temp-worker-reaping`, a planned scaffold not yet started.
 
 ### Purpose
 Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the release-cleanup, subsystem, data-quality, review-remediation and dark-flag children to their current child maps and records packet 030 as the Wave-0 SHIPPED done-evidence record.
@@ -118,13 +118,15 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
-| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 29 child phases, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024 and the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as 025 through 029 | Phase parent |
+| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 30 child phases, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024, the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as 025 through 029, and the OpenCode temp-worker reaping build as 030 | Phase parent |
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 8 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
 | 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 44 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave | Complete |
 | 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005 and 006 executed, 002 and 004 pending | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
+| 008 | `008-drift-audit-remediation/` | Fixed all 75 findings from a GPT-5.5-fast drift audit spanning this packet's other seven children (24 confirmed + 51 unverified, 42 directories corrected) | Complete |
+| 009 | `009-drift-audit-deep-history-correction/` | Second-pass doc correction: git history shows the 4 code-gap findings from 008 were built, shadow-shipped, benchmarked and deliberately deleted for cause, not abandoned | Complete |
 
 ### Phase Transition Rules
 

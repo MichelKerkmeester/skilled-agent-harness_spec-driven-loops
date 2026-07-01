@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "2-3",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-07-01T05:32:33.140Z",
+  "specId": "009",
+  "folderSlug": "speckit-command-goal-prompt-offer",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

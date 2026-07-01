@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | complete |
+| **Status** | in-progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |

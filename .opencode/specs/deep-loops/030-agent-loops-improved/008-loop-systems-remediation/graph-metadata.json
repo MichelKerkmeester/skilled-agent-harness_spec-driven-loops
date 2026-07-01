@@ -23,14 +23,14 @@
       "008 remediation",
       "deep-review deferred findings",
       "mimo campaign recommendations",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary"
+      "loop systems remediation plan",
+      "008 parent aggregate plan",
+      "loop systems remediation tasks",
+      "008 parent aggregate tasks",
+      "deep loop remediation children",
+      "loop systems remediation summary",
+      "008 parent aggregate summary",
+      "deep loop remediation verification"
     ],
     "key_topics": [
       "loop",
@@ -43,36 +43,50 @@
       "mimo",
       "campaign",
       "recommendations",
-      "implementation",
-      "plan"
+      "plan",
+      "parent"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "001-deep-improvement-rollback-hash-guard/implementation-summary.md",
+      "002-deep-improvement-promotion-safety/implementation-summary.md",
+      "003-model-benchmark-reducer-ledger/implementation-summary.md",
+      "004-adversarial-playbook-scenarios/implementation-summary.md",
+      "005-tighten-playbook-pass-criteria/implementation-summary.md",
+      "006-p2-test-adequacy-and-source-only-audit/implementation-summary.md",
+      "007-fan-out-hardening/implementation-summary.md",
       "tasks.md",
       "implementation-summary.md",
-      "handover.md"
+      "spec.md",
+      "plan.md",
+      "001-deep-improvement-rollback-hash-guard/tasks.md",
+      "002-deep-improvement-promotion-safety/tasks.md",
+      "003-model-benchmark-reducer-ledger/tasks.md",
+      "004-adversarial-playbook-scenarios/tasks.md",
+      "005-tighten-playbook-pass-criteria/tasks.md",
+      "006-p2-test-adequacy-and-source-only-audit/tasks.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
         "source": "derived"
       },
       {
-        "name": "deep_model-benchmark_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
         "source": "derived"
       },
       {
@@ -88,9 +102,15 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "handover.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -136,39 +156,33 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Loop Systems Remediation Parent Aggregate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Technical Context This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Technical Approach",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
+        "name": "1. SUMMARY",
+        "kind": "heading",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -178,33 +192,33 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "Deep Improvement Rollback Hash Guard",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "Deep Improvement Promotion Safety",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
+        "name": "Benchmark Reducer Ledger",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Deferred deep-review findings and MiMo-campaign recommendations identified gaps in rollback hash-guard integrity, promotion safety, benchmark ledger accuracy, adversarial playbook coverage, playbook pass-criteria rigor, and P2 test-adequacy/source-only auditing across the loop-system surfaces",
     "created_at": "2026-06-29T10:43:16Z",
-    "last_save_at": "2026-06-30T14:53:29.833Z",
+    "last_save_at": "2026-07-01T14:29:43.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +228,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:5aec8a85ee43adb458f439d2b23e26bf1d894d516af715653e689e977ea29621",
+    "source_fingerprint": "sha256:d5b5d28c773b2d20152137bf33e1d495834b3cf03b808d92486049e21230633f",
     "source_doc_hashes": {
-      "spec.md": "ffae1643bc44e198e1e1f0ba7082430fb0c002f03d27e4d9da88e23786bc1f15",
-      "plan.md": "0cef95f0b98787c6477674661dd014f9e810a8466817dd2ae86e40a11c9af209",
-      "tasks.md": "114b05e09d80f88ae0884c3acff81aff3e23044e5401aaaa17066eb428d16809",
-      "implementation-summary.md": "f84118d9dccf752a51deedf06ccf730b2b34283cc14f2ce0b36f95940723b935",
+      "spec.md": "1906d18d50996ab50030973cd3e699fe109237b219e332de3edea3c7d49becc6",
+      "plan.md": "d49e99a48213e945a3a1a59b1e019101b8fb9c94f98d398581f38954763b1cd4",
+      "tasks.md": "143e88347ccb9da266177caf9e83d15ea9d0a91e0efd92bfe405b403c0924e7a",
+      "implementation-summary.md": "1e4312ed78bf3c392c333dac3180a8013de50a608fe775e25a81f511414df72b",
       "handover.md": "d08cd04a5ab1848ca1b44865b61befa0f90d8e29788bc96e432f16c88a4570c3"
     },
     "last_active_child_id": null,

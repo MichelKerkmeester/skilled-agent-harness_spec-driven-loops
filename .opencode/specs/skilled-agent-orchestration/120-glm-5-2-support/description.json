@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/120-glm-5-2-support",
   "description": "The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the Z.AI GLM Coding Plan provider — shown in opencode's auth",
   "keywords": [
@@ -18,13 +19,12 @@
     "opencode",
     "auth"
   ],
-  "lastUpdated": "2026-06-28T10:15:07.658Z",
-  "specId": "153",
+  "lastUpdated": "2026-07-01T05:32:33.207Z",
+  "specId": "120",
   "folderSlug": "glm-5-2-support",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

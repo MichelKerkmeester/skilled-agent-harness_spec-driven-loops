@@ -166,4 +166,35 @@ describe('deep-ai-council session orchestration', () => {
       ]);
     });
   });
+
+  it('passes the resolved route contract through executor config', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const seenConfigs: Array<Record<string, unknown>> = [];
+
+      await orchestrateSession({
+        session_state: sessionState(packetSpecFolder),
+        executor_config: {
+          cost_guards: { max_topics_per_session: 1 },
+          orchestrateTopic: async ({ topic_id, executor_config }: { topic_id: string; executor_config: Record<string, unknown> }) => {
+            seenConfigs.push(executor_config);
+            return {
+              topic_id,
+              rounds_completed: 1,
+              final_verdict: { recommended_option: `plan-${topic_id}`, confidence: 0.8 },
+              stability_score: 0.5,
+              stop_reason: 'max_rounds_per_topic',
+            };
+          },
+        },
+      });
+
+      expect(seenConfigs).toHaveLength(1);
+      expect(seenConfigs[0].resolved_route_header).toBe('Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true');
+      expect(seenConfigs[0].route_fields).toMatchObject({
+        mode: 'ai-council',
+        target_agent: '@ai-council',
+        state_source: 'ai-council/session-state.jsonl',
+      });
+    });
+  });
 });

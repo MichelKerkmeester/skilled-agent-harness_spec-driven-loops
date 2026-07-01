@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research",
-  "description": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accum",
+  "description": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and",
   "keywords": [
     "three",
     "opencode",
@@ -14,10 +14,9 @@
     "side",
     "specifically",
     "grown",
-    "organically",
-    "accum"
+    "organically"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.832Z",
+  "lastUpdated": "2026-07-01T12:31:47.530Z",
   "specId": "065",
   "folderSlug": "spec-kit-coco-sk-code-research",
   "parentChain": [

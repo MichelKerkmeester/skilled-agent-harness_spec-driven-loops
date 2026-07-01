@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark",
+  "description": "Every prior attempt to get decisive GPT-backed dispatch evidence has been blocked upstream: phase 005 (the packet's original acceptance-gate smoke)",
+  "keywords": [
+    "every",
+    "prior",
+    "attempt",
+    "get",
+    "decisive",
+    "gpt-backed",
+    "dispatch",
+    "evidence",
+    "blocked",
+    "upstream",
+    "phase",
+    "005",
+    "packet",
+    "original",
+    "acceptance-gate",
+    "smoke"
+  ],
+  "lastUpdated": "2026-07-01T13:09:56.009Z",
+  "specId": "012",
+  "folderSlug": "gpt-claude-benchmark",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

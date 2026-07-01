@@ -1,17 +1,19 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence",
+  "spec_folder": "system-speckit/028-memory-search-intelligence",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
-    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation"
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup",
+    "system-speckit/028-memory-search-intelligence/001-speckit-memory",
+    "system-speckit/028-memory-search-intelligence/002-code-graph",
+    "system-speckit/028-memory-search-intelligence/003-skill-advisor",
+    "system-speckit/028-memory-search-intelligence/004-deep-loop",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+    "system-speckit/028-memory-search-intelligence/006-review-remediation",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
+    "system-speckit/028-memory-search-intelligence/008-drift-audit-remediation",
+    "system-speckit/028-memory-search-intelligence/009-drift-audit-deep-history-correction"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -47,15 +49,12 @@
     "key_files": [
       "spec.md",
       "changelog/README.md",
-      "archive/handover.md",
-      "archive/review-report.md",
       "001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
       "002-code-graph/spec.md",
       "003-skill-advisor/spec.md",
       "004-deep-loop/spec.md",
-      "000-release-cleanup/spec.md",
-      "research/research.md"
+      "000-release-cleanup/spec.md"
     ],
     "entities": [
       {
@@ -71,21 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "archive/review-report.md",
-        "source": "derived"
-      },
-      {
         "name": "merged-research-index.md",
         "kind": "doc",
         "path": "001-speckit-memory/research/merged-research-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -123,57 +110,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Improvement Roadmap",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Memory Search Intelligence",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Graph",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Skill Advisor",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deep Loop",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Subsystem Pointers",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-28T06:44:53.095Z",
+    "last_save_at": "2026-07-01T07:28:57.484Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "research/research.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:81da8b1b506ea4f7cfbea9827fbd8494ff3549288e3f0303d655a9c544cf52f6",
+    "source_fingerprint": "sha256:03bd09ae09823352166b4c93c8edcc016f87300b96749d55f7b924962f663027",
     "source_doc_hashes": {
-      "spec.md": "155e31808303153c730578525e6886c1c47d118b7af21110d1ef21104d5c6733",
-      "research/research.md": "0ca48b10a71cbbce24603941b831f0184c1371959a33363276b7bebb688c78a3"
+      "spec.md": "4627b6ae5744efaf5705046f6be643e40a8309ade124a3ef7fd15bfa16a2176b"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

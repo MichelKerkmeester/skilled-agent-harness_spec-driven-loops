@@ -84,7 +84,7 @@ function runTsxBootstrap() {
   });
 }
 
-if (!isTsxLoaded) {
+if (require.main === module && !isTsxLoaded) {
   runTsxBootstrap();
 }
 
@@ -137,6 +137,52 @@ function parseOptionalNumber(args, key) {
     throw inputError(`${key} must be a non-negative number`);
   }
   return value;
+}
+
+function readRawConfigNumber(rawConfig, names, fieldName) {
+  if (!isRecord(rawConfig)) return null;
+  for (const name of names) {
+    if (!Object.prototype.hasOwnProperty.call(rawConfig, name)) continue;
+    const raw = rawConfig[name];
+    if (raw === undefined || raw === null || raw === '') return null;
+    if (raw === true || raw === false) {
+      throw inputError(`${fieldName} must be a non-negative number`);
+    }
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < 0) {
+      throw inputError(`${fieldName} must be a non-negative number`);
+    }
+    return Math.floor(value);
+  }
+  return null;
+}
+
+function readPositiveRawConfigNumber(rawConfig, names, fieldName, fallback) {
+  const value = readRawConfigNumber(rawConfig, names, fieldName);
+  if (value === null) return fallback;
+  if (value <= 0) {
+    throw inputError(`${fieldName} must be greater than 0`);
+  }
+  return value;
+}
+
+function rawConfigWithCliBudgetOverrides(rawConfig, args) {
+  const merged = { ...(isRecord(rawConfig) ? rawConfig : {}) };
+  const mappings = [
+    ['stallWatchdogMs', 'stallWatchdogMs'],
+    ['maxCostUnitsPerLineage', 'maxCostUnitsPerLineage'],
+    ['maxTokensPerLineage', 'maxTokensPerLineage'],
+    ['maxTokenBudget', 'maxTokenBudget'],
+    ['maxTokenBudgetPerLineage', 'maxTokenBudgetPerLineage'],
+    ['costUnitsPerIteration', 'costUnitsPerIteration'],
+    ['estimatedTokensPerIteration', 'estimatedTokensPerIteration'],
+  ];
+  for (const [targetKey, argKey] of mappings) {
+    if (Object.prototype.hasOwnProperty.call(args, argKey)) {
+      merged[targetKey] = args[argKey];
+    }
+  }
+  return merged;
 }
 
 function normalizeStopPolicy(raw) {
@@ -255,6 +301,8 @@ function statusForLedgerEvent(entry) {
   // forced abort of the stalled attempt. Map both to typed statuses instead of 'unknown'.
   if (entry.event === 'lag_ceiling_exceeded') return entry.action === 'abort' ? 'failed' : 'warning';
   if (entry.event === 'lag_ceiling_abort') return 'failed';
+  if (entry.event === 'stall_detected') return 'warning';
+  if (entry.event === 'budget_cap_exceeded') return 'failed';
   return 'unknown';
 }
 
@@ -551,6 +599,60 @@ function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+function normalizeStallWatchdogMs(rawConfig) {
+  return readRawConfigNumber(rawConfig, [
+    'stallWatchdogMs',
+    'stall_watchdog_ms',
+    'stallWatchdogMillis',
+    'stall_watchdog_millis',
+  ], 'stallWatchdogMs') ?? 0;
+}
+
+function normalizeLineageBudgetGuards(rawConfig = {}) {
+  return {
+    max_cost_units_per_lineage: readRawConfigNumber(rawConfig, [
+      'maxCostUnitsPerLineage',
+      'max_cost_units_per_lineage',
+      'maxLineageCostUnits',
+      'max_lineage_cost_units',
+      'maxTokensPerLineage',
+      'max_tokens_per_lineage',
+      'maxTokenBudget',
+      'max_token_budget',
+      'maxTokenBudgetPerLineage',
+      'max_token_budget_per_lineage',
+    ], 'maxCostUnitsPerLineage') ?? 0,
+    cost_units_per_iteration: readPositiveRawConfigNumber(rawConfig, [
+      'costUnitsPerIteration',
+      'cost_units_per_iteration',
+      'estimatedTokensPerIteration',
+      'estimated_tokens_per_iteration',
+    ], 'costUnitsPerIteration', 1),
+  };
+}
+
+function computeLineageBudgetUpperBound(lineage, guardsInput = {}) {
+  const guards = normalizeLineageBudgetGuards(guardsInput);
+  const rawIterations = Number(lineage && lineage.iterations);
+  const iterations = Number.isFinite(rawIterations) && rawIterations > 0 ? Math.floor(rawIterations) : 12;
+  return {
+    ...guards,
+    iterations,
+    estimated_cost_units: iterations * guards.cost_units_per_iteration,
+  };
+}
+
+function evaluateLineageBudgetCap(input = {}) {
+  const upperBound = computeLineageBudgetUpperBound(input.lineage || {}, input.guards || input);
+  const exceeded = upperBound.max_cost_units_per_lineage > 0
+    && upperBound.estimated_cost_units > upperBound.max_cost_units_per_lineage;
+  return {
+    continue_allowed: !exceeded,
+    stop_reasons: exceeded ? ['max_cost_units_per_lineage'] : [],
+    upper_bound: upperBound,
+  };
+}
+
 function normalizeNonNegativeDelayMs(value) {
   if (value === undefined || value === null) return null;
   const n = Number(value);
@@ -843,7 +945,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
 
 function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
   const maxIterations = lineage.iterations || 12;
-  const convergenceThreshold = options.convergenceThreshold ?? 0.1;
+  const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
   const stopPolicy = options.stopPolicy || 'convergence';
   const args = [
     ':auto',
@@ -881,10 +983,13 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
  * A single iteration is timeoutSeconds; a full loop is up to iterations * timeoutSeconds.
  * We double it for safety and cap at 4 hours.
  */
-function computeLineageTimeoutMs(lineage) {
+function computeLineageTimeoutMs(lineage, ceilingHoursOverride) {
   const iters = lineage.iterations || 12;
   const perIterSecs = lineage.timeoutSeconds || 900;
-  return Math.min(iters * perIterSecs * 2 * 1000, 4 * 60 * 60 * 1000);
+  const ceilingMs = Number.isFinite(ceilingHoursOverride) && ceilingHoursOverride > 0
+    ? ceilingHoursOverride * 60 * 60 * 1000
+    : 4 * 60 * 60 * 1000;
+  return Math.min(iters * perIterSecs * 2 * 1000, ceilingMs);
 }
 
 function normalizeProgressHeartbeatMs(seconds) {
@@ -928,7 +1033,7 @@ function decorateSlotAccountingEvent(event, accountingByLabel) {
   };
 }
 
-function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges }) {
+function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges, onProgress }) {
   if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) {
     return () => {};
   }
@@ -939,11 +1044,52 @@ function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges
       label,
       at: new Date().toISOString(),
       duration_ms: Math.max(0, Date.now() - startedAtMs),
-      gauges: getGauges(),
-    });
-  }, cadenceMs);
+        gauges: getGauges(),
+      });
+      if (typeof onProgress === 'function') onProgress();
+    }, cadenceMs);
   timer.unref?.();
   return () => clearInterval(timer);
+}
+
+function startLineageStallWatchdog({ thresholdMs, label, ledgerPath, getLastEventAtMs, getGauges }) {
+  if (!Number.isFinite(thresholdMs) || thresholdMs <= 0) {
+    return () => {};
+  }
+
+  let timer = null;
+  let fired = false;
+  const schedule = () => {
+    if (fired) return;
+    const quietMs = Math.max(0, Date.now() - getLastEventAtMs());
+    const delayMs = Math.max(1, thresholdMs - quietMs);
+    timer = setTimeout(() => {
+      timer = null;
+      const latestQuietMs = Math.max(0, Date.now() - getLastEventAtMs());
+      if (latestQuietMs >= thresholdMs) {
+        fired = true;
+        appendFanoutStatusLedger(ledgerPath, {
+          event: 'stall_detected',
+          label,
+          at: new Date().toISOString(),
+          severity: 'warning',
+          metric: 'time_since_last_lineage_event',
+          stall_watchdog_ms: thresholdMs,
+          quiet_ms: Math.floor(latestQuietMs),
+          gauges: getGauges(),
+        });
+        return;
+      }
+      schedule();
+    }, delayMs);
+    timer.unref?.();
+  };
+
+  schedule();
+  return () => {
+    fired = true;
+    if (timer) clearTimeout(timer);
+  };
 }
 
 /**
@@ -1150,6 +1296,7 @@ async function main() {
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
+  const lineageTimeoutHoursOverride = parseOptionalNumber(args, 'lineageTimeoutHours');
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
 
   const {
@@ -1174,6 +1321,9 @@ async function main() {
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const parsedFanoutConfig = parseFanoutConfig(rawConfig);
+  const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
+  const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
+  const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
@@ -1295,6 +1445,28 @@ async function main() {
       fs.mkdirSync(lineageDir, { recursive: true });
       fs.mkdirSync(stateDir, { recursive: true });
 
+      const budgetDecision = evaluateLineageBudgetCap({ lineage, guards: lineageBudgetGuards });
+      if (!budgetDecision.continue_allowed) {
+        appendFanoutStatusLedger(ledgerPath, {
+          event: 'budget_cap_exceeded',
+          label: lineage.label,
+          at: new Date().toISOString(),
+          severity: 'error',
+          stop_reasons: budgetDecision.stop_reasons,
+          upper_bound: budgetDecision.upper_bound,
+          gauges: latestGauges,
+        });
+        const failure = new Error(
+          `lineage ${lineage.label} exceeds configured budget cap: `
+            + `${budgetDecision.upper_bound.estimated_cost_units} > ${budgetDecision.upper_bound.max_cost_units_per_lineage} cost units`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = null;
+        failure.timedOut = false;
+        failure.budgetCap = budgetDecision;
+        throw failure;
+      }
+
       const sessionId = `fanout-${lineage.label}-${runId}`;
       const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, {
         convergenceThreshold,
@@ -1366,13 +1538,25 @@ async function main() {
       // preserve the per-replica lockfile isolation they provide.
       const dispatchEnv = { ...buildExecutorDispatchEnv(lineage, process.env), ...extraEnv };
 
-      const timeoutMs = computeLineageTimeoutMs(lineage);
+      const timeoutMs = computeLineageTimeoutMs(lineage, lineageTimeoutHoursOverride);
+      let lastLineageEventAtMs = Date.now();
+      const markLineageEvent = () => {
+        lastLineageEventAtMs = Date.now();
+      };
+      const stopStallWatchdog = startLineageStallWatchdog({
+        thresholdMs: stallWatchdogMs,
+        label: lineage.label,
+        ledgerPath,
+        getLastEventAtMs: () => lastLineageEventAtMs,
+        getGauges: () => latestGauges,
+      });
 
       const stopProgressHeartbeat = startLineageProgressHeartbeat({
         cadenceMs: progressHeartbeatMs,
         label: lineage.label,
         ledgerPath,
         getGauges: () => latestGauges,
+        onProgress: markLineageEvent,
       });
       let result;
       try {
@@ -1386,6 +1570,7 @@ async function main() {
         });
       } finally {
         stopProgressHeartbeat();
+        stopStallWatchdog();
       }
 
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
@@ -1486,7 +1671,7 @@ async function main() {
   process.exit(exitCode);
 }
 
-if (isTsxLoaded) {
+if (require.main === module && isTsxLoaded) {
   main().catch((err) => {
     const code = classifyExitCode(err);
     jsonOut({
@@ -1506,10 +1691,17 @@ if (isTsxLoaded) {
 module.exports = {
   buildLineageCommand,
   buildLoopPrompt,
+  computeLineageTimeoutMs,
+  computeLineageBudgetUpperBound,
+  evaluateLineageBudgetCap,
   normalizeProgressHeartbeatMs,
+  normalizeLineageBudgetGuards,
+  normalizeStallWatchdogMs,
   computeSkippedCount,
   decorateSlotAccountingEvent,
   startLineageProgressHeartbeat,
+  startLineageStallWatchdog,
+  statusForLedgerEvent,
   updateLineageSnapshot,
   applyFlatPoolAssignmentGuard,
 };

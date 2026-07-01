@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking",
   "description": "The code-graph `codegraphcontext` impact mode ranks callers/callees by a flat single-hop reverse-edge enumeration in DB iteration order, with no centr",
   "keywords": [
     "code-graph",
@@ -17,11 +17,11 @@
     "order",
     "centr"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.394Z",
+  "lastUpdated": "2026-07-01T10:41:59.089Z",
   "specId": "005",
   "folderSlug": "seeded-ppr-ranking",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "002-code-graph"
   ],

@@ -32,7 +32,8 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
-    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup"
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping"
   ],
   "migrated": true,
   "manual": {
@@ -76,7 +77,8 @@
       "lib/graph/temporal-edges.ts",
       "lib/graph/contradiction-detection.ts",
       "lib/search/fsrs.ts",
-      "lib/storage/idempotency-receipts.ts"
+      "lib/storage/idempotency-receipts.ts",
+      "030-opencode-temp-worker-reaping/spec.md"
     ],
     "entities": [
       {

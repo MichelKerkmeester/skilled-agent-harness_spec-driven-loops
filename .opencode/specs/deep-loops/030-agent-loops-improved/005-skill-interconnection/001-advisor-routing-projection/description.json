@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/005-skill-interconnection/001-advisor-routing-projection",
-  "description": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test com",
+  "description": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test",
   "keywords": [
     "new",
     "deep-loop",
@@ -17,10 +17,9 @@
     "manual",
     "edit",
     "drift-guard",
-    "test",
-    "com"
+    "test"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.432Z",
+  "lastUpdated": "2026-07-01T12:31:47.036Z",
   "specId": "001",
   "folderSlug": "advisor-routing-projection",
   "parentChain": [

@@ -150,6 +150,8 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
+**CORRECTION (2026-07-01, drift audit remediation):** this section and its "28 child phases" framing describe the packet's state as of the initial research-complete pass. The packet has since shipped real code across a further 16 phases (029 through 044), regrouped under six subgroup parents. See [`SUMMARY.md`](SUMMARY.md) for the current, accurate 44-child breakdown and current directory layout. The narrative below is preserved for historical reference of the original planned scaffold only.
+
 This packet is now a phase parent. The research lives at the root and the implementation lives in the 28 child phases below, one child per converged recommendation. Each child carries its own full Level-2 doc set, spec.md plus plan.md plus tasks.md plus checklist.md plus implementation-summary.md, alongside the two metadata JSONs. The verdict tier comes straight from the canonical synthesis in `research/research.md`.
 
 ### Build Readiness

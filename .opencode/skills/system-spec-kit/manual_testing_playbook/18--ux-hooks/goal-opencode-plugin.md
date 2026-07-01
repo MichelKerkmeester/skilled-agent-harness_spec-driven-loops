@@ -36,7 +36,7 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 
 ### Commands
 
-1. Restart OpenCode after any `.opencode/plugins/mk-goal.js` or `.opencode/commands/goal.md` edit.
+1. Restart OpenCode after any `.opencode/plugins/mk-goal.js` or `.opencode/commands/goal_opencode.md` edit.
 2. `/goal set Finish the goal plugin docs integration and validate it`
 3. `/goal show`
 4. If a live OpenCode restart is unavailable, run `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` and `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` as fallback evidence.
@@ -56,7 +56,7 @@ Capture the `/goal show` status envelope or the two Node test transcripts.
 
 ### Failure Triage
 
-Confirm OpenCode was restarted -> inspect `.opencode/plugins/mk-goal.js` plugin load -> inspect `.opencode/commands/goal.md` allowed tools -> run `mk-goal-state` and `mk-goal-tool-path` tests -> inspect `.opencode/skills/.goal-state/` only as runtime evidence, not as command-owned state.
+Confirm OpenCode was restarted -> inspect `.opencode/plugins/mk-goal.js` plugin load -> inspect `.opencode/commands/goal_opencode.md` allowed tools -> run `mk-goal-state` and `mk-goal-tool-path` tests -> inspect `.opencode/skills/.goal-state/` only as runtime evidence, not as command-owned state.
 
 ## 4. SOURCE FILES
 
@@ -64,7 +64,7 @@ Confirm OpenCode was restarted -> inspect `.opencode/plugins/mk-goal.js` plugin 
 - Feature catalog: [18--ux-hooks/goal-opencode-plugin.md](../../feature_catalog/18--ux-hooks/goal-opencode-plugin.md)
 - Operator reference: [references/hooks/goal_plugin.md](../../references/hooks/goal_plugin.md)
 - Source file: `.opencode/plugins/mk-goal.js`
-- Command file: `.opencode/commands/goal.md`
+- Command file: `.opencode/commands/goal_opencode.md`
 
 ---
 

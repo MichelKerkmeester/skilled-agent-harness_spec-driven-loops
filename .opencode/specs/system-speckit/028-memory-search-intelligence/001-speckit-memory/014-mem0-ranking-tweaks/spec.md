@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Mem0 Ranking + Extraction Bundle (028 Memory impl phase 014)"
-description: "Implement the 06 external-memory-systems cheap ranking + extraction bundle for Spec-Kit Memory MCP: query-length BM25 sigmoid calibration, entity cardinality penalty, spaCy lemmatization, declarative regex entity config, multi-pass cascade extraction, write-time LLM memory-linking, separate entity-store boost and the verify-first content-hash reprocessing trigger. Entirely absent from the Wave-0 030 record. All candidates PENDING."
+description: "Implement the 06 external-memory-systems cheap ranking + extraction bundle for Spec-Kit Memory MCP: query-length BM25 sigmoid calibration, entity cardinality penalty, spaCy lemmatization, declarative regex entity config, multi-pass cascade extraction, write-time LLM memory-linking, separate entity-store boost and the verify-first content-hash reprocessing trigger. Entirely absent from the Wave-0 030 record. Candidates 4 and 2 shipped (commit 0cf96409d8), candidate 8 resolved NO-TRANSFER, candidates 1, 3, 5, 6, 7 PENDING on their gates."
 trigger_phrases:
   - "mem0 ranking tweaks 028"
   - "bm25 sigmoid calibration memory"
@@ -71,7 +71,7 @@ The bundle has two characters:
 Plus one **verify-first** candidate (content-hash reprocessing trigger) that may collapse to NO-TRANSFER once checked against the existing reindex path.
 
 ### Purpose
-Document, scope and sequence the bundle as a single Memory-subsystem implementation phase: pull each candidate's confirmed seam, evidence class, leverage/effort and roadmap caveats from the research, mark per-candidate STATUS (all PENDING, none has a 030 commit) and gate each behind its true precondition (gate-zero reindex for recall measurement, shared entity-vector-index infra for the entity-store boost, verify-first for content-hash reprocessing).
+Document, scope and sequence the bundle as a single Memory-subsystem implementation phase: pull each candidate's confirmed seam, evidence class, leverage/effort and roadmap caveats from the research, gate each behind its true precondition (gate-zero reindex for recall measurement, shared entity-vector-index infra for the entity-store boost, verify-first for content-hash reprocessing). At time of writing candidates 4 and 2 have shipped (commit `0cf96409d8`), candidate 8 resolved NO-TRANSFER, and candidates 1, 3, 5, 6 and 7 remain PENDING on their gates — see the METADATA status detail and the candidate table below for current per-candidate STATUS.
 
 ### Critical context (from the 028 roadmap MEMORY-SYSTEMS addendum + synthesis, authoritative)
 - **No candidate has a measured before/after benefit number**, every leverage/effort tag is structural inference, never a benchmarked delta. Ship for correctness/reversibility, not a promised delta.

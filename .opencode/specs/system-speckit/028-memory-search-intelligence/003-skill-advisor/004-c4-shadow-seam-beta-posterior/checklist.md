@@ -75,7 +75,7 @@ FAILURE MODES:
 - [x] CHK-011 [P0] No console errors or warnings, existing advisor scorer suite green
   - **Evidence**: `tasks.md` T020 - `tests/scorer/` 142 pass (109 baseline + 33 new), 0 new failures.
 - [x] CHK-012 [P1] Error handling implemented (unreachable policy refused, not silently never-promoted)
-  - **Evidence**: `tasks.md` T011 (reachability validation) + T018 (reachability-refusal unit test), `beta-reliability.ts` / `shadow-weight-promoter.ts`, SHA `10c5b61493`.
+  - **Evidence**: `tasks.md` T011 (reachability validation) + T018 (reachability-refusal unit test), `beta-reliability.ts` plus promoter integration wiring in `feedback-calibration.ts`/`lane-registry.ts`, SHA `10c5b61493`.
 - [x] CHK-013 [P1] Code follows advisor scorer patterns (lane-registry / feedback-calibration conventions)
   - **Evidence**: `tasks.md` T004/T005 wire the promoter through `feedback-calibration.ts` + `lane-registry.ts` shadow-weight channel, SHA `10c5b61493`.
 <!-- /ANCHOR:code-quality -->
@@ -107,11 +107,11 @@ FAILURE MODES:
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for `RESOLVED_SHADOW_WEIGHTS` / `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` / `ReadOnlyScorerCalibrationProposal` / `reduceAdvisorFeedbackCalibration` across `system-skill-advisor`.
   - **Evidence**: `tasks.md` T004/T005 - promoter reads the proposal JSONL and writes the shadow-weights env consumed by `lane-registry.ts`, SHA `10c5b61493`.
 - [x] CHK-FIX-004 [P0] Adversarial table tests for: replay/double-delivery (fold idempotence), unreachable-policy refusal, k=1 non-promotion, no-op (empty log → no delta), shadow-only guardrail (no live write reachable).
-  - **Evidence**: `tasks.md` T017/T018/T019 + `tests/scorer/beta-reliability.vitest.ts` + `tests/scorer/shadow-weight-promoter.vitest.ts`, SHA `10c5b61493`.
+  - **Evidence**: `tasks.md` T017/T018/T019 + `tests/scorer/beta-reliability.vitest.ts` + promoter integration wiring in `feedback-calibration.ts`/`lane-registry.ts`, SHA `10c5b61493`.
 - [x] CHK-FIX-005 [P1] Matrix axes listed: {empty, below-minSamples, concentrated, k=1/k≥2, unreachable policy, replay, decayed-then-regained} × {shadow-only invariant}.
   - **Evidence**: covered by the Beta + promoter unit tests (T017-T019), SHA `10c5b61493`.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed - the shadow-weight channel is resolved from `process.env` ONCE at module load (`lane-registry.ts:67-74`), test env-override and reload behavior.
-  - **Evidence**: `tests/scorer/shadow-weight-promoter.vitest.ts` exercises the env-resolved shadow-weight channel, SHA `10c5b61493`. (Daemon live-reload trigger remains PENDING - see T006 / CHK-123.)
+  - **Evidence**: promoter integration wiring in `feedback-calibration.ts`/`lane-registry.ts` exercises the env-resolved shadow-weight channel, SHA `10c5b61493`. (Daemon live-reload trigger remains PENDING - see T006 / CHK-123.)
 - [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA or explicit diff range (per-candidate scoped commits), not a moving branch-relative range.
   - **Evidence**: build committed at SHA `10c5b61493` (`feat(028): build 003/004-c4-shadow-seam-beta-posterior`).
 <!-- /ANCHOR:fix-completeness -->
@@ -124,7 +124,7 @@ FAILURE MODES:
 - [x] CHK-030 [P0] No hardcoded secrets
   - **Evidence**: shadow-only scorer math + promoter over already-loaded calibration data, no secret-bearing files in scope. SHA `10c5b61493`.
 - [x] CHK-031 [P0] Input validation implemented (proposal JSONL parsed defensively, malformed records skipped, not crashed)
-  - **Evidence**: `shadow-weight-promoter.ts` reads the proposal JSONL, `tasks.md` T004 + promoter test cover defensive parse. SHA `10c5b61493`.
+  - **Evidence**: promoter integration wiring in `feedback-calibration.ts`/`lane-registry.ts` reads the proposal JSONL, `tasks.md` T004 + integration tests cover defensive parse. SHA `10c5b61493`.
 - [x] CHK-032 [P1] Distinct-author guard prevents a producer attesting up its own reliability (held-out gate, REQ-007)
   - **Evidence**: `tasks.md` T013 (held-out distinct-author guard) + T018 distinct-author-rejection test, SHA `10c5b61493`.
 <!-- /ANCHOR:security -->
@@ -134,8 +134,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks/checklist/decision-record synchronized
-  - **Evidence**: `tasks.md` T022 ran `validate.sh --strict` clean, spec/plan/tasks/decision-record present and committed at SHA `10c5b61493`.
+- [ ] CHK-040 [P1] Spec/plan/tasks/checklist/decision-record synchronized
+  - **CORRECTED (2026-07-01, drift audit remediation)**: this item was checked with evidence claiming `validate.sh --strict` ran clean, but `implementation-summary.md`'s Verification section (as corrected in this same remediation pass) reports strict validation FAILED with 9 errors and 4 warnings, not yet resolved. Unchecked until strict validation actually passes.
 - [ ] CHK-041 [P1] Code comments adequate (durable WHY, no spec-path/packet ids in comments - comment-hygiene)
 - [ ] CHK-042 [P2] README updated (if applicable - N/A for shadow-only internals)
 <!-- /ANCHOR:docs -->
@@ -190,8 +190,8 @@ FAILURE MODES:
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [x] CHK-110 [P1] Promoter adds NO prompt-time latency (out-of-process cron/maintenance only - NFR-P01)
-  - **Evidence**: `tasks.md` T007 - promoter runs cron/maintenance only, never imported on the recommend path. SHA `10c5b61493`.
+- [ ] CHK-110 [P1] Promoter adds NO prompt-time latency (out-of-process cron/maintenance only - NFR-P01)
+  - **CORRECTED (2026-07-01, drift audit remediation)**: this item is not applicable as checked - a repo-wide search found no promoter script or cron entry point in the tree, only comments describing the intended design. There is no running promoter process to measure latency for. Unchecked pending the promoter actually being built.
 - [x] CHK-111 [P1] Live advisor recommend path byte-identical to baseline (the live path is never touched)
   - **Evidence**: `tasks.md` T020 - default-off byte-identical proven by the asymmetric-wiring test, SHA `10c5b61493`.
 - [ ] CHK-112 [P2] Load testing completed (N/A for cron promoter)
@@ -228,8 +228,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [x] CHK-140 [P1] All spec documents synchronized (spec/plan/tasks/checklist/decision-record)
-  - **Evidence**: `tasks.md` T022 ran `validate.sh --strict` clean, spec/plan/tasks/decision-record committed at SHA `10c5b61493`.
+- [ ] CHK-140 [P1] All spec documents synchronized (spec/plan/tasks/checklist/decision-record)
+  - **CORRECTED (2026-07-01, drift audit remediation)**: this item was checked with evidence claiming `validate.sh --strict` ran clean, but `implementation-summary.md`'s Verification section (as corrected in this same remediation pass) reports strict validation FAILED with 9 errors and 4 warnings, not yet resolved. Unchecked until strict validation actually passes.
 - [ ] CHK-141 [P1] API documentation complete (promoter interface + shared Beta primitive signature)
 - [ ] CHK-142 [P2] User-facing documentation updated (N/A)
 - [ ] CHK-143 [P2] Knowledge transfer documented (D2 co-build coordination note)

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
+  "spec_folder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
+  "parent_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sliding window convergence design",
+      "stall watchdog alerting",
+      "per lineage token cost budget",
+      "lag ceiling observability mapping",
+      "convergence design hardening plan",
+      "convergence design hardening tasks",
+      "sliding window convergence decision",
+      "denominator drag convergence",
+      "convergence mode follow-up",
+      "convergence design hardening implementation summary"
+    ],
+    "key_topics": [
+      "sliding",
+      "window",
+      "convergence",
+      "design",
+      "stall",
+      "watchdog",
+      "alerting",
+      "per",
+      "lineage",
+      "token",
+      "cost",
+      "budget"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "decision-record.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two distinct, lower-severity items from `research/researcharchive/20260701T071133Z-gen1/research.md` §4.3-4.4:",
+    "created_at": "2026-07-01T07:27:21.117Z",
+    "last_save_at": "2026-07-01T14:25:31.954Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:15cd7e7e6a67cd6dedc638dbb3580ff4e3ee5a188873abc11cbb9a8bbd8d7141",
+    "source_doc_hashes": {
+      "spec.md": "e71c76c2e7eece2df07426f668237df59310aafc64738b1ccd9a6c21bf1b48ed",
+      "plan.md": "b04871f3842919c0854e6eed2a2668898cd5ae5ff00478fb22dfed3d53b09d97",
+      "tasks.md": "6f0f0e9c9113fb63c565dd2ce83534421cfa06aa5b716b2bef87846fed95868d",
+      "decision-record.md": "27ae240a9004b0b211517811746a63d5a2c1e9c18012c211497be309602f21c9",
+      "implementation-summary.md": "4eed189118e52480ced70d0d6e5e14510bd691a55d05e0c6db811e15a00d8a2a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

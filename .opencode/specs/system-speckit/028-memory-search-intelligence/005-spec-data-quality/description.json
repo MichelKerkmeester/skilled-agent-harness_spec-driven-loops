@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "description": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence",
   "keywords": [
     "spec-kit",
@@ -19,11 +19,11 @@
     "instruction",
     "adherence"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.678Z",
+  "lastUpdated": "2026-07-01T10:41:59.129Z",
   "specId": "005",
   "folderSlug": "spec-data-quality",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,

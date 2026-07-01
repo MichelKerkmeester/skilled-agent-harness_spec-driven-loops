@@ -13,6 +13,7 @@ const {
   mergeReviewRegistries,
   buildAttributionMd,
   reconstructReviewRegistryFromState,
+  normalizeRegistrySchema,
 } = require('../../scripts/fanout-merge.cjs') as {
   mergeResearchRegistries: (
     lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
@@ -27,6 +28,10 @@ const {
     stateRecords: Array<Record<string, unknown>>,
     label: string,
   ) => { openFindings: unknown[]; resolvedFindings: unknown[]; findingsBySeverity: Record<string, number>; _reconstructed: true } | null;
+  normalizeRegistrySchema: (
+    registry: Record<string, unknown> | null,
+    opts: { canonicalKey: string; aliases: Record<string, string>; lineage: string },
+  ) => { registry: Record<string, unknown> | null; warnings: Array<Record<string, unknown>> };
 };
 
 const tempDirs: string[] = [];
@@ -336,6 +341,113 @@ describe('mergeResearchRegistries', () => {
     expect(result.resolvedQuestions as unknown[]).toHaveLength(0);
     expect((result.metrics as { resolvedQuestions: number }).resolvedQuestions).toBe(0);
   });
+
+  it('includes findings from a lineage using "findings" instead of "keyFindings" (schema tolerance)', () => {
+    const data = [
+      {
+        label: 'gpt',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Canonical finding' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 1, convergenceScore: 0.8, openQuestions: 0, resolvedQuestions: 0, keyFindings: 1, coverageBySources: {} },
+        },
+      },
+      {
+        label: 'glm',
+        registry: {
+          findings: [{ id: 'F2', title: 'Non-canonical finding' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 1, convergenceScore: 0.7, openQuestions: 0, resolvedQuestions: 0, keyFindings: 1, coverageBySources: {} },
+        },
+      },
+    ];
+
+    const result = mergeResearchRegistries(data);
+    const findings = result.keyFindings as Array<{ id: string }>;
+
+    // Both findings must be present — the bug is that F2 is silently dropped
+    expect(findings).toHaveLength(2);
+    expect(findings.map((f) => f.id).sort()).toEqual(['F1', 'F2']);
+    expect((result.metrics as { keyFindings: number }).keyFindings).toBe(2);
+  });
+
+  it('sum(per-lineage finding counts) == merged finding count (sum-invariant regression)', () => {
+    const data = [
+      {
+        label: 'gpt',
+        registry: {
+          keyFindings: [
+            { id: 'F1', title: 'Finding one' },
+            { id: 'F2', title: 'Finding two' },
+            { id: 'F3', title: 'Finding three' },
+          ],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'glm',
+        registry: {
+          findings: [
+            { id: 'F4', title: 'Finding four' },
+            { id: 'F5', title: 'Finding five' },
+          ],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'kimi',
+        registry: {
+          keyFindings: [
+            { id: 'F6', title: 'Finding six' },
+          ],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ];
+
+    const result = mergeResearchRegistries(data);
+    const mergedFindings = result.keyFindings as Array<{ id: string }>;
+
+    // Sum of per-lineage finding counts (3 + 2 + 1 = 6) must equal merged count
+    // No dedup should occur since all ids are unique
+    expect(mergedFindings).toHaveLength(6);
+    expect((result.metrics as { keyFindings: number }).keyFindings).toBe(6);
+  });
+
+  it('emits schema_mismatch warning when a lineage uses "findings" alias', () => {
+    const data = [
+      {
+        label: 'gpt',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Canonical' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'glm',
+        registry: {
+          findings: [{ id: 'F2', title: 'Non-canonical' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ];
+
+    const result = mergeResearchRegistries(data);
+    const warnings = result.schema_mismatch as Array<{ type: string; lineage: string; coercedCount: number }>;
+
+    expect(warnings).toBeDefined();
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0].type).toBe('schema_mismatch');
+    expect(warnings[0].lineage).toBe('glm');
+    expect(warnings[0].coercedCount).toBe(1);
+  });
 });
 
 // ─── Review merge unit tests (strongest-restriction) ──────────────────────
@@ -585,6 +697,30 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(resolved).toHaveLength(1);
     expect(resolved[0]._lineages).toEqual(['a', 'b']);
     expect(result.resolvedFindingsCount).toBe(1);
+  });
+
+  it('includes openFindings from a review lineage using "findings" instead of "openFindings" (schema tolerance)', () => {
+    const data = [
+      {
+        label: 'gpt',
+        registry: {
+          openFindings: [{ findingId: 'F1', severity: 'P0', status: 'active', title: 'Critical' }],
+        },
+      },
+      {
+        label: 'glm',
+        registry: {
+          findings: [{ findingId: 'F2', severity: 'P1', status: 'active', title: 'Non-canonical' }],
+        },
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    const findings = result.openFindings as Array<{ findingId: string }>;
+
+    expect(findings).toHaveLength(2);
+    expect(findings.map((f) => f.findingId).sort()).toEqual(['F1', 'F2']);
+    expect(result.mergedVerdict).toBe('FAIL');
   });
 });
 

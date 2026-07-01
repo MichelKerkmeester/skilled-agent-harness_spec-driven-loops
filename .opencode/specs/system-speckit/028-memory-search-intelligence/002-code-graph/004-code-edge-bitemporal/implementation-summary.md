@@ -4,7 +4,7 @@ description: "DONE for the Code Graph schema foundation: SCHEMA_VERSION 6->7 add
 trigger_phrases:
   - "code edge bitemporal implementation summary"
   - "q1-c1 cluster deferred"
-  - "code graph schema migration not shipped"
+  - "code edge bitemporal schema foundation shipped"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -30,7 +30,7 @@ _memory:
     open_questions:
       - "Is there any consumer for as-of/time-travel code-graph reads?"
     answered_questions:
-      - "Whole cluster is DEFER-speculative, ships nothing in this phase (030 §3/§14)"
+      - "Schema foundation shipped (columns, migration helpers, default-off gate); wider consumer cluster remains DEFER-speculative"
       - "standalone CG-edge-bitemporal-lifecycle is REFUTED (002 iter-013)"
 ---
 # Implementation Summary
@@ -66,7 +66,7 @@ The additive schema migration is complete: `valid_at` / `invalid_at` are present
 
 ### Q1-C1-views (PENDING, gated)
 
-The live current-view chokepoint: `CREATE VIEW code_nodes_live`/`code_edges_live` `WHERE invalid_at IS NULL`, with every default read routed through it and the as-of/audit reader deliberately bypassing. This is the de-risk prerequisite, it defines "current" exactly once and localizes the migration so Q1-C1 does not leak the `invalid_at IS NULL` filter across the whole read surface. It MUST co-ship atomically with Q1-C1 in one SCHEMA_VERSION 5->6 transaction (the aionforge reference, 002 iter-018).
+The live current-view chokepoint: `CREATE VIEW code_nodes_live`/`code_edges_live` `WHERE invalid_at IS NULL`, with every default read routed through it and the as-of/audit reader deliberately bypassing. This is the de-risk prerequisite, it defines "current" exactly once and localizes the migration so Q1-C1 does not leak the `invalid_at IS NULL` filter across the whole read surface. It MUST co-ship atomically with Q1-C1 in one SCHEMA_VERSION transaction (the aionforge reference, 002 iter-018).
 
 ### CG-edge-bitemporal-lifecycle (PENDING, gated, standalone REFUTED)
 

@@ -192,15 +192,15 @@
     ],
     "causal_summary": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded for integrity and redundancy, the loop lock has no heartbeat during long dispatch, and there is no crash-resume for killed wait-boundary processes; (2) convergence quality — the convergence signal has no improvement-effect delta, no observation-threshold guard, and no time-decay on stale evidence; (3) observability — log transcript navigation requires full-file scanning and there is no byte-offset indexing; (4) robustness — the fallback router re",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-06-30T14:53:29.728Z",
+    "last_save_at": "2026-07-01T11:50:21.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1ea9dab4d91f0ac6ebac5836b4732aae67d9e2ba072ceee0a15bbd7680a2b987",
+    "source_fingerprint": "sha256:6b23bdf8421c5fec64ace19a51c26b1033b866f36b068ccc73dc8e59ec584adb",
     "source_doc_hashes": {
-      "spec.md": "ec9a193056f3d9f4452d8723535672de8a44cd5d64fd2e3305601ae440095960"
+      "spec.md": "9efa9f9f2a789a4d070f8f6b50e2ad86c75c4ff2eae2e4e66bdcf318292dfecf"
     },
     "last_active_child_id": null,
     "last_active_at": null

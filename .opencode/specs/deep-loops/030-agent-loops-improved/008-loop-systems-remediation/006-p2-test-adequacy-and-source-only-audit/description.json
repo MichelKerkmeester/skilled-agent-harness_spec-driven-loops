@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
-  "description": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls — l",
+  "description": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls —",
   "keywords": [
     "jsonl",
     "append",
@@ -21,7 +21,7 @@
     "spawnsync",
     "calls"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.513Z",
+  "lastUpdated": "2026-07-01T12:31:47.106Z",
   "specId": "006",
   "folderSlug": "p2-test-adequacy-and-source-only-audit",
   "parentChain": [

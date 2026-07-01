@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+  "spec_folder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
+  "parent_id": "deep-loops/030-agent-loops-improved",
+  "children_ids": [
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/002-fanout-timeout-override",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/005-packet-identity-cleanup",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+    "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research backlog remediation",
+      "009 remediation",
+      "fanout-merge schema fix",
+      "tier 0 tier 1 tier 2 backlog"
+    ],
+    "key_topics": [
+      "research",
+      "backlog",
+      "remediation",
+      "009",
+      "fanout-merge",
+      "schema",
+      "fix",
+      "tier",
+      "deep-research",
+      "fan-out",
+      "against",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/deep-loops/030-agent-loops-improved/research/research.md",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Backlog Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research fan-out against this packet found: (1) a critical, silent data-loss bug in the fan-out merge tool itself (`fanout-merge.cjs` drops registries whose schema doesn't use the exact `keyFindings` key, with no warning), (2) three more confirmed bugs in the shared deep-loop-runtime fan-out/convergence machinery (convergence-threshold propagation gap, 4-hour lineage timeout with no override, a salvage/duplicate-filename naming defect), and (3) systemic drift across this packet's own documentation between claimed-Complete status and actual evidence (stale Phase Documentation Map rows,",
+    "created_at": "2026-07-01T06:19:05.217Z",
+    "last_save_at": "2026-07-01T14:25:32.255Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:dfd98bd56c2c1a234136b9496a7d2936447cdc65d37ef31ecf77f3fa57b042c7",
+    "source_doc_hashes": {
+      "spec.md": "ce26df054211214cd157ff271b1608afde57cd636dcf4d0255a0f2bcf0a05b37"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

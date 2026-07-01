@@ -123,15 +123,15 @@
     ],
     "causal_summary": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects",
     "created_at": "2026-06-29T05:08:46.224Z",
-    "last_save_at": "2026-06-30T14:53:29.814Z",
+    "last_save_at": "2026-07-01T11:50:22.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:007aef32bb8b69ad234ba00d5e55cb5c1b86c46099c07e963cf1d9cd576a8def",
+    "source_fingerprint": "sha256:f90239765f425bc1a93204eed02a5f9244bb3b404326560246352a0d508ae7dd",
     "source_doc_hashes": {
-      "spec.md": "d1af7564928302d188aeee6f9add971a5896b9f5b6752c19febe175cad80645f"
+      "spec.md": "5a88aa706c82ef00f2f80fb3723252852d8e700c31a33cc421493d0be21bab1b"
     },
     "last_active_child_id": null,
     "last_active_at": null

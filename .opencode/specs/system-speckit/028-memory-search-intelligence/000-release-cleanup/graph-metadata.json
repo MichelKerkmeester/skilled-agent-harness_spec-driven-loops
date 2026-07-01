@@ -16,7 +16,8 @@
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation"
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -46,7 +47,7 @@
       "track"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-code-readmes/spec.md",
@@ -61,7 +62,8 @@
       "010-catalog-playbook-coverage-audit/spec.md",
       "011-daemon-skills-playbook-validation/spec.md",
       "012-playbook-findings-remediation/spec.md",
-      "013-drift-remediation/spec.md"
+      "013-drift-remediation/spec.md",
+      "014-spec-regrouping-renumber-reindex/spec.md"
     ],
     "entities": [
       {

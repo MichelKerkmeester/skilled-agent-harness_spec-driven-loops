@@ -1,4 +1,5 @@
 DEEP-RESEARCH
+Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true
 
 # Deep-Research Iteration Prompt Pack
 
@@ -45,7 +46,7 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 2. **Canonical JSONL iteration record** APPENDED to `{state_paths_state_log}`. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
 
 ```json
-{"type":"iteration","iteration":<n>,"newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
+{"type":"iteration","iteration":<n>,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
 ```
 
 Append via single-line JSON with newline terminator — for example: `echo '<single-line-json>' >> {state_paths_state_log}`. Do NOT pretty-print. Do NOT print the JSON to stdout only; it MUST land in the state log file.
@@ -56,7 +57,7 @@ For non-native CLI executors, the workflow owns executor provenance. It writes a
 
 Example delta file contents (one iteration):
 ```json
-{"type":"iteration","iteration":3,"newInfoRatio":0.62,"status":"insight","focus":"..."}
+{"type":"iteration","iteration":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"..."}
 {"type":"finding","id":"f-iter003-001","severity":"P1","label":"...","iteration":3}
 {"type":"invariant","id":"inv-iter003-001","label":"...","iteration":3}
 {"type":"observation","id":"obs-iter003-001","packet":"007","classification":"real","iteration":3}

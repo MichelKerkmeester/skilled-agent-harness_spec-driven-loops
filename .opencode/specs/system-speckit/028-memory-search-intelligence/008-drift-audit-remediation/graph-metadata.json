@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/008-drift-audit-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/008-drift-audit-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 drift audit remediation",
+      "drift audit fix",
+      "028 findings remediation",
+      "packet 028 remediation pass",
+      "028 drift remediation plan",
+      "mimo fix dispatch",
+      "gpt-5.5 verify dispatch",
+      "028 drift remediation tasks",
+      "028 drift remediation checklist",
+      "028 drift remediation summary",
+      "drift audit fixes complete"
+    ],
+    "key_topics": [
+      "028",
+      "drift",
+      "audit",
+      "remediation",
+      "fix",
+      "findings",
+      "packet",
+      "pass",
+      "plan",
+      "mimo",
+      "dispatch",
+      "gpt-5"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      "spec.md",
+      ".opencode/package.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Audit Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pro Hyperspeed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bundle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Investigate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced 75 findings: 24 high/critical drift/bug/inconsistency issues (independently re-verified against real files, 24/24 confirmed) and 51 unverified medium/low findings from the single sweep pass",
+    "created_at": "2026-07-01T07:28:37.642Z",
+    "last_save_at": "2026-07-01T07:30:34.619Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a695b7d3d655d8ec2f81173be7cd098e03850671113189763d54e3db3a2e2c87",
+    "source_doc_hashes": {
+      "spec.md": "57a763f7961199a4f2693fd998abd93b84f3190bf22501a7472ecad31e3c35c2",
+      "plan.md": "f9e7f210bc91786ac7787ffae2417a1627bbeb5f4cc96517925ad8aeef1e5329",
+      "tasks.md": "53c07855ae63251b56684ca30036aed9340b499c02de490890e813719df9f86e",
+      "checklist.md": "767a95efd71de5d7df4aa3a82a468316a2fa929a2ebe4b732bdc1c966d13a48a",
+      "implementation-summary.md": "914dac517f1939e196590b680fbcab6615d45dd582c2ca31940af406f3e22c5d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

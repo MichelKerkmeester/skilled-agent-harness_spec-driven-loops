@@ -1,0 +1,28 @@
+{
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only",
+  "description": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode",
+  "keywords": [
+    "opencode",
+    "agents",
+    "ai-council",
+    "currently",
+    "declares",
+    "mode",
+    "meaning",
+    "dual-reachable",
+    "directly",
+    "selectable",
+    "top-level",
+    "agent"
+  ],
+  "lastUpdated": "2026-07-01T10:56:21.235Z",
+  "specId": "010",
+  "folderSlug": "ai-council-subagent-only",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

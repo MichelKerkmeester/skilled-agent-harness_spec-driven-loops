@@ -1,0 +1,30 @@
+{
+  "type": "config",
+  "mode": "research",
+  "loopType": "research",
+  "sessionId": "fanout-gpt-1782884040803-9tnd8n",
+  "parentSessionId": "fanout-gpt-1782884040803-9tnd8n",
+  "lineageMode": "new",
+  "generation": 1,
+  "executor": "cli-opencode model=openai/gpt-5.5-fast",
+  "specFolder": ".opencode/specs/deep-loops/030-agent-loops-improved",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-agent-loops-improved/research/lineages/gpt",
+  "topic": "Find upgrade, fix, and expansion recommendations to perfect the deep-loops/030-agent-loops-improved packet across all 8 phases and its review tooling.",
+  "maxIterations": 35,
+  "convergenceThreshold": 0.01,
+  "stuckThreshold": 3,
+  "stopPolicy": "convergence",
+  "resource_map_present": false,
+  "createdAt": "2026-07-01T05:35:50Z",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/*.md": "write-once",
+    "deltas/*.jsonl": "write-once",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "deep-research-findings-registry.json": "auto-generated",
+    "research.md": "workflow-owned",
+    "resource-map.md": "workflow-owned"
+  }
+}

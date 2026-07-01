@@ -1,0 +1,15 @@
+{
+  "sessionId": "fanout-glm-1782884040803-9tnd8n",
+  "specFolder": "deep-loops/030-agent-loops-improved",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-agent-loops-improved/research/lineages/glm",
+  "lineage": "glm",
+  "executor": "cli-opencode model=zai-coding-plan/glm-5.2",
+  "loopType": "research",
+  "stopPolicy": "convergence",
+  "maxIterations": 35,
+  "convergenceThreshold": 0.01,
+  "lifecycle": "new",
+  "generation": 1,
+  "resource_map_present": false,
+  "createdAt": "2026-07-01T05:40:00.000Z"
+}

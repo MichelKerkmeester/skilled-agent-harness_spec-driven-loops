@@ -1,0 +1,31 @@
+{
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint",
+  "description": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
+  "keywords": [
+    "phase",
+    "006",
+    "parked",
+    "fix-5",
+    "host",
+    "hard",
+    "identity",
+    "process-isolation",
+    "behind",
+    "trigger",
+    "defined",
+    "packet",
+    "follow-up",
+    "research",
+    "existed"
+  ],
+  "lastUpdated": "2026-07-01T10:56:21.658Z",
+  "specId": "013",
+  "folderSlug": "fix5-checkpoint",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix",
+  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix",
+  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode d gate fix",
+      "ai-council route identity fix",
+      "phase 0 self check",
+      "deterministic dispatch context check",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "mode",
+      "gate",
+      "fix",
+      "ai-council",
+      "route",
+      "identity",
+      "phase",
+      "self",
+      "check",
+      "deterministic",
+      "dispatch",
+      "context"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/ai-system-improvement.md",
+      ".opencode/commands/deep/skill-benchmark.md",
+      ".opencode/commands/deep/context.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/commands/deep/ai-council.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/commands/deep/agent-improvement.md",
+      ".opencode/commands/deep/model-benchmark.md",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+      ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+      ".opencode/commands/prompt.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "ai-system-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ai-system-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/skill-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/agent-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Identity Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
+    "created_at": "2026-07-01T10:50:58.996Z",
+    "last_save_at": "2026-07-01T11:33:53.680Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b92b5a7f3718a98fb905a7f82b5848692d32de5a64f25ebe8dad79860c1015a0",
+    "source_doc_hashes": {
+      "spec.md": "76dd1bf7811a899593d08329e09d42961ce1f5456c23263233b7701c2069214a",
+      "plan.md": "e7e1f70aa39bb8838f7c797028b5fdcea6c852ea935bb44e98b28452820d8b7b",
+      "tasks.md": "2d4b82d431552e4dc9cf0ae50b3f80d0221579de631d448787b0a285db4f734a",
+      "checklist.md": "aa0d8a9d4ad777c75cedc38f5610f86934e7dc03a8a53dccf0207f5e48941137",
+      "implementation-summary.md": "c297c9cf5edbd8a9c2d32024be7cd2eef044332f36899cb3bdb08887a7ec8d97"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df8d85e983a13512675ec970b30439fda29a8eb70a802400eab7529a50823c2b",
+    "source_fingerprint": "sha256:472c08154c15f113ea7b8cf30c8d084e125863ef35dcd9ec10ce1e967f58898a",
     "source_doc_hashes": {
-      "spec.md": "c420137d9687b0e9e88d6497173ee3b49904df1f6982c26c5a4c44089cfa5192",
-      "plan.md": "e4a2e35d74c5a611fbda3f6e690d0e8926785243afec6c10f8e7ef95cb76eae4",
+      "spec.md": "92a685653d95fe0da92187c9ad3de95cdf2789f4356ad1209d8b006522d4d9bf",
+      "plan.md": "fa0707e7a9e1f3c06cfa756b83033099256bce8a6747268d4030d2e48355f2b6",
       "tasks.md": "84b357155f6d59b1ad6cbb9c3d68a350e1ee507642efa9d4fddfbe5d5b6a4008",
       "checklist.md": "fcd3bb44b7817999cdf044a9f7bde00b811e6643b9e44bbac68b6d975c70874e",
-      "decision-record.md": "0ae30996d35c2b4ce4940df4a43ddb8da14c63d9407be284d46fda389170d556",
-      "implementation-summary.md": "6f7b0c01f72a7f8584cee30c7c7e3f0e969bbe026795adbf3c68d5499b64feb6"
+      "decision-record.md": "572c06801defcd7770a608ff3b8640d40a0177248517c4c3a6d4e2f681435dfb",
+      "implementation-summary.md": "0c3294d2bd2e9a9e5b5a871f5ff60ebfe3b4f7aea10b6939fa3c60ece374e730"
     },
     "last_active_child_id": null,
     "last_active_at": null

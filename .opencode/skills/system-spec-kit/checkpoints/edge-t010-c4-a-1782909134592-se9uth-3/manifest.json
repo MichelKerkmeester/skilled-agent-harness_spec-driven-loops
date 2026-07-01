@@ -1,0 +1,35 @@
+{
+  "formatVersion": 2,
+  "createdAt": "2026-07-01T12:32:14.685Z",
+  "specFolder": null,
+  "gitBranch": null,
+  "embedderSlug": "hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8",
+  "includeEmbeddings": true,
+  "mainTables": [
+    "memory_index",
+    "working_memory",
+    "causal_edges",
+    "weight_history",
+    "memory_history",
+    "mutation_ledger",
+    "memory_conflicts",
+    "memory_corrections",
+    "adaptive_signal_events",
+    "negative_feedback_events",
+    "learned_feedback_audit",
+    "session_learning",
+    "governance_audit",
+    "session_state",
+    "session_sent_memories",
+    "memory_summaries"
+  ],
+  "vecTables": [
+    "vec_memories",
+    "vec_metadata"
+  ],
+  "schemaVersion": 41,
+  "memoryCount": 0,
+  "vectorCount": 0,
+  "mainBytes": 577536,
+  "vecBytes": 53248
+}

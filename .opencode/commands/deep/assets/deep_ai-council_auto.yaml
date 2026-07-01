@@ -113,7 +113,9 @@ workflow:
         action: "Map deliberation_topic into session -> topic -> round state"
         outputs:
           - session_state: "Council session state object consumed by orchestrate-session.cjs"
-          - executor_config: "Executor config with seats, cost guards, and dispatch/adjudication functions"
+          - executor_config: "Executor config with seats, cost guards, dispatch/adjudication functions, resolved_route_header, and route_fields"
+          - resolved_route_header: "Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true"
+          - route_fields: { mode: ai-council, target_agent: "@ai-council", execution: multi_topic_session_round, state_source: "ai-council/session-state.jsonl", depth_aware: true, do_not_switch_mode: true }
       step_orchestrate_session:
         action: "Run bounded multi-topic council session"
         command: "node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs --session-state {session_state_json} --executor-config {executor_config_json}"
@@ -123,6 +125,18 @@ workflow:
           - "{state_paths.topics_dir}/**"
         outputs:
           - session_result: "topics_completed, topic_results, skipped_topic_ids, stop_reason"
+        post_dispatch_validate:
+          validator: ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs#validateSessionStateHierarchy"
+          assert_jsonl_record_type: round_completed
+          assert_jsonl_fields: [type, topic_id, round_id, round_number, mode, target_agent, agent_definition_loaded, resolved_route]
+          route_proof:
+            mode: ai-council
+            target_agent: ai-council
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=ai-council target_agent=ai-council"
+          failure_reasons:
+            - route_proof_missing
+            - route_proof_mismatch
 
   phase_synthesis:
     purpose: "Compile per-topic and session-wide council reports"

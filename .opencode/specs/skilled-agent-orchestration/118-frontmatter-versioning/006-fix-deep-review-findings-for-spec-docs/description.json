@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
-  "description": "A two-model deep review (MiMo v2.5 Pro + DeepSeek v4 Pro, 10 iterations) returned CONDITIONAL with zero P0 and zero correctness or security defects, b",
+  "description": "A two-model deep review (MiMo v2.5 Pro + DeepSeek v4 Pro, 10 iterations) returned CONDITIONAL with zero P0 and zero correctness or security defects,",
   "keywords": [
     "two-model",
     "deep",
@@ -17,7 +17,7 @@
     "security",
     "defects"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.366Z",
+  "lastUpdated": "2026-07-01T12:31:47.326Z",
   "specId": "006",
   "folderSlug": "fix-deep-review-findings-for-spec-docs",
   "parentChain": [

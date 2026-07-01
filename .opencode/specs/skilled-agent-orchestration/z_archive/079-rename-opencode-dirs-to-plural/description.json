@@ -26,7 +26,7 @@
   "created_at": "2026-05-07T13:00:00Z",
   "last_updated_at": "2026-05-08T01:30:00Z",
   "specFolder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural",
-  "description": "Phase parent umbrella for the entire opencode rename + 3 deep-review iterations + 3 remediation packets + 1 cli-opencode executor add. 8 phases tracki",
+  "description": "Phase parent umbrella for the entire opencode rename + 3 deep-review iterations + 3 remediation packets + 1 cli-opencode executor add. 8 phases",
   "keywords": [
     "phase",
     "parent",
@@ -41,10 +41,9 @@
     "cli-opencode",
     "executor",
     "add",
-    "phases",
-    "tracki"
+    "phases"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.028Z",
+  "lastUpdated": "2026-07-01T12:31:47.602Z",
   "specId": "079",
   "folderSlug": "rename-opencode-dirs-to-plural",
   "parentChain": [

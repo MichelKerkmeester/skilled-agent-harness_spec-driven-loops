@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/002-fanout-timeout-override",
+  "description": "`fanout-run.cjs:884-888` `computeLineageTimeoutMs(lineage)` computes `Math.min(iters  timeoutSeconds  2  1000, 4  60  60  1000)` — the `Math.min`",
+  "keywords": [
+    "fanout-run",
+    "cjs",
+    "884-888",
+    "computelineagetimeoutms",
+    "lineage",
+    "computes",
+    "math",
+    "min",
+    "iters",
+    "timeoutseconds",
+    "1000"
+  ],
+  "lastUpdated": "2026-07-01T12:31:47.124Z",
+  "specId": "002",
+  "folderSlug": "fanout-timeout-override",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

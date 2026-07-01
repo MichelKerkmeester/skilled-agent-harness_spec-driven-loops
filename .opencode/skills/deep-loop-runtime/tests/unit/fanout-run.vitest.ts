@@ -15,6 +15,7 @@ import {
 import { tmpdir } from 'node:os';
 import { isAbsolute, join, relative, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -32,6 +33,7 @@ import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
 
 const tempDirs: string[] = [];
 const hermeticEnvs: HermeticEnv[] = [];
+const requireCjs = createRequire(import.meta.url);
 
 type WaitCheckpointFixture = {
   status?: string;
@@ -352,6 +354,114 @@ afterEach(() => {
 });
 
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
+
+describe('fanout-run.cjs — computeLineageTimeoutMs lineage timeout override', () => {
+  const { computeLineageTimeoutMs } = requireCjs(fanoutRunScript) as {
+    computeLineageTimeoutMs: (lineage: { iterations?: number; timeoutSeconds?: number }, ceilingHoursOverride?: number) => number;
+  };
+
+  it('keeps the default 4-hour cap when no override is provided (REQ-001)', () => {
+    expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 })).toBe(14_400_000);
+  });
+
+  it('uses the lineage timeout hours override as the ceiling when provided (REQ-002)', () => {
+    expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 }, 8)).toBe(28_800_000);
+  });
+
+  it('does not lengthen timeouts whose computed value is below the override ceiling', () => {
+    expect(computeLineageTimeoutMs({ iterations: 2, timeoutSeconds: 60 }, 1)).toBe(240_000);
+  });
+});
+
+describe('fanout-run.cjs — observability status mapping', () => {
+  const { statusForLedgerEvent } = requireCjs(fanoutRunScript) as {
+    statusForLedgerEvent: (entry: Record<string, unknown>) => string;
+  };
+
+  it('maps lag-ceiling and hardening events to typed statuses', () => {
+    expect(statusForLedgerEvent({ event: 'lag_ceiling_exceeded' })).toBe('warning');
+    expect(statusForLedgerEvent({ event: 'lag_ceiling_exceeded', action: 'abort' })).toBe('failed');
+    expect(statusForLedgerEvent({ event: 'lag_ceiling_exceeded', action: 'abort-requeue' })).toBe('warning');
+    expect(statusForLedgerEvent({ event: 'lag_ceiling_abort' })).toBe('failed');
+    expect(statusForLedgerEvent({ event: 'stall_detected' })).toBe('warning');
+    expect(statusForLedgerEvent({ event: 'budget_cap_exceeded' })).toBe('failed');
+  });
+});
+
+describe('fanout-run.cjs — per-lineage budget guard helpers', () => {
+  const { evaluateLineageBudgetCap } = requireCjs(fanoutRunScript) as {
+    evaluateLineageBudgetCap: (input: {
+      lineage?: { iterations?: number | null };
+      guards?: Record<string, unknown>;
+    }) => { continue_allowed: boolean; stop_reasons: string[]; upper_bound: Record<string, number> };
+  };
+
+  it('returns the council-style continue decision and upper bound', () => {
+    expect(evaluateLineageBudgetCap({
+      lineage: { iterations: 5 },
+      guards: { maxCostUnitsPerLineage: 5 },
+    })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: { iterations: 5, estimated_cost_units: 5, max_cost_units_per_lineage: 5 },
+    });
+
+    expect(evaluateLineageBudgetCap({
+      lineage: { iterations: 6 },
+      guards: { maxCostUnitsPerLineage: 5 },
+    })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_cost_units_per_lineage'],
+      upper_bound: { iterations: 6, estimated_cost_units: 6, max_cost_units_per_lineage: 5 },
+    });
+
+    expect(evaluateLineageBudgetCap({
+      lineage: { iterations: 2 },
+      guards: { maxTokensPerLineage: 3, estimatedTokensPerIteration: 2 },
+    })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_cost_units_per_lineage'],
+      upper_bound: { iterations: 2, estimated_cost_units: 4, max_cost_units_per_lineage: 3 },
+    });
+  });
+});
+
+describe('fanout-run.cjs — native convergence threshold defaults', () => {
+  const { buildLineageCommand } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: { kind: 'native'; iterations?: number },
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options: { loopType: 'research' | 'review' | 'context'; specFolder: string; lineageDir: string; convergenceThreshold?: number },
+    ) => { command: string; args: string[]; input: string };
+  };
+
+  function nativeCommandInput(loopType: 'research' | 'review' | 'context'): string {
+    const command = buildLineageCommand(
+      { kind: 'native' },
+      '',
+      'workspace-write',
+      'default',
+      { loopType, specFolder: 'specs/test-native-defaults', lineageDir: '/tmp/native-defaults' },
+    );
+    return command.args.at(-1) ?? '';
+  }
+
+  it('uses the research-specific 0.05 default for native dispatch when no threshold is explicit', () => {
+    const input = nativeCommandInput('research');
+    expect(input).toContain('--convergence=0.05');
+    expect(input).toContain('convergenceThreshold: 0.05');
+  });
+
+  it('keeps the 0.1 default for review and context native dispatch when no threshold is explicit', () => {
+    for (const loopType of ['review', 'context'] as const) {
+      const input = nativeCommandInput(loopType);
+      expect(input).toContain('--convergence=0.1');
+      expect(input).toContain('convergenceThreshold: 0.1');
+    }
+  });
+});
 
 describe('fanout-run.cjs — module basics', () => {
   it('exits 0 and emits ok JSON for native fanout through opencode command dispatch', async () => {
@@ -1188,6 +1298,62 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
 });
 
 describe('fanout-run.cjs — progress heartbeat', () => {
+  it('emits a stall_detected alert when a lineage event stream goes quiet', async () => {
+    const binDir = makeTempDir('fanout-run-stall-watchdog-bin-');
+    writeDelayedNodeStubBinary(binDir, 'opencode', 180);
+    const baseDir = makeTempDir('fanout-run-stall-watchdog-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'quiet', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      stallWatchdogMs: 40,
+    });
+
+    const hermetic = useHermeticEnv('stall-watchdog');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-stall-watchdog',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerEvents.filter((event) => event.event === 'stall_detected')).toEqual([
+      expect.objectContaining({
+        label: 'quiet',
+        severity: 'warning',
+        metric: 'time_since_last_lineage_event',
+        stall_watchdog_ms: 40,
+      }),
+    ]);
+
+    const observabilityEvents = readFileSync(join(baseDir, 'observability-events.jsonl'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(observabilityEvents).toContainEqual(expect.objectContaining({
+      event: 'stall_detected',
+      status: 'warning',
+      subject: expect.objectContaining({ label: 'quiet' }),
+    }));
+  });
+
   it('emits progress events for a long lineage when cadence is configured', async () => {
     const binDir = makeTempDir('fanout-run-progress-bin-');
     writeSleepingStubBinary(binDir, 'opencode', 1);
@@ -1269,6 +1435,70 @@ describe('fanout-run.cjs — progress heartbeat', () => {
       .split('\n')
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     expect(ledgerEvents.some((event) => event.event === 'progress')).toBe(false);
+  });
+});
+
+describe('fanout-run.cjs — per-lineage budget cap', () => {
+  it('halts an over-budget lineage before spawning the executor', async () => {
+    const binDir = makeTempDir('fanout-run-budget-bin-');
+    const baseDir = makeTempDir('fanout-run-budget-base-');
+    const markerPath = join(baseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'expensive', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1, iterations: 5 }],
+      concurrency: 1,
+      maxCostUnitsPerLineage: 3,
+    });
+
+    const hermetic = useHermeticEnv('budget-cap');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-budget-cap',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    expect(existsSync(markerPath)).toBe(false);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerEvents.filter((event) => event.event === 'budget_cap_exceeded')).toEqual([
+      expect.objectContaining({
+        label: 'expensive',
+        severity: 'error',
+        stop_reasons: ['max_cost_units_per_lineage'],
+        upper_bound: expect.objectContaining({
+          iterations: 5,
+          estimated_cost_units: 5,
+          max_cost_units_per_lineage: 3,
+        }),
+      }),
+    ]);
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      summary?: { failed?: number; all_failed?: boolean };
+      results?: Array<{ status?: string; error?: { message?: string; retryable?: boolean } }>;
+    };
+    expect(payload.summary).toMatchObject({ failed: 1, all_failed: true });
+    expect(payload.results?.[0]).toMatchObject({
+      status: 'rejected',
+      error: { retryable: false, message: expect.stringContaining('exceeds configured budget cap') },
+    });
   });
 });
 

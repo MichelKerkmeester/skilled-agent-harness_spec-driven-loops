@@ -4,7 +4,19 @@
   "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
   "parent_id": null,
   "children_ids": [
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration"
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/009-orchestrate-universal-routing",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark",
+    "deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint"
   ],
   "manual": {
     "depends_on": [],
@@ -33,11 +45,27 @@
       "invocation"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "007-gpt-behavioral-hardening-research/research/research.md",
+      "012-gpt-claude-benchmark/benchmark-results.md",
+      "006-host-hard-identity-fix5/decision-record.md",
+      ".opencode/plugins/deep-route-guard.js",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "012-gpt-claude-benchmark/benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-route-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/deep-route-guard.js",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -75,25 +97,31 @@
         "source": "derived"
       },
       {
-        "name": "GPT-backed OpenCode",
-        "kind": "key_phrase",
+        "name": "Final Resolution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening, and the structural deep-agent router.",
     "created_at": "2026-06-30T11:58:13.600Z",
-    "last_save_at": "2026-06-30T16:38:45.215Z",
+    "last_save_at": "2026-07-01T13:14:13.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4abb02c9e6bce64e601c08e7910d861a52fcea8a3b29292aa27d1c84505bf3b9",
+    "source_fingerprint": "sha256:a3403746215b7dd17f1b9585fa472534da9ce375380fe8c838923bd5af805568",
     "source_doc_hashes": {
-      "spec.md": "fdde8f5758634ddf80a1752eb937cbadf712a00f8b1fda34057ff366f0d442a8"
+      "spec.md": "96ce70e70435e049718d8bf4896bb9ccc68523142c48dfce23202caa742b5387"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
+    "last_active_at": "2026-07-01T05:45:00.000Z"
   }
 }

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
-  "description": "`refreshLoopLock` exists in `loop-lock.ts` but no caller invokes it while dispatch is running; a loop that is slow but alive will let its advisory loc",
+  "description": "`refreshLoopLock` exists in `loop-lock.ts` but no caller invokes it while dispatch is running; a loop that is slow but alive will let its advisory",
   "keywords": [
     "refreshlooplock",
     "exists",
@@ -15,10 +15,9 @@
     "slow",
     "alive",
     "let",
-    "advisory",
-    "loc"
+    "advisory"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.299Z",
+  "lastUpdated": "2026-07-01T12:31:46.930Z",
   "specId": "007",
   "folderSlug": "loop-lock-heartbeat-hardening",
   "parentChain": [

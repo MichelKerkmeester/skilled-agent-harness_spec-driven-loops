@@ -128,7 +128,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 293, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 294, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -323,6 +323,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` (committed configs). See `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` for one-shot maintainer override | boolean | Maintainer opt-in for structural code graph scans to include `<active-spec-folder>/**`. Overridden by per-call `includeSpecs` when provided. | `.opencode/skills/system-code-graph/mcp_server/lib/index-scope-policy.ts`, `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` |
 | `SPECKIT_CODE_GRAPH_INDEX_PLUGINS` | `false` (committed configs). See `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` for one-shot maintainer override | boolean | Maintainer opt-in for structural code graph scans to include `.opencode/plugins/**`. Overridden by per-call `includePlugins` when provided. | `.opencode/skills/system-code-graph/mcp_server/lib/index-scope-policy.ts`, `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` |
 | `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` | unset (treated as none) | boolean or csv | Maintainer-mode override set in `.env.local` (gitignored): the `mk-code-index-launcher.cjs` force-indexes selected `.opencode` categories at startup, overriding whatever the runtime's MCP config injected. Accepts `"true"` (all five: skills, agents, commands, specs, plugins) or a comma-separated subset such as `"skills,plugins"` to index only the folders that hold code (markdown docs are never indexed, structured config still is). Keeps maintainer state out of committed configs. Per-call `code_graph_scan` args still override env. | `.opencode/bin/mk-code-index-launcher.cjs` |
+| `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION` | `false` | boolean | Opt-in CALLS edge metadata differentiation. When enabled, same-file call resolution and cross-file import-target resolution write resolution-specific `confidence` and `evidenceClass`; when unset, CALLS metadata remains the legacy constant `0.8` / `INFERRED` / `heuristic`. | `.opencode/skills/system-code-graph/mcp_server/lib/edge-confidence-flags.ts`, `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts`, `.opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts` |
 | `SPECKIT_GRAPH_SIGNALS` | `true` | boolean | Graph momentum scoring and causal depth signals (N2a+N2b). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_GRAPH_WALK_ROLLOUT` | (derived) | string | Graph walk rollout state: `off`, `trace_only`, or `bounded_runtime`. Defaults to `bounded_runtime` when GRAPH_SIGNALS is ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_GRAPH_WEIGHT_CAP` | `0.15` | number | Maximum graph contribution in Stage 2 scoring. | `lib/search/graph-calibration.ts` |
@@ -648,7 +649,7 @@ Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugi
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection, event-driven goal behavior, and manual `mk_goal` / `mk_goal_status` tool execution for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection and goal plugin behavior for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_AUTONOMY` | unset (continuation suppressed) | enum (`active`, `smoke`, `passive`, unset) | `active` enables guarded continuation, `smoke` logs would-fire decisions without sending a prompt, `passive` explicitly suppresses continuation, and unset is treated as disabled. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.goal-state/.goal-events.log`. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | number (positive int) | Maximum stored raw objective length. | `.opencode/plugins/mk-goal.js` |

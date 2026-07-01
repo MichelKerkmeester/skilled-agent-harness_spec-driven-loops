@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "registry_name": "deep-ai-council-findings-registry",
+  "session_id": "council-session-2026-06-30T21-00-52-770Z",
+  "findings": [
+    {
+      "fingerprint": "council:phase-004-route-proof-smoke-for-ai-council:cli-opencode-self-invocation-blocked",
+      "content_hash": "sha256:b0a017d6e178a4246ee4900c1ec4878509f5e1f51ee47945dd92564ccf8fc548",
+      "topic_id": "topic-001-phase-004-route-proof-smoke-for-ai-council",
+      "topic_slug": "phase-004-route-proof-smoke-for-ai-council",
+      "round_id": null,
+      "finding_type": "workflow-blocker",
+      "claim": "The pre-bound external cli-opencode executor could not run because the self-invocation guard detected OPENCODE_PID in the current OpenCode runtime.",
+      "stance": "blocker",
+      "severity": "high",
+      "confidence": 1,
+      "evidence": {
+        "self_invocation_signal": {
+          "layer": "env",
+          "value": "OPENCODE_PID"
+        },
+        "opencode_version": "1.17.11",
+        "workflow_asset": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml"
+      },
+      "source_iter": null,
+      "source_seat": null,
+      "source_artifacts": [
+        "ai-council/session-report.md",
+        "ai-council/session-state.jsonl"
+      ],
+      "introduced_at": "2026-06-30T21:00:52.770Z",
+      "last_seen_at": "2026-06-30T21:00:52.770Z",
+      "superseded_by": null
+    }
+  ],
+  "priors_by_topic": {},
+  "updated_at": "2026-06-30T21:00:52.770Z"
+}

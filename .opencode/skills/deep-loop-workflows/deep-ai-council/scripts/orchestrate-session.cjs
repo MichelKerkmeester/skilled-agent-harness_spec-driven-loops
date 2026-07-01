@@ -18,7 +18,21 @@ const { orchestrateTopic } = require('./orchestrate-topic.cjs');
 const { appendFinding, getCrossTopicPriors } = require('./lib/findings-registry.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
+const COUNCIL_ROUTE_FIELDS = Object.freeze({
+  mode: 'ai-council',
+  target_agent: '@ai-council',
+  execution: 'multi_topic_session_round',
+  state_source: 'ai-council/session-state.jsonl',
+  depth_aware: true,
+  do_not_switch_mode: true,
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function isRecord(value) {
@@ -38,7 +52,21 @@ function normalizeOptions(input = {}) {
     throw new TypeError('executor_config must be an object');
   }
   validateSessionStateHierarchy(sessionState);
-  return { sessionState, executorConfig };
+  return { sessionState, executorConfig: withCouncilRouteConfig(executorConfig) };
+}
+
+function withCouncilRouteConfig(executorConfig) {
+  const configuredFields = isRecord(executorConfig.route_fields) ? executorConfig.route_fields : {};
+  return {
+    ...executorConfig,
+    resolved_route_header: typeof executorConfig.resolved_route_header === 'string'
+      ? executorConfig.resolved_route_header
+      : COUNCIL_RESOLVED_ROUTE_HEADER,
+    route_fields: {
+      ...COUNCIL_ROUTE_FIELDS,
+      ...configuredFields,
+    },
+  };
 }
 
 function resolvePacketSpecFolder(sessionState, executorConfig) {
@@ -191,7 +219,7 @@ function sessionSaturationDecision(topicResult, completedCount, guards, executor
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -293,7 +321,7 @@ async function orchestrateSession(options = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. EXPORTS
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

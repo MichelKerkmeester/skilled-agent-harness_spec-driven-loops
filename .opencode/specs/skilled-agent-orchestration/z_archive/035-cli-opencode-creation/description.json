@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/035-cli-opencode-creation",
-  "description": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant dele",
+  "description": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant",
   "keywords": [
     "framework",
     "already",
@@ -14,10 +14,9 @@
     "cli-copilot",
     "cli-gemini",
     "let",
-    "assistant",
-    "dele"
+    "assistant"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.310Z",
+  "lastUpdated": "2026-07-01T12:31:47.434Z",
   "specId": "035",
   "folderSlug": "cli-opencode-creation",
   "parentChain": [

@@ -65,7 +65,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the 123-agent-loops-improved subsystem groups.
+This is **Phase 5** of the deep-loops/030-agent-loops-improved subsystem groups.
 
 **Scope Boundary**: Advisor routing projection generator and `workflowMode` publication. No changes to the advisor's core scoring logic or to deep-loop-runtime.
 
@@ -197,7 +197,7 @@ REQ-008
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-advisor-routing-projection/` | Generate alias/mode projection from mode-registry.json; publish workflowMode; parent-skill scaffolder integration | Draft |
+| 1 | `001-advisor-routing-projection/` | Generate alias/mode projection from mode-registry.json; publish workflowMode; parent-skill scaffolder integration | Complete |
 
 ### Phase Transition Rules
 

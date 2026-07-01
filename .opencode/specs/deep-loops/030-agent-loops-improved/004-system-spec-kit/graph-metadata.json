@@ -109,15 +109,15 @@
     ],
     "causal_summary": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
     "created_at": "2026-06-29T05:08:45.653Z",
-    "last_save_at": "2026-06-30T14:53:29.807Z",
+    "last_save_at": "2026-07-01T11:50:21.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2cb55883c86ba96867e16c35789c9c3cc47bf10843ac14647bf271b3239b0589",
+    "source_fingerprint": "sha256:2abe3b0714e47f5dda64d3d38f1b0c086db7a9c5c94cfa22861fbebd2b59d661",
     "source_doc_hashes": {
-      "spec.md": "ef21a6410a968930b615d36199e5d79f212877511853af4ea8cc4dd605dcecdc"
+      "spec.md": "17a183ff268ee3e57c7103c83f666dfb927ffe14165b5bc991e932dddd6fbbef"
     },
     "last_active_child_id": null,
     "last_active_at": null

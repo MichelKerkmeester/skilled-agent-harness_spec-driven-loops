@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-The Code Graph phase parent rolls up nine child phases across deterministic ranking, edge correctness, freshness metadata, default-off bi-temporal schema foundation, default-off impact ranking, parser resilience, document-symbol extraction and daemon-reclaim hardening. Detailed planning and verification live in the child phase folders listed below.
+The Code Graph phase parent rolls up ten child phases across deterministic ranking, edge correctness, freshness metadata, default-off bi-temporal schema foundation, default-off impact ranking (cut, then reconfirmed cut on a 2026-07-01 edge-confidence revisit), parser resilience, document-symbol extraction, daemon-reclaim hardening and that edge-confidence and seeded-PPR revisit itself. Detailed planning and verification live in the child phase folders listed below.
 
 ### Included Phases
 
@@ -28,11 +28,12 @@ The Code Graph phase parent rolls up nine child phases across deterministic rank
 | `002-edge-staleness-correctness` | Implemented default-off, benchmark gate pending | Incremental scans can force-parse changed dependencies' importers before persistence and tombstone-gated rename lineage is available through `SUPERSEDES` edges. |
 | `003-generation-watermark` | Soft watermark implemented, hard gate deferred | Scan promotion now bumps a monotonic generation counter and exposes it in freshness metadata. |
 | `004-code-edge-bitemporal` | Schema foundation shipped default-off | The `code_edges` table gained nullable `valid_at`/`invalid_at` columns with UP/BACKFILL/DOWN helpers behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`. Live views, lifecycle writes and the as-of read stay deferred until a named consumer exists. |
-| `005-seeded-ppr-ranking` | Implemented mechanism default-off, benchmark gates pending | Impact ranking can use a flagged bounded personalized PageRank mechanism over the weighted-walk substrate, with the existing flat walk preserved by default. |
+| `005-seeded-ppr-ranking` | CUT, benchmark confirmed twice | Bounded personalized PageRank tied the flat walk on the original benchmark, and a 2026-07-01 edge-confidence revisit that gave it a real gradient to differentiate on made it lose on every metric instead. |
 | `006-edge-governance-vocab` | Implemented default-off | The closed-vocab `edge_type` CHECK migration shipped behind `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` with `SCHEMA_VERSION` 7 to 8, a pre-rebuild DISTINCT scan and focused tests. The churn cap, audit-subgraph and derived-clock siblings remain deferred. |
 | `007-parser-resilience` | Implemented | Parser skip-list behavior now separates crash cohort from transient or fatal retry policy. |
 | `008-doc-symbol-lane` | Implemented | The doc lane now indexes heading and key nodes and the launcher classifies lease transitions through a no-op-default metrics hook. |
 | `009-daemon-reclaim-hardening` | Implemented (gated, default-on) | Tridimensional-liveness reclaim of a wedged code-index daemon (PID + socket-serving + heartbeat): compound socket-vetoed predicate, uid/PID-identity kill-guards, startup WAL hygiene, conditional CAS, crash-surviving PID registry. 31 tests, no regression; production soak + better-sqlite3 ABI realign pending. |
+| `010-edge-confidence-and-ppr-revisit` | Implemented (gated, default-off) | Real per-edge CALLS confidence differentiation shipped behind a new flag, and the recovered seeded-PPR module re-run against it lost on every benchmark metric, confirming the cut stands. |
 
 ### Added
 

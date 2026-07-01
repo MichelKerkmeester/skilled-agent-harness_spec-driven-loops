@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
-argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
@@ -21,45 +21,48 @@ Load the presentation contract before showing startup questions, dashboards, che
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
 > **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
-> 1. Run Phase 0: @general agent self-verification (below)
+> 1. Run Phase 0: dispatch-context check (below)
 > 2. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:
 >    - `research_topic`
 >    - `spec_folder`
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
+>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
 >    - `dry_run` (default false unless `--dry-run` is present)
 > 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep_research_auto.yaml`
 >    - Confirm: `deep_research_confirm.yaml`
 > 4. Execute the YAML workflow step by step using those resolved values
 >
-> This command is **general-agent based** — it orchestrates the deep-research loop. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
+> This command is **general-agent based** — it orchestrates the deep-research loop. Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
 
-### PHASE 0: @GENERAL AGENT VERIFICATION
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
-**STATUS: ☐ BLOCKED**
+**STATUS: ☐ CHECKED**
 
 ```
-EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+This gate checks actual dispatch context, not self-reported capability -- the prior
+self-assessment version of this check produced a confirmed false-positive block (a
+capable agent judged itself "uncertain" on an abstract question and hard-stopped).
 
-SELF-CHECK: Are you operating as the @general agent?
-│
-├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate the deep-research loop (YAML workflow execution)
-│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
-│   ├─ You can load skill references and execute defined logic
-│
-├─ IF YES (all indicators present):
+CHECK: was this file invoked directly as /deep:research (typed by the user, or an
+explicit Task delegation naming this exact command) -- as opposed to another agent
+pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
+instructions for a worker to follow (that worker should follow its own dispatch
+prompt, not re-run this command's full setup contract)?
+
+├─ YES, or no concrete evidence of the pasted-inline case:
 │   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
 │
-└─ IF NO or UNCERTAIN:
+└─ NO, with concrete evidence this file's content was pasted inline rather than
+   invoked as the command itself:
     │
     ├─ ⛔ HARD BLOCK - DO NOT PROCEED
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
     │   │                                                            │
     │   │ This command orchestrates the deep-research loop and runs  │
     │   │ general-agent based.                                       │
@@ -68,7 +71,12 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │   /deep:research [arguments]                               │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
+
+Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
+capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
+from the inside and is what caused the original false-positive block. Block only on
+concrete evidence of the pasted-inline case above.
 ```
 
 **Phase Output:**
@@ -80,7 +88,7 @@ SELF-CHECK: Are you operating as the @general agent?
 - **ALL** agent dispatching is handled by the YAML workflow steps.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
+  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`
   - `dry_run` is normalized to `true` or `false`; absence means `false`
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
@@ -109,13 +117,21 @@ No workflow-asset gap exists for this command.
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
-2. Treat `--max-iterations`, `--convergence`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
+2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
 3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep_research_auto.yaml`.
 4. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when the topic is present, names no resolvable spec folder, and the folder choice is ambiguous. Missing `research_topic` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
 5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep_research_confirm.yaml`.
 6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
+
+### Lineage Timeout Flag
+
+`--lineage-timeout-hours <N>` raises the per-lineage wall-clock timeout ceiling above the default 4 hours for long, high-effort, forced-depth fan-out runs; omit it to keep the 4h default.
+
+### Stop Policy Flag
+
+`--stop-policy <convergence|max-iterations>` selects whether convergence may stop the loop early. The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first; `max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
 
 ### Dry-Run Flag
 

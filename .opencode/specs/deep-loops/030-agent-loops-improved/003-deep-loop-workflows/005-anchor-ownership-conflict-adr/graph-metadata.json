@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "005-anchor-ownership-conflict-adr summary"
+      "anchor ownership conflict ADR"
     ],
     "key_topics": [
       "anchor",
@@ -38,17 +38,18 @@
       "renderer",
       "implementation"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
       ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_reducer_registry.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
-      {
         "name": "state_reducer_registry.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_reducer_registry.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
         "source": "derived"
       },
       {
@@ -98,6 +99,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -189,30 +196,26 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved markdown overwrite race: whichever writer runs last wins, with no event emitted, no conflict record stored, and no declared owner",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-06-30T14:53:29.791Z",
+    "last_save_at": "2026-07-01T13:22:18.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef5da7b1f3ebb25bef7da9ba5485e406db925b5338a4cdd22aa4a7d9bb906fbb",
+    "source_fingerprint": "sha256:ba9feb0dcb28d9fa75bae132709c22cc2b5f82684bf8fc42a85269ccc5c240d4",
     "source_doc_hashes": {
-      "spec.md": "57b9c309a674b45b0da89d5a4eabaee1d5e70223980de022b82a380815cc9a8d",
+      "spec.md": "c73b87ca83525b45c8d818ec78e6381c56f46cc3959386bcc5e401639386cbde",
       "plan.md": "56360b800a53059237bf4f78d8e181792e8d2686a4361dc146d00e1526f54b4d",
       "tasks.md": "89b64b537a8ef6e0982407ab94983f101296e87e28bcef871145b6417d47d87f",
+      "decision-record.md": "3c22ae98e856f6553d0b27f6d468f660c8b2d61114e59fe8c23bfa0368100d9d",
       "implementation-summary.md": "95d8dd9e820cce0c34459cd9c0be6495ee05d3aa92596472fbc83c08b5aba279"
     },
     "last_active_child_id": null,

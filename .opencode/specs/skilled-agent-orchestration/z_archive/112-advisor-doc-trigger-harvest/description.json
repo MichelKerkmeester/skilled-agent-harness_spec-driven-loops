@@ -1,16 +1,12 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/112-advisor-doc-trigger-harvest",
-  "description": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-",
+  "description": "The frontmatter-benefit investigation",
   "keywords": [
     "frontmatter-benefit",
-    "investigation",
-    "027-xce-research-based-refinement",
-    "000-release-cleanup",
-    "009-skill-frontmatter-alignment",
-    "001-frontmatter-benefit"
+    "investigation"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.029Z",
+  "lastUpdated": "2026-07-01T12:31:47.787Z",
   "specId": "112",
   "folderSlug": "advisor-doc-trigger-harvest",
   "parentChain": [

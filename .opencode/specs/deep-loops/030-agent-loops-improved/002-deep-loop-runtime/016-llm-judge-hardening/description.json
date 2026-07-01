@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/016-llm-judge-hardening",
-  "description": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral fallba",
+  "description": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral",
   "keywords": [
     "single",
     "model",
@@ -16,10 +16,9 @@
     "convergence",
     "coverage",
     "scoring",
-    "neutral",
-    "fallba"
+    "neutral"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.340Z",
+  "lastUpdated": "2026-07-01T12:31:46.971Z",
   "specId": "016",
   "folderSlug": "llm-judge-hardening",
   "parentChain": [

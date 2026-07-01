@@ -60,7 +60,7 @@ Generate a complete single-file component or module.
 claude -p "Create a [language] [type] for [description]. Requirements: [requirements]. Follow the patterns in @./[reference-file]. Output complete code with imports, types, error handling." \
   --model claude-sonnet-4-6 --output-format text 2>&1
 ```
-<!-- F-007-B2-05: pinned default model -->
+<!-- pinned default model -->
 
 **Example:**
 
@@ -603,4 +603,3 @@ If `/tmp/save-context-data-<session-id>.json` is passed explicitly and cannot be
 Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
 
 Minimum viable payload: include a specific `sessionSummary`, at least one meaningful `recent_context` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
-

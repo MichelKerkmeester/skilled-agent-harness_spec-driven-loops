@@ -20,6 +20,13 @@ export type PostDispatchRecipeConfig = {
   judge_quarantine_enabled?: boolean;
 };
 
+export type RouteProofExpectation = {
+  mode: string;
+  targetAgent: string;
+  resolvedRoute: string;
+  requireAgentDefinitionLoaded?: boolean;
+};
+
 export type PostDispatchValidateInput = {
   iterationFile: string;
   stateLogPath: string;
@@ -27,6 +34,7 @@ export type PostDispatchValidateInput = {
   requiredJsonlFields: string[];
   executorKind?: ExecutorKind;
   deltaFilePath?: string;
+  routeProof?: RouteProofExpectation;
   recipeConfig?: PostDispatchRecipeConfig;
 };
 
@@ -179,6 +187,8 @@ type PostDispatchFailureReason =
   | 'executor_missing'
   | 'dispatch_failure_logged'
   | 'verification_degraded'
+  | 'route_proof_missing'
+  | 'route_proof_mismatch'
   | 'v2_missing_ledger'
   | 'v2_uncited_ledger_row'
   | 'v2_broken_linked_finding'
@@ -604,6 +614,55 @@ function requiredJsonlFieldSet(
   }
 
   return requiredFields;
+}
+
+function validateRouteProofRecord(
+  record: Record<string, unknown>,
+  routeProof: RouteProofExpectation | undefined,
+  source: string,
+): PostDispatchValidateResult | null {
+  if (!routeProof) return null;
+
+  const requiredFields = ['mode', 'target_agent', 'agent_definition_loaded', 'resolved_route'];
+  const missingFields = requiredFields.filter((field) => !(field in record));
+  if (missingFields.length > 0) {
+    return {
+      ok: false,
+      reason: 'route_proof_missing',
+      details: `${source} missing route-proof fields: ${missingFields.join(',')}`,
+    };
+  }
+
+  if (record.mode !== routeProof.mode) {
+    return {
+      ok: false,
+      reason: 'route_proof_mismatch',
+      details: `${source}.mode='${String(record.mode)}' expected '${routeProof.mode}'`,
+    };
+  }
+  if (record.target_agent !== routeProof.targetAgent) {
+    return {
+      ok: false,
+      reason: 'route_proof_mismatch',
+      details: `${source}.target_agent='${String(record.target_agent)}' expected '${routeProof.targetAgent}'`,
+    };
+  }
+  if (routeProof.requireAgentDefinitionLoaded !== false && record.agent_definition_loaded !== true) {
+    return {
+      ok: false,
+      reason: 'route_proof_mismatch',
+      details: `${source}.agent_definition_loaded must be true`,
+    };
+  }
+  if (record.resolved_route !== routeProof.resolvedRoute) {
+    return {
+      ok: false,
+      reason: 'route_proof_mismatch',
+      details: `${source}.resolved_route='${String(record.resolved_route)}' expected '${routeProof.resolvedRoute}'`,
+    };
+  }
+
+  return null;
 }
 
 function v2Failure(
@@ -1319,6 +1378,18 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
           reason: 'delta_file_missing_iteration_record',
           details: `${input.deltaFilePath} has no record with type='${CANONICAL_ITERATION_TYPE}'`,
         };
+      }
+    }
+
+    const stateRouteProofFailure = validateRouteProofRecord(parsedRecord, input.routeProof, 'state_log');
+    if (stateRouteProofFailure) {
+      return stateRouteProofFailure;
+    }
+
+    if (deltaIterationRecord) {
+      const deltaRouteProofFailure = validateRouteProofRecord(deltaIterationRecord, input.routeProof, 'delta');
+      if (deltaRouteProofFailure) {
+        return deltaRouteProofFailure;
       }
     }
 

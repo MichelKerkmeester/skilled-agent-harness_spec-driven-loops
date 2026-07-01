@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
   "description": "The deep-loop convergence verdict decides STOP-vs-CONTINUE from a fixed set of structural graph signals",
   "keywords": [
     "deep-loop",
@@ -13,11 +13,11 @@
     "graph",
     "signals"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.521Z",
+  "lastUpdated": "2026-07-01T10:41:59.124Z",
   "specId": "005",
   "folderSlug": "stop-input-corroboration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "004-deep-loop"
   ],

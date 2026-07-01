@@ -17,12 +17,10 @@
     "deep-context",
     "deep-ai-council"
   ],
-  "lastUpdated": "2026-06-30T16:33:04.781Z",
+  "lastUpdated": "2026-07-01T10:41:58.834Z",
   "specId": "001",
   "folderSlug": "deep-agent-router-and-orchestration",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "031-deep-loop-issues-with-gpt-opencode"
   ],

@@ -56,26 +56,30 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The shadow-only build of the one genuine Skill Advisor external follow-on landed: a net-new execution-success record (distinct from recommendation-acceptance), a durable append-only skill-outcome store with a replay-safe order-independent fold, an idempotent out-of-process ambient-tick cadence driver, an outcome-weighted shadow re-rank (`similarity x reliability x penalty`, fresh skill = 0.5) over a Beta adapter seam, query-scored failure-mode recall and a default-off query-length BM25 calibration. Everything is shadow-only / default-off: the live fused sort is byte-identical (proven by test) and the BM25 lane stays shadow-only with a zeroed fusion weight. Two sub-gates stay PENDING, the emitter's runtime trigger seam (Q-001 undecided) and the shared Beta-posterior reliability math (owned by sibling 004, not yet landed, the adapter returns the neutral fresh value until it is). Live promotion remains NO-GO until real execution-success data plus a benchmark earn it.
+**CORRECTION (2026-07-01, drift audit remediation):** the narrative below describes what this child originally claimed to ship. A repo-wide search (glob + grep across the whole repository, not just this child's expected paths) found only `scripts/skill-outcome-fold-tick.mjs` actually present in the tree. `lib/scorer/skill-outcome-store.ts`, `lib/scorer/outcome-weighted-rerank.ts`, and `tests/scorer/outcome-weighted-ranking.vitest.ts` do not exist anywhere in the repository under this or any renamed/moved path. Since the fold-tick script depends on "the compiled fold core... present under dist/" (its own header comment) and that core was never created, the script that does exist has no store to operate on and is not functional as shipped. The claims below of a durable store, shadow re-rank, and a passing 20-test suite are drift — they describe work that was never actually committed, not a renamed or relocated implementation.
+
+**CORRECTION (2026-07-01, drift-audit remediation -- pass 2 / git-history reconciliation):** the pass-1 correction above is itself incomplete. The current tree absence is real, but git history proves the store and rerank were built and later deleted: `skill-outcome-store.ts` (364 lines) and `outcome-weighted-rerank.ts` (124 lines) were built at commit `03d0b01eb6`, wired live-adjacent by touching `fusion.ts` and `advisor-validate.ts` at commit `09626fc921`, then deleted at commit `8efcde0e6b` along with 4 test files and the shadow-weight promoter. The delete-commit measurement was: "MRR delta +0.005 to +0.008 versus the metric's own noise band of SD 0.0237 (4x larger), and right-skill@3 = 0.000 across all 90 runs... the lever is structurally inert despite being fully wired." This is the strongest negative result of the four features corrected in this audit, and the operator explicitly decided not to revive it.
+
+**Superseded by the pass-2 correction above.** The shadow-only build of the one genuine Skill Advisor external follow-on was actually delivered, then deleted: a net-new execution-success record (distinct from recommendation-acceptance), a durable append-only skill-outcome store with a replay-safe order-independent fold, an idempotent out-of-process ambient-tick cadence driver, an outcome-weighted shadow re-rank (`similarity x reliability x penalty`, fresh skill = 0.5) over a Beta adapter seam, query-scored failure-mode recall and a default-off query-length BM25 calibration - all built at `03d0b01eb6`, wired live-adjacent at `09626fc921`, then deleted at `8efcde0e6b` after the measured NO-GO. Only the out-of-process fold-tick script (`scripts/skill-outcome-fold-tick.mjs`) is still present in the current tree; it is orphaned without its (deleted) store dependency. The two sub-gates noted PENDING in the original claim - the emitter's runtime trigger seam (Q-001 undecided) and the shared Beta-posterior reliability math (owned by sibling 004) - are moot: this feature is not being revived, per operator decision, so those gates are not being pursued.
 
 ### Candidate Status
 
 | Candidate | Status | Remaining gate |
 |-----------|--------|------|
-| SA-outcome-weighted-ranking | IMPLEMENTED shadow-only (record + store + fold + shadow re-rank + failure-mode recall) | Emitter runtime seam (Q-001) + sibling 004 Beta primitive wiring, then a benchmark for live promotion |
-| SA-scheduler-ambient-tick | IMPLEMENTED (idempotent fold-tick core + out-of-process `.mjs` runner, double-tick no-op) | Sibling 004 C4-seam promoter must be built to ride the shared driver |
-| ADV-bm25-calibration | IMPLEMENTED (query-length-bucketed midpoint behind a default-off flag, byte-identical default, telemetry-only) | A measured telemetry win + lane promotion (separate gate) |
+| SA-outcome-weighted-ranking | DELETED AFTER MEASURED NO-GO - built at `03d0b01eb6`, wired live-adjacent at `09626fc921`, deleted at `8efcde0e6b`; current tree absence remains real | Do not revive: delete-commit result was MRR delta +0.005 to +0.008 versus SD 0.0237, with right-skill@3 = 0.000 across all 90 runs |
+| SA-scheduler-ambient-tick | PARTIAL - `scripts/skill-outcome-fold-tick.mjs` exists but has no store to operate on (non-functional as shipped) | Requires the store above before it can run meaningfully; sibling 004 C4-seam promoter must also be built to ride the shared driver |
+| ADV-bm25-calibration | UNVERIFIED - claimed shipped behind a default-off flag in `lib/scorer/lanes/bm25.ts`; not independently re-confirmed as part of this correction | A measured telemetry win + lane promotion (separate gate) |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `lib/metrics.ts` | Modified | Added `SkillExecutionOutcomeRecord` + `createSkillExecutionOutcomeRecord` + validator beside the untouched acceptance record |
-| `lib/scorer/skill-outcome-store.ts` | Created | Durable append-only store, replay-safe fold, query-scored failure-mode recall, idempotent ambient-tick core |
-| `lib/scorer/outcome-weighted-rerank.ts` | Created | Shadow re-rank + neutral Beta adapter seam, default-off flag |
-| `lib/scorer/lanes/bm25.ts` | Modified | Query-length-bucketed logistic midpoint behind a default-off flag (byte-identical default) |
-| `scripts/skill-outcome-fold-tick.mjs` | Created | Out-of-process cron/maintenance fold-tick runner |
-| `tests/scorer/outcome-weighted-ranking.vitest.ts` | Created | 20 unit tests: record distinction, fold idempotence, ambient-tick no-op, Beta blend, recall, live-sort guardrail, BM25 calibration |
+| `lib/metrics.ts` | Claimed Modified | Added `SkillExecutionOutcomeRecord` + `createSkillExecutionOutcomeRecord` + validator beside the untouched acceptance record - not independently re-confirmed by this correction |
+| `lib/scorer/skill-outcome-store.ts` | DELETED | Built at `03d0b01eb6` as a 364-line durable append-only store, wired live-adjacent at `09626fc921`, deleted at `8efcde0e6b`; current tree absence is expected after the measured NO-GO |
+| `lib/scorer/outcome-weighted-rerank.ts` | DELETED | Built at `03d0b01eb6` as a 124-line shadow re-rank, wired live-adjacent at `09626fc921`, deleted at `8efcde0e6b`; current tree absence is expected after MRR delta +0.005 to +0.008 versus SD 0.0237 and right-skill@3 = 0.000 across all 90 runs |
+| `lib/scorer/lanes/bm25.ts` | Claimed Modified | Query-length-bucketed logistic midpoint behind a default-off flag - not independently re-confirmed by this correction |
+| `scripts/skill-outcome-fold-tick.mjs` | Created (confirmed present) | Out-of-process cron/maintenance fold-tick runner - exists but orphaned; its store dependency (`skill-outcome-store.ts`) was created at `03d0b01eb6` then deleted at `8efcde0e6b`, not "never created" |
+| `tests/scorer/outcome-weighted-ranking.vitest.ts` | DELETED | One of the 4 test files deleted at `8efcde0e6b` after the measured NO-GO: MRR delta +0.005 to +0.008 versus SD 0.0237, right-skill@3 = 0.000 across all 90 runs |
 
 <!-- /ANCHOR:what-built -->
 
@@ -108,14 +112,11 @@ The packet was delivered by grounding the aionforge-procedural candidate against
 
 | Check | Result |
 |-------|--------|
-| `npm run typecheck` | PASS: 0 errors (unchanged from baseline) |
-| New unit tests | PASS: 20/20 (`tests/scorer/outcome-weighted-ranking.vitest.ts`) |
-| Broad scorer suite | PASS: `tests/scorer` 15 files / 109 tests green (baseline was 14/89) |
-| Broad regression `tests/scorer tests/legacy` | 0 NEW failures: 181 pass, the 2 failures (skill-graph weight-band drift + 197-prompt corpus parity) fail identically at HEAD |
-| Live-sort guardrail | PASS: `scoreAdvisorPrompt` byte-identical with/without store data (test) |
-| Comment hygiene | PASS: 0 violations on all changed files |
-| Live-ranking claim | PASS: none made, shadow-only/default-off, live promotion NO-GO |
-| `validate.sh --strict` | PASS: 0 errors / 0 warnings |
+| `tests/scorer/outcome-weighted-ranking.vitest.ts` exists | FAIL: file not found anywhere in the repository - the claimed "PASS: 20/20" below could not have run against real tests |
+| `lib/scorer/skill-outcome-store.ts` exists | FAIL: file not found anywhere in the repository |
+| `lib/scorer/outcome-weighted-rerank.ts` exists | FAIL: file not found anywhere in the repository |
+| `scripts/skill-outcome-fold-tick.mjs` exists | PASS: file present, but depends on the missing store's compiled `dist/` output, so it is not currently runnable end to end |
+| Remaining checks below (typecheck, broad scorer suite, live-sort guardrail, comment hygiene, `validate.sh --strict`) | UNVERIFIED by this correction - the original claims are preserved here for reference only, not re-confirmed: "npm run typecheck PASS 0 errors", "Broad scorer suite PASS tests/scorer 15 files / 109 tests", "Broad regression 0 NEW failures 181 pass", "Live-sort guardrail PASS byte-identical", "Comment hygiene PASS 0 violations", "validate.sh --strict PASS 0 errors / 0 warnings" |
 
 <!-- /ANCHOR:verification -->
 
@@ -124,8 +125,10 @@ The packet was delivered by grounding the aionforge-procedural candidate against
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Shadow-only, not live.** All modules are built but nothing affects the live fused sort or the live BM25 weight. The re-rank is a separate module the live path never imports. The BM25 calibration is default-off.
-2. **The emitter runtime seam is undecided (Q-001).** The record contract + append/record write-path exist, but which post-task signal fires the emitter is left pending, so no execution-success data accumulates yet and the re-rank stays inert (fresh 0.5 everywhere).
-3. **The shared Beta primitive is not landed.** Sibling 004 owns it, the adapter seam returns the neutral fresh value until it is wired (no fork). Reliability is uniform 0.5 until then, so the shadow order equals the similarity order.
-4. **No benefit number is available.** Every leverage claim remains structural until real data and a benchmark exist. BM25 calibration is prove-first with no telemetry-delta claimed.
+**Superseded by the pass-2 correction above - the limitations below described the state as of the original shadow-only build, before it was measured and deleted at `8efcde0e6b`.** Preserved for historical context only:
+
+1. **Shadow-only, not live (historical).** All modules were built but nothing affected the live fused sort or the live BM25 weight. The re-rank was a separate module the live path never imported. The BM25 calibration was default-off. (Store and rerank modules no longer exist in the tree; see pass-2 correction.)
+2. **The emitter runtime seam was undecided (Q-001, historical).** This is moot now - the feature was measured inert and deleted, not revived, so the emitter seam decision is no longer being pursued.
+3. **The shared Beta primitive was not landed at the time (historical).** `beta-reliability.ts` (sibling 004) has since been built and remains in the tree, but the outcome-weighted rerank that would have consumed it was deleted, so this is moot.
+4. **No benefit number was available at the time (historical).** A real benefit number now exists: the delete-commit measured MRR delta +0.005 to +0.008 versus noise SD 0.0237 (4x larger), and right-skill@3 = 0.000 across all 90 runs - "structurally inert." That measurement is why the feature was deleted, not because a benchmark was never run.
 <!-- /ANCHOR:limitations -->

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/007-memory-reindex",
-  "description": "The spec-memory index was built before the rename, so the live packets' rows (157 GLM-5.2, 158 rename) still carry pre-rename content / paths referenc",
+  "description": "The spec-memory index was built before the rename, so the live packets' rows (157 GLM-5.2, 158 rename) still carry pre-rename content / paths",
   "keywords": [
     "spec-memory",
     "index",
@@ -17,10 +17,9 @@
     "carry",
     "pre-rename",
     "content",
-    "paths",
-    "referenc"
+    "paths"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.447Z",
+  "lastUpdated": "2026-07-01T12:31:47.371Z",
   "specId": "007",
   "folderSlug": "memory-reindex",
   "parentChain": [

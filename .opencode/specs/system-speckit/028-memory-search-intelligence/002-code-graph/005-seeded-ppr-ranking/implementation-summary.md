@@ -97,6 +97,14 @@ The build followed the recorded sequence: confirm weighted-walk reuse, implement
 
 ---
 
+## Pass-2 Git-History Reconciliation
+
+The mechanism shipped default-off in commit `657a0f6a3e` and was later deleted from the tree in commit `277c35344c`; the current repository no longer has `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` or `computeBoundedPersonalizedPageRank` in the serving path. The authoritative benchmark over 20 labeled queries measured exactly `0.0000` delta for precision@3 (`1.0000` flat, `1.0000` PPR), precision@5 (`0.9800` flat, `0.9800` PPR), precision@8 (`0.9125` flat, `0.9125` PPR), recall@3 (`0.2996` flat, `0.2996` PPR), recall@5 (`0.4659` flat, `0.4659` PPR), recall@8 (`0.6317` flat, `0.6317` PPR), nDCG@3 (`1.0000` flat, `1.0000` PPR), nDCG@5 (`1.0000` flat, `1.0000` PPR) and nDCG@8 (`1.0000` flat, `1.0000` PPR). The damping sweep from `0.5` through `0.95` confirmed no value beats the flat walk: `0.50`, `0.65`, `0.75` and `0.85` tie flat at nDCG@5 `1.0000`, while `0.95` drops to nDCG@5 `0.9915`.
+
+Root cause: all `18,851` CALLS edges carried identical confidence/weight metadata (`INFERRED`, `0.8`, `0.8`), so PPR had no centrality gradient to differentiate on. The benchmark record explicitly says commit `277c35344c` is "not a refute of PPR as an algorithm, it is a verdict on PPR over this substrate" and names "non-uniform edge weighting" as the prerequisite. An operator-approved follow-on project is now **IN PROGRESS** at `../010-edge-confidence-and-ppr-revisit/` to build that prerequisite and re-benchmark; this is not a claim that PPR has been reinstated or that a new benchmark has already run.
+
+---
+
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
@@ -136,7 +144,7 @@ The build followed the recorded sequence: confirm weighted-walk reuse, implement
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **PPR remains default-off, and the flag was later removed by measurement.** The mechanism is available only when `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` is truthy, this preserves byte-identical default behavior for ranking-sensitive paths. The status here is `complete` because this phase shipped and concluded its scoped work (mechanism built, gated, benchmark-deferred). The downstream flag-resolution reckoning then cut the flag and its code as a no-go, since PPR went negative on the real forward-CALLS graph where uniform edges make it equal to the prior ranking (see `../../007-kept-off-flag-resolution/`).
-2. **No code-graph retrieval benchmark exists campaign-wide.** The PPR ranking-quality claim and tuned damping/cap/decay values are held behind a benchmark that must be built first.
+1. **PPR shipped default-off in commit `657a0f6a3e`, and the flag/code were later removed by measurement in commit `277c35344c`.** The status here is `complete` because this phase shipped and concluded its scoped work (mechanism built, gated, benchmark-deferred). The downstream benchmark over 20 labeled queries measured `0.0000` delta for precision@3/5/8, recall@3/5/8 and nDCG@3/5/8, then cut the flag and its code because all `18,851` CALLS edges carried identical confidence/weight metadata (`INFERRED`, `0.8`, `0.8`) and PPR had no centrality gradient on that substrate. See `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/`.
+2. **RESOLVED (2026-07-01): the follow-on prerequisite build at `../010-edge-confidence-and-ppr-revisit/` completed and confirmed CUT, with a worse result than before.** A code-graph retrieval benchmark now exists and has run twice. Real per-edge confidence differentiation was built and gave CALLS edges a genuine gradient (four distinct confidence/evidenceClass tiers instead of a uniform constant). Re-running the exact same benchmark with that gradient in place: PPR no longer ties the flat walk, it loses on every metric (precision@3 -0.10, recall@3-8 -0.01 to -0.05, nDCG@3-8 -0.03 to -0.06). The open question "does PPR perform differently once edge confidence stops being uniform" is answered: yes, it gets worse. No further seeded-PPR revisit is planned. See `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md` for the full follow-up numbers.
 3. **The current-set intersection degrades.** Q3-C1 intersects with physically present edges today, `invalid_at IS NULL` semantics remain pending until the separate temporal-edge schema migration exists.
 <!-- /ANCHOR:limitations -->

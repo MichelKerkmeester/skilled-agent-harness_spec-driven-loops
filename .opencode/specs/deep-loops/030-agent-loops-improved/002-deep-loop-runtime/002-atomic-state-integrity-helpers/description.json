@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers",
-  "description": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistin",
+  "description": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is",
   "keywords": [
     "integrity",
     "check",
@@ -15,10 +15,9 @@
     "snapshot",
     "externally",
     "tampered",
-    "file",
-    "indistin"
+    "file"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.277Z",
+  "lastUpdated": "2026-07-01T12:31:46.907Z",
   "specId": "002",
   "folderSlug": "atomic-state-integrity-helpers",
   "parentChain": [

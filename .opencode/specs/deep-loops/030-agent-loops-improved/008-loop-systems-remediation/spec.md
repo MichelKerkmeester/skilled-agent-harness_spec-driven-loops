@@ -29,7 +29,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 # Loop Systems Remediation
 
@@ -38,9 +38,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 (phase parent) |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete (children 001-006 shipped) |
+| **Status** | Complete (children 001-007 shipped) |
 | **Created** | 2026-06-29 |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 8 |
@@ -60,7 +60,7 @@ This is **Phase 8** of the agent-loops-improved packet: remediate deep-review de
 
 **Dependencies**: Phases 002-007 must be shipped (loop-system improvements that preceded remediation).
 
-**Deliverables**: six independently-shipped remediation children (rollback hash-guard, promotion safety, benchmark reducer ledger, adversarial playbook scenarios, tightened pass-criteria, P2 test-adequacy/source-only audit).
+**Deliverables**: seven independently-shipped remediation children (rollback hash-guard, promotion safety, benchmark reducer ledger, adversarial playbook scenarios, tightened pass-criteria, P2 test-adequacy/source-only audit, detached CLI fan-out hardening).
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -107,7 +107,7 @@ Audit-trail summary only; per-child detail lives in each child's plan/tasks.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All six child phases pass `validate.sh` independently.
+- **SC-001**: All seven child phases pass `validate.sh` independently.
 - **SC-002**: Each remediation names a runnable regression guard that fails when the fixed bug returns (per adversarial-playbook contract).
 <!-- /ANCHOR:success-criteria -->
 

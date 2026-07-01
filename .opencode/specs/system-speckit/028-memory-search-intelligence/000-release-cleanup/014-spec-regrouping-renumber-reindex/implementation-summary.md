@@ -63,7 +63,7 @@ Executed map categories:
 | `.opencode/specs/skilled-agent-orchestration` | Compact active direct child prefixes after archive `116` | Complete: `117`-`123` |
 | `.opencode/specs/skilled-agent-orchestration/graph-metadata.json` | Regenerate root child list from live directories | Complete: `123` children, `0` missing |
 | `.opencode/specs/skilled-agent-orchestration/z_archive` | Compact archive direct child prefixes to `001+` | Complete: `001`-`116` |
-| `.opencode/specs/deep-loops` | Verify live active numbering; no-op if already contiguous | Complete: remained `029`-`031` |
+| `.opencode/specs/deep-loops` | Verify live active numbering; no-op if already contiguous | Complete: remained `029`-`032` |
 | `.opencode/specs/deep-loops/z_archive` | Compact archive direct child prefixes to `001+` | Complete: `001`-`028` |
 | `specs/design` | Add missing root metadata JSON files | Complete: `description.json` and `graph-metadata.json` added |
 | `specs/deep-loops` | Add missing root metadata JSON files | Complete: `description.json` and `graph-metadata.json` added |
@@ -114,7 +114,7 @@ Setup used template-rendered Level 2 packet docs, direct filesystem reads, and p
 | Migration execution | PASS: first script reported `renamedFolders: 135`, `totalFolders: 161`, `editedFiles: 3446`; second pass reported `editedFiles: 2275`, `totalHits: 30357`; correction renamed active orchestration `150`-`156` to `117`-`123`. |
 | Root metadata JSONs | PASS: `specs/design` and `specs/deep-loops` now contain root `description.json` and `graph-metadata.json`. |
 | Root orchestration graph | PASS: `children_ids=123`, `missing=0`, `last_active_child_id=skilled-agent-orchestration/123-agent-loops-improved`. |
-| Directory verification | PASS: post-correction reads show design `001`-`008`, active orchestration `117`-`123`, orchestration archive `001`-`116`, active deep-loops `029`-`031`, and deep-loops archive `001`-`028`. |
+| Directory verification | PASS: post-correction reads show design `001`-`008`, active orchestration `117`-`123`, orchestration archive `001`-`116`, active deep-loops `029`-`032`, and deep-loops archive `001`-`028`. |
 | Stale-path search | PASS: exact old active orchestration folder names returned no matches under `specs`. |
 | Reindex | BLOCKED: MCP scans timed out; CLI scan returned `E040`; CLI health returned `backend unavailable: timeout`, exit code `75`. |
 | Strict validation | PASS: `validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex --strict` returned `RESULT: PASSED`. |

@@ -39,7 +39,7 @@
       "count"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "pending",
     "key_files": [
       "spec.md",
       "plan.md",

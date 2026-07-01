@@ -58,7 +58,7 @@ The internal causal graph stores edges in SQLite only: an edge is a `(source_id,
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | No-Go (Partial) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |

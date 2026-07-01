@@ -286,8 +286,6 @@ OpenCode defines `general`, `plan`, `orchestrate`, and `ai-council` as primary a
 
 #### Subagents — dispatched as Task subagents from a primary
 
-<!-- F-007-B2-01: clarified single-hop dispatch contract; deep-research/deep-review/improve-* are command-only -->
-
 These live at `.opencode/agents/<slug>.md` with `mode: subagent` and are NOT directly invokable via `opencode run --agent`. Two dispatch surfaces are legal under the single-hop NDP contract:
 
 1. **Generic subagents** (`context`, `review`, `write`, `debug`) — dispatched by a primary (`orchestrate`) using the Task tool. To exercise via the opencode CLI, route through `--agent orchestrate` and let it dispatch the relevant subagent.

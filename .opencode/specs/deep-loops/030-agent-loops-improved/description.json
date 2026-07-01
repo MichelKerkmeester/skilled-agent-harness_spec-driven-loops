@@ -1,7 +1,7 @@
 {
   "level": "phase",
   "specFolder": "deep-loops/030-agent-loops-improved",
-  "description": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilienc",
+  "description": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in",
   "keywords": [
     "loop-based",
     "systems",
@@ -14,17 +14,37 @@
     "them",
     "carry",
     "known",
-    "gaps",
-    "resilienc"
+    "gaps"
   ],
-  "lastUpdated": "2026-06-29T10:46:17.415Z",
+  "lastUpdated": "2026-07-01T12:49:27.127Z",
   "specId": "030",
   "folderSlug": "agent-loops-improved",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops"
   ],
-  "memorySequence": 1,
+  "memorySequence": 49,
   "memoryNameHistory": [
-    "29-06-26_06-15__both-running-the-strict-per-phase-sweep-the.md"
+    "01-07-26_11-35__same-recurring-hook-identical-stale-snapshot.md",
+    "01-07-26_11-35__same-recurring-hook-no-new-state-holding-for-12-55.md",
+    "01-07-26_11-36__same-recurring-hook-no-new-state-holding-for-12-55.md",
+    "01-07-26_12-03__same-recurring-stale-goal-hook-no-new-state.md",
+    "01-07-26_12-04__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_12-04__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_12-04__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_12-04__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_12-04__same-recurring-stale-goal-hook-no-new-state.md",
+    "01-07-26_12-05__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_12-05__same-recurring-stale-goal-hook-holding-for-13-29.md",
+    "01-07-26_13-45__the-stop-hook-just-showed-the-original-research.md",
+    "01-07-26_13-45__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-46__same-recurring-hook-no-new-state-holding-for-15-05.md",
+    "01-07-26_13-49__confirmed-goal-clear-did-not-stop-the-hook.md"
   ]
 }

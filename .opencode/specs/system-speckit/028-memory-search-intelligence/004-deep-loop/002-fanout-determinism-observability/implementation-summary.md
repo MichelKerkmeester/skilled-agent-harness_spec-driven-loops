@@ -45,7 +45,7 @@ _memory:
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability` |
 | **Status** | complete |
 | **Level** | 2 |
-| **Actual Effort** | Trio shipped in Wave-0 (commit `46812f12a8`). Wave-1 tail with 9 new unit tests shipped in commit `fd30af2cb6` (fanout-merge determinism + vitest) |
+| **Actual Effort** | Trio shipped in Wave-0 (commit `46812f12a8`). Wave-1 tail with 9 new unit tests implemented locally, uncommitted per instruction (order-invariance tests, label/metadata sorting, default-off near-dup dedup) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -64,7 +64,7 @@ Status detail: the sub-phase is complete. The 3 Wave-0 candidates shipped in pac
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Wave-0 comparator remains, Wave-1 adds deterministic label/metadata ordering and default-off normalized-body-content dedup |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified (Wave-0 `46812f12a8`) | `buildPoolGauges` read-derived `lag`/`pending`/`failed`, live per settle + final summary |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified (Wave-0 `46812f12a8`) | empty-tick=convergence + `stopped` partial-summary flush on SIGINT/SIGTERM |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added 7 tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added 9 tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
 | `.opencode/specs/.../002-fanout-determinism-observability/{spec,plan,tasks,implementation-summary,checklist}.md` | Modified | Level-2 packet docs reconciled to 3 Wave-0 DONE rows plus 3 local Wave-1 DONE rows |
 
 <!-- /ANCHOR:what-built -->

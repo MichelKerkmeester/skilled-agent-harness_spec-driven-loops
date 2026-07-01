@@ -30,7 +30,6 @@ _memory:
       session_id: "2026-06-19-028-004-fanout-determinism-observability"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
     open_questions: []
     answered_questions:
       - "Lineage labels are sorted at read time and merged metadata arrays are sorted before output, so the full registry is stable across arrival-order permutations."

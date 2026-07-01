@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization",
-  "description": "cli-opencode supports three provider families (`opencode-go` default, `deepseek` direct-API, and MiniMax via the Token Plan `minimax-coding-plan` / Di",
+  "description": "cli-opencode supports three provider families (`opencode-go` default, `deepseek` direct-API, and MiniMax via the Token Plan `minimax-coding-plan` /",
   "keywords": [
     "cli-opencode",
     "supports",
@@ -18,7 +18,7 @@
     "plan",
     "minimax-coding-plan"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.481Z",
+  "lastUpdated": "2026-07-01T12:31:47.725Z",
   "specId": "101",
   "folderSlug": "cli-opencode-mimo-pro-optimization",
   "parentChain": [

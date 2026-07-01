@@ -57,3 +57,20 @@ _Detailed file-level changes live in the phase spec and tasks._
 - Capture the pre-change retrieval baseline and post-change delta before promotion.
 - Retune the affected RRF weights against measured data.
 - Build the persistent world-summary hierarchy only in a schema-migration packet.
+
+## 2026-07-01
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
+
+### Summary
+
+The fused summary and community lane this phase shipped shadow-gated behind `SPECKIT_SUMMARY_FUSION_LANE` was later benchmarked as part of `001-speckit-memory/022-kept-off-flag-resolution` and measured at Recall@20 -0.036, displacement-only, meaning the lane only pushes a real channel hit out of the list rather than adding one. It was deleted rather than promoted. Caveat: the lane shipped with a guessed, never ablation-tuned weight, so this result may partly reflect that tuning gap rather than proving the underlying summary/community signal is weak. Source: `../../001-speckit-memory/022-kept-off-flag-resolution/implementation-summary.md`.
+
+### Verification
+
+- Benchmark measurement cited from `022-kept-off-flag-resolution/implementation-summary.md`, not re-run in this pass.
+
+### Follow-Ups
+
+- No further revisit planned, the question is closed with a measured negative result.

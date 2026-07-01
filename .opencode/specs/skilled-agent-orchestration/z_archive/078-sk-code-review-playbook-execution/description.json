@@ -2,7 +2,7 @@
   "completionPct": 0,
   "lastOutcome": "Spec packet scaffolded; awaiting dispatch loop.",
   "specFolder": "skilled-agent-orchestration/z_archive/078-sk-code-review-playbook-execution",
-  "description": "The sk-code-review playbook (just shipped via packet 093, naturalized via packet 094) has 18 scenarios but no actual execution-against-deepseek baseli",
+  "description": "The sk-code-review playbook (just shipped via packet 093, naturalized via packet 094) has 18 scenarios but no actual execution-against-deepseek",
   "keywords": [
     "sk-code-review",
     "playbook",
@@ -15,10 +15,9 @@
     "094",
     "scenarios",
     "actual",
-    "execution-against-deepseek",
-    "baseli"
+    "execution-against-deepseek"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.022Z",
+  "lastUpdated": "2026-07-01T12:31:47.595Z",
   "specId": "078",
   "folderSlug": "sk-code-review-playbook-execution",
   "parentChain": [

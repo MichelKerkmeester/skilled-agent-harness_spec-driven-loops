@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.
-argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor=<type> --model=X --config-dir=PATH --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor=<type> --model=X --config-dir=PATH --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
@@ -14,45 +14,52 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
 
-This command is **general-agent based** and must pass the general-agent verification gate before setup routing continues. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
+This command is **general-agent based** and must pass the dispatch-context check before setup routing continues. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
 
 In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization to archive the resolved review packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `review/` if needed.
 
-### PHASE 0: GENERAL AGENT VERIFICATION
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
-**STATUS: ☐ BLOCKED**
+**STATUS: ☐ CHECKED**
 
 ```
-EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+This gate checks actual dispatch context, not self-reported capability -- the prior
+self-assessment version of this check produced a confirmed false-positive block (a
+capable agent judged itself "uncertain" on an abstract question and hard-stopped).
 
-SELF-CHECK: Are you operating as the general agent?
-│
-├─ INDICATORS that you ARE the general agent:
-│   ├─ You can orchestrate the deep-review loop (YAML workflow execution)
-│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
-│   ├─ You can load skill references and execute defined logic
-│   ├─ You are the default primary agent for `opencode run --command deep/review`
-│
-├─ IF YES (all indicators present):
+CHECK: was this file invoked directly as /deep:review (typed by the user, or an
+explicit Task delegation naming this exact command), or is this agent the default
+primary agent for `opencode run --command deep/review` -- as opposed to another
+agent pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
+instructions for a worker to follow (that worker should follow its own dispatch
+prompt, not re-run this command's full setup contract)?
+
+├─ YES, or no concrete evidence of the pasted-inline case:
 │   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
 │
-└─ IF NO or UNCERTAIN:
+└─ NO, with concrete evidence this file's content was pasted inline rather than
+   invoked as the command itself:
     │
     ├─ ⛔ HARD BLOCK - DO NOT PROCEED
     ├─ Do NOT dispatch the general agent through Task; it is not a loop executor.
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
     │   │                                                            │
     │   │ This command orchestrates the deep-review loop and runs    │
     │   │ general-agent based.                                       │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:review [arguments]                                 │ 
+    │   │   /deep:review [arguments]                                 │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
+
+Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
+capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
+from the inside and is what caused the original false-positive block. Block only on
+concrete evidence of the pasted-inline case above.
 ```
 
 **Phase Output:**
@@ -83,11 +90,19 @@ No workflow-asset gap exists for this command.
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
-2. Treat target text, `--max-iterations`, `--convergence`, `--stop-policy`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
+2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
 6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, and `lineage_mode` are bound.
+
+### Lineage Timeout Flag
+
+`--lineage-timeout-hours <N>` raises the per-lineage wall-clock timeout ceiling above the default 4 hours for long, high-effort, forced-depth fan-out runs; omit it to keep the 4h default.
+
+### Stop Policy Flag
+
+`--stop-policy <convergence|max-iterations>` selects whether convergence may stop the loop early. The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first; `max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
 
 ---
 

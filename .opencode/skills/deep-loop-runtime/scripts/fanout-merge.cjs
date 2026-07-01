@@ -456,6 +456,64 @@ function flattenFindingBuckets(findingById, idKey, sortKeys) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 2b. SCHEMA NORMALIZATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Normalize a registry object so that the canonical findings key is populated,
+ * tolerating known aliases (e.g. `findings` → `keyFindings` for research,
+ * `findings` → `openFindings` for review).
+ *
+ * Returns { registry, warnings } where warnings is an array of structured
+ * schema_mismatch events for every alias hit or unusable-registry skip.
+ *
+ * @param {object|null} registry
+ * @param {{ canonicalKey: string, aliases: Record<string, string>, lineage: string }} opts
+ * @returns {{ registry: object|null, warnings: object[] }}
+ */
+function normalizeRegistrySchema(registry, { canonicalKey, aliases, lineage }) {
+  if (!registry) return { registry, warnings: [] };
+  const warnings = [];
+
+  // If canonical key is already present and an array, nothing to do.
+  if (Array.isArray(registry[canonicalKey])) {
+    return { registry, warnings };
+  }
+
+  // Try each alias in priority order.
+  for (const [aliasKey, targetKey] of Object.entries(aliases)) {
+    if (Array.isArray(registry[aliasKey])) {
+      // Alias found — coerce to canonical key.
+      registry[targetKey] = registry[aliasKey];
+      warnings.push({
+        type: 'schema_mismatch',
+        severity: 'warn',
+        lineage,
+        message: `Registry uses non-canonical key "${aliasKey}" instead of "${targetKey}"; coerced ${registry[aliasKey].length} entries.`,
+        aliasKey,
+        canonicalKey: targetKey,
+        coercedCount: registry[aliasKey].length,
+      });
+      return { registry, warnings };
+    }
+  }
+
+  // No usable findings array found — registry will be skipped.
+  // We cannot count entries that don't exist, but report the skip.
+  warnings.push({
+    type: 'schema_mismatch',
+    severity: 'warn',
+    lineage,
+    message: `Registry has no usable "${canonicalKey}" array (checked aliases: ${Object.keys(aliases).join(', ')}); lineage findings will be skipped.`,
+    aliasKey: null,
+    canonicalKey,
+    coercedCount: 0,
+  });
+
+  return { registry, warnings };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -467,8 +525,18 @@ function flattenFindingBuckets(findingById, idKey, sortKeys) {
 function mergeResearchRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
+  const schemaWarnings = [];
 
-  for (const { label, registry } of lineageData) {
+  for (const { label, registry: rawRegistry } of lineageData) {
+    const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
+      canonicalKey: 'keyFindings',
+      aliases: { findings: 'keyFindings' },
+      lineage: label,
+    });
+    for (const w of warnings) {
+      schemaWarnings.push(w);
+      process.stderr.write(JSON.stringify(w) + '\n');
+    }
     if (!registry || !Array.isArray(registry.keyFindings)) continue;
     for (const finding of registry.keyFindings) {
       const id = finding.id || finding.title;
@@ -543,6 +611,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
       convergenceScore: Math.round(avgConvergence * 1000) / 1000,
       coverageBySources: {},
     },
+    ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
   };
 }
 
@@ -558,8 +627,18 @@ function mergeResearchRegistries(lineageData, options = {}) {
 function mergeReviewRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
+  const schemaWarnings = [];
 
-  for (const { label, registry } of lineageData) {
+  for (const { label, registry: rawRegistry } of lineageData) {
+    const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
+      canonicalKey: 'openFindings',
+      aliases: { findings: 'openFindings' },
+      lineage: label,
+    });
+    for (const w of warnings) {
+      schemaWarnings.push(w);
+      process.stderr.write(JSON.stringify(w) + '\n');
+    }
     if (!registry || !Array.isArray(registry.openFindings)) continue;
     for (const finding of registry.openFindings) {
       if (finding.status !== 'active') continue;
@@ -624,6 +703,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     activeP0,
     activeP1,
     activeP2,
+    ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
   };
 }
 
@@ -802,7 +882,7 @@ async function main() {
 }
 
 // Exports for unit testing
-module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState };
+module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, normalizeRegistrySchema };
 
 if (require.main === module) {
   main().catch((err) => {

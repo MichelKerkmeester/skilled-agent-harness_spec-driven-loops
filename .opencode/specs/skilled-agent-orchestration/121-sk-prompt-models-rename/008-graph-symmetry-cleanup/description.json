@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/008-graph-symmetry-cleanup",
-  "description": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`",
+  "description": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling",
   "keywords": [
     "skillgraphcompiler",
     "export-json",
@@ -15,7 +15,7 @@
     "sk-design",
     "sibling"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.451Z",
+  "lastUpdated": "2026-07-01T12:31:47.377Z",
   "specId": "008",
   "folderSlug": "graph-symmetry-cleanup",
   "parentChain": [

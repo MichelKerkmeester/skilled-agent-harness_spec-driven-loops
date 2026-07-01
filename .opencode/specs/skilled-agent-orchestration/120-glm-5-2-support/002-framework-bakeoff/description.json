@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/002-framework-bakeoff",
-  "description": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is `default-unv",
+  "description": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is",
   "keywords": [
     "glm-5",
     "registered",
@@ -12,10 +12,9 @@
     "recommendedframeworks",
     "primary",
     "craft",
-    "status",
-    "default-unv"
+    "status"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.393Z",
+  "lastUpdated": "2026-07-01T12:31:47.336Z",
   "specId": "002",
   "folderSlug": "framework-bakeoff",
   "parentChain": [

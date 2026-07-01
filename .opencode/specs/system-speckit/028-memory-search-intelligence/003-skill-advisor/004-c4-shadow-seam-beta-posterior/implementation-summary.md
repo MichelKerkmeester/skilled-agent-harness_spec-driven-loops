@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Advisor C4 Shadow Seam + Beta Posterior"
-description: "Closeout for the advisor C4 shadow-seam + Beta-posterior sub-phase. The 9-candidate reliability-weighted-learning build shipped shadow-only and default-off (shared Beta posterior, shadow-weight promoter, two-gate, held-out attestation, cold-start prior, decay un-promotion, content-addressed fold, asymmetric deltas). Two integration tasks stay pending (daemon reload T006, D2 coordination T010) and the live flip is NO-GO until a micro-benchmark."
+description: "Closeout for the advisor C4 shadow-seam + Beta-posterior sub-phase. The 9-candidate reliability-weighted-learning build shipped shadow-only and default-off (shared Beta posterior, promoter integration points in feedback-calibration/lane-registry, two-gate, held-out attestation, cold-start prior, decay un-promotion, content-addressed fold, asymmetric deltas). The standalone shadow-weight-promoter module was committed in 10c5b61493 as 339 lines alongside beta-reliability.ts and deleted in 8efcde0e6b with outcome-weighted-rerank, its only consumer. Two integration tasks stay pending (daemon reload T006, D2 coordination T010) and the live flip is NO-GO until a micro-benchmark."
 trigger_phrases:
   - "implementation summary advisor c4 shadow seam"
   - "skill advisor beta posterior closeout"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped Beta posterior + shadow-weight promoter + gate family, shadow-only"
+    recent_action: "Documented commit and deletion hashes"
     next_safe_action: "Resolve Q-002 to unblock T006, coordinate D2 shared module (T010)"
     blockers: []
     key_files:
@@ -45,7 +45,7 @@ _memory:
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
-| **Status** | complete |
+| **Status** | complete (pending P0 CHK-120 rollback) |
 | **Scope** | Advisor reliability-weighted learning: C4-seam + Beta posterior + aionforge promotion-gate family + Phase-0 foundation, shipped shadow-only and default-off |
 | **Branch** | system-speckit/027-xce-research-based-refinement |
 | **Shipped via** | Commit `10c5b61493` (default-off shadow). T006 daemon reload and T010 D2 coordination remain pending |
@@ -58,14 +58,16 @@ _memory:
 
 This sub-phase shipped the advisor reliability-weighted-learning build shadow-only and default-off. The Skill Advisor already ships an end-to-end *shadow* feedback pipeline (durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel), but the estimator's proposal was written to a JSONL that no out-of-process consumer ever read back, so the loop never closed. This sub-phase built the missing seam (a cron/maintenance promoter), the reliability math (a shared Beta posterior that turns raw acceptance frequency into a flood-immune number) and the aionforge attestation-and-promotion gate family that decides, conservatively and shadow-only, whether a lane weight should ever move. It is net-new throughout: 027 shipped no lane attribution and the live estimator carried zero Beta math, so this was a BUILD, not a graduation.
 
-**The candidate logic shipped shadow-only.** Commit `10c5b61493` added `beta-reliability.ts` and `shadow-weight-promoter.ts` plus the integration points in `feedback-calibration.ts` and `lane-registry.ts`, all default-off with a byte-identical live recommend path proven by test. Two integration tasks stay pending: T006 (daemon shadow-weight reload, blocked on Q-002) and T010 (Deep-Loop D2 cross-subsystem coordination). Live promotion is NO-GO until a micro-benchmark out-earns the `minSamples` cliff.
+**The candidate logic shipped shadow-only.** Commit `10c5b61493` added `beta-reliability.ts` plus the integration points in `feedback-calibration.ts` and `lane-registry.ts`, all default-off with a byte-identical live recommend path proven by test. The standalone `shadow-weight-promoter.ts` module was committed in `10c5b61493` as a 339-line module alongside `beta-reliability.ts`, then deleted in `8efcde0e6b` with outcome-weighted-rerank, its only consumer. Two integration tasks stay pending: T006 (daemon shadow-weight reload, blocked on Q-002) and T010 (Deep-Loop D2 cross-subsystem coordination). Live promotion is NO-GO until a micro-benchmark out-earns the `minSamples` cliff.
+
+**CORRECTION (2026-07-01, drift-audit remediation -- pass 2 / git-history reconciliation): the 'never committed' claim above is factually wrong -- see full correction.** Git history shows the standalone `shadow-weight-promoter.ts` module was committed in `10c5b61493` as a 339-line module alongside `beta-reliability.ts`. Git history also shows `shadow-weight-promoter.ts` was deleted in `8efcde0e6b`, the same commit that removed the outcome-weighted-rerank feature; in `8efcde0e6b`, outcome-weighted-rerank was the promoter's only consumer. The promoter's sole purpose was feeding that feature's live-adjacent rerank, so when `8efcde0e6b` removed outcome-weighted-rerank for measured-negative reasons, `shadow-weight-promoter.ts` was removed in `8efcde0e6b` alongside it as dead weight. Q-002 (daemon reload semantics) remains a separate, still-unresolved architecture blocker independent of the `8efcde0e6b` deletion. Reviving `shadow-weight-promoter.ts` was considered and explicitly not approved by the operator, so this is a documentation correction only; no code changes accompany it.
 
 ### Candidate set
 
 | # | Candidate | Status | Notes |
 |---|-----------|--------|------|
 | 1 | SA-asymmetric-deltas | **SHIPPED shadow-only** | New sign-locked asymmetric helper at the threshold seam `feedback-calibration.ts:200-201` (down≥up, gain→0) with the symmetric weight `clamp` at `:176` untouched (T003) |
-| 2 | C4-seam | **SHIPPED shadow-only** | Out-of-process promoter reads the `ReadOnlyScorerCalibrationProposal` JSONL and writes only `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON`, cron-only (T004/T005/T007). Daemon reload T006 stays pending on Q-002 |
+| 2 | C4-seam | **WIRING ONLY, promoter process NOT built** | A repo-wide search (2026-07-01 drift audit remediation) found no promoter script or cron entry point anywhere in `.opencode/skills/system-skill-advisor/mcp_server` - only source comments in `feedback-calibration.ts`/`lane-registry.ts` describing an out-of-process promoter that would read `ReadOnlyScorerCalibrationProposal` JSONL and write `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON`, cron-only (T004/T005/T007). The integration points these comments describe exist; the promoter process itself does not. Daemon reload T006 stays pending on Q-002 |
 | 3 | C4-advisor-beta-build | **SHIPPED shadow-only** | Thin advisor adapter consuming the posterior as a weight-delta, built on the shared primitive (#4) and the seam (#2) (T009) |
 | 4 | C4-beta (shared Beta posterior) | **SHIPPED shadow-only** | One f64 `(α₀+s)/(α₀+β₀+s+f)` in `beta-reliability.ts`, dependency-free so Deep-Loop D2 can adapt it, not the integer scorer that throws on non-integer inputs (T008) |
 | 5 | SA-two-gate-promotion | **SHIPPED shadow-only** | k≥2 distinct AND posterior≥threshold, non-trading, with reachability refusal. Extends the existing `minSamples`/concentration guards (T011) |
@@ -82,7 +84,7 @@ The umbrella **C4-seam** label in the task brief maps to candidate #2, **C4-beta
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The build landed as scoped commits on the 028 branch following the task order. The asymmetric helper went in at the threshold seam `feedback-calibration.ts:200-201` without touching the symmetric `clamp` at `:176`. The shared Beta posterior was built dependency-free in `beta-reliability.ts` so Deep-Loop D2 can adapt it rather than fork it. The out-of-process promoter reads the `ReadOnlyScorerCalibrationProposal` JSONL and writes only the shadow-weight env key, never the live key, and runs cron-only. The two-gate, held-out attestation, decay un-promotion and content-addressed fold are pure-policy helpers over the posterior. Every guardrail (`liveWeightsFrozen`, `autoPromotion:false`, `heldOutValidationRequired`) stays true through the build. The daemon reload wiring (T006) and the D2 module coordination (T010) were left pending with reasons.
+The build landed as scoped commits on the 028 branch following the task order. The asymmetric helper went in at the threshold seam `feedback-calibration.ts:200-201` without touching the symmetric `clamp` at `:176`. The shared Beta posterior was built dependency-free in `beta-reliability.ts` so Deep-Loop D2 can adapt it rather than fork it. The standalone `shadow-weight-promoter.ts` module was committed in `10c5b61493` as 339 lines alongside `beta-reliability.ts`; git history shows it was deleted in `8efcde0e6b` with outcome-weighted-rerank, its only consumer. The two-gate, held-out attestation, decay un-promotion and content-addressed fold are pure-policy helpers over the posterior. Every guardrail (`liveWeightsFrozen`, `autoPromotion:false`, `heldOutValidationRequired`) stays true through the build. The daemon reload wiring (T006) and the D2 module coordination (T010) were left pending with reasons.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -105,9 +107,9 @@ The build landed as scoped commits on the 028 branch following the task order. T
 - **Typecheck**: PASS, 0 errors.
 - **Scorer suite**: PASS, 142 tests (109 baseline plus 33 new for the posterior math, the gate policy and the promoter seam).
 - **Handlers + shadow-sink**: PASS, 76 tests, 0 new failures.
-- **Shadow-only guardrail**: PASS, the asymmetric-wiring test proves the live recommend path is byte-identical and the promoter never writes a live lane weight.
+- **Shadow-only guardrail**: PASS, the asymmetric-wiring test proves the live recommend path is byte-identical and the integration points never write a live lane weight.
 - **Alignment drift**: PASS.
-- **Strict validation**: PASS, `validate.sh --strict` 0 errors, 0 warnings.
+- **Strict validation**: FAILED, `validate.sh --strict` reports 9 errors and 4 warnings (missing tsx runtime for EVIDENCE_MARKER_LINT/GENERATED_METADATA_INTEGRITY/GENERATED_METADATA_DRIFT, stale Spec Folder metadata reference in SPEC_DOC_INTEGRITY, plus pre-existing AI_PROTOCOL/DESCRIPTION_SHAPE/SECTION_COUNTS warnings). Not yet resolved.
 - **Pending**: the promotion-to-live micro-benchmark stays NO-GO and is not run here. The live flip waits on real per-lane attribution plus a benchmark that out-earns the `minSamples` cliff.
 <!-- /ANCHOR:verification -->
 
@@ -119,7 +121,7 @@ The build landed as scoped commits on the 028 branch following the task order. T
 1. **Shadow-only build.** All nine candidate behaviours shipped default-off. Nothing affects the live recommend path or any live lane weight until a micro-benchmark promotes it.
 2. **No measured benefit number.** The asserted "~13% confidence skew" is unsourced (grep=0, iter-17). Every leverage rating is structural inference, the cold-start prior and any live flip are NEEDS-BENCHMARK.
 3. **No per-lane attribution in production.** `laneAttributionBySkill` is empty (027 shipped none), even a correct posterior has no per-lane signal to tune until attribution exists, so the build stays shadow-only.
-4. **Daemon reload is unconfirmed (Q-002).** `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` resolves once at module load (`lane-registry.ts:71-74`), implying restart-only, the promoter needs an explicit reload trigger unless `advisor_rebuild` reloads it.
+4. **Daemon reload is unconfirmed (Q-002).** `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` resolves once at module load (`lane-registry.ts:71-74`), implying restart-only, the promoter integration needs an explicit reload trigger unless `advisor_rebuild` reloads it.
 5. **The shared Beta primitive is cross-subsystem.** Its module location and signature must be coordinated with Deep-Loop D2 (028/004) before both adapters are written, or the primitive forks.
 <!-- /ANCHOR:limitations -->
 

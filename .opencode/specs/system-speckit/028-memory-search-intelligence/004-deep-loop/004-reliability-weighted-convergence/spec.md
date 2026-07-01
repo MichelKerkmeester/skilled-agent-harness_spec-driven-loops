@@ -64,7 +64,7 @@ The deep-loop research convergence verdict is a fixed-weight linear blend (`conv
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | complete |
+| **Status** | NO-GO (deferred to benchmark tier) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop, convergence/fan-out/council intelligence) |

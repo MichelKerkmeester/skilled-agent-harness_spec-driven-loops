@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability",
   "description": "The deep-loop fan-out runtime merges per-lineage finding registries and pools concurrent CLI lineages on three modules: `fanout-merge.cjs` (merge + de",
   "keywords": [
     "deep-loop",
@@ -19,11 +19,11 @@
     "cjs",
     "merge"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.499Z",
+  "lastUpdated": "2026-07-01T10:41:59.114Z",
   "specId": "002",
   "folderSlug": "fanout-determinism-observability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "004-deep-loop"
   ],

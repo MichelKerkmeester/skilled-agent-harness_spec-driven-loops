@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
+  "description": "Existing provenance can verify GPT first-dispatch correctness without new benchmark tooling, but the smoke must include route-proof assertions",
+  "keywords": [
+    "existing",
+    "provenance",
+    "verify",
+    "gpt",
+    "first-dispatch",
+    "correctness",
+    "without",
+    "new",
+    "benchmark",
+    "tooling",
+    "smoke",
+    "must",
+    "include",
+    "route-proof",
+    "assertions"
+  ],
+  "lastUpdated": "2026-06-30T19:16:49.308Z",
+  "specId": "005",
+  "folderSlug": "gpt-verification-smoke",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-issues-with-gpt-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -20,8 +20,8 @@
     "writes",
     "unguarded"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.267Z",
-  "specId": "003",
+  "lastUpdated": "2026-07-01T05:32:33.057Z",
+  "specId": "002",
   "folderSlug": "deep-loop-runtime",
   "parentChain": [
     "deep-loops",

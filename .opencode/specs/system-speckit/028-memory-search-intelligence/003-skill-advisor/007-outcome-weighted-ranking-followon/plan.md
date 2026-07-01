@@ -55,6 +55,8 @@ FAILURE MODES:
 
 ### Overview
 The `aionforge-procedural` follow-on shipped shadow-only in `03d0b01eb6`. The skill-outcome store (`skill-outcome-store.ts`), the outcome-weighted shadow re-rank (`outcome-weighted-rerank.ts`), the execution-success record (`metrics.ts`), the out-of-process fold-tick (`skill-outcome-fold-tick.mjs`) and the default-off BM25 query-length calibration (`bm25.ts`) all landed. Two sub-gates stay pending: the emitter runtime seam (Q-001) and sibling 004's Beta primitive wiring, the live fused sort is byte-identical and promotion-to-live is NO-GO.
+
+**Drift correction pointer (2026-07-01):** the shipped language above reflects commit `03d0b01eb6`, but implementation-summary.md now records that the store and re-rank were later wired live-adjacent at `09626fc921` and deleted at `8efcde0e6b` after MRR delta +0.005 to +0.008 versus SD 0.0237 and right-skill@3 = 0.000 across all 90 runs.
 <!-- /ANCHOR:summary -->
 
 ---

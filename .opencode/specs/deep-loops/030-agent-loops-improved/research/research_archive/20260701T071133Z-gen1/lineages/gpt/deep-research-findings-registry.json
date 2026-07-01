@@ -1,0 +1,37 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Which packet documentation states still claim Complete while evidence, checklist, metadata, or continuity contradicts them?",
+    "Which review/research lineage artifacts are stale, abandoned, unreconciled, or misleading after later fixes?",
+    "Which runtime scripts or workflow YAMLs contain bugs or brittle contracts affecting fan-out, salvage, merge, convergence, or timeout behavior?",
+    "Which phase packets need stronger evidence, tests, ADR/checklist records, or documentation-map updates before completion can be trusted?",
+    "What safety, observability, and loop-system hardening upgrades would most reduce future drift?"
+  ],
+  "keyFindings": [
+    { "id": "G-001", "severity": "P1", "title": "Complete status conflicts with Draft child maps and stale continuity", "iterations": [1, 2, 5, 8] },
+    { "id": "G-002", "severity": "P1", "title": "Review lineages remain CONDITIONAL/active after 007 fan-out-hardening claims fixes shipped", "iterations": [3] },
+    { "id": "G-003", "severity": "P1", "title": "Workflow YAML still contains ephemeral F-010-B5 markers", "iterations": [4, 8] },
+    { "id": "G-004", "severity": "P1", "title": "Deep-research fan-out does not pass resolved convergence threshold into fanout-run", "iterations": [4] },
+    { "id": "G-005", "severity": "P1", "title": "Per-lineage timeout hard-caps at 4h with no override, undercutting 30+ high-effort iterations", "iterations": [4] },
+    { "id": "G-006", "severity": "P1", "title": "Root and remediation graph metadata omit real implementation surfaces", "iterations": [3, 5] },
+    { "id": "G-007", "severity": "P1", "title": "ADR/checklist governance artifacts are missing for Complete Level 2/3 ADR-style phases", "iterations": [6] },
+    { "id": "G-008", "severity": "P2", "title": "Validator and workflow gaps allow recurrence", "iterations": [7] }
+  ],
+  "ruledOutDirections": [
+    "Treat phase 008 as wholly unrepaired; some continuity/key-file repairs exist, but top-level and registry state remain inconsistent.",
+    "Treat implementation-summary.md presence as proof of completion; sampled summaries can still contain template text.",
+    "Treat old-path GLM reports as current state; they are historical but need tombstoning.",
+    "Blame fanout-run alone for threshold omission; buildLoopPrompt can emit the threshold when YAML passes it.",
+    "Use blocked test attempts as green verification evidence.",
+    "Assume the single decision-record.md covers all ADR phases.",
+    "Rely on evidence-marker lint for durable YAML comment hygiene."
+  ],
+  "convergence": {
+    "stopReason": "converged",
+    "iterationsCompleted": 11,
+    "lastThreeNewInfoRatio": [0, 0, 0],
+    "threshold": 0.01,
+    "sourceDiversity": ["spec docs", "tasks", "implementation summaries", "graph metadata", "review reports", "registries", "workflow YAML", "runtime code", "tests", "validators"]
+  },
+  "generatedAt": "2026-07-01T06:03:00Z"
+}

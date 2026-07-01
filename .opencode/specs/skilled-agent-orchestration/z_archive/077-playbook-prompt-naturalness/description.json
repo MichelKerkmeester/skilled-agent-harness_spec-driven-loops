@@ -2,7 +2,7 @@
   "completionPct": 0,
   "lastOutcome": "Spec packet scaffolded; awaiting Phase A sk-doc edits.",
   "specFolder": "skilled-agent-orchestration/z_archive/077-playbook-prompt-naturalness",
-  "description": "Every per-feature file across 16 `manualtestingplaybook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {",
+  "description": "Every per-feature file across 16 `manualtestingplaybook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE},",
   "keywords": [
     "every",
     "per-feature",
@@ -20,7 +20,7 @@
     "opens",
     "role"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.016Z",
+  "lastUpdated": "2026-07-01T12:31:47.589Z",
   "specId": "077",
   "folderSlug": "playbook-prompt-naturalness",
   "parentChain": [

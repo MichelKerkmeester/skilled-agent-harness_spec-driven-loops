@@ -19,8 +19,8 @@
     "json",
     "inter"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.787Z",
-  "specId": "150",
+  "lastUpdated": "2026-07-01T05:32:33.184Z",
+  "specId": "117",
   "folderSlug": "parent-nested-skill-pattern",
   "parentChain": [
     "skilled-agent-orchestration"

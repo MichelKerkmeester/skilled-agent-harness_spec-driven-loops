@@ -12,7 +12,8 @@
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening"
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit"
   ],
   "migrated": true,
   "manual": {

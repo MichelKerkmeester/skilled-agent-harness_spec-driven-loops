@@ -59,7 +59,7 @@ FAILURE MODES:
 | **Reused substrate** | 027's Memory MCP `lib/graph/bfs-traversal.ts` weighted-walk traversal (`collectWeightedWalk`/`collectCausalWeightedNeighbors`) - confirm-then-reuse, do NOT rebuild |
 
 ### Overview
-Give the code-graph impact/blast-radius walk a query-seeded multi-hop ranking. The work is built around one net-new ranking primitive - Q3-C1 bounded personalized-PageRank - seeded on the subject symbol, spread over 027's already-shipped weighted-walk traversal, ordered best-first by PPR score and GATED to impact/multi-hop modes only (the aionforge precision lesson). Three refinements layer on top of that built core: a new SingleHop/MultiHop/Entity query-class taxonomy for the gate (the structural classifier has none), an undirected projection so seed mass reaches callers and Q4-C2 multi-hop reliability decay reusing the already-plumbed `reliability` factor. The vector-seed-union candidate is CUT - the code-graph deliberately disowned its semantic backend. Every change is reversible by mode-gate/flag, the cheap single-hop default never regresses.
+Give the code-graph impact/blast-radius walk a query-seeded multi-hop ranking. The work is built around one net-new ranking primitive - Q3-C1 bounded personalized-PageRank - seeded on the subject symbol, spread over 027's already-shipped weighted-walk traversal, ordered best-first by PPR score and GATED to impact/multi-hop modes only (the aionforge precision lesson). Three refinements layer on top of that built core: a new SingleHop/MultiHop/Entity query-class taxonomy for the gate (the structural classifier has none), an undirected projection so seed mass reaches callers and Q4-C2 multi-hop reliability decay reusing the already-plumbed `reliability` factor. The vector-seed-union candidate is CUT - the code-graph deliberately disowned its semantic backend. Correction: this was originally designed as reversible by mode-gate/flag, but commit `277c35344c` deleted the code from the tree; recovering it requires restoring or rebuilding from git history, not flipping `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -171,7 +171,7 @@ Required inventories:
 | 027 `collectWeightedWalk`/`collectCausalWeightedNeighbors` traversal | Internal (Memory MCP, reused) | Green - shipped, reusability confirm-first | PPR spread has no substrate, risk of forking a second walker |
 | New SingleHop/MultiHop/Entity query-class taxonomy | Internal (this packet) | Green - shipped (`657a0f6a3e`) | The class-gate routes PPR ON for impact/multi-hop, OFF for single-hop/ambiguous |
 | Q3-C1 PPR core (built before its refinements) | Internal (this packet) | Green - shipped default-off (`657a0f6a3e`) | class-gate/undirected/Q4-C2 refine the built `computeBoundedPersonalizedPageRank` core |
-| Code-graph retrieval benchmark | Internal data | Red (does not exist campaign-wide) | PPR ranking quality + parameter values cannot be validated |
+| Code-graph retrieval benchmark | Internal data | Green - RESOLVED (pass-2, 2026-07-01): the benchmark was built and ran, at `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`, producing the `0.0000`-delta CUT verdict | PPR was validated and cut; a follow-on revisit with differentiated edge confidence is tracked at `../010-edge-confidence-and-ppr-revisit/` |
 | Q1-C1 `invalid_at`/`valid_at` columns | Internal (separate DEFER-speculative sub-phase) | Absent today | Current-set intersection limited to physical-edge-presence |
 <!-- /ANCHOR:dependencies -->
 
@@ -181,7 +181,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Impact-walk latency regression (PPR over budget), single-hop precision regression (gate leaked PPR onto the cheap default) or a forked second walker discovered.
-- **Procedure**: Each candidate is a scoped, separately revertible commit. PPR is reversible by a default-off flag (disable ⇒ the flat enumeration returns, byte-identical). The mode-gate failing OFF on an ambiguous class is the safe default, refinements (undirected, Q4-C2 decay) revert independently of the PPR core. No schema migration ⇒ no data reversal.
+- **Procedure**: Historical rollback assumed a scoped default-off flag, but commit `277c35344c` deleted the seeded-PPR flag and code from the tree. Recovering the mechanism requires restoring or rebuilding from git history, not flipping a flag; no schema migration occurred, so there is still no data reversal.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -223,14 +223,15 @@ Phase 1 (reuse-confirm + Q3-C1 PPR core) ──► Phase 2 (class-gate taxonomy)
 
 ### Pre-deployment Checklist
 - [ ] Backup created (if data changes) - N/A, no schema migration
-- [ ] Default-off flag configured for the PPR ranking path
+- [ ] Historical default-off flag state understood: commit `277c35344c` deleted the flag and code, so recovery requires git history rather than flag configuration
 - [ ] Single-hop baseline captured for the byte-identity (mode-gate) check
 
 ### Rollback Procedure
-1. Disable the PPR default-off flag - the flat impact enumeration returns, byte-identical to baseline
-2. For the refinements, `git revert` the scoped undirected / Q4-C2 commit independently
-3. Re-run the single-hop byte-identity regression to confirm the cheap default is unchanged
-4. No stakeholder notification needed (branch-only, nothing deployed without explicit go)
+1. Recover the seeded-PPR implementation from git history because commit `277c35344c` deleted the flag and code from the tree.
+2. Do not treat recovery as a flag flip; `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` is not a serving-path switch in the current tree.
+3. For any restored refinements, `git revert` the scoped undirected / Q4-C2 commit independently if they are reintroduced.
+4. Re-run the single-hop byte-identity regression to confirm the cheap default is unchanged.
+5. No stakeholder notification needed (branch-only, nothing deployed without explicit go).
 
 ### Data Reversal
 - **Has data migrations?** No
@@ -336,7 +337,7 @@ Phase 1 (reuse-confirm + Q3-C1 PPR core) ──► Phase 2 (class-gate taxonomy)
 
 **Consequences**:
 - Single-hop precision is structurally protected, the cheap default is byte-identical and zero-cost.
-- The mechanism ships reversibly now, the quality claim and parameter tuning wait for a measured benchmark.
+- Historical design shipped the mechanism behind a reversible default-off flag, but commit `277c35344c` later deleted the flag and code; current recovery requires git-history restoration or rebuild, and any future quality claim and parameter tuning still require a measured benchmark.
 
 **Alternatives Rejected**:
 - PPR default-on for all modes: rejected - re-introduces the named single-hop precision-loss failure mode.

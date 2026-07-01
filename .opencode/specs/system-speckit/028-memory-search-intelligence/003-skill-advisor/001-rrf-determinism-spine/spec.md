@@ -59,7 +59,7 @@ The one mandatory caveat the port MUST carry is the **graph_causal signed-score 
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | complete |
+| **Status** | in-progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
   "description": "The deep-loop research convergence verdict (`computeCompositeScore`, `convergence.cjs:107-141`) is a fixed-weight linear blend whose two volume terms",
   "keywords": [
     "deep-loop",
@@ -17,11 +17,11 @@
     "volume",
     "terms"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.513Z",
+  "lastUpdated": "2026-07-01T10:41:59.119Z",
   "specId": "004",
   "folderSlug": "reliability-weighted-convergence",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "004-deep-loop"
   ],

@@ -1,33 +1,37 @@
 ---
-title: "Feature Specification: Phase 1: opencode-temp-worker-reaping [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: OpenCode Temp Worker Reaping and Vitest Runaway Prevention"
+description: "OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully. Vitest worker accumulation during long stress-test suites can exhaust system resources. This phase adds session-scoped process-tree cleanup and a runaway-worker guard for the test runner."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "opencode temp worker reaping"
+  - "session process cleanup"
+  - "orphan worker reaping"
+  - "vitest runaway prevention"
+  - "mcp helper lifecycle"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/030-opencode-temp-worker-reaping"
-    last_updated_at: "2026-06-30T07:44:29Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping"
+    last_updated_at: "2026-07-01T00:00:00Z"
+    last_updated_by: "drift-remediation"
+    recent_action: "Replaced template scaffold with real spec content"
+    next_safe_action: "Plan implementation or mark deferred"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/030-opencode-temp-worker-reaping"
+      session_id: "drift-remediation-030"
       parent_session_id: null
     completion_pct: 0
-    open_questions: []
+    open_questions:
+      - "Which OpenCode lifecycle hook (stop-hook vs session-cleanup.sh) should own the reap?"
+      - "Should the Vitest runaway guard be a global config or per-suite opt-in?"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: opencode-temp-worker-reaping
+# Feature Specification: Phase 30: opencode-temp-worker-reaping
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -46,15 +50,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P2 |
+| **Status** | Pending |
 | **Created** | 2026-06-30 |
 | **Branch** | `scaffold/030-opencode-temp-worker-reaping` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 30 of 30 |
 | **Predecessor** | 029-substrate-sandbox-cleanup |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Spec approved; implementation not yet started |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -64,13 +68,15 @@ FAILURE MODES:
 
 This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prevention specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Session-scoped process-tree cleanup for OpenCode parallel workers and MCP helpers, plus a Vitest runaway-worker guard for stress-test suites. No changes to the memory or code-graph subsystems.
 
 **Dependencies**:
-- [To be defined during planning]
+- OpenCode session lifecycle hooks (stop-hook, session-cleanup.sh)
+- Existing orphan-sweep stop-hook mechanism (`SPECKIT_STOP_HOOK_ORPHAN_SWEEP`)
 
 **Deliverables**:
-- [To be defined during planning]
+- A session-scoped reaper that cleans up orphaned parallel detached workers and MCP helpers when the parent session exits ungracefully.
+- A Vitest worker runaway guard that caps concurrent workers and reaps stale worker processes during long stress-test suites.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +88,10 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully. The existing session-cleanup.sh resolves descendants from CLAUDE_SESSION_PID but has no fallback when the session PID is missing, so a shared-terminal scenario can leave workers alive. Vitest worker accumulation during long stress-test suites can exhaust system resources when stale workers are not reaped between iterations.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Add session-scoped process-tree cleanup that reliably reaps orphaned parallel workers and MCP helpers, and add a Vitest runaway-worker guard that caps concurrent workers and reaps stale processes during stress-test suites.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +100,21 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Session-scoped reaper for orphaned parallel detached workers and MCP helpers
+- Vitest runaway-worker guard with concurrency cap and stale-worker reaping
+- Integration with existing stop-hook and session-cleanup.sh lifecycle
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Changes to the memory or code-graph subsystems
+- Changes to the MCP transport or protocol layer
+- Changes to how OpenCode spawns workers (only their cleanup)
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/scripts/session-cleanup.sh` | Modify | Add orphan-worker reaping fallback when session PID is missing |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/` | Modify | Add Vitest runaway-worker guard for stress-test suites |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +126,14 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Session-scoped reaper must clean up orphaned parallel workers and MCP helpers | When a parent session exits ungracefully, the reaper kills all descendant processes; a shared-terminal scenario with a missing session PID does not leave workers alive |
+| REQ-002 | Vitest runaway-worker guard must cap concurrent workers and reap stale processes | Stress-test suites do not accumulate workers beyond the configured cap; stale workers from previous iterations are reaped before new ones spawn |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-003 | Integration with existing lifecycle hooks | The reaper works alongside the existing orphan-sweep stop-hook without conflicts; session-cleanup.sh continues to function for the happy path |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +141,8 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A parent session that exits ungracefully leaves no orphaned worker or MCP helper processes behind.
+- **SC-002**: Stress-test suites with long iteration counts do not accumulate workers beyond the configured concurrency cap.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +152,9 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Reaping a worker that a sibling session is still bridged to | High | Check worker liveness and socket bridgeability before reaping; adopt live workers instead of killing them |
+| Dependency | session-cleanup.sh and orphan-sweep stop-hook | Med | Test both hooks together to confirm no double-reap or conflict |
+| Risk | Vitest guard reaping a worker that is still producing test output | Low | Only reap workers that have been idle beyond the configured stale threshold |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,8 +162,8 @@ This is **Phase 30** of the OpenCode temp worker reaping and Vitest runaway prev
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Which OpenCode lifecycle hook (stop-hook vs session-cleanup.sh) should own the reap?
+- Should the Vitest runaway guard be a global config or per-suite opt-in?
 <!-- /ANCHOR:questions -->
 
 ---
@@ -165,18 +175,3 @@ CORE TEMPLATE (~80 lines)
 - Add L2/L3 addendums for complexity
 -->
 
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

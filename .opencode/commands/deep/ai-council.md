@@ -15,32 +15,34 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
 
-This command is **general-agent based** and must pass the @general verification gate before setup routing continues. Gate 1 (@general verification) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
+This command is **general-agent based** and must pass the dispatch-context check before setup routing continues. Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
 
-### PHASE 0: @GENERAL AGENT VERIFICATION
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
-**STATUS: ☐ BLOCKED**
+**STATUS: ☐ CHECKED**
 
 ```
-EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+This gate checks actual dispatch context, not self-reported capability -- the prior
+self-assessment version of this check produced a confirmed false-positive block (a
+capable agent judged itself "uncertain" on an abstract question and hard-stopped).
 
-SELF-CHECK: Are you operating as the @general agent?
-│
-├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate the deep-ai-council session (YAML workflow execution)
-│   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
-│   ├─ You can load skill references and execute defined logic
-│
-├─ IF YES (all indicators present):
+CHECK: was this file invoked directly as /deep:ai-council (typed by the user, or an
+explicit Task delegation naming this exact command) -- as opposed to another agent
+pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
+instructions for a worker to follow (that worker should follow its own dispatch
+prompt, not re-run this command's full setup contract)?
+
+├─ YES, or no concrete evidence of the pasted-inline case:
 │   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
 │
-└─ IF NO or UNCERTAIN:
+└─ NO, with concrete evidence this file's content was pasted inline rather than
+   invoked as the command itself:
     │
     ├─ ⛔ HARD BLOCK - DO NOT PROCEED
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ GENERAL AGENT REQUIRED                                  │
+    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
     │   │                                                            │
     │   │ This command orchestrates the deep-ai-council session and  │
     │   │ runs general-agent based.                                  │
@@ -49,7 +51,12 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │   /deep:ai-council [arguments]                             │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="General agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
+
+Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
+capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
+from the inside and is what caused the original false-positive block. Block only on
+concrete evidence of the pasted-inline case above.
 ```
 
 **Phase Output:**
