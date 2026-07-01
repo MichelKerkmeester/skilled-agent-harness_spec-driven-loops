@@ -18,9 +18,8 @@
       "implementation",
       "plan",
       "tasks",
-      "summary",
-      "template",
-      "impl summary core"
+      "phase 010 implementation summary",
+      "mk-goal correctness fixes"
     ],
     "key_topics": [
       "goal",
@@ -40,6 +39,8 @@
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/tasks.md",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/implementation-summary.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -53,9 +54,15 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -68,12 +75,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -193,7 +194,7 @@
     ],
     "causal_summary": "Deep-review found 2 security defects and 3 correctness defects in the shipped `/goal` plugin, all confirmed and adversarially re-verified across the full 15-iteration review: an unredacted-secret leak path in verifier-exception handling, a narrow blacklist-only prompt-injection sanitizer, an injection block that can exceed its own configured length cap, a stale-verifier-result race that can let a replacement goal be auto-continued on discarded evidence, and a missing RICCE metadata field the plugin's own phase 007 contract requires",
     "created_at": "2026-07-01T10:04:50Z",
-    "last_save_at": "2026-07-01T10:19:37.007Z",
+    "last_save_at": "2026-07-01T11:16:40.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28d476aa3a76c17d9b58e6418387943ab6db26992f25952bb20265d67604fa9d",
+    "source_fingerprint": "sha256:de66f0e554c0f802a6a754b76d7baaf37cf18816c1381b0443c4ccfb4717af1b",
     "source_doc_hashes": {
       "spec.md": "7d5531a1b8d662b9d5c661264f7247340763de3d0d89a36a97253a4d1a70a96e",
       "plan.md": "0b57202376f5f2b4f8cff588fb619c67069384d5c3354ffc66beb6db7c7d17bf",
-      "tasks.md": "c815d3bacaab2f241c55b2ebaf65a83b69deb456c9137c09cc125ad24488fd6b",
-      "implementation-summary.md": "7a2b9f743481a97b366b203b6164b009d93b4d36e9290b8cab422b4a2ff71be0"
+      "tasks.md": "0a559b0b2c0f1001b59507f34f0e0a537de718474deaf7ece9f798503c042b1c",
+      "implementation-summary.md": "4178ecbc90a512f3b3ae2c88aa7f29fe273f4bd09c71b06c2ffca3b98981883d"
     },
     "last_active_child_id": null,
     "last_active_at": null

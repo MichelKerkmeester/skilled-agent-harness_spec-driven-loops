@@ -39,6 +39,10 @@ const PROMPT_ENHANCEMENT_VERSION = 'sk-prompt-goal-v1';
 const PROMPT_ENHANCEMENT_FRAMEWORK = 'CRAFT+TIDD-EC';
 const PROMPT_ENHANCEMENT_METHODOLOGY = 'DEPTH';
 const PROMPT_ENHANCEMENT_MODE = 'standard';
+const PROMPT_ENHANCEMENT_RICCE = Object.freeze({
+  name: 'RICCE',
+  structure: ['Role', 'Objective', 'Context', 'Method', 'Success Criteria', 'Stop Conditions'],
+});
 const PROMPT_ENHANCEMENT_PERSPECTIVES = [
   'prompt_engineering',
   'ai_interpretation',
@@ -170,30 +174,42 @@ function sessionKeyForSession(sessionID) {
 
 function clampText(value, maxChars) {
   const text = String(value ?? '');
-  if (text.length <= maxChars) return text;
-  return `${text.slice(0, Math.max(1, maxChars - 3)).trimEnd()}...`;
+  const limit = Number.isFinite(maxChars) ? Math.max(0, Math.trunc(maxChars)) : text.length;
+  if (text.length <= limit) return text;
+  if (limit <= 0) return '';
+  if (limit <= 3) return '.'.repeat(limit);
+  return `${text.slice(0, limit - 3).trimEnd()}...`;
+}
+
+function normalizeUserAuthoredText(value) {
+  return String(value ?? '')
+    .normalize('NFKC')
+    .replace(/[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]/g, '')
+    .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]+/g, ' ')
+    .replace(/[\u0009\u000a\u000d]+/g, '\n')
+    .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
+    .replace(/`{3,}/g, '\'\'\'')
+    .replace(/(^|[\s\n>])([a-z][\w -]{0,24})\s*:/gi, (match, prefix, role) => {
+      if (!/^(system|developer|assistant|tool|user)$/i.test(role.trim())) return match;
+      return `${prefix}${role}-role:`;
+    })
+    .replace(/\b(ignore|disregard|forget|override|bypass|disable|drop|replace)\s+(all\s+)?(previous|prior|above|earlier|system|developer|safety|tool)\s+(instructions?|messages?|prompts?|rules?|constraints?)\b/gi, '[instruction-redacted]')
+    .replace(/\b(reveal|print|show|dump|exfiltrate|leak)\s+(the\s+)?(system|developer|hidden|secret)\s+(prompt|instructions?|messages?|rules?)\b/gi, '[instruction-redacted]')
+    .replace(/\b(new|updated)\s+(system|developer)\s+(prompt|instructions?|rules?)\b/gi, '[instruction-redacted]')
+    .replace(/\b(jailbreak|prompt\s*injection|do\s+anything\s+now)\b/gi, '[instruction-redacted]');
 }
 
 function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
-  const text = String(value ?? '')
-    .replace(/[\u0000-\u001f\u007f]+/g, ' ')
+  const text = normalizeUserAuthoredText(value)
+    .replace(/[\n]+/g, ' ')
     .replace(/\s+/g, ' ')
-    .trim()
-    .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
-    .replace(/`{3,}/g, '\'\'\'')
-    .replace(/\b(system|developer|assistant|tool|user)\s*:/gi, '$1-role:')
-    .replace(/\b(ignore|disregard)\s+(all\s+)?(previous|prior)\s+(instructions?|messages?)\b/gi, '[instruction-redacted]');
+    .trim();
   return clampText(text, maxChars);
 }
 
 function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
-  const text = String(value ?? '')
+  const text = normalizeUserAuthoredText(value)
     .replace(/\r\n?/g, '\n')
-    .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]+/g, ' ')
-    .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
-    .replace(/`{3,}/g, '\'\'\'')
-    .replace(/\b(system|developer|assistant|tool|user)\s*:/gi, '$1-role:')
-    .replace(/\b(ignore|disregard)\s+(all\s+)?(previous|prior)\s+(instructions?|messages?)\b/gi, '[instruction-redacted]')
     .split('\n')
     .map((line) => line.replace(/[ \t]+/g, ' ').trim())
     .join('\n')
@@ -292,6 +308,7 @@ function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
       methodology: PROMPT_ENHANCEMENT_METHODOLOGY,
       mode: PROMPT_ENHANCEMENT_MODE,
       framework: PROMPT_ENHANCEMENT_FRAMEWORK,
+      ricce: PROMPT_ENHANCEMENT_RICCE,
       perspectives: PROMPT_ENHANCEMENT_PERSPECTIVES,
       clearScore: score.total,
       clearBreakdown: score.breakdown,
@@ -310,6 +327,7 @@ function normalizePromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {})
     methodology: sanitizeInlineText(raw.methodology || PROMPT_ENHANCEMENT_METHODOLOGY, 80),
     mode: sanitizeInlineText(raw.mode || PROMPT_ENHANCEMENT_MODE, 80),
     framework: sanitizeInlineText(raw.framework || PROMPT_ENHANCEMENT_FRAMEWORK, 80),
+    ricce: PROMPT_ENHANCEMENT_RICCE,
     perspectives: Array.isArray(raw.perspectives) && raw.perspectives.length > 0
       ? raw.perspectives.map((entry) => sanitizeInlineText(entry, 80)).filter(Boolean).slice(0, 8)
       : PROMPT_ENHANCEMENT_PERSPECTIVES,
@@ -654,7 +672,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     lastVerifierVerdict: sanitizeInlineText(rawGoal.lastVerifierVerdict || 'not_evaluated', 80),
     lastVerifierReason: rawGoal.lastVerifierReason === null || rawGoal.lastVerifierReason === undefined
       ? null
-      : sanitizeInlineText(rawGoal.lastVerifierReason, DEFAULT_MAX_REASON_CHARS),
+      : redactEvidence(rawGoal.lastVerifierReason, DEFAULT_MAX_REASON_CHARS),
     lastVerifierConfidence: Number.isFinite(rawGoal.lastVerifierConfidence)
       ? Math.max(0, Math.min(1, Number(rawGoal.lastVerifierConfidence)))
       : null,
@@ -1051,10 +1069,11 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
     });
     return normalizeVerifierResult(result, goal.lastEvidence, options);
   } catch (error) {
+    const reason = redactEvidence(`Verifier failed: ${error?.message || 'unknown error'}`, DEFAULT_MAX_REASON_CHARS);
     return {
       verdict: 'blocked',
       confidence: 0,
-      reason: sanitizeInlineText(`Verifier failed: ${error?.message || 'unknown error'}`, DEFAULT_MAX_REASON_CHARS),
+      reason,
       evidence: redactEvidence(goal.lastEvidence, options.maxEvidenceChars),
     };
   }
@@ -1076,8 +1095,12 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
 
   const result = await runSupervisorVerifier(goal, options);
   const verifierRunID = `verifier-${randomUUID()}`;
+  let resultApplied = false;
+  let currentGoalID = null;
   await mutateGoal(sessionID, (current) => {
+    currentGoalID = current?.goalId || null;
     if (!current || current.goalId !== goal.goalId || current.status !== 'active') return current;
+    resultApplied = true;
     const timestamp = nowMs(options);
     const next = {
       ...current,
@@ -1111,7 +1134,13 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
     return next;
   }, options);
 
-  return result;
+  return {
+    ...result,
+    goalId: goal.goalId,
+    currentGoalId: currentGoalID,
+    verifierRunID,
+    stale: !resultApplied,
+  };
 }
 
 function renderContinuationPrompt(goal, rawOptions = {}) {
@@ -1260,6 +1289,12 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
   const autoTurnsUsed = goal?.autoTurnsUsed || 0;
   if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
 
+  const verifierResult = rawOptions.verifierResult || null;
+  if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
+  if (verifierResult?.goalId && verifierResult.goalId !== goal.goalId) {
+    return decision('suppressed', 'verifier_goal_mismatch', autoTurnsUsed);
+  }
+
   if (goal.continuationSuppressed) {
     return decision('suppressed', goal.continuationSuppressedReason || 'continuation_suppressed', autoTurnsUsed);
   }
@@ -1374,8 +1409,20 @@ function renderGoalInjection(goal, rawOptions = {}) {
     '[/active_goal]',
   ].join('\n');
   const promptBudget = Math.max(3, options.maxInjectionChars - buildBlock('').length);
+  const block = buildBlock(sanitizePromptText(goalPrompt, promptBudget));
+  if (block.length <= options.maxInjectionChars) return block;
 
-  return buildBlock(sanitizePromptText(goalPrompt, promptBudget));
+  const buildCompactBlock = (promptText) => [
+    `[active_goal:${goalId}]`,
+    'goal_prompt:',
+    promptText,
+    `last_check: ${verdict} ; reason: ${reason}`,
+    directive,
+    '[/active_goal]',
+  ].join('\n');
+  const compactPromptBudget = Math.max(3, options.maxInjectionChars - buildCompactBlock('').length);
+
+  return clampText(buildCompactBlock(sanitizePromptText(goalPrompt, compactPromptBudget)), options.maxInjectionChars);
 }
 
 async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions = {}) {
@@ -1584,8 +1631,9 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       runtimeState.sessionStatuses.set(sessionID, 'idle');
       if (runtimeState.inFlightVerifications.has(sessionID)) return;
       runtimeState.inFlightVerifications.add(sessionID);
+      let verifierResult = null;
       try {
-        await maybeVerifyGoal(sessionID, options);
+        verifierResult = await maybeVerifyGoal(sessionID, options);
       } finally {
         runtimeState.inFlightVerifications.delete(sessionID);
       }
@@ -1594,6 +1642,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
         client: ctx?.client,
         directory: ctx?.directory,
         runtimeState,
+        verifierResult,
       });
       return;
     }
