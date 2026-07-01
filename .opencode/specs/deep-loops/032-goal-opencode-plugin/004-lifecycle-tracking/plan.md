@@ -94,7 +94,7 @@ Additive plugin extension.
 | `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | New lifecycle coverage. | Created. | Full plugin unit suite. |
 
 Required inventories:
-- Same-class producers: local plugin event handlers in `.opencode/plugins/mk-spec-memory.js` and `.opencode/plugins/session-cleanup.js`.
+- Same-class producers: local plugin event handlers in the mk-spec-memory and session-cleanup plugins (sibling `.opencode/plugins` modules, not deliverables of this phase).
 - Consumers of changed symbols: `mk_goal_status` output and test-only helpers.
 - Matrix axes: active vs non-active status, matching vs stale goal id, repeated vs new message id, usage present vs unavailable.
 - Algorithm invariant: token usage is charged at most once per message id and only to the currently active goal.

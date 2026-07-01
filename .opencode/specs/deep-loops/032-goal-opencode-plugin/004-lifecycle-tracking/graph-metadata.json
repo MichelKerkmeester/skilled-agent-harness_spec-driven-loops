@@ -40,8 +40,6 @@
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-      ".opencode/plugins/mk-spec-memory.js",
-      ".opencode/plugins/session-cleanup.js",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -64,18 +62,6 @@
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-spec-memory.js",
-        "source": "derived"
-      },
-      {
-        "name": "session-cleanup.js",
-        "kind": "code",
-        "path": ".opencode/plugins/session-cleanup.js",
         "source": "derived"
       },
       {
@@ -191,11 +177,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "message-id",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "M1 persisted and injected goals, but it did not observe session lifecycle events",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-01T11:37:33.978Z",
+    "last_save_at": "2026-07-01T12:06:58.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23a46d9d26c2ca57cb93bfc077d124bf51aa3c61be00fad3c1ce522c95af1e0a",
+    "source_fingerprint": "sha256:36ac645d2483ad738d32e5e15c9b588802cafe8f3e05f38d3f6286ae209e403c",
     "source_doc_hashes": {
       "spec.md": "d31fbab776c384a7468bb8d15278d7311fb72e534b702cf51eb5ba7bcb1c1e15",
-      "plan.md": "90adfffd441c5b0f43b2e0502b7485e828dd68feab68b5f7ed850a4d500ee150",
+      "plan.md": "c051a6c16a973a44f789ee62b846a4e7a7fb3fb7a78cc2e647cfe21bf5fec1f5",
       "tasks.md": "eca1c5998ecdda3a68aea761aec031840632a393225f4d3537a064b8e742244e",
       "implementation-summary.md": "cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
     },
