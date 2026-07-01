@@ -6,7 +6,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const { mkdtemp, readFile, rm, writeFile } = require('node:fs/promises');
+const { mkdir, mkdtemp, readFile, rm, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -36,6 +36,16 @@ async function main() {
       return raw.trim().split('\n').filter(Boolean).map((line) => JSON.parse(line));
     } catch (error) {
       if (error?.code === 'ENOENT') return [];
+      throw error;
+    }
+  }
+
+  async function fileExists(path) {
+    try {
+      await readFile(path, 'utf8');
+      return true;
+    } catch (error) {
+      if (error?.code === 'ENOENT') return false;
       throw error;
     }
   }
@@ -311,6 +321,11 @@ async function main() {
     });
     debugEntries = await readGoalEventEntries();
     assert.ok(debugEntries.some((entry) => entry.type === 'session.deleted' && entry.sid === 'session-status-flush'));
+    await helpers.setGoal('session-status-flush', 'Flush volatile session status on delete after archive', {
+      stateDir,
+      nowMs: 3100,
+      goalIdFactory: () => 'status-flush-goal-restored',
+    });
     await plugin.event({
       event: {
         type: 'session.idle',
@@ -376,6 +391,131 @@ async function main() {
     assert.equal(errorEntry.eventType, 'message.updated');
     assert.equal(errorEntry.sid, 'session-error-observable');
     assert.match(errorEntry.error, /Failed to read goal state/);
+
+    const archivePlugin = await pluginModule.default({}, { stateDir });
+    await helpers.setGoal('session-archive-existing', 'Archive this goal state', {
+      stateDir,
+      goalIdFactory: () => 'archive-existing-goal',
+    });
+    const archiveSourcePath = helpers.goalPathForSession('session-archive-existing', { stateDir });
+    const archiveTargetPath = join(
+      stateDir,
+      '.archive',
+      `${helpers.sessionKeyForSession('session-archive-existing')}.json`,
+    );
+    const archiveSourceRaw = await readFile(archiveSourcePath, 'utf8');
+    await archivePlugin.event({
+      event: {
+        type: 'session.deleted',
+        properties: { sessionID: 'session-archive-existing' },
+      },
+    });
+    assert.equal(await fileExists(archiveSourcePath), false);
+    const archiveTargetRaw = await readFile(archiveTargetPath, 'utf8');
+    assert.equal(JSON.parse(archiveTargetRaw).goalId, 'archive-existing-goal');
+    assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
+
+    await assert.doesNotReject(() => archivePlugin.event({
+      event: {
+        type: 'session.deleted',
+        properties: { sessionID: 'session-archive-missing' },
+      },
+    }));
+
+    const archiveDir = join(stateDir, '.archive');
+    await mkdir(archiveDir, { recursive: true, mode: 0o700 });
+    const oldArchivePath = join(archiveDir, 'old-archive.json');
+    const recentArchivePath = join(archiveDir, 'recent-archive.json');
+    await writeFile(oldArchivePath, '{"goalId":"old-archive"}\n', 'utf8');
+    await writeFile(recentArchivePath, '{"goalId":"recent-archive"}\n', 'utf8');
+    const oldArchiveDate = new Date(Date.now() - (120 * 24 * 60 * 60 * 1000));
+    await utimes(oldArchivePath, oldArchiveDate, oldArchiveDate);
+    await helpers.setGoal('session-archive-prune-trigger', 'Trigger archive pruning', {
+      stateDir,
+      goalIdFactory: () => 'archive-prune-trigger-goal',
+    });
+    await archivePlugin.event({
+      event: {
+        type: 'session.deleted',
+        properties: { sessionID: 'session-archive-prune-trigger' },
+      },
+    });
+    assert.equal(await fileExists(oldArchivePath), false);
+    assert.equal(await fileExists(recentArchivePath), true);
+
+    const staleUpdatedAtMs = Date.now() - (40 * 24 * 60 * 60 * 1000);
+    const recentUpdatedAtMs = Date.now();
+    const staleSessionID = 'session-orphan-stale';
+    const recentSessionID = 'session-orphan-recent';
+    const staleActivePath = helpers.goalPathForSession(staleSessionID, { stateDir });
+    const recentActivePath = helpers.goalPathForSession(recentSessionID, { stateDir });
+    const staleArchivePath = join(archiveDir, `${helpers.sessionKeyForSession(staleSessionID)}.json`);
+    await writeFile(staleActivePath, JSON.stringify({
+      sessionId: staleSessionID,
+      goalId: 'orphan-stale-goal',
+      objective: 'Archive stale active state',
+      status: 'active',
+      createdAtMs: staleUpdatedAtMs,
+      updatedAtMs: staleUpdatedAtMs,
+    }), 'utf8');
+    await writeFile(recentActivePath, JSON.stringify({
+      sessionId: recentSessionID,
+      goalId: 'orphan-recent-goal',
+      objective: 'Keep recent active state',
+      status: 'active',
+      createdAtMs: recentUpdatedAtMs,
+      updatedAtMs: recentUpdatedAtMs,
+    }), 'utf8');
+    const sweepPlugin = await pluginModule.default({}, { stateDir });
+    await sweepPlugin.event({
+      event: {
+        type: 'session.created',
+        properties: { sessionID: 'session-sweep-fresh' },
+      },
+    });
+    assert.equal(await fileExists(staleActivePath), false);
+    assert.equal(await fileExists(staleArchivePath), true);
+    assert.equal(await fileExists(recentActivePath), true);
+
+    const throttlePlugin = await pluginModule.default({}, { stateDir });
+    const throttleFirstSessionID = 'session-throttle-first';
+    const throttleSecondSessionID = 'session-throttle-second';
+    const throttleFirstActivePath = helpers.goalPathForSession(throttleFirstSessionID, { stateDir });
+    const throttleSecondActivePath = helpers.goalPathForSession(throttleSecondSessionID, { stateDir });
+    const throttleFirstArchivePath = join(archiveDir, `${helpers.sessionKeyForSession(throttleFirstSessionID)}.json`);
+    const throttleSecondArchivePath = join(archiveDir, `${helpers.sessionKeyForSession(throttleSecondSessionID)}.json`);
+    await writeFile(throttleFirstActivePath, JSON.stringify({
+      sessionId: throttleFirstSessionID,
+      goalId: 'throttle-first-goal',
+      objective: 'Archive on first sweep',
+      status: 'active',
+      createdAtMs: staleUpdatedAtMs,
+      updatedAtMs: staleUpdatedAtMs,
+    }), 'utf8');
+    await throttlePlugin.event({
+      event: {
+        type: 'session.created',
+        properties: { sessionID: 'session-throttle-fresh-one' },
+      },
+    });
+    assert.equal(await fileExists(throttleFirstActivePath), false);
+    assert.equal(await fileExists(throttleFirstArchivePath), true);
+    await writeFile(throttleSecondActivePath, JSON.stringify({
+      sessionId: throttleSecondSessionID,
+      goalId: 'throttle-second-goal',
+      objective: 'Remain active during throttle window',
+      status: 'active',
+      createdAtMs: staleUpdatedAtMs,
+      updatedAtMs: staleUpdatedAtMs,
+    }), 'utf8');
+    await throttlePlugin.event({
+      event: {
+        type: 'session.created',
+        properties: { sessionID: 'session-throttle-fresh-two' },
+      },
+    });
+    assert.equal(await fileExists(throttleSecondActivePath), true);
+    assert.equal(await fileExists(throttleSecondArchivePath), false);
   } finally {
     restoreEnv('MK_GOAL_AUTONOMY', originalAutonomy);
     restoreEnv('MK_GOAL_DEBUG', originalDebug);

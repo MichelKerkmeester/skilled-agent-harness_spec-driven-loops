@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
-import { appendFile, mkdir, open, readFile, rename, unlink } from 'node:fs/promises';
+import { appendFile, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -30,9 +30,16 @@ const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
 const DEFAULT_MAX_AUTO_TURNS = 8;
 const DEFAULT_CONTINUATION_COOLDOWN_MS = 1500;
 const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
+const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
+const DEFAULT_ACTIVE_RETENTION_DAYS = 30;
+const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
 const AUTONOMY_ENV = 'MK_GOAL_AUTONOMY';
 const DEBUG_ENV = 'MK_GOAL_DEBUG';
+const ARCHIVE_RETENTION_DAYS_ENV = 'MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS';
+const ACTIVE_RETENTION_DAYS_ENV = 'MK_GOAL_STATE_ACTIVE_RETENTION_DAYS';
+const SWEEP_INTERVAL_MS_ENV = 'MK_GOAL_STATE_SWEEP_INTERVAL_MS';
 const CONTINUATION_LOG_FILENAME = '.continuation.log';
 const GOAL_EVENTS_LOG_FILENAME = '.goal-events.log';
 const PROMPT_ENHANCEMENT_VERSION = 'sk-prompt-goal-v1';
@@ -623,6 +630,13 @@ async function ensureGoalStateDir(rawOptions = {}) {
   return options.stateDir;
 }
 
+async function ensureGoalArchiveDir(rawOptions = {}) {
+  const stateDir = await ensureGoalStateDir(rawOptions);
+  const archiveDir = join(stateDir, '.archive');
+  await mkdir(archiveDir, { recursive: true, mode: 0o700 });
+  return archiveDir;
+}
+
 /**
  * Resolve a per-session goal state file path.
  *
@@ -797,6 +811,94 @@ async function deleteGoalFile(sessionID, rawOptions = {}) {
   }
   await fsyncDirectory(normalizeOptions(rawOptions).stateDir);
   return null;
+}
+
+function retentionDaysFromEnv(name, fallback) {
+  return normalizePositiveInt(Number(process.env[name]), fallback);
+}
+
+function retentionNowMs(rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  return Number.isFinite(options.nowMs) ? options.nowMs : Date.now();
+}
+
+async function pruneArchive(rawOptions = {}) {
+  try {
+    const options = normalizeOptions(rawOptions);
+    const archiveDir = join(options.stateDir, '.archive');
+    const retentionMs = retentionDaysFromEnv(ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
+    const timestamp = retentionNowMs(options);
+    const entries = await readdir(archiveDir, { withFileTypes: true });
+    await Promise.all(entries.map(async (entry) => {
+      if (!entry.isFile()) return;
+      const path = join(archiveDir, entry.name);
+      try {
+        const fileStats = await stat(path);
+        if (timestamp - fileStats.mtimeMs > retentionMs) await unlink(path);
+      } catch {
+        return;
+      }
+    }));
+  } catch {
+    return;
+  }
+}
+
+async function archiveGoalStateFile(sessionID, rawOptions = {}) {
+  try {
+    const sourcePath = goalPathForSession(sessionID, rawOptions);
+    const archiveDir = await ensureGoalArchiveDir(rawOptions);
+    const archivePath = join(archiveDir, `${sessionKeyForSession(sessionID)}.json`);
+    try {
+      await rename(sourcePath, archivePath);
+    } catch (error) {
+      if (error?.code === 'ENOENT') return null;
+      return null;
+    }
+    await fsyncDirectory(normalizeOptions(rawOptions).stateDir, rawOptions);
+    await fsyncDirectory(archiveDir, rawOptions);
+    await pruneArchive(rawOptions);
+    return archivePath;
+  } catch {
+    return null;
+  }
+}
+
+function sessionIDFromStateFilename(filename) {
+  if (!filename.endsWith('.json')) return null;
+  const key = filename.slice(0, -'.json'.length);
+  if (!key || key.length % 2 !== 0 || !/^[0-9a-f]+$/i.test(key)) return null;
+  return normalizeSessionID(Buffer.from(key, 'hex').toString('utf8'));
+}
+
+async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
+  try {
+    const intervalMs = normalizePositiveInt(Number(process.env[SWEEP_INTERVAL_MS_ENV]), DEFAULT_SWEEP_INTERVAL_MS);
+    const sweepTimestamp = Date.now();
+    if (sweepTimestamp - (runtimeState.lastSweepAtMs || 0) <= intervalMs) return;
+    runtimeState.lastSweepAtMs = sweepTimestamp;
+
+    const options = normalizeOptions(rawOptions);
+    const stateDir = await ensureGoalStateDir(options);
+    const retentionMs = retentionDaysFromEnv(ACTIVE_RETENTION_DAYS_ENV, DEFAULT_ACTIVE_RETENTION_DAYS) * MS_PER_DAY;
+    const timestamp = retentionNowMs(options);
+    const entries = await readdir(stateDir, { withFileTypes: true });
+    await Promise.all(entries.map(async (entry) => {
+      if (!entry.isFile() || !entry.name.endsWith('.json')) return;
+      const path = join(stateDir, entry.name);
+      try {
+        const raw = await readFile(path, 'utf8');
+        const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
+        if (!Number.isFinite(updatedAtMs) || timestamp - updatedAtMs <= retentionMs) return;
+        const archivedSessionID = sessionIDFromStateFilename(entry.name);
+        if (archivedSessionID) await archiveGoalStateFile(archivedSessionID, options);
+      } catch {
+        return;
+      }
+    }));
+  } catch {
+    return;
+  }
 }
 
 /**
@@ -1630,6 +1732,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     inFlightContinuations: new Set(),
     blockedByPromptSessions: new Set(),
     sessionStatuses: new Map(),
+    lastSweepAtMs: 0,
   };
 
   function flushVolatileLocks(sessionID = null) {
@@ -1654,6 +1757,11 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
 
     if (eventType === 'session.created') {
       if (sessionID) await restoreActiveGoal(sessionID, options);
+      try {
+        await sweepOrphanedActiveStates(options, runtimeState);
+      } catch {
+        return;
+      }
       return;
     }
 
@@ -1715,6 +1823,13 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
 
     if (eventType === 'session.deleted') {
       flushVolatileLocks(sessionID);
+      if (sessionID) {
+        try {
+          await archiveGoalStateFile(sessionID, options);
+        } catch {
+          return;
+        }
+      }
       return;
     }
 
