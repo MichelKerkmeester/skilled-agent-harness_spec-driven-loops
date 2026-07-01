@@ -53,7 +53,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Create phase folder from Spec Kit templates (`007-sk-prompt-goal-enhancement/`)
-- [x] T002 Read `mk-goal.js`, `/goal` command, current phase specs and sk-prompt references (`mk-goal.js`, `goal.md`, `sk-prompt/references/`)
+- [x] T002 Read `mk-goal.js`, `/goal` command, current phase specs and sk-prompt references (`mk-goal.js`, `goal_opencode.md`, `sk-prompt/references/`)
 - [x] T003 Fill phase spec, plan and task docs (`spec.md`, `plan.md`, `tasks.md`)
 <!-- /ANCHOR:phase-1 -->
 

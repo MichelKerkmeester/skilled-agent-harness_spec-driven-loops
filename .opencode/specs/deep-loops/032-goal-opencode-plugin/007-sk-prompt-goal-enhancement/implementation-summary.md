@@ -81,7 +81,7 @@ Goal records now include `promptEnhancement` metadata with version, methodology,
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The change stays inside the plugin tool path, so `.opencode/commands/goal.md` remains a thin one-tool router and no runtime dependency or hidden LLM call was added.
+The change stays inside the plugin tool path, so `.opencode/commands/goal_opencode.md` remains a thin one-tool router and no runtime dependency or hidden LLM call was added.
 <!-- /ANCHOR:how-delivered -->
 
 ---

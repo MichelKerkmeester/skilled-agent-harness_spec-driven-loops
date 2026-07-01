@@ -40,7 +40,7 @@ This command is state-free. It never reads or writes `.opencode/skills/.goal-sta
 - `set <objective>` routes to `mk_goal` with `action: "set"` and `objective: REST`.
 - Bare text routes to `mk_goal` with `action: "set"` and `objective: QUERY`.
 - `clear`, `complete`, and `pause [reason]` route to `mk_goal`.
-- Unsupported verbs emit `STATUS=FAIL ERROR="unknown action: <verb>"`.
+- Any other non-empty `QUERY` is treated as bare goal text and routes to `mk_goal` with `action: "set"` and `objective: QUERY`.
 
 ---
 

@@ -57,7 +57,7 @@ async function main() {
     const registeredGoal = await __test.readGoal(registeredCtx.sessionID, opts);
     assert.ok(registeredGoal && registeredGoal.objective === 'REGISTERED_TOOL_OBJ');
 
-    const commandPath = join(opencodeRoot, 'commands', 'goal.md');
+    const commandPath = join(opencodeRoot, 'commands', 'goal_opencode.md');
     const commandDoc = await readFile(commandPath, 'utf8');
     assert.match(commandDoc, /^# \/goal/m);
     assert.match(commandDoc, /allowed-tools: mk_goal, mk_goal_status/);
@@ -65,7 +65,7 @@ async function main() {
       join(opencodeRoot, 'skills', 'system-spec-kit', 'references', 'hooks', 'goal_plugin.md'),
       'utf8',
     );
-    assert.match(referenceDoc, /\.opencode\/commands\/goal\.md/);
+    assert.match(referenceDoc, /\.opencode\/commands\/goal_opencode\.md/);
 
     const phaseRoot = join(opencodeRoot, 'specs', 'deep-loops', '032-goal-opencode-plugin');
     const graph = JSON.parse(await readFile(
@@ -75,7 +75,7 @@ async function main() {
     const forbiddenKeyFileBasenames = new Set([
       'mk-spec-memory.js',
       'session-cleanup.js',
-      'goal_opencode.md',
+      'goal.md',
       'opencode_goal.md',
     ]);
     const keyFiles = graph?.derived?.key_files || [];

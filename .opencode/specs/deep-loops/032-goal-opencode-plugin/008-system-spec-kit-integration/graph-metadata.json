@@ -46,6 +46,7 @@
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       "references/hooks/goal_plugin.md",
       ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal_opencode.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -59,8 +60,7 @@
       "manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
       "implementation-summary.md",
       "spec.md",
-      "plan.md",
-      "tasks.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "mk-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
         "source": "derived"
       },
       {
@@ -133,12 +139,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The `/goal` plugin existed as OpenCode plugin code and a dedicated implementation packet, but `system-spec-kit` did not yet route, catalog, or explain it alongside the other OpenCode plugin surfaces",
     "created_at": "2026-06-30T17:33:02Z",
-    "last_save_at": "2026-07-01T13:04:43.183Z",
+    "last_save_at": "2026-07-01T13:40:04.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b9130d0ec6d97d026ee62e0d2466846b8e74b16bc316b043d6e4f724124c9e0",
+    "source_fingerprint": "sha256:80047299385df504bcf9428357f8fe26aeffe92a5d0b14af2db4db0bb52bee3a",
     "source_doc_hashes": {
-      "spec.md": "317e9748d441cd0dbb4484b07d39586404623ca7d60a872e0fc49b472f10f4e2",
-      "plan.md": "23c4827638665b229eed5adf6e89d09da2d1199cf329394e71d20534fab58e98",
-      "tasks.md": "3c16fdcec4d2d38b7e87928a5726dfffb760fde7b638c1ee21a5536ab817130a",
-      "implementation-summary.md": "552954cbc1112db965effd46bd90026a736243e88f594decbb1932a5b2d90b31"
+      "spec.md": "4db64a619f64eb996a2216d10e5464f58b27550393df70f2a56dd26deff25ef4",
+      "plan.md": "4978095bb19beb2d9dbd8fd2fb64553e389c2226097542bf4622e850c3d0cec7",
+      "tasks.md": "fb0c583ffbbdeec0d24be958026520ea17c84ddbe53979f9980fab4a583d48d5",
+      "implementation-summary.md": "1dd670f8e9d7920541ee2a2a9e06d667ef9500c07ebee617e13b6db5714bce37"
     },
     "last_active_child_id": null,
     "last_active_at": null

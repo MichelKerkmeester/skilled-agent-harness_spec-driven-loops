@@ -64,7 +64,7 @@ System-spec-kit now treats `/goal` as a documented OpenCode plugin surface. Oper
 
 ### Routed Goal Plugin Reference
 
-`references/hooks/goal_plugin.md` now owns the operator contract for `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal.md`, `.opencode/skills/.goal-state/`, `MK_GOAL_*` env vars, verification commands, and the OpenCode restart requirement.
+`references/hooks/goal_plugin.md` now owns the operator contract for `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/.goal-state/`, `MK_GOAL_*` env vars, verification commands, and the OpenCode restart requirement.
 
 ### System-Spec-Kit Integration
 

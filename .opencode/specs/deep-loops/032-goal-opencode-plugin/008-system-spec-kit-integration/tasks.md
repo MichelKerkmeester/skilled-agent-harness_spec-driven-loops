@@ -53,7 +53,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Create phase 008 scaffold (`008-system-spec-kit-integration/`)
-- [x] T002 Read current `mk-goal` plugin and `/goal` command (`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal.md`)
+- [x] T002 Read current `mk-goal` plugin and `/goal` command (`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`)
 - [x] T003 [P] Read existing system-spec-kit plugin integration references (`SKILL.md`, `hook_system.md`, plugin bridge README, feature catalog examples)
 <!-- /ANCHOR:phase-1 -->
 

@@ -36,7 +36,7 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/goal.md",
+      ".opencode/commands/goal_opencode.md",
       ".opencode/plugins/mk-goal.js",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
@@ -53,9 +53,9 @@
     ],
     "entities": [
       {
-        "name": "goal.md",
+        "name": "goal_opencode.md",
         "kind": "doc",
-        "path": ".opencode/commands/goal.md",
+        "path": ".opencode/commands/goal_opencode.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 003's docs mandated `.opencode/commands/goal.md`",
     "created_at": "2026-07-01T10:04:51Z",
-    "last_save_at": "2026-07-01T11:38:12.060Z",
+    "last_save_at": "2026-07-01T13:40:04.585Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4cc95c205f76882137237bf0401b72f700c553c6410a82805247f8a922472d2",
+    "source_fingerprint": "sha256:e555ef299d66928f4621c0f08468de02a6b3a6b14ad6290b9da84a854bbaac95",
     "source_doc_hashes": {
-      "spec.md": "354885337124e37c8069c6af7fd525d6a65012eb8cd5a21498688a1802d176fa",
-      "plan.md": "21f987ac2c2c1d94771153ac879826ba3a5f9c656200ddbc5dfbdc4b52850bce",
-      "tasks.md": "5985a5cb4753b9c2995521a4155f769a5e830ed65bfdd7a296f70079a389b5f9",
-      "implementation-summary.md": "1b56c2f0c45c7fb17401689a65beea13909f64878156b185691239cf2db70fa6"
+      "spec.md": "25e5df4a77d4572da4039ac6bbcdb3ba88054d4b57bdb74a66fe16ffa454253f",
+      "plan.md": "603078716b933629a1a7db390edbecd908b6df8ab0f7c8b394818f632927c8b8",
+      "tasks.md": "cb22db217f30bbed3239c703d875ff1cb76bc026269cc64872ef2b87496d98a0",
+      "implementation-summary.md": "aeb090fbb5c1e4da10a23eba89b583c15a96ed43274f571cff5f43676d18ed84"
     },
     "last_active_child_id": null,
     "last_active_at": null

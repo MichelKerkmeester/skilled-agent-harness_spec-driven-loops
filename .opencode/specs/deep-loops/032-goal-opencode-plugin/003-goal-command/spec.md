@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Use lifecycle tracking after the passive /goal command remains green"
     blockers: []
     key_files:
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
       - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
@@ -69,7 +69,7 @@ This phase exposes the passive goal store and injection preview through a user-f
 - OpenCode command markdown and plugin tool registration.
 
 **Deliverables**:
-- `.opencode/commands/goal.md` routes command arguments to exactly one tool call.
+- `.opencode/commands/goal_opencode.md` routes command arguments to exactly one tool call.
 - `mk_goal` supports `set`, `show`, `clear`, `complete`, and `pause`.
 - `mk_goal_status` shows current state and exact `injection_preview`.
 
@@ -95,7 +95,7 @@ The repository now has a root `/goal` command that delegates all stateful work t
 ## 3. SCOPE
 
 ### In Scope
-- Add `.opencode/commands/goal.md` as the root `/goal` command.
+- Add `.opencode/commands/goal_opencode.md` as the root `/goal` command.
 - Route empty args and `show` to `mk_goal_status`.
 - Route `set <objective>`, bare text, `clear`, `complete`, and `pause [reason]` to `mk_goal`.
 - Register `mk_goal` and `mk_goal_status` tools in `mk-goal.js`.
@@ -110,7 +110,7 @@ The repository now has a root `/goal` command that delegates all stateful work t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/goal.md` | Create | Adds the root `/goal` router and hard rules for one tool call. |
+| `.opencode/commands/goal_opencode.md` | Create | Adds the root `/goal` router and hard rules for one tool call. |
 | `.opencode/plugins/mk-goal.js` | Modify | Adds `mk_goal`, `mk_goal_status`, action handling, status lines, and failure envelopes. |
 | `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Create | Verifies set, status, `injection_preview`, transform parity, and clear through tool calls. |
 | `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Create | Verifies tool-context session resolution for command-backed mutation paths. |
@@ -125,7 +125,7 @@ The repository now has a root `/goal` command that delegates all stateful work t
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep command markdown state-free. | `goal.md` routes to tools and never reads or writes `.goal-state` directly. |
+| REQ-001 | Keep command markdown state-free. | `goal_opencode.md` routes to tools and never reads or writes `.goal-state` directly. |
 | REQ-002 | Support passive goal mutations through `mk_goal`. | Tool action enum covers `set`, `show`, `clear`, `complete`, and `pause`. |
 | REQ-003 | Show current state through `mk_goal_status`. | Status output includes `goal_present`, `status`, `objective`, usage fields, verifier fields, and `injection_preview`. |
 
@@ -134,7 +134,7 @@ The repository now has a root `/goal` command that delegates all stateful work t
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Print predictable result envelopes. | Success output starts with `STATUS=OK ACTION=<action>` and failures start with `STATUS=FAIL ERROR=<message>`. |
-| REQ-005 | Preserve command safety. | `goal.md` forbids shell commands, session-id inference, and direct state edits. |
+| REQ-005 | Preserve command safety. | `goal_opencode.md` forbids shell commands, session-id inference, and direct state edits. |
 <!-- /ANCHOR:requirements -->
 
 ---

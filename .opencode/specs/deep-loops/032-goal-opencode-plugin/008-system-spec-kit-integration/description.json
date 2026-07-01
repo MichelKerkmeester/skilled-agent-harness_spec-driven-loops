@@ -16,10 +16,12 @@
     "catalog",
     "explain"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.136Z",
+  "lastUpdated": "2026-07-01T13:40:04.093Z",
   "specId": "008",
   "folderSlug": "system-spec-kit-integration",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Use this passive command surface before lifecycle phases"
     blockers: []
     key_files:
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
       - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Create `.opencode/commands/goal.md`.
+- [x] T004 Create `.opencode/commands/goal_opencode.md`.
 - [x] T005 Add `mk_goal` tool with `set`, `show`, `clear`, `complete`, and `pause`.
 - [x] T006 Add `mk_goal_status` read tool.
 - [x] T007 Add `injection_preview` and state fields to tool output.

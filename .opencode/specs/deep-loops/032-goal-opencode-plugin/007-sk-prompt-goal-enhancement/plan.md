@@ -97,7 +97,7 @@ Deterministic adapter inside the existing plugin state pipeline.
 | `normalizeStoredGoal` | Reads and validates stored JSON records | Backfill missing prompt fields for older records | Existing read/write tests plus new compatibility assertions |
 | `renderGoalInjection` | Builds injected `[active_goal]` block | Render enhanced prompt while preserving fences and clamps | State test injection preview assertions |
 | `goalStateLines` | User-facing status envelope | Add prompt metadata lines without breaking existing fields | Tool-path and status assertions |
-| `.opencode/commands/goal.md` | Thin route to plugin tools | Keep unchanged | Grep/read evidence and command contract tests |
+| `.opencode/commands/goal_opencode.md` | Thin route to plugin tools | Keep unchanged | Grep/read evidence and command contract tests |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

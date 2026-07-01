@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
     session_dedup:
@@ -65,7 +65,7 @@ This packet owns the OpenCode session-goal capability. It combines the dedicated
 
 **Dependencies**: none at runtime beyond the OpenCode plugin and command surfaces.
 
-**Deliverables**: `research/research.md`, `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal.md` and the plugin unit test suite.
+**Deliverables**: `research/research.md`, `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md` and the plugin unit test suite.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -100,7 +100,7 @@ Build a `/goal` command + an auto-loaded `mk-goal.js` plugin that sets a goal, p
 |-----------|-------------|-------------|
 | `research/` | Create | 10-iteration design research output |
 | `.opencode/plugins/mk-goal.js` | Create | Auto-loaded plugin: inject + lifecycle + tools |
-| `.opencode/commands/goal.md` | Create | The `/goal` command |
+| `.opencode/commands/goal_opencode.md` | Create | The `/goal` command |
 | `.opencode/skills/.goal-state/` | Create | Per-session goal persistence |
 
 **Reference evidence (not our code):** Claude Code v2.1.139 `/goal`; Codex `~/.codex/goals_1.sqlite` (`thread_goals` schema); `.opencode/plugins/mk-spec-memory.js` (injection pattern); `.opencode/commands/memory/learn.md` (command pattern); `.opencode/specs/z_future/openhuman/external` (`thread_goals`/`ThreadGoalChip` reference).

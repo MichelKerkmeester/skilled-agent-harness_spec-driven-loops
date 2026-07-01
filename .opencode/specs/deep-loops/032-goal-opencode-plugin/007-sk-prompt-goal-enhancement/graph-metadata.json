@@ -43,6 +43,7 @@
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
       ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      ".opencode/commands/goal_opencode.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -65,6 +66,12 @@
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Packet",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
     "created_at": "2026-06-30T16:17:28Z",
-    "last_save_at": "2026-07-01T13:04:43.033Z",
+    "last_save_at": "2026-07-01T13:40:03.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94db6c026f490e30a541cce9f1fb26c77aed6870c481d6d469d7c36f7a63fbef",
+    "source_fingerprint": "sha256:836ce1033d68d25cfc2757c136891e667fc1435971e39a97ea7c9b686eb407f1",
     "source_doc_hashes": {
-      "spec.md": "022c0de58386b5fa2df1ae8827eff06f2ed278c78b3bfd8a2b80cccafa1dcb5e",
-      "plan.md": "d2bb8da4185d4d7c5d4837a56051690f1677fa4dae45b75fd125114ec3bff18b",
-      "tasks.md": "61e1bf1282ac6e0dcfe98f7a65fe50dd42af91eb4004c700f64978b276ca4383",
-      "implementation-summary.md": "246a6030040783da00023f5addfe2547c2cba109d90a35c953d4582972ab1055"
+      "spec.md": "22cb9dfa52320a702ff38c80291bd3cb54b96694b03bc3b5ca89cf9b6f6d4f2d",
+      "plan.md": "e87e3b28ef0abd2fe2059d7317ceb54cc327972e6876f0d278ad93263166a09c",
+      "tasks.md": "29572742396c11fd3dbdce735a7914527110d2345d75e1582d98e03f7f0df7ea",
+      "implementation-summary.md": "df9579722b7b5f57aa3163311744f42c6558c4f6e91e4e3a8742bf1dbfc11778"
     },
     "last_active_child_id": null,
     "last_active_at": null

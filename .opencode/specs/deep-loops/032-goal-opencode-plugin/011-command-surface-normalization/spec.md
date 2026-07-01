@@ -85,7 +85,7 @@ Pick one canonical name backed by the confirmed no-collision evidence, sweep eve
 
 ### In Scope
 - Re-verify the live command filename at execution time (do not trust this spec's own snapshot — it has already changed twice).
-- Rename to the evidence-backed canonical name (plain `goal.md`, per research's confirmed no-built-in-collision finding) unless the live file has moved again, in which case re-derive fresh.
+- Rename to the evidence-backed canonical name (plain `goal.md` (later amended by the operator to `goal_opencode.md`), per research's confirmed no-built-in-collision finding) unless the live file has moved again, in which case re-derive fresh.
 - Sweep all referencing surfaces: phase 003/007/008 `spec.md`/`plan.md`/`tasks.md`/`implementation-summary.md`; `graph-metadata.json` `key_files` (also strip non-deliverable files per DR-007-P2 while touching this); both feature catalogs (`system-skill-advisor` + `system-spec-kit`, `07--hooks-and-plugin`/`18--ux-hooks` paths); both manual-testing playbooks; `mcp_server/ENV_REFERENCE.md`.
 - DR-004-P2: reconcile the command doc's claim that unknown verbs fail with actual dispatch behavior (currently any text coerces to `set`).
 - DR-010-P1: decide and implement `MK_GOAL_PLUGIN_DISABLED`'s true contract (fail-closed on manual mutations, or narrow the docs to say it only disables injection/autonomy).
@@ -102,7 +102,7 @@ Pick one canonical name backed by the confirmed no-collision evidence, sweep eve
 |-----------|-------------|--------------|
 | `.opencode/commands/{current-live-name}.md` | Rename | To the evidence-backed canonical name (re-verify at execution time) |
 | `032-goal-opencode-plugin/003-goal-command/{spec,plan,tasks,implementation-summary}.md` | Modify | Fix filename references |
-| `032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/tasks.md` | Modify | Fix the `goal.md` cross-reference (research F-009) |
+| `032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/tasks.md` | Modify | Fix the `goal_opencode.md` cross-reference (research F-009) |
 | `032-goal-opencode-plugin/008-system-spec-kit-integration/{spec,tasks}.md` | Modify | Fix filename references |
 | `032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json` | Modify | Strip non-deliverable files from `key_files` (DR-007-P2) |
 | `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modify | Fix stale command path (DR-008) |
@@ -163,5 +163,5 @@ Pick one canonical name backed by the confirmed no-collision evidence, sweep eve
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- REQ-002: if the live file has moved to a *third* name by execution time, is `goal.md` still the right target, or has the concurrent phase-009 session established a different convention that should be respected instead? Check phase 009's own scope/handover before renaming, to avoid a fourth rename.
+- REQ-002: if the live file has moved to a *third* name by execution time, is `goal.md` (this phase's original choice, later amended by the operator to `goal_opencode.md`) still the right target, or has the concurrent phase-009 session established a different convention that should be respected instead? Check phase 009's own scope/handover before renaming, to avoid a fourth rename.
 <!-- /ANCHOR:questions -->

@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Continue with lifecycle tracking after passive command behavior stays green"
     blockers: []
     key_files:
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
       - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
@@ -77,7 +77,7 @@ Expose M1 through a root `/goal` command and two plugin tools. The command remai
 Thin command router over plugin-owned tools.
 
 ### Key Components
-- **Command markdown**: `.opencode/commands/goal.md` resolves arguments and calls exactly one tool.
+- **Command markdown**: `.opencode/commands/goal_opencode.md` resolves arguments and calls exactly one tool.
 - **Mutation tool**: `mk_goal` executes `set`, `show`, `clear`, `complete`, and `pause`.
 - **Read tool**: `mk_goal_status` reads the current goal and returns status plus `injection_preview`.
 - **Envelope renderer**: `goalStateLines` and `failureLines` produce predictable output for command callers.
@@ -93,13 +93,13 @@ The command parses `$ARGUMENTS`, selects `mk_goal` or `mk_goal_status`, and prin
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/commands/goal.md` | Root user command. | Created as a state-free router to plugin tools. | Manual doc inspection and tool tests for called behavior. |
+| `.opencode/commands/goal_opencode.md` | Root user command. | Created as a state-free router to plugin tools. | Manual doc inspection and tool tests for called behavior. |
 | `.opencode/plugins/mk-goal.js` | Owns state, injection, and tools. | Add tool schemas, action execution, status output, and failure envelopes. | `node --check`; state and tool-path tests. |
 | `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Guards state, injection, and tool output. | Covers set/show/clear and `injection_preview`. | Full plugin unit suite. |
 | `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Guards tool-context session routing. | Covers command-backed mutation path. | Full plugin unit suite. |
 
 Required inventories:
-- Same-class producers: `.opencode/commands/goal.md`, `executeGoalAction`, `executeGoalStatus`, `goalStateLines`, `failureLines`, `mk_goal`, and `mk_goal_status`.
+- Same-class producers: `.opencode/commands/goal_opencode.md`, `executeGoalAction`, `executeGoalStatus`, `goalStateLines`, `failureLines`, `mk_goal`, and `mk_goal_status`.
 - Consumers of changed symbols: OpenCode command runner, plugin tool context, state tests, and tool-path regression test.
 - Matrix axes: empty args vs show vs set vs bare text vs clear vs complete vs pause, present vs missing goal, valid vs missing session id.
 - Algorithm invariant: command markdown is a router only; all stateful behavior stays inside plugin tools.
@@ -116,7 +116,7 @@ Required inventories:
 - [x] Define status and failure output envelopes.
 
 ### Phase 2: Core Implementation
-- [x] Add `.opencode/commands/goal.md`.
+- [x] Add `.opencode/commands/goal_opencode.md`.
 - [x] Add `mk_goal` tool schema and action execution.
 - [x] Add `mk_goal_status` read tool.
 - [x] Add `injection_preview` to state output.
@@ -157,5 +157,5 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: `/goal` routes to the wrong tool, state logic leaks into command markdown, or status output diverges from injection.
-- **Procedure**: Remove `.opencode/commands/goal.md` and revert the `mk_goal` / `mk_goal_status` tool registration while keeping state and injection helpers intact.
+- **Procedure**: Remove `.opencode/commands/goal_opencode.md` and revert the `mk_goal` / `mk_goal_status` tool registration while keeping state and injection helpers intact.
 <!-- /ANCHOR:rollback -->

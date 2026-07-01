@@ -24,7 +24,7 @@ Validate that `/goal` routes through the OpenCode plugin tools, persists per-ses
 ## 2. SCENARIO CONTRACT
 
 - OpenCode plugin host can load `.opencode/plugins/mk-goal.js`.
-- `/goal` command exists at `.opencode/commands/goal.md`.
+- `/goal` command exists at `.opencode/commands/goal_opencode.md`.
 - Use a disposable session or temporary `stateDir` so existing session goals are not overwritten.
 - Known limitation: live OpenCode-run tool invocation is under investigation; when unavailable, execute the plugin tool path directly and record the limitation as the runtime blocker.
 
@@ -88,7 +88,7 @@ node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
 
 - Feature [`07--hooks-and-plugin/goal-opencode-plugin.md`](../../feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md)
 - Source: `.opencode/plugins/mk-goal.js`
-- Source: `.opencode/commands/goal.md`
+- Source: `.opencode/commands/goal_opencode.md`
 - Tests: `.opencode/plugins/__tests__/mk-goal-*.test.cjs`
 
 ---

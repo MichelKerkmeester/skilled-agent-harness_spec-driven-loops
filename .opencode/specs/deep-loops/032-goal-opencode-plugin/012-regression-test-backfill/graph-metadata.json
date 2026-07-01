@@ -37,12 +37,12 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/goal.md",
-      ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+      ".opencode/commands/goal_opencode.md",
+      ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
       ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
       ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/tasks.md",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md",
@@ -53,21 +53,27 @@
     ],
     "entities": [
       {
-        "name": "goal.md",
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-export-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
         "kind": "doc",
-        "path": ".opencode/commands/goal.md",
+        "path": ".opencode/commands/goal_opencode.md",
         "source": "derived"
       },
       {
         "name": "mk-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
@@ -80,12 +86,6 @@
         "name": "mk-goal-continuation.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-export-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is never invoked by any test; the `event()` handler swallows all exceptions with no test asserting on the error path; and 7 of 9 wired events (`session.created`, `message.updated`, permission/question asked+replied, `session.deleted`, `.disposed`) have zero coverage through the real entrypoint (tests bypass the state machine by writing state directly)",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-01T12:08:40.592Z",
+    "last_save_at": "2026-07-01T13:40:04.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4817ab6683fc3e9e803a53bdf9bd38372061767e026d0d6f52f60444ce573fbd",
+    "source_fingerprint": "sha256:9072e999c8c1400bd03893d05777b5ad4eb41527942a5e4309e0f93255f1dfd7",
     "source_doc_hashes": {
       "spec.md": "22890e3de75b31c03947db899a5ccf628d73ac353b9e24266e17216f0b523777",
       "plan.md": "75132d63e21ac208f48cae924398baa11eaf57cfe1989a3d21d9c94ca9903c36",
       "tasks.md": "e823a6200d5d4540da7dacb5f7b3d201fd348a42f44a193867f1dea3fd73c8c2",
-      "implementation-summary.md": "cc928d0925da9065b3329c3b02b99faac1514a202fc6d09c9243c75ccf30ee08"
+      "implementation-summary.md": "cc764407243ac8617c534d32ea358619bd50c8537640fbff9947ac3ffd8b1bdf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -66,7 +66,7 @@ The mk-goal regression suite now exercises the plugin through the same public ho
 
 `mk-goal-continuation.test.cjs` now covers smoke-mode `session.idle` logging through the plugin event hook and an integration case where the verifier replaces the goal mid-run. The stale verifier result suppresses continuation and writes `stale_verifier_result` instead of prompting.
 
-`mk-goal-export-contract.test.cjs` now pins the exact 15-key `__test` export surface. `mk-goal-tool-path.test.cjs` now calls `plugin.tool.mk_goal.execute(...)` from the factory-returned hooks, checks the live `.opencode/commands/goal.md` command and one referencing operator doc agree, and guards the current phase graph metadata against known non-deliverable key files.
+`mk-goal-export-contract.test.cjs` now pins the exact 15-key `__test` export surface. `mk-goal-tool-path.test.cjs` now calls `plugin.tool.mk_goal.execute(...)` from the factory-returned hooks, checks the live `.opencode/commands/goal_opencode.md` command and one referencing operator doc agree, and guards the current phase graph metadata against known non-deliverable key files.
 
 ### Files Changed
 

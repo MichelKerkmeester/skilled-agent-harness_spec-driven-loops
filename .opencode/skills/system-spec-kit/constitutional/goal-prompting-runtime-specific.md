@@ -23,8 +23,9 @@ triggerPhrases:
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
 session goal, use Claude Code's own **native** `/goal` goal-prompting feature. Do NOT
-route through the OpenCode `mk-goal` plugin command (currently named `/goal` —
-**verify the live filename before relying on it; it has already been renamed twice**).
+route through the OpenCode `mk-goal` plugin command (currently named `/goal_opencode`,
+confirmed as the operator's final choice on 2026-07-01 — it had round-tripped through
+`/goal` in between; verify the live filename if this note predates a future change).
 
 ## Why
 
@@ -41,7 +42,13 @@ a separate in-flight OpenCode session (working on packet 032 phase 009, the
 `.opencode/commands/goal_opencode.md` — content unchanged, filename only, confirmed via
 a concurrent deep-review pass (finding DR-002/DR-007/DR-008: "the command surface has
 fractured into multiple names across code, phase docs, graph metadata, and overlay
-catalogs/playbooks"). This is a live, moving target — do not hardcode either past name.
+catalogs/playbooks"). **Third rename**: an audit-driven remediation phase (032 phase 011)
+renamed it back to `.opencode/commands/goal.md`, reasoning from a `strings` search of the
+opencode binary confirming no built-in `/goal` command exists. The concurrent phase-009
+session renamed it back to `.opencode/commands/goal_opencode.md` again shortly after. The
+operator confirmed on 2026-07-01 that `goal_opencode.md` is the correct, final name —
+this file and its referencing surfaces were swept to match. Do not hardcode past names,
+but this is no longer expected to move again absent a new operator decision.
 
 ## How to apply
 

@@ -32,7 +32,7 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 - `event` to restore goals, record message activity, track prompt blockers, verify on idle, and gate continuation.
 - `mk_goal` and `mk_goal_status` plugin tools for command routing and diagnostics.
 
-`.opencode/commands/goal.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.goal-state` directly.
+`.opencode/commands/goal_opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.goal-state` directly.
 
 Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Autonomy is disabled unless `MK_GOAL_AUTONOMY=active` or smoke-tested with `MK_GOAL_AUTONOMY=smoke`.
 
@@ -45,7 +45,7 @@ Stored state keeps both the raw sanitized `objective` and the deterministic `goa
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/plugins/mk-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
-| `.opencode/commands/goal.md` | Slash command | Thin `/goal` router for `set`, `show`, `clear`, `complete`, and `pause`. |
+| `.opencode/commands/goal_opencode.md` | Slash command | Thin `/goal` router for `set`, `show`, `clear`, `complete`, and `pause`. |
 | `.opencode/skills/.goal-state/` | Runtime state | Per-session JSON goal records and bounded debug logs. |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
 

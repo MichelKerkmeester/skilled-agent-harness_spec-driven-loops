@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Continue with lifecycle tracking once passive command behavior remains verified"
     blockers: []
     key_files:
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
       - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
@@ -54,7 +54,7 @@ The passive goal feature now has a root command. `/goal` is a thin router that s
 
 ### Root Command Router
 
-`.opencode/commands/goal.md` resolves `$ARGUMENTS` into `QUERY`, `FIRST`, and `REST`, then calls `mk_goal` or `mk_goal_status`. The command never edits `.goal-state`, never infers a session id, and never runs shell commands from an objective.
+`.opencode/commands/goal_opencode.md` resolves `$ARGUMENTS` into `QUERY`, `FIRST`, and `REST`, then calls `mk_goal` or `mk_goal_status`. The command never edits `.goal-state`, never infers a session id, and never runs shell commands from an objective.
 
 ### Goal Tools
 
@@ -64,7 +64,7 @@ The passive goal feature now has a root command. `/goal` is a thin router that s
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/goal.md` | Created | Adds the root `/goal` command router and command safety rules. |
+| `.opencode/commands/goal_opencode.md` | Created | Adds the root `/goal` command router and command safety rules. |
 | `.opencode/plugins/mk-goal.js` | Modified | Adds `mk_goal`, `mk_goal_status`, action execution, status lines, and failure envelopes. |
 | `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies tool set/status/clear behavior and `injection_preview`. |
 | `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution for mutation paths. |
@@ -75,7 +75,7 @@ The passive goal feature now has a root command. `/goal` is a thin router that s
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The command shipped as markdown over plugin-owned tools, keeping all stateful behavior in `mk-goal.js` and all user command routing in `.opencode/commands/goal.md`.
+The command shipped as markdown over plugin-owned tools, keeping all stateful behavior in `mk-goal.js` and all user command routing in `.opencode/commands/goal_opencode.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

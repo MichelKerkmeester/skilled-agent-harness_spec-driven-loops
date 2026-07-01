@@ -104,7 +104,7 @@ Transform every user-provided objective into a compact sk-prompt-style goal prom
 
 ### Out of Scope
 - Calling `promptAsync`, the assistant, or an external model during `/goal set`; generation must be synchronous and deterministic.
-- Rewriting `.opencode/commands/goal.md`; it remains a thin tool router.
+- Rewriting `.opencode/commands/goal_opencode.md`; it remains a thin tool router.
 - Changing supervisor completion logic, token accounting, or continuation autonomy gates.
 
 ### Files to Change

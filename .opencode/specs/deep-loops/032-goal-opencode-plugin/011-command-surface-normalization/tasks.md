@@ -11,11 +11,11 @@ _memory:
     packet_pointer: "deep-loops/032-goal-opencode-plugin/011-command-surface-normalization"
     last_updated_at: "2026-07-01T11:29:29Z"
     last_updated_by: "opencode-gpt-5.5"
-    recent_action: "Renamed command surface to canonical goal.md and verified mk-goal behavior"
+    recent_action: "Amended: operator confirmed goal_opencode.md as final, not goal.md"
     next_safe_action: "Proceed to phase 012 (regression-test-backfill)"
     blockers: []
     key_files:
-      - ".opencode/commands/goal.md"
+      - ".opencode/commands/goal_opencode.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-032-011"

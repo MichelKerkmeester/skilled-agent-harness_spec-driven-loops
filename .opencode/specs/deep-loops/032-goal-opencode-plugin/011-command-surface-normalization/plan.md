@@ -95,8 +95,8 @@ Planning from a deep-review CONDITIONAL verdict (`review/review-report.md`) and 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/commands/{live-name}.md` | The command file itself, renamed twice already | Rename to final canonical name (re-verify live name first) | `ls .opencode/commands/*goal*.md` shows exactly one file |
-| `003-goal-command/{spec,plan,tasks,implementation-summary}.md` | Original (never-realized) mandate for `goal.md` | Update to reference the final live filename | `grep -n "goal.md\|opencode_goal\|goal_opencode"` in each file |
-| `007-sk-prompt-goal-enhancement/tasks.md` | Cross-references `goal.md` (research F-009) | Update to final filename | Same grep |
+| `003-goal-command/{spec,plan,tasks,implementation-summary}.md` | Original (never-realized) mandate for `goal.md` | Update to reference the final live filename (`goal_opencode.md`) | `grep -n "goal.md\|opencode_goal\|goal_opencode"` in each file |
+| `007-sk-prompt-goal-enhancement/tasks.md` | Cross-references `goal.md` (research F-009) | Update to final filename (`goal_opencode.md`) | Same grep |
 | `008-system-spec-kit-integration/{spec,tasks}.md` | References the command surface for doc-routing purposes | Update to final filename | Same grep |
 | `004-lifecycle-tracking/graph-metadata.json` `key_files` | Lists the command file plus non-deliverable files (DR-007-P2) | Update filename reference AND strip non-deliverables | `cat graph-metadata.json \| jq .key_files` |
 | Feature catalogs (`system-skill-advisor` 07--hooks-and-plugin, `system-spec-kit` 18--ux-hooks) | Operator-facing "how to use this" docs (DR-008) | Update stale command path | Read + grep both files |

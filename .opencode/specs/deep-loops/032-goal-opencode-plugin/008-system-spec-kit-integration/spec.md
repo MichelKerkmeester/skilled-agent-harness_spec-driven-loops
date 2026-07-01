@@ -107,7 +107,7 @@ Make `mk-goal` a first-class documented OpenCode plugin surface inside `system-s
 
 ### Out of Scope
 - Runtime code changes to `.opencode/plugins/mk-goal.js` - phase 007 already completed prompt enhancement behavior.
-- Changes to `.opencode/commands/goal.md` - the command must remain a thin router.
+- Changes to `.opencode/commands/goal_opencode.md` - the command must remain a thin router.
 - Moving goal state into Spec Kit Memory - goal state remains session-local plugin JSON.
 
 ### Files to Change

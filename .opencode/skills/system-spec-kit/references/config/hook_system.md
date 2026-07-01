@@ -170,7 +170,7 @@ OpenCode's local goal plugin is part of the runtime-injection surface, but it is
 | Surface | Path | Contract |
 |---|---|---|
 | Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded plugin that registers `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
-| Command | `.opencode/commands/goal.md` | Thin `/goal` router; state-free and limited to one plugin tool call. |
+| Command | `.opencode/commands/goal_opencode.md` | Thin `/goal` router; state-free and limited to one plugin tool call. |
 | State | `.opencode/skills/.goal-state/` | Per-session JSON goal records; runtime state, not spec documentation. |
 | Operator reference | `references/hooks/goal_plugin.md` | Detailed boundary, env vars, validation commands, and restart guidance. |
 

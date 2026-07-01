@@ -89,7 +89,7 @@ Documentation integration over existing OpenCode local plugin behavior.
 - **Boundary docs**: architecture and bridge README clarify that `mk-goal` is standalone local plugin state, not a daemon bridge.
 
 ### Data Flow
-The user calls `/goal`; `.opencode/commands/goal.md` dispatches to plugin tools; `.opencode/plugins/mk-goal.js` persists state and injects `[active_goal]`; system-spec-kit docs point operators to that contract.
+The user calls `/goal`; `.opencode/commands/goal_opencode.md` dispatches to plugin tools; `.opencode/plugins/mk-goal.js` persists state and injects `[active_goal]`; system-spec-kit docs point operators to that contract.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -102,7 +102,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Runtime owner | Unchanged | Existing plugin tests |
-| `.opencode/commands/goal.md` | Thin command router | Unchanged | Read contract, docs cite state-free boundary |
+| `.opencode/commands/goal_opencode.md` | Thin command router | Unchanged | Read contract, docs cite state-free boundary |
 | `system-spec-kit/SKILL.md` | Skill routing | Update | `rg` for `mk-goal` and `goal_plugin.md` |
 | `references/hooks/goal_plugin.md` | New operator reference | Create | sk-doc structure extraction |
 
