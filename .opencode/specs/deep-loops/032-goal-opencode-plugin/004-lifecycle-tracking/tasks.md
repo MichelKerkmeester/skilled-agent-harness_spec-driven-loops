@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
       fingerprint: "sha256:eca1c5998ecdda3a68aea761aec031840632a393225f4d3537a064b8e742244e"
       session_id: "goal-m2-lifecycle-20260628"

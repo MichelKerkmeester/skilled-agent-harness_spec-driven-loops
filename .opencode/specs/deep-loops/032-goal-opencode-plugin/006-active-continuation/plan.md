@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
     session_dedup:
       fingerprint: "sha256:1d6b0f045a8462a7f91a27f8f2237b0d60281f0ba99e64f694d78d2439ad7f89"
       session_id: "goal-m3-continuation-20260628"
@@ -93,12 +93,12 @@ Single-plugin additive extension.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Owns goal state, injection, lifecycle, supervisor, and tools. | Add continuation gates, logs, prompt dispatch, status fields, and event handling. | `node --check`, plugin tests, alignment drift check. |
-| `.opencode/plugins/__tests__/` | Guards plugin behavior with Node scripts. | Add continuation test and keep existing tests green. | `node --test .opencode/plugins/__tests__/*.test.cjs`. |
+| `.opencode/plugins/tests/` | Guards plugin behavior with Node scripts. | Add continuation test and keep existing tests green. | `node --test .opencode/plugins/tests/*.test.cjs`. |
 | `.opencode/skills/.goal-state/` | Runtime state directory. | Add `.continuation.log` and optional `.goal-events.log`. | Unit test reads `.continuation.log`; debug event log remains runtime-observable. |
 | `/goal` command | User-facing router. | Unchanged. | Existing state test still exercises tools. |
 
 Required inventories:
-- Same-class producers checked with `rg -n "maybeVerifyGoal|session.idle|promptAsync|continuation" .opencode/plugins/mk-goal.js .opencode/plugins/__tests__`.
+- Same-class producers checked with `rg -n "maybeVerifyGoal|session.idle|promptAsync|continuation" .opencode/plugins/mk-goal.js .opencode/plugins/tests`.
 - Consumers of changed symbols checked through exported `__test` helpers and `mk_goal_status`.
 - Matrix axes: env mode, session id, goal status, suppression, lock, prompt block, session status, cooldown, caps, budget, prompt availability.
 - Algorithm invariant: no prompt dispatch unless all gates pass, and `autoTurnsUsed` never exceeds 8.

@@ -13,9 +13,9 @@ Final dimension-coverage wrap-up and broaden pass across correctness, security, 
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/review/deep-review-state.jsonl` | 1-8 | Confirmed iterations 1-7 in canonical state; iterations 8-9 were not yet present in this concurrent batch workspace. |
 | `README.md` | 1230-1233 | Rechecked the root `/goal` section and delegation target. |
 | `.opencode/plugins/README.md` | 42-51, 69-150 | Rechecked plugin entrypoint inventory, configuration section, and related links. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | 244-258 | Checked state test coverage around tool clear/status output and prompt caps. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | 49-68 | Checked registered tool-path assertions for `mutation=` and hook-reference traceability. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | 201-228, 395-444, 446-518 | Checked provider usage-limit, archive/prune, orphan sweep, and sweep-throttle coverage. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | 244-258 | Checked state test coverage around tool clear/status output and prompt caps. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | 49-68 | Checked registered tool-path assertions for `mutation=` and hook-reference traceability. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | 201-228, 395-444, 446-518 | Checked provider usage-limit, archive/prune, orphan sweep, and sweep-throttle coverage. |
 | `.opencode/plugins/mk-goal.js` | 1602-1675 | Confirmed `store_health=` output, mutation rendering, and `created`/`refreshed`/`replaced` mutation selection. |
 
 Negative broadened sweeps also checked for goal-plugin mentions in `.opencode/AGENTS.md` and `.opencode/opencode*.{json,jsonc}`. No active `.opencode/AGENTS.md` goal-plugin reference or `.opencode/opencode*.{json,jsonc}` plugin-registration documentation was present.
@@ -35,8 +35,8 @@ Negative broadened sweeps also checked for goal-plugin mentions in `.opencode/AG
 - `.opencode/AGENTS.md` had no active goal-plugin mentions. Grep hits were limited to archived scratch AGENTS content about generic working-memory goals, not the `/goal` plugin.
 - `.opencode/opencode*.{json,jsonc}` plugin-loading/config docs were absent, so there was no inline `mk-goal.js` registration claim to adjudicate.
 - `.opencode/plugins/README.md` still contains only an entrypoint row for `mk-goal.js` and configuration detail for sibling plugins, reinforcing established P1-003 but not adding a separate finding.
-- `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` covers `recordProviderUsageLimit` behavior through a provider 429 event and covers archive/prune/sweep behavior through session deletion, archive pruning, orphan active state archiving, and sweep throttling.
-- `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` covers `mutation=created` on the registered tool path, but no test asserts the documented sibling mutation states `mutation=refreshed` or `mutation=replaced`.
+- `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` covers `recordProviderUsageLimit` behavior through a provider 429 event and covers archive/prune/sweep behavior through session deletion, archive pruning, orphan active state archiving, and sweep throttling.
+- `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` covers `mutation=created` on the registered tool path, but no test asserts the documented sibling mutation states `mutation=refreshed` or `mutation=replaced`.
 
 ## Closing Per-Finding Summary Table
 
@@ -66,8 +66,8 @@ None new.
 #### I10-P2-1 [P2] Registered tool-path tests do not pin `mutation=refreshed` or `mutation=replaced`
 
 - Claim: The implementation emits three `/goal set` mutation states, but the registered tool-path tests only assert `mutation=created`, leaving the refreshed/replaced branches unpinned by direct output tests.
-- Evidence refs: `.opencode/plugins/mk-goal.js:1602-1647`, `.opencode/plugins/mk-goal.js:1668-1675`, `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:49-68`.
-- Counterevidence sought: Grep across `.opencode/plugins/__tests__/mk-goal-*.test.cjs` for `mutation=created|mutation=refreshed|mutation=replaced|mutation=` returned only `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:56`, which asserts `mutation=created`.
+- Evidence refs: `.opencode/plugins/mk-goal.js:1602-1647`, `.opencode/plugins/mk-goal.js:1668-1675`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:49-68`.
+- Counterevidence sought: Grep across `.opencode/plugins/tests/mk-goal-*.test.cjs` for `mutation=created|mutation=refreshed|mutation=replaced|mutation=` returned only `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:56`, which asserts `mutation=created`.
 - Alternative explanation: State-level tests do exercise same-objective set behavior and lifecycle tests cover retention/sweep functions; this is not evidence that the implementation is wrong, only that the emitted output contract is not fully regression-pinned.
 - Final severity: P2.
 - Confidence: Medium.

@@ -42,12 +42,12 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
-      ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -58,6 +58,12 @@
         "name": "loop-lock.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
         "source": "derived"
       },
       {
@@ -88,12 +94,6 @@
         "name": "fanout-salvage-recovery.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal-opencode-plugin.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only \"does this feature match the docs\" scenarios",
     "created_at": "2026-06-29T10:43:19Z",
-    "last_save_at": "2026-06-30T14:53:29.842Z",
+    "last_save_at": "2026-07-01T17:58:30.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:505ca4dfeacf0ee0830ab92da73c6fb389fa8150dea456bb263a3dd643f1ae19",
+    "source_fingerprint": "sha256:88aeff1965f24161511872d7f553ca15b559f50740e3ee78eb154e3f3c57470a",
     "source_doc_hashes": {
       "spec.md": "3fb34f1b6ba8c50ed0960b21bdf5f0f5cb2d2d9807322a6cd796b5dc42109ed2",
-      "plan.md": "f3732bd6dc5c218e2164ebe6ba090236ac47106bd1d5b9691c0109924c6d4fc9",
+      "plan.md": "dc4e892693ad55369bc70fcdc4d9da7d5f34f036367a345dced2afd8b31c1e0f",
       "tasks.md": "2d309f3e0d3f2dc045b58333da94fd602c1077b41cee8a3d51dc865694e403f8",
-      "implementation-summary.md": "0aad23362fb161d39d2d8ac284b7430a5520c58ef5c5780e9a8615533773ff97"
+      "implementation-summary.md": "32b760a4eb973e83015a4ff3a4ef860833ac081031c3d53163176a976609833e"
     },
     "last_active_child_id": null,
     "last_active_at": null

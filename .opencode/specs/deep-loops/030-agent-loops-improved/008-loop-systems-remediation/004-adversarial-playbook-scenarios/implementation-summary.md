@@ -111,8 +111,8 @@ Each cluster was mapped to a regression test, and the test was read to confirm t
 | Check | Result |
 |-------|--------|
 | `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test` | PASS: 60 files / 545 tests |
-| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | PASS: exit 0 |
-| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-state.test.cjs` | PASS: exit 0 |
+| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | PASS: exit 0 |
+| `PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-state.test.cjs` | PASS: exit 0 |
 | `validate_document.py` on `loop-lock.md` and `goal-opencode-plugin.md` | PASS: valid, 0 issues |
 <!-- /ANCHOR:verification -->
 

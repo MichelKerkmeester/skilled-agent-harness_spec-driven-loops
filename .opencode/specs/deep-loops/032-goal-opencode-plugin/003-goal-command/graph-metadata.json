@@ -41,8 +41,8 @@
     "key_files": [
       ".opencode/commands/goal_opencode.md",
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -64,13 +64,13 @@
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The state store and injection renderer needed a safe user-facing control surface",
     "created_at": "2026-06-28T20:44:09Z",
-    "last_save_at": "2026-07-01T13:40:03.583Z",
+    "last_save_at": "2026-07-01T17:58:30.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8397b7eead75b144db31b5db729067241bb9c4845d4860889436d97d1e27e863",
+    "source_fingerprint": "sha256:a7f47091a559f13aea20c575a94d1a3a8e3346f68b7c837523203486bf90dd6e",
     "source_doc_hashes": {
-      "spec.md": "7dc1beb8a82fa74834cfbcaa00d0c4992a02360a35b906fee5a95f0dfa769e7f",
-      "plan.md": "374f14e4db46a5dbbdbfd95ba50d703bd605d784a8f1edb53906979d8aeff6b7",
-      "tasks.md": "7e6a46b528c17e55d8855b8f58c0658fc27a6023bd270af11b9fed5e6d0e21d3",
-      "implementation-summary.md": "9ff32aa29b8ebacc6c4263ff0c2183d9658d15216adc5dae6e786053d8ca353a"
+      "spec.md": "9d7ad2684787df15f3a5387bafcfa44084b2403471bacefec3b53c1d25d7e56d",
+      "plan.md": "8d3c45d0e67767188f1cad698dfab0828796fcfc48f2b0d018881006ee88d6be",
+      "tasks.md": "dfaa44e9c22fb57d3eead1f478602036d5f31923c087d45f52e43bd4dd3f6212",
+      "implementation-summary.md": "adf1ff337be2ac9edf3793ac4e9451b7e13ab535a911d0ace6d3ff0d48405abb"
     },
     "last_active_child_id": null,
     "last_active_at": null

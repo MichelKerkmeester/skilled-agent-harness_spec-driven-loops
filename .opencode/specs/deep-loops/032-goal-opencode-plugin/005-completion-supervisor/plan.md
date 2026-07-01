@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-supervisor.test.cjs"
     session_dedup:
       fingerprint: "sha256:ec4efc64620458bd98463b77aecb464f2dd6ce67ace345550dfbc4161f20446b"
       session_id: "goal-m2-supervisor-20260628"
@@ -90,7 +90,7 @@ Compare-safe verifier state transition.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Owns goal state and lifecycle event handling. | Add verifier helper, idle wiring, and status fields. | Supervisor test and syntax check. |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | New verifier coverage. | Created. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | New verifier coverage. | Created. | Full plugin unit suite. |
 | `mk_goal_status` output | User-facing diagnostic surface. | Add budget and verifier fields while preserving old lines. | Supervisor test asserts redacted status output. |
 
 Required inventories:

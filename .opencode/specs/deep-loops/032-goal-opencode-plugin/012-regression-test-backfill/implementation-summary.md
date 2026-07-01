@@ -17,11 +17,11 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/tasks.md"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md"
     session_dedup:
@@ -73,11 +73,11 @@ The mk-goal regression suite now exercises the plugin through the same public ho
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Added minimal `MK_GOAL_DEBUG=1` `event_error` logging for swallowed `event()` handler exceptions. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Modified | Added transform-hook, RICCE, clamp, sanitizer, and verifier-redaction regressions. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Modified | Added real-entrypoint lifecycle branch and event error-path coverage. |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Modified | Added smoke `session.idle` and stale verifier continuation integration coverage. |
-| `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | Modified | Replaced truthy seam check with exact sorted key contract. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Modified | Added factory-registered tool execution, command reference, and current graph key-file checks. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Modified | Added transform-hook, RICCE, clamp, sanitizer, and verifier-redaction regressions. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Modified | Added real-entrypoint lifecycle branch and event error-path coverage. |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Modified | Added smoke `session.idle` and stale verifier continuation integration coverage. |
+| `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Modified | Replaced truthy seam check with exact sorted key contract. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Modified | Added factory-registered tool execution, command reference, and current graph key-file checks. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/tasks.md` | Modified | Checked off T001 through T015 and completion criteria. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md` | Modified | Recorded implementation decisions and fresh verification evidence. |
 <!-- /ANCHOR:what-built -->
@@ -112,7 +112,7 @@ The phase followed the requested sequence: baseline before edits, scoped test an
 Command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Output:
@@ -146,7 +146,7 @@ Output:
 Command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Output:
@@ -168,7 +168,7 @@ Temporary mutation: replaced the final `renderGoalInjection` compact clamp retur
 Command:
 
 ```bash
-node .opencode/plugins/__tests__/mk-goal-state.test.cjs; echo "exit: $?"
+node .opencode/plugins/tests/mk-goal-state.test.cjs; echo "exit: $?"
 ```
 
 Output:
@@ -178,7 +178,7 @@ AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
 
   assert.ok(clippedBlock.length <= 220)
 
-    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0011-goal-plugin-phase012/.opencode/plugins/__tests__/mk-goal-state.test.cjs:143:12) {
+    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0011-goal-plugin-phase012/.opencode/plugins/tests/mk-goal-state.test.cjs:143:12) {
   generatedMessage: true,
   code: 'ERR_ASSERTION',
   actual: false,
@@ -194,7 +194,7 @@ Restored mutation: reinstated `return clampText(buildCompactBlock(sanitizePrompt
 Command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Output:

@@ -52,7 +52,7 @@ _memory:
 <!-- agent: direct | deps: [] | touched-files: [] -->
 - [x] T001 Re-read `deleteGoalFile`, `ensureGoalStateDir`, `flushVolatileLocks`, and the `session.deleted`/`session.created` branches in `handleEvent` to confirm exact current line numbers and signatures (.opencode/plugins/mk-goal.js)
 <!-- agent: direct | deps: [T001] | touched-files: [] -->
-- [x] T002 Run the existing 6-file test suite once as a pre-change baseline: `for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all should exit 0 (.opencode/plugins/__tests__/*.test.cjs)
+- [x] T002 Run the existing 6-file test suite once as a pre-change baseline: `for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all should exit 0 (.opencode/plugins/tests/*.test.cjs)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -79,14 +79,14 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"] -->
-- [x] T009 [P] Add a test: `session.deleted` on a session with an existing state file results in the file moving from `.goal-state/` to `.goal-state/.archive/`; a session with no state file produces no error (.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs)
-<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"] -->
-- [x] T010 [P] Add a test: archive entries with a synthetic old mtime (beyond `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS`) get pruned; entries within the window survive (.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs)
-<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"] -->
-- [x] T011 [P] Add a test: an active state file with a synthetic old `updatedAtMs` (beyond `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS`) gets archived on a due `session.created` sweep; a recent active state survives (.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs)
-<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"] -->
-- [x] T012 [P] Add a test: a second `session.created` fired inside `MK_GOAL_STATE_SWEEP_INTERVAL_MS` of the first does not re-scan the active directory (assert on a call/scan counter, not wall-clock timing) (.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs)
+<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"] -->
+- [x] T009 [P] Add a test: `session.deleted` on a session with an existing state file results in the file moving from `.goal-state/` to `.goal-state/.archive/`; a session with no state file produces no error (.opencode/plugins/tests/mk-goal-lifecycle.test.cjs)
+<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"] -->
+- [x] T010 [P] Add a test: archive entries with a synthetic old mtime (beyond `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS`) get pruned; entries within the window survive (.opencode/plugins/tests/mk-goal-lifecycle.test.cjs)
+<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"] -->
+- [x] T011 [P] Add a test: an active state file with a synthetic old `updatedAtMs` (beyond `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS`) gets archived on a due `session.created` sweep; a recent active state survives (.opencode/plugins/tests/mk-goal-lifecycle.test.cjs)
+<!-- agent: direct | deps: [T008] | touched-files: [".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"] -->
+- [x] T012 [P] Add a test: a second `session.created` fired inside `MK_GOAL_STATE_SWEEP_INTERVAL_MS` of the first does not re-scan the active directory (assert on a call/scan counter, not wall-clock timing) (.opencode/plugins/tests/mk-goal-lifecycle.test.cjs)
 <!-- agent: direct | deps: [T009, T010, T011, T012] | touched-files: [] -->
 - [x] T013 Run `node --check .opencode/plugins/mk-goal.js` and the full test suite (existing 6 + phase 012's additions + T009-T012's new tests), freshly executed, all exit 0
 <!-- agent: direct | deps: [T013] | touched-files: ["032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/implementation-summary.md"] -->

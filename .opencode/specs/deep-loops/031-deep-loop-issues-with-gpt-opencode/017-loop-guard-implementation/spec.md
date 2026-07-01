@@ -19,7 +19,7 @@ _memory:
     key_files:
       - "../016-mk-deep-loop-guard-hardening/implementation-summary.md"
       - ".opencode/plugins/mk-deep-loop-guard.js"
-      - ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs"
+      - ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "031-017-init"
@@ -90,7 +90,7 @@ Implement Design Option B from phase 016 (both research lineages' primary recomm
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
 | `.opencode/plugins/mk-deep-loop-guard.js` | Modify | Add `resolveTargetIdentity()`, session-scoped loop-repeat state + detection (Check 2), keep existing mode-mismatch check (Check 1) identity-fixed |
-| `.opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` | Modify | Extend hermetic coverage for identity resolution + loop-repeat scenarios |
+| `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Modify | Extend hermetic coverage for identity resolution + loop-repeat scenarios |
 | `.opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md` | Modify | Document loop-detection capability + new env var |
 | `.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md` | Modify | Document new test scenarios |
 <!-- /ANCHOR:scope -->

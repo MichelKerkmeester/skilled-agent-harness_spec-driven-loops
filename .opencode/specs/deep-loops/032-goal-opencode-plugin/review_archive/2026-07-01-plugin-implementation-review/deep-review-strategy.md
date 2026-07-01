@@ -124,7 +124,7 @@ Audit the shipped `/goal` OpenCode plugin implementation in packet `deep-loops/0
 - Security pass B ruled out broad permissions for newly written per-session JSON files: state directories are created `0700` and temp JSON files are opened `0600` before rename.
 - Security pass B ruled out debug/continuation logs leaking objective/evidence/injection text: those log payloads contain only session id, event/decision/reason, and turn count.
 - Traceability pass A ruled out new per-phase implementation-summary overclaim beyond known DR-001..DR-006. Phase 006's live idle smoke gap is explicitly documented in both tasks and implementation summary rather than hidden behind a completion claim.
-- Iteration 12 ruled out current scoped `mk-goal` suite failure, silent exclusion of any of the six known `mk-goal-*.test.cjs` files, phase-009 execution, and runtime/import errors: `node --test .opencode/plugins/__tests__/mk-goal-*.test.cjs` exited 0 with six passing subtests and zero skipped.
+- Iteration 12 ruled out current scoped `mk-goal` suite failure, silent exclusion of any of the six known `mk-goal-*.test.cjs` files, phase-009 execution, and runtime/import errors: `node --test .opencode/plugins/tests/mk-goal-*.test.cjs` exited 0 with six passing subtests and zero skipped.
 
 ---
 
@@ -170,12 +170,12 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping Resourc
 | `.opencode/plugins/mk-goal.js` (1676 lines) | correctness, security | 6 | 5 P1 | partial |
 | `.opencode/commands/goal_opencode.md` (83 lines) | correctness, traceability | 7 | 2 P1, 1 P2 | partial |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` (83 lines) | traceability | 15 | additional evidence for existing P1 clusters | reviewed-final |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | correctness | 3 | - | partial |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | correctness | 1 | - | partial |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | correctness | 3 | - | partial |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | correctness | 3 | - | partial |
-| `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | correctness | 4 | - | reviewed-pass-d |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | correctness, security | 5 | 1 test gap supporting P1; adversarial sanitization coverage reviewed | partial |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | correctness | 3 | - | partial |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | correctness | 1 | - | partial |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | correctness | 3 | - | partial |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | correctness | 3 | - | partial |
+| `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | correctness | 4 | - | reviewed-pass-d |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | correctness, security | 5 | 1 test gap supporting P1; adversarial sanitization coverage reviewed | partial |
 | `032-goal-opencode-plugin/001-state-store/{spec,plan,tasks,implementation-summary}.md` | correctness | 1 | - | reviewed-pass-a |
 | `032-goal-opencode-plugin/002-injection-plugin/{spec,plan,tasks,implementation-summary}.md` | correctness | 1 | 1 P1 | partial |
 | `032-goal-opencode-plugin/003-goal-command/{spec,plan,tasks,implementation-summary}.md` | correctness, traceability | 7 | 2 P1 | partial |
@@ -398,10 +398,10 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping Resourc
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: Partial. This iteration re-read live code for four active findings rather than re-running full phase-doc traceability.
 
-### Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/__tests__/mk-goal-state.test.cjs:120`, `.opencode/plugins/__tests__/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116`). -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/__tests__/mk-goal-state.test.cjs:120`, `.opencode/plugins/__tests__/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116`).
+### Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/tests/mk-goal-state.test.cjs:120`, `.opencode/plugins/tests/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116`). -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/tests/mk-goal-state.test.cjs:120`, `.opencode/plugins/tests/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/__tests__/mk-goal-state.test.cjs:120`, `.opencode/plugins/__tests__/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116`).
+- Do NOT retry: Adversarial scenario spot-check: Partial. `review/README.md:20` claims terminal-goal same-objective revival and active-goal injection clamp scenarios were added. The active-goal injection clamp is present in `mk-goal-state.test.cjs` via structural clamp and sanitization assertions (`.opencode/plugins/tests/mk-goal-state.test.cjs:120`, `.opencode/plugins/tests/mk-goal-state.test.cjs:154`). The terminal same-objective revival is present in `mk-goal-lifecycle.test.cjs`: the goal reaches `budget_limited`, then `setGoal` with the same objective returns a new active `reset-goal` with counters reset (`.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:89`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116`).
 
 ### Code graph: stale; graphless fallback used via direct reads and exact searches. -- BLOCKED (iteration 9, 1 attempts)
 - What was tried: Code graph: stale; graphless fallback used via direct reads and exact searches.
@@ -458,10 +458,10 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping Resourc
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Goal tool action routing mismatch: `executeGoalAction` handles set, clear, complete, pause, and show; `executeGoalStatus` reads status; tool registration exposes `mk_goal` and `mk_goal_status` with matching schemas. Evidence: `.opencode/plugins/mk-goal.js:1454-1494`, `.opencode/plugins/mk-goal.js:1625-1644`.
 
-### Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57-115`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57-115`.
+### Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57-115`. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57-115`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57-115`.
+- Do NOT retry: Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57-115`.
 
 ### Out-of-scope boundary: phase `009-speckit-command-goal-prompt-offer/**` was not read or reviewed. -- BLOCKED (iteration 15, 1 attempts)
 - What was tried: Out-of-scope boundary: phase `009-speckit-command-goal-prompt-offer/**` was not read or reviewed.
@@ -543,10 +543,10 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping Resourc
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Phase-009 exclusion: PASS. No path under `032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/**` was read or executed as part of the suite.
 
-### Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:158-166`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:158-166`.
+### Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:158-166`. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:158-166`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:158-166`.
+- Do NOT retry: Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:158-166`.
 
 <!-- /ANCHOR:exhausted-approaches -->
 

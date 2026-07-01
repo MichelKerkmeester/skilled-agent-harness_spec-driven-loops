@@ -44,9 +44,9 @@ The passive goal feature now has a root command. /goal is a thin router that sel
 
 ### Verification
 
-- node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 5/5 plugin test files.
+- node --test .opencode/plugins/tests/*.test.cjs - PASS, 5/5 plugin test files.
 - node --check .opencode/plugins/mk-goal.js - PASS.
-- node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs - PASS.
+- node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-tool-path.test.cjs - PASS.
 - Tasks complete - 14 completed task item(s) recorded
 
 ### Files Changed
@@ -55,8 +55,8 @@ The passive goal feature now has a root command. /goal is a thin router that sel
 |---|---|---|
 | `.opencode/commands/goal.md` | Created | Adds the root /goal command router and command safety rules. |
 | `.opencode/plugins/mk-goal.js` | Modified | Adds mk_goal, mk_goal_status, action execution, status lines, and failure envelopes. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies tool set/status/clear behavior and injection_preview. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution for mutation paths. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies tool set/status/clear behavior and injection_preview. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution for mutation paths. |
 
 ### Follow-Ups
 

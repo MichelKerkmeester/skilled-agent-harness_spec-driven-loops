@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:eee15f192aeed0c608ec0c761a43da475043a7855e08c2e1a88f0a2263295916"
       session_id: "goal-sk-prompt-enhancement-20260630"
@@ -62,9 +62,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Add deterministic prompt generation helpers (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` PASS
-- [x] T005 Store `goalPrompt` and `promptEnhancement` with backward-compatible normalization (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` PASS
-- [x] T006 Render injection from `goalPrompt` and expose prompt metadata in status (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` PASS
+- [x] T004 Add deterministic prompt generation helpers (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/tests/mk-goal-state.test.cjs` PASS
+- [x] T005 Store `goalPrompt` and `promptEnhancement` with backward-compatible normalization (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/tests/mk-goal-state.test.cjs` PASS
+- [x] T006 Render injection from `goalPrompt` and expose prompt metadata in status (`.opencode/plugins/mk-goal.js`) — evidence: `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` PASS
 - [x] T007 Update parent phase map and phase implementation summary (`../spec.md`, `implementation-summary.md`) — evidence: phase docs updated
 <!-- /ANCHOR:phase-2 -->
 
@@ -73,8 +73,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Update mk-goal state and tool-path tests (`.opencode/plugins/__tests__/mk-goal-state.test.cjs`, `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs`) — evidence: both tests PASS
-- [x] T009 Run all mk-goal plugin tests (`node .opencode/plugins/__tests__/mk-goal-*.test.cjs` individually) — evidence: state, tool-path, export-contract, lifecycle, supervisor and continuation tests PASS
+- [x] T008 Update mk-goal state and tool-path tests (`.opencode/plugins/tests/mk-goal-state.test.cjs`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`) — evidence: both tests PASS
+- [x] T009 Run all mk-goal plugin tests (`node .opencode/plugins/tests/mk-goal-*.test.cjs` individually) — evidence: state, tool-path, export-contract, lifecycle, supervisor and continuation tests PASS
 - [x] T010 Run OpenCode alignment and comment-hygiene checks for modified code (`verify_alignment_drift.py`, `check-comment-hygiene.sh`) — evidence: alignment drift PASS; comment hygiene PASS with `python3` entrypoint
 - [x] T011 Restamp generated metadata and run strict spec validation (`validate.sh --strict`) — evidence: `validate.sh .opencode/specs/deep-loops/032-goal-opencode-plugin --strict` PASS
 <!-- /ANCHOR:phase-3 -->

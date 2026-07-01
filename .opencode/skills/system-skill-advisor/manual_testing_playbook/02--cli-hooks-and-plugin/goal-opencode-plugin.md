@@ -35,16 +35,16 @@ Validate that `/goal` routes through the OpenCode plugin tools, persists per-ses
 1. Run the state and tool-path tests:
 
 ```bash
-node .opencode/plugins/__tests__/mk-goal-state.test.cjs
-node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs
+node .opencode/plugins/tests/mk-goal-state.test.cjs
+node .opencode/plugins/tests/mk-goal-tool-path.test.cjs
 ```
 
 2. Run the supervisor, continuation and lifecycle tests:
 
 ```bash
-node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs
-node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs
-node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
+node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
 ```
 
 3. In a live OpenCode session when tool invocation is available, run:
@@ -91,7 +91,7 @@ node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
 - Feature [`07--hooks-and-plugin/goal-opencode-plugin.md`](../../feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md)
 - Source: `.opencode/plugins/mk-goal.js`
 - Source: `.opencode/commands/goal_opencode.md`
-- Tests: `.opencode/plugins/__tests__/mk-goal-*.test.cjs`
+- Tests: `.opencode/plugins/tests/mk-goal-*.test.cjs`
 
 ---
 
@@ -106,12 +106,12 @@ node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
   carried stale usage counters (tokens, elapsed time, last-accounted message) into the revived goal.
 - Must-stay-true invariant: re-arming an objective after a terminal goal must reset usage to zero
   and clear the last-accounted message and continuation-suppressed flags.
-- Pass/fail: PASS only if `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` exits 0 AND
+- Pass/fail: PASS only if `node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` exits 0 AND
   the revived-goal assertions remain (`tokensUsed === 0`, `timeUsedSeconds === 0`,
   `lastAccountedMessageID === null`); FAIL if the test is missing, weakened, or exits non-zero.
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
 ```
 
 ### 5.2 Injection clamp must preserve directive and fence markers
@@ -121,21 +121,21 @@ PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.
 - Must-stay-true invariant: clamping a long objective must still emit the opening
   `[active_goal:<id>]` marker, the `directive:` line, and the closing `[/active_goal]` fence —
   only the objective text is truncated (ends with `...`).
-- Pass/fail: PASS only if `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` exits 0 AND the
+- Pass/fail: PASS only if `node .opencode/plugins/tests/mk-goal-state.test.cjs` exits 0 AND the
   clamped-injection assertions remain (block starts with `[active_goal:<id>]`, contains the
   `directive:` line, ends with `[/active_goal]`); FAIL if the test is missing, weakened, or exits
   non-zero.
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-state.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-state.test.cjs
 ```
 
 ### Regression Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Fails if a revived same-objective goal carries stale usage. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Fails if the injection clamp drops the directive or fence markers. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Fails if a revived same-objective goal carries stale usage. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Fails if the injection clamp drops the directive or fence markers. |
 
 ---
 

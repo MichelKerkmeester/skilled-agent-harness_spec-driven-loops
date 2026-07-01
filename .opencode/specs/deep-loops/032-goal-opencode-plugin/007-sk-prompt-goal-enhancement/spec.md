@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:b12877c7a45bb025f3435522f5fbfd131a113967f56e63077e745fd7abdefe5f"
       session_id: "goal-sk-prompt-enhancement-20260630"
@@ -112,8 +112,8 @@ Transform every user-provided objective into a compact sk-prompt-style goal prom
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Add prompt generation, metadata normalization, injection rendering from `goalPrompt`, and status fields. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Modify | Cover generated prompt shape, metadata, 4000-char cap, injection parity and adversarial sanitization. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Modify | Verify command-backed tool path persists the enhanced prompt and status exposes it. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Modify | Cover generated prompt shape, metadata, 4000-char cap, injection parity and adversarial sanitization. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Modify | Verify command-backed tool path persists the enhanced prompt and status exposes it. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md` | Modify | Add phase 7 scope and handoff criteria to the parent map. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/` | Create | Phase documentation for this enhancement. |
 <!-- /ANCHOR:scope -->

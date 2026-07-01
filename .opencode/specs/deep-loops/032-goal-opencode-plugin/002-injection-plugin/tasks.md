@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:c769085d6db60ec2bf66d5c7f654e618dfa9754519baad1f79fc6f8a05ae73d6"
       session_id: "goal-m1-injection-plugin-20260629"

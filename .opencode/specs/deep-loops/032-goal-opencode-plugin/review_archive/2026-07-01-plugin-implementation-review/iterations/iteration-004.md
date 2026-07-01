@@ -21,7 +21,7 @@ correctness -- PASS D closing correctness pass: sk-prompt goal enhancement, syst
 - `.opencode/plugins/mk-goal.js:1676` test export attachment.
 - `.opencode/commands/opencode_goal.md:43` unknown-action contract.
 - `.opencode/commands/opencode_goal.md:59` bare text dispatch.
-- `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16` export-shape assertion.
+- `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:16` export-shape assertion.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/spec.md:139` metadata acceptance criterion.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration/spec.md:70` runtime-code scope boundary.
 

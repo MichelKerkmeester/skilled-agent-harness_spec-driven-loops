@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:80d1d117cdabac445f222cfebbc77cbe8747f9e7e395711688b3c090e709962b"
       session_id: "goal-m1-goal-command-20260629"
@@ -112,8 +112,8 @@ The repository now has a root `/goal` command that delegates all stateful work t
 |-----------|-------------|-------------|
 | `.opencode/commands/goal_opencode.md` | Create | Adds the root `/goal` router and hard rules for one tool call. |
 | `.opencode/plugins/mk-goal.js` | Modify | Adds `mk_goal`, `mk_goal_status`, action handling, status lines, and failure envelopes. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Create | Verifies set, status, `injection_preview`, transform parity, and clear through tool calls. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Create | Verifies tool-context session resolution for command-backed mutation paths. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Create | Verifies set, status, `injection_preview`, transform parity, and clear through tool calls. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Create | Verifies tool-context session resolution for command-backed mutation paths. |
 <!-- /ANCHOR:scope -->
 
 ---

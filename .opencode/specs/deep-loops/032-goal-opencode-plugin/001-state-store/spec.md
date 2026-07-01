@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/skills/.goal-state"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:2f322416f3206047d0deb7993f19864be115046d2b65bac79a47c9543af577fe"
       session_id: "goal-m1-state-store-20260629"
@@ -111,8 +111,8 @@ The plugin now has a fail-closed, per-session JSON state store that safely persi
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Adds the per-session state helpers, normalization, atomic writes, mutation queue, and set/clear operations. |
 | `.opencode/skills/.goal-state` | Create | Runtime state directory for session-keyed JSON goal files. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Create | Verifies missing-session refusal, session isolation, state paths, set/show/clear, and passive transform reuse. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Create | Verifies tool handler session resolution and state mutation through tool context. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Create | Verifies missing-session refusal, session isolation, state paths, set/show/clear, and passive transform reuse. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Create | Verifies tool handler session resolution and state mutation through tool context. |
 <!-- /ANCHOR:scope -->
 
 ---

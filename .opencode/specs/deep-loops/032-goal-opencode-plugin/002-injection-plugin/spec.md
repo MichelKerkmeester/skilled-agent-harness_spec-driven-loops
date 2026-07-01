@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:2d3e4184f24977d814d61ec62191acdc0fe1fee9beae85e6ff705262ee307277"
       session_id: "goal-m1-injection-plugin-20260629"
@@ -107,7 +107,7 @@ The plugin now passively injects a sanitized active goal block into OpenCode sys
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Adds `renderGoalInjection`, `appendGoalBrief`, and `experimental.chat.system.transform`. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Create | Verifies status output includes `injection_preview` and the transform appends the same injection block. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Create | Verifies status output includes `injection_preview` and the transform appends the same injection block. |
 <!-- /ANCHOR:scope -->
 
 ---

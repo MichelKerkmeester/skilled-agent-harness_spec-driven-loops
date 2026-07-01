@@ -42,7 +42,7 @@ _memory:
 | **Language/Stack** | Node.js (ESM), OpenCode plugin runtime |
 | **Framework** | `.opencode/plugins/mk-goal.js` (single-file plugin, ~1676 lines) |
 | **Storage** | Flat per-session JSON goal state (`.opencode/skills/.goal-state/`) |
-| **Testing** | `node --test` / direct `node` execution of `.opencode/plugins/__tests__/mk-goal-*.test.cjs` (6 files) |
+| **Testing** | `node --test` / direct `node` execution of `.opencode/plugins/tests/mk-goal-*.test.cjs` (6 files) |
 
 ### Overview
 Five surgical edits to `mk-goal.js`, each landing one deep-review finding (DR-001/003/004-P1/005/006). No new files, no schema changes, no command/doc changes — this phase is code-only and independent of phases 011/013.
@@ -97,11 +97,11 @@ Planning from a deep-review CONDITIONAL verdict (`review/review-report.md`); fin
 | `renderGoalInjection` (`mk-goal.js:1350`) | Renders `[active_goal]` block, clamps only the prompt subsection | Update: clamp total output (REQ-003) | Manual invocation with a small `maxInjectionChars` override, assert total length ≤ cap |
 | `maybeVerifyGoal`/`maybeContinueGoal` (`mk-goal.js:1080`/`1236`) | Verifier result feeds continuation gating without staleness check | Update: add staleness signal (REQ-004) | Manual scenario: replace goal mid-verify, trigger `session.idle`, assert no continuation on stale evidence |
 | `buildEnhancedGoalPrompt` (`mk-goal.js:264`) | Generates `promptEnhancement`, currently no RICCE field | Update or spec-amend (REQ-005) | `grep -n "RICCE\|ricce"` before/after; or diff against amended `007-sk-prompt-goal-enhancement/spec.md` |
-| `.opencode/plugins/__tests__/mk-goal-*.test.cjs` (6 files) | Existing regression suite | Unchanged (new tests are phase 012's scope) — must still pass after all 5 edits | `node --test` / direct execution, all 6 files, exit 0 |
+| `.opencode/plugins/tests/mk-goal-*.test.cjs` (6 files) | Existing regression suite | Unchanged (new tests are phase 012's scope) — must still pass after all 5 edits | `node --test` / direct execution, all 6 files, exit 0 |
 
 Required inventories:
 - Same-class producers: `rg -n 'redactEvidence|sanitizeInlineText|sanitizePromptText|renderGoalInjection|maybeVerifyGoal|maybeContinueGoal|buildEnhancedGoalPrompt' .opencode/plugins/mk-goal.js` to confirm no other call sites need the same fix.
-- Consumers of changed symbols: `rg -n 'redactEvidence|renderGoalInjection|maybeVerifyGoal|maybeContinueGoal|buildEnhancedGoalPrompt' .opencode/plugins/__tests__/*.test.cjs` to know which existing tests exercise the changed functions and must stay green.
+- Consumers of changed symbols: `rg -n 'redactEvidence|renderGoalInjection|maybeVerifyGoal|maybeContinueGoal|buildEnhancedGoalPrompt' .opencode/plugins/tests/*.test.cjs` to know which existing tests exercise the changed functions and must stay green.
 - Matrix axes: (a) verifier exception vs verifier evidence redaction path, (b) sanitizer coverage for role-labels vs bidi/homoglyph vs instruction-override phrasing, (c) injection block length at default vs small custom `maxInjectionChars`, (d) goal-replace-during-verification timing, (e) RICCE field present vs spec-amended-away.
 - Algorithm invariant (security fixes): no unredacted secret-shaped string (matching the existing `redactEvidence` patterns: `sk-`, `gh[pousr]_`, `xox[...]`, `AKIA`, `api_key=`, `token=`, `password=`, `secret=`) may appear in persisted state or rendered output via ANY code path, including exception handling — adversarial case: a verifier that throws an error object containing a secret in its `.message`.
 <!-- /ANCHOR:affected-surfaces -->

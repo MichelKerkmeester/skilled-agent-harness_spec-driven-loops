@@ -40,7 +40,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/tasks.md",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/implementation-summary.md",
       "implementation-summary.md",
@@ -58,7 +58,7 @@
       {
         "name": "mk-goal-lifecycle.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.opencode/skills/.goal-state/.json` files are created per session (`goalPathForSession`) but never removed by the plugin's own lifecycle handling",
     "created_at": "2026-07-01T12:44:45Z",
-    "last_save_at": "2026-07-01T13:23:02.631Z",
+    "last_save_at": "2026-07-01T17:58:32.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00c2448dd84fc2ffad4eb71bc68dab8ec29fae90a3c2deaeecd2650069ac8bac",
+    "source_fingerprint": "sha256:f31a5d48314ae27374270a284460c4b65603f28500ab4720a7575a2ab19ef9a1",
     "source_doc_hashes": {
-      "spec.md": "5992f56582b76aa7480c71eabfbcd655acbd82c3be46f59b82fb3e594ca25237",
-      "plan.md": "1fff10dde285079b6959b28d0a7a6ed3c8f52dec15f50ea5411e359e2a8ee74e",
-      "tasks.md": "7f212d5dd99ecaa6e6db028fa9fff5f6602f21e5c9bbb66dffc853d9a5f41635",
-      "implementation-summary.md": "2132374432c7fc96319d64dd93609d7ffa71dff2fcb3d1ca1546a7908b80f3fa"
+      "spec.md": "9355330720baf484e94cb48c2425894ab7f8c0dcd974b8000ab25a0d2957fb41",
+      "plan.md": "d87845fa9f9b81afea9f7bcf6dc7581b76d0ee0f1a919a4cdb37b8e2271df94e",
+      "tasks.md": "373a1456c5d1f6b0dfab5b9836194ec533f0c12f1154cdbd4e80413161f2d6b0",
+      "implementation-summary.md": "699d2fe34dc8bf495818959ae15b2bbf5bec924219c305ea8ac38a3bcf137e03"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
       fingerprint: "sha256:cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
       session_id: "goal-m2-lifecycle-20260628"
@@ -63,7 +63,7 @@ Usage accounting is active-status only, goal-id guarded, and deduped by `lastAcc
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds lifecycle event handling, usage accounting, prompt-block state, and budget status output. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Created | Verifies account usage dedupe, budget stop transition, unavailable usage, and prompt blocking. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Created | Verifies account usage dedupe, budget stop transition, unavailable usage, and prompt blocking. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -92,8 +92,8 @@ The change extends the existing plugin in place and keeps the M1 state/injection
 
 | Check | Result |
 |-------|--------|
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 3/3 plugin tests. |
-| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | PASS. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 3/3 plugin tests. |
+| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins` | PASS, 8 files scanned. |
 | Lifecycle claim-falsifier | PASS, disabling budget crossing made the lifecycle test fail on the expected `budget_limited` assertion. |
 <!-- /ANCHOR:verification -->

@@ -141,7 +141,7 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Existing goal plugin behavior | `node .opencode/plugins/__tests__/mk-goal-*.test.cjs` |
+| Unit | Existing goal plugin behavior | `node .opencode/plugins/tests/mk-goal-*.test.cjs` |
 | Documentation | New reference/catalog/playbook structure | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py ...` |
 | Alignment | OpenCode skill docs and plugin docs | `verify_alignment_drift.py` |
 | Spec | Parent packet and phase children | `validate.sh --strict` |

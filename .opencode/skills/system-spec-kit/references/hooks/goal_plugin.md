@@ -28,7 +28,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
 | Command | `.opencode/commands/goal_opencode.md` | State-free `/goal` router for `set`, `show`, `clear`, `complete`, and `pause`. |
 | State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by session id, intentionally outside spec docs. |
-| Tests | `.opencode/plugins/__tests__/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
+| Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ## 3. Behavior Contract
 
@@ -75,12 +75,12 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 Run these checks after modifying goal-plugin behavior or docs that describe the plugin:
 
 ```bash
-node .opencode/plugins/__tests__/mk-goal-state.test.cjs
-node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs
-node .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs
-node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs
-node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs
-node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs
+node .opencode/plugins/tests/mk-goal-state.test.cjs
+node .opencode/plugins/tests/mk-goal-tool-path.test.cjs
+node .opencode/plugins/tests/mk-goal-export-contract.test.cjs
+node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
+node .opencode/plugins/tests/mk-goal-continuation.test.cjs
 python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins
 python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js
 ```

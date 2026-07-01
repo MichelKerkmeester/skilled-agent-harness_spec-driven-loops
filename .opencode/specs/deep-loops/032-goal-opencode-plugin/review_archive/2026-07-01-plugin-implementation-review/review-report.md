@@ -72,7 +72,7 @@ description: "Autonomous deep-review loop findings for deep-loops/032-goal-openc
   "affectedSurfacesSeed": [
     ".opencode/plugins/mk-goal.js",
     ".opencode/commands/goal_opencode.md",
-    ".opencode/plugins/__tests__/mk-goal-*.test.cjs",
+    ".opencode/plugins/tests/mk-goal-*.test.cjs",
     "032-goal-opencode-plugin/{003,007,008}",
     ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
     ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
@@ -102,10 +102,10 @@ All findings are read-only observations against `.opencode/plugins/mk-goal.js` a
 | DR-007-P1-001 | P1 | traceability | Command surface split into three incompatible names across phase docs/metadata/live file | `032-goal-opencode-plugin/003-goal-command/tasks.md:18` | active |
 | DR-007-P2-001 | P2 | traceability | Generated phase graph metadata lists non-deliverable files as key files | `032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json:39` | active |
 | DR-008-P1-001 | P1 | traceability | Overlay feature catalogs/playbooks point operators at a stale command surface | `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:27` | active |
-| DR-009-P1-001 | P1 | maintainability | No regression test pins DR-001/DR-003/DR-005/DR-006's exact behaviors | `.opencode/plugins/__tests__/mk-goal-state.test.cjs:120` | active |
-| DR-009-P1-002 | P1 | maintainability | Prompt-enhancement tests never assert a RICCE metadata field | `.opencode/plugins/__tests__/mk-goal-state.test.cjs:40` | active |
-| DR-009-P1-003 | P1 | maintainability | No test suite validates command markdown / overlay catalog references | `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16` | active |
-| DR-009-P2-001 | P2 | maintainability | No regression check for phase graph-metadata deliverable drift | `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16` | active |
+| DR-009-P1-001 | P1 | maintainability | No regression test pins DR-001/DR-003/DR-005/DR-006's exact behaviors | `.opencode/plugins/tests/mk-goal-state.test.cjs:120` | active |
+| DR-009-P1-002 | P1 | maintainability | Prompt-enhancement tests never assert a RICCE metadata field | `.opencode/plugins/tests/mk-goal-state.test.cjs:40` | active |
+| DR-009-P1-003 | P1 | maintainability | No test suite validates command markdown / overlay catalog references | `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:16` | active |
+| DR-009-P2-001 | P2 | maintainability | No regression check for phase graph-metadata deliverable drift | `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:16` | active |
 | DR-010-P1-001 | P1 | maintainability | `MK_GOAL_PLUGIN_DISABLED` documentation overstates the disable boundary (manual tool mutations still execute) | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:651` | active |
 | DR-010-P2-001 | P2 | maintainability | `/goal set` output does not report created/replaced/refreshed | `.opencode/plugins/mk-goal.js:847` | active |
 

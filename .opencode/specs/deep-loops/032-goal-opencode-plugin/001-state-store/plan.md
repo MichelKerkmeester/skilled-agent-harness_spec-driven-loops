@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:a3e7721be7af28df416e6973960b1b442005139afde38e7d81d81ff1e0b67051"
       session_id: "goal-m1-state-store-20260629"
@@ -93,8 +93,8 @@ Tool or lifecycle code supplies a session id, the state helper resolves the hex-
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Owns goal plugin state and tools. | Add state directory, path, read, write, mutate, set, and clear helpers. | `node --check`; state and tool-path tests. |
 | `.opencode/skills/.goal-state` | Runtime state directory. | Created on demand with private permissions. | State tests use isolated temp state directories. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | State and passive plugin coverage. | Created. | Full plugin unit suite. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Tool-context path regression coverage. | Created. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | State and passive plugin coverage. | Created. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Tool-context path regression coverage. | Created. | Full plugin unit suite. |
 
 Required inventories:
 - Same-class producers: `ensureGoalStateDir`, `goalPathForSession`, `readGoal`, `writeGoalAtomic`, `mutateGoal`, `setGoal`, and `clearGoal` in `mk-goal.js`.

@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "implementation-032-014"
@@ -71,7 +71,7 @@ The plugin runtime now tracks `lastSweepAtMs` and only runs the active-state swe
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Added archive, prune, and throttled active orphan sweep behavior for goal state files. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Modified | Added lifecycle coverage for archive-on-delete, no-file delete, archive retention, active orphan sweep, and sweep throttling. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Modified | Added lifecycle coverage for archive-on-delete, no-file delete, archive retention, active orphan sweep, and sweep throttling. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/tasks.md` | Modified | Marked implementation and verification tasks complete with evidence. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/implementation-summary.md` | Modified | Recorded delivered behavior and verification evidence. |
 <!-- /ANCHOR:what-built -->
@@ -117,7 +117,7 @@ The implementation followed the existing goal state helpers and event lifecycle 
 Baseline command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Baseline output:
@@ -147,7 +147,7 @@ Syntax check output:
 Final test command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Final test output:

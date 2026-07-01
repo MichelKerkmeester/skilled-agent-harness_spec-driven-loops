@@ -20,7 +20,7 @@
 
 ### Verification baselines (green now)
 - `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test` → **60 files / 545 tests pass**.
-- All `.opencode/plugins/__tests__/*.test.cjs` → **6/6 pass** (run each with `PATH=/opt/homebrew/bin:$PATH node <file>`).
+- All `.opencode/plugins/tests/*.test.cjs` → **6/6 pass** (run each with `PATH=/opt/homebrew/bin:$PATH node <file>`).
 - `cd .opencode/skills/deep-loop-workflows/deep-improvement/scripts && PATH=/opt/homebrew/bin:$PATH npx vitest run` → passes except the concurrent session's `design-token-lint` (ignore).
 
 ## 2. Remaining work (4 fixes)

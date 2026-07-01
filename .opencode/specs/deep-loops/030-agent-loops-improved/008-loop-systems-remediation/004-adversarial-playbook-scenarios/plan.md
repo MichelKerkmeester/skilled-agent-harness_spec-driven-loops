@@ -130,7 +130,7 @@ Required inventories:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Suite | All deep-loop-runtime tests behind the cited scenarios | `PATH=/opt/homebrew/bin:$PATH npm test` |
-| Plugin | Goal-plugin revival and injection-clamp guards | `node .opencode/plugins/__tests__/mk-goal-{lifecycle,state}.test.cjs` |
+| Plugin | Goal-plugin revival and injection-clamp guards | `node .opencode/plugins/tests/mk-goal-{lifecycle,state}.test.cjs` |
 | Document | Edited playbook markdown | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <file>` |
 | Spec validation | Level-1 phase docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 <!-- /ANCHOR:testing -->

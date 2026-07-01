@@ -25,9 +25,9 @@ Correctness -- pass B: goal-command handlers and lifecycle tracking.
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/plan.md` | 77-83, 96-100, 113-121 | Lifecycle architecture, invariants, and verification plan. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/tasks.md` | 63-76 | Lifecycle completed task claims. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/implementation-summary.md` | 51-66, 90-98 | Lifecycle delivery and verification claims. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | 70-83, 89-108, 174-180 | Goal tool set/show/status/clear and injection-preview coverage. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | 23-45 | Tool-context session resolution coverage. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | 27-68, 70-115, 116-128, 130-166 | Lifecycle usage dedupe, budget transition, reset, unavailable usage, prompt blocking coverage. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | 70-83, 89-108, 174-180 | Goal tool set/show/status/clear and injection-preview coverage. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | 23-45 | Tool-context session resolution coverage. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | 27-68, 70-115, 116-128, 130-166 | Lifecycle usage dedupe, budget transition, reset, unavailable usage, prompt blocking coverage. |
 | `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | 23-47 | Current runtime-specific command-name decision: OpenCode plugin is `/opencode_goal`, not bare `/goal`. |
 
 ## Findings by Severity
@@ -67,8 +67,8 @@ None.
 ## Ruled Out
 
 - Goal tool action routing mismatch: `executeGoalAction` handles set, clear, complete, pause, and show; `executeGoalStatus` reads status; tool registration exposes `mk_goal` and `mk_goal_status` with matching schemas. Evidence: `.opencode/plugins/mk-goal.js:1454-1494`, `.opencode/plugins/mk-goal.js:1625-1644`.
-- Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57-115`.
-- Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:158-166`.
+- Lifecycle usage-accounting mismatch: `recordMessageUpdated` refreshes evidence, extracts usage, accounts only while the current goal is active, dedupes by message id, and transitions to `budget_limited` at the token cap. Evidence: `.opencode/plugins/mk-goal.js:912-986`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57-115`.
+- Prompt blocker and volatile cleanup mismatch: permission/question events set and clear prompt blocking, `session.deleted` and `*.disposed` clear volatile locks. Evidence: `.opencode/plugins/mk-goal.js:1558-1608`, `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:158-166`.
 - DR-001-P1-001 lifecycle angle: the existing injection max-length cap issue is in `renderGoalInjection`/status preview behavior, not lifecycle transition accounting. This pass found no separate lifecycle state bug caused by that cap mismatch.
 
 ## SCOPE VIOLATIONS

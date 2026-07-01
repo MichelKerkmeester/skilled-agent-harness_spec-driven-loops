@@ -247,7 +247,7 @@
       "findingId": "DR-009-P1-001",
       "severity": "P1",
       "title": "Current plugin tests do not pin the regression cases for four active behavior/security findings",
-      "file": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      "file": ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "line": 120,
       "description": "",
       "findingClass": null,
@@ -276,7 +276,7 @@
       "findingId": "DR-009-P1-002",
       "severity": "P1",
       "title": "Prompt-enhancement tests lock CRAFT and DEPTH but not the required RICCE metadata contract",
-      "file": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      "file": ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "line": 40,
       "description": "",
       "findingClass": null,
@@ -305,7 +305,7 @@
       "findingId": "DR-009-P1-003",
       "severity": "P1",
       "title": "Command and overlay documentation drift has no regression harness in the current test suite",
-      "file": ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
       "line": 16,
       "description": "",
       "findingClass": null,
@@ -450,7 +450,7 @@
       "findingId": "DR-009-P2-001",
       "severity": "P2",
       "title": "Graph-metadata deliverable drift is not covered by a phase metadata regression check",
-      "file": ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
       "line": 16,
       "description": "",
       "findingClass": null,
@@ -1385,10 +1385,10 @@
         ".opencode/plugins/mk-goal.js:762",
         ".opencode/plugins/mk-goal.js:835",
         ".opencode/plugins/mk-goal.js:875",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:21",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:106",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:174"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:21",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:106",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:174"
       ],
       "reason": "verified by direct reads against phase 001 requirements"
     },
@@ -1441,7 +1441,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:912",
         ".opencode/plugins/mk-goal.js:976",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57"
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57"
       ],
       "bugClass": "usage_accounting",
       "disposition": "ruled_out",
@@ -1452,10 +1452,10 @@
         ".opencode/plugins/mk-goal.js:928",
         ".opencode/plugins/mk-goal.js:940",
         ".opencode/plugins/mk-goal.js:941",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:66",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:88",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:112"
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:66",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:88",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:112"
       ],
       "reason": "verified by direct read and lifecycle tests"
     },
@@ -1525,7 +1525,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1007",
         ".opencode/plugins/mk-goal.js:1070",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:38"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:38"
       ],
       "bugClass": "completion_supervisor_state_transition",
       "disposition": "ruled_out",
@@ -1535,10 +1535,10 @@
         ".opencode/plugins/mk-goal.js:1021",
         ".opencode/plugins/mk-goal.js:1079",
         ".opencode/plugins/mk-goal.js:1094",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:78",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:107",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:125",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:142"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:78",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:107",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:125",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:142"
       ],
       "reason": "verified by direct read"
     },
@@ -1548,7 +1548,7 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1236",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:51"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:51"
       ],
       "bugClass": "active_continuation_gate_order",
       "disposition": "ruled_out",
@@ -1561,18 +1561,18 @@
         ".opencode/plugins/mk-goal.js:1290",
         ".opencode/plugins/mk-goal.js:1296",
         ".opencode/plugins/mk-goal.js:1318",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:61",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:98",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:127",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:158",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:216",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:237",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:261",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:281",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:305",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:327",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:353"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:61",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:98",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:127",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:158",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:216",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:237",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:261",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:281",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:305",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:327",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:353"
       ],
       "reason": "verified by direct read"
     },
@@ -1582,17 +1582,17 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/README.md:20",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116"
       ],
       "bugClass": "adversarial_test_claims",
       "disposition": "ruled_out",
       "rationale": "Both claimed adversarial scenarios are currently represented by concrete assertions.",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:154",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:89",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:154",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:89",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116"
       ],
       "reason": "verified by exact search and direct read"
     },
@@ -1618,7 +1618,7 @@
       "id": "SL-015",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16",
         ".opencode/plugins/mk-goal.js:1513",
         ".opencode/plugins/mk-goal.js:1676"
       ],
@@ -1626,8 +1626,8 @@
       "disposition": "ruled_out",
       "rationale": "Export shape and loader contract match the test.",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:18",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:18",
         ".opencode/plugins/mk-goal.js:1513",
         ".opencode/plugins/mk-goal.js:1676"
       ],
@@ -1679,7 +1679,7 @@
         ".opencode/plugins/mk-goal.js:205",
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1412",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45"
       ],
       "bugClass": "secret_redaction_gap",
       "disposition": "ruled_out",
@@ -1688,9 +1688,9 @@
         ".opencode/plugins/mk-goal.js:205",
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1436",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:91"
       ],
       "reason": "Direct read confirmed redaction and test coverage for common token/API-key patterns."
     },
@@ -1700,7 +1700,7 @@
       "dimension": "security",
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1016",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45"
       ],
       "bugClass": "secret_redaction_pattern_gap",
       "disposition": "ruled_out",
@@ -1708,9 +1708,9 @@
       "evidenceRefs": [
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1029",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:91"
       ],
       "reason": "verified by direct read and existing assertions"
     },
@@ -1721,7 +1721,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:167",
         ".opencode/plugins/mk-goal.js:592",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76"
       ],
       "bugClass": "state_path_traversal",
       "disposition": "ruled_out",
@@ -1730,8 +1730,8 @@
         ".opencode/plugins/mk-goal.js:167",
         ".opencode/plugins/mk-goal.js:592",
         ".opencode/plugins/mk-goal.js:594",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:77"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:77"
       ],
       "reason": "verified by direct read and existing state tests"
     },
@@ -1816,17 +1816,17 @@
       "id": "SL-009-006",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_surface_structure",
       "disposition": "ruled_out",
       "rationale": "no stale plugin import path found",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:16",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:28",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:34",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:19",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:13"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:28",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:34",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:19",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:13"
       ],
       "reason": "verified by direct read and exact search"
     },
@@ -1866,8 +1866,8 @@
       "evidenceRefs": [
         ".opencode/plugins/mk-goal.js:1376",
         ".opencode/plugins/mk-goal.js:1378",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:132"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:132"
       ],
       "reason": "false-positive/downgrade hypothesis rejected by current direct read"
     },
@@ -1909,8 +1909,8 @@
         ".opencode/plugins/mk-goal.js:177",
         ".opencode/plugins/mk-goal.js:189",
         ".opencode/plugins/mk-goal.js:196",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:150",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:164"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:150",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:164"
       ],
       "reason": "false-positive/downgrade hypothesis rejected by current direct read"
     },
@@ -1934,9 +1934,9 @@
         ".opencode/plugins/mk-goal.js:1620",
         ".opencode/plugins/mk-goal.js:1625",
         ".opencode/plugins/mk-goal.js:1635",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:27",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:41",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:62"
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:27",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:41",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:62"
       ],
       "reason": "false-positive/downgrade hypothesis rejected by current direct read and exact search"
     },
@@ -1968,18 +1968,18 @@
       "id": "SL-012-001",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_suite_current_failure",
       "disposition": "ruled_out",
       "rationale": "the suite completed successfully with no failures",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "reason": "verified by actual Node test runner execution"
     },
@@ -1988,24 +1988,24 @@
       "id": "SL-012-002",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_silent_skip",
       "disposition": "ruled_out",
       "rationale": "pre-run glob and TAP subtest list both enumerate the same six known files",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "reason": "globbed file list matched runner output count"
     },
@@ -2018,14 +2018,14 @@
       ],
       "bugClass": "out_of_scope_phase_009_execution",
       "disposition": "ruled_out",
-      "rationale": "only .opencode/plugins/__tests__/mk-goal-*.test.cjs files were executed",
+      "rationale": "only .opencode/plugins/tests/mk-goal-*.test.cjs files were executed",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "reason": "scoped runner target did not traverse excluded phase docs"
     },
@@ -2034,18 +2034,18 @@
       "id": "SL-012-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "runtime_import_error",
       "disposition": "ruled_out",
       "rationale": "Node test runner loaded and completed each test file",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "reason": "no runtime/import errors in actual test output"
     },
@@ -2231,22 +2231,22 @@
       "id": "SL-015-002",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
       ],
       "bugClass": "test_regression_coverage",
       "disposition": "ruled_out",
       "rationale": "the P1 test-gap findings remain active; no false-positive or downgrade evidence found",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:40",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:41",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:132",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:40",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:40",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:41",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:132",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:40",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16"
       ],
       "reason": "direct reads and exact grep did not find regression assertions for the missing cases"
     },
@@ -2297,10 +2297,10 @@
         ".opencode/plugins/mk-goal.js:762",
         ".opencode/plugins/mk-goal.js:835",
         ".opencode/plugins/mk-goal.js:875",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:21",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:106",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:174"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:21",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:106",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:174"
       ],
       "proof": "verified by direct reads against phase 001 requirements"
     },
@@ -2353,7 +2353,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:912",
         ".opencode/plugins/mk-goal.js:976",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57"
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57"
       ],
       "bugClass": "usage_accounting",
       "disposition": "ruled_out",
@@ -2364,10 +2364,10 @@
         ".opencode/plugins/mk-goal.js:928",
         ".opencode/plugins/mk-goal.js:940",
         ".opencode/plugins/mk-goal.js:941",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:57",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:66",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:88",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:112"
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:57",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:66",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:88",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:112"
       ],
       "proof": "verified by direct read and lifecycle tests"
     },
@@ -2437,7 +2437,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1007",
         ".opencode/plugins/mk-goal.js:1070",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:38"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:38"
       ],
       "bugClass": "completion_supervisor_state_transition",
       "disposition": "ruled_out",
@@ -2447,10 +2447,10 @@
         ".opencode/plugins/mk-goal.js:1021",
         ".opencode/plugins/mk-goal.js:1079",
         ".opencode/plugins/mk-goal.js:1094",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:78",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:107",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:125",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:142"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:78",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:107",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:125",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:142"
       ],
       "proof": "verified by direct read"
     },
@@ -2460,7 +2460,7 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1236",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:51"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:51"
       ],
       "bugClass": "active_continuation_gate_order",
       "disposition": "ruled_out",
@@ -2473,18 +2473,18 @@
         ".opencode/plugins/mk-goal.js:1290",
         ".opencode/plugins/mk-goal.js:1296",
         ".opencode/plugins/mk-goal.js:1318",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:61",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:98",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:127",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:158",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:216",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:237",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:261",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:281",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:305",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:327",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:353"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:61",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:98",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:127",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:158",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:216",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:237",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:261",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:281",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:305",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:327",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:353"
       ],
       "proof": "verified by direct read"
     },
@@ -2494,17 +2494,17 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/README.md:20",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116"
       ],
       "bugClass": "adversarial_test_claims",
       "disposition": "ruled_out",
       "rationale": "Both claimed adversarial scenarios are currently represented by concrete assertions.",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:154",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:89",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:154",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:89",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116"
       ],
       "proof": "verified by exact search and direct read"
     },
@@ -2530,7 +2530,7 @@
       "id": "SL-015",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16",
         ".opencode/plugins/mk-goal.js:1513",
         ".opencode/plugins/mk-goal.js:1676"
       ],
@@ -2538,8 +2538,8 @@
       "disposition": "ruled_out",
       "rationale": "Export shape and loader contract match the test.",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:18",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:18",
         ".opencode/plugins/mk-goal.js:1513",
         ".opencode/plugins/mk-goal.js:1676"
       ],
@@ -2591,7 +2591,7 @@
         ".opencode/plugins/mk-goal.js:205",
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1412",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45"
       ],
       "bugClass": "secret_redaction_gap",
       "disposition": "ruled_out",
@@ -2600,9 +2600,9 @@
         ".opencode/plugins/mk-goal.js:205",
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1436",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:91"
       ],
       "proof": "Direct read confirmed redaction and test coverage for common token/API-key patterns."
     },
@@ -2612,7 +2612,7 @@
       "dimension": "security",
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:1016",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45"
       ],
       "bugClass": "secret_redaction_pattern_gap",
       "disposition": "ruled_out",
@@ -2620,9 +2620,9 @@
       "evidenceRefs": [
         ".opencode/plugins/mk-goal.js:1016",
         ".opencode/plugins/mk-goal.js:1029",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91"
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:45",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:83",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:91"
       ],
       "proof": "verified by direct read and existing assertions"
     },
@@ -2633,7 +2633,7 @@
       "targetRefs": [
         ".opencode/plugins/mk-goal.js:167",
         ".opencode/plugins/mk-goal.js:592",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76"
       ],
       "bugClass": "state_path_traversal",
       "disposition": "ruled_out",
@@ -2642,8 +2642,8 @@
         ".opencode/plugins/mk-goal.js:167",
         ".opencode/plugins/mk-goal.js:592",
         ".opencode/plugins/mk-goal.js:594",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:76",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:77"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:76",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:77"
       ],
       "proof": "verified by direct read and existing state tests"
     },
@@ -2758,17 +2758,17 @@
       "id": "SL-009-006",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_surface_structure",
       "disposition": "ruled_out",
       "rationale": "no stale plugin import path found",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:16",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:28",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:34",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:19",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:13"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:16",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:28",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:34",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:19",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:13"
       ],
       "proof": "verified by direct read and exact search"
     },
@@ -2808,8 +2808,8 @@
       "evidenceRefs": [
         ".opencode/plugins/mk-goal.js:1376",
         ".opencode/plugins/mk-goal.js:1378",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:132"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:132"
       ],
       "proof": "false-positive/downgrade hypothesis rejected by current direct read"
     },
@@ -2851,8 +2851,8 @@
         ".opencode/plugins/mk-goal.js:177",
         ".opencode/plugins/mk-goal.js:189",
         ".opencode/plugins/mk-goal.js:196",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:150",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:164"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:150",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:164"
       ],
       "proof": "false-positive/downgrade hypothesis rejected by current direct read"
     },
@@ -2876,9 +2876,9 @@
         ".opencode/plugins/mk-goal.js:1620",
         ".opencode/plugins/mk-goal.js:1625",
         ".opencode/plugins/mk-goal.js:1635",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:27",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:41",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:62"
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:27",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:41",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:62"
       ],
       "proof": "false-positive/downgrade hypothesis rejected by current direct read and exact search"
     },
@@ -2910,18 +2910,18 @@
       "id": "SL-012-001",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_suite_current_failure",
       "disposition": "ruled_out",
       "rationale": "the suite completed successfully with no failures",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "proof": "verified by actual Node test runner execution"
     },
@@ -2930,24 +2930,24 @@
       "id": "SL-012-002",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "test_silent_skip",
       "disposition": "ruled_out",
       "rationale": "pre-run glob and TAP subtest list both enumerate the same six known files",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "proof": "globbed file list matched runner output count"
     },
@@ -2960,14 +2960,14 @@
       ],
       "bugClass": "out_of_scope_phase_009_execution",
       "disposition": "ruled_out",
-      "rationale": "only .opencode/plugins/__tests__/mk-goal-*.test.cjs files were executed",
+      "rationale": "only .opencode/plugins/tests/mk-goal-*.test.cjs files were executed",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "proof": "scoped runner target did not traverse excluded phase docs"
     },
@@ -2976,18 +2976,18 @@
       "id": "SL-012-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-*.test.cjs"
+        ".opencode/plugins/tests/mk-goal-*.test.cjs"
       ],
       "bugClass": "runtime_import_error",
       "disposition": "ruled_out",
       "rationale": "Node test runner loaded and completed each test file",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1",
-        ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1"
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs:1",
+        ".opencode/plugins/tests/mk-goal-tool-path.test.cjs:1"
       ],
       "proof": "no runtime/import errors in actual test output"
     },
@@ -3173,22 +3173,22 @@
       "id": "SL-015-002",
       "dimension": "maintainability",
       "targetRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
       ],
       "bugClass": "test_regression_coverage",
       "disposition": "ruled_out",
       "rationale": "the P1 test-gap findings remain active; no false-positive or downgrade evidence found",
       "evidenceRefs": [
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:40",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:41",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:120",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:132",
-        ".opencode/plugins/__tests__/mk-goal-state.test.cjs:40",
-        ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16"
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:40",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:41",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:120",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:132",
+        ".opencode/plugins/tests/mk-goal-state.test.cjs:40",
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:16"
       ],
       "proof": "direct reads and exact grep did not find regression assertions for the missing cases"
     },

@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
       fingerprint: "sha256:d31fbab776c384a7468bb8d15278d7311fb72e534b702cf51eb5ba7bcb1c1e15"
       session_id: "goal-m2-lifecycle-20260628"
@@ -105,7 +105,7 @@ The goal plugin now tracks lifecycle state needed for budget governance and late
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Adds lifecycle helpers, usage accounting, and status fields. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Create | Covers message accounting, dedupe, budget stop, unavailable usage, and prompt blocking. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Create | Covers message accounting, dedupe, budget stop, unavailable usage, and prompt blocking. |
 <!-- /ANCHOR:scope -->
 
 ---

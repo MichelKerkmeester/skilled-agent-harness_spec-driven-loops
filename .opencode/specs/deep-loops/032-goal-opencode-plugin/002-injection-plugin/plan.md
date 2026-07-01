@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:1690f37009fbf0439c77d95cc32ad69bdafbf0e5020828987deb5914c0e6457d"
       session_id: "goal-m1-injection-plugin-20260629"
@@ -90,7 +90,7 @@ OpenCode calls the system transform with a session input and mutable output. The
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Owns goal state and plugin hooks. | Add injection rendering and system transform append behavior. | `node --check`; state test. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Guards M1 state and passive injection behavior. | Covers `injection_preview` and transform output. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Guards M1 state and passive injection behavior. | Covers `injection_preview` and transform output. | Full plugin unit suite. |
 
 Required inventories:
 - Same-class producers: `renderGoalInjection`, `appendGoalBrief`, and `experimental.chat.system.transform`.

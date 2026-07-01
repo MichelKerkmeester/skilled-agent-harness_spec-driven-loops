@@ -98,7 +98,7 @@ Stop unbounded growth of `.goal-state/` by archiving (not silently destroying) s
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
 | `.opencode/plugins/mk-goal.js` | Modify | `archiveGoalStateFile`, `pruneArchive`, `sweepOrphanedActiveStates` helpers; wire into `session.deleted`/`session.created` |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Modify | Tests for archive-on-delete, retention-based prune, orphan sweep, and sweep throttling |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Modify | Tests for archive-on-delete, retention-based prune, orphan sweep, and sweep throttling |
 <!-- /ANCHOR:scope -->
 
 ---

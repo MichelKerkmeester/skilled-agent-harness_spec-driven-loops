@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/commands/goal_opencode.md"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

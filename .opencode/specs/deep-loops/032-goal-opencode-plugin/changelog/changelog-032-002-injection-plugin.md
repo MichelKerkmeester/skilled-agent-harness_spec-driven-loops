@@ -42,9 +42,9 @@ Active goals now reach the assistant as passive system context. The plugin reads
 
 ### Verification
 
-- node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 5/5 plugin test files.
+- node --test .opencode/plugins/tests/*.test.cjs - PASS, 5/5 plugin test files.
 - node --check .opencode/plugins/mk-goal.js - PASS.
-- node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs - PASS.
+- node --check .opencode/plugins/tests/mk-goal-state.test.cjs - PASS.
 - Tasks complete - 13 completed task item(s) recorded
 
 ### Files Changed
@@ -52,7 +52,7 @@ Active goals now reach the assistant as passive system context. The plugin reads
 | File | Action | What changed |
 |---|---|---|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds injection rendering, append helper, and experimental.chat.system.transform. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies injection_preview and transform output for an active goal. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies injection_preview and transform output for an active goal. |
 
 ### Follow-Ups
 

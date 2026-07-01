@@ -17,7 +17,7 @@ _memory:
     blockers:
       - "Depends on phases 010 and 011 landing first"
     key_files:
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-032-012"
@@ -102,7 +102,7 @@ This phase closes test-coverage gaps flagged by a deep-review CONDITIONAL verdic
 | `plugin.tool.mk_goal.execute` | Only exercised indirectly (F-022) | Add direct invocation test | Test fails if tool registration is broken while the internal helper still works |
 
 Required inventories:
-- Same-class producers: `rg -n 'node --test|node "\$f"\|assert\.' .opencode/plugins/__tests__/*.test.cjs` to confirm the existing test-running convention (plain `node <file>` execution, not `node --test` runner) before adding new assertions in the same style.
+- Same-class producers: `rg -n 'node --test|node "\$f"\|assert\.' .opencode/plugins/tests/*.test.cjs` to confirm the existing test-running convention (plain `node <file>` execution, not `node --test` runner) before adding new assertions in the same style.
 - Consumers of changed symbols: N/A — this phase adds tests, it does not change consumed symbols (beyond the minimal REQ-005 exception noted in spec.md's Open Question).
 - Matrix axes: (a) transform hook happy-path vs error/fail-open path, (b) each of 7 event branches independently, (c) autonomy off vs `smoke` vs `active` for `session.idle`, (d) each of the 4 phase-010 fixes' before/after behavior, (e) tool-registration path vs internal-helper path.
 - Algorithm invariant: every new test must be demonstrably capable of failing (i.e., not vacuously true) — confirmed via the SC-002 revert-and-check spot-check during Verification.

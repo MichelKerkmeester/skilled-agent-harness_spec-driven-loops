@@ -129,12 +129,12 @@ This was delivered as documentation and reference integration only. Runtime plug
 
 | Check | Result |
 |-------|--------|
-| `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-state.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-export-contract.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-continuation.test.cjs` | PASS |
 | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | PASS: checklist 5/5, DQI 83 |
 | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 91 |
 | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 93 |

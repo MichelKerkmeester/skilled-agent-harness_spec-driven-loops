@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
     session_dedup:
       fingerprint: "sha256:b2f803a737e545a4cf05215f8ed3da62c47de4274e63b268ca69584e302deaa3"
       session_id: "goal-m3-continuation-20260628"
@@ -70,7 +70,7 @@ Every continuation decision appends a JSONL row to `.opencode/skills/.goal-state
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds continuation gates, prompt dispatch, JSONL logs, debug event logging, status fields, and idle wiring. |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Created | Verifies default-off, passive, smoke, active prompt dispatch, and cap behavior. |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Created | Verifies default-off, passive, smoke, active prompt dispatch, and cap behavior. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation/` | Modified | Replaces scaffold phase docs with actual scope, plan, task list, summary, and metadata. |
 <!-- /ANCHOR:what-built -->
 
@@ -103,10 +103,10 @@ The implementation extends the committed plugin in place and keeps autonomy defa
 
 | Check | Result |
 |-------|--------|
-| Baseline `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 3/3 plugin tests before changes. |
-| Baseline `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | PASS before changes. |
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 4/4 plugin tests after changes. |
-| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/*.test.cjs` | PASS. |
+| Baseline `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 3/3 plugin tests before changes. |
+| Baseline `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS before changes. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 4/4 plugin tests after changes. |
+| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/*.test.cjs` | PASS. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins` | PASS. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation --strict` | PASS. |
 <!-- /ANCHOR:verification -->

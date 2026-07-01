@@ -2,11 +2,11 @@
 
 ## Focus
 
-(Carried since iter 1) Examine the `mk-goal-*.test.cjs` suite (6 files in `.opencode/plugins/__tests__/`) — does it exercise the command *namespace* (`/goal` / `/opencode_goal`), and does it cover the unverified code tail (`mk-goal.js` L1510–1676: plugin factory hooks, event dispatch, `experimental.chat.system.transform`, tool registration, `__test` seam)?
+(Carried since iter 1) Examine the `mk-goal-*.test.cjs` suite (6 files in `.opencode/plugins/tests/`) — does it exercise the command *namespace* (`/goal` / `/opencode_goal`), and does it cover the unverified code tail (`mk-goal.js` L1510–1676: plugin factory hooks, event dispatch, `experimental.chat.system.transform`, tool registration, `__test` seam)?
 
 ## Actions Taken
 
-1. Located the suite: 6 files under `.opencode/plugins/__tests__/` (`mk-goal-state`, `-export-contract`, `-lifecycle`, `-supervisor`, `-tool-path`, `-continuation`). No suite exists inside the packet spec folder.
+1. Located the suite: 6 files under `.opencode/plugins/tests/` (`mk-goal-state`, `-export-contract`, `-lifecycle`, `-supervisor`, `-tool-path`, `-continuation`). No suite exists inside the packet spec folder.
 2. Read 4 of 6 test files in full (`tool-path`, `continuation`, `supervisor`, `export-contract`) — the four that touch the tail region. (`state`/`lifecycle` test the helper bodies, not the factory hooks.)
 3. Re-read the code tail `mk-goal.js` L1490–1676 (plugin factory `MkGoalPlugin`, `handleEvent`, transform hook, tool registration, `__test` seam) to build a line-by-line coverage map.
 

@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:00969fd8cf81825d65413f56a26752d28aa33cbfc07a80ac9482bdacbb7a6e36"
       session_id: "goal-sk-prompt-enhancement-20260630"
@@ -70,8 +70,8 @@ Goal records now include `promptEnhancement` metadata with version, methodology,
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds deterministic prompt generation, metadata normalization, enhanced injection and status fields. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Modified | Pins goal prompt generation, metadata, length cap, injection parity and adversarial sanitization. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Modified | Verifies tool-context set/show paths persist and expose the enhanced prompt. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Modified | Pins goal prompt generation, metadata, length cap, injection parity and adversarial sanitization. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Modified | Verifies tool-context set/show paths persist and expose the enhanced prompt. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md` | Modified | Adds concrete phase 7 scope and handoff criteria. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/` | Created | Holds this phase's spec, plan, tasks and implementation summary. |
 <!-- /ANCHOR:what-built -->
@@ -104,12 +104,12 @@ The change stays inside the plugin tool path, so `.opencode/commands/goal_openco
 
 | Check | Result |
 |-------|--------|
-| `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | PASS |
-| `node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-state.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-export-contract.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS |
+| `node .opencode/plugins/tests/mk-goal-continuation.test.cjs` | PASS |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins` | PASS: 11 files scanned, 0 findings |
 | `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js` | PASS |
 | `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js` | FAIL: script has Python shebang despite `.sh` name; rerun with `python3` passed |

@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-supervisor.test.cjs"
     session_dedup:
       fingerprint: "sha256:b98c419e9c328d206a7b01472b06611a344e9af57df05fd8998a9110fa29ab95"
       session_id: "goal-m2-supervisor-20260628"
@@ -109,7 +109,7 @@ The goal plugin now treats supervisor evidence as the only automatic completion 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Adds verifier normalization, idle verification, completion source, and status evidence fields. |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | Create | Covers met, blocked, ambiguous, and absent-evidence verdict mapping. |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Create | Covers met, blocked, ambiguous, and absent-evidence verdict mapping. |
 <!-- /ANCHOR:scope -->
 
 ---

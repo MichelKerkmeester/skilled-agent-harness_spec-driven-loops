@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
     session_dedup:
       fingerprint: "sha256:3850fc5b9e80d5b048f71d1b6a71316b65caf87463545afbfa593c3ed3483d70"
       session_id: "goal-m3-continuation-20260628"
@@ -116,7 +116,7 @@ The plugin can now continue an active goal only when autonomy is explicitly enab
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Adds continuation gates, prompt dispatch, JSONL logs, event debug logging, status fields, and idle wiring. |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Create | Covers default-off, passive kill-switch, smoke mode, active prompt dispatch, and cap enforcement. |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Create | Covers default-off, passive kill-switch, smoke mode, active prompt dispatch, and cap enforcement. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation/*` | Modify | Replaces scaffold phase docs with actual scope, plan, tasks, metadata, and verification summary. |
 <!-- /ANCHOR:scope -->
 

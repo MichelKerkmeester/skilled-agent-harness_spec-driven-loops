@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Proceed to phase 013 (design-fidelity-and-polish)"
     blockers: []
     key_files:
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-032-012"
@@ -60,26 +60,26 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-state.test.cjs"] -->
-- [x] T003 [F-018] Add a test that calls the plugin factory, invokes the real experimental.chat.system.transform hook, and asserts on output.system (.opencode/plugins/__tests__/mk-goal-state.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-state.test.cjs"] -->
-- [x] T004 [P] [DR-009-P1-002] Add an assertion for the RICCE metadata field/behavior from phase 010's REQ-005 (.opencode/plugins/__tests__/mk-goal-state.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"] -->
-- [x] T005 [F-021] Add tests for session.created, message.updated, permission/question asked+replied, session.deleted, *.disposed via real plugin.event() calls (.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"] -->
-- [x] T006 [F-013] Add an autonomy:'smoke' + active-goal integration test firing session.idle and asserting a would_fire/smoke_mode row in .continuation.log (.opencode/plugins/__tests__/mk-goal-continuation.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-continuation.test.cjs"] -->
-- [x] T007 [P] [DR-003 / DR-009-P1-001] Add a stale-verifier/continuation integration test pinning phase 010's REQ-004 fix (.opencode/plugins/__tests__/mk-goal-continuation.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-state.test.cjs"] -->
-- [x] T008 [P] [DR-001, DR-005, DR-006 / DR-009-P1-001] Add 3 regression tests pinning phase 010's injection-clamp, sanitizer-hardening, and redaction fixes (.opencode/plugins/__tests__/mk-goal-state.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-state.test.cjs"] -->
+- [x] T003 [F-018] Add a test that calls the plugin factory, invokes the real experimental.chat.system.transform hook, and asserts on output.system (.opencode/plugins/tests/mk-goal-state.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-state.test.cjs"] -->
+- [x] T004 [P] [DR-009-P1-002] Add an assertion for the RICCE metadata field/behavior from phase 010's REQ-005 (.opencode/plugins/tests/mk-goal-state.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"] -->
+- [x] T005 [F-021] Add tests for session.created, message.updated, permission/question asked+replied, session.deleted, *.disposed via real plugin.event() calls (.opencode/plugins/tests/mk-goal-lifecycle.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-continuation.test.cjs"] -->
+- [x] T006 [F-013] Add an autonomy:'smoke' + active-goal integration test firing session.idle and asserting a would_fire/smoke_mode row in .continuation.log (.opencode/plugins/tests/mk-goal-continuation.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-continuation.test.cjs"] -->
+- [x] T007 [P] [DR-003 / DR-009-P1-001] Add a stale-verifier/continuation integration test pinning phase 010's REQ-004 fix (.opencode/plugins/tests/mk-goal-continuation.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-state.test.cjs"] -->
+- [x] T008 [P] [DR-001, DR-005, DR-006 / DR-009-P1-001] Add 3 regression tests pinning phase 010's injection-clamp, sanitizer-hardening, and redaction fixes (.opencode/plugins/tests/mk-goal-state.test.cjs)
 <!-- agent: direct | deps: [T005] | touched-files: [".opencode/plugins/mk-goal.js"] -->
 - [x] T009 [F-019] If needed to make the error path observable/testable, add minimal MK_GOAL_DEBUG-gated logging to the event() catch block, then assert on it (.opencode/plugins/mk-goal.js)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs"] -->
-- [x] T010 [P] [F-020] Replace the truthy-only __test contract check with assert.deepEqual on the sorted full key list (.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs)
-<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"] -->
-- [x] T011 [P] [F-022] Add a test invoking plugin.tool.mk_goal.execute directly via the factory-returned hooks (.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs)
-<!-- agent: direct | deps: [] | touched-files: [".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"] -->
-- [x] T012 [P] [DR-009-P1-003 / DR-009-P2-001] Add a command/overlay-doc contract test and a phase graph-metadata key_files drift check (.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-export-contract.test.cjs"] -->
+- [x] T010 [P] [F-020] Replace the truthy-only __test contract check with assert.deepEqual on the sorted full key list (.opencode/plugins/tests/mk-goal-export-contract.test.cjs)
+<!-- agent: direct | deps: [T002] | touched-files: [".opencode/plugins/tests/mk-goal-tool-path.test.cjs"] -->
+- [x] T011 [P] [F-022] Add a test invoking plugin.tool.mk_goal.execute directly via the factory-returned hooks (.opencode/plugins/tests/mk-goal-tool-path.test.cjs)
+<!-- agent: direct | deps: [] | touched-files: [".opencode/plugins/tests/mk-goal-tool-path.test.cjs"] -->
+- [x] T012 [P] [DR-009-P1-003 / DR-009-P2-001] Add a command/overlay-doc contract test and a phase graph-metadata key_files drift check (.opencode/plugins/tests/mk-goal-tool-path.test.cjs)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -88,7 +88,7 @@ _memory:
 ## Phase 3: Verification
 
 <!-- agent: direct | deps: [T003, T004, T005, T006, T007, T008, T009, T010, T011, T012] | touched-files: [] -->
-- [x] T013 Run the full test suite (existing + new) freshly: `for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all must exit 0
+- [x] T013 Run the full test suite (existing + new) freshly: `for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all must exit 0
 <!-- agent: direct | deps: [T013] | touched-files: [] -->
 - [x] T014 SC-002 spot-check: temporarily revert ONE phase-010 fix locally, confirm the corresponding new test (T007 or T008) fails, then restore the fix and re-confirm the suite passes
 <!-- agent: direct | deps: [T014] | touched-files: ["032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md"] -->

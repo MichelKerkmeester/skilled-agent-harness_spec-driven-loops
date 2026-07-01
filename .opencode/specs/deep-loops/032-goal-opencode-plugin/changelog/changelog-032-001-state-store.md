@@ -45,9 +45,9 @@ The passive /goal milestone now has durable state. mk-goal.js persists one activ
 
 ### Verification
 
-- node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 5/5 plugin test files.
+- node --test .opencode/plugins/tests/*.test.cjs - PASS, 5/5 plugin test files.
 - node --check .opencode/plugins/mk-goal.js - PASS.
-- node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs - PASS.
+- node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-tool-path.test.cjs - PASS.
 - Tasks complete - 14 completed task item(s) recorded
 
 ### Files Changed
@@ -56,8 +56,8 @@ The passive /goal milestone now has durable state. mk-goal.js persists one activ
 |---|---|---|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds fail-closed state helpers, session-keyed paths, queued mutation, atomic writes, set, and clear. |
 | `.opencode/skills/.goal-state` | Created | Holds runtime JSON goal state files. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies session isolation, missing-session refusal, set/show/clear behavior, and passive transform reuse. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution on the mutation path. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies session isolation, missing-session refusal, set/show/clear behavior, and passive transform reuse. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution on the mutation path. |
 
 ### Follow-Ups
 

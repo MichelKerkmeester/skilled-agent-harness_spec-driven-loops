@@ -7,7 +7,7 @@ Empirical verification pass: run the scoped `mk-goal-*.test.cjs` suite with the 
 Command executed from repo root:
 
 ```bash
-node --test .opencode/plugins/__tests__/mk-goal-*.test.cjs
+node --test .opencode/plugins/tests/mk-goal-*.test.cjs
 ```
 
 Result: PASS. TAP reported `1..6`, `tests 6`, `pass 6`, `fail 0`, `cancelled 0`, `skipped 0`, `todo 0`, `duration_ms 555.670084`.
@@ -15,21 +15,21 @@ Result: PASS. TAP reported `1..6`, `tests 6`, `pass 6`, `fail 0`, `cancelled 0`,
 ## Files Reviewed
 
 - `package.json:5` - checked for an existing test script; no repository test script is defined beyond `dev`, so Node's built-in `--test` runner is the direct scoped invocation.
-- `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs:1` - included in the executed TAP subtests.
-- `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:1` - included in the executed TAP subtests.
-- `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:1` - included in the executed TAP subtests.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:1` - included in the executed TAP subtests.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:1` - included in the executed TAP subtests.
-- `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-continuation.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:1` - included in the executed TAP subtests.
+- `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:1` - included in the executed TAP subtests.
 
 The globbed target set before execution contained exactly these six files:
 
-- `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs`
-- `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs`
-- `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs`
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs`
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs`
-- `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs`
+- `.opencode/plugins/tests/mk-goal-continuation.test.cjs`
+- `.opencode/plugins/tests/mk-goal-export-contract.test.cjs`
+- `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs`
+- `.opencode/plugins/tests/mk-goal-state.test.cjs`
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs`
+- `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`
 
 The TAP output listed the same six subtests and no additional or skipped phase-009 path.
 

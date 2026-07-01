@@ -36,6 +36,8 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 
 Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Autonomy is disabled unless `MK_GOAL_AUTONOMY=active` or smoke-tested with `MK_GOAL_AUTONOMY=smoke`.
 
+State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. See `references/hooks/goal_plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
+
 ---
 
 ## 3. SOURCE FILES
@@ -53,12 +55,12 @@ Stored state keeps both the raw sanitized `objective` and the deterministic `goa
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Automated test | State, generated prompt fields, injection, caps, and sanitization. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence and status output. |
-| `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | Automated test | Export contract. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Automated test | Event/lifecycle behavior. |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | Automated test | Verifier completion behavior. |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Automated test | Guarded continuation decisions. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | State, generated prompt fields, injection, caps, and sanitization. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence and status output. |
+| `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Automated test | Export contract. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Automated test | Event/lifecycle behavior. |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Automated test | Verifier completion behavior. |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Automated test | Guarded continuation decisions. |
 
 ---
 

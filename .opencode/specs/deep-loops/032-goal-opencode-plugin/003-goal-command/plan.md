@@ -18,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:51b165e229f411c585fb34566e817e6486da9e1d45de34bfb83ae35850be76cc"
       session_id: "goal-m1-goal-command-20260629"
@@ -95,8 +95,8 @@ The command parses `$ARGUMENTS`, selects `mk_goal` or `mk_goal_status`, and prin
 |---------|--------------|--------|--------------|
 | `.opencode/commands/goal_opencode.md` | Root user command. | Created as a state-free router to plugin tools. | Manual doc inspection and tool tests for called behavior. |
 | `.opencode/plugins/mk-goal.js` | Owns state, injection, and tools. | Add tool schemas, action execution, status output, and failure envelopes. | `node --check`; state and tool-path tests. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Guards state, injection, and tool output. | Covers set/show/clear and `injection_preview`. | Full plugin unit suite. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Guards tool-context session routing. | Covers command-backed mutation path. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Guards state, injection, and tool output. | Covers set/show/clear and `injection_preview`. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Guards tool-context session routing. | Covers command-backed mutation path. | Full plugin unit suite. |
 
 Required inventories:
 - Same-class producers: `.opencode/commands/goal_opencode.md`, `executeGoalAction`, `executeGoalStatus`, `goalStateLines`, `failureLines`, `mk_goal`, and `mk_goal_status`.

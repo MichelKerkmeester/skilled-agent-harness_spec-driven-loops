@@ -68,7 +68,7 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=2 |
-| .opencode/plugins/__tests__/mk-goal-state.test.cjs | Analyzed | OK | Findings P0=0 P1=2 P2=0; Iterations=2 |
+| .opencode/plugins/tests/mk-goal-export-contract.test.cjs | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=2 |
+| .opencode/plugins/tests/mk-goal-state.test.cjs | Analyzed | OK | Findings P0=0 P1=2 P2=0; Iterations=2 |
 
 ---

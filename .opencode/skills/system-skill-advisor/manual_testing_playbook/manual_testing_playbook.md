@@ -296,7 +296,7 @@ The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_s
 | Area | Automated test anchors |
 |---|---|
 | Native MCP tools | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/__tests__/mk-goal-state.test.cjs`; `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` |
+| Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/tests/mk-goal-state.test.cjs`; `.opencode/plugins/tests/mk-goal-continuation.test.cjs` |
 | Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` |
 | Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` |
 

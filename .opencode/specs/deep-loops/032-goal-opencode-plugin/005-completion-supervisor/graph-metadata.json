@@ -38,7 +38,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
+      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,7 +54,7 @@
       {
         "name": "mk-goal-supervisor.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The plugin could store and track goals, but automatic completion still needed a verifier that did not trust assistant self-report",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-01T13:04:42.738Z",
+    "last_save_at": "2026-07-01T17:58:31.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e46f5d577cfd4c19046b02dced3f0c8f8cd38d5f18371e9bfe69fa7fae2fc850",
+    "source_fingerprint": "sha256:c981bba5a44771a3c3d9412fa4c31f1aeda88bd0840311e47fd39e4df7f376bb",
     "source_doc_hashes": {
-      "spec.md": "82aff0b305079775705b6d72fd58db8a3d894fe3c21f7039511a0bf6f29b58a5",
-      "plan.md": "1dfc55fd236d3cba0f29a5037e4201e35b899236ce0baf77b233c47c6ce60fe1",
-      "tasks.md": "bcfa2a8977416f066d7839a47e184464f7ad6389f7bde93b70f567f712f99f03",
-      "implementation-summary.md": "1bbaf8ff940d251ce2abd8d0187fd0b8372973c9a0d4edb5be9bca5d210f4999"
+      "spec.md": "562e91ccc53160d7f16ae677a42fabaaacf79e457bcfa83d3e50e6d995fdc046",
+      "plan.md": "5084bb6300afc49d752dbabe035ac875ef1492ff8b2a8d09182cd5d69a08a79e",
+      "tasks.md": "b114ca52845212b71e56753678b6289c7f9de4efa663b9e6e4c188a49980502e",
+      "implementation-summary.md": "9901124775cc3d89368a40a963d624bba6ff9217aab6bacc35253fc2628debd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

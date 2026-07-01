@@ -38,8 +38,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,13 +55,13 @@
       {
         "name": "mk-goal-lifecycle.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "M1 persisted and injected goals, but it did not observe session lifecycle events",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-01T13:04:42.604Z",
+    "last_save_at": "2026-07-01T17:58:31.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef00e0865ac65e4d13b92b3295b7908ad5513f5c2f1cd1356f96c26b6f87a309",
+    "source_fingerprint": "sha256:e827b964843f1aab47f0767c4bfbe9e02117673b48b8e7efb857780da7e1dfa9",
     "source_doc_hashes": {
-      "spec.md": "5ab9153902d8e444bde2a5b5f51e64eb9ebc9599fcaaba482f12c5e2ca8165a9",
-      "plan.md": "911b610c94b95ce6ec7cabd28a6ef20373c3945557efc6f5ed7ea83d851b61d6",
-      "tasks.md": "ae1fb21186485a34cecb2fd426a87ebfb249a84a6f150f430cdd689e9b41833d",
-      "implementation-summary.md": "7a9e45ecbf7b49f7087f7d97f7cf0c398c55714da7f181dcfafeee6ab5619f3c"
+      "spec.md": "ac8a429a6ee265593f779835cdd53e92ec79c7b8d01b4858a6bb6dbd046ec5cb",
+      "plan.md": "afbee7d9b3223df5f20ee6dd1876249ffc04872ba53e3dcae3cf184bf386e0b0",
+      "tasks.md": "f08674c6c5fe88e275a824cec1edecf4827ab1c6e17062bec696bd8d700113ff",
+      "implementation-summary.md": "aba1b10c0c618d4bcad9af0ff270ac61889df1e266f8dc2456c83fe5b0329dae"
     },
     "last_active_child_id": null,
     "last_active_at": null

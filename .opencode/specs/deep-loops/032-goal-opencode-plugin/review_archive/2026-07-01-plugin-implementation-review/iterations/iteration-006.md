@@ -25,11 +25,11 @@ Focus areas reviewed:
 - `.opencode/plugins/mk-goal.js:1350` - injection preview rendering.
 - `.opencode/plugins/mk-goal.js:1402` - status output formatting.
 - `.opencode/plugins/mk-goal.js:1445` - tool failure output.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45` - positive API-key and `sk-...` redaction test samples.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83` - stored verifier evidence redaction assertions.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91` - status output redaction assertions.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:61` - session file separation assertions.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:76` - hex session filename assertions.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:45` - positive API-key and `sk-...` redaction test samples.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:83` - stored verifier evidence redaction assertions.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:91` - status output redaction assertions.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:61` - session file separation assertions.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:76` - hex session filename assertions.
 
 ## Findings By Severity
 
@@ -45,7 +45,7 @@ None.
 - Claim: A secret-bearing supervisor-verifier exception message is sanitized but not redacted, then persisted as `lastVerifierReason` and surfaced through `injection_preview` in status/chat output.
 - Evidence: `runSupervisorVerifier` catches verifier exceptions and builds `reason: sanitizeInlineText(\`Verifier failed: ${error?.message || 'unknown error'}\`, DEFAULT_MAX_REASON_CHARS)` without `redactEvidence` [SOURCE: `.opencode/plugins/mk-goal.js:1053`, `.opencode/plugins/mk-goal.js:1057`]. `maybeVerifyGoal` persists that result as `lastVerifierReason` [SOURCE: `.opencode/plugins/mk-goal.js:1077`, `.opencode/plugins/mk-goal.js:1085`, `.opencode/plugins/mk-goal.js:1086`]. `renderGoalInjection` includes that reason in the active-goal block [SOURCE: `.opencode/plugins/mk-goal.js:1356`, `.opencode/plugins/mk-goal.js:1371`], and `goalStateLines` emits the rendered `injection_preview` in tool/status output [SOURCE: `.opencode/plugins/mk-goal.js:1402`, `.opencode/plugins/mk-goal.js:1441`].
 - Redaction coverage gap: `redactEvidence` handles `sk-...`, GitHub tokens, Slack tokens, AWS access keys, and `api_key|token|password|secret` assignment shapes [SOURCE: `.opencode/plugins/mk-goal.js:205`, `.opencode/plugins/mk-goal.js:207`, `.opencode/plugins/mk-goal.js:211`], but the exception path does not call it at all. Bearer tokens, JWTs, database connection strings, and generic env-var-shaped values in verifier exception text therefore remain raw.
-- Counterevidence sought: Reviewed normal verifier evidence normalization and status tests. Normal `rawResult.evidence` and fallback evidence are redacted through `redactEvidence` [SOURCE: `.opencode/plugins/mk-goal.js:1016`, `.opencode/plugins/mk-goal.js:1029`], and tests assert API key plus `sk-...` samples do not remain in stored evidence or status output [SOURCE: `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:45`, `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83`, `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91`]. No equivalent test or code path redacts `error.message` before it becomes `lastVerifierReason`.
+- Counterevidence sought: Reviewed normal verifier evidence normalization and status tests. Normal `rawResult.evidence` and fallback evidence are redacted through `redactEvidence` [SOURCE: `.opencode/plugins/mk-goal.js:1016`, `.opencode/plugins/mk-goal.js:1029`], and tests assert API key plus `sk-...` samples do not remain in stored evidence or status output [SOURCE: `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:45`, `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:83`, `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:91`]. No equivalent test or code path redacts `error.message` before it becomes `lastVerifierReason`.
 - Alternative explanation: If every configured `supervisorVerifier` implementation is fully trusted and guaranteed never to throw secret-bearing messages, this becomes a hardening gap rather than an active leak. That guarantee is not enforced at the plugin boundary.
 - Finding class: cross-consumer / secret-redaction boundary.
 - Scope proof: Exact read of all `redactEvidence`, `lastVerifierReason`, `renderGoalInjection`, `goalStateLines`, and failure/error paths found one unredacted exception-to-status/injection route; debug and continuation logs do not write evidence/objective text.

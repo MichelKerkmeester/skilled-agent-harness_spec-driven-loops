@@ -41,12 +41,12 @@ The goal plugin now turns raw `/goal set` input into a deterministic sk-prompt-s
 
 ### Verification
 
-- `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-state.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-export-contract.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-supervisor.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-continuation.test.cjs` - PASS.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins` - PASS.
 - `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js` - PASS.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/deep-loops/032-goal-opencode-plugin --strict` - PASS.
@@ -56,8 +56,8 @@ The goal plugin now turns raw `/goal set` input into a deterministic sk-prompt-s
 | File | Action | What changed |
 |---|---|---|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds prompt generation, prompt metadata, prompt-aware injection and compatibility normalization. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Modified | Verifies prompt generation, hard cap, metadata, injection and adversarial sanitization. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Modified | Verifies tool-context persistence and status output for enhanced prompts. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Modified | Verifies prompt generation, hard cap, metadata, injection and adversarial sanitization. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Modified | Verifies tool-context persistence and status output for enhanced prompts. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/` | Created | Documents phase scope, plan, tasks and implementation summary. |
 
 ### Follow-Ups

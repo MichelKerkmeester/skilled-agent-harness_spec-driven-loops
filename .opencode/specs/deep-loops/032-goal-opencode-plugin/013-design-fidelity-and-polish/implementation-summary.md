@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md"
     session_dedup:
       fingerprint: "sha256:9975b0019ad35530001603f71c243dfb170318a5c4e7008605985518ff141062"
@@ -79,7 +79,7 @@ Phases 001-008 now carry real `session_dedup.fingerprint` values instead of the 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds `usage_limited` provider detection, debug fsync logging, and status store-health output. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Modified | Adds the 429 detector test and the non-429 non-trigger test. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Modified | Adds the 429 detector test and the non-429 non-trigger test. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/00{1,2,3,4,5,6,7,8}-*/{spec,plan,tasks,implementation-summary}.md` | Modified | Replaces phase 001-008 zero continuity fingerprints with real hashes. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation/implementation-summary.md` | Modified | Downgrades the completion percentage and clarifies that live idle smoke is still pending. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md` | Modified | Marks all phase tasks complete. |
@@ -126,9 +126,9 @@ The change was delivered in place with no new files and no new plugin abstractio
 
 | Check | Result |
 |-------|--------|
-| Pre-edit baseline: `for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` | PASS, 6/6 files exited 0. Output: `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `mk-goal tool-path tests passed`; `exit: 0`. |
+| Pre-edit baseline: `for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` | PASS, 6/6 files exited 0. Output: `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `mk-goal tool-path tests passed`; `exit: 0`. |
 | `node --check .opencode/plugins/mk-goal.js` | PASS, no output. |
-| Post-edit tests: `for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` | PASS, 6/6 files exited 0. Output: `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `mk-goal tool-path tests passed`; `exit: 0`. |
+| Post-edit tests: `for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` | PASS, 6/6 files exited 0. Output: `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `exit: 0`; `mk-goal tool-path tests passed`; `exit: 0`. |
 | Placeholder grep: `grep -rn "sha256:0000000000000000000000000000000000000000000000000000000000000000" .opencode/specs/deep-loops/032-goal-opencode-plugin/00{1,2,3,4,5,6,7,8}-*/` | PASS, no output. |
 | Manual status output smoke | PASS, output contained `store_health=state_age_ms:1500`. |
 | Manual fsync debug smoke under `MK_GOAL_DEBUG=1` | PASS, output contained `{"type":"fsync_directory_error","directory":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/mk-goal-fsync-ue6sP9","error":"EACCES: permission denied, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/mk-goal-fsync-ue6sP9'"}`. |

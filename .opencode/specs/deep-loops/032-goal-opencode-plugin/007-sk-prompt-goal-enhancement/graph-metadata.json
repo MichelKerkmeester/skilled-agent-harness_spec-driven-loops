@@ -40,8 +40,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
       ".opencode/commands/goal_opencode.md",
       "spec.md",
@@ -59,13 +59,13 @@
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
     "created_at": "2026-06-30T16:17:28Z",
-    "last_save_at": "2026-07-01T13:40:03.938Z",
+    "last_save_at": "2026-07-01T17:58:31.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:836ce1033d68d25cfc2757c136891e667fc1435971e39a97ea7c9b686eb407f1",
+    "source_fingerprint": "sha256:b7a373b29655872e3228c296b0dc998bb063a52d3576d85e98a6149515b3a9c0",
     "source_doc_hashes": {
-      "spec.md": "22cb9dfa52320a702ff38c80291bd3cb54b96694b03bc3b5ca89cf9b6f6d4f2d",
-      "plan.md": "e87e3b28ef0abd2fe2059d7317ceb54cc327972e6876f0d278ad93263166a09c",
-      "tasks.md": "29572742396c11fd3dbdce735a7914527110d2345d75e1582d98e03f7f0df7ea",
-      "implementation-summary.md": "df9579722b7b5f57aa3163311744f42c6558c4f6e91e4e3a8742bf1dbfc11778"
+      "spec.md": "1149f4dc49f1e053950205ce16f5554175564c384c88da55394cad5ad72173db",
+      "plan.md": "17eb2140fd3da43ad6a175ba995eff16611f2ca7f0bae8c9a93cc188218c2fb7",
+      "tasks.md": "07fb022d611527061d5a8457af2d6fd96942d43fc5be7705e0767636f4e7e117",
+      "implementation-summary.md": "f51ba6dbf6b44dbfcb79a277692e2d65bf4e0c7011ba4325600b59aa64347154"
     },
     "last_active_child_id": null,
     "last_active_at": null

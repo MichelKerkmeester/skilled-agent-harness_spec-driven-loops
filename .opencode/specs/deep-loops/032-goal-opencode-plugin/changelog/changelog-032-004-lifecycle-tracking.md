@@ -44,8 +44,8 @@ Lifecycle tracking now gives /goal enough runtime memory to govern budgets and p
 
 ### Verification
 
-- node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 3/3 plugin tests.
-- node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs - PASS.
+- node --test .opencode/plugins/tests/*.test.cjs - PASS, 3/3 plugin tests.
+- node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/tests/mk-goal-supervisor.test.cjs - PASS.
 - python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins - PASS, 8 files scanned.
 - Lifecycle claim-falsifier - PASS, disabling budget crossing made the lifecycle test fail on the expected budget_limited assertion.
 - Tasks complete - 13 completed task item(s) recorded
@@ -55,7 +55,7 @@ Lifecycle tracking now gives /goal enough runtime memory to govern budgets and p
 | File | Action | What changed |
 |---|---|---|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds lifecycle event handling, usage accounting, prompt-block state, and budget status output. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Created | Verifies account usage dedupe, budget stop transition, unavailable usage, and prompt blocking. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Created | Verifies account usage dedupe, budget stop transition, unavailable usage, and prompt blocking. |
 
 ### Follow-Ups
 

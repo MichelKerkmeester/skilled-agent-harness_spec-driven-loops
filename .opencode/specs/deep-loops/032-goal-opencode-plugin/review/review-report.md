@@ -104,7 +104,7 @@ Per the operator's explicit instruction, each companion-research finding was ind
     ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
     ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md",
     ".opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization/tasks.md",
-    ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+    ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
   ],
   "fixCompletenessRequired": false
 }
@@ -126,7 +126,7 @@ Per the operator's explicit instruction, each companion-research finding was ind
 | DR-006-P2-001 | P2 | Packet-history docs contain current-and-wrong stale goal.md claims | correctness, traceability | `009-.../handover.md:95`, `011-.../tasks.md:66,109` | open |
 | I8-P2-1 | P2 | Goal-plugin docs lack a single contract owner / canonical output-field schema | maintainability | multiple (see below) | open |
 | I9-P2-1 | P2 | ENV_REFERENCE.md carries a stale generated-date marker | traceability | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:772` | open |
-| I10-P2-1 | P2 | Tool-path tests don't pin mutation=refreshed/replaced | correctness (test coverage) | `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:49-68` | open |
+| I10-P2-1 | P2 | Tool-path tests don't pin mutation=refreshed/replaced | correctness (test coverage) | `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:49-68` | open |
 
 ### P1-001 — ENV_REFERENCE.md omits 3 new env vars
 
@@ -195,7 +195,7 @@ Per the operator's explicit instruction, each companion-research finding was ind
 
 ### I10-P2-1 — Tool-path tests don't pin all 3 mutation states (NEW)
 
-- **Evidence:** `mk-goal.js:1668-1675` selects `mutation=created|refreshed|replaced`; `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:49-68` (grep-confirmed) only asserts `mutation=created` (line 56).
+- **Evidence:** `mk-goal.js:1668-1675` selects `mutation=created|refreshed|replaced`; `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:49-68` (grep-confirmed) only asserts `mutation=created` (line 56).
 - **Impact:** output regression risk for the `refreshed`/`replaced` branches is untested at the tool-path level (state-level and lifecycle tests cover adjacent but different behavior).
 - **Fix recommendation:** add tool-path assertions for same-objective set (`refreshed`) and changed-objective set (`replaced`).
 - **Finding class:** test-isolation.
@@ -295,7 +295,7 @@ Dimension coverage: 4/4 (correctness: iterations 1, 3, 6, 9, 10; security: itera
 
 ### Sources Reviewed (representative, not exhaustive — see individual iteration files for full lists)
 
-`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `.opencode/plugins/README.md`, `README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs`, phase 009/011/003 packet docs, `review_archive/2026-07-01-plugin-implementation-review/README.md`, and the companion `research/research.md` packet.
+`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `.opencode/plugins/README.md`, `README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`, phase 009/011/003 packet docs, `review_archive/2026-07-01-plugin-implementation-review/README.md`, and the companion `research/research.md` packet.
 
 **Iteration artifacts:** `review/iterations/iteration-{001..010}.md`, `review/deltas/iter-{001..010}.jsonl`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-dashboard.md`, `review/deep-review-strategy.md`.
 

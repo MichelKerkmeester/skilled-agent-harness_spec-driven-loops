@@ -17,8 +17,8 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:0b8f11b664ed5c350036ae787c81c544572a7e445fe3805fe46dd2c80618f921"
       session_id: "goal-m1-goal-command-20260629"
@@ -66,8 +66,8 @@ The passive goal feature now has a root command. `/goal` is a thin router that s
 |------|--------|---------|
 | `.opencode/commands/goal_opencode.md` | Created | Adds the root `/goal` command router and command safety rules. |
 | `.opencode/plugins/mk-goal.js` | Modified | Adds `mk_goal`, `mk_goal_status`, action execution, status lines, and failure envelopes. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies tool set/status/clear behavior and `injection_preview`. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution for mutation paths. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies tool set/status/clear behavior and `injection_preview`. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution for mutation paths. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,9 +97,9 @@ The command shipped as markdown over plugin-owned tools, keeping all stateful be
 
 | Check | Result |
 |-------|--------|
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 5/5 plugin test files. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 5/5 plugin test files. |
 | `node --check .opencode/plugins/mk-goal.js` | PASS. |
-| `node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | PASS. |
+| `node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-tool-path.test.cjs` | PASS. |
 <!-- /ANCHOR:verification -->
 
 ---

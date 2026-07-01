@@ -43,10 +43,10 @@ The goal plugin now has a guarded continuation path after idle-time verification
 
 ### Verification
 
-- Baseline node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 3/3 plugin tests before changes.
-- Baseline node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs - PASS before changes.
-- node --test .opencode/plugins/__tests__/*.test.cjs - PASS, 4/4 plugin tests after changes.
-- node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/*.test.cjs - PASS.
+- Baseline node --test .opencode/plugins/tests/*.test.cjs - PASS, 3/3 plugin tests before changes.
+- Baseline node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/tests/mk-goal-supervisor.test.cjs - PASS before changes.
+- node --test .opencode/plugins/tests/*.test.cjs - PASS, 4/4 plugin tests after changes.
+- node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/*.test.cjs - PASS.
 - python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins - PASS.
 - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation --strict - PASS.
 - Tasks complete - 19 completed task item(s) recorded
@@ -56,7 +56,7 @@ The goal plugin now has a guarded continuation path after idle-time verification
 | File | Action | What changed |
 |---|---|---|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds continuation gates, prompt dispatch, JSONL logs, debug event logging, status fields, and idle wiring. |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Created | Verifies default-off, passive, smoke, active prompt dispatch, and cap behavior. |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Created | Verifies default-off, passive, smoke, active prompt dispatch, and cap behavior. |
 | `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation/` | Modified | Replaces scaffold phase docs with actual scope, plan, task list, summary, and metadata. |
 
 ### Follow-Ups

@@ -48,17 +48,17 @@ FINAL ITERATION. Scope had two parts:
 - `.opencode/plugins/mk-goal.js:1611` - plugin return object.
 - `.opencode/plugins/mk-goal.js:1620` - system transform hook.
 - `.opencode/plugins/mk-goal.js:1625` - tool registrations.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:40` - tests assert CRAFT metadata.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:41` - tests assert DEPTH metadata.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:120` - injection clamp test setup.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:132` - clamp test asserts truncation, not total length.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:134` - adversarial sanitizer fixture.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:38` - configured verifier fixture.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:83` - verifier evidence redaction assertion.
-- `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs:91` - status redaction assertion.
-- `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs:116` - active continuation happy-path fixture.
-- `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs:116` - terminal same-objective reset fixture.
-- `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs:16` - export-contract-only assertion.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:40` - tests assert CRAFT metadata.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:41` - tests assert DEPTH metadata.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:120` - injection clamp test setup.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:132` - clamp test asserts truncation, not total length.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:134` - adversarial sanitizer fixture.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:38` - configured verifier fixture.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:83` - verifier evidence redaction assertion.
+- `.opencode/plugins/tests/mk-goal-supervisor.test.cjs:91` - status redaction assertion.
+- `.opencode/plugins/tests/mk-goal-continuation.test.cjs:116` - active continuation happy-path fixture.
+- `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:116` - terminal same-objective reset fixture.
+- `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:16` - export-contract-only assertion.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json:39` - key files include non-deliverable paths.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json:43` - `mk-spec-memory.js` included as a key file.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json:44` - `session-cleanup.js` included as a key file.

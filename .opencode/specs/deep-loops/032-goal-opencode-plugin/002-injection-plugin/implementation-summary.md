@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
       fingerprint: "sha256:6f58a7f11018395111712324cd1a5f38ae2494e0fa811aaf51f94ea8e98b9d6e"
       session_id: "goal-m1-injection-plugin-20260629"
@@ -63,7 +63,7 @@ Active goals now reach the assistant as passive system context. The plugin reads
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds injection rendering, append helper, and `experimental.chat.system.transform`. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies `injection_preview` and transform output for an active goal. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies `injection_preview` and transform output for an active goal. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,9 +93,9 @@ The injection path shipped as an additive hook on the existing plugin and reused
 
 | Check | Result |
 |-------|--------|
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 5/5 plugin test files. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 5/5 plugin test files. |
 | `node --check .opencode/plugins/mk-goal.js` | PASS. |
-| `node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs` | PASS. |
+| `node --check .opencode/plugins/tests/mk-goal-state.test.cjs` | PASS. |
 <!-- /ANCHOR:verification -->
 
 ---

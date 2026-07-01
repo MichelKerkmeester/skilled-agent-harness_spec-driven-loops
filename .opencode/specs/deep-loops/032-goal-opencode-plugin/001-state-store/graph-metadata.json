@@ -39,8 +39,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,13 +56,13 @@
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The goal plugin needed durable session-scoped state before it could inject or manage a goal",
     "created_at": "2026-06-28T20:44:08Z",
-    "last_save_at": "2026-07-01T13:04:42.163Z",
+    "last_save_at": "2026-07-01T17:58:30.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:180bc5ef3973d000d09e4d29cae764434584b64bf6b1a791869abb155bc03a7c",
+    "source_fingerprint": "sha256:cd570552a19a90e5f26b914964abe7e439c3aa98362a7b9997b4f290364b800b",
     "source_doc_hashes": {
-      "spec.md": "82df149e05c0adbdc8118a1c581fcc51c338b626bcd9dfa9026428bf6e51a218",
-      "plan.md": "6cc0659392c9fec0d784c4c777d4e74f8ad94e26819262fa14ebd3f0610c1003",
-      "tasks.md": "d8d07b2b9308057eaf385cfc57b399c66e39cfa5124624c1af5cc312a46b8c2e",
-      "implementation-summary.md": "658d435c69fcb1b9b94c15c0a82a057ea434d44d4154150ce493ae7bfe47af98"
+      "spec.md": "53494669503c0ae4324d9a7a336145eaf0c3f42220fcd8a4ad1691afff6fd6e6",
+      "plan.md": "d1509623f2e8d8126a22593c245c6fbfe4bd21459c380eeee03aaee42304a27c",
+      "tasks.md": "991324339f9f73aa58c216c41b1f603b035077ee64d1c6ee58242273a08a1305",
+      "implementation-summary.md": "2293b24ec1d045f92a07d52575ab07839529f179e75fd1f6e270167b44ae775c"
     },
     "last_active_child_id": null,
     "last_active_at": null

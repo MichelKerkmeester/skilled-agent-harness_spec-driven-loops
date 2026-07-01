@@ -43,12 +43,12 @@ The `/goal` OpenCode plugin is now documented inside `system-spec-kit` as a know
 
 ### Verification
 
-- `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` - PASS.
-- `node .opencode/plugins/__tests__/mk-goal-continuation.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-state.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-export-contract.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-supervisor.test.cjs` - PASS.
+- `node .opencode/plugins/tests/mk-goal-continuation.test.cjs` - PASS.
 - `python3 .opencode/skills/sk-doc/scripts/extract_structure.py` on the new goal reference, feature catalog file, and manual playbook file - PASS.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` - PASS with one unrelated existing warning.
 - `LC_ALL=C rg -n "[^ -~]"` on new phase and goal docs - PASS.

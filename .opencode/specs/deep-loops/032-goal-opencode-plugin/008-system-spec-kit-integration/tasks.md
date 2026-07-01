@@ -73,7 +73,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Run targeted goal plugin tests (`.opencode/plugins/__tests__/mk-goal-*.test.cjs`) - evidence: six goal plugin tests PASS
+- [x] T008 Run targeted goal plugin tests (`.opencode/plugins/tests/mk-goal-*.test.cjs`) - evidence: six goal plugin tests PASS
 - [x] T009 Run docs structure/alignment checks (`sk-doc extract_structure`, `verify_alignment_drift.py`) - evidence: new docs extract clean; alignment PASS with one unrelated existing warning
 - [x] T010 Restamp generated metadata and run strict parent validation (`validate.sh --strict`) - evidence: parent packet and all nine phases PASS
 <!-- /ANCHOR:phase-3 -->

@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Deferred deep-review findings and MiMo-campaign recommendations identified gaps in rollback hash-guard integrity, promotion safety, benchmark ledger accuracy, adversarial playbook coverage, playbook pass-criteria rigor, and P2 test-adequacy/source-only auditing across the loop-system surfaces",
     "created_at": "2026-06-29T10:43:16Z",
-    "last_save_at": "2026-07-01T14:29:43.577Z",
+    "last_save_at": "2026-07-01T17:58:29.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,13 +228,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d5b5d28c773b2d20152137bf33e1d495834b3cf03b808d92486049e21230633f",
+    "source_fingerprint": "sha256:82f0dddeb4ad1df52d49ed63633b0b791d1e62346d1f23be31ce6554a7c2c554",
     "source_doc_hashes": {
       "spec.md": "1906d18d50996ab50030973cd3e699fe109237b219e332de3edea3c7d49becc6",
       "plan.md": "d49e99a48213e945a3a1a59b1e019101b8fb9c94f98d398581f38954763b1cd4",
       "tasks.md": "143e88347ccb9da266177caf9e83d15ea9d0a91e0efd92bfe405b403c0924e7a",
       "implementation-summary.md": "1e4312ed78bf3c392c333dac3180a8013de50a608fe775e25a81f511414df72b",
-      "handover.md": "d08cd04a5ab1848ca1b44865b61befa0f90d8e29788bc96e432f16c88a4570c3"
+      "handover.md": "38563d810a7d5082350f185b2591fd7d673d65cb4c4a6004629ac747dbf89719"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,7 +39,7 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 1. Restart OpenCode after any `.opencode/plugins/mk-goal.js` or `.opencode/commands/goal_opencode.md` edit.
 2. `/goal set Finish the goal plugin docs integration and validate it`
 3. `/goal show`
-4. If a live OpenCode restart is unavailable, run `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` and `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` as fallback evidence.
+4. If a live OpenCode restart is unavailable, run `node .opencode/plugins/tests/mk-goal-state.test.cjs` and `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` as fallback evidence.
 
 ### Expected
 

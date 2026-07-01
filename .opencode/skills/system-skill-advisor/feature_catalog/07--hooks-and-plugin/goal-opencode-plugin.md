@@ -34,6 +34,10 @@ The plugin registers `experimental.chat.system.transform`. When a session has an
 
 The plugin exposes two OpenCode tools: `mk_goal` for mutation and `mk_goal_status` for readback with the exact injection preview. Goal state supports `active`, `paused`, `blocked`, `usage_limited`, `budget_limited` and `complete`. Idle events run supervisor verification; `met` marks the goal complete, `blocked` marks it blocked, and ambiguous or missing evidence keeps it active while incrementing iterations.
 
+### Archive And Cleanup
+
+Goal state does not accumulate unboundedly. `session.deleted` archives the session's state file then prunes the archive past a configurable retention window; a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. Retention windows and the sweep interval are env-configurable (`MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS`, `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS`, `MK_GOAL_STATE_SWEEP_INTERVAL_MS`).
+
 ### Guarded Continuation
 
 Continuation is default-off. `MK_GOAL_AUTONOMY=smoke` logs that a continuation would fire without calling the runtime, and `MK_GOAL_AUTONOMY=active` may call `ctx.client.session.promptAsync` only after all gates pass: plugin enabled, real session id, active unsuppressed goal, no in-flight continuation, no pending permission or question, idle runtime status, cooldown elapsed, cap not exceeded and budget not exhausted. Continuation is capped at eight auto-turns, thirty minutes wall time and a 1500 ms cooldown.
@@ -54,11 +58,11 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Automated test | Session-keyed persistence, tool output and passive injection |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping and evidence redaction |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | Session-keyed persistence, tool output and passive injection |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping and evidence redaction |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
 | `manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
 
 ## 4. SOURCE METADATA

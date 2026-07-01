@@ -52,7 +52,7 @@ _memory:
 <!-- agent: direct | deps: [] | touched-files: [] -->
 - [x] T001 Re-read `.opencode/plugins/mk-goal.js` at lines 177, 205, 264-290, 1057, 1080-1130, 1236-1350, 1376-1396, 1588 to confirm the review's line citations still match current code (.opencode/plugins/mk-goal.js)
 <!-- agent: direct | deps: [T001] | touched-files: [] -->
-- [x] T002 Run the existing 6-file test suite once as a pre-change baseline: `for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all should exit 0 (.opencode/plugins/__tests__/*.test.cjs)
+- [x] T002 Run the existing 6-file test suite once as a pre-change baseline: `for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done` — all should exit 0 (.opencode/plugins/tests/*.test.cjs)
 <!-- /ANCHOR:phase-1 -->
 
 ---

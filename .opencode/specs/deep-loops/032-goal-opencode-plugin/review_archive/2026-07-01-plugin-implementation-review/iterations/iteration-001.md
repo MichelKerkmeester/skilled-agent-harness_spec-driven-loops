@@ -8,12 +8,12 @@ Correctness -- inventory + pass A on state-store and injection-plugin behavior.
 |---|---:|---:|---|
 | `.opencode/plugins/mk-goal.js` | ESM OpenCode plugin | 1676 lines; high complexity; state, lifecycle, supervisor, continuation, injection, tools | Primary implementation under review |
 | `.opencode/commands/opencode_goal.md` | command markdown | 83 lines per strategy inventory; not deeply reviewed in pass A | Deferred for command phase |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Node test | 189 lines; state + passive injection checks | Primary test evidence for phases 001-002 |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Node test | 56 lines; tool context session resolution | State helper consumer evidence |
-| `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | Node test | 24 lines; loader/export shape | Supporting plugin-load evidence |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Node test | 175 lines; lifecycle accounting | Adjacent state transition consumer spot-check |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | Node test | 155 lines; verifier persistence/redaction | Adjacent state transition/redaction spot-check |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Node test | 373 lines; autonomy/continuation | Inventory only for this pass |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Node test | 189 lines; state + passive injection checks | Primary test evidence for phases 001-002 |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Node test | 56 lines; tool context session resolution | State helper consumer evidence |
+| `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Node test | 24 lines; loader/export shape | Supporting plugin-load evidence |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Node test | 175 lines; lifecycle accounting | Adjacent state transition consumer spot-check |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Node test | 155 lines; verifier persistence/redaction | Adjacent state transition/redaction spot-check |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Node test | 373 lines; autonomy/continuation | Inventory only for this pass |
 | `001-state-store/{spec,plan,tasks,implementation-summary}.md` | phase docs | Level 1 packet docs | Cross-check state-store claims |
 | `002-injection-plugin/{spec,plan,tasks,implementation-summary}.md` | phase docs | Level 1 packet docs | Cross-check injection claims |
 
@@ -30,8 +30,8 @@ Graph status: stale, so this iteration used graphless fallback: direct reads plu
 - `.opencode/plugins/mk-goal.js:1350-1395` -- injection rendering and append behavior.
 - `.opencode/plugins/mk-goal.js:1402-1441` -- status output and injection preview.
 - `.opencode/plugins/mk-goal.js:1620-1644` -- transform and tool hook exposure.
-- `.opencode/plugins/__tests__/mk-goal-state.test.cjs:21-180` -- state/injection test assertions.
-- `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs:23-45` -- ToolContext session resolution test assertions.
+- `.opencode/plugins/tests/mk-goal-state.test.cjs:21-180` -- state/injection test assertions.
+- `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:23-45` -- ToolContext session resolution test assertions.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store/spec.md:120-147` -- state-store requirements and success criteria.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store/plan.md:77-84` -- state-store architecture claims.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store/implementation-summary.md:53-61` -- state-store implementation claims.
@@ -51,9 +51,9 @@ None.
 
 - File: `.opencode/plugins/mk-goal.js:1376`
 - Claim: Phase 002 claims `renderGoalInjection` caps output length, but the implementation only budgets the `goal_prompt` segment and can return a block longer than `maxInjectionChars` once fixed structural lines, objective, verifier reason, usage, and directive are added.
-- Evidence: Phase 002 scope requires a "length-capped" active-goal block at `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin/spec.md:95`, and the plan says `renderGoalInjection` "caps output length" at `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin/plan.md:77`. Implementation computes `promptBudget` from `options.maxInjectionChars - buildBlock('').length`, clamps that to at least 3, then returns `buildBlock(sanitizePromptText(goalPrompt, promptBudget))` without clamping the final block at `.opencode/plugins/mk-goal.js:1376-1378`. The existing long-injection test passes `maxInjectionChars: 220` but only asserts structure and ellipsis, not `clippedBlock.length <= 220`, at `.opencode/plugins/__tests__/mk-goal-state.test.cjs:120-132`.
+- Evidence: Phase 002 scope requires a "length-capped" active-goal block at `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin/spec.md:95`, and the plan says `renderGoalInjection` "caps output length" at `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin/plan.md:77`. Implementation computes `promptBudget` from `options.maxInjectionChars - buildBlock('').length`, clamps that to at least 3, then returns `buildBlock(sanitizePromptText(goalPrompt, promptBudget))` without clamping the final block at `.opencode/plugins/mk-goal.js:1376-1378`. The existing long-injection test passes `maxInjectionChars: 220` but only asserts structure and ellipsis, not `clippedBlock.length <= 220`, at `.opencode/plugins/tests/mk-goal-state.test.cjs:120-132`.
 - Reproduction evidence: A direct helper invocation with `maxInjectionChars: 220` produced `{"length":331,"max":220,...}`. This confirmed the code-path behavior but created temp state outside the allowed review packet; see `## SCOPE VIOLATIONS`.
-- Counterevidence sought: I checked whether tests asserted the total rendered length and found only `maxInjectionChars` usages in `.opencode/plugins/__tests__/mk-goal-state.test.cjs:121` and `.opencode/plugins/__tests__/mk-goal-state.test.cjs:151`, with no total-length assertion.
+- Counterevidence sought: I checked whether tests asserted the total rendered length and found only `maxInjectionChars` usages in `.opencode/plugins/tests/mk-goal-state.test.cjs:121` and `.opencode/plugins/tests/mk-goal-state.test.cjs:151`, with no total-length assertion.
 - Alternative explanation: The option could be intended to cap only the prompt subsection, but the phase language says "block" and "output length", and the option is named `maxInjectionChars`, not `maxGoalPromptChars`.
 - Final severity: P1.
 - Confidence: high.

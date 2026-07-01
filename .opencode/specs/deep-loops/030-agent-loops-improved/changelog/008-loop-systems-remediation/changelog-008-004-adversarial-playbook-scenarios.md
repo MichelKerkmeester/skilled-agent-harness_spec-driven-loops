@@ -47,8 +47,8 @@ Eight adversarial regression scenarios were added to the manual-testing playbook
 ### Verification
 
 - cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test - PASS: 60 files / 545 tests
-- PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs - PASS: exit 0
-- PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/__tests__/mk-goal-state.test.cjs - PASS: exit 0
+- PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs - PASS: exit 0
+- PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-state.test.cjs - PASS: exit 0
 - validate_document.py on loop-lock.md and goal-opencode-plugin.md - PASS: valid, 0 issues
 - Tasks complete - 20 completed task item(s) recorded
 

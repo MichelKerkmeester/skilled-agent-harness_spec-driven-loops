@@ -108,7 +108,7 @@ Did not attempt a full live 3-dispatch loop-repeat reproduction (which would req
 | Original 8 hermetic scenarios (no regression) | PASS |
 | New identity-resolution scenarios (Deep Route, `Agent:` line, unresolvable no-op) | PASS |
 | New loop-repeat scenarios (1st/2nd/3rd, warn vs. reject, command-driven exemption, non-loop-executor exemption, cross-session isolation, fail-open) | PASS |
-| `node .opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` | Exit 0, "all assertions passed" |
+| `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Exit 0, "all assertions passed" |
 | `check-comment-hygiene.sh` (plugin + test file) | PASS, 0 violations (1 caught and fixed) |
 | `verify_alignment_drift.py --root .opencode/plugins` | PASS, 0 findings, 13 files scanned |
 | Live smoke: mismatch + `MK_DEEP_LOOP_GUARD_REJECT=1` against real `opencode` v1.17.11 host | PASS — `task` tool status `"error"`, agent confirmed the block, correct identity resolved via the `subagentType !== "general"` fallback branch |
@@ -152,4 +152,4 @@ Ran a targeted grep-based sweep for every file referencing `mk-deep-loop-guard`,
 - `orchestrate.md` (both `.opencode` and `.claude` mirrors) does not reference this plugin and did not need updating — separate architectural layer.
 - Deep-loop-runtime's feature-catalog and manual-testing-playbook root-index feature/scenario counts (50/52) are unaffected, since F050/DLR-052 already existed and this phase only extended, not added, entries.
 
-Re-ran `node .opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` (exit 0) and `verify_alignment_drift.py --root .opencode/plugins` (PASS, 0 findings) after the README fix.
+Re-ran `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` (exit 0) and `verify_alignment_drift.py --root .opencode/plugins` (PASS, 0 findings) after the README fix.

@@ -17,8 +17,8 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/skills/.goal-state"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:dbff518b69da1cde31738a7b71cb8b6432a6ebe56aa24eb6738096801631935d"
       session_id: "goal-m1-state-store-20260629"
@@ -66,8 +66,8 @@ The passive `/goal` milestone now has durable state. `mk-goal.js` persists one a
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds fail-closed state helpers, session-keyed paths, queued mutation, atomic writes, set, and clear. |
 | `.opencode/skills/.goal-state` | Created | Holds runtime JSON goal state files. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Created | Verifies session isolation, missing-session refusal, set/show/clear behavior, and passive transform reuse. |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution on the mutation path. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Created | Verifies session isolation, missing-session refusal, set/show/clear behavior, and passive transform reuse. |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Created | Verifies tool-context session resolution on the mutation path. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,9 +97,9 @@ The storage helpers shipped inside the existing ESM plugin and were verified thr
 
 | Check | Result |
 |-------|--------|
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 5/5 plugin test files. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 5/5 plugin test files. |
 | `node --check .opencode/plugins/mk-goal.js` | PASS. |
-| `node --check .opencode/plugins/__tests__/mk-goal-state.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | PASS. |
+| `node --check .opencode/plugins/tests/mk-goal-state.test.cjs && node --check .opencode/plugins/tests/mk-goal-tool-path.test.cjs` | PASS. |
 <!-- /ANCHOR:verification -->
 
 ---

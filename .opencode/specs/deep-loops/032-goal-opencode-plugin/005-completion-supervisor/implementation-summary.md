@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-supervisor.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-supervisor.test.cjs"
     session_dedup:
       fingerprint: "sha256:c95d5705ead5885e38f83e2a5834dd27c30dbccc13c839a4c6b94d7262c89427"
       session_id: "goal-m2-supervisor-20260628"
@@ -63,7 +63,7 @@ The goal plugin now has a conservative supervisor path for automatic completion.
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/mk-goal.js` | Modified | Adds supervisor verification, idle wiring, completion source, and redacted status fields. |
-| `.opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | Created | Verifies met, blocked, ambiguous, and absent-evidence verdict behavior. |
+| `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Created | Verifies met, blocked, ambiguous, and absent-evidence verdict behavior. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,8 +93,8 @@ The supervisor is injected through plugin options for tests and future runtime w
 
 | Check | Result |
 |-------|--------|
-| `node --test .opencode/plugins/__tests__/*.test.cjs` | PASS, 3/3 plugin tests. |
-| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/__tests__/mk-goal-supervisor.test.cjs` | PASS. |
+| `node --test .opencode/plugins/tests/*.test.cjs` | PASS, 3/3 plugin tests. |
+| `node --check .opencode/plugins/mk-goal.js && node --check .opencode/plugins/tests/mk-goal-lifecycle.test.cjs && node --check .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/plugins` | PASS, 8 files scanned. |
 | Supervisor verdict mapping | PASS, met completes, blocked blocks, ambiguous and absent evidence stay active as `not_met`. |
 <!-- /ANCHOR:verification -->

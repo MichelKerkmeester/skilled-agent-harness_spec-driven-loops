@@ -106,7 +106,7 @@ Planning from a deep-review CONDITIONAL verdict (`review/review-report.md`) and 
 
 Required inventories:
 - Same-class producers: `rg -n 'opencode_goal|goal_opencode|commands/goal\.md' .` (excluding `.git/`, `changelog/`, `research/`) to build the complete reference list before editing anything.
-- Consumers of changed symbols: N/A for the rename itself (pure string/path references); for REQ-005/006, `rg -n 'MK_GOAL_PLUGIN_DISABLED|executeGoalAction' .opencode/plugins/mk-goal.js .opencode/plugins/__tests__/*.test.cjs` to find every consumer of the changed behavior.
+- Consumers of changed symbols: N/A for the rename itself (pure string/path references); for REQ-005/006, `rg -n 'MK_GOAL_PLUGIN_DISABLED|executeGoalAction' .opencode/plugins/mk-goal.js .opencode/plugins/tests/*.test.cjs` to find every consumer of the changed behavior.
 - Matrix axes: (a) command file itself, (b) phase docs that specified it, (c) generated metadata (`graph-metadata.json`), (d) operator-facing discovery docs (catalogs/playbooks), (e) env-reference docs, (f) the two small code behaviors (REQ-005/006).
 - Algorithm invariant: after this phase, a `grep -rn "opencode_goal\|goal_opencode"` across the whole repo (excluding historical/archival paths) must return **zero** hits — that is the single verifiable invariant this phase exists to establish.
 <!-- /ANCHOR:affected-surfaces -->

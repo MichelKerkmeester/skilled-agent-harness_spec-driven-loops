@@ -42,7 +42,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
       ".opencode/skills/.goal-state/.continuation.log",
       "spec.md",
       "plan.md",
@@ -59,7 +59,7 @@
       {
         "name": "mk-goal-continuation.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
     "created_at": "2026-06-28T20:44:11Z",
-    "last_save_at": "2026-07-01T13:04:42.890Z",
+    "last_save_at": "2026-07-01T17:58:31.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44bb9d511f0b5f1d16bd204ca98d9aac75f25d1f0dc884c61865ba689ce8090a",
+    "source_fingerprint": "sha256:7e1c47cd123341224829db5cbdf0082a87dcec93392290eb1772ed08981eedd2",
     "source_doc_hashes": {
-      "spec.md": "c32d97958de2c1ddced5362c7b36e6e4f66a1bc9600cfb4ceaafdfeb77ef1643",
-      "plan.md": "07bf9d91e0ed3717d972ab13af79d5018b41e886795a9ab8fb8853669f3e84c4",
-      "tasks.md": "e8e288eee0c57ae88a90d12615335d206935b0e606d6d1f84363ec487987b53b",
-      "implementation-summary.md": "c02e288f85eb4e09e2b3cfa255cffdce122353489558a426b7a0b60139bf4daa"
+      "spec.md": "d7aeb96537567494fbec4e85cf3064b1e58c43cecb8667a1831277598085a9ed",
+      "plan.md": "1709e314835965d97a4f8f46a06d5a41c664628040647f1e5d7faa62aaf0ceca",
+      "tasks.md": "64db9a7ca522b584b8c3f42af4ff2e63ddf4303f6b14a0b3f3b32497022fba5c",
+      "implementation-summary.md": "fb67eede185f89976abfcdb5cc9947b0b2174dd68ac44d7d69310a569a12b9cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

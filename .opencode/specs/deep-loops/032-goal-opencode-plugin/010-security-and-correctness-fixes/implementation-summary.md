@@ -108,7 +108,7 @@ The work followed the required sequence: baseline first, code edits, syntax chec
 Command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Output:
@@ -142,7 +142,7 @@ Output:
 Command:
 
 ```bash
-for f in .opencode/plugins/__tests__/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
+for f in .opencode/plugins/tests/mk-goal-*.test.cjs; do node "$f"; echo "exit: $?"; done
 ```
 
 Output:

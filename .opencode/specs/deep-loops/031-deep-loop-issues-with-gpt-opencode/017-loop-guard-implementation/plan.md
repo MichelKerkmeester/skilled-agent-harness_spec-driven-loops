@@ -45,7 +45,7 @@ _memory:
 | **Language/Stack** | OpenCode plugin API (`tool.execute.before` hook), JavaScript (ESM) |
 | **Framework** | OpenCode plugin loader, `mode-registry.json` |
 | **Storage** | `.opencode/skills/.loop-guard-state/{hex(sessionID)}.json`, atomic write (temp file + rename), mirroring `mk-goal.js` |
-| **Testing** | Hermetic `node:assert/strict` suite (`.opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs`) + live re-verification against the installed `opencode` host |
+| **Testing** | Hermetic `node:assert/strict` suite (`.opencode/plugins/tests/mk-deep-loop-guard.test.cjs`) + live re-verification against the installed `opencode` host |
 
 ### Overview
 
@@ -102,7 +102,7 @@ A Task-tool dispatch is about to execute → `tool.execute.before` fires → `re
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-deep-loop-guard.js` | Mode-mismatch-only detector (phase 011) | Add identity resolution + loop-repeat detection | Hermetic test suite + live smoke |
-| `.opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` | 8-scenario regression suite | Extend with identity/loop scenarios | `node mk-deep-loop-guard.test.cjs` exit 0 |
+| `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | 8-scenario regression suite | Extend with identity/loop scenarios | `node mk-deep-loop-guard.test.cjs` exit 0 |
 | `.opencode/skills/.loop-guard-state/` | Does not exist yet | New session-state directory, created on first loop-executor dispatch | Fail-open test (path collision) |
 | `feature_catalog`/`manual_testing_playbook` `03--validation/mk-deep-loop-guard.md` | Documents phase-011 behavior only | Add loop-detection capability + env var | Doc read-through |
 
@@ -147,7 +147,7 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Hermetic unit | Identity resolution, loop-repeat thresholds, command-driven/non-loop-executor exemptions, cross-session isolation, fail-open | `node .opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` |
+| Hermetic unit | Identity resolution, loop-repeat thresholds, command-driven/non-loop-executor exemptions, cross-session isolation, fail-open | `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` |
 | Live smoke | Mode-mismatch + reject-blocks-dispatch mechanism, post-rewrite, real host | `opencode run --agent general ...` with `MK_DEEP_LOOP_GUARD_REJECT=1` |
 | Static | Comment hygiene, alignment drift | `check-comment-hygiene.sh`, `verify_alignment_drift.py --root .opencode/plugins` |
 | Spec | Phase documentation and metadata integrity | `validate.sh --strict` |

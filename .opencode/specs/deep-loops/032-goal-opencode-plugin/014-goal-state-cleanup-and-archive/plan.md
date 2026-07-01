@@ -42,7 +42,7 @@ _memory:
 | **Language/Stack** | Node.js (ESM), OpenCode plugin runtime |
 | **Framework** | `.opencode/plugins/mk-goal.js` (single-file plugin) |
 | **Storage** | Flat per-session JSON goal state (`.opencode/skills/.goal-state/`), new `.archive/` subdirectory |
-| **Testing** | `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` (existing event-lifecycle test file) |
+| **Testing** | `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` (existing event-lifecycle test file) |
 
 ### Overview
 Three new helpers reusing existing primitives (`rename`, already imported; the `ENOENT`-tolerant try/catch pattern from `deleteGoalFile`; the in-memory `runtimeState` volatile-lock pattern for the sweep throttle), wired into the two lifecycle events that already exist (`session.deleted`, `session.created`). No new files, no new scheduler, no new state-store schema.
@@ -100,7 +100,7 @@ New finding (operator-reported), not from either audit. Touches persistence (sta
 
 Required inventories:
 - Same-class producers: `rg -n 'deleteGoalFile|flushVolatileLocks|ensureGoalStateDir' .opencode/plugins/mk-goal.js` to confirm the exact patterns being mirrored.
-- Consumers of changed symbols: `rg -n 'session\.deleted|session\.created' .opencode/plugins/__tests__/*.test.cjs` to find every existing test exercising these two event branches, so none regress.
+- Consumers of changed symbols: `rg -n 'session\.deleted|session\.created' .opencode/plugins/tests/*.test.cjs` to find every existing test exercising these two event branches, so none regress.
 - Matrix axes: (a) archive-on-delete with vs without a pre-existing state file, (b) archive entries inside vs outside the retention window, (c) active states inside vs outside the active-retention window, (d) sweep due vs throttled (inside the interval).
 - Algorithm invariant: a session actively being mutated (recent `updatedAtMs`) must never be swept as an orphan — retention windows are set in days, mutation activity is measured in the same run, so there is no overlap; verify with an explicit "recent active state survives the sweep" test case.
 <!-- /ANCHOR:affected-surfaces -->

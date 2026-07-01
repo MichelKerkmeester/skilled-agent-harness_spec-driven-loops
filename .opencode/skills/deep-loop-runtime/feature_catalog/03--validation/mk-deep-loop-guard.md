@@ -64,7 +64,7 @@ Cannot create hard runtime identity (that remains host/FIX-5 territory). Does no
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
+| `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
 
 Live-verified against a real `opencode` session during development (hook registration, warn-mode logging, reject-mode blocking for both checks, fail-open on a missing registry, and pass-through for non-deep `subagent_type` values) — see `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin/implementation-summary.md` (original mode-mismatch build) and `017-loop-guard-implementation/implementation-summary.md` (identity-resolution fix + loop-repeat detection) for the full evidence trail.
 
@@ -76,7 +76,7 @@ Live-verified against a real `opencode` session during development (hook registr
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F050
 - Feature file path: `03--validation/mk-deep-loop-guard.md`
-- Primary sources: `.opencode/plugins/mk-deep-loop-guard.js`, `.opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs`
+- Primary sources: `.opencode/plugins/mk-deep-loop-guard.js`, `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs`
 
 Related references:
 - [post-dispatch-validate.md](post-dispatch-validate.md) — the post-dispatch counterpart this plugin complements from the pre-dispatch side.

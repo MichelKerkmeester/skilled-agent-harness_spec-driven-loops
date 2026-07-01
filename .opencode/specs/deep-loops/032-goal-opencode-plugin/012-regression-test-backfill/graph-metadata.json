@@ -37,13 +37,13 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
       ".opencode/commands/goal_opencode.md",
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
-      ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/tasks.md",
       ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md",
       "plan.md",
@@ -55,13 +55,13 @@
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-export-contract.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -79,19 +79,19 @@
       {
         "name": "mk-goal-lifecycle.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-continuation.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-continuation.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
         "source": "derived"
       },
       {
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is never invoked by any test; the `event()` handler swallows all exceptions with no test asserting on the error path; and 7 of 9 wired events (`session.created`, `message.updated`, permission/question asked+replied, `session.deleted`, `.disposed`) have zero coverage through the real entrypoint (tests bypass the state machine by writing state directly)",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-01T13:40:04.900Z",
+    "last_save_at": "2026-07-01T17:58:31.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9072e999c8c1400bd03893d05777b5ad4eb41527942a5e4309e0f93255f1dfd7",
+    "source_fingerprint": "sha256:2951f1dd531b270cdf85dce8ed8b02b16f93453cdaa86e64861a7a4d5b693036",
     "source_doc_hashes": {
-      "spec.md": "22890e3de75b31c03947db899a5ccf628d73ac353b9e24266e17216f0b523777",
-      "plan.md": "75132d63e21ac208f48cae924398baa11eaf57cfe1989a3d21d9c94ca9903c36",
-      "tasks.md": "e823a6200d5d4540da7dacb5f7b3d201fd348a42f44a193867f1dea3fd73c8c2",
-      "implementation-summary.md": "cc764407243ac8617c534d32ea358619bd50c8537640fbff9947ac3ffd8b1bdf"
+      "spec.md": "953f238f9d451171f0d9398aab9cf91087f0fe09a02ed6dde541b39e41ad6dc6",
+      "plan.md": "ab2df1dae0689f29ad11298444a257008b13930347b4f460bacb4dc85d886937",
+      "tasks.md": "a53acaa1bbf417d881ada2782d33384215310d86ac0e00a0b8865b31b9148512",
+      "implementation-summary.md": "09b376c84b84d99b7c5fddf1d2d6cfaf2f867b48f93ffe364707438f2e558406"
     },
     "last_active_child_id": null,
     "last_active_at": null

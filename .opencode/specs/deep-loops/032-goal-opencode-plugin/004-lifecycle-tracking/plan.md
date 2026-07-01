@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
       fingerprint: "sha256:c051a6c16a973a44f789ee62b846a4e7a7fb3fb7a78cc2e647cfe21bf5fec1f5"
       session_id: "goal-m2-lifecycle-20260628"
@@ -90,8 +90,8 @@ Additive plugin extension.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/plugins/mk-goal.js` | Owns goal state, injection, and tools. | Add lifecycle helpers and event hook. | `node --check .opencode/plugins/mk-goal.js`; lifecycle test. |
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Guards M1 behavior. | Unchanged. | Full plugin unit suite. |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | New lifecycle coverage. | Created. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Guards M1 behavior. | Unchanged. | Full plugin unit suite. |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | New lifecycle coverage. | Created. | Full plugin unit suite. |
 
 Required inventories:
 - Same-class producers: local plugin event handlers in the mk-spec-memory and session-cleanup plugins (sibling `.opencode/plugins` modules, not deliverables of this phase).

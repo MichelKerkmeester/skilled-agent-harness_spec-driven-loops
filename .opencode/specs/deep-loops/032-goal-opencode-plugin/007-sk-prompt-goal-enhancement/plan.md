@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-tool-path.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:add950c4b1c9352bb36a6142288b11fbee50aaebbdbd93f2e8e0d18f7f24641c"
       session_id: "goal-sk-prompt-enhancement-20260630"
@@ -46,7 +46,7 @@ _memory:
 | **Language/Stack** | JavaScript ESM, OpenCode plugin API |
 | **Framework** | OpenCode auto-discovered plugin and command surfaces |
 | **Storage** | Per-session JSON files in `.opencode/skills/.goal-state/` |
-| **Testing** | Node-based plugin tests under `.opencode/plugins/__tests__/` |
+| **Testing** | Node-based plugin tests under `.opencode/plugins/tests/` |
 
 ### Overview
 Add a deterministic prompt-generation layer to `mk_goal` set actions. The plugin will preserve the raw objective, generate a compact sk-prompt-style `goalPrompt`, store metadata for framework and CLEAR scoring, and render the enhanced prompt in the active goal injection block.
@@ -127,8 +127,8 @@ Deterministic adapter inside the existing plugin state pipeline.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Prompt generation, state normalization, injection rendering | `node .opencode/plugins/__tests__/mk-goal-state.test.cjs` |
-| Integration | Tool context set/show/clear path | `node .opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` |
+| Unit | Prompt generation, state normalization, injection rendering | `node .opencode/plugins/tests/mk-goal-state.test.cjs` |
+| Integration | Tool context set/show/clear path | `node .opencode/plugins/tests/mk-goal-tool-path.test.cjs` |
 | Regression | Lifecycle, supervisor, continuation and export behavior | Existing mk-goal node tests |
 | Spec validation | Phase and parent packet docs | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Run /speckit:plan or /speckit:implement on this phase"
     blockers: []
     key_files:
-      - ".opencode/plugins/__tests__/mk-goal-state.test.cjs"
-      - ".opencode/plugins/__tests__/mk-goal-export-contract.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-032-012"
@@ -104,11 +104,11 @@ Land the missing tests so the plugin's actual opencode-integration surface — n
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/plugins/__tests__/mk-goal-state.test.cjs` | Modify | Add transform-hook invocation test (F-018), RICCE assertion (DR-009-P1-002) |
-| `.opencode/plugins/__tests__/mk-goal-lifecycle.test.cjs` | Modify | Add the 5 untested event-branch cases (F-021) |
-| `.opencode/plugins/__tests__/mk-goal-continuation.test.cjs` | Modify | Add the autonomy-enabled `session.idle` integration test (F-013), stale-verifier/continuation test (DR-003) |
-| `.opencode/plugins/__tests__/mk-goal-export-contract.test.cjs` | Modify | Pin all `__test` seam key names (F-020) |
-| `.opencode/plugins/__tests__/mk-goal-tool-path.test.cjs` | Modify | Add real `plugin.tool.mk_goal.execute` invocation (F-022), command/overlay-doc contract test (DR-009-P1-003) |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Modify | Add transform-hook invocation test (F-018), RICCE assertion (DR-009-P1-002) |
+| `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Modify | Add the 5 untested event-branch cases (F-021) |
+| `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Modify | Add the autonomy-enabled `session.idle` integration test (F-013), stale-verifier/continuation test (DR-003) |
+| `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Modify | Pin all `__test` seam key names (F-020) |
+| `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Modify | Add real `plugin.tool.mk_goal.execute` invocation (F-022), command/overlay-doc contract test (DR-009-P1-003) |
 | `.opencode/plugins/mk-goal.js` | Modify (minimal) | Only if a genuinely missing test seam must be exposed (e.g. error-path logging for F-019); no behavior changes beyond what makes testing possible |
 <!-- /ANCHOR:scope -->
 

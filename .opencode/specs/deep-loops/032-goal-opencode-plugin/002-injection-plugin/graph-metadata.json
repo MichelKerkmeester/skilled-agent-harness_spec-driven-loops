@@ -40,7 +40,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,7 +56,7 @@
       {
         "name": "mk-goal-state.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/__tests__/mk-goal-state.test.cjs",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Persisted goal state is inert unless the assistant receives it during a turn",
     "created_at": "2026-06-28T20:44:08Z",
-    "last_save_at": "2026-07-01T13:04:42.311Z",
+    "last_save_at": "2026-07-01T17:58:30.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b25545825fb4996f8489f5062d8625d54250e6dc571b382a24a76275a7fd438",
+    "source_fingerprint": "sha256:6d8c5f48665b3c62ccf06a4c170a0b603bcd483540180758564e23395e5178b8",
     "source_doc_hashes": {
-      "spec.md": "7bc1a87d25078ced42210473a68be9cbc3e4a2627b5011d34e2fc7a38448a6b4",
-      "plan.md": "f65123976e8e51c065f45b8c4de944ae0ec2753854dff0e963220de23637fa58",
-      "tasks.md": "a6f9320eb581aaa75546dbf660fa7580d98a85d8c73306675c3dd4088f49ee84",
-      "implementation-summary.md": "ed3a81ec6e6bfa0277813f42e3877731e4c589fb4c81e5cc26cab10afd2ae2f2"
+      "spec.md": "30481937b3a19f59d5e47c5f5ec412f344e455992e56cdbdf28050efafda6eeb",
+      "plan.md": "88c0fd22331db9308363268c3d0aba85c62ea922f767fdacb479199d9b90b095",
+      "tasks.md": "ccc84f8167640f57c27ea162382dfe96ca2715679f50d8293423af2d627f2cd7",
+      "implementation-summary.md": "45cee789514e88319616e956bae28fb205635dcb6707a8ae8c580cc1549ab8cf"
     },
     "last_active_child_id": null,
     "last_active_at": null
