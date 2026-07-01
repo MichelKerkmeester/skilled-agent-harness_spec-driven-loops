@@ -135,3 +135,21 @@ None required to close this phase. Optional future work, not blocking:
 1. Design Option C from phase 016 (a prompt-shape companion guard requiring `execution=single_iteration` on Deep Route headers targeting loop executors) remains a viable complementary addition if malformed-intent-on-first-dispatch detection becomes valuable.
 2. Adding a `prompt-improver` entry to `mode-registry.json` would let Check 1 cover it too — unrelated to this phase's scope, tracked here only for discoverability.
 <!-- /ANCHOR:followup -->
+
+---
+
+## Follow-Up: Documentation-Sync Audit (2026-07-01)
+
+Ran a targeted grep-based sweep for every file referencing `mk-deep-loop-guard`, the retired `deep-route-guard`/`DEEP_ROUTE_GUARD` names, and `tool.execute.before` across skill docs, feature catalogs, manual testing playbooks, vitest suites, and READMEs, to confirm this phase's changes are fully and correctly reflected everywhere.
+
+**Found and fixed one real drift item**: `.opencode/plugins/README.md`'s "CURRENT ENTRYPOINTS" table still described `mk-deep-loop-guard.js` with its pre-phase-017 single-check behavior (mode-mismatch only), omitting the new loop-repeat detection and `MK_DEEP_LOOP_GUARD_REJECT_LOOP` env var. Rewrote the row to describe both checks and the shared identity-resolution step.
+
+**Confirmed clean, no changes needed**:
+- No `.vitest.ts` suite anywhere in the repo references this plugin (it correctly follows the hermetic `.test.cjs` convention used by its sibling `mk-goal-*.test.cjs` files, not vitest — there is no gap, just a different, already-correct test format for this class of plugin).
+- No hardcoded test-file-list script/CI config needed a new entry (tests run standalone per the established convention; no aggregator enumerates them).
+- Remaining `deep-route-guard`/`DEEP_ROUTE_GUARD` matches outside historical phase-011/014/015 spec docs are all legitimate folder-path references (`011-deep-route-guard-plugin/`), not stale content.
+- `cli-opencode/SKILL.md` and `references/agent_delegation.md`'s "exactly one bounded hand-off" prose contract remains factually accurate independent of this phase's mechanical enforcement addition; left unchanged as a deliberate scope decision (adding a cross-reference there would be a documentation enhancement, not a correctness fix, and this phase's `spec.md` scoped only the plugin + its own catalog/playbook entries).
+- `orchestrate.md` (both `.opencode` and `.claude` mirrors) does not reference this plugin and did not need updating — separate architectural layer.
+- Deep-loop-runtime's feature-catalog and manual-testing-playbook root-index feature/scenario counts (50/52) are unaffected, since F050/DLR-052 already existed and this phase only extended, not added, entries.
+
+Re-ran `node .opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs` (exit 0) and `verify_alignment_drift.py --root .opencode/plugins` (PASS, 0 findings) after the README fix.

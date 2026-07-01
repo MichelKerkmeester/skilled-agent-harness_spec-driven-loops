@@ -102,6 +102,7 @@ _memory:
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with actual implementation.
 - [x] CHK-041 [P1] Feature-catalog (F050) and manual-testing-playbook (DLR-052) entries updated for the new loop-detection capability and `MK_DEEP_LOOP_GUARD_REJECT_LOOP` env var.
 - [x] CHK-042 [P2] No code-comment burden added; comment-hygiene violation caught during implementation was fixed, not left in place.
+- [x] CHK-043 [P1] Repo-wide documentation-sync audit run (grep sweep across skill docs, feature catalogs, manual testing playbooks, vitest suites, READMEs); found and fixed one stale entry (`.opencode/plugins/README.md`'s entrypoint table), confirmed no other drift.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -120,7 +121,7 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 9 | 9/9 |
-| P1 Items | 7 | 7/7 |
+| P1 Items | 8 | 8/8 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-07-01

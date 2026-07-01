@@ -41,6 +41,7 @@
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".opencode/plugins/__tests__/mk-deep-loop-guard.test.cjs",
       "spec.md",
+      ".opencode/plugins/README.md",
       ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md",
       "plan.md",
@@ -65,6 +66,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
     "created_at": "2026-07-01T17:42:33.780Z",
-    "last_save_at": "2026-07-01T17:42:33.780Z",
+    "last_save_at": "2026-07-01T17:54:48.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:757d8fbdf9cfae943765609507d37e0f617d387e85104f507cc5e87b2bdfe562",
+    "source_fingerprint": "sha256:e5b177b6a03d48884cb91da0f2ac3ad35c7690cb6feda6a3c0957baf7b68f812",
     "source_doc_hashes": {
       "spec.md": "a1a4862b010f1ef50d5ebe781f5b432a658a4b8980fb01e03041548d1bbc7167",
       "plan.md": "3cbab81456b8e298d94720a0556610909b79395e8879e3958b2dfc2e747880a3",
       "tasks.md": "676b7e0cffd41a97a4bc46d36a75fef47c8dee875064458eb8b9ccc3fec7263a",
-      "checklist.md": "c57eed7b4e4c695fcf7b4f318b8b4a09fb5e49dfdeefed8ec014f8b52640202c",
-      "implementation-summary.md": "87828344f0b273b80dc32071086bcf333fee6a31d69ad8b7635f7bfb26d1f246"
+      "checklist.md": "6e28dc1070d4a69919d6d165469de064c5dcbe77050fdea56bdeaf13663a40b8",
+      "implementation-summary.md": "45668dbfc36d1f048a6ca5ea3ebf3fb2a17e08380d96b316c7ec8bbc2a375bac"
     },
     "last_active_child_id": null,
     "last_active_at": null
