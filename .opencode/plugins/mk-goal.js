@@ -487,6 +487,16 @@ async function logDebugEvent(eventType, sessionID, rawOptions = {}) {
   }, rawOptions);
 }
 
+async function logDebugEventError(event, error, rawOptions = {}) {
+  if (process.env[DEBUG_ENV] !== '1') return;
+  await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+    type: 'event_error',
+    eventType: sanitizeInlineText(eventTypeFrom(event) || 'unknown', 80),
+    sid: extractEventSessionID(event),
+    error: redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS),
+  }, rawOptions);
+}
+
 function numericField(source, keys) {
   if (!source || typeof source !== 'object') return null;
   for (const key of keys) {
@@ -1673,7 +1683,8 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     event: async (input = {}) => {
       try {
         await handleEvent(input.event || input);
-      } catch {
+      } catch (error) {
+        await logDebugEventError(input.event || input, error, options);
         return;
       }
     },

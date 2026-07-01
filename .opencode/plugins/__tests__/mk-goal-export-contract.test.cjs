@@ -15,7 +15,23 @@ async function main() {
 
   assert.deepEqual(Object.keys(pluginModule), ['default']);
   assert.equal(typeof pluginModule.default, 'function');
-  assert.ok(pluginModule.default.__test);
+  assert.deepEqual(Object.keys(pluginModule.default.__test).sort(), [
+    'GoalError',
+    'accountUsage',
+    'buildEnhancedGoalPrompt',
+    'clearGoal',
+    'ensureGoalStateDir',
+    'executeGoalAction',
+    'executeGoalStatus',
+    'goalPathForSession',
+    'maybeContinueGoal',
+    'maybeVerifyGoal',
+    'readGoal',
+    'renderGoalInjection',
+    'sessionKeyForSession',
+    'setGoal',
+    'writeGoalAtomic',
+  ]);
 }
 
 main().catch((error) => {

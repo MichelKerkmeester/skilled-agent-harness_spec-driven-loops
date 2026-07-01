@@ -99,6 +99,30 @@ async function main() {
     assert.equal(result.reason, 'smoke_mode');
     assert.equal(promptCalls, 0);
 
+    const smokePlugin = await pluginModule.default({ client: noFireClient }, {
+      stateDir,
+      nowMs: 2100,
+      autonomy: 'smoke',
+    });
+    await helpers.setGoal('session-smoke-event', 'Smoke mode logs through session idle', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'smoke-event-goal',
+    });
+    await smokePlugin.event({
+      event: {
+        type: 'session.idle',
+        properties: { sessionID: 'session-smoke-event' },
+      },
+    });
+    entries = await readContinuationEntries(stateDir);
+    assert.deepEqual(entries.at(-1), {
+      sid: 'session-smoke-event',
+      decision: 'would_fire',
+      reason: 'smoke_mode',
+      autoTurnsUsed: 0,
+    });
+
     process.env.MK_GOAL_AUTONOMY = 'active';
     const promptRequests = [];
     const activeClient = {
@@ -132,6 +156,50 @@ async function main() {
     assert.match(promptRequests[0].body.parts[0].text, /Submit the continuation prompt/);
     let goal = await helpers.readGoal('session-active', { stateDir });
     assert.equal(goal.autoTurnsUsed, 1);
+
+    let stalePromptCalls = 0;
+    const staleGoalIds = ['stale-old-goal', 'stale-new-goal'];
+    const staleOptions = {
+      stateDir,
+      nowMs: 3500,
+      goalIdFactory: () => staleGoalIds.shift() || 'stale-extra-goal',
+    };
+    staleOptions.supervisorVerifier = async () => {
+      await helpers.setGoal('session-stale-verifier', 'Replacement goal after verifier started', staleOptions);
+      return {
+        verdict: 'not_met',
+        confidence: 0.9,
+        reason: 'Old verifier result must not continue the new goal',
+        evidence: 'Old evidence only',
+      };
+    };
+    const stalePlugin = await pluginModule.default({
+      client: {
+        session: {
+          async promptAsync() {
+            stalePromptCalls += 1;
+          },
+        },
+      },
+    }, staleOptions);
+    const staleOldGoal = await helpers.setGoal('session-stale-verifier', 'Original goal before verifier', staleOptions);
+    await helpers.writeGoalAtomic({
+      ...staleOldGoal,
+      lastEvidence: 'Evidence for the original goal',
+    }, { stateDir });
+    await stalePlugin.event({
+      event: {
+        type: 'session.idle',
+        properties: { sessionID: 'session-stale-verifier' },
+      },
+    });
+    goal = await helpers.readGoal('session-stale-verifier', { stateDir });
+    assert.equal(goal.goalId, 'stale-new-goal');
+    assert.equal(goal.objective, 'Replacement goal after verifier started');
+    assert.equal(stalePromptCalls, 0);
+    entries = await readContinuationEntries(stateDir);
+    assert.equal(entries.at(-1).decision, 'suppressed');
+    assert.equal(entries.at(-1).reason, 'stale_verifier_result');
 
     const cappedGoal = await helpers.setGoal('session-cap', 'Stop at the auto-turn cap', {
       stateDir,
