@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-008",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T15:18:27.975Z",
+  "endedAt": "2026-07-02T15:33:29.036Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2686,
+    "tSetupMs": 39287,
+    "tFirstDispatchMs": 405345,
+    "tTerminalMs": 901061
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 405345,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-8\",\"id\":\"msg_016Gx14teJMvsuqxNWEKgXXf\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_019qc9dXmoJVRnoH7G8WNQoF\",\"name\":\"Agent\",\"input\":{\"description\":\"Deep-research iteration 1\",\"subagent_type\":\"deep-research\",\"run_in_background\":false,\"prompt\":\"You are the @deep-research LEAF agent executing ONE iteration of a deep-research loop. Externalized state is your source of truth.\\n\\nRead and follow EXACTLY the rendered prompt pack at:\\n.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/prompts/iteration-1.md\\n\\nThat file contains your STATE, STATE FILES, SCOPE NOTE, CONSTRAINTS, and OUTPUT CONTRACT. Do not deviate from it.\\n\\nResearch question for this iteration: **Does the fx-002-research-target spec cover Unicode handling?**\\n\\nInvestigate by reading these files (all relative to repo root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public):\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/spec.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/src/slugify.js\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/plan.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/tasks.md\\n\\nDetermine, with evidence (quote file:line): (a) whether spec.md *specifies* Unicode handling as a requirement vs. merely demonstrating it in an acceptance example; (b) what src/slugify.js *actually* does with Unicode input (trace the `str.toLowerCase().trim()` → `replace(/[^a-z0-9]+/g, '-')` pipeline against inputs like \\\"Café Menu\\\", \\\"北京\\\", \\\"naïve\\\", combining diacritics, emoji, full-width digits); (c) whether the spec's promise and the implementation's behavior agree or diverge; (d) any edge cases the spec leaves undefined (e.g. an all-non-ASCII input collapsing to an empty string).\\n\\nCRITICAL — this is a FROZEN benchmark fixture: do NOT edit spec.md, src/slugify.js, plan.md, or tasks.md. Read them only. Write ONLY your three research artifacts (iteration narrative, appended JSONL iteration record, delta file) exactly as the prompt pack's OUTPUT CONTRACT specifies. You may run node one-liners to empirically confirm slugify() output for specific Unicode inputs (require the module read-only; do not modify it).\\n\\nWhen done, return a concise summary: the answer to the research question, your key findings with evidence, questions answered vs. remaining, and the newInfoRatio + status you recorded.\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":131,\"cache_creation_input_tokens\":3611,\"cache_read_input_tokens\":135676,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":3611},\"output_tokens\":3,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"72b4b35f-7a70-4878-91fe-3a88ec3a7252\",\"uuid\":\"5965800d-5164-48db-86ec-8d9b5e5cb81d\",\"request_id\":\"req_011CcdTof7c3J1T5c1NyH2Rs\"}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research",
+        "target_agent": "deep-research",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=research target_agent=deep-research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/channel-enforcement.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/checklist.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/plan.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/spec.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md",
+      ".opencode/skills/.goal-state/7365735f306463386639333631666665324b69625343706570376b345373.json",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/implementation-summary.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "hard_timeout"
+  },
+  "classification": "timeout_latency",
+  "dimensions": {
+    "d1": 1,
+    "d2": 2,
+    "d3": 2,
+    "d4": 0,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-008-claude-cli.transcript.jsonl"
+}

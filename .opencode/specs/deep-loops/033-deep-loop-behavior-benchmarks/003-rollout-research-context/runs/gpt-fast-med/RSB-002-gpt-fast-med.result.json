@@ -29,8 +29,13 @@
     "d2": 2,
     "d3": null,
     "d4": 2,
-    "d5": null
+    "d5": 2
   },
   "singleSample": true,
-  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-002-gpt-fast-med.transcript.jsonl"
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-002-gpt-fast-med.transcript.jsonl",
+  "d5Provenance": {
+    "baselineTerminalMs": 114266,
+    "baselineKilledBy": "none",
+    "postHoc": true
+  }
 }

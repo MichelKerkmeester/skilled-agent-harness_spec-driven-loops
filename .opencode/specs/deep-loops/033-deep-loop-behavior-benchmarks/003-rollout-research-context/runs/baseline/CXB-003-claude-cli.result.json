@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "CXB-003",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T15:52:42.645Z",
+  "endedAt": "2026-07-02T15:53:59.398Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2509,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 76753
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context",
+        "target_agent": "deep-context",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=context target_agent=deep-context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/learned-relevance-feedback-r11.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/CXB-003-claude-cli.transcript.jsonl"
+}

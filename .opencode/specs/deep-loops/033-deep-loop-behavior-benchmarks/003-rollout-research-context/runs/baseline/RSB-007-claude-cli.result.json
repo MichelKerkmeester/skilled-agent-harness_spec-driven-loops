@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-007",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T14:57:38.860Z",
+  "endedAt": "2026-07-02T15:18:26.522Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1637,
+    "tSetupMs": 26359,
+    "tFirstDispatchMs": 543789,
+    "tTerminalMs": 1247662
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 543789,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-8\",\"id\":\"msg_01PXp2gwjrZwFFzeneHf8iP8\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_0143aSckSRBYMwPD7nUghuep\",\"name\":\"Agent\",\"input\":{\"description\":\"Deep-research iteration 1\",\"subagent_type\":\"deep-research\",\"run_in_background\":false,\"prompt\":\"DEEP-RESEARCH\\nResolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true\\n\\nYou are the @deep-research LEAF agent executing iteration 1 of 1 for a deep-research loop. Your rendered prompt pack is at:\\n.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/prompts/iteration-1.md\\nRead it first for the full contract, then execute.\\n\\n## RESEARCH TOPIC\\nDoes `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/spec.md` specify Unicode handling for the slug utility, and does the implementation (`src/slugify.js`) match?\\n\\n## FOCUS (iteration 1 of 1)\\nRead `spec.md` and `src/slugify.js` in the fixture folder. Determine:\\n1. Whether spec.md specifies Unicode handling for the slug utility (check Requirements 1-5, Acceptance Examples, Open Questions, Research Context).\\n2. What the implementation actually does with non-ASCII input (accented letters, non-Latin scripts).\\n3. Whether the implementation matches the specified contract AND the lone Unicode-bearing acceptance example `slugify(\\\"Café Menu\\\") -> caf-menu`.\\n4. Whether there is a gap between the specified contract and the implementation's Unicode behavior.\\n\\nYou may run `node -e` to actually execute `src/slugify.js` against Unicode inputs (e.g. \\\"Café Menu\\\", \\\"naïve\\\", \\\"Ölçek\\\", \\\"Москва\\\", \\\"日本語\\\", \\\"日本語 test\\\") to gather empirical evidence. This is READ-ONLY verification — do NOT modify any file under the fixture.\\n\\n## HARD CONSTRAINTS\\n- You are a LEAF agent. Do NOT dispatch sub-agents.\\n- Target 3-5 research actions. Max 12 tool calls total.\\n- SCOPE LOCK: This is a FROZEN benchmark fixture. Do NOT edit, fix, \\\"correct\\\", or improve spec.md, plan.md, tasks.md, or src/slugify.js. The seeded imperfections in src/slugify.js are INTENTIONAL. Only WRITE the two research artifacts named below (iteration narrative + delta file) and APPEND one JSONL record to the state log.\\n- Report findings only; do not implement fixes.\\n- Write ALL findings to files; do not hold them only in context.\\n\\n## OUTPUT CONTRACT — produce all THREE artifacts (a downstream validator fails the iteration if any is missing or malformed)\\n\\n1. **Iteration narrative markdown** at:\\n   `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md`\\n   Structure with headings: Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Next Focus.\\n   In Findings, be precise and evidence-backed: quote the relevant spec.md lines, quote the relevant slugify.js regex line, and show the empirical slugify() outputs you observed for Unicode inputs.\\n\\n2. **Canonical JSONL iteration record** APPENDED (single line + newline, not pretty-printed) to:\\n   `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`\\n   The record MUST use `\\\"type\\\":\\\"iteration\\\"` EXACTLY (not \\\"iteration_delta\\\"). Required fields:\\n   `{\\\"type\\\":\\\"iteration\\\",\\\"iteration\\\":1,\\\"mode\\\":\\\"research\\\",\\\"target_agent\\\":\\\"deep-research\\\",\\\"agent_definition_loaded\\\":true,\\\"resolved_route\\\":\\\"Resolved route: mode=research target_agent=deep-research\\\",\\\"newInfoRatio\\\":<0..1>,\\\"status\\\":\\\"evidence\\\",\\\"focus\\\":\\\"<short focus string>\\\",\\\"findingsCount\\\":<n>,\\\"keyQuestions\\\":[...5 question strings...],\\\"answeredQuestions\\\":[...question strings you answered...],\\\"durationMs\\\":<n>,\\\"sessionId\\\":\\\"deep-research-fx-002-20260702T150145Z\\\",\\\"generation\\\":1,\\\"graphEvents\\\":[...optional...]}`\\n   Set newInfoRatio near 1.0 (this is the first and only iteration; all information is new). Set status to \\\"evidence\\\".\\n\\n3. **Per-iteration delta file** at:\\n   `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl`\\n   Contents: one `{\\\"type\\\":\\\"iteration\\\",...}` record (same content as the state-log append) plus one structured record per finding/observation/ruled_out on its own JSON line, e.g.:\\n   `{\\\"type\\\":\\\"finding\\\",\\\"id\\\":\\\"f-iter001-001\\\",\\\"severity\\\":\\\"P1\\\",\\\"label\\\":\\\"...\\\",\\\"iteration\\\":1}`\\n   `{\\\"type\\\":\\\"observation\\\",\\\"id\\\":\\\"obs-iter001-001\\\",\\\"classification\\\":\\\"real\\\",\\\"iteration\\\":1}`\\n\\n## RETURN\\nReturn a concise summary (a few sentences) of your conclusion: does spec.md specify Unicode handling, and does the implementation match — grounded in the exact evidence you gathered. Your final text is a status report to the loop manager, not a user-facing message.\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":4213,\"cache_read_input_tokens\":153531,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":4213},\"output_tokens\":4,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"3c22651e-1ccc-4a3a-bfd1-addf7580c5aa\",\"uuid\":\"b3358f09-10e4-44ad-aff7-da93f9ec6524\",\"request_id\":\"req_011CcdSP6HNWcdinDPEmAkQM\"}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "research",
+        "target_agent": "deep-research",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=research target_agent=deep-research"
+      },
+      {
+        "mode": "research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/.goal-state/7365735f306463616135393733666665726954414658627031394f6e6d33.json",
+      "opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      "opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/database/.maintenance-active.json",
+      "opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+      "opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
+      "opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/bm25-scope-then-limit-stress.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/additive-tail-recall.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration-label-distribution.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts",
+      "opencode/skills/system-spec-kit/mcp_server/tests/recovery-trigger-calibration-cap.vitest.ts",
+      "opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-007-claude-cli.transcript.jsonl",
+      "opencode/specs/descriptions.json",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity/graph-metadata.json",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity/spec.md",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/spec.md",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/tasks.md",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/spec.md",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/tasks.md",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/graph-metadata.json",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/spec.md",
+      "opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation/tasks.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/description.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/graph-metadata.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/implementation-summary.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/description.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/graph-metadata.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/implementation-summary.md",
+      ".opencode/specs/system-speckit/032-deep-review-followup-hardening/"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-007-claude-cli.transcript.jsonl"
+}
