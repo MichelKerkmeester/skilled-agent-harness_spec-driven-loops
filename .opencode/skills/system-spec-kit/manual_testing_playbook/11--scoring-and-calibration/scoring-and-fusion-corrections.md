@@ -17,10 +17,10 @@ This scenario validates scoring and fusion corrections for `079`. It focuses on 
 
 
 - Objective: Confirm the phase-017 scoring and fusion correction bundle plus the T315 single-pass fusion refinement with executable source and regression checks.
-- Real user request: `` Please validate Scoring and fusion corrections against the documented validation surface and tell me whether the expected signals are present: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 350 passed (350)`. ``
+- Real user request: `` Please validate Scoring and fusion corrections against the documented validation surface and tell me whether the expected signals are present: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 365 passed (365)`. ``
 - Prompt: `Validate the scoring and fusion correction bundle with executable sources and regression evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 350 passed (350)`
+- Expected signals: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 365 passed (365)`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if all required source anchors are present and the targeted Vitest bundle exits 0 with no failed tests.
 
@@ -42,7 +42,7 @@ Validate the scoring and fusion correction bundle with executable sources and re
 
 ### Expected
 
-Source grep returns matches for all expected symbols, including the single-pass fusion anchors; Vitest reports all eight files passing and no `FAIL` lines; current baseline summary is `Test Files 8 passed (8)` and `Tests 350 passed (350)`
+Source grep returns matches for all expected symbols, including the single-pass fusion anchors; Vitest reports all eight files passing and no `FAIL` lines; current baseline summary is `Test Files 8 passed (8)` and `Tests 365 passed (365)`
 
 ### Evidence
 

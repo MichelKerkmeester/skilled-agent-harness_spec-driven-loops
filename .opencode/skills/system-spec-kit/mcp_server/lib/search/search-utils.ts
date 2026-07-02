@@ -8,6 +8,7 @@
 
 import { applyRoutingWeights } from './artifact-routing.js';
 import type { RoutingResult, WeightedResult } from './artifact-routing.js';
+import { isGraphUnifiedEnabled } from './graph-flags.js';
 import { isContinuityQuery } from './intent-classifier.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -221,6 +222,7 @@ function buildCacheArgs({
     enableCausalBoost,
     includeTrace,
     retrievalLevel,
+    graphUnifiedEnabled: isGraphUnifiedEnabled(),
     cacheVersion,
     causalEdgesGeneration: includeCausalGeneration ? causalEdgesGeneration : undefined,
     folderBoost: folderBoost && folderBoost.folder

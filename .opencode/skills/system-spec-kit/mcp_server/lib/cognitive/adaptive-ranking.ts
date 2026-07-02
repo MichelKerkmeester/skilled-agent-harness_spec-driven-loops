@@ -318,6 +318,19 @@ function compareAdaptiveRows(
   return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 }
 
+function normalizeAdaptiveMemoryId(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isInteger(value) && value > 0) {
+    return value;
+  }
+
+  if (typeof value === 'string' && /^\d+$/.test(value.trim())) {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : null;
+  }
+
+  return null;
+}
+
 function isAdaptiveEnabled(): boolean {
   return isAdaptiveFlagEnabled('SPECKIT_MEMORY_ADAPTIVE_RANKING');
 }
@@ -719,14 +732,22 @@ function getSignalDeltas(database: Database.Database, memoryIds: readonly number
 export function buildAdaptiveShadowProposal(
   database: Database.Database,
   query: string,
-  results: Array<Record<string, unknown> & { id: number }>,
+  results: Array<Record<string, unknown> & { id: number | string }>,
 ): AdaptiveShadowProposal | null {
   const mode = getAdaptiveMode();
   if (mode === 'disabled' || results.length === 0) return null;
+  const adaptiveRows: Array<Record<string, unknown> & { id: number }> = [];
+  for (const row of results) {
+    const memoryId = normalizeAdaptiveMemoryId(row.id);
+    if (memoryId !== null) {
+      adaptiveRows.push({ ...row, id: memoryId });
+    }
+  }
+  if (adaptiveRows.length === 0) return null;
   const thresholds = getAdaptiveThresholdConfig(database);
-  const signalDeltaMap = getSignalDeltas(database, results.map((row) => row.id));
+  const signalDeltaMap = getSignalDeltas(database, adaptiveRows.map((row) => row.id));
 
-  const production = results.map((row, index) => ({
+  const production = adaptiveRows.map((row, index) => ({
     ...row,
     score: typeof row.score === 'number' && Number.isFinite(row.score)
       ? row.score
@@ -753,9 +774,9 @@ export function buildAdaptiveShadowProposal(
   const signalCounts = database.prepare(`
     SELECT memory_id, COUNT(*) AS total
     FROM adaptive_signal_events
-    WHERE memory_id IN (${results.map(() => '?').join(', ')})
+    WHERE memory_id IN (${adaptiveRows.map(() => '?').join(', ')})
     GROUP BY memory_id
-  `).all(...results.map((row) => row.id)) as Array<{ memory_id: number; total: number }>;
+  `).all(...adaptiveRows.map((row) => row.id)) as Array<{ memory_id: number; total: number }>;
   const signalCountMap = new Map(signalCounts.map((row) => [row.memory_id, row.total]));
 
   const rows: AdaptiveShadowProposalRow[] = shadow.map((row, index) => ({
