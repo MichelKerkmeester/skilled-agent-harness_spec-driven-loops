@@ -2051,6 +2051,16 @@ function repairNeedsRebuildSentinel(
     }
 
     clearNeedsRebuildSentinelForDatabase(database);
+    if (hasNeedsRebuildSentinel(database)) {
+      return {
+        sentinelPresent: true,
+        attempted: true,
+        cleared: false,
+        summary,
+        error: 'needs-rebuild sentinel still present after successful derived rebuild',
+      };
+    }
+
     return {
       sentinelPresent: true,
       attempted: true,

@@ -1189,8 +1189,12 @@ function deriveStatus(
     docs.find((doc) => doc.relativePath === 'plan.md')?.status,
     docs.find((doc) => doc.relativePath === 'spec.md')?.status,
   ];
+  // A 'complete' claim from a doc's own status field is not trusted on its own -
+  // that is the exact defect class this function otherwise guards against below.
+  // Every other explicit status (in_progress, planned, blocked) carries no such
+  // false-positive risk and returns immediately as before.
   const frontmatterStatus = normalizeDerivedStatus(selectFirstValue(ranked, ''));
-  if (frontmatterStatus) {
+  if (frontmatterStatus && frontmatterStatus !== 'complete') {
     return { status: frontmatterStatus, reviewRequired: false };
   }
 

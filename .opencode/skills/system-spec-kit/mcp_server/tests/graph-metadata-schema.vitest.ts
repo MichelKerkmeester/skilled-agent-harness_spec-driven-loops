@@ -189,7 +189,7 @@ afterEach(() => {
 describe('graph metadata schema and parser', () => {
   // drift: verified against shipped behavior during Unit H
   it('accepts derived metadata created from canonical packet docs', () => {
-    const specFolder = createSpecFolder();
+    const specFolder = createSpecFolder({ implementationSummaryCompletionPct: 100 });
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
 
     expect(metadata.schema_version).toBe(GRAPH_METADATA_SCHEMA_VERSION);
@@ -507,11 +507,28 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.status).toBe('planned');
   });
 
-  it('normalizes completed-style frontmatter statuses to complete', () => {
+  // Regression for a real deriveStatus defect: this branch used to trust an explicit
+  // 'complete'-style status claim immediately, ahead of the completion-evidence gate
+  // above, letting a folder claim complete with zero supporting evidence. See T2-P1-001.
+  it('does not derive complete from an explicit completed-style status alone, without completion evidence', () => {
     const specFolder = createSpecFolder({
       specStatus: null,
       planStatus: 'Planned',
       implementationSummaryStatus: 'Done',
+      includeChecklist: false,
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).not.toBe('complete');
+  });
+
+  it('normalizes completed-style frontmatter statuses to complete when completion evidence supports it', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: 'Planned',
+      implementationSummaryStatus: 'Done',
+      implementationSummaryCompletionPct: 100,
       includeChecklist: false,
     });
 
