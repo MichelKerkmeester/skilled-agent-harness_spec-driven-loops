@@ -206,3 +206,4 @@ Deterministic scenarios under `manual_testing_playbook/` across the same categor
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer and dashboard generator |
 | [`feature_catalog/`](./feature_catalog/) | Feature inventory across frontier seeding, parallel sweep, agreement merge, convergence, report synthesis, coverage-graph schema and runtime robustness |
 | [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark (CXB): what the model does at `/deep:context` under realistic prompts — dispatch evidence, presentation, latency vs Claude |

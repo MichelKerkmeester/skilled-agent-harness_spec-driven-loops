@@ -134,6 +134,10 @@ The council shares the `deep-loop-runtime` with the other top-level deep-loop pe
 | `deep-context` | Maps existing code, conventions and integration points before planning begins. Run it before the council so seats start from shared facts. |
 | `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark`, `skill-benchmark` and `ai-system-improvement` command lanes. |
 
+### Behavior Benchmark
+
+`behavior_benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
+
 ### Related Skills
 
 | Skill | Relationship |

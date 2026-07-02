@@ -126,19 +126,19 @@
     ],
     "causal_summary": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode.",
     "created_at": "2026-07-02T05:41:36.143Z",
-    "last_save_at": "2026-07-02T21:28:40.680Z",
+    "last_save_at": "2026-07-02T21:33:41.031Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0414a02319bd6440cf8eb928c27ac377723d35dec19c3aa367e9f8d85555eb5b",
+    "source_fingerprint": "sha256:cec374d7c9eb30a0b74c0a5658c477f8913258365b07bb4cf65adc6ca63cb99b",
     "source_doc_hashes": {
-      "spec.md": "161679f290901864e7c7b699e6e9b5df1f5aee0526bd0713cd4b4baa8115e563",
+      "spec.md": "11abc183148a969ef682173283f55560fad4b069a70f7778edce0187161d98b3",
       "research/research.md": "54cc2a2b0fd07e117308b646559f37ac068b65e3b17c25ab6168d4e73336b85b"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-02T21:28:40.680Z"
+    "last_active_at": "2026-07-02T21:33:41.031Z"
   }
 }

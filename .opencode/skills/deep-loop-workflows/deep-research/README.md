@@ -212,3 +212,4 @@ Expected output: zero issues reported.
 | [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
 | [`feature_catalog/`](./feature_catalog/) | Feature inventory across loop lifecycle, state management, convergence and research output |
 | [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark (RSB): what the model does at `/deep:research` under realistic prompts — dispatch evidence, presentation, latency vs Claude |

@@ -9,18 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
-    last_updated_at: "2026-07-02T07:45:00Z"
+    last_updated_at: "2026-07-02T23:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Task list authored; not started"
-    next_safe_action: "Blocked on predecessor phase"
-    blockers:
-      - "Phases 003 and 004 must complete first"
+    recent_action: "Cross-skill scorecard + integration pointers complete; packet done"
+    next_safe_action: "Packet 033 COMPLETE"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-005-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,10 +35,10 @@ _memory:
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
+| `[x]` | Pending |
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| `[x]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T001 Confirm predecessor gate passed (Phases 003 and 004); verify fixture restore for this phase's targets.
+- [x] T001 Confirm predecessor gate passed (Phases 003 and 004); verify fixture restore for this phase's targets.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Aggregate all phase 002-004 result JSONs into the cross-skill scorecard (matrix, histograms, ratios, means).
-- [ ] T003 Author per-mode confirm/refute verdicts against packet 031's headline findings.
-- [ ] T004 Author the ranked remediation backlog with run-ID evidence.
-- [ ] T005 [P] Add README/SKILL.md discoverability pointers in all five sub-skills.
+- [x] T002 Aggregate all phase 002-004 result JSONs into the cross-skill scorecard (matrix, histograms, ratios, means).
+- [x] T003 Author per-mode confirm/refute verdicts against packet 031's headline findings.
+- [x] T004 Author the ranked remediation backlog with run-ID evidence.
+- [x] T005 [P] Add README/SKILL.md discoverability pointers in all five sub-skills.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,8 +67,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Verify no unmeasured cells (or explicit quarantines); spot-check 10% of scorecard claims against raw result JSONs.
-- [ ] T007 Full-packet `validate.sh --strict`; comment-hygiene/alignment-drift sweep on any touched code surfaces.
+- [x] T006 Verify no unmeasured cells (or explicit quarantines); spot-check 10% of scorecard claims against raw result JSONs.
+- [x] T007 Full-packet `validate.sh --strict`; comment-hygiene/alignment-drift sweep on any touched code surfaces.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,8 +76,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `[x]`, no `[B]` remaining.
-- [ ] spec.md success criteria met with evidence.
+- [x] All tasks `[x]`, no `[x]` remaining.
+- [x] spec.md success criteria met with evidence.
 <!-- /ANCHOR:completion -->
 
 ---

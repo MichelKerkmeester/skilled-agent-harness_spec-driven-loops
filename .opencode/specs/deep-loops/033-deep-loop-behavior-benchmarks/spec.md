@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 002 pilot complete: 24 runs scored, scorecard published"
-    next_safe_action: "Phase 003: land the classifier-ordering retro item, then author RSB/CXB packages"
+    recent_action: "All 5 phases complete; cross-skill scorecard published; ~120 runs across 5 modes x 3 executors"
+    next_safe_action: "Packet COMPLETE — act on remediation backlog in 005 scorecard (Gate-3 precedence P0)"
     blockers: []
     key_files:
       - "001-framework-and-harness/decision-record.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-parent-init"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Claude baseline executor: same-host opencode Anthropic model (preferred, unverified) vs cli-claude-code vs Claude Code native leg -- phase 001 probe. See 001-framework-and-harness/decision-record.md OPEN-001."
       - "Shared runner home: deep-loop-workflows/scripts/ (recommended) vs deep-loop-runtime/scripts/ -- OPEN-002."
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | phase |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-02 |
 | **Parent Packet** | None (top-level packet under deep-loops track) |
 <!-- /ANCHOR:metadata -->
@@ -74,5 +74,5 @@ Program-level design decisions (package layout, contract/evidence separation, sc
 | `002-pilot-deep-review` | Complete | Author `deep-review/behavior_benchmark/` (RVB-001..008), capture Claude baselines, run both GPT legs (16 runs), score + classify, then a calibration retro that amends the framework BEFORE rollout. deep-review pilots because it has the richest precedent (031 phase 012 tested it; this repo's fan-outs exercise it constantly). |
 | `003-rollout-research-context` | Complete | Authored + baselined + ran `deep-research/behavior_benchmark/` (RSB-001..008) and `deep-context/behavior_benchmark/` (CXB-001..006) against the calibrated framework — 42 scored runs (14 baseline + 28 GPT). Headline: effort raises the floor, but the load-bearing difference is delegation INTEGRITY — gpt-high never absorbs the LEAF role (it halts honestly) where gpt-med fakes delegation. Two calibrations (`env_error` bucket + false-positive hardening) and a fixture-contamination purge landed in-flight. |
 | `004-rollout-council-improvement` | Complete | Author + baseline + run `deep-ai-council/behavior_benchmark/` (ACB-001..005) and `deep-improvement/behavior_benchmark/` (IMB-001..005) — multi-seat and improvement-host dispatch shapes, most expensive modes, hardened 25min budgets, fewest scenarios (20 GPT-leg runs). |
-| `005-scorecard-and-integration` | Planned | Cross-skill scorecard (5-mode x 3-executor matrix, bucket histograms, per-checkpoint latency ratios; explicitly confirm/refute packet 031's headline findings per mode), ranked remediation backlog, README/SKILL.md discoverability pointers in all five sub-skills, full-packet strict validation. |
+| `005-scorecard-and-integration` | Complete | Cross-skill scorecard (5-mode x 3-executor matrix, bucket histograms, per-checkpoint latency ratios; explicitly confirm/refute packet 031's headline findings per mode), ranked remediation backlog, README/SKILL.md discoverability pointers in all five sub-skills, full-packet strict validation. |
 <!-- /ANCHOR:phases -->
