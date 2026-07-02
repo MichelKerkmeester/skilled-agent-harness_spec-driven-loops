@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-007",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T16:25:15.223Z",
+  "endedAt": "2026-07-02T16:48:20.060Z",
+  "checkpoints": {
+    "tFirstOutputMs": 7431,
+    "tSetupMs": 87689,
+    "tFirstDispatchMs": 876275,
+    "tTerminalMs": 1384837
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 876275,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1783010391497,\"sessionID\":\"ses_0dc59e425ffe95EuuzANiqdAWP\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_CUvjsQjQGmzRgprKsX4aM6Rh\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Research slug Unicode\",\"prompt\":\"Execute exactly one `/deep:research` leaf iteration using the rendered prompt pack at `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/prompts/iteration-001.md`.\\n\\nHard constraints:\\n- You are the LEAF `@deep-research` iteration agent; do not dispatch sub-agents and do not use Task.\\n- Read state first: config, state JSONL, strategy, and registry paths from the prompt pack.\\n- Research topic: whether `spec.md` specifies Unicode handling for the slug utility and whether `src/slugify.js` matches.\\n- Do not modify implementation code, especially `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/src/slugify.js`.\\n- Write only inside `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/`.\\n- Produce the three required artifacts exactly:\\n  - `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md`\\n  - append exactly one `type:\\\"iteration\\\"` record to `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`\\n  - `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl`\\n- The JSONL iteration record must include `iteration:1`, `run:1`, `mode:\\\"research\\\"`, `target_agent:\\\"deep-research\\\"`, `agent_definition_loaded:true`, `resolved_route:\\\"Resolved route: mode=research target_agent=deep-research\\\"`, `status`, `focus`, `findingsCount`, `newInfoRatio`, `noveltyJustification`, `keyQuestions`, `answeredQuestions`, `ruledOut`, `toolsUsed`, `sourcesQueried`, `timestamp`, and `durationMs`.\\n- Every finding in the iteration markdown must cite `[SOURCE: path:line]` or `[INFERENCE: ...]`.\\n- Verify the three artifacts before returning.\\n\\nReturn only a concise iteration completion report with status and files written.\",\"subagent_type\":\"deep-research\",\"task_id\":\"\",\"command\":\"/deep:research:auto\"},\"output\":\"<task id=\\\"ses_0dc51a131ffeNMXJ6HefKfCYKY\\\" state=\\\"completed\\\">\\n<task_result>\\n## Iteration 1 Complete\\n\\n**Status**: complete  \\n**Focus**: Unicode handling in `spec.md` vs `src/slugify.js`\\n\\n**Findings**: 5 findings, all cited  \\n**newInfoRatio**: 1.0  \\n**JSONL append count**: 1 verified  \\n**Artifacts verified**: yes\\n\\n**Files written**:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl`\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dc59e425ffe95EuuzANiqdAWP\",\"sessionId\":\"ses_0dc51a131ffeNMXJ6HefKfCYKY\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Research slug Unicode\",\"time\":{\"start\":1783010058022,\"end\":1783010391493}},\"metadata\":{\"openai\":{\"itemId\":\"fc_0a6aeb0ce4759000016a4692f5887c8191aedea578760e436d\"}},\"id\":\"prt_f23ae0f1d001NjwhKs3HMj87MP\",\"sessionID\":\"ses_0dc59e425ffe95EuuzANiqdAWP\",\"messageID\":\"msg_f23adf0b100185anyOmu73ruW9\"}}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "research",
+        "target_agent": "deep-research",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=research target_agent=deep-research"
+      },
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      ".opencode/skills/.goal-state/7365735f30646335396534323566666539354575757a414e697164415750.json",
+      ".opencode/skills/.loop-guard-state/7365735f30646335396534323566666539354575757a414e697164415750.json",
+      ".opencode/skills/deep-loop-runtime/tests/unit/workflow-session-id-parity.vitest.ts"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/RSB-007-gpt-fast-high.transcript.jsonl"
+}

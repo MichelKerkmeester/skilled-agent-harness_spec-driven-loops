@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "CXB-005",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T17:35:25.183Z",
+  "endedAt": "2026-07-02T17:38:44.268Z",
+  "checkpoints": {
+    "tFirstOutputMs": 7991,
+    "tSetupMs": null,
+    "tFirstDispatchMs": 180509,
+    "tTerminalMs": 199085
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 180509,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1783013905692,\"sessionID\":\"ses_0dc19a785ffeOxLcY9tFDoIRir\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_4niufoBOJWhR7UP2f9aYsATQ\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Bounded fixture context sweep\",\"prompt\":\"Run one bounded deep-context sweep of the repository subtree `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target`.\\n\\nUser instruction: \\\"Dispatch, do not gather the context yourself.\\\" You are the specialist. The host has not inspected the fixture and needs your final context result only.\\n\\nScope and constraints:\\n- Read-only analysis only. Do not edit, create, delete, or move files.\\n- Keep the sweep bounded to the specified fixture subtree and its immediately necessary references only if required to understand imports or test expectations.\\n- Do not sweep the whole repository.\\n- Prefer pointers over source bodies.\\n- If the target path is missing, report that as a blocker with the exact path.\\n- Perform a single sweep pass, not an iterative multi-round loop.\\n\\nReturn a concise Context Package with these sections:\\n- Scope Confirmed: exact path(s) inspected.\\n- Purpose/Shape: what the fixture appears to model.\\n- Key Files: bullet list of relevant files with one-line roles.\\n- Reuse/Integration Pointers: existing symbols, utilities, or patterns worth reusing, cited as `file:symbol` when possible.\\n- Behavioral Notes: any important expected behavior, conventions, or constraints visible in the fixture.\\n- Gaps/Unknowns: anything that could not be confirmed within the bounded sweep.\\n- Verification: what read-only checks/searches you performed.\\n\\nDo not include raw full file contents.\",\"subagent_type\":\"deep-context\",\"task_id\":\"\",\"command\":\"/deep:context bounded-sweep\"},\"output\":\"<task id=\\\"ses_0dc18a5a7ffehoDSAmlx9LSjmP\\\" state=\\\"completed\\\">\\n<task_result>\\n## Context Package\\n\\n### Scope Confirmed\\nInspected only:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/`\\n- `FIXTURE.md`\\n- `spec.md`\\n- `plan.md`\\n- `tasks.md`\\n- `src/slugify.js`\\n\\n### Purpose/Shape\\nThis is a frozen benchmark fixture for `/deep:review`-style behavior tests, not a real spec-kit packet. Its committed state is the reference baseline and seeded flaws are intentional. [SOURCE: `FIXTURE.md:3-13`]\\n\\n### Key Files\\n- `FIXTURE.md` — fixture contract: frozen, review-target baseline, intentional imperfections, do not fix. [SOURCE: `FIXTURE.md:3-13`]\\n- `spec.md` — toy requirements for a URL slug utility with acceptance examples. [SOURCE: `spec.md:11-26`]\\n- `plan.md` — toy implementation plan: one CommonJS utility, no dependencies/build step. [SOURCE: `plan.md:3-15`]\\n- `tasks.md` — completed toy checklist claiming implementation done. [SOURCE: `tasks.md:5-8`]\\n- `src/slugify.js` — CommonJS `slugify(input, maxLen)` implementation. [SOURCE: `src/slugify.js:9-31`]\\n\\n### Reuse/Integration Pointers\\n- `src/slugify.js:slugify` — `function slugify(input, maxLen)`; simple dependency-free CommonJS export suitable as the fixture’s primary review subject, not as production reuse because imperfections are intentional. [SOURCE: `src/slugify.js:9`, `src/slugify.js:31`, `FIXTURE.md:11-13`]\\n- `spec.md` acceptance examples — expected review oracle examples for lowercase/trim/collapse/non-ASCII behavior. [SOURCE: `spec.md:24-26`]\\n- `FIXTURE.md` fixture contract — use as guardrail for benchmark runners: restore between runs; do not “repair” `slugify.js`. [SOURCE: `FIXTURE.md:4-13`]\\n\\n### Behavioral Notes\\n- Requirements: lowercase, trim, collapse non-alphanumeric runs to `-`, remove edge separators, enforce max length without broken separators. [SOURCE: `spec.md:13-20`]\\n- Implementation lowercases/trims, replaces `[^a-z0-9]+`, strips edge hyphens, slices to `maxLen`, and exports via `module.exports`. [SOURCE: `src/slugify.js:15-31`]\\n- Important intended review targets are visible: truncation slices after edge cleanup and does not re-strip a trailing hyphen; non-string/non-number inputs are used as-is before `.toLowerCase()`. These should be reported by review benchmarks, not fixed in the fixture. [SOURCE: `src/slugify.js:12-26`, `FIXTURE.md:11-13`]\\n- Toy docs intentionally lack normal spec-kit frontmatter/template anchors. [SOURCE: `FIXTURE.md:8-9`]\\n\\n### Gaps/Unknowns\\n- No tests were present inside the fixture subtree.\\n- No external benchmark harness was inspected; bounded sweep did not leave the fixture because imports/test expectations were not required to understand the local target.\\n\\n### Verification\\n- Confirmed target directory exists via directory read.\\n- Listed fixture subtree with glob.\\n- Read all five files in the fixture.\\n- Grepped within the fixture for `slugify`, export points, fixture contract terms, and review/benchmark markers.\\n- No writes, edits, deletes, shell commands, or whole-repo sweep performed.\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dc19a785ffeOxLcY9tFDoIRir\",\"sessionId\":\"ses_0dc18a5a7ffehoDSAmlx9LSjmP\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Bounded fixture context sweep\",\"time\":{\"start\":1783013792394,\"end\":1783013905687}},\"metadata\":{\"openai\":{\"itemId\":\"fc_021d8137630006a8016a46a1937864819185bfd50d2c2bb08d\"}},\"id\":\"prt_f23e72829001pwXLrGxYaMqfvw\",\"sessionID\":\"ses_0dc19a785ffeOxLcY9tFDoIRir\",\"messageID\":\"msg_f23e6f8f8001Oh9zCJKwk3NLSP\"}}"
+      }
+    ],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/CXB-005-gpt-fast-high.transcript.jsonl"
+}

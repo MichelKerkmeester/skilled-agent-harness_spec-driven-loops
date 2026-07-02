@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-001",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T16:01:01.715Z",
+  "endedAt": "2026-07-02T16:10:03.474Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8580,
+    "tSetupMs": 72186,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 541759
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/spec.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "role_absorption",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 1,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/RSB-001-gpt-fast-high.transcript.jsonl"
+}

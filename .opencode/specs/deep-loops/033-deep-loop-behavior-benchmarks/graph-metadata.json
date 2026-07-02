@@ -41,7 +41,8 @@
     "key_files": [
       "001-framework-and-harness/decision-record.md",
       ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -54,6 +55,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -91,21 +98,47 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Unicode Handling",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hyphens",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration 1 Synthesis",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode.",
     "created_at": "2026-07-02T05:41:36.143Z",
-    "last_save_at": "2026-07-02T11:45:53.746Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-02T17:48:51.404Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:483bab67634ba5461734cc3edbc8fcbcbb7da91e6cfff92f62526c358a3f7065",
+    "source_fingerprint": "sha256:5a5ecb54402b29c92131650c9ec51d365b62f5d81fa832ae0c6dc035ad155519",
     "source_doc_hashes": {
-      "spec.md": "6b67cfbfb9979d8dd0447818700abf2767f7b472acfccee2f5c70da712229b81"
+      "spec.md": "bfd32e62fbc131de5b38aaa0c046b496e8de5454108911a6ae7d42accb4f62aa",
+      "research/research.md": "54cc2a2b0fd07e117308b646559f37ac068b65e3b17c25ab6168d4e73336b85b"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
+    "last_active_at": "2026-07-02T17:48:51.404Z"
   }
 }

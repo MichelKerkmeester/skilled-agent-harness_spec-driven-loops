@@ -153,14 +153,14 @@
         "source": "derived"
       },
       {
-        "name": "Capture Claude",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
+        "name": "provenance",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -191,8 +191,8 @@
     ],
     "causal_summary": "Roll the calibrated framework out to the two remaining runtime-loop modes",
     "created_at": "2026-07-02T05:53:06.087Z",
-    "last_save_at": "2026-07-02T05:58:39.424Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-02T17:46:36.175Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a5646735bbc832107606d7ff6eb6cec5f7dd2e0628072380be40dc9631f636f",
+    "source_fingerprint": "sha256:b0be325c4a141587e14619c279fa5ec8fca8376410fbc729629f5306448bf1d2",
     "source_doc_hashes": {
       "spec.md": "a8f47cc6aa81bf68577a7223c60524b8f05dce24fed0acb70654f3f4cea25dce",
       "plan.md": "4b73ed388bef5fc5c0a7b46b93c99c14695e7d9be6104331999b4f84611e46d0",
-      "tasks.md": "4f437614046efb41c35c95ac4de2b33423312e8f510b1e224f8e80109b8c2b89",
-      "checklist.md": "b065c519c32f8d540c51b6b2e888156bc364562d68ea64d4ee198e99f18cf75e",
-      "implementation-summary.md": "d2bc42aa267bf16f748d23b8e0b178e065459cb06d697ccd0b15f676d002b650"
+      "tasks.md": "b5b713499a2191dd1a96779d51a65ce6258afb570d5c6de299567d4c04e5475d",
+      "checklist.md": "926c9b812af0b3dc7ff6d3d204b32f8bfdd528f5c9cef70eabeac883f4ae38f7",
+      "implementation-summary.md": "ae94083ebc2da5af3a180a2f81ddd4aefd3d13e31cd5a454f0e325b6197e4ef6"
     },
     "last_active_child_id": null,
     "last_active_at": null

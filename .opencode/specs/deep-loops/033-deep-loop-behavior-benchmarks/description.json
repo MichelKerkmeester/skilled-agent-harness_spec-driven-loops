@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "deep-loops/033-deep-loop-behavior-benchmarks",
   "description": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually",
   "keywords": [
@@ -15,13 +16,14 @@
     "model",
     "actually"
   ],
-  "lastUpdated": "2026-07-02T05:53:06.791Z",
+  "lastUpdated": "2026-07-02T17:47:41.568Z",
   "specId": "033",
   "folderSlug": "deep-loop-behavior-benchmarks",
   "parentChain": [
     "deep-loops"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-07-26_18-47__phase-003-marked-complete-in-parent-phase-map.md"
+  ]
 }

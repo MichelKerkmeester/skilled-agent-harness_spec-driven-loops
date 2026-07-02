@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-005",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T16:15:43.231Z",
+  "endedAt": "2026-07-02T16:23:32.033Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8549,
+    "tSetupMs": 89132,
+    "tFirstDispatchMs": 449084,
+    "tTerminalMs": 468802
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 449084,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1783009392315,\"sessionID\":\"ses_0dc629e71ffe8sM7kLa7Rde5O7\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_e5FtfPjHVL996Rcpsx482aFd\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Deep research dispatch\",\"prompt\":\"Explicit command delegation: run `/deep:research:auto \\\"How .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/src/slugify.js treats Unicode input\\\" --spec-folder=.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks --max-iterations=1 --stop-policy=max-iterations`.\\n\\nYou are the general-agent command executor for this deep-research workflow, not an ad hoc researcher. Load `.opencode/commands/deep/research.md`, pass its Phase 0 dispatch-context check as an explicit Task delegation naming this exact command, resolve setup for `:auto`, load the appropriate YAML workflow only after required inputs are bound, and execute exactly one bounded research iteration through the workflow-owned path. Do not implement or modify the target source file. Do not run extra iterations. Do not hand-roll a substitute loop outside the command/YAML contract.\\n\\nResearch target: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/src/slugify.js`.\\nSpec folder: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks`.\\nBoundaries: answer only how the current `slugify.js` treats Unicode input; include file/line citations from the target file and any direct tests/fixtures you inspect; include negative knowledge if no tests cover Unicode. Write required deep-research artifacts under the spec folder's `research/` area per workflow rules.\\n\\nFinal response back to me must include: status, artifacts written/updated, concise findings, commands/checks run, and any blocker/error verbatim.\",\"subagent_type\":\"general\",\"task_id\":\"\",\"command\":\"/deep:research:auto\"},\"output\":\"<task id=\\\"ses_0dc607a24ffe7gdPlwbFeng5Tl\\\" state=\\\"completed\\\">\\n<task_result>\\n**Status**\\nWorkflow halted safely on YAML `completed-session`: the research packet already has a completed one-iteration run for this exact topic. I did not dispatch another iteration, modify `slugify.js`, or overwrite/archive artifacts.\\n\\nBlocker verbatim from workflow branch:\\n`Completed deep-research packet detected. Archive or replace the existing research/ tree before starting a new session.`\\n\\n**Artifacts**\\nExisting completed artifacts inspected:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/deep-research-config.json`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/deep-research-state.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/iterations/iteration-001.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/research.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/resource-map.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/deep-research-dashboard.md`\\n\\nNo files were written or updated in this invocation.\\n\\n**Concise Findings**\\n- `slugify` stringifies numbers only; Unicode string input is used as-is, then lowercased and trimmed: `slugify.js:12-15`.\\n- Filtering is ASCII-only: `str.replace(/[^a-z0-9]+/g, '-')` replaces every run outside lowercase ASCII `a-z` and digits `0-9` with `-`, so Unicode letters/symbols are not preserved or transliterated: `slugify.js:17-18`.\\n- Leading/trailing hyphens are stripped after replacement, so all-Unicode or all-symbol input can collapse to an empty string: `slugify.js:20-21`, `slugify.js:28`.\\n- Length capping happens after filtering and edge-hyphen stripping: `slugify.js:23-28`.\\n- Fixture spec includes a Unicode acceptance example: `slugify(\\\"Café Menu\\\") -> caf-menu`, confirming `é` is dropped rather than transliterated to `e`: `spec.md:22-26`.\\n- Negative knowledge: no executable test file was found under `fx-001-review-target`; Unicode coverage appears only in the fixture spec acceptance example, not in tests.\\n\\n**Commands/Checks Run**\\n- Loaded `.opencode/commands/deep/research.md`, presentation contract, auto YAML, and deep-research workflow references.\\n- Ran explicit Phase 0 Task delegation for the exact `/deep:research:auto ...` command: `general_agent_verified = TRUE`.\\n- Inspected existing research state/config/strategy/synthesis/iteration artifacts.\\n- Read target source and fixture docs: `slugify.js`, `spec.md`, `tasks.md`, `plan.md`, `FIXTURE.md`.\\n- Searched fixture for `slugify|Unicode|unicode|ASCII` evidence.\\n- Checked scoped git status; no scoped changes reported.\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dc629e71ffe8sM7kLa7Rde5O7\",\"sessionId\":\"ses_0dc607a24ffe7gdPlwbFeng5Tl\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Deep research dispatch\",\"time\":{\"start\":1783009084943,\"end\":1783009392309}},\"metadata\":{\"openai\":{\"itemId\":\"fc_03e0bd494540b0e6016a468f2e8e088191a1f4979fe3c05c66\"}},\"id\":\"prt_f239f4df4001rYuMHSWQK9BV1P\",\"sessionID\":\"ses_0dc629e71ffe8sM7kLa7Rde5O7\",\"messageID\":\"msg_f239ebba9001NI1RYfdP9n8GZI\"}}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context",
+        "target_agent": "deep-context",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=context target_agent=deep-context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs",
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md",
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 1
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/RSB-005-gpt-fast-high.transcript.jsonl"
+}

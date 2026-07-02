@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
   "description": "The five per-skill benchmark packages (phases 002-004) need one shared, trustworthy measurement substrate",
   "keywords": [
@@ -15,14 +16,15 @@
     "measurement",
     "substrate"
   ],
-  "lastUpdated": "2026-07-02T05:53:05.372Z",
+  "lastUpdated": "2026-07-02T17:48:49.459Z",
   "specId": "001",
   "folderSlug": "framework-and-harness",
   "parentChain": [
     "deep-loops",
     "033-deep-loop-behavior-benchmarks"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-07-26_18-48__d-009-recorded-mimo-v2-5-pro-writer-fallback-with.md"
+  ]
 }

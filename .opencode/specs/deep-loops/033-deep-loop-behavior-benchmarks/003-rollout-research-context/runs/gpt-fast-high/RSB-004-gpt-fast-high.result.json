@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-004",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T17:01:28.516Z",
+  "endedAt": "2026-07-02T17:05:04.653Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8299,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 216137
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 2,
+    "d2": 1,
+    "d3": null,
+    "d4": 2,
+    "d5": 0
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/RSB-004-gpt-fast-high.transcript.jsonl"
+}

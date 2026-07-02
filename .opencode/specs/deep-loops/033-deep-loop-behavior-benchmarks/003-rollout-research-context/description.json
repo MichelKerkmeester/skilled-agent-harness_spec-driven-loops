@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context",
   "description": "Roll the calibrated framework out to the two remaining runtime-loop modes",
   "keywords": [
@@ -10,14 +11,15 @@
     "runtime-loop",
     "modes"
   ],
-  "lastUpdated": "2026-07-02T05:53:05.945Z",
+  "lastUpdated": "2026-07-02T17:46:36.175Z",
   "specId": "003",
   "folderSlug": "rollout-research-context",
   "parentChain": [
     "deep-loops",
     "033-deep-loop-behavior-benchmarks"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-07-26_18-46__phase-003-complete-42-run-3-leg-rollout-of-deep.md"
+  ]
 }

@@ -9,18 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context"
-    last_updated_at: "2026-07-02T07:45:00Z"
+    last_updated_at: "2026-07-02T19:55:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Task list authored; not started"
-    next_safe_action: "Blocked on predecessor phase"
-    blockers:
-      - "Phase 002 calibration retro must land first"
+    recent_action: "All 7 tasks complete; 42 runs scored, scorecard published"
+    next_safe_action: "Phase 004: ai-council + improvement benchmarks"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-003-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T001 Confirm predecessor gate passed (Phase 002 calibration retro); verify fixture restore for this phase's targets.
+- [x] T001 Predecessor gate confirmed; fixture restore verified — and HARDENED during the phase to `rm -rf` run-output dirs after a concurrent session committed a `context/` packet into `fx-001` that `git clean` could not remove.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 [P] Author `deep-research/behavior_benchmark/` (RSB-001..008; self-contained research topics; iteration caps 1-2).
-- [ ] T003 [P] Author `deep-context/behavior_benchmark/` (CXB-001..006; fixture targets).
-- [ ] T004 Capture Claude baselines for both packages (14 runs); derive budgets.
-- [ ] T005 Run `gpt-fast-med` + `gpt-fast-high` legs for both packages (28 runs); score + classify each.
+- [x] T002 [P] `deep-research/behavior_benchmark/` authored (RSB-001..008); all contracts machine-verified. Full-run cells repointed to `fx-002-research-target` after INIT fail-closed on `fx-001`'s anchor-less spec.
+- [x] T003 [P] `deep-context/behavior_benchmark/` authored (CXB-001..006); all contracts machine-verified.
+- [x] T004 Claude baselines captured (14 runs; 9 round-1 cells rate-limited → `env_error` bucket + quarantine → clean re-run). Recorded in both packages with provenance + caveats.
+- [x] T005 `gpt-fast-med` + `gpt-fast-high` legs complete (28 runs) scored + classified; med D5 back-filled post-hoc; contaminated + false-`env_error` high cells re-run clean.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,8 +67,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Publish per-mode scorecards; adjudicate the cross-mode ambiguity scenario.
-- [ ] T007 `validate.sh --strict` on this phase folder.
+- [x] T006 `scorecard.md` published: 3-leg matrix, histograms, dimension means, latency ratios, eight transcript-corrected readings, calibration log, phase-005 backlog. Headline: effort raises the floor; the load-bearing difference is delegation integrity.
+- [x] T007 `validate.sh --strict` run on this phase folder (see implementation-summary.md Verification).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,8 +76,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `[x]`, no `[B]` remaining.
-- [ ] spec.md success criteria met with evidence.
+- [x] All tasks `[x]`, no `[B]` remaining.
+- [x] spec.md success criteria met with evidence (42/42 runs scored; zero fixture-isolation violations after the contamination purge).
 <!-- /ANCHOR:completion -->
 
 ---

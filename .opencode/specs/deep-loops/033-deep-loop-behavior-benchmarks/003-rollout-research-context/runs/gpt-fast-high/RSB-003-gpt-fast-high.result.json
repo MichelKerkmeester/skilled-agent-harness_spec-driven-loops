@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-003",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T16:11:02.254Z",
+  "endedAt": "2026-07-02T16:11:25.686Z",
+  "checkpoints": {
+    "tFirstOutputMs": 12333,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 23432
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context",
+        "target_agent": "deep-context",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=context target_agent=deep-context"
+      },
+      {
+        "mode": "context"
+      },
+      {
+        "mode": "context"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-high/RSB-003-gpt-fast-high.transcript.jsonl"
+}
