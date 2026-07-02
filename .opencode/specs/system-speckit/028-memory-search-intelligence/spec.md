@@ -127,7 +127,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
 | 008 | `008-drift-audit-remediation/` | Fixed all 75 findings from a GPT-5.5-fast drift audit spanning this packet's other seven children (24 confirmed + 51 unverified, 42 directories corrected) | Complete |
 | 009 | `009-drift-audit-deep-history-correction/` | Second-pass doc correction: git history shows the 4 code-gap findings from 008 were built, shadow-shipped, benchmarked and deliberately deleted for cause, not abandoned | Complete |
-| 010 | `010-generated-metadata-status-integrity/` | Fixes a real deriveStatus defect (213 folders repo-wide already mislabeled `complete` from a doc's mere presence, not its content) and adds a report-mode-default `validate.sh --strict` rule catching the same class going forward | In Progress |
+| 010 | `010-generated-metadata-status-integrity/` | Fixes a real deriveStatus defect (213 folders repo-wide already mislabeled `complete` from a doc's mere presence, not its content) and adds a report-mode-default `validate.sh --strict` rule catching the same class going forward | Complete |
 
 ### Phase Transition Rules
 
@@ -147,7 +147,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | subsystem parent | implementation child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
 | release cleanup parent | cleanup child | Inspect one executed cleanup or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
-| 009-drift-audit-deep-history-correction | 010-generated-metadata-status-integrity | Independent, not a continuation of 009's own scope; surfaced by an unrelated diagnostic review | Targeted 9-file suite green (108/108); full repo-wide suite still confirming |
+| 009-drift-audit-deep-history-correction | 010-generated-metadata-status-integrity | Independent, not a continuation of 009's own scope; surfaced by an unrelated diagnostic review | Targeted 9-file suite green (108/108); full repo-wide suite deliberately stopped after root cause (unrelated serial-execution config) confirmed |
 <!-- /ANCHOR:phase-map -->
 
 ---

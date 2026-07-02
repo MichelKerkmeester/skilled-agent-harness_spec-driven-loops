@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity"
     last_updated_at: "2026-07-02T09:30:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Implemented deriveStatus fix, targeted suite green, full suite running"
-    next_safe_action: "Confirm full suite clean then commit"
+    recent_action: "Shipped and committed, operator accepted targeted verification"
+    next_safe_action: "Decide separately on bulk-correcting the 213-folder backlog"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-phase-010-status-integrity-20260702"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "REQ-001/002 resolved by gating complete on completion_pct>=100 AND no open tasks.md items, with null completion_pct treated as unknown (never complete) plus a review flag."
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-generated-metadata-status-integrity |
-| **Status** | Core implementation complete and targeted-verified; full repo-wide suite still running as final confirmation |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,7 @@ _memory:
 
 `deriveStatus` used to mark a spec folder `complete` the moment `implementation-summary.md` existed, with zero regard for whether that doc actually said anything was done. A repo-wide sweep of 2,437 `graph-metadata.json` files found the class of defect this produced: dozens of freshly-scaffolded, never-implemented folders carried `status: complete` on disk today because the doc was a blank template, not because the work was finished. The fix gates `complete` on real evidence, and a new `validate.sh --strict` rule catches the same disagreement in existing folders without immediately breaking anyone else's validation run.
 
-This doc is deliberately marked incomplete (90%, not Complete) until the full repo-wide test suite confirms clean, in keeping with the exact principle this phase's own fix enforces: a completion claim needs real evidence, not just the doc's mere presence.
+This doc's completion claim is backed by real evidence, not just its own presence, in keeping with the exact principle this phase's own fix enforces: the targeted 9-file suite ran fresh and green, the root cause of the full 815-file suite's multi-hour runtime was identified as an unrelated, by-design serial-execution config rather than a regression signal, and the operator explicitly reviewed that evidence and closed the phase on it rather than the claim being asserted unverified.
 
 ### deriveStatus Now Requires Real Evidence
 
@@ -111,7 +111,7 @@ Baseline first (9 files, 99 tests, all directly importing `deriveStatus`/`derive
 | Targeted suite after edits (same 9 files + the 2 test files' new coverage) | PASS: 9 files, 108 tests (99 baseline + 9 new) |
 | Manual smoke: report mode (flag unset) against `.opencode/specs/ai-systems/009-prompt-improver-interface-design` (a real folder found via live repo scan, `completion_pct: 95`, open tasks) | PASS: `resolved.status: "info"`, exit 0 |
 | Manual smoke: enforced mode (`SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE=true`) against the same folder | PASS: `resolved.status: "error"`, exit 1 |
-| Full repo-wide `vitest run` across all 815 system-spec-kit test files | Started; still running past 3.5 hours of real CPU time under heavy contention from other concurrent sessions on this shared machine. Not yet complete at the time this summary was written. The 9-file targeted suite (every file that actually imports the changed functions) plus the clean full-project `tsc --build` (which type-checks every cross-file usage in the whole project) already give strong evidence of no regression; this full run is a final, broader confirmation being tracked separately. |
+| Full repo-wide `vitest run` across all 815 system-spec-kit test files | Started, then deliberately stopped (killed) after ~5 hours of real CPU time with an explicit operator decision. Root cause of the runtime found: `mcp_server/vitest.config.ts` sets `fileParallelism: false` on purpose ("Several script suites mutate shared process-level state and temp project roots. Run files serially so the combined config remains deterministic"), so all 815 files run strictly one at a time in a single worker regardless of the 18 CPU cores available - not a hang, not caused by this change, and not primarily machine contention. Given the 9-file targeted suite (every file that actually imports the changed functions) plus a clean full-project `tsc --build` already give strong evidence of no regression, and given the full run's architecture means waiting longer would not meaningfully add confidence about this specific change, continuing it was not worth the wall-clock cost. Not run to completion. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +122,7 @@ Baseline first (9 files, 99 tests, all directly importing `deriveStatus`/`derive
 1. **Found but did not fix: `create.sh --phase --phase-parent` corrupted the parent packet's own `description.json`.** Scaffolding this phase overwrote `028-memory-search-intelligence/description.json`'s `specFolder` (dropped its `system-speckit/` prefix), `description`, `keywords`, and `parentChain` (emptied) with this CHILD phase's own values, instead of leaving the parent's identity untouched. Reverted via `git checkout --` before committing; not investigated or fixed at the tooling level, since it is unrelated to this phase's own scope. Worth a follow-up look at `create.sh`'s description-generation call when adding a phase to an existing parent.
 2. **`orchestrator.ts`'s `resolveGeneratedMetadataIntegrity` call site does not pass the new flag.** It always resolves the new check in report mode regardless of `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE`, because a concurrent session had large, unrelated, uncommitted changes in the same file at implementation time and wiring the flag there risked disturbing that work. No correctness impact (report mode is the safe default), but the flag cannot be explicitly enforced through that code path yet. The `validate.sh --strict` CLI bridge, the actual path `validate.sh` uses, is fully wired.
 3. **The 213 already-mislabeled folders on disk are not bulk-corrected by this phase.** That is a deliberately separate, deferred decision (see spec.md Out of Scope) since it touches content outside this phase's own surface area.
-4. **The full 815-file repo-wide test suite had not finished running as of this summary.** See the Verification table above for the scoped evidence already gathered.
+4. **The full 815-file repo-wide test suite was not run to completion.** It was deliberately stopped after ~5 hours once the root cause of its runtime was identified (serial-only execution by design, unrelated to this change) and the operator judged the already-strong targeted evidence sufficient. See the Verification table above for exactly what was and was not confirmed.
 <!-- /ANCHOR:limitations -->
 
 ---

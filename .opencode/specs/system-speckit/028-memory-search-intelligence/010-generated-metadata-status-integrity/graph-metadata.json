@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
@@ -46,6 +46,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "mcp_server/vitest.config.ts",
       "spec.md",
       "plan.md"
     ],
@@ -105,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -118,12 +125,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -148,6 +149,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does not, regardless of whether the doc is a real completed summary or an unfilled Level-1 scaffold",
     "created_at": "2026-07-02T03:22:45Z",
-    "last_save_at": "2026-07-02T07:30:50.216Z",
+    "last_save_at": "2026-07-02T08:57:33.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b65c64b34eda3b1a90564e21a91d58b80b3c97119ab0b049d43acef55ec5de47",
+    "source_fingerprint": "sha256:da27f3008a62e00b4816e816cd76ebc942905d1c7a2607d7342811f34606dddb",
     "source_doc_hashes": {
-      "spec.md": "7f8b4143c946177ca0685317589264b5dc6e6b4d6c40cbc8c43b0ffa841f1335",
+      "spec.md": "6128349646962f8122b0a2bdd0ada280c016f11806e657d9b65bd61f52877e9c",
       "plan.md": "4b18db3629e01b086c53a191656dc240cd7883475167b5eaff61964be43f6a45",
-      "tasks.md": "29111d59046966079d5378c89fb5db431ddc59bf3fa3c28aec76787dd62067e4",
-      "implementation-summary.md": "41246ae93a333f48c33869bb530681f7091a6a52863e3086596dfd28685c7b66"
+      "tasks.md": "70e618c76450a6641807691e7f32b2109d0ffba30201c7bdeff498d78777a9ed",
+      "implementation-summary.md": "36750d36b0e5121ba1e4aaaeddad84e5b3d2b060eaa6bad8dad461bed15d2e29"
     },
     "last_active_child_id": null,
     "last_active_at": null
