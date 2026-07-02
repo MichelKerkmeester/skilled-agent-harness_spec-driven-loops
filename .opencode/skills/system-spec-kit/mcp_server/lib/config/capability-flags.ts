@@ -190,6 +190,36 @@ function isIdempotentDescriptionWritesEnabled(): boolean {
   return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
 }
 
+/**
+ * SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE: derived.status vs completion-evidence check.
+ *
+ * Default-OFF (report mode), unlike the other flags in this module: a repo-wide sweep found
+ * 213 folders already carrying a false `derived.status: complete` from a deriveStatus defect
+ * (fixed separately), so enforcing this new cross-field check by default would immediately
+ * turn all 213 into new `validate.sh --strict` hard failures for every session touching them.
+ * With the flag off, a `derived.status: complete` folder whose completion_pct/tasks.md
+ * disagrees still surfaces in `--strict` output but never changes the verdict. An explicit
+ * true/1 opts into enforced mode once the existing backlog has been reviewed.
+ *
+ * | Value                 | Behavior                                                   |
+ * |------------------------|------------------------------------------------------------|
+ * | unset / other          | (default) report mode: violation surfaces, verdict unaffected |
+ * | `true` / `1`            | enforced: a disagreeing folder fails `--strict`            |
+ */
+const STATUS_COMPLETION_CONSISTENCY_GATE_ENV = 'SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE' as const;
+
+/**
+ * Returns whether the derived.status vs completion-evidence check enforces (fails strict)
+ * rather than only reporting.
+ *
+ * Reads the environment on every call so a test can flip the behavior per-case, and stays
+ * OFF (report mode) unless an explicit true/1 opts into enforcement.
+ */
+function isStatusCompletionConsistencyGateEnabled(): boolean {
+  const rawValue = process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV]?.trim().toLowerCase();
+  return rawValue === 'true' || rawValue === '1';
+}
+
 // Keep roadmap controls distinct from existing runtime feature flags so
 // Telemetry/checkpoints describe roadmap rollout state rather than unrelated
 // Default-on retrieval behavior.
@@ -305,8 +335,11 @@ export {
   isIdentityMergeSafetyEnabled,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,
+  isStatusCompletionConsistencyGateEnabled,
   /** Documented parser backend env var name */
   SPECKIT_PARSER_ENV,
+  /** Documented status-completion-consistency-gate env var name */
+  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
 };
 
 export type {

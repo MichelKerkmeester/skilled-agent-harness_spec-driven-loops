@@ -1214,7 +1214,29 @@ function deriveStatus(
 
   const checklistDoc = docs.find((doc) => doc.relativePath === 'checklist.md');
   if (!checklistDoc) {
-    return { status: 'complete', reviewRequired: false };
+    // Folders without a checklist.md (the common Level-1 case) used to derive 'complete'
+    // from implementation-summary.md's mere presence, so a freshly scaffolded but never
+    // authored template read the same as a finished one. Gate on real completion evidence
+    // instead: the doc's own completion_pct plus whether tasks.md still has open items.
+    const completionPct = parseCompletionPct(implementationSummaryDoc.content);
+    const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
+    const openTasks = tasksDoc ? hasOpenTaskItems(tasksDoc.content) : false;
+
+    if (completionPct === null) {
+      // Unknown completion state must never resolve to 'complete' by default; that is
+      // the exact defect this branch is fixing. Preserve a valid prior status if one
+      // exists, otherwise fall back to 'planned' with a review flag.
+      const preserved = normalizeDerivedStatus(existingStatus);
+      if (preserved) {
+        return { status: preserved, reviewRequired: false };
+      }
+      return { status: 'planned', reviewRequired: true };
+    }
+
+    return {
+      status: completionPct >= 100 && !openTasks ? 'complete' : 'in_progress',
+      reviewRequired: false,
+    };
   }
 
   return {
@@ -1229,6 +1251,33 @@ function evaluateChecklistCompletion(content: string): 'COMPLETE' | 'INCOMPLETE'
     return 'INCOMPLETE';
   }
   return checklistItems.every((line) => !/\[\s\]/.test(line)) ? 'COMPLETE' : 'INCOMPLETE';
+}
+
+/**
+ * Parse the `completion_pct` frontmatter field from a doc's raw content.
+ *
+ * Returns null when the field is absent or unparseable so callers can distinguish
+ * "genuinely unknown" from a real numeric value instead of coercing to a default.
+ */
+export function parseCompletionPct(content: string): number | null {
+  const raw = extractFrontmatterScalar(content, 'completion_pct');
+  if (raw === null) {
+    return null;
+  }
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+/**
+ * Whether a tasks.md (or any GFM checkbox list) has at least one unchecked item.
+ *
+ * Mirrors evaluateChecklistCompletion's regex so both stay consistent, but reports
+ * open-ness rather than a COMPLETE/INCOMPLETE enum, and treats a doc with zero
+ * checkbox items as having no open tasks rather than as incomplete.
+ */
+export function hasOpenTaskItems(content: string): boolean {
+  const taskItems = content.match(/^\s*[-*]\s+\[[ xX]\]\s+.+$/gm) ?? [];
+  return taskItems.some((line) => /\[\s\]/.test(line));
 }
 
 function deriveImportanceTier(docs: ParsedSpecDoc[]): string {
@@ -1623,6 +1672,8 @@ export const __testables = {
   normalizeDerivedStatus,
   keepKeyFile,
   evaluateChecklistCompletion,
+  parseCompletionPct,
+  hasOpenTaskItems,
   resolveKeyFileCandidate,
   shouldKeepEntityName,
   writeGraphMetadataFile,

@@ -138,6 +138,7 @@ export type {
 } from '../lib/graph/graph-metadata-schema.js';
 export {
   GENERATED_METADATA_INTEGRITY_RULE,
+  STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE,
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
 } from '../lib/validation/generated-metadata-integrity.js';
@@ -201,5 +202,7 @@ export {
   getMemoryRoadmapDefaults,
   getMemoryRoadmapPhase,
   isGeneratedMetadataGrandfatherEnabled,
+  isStatusCompletionConsistencyGateEnabled,
+  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
 } from '../lib/config/capability-flags.js';
 export type { MemoryRoadmapCapabilityFlags } from '../lib/config/capability-flags.js';

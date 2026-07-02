@@ -26,8 +26,10 @@ interface GraphMetadataFixtureOptions {
   specMetadataTableStatus?: string | null;
   planStatus?: string | null;
   implementationSummaryStatus?: string | null;
+  implementationSummaryCompletionPct?: number | null;
   includeChecklist?: boolean;
   checklistItems?: string[];
+  tasksItems?: string[];
   implementationSummaryReferences?: string[];
   materializeImplementationSummaryReferences?: boolean;
   specTriggerPhrases?: string[];
@@ -86,13 +88,21 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
   }
   planFrontmatter.push('---');
   fs.writeFileSync(path.join(specFolder, 'plan.md'), [...planFrontmatter, '', '# Plan'].join('\n'), 'utf-8');
-  fs.writeFileSync(path.join(specFolder, 'tasks.md'), '# Tasks\n', 'utf-8');
+  const tasksLines = options.tasksItems ?? [];
+  fs.writeFileSync(path.join(specFolder, 'tasks.md'), ['# Tasks', '', ...tasksLines].join('\n'), 'utf-8');
   const implementationSummaryFrontmatter = [
     '---',
     'title: "Implementation Summary"',
   ];
   if (options.implementationSummaryStatus !== null) {
     implementationSummaryFrontmatter.push(`status: "${options.implementationSummaryStatus ?? 'complete'}"`);
+  }
+  if (options.implementationSummaryCompletionPct !== null && options.implementationSummaryCompletionPct !== undefined) {
+    implementationSummaryFrontmatter.push(
+      '_memory:',
+      '  continuity:',
+      `    completion_pct: ${options.implementationSummaryCompletionPct}`,
+    );
   }
   implementationSummaryFrontmatter.push('---');
   const implementationSummaryLines = options.implementationSummaryReferences ?? [
@@ -370,7 +380,24 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.status).toBe('in_progress');
   });
 
-  it('derives complete status when implementation-summary exists without a checklist', () => {
+  it('derives complete status when implementation-summary reports completion_pct 100 with no open tasks and no checklist', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      implementationSummaryCompletionPct: 100,
+      includeChecklist: false,
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('complete');
+  });
+
+  // Regression for a real deriveStatus defect: this branch used to return 'complete' from
+  // implementation-summary.md's mere presence, regardless of content, mislabeling 213
+  // repo-wide folders whose docs were unfilled scaffolds. See D4-P0-001.
+  it('does not derive complete when completion_pct is absent (unknown completion state), and flags for review', () => {
     const specFolder = createSpecFolder({
       specStatus: null,
       planStatus: null,
@@ -380,7 +407,36 @@ describe('graph metadata schema and parser', () => {
 
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
 
-    expect(metadata.derived.status).toBe('complete');
+    expect(metadata.derived.status).not.toBe('complete');
+  });
+
+  it('derives in_progress when completion_pct is below 100 and no checklist exists', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      implementationSummaryCompletionPct: 60,
+      includeChecklist: false,
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('in_progress');
+  });
+
+  it('derives in_progress when completion_pct is 100 but tasks.md still has open items and no checklist exists', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      implementationSummaryCompletionPct: 100,
+      includeChecklist: false,
+      tasksItems: ['- [x] Done item', '- [ ] Still open item'],
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('in_progress');
   });
 
   it('honors a spec.md metadata-table Draft status over implementation-summary presence', () => {

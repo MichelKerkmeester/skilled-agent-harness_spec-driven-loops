@@ -12,7 +12,10 @@ import {
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
 } from '../../mcp_server/lib/validation/generated-metadata-integrity.js';
-import { isGeneratedMetadataGrandfatherEnabled } from '../../mcp_server/lib/config/capability-flags.js';
+import {
+  isGeneratedMetadataGrandfatherEnabled,
+  isStatusCompletionConsistencyGateEnabled,
+} from '../../mcp_server/lib/config/capability-flags.js';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CliOptions {
@@ -78,6 +81,7 @@ function runCli(): void {
     const report = checkGeneratedMetadataIntegrity(options.folder);
     const resolved = resolveGeneratedMetadataIntegrity(report, {
       grandfather: isGeneratedMetadataGrandfatherEnabled(),
+      statusCompletionConsistencyEnforced: isStatusCompletionConsistencyGateEnabled(),
     });
 
     if (options.json) {

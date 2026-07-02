@@ -12,10 +12,13 @@ import path from 'node:path';
 
 import { graphMetadataSchema } from '../graph/graph-metadata-schema.js';
 import { perFolderDescriptionSchema } from '../description/description-schema.js';
-import { computeSourceFingerprintForFolder } from '../graph/graph-metadata-parser.js';
-import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
+import { computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
+import { isGeneratorHardeningEnabled, isStatusCompletionConsistencyGateEnabled } from '../config/capability-flags.js';
 
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
+
+/** Violation code for a derived.status:'complete' folder whose completion evidence disagrees. */
+export const STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE = 'STATUS_COMPLETE_EVIDENCE_MISMATCH' as const;
 
 export type GeneratedMetadataFile = 'graph-metadata.json' | 'description.json';
 
@@ -111,6 +114,7 @@ function validateGraphMetadataFile(filePath: string, violations: GeneratedMetada
   }
 
   assertSourceFingerprint(filePath, parsed, violations);
+  assertStatusCompletionConsistency(filePath, parsed, violations);
 }
 
 /**
@@ -160,6 +164,72 @@ function assertSourceFingerprint(
       message: 'source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale',
     });
   }
+}
+
+/**
+ * Cross-check a stored `derived.status: complete` against the folder's own completion
+ * evidence (completion_pct, open tasks.md items).
+ *
+ * Catches the class of defect a deriveStatus bug produced repo-wide: a folder marked
+ * complete purely because implementation-summary.md exists, regardless of its content.
+ * Report-mode by default (gated on SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE) so the
+ * known pre-existing backlog of already-mislabeled folders does not immediately fail
+ * every other session's strict validation the moment this check ships.
+ */
+function assertStatusCompletionConsistency(
+  filePath: string,
+  parsed: Record<string, unknown> | null,
+  violations: GeneratedMetadataViolation[],
+): void {
+  const derived = parsed && typeof parsed.derived === 'object' && parsed.derived
+    ? (parsed.derived as Record<string, unknown>)
+    : null;
+  const status = derived && typeof derived.status === 'string' ? derived.status : null;
+  if (status !== 'complete') {
+    return;
+  }
+
+  const folder = path.dirname(filePath);
+  const implementationSummaryPath = path.join(folder, 'implementation-summary.md');
+  let implementationSummaryContent: string;
+  try {
+    implementationSummaryContent = fs.readFileSync(implementationSummaryPath, 'utf-8');
+  } catch {
+    // Lean phase parents legitimately have no implementation-summary.md; deriveStatus's
+    // own !implementationSummaryDoc branch handles that case separately and is not what
+    // this check targets.
+    return;
+  }
+
+  const completionPct = parseCompletionPct(implementationSummaryContent);
+  const tasksPath = path.join(folder, 'tasks.md');
+  let tasksContent: string | null = null;
+  try {
+    tasksContent = fs.readFileSync(tasksPath, 'utf-8');
+  } catch {
+    tasksContent = null;
+  }
+  const openTasks = tasksContent !== null && hasOpenTaskItems(tasksContent);
+
+  const disagreements: string[] = [];
+  if (completionPct === null) {
+    disagreements.push('completion_pct is absent or unparseable in implementation-summary.md');
+  } else if (completionPct < 100) {
+    disagreements.push(`completion_pct is ${completionPct}, below 100`);
+  }
+  if (openTasks) {
+    disagreements.push('tasks.md has unchecked task items');
+  }
+
+  if (disagreements.length === 0) {
+    return;
+  }
+
+  violations.push({
+    file: 'graph-metadata.json',
+    code: STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE,
+    message: `derived.status is 'complete' but ${disagreements.join('; ')}`,
+  });
 }
 
 function validateDescriptionFile(filePath: string, violations: GeneratedMetadataViolation[]): void {
@@ -252,7 +322,7 @@ export function checkGeneratedMetadataIntegrity(folderPath: string): GeneratedMe
  */
 export function resolveGeneratedMetadataIntegrity(
   report: GeneratedMetadataIntegrityReport,
-  opts: { grandfather: boolean },
+  opts: { grandfather: boolean; statusCompletionConsistencyEnforced?: boolean },
 ): ResolvedIntegrityStatus {
   if (!report.checked) {
     return {
@@ -271,11 +341,24 @@ export function resolveGeneratedMetadataIntegrity(
     };
   }
 
+  // STATUS_COMPLETE_EVIDENCE_MISMATCH has its own independent rollout gate rather than
+  // following the blanket grandfather flag: a repo-wide backlog of already-mislabeled
+  // folders means this specific check must stay non-blocking until explicitly enforced,
+  // even while the overall grandfather flag has already graduated the other checks.
+  const statusCompletionConsistencyEnforced = opts.statusCompletionConsistencyEnforced ?? false;
+  const isBlockingViolation = (violation: GeneratedMetadataViolation): boolean => {
+    if (violation.code === STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE) {
+      return statusCompletionConsistencyEnforced;
+    }
+    return !opts.grandfather;
+  };
+
   const details = report.violations.map((violation) => `${violation.file}: ${violation.code}: ${violation.message}`);
+  const anyBlocking = report.violations.some(isBlockingViolation);
   const mode = opts.grandfather ? 'grandfather report mode' : 'enforced';
   return {
     rule: GENERATED_METADATA_INTEGRITY_RULE,
-    status: opts.grandfather ? 'info' : 'error',
+    status: anyBlocking ? 'error' : 'info',
     message: `Generated metadata integrity found ${report.violations.length} violation(s) (${mode})`,
     details,
   };

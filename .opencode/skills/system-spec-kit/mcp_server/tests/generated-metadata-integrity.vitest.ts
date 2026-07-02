@@ -7,10 +7,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   GRAPH_METADATA_STATUS_VALUES,
   GENERATED_METADATA_GRANDFATHER_ENV,
+  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
   checkGeneratedMetadataIntegrity,
   deriveGraphMetadata,
   graphMetadataSchema,
   isGeneratedMetadataGrandfatherEnabled,
+  isStatusCompletionConsistencyGateEnabled,
   resolveGeneratedMetadataIntegrity,
   serializeGraphMetadata,
   type GraphMetadata,
@@ -68,6 +70,7 @@ afterEach(() => {
   }
   createdRoots.clear();
   delete process.env[GENERATED_METADATA_GRANDFATHER_ENV];
+  delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
 });
 
 describe('derived.status enum closure', () => {
@@ -175,6 +178,93 @@ describe('generated-metadata integrity validator', () => {
   });
 });
 
+describe('status-completion consistency check (D4-P0-001 regression)', () => {
+  // Regression for a real, repo-wide deriveStatus defect: 213 folders were already
+  // mislabeled derived.status:'complete' because implementation-summary.md's mere
+  // presence, not its actual completion evidence, drove the derivation. This check
+  // catches the same class of disagreement independently at the --strict layer, so a
+  // pre-existing malformed graph-metadata.json cannot silently pass validation.
+  // Writes spec.md + implementation-summary.md + tasks.md, THEN derives graph-metadata.json
+  // over the full doc set (so source_fingerprint is computed correctly), THEN overwrites
+  // only derived.status. Writing implementation-summary.md/tasks.md after the derive (as a
+  // naive test would) leaves source_fingerprint stale against the newly-added docs, which
+  // trips an unrelated SOURCE_FINGERPRINT_MISMATCH violation alongside the one under test.
+  function writeFixtureWithForcedStatus(
+    folder: string,
+    completionPct: number | null,
+    taskItems: string[],
+    forcedStatus: string,
+  ): void {
+    writeSpecDoc(folder, 'spec.md', 'planned');
+    const implementationSummaryLines = ['---', 'title: "Implementation Summary"'];
+    if (completionPct !== null) {
+      implementationSummaryLines.push('_memory:', '  continuity:', `    completion_pct: ${completionPct}`);
+    }
+    implementationSummaryLines.push('---', '', '# Implementation Summary');
+    fs.writeFileSync(path.join(folder, 'implementation-summary.md'), implementationSummaryLines.join('\n'), 'utf-8');
+    fs.writeFileSync(path.join(folder, 'tasks.md'), ['# Tasks', '', ...taskItems].join('\n'), 'utf-8');
+
+    const metadata = deriveGraphMetadata(folder, null, { now: NOW });
+    const forced = { ...metadata, derived: { ...metadata.derived, status: forcedStatus } };
+    fs.writeFileSync(path.join(folder, 'graph-metadata.json'), serializeGraphMetadata(forced), 'utf-8');
+    fs.writeFileSync(
+      path.join(folder, 'description.json'),
+      `${JSON.stringify(
+        { specFolder: metadata.spec_folder, description: 'Fixture packet for integrity checks.', keywords: ['integrity'], lastUpdated: NOW },
+        null,
+        2,
+      )}\n`,
+      'utf-8',
+    );
+  }
+
+  it('flags a stored complete status when completion_pct is absent, in report mode by default', () => {
+    const folder = makeSpecFolder('906-status-mismatch-no-pct');
+    writeFixtureWithForcedStatus(folder, null, [], 'complete');
+
+    const report = checkGeneratedMetadataIntegrity(folder);
+    const codes = report.violations.map((violation) => violation.code);
+    expect(codes).toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+
+    expect(resolveGeneratedMetadataIntegrity(report, { grandfather: false }).status).toBe('info');
+    expect(
+      resolveGeneratedMetadataIntegrity(report, { grandfather: false, statusCompletionConsistencyEnforced: true }).status,
+    ).toBe('error');
+  });
+
+  it('flags a stored complete status when completion_pct is below 100', () => {
+    const folder = makeSpecFolder('907-status-mismatch-low-pct');
+    writeFixtureWithForcedStatus(folder, 60, [], 'complete');
+
+    const report = checkGeneratedMetadataIntegrity(folder);
+    expect(report.violations.map((violation) => violation.code)).toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+  });
+
+  it('flags a stored complete status when tasks.md still has open items', () => {
+    const folder = makeSpecFolder('908-status-mismatch-open-tasks');
+    writeFixtureWithForcedStatus(folder, 100, ['- [x] Done', '- [ ] Still open'], 'complete');
+
+    const report = checkGeneratedMetadataIntegrity(folder);
+    expect(report.violations.map((violation) => violation.code)).toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+  });
+
+  it('does not flag a genuinely complete folder (completion_pct 100, no open tasks)', () => {
+    const folder = makeSpecFolder('909-status-genuinely-complete');
+    writeFixtureWithForcedStatus(folder, 100, ['- [x] Done one', '- [x] Done two'], 'complete');
+
+    const report = checkGeneratedMetadataIntegrity(folder);
+    expect(report.violations.map((violation) => violation.code)).not.toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+  });
+
+  it('does not flag a non-complete stored status regardless of completion evidence', () => {
+    const folder = makeSpecFolder('910-status-not-complete');
+    writeFixtureWithForcedStatus(folder, null, ['- [ ] Open item'], 'in_progress');
+
+    const report = checkGeneratedMetadataIntegrity(folder);
+    expect(report.violations.map((violation) => violation.code)).not.toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+  });
+});
+
 describe('grandfather report mode arms', () => {
   it('resolves violations to non-blocking info under grandfather and error when enforced', () => {
     const report = {
@@ -201,5 +291,24 @@ describe('grandfather report mode arms', () => {
 
     process.env[GENERATED_METADATA_GRANDFATHER_ENV] = 'false';
     expect(isGeneratedMetadataGrandfatherEnabled()).toBe(false);
+  });
+
+  it('reads the status-completion-consistency gate flag, defaulting to report mode', () => {
+    // Inverse polarity from the other flags in this module: default-OFF (report mode)
+    // because a known repo-wide backlog of 213 already-mislabeled folders would otherwise
+    // immediately fail --strict for every session touching them the moment this ships.
+    delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
+    expect(isStatusCompletionConsistencyGateEnabled()).toBe(false);
+
+    process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = 'true';
+    expect(isStatusCompletionConsistencyGateEnabled()).toBe(true);
+
+    process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = '1';
+    expect(isStatusCompletionConsistencyGateEnabled()).toBe(true);
+
+    process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = 'false';
+    expect(isStatusCompletionConsistencyGateEnabled()).toBe(false);
+
+    delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
   });
 });
