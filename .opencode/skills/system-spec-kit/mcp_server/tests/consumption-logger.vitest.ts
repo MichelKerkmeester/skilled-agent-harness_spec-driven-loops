@@ -5,7 +5,7 @@
 // Covers: table creation, event logging, stats aggregation,
 // Pattern detection, fail-safe behavior, latency tracking.
 //
-// NOTE: logging is now gated by SPECKIT_CONSUMPTION_LOG (graduated, default ON).
+// NOTE: logging is gated by SPECKIT_CONSUMPTION_LOG and is inert by default.
 // Tests that exercise raw insert mechanics still use forceLogConsumptionEvent()
 // To bypass the flag check and hit the shared SQL path directly.
 
@@ -510,9 +510,32 @@ describe('T005: fail-safe behavior — logging errors never propagate', () => {
     }).not.toThrow();
   });
 
-  it('logConsumptionEvent inserts when the feature flag is unset (default ON)', () => {
+  it('logConsumptionEvent is inert when the feature flag is unset (default OFF)', () => {
     const prevFlag = process.env.SPECKIT_CONSUMPTION_LOG;
     delete process.env.SPECKIT_CONSUMPTION_LOG;
+
+    try {
+      const db = createTestDb();
+      logConsumptionEvent(db, {
+        event_type: 'search',
+        query: 'should-not-appear',
+        result_count: 5,
+      });
+      const rows = db.prepare('SELECT COUNT(*) as cnt FROM consumption_log').get() as { cnt: number };
+      expect(rows.cnt).toBe(0);
+      db.close();
+    } finally {
+      if (prevFlag === undefined) {
+        delete process.env.SPECKIT_CONSUMPTION_LOG;
+      } else {
+        process.env.SPECKIT_CONSUMPTION_LOG = prevFlag;
+      }
+    }
+  });
+
+  it('logConsumptionEvent inserts when the feature flag is explicitly enabled', () => {
+    const prevFlag = process.env.SPECKIT_CONSUMPTION_LOG;
+    process.env.SPECKIT_CONSUMPTION_LOG = 'true';
 
     try {
       const db = createTestDb();

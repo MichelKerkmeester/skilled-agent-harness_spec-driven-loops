@@ -294,8 +294,8 @@ function formatKValueReport(analysis: KValueAnalysisResult): KValueReport {
 
   // Sensitivity curve: compare score spread across the grid
   const avgScores = grid.map(r => r.avgScore);
-  const minAvg = Math.min(...avgScores);
-  const maxAvg = Math.max(...avgScores);
+  const minAvg = avgScores.reduce((minScore, score) => Math.min(minScore, score), Infinity);
+  const maxAvg = avgScores.reduce((maxScore, score) => Math.max(maxScore, score), -Infinity);
   const spread = maxAvg - minAvg;
 
   let sensitivityCurve: string;

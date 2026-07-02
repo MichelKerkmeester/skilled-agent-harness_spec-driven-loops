@@ -198,7 +198,10 @@ describe('Folder Scoring Tests (T506)', () => {
 
     it('T506-06b: Recency has highest weight', () => {
       const weights = mod.SCORE_WEIGHTS;
-      const maxWeight = Math.max(...Object.values(weights) as number[]);
+      const maxWeight = (Object.values(weights) as number[]).reduce(
+        (maxValue, weight) => Math.max(maxValue, weight),
+        -Infinity,
+      );
       expect(weights.recency).toBe(maxWeight);
     });
 

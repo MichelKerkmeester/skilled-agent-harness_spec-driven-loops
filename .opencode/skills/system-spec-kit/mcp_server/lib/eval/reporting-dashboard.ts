@@ -12,6 +12,9 @@
 //   - Read-only queries against eval DB (no writes).
 //   - Sprint labels inferred from metadata JSON or eval_run_id grouping.
 //   - Pure aggregation logic; DB access isolated to query functions.
+// Node stdlib
+import path from 'path';
+
 // External packages
 import type Database from 'better-sqlite3';
 
@@ -120,11 +123,23 @@ export interface DashboardReport {
  * Lazy DB accessor. Initializes eval DB if needed.
  * Safe to call repeatedly (initEvalDb is idempotent).
  */
+function resolveDefaultEvalDbDir(): string {
+  if (process.env.SPEC_KIT_DB_DIR || process.env.MEMORY_DB_DIR) {
+    return process.env.SPEC_KIT_DB_DIR || process.env.MEMORY_DB_DIR || '';
+  }
+
+  const packageOrDistDir = path.resolve(import.meta.dirname, '..', '..');
+  const packageRoot = path.basename(packageOrDistDir) === 'dist'
+    ? path.dirname(packageOrDistDir)
+    : packageOrDistDir;
+  return path.join(packageRoot, 'database');
+}
+
 // Use existing eval DB singleton first to avoid silently switching
 // away from a non-default/test eval DB when generating a dashboard.
 function getDb(): Database.Database {
   try { return getEvalDb(); } catch (_: unknown) { /* not yet initialized */ }
-  return initEvalDb();
+  return initEvalDb(resolveDefaultEvalDbDir());
 }
 
 /** Row shape from eval_metric_snapshots. */

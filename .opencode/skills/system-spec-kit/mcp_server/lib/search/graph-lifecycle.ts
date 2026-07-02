@@ -303,7 +303,7 @@ export function recomputeLocal(
 
     if (degreeRows.length === 0) return 0;
 
-    const maxDegree = Math.max(...degreeRows.map((r) => r.in_degree));
+    const maxDegree = degreeRows.reduce((maxInDegree, row) => Math.max(maxInDegree, row.in_degree), 0);
     if (maxDegree === 0) return 0;
 
     const updateStmt = db.prepare(`

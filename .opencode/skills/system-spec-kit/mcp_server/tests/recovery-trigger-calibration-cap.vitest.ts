@@ -100,7 +100,7 @@ describe('recovery trigger vs calibration cap (default-on)', () => {
     // so no healthy set can clear it on the calibrated value.
     const model = loadCalibrationModel(DEFAULT_MODEL_PATH);
     expect(model).not.toBeNull();
-    const maxY = Math.max(...model!.points.map((p) => p.y));
+    const maxY = model!.points.reduce((maxValue, point) => Math.max(maxValue, point.y), -Infinity);
     expect(maxY).toBeLessThan(0.4);
   });
 

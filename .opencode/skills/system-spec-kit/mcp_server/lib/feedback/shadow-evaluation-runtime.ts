@@ -153,7 +153,10 @@ function getRelevanceFeedback(
     memoryId: row.memory_id,
     raw: row.outcome_total - row.correction_total,
   }));
-  const maxAbsoluteSignalTotal = Math.max(...rawSignalTotals.map((row) => Math.abs(row.raw)), 0);
+  const maxAbsoluteSignalTotal = rawSignalTotals.reduce(
+    (maxTotal, row) => Math.max(maxTotal, Math.abs(row.raw)),
+    0,
+  );
 
   if (maxAbsoluteSignalTotal === 0) {
     // All adaptive signals are zero or perfectly cancel out — no useful label

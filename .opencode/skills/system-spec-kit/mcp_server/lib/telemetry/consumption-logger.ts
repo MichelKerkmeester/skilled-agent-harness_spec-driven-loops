@@ -7,7 +7,7 @@
 // And (via hooks) which results they actually use.
 //
 // Table: consumption_log
-// Feature flag: SPECKIT_CONSUMPTION_LOG (graduated, default ON)
+// Feature flag: SPECKIT_CONSUMPTION_LOG (default OFF)
 //
 // PRIVACY: raw query text is never stored. Each non-empty query is
 // stored as the first 16 hex chars of SHA-256(query) — a 64-bit
@@ -92,9 +92,11 @@ export interface ConsumptionPatternsOptions {
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * Returns true when SPECKIT_CONSUMPTION_LOG is enabled (graduated, default ON).
+ * Returns true only when SPECKIT_CONSUMPTION_LOG explicitly enables logging.
  */
 function isConsumptionLogEnabled(): boolean {
+  const rawFlag = process.env.SPECKIT_CONSUMPTION_LOG?.toLowerCase()?.trim();
+  if (rawFlag !== 'true' && rawFlag !== '1') return false;
   return isFeatureEnabled('SPECKIT_CONSUMPTION_LOG');
 }
 

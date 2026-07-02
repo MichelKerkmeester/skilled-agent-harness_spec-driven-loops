@@ -885,7 +885,10 @@ describe('Causal Edges (T043-T047, T128-T141)', () => {
       seedLinearChain(8);
       const maxDepth = 3;
       const chain = causalEdges.getCausalChain('1', maxDepth, 'forward');
-      const deepestDepth = Math.max(...flattenChain(chain).map((node) => node.depth));
+      const deepestDepth = flattenChain(chain).reduce(
+        (maxDepthSeen, node) => Math.max(maxDepthSeen, node.depth),
+        0,
+      );
       expect(deepestDepth).toBeLessThanOrEqual(maxDepth);
     });
   });

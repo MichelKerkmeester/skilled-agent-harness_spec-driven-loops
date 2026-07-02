@@ -722,7 +722,7 @@ function applyIntentWeights(
 
   // recency was previously ignored.
   // Parse timestamps, min/max normalize to [0,1], apply weights.recency.
-  // Use reduce instead of Math.max(...) to avoid stack overflow on large arrays.
+  // Use reduce instead of spread-based extrema to avoid stack overflow on large arrays.
   let minTs = Infinity;
   let maxTs = -Infinity;
   const timestamps: number[] = results.map(r => {

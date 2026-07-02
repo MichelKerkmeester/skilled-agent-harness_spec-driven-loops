@@ -169,7 +169,11 @@ describe('BM25 scope-then-limit stress behavior', () => {
       expect(results).toHaveLength(1_200);
       expect(results.every((result) => isInScope(docs.find((doc) => doc.id === Number(result.id))?.folder ?? ''))).toBe(true);
       expect(metadata.metadataBatchSizes.length).toBeGreaterThan(1);
-      expect(Math.max(...metadata.metadataBatchSizes)).toBeLessThanOrEqual(500);
+      const largestBatchSize = metadata.metadataBatchSizes.reduce(
+        (maxSize, size) => Math.max(maxSize, size),
+        0,
+      );
+      expect(largestBatchSize).toBeLessThanOrEqual(500);
     } finally {
       metadata.database.close();
     }

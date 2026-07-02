@@ -64,7 +64,7 @@ describe('A. RRF Score Normalization', () => {
     // Raw RRF scores with k=60 are well below 1.0 (typically 0.01–0.05 range)
     // The highest possible raw single-source score is 1/(60+1) ≈ 0.016
     // With convergence bonus it can reach ~0.13, but never 1.0 unless single result
-    const highestScore = Math.max(...results.map(r => r.rrfScore));
+    const highestScore = results.reduce((maxScore, row) => Math.max(maxScore, row.rrfScore), -Infinity);
     // Raw scores should be much less than 1.0 when multiple results exist
     // (normalization to 1.0 would require top score = 1.0 exactly)
     if (results.length > 1) {
@@ -132,8 +132,8 @@ describe('B. Composite Score Normalization', () => {
       expect(s).toBeLessThanOrEqual(1);
     }
     // Max should be 1.0 and min should be 0.0 after min-max normalization
-    expect(Math.max(...normalized)).toBeCloseTo(1.0, 5);
-    expect(Math.min(...normalized)).toBeCloseTo(0.0, 5);
+    expect(normalized.reduce((maxScore, score) => Math.max(maxScore, score), -Infinity)).toBeCloseTo(1.0, 5);
+    expect(normalized.reduce((minScore, score) => Math.min(minScore, score), Infinity)).toBeCloseTo(0.0, 5);
   });
 
   it('B2: normalizeCompositeScores returns unchanged scores when normalization disabled', () => {
@@ -277,7 +277,7 @@ describe('E. Feature Flag Independence', () => {
     const normalized = normalizeCompositeScores(scores);
 
     // Normalization should work independently
-    expect(Math.max(...normalized)).toBeCloseTo(1.0, 5);
+    expect(normalized.reduce((maxScore, score) => Math.max(maxScore, score), -Infinity)).toBeCloseTo(1.0, 5);
     expect(normalized).toHaveLength(3);
   });
 
@@ -331,8 +331,8 @@ describe('E. Feature Flag Independence', () => {
     normalizeRrfScores(results);
 
     const scores = results.map(r => r.rrfScore);
-    expect(Math.max(...scores)).toBeCloseTo(1.0, 5);
-    expect(Math.min(...scores)).toBeCloseTo(0.0, 5);
+    expect(scores.reduce((maxScore, score) => Math.max(maxScore, score), -Infinity)).toBeCloseTo(1.0, 5);
+    expect(scores.reduce((minScore, score) => Math.min(minScore, score), Infinity)).toBeCloseTo(0.0, 5);
   });
 
   it('E10: estimateResultTokens returns a positive number for a non-empty result', () => {

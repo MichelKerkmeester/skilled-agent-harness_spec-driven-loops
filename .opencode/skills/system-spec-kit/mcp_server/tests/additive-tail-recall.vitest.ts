@@ -55,7 +55,7 @@ describe('lane champion backfill', () => {
   it('appended champions score strictly below the weakest baseline hit', () => {
     const lanes = [{ lane: 'vector', results: [{ id: 50 }] }];
     const out = applyLaneChampionBackfill(baseline, lanes, true);
-    const weakestBaseline = Math.min(...baseline.map((r) => r.score));
+    const weakestBaseline = baseline.reduce((minScore, row) => Math.min(minScore, row.score), Infinity);
     const champion = out.results.find((r) => r.id === 50);
     expect(champion).toBeDefined();
     expect((champion as Row).score).toBeLessThan(weakestBaseline);
@@ -151,7 +151,7 @@ describe('deterministic multihop', () => {
 
   it('appended hop-2 doc scores strictly below the weakest baseline hit', () => {
     const out = applyDeterministicMultihop(hubBaseline, true, db);
-    const weakestBaseline = Math.min(...hubBaseline.map((r) => r.score));
+    const weakestBaseline = hubBaseline.reduce((minScore, row) => Math.min(minScore, row.score), Infinity);
     const appended = out.results.find((r) => r.id === 14) as Row;
     expect(appended.score).toBeLessThan(weakestBaseline);
   });

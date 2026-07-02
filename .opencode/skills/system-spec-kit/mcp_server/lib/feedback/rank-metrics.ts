@@ -159,7 +159,7 @@ export function computeKendallTau(
 export function computeNDCG(rankedItems: RankedItem[], k?: number): number {
   if (rankedItems.length === 0) return 0;
 
-  const cutoff = k ?? Math.max(...rankedItems.map((item) => item.rank));
+  const cutoff = k ?? rankedItems.reduce((maxRank, item) => Math.max(maxRank, item.rank), 0);
   const items = [...rankedItems]
     .sort((left, right) => left.rank - right.rank)
     .filter((item) => item.rank <= cutoff);

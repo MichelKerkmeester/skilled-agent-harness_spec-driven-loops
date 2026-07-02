@@ -158,7 +158,7 @@ describe('computeTfIdf', () => {
       'Papa quebec romeo sierra tango',
     ];
     const result = computeTfIdf(sentences);
-    const maxScore = Math.max(...result.map(r => r.score));
+    const maxScore = result.reduce((maxValue, row) => Math.max(maxValue, row.score), -Infinity);
     expect(maxScore).toBe(1);
     for (const r of result) {
       expect(r.score).toBeGreaterThanOrEqual(0);

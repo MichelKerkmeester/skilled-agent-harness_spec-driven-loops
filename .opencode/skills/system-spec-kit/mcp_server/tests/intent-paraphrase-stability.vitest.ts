@@ -223,7 +223,9 @@ describe('intent paraphrase stability corpus', () => {
       }));
       const intents = new Set(classifications.map(({ result }) => result.intent));
       const confidences = classifications.map(({ result }) => result.confidence);
-      const drift = Math.max(...confidences) - Math.min(...confidences);
+      const maxConfidence = confidences.reduce((maxValue, confidence) => Math.max(maxValue, confidence), -Infinity);
+      const minConfidence = confidences.reduce((minValue, confidence) => Math.min(minValue, confidence), Infinity);
+      const drift = maxConfidence - minConfidence;
 
       expect([...intents], `${group.name}: ${JSON.stringify(classifications)}`).toEqual([group.expectedIntent]);
       expect(drift, `${group.name}: confidence drift ${drift}`).toBeLessThan(MAX_CONFIDENCE_DRIFT);

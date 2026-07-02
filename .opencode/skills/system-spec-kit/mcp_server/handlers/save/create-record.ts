@@ -72,6 +72,13 @@ type ScopePostInsertMetadata = Partial<{
   session_id: string;
 }>;
 
+const SCOPE_COLUMNS = [
+  ['tenant_id', 'tenantId'],
+  ['user_id', 'userId'],
+  ['agent_id', 'agentId'],
+  ['session_id', 'sessionId'],
+] as const;
+
 export {
   deriveSourceKindFromContext,
   normalizeSourceKind,
@@ -105,6 +112,26 @@ function getParsedIdentityValue(parsed: ReturnType<typeof memoryParser.parseMemo
     }
   }
   return null;
+}
+
+function buildScopeWhereClauses(scope: MemoryScopeMatch): {
+  clauses: string[];
+  params: string[];
+} {
+  const clauses: string[] = [];
+  const params: string[] = [];
+
+  for (const [column, key] of SCOPE_COLUMNS) {
+    const value = normalizeScopeMatchValue(scope[key]);
+    if (value == null) {
+      clauses.push(`${column} IS NULL`);
+    } else {
+      clauses.push(`${column} = ?`);
+      params.push(value);
+    }
+  }
+
+  return { clauses, params };
 }
 
 export function resolveCreateRecordIdentity(
@@ -218,12 +245,10 @@ export function findSamePathExistingMemory(
   scope: MemoryScopeMatch = {},
   identityHints: CreateRecordIdentityHints = {},
 ): { id: number; title: string | null; content_hash?: string | null } | undefined {
-  const tenantId = normalizeScopeMatchValue(scope.tenantId);
-  const userId = normalizeScopeMatchValue(scope.userId);
-  const agentId = normalizeScopeMatchValue(scope.agentId);
-  const sessionId = normalizeScopeMatchValue(scope.sessionId);
-  const resolvedCanonicalFilePath = normalizeOptionalString(identityHints.canonicalFilePath) ?? canonicalFilePath;
   const resolvedFilePath = normalizeOptionalString(identityHints.targetDocPath) ?? filePath;
+  const resolvedCanonicalFilePath = normalizeOptionalString(identityHints.canonicalFilePath)
+    ?? normalizeOptionalString(canonicalFilePath)
+    ?? getCanonicalPathKey(resolvedFilePath);
   const resolvedAnchorId = normalizeOptionalString(identityHints.targetAnchorId);
   const hasIdentityOverride = resolvedCanonicalFilePath !== canonicalFilePath
     || resolvedFilePath !== filePath
@@ -232,41 +257,29 @@ export function findSamePathExistingMemory(
     || identityHints.targetDocPath !== undefined;
 
   const anchorClause = resolvedAnchorId !== null
-    ? 'AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))'
+    ? 'AND COALESCE(NULLIF(TRIM(anchor_id), \'\'), \'_\') = COALESCE(NULLIF(TRIM(?), \'\'), \'_\')'
     : hasIdentityOverride
       ? 'AND anchor_id IS NULL'
       : '';
+  const { clauses: scopeClauses, params: scopeParams } = buildScopeWhereClauses(scope);
 
   const params: Array<string | null> = [
     specFolder,
     resolvedCanonicalFilePath,
-    resolvedFilePath,
   ];
   if (resolvedAnchorId !== null) {
-    params.push(resolvedAnchorId, resolvedAnchorId);
+    params.push(resolvedAnchorId);
   }
-  params.push(
-    tenantId,
-    tenantId,
-    userId,
-    userId,
-    agentId,
-    agentId,
-    sessionId,
-    sessionId,
-  );
+  params.push(...scopeParams);
 
   return database.prepare(`
     SELECT id, title, content_hash
     FROM memory_index
     WHERE spec_folder = ?
       AND parent_id IS NULL
-      AND (canonical_file_path = ? OR file_path = ?)
+      AND COALESCE(NULLIF(canonical_file_path, ''), file_path) = ?
       ${anchorClause}
-      AND ((? IS NULL AND tenant_id IS NULL) OR tenant_id = ?)
-      AND ((? IS NULL AND user_id IS NULL) OR user_id = ?)
-      AND ((? IS NULL AND agent_id IS NULL) OR agent_id = ?)
-      AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+      AND ${scopeClauses.join('\n      AND ')}
     ORDER BY id DESC
     LIMIT 1
   `).get(...params) as { id: number; title: string | null; content_hash?: string | null } | undefined;

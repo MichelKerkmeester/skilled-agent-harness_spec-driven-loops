@@ -876,8 +876,8 @@ export function normalizeCompositeScores(scores: number[]): number[] {
   if (scores.length === 0) return [];
   if (!isCompositeNormalizationEnabled()) return scores;
 
-  // Use loop-based min/max instead of
-  // Math.max(...scores) / Math.min(...scores) which causes stack overflow on arrays
+  // Use loop-based min/max instead of spread-based extrema, which can overflow
+  // the call stack on arrays
   // Larger than ~100K elements (exceeds JS call-stack argument limit).
   let maxScore = -Infinity;
   let minScore = Infinity;

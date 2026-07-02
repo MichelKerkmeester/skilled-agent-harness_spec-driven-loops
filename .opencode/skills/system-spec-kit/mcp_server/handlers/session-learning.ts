@@ -204,6 +204,43 @@ function normalizeSessionId(value: string | null | undefined): string | null {
   return trimmed.length > 0 ? trimmed : null;
 }
 
+function addUniqueSpecFolderCandidate(candidates: string[], candidate: string): void {
+  if (candidate.length > 0 && !candidates.includes(candidate)) {
+    candidates.push(candidate);
+  }
+}
+
+function buildSpecFolderCandidates(specFolder: string): string[] {
+  const normalized = specFolder.replace(/\\/g, '/').replace(/\/+$/u, '').replace(/^\.\//u, '');
+  const candidates: string[] = [];
+  addUniqueSpecFolderCandidate(candidates, normalized);
+
+  const canonicalMarker = '.opencode/specs/';
+  const canonicalMarkerIndex = normalized.lastIndexOf(canonicalMarker);
+  if (canonicalMarkerIndex >= 0) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice(canonicalMarkerIndex + canonicalMarker.length));
+  }
+
+  const legacyMarker = '/specs/';
+  const legacyMarkerIndex = normalized.lastIndexOf(legacyMarker);
+  if (legacyMarkerIndex >= 0) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice(legacyMarkerIndex + legacyMarker.length));
+  }
+
+  if (normalized.startsWith('specs/')) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice('specs/'.length));
+  } else {
+    addUniqueSpecFolderCandidate(candidates, `specs/${normalized}`);
+    addUniqueSpecFolderCandidate(candidates, `.opencode/specs/${normalized}`);
+  }
+
+  return candidates;
+}
+
+function buildSpecFolderWhereClause(candidates: string[]): string {
+  return candidates.map(() => 'spec_folder = ?').join(' OR ');
+}
+
 function hasLegacyUniqueConstraint(database: Database): boolean {
   const row = database.prepare(`
     SELECT sql
@@ -688,11 +725,13 @@ async function handleGetLearningHistory(args: LearningHistoryArgs): Promise<MCPR
 
   try {
     const normalizedSessionId = normalizeSessionId(session_id);
+    const specFolderCandidates = buildSpecFolderCandidates(spec_folder);
+    const specFolderWhereClause = buildSpecFolderWhereClause(specFolderCandidates);
     let sql = `
       SELECT * FROM session_learning
-      WHERE spec_folder = ?
+      WHERE (${specFolderWhereClause})
     `;
-    const params: unknown[] = [spec_folder];
+    const params: unknown[] = [...specFolderCandidates];
 
     if (normalizedSessionId) {
       sql += ' AND session_id = ?';
@@ -774,9 +813,9 @@ async function handleGetLearningHistory(args: LearningHistoryArgs): Promise<MCPR
           AVG(CASE WHEN phase = 'complete' THEN delta_uncertainty END) as avg_uncertainty_reduction,
           AVG(CASE WHEN phase = 'complete' THEN delta_context END) as avg_context_improvement
         FROM session_learning
-        WHERE spec_folder = ?
+        WHERE (${specFolderWhereClause})
       `;
-      const summaryParams: unknown[] = [spec_folder];
+      const summaryParams: unknown[] = [...specFolderCandidates];
 
       if (normalizedSessionId) {
         summarySql += ' AND session_id = ?';

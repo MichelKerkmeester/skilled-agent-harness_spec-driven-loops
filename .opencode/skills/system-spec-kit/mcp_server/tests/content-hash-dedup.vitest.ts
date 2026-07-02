@@ -652,6 +652,39 @@ describe('T054: SHA256 Content-Hash Dedup (TM-02)', () => {
       expect(tenantBMatch).toBeUndefined();
       expect(tenantAMatch?.id).toBe(tenantAId);
     });
+
+    it('T054-6l: Same-path predecessor lookup does not match divergent file_path aliases', () => {
+      const folder = 'specs/divergent-predecessor';
+      const storedCanonicalPath = artifactPath(folder, 'implementation-summary.md');
+      const sharedAliasPath = artifactPath(folder, 'alias.md');
+      db.prepare(`
+        INSERT INTO memory_index (
+          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+        ) VALUES (?, ?, ?, ?, ?, 'success', NULL)
+      `).run(
+        folder,
+        sharedAliasPath,
+        storedCanonicalPath,
+        'Stored predecessor',
+        sha256('stored content'),
+      );
+
+      const divergentMatch = findSamePathExistingMemory(
+        db,
+        folder,
+        artifactPath(folder, 'tasks.md'),
+        sharedAliasPath,
+      );
+      const canonicalMatch = findSamePathExistingMemory(
+        db,
+        folder,
+        storedCanonicalPath,
+        sharedAliasPath,
+      );
+
+      expect(divergentMatch).toBeUndefined();
+      expect(canonicalMatch?.title).toBe('Stored predecessor');
+    });
   });
 
   /* ───────────────────────────────────────────────────────────────

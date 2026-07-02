@@ -267,7 +267,7 @@ describe('thinChunks — safety', () => {
     const result = thinChunks(chunks, 0.99);
     expect(result.retained.length).toBe(1);
     // The retained chunk should be the one with the highest score
-    const maxScore = Math.max(...result.scores.map(s => s.score));
+    const maxScore = result.scores.reduce((maxValue, score) => Math.max(maxValue, score.score), -Infinity);
     const retainedScore = result.scores.find(s => s.retained);
     expect(retainedScore).toBeDefined();
     expect(retainedScore!.score).toBe(maxScore);

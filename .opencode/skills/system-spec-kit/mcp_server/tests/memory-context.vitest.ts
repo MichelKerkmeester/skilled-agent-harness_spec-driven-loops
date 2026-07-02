@@ -414,7 +414,7 @@ describe('T031-T040: Quick Mode Configuration Tests [deferred - requires DB test
     const budgets: number[] = Object.entries(CONTEXT_MODES)
       .filter(([_k, v]: [string, ContextMode]) => v.tokenBudget !== undefined)
       .map(([_k, v]: [string, ContextMode]) => v.tokenBudget!);
-    const minBudget: number = Math.min(...budgets);
+    const minBudget: number = budgets.reduce((minValue, budget) => Math.min(minValue, budget), Infinity);
     expect(CONTEXT_MODES.quick.tokenBudget).toBe(minBudget);
   });
 
@@ -475,7 +475,7 @@ describe('T041-T050: Deep Mode Configuration Tests [deferred - requires DB test 
     const budgets: number[] = Object.entries(CONTEXT_MODES)
       .filter(([_k, v]: [string, ContextMode]) => v.tokenBudget !== undefined)
       .map(([_k, v]: [string, ContextMode]) => v.tokenBudget!);
-    const maxBudget: number = Math.max(...budgets);
+    const maxBudget: number = budgets.reduce((maxValue, budget) => Math.max(maxValue, budget), -Infinity);
     expect(CONTEXT_MODES.deep.tokenBudget).toBe(maxBudget);
   });
 

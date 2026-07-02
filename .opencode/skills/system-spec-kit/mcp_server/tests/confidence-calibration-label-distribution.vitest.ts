@@ -84,7 +84,7 @@ describe('confidence calibration — label distribution stays usable (default-on
     // Asserting it here documents WHY the label must not be derived post-calibration.
     const model = loadCalibrationModel(DEFAULT_MODEL_PATH);
     expect(model).not.toBeNull();
-    const maxY = Math.max(...model!.points.map((p) => p.y));
+    const maxY = model!.points.reduce((maxValue, point) => Math.max(maxValue, point.y), -Infinity);
     expect(maxY).toBeLessThan(0.4); // below LOW_THRESHOLD → all-"low" if banded on value
     // A dense sweep of inputs all map below the medium band.
     for (let x = 0; x <= 1.0001; x += 0.05) {
