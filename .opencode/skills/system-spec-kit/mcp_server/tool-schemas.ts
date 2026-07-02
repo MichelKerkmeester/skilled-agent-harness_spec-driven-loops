@@ -76,6 +76,8 @@ const TOOL_OWNER_BY_CATEGORY: Record<string, string> = Object.freeze({
   Maintenance: 'memory-maintenance',
 });
 
+const ALLOW_UNKNOWN_PARAMETERS = process.env.SPECKIT_STRICT_SCHEMAS === 'false';
+
 function readToolContract(definition: ToolDefinition): { level: string; category: string } {
   const match = /^\[([^:\]]+):([^\]]+)\]/.exec(definition.description);
   if (!match) {
@@ -212,7 +214,7 @@ export function lintToolOwnershipMapDrift(
 const memoryContext: ToolDefinition = {
   name: 'memory_context',
   description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most context-retrieval operations across indexed spec docs and constitutional rules. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search, use mcp__mk_code_index__code_graph_query for structural code queries (callers, imports) and Grep for exact text or token searches.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
 };
 
 // L2: Core - Primary operations (Token Budget: 3500)
@@ -221,7 +223,7 @@ const memorySearch: ToolDefinition = {
   description: '[L2:Core] Search indexed spec-doc continuity semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier rules are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search, use mcp__mk_code_index__code_graph_query for structural code queries (callers, imports) and Grep for exact text or token searches.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     'x-requiredAnyOf': [['query'], ['concepts'], ['cursor']],
     properties: {
       cursor: {
@@ -368,7 +370,7 @@ const memoryQuickSearch: ToolDefinition = {
   description: '[L2:Core] Lightweight wrapper around memory_search for query-only retrieval. Applies the quick-search defaults used by the runtime dispatcher: intent detection, deduplication, constitutional context, reranking, and inline content. Token Budget: 3500.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       query: { type: 'string', minLength: 2, maxLength: 1000, description: 'Natural language search query' },
       limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum number of results to return (1-100)' },
@@ -384,14 +386,14 @@ const memoryQuickSearch: ToolDefinition = {
 const memoryMatchTriggers: ToolDefinition = {
   name: 'memory_match_triggers',
   description: '[L2:Core] Fast trigger phrase matching with cognitive features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related spec-doc records. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching spec-doc records to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching spec-doc records to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
 };
 
 // Added asyncEmbedding parameter for non-blocking embedding generation
 const memorySave: ToolDefinition = {
   name: 'memory_save',
   description: '[L2:Core] Index a spec document or constitutional file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Routed saves write continuity into canonical spec documents (decision-record.md, implementation-summary.md, handover.md). Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to a spec document under specs/**/ or .opencode/specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. The spec-doc record is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, routeAs: { type: 'string', enum: ['narrative_progress', 'narrative_delivery', 'decision', 'handover_state', 'research_finding', 'task_update', 'metadata_only', 'drop'], description: 'Optional routing override hint for canonical continuity saves.' }, mergeModeHint: { type: 'string', enum: ['append-as-paragraph', 'insert-new-adr', 'append-table-row', 'update-in-place', 'append-section'], description: 'Optional merge-mode hint for routed canonical continuity saves.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: ['filePath'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to a spec document under specs/**/ or .opencode/specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. The spec-doc record is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, routeAs: { type: 'string', enum: ['narrative_progress', 'narrative_delivery', 'decision', 'handover_state', 'research_finding', 'task_update', 'metadata_only', 'drop'], description: 'Optional routing override hint for canonical continuity saves.' }, mergeModeHint: { type: 'string', enum: ['append-as-paragraph', 'insert-new-adr', 'append-table-row', 'update-in-place', 'append-section'], description: 'Optional merge-mode hint for routed canonical continuity saves.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: ['filePath'] },
 };
 
 const memorySaveProperties = memorySave.inputSchema.properties as Record<string, unknown>;
@@ -402,13 +404,13 @@ memorySaveProperties.targetAnchorId = { type: 'string', description: 'Optional t
 const memoryList: ToolDefinition = {
   name: 'memory_list',
   description: '[L3:Discovery] Browse stored spec-doc records with pagination. Use to discover what is indexed and find IDs for delete/update. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { limit: { type: 'number', default: 20, minimum: 1, maximum: 100, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, minimum: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' }, includeChunks: { type: 'boolean', default: false, description: 'Include chunk child rows. Default false returns parent spec-doc records only for cleaner browsing.' } } },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { limit: { type: 'number', default: 20, minimum: 1, maximum: 100, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, minimum: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' }, includeChunks: { type: 'boolean', default: false, description: 'Include chunk child rows. Default false returns parent spec-doc records only for cleaner browsing.' } } },
 };
 
 const memoryStats: ToolDefinition = {
   name: 'memory_stats',
   description: '[L3:Discovery] Get indexed-continuity statistics. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by indexed record count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by indexed record count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
 };
 
 const memoryHealth: ToolDefinition = {
@@ -416,7 +418,7 @@ const memoryHealth: ToolDefinition = {
   description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 1500.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       reportMode: {
         type: 'string',
@@ -466,7 +468,7 @@ const memoryDelete: ToolDefinition = {
   description: '[L4:Mutation] Delete a spec-doc record by ID or all spec-doc records in a spec folder. Use to remove incorrect or outdated information. Requires confirm:true for every mutation plus EITHER id (single delete) OR specFolder (bulk delete). Token Budget: 500.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     'x-requiredAnyOf': [['id', 'confirm'], ['specFolder', 'confirm']],
     properties: {
       id: { type: 'number', minimum: 1, description: 'Spec-doc record ID to delete (single delete mode, requires confirm: true)' },
@@ -479,7 +481,7 @@ const memoryDelete: ToolDefinition = {
 const memoryUpdate: ToolDefinition = {
   name: 'memory_update',
   description: '[L4:Mutation] Update an existing spec-doc record with corrections. Re-generates embedding if content changes. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Spec-doc record ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier rules always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' }, expectedHash: { type: 'string', minLength: 1, description: 'Optional compare-and-swap precondition for constitutional rows. When provided, the current content hash must match before the update is accepted.' } }, required: ['id'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { id: { type: 'number', minimum: 1, description: 'Spec-doc record ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier rules always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' }, expectedHash: { type: 'string', minLength: 1, description: 'Optional compare-and-swap precondition for constitutional rows. When provided, the current content hash must match before the update is accepted.' } }, required: ['id'] },
 };
 
 const memoryValidate: ToolDefinition = {
@@ -487,7 +489,7 @@ const memoryValidate: ToolDefinition = {
   description: '[L4:Mutation] Record validation feedback for a spec-doc record. Tracks whether spec-doc records are useful, updating confidence scores. Records with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       id: { type: 'number', minimum: 1, description: 'Spec-doc record ID to validate' },
       wasUseful: { type: 'boolean', description: 'Whether the spec-doc record was useful (true increases confidence, false decreases it)' },
@@ -507,19 +509,19 @@ const memoryValidate: ToolDefinition = {
 const memoryBulkDelete: ToolDefinition = {
   name: 'memory_bulk_delete',
   description: '[L4:Mutation] Bulk delete spec-doc records by importance tier. Use to clean up deprecated or temporary spec-doc records at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Supports optional checkpoint bypass for lower-risk tiers when speed is prioritized. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', const: true, description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', minimum: MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS, description: 'Optional: only delete spec-doc records older than this many days' }, skipCheckpoint: { type: 'boolean', default: false, description: 'Optional speed optimization for non-critical tiers. When true, skips auto-checkpoint creation before delete. Rejected for constitutional/critical tiers.' } }, required: ['tier', 'confirm'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', const: true, description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', minimum: MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS, description: 'Optional: only delete spec-doc records older than this many days' }, skipCheckpoint: { type: 'boolean', default: false, description: 'Optional speed optimization for non-critical tiers. When true, skips auto-checkpoint creation before delete. Rejected for constitutional/critical tiers.' } }, required: ['tier', 'confirm'] },
 };
 
 const memoryRetentionSweep: ToolDefinition = {
   name: 'memory_retention_sweep',
   description: '[L4:Mutation] Sweep expired governed spec-doc records where memory_index.delete_after is in the past. Supports dry-run mode for audit previews and records retention_expired audit metadata on deletion. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { dryRun: { type: 'boolean', default: false, description: 'When true, return expired candidates without mutating memory_index or related indexes.' } } },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { dryRun: { type: 'boolean', default: false, description: 'When true, return expired candidates without mutating memory_index or related indexes.' } } },
 };
 
 const memoryEmbeddingReconcile: ToolDefinition = {
   name: 'memory_embedding_reconcile',
   description: '[L4:Mutation] Reconcile memory_index.embedding_status against active vector coverage: flip vector-present failed/pending/retry rows to success, and optionally reset genuinely missing-vector retention failures to retry. Dry-run by default; resolves and verifies the active shard from runtime metadata and fails closed on mismatch. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: {
     mode: { type: 'string', enum: ['dry-run', 'apply'], default: 'dry-run', description: 'dry-run (default) previews buckets; apply mutates in one transaction.' },
     activeOnly: { type: 'boolean', default: true, description: 'Reserved / no-op. The active shard is always resolved and verified from runtime metadata (never a caller path); this flag has no runtime effect and is retained for contract stability.' },
     resetMissing: { type: 'boolean', default: true, description: 'Reset genuinely missing-vector retention failures to retry-eligible.' },
@@ -537,7 +539,7 @@ const checkpointCreate: ToolDefinition = {
   description: '[L5:Lifecycle] Create a named checkpoint of the current indexed-continuity store state for later restoration. Token Budget: 600.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       name: { type: 'string', minLength: 1, description: 'Unique checkpoint name' },
       specFolder: { type: 'string', description: 'Limit to specific spec folder' },
@@ -556,7 +558,7 @@ const checkpointList: ToolDefinition = {
   description: '[L5:Lifecycle] List all available checkpoints. Token Budget: 600.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       specFolder: { type: 'string', description: 'Filter by spec folder' },
       tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
@@ -572,7 +574,7 @@ const checkpointRestore: ToolDefinition = {
   description: '[L5:Lifecycle] Restore indexed-continuity store state from a checkpoint. Token Budget: 600.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       name: { type: 'string', minLength: 1, description: 'Checkpoint name to restore' },
       tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
@@ -589,7 +591,7 @@ const checkpointDelete: ToolDefinition = {
   description: '[L5:Lifecycle] Delete a checkpoint. Token Budget: 600.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       name: { type: 'string', minLength: 1, description: 'Checkpoint name to delete' },
       tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
@@ -609,13 +611,13 @@ const checkpointDelete: ToolDefinition = {
 const taskPreflight: ToolDefinition = {
   name: 'task_preflight',
   description: '[L6:Analysis] Capture epistemic baseline before task execution. Call at the start of implementation work to record knowledge, uncertainty, and context scores for learning measurement. Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
 };
 
 const taskPostflight: ToolDefinition = {
   name: 'task_postflight',
   description: '[L6:Analysis] Capture epistemic state after task execution and calculate learning delta. Call after completing implementation work. Calculates Learning Index: LI = (KnowledgeDelta x 0.4) + (UncertaintyReduction x 0.35) + (ContextImprovement x 0.25). Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (must match preflight)' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (must match preflight)' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task knowledge level (0-100)' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task uncertainty level (0-100)' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task context completeness (0-100)' }, gapsClosed: { type: 'array', items: { type: 'string' }, description: 'List of knowledge gaps closed during task (optional)' }, newGapsDiscovered: { type: 'array', items: { type: 'string' }, description: 'List of new gaps discovered during task (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier. Required when multiple sessions share the same taskId and you need to target a specific learning cycle.' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (must match preflight)' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (must match preflight)' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task knowledge level (0-100)' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task uncertainty level (0-100)' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task context completeness (0-100)' }, gapsClosed: { type: 'array', items: { type: 'string' }, description: 'List of knowledge gaps closed during task (optional)' }, newGapsDiscovered: { type: 'array', items: { type: 'string' }, description: 'List of new gaps discovered during task (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier. Required when multiple sessions share the same taskId and you need to target a specific learning cycle.' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
 };
 
 // Causal Memory Graph tools - L6: Analysis
@@ -623,13 +625,13 @@ const memoryDriftWhy: ToolDefinition = {
   name: 'memory_drift_why',
   description: '[L6:Analysis] Trace causal chain for a spec-doc record (causal-graph node) to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and causal-graph node relationships. Token Budget: 1200.',
   // oneOf removed from property definitions — Claude Code MCP client rejects nested oneOf in some cases
-  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Spec-doc record ID (causal-graph node) to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full spec-doc record details in results' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal traversal.' }, userId: { type: 'string', description: 'User boundary for governed causal traversal.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal traversal.' } }, required: ['memoryId'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { memoryId: { type: 'string', description: 'Spec-doc record ID (causal-graph node) to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full spec-doc record details in results' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal traversal.' }, userId: { type: 'string', description: 'User boundary for governed causal traversal.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal traversal.' } }, required: ['memoryId'] },
 };
 
 const memoryCausalLink: ToolDefinition = {
   name: 'memory_causal_link',
   description: '[L6:Analysis] Create a causal relationship between two spec-doc records (causal-graph nodes). Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { type: 'string', description: 'Source spec-doc record ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target spec-doc record ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal edge writes.' }, userId: { type: 'string', description: 'User boundary for governed causal edge writes.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal edge writes.' } }, required: ['sourceId', 'targetId', 'relation'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { sourceId: { type: 'string', description: 'Source spec-doc record ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target spec-doc record ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal edge writes.' }, userId: { type: 'string', description: 'User boundary for governed causal edge writes.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal edge writes.' } }, required: ['sourceId', 'targetId', 'relation'] },
 };
 
 const memoryCausalStats: ToolDefinition = {
@@ -637,11 +639,11 @@ const memoryCausalStats: ToolDefinition = {
   description: '[L6:Analysis] Get statistics about the causal-graph node store. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of spec-doc records linked (CHK-065). Optionally runs a bounded relation-inference backfill: omitting backfill or passing { dryRun: true } only previews candidate edges; passing { dryRun: false } commits bounded, idempotent, created_by=auto edges (this is the only write path on this tool). Token Budget: 1200.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       backfill: {
         type: 'object',
-        additionalProperties: false,
+        additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
         description: 'Optional bounded relation-inference backfill. Defaults to a dry run that only previews candidate edges; pass { dryRun: false } to commit bounded, idempotent, created_by=auto edges.',
         properties: {
           dryRun: { type: 'boolean', default: true, description: 'Preview candidate edges without committing. Default true; set false to write bounded auto edges.' },
@@ -660,7 +662,7 @@ const memoryCausalStats: ToolDefinition = {
 const memoryCausalUnlink: ToolDefinition = {
   name: 'memory_causal_unlink',
   description: '[L6:Analysis] Delete a causal edge between two spec-doc records (causal-graph nodes) by its edge ID. Use to correct an erroneous link created by memory_causal_link; find edge IDs via memory_drift_why (allEdges[].id) or the id returned by memory_causal_link. Returns { deleted: boolean }. Destructive — create a checkpoint first if the edge may need restoring. Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { edgeId: { type: 'number', minimum: 1, description: 'Positive integer ID of the causal edge to delete (from a memory_causal_link result or memory_drift_why allEdges[].id)' } }, required: ['edgeId'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { edgeId: { type: 'number', minimum: 1, description: 'Positive integer ID of the causal edge to delete (from a memory_causal_link result or memory_drift_why allEdges[].id)' } }, required: ['edgeId'] },
 };
 
 const evalRunAblation: ToolDefinition = {
@@ -668,7 +670,7 @@ const evalRunAblation: ToolDefinition = {
   description: '[L6:Analysis] Run a controlled channel ablation study (R13-S3) and optionally persist Recall@20 deltas to eval_metric_snapshots. Requires SPECKIT_ABLATION=true. Token Budget: 1200.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       mode: {
         type: 'string',
@@ -703,7 +705,7 @@ const evalReportingDashboard: ToolDefinition = {
   description: '[L6:Analysis] Generate R13-S3 reporting dashboard output with sprint/channel trend aggregation from eval DB metrics. Token Budget: 1200.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       sprintFilter: { type: 'array', items: { type: 'string' }, description: 'Optional sprint label filters.' },
       channelFilter: { type: 'array', items: { type: 'string' }, description: 'Optional channel filters.' },
@@ -719,7 +721,7 @@ const evalReportingDashboard: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed spec-doc files and index them. Useful for bulk indexing after creating multiple spec-doc files. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, background: { type: 'boolean', default: false, description: 'Run the scan as a background job; returns a jobId immediately instead of blocking. Poll with memory_index_scan_status and stop with memory_index_scan_cancel.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, background: { type: 'boolean', default: false, description: 'Run the scan as a background job; returns a jobId immediately instead of blocking. Poll with memory_index_scan_status and stop with memory_index_scan_cancel.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
 };
 
 const memoryIndexScanStatus: ToolDefinition = {
@@ -727,7 +729,7 @@ const memoryIndexScanStatus: ToolDefinition = {
   description: '[L7:Maintenance] Get current state and progress for a background memory_index_scan job started with background:true.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
     },
@@ -740,7 +742,7 @@ const memoryIndexScanCancel: ToolDefinition = {
   description: '[L7:Maintenance] Request cancellation of a running background memory_index_scan job. Cancellation is checked between files and at phase boundaries.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
     },
@@ -751,7 +753,7 @@ const memoryIndexScanCancel: ToolDefinition = {
 const memoryGetLearningHistory: ToolDefinition = {
   name: 'memory_get_learning_history',
   description: '[L7:Maintenance] Get learning history (PREFLIGHT/POSTFLIGHT records) for a spec folder. Shows knowledge improvement deltas and Learning Index trends. Use to analyze learning patterns across tasks within a spec. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { specFolder: { type: 'string', minLength: 1, description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
 };
 
 const memoryIngestStart: ToolDefinition = {
@@ -759,7 +761,7 @@ const memoryIngestStart: ToolDefinition = {
   description: '[L7:Maintenance] Start an async ingestion job for multiple markdown files. Returns immediately with a jobId, while files are processed sequentially in the background.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       paths: {
         type: 'array',
@@ -791,7 +793,7 @@ const memoryIngestStatus: ToolDefinition = {
   description: '[L7:Maintenance] Get current state and progress for an async ingestion job.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       jobId: { type: 'string', minLength: 1, description: 'Ingestion job identifier (required).' },
     },
@@ -804,7 +806,7 @@ const memoryIngestCancel: ToolDefinition = {
   description: '[L7:Maintenance] Cancel a running async ingestion job. Cancellation is checked between files.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       jobId: { type: 'string', minLength: 1, description: 'Ingestion job identifier (required).' },
     },
@@ -817,7 +819,7 @@ const embedderList: ToolDefinition = {
   description: '[L7:Maintenance] List registered embedding backends, active pointer state, and bounded readiness probe results.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {},
     required: [],
   },
@@ -828,7 +830,7 @@ const embedderSet: ToolDefinition = {
   description: '[L7:Maintenance] Select an embedding backend by manifest name and queue a background re-index job. Active pointer flips only after full success.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       name: { type: 'string', minLength: 1, description: 'Registered embedder manifest name to activate after re-index.' },
     },
@@ -841,7 +843,7 @@ const embedderStatus: ToolDefinition = {
   description: '[L7:Maintenance] Return progress for an embedder re-index job, or the latest active job when jobId is omitted.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       jobId: { type: 'string', minLength: 1, description: 'Optional embedder re-index job identifier.' },
     },
@@ -862,7 +864,7 @@ const embedderStatus: ToolDefinition = {
 const sessionHealth: ToolDefinition = {
   name: 'session_health',
   description: '[L3:Discovery] Check session readiness: priming status, code graph freshness, time since last tool call. Call periodically during long sessions to check for context drift. Returns ok/warning/stale with actionable hints. No arguments required.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: {}, required: [] },
 };
 
 // Composite session resume tool
@@ -871,7 +873,7 @@ const sessionResume: ToolDefinition = {
   description: '[L1:Orchestration] Resume session with combined memory and code graph status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, structural context, hints, and session-quality metadata without the full memory payload.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
       sessionId: { type: 'string', description: 'Optional session ID for targeted recovery (advanced)' },
@@ -887,7 +889,7 @@ const sessionBootstrap: ToolDefinition = {
   description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
   inputSchema: {
     type: 'object',
-    additionalProperties: false,
+    additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
     },

@@ -153,7 +153,7 @@ type Bm25TokenInterns = Map<number, string[]>;
  */
 function isBm25Enabled(): boolean {
   const value = process.env.ENABLE_BM25?.trim().toLowerCase();
-  if (!value) return true; // enabled by default
+  if (!value) return false;
   if (BM25_DISABLED_VALUES.has(value)) return false;
   return BM25_ENABLED_VALUES.has(value);
 }
