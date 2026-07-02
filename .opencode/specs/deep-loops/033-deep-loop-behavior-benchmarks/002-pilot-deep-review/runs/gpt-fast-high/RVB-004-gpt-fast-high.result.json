@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-004",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T11:00:46.062Z",
+  "endedAt": "2026-07-02T11:06:25.361Z",
+  "checkpoints": {
+    "tFirstOutputMs": 9989,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 339299
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/entity-normalization-consolidation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md",
+      ".opencode/skills/.goal-state/7365735f3064643832663566646666656d4d6c44544b32436f765937754d.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": 0
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-high/RVB-004-gpt-fast-high.transcript.jsonl"
+}

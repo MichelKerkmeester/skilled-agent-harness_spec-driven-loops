@@ -36,7 +36,7 @@
       "verification"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -154,20 +154,20 @@
         "source": "derived"
       },
       {
-        "name": "Capture Claude",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "provenance",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The framework needs proving against one real mode before its rubric and budgets are multiplied across five",
     "created_at": "2026-07-02T05:53:05.801Z",
-    "last_save_at": "2026-07-02T05:55:17.368Z",
+    "last_save_at": "2026-07-02T11:45:53.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dac4d1351781f748bdabdb1be365dcb4a490ce5a0f3dc6cc93902a80542d0692",
+    "source_fingerprint": "sha256:dc926740935e4c7d027067f2c5cd738200b9054698f3b395c5c7225f31cf8bb6",
     "source_doc_hashes": {
-      "spec.md": "fad010b2a5f2f1b495fa3bf982465f5835228e165104bd1cf6929ceb3d3d2dda",
-      "plan.md": "4381c88b24335e1519cee5ae0280a77e6658b0b931a88223c8b2f783884c7e6a",
-      "tasks.md": "c4be9d69526990cd6ce065855a42c54cbdf022dbfe1b7f526c41b15198d450dd",
-      "checklist.md": "3e2a81a2dd770ac2f33d89ff3588947258207001972ac2e2c3aba0e0fdcf573c",
-      "implementation-summary.md": "1c557b20f228008706fcf4cb608603db8905a69ce5548ccf079e070333025864"
+      "spec.md": "fd711876fd36baaf4af9d95cdf262c878a2cdbf2e46f93969367f3408196ad5f",
+      "plan.md": "2239ba222fc7d5d0d1a867b6881b8396a7e737375bf966d80043931e30c56763",
+      "tasks.md": "74645e6cfb983f7439d5286829ec6c4e976085d5e089fc1817c351b0a4a851f7",
+      "checklist.md": "0eae99cc5af6c0b606d7bdca7a72a71935c76c57738bd891f7277a688e8c00a0",
+      "implementation-summary.md": "ac4b98c2aea194047159c1c34c37c120b3ee3a02a9166a4a6c1086584a98d396"
     },
     "last_active_child_id": null,
     "last_active_at": null

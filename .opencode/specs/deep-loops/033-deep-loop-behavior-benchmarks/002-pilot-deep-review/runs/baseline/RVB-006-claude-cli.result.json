@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-006",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T07:23:23.237Z",
+  "endedAt": "2026-07-02T07:24:42.912Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2971,
+    "tSetupMs": 21837,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 79675
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/plugins/README.md",
+      "opencode/skills/sk-code/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 0,
+    "d2": 0,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline/RVB-006-claude-cli.transcript.jsonl"
+}

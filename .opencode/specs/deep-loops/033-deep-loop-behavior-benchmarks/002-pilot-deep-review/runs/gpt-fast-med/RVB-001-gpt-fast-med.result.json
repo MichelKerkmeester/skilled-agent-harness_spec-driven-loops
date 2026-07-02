@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-001",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T09:46:20.227Z",
+  "endedAt": "2026-07-02T10:02:25.966Z",
+  "checkpoints": {
+    "tFirstOutputMs": 13169,
+    "tSetupMs": 72509,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 965739
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/graph-concept-routing.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/hyde-speckit-hyde.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-complexity-router-r15.md",
+      ".opencode/skills/.goal-state/7365735f3064646337316332396666653362433955713643745939764c49.json",
+      ".opencode/skills/.loop-guard-state/",
+      ".opencode/skills/system-spec-kit/mcp_server/database/.maintenance-active.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "watchdog"
+  },
+  "classification": "stuck_no_progress",
+  "dimensions": {
+    "d1": 1,
+    "d2": 2,
+    "d3": 1,
+    "d4": 0,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-001-gpt-fast-med.transcript.jsonl"
+}

@@ -63,9 +63,10 @@ the same file are ignored by the runner and treated as prose illustrations.
 | `invocation` | object | `{ "kind": "command" \| "natural", "command": string \| null }`. `command` is null for natural-language entries. |
 | `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
 | `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
-| `expected_presentation_markers` | array | Literal strings or `/regex/` the visible output must contain. |
+| `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
 | `expected_delegation` | object | `{ "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool }`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
+| `watchdog_ms` | int (optional) | Overrides the default 120000 ms no-progress window. Cells that delegate to subagents legitimately go quiet for minutes while the LEAF works; calibrated to 480000 ms for autonomous deep-review cells. |
 | `notes` | string | Free text for the scorer. |
 
 ### Entry-surface codes

@@ -23,15 +23,24 @@ const WATCHDOG_TICK_MS = 5000;
 
 // Checkpoint / evidence regexes. Case-insensitive across observed streams.
 const SETUP_RE = /PRE-BOUND SETUP|execution_mode|consolidated setup|Setup Phase/i;
-const DISPATCH_RE = /"tool"\s*:\s*"task"|subagent_type|Deep Route:|target_agent=/i;
+// Dispatch detection matches only STRUCTURED tool-call signals: a claude
+// stream-json subagent tool_use block (tool name "Agent"; older hosts used
+// "Task"), or an opencode task tool event. The unescaped-quote form is the
+// structural discriminator: file contents the model merely reads appear
+// backslash-escaped inside tool_result strings, so loose keyword matching
+// false-positives on them while this form cannot.
+const DISPATCH_RE = /"name"\s*:\s*"(Agent|Task)"|"tool"\s*:\s*"task"/;
 const REFUSAL_RE = /refus|declin|cannot comply|not permitted|not allowed/i;
 
 // ── Leg spawn table (command parts WITHOUT the trailing prompt argument) ─────
+// Every leg skips permission prompts: a permission stall in a non-interactive
+// run would misclassify as stuck and corrupt the cell — permission UX is not
+// what this benchmark measures.
 const LEG_TABLE = {
-  'glm-max': ['opencode', 'run', '--model', 'zai-coding-plan/glm-5.2', '--variant', 'max'],
-  'gpt-fast-med': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'medium'],
-  'gpt-fast-high': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'high'],
-  'claude-cli': ['claude', '-p', '--output-format', 'stream-json', '--verbose'],
+  'glm-max': ['opencode', 'run', '--model', 'zai-coding-plan/glm-5.2', '--variant', 'max', '--dangerously-skip-permissions'],
+  'gpt-fast-med': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'medium', '--dangerously-skip-permissions'],
+  'gpt-fast-high': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'high', '--dangerously-skip-permissions'],
+  'claude-cli': ['claude', '-p', '--output-format', 'stream-json', '--verbose', '--dangerously-skip-permissions'],
 };
 
 function buildSpawnArgs(legName, contract) {
@@ -43,8 +52,13 @@ function buildSpawnArgs(legName, contract) {
   let promptText = contract.prompt;
 
   if (legName === 'claude-cli') {
-    // claude has no --command flag; the command text leads the prompt.
-    if (isCommandKind) promptText = commandStr + '\n' + promptText;
+    // claude has no --command flag; it invokes slash commands from prompt
+    // text, so the host command path ("deep/review") becomes the slash form
+    // ("/deep:review") on the prompt's first line.
+    if (isCommandKind) {
+      const slashForm = '/' + commandStr.replace(/\//g, ':');
+      promptText = slashForm + ' ' + promptText;
+    }
     return [...base, promptText];
   }
 
@@ -75,14 +89,17 @@ function parseScenario(filePath) {
   return obj;
 }
 
-// ── Presentation markers: /regex/ (case-insensitive) or literal substring ───
+// ── Presentation markers: /regex/ or /regex/flags (always case-insensitive),
+//    otherwise a literal substring ────────────────────────────────────────────
 function matchMarkers(markers, text) {
   const hits = [];
   for (const m of markers) {
     let matched;
-    if (m.length >= 2 && m.startsWith('/') && m.endsWith('/')) {
+    const re = /^\/(.+)\/([a-z]*)$/.exec(m);
+    if (re) {
       try {
-        matched = new RegExp(m.slice(1, -1), 'i').test(text);
+        const flags = re[2].includes('i') ? re[2] : re[2] + 'i';
+        matched = new RegExp(re[1], flags).test(text);
       } catch {
         matched = false;
       }
@@ -455,7 +472,12 @@ async function runOnce(args) {
     }
   }
 
-  const watchdogMs = args.watchdogMs != null ? args.watchdogMs : DEFAULT_WATCHDOG_MS;
+  // Watchdog precedence: CLI flag, then scenario contract, then default.
+  // Cells that delegate to subagents legitimately go quiet for minutes while
+  // the LEAF works, so their contracts carry a wider window than the default.
+  const watchdogMs = args.watchdogMs != null
+    ? args.watchdogMs
+    : (contract.watchdog_ms != null ? contract.watchdog_ms : DEFAULT_WATCHDOG_MS);
   const budgetMs = args.timeoutMs != null
     ? args.timeoutMs
     : (contract.budget_ms != null ? contract.budget_ms : DEFAULT_BUDGET_MS);

@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 001 complete (framework + harness + exit gate); phase 002 next"
-    next_safe_action: "Phase 002: author RVB package, capture baselines, run GPT legs"
+    recent_action: "Phase 002 pilot complete: 24 runs scored, scorecard published"
+    next_safe_action: "Phase 003: land the classifier-ordering retro item, then author RSB/CXB packages"
     blockers: []
     key_files:
       - "001-framework-and-harness/decision-record.md"
@@ -71,7 +71,7 @@ Program-level design decisions (package layout, contract/evidence separation, sc
 | Phase | Status | Purpose |
 |-------|--------|---------|
 | `001-framework-and-harness` | Complete | Scenario schema, 5-dimension rubric, 11-bucket classification taxonomy, budget + rerun policy, shared runner (spawn `opencode run --format json`, hard timeout, 120s no-progress watchdog, checkpoint + delegation-evidence extraction, fixture-isolation assertion), frozen fixture packets, and the two de-risking probes (baseline-executor availability; end-to-end smoke). Exit gate: one scenario runs end-to-end on the baseline leg producing a valid scored result JSON. |
-| `002-pilot-deep-review` | Planned | Author `deep-review/behavior_benchmark/` (RVB-001..008), capture Claude baselines, run both GPT legs (16 runs), score + classify, then a calibration retro that amends the framework BEFORE rollout. deep-review pilots because it has the richest precedent (031 phase 012 tested it; this repo's fan-outs exercise it constantly). |
+| `002-pilot-deep-review` | Complete | Author `deep-review/behavior_benchmark/` (RVB-001..008), capture Claude baselines, run both GPT legs (16 runs), score + classify, then a calibration retro that amends the framework BEFORE rollout. deep-review pilots because it has the richest precedent (031 phase 012 tested it; this repo's fan-outs exercise it constantly). |
 | `003-rollout-research-context` | Planned | Author + baseline + run `deep-research/behavior_benchmark/` (RSB-001..008) and `deep-context/behavior_benchmark/` (CXB-001..006) against the calibrated framework (28 GPT-leg runs). |
 | `004-rollout-council-improvement` | Planned | Author + baseline + run `deep-ai-council/behavior_benchmark/` (ACB-001..005) and `deep-improvement/behavior_benchmark/` (IMB-001..005) — multi-seat and improvement-host dispatch shapes, most expensive modes, hardened 25min budgets, fewest scenarios (20 GPT-leg runs). |
 | `005-scorecard-and-integration` | Planned | Cross-skill scorecard (5-mode x 3-executor matrix, bucket histograms, per-checkpoint latency ratios; explicitly confirm/refute packet 031's headline findings per mode), ranked remediation backlog, README/SKILL.md discoverability pointers in all five sub-skills, full-packet strict validation. |

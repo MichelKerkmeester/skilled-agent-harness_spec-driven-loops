@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-008",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T10:34:09.334Z",
+  "endedAt": "2026-07-02T10:34:29.797Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8454,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 20463
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "missing_artifact",
+  "dimensions": {
+    "d1": 0,
+    "d2": 2,
+    "d3": 0,
+    "d4": 1,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-008-gpt-fast-med.transcript.jsonl"
+}

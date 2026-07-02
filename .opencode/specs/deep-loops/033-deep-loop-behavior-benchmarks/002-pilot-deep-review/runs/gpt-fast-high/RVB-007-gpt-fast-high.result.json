@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-007",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T11:15:22.351Z",
+  "endedAt": "2026-07-02T11:40:23.372Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8639,
+    "tSetupMs": 66184,
+    "tFirstDispatchMs": 971340,
+    "tTerminalMs": 1501021
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 971340,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1782991893691,\"sessionID\":\"ses_0dd7596a5ffeKhrbQtXlYhF6YT\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_LWF8Ot7bRkdah5T70Hhfslbv\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Run review iteration\",\"prompt\":\"Execute one deep-review LEAF iteration for the already-initialized review packet. Do not dispatch any sub-agents. Do not modify reviewed target files. Read and follow the rendered prompt pack at `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/prompts/iteration-001.md`.\\n\\nRequired outputs:\\n- Write `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/iterations/iteration-001.md`.\\n- Append exactly one `type:\\\"iteration\\\"` record to `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-state.jsonl`.\\n- Write `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deltas/iter-001.jsonl`.\\n- Update only the strategy file at `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-strategy.md` if needed.\\n\\nReview target and scope:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/spec.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/plan.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/tasks.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/FIXTURE.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/src/slugify.js`\\n\\nFocus: correctness and spec-code traceability for iteration 1 of 1. The fixture says seeded imperfections are intentional; report findings only, do not fix them.\\n\\nThe iteration narrative must end with exactly one final line: `Review verdict: PASS`, `Review verdict: CONDITIONAL`, or `Review verdict: FAIL`. Return a concise completion summary naming files written and finding counts.\",\"subagent_type\":\"deep-review\",\"task_id\":\"\",\"command\":\"/deep:review:auto\"},\"output\":\"<task id=\\\"ses_0dd6dae2effeitU3vQONy8MjF0\\\" state=\\\"completed\\\">\\n<task_result>\\n## Review Iteration 1 Complete\\n\\nFocus: correctness and spec-code traceability for `src/slugify.js`\\n\\nFindings: 1 total — P0=0, P1=1, P2=0  \\nnewFindingsRatio: 1.0  \\nStatus: complete  \\nVerdict: CONDITIONAL\\n\\nFiles written:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/iterations/iteration-001.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-state.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deltas/iter-001.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-strategy.md`\\n\\nVerification:\\n- JSONL valid.\\n- Exactly one `type:\\\"iteration\\\"` state record present.\\n- Iteration narrative final line is `Review verdict: CONDITIONAL`.\\n- Reviewed target files were not modified.\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dd7596a5ffeKhrbQtXlYhF6YT\",\"sessionId\":\"ses_0dd6dae2effeitU3vQONy8MjF0\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Run review iteration\",\"time\":{\"start\":1782991442444,\"end\":1782991893684}},\"metadata\":{\"openai\":{\"itemId\":\"fc_04e08d0799fa265e016a464a3e249881919d979a50594e44aa\"}},\"id\":\"prt_f229202d9001B3jX3boQHj8Vmh\",\"sessionID\":\"ses_0dd7596a5ffeKhrbQtXlYhF6YT\",\"messageID\":\"msg_f2291c37d001vCKZfDUVSuK2mm\"}}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review",
+        "target_agent": "deep-review",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=review target_agent=deep-review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-causal-trust-display.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/post-save-quality-review.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/quality-gate-timer-persistence.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/reconsolidation-on-save-tm-06.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md",
+      ".opencode/skills/.goal-state/7365735f3064643735393661356666654b6872625174586c596846365954.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "hard_timeout"
+  },
+  "classification": "timeout_latency",
+  "dimensions": {
+    "d1": 1,
+    "d2": 2,
+    "d3": 2,
+    "d4": 0,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-high/RVB-007-gpt-fast-high.transcript.jsonl"
+}

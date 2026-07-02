@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-007",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T08:17:26.730Z",
+  "endedAt": "2026-07-02T08:39:45.249Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1991,
+    "tSetupMs": 16019,
+    "tFirstDispatchMs": 326956,
+    "tTerminalMs": 1338519
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 326956,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-fable-5\",\"id\":\"msg_01C7N7Pph5Wt8v8uhjQ7DXTX\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01DQs6A7L8Z6pTBs2f1mmYAA\",\"name\":\"Agent\",\"input\":{\"description\":\"Deep-review iteration 1 dispatch\",\"subagent_type\":\"deep-review\",\""
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review",
+        "target_agent": "deep-review",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=review target_agent=deep-review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/weight-history-audit-tracking.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/access-driven-popularity-scoring.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/classification-based-decay-tm-03.md",
+      ".opencode/skills/.goal-state/7365735f3064653038636661626666657630326f6a385872774f36614c35.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-007-claude-cli.transcript.jsonl",
+  "rescored": "structured-dispatch-detection"
+}

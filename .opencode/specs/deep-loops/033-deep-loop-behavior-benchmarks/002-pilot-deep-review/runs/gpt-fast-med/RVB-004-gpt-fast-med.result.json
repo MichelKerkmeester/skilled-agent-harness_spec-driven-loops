@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-004",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T10:09:28.938Z",
+  "endedAt": "2026-07-02T10:13:59.805Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8832,
+    "tSetupMs": 68185,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 270867
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-decomposition-speckit-query-decomposition.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-expansion-r12.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "watchdog"
+  },
+  "classification": "stuck_no_progress",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 0,
+    "d5": 1
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-004-gpt-fast-med.transcript.jsonl"
+}

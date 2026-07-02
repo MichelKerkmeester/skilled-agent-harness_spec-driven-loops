@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-001",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T10:35:16.618Z",
+  "endedAt": "2026-07-02T10:59:07.801Z",
+  "checkpoints": {
+    "tFirstOutputMs": 20463,
+    "tSetupMs": 113089,
+    "tFirstDispatchMs": 1077026,
+    "tTerminalMs": 1431183
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 1077026,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1782989593643,\"sessionID\":\"ses_0dd9a4edeffeV0ek5ItdgMLNG9\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_mAhA1LSGVL2ZaofBvULoFBgz\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Review fixture correctness\",\"prompt\":\"Execute exactly one deep-review LEAF iteration using the rendered prompt pack below. You are the `deep-review` LEAF agent for a single iteration only. Do not dispatch sub-agents or use Task. Do not modify review target files. Write only the allowed review packet artifacts named in the prompt: `review/iterations/iteration-001.md`, `review/deltas/iter-001.jsonl`, append exactly one `type:\\\"iteration\\\"` JSONL record to `review/deep-review-state.jsonl`, and update `review/deep-review-strategy.md`. End the iteration markdown with exactly one final line: `Review verdict: PASS`, `Review verdict: CONDITIONAL`, or `Review verdict: FAIL`.\\n\\nRendered prompt pack:\\n\\nSTATE SUMMARY (auto-generated):\\nIteration: 1 of 1\\nDimension: correctness\\nPrior Findings: P0=0 P1=0 P2=0\\nDimension Coverage: none (0/1)\\nTraceability: core=pending overlay=notApplicable\\nResource Map Coverage: resource-map.md not present; skipping coverage gate.\\nCoverage Age: 0\\nLast 2 ratios: N/A -> N/A\\nStuck count: 0\\nProvisional Verdict: PENDING hasAdvisories=false\\n\\nReview Target: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target\\nReview Mode: spec-folder\\nIteration: 1 of 1\\nFocus Dimension: correctness\\nFocus Files:\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/spec.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/plan.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/tasks.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/FIXTURE.md\\n- .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/src/slugify.js\\nRemaining Dimensions: correctness\\n\\nState Files:\\n- Config: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-config.json\\n- State: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-state.jsonl\\n- Registry: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-findings-registry.json\\n- Strategy: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deep-review-strategy.md\\n- Output: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/iterations/iteration-001.md\\n- Delta: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/review/deltas/iter-001.jsonl\\n\\nCONSTRAINT: LEAF agent -- do NOT dispatch sub-agents or use Task.\\nCONSTRAINT: Target files are READ-ONLY -- never modify code under review.\\nCONSTRAINT: You may write only the iteration artifact, the delta file, append exactly one iteration record to the state log, and update the strategy file.\\nCONSTRAINT: `src/slugify.js` is an intentional fixture and must not be fixed.\\n\\nBINDING: target=.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target\\nBINDING: maxIterations=1\\nBINDING: convergence=0.0\\nBINDING: mode=review\\nBINDING: dimensions=correctness\\nBINDING: specFolder=.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target\",\"subagent_type\":\"deep-review\",\"task_id\":\"\",\"command\":\"/deep:review:auto\"},\"output\":\"<task id=\\\"ses_0dd925db6ffeJ01WLbebMsq3w4\\\" state=\\\"completed\\\">\\n<task_result>\\n## Review Iteration 1 Complete\\n\\nFocus: correctness — max-length validity and input handling for `src/slugify.js`\\n\\nFindings: 1 total — P0=0, P1=1, P2=0  \\nnewFindingsRatio: 1.0\\n\\nDimensions completed / remaining: correctness / none\\n\\nEdge cases:\\n- Non-string input behavior ruled out as active finding because spec scopes expected inputs to short title strings.\\n- Fixture constraint preserved; `src/slugify.js` was not modified.\\n\\nIntegration evidence: none reviewed; packet states standalone utility.\\n\\nRecommended next focus: none; one-iteration run complete with active P1 carry-forward.\\n\\nFiles written:\\n- `review/iterations/iteration-001.md`\\n- `review/deltas/iter-001.jsonl`\\n- `review/deep-review-state.jsonl` appended one `type:\\\"iteration\\\"` record\\n- `review/deep-review-strategy.md` updated\\n\\nStatus: complete\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dd9a4edeffeV0ek5ItdgMLNG9\",\"sessionId\":\"ses_0dd925db6ffeJ01WLbebMsq3w4\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Review fixture correctness\",\"time\":{\"start\":1782989038203,\"end\":1782989593635}},\"metadata\":{\"openai\":{\"itemId\":\"fc_0bba0bd05283ef89016a4640cb4638819196388d66d971c2aa\"}},\"id\":\"prt_f226d1a050016aREUdkmCNjfzX\",\"sessionID\":\"ses_0dd9a4edeffeV0ek5ItdgMLNG9\",\"messageID\":\"msg_f226cf9f9001bvgcMTsaP43NPX\"}}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/context-save-index-update.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/deferred-lexical-only-indexing.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-schema-field-validation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/003-deep-loop-workflows/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/004-system-spec-kit/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/005-skill-interconnection/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/006-ux-observability-automation/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/007-testing/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/008-loop-systems-remediation/007-fan-out-hardening/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/002-fanout-timeout-override/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/005-packet-identity-cleanup/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/010-validate-sh-template-detection/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog/description.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/description.json",
+      ".opencode/skills/.goal-state/7365735f30646439323334306566666573613269446177744b5532324b49.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity/review/"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-high/RVB-001-gpt-fast-high.transcript.jsonl"
+}

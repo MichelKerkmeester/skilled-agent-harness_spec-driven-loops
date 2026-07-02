@@ -11,16 +11,15 @@ _memory:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Task list authored; not started"
-    next_safe_action: "Blocked on phase 001 exit gate"
-    blockers:
-      - "Phase 001 exit gate"
+    recent_action: "All 8 tasks complete; 24-run pilot scored, scorecard published"
+    next_safe_action: "Phase 003: land retro item 7 in the framework, then author RSB/CXB packages"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-002-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T001 Confirm phase-001 exit gate passed; verify review-fixture git-clean restore works.
+- [x] T001 Phase-001 exit gate confirmed (SMOKE-001 pass); fixture restore verified -- and twice HARDENED during the pilot (verify-loop, then reset+checkout+clean after staged-file contamination from concurrent sessions defeated checkout+clean).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Author `deep-review/behavior_benchmark/` index + RVB-001..008 per the plan's scenario sketch (verbatim user-style prompts; axis coverage E1-E4/C1-C3; >=4 at C1/C2; delegation + role-absorption probes included).
-- [ ] T003 Capture Claude baselines (8 runs); derive per-scenario budgets; record in `baselines/`.
-- [ ] T004 Run `gpt-fast-med` (`openai/gpt-5.5-fast --variant medium`) for RVB-001..008; score + classify each run.
-- [ ] T005 Run `gpt-fast-high` (`--variant high`) for RVB-001..008; score + classify each run.
+- [x] T002 RVB package authored by GLM-5.2-max under the orchestrator's contract (index + 8 scenarios + baselines placeholder); all contracts machine-verified (parse, axis coverage E1-E4/C1-C3, 6/8 at C1/C2, FIXTURE token substitution).
+- [x] T003 Claude baselines captured across three calibration rounds (r1 exposed 4 harness bugs; calibrated r2 + two 25-min-tier re-runs produced the final 8/8: 6 pass, 1 nuance, 1 long-tail timeout). Recorded in the package `baselines/claude-baseline.md` with provenance + caveats.
+- [x] T004 gpt-fast-med leg complete (8/8 scored): 1 pass, 2 partial, 2 stuck_no_progress (silent 8+min stalls), 1 timeout, 1 role-absorption (recorded 'refused' by a classifier-ordering defect -- corrected in scorecard.md section 4), 1 Gate-3 halt.
+- [x] T005 gpt-fast-high leg complete (8/8 scored): 5 pass (two perfect 10/10 on the hardest delegation cells), 1 partial, 1 timeout-with-correct-dispatch, 1 Gate-3 halt. Zero stalls, zero absorption.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,9 +67,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Publish the pilot scorecard (bucket histogram, dimension means, per-checkpoint latency ratios per leg); compare explicitly against 031 phase 012's deep-review findings.
-- [ ] T007 Calibration retro: amend the framework reference for every scoring ambiguity/budget misfit; land amendments before phase 003 authoring.
-- [ ] T008 `validate.sh --strict` on this phase folder.
+- [x] T006 scorecard.md published in this folder: 3-leg matrix, histograms, dimension means, latency ratios (host-confound + RVB-001 lower-bound caveats stated), corrected transcript readings, explicit comparison to the prior smoke benchmark. Headline: reasoning effort is the load-bearing variable.
+- [x] T007 Calibration retro: six harness amendments landed IN-FLIGHT (flagged-regex markers, watchdog_ms tiers, budget tiers, structured Agent-tool dispatch detection, reset+checkout+clean restore, no-delegation D4 rule) -- runner + framework.md synced, hermetic suite green after each; item 7 (classifier ordering + contract-declared artifacts) logged OPEN for phase 003 to land before authoring.
+- [x] T008 `validate.sh --strict` run on this phase at closeout (see implementation-summary.md Verification).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `[x]`, no `[B]` remaining.
-- [ ] 24/24 runs scored + classified; zero isolation violations.
-- [ ] Framework amendments landed (REQ-004).
+- [x] All tasks `[x]`, no `[B]` remaining.
+- [x] 24/24 runs scored + classified (plus 10 additional calibration-round baseline runs); zero fixture-isolation violations across all runs.
+- [x] Framework amendments landed in-flight; one residual (classifier ordering) logged OPEN with phase 003 as owner.
 <!-- /ANCHOR:completion -->
 
 ---

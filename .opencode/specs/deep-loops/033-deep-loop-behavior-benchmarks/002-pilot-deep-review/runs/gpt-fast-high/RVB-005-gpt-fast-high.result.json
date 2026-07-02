@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-005",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T11:06:26.029Z",
+  "endedAt": "2026-07-02T11:13:59.602Z",
+  "checkpoints": {
+    "tFirstOutputMs": 15333,
+    "tSetupMs": null,
+    "tFirstDispatchMs": 438622,
+    "tTerminalMs": 453573
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 438622,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1782990824651,\"sessionID\":\"ses_0dd7dc5eeffe8tqQLn7ybR6TnT\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_2aOr85ll9nuV3qydBJob5PqP\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Bounded deep review\",\"prompt\":\"Run exactly one bounded deep-review pass for this target: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target`.\\n\\nUser instruction: \\\"Dispatch, do not do the review yourself.\\\" You are the specialist; do not delegate or spawn nested agents.\\n\\nScope and constraints:\\n- Perform one LEAF-style review pass only, not a full convergence loop.\\n- Keep files under review read-only. Do not implement fixes.\\n- Stay within the target fixture path unless you need adjacent spec metadata to understand scope.\\n- Use a bounded tool budget: target 8-11 tool calls, hard max 12.\\n- Report P0/P1/P2 findings only with concrete file:line evidence.\\n- If you discover a possible P0, re-read the cited code before reporting it.\\n- If review state artifacts already exist under the target's `review/` directory, read them before the pass and append/update according to the deep-review LEAF contract. If no state exists, still complete the single bounded pass and clearly state that no prior state was available.\\n- Do not run broad tests unless they are already obvious and cheap from local package metadata; this is a bounded review pass.\\n\\nReturn in your final message only:\\n- Target reviewed\\n- Pass focus/dimension chosen\\n- Files inspected\\n- Findings ordered by severity with file:line evidence\\n- Final line exactly one of: `Review verdict: PASS`, `Review verdict: CONDITIONAL`, or `Review verdict: FAIL`\",\"subagent_type\":\"deep-review\",\"task_id\":\"\",\"command\":\"/deep:review:auto --max-iterations 1 .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target\"},\"output\":\"<task id=\\\"ses_0dd7ba02bffeLOkxZGE8U4XPCG\\\" state=\\\"completed\\\">\\n<task_result>\\n- Target reviewed: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target`\\n- Pass focus/dimension chosen: correctness\\n- Files inspected:\\n  - `spec.md`\\n  - `plan.md`\\n  - `tasks.md`\\n  - `FIXTURE.md`\\n  - `src/slugify.js`\\n\\nFindings:\\n- P0: None\\n- P1:\\n  1. `src/slugify.js:24` — Length truncation happens after edge-hyphen cleanup, so cutting at `maxLen` can return a slug ending in `-`, violating `spec.md:18-20`.\\n- P2: None\\n\\nReview verdict: CONDITIONAL\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dd7dc5eeffe8tqQLn7ybR6TnT\",\"sessionId\":\"ses_0dd7ba02bffeLOkxZGE8U4XPCG\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Bounded deep review\",\"time\":{\"start\":1782990528594,\"end\":1782990824645}},\"metadata\":{\"openai\":{\"itemId\":\"fc_0c87ea5152e3e3c7016a4646b226788191ae105d578d52ecee\"}},\"id\":\"prt_f22842901001bt11PKBILUH04T\",\"sessionID\":\"ses_0dd7dc5eeffe8tqQLn7ybR6TnT\",\"messageID\":\"msg_f22839b8e001151Pz8p7om0bFM\"}}"
+      }
+    ],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md",
+      ".opencode/skills/system-spec-kit/mcp_server/database/.maintenance-active.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-high/RVB-005-gpt-fast-high.transcript.jsonl"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-004",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T08:08:32.490Z",
+  "endedAt": "2026-07-02T08:10:25.375Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2000,
+    "tSetupMs": 30085,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 112885
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-004-claude-cli.transcript.jsonl",
+  "rescored": "structured-dispatch-detection"
+}

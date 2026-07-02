@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-005",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T08:10:25.833Z",
+  "endedAt": "2026-07-02T08:16:10.029Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1638,
+    "tSetupMs": null,
+    "tFirstDispatchMs": 70002,
+    "tTerminalMs": 344196
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 70002,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-fable-5\",\"id\":\"msg_0142CBcpzYFm6htsu9FazaYo\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01V44o2yPmWPmEHDLJbBNG6E\",\"name\":\"Agent\",\"input\":{\"subagent_type\":\"deep\",\"description\":\"Route bounded deep review pass\",\"prompt\":\""
+      },
+      {
+        "t": 138610,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-fable-5\",\"id\":\"msg_01Li3uEGknAoZBo8BQg2Hq7X\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01468JZCeZiNzCxVWvisgZac\",\"name\":\"Agent\",\"input\":{\"description\":\"Single deep-review fixture pass\",\"subagent_type\":\"general-purpose"
+      }
+    ],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/typed-weighted-degree-channel-r4.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "missing_artifact",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 1,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-005-claude-cli.transcript.jsonl",
+  "rescored": "structured-dispatch-detection"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-006",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T08:16:10.585Z",
+  "endedAt": "2026-07-02T08:17:26.137Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2048,
+    "tSetupMs": 26338,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 75552
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-006-claude-cli.transcript.jsonl",
+  "rescored": "structured-dispatch-detection"
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-007",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T10:24:28.735Z",
+  "endedAt": "2026-07-02T10:34:08.857Z",
+  "checkpoints": {
+    "tFirstOutputMs": 9314,
+    "tSetupMs": 73526,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 580122
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/auto-entity-extraction-r10.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/canonical-continuity-save-substrate.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "refused",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 1,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-007-gpt-fast-med.transcript.jsonl"
+}

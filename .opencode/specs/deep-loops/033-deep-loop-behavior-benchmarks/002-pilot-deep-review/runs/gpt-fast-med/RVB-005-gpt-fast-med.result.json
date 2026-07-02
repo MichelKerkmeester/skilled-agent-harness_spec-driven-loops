@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-005",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T10:14:00.304Z",
+  "endedAt": "2026-07-02T10:24:01.197Z",
+  "checkpoints": {
+    "tFirstOutputMs": 10758,
+    "tSetupMs": 76383,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 600893
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      },
+      {
+        "mode": "review"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/before-vs-after.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/changelog/README.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/changelog/changelog-156-root.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/timeline.md",
+      ".opencode/skills/.goal-state/7365735f306464616330363733666665575a64454e38437130536761677a.json",
+      ".opencode/skills/system-spec-kit/mcp_server/database/.maintenance-active.json",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/changelog/011-followup-remediation/",
+      ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/review/"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "hard_timeout"
+  },
+  "classification": "timeout_latency",
+  "dimensions": {
+    "d1": 1,
+    "d2": 2,
+    "d3": 1,
+    "d4": 0,
+    "d5": 1
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-005-gpt-fast-med.transcript.jsonl"
+}
