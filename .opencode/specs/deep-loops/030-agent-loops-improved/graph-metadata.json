@@ -13,7 +13,8 @@
     "deep-loops/030-agent-loops-improved/007-testing",
     "deep-loops/030-agent-loops-improved/008-loop-systems-remediation",
     "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
-    "deep-loops/030-agent-loops-improved/010-documentation-truth-audit"
+    "deep-loops/030-agent-loops-improved/010-documentation-truth-audit",
+    "deep-loops/030-agent-loops-improved/011-followup-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -42,21 +43,12 @@
       "deep-loop-runtime"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "research/research.md",
       "001-reference-research/research/research.md",
       "research/research_archive/20260701T071133Z-gen1/research.md",
-      "spec.md",
-      "research/lineages/glm/deep-research-findings-registry.json",
-      "research/lineages/gpt/deep-research-findings-registry.json",
-      "001-reference-research/plan.md",
-      ".opencode/specs/deep-loops/030-agent-loops-improved/spec.md",
-      "research/lineages/glm/iterations/iteration-001.md",
-      "research/lineages/glm/deep-research-state.jsonl",
-      "research/deep-research-findings-registry.json",
-      "research/fanout-attribution.md",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      "spec.md"
     ],
     "entities": [
       {
@@ -68,37 +60,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-findings-registry.json",
-        "kind": "config",
-        "path": "research/lineages/glm/deep-research-findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/lineages/glm/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/lineages/glm/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -109,6 +71,12 @@
       },
       {
         "name": "Agent Loops Improved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,12 +95,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Our",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -176,17 +138,17 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-01T18:45:10.873Z",
+    "last_save_at": "2026-07-02T14:08:03.739Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8a0310e9a572aac5563168caa03bf0e9477f0a4ab95c6b73cf61a695fa85c18a",
+    "source_fingerprint": "sha256:709aa64c6a79ff953df3bacd1ea2b5025c047f34e32444c5e5364c975519d935",
     "source_doc_hashes": {
-      "spec.md": "a1bd7717d98c4402ec92427503e9cb7010814d11daf9b59cabb85dc0ca4854f3",
-      "research/research.md": "73c2699967a24c01361151391beeff2996efff5e553a2b40283697a8d860b6d6"
+      "spec.md": "452af341c6a37cbca7516c681ed05ca3ead9daf60ed5fcc885dea63c39d3c2ec",
+      "research/research.md": "30526c8e7f59d82378678a8dd69576f025ea25c894888897192bf344ad8a3bc5"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-01T12:49:29.053Z"

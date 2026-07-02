@@ -93,7 +93,7 @@ Disallowed direction:
 |---|---|
 | `create.sh` | Creates new Level 1 or phase folders from templates. |
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
-| `validate.sh` | Runs the modular validation gate used before completion claims. |
+| `validate.sh` | Runs the modular validation gate used before completion claims. `run_node_orchestrator()` checks compiled `mcp_server` dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale — no silent auto-rebuild. |
 | `check-completion.sh` | Confirms checklist evidence before a task is called complete. |
 | `scaffold-debug-delegation.sh` | Generates `debug-delegation.md` handoff scaffolds from failure-trail input. |
 | `progressive-validate.sh` | Runs a staged validation pass for detect, fix, suggest and report flows. |

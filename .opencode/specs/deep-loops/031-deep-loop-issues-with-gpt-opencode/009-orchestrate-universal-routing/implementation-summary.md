@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-orchestrate-universal-routing` |
+| **Spec Folder** | 009-orchestrate-universal-routing |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

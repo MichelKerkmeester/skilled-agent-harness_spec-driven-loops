@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,11 +39,11 @@
       "repo"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "research/review-report.md",
-      "research/deep-research-state.jsonl",
       "spec.md",
+      "research/deep-research-state.jsonl",
+      "research/review-report.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
@@ -64,9 +64,9 @@
     ],
     "entities": [
       {
-        "name": "review-report.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "research/review-report.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,9 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "research/review-report.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures",
     "created_at": "2026-05-15T18:27:58.266Z",
-    "last_save_at": "2026-06-23T03:49:52.152Z",
+    "last_save_at": "2026-07-02T05:31:10.505Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

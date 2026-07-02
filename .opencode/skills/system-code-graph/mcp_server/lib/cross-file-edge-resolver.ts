@@ -48,6 +48,7 @@ function updateEdgeMetadata(
   rawMetadata: string | null,
   confidence: number,
   evidenceClass: CodeEdgeMetadata['evidenceClass'],
+  detectorProvenance?: CodeEdgeMetadata['detectorProvenance'],
 ): string {
   let metadata: CodeEdgeMetadata = {};
   if (rawMetadata) {
@@ -62,6 +63,7 @@ function updateEdgeMetadata(
     ...metadata,
     confidence,
     evidenceClass,
+    ...(detectorProvenance !== undefined ? { detectorProvenance } : {}),
   });
 }
 
@@ -143,9 +145,11 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
 
       if (candidates.length === 1) {
         if (confidenceDifferentiationEnabled) {
+          // Same-name-only match, not a verified import-target binding -- this is an
+          // inference (like the same-file candidate check), not a ground-truth extraction.
           updateTargetAndMetadata.run(
             candidates[0].symbol_id,
-            updateEdgeMetadata(edge.metadata, 0.9, 'EXTRACTED'),
+            updateEdgeMetadata(edge.metadata, 0.75, 'INFERRED'),
             edge.id,
           );
         } else {
@@ -157,7 +161,7 @@ export function resolveCrossFileCallEdges(): CrossFileCallResolutionStats {
 
       if (candidates.length > 1) {
         if (confidenceDifferentiationEnabled) {
-          updateMetadata.run(updateEdgeMetadata(edge.metadata, 0.3, 'AMBIGUOUS'), edge.id);
+          updateMetadata.run(updateEdgeMetadata(edge.metadata, 0.3, 'AMBIGUOUS', 'heuristic'), edge.id);
         }
         stats.ambiguousSkipped++;
       } else {

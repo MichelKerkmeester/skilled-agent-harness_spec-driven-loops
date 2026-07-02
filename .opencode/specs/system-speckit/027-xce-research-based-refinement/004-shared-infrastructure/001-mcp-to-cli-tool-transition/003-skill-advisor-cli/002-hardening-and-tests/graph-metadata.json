@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-parity.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-job-semantics.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
@@ -48,12 +49,17 @@
       ".opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-test-utils.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/tsconfig.tests.json",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "skill-advisor-cli-parity.vitest.ts",
         "kind": "test",
@@ -94,12 +100,6 @@
         "name": "tsconfig.tests.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/tsconfig.tests.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The reconcile verdict depends on scorer parity staying true, the orphan-launcher incident class has no regression fixture, and rebuild/scan mutation wall-time was never measured (read-only research residual)",
     "created_at": "2026-06-06T14:45:17Z",
-    "last_save_at": "2026-06-23T03:49:57.622Z",
+    "last_save_at": "2026-07-02T05:31:13.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

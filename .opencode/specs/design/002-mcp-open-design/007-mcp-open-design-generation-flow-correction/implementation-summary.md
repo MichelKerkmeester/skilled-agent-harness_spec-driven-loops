@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/007-mcp-open-design-generation-flow-correction |
+| **Spec Folder** | 007-mcp-open-design-generation-flow-correction |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

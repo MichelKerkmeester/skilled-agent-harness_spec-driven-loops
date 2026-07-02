@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `015-skill-doc-drift-remediation` |
+| **Spec Folder** | 015-skill-doc-drift-remediation |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -40,28 +40,16 @@
     "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-foundations/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,6 +66,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Router and registry wiring lags the landed design content in three modes",
     "created_at": "2026-06-27T05:42:27.063Z",
-    "last_save_at": "2026-06-27T07:13:35.883Z",
+    "last_save_at": "2026-07-02T05:31:07.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e561f85a92dcfcd573d685c2315579434ecb8dff8975e96d7049fbad0551420",
+    "source_fingerprint": "sha256:d6733d51638105562ee05ec716bb01e34ff5cd09a3ff954756634691b4a7bb64",
     "source_doc_hashes": {
-      "spec.md": "2750620954463cfa18ee2d59e15f7e745eae8b78516adad9ccf96abb1a693ace",
-      "plan.md": "eeb0823d94d673fa3694105f20efd4a65e4f856e91f29f67acb0c10e070464e2",
-      "tasks.md": "0e5f87f7f5b693ab8b885ab8bcbbed9f2536fe5f16250ef4789220f517a9ae72",
-      "checklist.md": "fff3d2d7d4af4d24633fef1d11daf671a5557ecc7909d013b8e23131209191f7",
-      "implementation-summary.md": "f6698726054d60e650b0026f9e72ad0971d5620cb4e9ee459894280bac0ac920"
+      "spec.md": "88eda96d9c6a8725f5fe4cdc0b4395371e7dcf94630c7131c8bebd6f2cc741ed",
+      "plan.md": "ffe33c58eaf359eb44b20d3fc3c93195c7952cfc3dfa38e3ca9604114bc1e0a2",
+      "tasks.md": "0c65ac9f4980569164cce6e3d1f48860e19760a0bf041c19343097de5785b1b4",
+      "checklist.md": "bea70754a3b24abcbdd74c8fde15548b519d26ad738b12fa7dc5cdf8df72f6bf",
+      "implementation-summary.md": "164592fa3a33a1b37de2e40420b054268604e5e10526f7e52ed0eddbdcc9b12e"
     },
     "last_active_child_id": null,
     "last_active_at": null

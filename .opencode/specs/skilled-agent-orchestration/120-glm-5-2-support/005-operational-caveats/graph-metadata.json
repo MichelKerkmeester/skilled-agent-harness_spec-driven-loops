@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The phase-1 profile records GLM-5.2's documented capabilities, but real dispatch behavior (reasoning-effort cost, thinking preservation, tool-streaming, broad-scope timeouts) is only knowable from use",
     "created_at": "2026-06-28T10:15:18.274Z",
-    "last_save_at": "2026-06-28T13:04:39.930Z",
+    "last_save_at": "2026-07-02T05:31:09.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02d1d347f34fe50670106c64eb674ae781b7e6d853ae9abf5ddd7bedfdf82a60",
+    "source_fingerprint": "sha256:f6aab390ca7811216303777f3c38ddd8ae41b223b4c235734ec160f7a19bdc86",
     "source_doc_hashes": {
-      "spec.md": "e91380d2b6e46683d8fef479f4a02855d47be9d78758e96a3fcbaeddf893cc1d",
-      "plan.md": "318544cc030a60abac8946e06515679b075284838acc0868821f13eb00672bf6",
-      "tasks.md": "7034b9f8b03cc1542b4e348b250647e608f4ad3d9ac8051641e14d4d20c31938",
-      "implementation-summary.md": "92e1fcaafca874ec573239441831d5a0e2789b05532821866273d00b5dfea601"
+      "spec.md": "23e276e9e05a82ba03d0f92a2cef3ae4c1769ba0f6fe6b8fb69450cc76c52ca7",
+      "plan.md": "0e41a0eeea66f6b5418371bae0c2892f6a27d1b27a2a4709befa55422086ee10",
+      "tasks.md": "17feb085da5d3a7367496eb173edc59f4a4353ffcf497d9aa011bb136baab019",
+      "implementation-summary.md": "72c25e623cea9249d4752bb7904009ed9caf84ac45cdfc26b719b5e194062170"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -14,7 +14,7 @@
     "restart",
     "process"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.815Z",
+  "lastUpdated": "2026-07-01T23:08:59.038Z",
   "specId": "004",
   "folderSlug": "run-now-control",
   "parentChain": [
@@ -25,5 +25,6 @@
     "006-ux-observability-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

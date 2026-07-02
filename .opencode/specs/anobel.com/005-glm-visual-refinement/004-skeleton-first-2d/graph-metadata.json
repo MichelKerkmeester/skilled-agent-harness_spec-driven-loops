@@ -41,6 +41,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/anobel.com/004-bento-visuals/research/iterations/iter-r2-A5.md",
+      ".opencode/specs/anobel.com/004-bento-visuals/research/iterations/iter-r2-A7.md",
       ".opencode/specs/anobel.com/004-bento-visuals/scratch/faithful-import/_audit.mjs",
       "tasks.md",
       "decision-record.md",
@@ -50,6 +52,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "iter-r2-A5.md",
+        "kind": "doc",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/research/iterations/iter-r2-A5.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-r2-A7.md",
+        "kind": "doc",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/research/iterations/iter-r2-A7.md",
+        "source": "derived"
+      },
       {
         "name": "_audit.mjs",
         "kind": "file",
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "caps",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "2D-positioned bento tiles fail because GLM-5.2 owns the geometry: it places N rows/nodes at fixed pixel heights with no constraint solver, so cumulative height exceeds the 480px height budget (RC-1), nodes/pills/text collide (RC-2), and the bottom title band is overrun when the diagram claims the whole canvas (RC-3) (`../../004-bento-visuals/research/research.md` §Root cause, rows RC-1..RC-3)",
     "created_at": "2026-06-29T10:50:49.264Z",
-    "last_save_at": "2026-06-29T10:50:49.264Z",
+    "last_save_at": "2026-07-02T05:31:03.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26a4dad848db66302b2482b01e440df85845c698f9a21692bf9356028dadfe27",
+    "source_fingerprint": "sha256:796ad8376d46d270dcc075b5fc84143d31fd86bd822dbba3feb0e5938b9876d9",
     "source_doc_hashes": {
       "spec.md": "f66b426e67f7e14a688cc8a830ffc6a2786de43c8b43d9634edac5792473982f",
       "plan.md": "6506ac184e37f90378acb6d37181d294afd9eafb03594aeaa3e470e838bffd89",
       "tasks.md": "abd3c1962c4522fc61ca567f258bc0cb1b375e42c789db87e12bd5fa610e82f9",
       "checklist.md": "b08bb5a2ca98b6ee022beae2f6046c8cfe4282453d96451c9b43c794ae939583",
       "decision-record.md": "94d5c67ee5d41ac5e6d2621b8ef195f85801072d1ce8df484f3be489e11851e0",
-      "implementation-summary.md": "35cbd34624430d77757508c00e6f65908a605f9d63ef67c5902ffc794d201a89"
+      "implementation-summary.md": "07ceff885b1682f91194718ea3de7663e61349237294d0cad0455c4eb90c0124"
     },
     "last_active_child_id": null,
     "last_active_at": null

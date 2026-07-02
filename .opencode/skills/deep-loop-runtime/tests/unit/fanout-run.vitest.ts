@@ -354,6 +354,64 @@ afterEach(() => {
 });
 
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
+const reviewWorkflowPaths = [
+  resolve(runtimeRoot, '..', '..', 'commands', 'deep', 'assets', 'deep_review_auto.yaml'),
+  resolve(runtimeRoot, '..', '..', 'commands', 'deep', 'assets', 'deep_review_confirm.yaml'),
+];
+
+type ReviewInitSessionIds = {
+  config: string;
+  stateLog: string;
+  findingsRegistry: string;
+};
+
+function extractSingleMatch(content: string, pattern: RegExp, label: string): string {
+  const match = pattern.exec(content);
+  expect(match, label).not.toBeNull();
+  return match?.[1] ?? '';
+}
+
+function renderReviewInitSessionIds(workflowPath: string, suppliedSessionId?: string): ReviewInitSessionIds {
+  const workflow = readFileSync(workflowPath, 'utf8');
+  const fallbackIsoNow = '2035-02-03T04:05:06.000Z';
+  const sessionIdInit = suppliedSessionId ?? fallbackIsoNow;
+
+  expect(workflow).toMatch(/user_inputs:[\s\S]*\n  session_id:/);
+  expect(workflow).toMatch(
+    /step_resolve_session_id:[\s\S]*session_id_init: "\{session_id\}"[\s\S]*session_id_init: "\{ISO_8601_NOW\}"/,
+  );
+  expect(workflow).not.toMatch(/sessionId:\s+"\{ISO_8601_NOW\}"/);
+  expect(workflow).not.toMatch(/"sessionId":"\{ISO_8601_NOW\}"/);
+
+  const configTemplate = extractSingleMatch(
+    workflow,
+    /step_create_config:[\s\S]*?sessionId:\s+"([^"]+)"/,
+    'config sessionId template',
+  );
+  const stateLogTemplate = extractSingleMatch(
+    workflow,
+    /step_create_state_log:[\s\S]*?content:\s+'([^']+)'/,
+    'state-log config record template',
+  );
+  const findingsRegistryTemplate = extractSingleMatch(
+    workflow,
+    /step_create_findings_registry:[\s\S]*?content:\s+'([^']+)'/,
+    'findings registry template',
+  );
+
+  const renderTemplate = (template: string) => template.replaceAll('{session_id_init}', sessionIdInit);
+  const extractJsonSessionId = (template: string, label: string) => extractSingleMatch(
+    renderTemplate(template),
+    /"sessionId":"([^"]+)"/,
+    label,
+  );
+
+  return {
+    config: renderTemplate(configTemplate),
+    stateLog: extractJsonSessionId(stateLogTemplate, 'state-log sessionId'),
+    findingsRegistry: extractJsonSessionId(findingsRegistryTemplate, 'findings registry sessionId'),
+  };
+}
 
 describe('fanout-run.cjs — computeLineageTimeoutMs lineage timeout override', () => {
   const { computeLineageTimeoutMs } = requireCjs(fanoutRunScript) as {
@@ -460,6 +518,107 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
       expect(input).toContain('--convergence=0.1');
       expect(input).toContain('convergenceThreshold: 0.1');
     }
+  });
+});
+
+describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
+  const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
+    buildLoopPrompt: (
+      loopType: 'research' | 'review' | 'context',
+      specFolder: string,
+      lineageDir: string,
+      sessionId: string,
+      lineage: { kind: 'cli-opencode'; label: string; model?: string },
+      researchTopic?: string,
+      options?: { stopPolicy?: string; convergenceThreshold?: number },
+    ) => string;
+  };
+
+  it('does not claim LEAF-agent identity while preserving loop phase instructions', () => {
+    for (const [loopType, agentName] of [
+      ['context', 'deep-context'],
+      ['research', 'deep-research'],
+      ['review', 'deep-review'],
+    ] as const) {
+      const prompt = buildLoopPrompt(
+        loopType,
+        'specs/test-fanout-loop-identity',
+        `/tmp/fanout-${loopType}-lineage`,
+        `fanout-${loopType}-run-123`,
+        { kind: 'cli-opencode', label: `${loopType}-seat`, model: 'opencode-go/glm-5.1' },
+        loopType === 'research' ? 'test research topic' : undefined,
+      );
+
+      expect(prompt).not.toContain(`You are a ${agentName} agent`);
+      expect(prompt).not.toContain(`${agentName} agent running a fan-out lineage`);
+      expect(prompt).toContain(
+        `You are orchestrating the ${agentName} workflow YAML as a detached fan-out lineage.`,
+      );
+      expect(prompt).toContain(
+        'Run phase_init, phase_main_loop (to legal convergence), and phase_synthesis.',
+      );
+    }
+  });
+});
+
+describe('fanout-run.cjs — review session id propagation templates', () => {
+  const { buildLineageCommand } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: { kind: 'native'; iterations?: number },
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options: {
+        loopType: 'review';
+        specFolder: string;
+        lineageDir: string;
+        sessionId?: string;
+      },
+    ) => { command: string; args: string[]; input: string };
+  };
+
+  it('uses a supplied session_id for review init artifacts and preserves the timestamp fallback', () => {
+    const suppliedSessionId = 'fanout-lineage-a-run-123';
+
+    for (const workflowPath of reviewWorkflowPaths) {
+      expect(renderReviewInitSessionIds(workflowPath, suppliedSessionId)).toEqual({
+        config: suppliedSessionId,
+        stateLog: suppliedSessionId,
+        findingsRegistry: suppliedSessionId,
+      });
+      expect(renderReviewInitSessionIds(workflowPath)).toEqual({
+        config: '2035-02-03T04:05:06.000Z',
+        stateLog: '2035-02-03T04:05:06.000Z',
+        findingsRegistry: '2035-02-03T04:05:06.000Z',
+      });
+    }
+
+    const withSession = buildLineageCommand(
+      { kind: 'native', iterations: 2 },
+      '',
+      'workspace-write',
+      'default',
+      {
+        loopType: 'review',
+        specFolder: 'specs/test-session-id',
+        lineageDir: '/tmp/fanout-lineage-a',
+        sessionId: suppliedSessionId,
+      },
+    );
+    const withoutSession = buildLineageCommand(
+      { kind: 'native', iterations: 2 },
+      '',
+      'workspace-write',
+      'default',
+      {
+        loopType: 'review',
+        specFolder: 'specs/test-session-id',
+        lineageDir: '/tmp/fanout-lineage-a',
+      },
+    );
+
+    expect(withSession.args.at(-1)).toContain(`session_id: ${suppliedSessionId}`);
+    expect(withoutSession.args.at(-1)).not.toContain('session_id:');
   });
 });
 

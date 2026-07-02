@@ -133,17 +133,17 @@
     ],
     "causal_summary": "Root packet for the sk-design-md-generator skill (a live-CSS to DESIGN.md extraction engine) and its research-driven anti-fabrication hardening. Phase children cover the original build, then the remediation phases derived from a 50-iteration deep-research loop.",
     "created_at": "2026-06-21T07:44:10Z",
-    "last_save_at": "2026-06-23T03:49:48.816Z",
+    "last_save_at": "2026-07-02T05:31:07.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:830cf33d73470824d8b0c99302b3efbd3cea8e48fa8afedc6d7596912d341a1a",
+    "source_fingerprint": "sha256:f4ac1904cc159ffe3667e349503ab8aaa143965a2f60e3c07d478c2bb7313b6b",
     "source_doc_hashes": {
-      "spec.md": "34e99c1f33042a344e380c53a82bbf7263392a6a698cb97715b1b00b19d8aaaa",
-      "research/research.md": "3016070c9233af17b6e62aff95ff2e192963b8303e31e6210244d2c45ed0fa7e"
+      "spec.md": "ee297860324673a51fe1c2ce11e0e747c9b675430e8819c4c2b97eb8e51804b7",
+      "research/research.md": "5b387730d904f318d5736bdef32d26b59fec471d57a93b571881ec106baf3286"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-22T17:09:52.853Z"

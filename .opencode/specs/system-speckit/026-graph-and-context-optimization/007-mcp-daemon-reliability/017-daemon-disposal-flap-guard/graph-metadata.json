@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "v3.5.0.2 fixed the Stop-hook cross-session kill but explicitly deferred the owner-shutdown/watchdog root causes",
     "created_at": "2026-06-07T12:55:23Z",
-    "last_save_at": "2026-06-23T03:49:56.529Z",
+    "last_save_at": "2026-07-02T05:31:12.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The live-variant numeric knobs (density, type-scale, color-amount, structure, pairing) were not a transport-facing contract",
     "created_at": "2026-06-28T12:40:06.038Z",
-    "last_save_at": "2026-06-29T12:07:45.054Z",
+    "last_save_at": "2026-07-02T05:31:07.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d228d980d2ec3fb6875b7cef89e50d32ec0f1aec560d30d79cf244fb4dc522ec",
+    "source_fingerprint": "sha256:db17d9d53a19746801a886433c9d09a5c04de809b3d0a2e1fd5eb2eca1155c30",
     "source_doc_hashes": {
-      "spec.md": "368928bb35fd6587064197fcf8c27c13a13176756fe3a529ae54bd414b38f083",
-      "plan.md": "6af40afc0ad32d4aa48fbe1390edac63a1e8143c300e018ec2260174c63d2264",
-      "tasks.md": "d61b534eb7d72e06fe88c65ef99364b427cb095891f9cec754db0c6b76694333",
-      "checklist.md": "923106636d2343fd56fb78e57f45eb0e8687a43564a8407ca0f78e91100eda45",
-      "implementation-summary.md": "9d47446b0bca7d9e7bbdceb9a5575a00bf72ae94a4d7dc757c3a7a6f4e47fc84"
+      "spec.md": "469f5311a8dce1f36e79563f983062c2ca78c4d57b7258d2d577ac23d7338be8",
+      "plan.md": "7e507ab9132f110d901be453127e2a821b8597770ae97255a4919ae969c81390",
+      "tasks.md": "c9f956062b99d15f38f6dce192ba3fe17d955ffb971ec97f0c572bcba8c6dd86",
+      "checklist.md": "51e506fe17afcdf2d24e2b7ac1e7bc382d28663fb0ec74eef71d30d8d1df4514",
+      "implementation-summary.md": "603982fbff7fd9c3bbd3abbee3517784723b1a4a57fefd26c2c362f907dd177e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-design family has been built up phase by phase, but each piece was validated alone",
     "created_at": "2026-06-25T12:41:17Z",
-    "last_save_at": "2026-06-25T21:26:18.004Z",
+    "last_save_at": "2026-07-02T05:31:07.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abed0d59302227f59aeae57bc5eaf71ab82a7cc88f7a9edf965977f0648d8550",
+    "source_fingerprint": "sha256:afdc834c6a7a0293fb16b1c72c82ce37633e6592ef4ba2caf2923fc169a6839e",
     "source_doc_hashes": {
-      "spec.md": "85b90bd59b0bbdee9946f8e7c983ed624ff31f6a1e84f7559542fb47f1788c2a",
-      "plan.md": "26c0a9d322d69014d89fafda005730e35b278e695faf4edcb4fb81b85029b1e1",
-      "tasks.md": "5dddcf0f1c2d04c0861ed6769fe22258a75774089817c60415a54f71feace4fb",
-      "implementation-summary.md": "1a6c0bea3d9e2c15891781310cee09763c580433509c2611380f7b804fd31ed9"
+      "spec.md": "c5d403d862c839aafa29ab6921815e1c66fad801a91222a6a29ad79d88d00150",
+      "plan.md": "e7d836df190d5e6eeafbcce8ac598e217accf40a8e61130307482e855c30bf80",
+      "tasks.md": "ab979008958d99e078084281bd1c989f942d32f94e547475f7bbda8e04a973b6",
+      "implementation-summary.md": "231161832d64cb0eec1da3addbd453d9e3fbec2b32d2e3f3e105cb02d81e421f"
     },
     "last_active_child_id": null,
     "last_active_at": null

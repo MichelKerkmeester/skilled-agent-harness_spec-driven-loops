@@ -1,33 +1,36 @@
 ---
-title: "Implementation Plan: Phase 4: apply-catalogs-and-playbooks [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 4 - Apply Catalogs and Playbooks"
+description: "Phase 4 planned the high-volume manifest-driven versioning pass for feature catalogs and manual testing playbooks. The phase is complete with all 1,753 root and leaf docs versioned and verified."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "apply catalogs playbooks plan"
+  - "testing playbook version plan"
+  - "feature catalog version plan"
+  - "full corpus versioning plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-apply-catalogs-and-playbooks"
-    last_updated_at: "2026-06-23T07:33:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/004-apply-catalogs-and-playbooks"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with authored phase plan"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/*/feature_catalog"
+      - ".opencode/skills/*/manual_testing_playbook"
+      - ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-apply-catalogs-and-playbooks"
+      session_id: "remediated-004-apply-catalogs-and-playbooks-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Roots and every per-feature leaf are versioned; none were skipped."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: apply-catalogs-and-playbooks
+# Implementation Plan: Phase 4 - Apply Catalogs and Playbooks
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--

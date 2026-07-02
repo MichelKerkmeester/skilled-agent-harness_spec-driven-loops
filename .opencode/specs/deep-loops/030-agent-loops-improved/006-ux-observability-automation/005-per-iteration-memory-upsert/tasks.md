@@ -1,32 +1,33 @@
 ---
-title: "Tasks: Phase 5: per-iteration-memory-upsert [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Per-Iteration Memory Upsert Hook"
+description: "Completed task ledger for the per-iteration memory upsert and context refresh hook."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "per iteration memory upsert"
+  - "memory upsert hook"
+  - "step memory upsert iteration"
+  - "incremental memory save"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-per-iteration-memory-upsert"
-    last_updated_at: "2026-06-28T14:02:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/006-ux-observability-automation/005-per-iteration-memory-upsert"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-per-iteration-memory-upsert"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 5: per-iteration-memory-upsert
+# Tasks: Per-Iteration Memory Upsert Hook
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm per-iteration save scope (`spec.md`).
+- [x] T002 Confirm reducer output supplies the canonical iteration evidence path (`deep_research_auto.yaml`).
+- [x] T003 [P] Keep Spec Kit Memory internals and fan-out worker upsert out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Insert `step_memory_upsert_iteration` after validate/reduce/graph-upsert (`deep_research_auto.yaml`).
+- [x] T005 Call `memory_save({filePath})` for the canonical iteration evidence file (`deep_research_auto.yaml`).
+- [x] T006 Refresh context with `memory_context` before the next prompt render (`deep_research_auto.yaml`).
+- [x] T007 Log MCP save failures as advisory and continue (`deep_research_auto.yaml`).
+- [x] T008 Preserve idempotent behavior for repeated iteration-file upserts (`deep_research_auto.yaml`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Verify memory upsert runs before next prompt render.
+- [x] T010 Verify mocked `memory_save` failure does not stop the loop.
+- [x] T011 Verify two completed iterations produce two incremental upsert attempts.
+- [x] T012 Update plan and task docs to reflect completed implementation (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +84,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +97,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

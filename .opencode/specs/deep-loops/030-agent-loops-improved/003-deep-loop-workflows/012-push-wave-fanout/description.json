@@ -18,7 +18,7 @@
     "another",
     "lineage"
   ],
-  "lastUpdated": "2026-07-01T15:48:15.406Z",
+  "lastUpdated": "2026-07-01T22:26:48.951Z",
   "specId": "012",
   "folderSlug": "push-wave-fanout",
   "parentChain": [
@@ -29,5 +29,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

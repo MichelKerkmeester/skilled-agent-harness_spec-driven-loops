@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The mcp-code-mode stdio MCP server (`mcpserver/index.ts`) connected its transport and never handled session end: no stdin-EOF handler, no transport-close handler, no parent watchdog",
     "created_at": "2026-06-11T16:30:00Z",
-    "last_save_at": "2026-06-23T03:49:57.842Z",
+    "last_save_at": "2026-07-02T05:31:13.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

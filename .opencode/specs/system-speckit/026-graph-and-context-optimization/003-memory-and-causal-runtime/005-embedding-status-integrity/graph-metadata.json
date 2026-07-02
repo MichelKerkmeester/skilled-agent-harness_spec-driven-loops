@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
       "mcp_server/lib/embedders/reindex.ts",
       "mcp_server/lib/providers/retry-manager.ts",
       "mcp_server/tests/embedder-reindex.vitest.ts",
@@ -59,13 +61,13 @@
       {
         "name": "reindex.ts",
         "kind": "code",
-        "path": "mcp_server/lib/embedders/reindex.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
         "source": "derived"
       },
       {
         "name": "retry-manager.ts",
         "kind": "code",
-        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
         "source": "derived"
       },
       {
@@ -203,7 +205,7 @@
     ],
     "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedderset`/reindex completion transaction writes vectors but never commits `memoryindex.embeddingstatus`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart",
     "created_at": "2026-05-27T03:52:02.042Z",
-    "last_save_at": "2026-06-23T03:49:55.388Z",
+    "last_save_at": "2026-07-02T05:31:12.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

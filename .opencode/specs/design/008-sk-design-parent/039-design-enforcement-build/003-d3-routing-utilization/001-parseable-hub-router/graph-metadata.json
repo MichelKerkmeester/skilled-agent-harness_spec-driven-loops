@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`router-replay.cjs` returns `parseable:false` on the `sk-design` parent hub",
     "created_at": "2026-06-28T12:39:59.407Z",
-    "last_save_at": "2026-06-28T13:44:55.662Z",
+    "last_save_at": "2026-07-02T05:31:08.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97e6f84a449f0e0772653ac12bc8ccf48de74109393973009d871b2cf7bec0cf",
+    "source_fingerprint": "sha256:1b070a2a29a9b93279d8b79891ee51f17cb748b421f93ecfc88fa35136beddd6",
     "source_doc_hashes": {
-      "spec.md": "c1598f9fa00a346a24587bb8d88749bc5f28943d6aedeb3c37f30ba937569f06",
-      "plan.md": "6211817026a7bc321879a2ca7963b568be467dbacd5bed3d2991add8b57d85ee",
-      "tasks.md": "d6c8b206217591a15af9264b1eaa0207b17633c3ee5f2ab23c276714e919a597",
-      "checklist.md": "55973281ecfe18f9d1dfacc1ab67ecb7559b96af44cf78c0d8fc0fe6468b5645",
-      "implementation-summary.md": "f1e5dc7377418298514afb05dfdffcfce15c6ea24a424e67f13d565d5b2a8181"
+      "spec.md": "0e61f93d0287eafb9285f49654ad9ec86bc725cb5416fadef5d8af6940f359d7",
+      "plan.md": "8402f65c3d3b40ed775b1d947015f8a90123cf26253ccdf233ab5426eebeeaa0",
+      "tasks.md": "e4444a8ec6d989dd224d79a9141ff2001010b4d8f70c9822db5e41cde598d176",
+      "checklist.md": "6bd3f362d14d8f4fc5a08d446f9b84df8f6bd95dc964fe617269cc14f1420b99",
+      "implementation-summary.md": "0a6e81c61b1dd692ffb0b51a23f3946f39136a19aede02ed3dcc6c5eaee32405"
     },
     "last_active_child_id": null,
     "last_active_at": null

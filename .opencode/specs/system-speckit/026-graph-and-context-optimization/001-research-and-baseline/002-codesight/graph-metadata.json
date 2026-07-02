@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,7 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "external/src/ast/loader.ts",
       "external/src/mcp-server.ts",
       "external/src/generators/ai-config.ts",
@@ -61,10 +62,15 @@
       "external/src/config.ts",
       "external/src/detectors/components.ts",
       "external/src/telemetry.ts",
-      "external/src/index.ts",
-      "external/src/detectors/middleware.ts"
+      "external/src/index.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "loader.ts",
         "kind": "code",
@@ -180,12 +186,6 @@
         "source": "derived"
       },
       {
-        "name": "middleware.ts",
-        "kind": "code",
-        "path": "external/src/detectors/middleware.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "`CodeEnvironment/Public` already has CocoIndex semantic search, Code Graph MCP for structural queries, and Spec Kit Memory for context preservation, but it lacks Codesight-style automated `CLAUDE.md` / `.cursorrules` / `codex.md` / `AGENTS.md` generation from a single project scan, per-AI-tool profile generation, and a blast-radius command built around reverse-import BFS",
     "created_at": "2026-04-12T09:02:53.446Z",
-    "last_save_at": "2026-06-23T03:49:53.112Z",
+    "last_save_at": "2026-07-02T05:31:11.024Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

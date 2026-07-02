@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -38,70 +38,21 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      "mcp_server/hooks/claude/compact-inject.ts",
-      "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/memory-surface.ts",
-      "mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
-      "tools/index.ts",
-      ".opencode/plugins/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "mcp_server/hooks/claude/compact-inject.ts",
+      "mcp_server/hooks/claude/session-prime.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "tools/index.ts",
+      ".opencode/plugins/README.md"
     ],
     "entities": [
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "compact-inject.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/compact-inject.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "freshness-smoke-check.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -130,6 +81,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local `codegraph/` paths",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-06-23T03:49:56.662Z",
+    "last_save_at": "2026-07-02T05:31:12.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [

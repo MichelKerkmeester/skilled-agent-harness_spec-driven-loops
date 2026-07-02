@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The general Agent I/O contract declares `status: optional-advisory` and states that absence of any dispatch header or result envelope is never a refusal condition, but it never names what the actual design-enforcement gate is",
     "created_at": "2026-06-28T12:40:08.795Z",
-    "last_save_at": "2026-06-29T08:53:31.790Z",
+    "last_save_at": "2026-07-02T05:31:08.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:196d1663d3aaf4237affecb7f9987259b41940d3678ba6ed19565f463d11f343",
+    "source_fingerprint": "sha256:5c0841b66a5f45ae05405eddf4e9622135d48615b7741d4ff905574d637a2086",
     "source_doc_hashes": {
-      "spec.md": "68000dea3bb8111699f8e4b427bf76f223a97202b4baf3059640da27a02ac1be",
-      "plan.md": "152fcb59221c7d962b44306e516be182230bd778ebc269afa656ac30cd2fb992",
-      "tasks.md": "21b524cbebb49147bb66a809a69803c3927085f4cf752b3b205922ea23740ebb",
-      "checklist.md": "032c1a20efd9553116593e89485638a2f9c097f97b2dce7e71fbe6feb1c8278a",
-      "implementation-summary.md": "aa090765f235363d48d4ecb6c5de17eea17566697a2456157cdd68dd08c48d1f"
+      "spec.md": "d2f8c008ca9f00bbeb7758b7e077d3b7201b44236640708cd430ca557dcc5a65",
+      "plan.md": "69bc26f8e6c02000db05ec77f83acce10c1f90e800f8606c15a37472eff75cc6",
+      "tasks.md": "471ee41673eadddc4403d02118d02abb56cc2ffaa928cce4b1975f0760d44ac4",
+      "checklist.md": "0f8fe584605bbc0de77e6b455ad51e1ba4822c1868f99fa28b303cdae4f934fe",
+      "implementation-summary.md": "125a0975deb030ece4d564c158789459a32a2d0ac415bf0e119cc8336eec1120"
     },
     "last_active_child_id": null,
     "last_active_at": null

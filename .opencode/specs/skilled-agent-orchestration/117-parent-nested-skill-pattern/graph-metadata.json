@@ -128,17 +128,17 @@
     ],
     "causal_summary": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five internal mode packets, with the packets deliberately non-discoverable (one advisor identity)",
     "created_at": "2026-06-15T09:09:33.215Z",
-    "last_save_at": "2026-06-23T03:49:48.786Z",
+    "last_save_at": "2026-07-02T05:31:08.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9f760359b78495deeed395ca50e69cb476ab83016dab3d1d3eb2572c18edab9d",
+    "source_fingerprint": "sha256:1a041c1671184bc8f2798dd3b4be71aa489929921f8ea1c44637caa50dc2386a",
     "source_doc_hashes": {
-      "spec.md": "fc97887e7dc31655086cbb6939af036bfe7d38d770eaa0ef228cf8343d06dad6",
-      "research/research.md": "0c146d45f983b9f17edc837a5c782f07aeda6c120ef33aa7f5b9434b04c394c3"
+      "spec.md": "a1b3d97292e29ba427319b62024612d8820704d0b1dc30a773d00dda46727fb0",
+      "research/research.md": "f1853af645124e477486f76943137266e38692775019ae35a58342010ed87e2d"
     },
     "last_active_child_id": "skilled-agent-orchestration/117-parent-nested-skill-pattern/004-improvement-implementation",
     "last_active_at": "2026-06-15T14:54:58.382Z"

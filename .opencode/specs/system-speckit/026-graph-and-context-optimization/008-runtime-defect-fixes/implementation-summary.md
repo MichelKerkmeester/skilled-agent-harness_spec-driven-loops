@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-graph-and-context-optimization/008-runtime-defect-fixes |
+| **Spec Folder** | 008-runtime-defect-fixes |
 | **Completed** | 2026-06-06 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

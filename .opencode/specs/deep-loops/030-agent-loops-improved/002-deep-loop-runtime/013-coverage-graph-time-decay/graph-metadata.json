@@ -15,14 +15,8 @@
       "signal decay weighting",
       "stale convergence signal",
       "decay-days configuration",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "013-coverage-graph-time-decay summary"
+      "013-coverage-graph-time-decay summary",
+      "013-coverage-graph-time-decay"
     ],
     "key_topics": [
       "coverage-graph",
@@ -34,11 +28,11 @@
       "convergence",
       "decay-days",
       "configuration",
-      "implementation",
-      "plan",
-      "name"
+      "013-coverage-graph-time-decay",
+      "summary",
+      "old"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Coverage Graph Time Decay",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Derived",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Old FINDING/SOURCE nodes accumulate in the coverage graph and continue to exert full convergence force long after their evidence is stale; this causes premature stop signals on runs that revisit old territory",
     "created_at": "2026-06-28T14:02:01Z",
-    "last_save_at": "2026-07-01T15:47:37.104Z",
+    "last_save_at": "2026-07-01T21:52:50.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4e3a7b697430c32a737fbdd48144b8d930a4cd5654cae5597720a58ce7f1cf8",
+    "source_fingerprint": "sha256:a416df05ed47412e3a576c04f9a8d60483f95eab50ad0142eed6788461dd1625",
     "source_doc_hashes": {
       "spec.md": "bd86efe4204738438a37e843f8edcb9f22cd5c267079e935cd421910196eabde",
-      "plan.md": "49f23afc3b0b9d17ebeacabc587aa64dc3ab5a931fd5120993ea971b01d6e4b0",
-      "tasks.md": "74a68fea3b27b09587f30651f526c9f8d39153f1a623000e8450fa6be9c50614",
+      "plan.md": "14ef7f517b3dcbfe6a08a88e29d867b0e050e02993920105fc7fa8b6e076bf7e",
+      "tasks.md": "417905c35195aba82b82cd0062d90a83865f7f49a3e51afd1ae42e7aeabfe280",
       "implementation-summary.md": "ee8fbf490e40cb423e1df517c184ec6cc9998e13458cd66d47a36a424c6a794c"
     },
     "last_active_child_id": null,

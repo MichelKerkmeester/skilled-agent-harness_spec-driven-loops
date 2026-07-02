@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
       ".opencode/commands/design/interface.md",
@@ -48,13 +52,33 @@
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
       ".opencode/skills/sk-design/command-metadata.json",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "audit.md",
         "kind": "doc",
@@ -101,30 +125,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "All five `/design:` wrappers (`audit`, `foundations`, `interface`, `md-generator`, `motion`) shipped the identical placeholder `argument-hint: \"<design request>\"`",
     "created_at": "2026-06-28T12:40:01.216Z",
-    "last_save_at": "2026-06-28T16:11:36.820Z",
+    "last_save_at": "2026-07-02T05:31:08.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b12bf1bdbc28f8693bc62a04474961809466b97dbdfd1ea4db30d839ce93f8e",
+    "source_fingerprint": "sha256:6d6a04b3d29925673e34d42aee2c7a00a20587eca6ee8b4ddbf295379eebc082",
     "source_doc_hashes": {
-      "spec.md": "837827ae69728ecd4f65ff2583f84d2b32aead53157bb5a36eacb7468aa99e08",
-      "plan.md": "f34ae5e634337f00868c5dca4ae7b64989b751f7c1f688f26ef1f3d55a946a80",
-      "tasks.md": "357a2330102bd81a463dd7eea67a9f7a2fd2c01c26b0c25f5dab0e079c0563f4",
-      "checklist.md": "5a681115b157cb8cd8c6d82e850dcc6381b9504dab929b27681e325952f6bc5c",
-      "implementation-summary.md": "36e120004f1968cbe1b9e1774b6320a2d6c57899629e3579588c816faefdd4c9"
+      "spec.md": "64215c1b78e0053ad4c3fe8a451856153314ffc84667a7d9add09a95e5b6c786",
+      "plan.md": "24b1e7ea00a32119d10d18c07e7528e6146a8a52bbed447f24bd0b93b2c5b511",
+      "tasks.md": "d13195821508a23e8eaea0243182420855821b05627724b0c2ec32c56a9834fe",
+      "checklist.md": "a1369a6d84ce722ff26c6137f33480e66146658dfe68b58f08cd57bff9d9bfd8",
+      "implementation-summary.md": "2bdac311bdc8a680be3bbf8611ace1437ba2168bc15aa7308f553d2010b72ff5"
     },
     "last_active_child_id": null,
     "last_active_at": null

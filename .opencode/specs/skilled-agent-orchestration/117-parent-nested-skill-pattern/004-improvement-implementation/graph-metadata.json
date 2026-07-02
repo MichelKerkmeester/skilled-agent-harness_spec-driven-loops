@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".github/workflows/routing-registry-drift.yml",
-      ".opencode/.gitignore",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/.gitignore",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -59,15 +59,15 @@
         "source": "derived"
       },
       {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".opencode/.gitignore",
-        "source": "derived"
-      },
-      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 5-iteration improvement research found the deep-loop architecture is sound but the C-plus routing guarantee is aspirational (the drift-guard test exists but nothing runs it; the guard + `/doctor` are hardcoded to the canonical skill, so a 2nd parent skill's `advisorRouting` is inert + unguarded), the runtime is \"MCP-free in name but parasitic on `system-spec-kit`'s nodemodules\", loop-locking is inconsistent (prose-only / missing across modes), and a set of low-regret hardening gaps exist",
     "created_at": "2026-06-15T14:54:56.469Z",
-    "last_save_at": "2026-06-23T03:49:48.809Z",
+    "last_save_at": "2026-07-02T05:31:08.549Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd4607d9e6efa154b6c2b27046020b42c5ae2abf92848319bc85d548c74a4e98",
+    "source_fingerprint": "sha256:1eaa5d60e3cb409061263cd7be34af64dd9b42e3b806b9e0a585952a7d8018a4",
     "source_doc_hashes": {
-      "spec.md": "b2b7310ac7b6c0e909596cc726c35f7a57c158b4c8c5adcdba10d87baf87afec",
-      "plan.md": "8775661b1c4bbfde6ec4eda6a9533ec18b0e6fde03858dc0ac4f1d234a5e9b11",
-      "tasks.md": "939057a5b25d0e5b327c669911fa61903a0b486f67c947c9d4eb2fb947c7bbd6",
-      "checklist.md": "81f16d47564029630640b9947abb10f72c4236766bb312814cd40b70e6effc63",
-      "decision-record.md": "9dfae8b0aef74bb1db47a39a99f9409e74f10698032f6252b5c12d00945e470e",
-      "implementation-summary.md": "513cbeb2f58516aba622584395642ad64d348e5f181cffa3cb36eb696e00a79c"
+      "spec.md": "b01a0cf85ae6ad90e6d52a190603b7ea9a73ff917c54ebd0d5f0609b885a0bc9",
+      "plan.md": "16ee73076961e8d390767c1a5d6bc14bd1e96acc17552cd66ad76ed72e7175fe",
+      "tasks.md": "bba0664ae5b61e174c90e22a6c856f7415e05a9179b2c36324695f308f4927fc",
+      "checklist.md": "7b270c305bff89d2afc5e7532bc91d88e27ff33c408072d442a058b7fb91792c",
+      "decision-record.md": "3116b7f25da3600bf93eb48c99caa984bc524e828c22a4312233c3c09d6c1bd9",
+      "implementation-summary.md": "beba51e659dfc3e27728dd4dbc4641c9bcd0be79a235a85c6e4eee4cfcaaff92"
     },
     "last_active_child_id": null,
     "last_active_at": null

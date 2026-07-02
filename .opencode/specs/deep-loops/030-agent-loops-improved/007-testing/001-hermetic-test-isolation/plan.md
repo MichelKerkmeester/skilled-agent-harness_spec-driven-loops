@@ -1,42 +1,36 @@
 ---
-title: "Implementation Plan: Phase 1: hermetic-test-isolation [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Hermetic Test Isolation (HOME/Temp-Dir + Child Env)"
+description: "Documents the completed hermetic test environment helper and fanout-run wiring work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "hermetic test isolation"
+  - "spawn-cjs helper"
+  - "test isolation home dir"
+  - "vitest parallel isolation"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hermetic-test-isolation"
-    last_updated_at: "2026-06-28T14:02:24Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/007-testing/001-hermetic-test-isolation"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hermetic-test-isolation"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hermetic-test-isolation
+# Implementation Plan: Hermetic Test Isolation (HOME/Temp-Dir + Child Env)
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +41,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript vitest helpers and deep-loop-runtime test files |
+| **Framework** | Vitest thread-pool execution with child process helpers |
+| **Storage** | Per-test temporary HOME, DB path, temp directory, and child env |
+| **Testing** | Parallel vitest run, real-path write audit, strict spec validation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work added a shared `createHermeticEnv()` helper that isolates HOME, database paths, temp directories, and child process environment per test. `fanout-run.vitest.ts` now uses the helper so parallel tests cannot touch real operator paths or cross-contaminate each other's state.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +56,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear: tests shared real HOME, database, and temp paths.
+- [x] Success criteria measurable: parallel tests have unique temp roots and no real-path writes.
+- [x] Dependencies identified: this leaf is the testing foundation for record-replay and stateful deep-loop changes.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `spawn-cjs.ts` exports `createHermeticEnv()` with isolated HOME, DB path, temp dir, and child env.
+- [x] Hermetic cleanup removes per-test temp trees after each test.
+- [x] `fanout-run.vitest.ts` uses a unique hermetic env per test.
+- [x] Parallel vitest execution passes without touching real HOME or `database/` paths.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +73,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Per-test sandbox helper: every test receives a unique temp root and child environment overrides, so spawned CommonJS scripts and runtime helpers resolve paths into isolated directories.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`createHermeticEnv(testId)`**: Builds isolated HOME, database, temp, and child-env values for a test.
+- **`HermeticEnv.cleanup()`**: Deletes the temp tree after the test completes.
+- **Child env injection**: Ensures spawned scripts receive HOME, database path, and temp overrides.
+- **`fanout-run.vitest.ts` wiring**: Applies the helper to fan-out tests that exercise state and lock behavior.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each test calls `createHermeticEnv()`, passes the generated environment into child process helpers, and runs scripts against isolated paths. After assertions complete, cleanup removes the temp tree, leaving the real HOME and project database paths untouched.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +90,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| `spawn-cjs.ts` | Shared child process test helper | Add `createHermeticEnv()` and cleanup | Parallel test dirs are unique |
+| Child process env | Controls script path resolution | Inject HOME, DB, and temp overrides | Spawned scripts write under temp root |
+| `fanout-run.vitest.ts` | Exercises fan-out runtime behavior | Use hermetic env per test | Thread-pool run passes |
+| Real operator paths | Must remain untouched | Audit hard-coded HOME/database references | No writes to real paths |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +104,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and confirm test-infrastructure-only scope.
+- [x] Audit `database/`, `~`, and home-dir references in test targets.
+- [x] Confirm record-replay cassette harness depends on this isolation layer.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `createHermeticEnv(testId)` to `spawn-cjs.ts`.
+- [x] Return isolated HOME, DB path, temp dir, and child env values.
+- [x] Add cleanup handling for per-test temp directories.
+- [x] Wire `fanout-run.vitest.ts` to use a hermetic env per test.
+- [x] Ensure spawned child processes inherit the isolated environment.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify two parallel tests use different HOME and DB paths.
+- [x] Verify `fanout-run.vitest.ts` passes under vitest thread-pool mode.
+- [x] Verify file-system audit finds no writes to real HOME or project `database/` paths.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +128,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Unique hermetic env paths and cleanup behavior | Vitest helper tests |
+| Integration | `fanout-run.vitest.ts` with hermetic child env | `vitest run --pool=threads` |
+| Audit | Real HOME and `database/` path avoidance | File-system path inspection |
+| Spec validation | Leaf packet structure | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +141,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| No predecessor leaf | Internal | Complete | This leaf establishes the testing isolation floor |
+| Record-replay cassette harness | Internal successor | Complete | Cassette recording needs hermetic paths for safe fixtures |
+| Production runtime changes | Out of scope | Not required | Only test helper and test wiring changed |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +151,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Hermetic env still writes to real paths, cleanup leaks temp trees, or fanout tests fail under parallel execution.
+- **Procedure**: Revert the `spawn-cjs.ts` helper additions and `fanout-run.vitest.ts` wiring, then disable parallel execution for affected tests until isolation is repaired.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

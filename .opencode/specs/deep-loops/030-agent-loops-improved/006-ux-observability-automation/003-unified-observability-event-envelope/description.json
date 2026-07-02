@@ -10,7 +10,7 @@
     "native",
     "format"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.951Z",
+  "lastUpdated": "2026-07-01T23:08:58.915Z",
   "specId": "003",
   "folderSlug": "unified-observability-event-envelope",
   "parentChain": [
@@ -21,5 +21,6 @@
     "006-ux-observability-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

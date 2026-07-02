@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,18 +41,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/tools/README.md",
       "mcp_server/package.json",
@@ -63,6 +62,12 @@
       "resource-map.md"
     ],
     "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,12 +90,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "Packets 031-036 and 037/001-005 changed the current documentation surface: the MCP registry is now 54 tools, `matrixrunners/` and `stresstest/` are live folders, `advisorrebuild` is a public Skill Advisor tool, and the stress suites moved out of `tests/`",
     "created_at": "2026-04-29T16:19:08.000Z",
-    "last_save_at": "2026-06-23T03:49:52.490Z",
+    "last_save_at": "2026-07-02T05:31:10.696Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -16,13 +16,13 @@
       "numstat gated edit count",
       "version dry-run manifest",
       "idempotent version insert",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "derivation engine plan",
+      "frontmatter version engine plan",
+      "numstat gated plan",
+      "version manifest plan",
+      "derivation engine tasks",
+      "frontmatter version engine tasks",
+      "numstat gated tasks"
     ],
     "key_topics": [
       "derivation",
@@ -41,12 +41,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "frontmatter-version.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -138,19 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,19 +170,13 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a CSV",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -194,7 +196,7 @@
     ],
     "causal_summary": "Computing the correct version for ~2,500 files by hand is infeasible and unsafe",
     "created_at": "2026-06-23T07:33:09Z",
-    "last_save_at": "2026-06-25T09:22:07.665Z",
+    "last_save_at": "2026-07-02T05:43:32.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ef5ffca61e50baa6c2bdee894d173de45dfc70fc59a693fbc04cc57952ce352",
+    "source_fingerprint": "sha256:b206bc2f0fb016843498692bf8b5868a7a01c8c627375263b60506f064b73dcc",
     "source_doc_hashes": {
-      "spec.md": "441e56ed969956a3adfa96220f2b0d248cfd89d7bdaae1afb796df8b2b3a124e",
-      "plan.md": "3162ebedf82b313cb0bb5a9de99da67205c1f1b3e1afc1cc97385c441f8618fb",
-      "tasks.md": "1d75919a4342261f4c0e6c65794803fd26c7955682d490ac0ec8c69e13c5b5bb",
-      "implementation-summary.md": "139e0167068e94e5cea3175fcb35c6e3a25968ea5e8e7b6f439595e9a9f08309"
+      "spec.md": "71eb3ba982d24fa415fbe1cefea92e449508ab1229bf55b87804da428efb200d",
+      "plan.md": "77c2eeed4320c6e4ff87b09a3465756691eb382e27322b70d868ec37849bf472",
+      "tasks.md": "7345c137a07208305e050f936f6e671699cfc12db8c085284c97d5349e5bc51e",
+      "implementation-summary.md": "ada02053662a6a7ea4a36994a3bcd40340341dad93da48cd516d06a8e3211972"
     },
     "last_active_child_id": null,
     "last_active_at": null

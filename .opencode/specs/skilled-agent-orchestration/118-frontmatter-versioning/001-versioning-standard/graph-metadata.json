@@ -16,13 +16,13 @@
       "sk-doc version required",
       "version derivation spec",
       "create command version emit",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "versioning standard plan",
+      "phase 1 version plan",
+      "sk-doc version field plan",
+      "frontmatter version rollout",
+      "versioning standard tasks",
+      "phase 1 version tasks",
+      "sk-doc version field tasks"
     ],
     "key_topics": [
       "versioning",
@@ -42,6 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
+      ".opencode/skills/sk-doc/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/scripts/package_skill.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +54,18 @@
         "name": "frontmatter_templates.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/package_skill.py",
         "source": "derived"
       },
       {
@@ -145,19 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,20 +177,14 @@
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "completed",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "no",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -195,7 +197,7 @@
     ],
     "causal_summary": "sk-doc owns the frontmatter standard, templates, validators, and `create:` generators, but `version` is only documented as an optional SKILL.md field",
     "created_at": "2026-06-23T07:33:08Z",
-    "last_save_at": "2026-06-25T09:22:07.461Z",
+    "last_save_at": "2026-07-02T05:43:32.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35479aeef853bed66d278b02f470f1445d0f92c9588a341e3dc2a2ef841738e9",
+    "source_fingerprint": "sha256:5bd6dca7676706e17a8009791476b0fb4af24a9d3b07d7c5b83ec50fff1e4771",
     "source_doc_hashes": {
-      "spec.md": "88cfcadffd6728269526a906be74a0acd4e7a956f432d6fad91207b0609fd36e",
-      "plan.md": "680225eee123968ce537d438609b2b352f1c48cdc028ea171fba002404a9b946",
-      "tasks.md": "9b84ff5d431db483dacf8e13f2f849c60a24c76253a20fc7152ef270f1bda490",
-      "implementation-summary.md": "c61b3aec712efa57156a69ab73ce30756f54bd05f40d034d58360c4181e9861b"
+      "spec.md": "36d2a65c44939ceb55c40dcd92c3ffbb677b20f6a4e3bbbdcf8f44fecca42418",
+      "plan.md": "45f2f0a324cb5088c8824bec765a91e4adda49b7ee270e50daaec0b241e1b106",
+      "tasks.md": "07721eb1010d3a9c15cf6e802ffbfaf6d581413b6d3d913a8e1c736c448490e7",
+      "implementation-summary.md": "9ad9f3e2d9b360f9399c90464f9bc408955132b3301d70aa269b48d97168d1c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

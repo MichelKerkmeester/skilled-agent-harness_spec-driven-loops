@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/md-generator.md",
       ".opencode/commands/design/interface.md",
@@ -49,13 +53,33 @@
       ".opencode/commands/design/audit.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
       "spec.md",
-      "implementation-summary.md",
-      "plan.md",
-      ".opencode/skills/sk-design/shared/sk_code_handoff.md",
-      "checklist.md",
-      "tasks.md"
+      ".opencode/skills/sk-design/shared/sk_code_handoff.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -105,33 +129,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "sk_code_handoff.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The five `/design:` commands gave no handoff visibility",
     "created_at": "2026-06-28T12:40:02.475Z",
-    "last_save_at": "2026-06-29T06:14:49.016Z",
+    "last_save_at": "2026-07-02T05:31:08.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c4e9a01d4bd7efa99220c6632d4b907b2ffee162e2aeae09333bdb8475cecfc",
+    "source_fingerprint": "sha256:23d03b395d422fb1d2de515bfdef9d1d57386a89cb5226b90ea4c56745e20755",
     "source_doc_hashes": {
-      "spec.md": "386c3fe387d75898b4093582a56d0e87f008bcd0d17788d185ba0528be11c3eb",
-      "plan.md": "f32b027301891a9f1d06766e2b44ea00a35c04f07e942d6d49cf66a012ded71b",
-      "tasks.md": "5b9ccacd024369491f6712c6c9f4ac6a83ac1a1d699bc1183ed5bedb98138847",
-      "checklist.md": "2bbea371076af7ebd233e07028d616a3dbd6c547c45590496bc008146c8161c1",
-      "implementation-summary.md": "bda9244312444661e6cb8d904f3ec573a450259a46ab2c4671eb5eb454762b68"
+      "spec.md": "b94ce4bdefbd19846cd4838c951d36a607dd188e6a5b78a8828fd7ab267fa79a",
+      "plan.md": "6d3411a4e4b2fd04fede3a55346f094b499719a00e73e5a86f86487dec6b2eae",
+      "tasks.md": "698903a9ba70bf46b123a0f2d032a9cde15813ddd3fb0f1ca32c16bcd761b80b",
+      "checklist.md": "f4cadb05344f9171c14a34fe0559f147570acc3ea52cdfa68a3e95d13ab461ff",
+      "implementation-summary.md": "f05e23a1cd1ddecbb69bd7ece55516f02348a1eed8af535449fd667c993848fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

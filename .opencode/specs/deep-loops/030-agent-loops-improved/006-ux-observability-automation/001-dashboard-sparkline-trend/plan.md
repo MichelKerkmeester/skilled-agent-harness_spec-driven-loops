@@ -1,42 +1,35 @@
 ---
-title: "Implementation Plan: Phase 1: dashboard-sparkline-trend [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Dashboard Sparkline and Trend Rendering"
+description: "Documents the completed reduce-state dashboard sparkline and trend section work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "dashboard sparkline"
+  - "sparkline trend"
+  - "newInfoRatio trend"
+  - "reduce-state trend section"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-dashboard-sparkline-trend"
-    last_updated_at: "2026-06-28T14:02:19Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/006-ux-observability-automation/001-dashboard-sparkline-trend"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-dashboard-sparkline-trend"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: dashboard-sparkline-trend
+# Implementation Plan: Dashboard Sparkline and Trend Rendering
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +40,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS reducer script for deep-research dashboard markdown |
+| **Framework** | Deep-loop workflow reducer output via `reduce-state.cjs` |
+| **Storage** | Iteration history already present in reducer input |
+| **Testing** | Sparkline unit fixtures, dashboard-section fixture, strict spec validation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work added a pure sparkline renderer to the deep-research reducer so novelty and score history are visible without manually comparing iteration rows. The dashboard now includes a `## 5. TREND` section and emits a flatline advisory when repeated flat values indicate stalled progress.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +55,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear: dashboard output exposed raw numbers but no trend visualization.
+- [x] Success criteria measurable: sparkline output is non-empty for history arrays of length at least 2.
+- [x] Dependencies identified: this leaf is scoped to `reduce-state.cjs` only.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `renderSparkline()` renders bounded history arrays into a compact line.
+- [x] Dashboard output includes a `## 5. TREND` block for `newInfoRatio` and score history.
+- [x] Flat repeated trend values emit a `trend_flatline` advisory.
+- [x] Sparkline and dashboard fixture checks cover decay, growth, and flat histories.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +72,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Pure reducer enhancement: a deterministic formatter transforms existing numeric history into display strings without changing deep-loop runtime state or YAML step sequencing.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`renderSparkline(history, opts)`**: Converts score or novelty history into a fixed-width visual trend string.
+- **`reduce-state.cjs` dashboard renderer**: Appends the `## 5. TREND` section when at least two data points exist.
+- **Flatline advisory gate**: Detects consecutive flat values and emits `trend_flatline` for terminal status readers.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The reducer reads existing iteration summaries, extracts score and `newInfoRatio` values, renders each series through `renderSparkline()`, and appends the trend lines to the dashboard markdown. The same history scan detects flatline sequences and records the advisory event.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +88,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| `reduce-state.cjs` history reader | Collects iteration summaries | Reuse existing score and novelty values | Fixture with 3 iterations produces trend section |
+| `renderSparkline()` | New formatter | Render decay, growth, and flat histories | Unit fixtures assert non-empty bounded output |
+| Dashboard markdown | Operator status surface | Append `## 5. TREND` | Markdown output contains two sparkline rows |
+| Terminal advisory events | Signals stalled loops | Emit `trend_flatline` on flat sequences | Flat-history fixture records advisory |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +102,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and confirm the reducer-only scope.
+- [x] Identify score and `newInfoRatio` history as the only required inputs.
+- [x] Keep running-iteration banners and YAML changes out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `renderSparkline()` to `reduce-state.cjs` with a safe default width.
+- [x] Add dashboard rendering for `## 5. TREND` using novelty and score histories.
+- [x] Add flatline detection that emits `trend_flatline` on repeated flat values.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify decay, growth, and flat sparkline fixtures.
+- [x] Verify a 3-iteration reducer fixture includes the trend section.
+- [x] Verify the leaf spec folder validates under strict mode.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +124,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | `renderSparkline()` for decay, growth, and flat histories | Reducer fixture test |
+| Integration | Dashboard markdown with at least 3 iterations | `reduce-state.cjs` fixture run |
+| Advisory | Flatline terminal gate | Flat history fixture |
+| Spec validation | Leaf packet structure | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +137,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing iteration score and novelty history | Internal | Complete | Sparkline output needs at least two historical values |
+| Running-iteration lifecycle event | Out of scope | Not required | The static trend section works without live in-progress telemetry |
+| Other phase 006 leaves | Internal | Not required | This reducer-only leaf can stand alone |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +147,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Sparkline rendering breaks dashboard output, advisory events misfire, or terminals cannot render the selected characters.
+- **Procedure**: Revert the `reduce-state.cjs` sparkline formatter, trend-section append, and flatline advisory code, restoring the previous raw-number dashboard output.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

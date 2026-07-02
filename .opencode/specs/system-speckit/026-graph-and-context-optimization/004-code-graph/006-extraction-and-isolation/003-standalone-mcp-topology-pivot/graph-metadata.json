@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -34,18 +34,42 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-code-graph/mcp_server/index.ts",
       ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -74,30 +98,6 @@
         "name": "code-graph.sqlite",
         "kind": "file",
         "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Reality diverged from ADR-001 in two ways",
     "created_at": "2026-05-14T09:13:21Z",
-    "last_save_at": "2026-06-23T03:49:55.943Z",
+    "last_save_at": "2026-07-02T05:31:12.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T09:24:15Z",
     "source_docs": [

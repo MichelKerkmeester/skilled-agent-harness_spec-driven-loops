@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "stresstest had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map",
     "created_at": "2026-05-18T08:15:53.296Z",
-    "last_save_at": "2026-06-23T03:49:52.762Z",
+    "last_save_at": "2026-07-02T05:31:10.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

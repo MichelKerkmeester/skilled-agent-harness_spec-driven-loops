@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -43,12 +43,12 @@
     "key_files": [
       ".claude/mcp.json",
       ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/update.md",
       ".opencode/skills/system-code-graph/README.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json",
-      ".opencode/skills/system-code-graph/mcp_server/index.ts",
       ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-code-graph/mcp_server/tools/index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -72,6 +72,12 @@
         "name": "mk-code-index-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
         "source": "derived"
       },
       {
@@ -102,12 +108,6 @@
         "name": ".mk-code-index-launcher.json",
         "kind": "config",
         "path": ".opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The extracted code-graph MCP server was registered as `systemcodegraph`",
     "created_at": "2026-05-14T17:29:04Z",
-    "last_save_at": "2026-06-23T03:49:56.765Z",
+    "last_save_at": "2026-07-02T05:31:13.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

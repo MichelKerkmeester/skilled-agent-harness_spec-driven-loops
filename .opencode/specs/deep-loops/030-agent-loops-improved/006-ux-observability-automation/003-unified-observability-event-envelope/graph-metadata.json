@@ -18,13 +18,8 @@
       "003 unified observability",
       "observability-events.cjs",
       "normalizeObservabilityEvent",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "003-unified-observability-event-envelope summary",
+      "003-unified-observability-event-envelope"
     ],
     "key_topics": [
       "unified",
@@ -35,10 +30,10 @@
       "observability-events",
       "cjs",
       "normalizeobservabilityevent",
-      "implementation",
-      "plan",
-      "name",
-      "template"
+      "003-unified-observability-event-envelope",
+      "summary",
+      "deep-loop",
+      "producer"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -178,7 +173,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -190,21 +191,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Each deep-loop producer appends events in a different native format",
     "created_at": "2026-06-28T21:08:34.372Z",
-    "last_save_at": "2026-07-01T15:47:37.163Z",
+    "last_save_at": "2026-07-01T23:09:12.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +208,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11f0ea8d00769da9314a3f93e3e883078474c0850d251459ca772442e3269df6",
+    "source_fingerprint": "sha256:0e3136ede0294142d2d8c8fb8857db92a57c5f0b5e12fb7053906aabb46befde",
     "source_doc_hashes": {
       "spec.md": "9bee862fabbd2e72f0c4a47ad558eafa214c82a1793e0c50cdbf543cf4d4c361",
-      "plan.md": "8c11efcf0e9cb9ca2f4c1db42ea2819e7602ee02ab8e3c9cf906f62f3041ab15",
-      "tasks.md": "4b03b267c3b34ee88bc0d00aa1e1369a51220f89f55a3bffd4056d3fdce9ac43",
+      "plan.md": "8825d63f6214abba6645e34d65057b488f01a91339f4cb82872acae7cf6b5490",
+      "tasks.md": "6dfafb42ba398d4409ae150f5337db2dd2d29fd4762d99afff75cc0f7b75df89",
       "implementation-summary.md": "9b7e0ab11ea6767b40801eaee5f46f7cdbc690e6e96710daaf3489a5ede16d67"
     },
     "last_active_child_id": null,

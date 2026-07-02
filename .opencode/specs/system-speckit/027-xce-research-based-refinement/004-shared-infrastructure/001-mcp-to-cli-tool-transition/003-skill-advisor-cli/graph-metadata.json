@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -40,9 +44,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "000-skill-advisor-cli-research/research/research.md",
+      "spec.md",
       "000-skill-advisor-cli-research/spec.md",
-      "spec.md"
+      "000-skill-advisor-cli-research/research/research.md"
     ],
     "entities": [
       {
@@ -90,7 +94,7 @@
     ],
     "causal_summary": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has the same transport fragility class as the other servers - and this system already shipped a partial answer: skilladvisor.py (3,642 lines) is the documented Gate-2 fallback covering advisorrecommend via a DIVERGENT Python scorer with a native-bridge probe, while advisorrebuild and 4 of 5 skillgraph tools have no CLI at all",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-06-23T03:49:57.603Z",
+    "last_save_at": "2026-07-02T05:31:13.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

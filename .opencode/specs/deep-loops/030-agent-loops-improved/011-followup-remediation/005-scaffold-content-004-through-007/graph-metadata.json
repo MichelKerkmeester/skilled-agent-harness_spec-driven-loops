@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/011-followup-remediation/005-scaffold-content-004-through-007",
+  "spec_folder": "deep-loops/030-agent-loops-improved/011-followup-remediation/005-scaffold-content-004-through-007",
+  "parent_id": "deep-loops/030-agent-loops-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold content backfill",
+      "SCAFFOLD_NEVER_TOUCHED remediation",
+      "phases 004 through 007 scaffold",
+      "005 scaffold content 004 through 007",
+      "recursive strict validation",
+      "implementation summary scaffold content"
+    ],
+    "key_topics": [
+      "scaffold",
+      "content",
+      "backfill",
+      "remediation",
+      "phases",
+      "004",
+      "007",
+      "005",
+      "recursive",
+      "strict",
+      "validation",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/004-system-spec-kit/001-speckit-autopilot-lifecycle/spec.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/005-skill-interconnection/001-advisor-routing-projection/spec.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/006-ux-observability-automation/spec.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/007-testing/spec.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Content Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten leaf children across four phases still have `plan.md`/`tasks.md` whose BODY content is unmodified scaffold-template placeholder prose (`[Core feature 1]`, `[MVC | MVVM | ...]`, generic Setup/Core Implementation/Verification checklists), carrying scaffold-signature frontmatter markers: a `title` containing `[template:...]`, a `packetpointer` starting with `scaffold/`, and `lastupdatedby: \"template-author\"`",
+    "created_at": "2026-07-01T19:38:04.141Z",
+    "last_save_at": "2026-07-02T14:03:07.934Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df01e4abfa4ec086f350b9b6f1d607dcf36bf8a6c8bd78c7934f190d0388c6e0",
+    "source_doc_hashes": {
+      "spec.md": "9f619ab5d641d3956654a3c46f8571b11d3324229ad7e806ca6b434717d07346",
+      "plan.md": "bf4313e604622a6613aa3d24e11b7a2977bf40b7e1bb18ebae3bfb5b3ce90541",
+      "tasks.md": "2e6d82f237edb0623c2b746c0605c290072618bbb3ad8d02dd72dc8b1f0d4686",
+      "implementation-summary.md": "e062db037435f68e0083f9d775c006fd0e71a5d402df2c773913fb53e554355c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

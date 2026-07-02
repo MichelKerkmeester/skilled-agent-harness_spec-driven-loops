@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A mode's `backendKind` constrains nothing about which tools its runtime may call",
     "created_at": "2026-06-28T12:39:57.835Z",
-    "last_save_at": "2026-06-28T18:54:44.004Z",
+    "last_save_at": "2026-07-02T05:31:08.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4a98ea4ccc1517ad1b07dfaa1e10e83683b72cfd82e1dec8f14de8924407ae1",
+    "source_fingerprint": "sha256:caa961f77941ba3762d014a4611fe1e769e5dddcea18f4b9f8e60e328830bb2b",
     "source_doc_hashes": {
-      "spec.md": "ebbc15b8217fdfb28f439ecdf018347f41234ff6662a31b7a297e4d014d3cc40",
-      "plan.md": "27b39a96dbb3dc3f63dd2da8925a29d5cb884c9bf4ebe78268e288b8a716f25e",
-      "tasks.md": "5ba5528b529bb9c2aae1f2f8604b91659f50d50046f444f48316bdd07849663d",
-      "checklist.md": "83e0797e4bf61c713064f1ef096517efe525703955ef66f09222242c59779504",
-      "implementation-summary.md": "6ecbcf30f6bd7313ed482dc29a897960903cd8ba34464dd63c9230bade11b6f0"
+      "spec.md": "ab49b79892ac5421db26e26c9b49421c526456035910c4ce71bce9f3a92b0bd6",
+      "plan.md": "f12f32e37d27933368424b7227dcccc191e84183a61c2652b4e0d442a57d155a",
+      "tasks.md": "bb6f901523deabd26918d987901a60c2640ff4ab9f6982aeae89486aae7ae15a",
+      "checklist.md": "9a0320f742e96287c4b73eef07ccc464bb898618dcaa1e6a4012e84196f04172",
+      "implementation-summary.md": "9553e70679e864308d8fc1734309b12d263dc867fa98509158d307917f1aef7b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -42,8 +42,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
-      ".codex/policy.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -56,18 +54,6 @@
         "name": "freshness_invalidation.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
-        "source": "derived"
-      },
-      {
-        "name": "pre-tool-use.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
-        "source": "derived"
-      },
-      {
-        "name": "policy.json",
-        "kind": "config",
-        "path": ".codex/policy.json",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A valid-but-stale or replayed design proof token otherwise authorizes design-affecting work long after issuance or for a different subject",
     "created_at": "2026-06-28T12:39:57.024Z",
-    "last_save_at": "2026-06-28T21:21:28.298Z",
+    "last_save_at": "2026-07-02T05:31:08.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82bc8078c7f4595129cff9d94a15d82c54f0f92ecca968ed3622b02eb82a9b15",
+    "source_fingerprint": "sha256:500219636c7f3aa83ec11580c42246db7d16fedff5f65c23a33f9fc244764c16",
     "source_doc_hashes": {
-      "spec.md": "ede01859f9d897cbf960749b6ebf32ef34f0a87a6eb0aab84b6accd1bb8a4be3",
-      "plan.md": "ed5a2aaee7ecfa6cbee254a7eaf763a5afadcedd112b8aa71c7cd85fc7db1b1c",
-      "tasks.md": "d1dd9f7e06b45fb06610a1e8a5a6323921015764d1dc3b44e3f50c2dfdd88588",
-      "checklist.md": "0092fa56b830704291bb95d69ae749d5a72bb864877c109726f806a3ad70aa7c",
-      "implementation-summary.md": "2a834211be993511a23671df6b4d0bff215a2465d5644996dd03582b88b031ef"
+      "spec.md": "1912caa59453a7e8db80e23a785a5efde3cd8eafa626cb9a2a9b3e16df900015",
+      "plan.md": "e4b2c03c0880842a26a13f267db33e1bda2219409663f53a4dfe682ccc22e47d",
+      "tasks.md": "733bfdc1216e99dda5bba4034c6154b71171dab88491915b5c1d98da92c6d8b6",
+      "checklist.md": "bf5031dc45701bcada6ccd2f3cc52abf456620bb750f74119af6a86c94d39019",
+      "implementation-summary.md": "7305d5badb5328788d3eb24ee169ce0d66a1de70e004202b9625e0693b2cd14b"
     },
     "last_active_child_id": null,
     "last_active_at": null

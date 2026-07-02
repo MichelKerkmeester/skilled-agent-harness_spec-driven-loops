@@ -41,6 +41,9 @@
     "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-design/design-foundations/references/data_viz.md",
       ".opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md",
       ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
@@ -51,12 +54,27 @@
       ".opencode/skills/sk-design/design-audit/references/evidence_capture.md",
       ".opencode/skills/sk-design/design-audit/assets/a11y_quick_fixes.md",
       ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "data_viz.md",
         "kind": "doc",
@@ -115,24 +133,6 @@
         "name": "hardening_edge_cases.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The deep-research deliverable in `../009-reference-asset-expansion/research/research.md` ranked the highest-leverage expansions for each sk-design mode and found three substance gaps that remained after the shared register and the interface/audit first-assets landed",
     "created_at": "2026-06-26T17:41:25.819Z",
-    "last_save_at": "2026-06-26T19:08:39.674Z",
+    "last_save_at": "2026-07-02T05:31:07.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0940a454a1c4379dc909044a9c6806641f3c1fab4bd8ba3ee959e2f9c6c254fb",
+    "source_fingerprint": "sha256:8087f6c4b98d4b1e5c8ef529adb15efd0418aed7e6bdd1beae3e898f382b9c4a",
     "source_doc_hashes": {
-      "spec.md": "863bb42c59447b8cbd10a9b90a0e61e3d8a1dbac7e6cac02e5247f97a9237b3b",
-      "plan.md": "7224919b9f4c19dff9712480d276a610b2faf4e2590a5a42f07ac15fd58bd7f8",
-      "tasks.md": "a41d3248ff4be2ddcf36f2d7f756fdde3a74ecb2da9b765b63eceecac4e0781c",
-      "implementation-summary.md": "3a3f0e96e62a9180d1b1bf68a995f452c950117ecda12880ed0a5ee4b6ea1a99"
+      "spec.md": "cb6c7203a056d7341eb1fb6c3f15af9730c2d8cb8d26e495f90eaec5a413d428",
+      "plan.md": "0c4cea3166e4e174c2fa4ef6420401ecd37d339c40b097091be6207b86367a09",
+      "tasks.md": "19337ccf497a003f6ce31f321f71cebc3ff53457c7ee90d8bf6efb38fe9e1c7e",
+      "implementation-summary.md": "df632d34dfbcca0f73b39ae26ce4b8b99a0c525acd0f62262050dbc708748fa4"
     },
     "last_active_child_id": null,
     "last_active_at": null

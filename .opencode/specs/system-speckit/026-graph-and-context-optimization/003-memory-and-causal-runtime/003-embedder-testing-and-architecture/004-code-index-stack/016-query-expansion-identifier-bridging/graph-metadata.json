@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Bridges the natural-language → code-identifier gap by expanding queries with camelCase / snake_case / PascalCase / kebab-case splits, common code-domain synonyms (walker/finder, util/helper, parser/lexer), and a configurable user-synonym dictionary. Runs BEFORE embedding so dense + FTS5 both benefit. Embedder-agnostic, reranker-agnostic, future-proof for any future identifier convention. Targets the 'natural language asks, but corpus stores identifiers' failure mode evidenced in 011 phase-2 bench probes 1, 5, 12, 15.",
     "created_at": "2026-05-19T16:20:00.000Z",
-    "last_save_at": "2026-06-23T03:49:54.657Z",
+    "last_save_at": "2026-07-02T05:31:11.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

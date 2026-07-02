@@ -15,14 +15,8 @@
       "improvement effect signal",
       "loop score improvement",
       "convergence prior snapshot delta",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "011-convergence-score-delta summary"
+      "011-convergence-score-delta summary",
+      "011-convergence-score-delta"
     ],
     "key_topics": [
       "convergence",
@@ -34,11 +28,11 @@
       "loop",
       "prior",
       "snapshot",
-      "implementation",
-      "plan",
-      "name"
+      "011-convergence-score-delta",
+      "summary",
+      "reports"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
@@ -135,13 +129,25 @@
         "source": "derived"
       },
       {
+        "name": "Convergence Score Delta",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Derived",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,25 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -183,21 +177,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "scores",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The convergence signal reports current novelty but carries no signal for whether the loop is actually improving across iterations; a run can generate novel findings while scores plateau at the same value each iteration",
     "created_at": "2026-06-28T14:01:59Z",
-    "last_save_at": "2026-07-01T15:47:37.098Z",
+    "last_save_at": "2026-07-01T21:52:50.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e538c8d2d05d1ec9dcb0d07996b1109390c377ca4186b6ca74ed111510290ebf",
+    "source_fingerprint": "sha256:327094b858e565cc54901a53610995b32e48118a2c38d762595dce57fe850b9c",
     "source_doc_hashes": {
       "spec.md": "a1af6286b5ed13a07cfe19a8b511049bff8a7788168f9b1628127c2253ba666b",
-      "plan.md": "ccdfdbbde98255bf599fa3dd222ef8e2c8ec3a22b8282395f3150de7673fe844",
-      "tasks.md": "99298d82e256223d4233b028b3fcfd4eea7e47222d5151969db47fce1a44d2a5",
+      "plan.md": "4290e66826a8bfb26843f2d5bf2d7415ea8e445967417db4989af409ea196ceb",
+      "tasks.md": "dffd12f65b28e1d8be94be08fc6bb0b6da7b03595b9d3c41147aabb3735d777b",
       "implementation-summary.md": "8972017f5e0a6fc36541c598e96d6db44bc11a9e10bf643f3cb2f62ee1a6eee2"
     },
     "last_active_child_id": null,

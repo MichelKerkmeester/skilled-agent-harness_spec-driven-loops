@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 15: fallback-router-typed-reroute [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 15: Fallback Router Typed Reroute"
+description: "Plan for the shipped typed fallback outcome routing, trace metadata, and startup graph preflight."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "fallback-router typed reroute"
+  - "failure-kind routing"
+  - "route-trace metadata"
+  - "fallback graph preflight"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-fallback-router-typed-reroute"
-    last_updated_at: "2026-06-28T14:02:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute"
+    last_updated_at: "2026-07-01T21:48:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped fallback-router typed-reroute content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed typed fallback router"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/015-fallback-router-typed-reroute"
+      fingerprint: "sha256:015a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5e1a"
+      session_id: "scaffold-content-remediation-015"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 15: fallback-router-typed-reroute
+# Implementation Plan: Phase 15: Fallback Router Typed Reroute
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript deep-loop fallback router |
+| **Framework** | Typed route selection with startup graph validation |
+| **Storage** | In-memory/configured fallback route graph; no persistence changes |
+| **Testing** | Spec acceptance requires cyclic graph startup rejection, timeout failure-kind route selection, and trace metadata on every routing decision; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped typed outcome routing in `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts`. Fallback config now distinguishes success and failure targets by failure kind, every routing decision emits `routeGroupId` and `hopIndex`, and `validateFallbackGraph()` runs at startup to reject missing routes, cycles, scope widening, and max-hop violations before dispatch.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: executor failures retried flat with no failure-kind routing or trace.
+- [x] Success criteria measurable: cyclic config throws at startup; timeout failure routes to typed `onFailureTarget` with trace metadata.
+- [x] Dependencies identified: existing fallback route schema and startup initialization hook point are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Typed `onSuccess`, `onFailureTarget`, and `failureKind` fields added to route config.
+- [x] `routeGroupId` and `hopIndex` trace metadata emitted on every routing decision.
+- [x] `validateFallbackGraph()` checks missing routes, cycles, scope widening, and max-hop violations.
+- [x] Preflight runs at startup before first dispatch, not lazily.
+- [x] Multi-hop fallback chains and cross-scope routing remain out of scope/blocked.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Typed outcome routing over a preflight-validated fallback graph with per-decision trace metadata.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Typed route config**: `onSuccess`, `onFailureTarget`, and `failureKind` describe routing outcomes explicitly.
+- **`validateFallbackGraph()`**: Pure startup preflight that rejects invalid route graphs before dispatch.
+- **Trace metadata**: `routeGroupId` groups a routing flow and `hopIndex` identifies the decision hop.
+- **Scope guard**: Prevents routing from silently widening scope across disallowed boundaries.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Startup loads fallback route config and runs `validateFallbackGraph()`. If valid, dispatch can route executor outcomes by success/failure and failure kind; each routing decision returns trace metadata. Invalid graphs fail before any executor dispatch, preventing runtime infinite retry loops or untraceable reroutes.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +101,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts` | Selects fallback routes after executor outcomes | Add typed config fields, trace metadata, and startup preflight | Spec acceptance covers cyclic rejection and failure-kind route selection |
+| Fallback route config | Defines route graph | Validated at startup | Missing/cyclic/scope-widening/max-hop invalid configs reject before dispatch |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect existing fallback route config schema and startup hook before extending.
+- Consumers of changed symbols: executor routing consumes trace metadata; startup consumes graph validation errors.
+- Matrix axes: success route, typed failure route, timeout failure, missing route, cycle, scope widening, max-hop violation, and startup-vs-lazy validation.
+- Algorithm invariant: invalid fallback graphs must fail before dispatch; routing decisions must always be traceable with `routeGroupId` and `hopIndex`.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm implementation scope is only `fallback-router.ts`.
+- [x] Read existing fallback route config schema and startup initialization path.
+- [x] Confirm multi-hop chains and cross-scope routing are out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add typed `onSuccess`, `onFailureTarget`, and `failureKind` config fields.
+- [x] Route failures by `failureKind` when typed failure targets are provided.
+- [x] Emit `routeGroupId` and `hopIndex` trace metadata for every decision.
+- [x] Implement pure `validateFallbackGraph()` checks for missing routes, cycles, scope widening, and max-hop violations.
+- [x] Register graph validation at startup before first dispatch.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify cyclic fallback graph is rejected at startup with a clear error.
+- [x] Verify `failureKind: "timeout"` routes to the typed `onFailureTarget`.
+- [x] Verify trace metadata includes `routeGroupId` and `hopIndex`.
+- [x] Verify invalid graph validation is not deferred lazily until dispatch.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +142,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Integration/preflight | Cyclic fallback config rejects at startup before dispatch | Spec acceptance criteria; no dedicated test file named |
+| Unit/routing | `failureKind: "timeout"` resolves to typed `onFailureTarget` | Router unit fixture |
+| Trace | Routing result includes `routeGroupId` and `hopIndex` | Trace assertion |
+| Validation | Missing route, scope widening, and max-hop violations reject descriptively | Preflight fixtures |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +155,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing fallback route config schema | Internal | Available | Typed fields extend the existing config contract |
+| Startup initialization hook | Internal | Available | Needed to run `validateFallbackGraph()` before dispatch |
+| Multi-hop chain design | Future design | Deferred | Larger fallback chains require separate cycle/routing design |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +165,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Startup preflight rejects valid configs, failure-kind routing selects wrong targets, or trace metadata is missing.
+- **Procedure**: Revert typed routing fields, trace metadata, and startup preflight in `fallback-router.ts`; fallback routing returns to the previous flat retry path until the graph validation and route selection are corrected.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +177,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

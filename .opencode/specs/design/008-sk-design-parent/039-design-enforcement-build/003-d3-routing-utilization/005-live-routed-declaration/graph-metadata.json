@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Live routing was invisible",
     "created_at": "2026-06-28T12:39:58.911Z",
-    "last_save_at": "2026-06-28T19:09:56.463Z",
+    "last_save_at": "2026-07-02T05:31:08.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a654debed048f2ddd219865008102122602ccdd507a23fb6c17dcfe6b533aa2",
+    "source_fingerprint": "sha256:37476607b752855f6f2786a8c8d580b667508917f4b3f3cc70980c5570fd0d1b",
     "source_doc_hashes": {
-      "spec.md": "0b1d59653f7463748b4932a033c3b8f46530ab48cafcaaadac2c97f0c8a04644",
-      "plan.md": "93a9b60880d92a434ef4184b7f9cad8834d34b8b3b88f3865d714fd5adf3df0f",
-      "tasks.md": "a404d8ee62c4d92aeb38ad3e0e194c608e2b765b504ee5034916da4d02304f6b",
-      "checklist.md": "fef8f5f41f314f57520fea9353d494887124fdaa591257a2ec94d43eb3520368",
-      "implementation-summary.md": "6a533234ac778b1ad19da936e0223d9dc0831e882cb67994eb47c2d0e403ea0b"
+      "spec.md": "c774d40d6db49ff4dea41e2210800c277eba5168b52e412d3289a8c99c6c29af",
+      "plan.md": "8124906947fcef4215e149d49b4c98fd9cbfdce24208bc3719545034657a04e8",
+      "tasks.md": "148ea948316d7a57217a1deaf3e6baef78983e5e09fb9568e0419b7344f1c15b",
+      "checklist.md": "cb4acd342fbf6813e0661e143ae5505dc56a781295f6020cff2b773b8f238b5d",
+      "implementation-summary.md": "214bd16bb5dcd94094073bc3225908fc7ddd7d95b9f2a3ab7380e604ffafe063"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -30,6 +30,7 @@ import {
   resolveSymbolBm25Candidates,
   type SymbolBm25Candidate,
 } from '../lib/symbol-bm25-resolver.js';
+import { isCodeGraphEdgeConfidenceDifferentiationEnabled } from '../lib/edge-confidence-flags.js';
 // Emit a stable failure-counter metric so operators can distinguish DB /
 // compute failures from legitimately empty blast radii.
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
@@ -102,6 +103,9 @@ const SUPPORTED_RELATIONSHIP_OPERATIONS = [
   'imports_to',
 ] as const;
 const SUPPORTED_RELATIONSHIP_OPERATION_SET = new Set<string>(SUPPORTED_RELATIONSHIP_OPERATIONS);
+const LEGACY_EDGE_CONFIDENCE = 0.8;
+const LEGACY_EDGE_EVIDENCE_CLASS = 'INFERRED';
+const LEGACY_EDGE_DETECTOR_PROVENANCE = 'heuristic';
 
 /**
  * Regex used to decide whether a free-form `subject` argument looks like a
@@ -724,7 +728,15 @@ function classifyEdgeEvidenceClass(
     case 'TESTED_BY':
       return 'test_coverage';
     default:
-      return metadata?.detectorProvenance === 'heuristic' || metadata?.evidenceClass === 'INFERRED'
+      // Only CALLS edges ever carried the legacy uniform tier, but this
+      // function's sole call site (edgeMetadataOutput) already early-returns
+      // the legacy tier for CALLS+flag-off before reaching here -- so a
+      // CALLS+flag-off combination can never arrive at this branch. CONTAINS,
+      // DECORATES, OVERRIDES (the other edge types reaching this branch)
+      // resolve their own constant classification unrelated to this flag.
+      return metadata?.detectorProvenance === 'heuristic'
+        || metadata?.evidenceClass === 'INFERRED'
+        || metadata?.evidenceClass === 'AMBIGUOUS'
         ? 'inferred_heuristic'
         : 'direct_call';
   }
@@ -738,6 +750,23 @@ function clampNumericConfidence(value: unknown): number {
 }
 
 function edgeMetadataOutput(edge: OutboundEdgeEntry['edge'] | InboundEdgeEntry['edge']) {
+  // Only CALLS edges ever carried the legacy uniform tier; every other edge
+  // type resolves its own constant confidence by construction, unaffected by
+  // this flag either way (classifyEdgeEvidenceClass mirrors this scoping).
+  const useLegacyTier = edge.edgeType === 'CALLS' && !isCodeGraphEdgeConfidenceDifferentiationEnabled();
+
+  if (useLegacyTier) {
+    return {
+      confidence: LEGACY_EDGE_CONFIDENCE,
+      numericConfidence: LEGACY_EDGE_CONFIDENCE,
+      detectorProvenance: LEGACY_EDGE_DETECTOR_PROVENANCE,
+      evidenceClass: LEGACY_EDGE_EVIDENCE_CLASS,
+      reason: graphDb.sanitizeEdgeMetadataString(edge.metadata?.reason),
+      step: graphDb.sanitizeEdgeMetadataString(edge.metadata?.step),
+      edgeEvidenceClass: 'inferred_heuristic' as const,
+    };
+  }
+
   return {
     confidence: clampNumericConfidence(edge.metadata?.confidence ?? edge.weight),
     numericConfidence: clampNumericConfidence(edge.metadata?.confidence ?? edge.weight),
@@ -1045,6 +1074,9 @@ function buildHotFileBreadcrumbs(filePaths: string[]): Array<{
 }
 
 function parseEdgeMetadataConfidence(metadataJson: unknown, weight: unknown): number {
+  // Callers exclusively query IMPORTS edges (see queryImportDependentsForBlastRadius),
+  // which already resolve to a real confidence by construction and were never part
+  // of the CALLS-only edge-confidence-differentiation flag's scope.
   if (typeof metadataJson === 'string' && metadataJson.length > 0) {
     try {
       const metadata = JSON.parse(metadataJson) as Record<string, unknown>;

@@ -41,6 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "001-versioning-standard/spec.md",
+      "002-derivation-engine/spec.md",
+      "003-apply-core-skill-docs/spec.md",
+      "004-apply-catalogs-and-playbooks/spec.md",
+      "005-verify-and-enforce/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -89,15 +94,15 @@
     ],
     "causal_summary": "Skill documentation (`SKILL.md`, `README.md`, `references/.md`, `assets//.md`, feature catalogs, testing playbooks) carries YAML frontmatter consumed by the skill advisor and system-spec-kit",
     "created_at": "2026-06-23T07:33:08Z",
-    "last_save_at": "2026-06-25T09:19:38.035Z",
+    "last_save_at": "2026-07-02T05:31:08.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1d071c82335f8575293e643c78b6fd45fa22a947d1e4138525f7f16d3d413b54",
+    "source_fingerprint": "sha256:f76d6d0851d0d68a249cb5b78f8c5170064e8ae0a4a6548b8657d7f7d8adf785",
     "source_doc_hashes": {
-      "spec.md": "6e596368357627951e90d89cdbb9bd90afd3d43102a54ef0d1b53a7b563dcdf4"
+      "spec.md": "2a5677e832e67951340675fc2fdff79837c7ddb61db81f2f21a7e6f498cd7620"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-23T12:57:24.738Z"

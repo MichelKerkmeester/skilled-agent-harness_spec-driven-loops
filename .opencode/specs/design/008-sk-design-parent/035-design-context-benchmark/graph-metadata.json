@@ -40,23 +40,23 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
+      "review/review-report.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 030 build wired an enforceable context-loading contract into the live skills and self-verified clean, but self-verification is not proof the contract changes real behavior or that the implementation survives an adversarial review",
     "created_at": "2026-06-27T16:46:21.556Z",
-    "last_save_at": "2026-06-30T09:11:18.550Z",
+    "last_save_at": "2026-07-02T05:31:07.934Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23bb779abfb696ac5a3969202ed427b05c143aab0d3d3313b367ec4fd6a67660",
+    "source_fingerprint": "sha256:788c43dd8961be655ad72c4b7cdd643a2becb4a3d914fcb2419f2d59f6e1022e",
     "source_doc_hashes": {
-      "spec.md": "557f5ae39351aff9cc21ff3ab669212fd7a4b3d85fb068490b2b8548b2129fdc",
-      "plan.md": "d73a01ed76b8183e7167f9b1f39064f65dffb3ad2923ff624ef494a1ea723272",
-      "tasks.md": "8daa6f039453f8f46a9554810ede740a9c8b53c5ad9fd5a3d67c7a030d5ef2ba",
-      "implementation-summary.md": "ef7240fada7b74d277252dfe133471aaec2e9c1f4cb3d4c050c95f6ac346c947"
+      "spec.md": "32bf9dc5e215377e7e7fbc086d729186f25e6aa14b30db99c1ad4deaef215d51",
+      "plan.md": "997bbc4ca8a606a2dd3142bf6443127b8be38097cd26798ec97d23ce4d901579",
+      "tasks.md": "61de2be6155358359423a214d5d17866efe95f3d88b1be66e73455e84ffe27d5",
+      "implementation-summary.md": "e49b0c411f426358cc6c82d50e8159e5962cf3dfa8f88378d942c519a885d6f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,12 +13,10 @@
     "control",
     "surface"
   ],
-  "lastUpdated": "2026-07-01T13:40:03.423Z",
+  "lastUpdated": "2026-07-02T03:38:03.237Z",
   "specId": "003",
   "folderSlug": "goal-command",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

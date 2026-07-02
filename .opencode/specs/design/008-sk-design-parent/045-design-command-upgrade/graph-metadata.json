@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The design command surface has accumulated broad aliases and prose-level routing guidance, but the research backlog shows that command specificity needs firmer evidence",
     "created_at": "2026-06-30T06:07:12Z",
-    "last_save_at": "2026-06-30T09:11:52.246Z",
+    "last_save_at": "2026-07-02T05:31:08.253Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee741254e01088ca1a08ed2ca0d1dc87a09c00edcf59b6923fcd6f3f528f2e2d",
+    "source_fingerprint": "sha256:b178318c66247742987835ce311e9b74536102b6ad6362f6947ae22b2bc55d50",
     "source_doc_hashes": {
-      "spec.md": "cca886218630dc03051ebf50fb275f977d89b487e28504e63aeff93e76ab48ac",
-      "plan.md": "891db5a5fb626fa5dc36e90edba0a9ca4118dd0228c1485a747a245543bf628f",
-      "tasks.md": "fb20909bfc2e4248653b91d0028f4c6a36bb8bb2f13bf98cbe23db614102cc7f",
-      "checklist.md": "4e51d19ca22f8e6e0d14c224b1c3873fe7720da569a999b7df96bfa9af14a862",
-      "decision-record.md": "022852e25dafa609abd642034a4c270fa4ef75bccc4bad1bb945026df56c2b4c",
-      "implementation-summary.md": "8e513f5819759841fbdb0d33a72a9b85b3c68e060312a7260be5c312bbd82b16"
+      "spec.md": "7316c327d0023ba3e00731c5cefbba05e72355bbb28cb37918e7b457308d7f68",
+      "plan.md": "643fe93ce101bf376b732837e0b257ce6091177bc6a313a18022986052d53919",
+      "tasks.md": "7cae875a5b4deac42bc9a592a55db9440129252c5deb25d93bf9a8259ba93e15",
+      "checklist.md": "5909c6e89ae380319e2da4813d9c10ec4dd8c0bb02be8733a4e11439979cd09b",
+      "decision-record.md": "694af7ec3880df25af0272b78d2022183a8a388675c8153dd33f72e0ef9128a2",
+      "implementation-summary.md": "0670b8005b9d241504322a1fc56ad26a5e9c3fe0d8e46f7177efb7d1bef6cfa7"
     },
     "last_active_child_id": null,
     "last_active_at": null

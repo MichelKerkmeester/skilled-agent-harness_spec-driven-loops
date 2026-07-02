@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -53,6 +53,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/shared/chunking.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -64,6 +66,18 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -86,12 +100,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "chunking.ts",
-        "kind": "code",
-        "path": "shared/chunking.ts",
         "source": "derived"
       },
       {
@@ -201,17 +209,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Setup Maps",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-06-23T03:49:54.155Z",
+    "last_save_at": "2026-07-02T05:31:11.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +224,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eda6e66073751926db3e314aca8fa6bc526e7abe7f3fa489d036a018e2ae6d62",
+    "source_fingerprint": "sha256:d865c86d4d41ad16b97b4111c6359789bb5469fea69eb57233fec96f73998ca5",
     "source_doc_hashes": {
       "spec.md": "c13d6b677172544a10b6fa60cba4a95b72e2cd576f0e0cc66c3c76739fb6590a",
       "plan.md": "1a718bf30f97a5e3faf5dc60e118b0191f5e06b2e126ebc8800c2dc88bd5204a",
       "tasks.md": "384e6e6bff8f41f6ad714cb84c3024ec73bf08a74f505acd832b1928a822e0cf",
       "checklist.md": "303e199c8c91f17a982886e21eb31a126400d57c3c281da0c74855807a1fb19f",
       "decision-record.md": "4079801359ed41a867f511d8384e11dc77732ba239f416b48517f839703874d6",
-      "implementation-summary.md": "e4ff84dccfd4befa663e6ab124c1793a5328fe3862f01d665d6812804933a117"
+      "implementation-summary.md": "eb562a8aaf840f46f44cbb3d3a3996376bb1353709b33f89e2d3dcbdba358b0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

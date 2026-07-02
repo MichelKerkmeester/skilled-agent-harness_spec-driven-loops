@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -33,8 +33,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "evidence/017-scenario-validation.jsonl",
       "evidence/scenario-expansion-summary.csv",
+      "evidence/017-scenario-validation.jsonl",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -42,15 +42,15 @@
     ],
     "entities": [
       {
-        "name": "017-scenario-validation.jsonl",
-        "kind": "file",
-        "path": "evidence/017-scenario-validation.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "scenario-expansion-summary.csv",
         "kind": "file",
         "path": "evidence/scenario-expansion-summary.csv",
+        "source": "derived"
+      },
+      {
+        "name": "017-scenario-validation.jsonl",
+        "kind": "file",
+        "path": "evidence/017-scenario-validation.jsonl",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Repair stale cat-24 scenarios and add deterministic scenarios for uncovered or happy-path-only tool surfaces.",
     "created_at": "2026-05-17T12:59:59Z",
-    "last_save_at": "2026-06-23T03:49:54.765Z",
+    "last_save_at": "2026-07-02T05:31:12.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

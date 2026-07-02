@@ -41,9 +41,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "research/research.md",
       "research/deep-research-state.jsonl",
-      "spec.md",
       "plan.md",
       "research/iterations/iteration-001.md",
       "tasks.md",
@@ -52,6 +52,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -62,12 +68,6 @@
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "sk-design has absorbed two external corpora",
     "created_at": "2026-06-27T14:58:44.601Z",
-    "last_save_at": "2026-06-27T15:01:58.067Z",
+    "last_save_at": "2026-07-02T05:31:07.908Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,15 +211,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c2c534ebfc62198e20b46fb1fd0f8872cee6d907f7280eff84d6b21cecb8a3b3",
+    "source_fingerprint": "sha256:fd4ace52ac7907285bef5b471710f356efdb16403e6dbef1806dfca27bcfd4a3",
     "source_doc_hashes": {
-      "spec.md": "56d66703660d7aec5df4f7c84c9b56c59c19ebda24afcfd097f60d5a0edeed2e",
-      "plan.md": "6a0a54f6e56a2fd0db85aab7ba9c8b91c744eed38b17dfbb34011d6d1ac80e5e",
-      "tasks.md": "286a9abc0afceb5976d21b73da25e906def87d85eed30c239109b550d67571df",
-      "checklist.md": "6138d3b05e44bff2c7cf4aca4b2ac35f1507137e4d44db363a4cb2cde27356ef",
-      "decision-record.md": "dff32a469ac1e6c7a27ade27e267f052ff0a29b3d09e3fe6bf3033e6fbd13c39",
-      "implementation-summary.md": "74c6658398a55c57db47e79e2467676d6aa348756779b676ccae449541602247",
-      "research/research.md": "cfc7e04c246ded0879b648641e4ca23085c4d6eba393165078c67583a4f890e2"
+      "spec.md": "be47d75a0bb053e1cb0948e6f20c09ccca92614831d3ec75152c1cb17e95f6a8",
+      "plan.md": "1da0dcc46b5a3382c82eef0d6464e112444b47b2c7540a3671ca072060635be5",
+      "tasks.md": "db1485508d28f9c55e5a463204b48134b1065a0de8372f5534b416081713ee46",
+      "checklist.md": "9b18602dc111556cb88fbbee3d58f737f77b769d603d4c8deb4c617f00163b8d",
+      "decision-record.md": "d76676c27ace4c5b52e3b5ede81b8c6536d891db71486d69292faa6adef90c22",
+      "implementation-summary.md": "8cc351fae5f659c31ff4e5cc6417114c5d2605be142839b794bbb3f90add71b1",
+      "research/research.md": "a13e0ec2d70b3e56b5c1e96a4479bc7cff01d638f5cb84090536738dcba765da"
     },
     "last_active_child_id": null,
     "last_active_at": null

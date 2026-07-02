@@ -42,6 +42,8 @@
     "status": "draft",
     "key_files": [
       ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
+      ".opencode/specs/anobel.com/004-bento-visuals/concepts.md",
+      ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/primitive-map.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +54,18 @@
         "name": "gen-tile.mjs",
         "kind": "file",
         "path": ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "concepts.md",
+        "kind": "doc",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/concepts.md",
+        "source": "derived"
+      },
+      {
+        "name": "primitive-map.mjs",
+        "kind": "file",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/primitive-map.mjs",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 45-tile GLM-5.2 run (`../../004-bento-visuals`) sends every tile down a single generation path, but the score data shows two distinct layout primitives with a ~41-point gap: linear-flow tiles (table/timeline/list/donut/hero) score 86-94, while 2D-positioned tiles (matrix/node/routing/funnel/popover/connector-map/dense-chart) collapse to 35-58",
     "created_at": "2026-06-29T10:45:22.425Z",
-    "last_save_at": "2026-06-29T10:45:22.425Z",
+    "last_save_at": "2026-07-02T05:31:03.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45ec5cc9b2cd63dc270df9ed6cf9b18009378c8b928cae0ffb790d67f618a12e",
+    "source_fingerprint": "sha256:edf55a48b73757cffb68e7c7425589d8cd17286b5aef86ef00e7c2b954b4fd91",
     "source_doc_hashes": {
       "spec.md": "0839b9fd13713b19ac642819f4f731c86d127d3309bc7ffa3427d85d4d1da58f",
       "plan.md": "474d0f6ce918874680553eb1943608214277b3c6d80ac155c89fba87312aff5e",
       "tasks.md": "2596ca54236cbaac974cb370d76375598790de7648e471b374d38335d4956d05",
-      "implementation-summary.md": "689ef059cbe22c60603e4674471fa6306ea468b9f31e77689d2b238d977bdb2c"
+      "implementation-summary.md": "652f51a946adcc8b106239827982f0a4f327524346c02efba7423c2730263aab"
     },
     "last_active_child_id": null,
     "last_active_at": null

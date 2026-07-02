@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -88,7 +88,7 @@
     ],
     "causal_summary": "The constitutional rules govern spec-kit behavior, and sk-doc / sk-code define documentation and code standards",
     "created_at": "2026-06-04T18:53:35.321Z",
-    "last_save_at": "2026-06-23T03:49:53.001Z",
+    "last_save_at": "2026-07-02T05:31:10.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

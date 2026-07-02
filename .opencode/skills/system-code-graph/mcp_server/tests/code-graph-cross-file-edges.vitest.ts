@@ -204,9 +204,9 @@ describe('cross-file CALLS edge resolution', () => {
       expect(helperEdges).toHaveLength(1);
       expect(helperEdges[0].target_kind).toBe('function');
       expect(parseCallEdgeMetadata(helperEdges[0])).toMatchObject({
-        confidence: 0.9,
+        confidence: 0.75,
         detectorProvenance: 'heuristic',
-        evidenceClass: 'EXTRACTED',
+        evidenceClass: 'INFERRED',
       });
     } finally {
       rmSync(fixture.rootDir, { recursive: true, force: true });

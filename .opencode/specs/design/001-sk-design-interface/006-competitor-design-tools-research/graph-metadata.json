@@ -45,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-design-interface/SKILL.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -77,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 005 research targeted parity with one product (Claude Design)",
     "created_at": "2026-06-14T08:50:00Z",
-    "last_save_at": "2026-06-23T03:49:48.419Z",
+    "last_save_at": "2026-07-02T05:31:06.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d831ed59a994a1779ee4b0dd081b850f755272ca236dc962c065f89a50e9af59",
+    "source_fingerprint": "sha256:ada159b5d66657f861edbab61306564dde0b55db8fc03ceb246cd271baa90238",
     "source_doc_hashes": {
-      "spec.md": "a9d354115b2e5c004926c2bd28de1131d2da02067f1ee601ec69164d3d6018d8",
-      "plan.md": "8f271a5360ebe654ba7b2db88ebd8bad576708c874d9de278fb06fbde660cbc1",
-      "tasks.md": "36465d639dc7e9b4607e840ed5d36d11e9629a362d4855dc377375e8836060ee",
-      "implementation-summary.md": "c975582da2b36d992e472c3442f33106ac5ee11173d400273902312705ee7892",
-      "research/research.md": "7dea8bdcc79eef8bd2a1852dbeaa82ed0d6d02cce99271a682574aaa1eb39c20"
+      "spec.md": "88ab5362362491cff284423733d31f1618c10c707977c7ca95ee4199e26a035c",
+      "plan.md": "73eaa6287675d74693c1dec28da5dcb771b08230b2d089c017d99a0d9824a679",
+      "tasks.md": "b877cf47dad3333045464062d07045921493f5a179bb51e942be62f1932d2074",
+      "implementation-summary.md": "774a05c289b399a9097cb5206d99c82e9d272b59eb41574b8d5cb6fc3b423305",
+      "research/research.md": "483be9758df0b413a0eec68a905eeae5202063c0f8124a356063c47ff7774ecc"
     },
     "last_active_child_id": null,
     "last_active_at": null

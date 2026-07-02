@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
     "created_at": "2026-06-11T06:25:38Z",
-    "last_save_at": "2026-06-23T03:49:57.301Z",
+    "last_save_at": "2026-07-02T05:31:13.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

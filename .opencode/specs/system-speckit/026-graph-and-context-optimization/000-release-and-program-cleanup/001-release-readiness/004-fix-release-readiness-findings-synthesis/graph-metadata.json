@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,6 +38,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,6 +47,12 @@
       "resource-map.md"
     ],
     "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability",
     "created_at": "2026-05-18T08:15:52.985Z",
-    "last_save_at": "2026-06-23T03:49:52.128Z",
+    "last_save_at": "2026-07-02T05:31:10.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

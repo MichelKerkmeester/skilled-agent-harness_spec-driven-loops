@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "ADR-001 for parent packet 014 accepted a code-graph extraction plan that makes `.opencode/skills/system-code-graph/` the first-class owner of the code-graph subsystem",
     "created_at": "2026-05-14T07:54:11Z",
-    "last_save_at": "2026-06-23T03:49:56.647Z",
+    "last_save_at": "2026-07-02T05:31:12.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:54:11Z",
     "source_docs": [

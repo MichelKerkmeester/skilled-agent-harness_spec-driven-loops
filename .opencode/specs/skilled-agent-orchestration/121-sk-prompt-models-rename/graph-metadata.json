@@ -91,15 +91,15 @@
     ],
     "causal_summary": "The skill `sk-prompt-small-model` is the per-model prompt-craft hub for the non-frontier models dispatched out via the cli- executors (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2)",
     "created_at": "2026-06-28T13:47:20.752Z",
-    "last_save_at": "2026-06-28T16:28:35.882Z",
+    "last_save_at": "2026-07-02T05:31:09.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b1cb9f24d5b73851bc0a833d9388e37f2ca0bdb2c509b2fbb1489103a1becb7a",
+    "source_fingerprint": "sha256:d3b21399088238fc7f012f767c909abe712510194fa73ed28d6ad96f39562817",
     "source_doc_hashes": {
-      "spec.md": "a097806f94e70fd7235845eb9149507e1f3ad1f1944706530da16c4048383fdd"
+      "spec.md": "ed42f717a6333227aa8b283c49aaa65ed001d96552cf3ca310de0950dd2b3e3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

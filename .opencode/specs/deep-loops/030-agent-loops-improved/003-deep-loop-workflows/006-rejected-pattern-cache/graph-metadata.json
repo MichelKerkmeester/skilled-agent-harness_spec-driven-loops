@@ -15,14 +15,8 @@
       "ideaRejected event deep research",
       "pattern suppression bounded index",
       "rejected ideas loop",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "006-rejected-pattern-cache summary"
+      "006-rejected-pattern-cache summary",
+      "006-rejected-pattern-cache"
     ],
     "key_topics": [
       "rejected",
@@ -38,7 +32,7 @@
       "ideas",
       "loop"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
@@ -155,33 +149,15 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Event",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,15 +167,33 @@
         "source": "derived"
       },
       {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the very next iteration's next-focus candidates, wasting an iteration slot and polluting the convergence signal",
     "created_at": "2026-06-28T14:02:10Z",
-    "last_save_at": "2026-07-01T15:47:37.132Z",
+    "last_save_at": "2026-07-01T22:26:49.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4413b17f29372ec63e7391607ccb146fe0c4b45697c5856a6d91367158d12a67",
+    "source_fingerprint": "sha256:7f13920014732c5e097313f6beca9f973618138f1c4dcb98e4f94e49863d3c0f",
     "source_doc_hashes": {
       "spec.md": "9e7095909b538c621157596b9a3bb82103457cc36c61fa7b6ca020e5ab0752c1",
-      "plan.md": "0f731f9662bc4b1293281ce9d1da32115f2522fd304fc6d82f2b169bf14b75c8",
-      "tasks.md": "1c779fe882eb2b326067604c2348c7efa4b6070e3f1593f151ce8c9eb9ee5ea2",
+      "plan.md": "7a5bfd8b6fabd22d2ec8edb41d4252f80672a280972b0ffe531688523f732e47",
+      "tasks.md": "adfc0bf62abe031edfbcaa8ce07347e80d489f4268c48081a7b7ca4dbf0ee45b",
       "implementation-summary.md": "7b320088973fc3228f762ab0d4b0028c220cef54999786e23f422f93761ff032"
     },
     "last_active_child_id": null,

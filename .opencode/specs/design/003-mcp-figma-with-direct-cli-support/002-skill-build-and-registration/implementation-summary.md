@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/003-mcp-figma-with-direct-cli-support/002-skill-build-and-registration |
+| **Spec Folder** | 002-skill-build-and-registration |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

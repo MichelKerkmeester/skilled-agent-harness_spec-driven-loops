@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -28,16 +28,21 @@
       "recommendation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".claude/agents/deep-review.md",
-      ".codex/agents/orchestrate.toml",
-      "plan.md",
       "spec.md",
+      ".claude/agents/deep-review.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "deep-review.md",
         "kind": "doc",
@@ -45,21 +50,9 @@
         "source": "derived"
       },
       {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -181,11 +174,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Per",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-06-18T12:37:50.431Z",
-    "last_save_at": "2026-06-23T03:49:57.987Z",
+    "last_save_at": "2026-07-02T05:31:14.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

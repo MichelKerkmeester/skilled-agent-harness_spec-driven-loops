@@ -7,7 +7,7 @@ trigger_phrases:
   - "code graph inventory"
   - "code graph runtime catalog"
 importance_tier: "important"
-version: 1.2.0.22
+version: 1.2.0.23
 ---
 
 # Code Graph: Feature Catalog
@@ -20,9 +20,9 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The catalog covers 15 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
+The catalog covers 18 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 14 runtime features (excluding the CLI fallback surface, which mirrors the whole tool set) map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
+**Feature-to-tool granularity (F013/F014).** The 17 runtime features (excluding the CLI fallback surface, which mirrors the whole tool set) map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -33,8 +33,9 @@ The catalog covers 15 runtime features across 7 groups. Per-feature files carry 
 | [05--coverage-graph](./05--coverage-graph/) | 4 | Coverage graph |
 | [06--mcp-tool-surface](./06--mcp-tool-surface/) | 2 | Tool surface (MCP registration + daemon-backed CLI) |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
+| [09--edge-confidence-and-provenance](./09--edge-confidence-and-provenance/) | 3 | Edge confidence and provenance |
 
-Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
+Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual. Edge confidence differentiation and edge evidence classification are manual write/read-time flag checks that only run inside a dispatched `code_graph_scan`/`code_graph_query`/`code_graph_context` call; seeded-PPR impact ranking is likewise manual, default-off, and its own benchmark verdict (CUT stands) means catalog presence documents tested code, not a shipping recommendation.
 
 ---
 
@@ -291,3 +292,53 @@ Manual (class: manual). Triggered by slash command `/doctor code-graph` with fla
 #### Source Files
 
 See [`08--doctor-code-graph/doctor-apply-mode.md`](08--doctor-code-graph/doctor-apply-mode.md) for full implementation and source paths.
+
+---
+
+## 9. EDGE CONFIDENCE AND PROVENANCE
+
+### Edge confidence differentiation
+
+#### Description
+
+Opt-in `CALLS` edge write-path differentiation (`SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`, default off) that replaces the legacy uniform `0.8/INFERRED/heuristic` tier with resolution-specific confidence and evidence class for same-file and cross-file call resolution.
+
+#### How It Works
+
+Manual (class: manual). The flag is a write-time check inside `code_graph_scan`; existing persisted edge metadata only changes when a symbol's `CALLS` edges are rewritten by a subsequent scan.
+
+#### Source Files
+
+See [`09--edge-confidence-and-provenance/edge-confidence-differentiation.md`](09--edge-confidence-and-provenance/edge-confidence-differentiation.md) for full implementation and source paths.
+
+---
+
+### Edge evidence classification
+
+#### Description
+
+Shared read-path classification across `code_graph_query`, `code_graph_scan` and `code_graph_context` that recognizes `AMBIGUOUS` evidence class as weak evidence alongside `INFERRED`, and scopes the edge-confidence-differentiation flag-off legacy-tier substitution strictly to `CALLS` edges.
+
+#### How It Works
+
+Manual (class: manual). Classification runs inline inside each handler's response formatting whenever the parent tool is dispatched; there is no separate trigger.
+
+#### Source Files
+
+See [`09--edge-confidence-and-provenance/edge-evidence-classification.md`](09--edge-confidence-and-provenance/edge-evidence-classification.md) for full implementation and source paths.
+
+---
+
+### Seeded PPR impact ranking
+
+#### Description
+
+Default-off seeded Personalized PageRank ranking mode (`SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`) for `code_graph_context`'s `impact` query mode, recovered from git history to re-benchmark against a real edge-confidence gradient. Verdict: CUT stands, and the gap widened -- not intended to ship enabled.
+
+#### How It Works
+
+Manual (class: manual). Only triggered through `code_graph_context({queryMode: "impact"})` with the flag on; the flag is read per-call, so toggling it changes the very next `impact`-mode call with no restart required.
+
+#### Source Files
+
+See [`09--edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`](09--edge-confidence-and-provenance/seeded-ppr-impact-ranking.md) for full implementation and source paths.

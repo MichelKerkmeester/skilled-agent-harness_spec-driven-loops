@@ -1,33 +1,35 @@
 ---
-title: "Implementation Plan: Phase 2: derivation-engine [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 2 - Derivation Engine"
+description: "Phase 2 planned the deterministic frontmatter-version compute, apply, and verify engine. The phase is complete with fixture tests, dry-run manifest output, idempotent insertion, and numstat-gated version derivation."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "derivation engine plan"
+  - "frontmatter version engine plan"
+  - "numstat gated plan"
+  - "version manifest plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-derivation-engine"
-    last_updated_at: "2026-06-23T07:33:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/002-derivation-engine"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with authored phase plan"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs"
+      - ".opencode/skills/sk-doc/scripts/tests/test_frontmatter_version.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-derivation-engine"
+      session_id: "remediated-002-derivation-engine-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The engine is deterministic; MiMo is not in the compute path."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: derivation-engine
+# Implementation Plan: Phase 2 - Derivation Engine
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--

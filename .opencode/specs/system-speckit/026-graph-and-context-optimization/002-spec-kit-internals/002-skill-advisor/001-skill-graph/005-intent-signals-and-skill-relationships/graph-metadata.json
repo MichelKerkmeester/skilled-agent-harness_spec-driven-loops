@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 015/005's audit found that across all 17 active skills, three structured-signal fields are universally absent:",
     "created_at": "2026-05-14T01:30:00Z",
-    "last_save_at": "2026-06-23T03:49:53.215Z",
+    "last_save_at": "2026-07-02T05:31:11.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:30:00Z",
     "source_docs": [

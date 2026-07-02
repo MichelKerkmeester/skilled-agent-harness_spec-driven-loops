@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,11 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts",
       "mcp_server/lib/causal/relation-backfill.ts",
       "mcp_server/lib/causal/relation-coverage.ts",
       "mcp_server/handlers/causal-graph.ts",
@@ -57,36 +62,37 @@
       "lib/causal/relation-backfill.ts",
       "handlers/causal-graph.ts",
       "tests/relation-backfill-unit.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "lib/causal/relation-coverage.ts",
-      "schemas/tool-input-schemas.ts",
-      "lib/storage/causal-edges.ts"
+      "plan.md"
     ],
     "entities": [
       {
         "name": "relation-backfill.ts",
         "kind": "code",
-        "path": "mcp_server/lib/causal/relation-backfill.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
         "source": "derived"
       },
       {
         "name": "relation-coverage.ts",
         "kind": "code",
-        "path": "mcp_server/lib/causal/relation-coverage.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
         "source": "derived"
       },
       {
         "name": "causal-graph.ts",
         "kind": "code",
-        "path": "mcp_server/handlers/causal-graph.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill-unit.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts",
         "source": "derived"
       },
       {
@@ -99,12 +105,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "mcp_server/lib/causal/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "relation-backfill-unit.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/relation-backfill-unit.vitest.ts",
         "source": "derived"
       },
       {
@@ -135,24 +135,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
         "source": "derived"
       },
       {
@@ -208,11 +190,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packet 019, `memorycausalstats.relationCoverage.backfillJob` honestly reports `implemented:false` / `command:null` because no command actually balances relation coverage — the prior `memoryhealth({autoRepair})` hint was a no-op",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-06-23T03:49:55.676Z",
+    "last_save_at": "2026-07-02T05:31:12.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

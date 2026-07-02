@@ -1,42 +1,39 @@
 ---
-title: "Implementation Plan: Phase 11: meta-loop-lane-d-packaging [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Meta-Loop Deep-Loop-Runtime Lane D Self-Improvement Packaging"
+description: "Documents the completed deep-loop-runtime self-target packaging profile and guard work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "meta loop lane D packaging"
+  - "deep-loop-runtime self improvement profile"
+  - "allowed_diff_relpaths self target"
+  - "Lane D packaging deep loop"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-meta-loop-lane-d-packaging"
-    last_updated_at: "2026-06-28T14:02:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/011-meta-loop-lane-d-packaging"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/packaging_config.schema.json"
+      - ".opencode/commands/deep/ai-system-improvement.md"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-meta-loop-lane-d-packaging"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 11: meta-loop-lane-d-packaging
+# Implementation Plan: Meta-Loop Deep-Loop-Runtime Lane D Self-Improvement Packaging
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +44,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode deep-improvement JSON packaging profiles, command markdown, templates, schema docs |
+| **Framework** | Lane D non-dev AI-system improvement packaging for `deep-loop-runtime` |
+| **Storage** | Packaging profile JSON, schema validation, self-improvement template files |
+| **Testing** | Packaging schema validation and `--self-target` dry-run guard checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work created a safe self-target packaging profile for improving `deep-loop-runtime`. The profile separates frozen scorer and harness surfaces from editable technique docs, and the command adds a `--self-target` fork that defaults to dry-run, clean-tree, lock, confirm, and serial execution controls.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +59,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Risk identified: self-improvement must not mutate its own scorer or harness.
+- [x] Lane D packaging profile fields are defined.
+- [x] Running an actual self-improvement cycle remains out of scope.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `deep-loop-runtime.json` defines frozen surfaces, editable tech docs, allowed diffs, and excluded session prefixes.
+- [x] Scorer and harness files are absent from `allowedDiffRelpaths`.
+- [x] Packaging schema validates the new profile fields.
+- [x] `--self-target deep-loop-runtime --dry-run` produces a plan without mutation.
+- [x] Serial single-candidate execution is the default for self-target runs.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +77,17 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Guarded self-target profile: package the target with explicit mutable and frozen surfaces, then route command execution through a dry-run-first self-target fork.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`deep-loop-runtime.json`**: Lane D profile containing frozen surfaces, editable docs, allowed diff paths, and excluded session prefixes.
+- **`loop.py.template`**: Setup template for self-improvement cycle scaffolding.
+- **`packaging_config.schema.json`**: Validates the new profile fields.
+- **`ai-system-improvement.md`**: Adds `--self-target` guard behavior.
+- **`loop_contract.md`**: Documents frozen scorer interface boundaries.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The command reads the self-target profile, validates mutable paths against the schema and allow-list, forks into dry-run/clean-tree/lock/confirm setup, and uses serial single-candidate execution unless a separate explicit parallel override is supplied.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +95,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Packaging profile | Defines self-target boundaries | Add deep-loop-runtime profile | Schema validates profile |
+| Packaging schema | Validates profile fields | Add frozen/editable/allow-list fields | New profile passes schema |
+| Command doc | Runs AI-system improvement | Add `--self-target` guarded fork | Dry-run produces plan only |
+| Loop contract | Defines scorer boundary | Document frozen scorer interface | Scorer paths excluded from allow-list |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +109,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and capture self-target packaging requirements.
+- [x] Identify profile, template, schema, command, and contract surfaces.
+- [x] Keep live self-improvement execution out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Create `deep-loop-runtime.json` profile with required fields.
+- [x] Create `loop.py.template` for self-improvement setup.
+- [x] Extend packaging schema for new profile fields.
+- [x] Add `--self-target` fork behavior to `ai-system-improvement.md`.
+- [x] Set self-target default to dry-run and serial single-candidate flow.
+- [x] Add frozen scorer interface contract documentation.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Validate `deep-loop-runtime.json` against packaging schema.
+- [x] Confirm scorer and harness files are excluded from allowed diff paths.
+- [x] Verify `--self-target deep-loop-runtime --dry-run` produces a non-mutating plan.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +134,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Schema validation | `deep-loop-runtime.json` profile | Packaging schema validator |
+| Allow-list review | Frozen scorer and harness exclusions | Profile inspection |
+| Command dry-run | `--self-target deep-loop-runtime --dry-run` | Command dry-run path |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,9 +144,11 @@ Required inventories:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
+
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Packaging schema | Internal | Complete | Profile cannot validate without field support |
+| Live self-improvement cycle | Operational follow-up | Out of scope | This leaf only packages and guards the target |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +156,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Profile validation fails, scorer files become mutable, or `--self-target` can run live without the required guard.
+- **Procedure**: Revert the profile, template, schema, command guard, and loop contract changes, then disable deep-loop-runtime as a self-improvement target until packaging boundaries are corrected.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

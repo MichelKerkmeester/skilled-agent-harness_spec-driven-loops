@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -48,13 +52,33 @@
       ".opencode/commands/design/md-generator.md",
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-      "implementation-summary.md",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -98,33 +122,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The five `/design:` wrappers carry a routing/identity surface (description, per-mode argument grammar, aliases, tool policy, deliverable contract) but document no example invocation and no `Returns:` line",
     "created_at": "2026-06-28T12:40:03.488Z",
-    "last_save_at": "2026-06-29T05:09:02.328Z",
+    "last_save_at": "2026-07-02T05:31:08.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0643f92eaf8a6180d828654e4b83063926be05deaa8a39f5b45c92297996c04c",
+    "source_fingerprint": "sha256:128fce0dccfeb7eb4d1703e7553aad3b1ad3d6d5ee5ef35ce5681f60629a347e",
     "source_doc_hashes": {
-      "spec.md": "5e63595f161b3712940e62fea9a01776ea68ba98ed9b4f18282b372c6beb7f6d",
-      "plan.md": "8ea5d2727cb0a9334e535a7bb4342757b7e9c57ce3da2b65e032d2332bef7eea",
-      "tasks.md": "689dfa1a49c4500ff68929d62cf39a632a039817ed5321ccf10f99e6243ebf92",
-      "checklist.md": "1cd8e7f82479f121944f71763de860575ab3ebee59aaf87c7e1013320862c8d8",
-      "implementation-summary.md": "df444c7f59508098426e0b93c4d5e426fa8feeb7aa5a7bb1b68a3e38c6038d7a"
+      "spec.md": "b1ace2c0871071cb174014d4b96f1a784205424e958a2cf42d841d1f40c96546",
+      "plan.md": "9aa2bed7c266d3bb5ee71565d4aa0185c041252db3165ebc33c0de2656dc947e",
+      "tasks.md": "15cfdcd12c838dfff7b48b9ad23a46aa35888791d088df85ad9c6f61568b3206",
+      "checklist.md": "b5746ab5c42b781d5f16a15c3db76cc0d2b95fd58511ac836a984f9b6d7caa8b",
+      "implementation-summary.md": "fa4bbeab97cbc8dbf4459abca921c3d88b535cbd1e160e600f22769e9869ee4b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -326,7 +326,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` | impl | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog/002-memory-store-and-search/changelog-002-015-retrieval-gating-and-recall-recovery.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation` |  | [changelog-005-005-fresh-regression-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-005-fresh-regression-remediation-root.md) |
 | `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models` | impl | [changelog-000-009-019-sk-prompt-models.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-models.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models` | impl | [changelog-000-009-019-sk-prompt-small-model.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-small-model.md) |
 | `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
 | `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
 | `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server` |  | (none) |

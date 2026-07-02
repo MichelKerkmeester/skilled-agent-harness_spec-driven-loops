@@ -1,33 +1,37 @@
 ---
-title: "Implementation Plan: Phase 1: versioning-standard [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 1 - Versioning Standard"
+description: "Phase 1 planned the 4-part frontmatter version standard, sk-doc template updates, create-command generator updates, and validator format checks. The phase is complete and its quality gates are recorded below."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "versioning standard plan"
+  - "phase 1 version plan"
+  - "sk-doc version field plan"
+  - "frontmatter version rollout"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-versioning-standard"
-    last_updated_at: "2026-06-23T07:33:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/001-versioning-standard"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with authored phase plan"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/references/frontmatter_versioning.md"
+      - ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/skills/sk-doc/scripts/package_skill.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-versioning-standard"
+      session_id: "remediated-001-versioning-standard-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Version is 4-part X.Y.Z.W; missing-version enforcement is deferred to phase 5."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: versioning-standard
+# Implementation Plan: Phase 1 - Versioning Standard
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--

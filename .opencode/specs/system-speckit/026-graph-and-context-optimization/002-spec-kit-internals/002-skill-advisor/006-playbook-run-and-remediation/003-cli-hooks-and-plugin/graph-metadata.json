@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,6 +40,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,6 +48,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge",
     "created_at": "2026-05-26T20:10:28.064Z",
-    "last_save_at": "2026-06-23T03:49:53.660Z",
+    "last_save_at": "2026-07-02T05:31:11.359Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,10 +41,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/research/deep-research-config.json",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/spec.md",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/plan.md",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/research/research.md",
       "research/research.md",
       "research/deep-research-config.json",
       "spec.md",
@@ -52,32 +48,31 @@
       "tasks.md",
       "research/deep-research-state.jsonl",
       "implementation-summary.md",
-      ".opencode/commands/memory/search.md",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/playbook-report.md"
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-config.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/research/deep-research-config.json",
+        "path": "research/deep-research-config.json",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research/research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -102,12 +97,6 @@
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "playbook-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/playbook-report.md",
         "source": "derived"
       },
       {
@@ -199,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose",
     "created_at": "2026-06-12T06:12:49.512Z",
-    "last_save_at": "2026-06-23T03:49:57.774Z",
+    "last_save_at": "2026-07-02T05:31:13.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

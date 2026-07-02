@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/commands/memory/search.md",
       "resource-map.md"
@@ -78,7 +77,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The system-spec-kit search and intelligence surfaces (memorysearch, memorycontext, codegraphquery, advisorrecommend, the intent classifier) grew organically across 26+ optimization packets",
     "created_at": "2026-06-08T11:31:18.243Z",
-    "last_save_at": "2026-06-23T03:49:52.533Z",
+    "last_save_at": "2026-07-02T05:31:10.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

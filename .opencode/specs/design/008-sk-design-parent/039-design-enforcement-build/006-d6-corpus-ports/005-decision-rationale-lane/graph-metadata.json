@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Direction-setting, pattern-breaking, and handoff design work is where unjustified choices ship: a worker picks a direction, breaks an established pattern, or hands rationale to the next context, and the reason for the choice lives only in transient prose, if anywhere",
     "created_at": "2026-06-28T12:40:09.042Z",
-    "last_save_at": "2026-06-29T13:21:51.825Z",
+    "last_save_at": "2026-07-02T05:31:08.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bde2eee237d5ecb7cf926d8c31a80845c29167d2dbffef6c775aadedfd21687",
+    "source_fingerprint": "sha256:1562ddf30218265dd3255cc9555d03ae3a6efddb06c6de6f6bc656da26bb6426",
     "source_doc_hashes": {
-      "spec.md": "29961722c561fca6f041774fb132b0ab19f1043c640f9976182d63bcdae75808",
-      "plan.md": "77efed806325c08f516508ace98145780c09d22e0671c88094a79a9678fa2f75",
-      "tasks.md": "7428ad3a0b85af8ca2f3a035ab744b486d92ebf8373be6c5f9d1bbf640936289",
-      "checklist.md": "f1bcccb68d3adce278d731811f8d0721902530b0f2059a8e4399499ab77c7371",
-      "implementation-summary.md": "452d5a27345051a0d27c90e7d086f77fd548662672009873b941a02646afec82"
+      "spec.md": "88661df1d8662cd87d96b2604e65b3dfa2656e43d8bdee0bbcb6f90083a3af8f",
+      "plan.md": "48fc5a39367b4cd24b49ded6e87035e45f6a5ac53a575b4adc9de6c8a545b9b7",
+      "tasks.md": "ecf4aafa69c434467278e99b788e608416f8c9461e08e887cf0b20e0f291eec9",
+      "checklist.md": "d13e6bd3a1eec5e97708334d945845505adc3fda08fda9dab7f8078bd0398585",
+      "implementation-summary.md": "f4884815329282ebcc428975358846a3990313c3d0db8886c29de8153a4aeebc"
     },
     "last_active_child_id": null,
     "last_active_at": null

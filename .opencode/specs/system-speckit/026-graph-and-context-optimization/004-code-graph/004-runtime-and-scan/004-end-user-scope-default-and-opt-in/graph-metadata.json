@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Latest scan: 1,619 files / 34,844 nodes / 17,846 edges, with hundreds of those nodes being spec-kit MCP server internals (skilladvisor, codegraph subsystems, sk- skills)",
     "created_at": "2026-05-02T11:04:14Z",
-    "last_save_at": "2026-06-23T03:49:55.863Z",
+    "last_save_at": "2026-07-02T05:31:12.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

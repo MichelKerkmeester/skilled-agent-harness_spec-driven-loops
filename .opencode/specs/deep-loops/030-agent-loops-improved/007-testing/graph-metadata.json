@@ -109,15 +109,15 @@
     ],
     "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution and risking real-data corruption",
     "created_at": "2026-06-29T05:08:46.500Z",
-    "last_save_at": "2026-07-01T11:50:22.215Z",
+    "last_save_at": "2026-07-02T12:01:43.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cb429e4fadff9c5cb05a391d0a9a67f71bcc5a74023e4e3321916346921af5f2",
+    "source_fingerprint": "sha256:ac5c98b761d56c2b635083711f0cca60d6728add81cc484095add306384e726d",
     "source_doc_hashes": {
-      "spec.md": "8bb0eccc803037d5cfe522ce8a3ceb38cfd5794973f6c8df8e460e4a0738de20"
+      "spec.md": "365d5df3313a1f0da1e40b6b3bbdc9983485ba25ad0e5f48c7757e9638bed57f"
     },
     "last_active_child_id": null,
     "last_active_at": null

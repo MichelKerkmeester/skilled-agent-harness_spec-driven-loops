@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,9 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "tasks.md",
+      "decision-record.md",
       ".opencode/commands/memory/search.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
@@ -52,17 +55,32 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/batch-processor.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/job-store.vitest.ts",
-      "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md",
       "handlers/memory-index.ts",
       "checklist.md",
-      "decision-record.md",
       "lib/search/confidence-scoring.ts",
       "lib/ops/job-store.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "search.md",
         "kind": "doc",
@@ -130,21 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -157,12 +163,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-06-23T03:49:57.999Z",
+    "last_save_at": "2026-07-02T05:31:14.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

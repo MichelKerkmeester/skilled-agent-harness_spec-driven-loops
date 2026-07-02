@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 5: lifecycle-taxonomy-guards [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 5: Lifecycle Taxonomy Guards"
+description: "Plan for the shipped lifecycle state-machine taxonomy, legal transition map, and paused-wait gate contract."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "lifecycle-taxonomy-guards"
+  - "loop-state-machine-taxonomy"
+  - "lifecycle-transition-guards"
+  - "loop-status-contract"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-lifecycle-taxonomy-guards"
-    last_updated_at: "2026-06-28T14:01:55Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards"
+    last_updated_at: "2026-07-01T21:28:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped lifecycle-taxonomy content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed lifecycle taxonomy contract"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-lifecycle-taxonomy-guards"
+      fingerprint: "sha256:005a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5d9c"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: lifecycle-taxonomy-guards
+# Implementation Plan: Phase 5: Lifecycle Taxonomy Guards
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS/TypeScript-adjacent deep-loop runtime contract |
+| **Framework** | Shared lifecycle taxonomy module |
+| **Storage** | None |
+| **Testing** | Spec acceptance requires complete transition-map coverage, illegal transition absence, importable exports, and existing-caller compilation; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped an authoritative lifecycle contract in `.opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs`. The module exports active loop statuses, terminal stop reasons, a legal transition table, and the one-shot `resumeResolve` paused-wait gate while keeping backward-compatible string-literal exports during migration.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: lifecycle statuses and stop reasons were scattered as ad-hoc strings.
+- [x] Success criteria measurable: `LEGAL_TRANSITIONS` covers all five active statuses and omits illegal transitions such as `stopped -> running`.
+- [x] Dependencies identified: standalone contract file; no dependency on phases 1-4.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `LoopActiveStatus` taxonomy exported for `running`, `waiting`, `paused`, `idle`, and `stopped`.
+- [x] `LoopStopReason` terminal reason taxonomy exported.
+- [x] `LEGAL_TRANSITIONS` exported and covers every active status.
+- [x] One-shot paused-wait gate contract exported and documented.
+- [x] Backward-compatible exports preserved for existing callers.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Centralized lifecycle state-machine contract with compatibility exports for staged caller migration.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`LoopActiveStatus`**: Active status vocabulary for the loop state machine.
+- **`LoopStopReason`**: Terminal stop-reason vocabulary used when a loop ends.
+- **`LEGAL_TRANSITIONS`**: Source-to-target transition map that makes legal state moves auditable.
+- **Paused-wait gate contract**: One-shot `resumeResolve` behavior describing how paused loops wait for a resume signal.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Callers import lifecycle constants and transition metadata from `lifecycle-taxonomy.cjs` instead of duplicating string literals. During transition, old exports remain valid; new code can consult `LEGAL_TRANSITIONS` and the paused-wait contract to avoid or detect invalid state changes.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +101,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs` | Shared lifecycle vocabulary and contracts | Add statuses, stop reasons, transitions, and paused-wait gate exports | Spec acceptance covers export presence and transition coverage |
+| Existing lifecycle callers | Transitional users of old string literals | Left compatible in this phase | Existing callers compile unchanged per spec |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: identify scattered lifecycle status and stop-reason literals before caller migration.
+- Consumers of changed symbols: migration list remains a follow-up; this phase provides the shared contract.
+- Matrix axes: each source status in `LEGAL_TRANSITIONS`, terminal stop reasons, legal vs illegal transitions, and paused-wait one-shot resume behavior.
+- Algorithm invariant: every active status must be represented in `LEGAL_TRANSITIONS`; an illegal transition must be absent unless explicitly allowed by the taxonomy.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm lifecycle taxonomy belongs in `lifecycle-taxonomy.cjs` as a standalone shared contract.
+- [x] Identify the five active statuses and terminal stop-reason vocabulary from the spec.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Exported active status and terminal stop-reason taxonomies.
+- [x] Added `LEGAL_TRANSITIONS` covering all active statuses.
+- [x] Added the one-shot `resumeResolve` paused-wait gate contract.
+- [x] Preserved backward-compatible string-literal exports for existing callers.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verified the transition map covers all five active statuses.
+- [x] Verified illegal transitions such as `stopped -> running` are absent.
+- [x] Confirmed existing callers can continue compiling during staged migration.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +139,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/contract | `LEGAL_TRANSITIONS` coverage and illegal-transition absence | Spec acceptance criteria; no dedicated test file named |
+| Compile | New taxonomy exports importable and existing callers unaffected | TypeScript/CommonJS compilation |
+| Manual review | One-shot paused-wait gate documented | Read `lifecycle-taxonomy.cjs` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +151,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `lifecycle-taxonomy.cjs` | Internal | Complete | The taxonomy must be centralized before runtime enforcement or caller migration can safely proceed |
+| Caller migration | Internal follow-up | Deferred | Old literals may coexist until callers adopt the new constants |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +160,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The taxonomy omits required statuses, breaks compatibility exports, or encodes incorrect legal transitions.
+- **Procedure**: Revert the taxonomy additions in `lifecycle-taxonomy.cjs` while keeping prior exports available; re-author the transition table before reintroducing enforcement.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +172,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

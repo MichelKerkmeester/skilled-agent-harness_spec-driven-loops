@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,12 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "dist/context-server.js",
@@ -52,17 +58,47 @@
       ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
       ".codex/config.toml",
       ".claude/mcp.json",
-      "tools/index.ts",
-      "implementation-summary.md",
-      "spec.md"
+      "tools/index.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "index.ts",
         "kind": "code",
@@ -112,30 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
@@ -145,18 +157,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "ADR-001 split the advisor into a standalone package and MCP server, but live consumers still carry mixed assumptions",
     "created_at": "2026-05-14T10:38:05Z",
-    "last_save_at": "2026-06-23T03:49:53.254Z",
+    "last_save_at": "2026-07-02T05:31:11.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

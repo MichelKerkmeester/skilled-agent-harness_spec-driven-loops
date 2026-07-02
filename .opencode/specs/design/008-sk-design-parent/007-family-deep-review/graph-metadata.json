@@ -41,44 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "review/triage-final.md",
-      ".opencode/skills/sk-design/changelog/v1.0.1.0.md",
-      ".opencode/skills/sk-design-interface/changelog/v1.5.1.0.md",
-      ".opencode/skills/sk-design-md-generator/changelog/v1.0.0.1.md",
-      ".opencode/skills/sk-design-foundations/changelog/v1.0.0.1.md",
-      ".opencode/skills/sk-design-motion/changelog/v1.0.1.0.md",
-      ".opencode/skills/sk-design-audit/changelog/v1.0.0.1.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/triage-final.md"
     ],
     "entities": [
-      {
-        "name": "triage-final.md",
-        "kind": "doc",
-        "path": "review/triage-final.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/changelog/v1.0.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.5.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/changelog/v1.5.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.0.1.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-md-generator/changelog/v1.0.0.1.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -107,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "triage-final.md",
+        "kind": "doc",
+        "path": "review/triage-final.md",
         "source": "derived"
       },
       {
@@ -198,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The six sk-design family skills were each validated in isolation during their build phases, but none had faced an adversarial multi-model review of its shipped package",
     "created_at": "2026-06-25T21:18:54.190Z",
-    "last_save_at": "2026-06-25T21:20:55.578Z",
+    "last_save_at": "2026-07-02T05:31:07.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03df121d11b84d3cec6546a526d17ac25187d5eef7c0230ec685af79b5260514",
+    "source_fingerprint": "sha256:6511761b5eef01f8c4c8b306d0c5478d016db99c5c317f08c502c484775b287b",
     "source_doc_hashes": {
-      "spec.md": "242785a83961d7a47ebe16e9c7b7769c8fc80d16a0101c8393583ca393eabcc1",
-      "plan.md": "a5bea6b3b116a3313d0c9ffb599c86bd615b9e414aaefa8a422465c35bcaafd0",
-      "tasks.md": "8067f4bc9217630271f47829326cbee70a5005196eb73515c0bfa1da06145721",
-      "checklist.md": "3d7c7a0ebe34e5d82bfb2677e171ba500430bda82c02e380b7f944c8f3f14878",
-      "implementation-summary.md": "64d119d50d8b6bc8b7fa53f484df69c22f01515837d098b760b2066581ff14de"
+      "spec.md": "bf7f77e1c8a4f2c47766f70fc0d2879951010d92d9398ca9d6224c72b92cb224",
+      "plan.md": "3ef232bc0264e8441a02ab4f5e5849d6a2b9969ec28d32e144b0b860d73d4bac",
+      "tasks.md": "48e981f748aa9c07aae6df21c09fa6be1aad3fd9679af08c10752a2ad8306745",
+      "checklist.md": "e78e4f1884794f2d206398cd3f5e41a76776da34827a0568675a44a5eea6657c",
+      "implementation-summary.md": "36740b59028e5a60009cd43093f2985967de33778a6e9469b238eef345447e70"
     },
     "last_active_child_id": null,
     "last_active_at": null

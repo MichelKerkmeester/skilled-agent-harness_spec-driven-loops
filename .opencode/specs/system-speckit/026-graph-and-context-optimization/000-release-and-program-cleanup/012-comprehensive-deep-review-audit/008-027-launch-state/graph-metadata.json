@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -32,31 +32,9 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -102,7 +80,7 @@
     ],
     "causal_summary": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-06-23T03:49:53.011Z",
+    "last_save_at": "2026-07-02T05:31:10.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

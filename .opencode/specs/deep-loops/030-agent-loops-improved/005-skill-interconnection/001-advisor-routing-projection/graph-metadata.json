@@ -18,13 +18,8 @@
       "mode registry drift guard",
       "advisor alias table",
       "001 advisor routing projection",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "001-advisor-routing-projection summary",
+      "001-advisor-routing-projection"
     ],
     "key_topics": [
       "advisor",
@@ -40,7 +35,7 @@
       "table",
       "001"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
@@ -171,27 +166,27 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "System Skill Advisor",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Pattern Registry",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -203,7 +198,7 @@
     ],
     "causal_summary": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time",
     "created_at": "2026-06-28T20:06:50.952Z",
-    "last_save_at": "2026-07-01T15:47:37.155Z",
+    "last_save_at": "2026-07-01T23:09:12.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +207,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:666511d29a643286c15733bf853cc1c0144092bff17d56bf5ab47b64ffe0caab",
+    "source_fingerprint": "sha256:551bd2c043d67e941d2379325b063c5d28b6e4a447cd51fa21189ad9fe53d53e",
     "source_doc_hashes": {
       "spec.md": "60c13c29945bd2bc558db86b55253454a16bce39c3ea1e5e9a43020637045737",
-      "plan.md": "767132ac1b2785aec5e062c5c82d2a69d83a204337ab8a8848ddd34437cd9257",
-      "tasks.md": "4653a8b38044ae772712bd310e3c4793e4dc694a746c14ac967d5e37c7fae56c",
+      "plan.md": "b91fa9cfd554795f84999cf49ebc56893e90d5523d369ab56aa297afb65350c9",
+      "tasks.md": "3cf4d4914c350093935b5d7f266dafbc6dc72e87ed7c21c59669440ec58113ed",
       "implementation-summary.md": "715604f85b286631faf625425750d594265fdab58fd3ef57ff8bb74302ca5d73"
     },
     "last_active_child_id": null,

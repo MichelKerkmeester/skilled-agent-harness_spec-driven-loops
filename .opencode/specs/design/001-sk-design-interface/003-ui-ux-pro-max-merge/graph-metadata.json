@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-design-interface` is strong on design philosophy but ships no data: it compresses all of accessibility, UX, color, and typography practice into a few sentences",
     "created_at": "2026-06-13T17:10:00Z",
-    "last_save_at": "2026-06-23T03:49:48.400Z",
+    "last_save_at": "2026-07-02T05:31:06.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c759f76feb54d245688eb4683d1b855a6b25f291594a3aeff93cfe93131424e2",
+    "source_fingerprint": "sha256:322a570c375563f6653b2db78c50c16fd251cd9f86ccbc71ba3a2c034b668dbd",
     "source_doc_hashes": {
-      "spec.md": "e18b7608bca2083ef05e3722eaac0a444c7fa44914fb1f7e01dd6304984f070f",
-      "plan.md": "232f2f824cb4306141c42124315c8b71e23a598f36da7abda66a02288c749ea3",
-      "tasks.md": "34ac3f33653f7d4422502a3bc341b3137ad4e1763db8e4936ba23b9ebced1654",
-      "checklist.md": "0a3eccd7b90a0efb2818451104c39a4505e466509f0ea39b0d425f02eb3435c2",
-      "implementation-summary.md": "d5896c94e2ec718486cbf3c669357930a15a4eb471c280932fe08318e5555873"
+      "spec.md": "3ad905f5c00e37a558925b80cd397c70b00b818da6009268d322cfa951fe6a2c",
+      "plan.md": "f54da9c13ca69cefe44eafef3503a9fa5fbd8c9d5d6aa33471492948433e0655",
+      "tasks.md": "8ed40dc367df813250e4ac2c5e583662075d408966045faa3d104eac8f7a18a5",
+      "checklist.md": "730dd3e261b8c81f1336dd2e4a3c6af6ae7a5d606985c42f67b2f22c78241c1e",
+      "implementation-summary.md": "a60b7594c6cfce38d94d422e96a14484a58c5336fb5badcd2707ede0940c4e2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

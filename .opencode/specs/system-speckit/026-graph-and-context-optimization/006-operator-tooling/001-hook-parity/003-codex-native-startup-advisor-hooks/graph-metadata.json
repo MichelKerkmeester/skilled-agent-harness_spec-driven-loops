@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,14 +43,7 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       "hooks/claude/user-prompt-submit.ts",
-      ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-codex/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
       "decision-record.md",
-      "hooks/codex/user-prompt-submit.ts",
-      "hooks/codex/session-start.ts",
-      ".opencode/skills/cli-codex/references/hook_contract.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -66,33 +59,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-start.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/hook_contract.md",
         "source": "derived"
       },
       {
@@ -202,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fetch Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Superset",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stabilize Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
     "created_at": "2026-04-22T06:39:13.790Z",
-    "last_save_at": "2026-06-23T03:49:56.236Z",
+    "last_save_at": "2026-07-02T05:31:12.754Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

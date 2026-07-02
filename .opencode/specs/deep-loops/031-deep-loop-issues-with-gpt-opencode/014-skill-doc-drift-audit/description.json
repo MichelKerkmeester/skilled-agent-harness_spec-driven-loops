@@ -17,12 +17,10 @@
     "orchestrate",
     "gained"
   ],
-  "lastUpdated": "2026-07-01T16:44:47.888Z",
+  "lastUpdated": "2026-07-02T03:38:03.227Z",
   "specId": "014",
   "folderSlug": "skill-doc-drift-audit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "031-deep-loop-issues-with-gpt-opencode"
   ],

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-06-23T03:49:56.617Z",
+    "last_save_at": "2026-07-02T05:31:12.951Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

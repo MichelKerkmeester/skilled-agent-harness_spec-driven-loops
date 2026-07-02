@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/015-per-skill-improvement-research |
+| **Spec Folder** | 015-per-skill-improvement-research |
 | **Completed** | Executed: five converged lineages, cross-mode synthesis recorded, decisions captured |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

@@ -790,7 +790,7 @@ fi
 # ─────────────────────────────────────────────────────────────────
 
 if begin_category "Orchestrator: Valid Fixtures (Exit 0 or 1)"; then
-    run_test "053-template-compliant-level2 passes cleanly" "053-template-compliant-level2" "pass"
+    run_test "053-template-compliant-level2 passes with compact Level 2 advisory" "053-template-compliant-level2" "warn"
 fi
 
 if begin_category "Orchestrator: Warning Fixtures (Exit 0)"; then
@@ -813,6 +813,7 @@ if begin_category "Orchestrator: Error Fixtures (Exit 2)"; then
     run_test "058-template-reordered-anchor fails" "058-template-reordered-anchor" "fail"
     run_test "059-checklist-h1-invalid fails" "059-checklist-h1-invalid" "fail"
     run_test "060-checklist-chk-format-invalid fails" "060-checklist-chk-format-invalid" "fail"
+    run_test "072 scaffold marker fails through default registry bridge" "072-scaffold-never-touched-violation" "fail" "SCAFFOLD_NEVER_TOUCHED" "SCAFFOLD_NEVER_TOUCHED"
 fi
 
 # ─────────────────────────────────────────────────────────────────
@@ -820,7 +821,7 @@ fi
 # ─────────────────────────────────────────────────────────────────
 
 if begin_category "Exit Code Verification"; then
-    run_test "Exit 0: Compliant fixture returns pass" "053-template-compliant-level2" "pass"
+    run_test "Exit 0: Compact compliant fixture returns warn" "053-template-compliant-level2" "warn"
     run_test "Exit 0: Warning fixture returns warn" "054-template-extra-header" "warn"
     run_test "Exit 2: Errors return fail" "001-empty-folder" "fail"
     run_test "Exit 2: Missing files return fail" "006-missing-required-files" "fail"
@@ -832,7 +833,7 @@ fi
 # ─────────────────────────────────────────────────────────────────
 
 if begin_category "JSON Output Mode"; then
-    run_test_json "--json compliant fixture produces valid JSON" "053-template-compliant-level2" "pass"
+    run_test_json "--json compact compliant fixture produces valid JSON" "053-template-compliant-level2" "warn"
     run_test_json "--json warning fixture produces valid JSON" "054-template-extra-header" "warn"
     run_test_json "--json error fixture produces valid JSON" "055-template-missing-header" "fail"
 fi
@@ -843,8 +844,8 @@ fi
 
 if begin_category "CLI Options"; then
     run_test_with_flags "--strict: warnings become errors" "054-template-extra-header" "fail" "--strict"
-    run_test_with_flags "--verbose: detailed output" "053-template-compliant-level2" "pass" "--verbose"
-    run_test_quiet "--quiet: minimal output (pass)" "053-template-compliant-level2" "pass"
+    run_test_with_flags "--verbose: detailed compact output" "053-template-compliant-level2" "warn" "--verbose"
+    run_test_quiet "--quiet: minimal output (compact warn)" "053-template-compliant-level2" "warn"
     run_test_quiet "--quiet: minimal output (warn)" "054-template-extra-header" "warn"
     run_test_quiet "--quiet: minimal output (error)" "055-template-missing-header" "fail"
     run_test_with_flags "SPECKIT_STRICT=true env var" "054-template-extra-header" "fail" "" "SPECKIT_STRICT=true"
@@ -855,29 +856,29 @@ fi
 # ─────────────────────────────────────────────────────────────────
 
 if begin_category "Edge Cases: Anchor Scenarios"; then
-    run_test "Compliant anchor order passes" "053-template-compliant-level2" "pass"
+    run_test "Compliant anchor order passes with compact advisory" "053-template-compliant-level2" "warn"
     run_test "Missing required anchor fails" "057-template-missing-anchor" "fail" "" "ANCHORS_VALID"
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail" "" "ANCHORS_VALID"
 fi
 
 if begin_category "Edge Cases: Evidence Patterns"; then
-    run_test "Compliant evidence citations pass" "053-template-compliant-level2" "pass"
+    run_test "Compliant evidence citations pass with compact advisory" "053-template-compliant-level2" "warn"
 fi
 
 if begin_category "Edge Cases: Placeholder Contexts"; then
-    run_test "Compliant fixture stays placeholder-free" "053-template-compliant-level2" "pass"
+    run_test "Compliant fixture stays placeholder-free with compact advisory" "053-template-compliant-level2" "warn"
     run_test "Multiple across files detected" "036-multiple-placeholders" "fail"
     run_test "Case variations detected" "037-placeholder-case-variations" "fail"
 fi
 
 if begin_category "Edge Cases: Level Detection"; then
-    run_test "Explicit level on compliant fixture" "053-template-compliant-level2" "pass"
+    run_test "Explicit level on compliant fixture with compact advisory" "053-template-compliant-level2" "warn"
     run_test "Level 0 invalid (error from mismatch)" "026-level-zero" "fail"
     run_test "Level 5 out of range (error from mismatch)" "025-level-out-of-range" "fail"
 fi
 
 if begin_category "Edge Cases: Special Directories"; then
-    run_test "Compliant fixture stays stable without special directories" "053-template-compliant-level2" "pass"
+    run_test "Compliant fixture stays stable without special directories with compact advisory" "053-template-compliant-level2" "warn"
 fi
 
 # Save final category

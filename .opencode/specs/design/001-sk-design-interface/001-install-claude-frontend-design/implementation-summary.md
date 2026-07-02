@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 143-sk-design-interface/001-install-claude-frontend-design |
+| **Spec Folder** | 001-install-claude-frontend-design |
 | **Completed** | 2026-06-13 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

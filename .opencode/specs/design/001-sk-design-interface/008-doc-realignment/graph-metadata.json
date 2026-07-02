@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 007 keystone added the Claude Design parity protocol (`claudedesignparity.md`), the `previewImageUrl` fidelity loop, reuse-before-generate, and the `designfidelity.py` helper",
     "created_at": "2026-06-14T10:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.433Z",
+    "last_save_at": "2026-07-02T05:31:06.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39d51d0bd78fa96ba4a3f8b4d0697e08ada2558e0ca34e0a6a7f15fff7cc1f4c",
+    "source_fingerprint": "sha256:1c569b9d56786cb039eecd5390da904822f295da167176e3a32134a08e98d2ba",
     "source_doc_hashes": {
-      "spec.md": "9a37bc6c67430dbbee862c69d69af407da93660535271b1cce11b155d88d3cf8",
-      "plan.md": "17b92515428c1ae27afdbfccf032c8809ff48021256150e519b3c11bc2c44523",
-      "tasks.md": "2beda76da1b3de27c1842d39aee9328eb821c89d20a5a4ecbf35f23f793b1a13",
-      "implementation-summary.md": "30eff3241ee2e04d6fbda329d48d23c58afa5c00559be698b6d974a3a9159229"
+      "spec.md": "83653635bd7f4a6606ffcbaca2e1c96bfed9d4f74a684c6b2b802ad3d6894b5f",
+      "plan.md": "a4a8e54db8ca67fea2f6fcf08c7281c8ab0230d65d19f0fbb1c989753429013b",
+      "tasks.md": "bd0bae82b13d69bde36a06e6d9bc9c484f9e20cf7519b374babcd58a1fb4acea",
+      "implementation-summary.md": "3177423d99faa8add3cdfcbacefdaee3ab0d1efc06666b8346f5fa204f25bead"
     },
     "last_active_child_id": null,
     "last_active_at": null

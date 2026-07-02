@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/001-sk-design-interface/006-competitor-design-tools-research |
+| **Spec Folder** | 006-competitor-design-tools-research |
 | **Completed** | 2026-06-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

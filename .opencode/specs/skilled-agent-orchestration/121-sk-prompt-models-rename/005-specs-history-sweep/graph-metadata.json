@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The user chose to rewrite ALL references, including historical spec docs, logs, and changelogs (~700 files)",
     "created_at": "2026-06-28T13:47:22.113Z",
-    "last_save_at": "2026-06-28T14:29:58.955Z",
+    "last_save_at": "2026-07-02T05:31:09.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9b6d0b2a3b00e8108f54c457ef9d600d41eaa9cef8578c4e14634a57c4eeca5",
+    "source_fingerprint": "sha256:3c819c2ff2528b3b32909a14fa538360b06f7424c61e342e2f0cf5b8a1e658f4",
     "source_doc_hashes": {
-      "spec.md": "74c4cb76e4e787c38ba1151b6402361ea42f306c1877d6455a4e7275a4df377f",
-      "plan.md": "fcd0de3d61f185aa63f171c9b1ff500c3b8d4ee13968904218373dd6f9a2cae4",
-      "tasks.md": "54a2462ca57a2c71337a3b85ef39be5eaa458b518a7999dc81aa03b91c012c34",
-      "implementation-summary.md": "346228c4ac9e46705059bd6e59eb039714d6a4a657ce79d67810802d2e4432c9"
+      "spec.md": "8dee14ea1ab679d88bedf6a09d25536827d8e56005a4be391acdd879b3783a35",
+      "plan.md": "e16c5ec30cadbffef6cbdd9fd87c4bc46b140c5606f4a5e18ae2955c5b853c8d",
+      "tasks.md": "b6631d4510a0604a2c15330584cafaa763eb664c111e3a711e68527288fb9932",
+      "implementation-summary.md": "0f7679c3dc7d580fe8b75bf2bbe00a5099c2a76041c8e33b0518811f865ad6cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

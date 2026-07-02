@@ -39,26 +39,14 @@
     "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/shared/register.md",
-      ".opencode/skills/sk-design/shared/assets/register_card.md",
       "spec.md",
       "plan.md",
       "tasks.md",
+      ".opencode/skills/sk-design/shared/register.md",
+      ".opencode/skills/sk-design/shared/assets/register_card.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "register.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/register.md",
-        "source": "derived"
-      },
-      {
-        "name": "register_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/assets/register_card.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,6 +63,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "register.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/register.md",
+        "source": "derived"
+      },
+      {
+        "name": "register_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/register_card.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-design family has no shared declaration of whether a given design IS the product or SERVES the product",
     "created_at": "2026-06-26T17:39:20.695Z",
-    "last_save_at": "2026-06-26T17:54:39.458Z",
+    "last_save_at": "2026-07-02T05:31:07.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaa2e4a137a08452a3db51920b0991e31bc3c245f7bc53d07e11933a7adf9b79",
+    "source_fingerprint": "sha256:fced7d2424ef458920079e3ff7054bab2ef378848870e2d38110b9f0a9ca1c76",
     "source_doc_hashes": {
-      "spec.md": "c445cd5f9d183182f0303f07db6fa5ae7df5f667761fb08f5a2d096b596e2b87",
-      "plan.md": "9c7361abae4dc14751708b2beb0b55454af8a9e261ecb9d3d286c2715a9ceb7c",
-      "tasks.md": "38e8a83510e099ffa8856c4671ebc8af365459eea2f8f00f25a026f645183b4a",
-      "implementation-summary.md": "a0b2f25bacfa4928814cace4b15be03ed7d006bfeb959ead9f47bffcc90fbab6"
+      "spec.md": "e648bb08aab377272d3c6140f0d9f49df5cb7321f4954144b5ca9ad5291c602d",
+      "plan.md": "0aea827aefe51470d108d7943e8de43046e0cc264c8694ca5ef27f558fb17e22",
+      "tasks.md": "f7660e588d966e2039aeb1d872015956e6afc5ec32ab820c1e18983a907b1949",
+      "implementation-summary.md": "9b3ff3ad99b9c257e62e20bb1a53c4157415fc8876e0f3637e97eeb933ec5051"
     },
     "last_active_child_id": null,
     "last_active_at": null

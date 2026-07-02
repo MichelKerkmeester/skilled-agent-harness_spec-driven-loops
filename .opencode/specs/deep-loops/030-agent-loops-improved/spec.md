@@ -11,18 +11,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/030-agent-loops-improved"
-    last_updated_at: "2026-07-01T20:40:00Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "Phase 010 complete; all 10 phases shipped"
-    next_safe_action: "None — all 10 phases complete, no further work scheduled"
+    last_updated_at: "2026-07-02T14:05:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Reconciled phase 011 state after deep-review remediation"
+    next_safe_action: "Implement child 007 or amend phase 011 scope"
     blockers: []
     key_files:
       - "research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sonnet-010-doc-audit"
+      session_id: "sonnet-011-followup-remediation"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 97
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet in the skilled-agent-orchestration track) |
@@ -58,7 +58,7 @@ _memory:
 Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection. We need a disciplined way to discover concrete, evidence-backed improvements and then apply them without losing track of dependencies.
 
 ### Purpose
-This packet first researches two vendored reference codebases for portable patterns (phase `001-reference-research`), then applies the resulting loop-system improvements as independently-executable phases (`002`-`007`, by subsystem). Phase `008` remediates deep-review follow-ups. Phase `009` implements the prioritized backlog from a deep-research fan-out run against the packet itself (`research/research.md`). Phase `010` dispatched a 10-iteration deep-review that confirmed the root `README.md` had drifted from everything shipped in `001`-`009` (a stale section label, an under-promoted feature, a missing safety-posture disclosure), and applied every confirmed fix.
+This packet first researches two vendored reference codebases for portable patterns (phase `001-reference-research`), then applies the resulting loop-system improvements as independently-executable phases (`002`-`007`, by subsystem). Phase `008` remediates deep-review follow-ups. Phase `009` implements the prioritized backlog from a deep-research fan-out run against the packet itself (`research/research.md`). Phase `010` dispatched a 10-iteration deep-review that confirmed the root `README.md` had drifted from everything shipped in `001`-`009` (a stale section label, an under-promoted feature, a missing safety-posture disclosure), and applied every confirmed fix. Phase `011` closes the 4 remaining deliberately-deferred follow-up items from phase 009's own changelog: 2 active review findings, a validate.sh architectural gap, the scaffold-content debt that gap would otherwise expose, and the sliding-window convergence mode a decision record recommended building next.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -105,6 +105,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | 008 | `008-loop-systems-remediation` | Remediate deep-review deferred findings + MiMo-campaign recs (rollback hash-guard, promotion safety, benchmark ledger, adversarial playbook scenarios, tightened pass-criteria, test-adequacy) | Complete |
 | 009 | `009-research-backlog-remediation` | Implement Tier 0/1/2 of the deep-research fan-out's 19-item backlog (`research/research.md`) plus 2 generation-2 findings: fanout-merge/runtime bug fixes, claimed-vs-actual drift closure, convergence/observability hardening, synthesis-integrity + orchestrator watchdog (11 children total) | Complete |
 | 010 | `010-documentation-truth-audit` | Dispatched 10-iteration GPT-5.5-fast deep-review checking README.md/AGENTS.md/AGENTS_Barter.md drift against everything shipped in 001-009; found and fixed 4 P1 + 1 P2 findings (Spec Kit Framework rename, Goal Plugin FEATURES section, Deep Loop safety-posture disclosure, phase-metadata self-consistency, review-artifact integrity) | Complete |
+| 011 | `011-followup-remediation` | Close the 4 deferred follow-ups from phase 009: 2 active review findings (fanout session-id propagation, LEAF-identity conflation), scaffold-content authoring across phases 002-007 (~40 leaves), the validate.sh registry-bridge gap (sequenced after scaffold cleanup), and the sliding-window convergence mode (7 children) | In Progress |
 
 ### Phase Transition Rules
 
@@ -121,6 +122,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | 007 | 008 | Implementation phases shipped + deep-reviewed; remediation backlog triaged | `review/review-report.md` + `review/mimo-campaign-report.md` present |
 | 008 | 009 | Deep-research fan-out run against the packet; prioritized backlog synthesized | `research/research.md` present |
 | 009 | 010 | All 11 remediation children shipped; documentation drift risk identified | `009-research-backlog-remediation/implementation-summary.md` present |
+| 010 | 011 | Documentation drift closed; 4 deferred follow-ups from phase 009 remained open | `009-research-backlog-remediation/changelog-009-root.md` Follow-Ups section |
 <!-- /ANCHOR:phase-map -->
 
 ---

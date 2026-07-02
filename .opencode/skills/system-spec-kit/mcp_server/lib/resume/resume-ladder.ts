@@ -20,6 +20,7 @@ import {
 } from '../continuity/thin-continuity-record.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 import { resolveLastActiveChildFromStore } from '../graph/access-telemetry.js';
+import { listPhaseChildren } from '../spec/is-phase-parent.js';
 
 export type ResumeLadderSource = 'handover' | 'continuity' | 'spec-docs' | 'none';
 
@@ -40,6 +41,7 @@ export interface ResumeLadderResolution {
 }
 
 export interface ResumeLadderResult {
+  phaseParent?: ResumeLadderPhaseParentContext;
   source: ResumeLadderSource;
   specFolder: string | null;
   resolution: ResumeLadderResolution;
@@ -52,6 +54,20 @@ export interface ResumeLadderResult {
   documents: ResumeLadderDocument[];
   freshnessWinner: 'handover' | 'continuity' | 'spec-docs' | null;
   restorePanel: ResumeRestorePanel;
+}
+
+export interface ResumeLadderPhaseParentChild {
+  name: string;
+  qualifies: boolean;
+  active: boolean;
+}
+
+export interface ResumeLadderPhaseParentContext {
+  specFolder: string;
+  redirectedSpecFolder: string | null;
+  children: ResumeLadderPhaseParentChild[];
+  documents: ResumeLadderDocument[];
+  summary: string;
 }
 
 export interface ResumeRestorePanelItem {
@@ -689,13 +705,69 @@ function parseSpecDocumentSignal(snapshots: StableDocumentSnapshot[]): ResumeSig
   };
 }
 
+function buildPhaseParentContext(params: {
+  folderPath: string;
+  specFolder: string;
+  redirectedSpecFolder: string | null;
+  workspacePath: string;
+  hints: string[];
+}): ResumeLadderPhaseParentContext | null {
+  const phaseChildren = listPhaseChildren(params.folderPath);
+  if (!phaseChildren.some((child) => child.qualifies)) {
+    return null;
+  }
+
+  const activeChild = params.redirectedSpecFolder?.startsWith(`${params.specFolder}/`)
+    ? params.redirectedSpecFolder.slice(params.specFolder.length + 1).split('/')[0] ?? null
+    : null;
+  const children = phaseChildren.map((child) => ({
+    name: child.name,
+    qualifies: child.qualifies,
+    active: child.name === activeChild,
+  }));
+
+  const documents: ResumeLadderDocument[] = [];
+  for (const relativePath of SPEC_DOC_PRIORITY) {
+    const docPath = path.join(params.folderPath, relativePath);
+    if (!fs.existsSync(docPath) || !fs.statSync(docPath).isFile()) {
+      continue;
+    }
+
+    try {
+      documents.push(toResumeDocument(readStableMarkdownDocument(docPath, params.workspacePath), 'spec-doc'));
+    } catch (error: unknown) {
+      params.hints.push(`Skipping parent ${path.basename(docPath)} after fingerprint verification failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  const childListing = children
+    .map((child) => `${child.name}${child.active ? ' (active)' : ''}${child.qualifies ? '' : ' (no spec doc)'}`)
+    .join(', ');
+  const parentDocs = documents.map((document) => path.basename(document.relativePath)).join(', ');
+  const summaryParts = [
+    `Phase parent ${params.specFolder}: ${children.length} child phase${children.length === 1 ? '' : 's'}`,
+    params.redirectedSpecFolder ? `redirect=${params.redirectedSpecFolder}` : null,
+    `children=${childListing}`,
+    parentDocs.length > 0 ? `parentDocs=${parentDocs}` : null,
+  ].filter((part): part is string => typeof part === 'string' && part.length > 0);
+
+  return {
+    specFolder: params.specFolder,
+    redirectedSpecFolder: params.redirectedSpecFolder,
+    children,
+    documents,
+    summary: summaryParts.join('; '),
+  };
+}
+
 function synthesizeResult(params: {
   primary: ResumeSignal;
   secondary?: ResumeSignal | null;
+  phaseParent?: ResumeLadderPhaseParentContext | null;
   resolution: ResumeLadderResolution;
   hints: string[];
 }): ResumeLadderResult {
-  const { primary, secondary, resolution, hints } = params;
+  const { primary, secondary, phaseParent, resolution, hints } = params;
   const mergedBlockers = uniqueStrings([
     ...primary.blockers,
     ...(secondary?.blockers ?? []),
@@ -730,6 +802,7 @@ function synthesizeResult(params: {
   });
 
   return {
+    ...(phaseParent ? { phaseParent } : {}),
     source: primary.source,
     specFolder: resolution.resolvedSpecFolder,
     resolution,
@@ -748,8 +821,10 @@ function synthesizeResult(params: {
 function buildNoRecoveryResult(
   resolution: ResumeLadderResolution,
   hints: string[],
+  phaseParent?: ResumeLadderPhaseParentContext | null,
 ): ResumeLadderResult {
   return {
+    ...(phaseParent ? { phaseParent } : {}),
     source: 'none',
     specFolder: resolution.resolvedSpecFolder,
     resolution,
@@ -899,7 +974,16 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
     return buildNoRecoveryResult(resolution, hints);
   }
 
+  const requestedFolderPath = resolution.folderPath;
+  const requestedSpecFolder = resolution.resolvedSpecFolder;
   const redirect = followPhaseParentRedirect(resolution.folderPath, resolution.resolvedSpecFolder, hints);
+  const phaseParent = buildPhaseParentContext({
+    folderPath: requestedFolderPath,
+    specFolder: requestedSpecFolder,
+    redirectedSpecFolder: redirect.specFolder !== requestedSpecFolder ? redirect.specFolder : null,
+    workspacePath,
+    hints,
+  });
   if (redirect.specFolder !== resolution.resolvedSpecFolder) {
     resolution.folderPath = redirect.folderPath;
     resolution.resolvedSpecFolder = redirect.specFolder;
@@ -972,6 +1056,7 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
     return synthesizeResult({
       primary,
       secondary,
+      phaseParent,
       resolution,
       hints,
     });
@@ -981,6 +1066,7 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
     return synthesizeResult({
       primary: handoverSignal,
       secondary: continuitySignal,
+      phaseParent,
       resolution,
       hints,
     });
@@ -990,6 +1076,7 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
     return synthesizeResult({
       primary: continuitySignal,
       secondary: specDocSignal,
+      phaseParent,
       resolution,
       hints,
     });
@@ -998,10 +1085,11 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
   if (specDocSignal) {
     return synthesizeResult({
       primary: specDocSignal,
+      phaseParent,
       resolution,
       hints,
     });
   }
 
-  return buildNoRecoveryResult(resolution, hints);
+  return buildNoRecoveryResult(resolution, hints, phaseParent);
 }

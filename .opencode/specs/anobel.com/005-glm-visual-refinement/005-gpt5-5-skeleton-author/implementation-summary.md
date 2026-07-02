@@ -42,7 +42,7 @@ Level 1 doc set is complete; it makes no completion claims. Update it after impl
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author |
+| **Spec Folder** | 005-gpt5-5-skeleton-author |
 | **Status** | Planning (implementation not started; contingent on phase 004 measured residual) |
 | **Level** | 1 |
 | **Created** | 2026-06-29 |

@@ -58,7 +58,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, collapsed accept/ship promotion steps, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain awareness.
+The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, merged accept/ship promotion steps with no separate gate, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain awareness.
 
 ### Purpose
 Apply all 12 deep-loop-workflows improvements as independently executable phases, each with its own spec, plan, tasks, and implementation-summary, sequenced by dependency order from the reference research.

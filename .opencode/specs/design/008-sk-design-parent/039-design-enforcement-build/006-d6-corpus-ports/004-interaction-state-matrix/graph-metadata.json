@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Stateful UI work — loading, error, empty, disabled, multi-step, optimistic-update flows — is where craft most often leaks: an interface looks finished at the happy path and falls apart at the error, empty, or pending state",
     "created_at": "2026-06-28T12:40:11.378Z",
-    "last_save_at": "2026-06-29T12:58:00.582Z",
+    "last_save_at": "2026-07-02T05:31:08.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ef4902bd1804fa5e45d201bb1efa92e37b91eaf24c9d09c359c447fd32b260a",
+    "source_fingerprint": "sha256:2a40fc4f6f085e3934830da53dc7375054b084d8a44234e75469912254a9144c",
     "source_doc_hashes": {
-      "spec.md": "94b72f1e808b4c13d24d66ce408e911e70ef319899b7393259fda4ed90ddc756",
-      "plan.md": "93e4d188f234bca94167d23372f85f9bc014a4fd3be11226c8afbe314529f4b8",
-      "tasks.md": "e314f6e19a1d9e72573d1185e5c9535aaa73d6818c5c1cb2af070d782cad6640",
-      "checklist.md": "d4eb5c7ca69355852f2b3a60b89a21e87336ead21217287927fa9235b4b110e1",
-      "implementation-summary.md": "46cc3c20df1db36a5942d0922a5a78de0eef886c7e2b8ba5bd7ffe5abbc871a6"
+      "spec.md": "183f9d9ed793cf85f93423e53115999fab1fc1a8b0de5b48a600aded2757bbdf",
+      "plan.md": "e2fe8a6159c818d107b2f591de0b353da0673ef05cdc25202fbd3601a4622f4b",
+      "tasks.md": "6ca61ec62805141a3cfe0239902e0948e89627626971947e88c94cb65b9698fb",
+      "checklist.md": "a8bf3ae212b92361e4e8bcd70bc1511b115afceab46d0d90a98e28b684de15ce",
+      "implementation-summary.md": "356fec4c1185652a3b1bc4170e2d0dd3e7d97a62f2f99629bf0d69539489bba9"
     },
     "last_active_child_id": null,
     "last_active_at": null

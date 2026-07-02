@@ -105,7 +105,7 @@ function wireMultiHopGraph(): void {
   });
 }
 
-function runImpact() {
+async function runImpact() {
   return buildContext({
     queryMode: 'impact',
     input: 'impact of Alpha.run',
@@ -122,9 +122,9 @@ describe('seeded-PPR impact ranking flag gate flips the path', () => {
     wireMultiHopGraph();
   });
 
-  it('flag OFF stays on the flat single-hop path', () => {
+  it('flag OFF stays on the flat single-hop path', async () => {
     delete process.env[FLAG];
-    const result = runImpact();
+    const result = await runImpact();
     const callers = result.graphContext[0].edges.map((e) => e.from);
 
     expect(callers).toContain('Direct.caller');
@@ -133,23 +133,23 @@ describe('seeded-PPR impact ranking flag gate flips the path', () => {
     expect(mocks.queryEdgesTo).not.toHaveBeenCalledWith('middle', 'CALLS');
   });
 
-  it('flag ON switches to the seeded-PPR walk and surfaces the deeper caller', () => {
+  it('flag ON switches to the seeded-PPR walk and surfaces the deeper caller', async () => {
     vi.stubEnv(FLAG, 'true');
-    const result = runImpact();
+    const result = await runImpact();
     const callers = result.graphContext[0].edges.map((e) => e.from);
 
     expect(callers).toContain('Central.caller');
     expect(mocks.queryEdgesTo).toHaveBeenCalledWith('middle', 'CALLS');
   });
 
-  it('flag ON is not byte-identical to flag OFF on the same graph', () => {
+  it('flag ON is not byte-identical to flag OFF on the same graph', async () => {
     delete process.env[FLAG];
-    const off = runImpact().graphContext[0].edges.map((e) => e.from);
+    const off = (await runImpact()).graphContext[0].edges.map((e) => e.from);
 
     vi.clearAllMocks();
     wireMultiHopGraph();
     vi.stubEnv(FLAG, 'true');
-    const on = runImpact().graphContext[0].edges.map((e) => e.from);
+    const on = (await runImpact()).graphContext[0].edges.map((e) => e.from);
 
     expect(JSON.stringify(on)).not.toBe(JSON.stringify(off));
     expect(on.length).toBeGreaterThan(off.length);

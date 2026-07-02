@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
       "mcp_server/lib/graph/graph-metadata-parser.ts",
       "mcp_server/tests/graph-metadata-schema.vitest.ts",
       "spec.md",
@@ -52,13 +54,13 @@
       {
         "name": "graph-metadata-parser.ts",
         "kind": "code",
-        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
         "source": "derived"
       },
       {
         "name": "graph-metadata-schema.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/graph-metadata-schema.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,7 +198,7 @@
     ],
     "causal_summary": "`deriveStatus()` in `graph-metadata-parser.ts` populates spec status only from YAML frontmatter, but many 026/027 specs declare status only in the markdown metadata table row `| Status | Draft |`",
     "created_at": "2026-06-04T20:45:43Z",
-    "last_save_at": "2026-06-23T03:49:53.050Z",
+    "last_save_at": "2026-07-02T05:31:10.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

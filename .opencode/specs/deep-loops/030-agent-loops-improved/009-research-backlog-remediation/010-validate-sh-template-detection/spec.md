@@ -42,7 +42,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 10 |
 | **Predecessor** | 009-convergence-design-and-hardening |
-| **Successor** | None |
+| **Successor** | 011-synthesis-integrity-and-orchestrator-watchdog |
 | **Handoff Criteria** | A new validate.sh rule flags a doc whose scaffold-signature markers (title `[template:...]`, `packet_pointer: "scaffold/..."`, `last_updated_by: "template-author"`) are still present alongside a Complete status claim |
 <!-- /ANCHOR:metadata -->
 

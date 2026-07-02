@@ -1,42 +1,38 @@
 ---
-title: "Implementation Plan: Phase 8: code-graph-coverage-bridge [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Code-Graph to Coverage-Graph Init Bridge"
+description: "Documents the completed code-graph seeding bridge for initial coverage graph state in context and review modes."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "code graph coverage bridge"
+  - "coverage graph seed"
+  - "empty coverage graph convergence"
+  - "seed source coverage init"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-code-graph-coverage-bridge"
-    last_updated_at: "2026-06-28T14:02:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/deep/assets/deep_context_auto.yaml"
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/upsert.cjs"
+      - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts"
+      - ".opencode/commands/deep/assets/deep_review_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-code-graph-coverage-bridge"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: code-graph-coverage-bridge
+# Implementation Plan: Code-Graph to Coverage-Graph Init Bridge
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +43,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode deep-loop YAML workflow, JavaScript CLI, TypeScript coverage-graph storage |
+| **Framework** | `deep-loop-runtime` coverage graph used by context and review deep loops |
+| **Storage** | Coverage-graph nodes seeded from code graph and frontier slice data |
+| **Testing** | Seed-path checks, empty-graph warning checks, context/review init-order checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work seeds coverage graph state from code graph and frontier slice inputs before the first convergence check. Context mode receives deep seeding across slice, file, symbol, and dependency nodes; review mode receives a shallow slice/file seed, with warnings instead of fatal errors when code graph data is unavailable.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +58,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Empty coverage graph behavior was identified as misleading convergence input.
+- [x] Context and review seeding depths are separated.
+- [x] Full review vocab expansion remains out of scope.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Context workflow seeds before first convergence check.
+- [x] Review workflow seeds before first convergence check with shallow node types.
+- [x] Seeded nodes carry `seed_source` and `seed_confidence`.
+- [x] Code-graph unavailability logs a non-fatal warning.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +75,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Initialization bridge: derive initial coverage graph nodes from known code graph/frontier inputs, annotate them as seeded, and let organic iteration nodes remain unannotated.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`deep_context_auto.yaml`**: Runs deep seeding before first convergence check.
+- **`upsert.cjs`**: Accepts `--seed-source` and `--seed-confidence` for seeding paths.
+- **`coverage-graph-db.ts`**: Persists seed metadata on seeded nodes.
+- **`deep_review_auto.yaml`**: Runs shallow seed variant for review mode.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Frontier slice and code graph inputs feed the seeding step, the upsert path writes coverage graph nodes with seed metadata, and the first convergence check sees a non-empty graph when data is available. If seeding yields zero nodes, the workflow logs a warning and continues.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +92,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Context workflow | Initializes deep context loop | Add deep seed step before convergence | Coverage graph has seed nodes before first check |
+| Review workflow | Initializes deep review loop | Add shallow seed step | Only slice/file seed in review mode |
+| Upsert CLI | Writes graph nodes | Require seed metadata for seeding path | Seeded nodes include source and confidence |
+| Coverage graph DB | Stores node metadata | Persist seed fields only for seeded nodes | Organic nodes lack seed metadata |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +106,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and capture context/review seeding requirements.
+- [x] Identify workflow, CLI, and DB surfaces.
+- [x] Keep full review symbol/dependency expansion out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add context-mode seeding before the first convergence check.
+- [x] Add `--seed-source` and `--seed-confidence` flags to seeding upsert path.
+- [x] Persist `seed_source` and `seed_confidence` on seeded nodes.
+- [x] Add review-mode shallow seeding.
+- [x] Log non-fatal warnings for zero-node or unavailable code graph seeding.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify seeded nodes exist before first convergence check when data is available.
+- [x] Verify seeded nodes include metadata and organic nodes do not.
+- [x] Verify code graph unavailability warns and allows the run to continue.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +130,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Workflow ordering | Seed step before convergence in context/review | YAML inspection or workflow fixture |
+| Storage metadata | Seeded versus organic nodes | Coverage graph DB test |
+| Degraded mode | Code graph unavailable or zero nodes | Seeding fixture with warning assertion |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +142,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Code graph data | Runtime input | Optional | Missing data logs warning and starts with empty graph |
+| Full review vocab expansion | Follow-up | Out of scope | Review stays shallow until separate deep rewrite |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +151,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Seeding blocks loop startup, seed metadata pollutes organic nodes, or review mode becomes noisy from over-seeding.
+- **Procedure**: Revert context/review workflow seed steps, upsert seed flags, and coverage DB seed metadata handling, then restore empty-graph startup with a documented convergence limitation.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/019-handoff-card |
+| **Spec Folder** | 019-handoff-card |
 | **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

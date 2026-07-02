@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/002-mcp-open-design-skill-build |
+| **Spec Folder** | 002-mcp-open-design-skill-build |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 | **Commit** | `0508518ac9` |

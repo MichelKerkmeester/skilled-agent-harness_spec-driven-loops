@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `010-ai-council-subagent-only` |
+| **Spec Folder** | 010-ai-council-subagent-only |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

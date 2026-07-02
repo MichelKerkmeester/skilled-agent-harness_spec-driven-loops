@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,25 +35,13 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "evidence/swap-runbook.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
+      "evidence/swap-runbook.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "swap-runbook.md",
-        "kind": "doc",
-        "path": "evidence/swap-runbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,6 +52,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "swap-runbook.md",
+        "kind": "doc",
+        "path": "evidence/swap-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-06-23T03:49:54.546Z",
+    "last_save_at": "2026-07-02T05:31:11.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

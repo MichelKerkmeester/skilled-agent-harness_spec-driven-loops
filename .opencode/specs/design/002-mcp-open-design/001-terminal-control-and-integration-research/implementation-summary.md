@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/001-terminal-control-and-integration-research |
+| **Spec Folder** | 001-terminal-control-and-integration-research |
 | **Completed** | 2026-06-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

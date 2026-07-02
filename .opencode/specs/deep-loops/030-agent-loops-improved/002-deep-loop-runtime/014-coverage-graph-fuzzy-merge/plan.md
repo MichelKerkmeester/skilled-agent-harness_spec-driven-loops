@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 14: coverage-graph-fuzzy-merge [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 14: Coverage Graph Fuzzy Merge"
+description: "Plan for the shipped query-only near-duplicate finding discovery APIs in the coverage graph."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "coverage-graph fuzzy merge"
+  - "finding consolidation candidates"
+  - "near-duplicate nodes"
+  - "namespace alias memo"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-coverage-graph-fuzzy-merge"
-    last_updated_at: "2026-06-28T14:02:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge"
+    last_updated_at: "2026-07-01T21:46:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped fuzzy-merge query content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed coverage graph consolidation query APIs"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/014-coverage-graph-fuzzy-merge"
+      fingerprint: "sha256:014a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5e0f"
+      session_id: "scaffold-content-remediation-014"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 14: coverage-graph-fuzzy-merge
+# Implementation Plan: Phase 14: Coverage Graph Fuzzy Merge
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript coverage graph query layer |
+| **Framework** | Query-only deterministic string-similarity discovery |
+| **Storage** | Existing graph rows are read but not mutated |
+| **Testing** | Spec acceptance requires category-guarded similarity, candidate clustering with leftovers, DB state unchanged before/after calls, and seeded near-duplicate fixtures; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped query-only near-duplicate discovery in `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts`. `findSimilarNodes` performs deterministic category-guarded string similarity, while `findConsolidationCandidates` returns clusters and leftovers without performing any row mutation or LLM-based merge.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: near-duplicate findings over-counted coverage and under-reported convergence.
+- [x] Success criteria measurable: identical names in different categories must never match; DB row count/content unchanged after query calls.
+- [x] Dependencies identified: deterministic string-similarity utility and bounded namespace alias memo available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `findSimilarNodes(ns, { kind, name, threshold })` implemented.
+- [x] Category guard blocks cross-category matches before similarity scoring.
+- [x] Bounded namespace alias memo included to avoid unbounded growth.
+- [x] `findConsolidationCandidates()` returns clusters plus leftover nodes in one pass.
+- [x] Query-only boundary preserved; no row mutation or auto-merge added.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Read-only consolidation candidate discovery with deterministic similarity and hard category isolation.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`findSimilarNodes`**: Finds near matches for one node descriptor inside a namespace and category.
+- **Category guard**: Rejects cross-category matches before computing string similarity.
+- **Namespace alias memo**: Bounded memoization for namespace/name aliases to keep query cost controlled.
+- **`findConsolidationCandidates`**: Groups likely near-duplicates into clusters and reports leftover nodes in a single read pass.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Callers request similar nodes or consolidation candidates from the query layer. The query reads existing graph nodes, applies category checks, computes deterministic string similarity above the configured threshold, and returns candidate clusters. Any actual merge or row mutation remains the caller's responsibility outside the graph query layer.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +101,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts` | Reads coverage graph nodes | Add read-only fuzzy candidate query APIs | Spec acceptance covers category guard, clustering, and no mutation |
+| Coverage graph rows | Persisted graph data | Read only | DB row count/content unchanged before/after query calls |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect existing graph query APIs before adding candidate discovery.
+- Consumers of changed symbols: callers may use candidate output to decide merges, but mutation remains outside this layer.
+- Matrix axes: same category near duplicate, same name different category, threshold below/above 0.85, clusters, leftovers, and no-write guarantee.
+- Algorithm invariant: query functions may identify consolidation candidates, but must not change database rows.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm implementation scope is only `coverage-graph-query.ts`.
+- [x] Confirm deterministic string similarity is used instead of LLM calls.
+- [x] Confirm auto-merge/row mutation is out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Implement `findSimilarNodes(ns, { kind, name, threshold })`.
+- [x] Enforce category guard before similarity checks.
+- [x] Add bounded namespace alias memo behavior.
+- [x] Implement `findConsolidationCandidates()` returning clusters and leftovers.
+- [x] Keep the query/mutation boundary intact with no DB writes.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify identical names in different categories return no match.
+- [x] Verify seeded near-duplicates cluster at threshold 0.85.
+- [x] Verify `findConsolidationCandidates()` returns clusters and leftovers in one pass.
+- [x] Verify DB state is unchanged before and after both query functions.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +142,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/guard | Identical names with different categories return empty results | Spec acceptance criteria; no dedicated test file named |
+| Unit/similarity | Threshold 0.85 clusters seeded near-duplicates | Fixture-based similarity test |
+| Integration/no mutation | DB row count/content unchanged before/after query calls | Before/after DB assertions |
+| Candidate output | Clusters plus leftovers returned in one pass | Integration test on seeded graph |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +155,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Deterministic string-similarity utility | Internal | Available | Required for no-LLM candidate discovery |
+| Bounded alias memo | Internal | Available | Prevents namespace alias tracking from growing without bound |
+| Future auto-merge/mutation workflow | Internal future | Deferred | Query APIs expose candidates; callers own mutation decisions |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +165,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Query functions match across categories, mutate rows, or return misleading candidate clusters.
+- **Procedure**: Remove `findSimilarNodes` and `findConsolidationCandidates` from `coverage-graph-query.ts`; callers return to exact-node matching until query-only fuzzy discovery is corrected.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +177,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

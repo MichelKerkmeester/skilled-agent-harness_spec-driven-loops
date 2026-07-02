@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,14 +48,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "hooks/codex/lib/freshness-smoke-check.ts",
-      "tests/hooks-codex-freshness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
@@ -93,33 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "freshness-smoke-check.ts",
-        "kind": "code",
-        "path": "hooks/codex/lib/freshness-smoke-check.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hooks-codex-freshness.vitest.ts",
-        "kind": "test",
-        "path": "tests/hooks-codex-freshness.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
         "source": "derived"
       },
       {
@@ -205,11 +175,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanically",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 013 identified four Tier C surfaces where automation was easy to overstate:",
     "created_at": "2026-04-29T14:15:00Z",
-    "last_save_at": "2026-06-23T03:49:52.293Z",
+    "last_save_at": "2026-07-02T05:31:10.587Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

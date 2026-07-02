@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The transform verbs bolder, quieter, distill, clarify and delight had no parseable route into the sk-design hub",
     "created_at": "2026-06-28T12:40:06.534Z",
-    "last_save_at": "2026-06-29T10:46:05.745Z",
+    "last_save_at": "2026-07-02T05:31:07.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d214797cfa23859d245bd9df61ea569d3959d9ae720f136be1374d5750da1ad8",
+    "source_fingerprint": "sha256:bd8e1d94937f5f4ed6cd70f440904e8c2e56808f3cb36c75e7fa48519ff7747e",
     "source_doc_hashes": {
-      "spec.md": "7de7ddac01937d99111ea127005f5ec97ba512222c019df987e46cc935030f95",
-      "plan.md": "2d973bb96ef0157bd5d3b66cc9d5306f201595ff8a4ec446442482f60c0df388",
-      "tasks.md": "5d0af7d058dd99f56984fb74a16467b47b22b39b7dd4e5ce10879a4ef9c65742",
-      "checklist.md": "6c7c1d44a19f002879c639bec2be54d8c15037daba26900d19e3e1e8344ee343",
-      "implementation-summary.md": "64cb7faec39e512e415c4c59da91de5717db2a4d5c202501f847d28961d78cb1"
+      "spec.md": "2f14dec704f7e56bdefc2e28bb84e39fa469d425fedf6a0ec3e67bba80cac2b4",
+      "plan.md": "35befbd9a021aea89804d4f028e7a21a2c001de5a3fa546d86057104b51c9791",
+      "tasks.md": "24c8e1eedc06497aa4727df8bca87e12eb4be566f92d0b944e3aadd2bc9af4f5",
+      "checklist.md": "4a256b1660c866036bc3129462dd1fda0390552cad565fdf8170f423c0f1254a",
+      "implementation-summary.md": "50545a419fd86d65d7ee3f5a6f79557a956630e303cb8ba62d854464818b41a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

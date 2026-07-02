@@ -179,13 +179,13 @@
         "source": "derived"
       },
       {
-        "name": "Additive Contract Edits",
+        "name": "Verification Date",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Readability comfort and localization survival lived in the design contract only as prose scattered across audit references",
     "created_at": "2026-06-28T12:40:09.295Z",
-    "last_save_at": "2026-06-29T15:25:22.987Z",
+    "last_save_at": "2026-07-02T05:31:08.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d622434bc64401875787951cd971665b01310de471eabc42c78a5406006370ae",
+    "source_fingerprint": "sha256:aa14acb95fd3448c7ac91227e1ab32fb9db23fc56c3664a74fcbf41ea9a114be",
     "source_doc_hashes": {
-      "spec.md": "f8f9cd49ec41b0194e3cb4cecbf04ef78d9c84d51ad0bc85fcdfd47eafa3a1ca",
-      "plan.md": "cf25e5827955b15b8eb51a681935a24c0620def8af3bfe894e362de6eac9f493",
-      "tasks.md": "f3ae452294f5568bd8c409cfbb4b2658af4e4b587a5c4dcfc84f35a9a042664c",
-      "checklist.md": "da692bb093aecc2a572b224b6ca7f58e85c500a124812f61b5a8d03a61dc9422",
-      "implementation-summary.md": "3da67da14753b8ff666427c7c7610d37265770f4dd536b9aad3e0363a6020b82"
+      "spec.md": "1eea3b27725cf89b1852cee2e02c431601fae793354f1c1ad3dbb9986c54b054",
+      "plan.md": "90a26893e68506848d9bcbbb2b757c272f4634092eb9225fd9d3862dd0578d81",
+      "tasks.md": "69800269234cf3005488d301812896cd0d8880d1b289789e5ac4b4d5b1840b16",
+      "checklist.md": "88c0a77fd9fdeb60b1c0daf9e8aa41e310bc64b6f01ce8c3f89c1ceea7999333",
+      "implementation-summary.md": "c8449e1b7a7c8ea20dfe0a20d20370b2bf27faa94ec0e30f34d10ee42b23a8bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

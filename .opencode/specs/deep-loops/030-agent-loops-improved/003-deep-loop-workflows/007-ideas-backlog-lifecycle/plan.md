@@ -1,42 +1,39 @@
 ---
-title: "Implementation Plan: Phase 7: ideas-backlog-lifecycle [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Ideas-Backlog Threshold and Rejection Lifecycle"
+description: "Documents the completed idea observation, promotion, and rejection lifecycle work for deep research."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "ideas backlog lifecycle"
+  - "idea_observed idea_promoted"
+  - "minIdeaObservations threshold"
+  - "idea promotion deep research"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-ideas-backlog-lifecycle"
-    last_updated_at: "2026-06-28T14:02:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md"
+      - ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md"
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
+      - ".opencode/agents/deep-research.md"
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-ideas-backlog-lifecycle"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: ideas-backlog-lifecycle
+# Implementation Plan: Ideas-Backlog Threshold and Rejection Lifecycle
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +44,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode deep-research protocol docs, reducer JavaScript, YAML workflow, agent markdown |
+| **Framework** | Event-sourced idea lifecycle in `deep-loop-workflows` research mode |
+| **Storage** | JSONL idea events and reducer-ranked promoted ideas |
+| **Testing** | Observation-threshold reducer checks and leaf-agent event constraints |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work added a threshold-gated lifecycle for ideas observed across deep-research iterations. Leaf agents emit observations only, the reducer owns promotion after `minIdeaObservations`, and durable rejection integrates with the rejected-pattern cache from leaf 006.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +59,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Rejected-pattern cache from leaf 006 is available for suppression integration.
+- [x] Idea promotion authority is assigned to the reducer, not leaf agents.
+- [x] Expensive full LLM consolidation remains out of scope.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `idea_observed`, `idea_promoted`, and `idea_rejected` events are documented.
+- [x] `minIdeaObservations` config defaults to 2 with bounded range.
+- [x] Reducer promotes ideas only after threshold is met.
+- [x] Leaf agents emit `idea_observed` only.
+- [x] Rejected ideas stay suppressed from promoted lists and next-focus candidates.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +77,17 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Reducer-owned lifecycle: leaf agents produce observations, the event stream persists them, and the reducer promotes or suppresses ideas based on configured thresholds.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`loop_protocol.md`**: Documents idea lifecycle semantics and threshold behavior.
+- **`state_jsonl.md`**: Defines idea event types.
+- **`deep_research_auto.yaml`**: Adds idea-lifecycle tracking to workflow order.
+- **`deep-research.md` agent**: Constrains leaves to observation-only events.
+- **`reduce-state.cjs`**: Accumulates observations, promotes after threshold, and ranks promoted ideas.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Leaf agents emit `idea_observed` records, the reducer counts observations per idea ID, and once count meets `minIdeaObservations`, the reducer emits or records `idea_promoted`. `idea_rejected` removes the idea from promoted lists and next-focus candidates through the leaf 006 suppression index.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +95,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| JSONL protocol | Defines research events | Add idea lifecycle events | Event docs include observed/promoted/rejected |
+| Reducer | Owns ranking and promotion | Promote after configured threshold | Two observations promote on next reduce |
+| Leaf agent | Emits iteration findings | Limit to `idea_observed` | No direct `idea_promoted` emission |
+| Workflow YAML | Orders lifecycle checks | Add lifecycle tracking step | YAML includes idea lifecycle step |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +109,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and capture idea lifecycle requirements.
+- [x] Confirm leaf 006 rejected-cache integration point.
+- [x] Identify protocol, JSONL, YAML, agent, and reducer surfaces.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add idea lifecycle events to `state_jsonl.md`.
+- [x] Document lifecycle and `minIdeaObservations` in `loop_protocol.md`.
+- [x] Add `minIdeaObservations` config field with default 2.
+- [x] Update reducer to count observations and own promotion ranking.
+- [x] Update leaf agent instructions to emit observations only.
+- [x] Add workflow tracking step to `deep_research_auto.yaml`.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify two observations of the same idea trigger reducer-owned promotion.
+- [x] Verify leaf agent output does not emit direct `idea_promoted`.
+- [x] Verify `idea_rejected` suppresses promoted and next-focus candidates.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +134,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Reducer threshold | `count >= minIdeaObservations` promotion | Reducer fixture |
+| Agent contract | Leaf emits observation only | Agent instruction/lint check |
+| Rejection integration | Rejected idea stays suppressed | Reducer and candidate fixture |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +146,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `006-rejected-pattern-cache` | Internal predecessor | Complete | `idea_rejected` suppression should feed the rejected-pattern index |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +154,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Reducer promotion ranks ideas incorrectly, leaf agents emit prohibited promotion events, or rejected ideas reappear.
+- **Procedure**: Revert idea lifecycle event docs, reducer promotion changes, YAML step, and leaf-agent instruction updates, then retain rejected-pattern suppression as the only durable idea-control path.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

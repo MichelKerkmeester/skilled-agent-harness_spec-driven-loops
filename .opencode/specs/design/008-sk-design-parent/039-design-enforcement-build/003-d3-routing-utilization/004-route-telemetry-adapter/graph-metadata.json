@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Hub routing was structurally scorable (the D1 hub-router projection and the D2 gated `hubRoute` stage already landed) but it was unobserved: `routeSkillResources` returned no record of which mode it chose, which aliases fired, or whether it fell to the policy default",
     "created_at": "2026-06-28T12:39:59.158Z",
-    "last_save_at": "2026-06-28T17:29:06.219Z",
+    "last_save_at": "2026-07-02T05:31:08.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:565b252ef1d5fdff6c3c0095eb95ee643b66f9039ff0dcacce29279bb67bf0b0",
+    "source_fingerprint": "sha256:2852a1423c3c4c25090de33ce038e4d14ef1472d424b269faf4a218034d60d5b",
     "source_doc_hashes": {
-      "spec.md": "0bb168de1f6430fa16e6d22a449e67370214cde794ff5e2a8c4a27c7181ccea2",
-      "plan.md": "166582a4f61fcc2808b51580216f79e3655ce584cc6ccd3dd557d95d07711982",
-      "tasks.md": "fad9b17a13c905b16f10aacde65d22fd9e267d3d363a05041f77209e828a4e46",
-      "checklist.md": "98bd2fcc5227480be9512ef2fef06d7cab723d3936211d864d88bcce4caaf05a",
-      "implementation-summary.md": "e98d385ba3681334a129e65f43c442c4f5ed5168916887f4df9bfa9e97d46c0f"
+      "spec.md": "fda180ca1b7b1d2f9726267ab7c30b37d2dade8d36248a007ba3e6b9da5f1029",
+      "plan.md": "0cc5538a1048ff7cc982b5c8e265e7f5eca8c38541c4b75d8aa1efb2cd8c326a",
+      "tasks.md": "e615e59edc4070d79b1fca19da30dbd1010a8f67d50c92e25db846867fee009b",
+      "checklist.md": "fa58475db880ebca7aff9602f9c5ebcbcb8bdf636d4d265a5a8bb4eee4a6d053",
+      "implementation-summary.md": "044dc7e0f971ee7ad1f17742f0a04b72070dee090449d45acb3db5552aeb7256"
     },
     "last_active_child_id": null,
     "last_active_at": null

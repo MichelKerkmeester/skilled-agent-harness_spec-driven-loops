@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
     "created_at": "2026-05-29T08:30:00.000Z",
-    "last_save_at": "2026-06-23T03:49:56.134Z",
+    "last_save_at": "2026-07-02T05:31:12.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,11 +177,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1ef75c1fd85e6e2463fc7f2c7123892e662421004c3482cd4532e31d498ce3e",
+    "source_fingerprint": "sha256:399cf04ee66414d07dc340cef7001512c5e6847a88f2f330080f34cdf2104a13",
     "source_doc_hashes": {
-      "spec.md": "d11a61ec0e4b3747d871e21c065649b81426adf5b8718c987aa0a40b0df34742",
-      "plan.md": "ffe8035743f970fbe1bb8bacb585f62f1b457620e1fff6aac87543650445d4ce",
-      "tasks.md": "90d8edd56940b371f7881a2114d90805741e89c0b4b1636147351d32639e2bab",
+      "spec.md": "d87d7f605870f8368f6500f52637a5aa445c40f7c7a054f857fcd0ede8830008",
+      "plan.md": "67554650de82135ed230f00939ac0d8ac1e32225f4dea6333b714fd7402a6ae9",
+      "tasks.md": "06c51a2ec5148f31dc6a6a243230c1cb465e98ac1c8e1bba5a82ddee0e605145",
       "implementation-summary.md": "a9fc62e0a84c291546c3876978b36b76b895d56c06885c356fb243ffa7cf791f"
     },
     "last_active_child_id": null,

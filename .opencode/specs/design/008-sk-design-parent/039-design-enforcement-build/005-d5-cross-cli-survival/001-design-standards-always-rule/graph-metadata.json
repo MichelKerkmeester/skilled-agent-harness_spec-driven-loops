@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       "plan.md",
@@ -54,7 +53,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "Router intent matching is phrasing-dependent and can miss",
     "created_at": "2026-06-28T12:40:07.040Z",
-    "last_save_at": "2026-06-28T16:37:51.489Z",
+    "last_save_at": "2026-07-02T05:31:08.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ce620a0991c9424c8d8be4f5a97416b0de9cde92362ea4edfcbccd0fb12cdc1",
+    "source_fingerprint": "sha256:1835176bf1bce6d63ec16009e63cc1f26373da2974307d337b20a87d7920cdfa",
     "source_doc_hashes": {
-      "spec.md": "b8363ace65a1cb6ccd23dc3cce414ee44026fd72a130b036ee82faf4b213a748",
-      "plan.md": "19427c31ee2ff76130253a06a0f72188d6735507dd5e130f227ee24a6fea697e",
-      "tasks.md": "0ccc828994d30a109ea45d792010a8a037c7d9265b761ab1ca184ce894522e76",
-      "checklist.md": "3aff516cff4f6a0c0ba0101afc753efa0eca01e23e863a31bbc0eeccbadc880a",
-      "implementation-summary.md": "71ffeac982403891dedf69de388619375d340e04c43e1c6e17e91d932b180ea3"
+      "spec.md": "1d5b7960da13d419cabbc7cfe4f2661be7939242913cf153a1e372388a4a4269",
+      "plan.md": "0fd7724607d38a107f130f00aa72e7449b13091d95351a024d58af71fe9ca3e4",
+      "tasks.md": "73f043732336214209233ac8987fb7499f9addb72e61f7e37abd000b490cc42d",
+      "checklist.md": "6e89c1ae5b3a2bd0d20c3122ecede7e2bddb27b13d1ef6e09eeeb5dd4bd031ac",
+      "implementation-summary.md": "7d044871a6dc0a8c33e9376e5ae71cc6deb49d6c3117cc4c06f6dc7a713031bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

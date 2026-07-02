@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Accessibility used to collapse into a single field",
     "created_at": "2026-06-28T12:40:10.852Z",
-    "last_save_at": "2026-06-29T14:56:47.243Z",
+    "last_save_at": "2026-07-02T05:31:08.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a38ad67b990c1cb08fb022e6efe0d77ae493c164ce86ca60a311ef37515f10e",
+    "source_fingerprint": "sha256:0bfedf4f7ae4e1d69d317f9691b0ac8c3d5f98ade45910fbfe4aaaccdc7b8093",
     "source_doc_hashes": {
-      "spec.md": "e9c80af90c4cb475b641b4d8ea9b058332aafe166b3c3a794f37d52f2895d7d1",
-      "plan.md": "d3c92f5573518aa47e334970e49bb5009f0b52c7d8e15e9b610f029d4e6e9b46",
-      "tasks.md": "1cf8aab5cb5bbc3f86719342b35105bb256ee8c6ebac5b2c366f3c5fbd2383ce",
-      "checklist.md": "807f42c3dd1a54693c420c8eebead45a89e6af98287663bcd8cdada72f8273dc",
-      "implementation-summary.md": "6fa3a7844b3f4fef5e95e18c93ada2986ddb981fa303b35e054e896a88c03ee1"
+      "spec.md": "fdce15bc17e8f636e76b59167691efb0d8b4f6f891a898a193a0be7f0ed158f3",
+      "plan.md": "dd37c4566fd9f331fb8f867cccd41be0f05f0d09c118cc4eb5a81a5e2a220c25",
+      "tasks.md": "22ee4742f9f10d6e58c21535fea5eb5debe571c074b06e64876aa753a58ec244",
+      "checklist.md": "d0e23b600c1a13a2b94971222f2cb299e5e289c1f9f0d16cf1e8dc62f3ef79b2",
+      "implementation-summary.md": "8da83f406d807bc5a05c72e13cc7525ac7e2470a4e403cf4849f616bb6506cb7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -927,7 +927,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         ]
       : [];
   return [
-    `You are a ${agentName} agent running a fan-out lineage.`,
+    `You are orchestrating the ${agentName} workflow YAML as a detached fan-out lineage.`,
     ...detachedIntro,
     ``,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
@@ -948,6 +948,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
   const maxIterations = lineage.iterations || 12;
   const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
   const stopPolicy = options.stopPolicy || 'convergence';
+  const sessionId = options.sessionId || '';
   const args = [
     ':auto',
     JSON.stringify(specFolder),
@@ -970,6 +971,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     'review_target_type: spec-folder',
     'review_dimensions: all',
     `spec_folder: ${specFolder}`,
+    ...(sessionId ? [`session_id: ${sessionId}`] : []),
     'execution_mode: AUTONOMOUS',
     'lineage_mode: auto',
     `maxIterations: ${maxIterations}`,
@@ -1525,6 +1527,7 @@ async function main() {
           loopType,
           specFolder,
           lineageDir,
+          sessionId,
           convergenceThreshold,
           stopPolicy,
           researchTopic,

@@ -41,11 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design-interface/graph-metadata.json",
-      ".opencode/skills/sk-design-md-generator/graph-metadata.json",
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design-interface/SKILL.md",
-      ".opencode/skills/sk-design-md-generator/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,13 +51,7 @@
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design-interface/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -195,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase 003 the `sk-design` umbrella exists, but the two real, working design skills are not yet members of the family: they have no edges to the umbrella and the umbrella's routing does not formally claim them",
     "created_at": "2026-06-25T12:41:16Z",
-    "last_save_at": "2026-06-25T15:01:54.538Z",
+    "last_save_at": "2026-07-02T05:31:07.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16674f84fc62244031b5d2876043b5d2b13a11c9724ab9435d5d245f8e7610f8",
+    "source_fingerprint": "sha256:27fd651440070e8a13133b62eee141abede3e899ed2ad32a552b75215e283499",
     "source_doc_hashes": {
-      "spec.md": "fd57244b822d9b3a318f6eb993584eb985a564caafd0d7eb5f752cfcb4a7de04",
-      "plan.md": "a4163043d0ed1090080ee5c2619bc079f57403d2ff0a3ddc592c2717434a2da0",
-      "tasks.md": "f70d5bc3ea2cee6e647bbcf280805db0d564d15bea5893973ddd83fe7bceb61a",
-      "implementation-summary.md": "6def4653816644ef6e603f0aaef2ccd58bc4302133dd7cf3eb17e1f3795730ed"
+      "spec.md": "892f2d718d6505706d096188d936611302352543c5d61e19e552bf4eb7b4aae5",
+      "plan.md": "6003cb239d8c9a3caa7a1fbf90783d2844c015ac84937b5b2f14028dc47b21e6",
+      "tasks.md": "a115029a5dcae3e3eb806676179dc3845f9f76117ada2b1c18b868a95b528df2",
+      "implementation-summary.md": "4537b3c5f1b6f8ec888590ee0c47161d42ed9b9484df3d9c61be2e3a7bbe3c49"
     },
     "last_active_child_id": null,
     "last_active_at": null

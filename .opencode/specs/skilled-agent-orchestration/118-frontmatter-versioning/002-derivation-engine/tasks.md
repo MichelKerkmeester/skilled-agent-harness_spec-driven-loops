@@ -1,32 +1,35 @@
 ---
-title: "Tasks: Phase 2: derivation-engine [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 2 - Derivation Engine"
+description: "Completed tasks for the deterministic frontmatter-version engine, including anchor resolution, numstat-gated edit counts, line-wise insertion, manifests, and verification modes."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "derivation engine tasks"
+  - "frontmatter version engine tasks"
+  - "numstat gated tasks"
+  - "version manifest tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-derivation-engine"
-    last_updated_at: "2026-06-23T07:33:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/002-derivation-engine"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with completed phase tasks"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs"
+      - ".opencode/skills/sk-doc/scripts/tests/test_frontmatter_version.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-derivation-engine"
+      session_id: "remediated-002-derivation-engine-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The engine is deterministic; MiMo is not in the compute path."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: derivation-engine
+# Tasks: Phase 2 - Derivation Engine
 
 <!-- SPECKIT_LEVEL: 1 -->
 

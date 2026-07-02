@@ -94,15 +94,15 @@
     ],
     "causal_summary": "Build the D2 design-command surface as one phase per recommendation (D2-R1..R13): a command-metadata.json SSOT plus a deterministic surface checker that restores real per-mode contracts to the five identical /design:* wrappers.",
     "created_at": "2026-06-28T12:39:53.453Z",
-    "last_save_at": "2026-06-30T09:11:27.763Z",
+    "last_save_at": "2026-07-02T05:31:08.005Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1dcaa30c11381c867c0995afae744ecf90c1913e76adfb658bd89057a787503f",
+    "source_fingerprint": "sha256:29879d80a120d4a43e97d88e0ddf2c8cb9a33351ba303759ecc4096ba562d019",
     "source_doc_hashes": {
-      "spec.md": "941d8d12f71a7efe70943c1395119a58cdd341a291003bd5fd8f9d07b3c4a74c"
+      "spec.md": "ad8aa10c3b728036dca6226721ce1f2a33f5d380143150b9de635ed20945027f"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-30T09:11:27.763Z"

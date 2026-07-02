@@ -38,7 +38,6 @@
     "status": "complete",
     "key_files": [
       ".claude/agents/deep-context.md",
-      ".codex/agents/deep-context.toml",
       ".github/workflows/prompt-card-sync.yml",
       ".opencode/commands/deep/model-benchmark.md",
       "spec.md",
@@ -51,12 +50,6 @@
         "name": "deep-context.md",
         "kind": "doc",
         "path": ".claude/agents/deep-context.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-context.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-context.toml",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes outputs to and promotes from `sk-prompt-small-model/benchmarks/{runlabel}`, and the context workflow loads `promptframing` from the SKILL.md",
     "created_at": "2026-06-28T13:47:21.858Z",
-    "last_save_at": "2026-06-28T14:32:51.070Z",
+    "last_save_at": "2026-07-02T05:31:09.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa5d1a4f95cabbaf236c1dde6c01321f70c3ffb7090a97d61c0ade7e0d50a160",
+    "source_fingerprint": "sha256:771229e37d8dcc16f0037c4d5e6e979a2dea636dfb977cf0f29ded53db91ff8c",
     "source_doc_hashes": {
-      "spec.md": "c243e3dc3a8ea0484d8efb71c8a8785b25d45efe61ac9eee61b2a73b75565ad7",
-      "plan.md": "443b717ab2bb321108d9b906ea0cb416a29ef2321e13949abd51343be5061d78",
-      "tasks.md": "142fe29dd03ecc8727adf9bc5c0712468ad586574591a6ee89dae73191ae669f",
-      "implementation-summary.md": "7a6e3a09af71a2653dd839d13adff4f41cfd9b7cfa30ea71d58a76c18604723a"
+      "spec.md": "c8726986cdb5822ddeafcae46cc72e785472b13cfed2a83bf42f81247ecc4ffa",
+      "plan.md": "55bfb806937ea00fb896ed839e4ca5be054b625f36c3f4d54521605ff6063405",
+      "tasks.md": "6bbf1ed62580ff899f01734cc4fdacd113ead21bef0c06fc8045fd213b381b21",
+      "implementation-summary.md": "00c99c3b62894eabc29d4cb8587ae28b0500dd760b4789e9fbe2e5dcdd8a26ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

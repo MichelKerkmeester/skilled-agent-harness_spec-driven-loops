@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
       ".claude/settings.json",
       ".claude/settings.local.json",
       "spec.md",
@@ -50,6 +54,30 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
       {
         "name": "settings.json",
         "kind": "config",
@@ -169,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `system-skill-advisor/mcpserver` vitest suite reported 61 of 553 tests failing in the working tree",
     "created_at": "2026-06-15T16:20:19Z",
-    "last_save_at": "2026-06-23T03:49:57.511Z",
+    "last_save_at": "2026-07-02T05:31:13.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3aea3af2e949171d637b9b941e40fa92f9baadd9a9fbfd783e995b8651ef0ad2",
+    "source_fingerprint": "sha256:3a5415cb3a2693bd2d26d62265d9d4a15b845bc81a47c8a5d619e75f259d4122",
     "source_doc_hashes": {
       "spec.md": "a1cdcd899ce18a52f589561f0f5fdfe67e9919e5306da1f77eded076ad078866",
       "plan.md": "d9183ddfcb8042a8d91ce65ced42926631381a069e27328c69b8cd0558f69f32",
       "tasks.md": "71f978c73d33fd3eebbbfe492f5ed2537bab578cd2c9624f27bba9287b22dee7",
       "checklist.md": "2340998c88545e2f7e5cb06d370c7b9525544dc878a4025b55555a9d5a0723bd",
-      "implementation-summary.md": "728ea552c3bd6454aa29a5d087d952f7f97cccbbe2d3e2afaa18bcf79021bb1d"
+      "implementation-summary.md": "7cb4e9a00d33b4348af63707716a8d7e9aa11c2308b19efc550f6aff82f240c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

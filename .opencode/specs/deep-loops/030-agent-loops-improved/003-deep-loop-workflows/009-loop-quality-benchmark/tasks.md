@@ -1,32 +1,38 @@
 ---
-title: "Tasks: Phase 9: loop-quality-benchmark [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Loop-Quality Benchmark from Score-Delta"
+description: "Completed task ledger for score-delta benchmark output and promotion gate enforcement."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "loop quality benchmark score delta"
+  - "outcomeScoreDelta benchmark"
+  - "fixtureDeltas helped hurt"
+  - "improvement over baseline gate"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-loop-quality-benchmark"
-    last_updated_at: "2026-06-28T14:02:13Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/009-loop-quality-benchmark"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs"
+      - ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml"
+      - ".opencode/agents/skill-benchmark.md"
+      - ".opencode/agents/model-benchmark.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-loop-quality-benchmark"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 9: loop-quality-benchmark
+# Tasks: Loop-Quality Benchmark from Score-Delta
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and capture benchmark delta fields (`spec.md`).
+- [x] T002 Identify benchmark runner, reducer, promotion gate, workflow, and agent surfaces.
+- [x] T003 [P] Confirm runtime convergence delta work is out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +66,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Emit `outcomeScoreDelta` per benchmark run (`run-benchmark.cjs`).
+- [x] T005 Emit `fixtureDeltas[]` with helped, hurt, and delta fields (`run-benchmark.cjs`).
+- [x] T006 Summarize helped and hurt fixture counts (`shared/reduce-state.cjs`).
+- [x] T007 Block promotion when `outcomeScoreDelta < 0` (`promote-candidate.cjs`).
+- [x] T008 Block hurt fixtures unless explicitly overridden (`promote-candidate.cjs`).
+- [x] T009 Update benchmark workflow and agent docs with score-delta fields.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +79,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Verify a negative outcome delta rejects promotion.
+- [x] T011 Verify hurt fixtures reject promotion without override.
+- [x] T012 Verify benchmark report displays helped and hurt totals.
+- [x] T013 Update plan and task docs to reflect the completed benchmark work (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +90,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +103,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

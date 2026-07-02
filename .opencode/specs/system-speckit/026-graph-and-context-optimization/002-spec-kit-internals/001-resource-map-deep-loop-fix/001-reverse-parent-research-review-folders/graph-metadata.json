@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,9 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+      "resource-map.md",
       ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
       "implementation-summary.md",
       "spec.md",
@@ -52,22 +52,14 @@
       "tasks.md",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
-      ".codex/agents/deep-research.toml",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
-      ".codex/agents/deep-review.toml",
       ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
       ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
       {
         "name": "review-research-paths.cjs",
         "kind": "file",
@@ -78,6 +70,12 @@
         "name": "migrate-deep-loop-local-owner.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -123,21 +121,9 @@
         "source": "derived"
       },
       {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-review.toml",
         "source": "derived"
       },
       {
@@ -205,11 +191,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and `review/` folders",
     "created_at": "2026-04-24T12:32:52.475Z",
-    "last_save_at": "2026-06-23T03:49:53.158Z",
+    "last_save_at": "2026-07-02T05:31:11.053Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

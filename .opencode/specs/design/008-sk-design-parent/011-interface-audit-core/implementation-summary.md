@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/011-interface-audit-core |
+| **Spec Folder** | 011-interface-audit-core |
 | **Completed** | Executed: seven interface and audit files built and wired, hub check passes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

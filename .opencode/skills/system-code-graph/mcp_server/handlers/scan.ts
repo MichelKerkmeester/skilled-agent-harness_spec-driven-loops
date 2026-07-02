@@ -28,6 +28,7 @@ import { canonicalizeWorkspacePaths, isWithinWorkspace } from '../lib/utils/work
 import { resolveIndexScopePolicy, scopeFingerprintsMatchOrLegacy } from '../lib/index-scope-policy.js';
 import { getSkipListSummary } from '../lib/parser-skip-list.js';
 import { handleCodeGraphQuery } from './query.js';
+import { isCodeGraphEdgeConfidenceDifferentiationEnabled } from '../lib/edge-confidence-flags.js';
 
 export interface ScanArgs {
   rootDir?: string;
@@ -108,6 +109,7 @@ function summarizeDetectorProvenance(
 function summarizeGraphEdgeEnrichment(
   results: Array<{ edges: CodeEdge[] }>,
 ): graphDb.GraphEdgeEnrichmentSummary | null {
+  const differentiationEnabled = isCodeGraphEdgeConfidenceDifferentiationEnabled();
   let best: graphDb.GraphEdgeEnrichmentSummary | null = null;
 
   for (const result of results) {
@@ -116,6 +118,14 @@ function summarizeGraphEdgeEnrichment(
       if (!metadata || typeof metadata.confidence !== 'number') {
         continue;
       }
+
+      // Only CALLS edges ever carried the legacy uniform tier; every other
+      // edge type resolves its own constant confidence by construction and is
+      // unaffected by this flag either way.
+      const useLegacyTier = edge.edgeType === 'CALLS' && !differentiationEnabled;
+      const effectiveConfidence = useLegacyTier ? 0.8 : metadata.confidence;
+      const effectiveDetectorProvenance = useLegacyTier ? 'heuristic' : metadata.detectorProvenance;
+      const effectiveEvidenceClass = useLegacyTier ? 'INFERRED' : metadata.evidenceClass;
 
       const edgeEvidenceClass = (() => {
         switch (edge.edgeType) {
@@ -129,16 +139,18 @@ function summarizeGraphEdgeEnrichment(
           case 'TESTED_BY':
             return 'test_coverage' as const;
           default:
-            return metadata.detectorProvenance === 'heuristic' || metadata.evidenceClass === 'INFERRED'
+            return effectiveDetectorProvenance === 'heuristic'
+              || effectiveEvidenceClass === 'INFERRED'
+              || effectiveEvidenceClass === 'AMBIGUOUS'
               ? 'inferred_heuristic' as const
               : 'direct_call' as const;
         }
       })();
 
-      if (!best || metadata.confidence > best.numericConfidence) {
+      if (!best || effectiveConfidence > best.numericConfidence) {
         best = {
           edgeEvidenceClass,
-          numericConfidence: metadata.confidence,
+          numericConfidence: effectiveConfidence,
         };
       }
     }

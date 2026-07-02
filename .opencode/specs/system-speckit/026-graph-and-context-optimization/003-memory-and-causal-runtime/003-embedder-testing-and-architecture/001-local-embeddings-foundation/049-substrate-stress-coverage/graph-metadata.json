@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
       "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       "mcp_server/stress_test/substrate/README.md",
       "stress_test/substrate/README.md",
@@ -101,12 +100,6 @@
         "name": "vitest.stress.config.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-2026-05-14-shared-daemon.summary.tsv",
-        "kind": "file",
-        "path": "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcpserver/stresstest/` is provider-agnostic by design",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-06-23T03:49:54.228Z",
+    "last_save_at": "2026-07-02T05:31:11.702Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

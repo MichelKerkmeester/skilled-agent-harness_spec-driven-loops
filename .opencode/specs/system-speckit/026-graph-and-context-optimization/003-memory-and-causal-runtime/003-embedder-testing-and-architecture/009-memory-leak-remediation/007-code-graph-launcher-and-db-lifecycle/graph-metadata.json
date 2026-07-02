@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -33,6 +33,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts",
@@ -41,12 +44,27 @@
       ".opencode/skills/system-code-graph/mcp_server/index.ts",
       ".opencode/skills/system-code-graph/mcp_server/tests/lib/canonical-db-dir.vitest.ts",
       ".opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -99,24 +117,6 @@
         "name": "close-db.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The code-index audit found stale/orphan-prone launcher and server ownership",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-23T03:49:55.123Z",
+    "last_save_at": "2026-07-02T05:31:12.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

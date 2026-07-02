@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,18 +36,24 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "review/review-report.md",
       "review/deep-review-config.json",
       "review/deep-review-state.jsonl",
       "review/deep-review-findings-registry.json",
       "review/deep-review-strategy.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "review-report.md",
         "kind": "doc",
@@ -76,12 +82,6 @@
         "name": "deep-review-strategy.md",
         "kind": "doc",
         "path": "review/deep-review-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph fixes (012 empty-graph auto-establish + the 15-bug audit remediation) were shipped rapidly, partly by parallel sessions, into a safety-critical subsystem that just suffered a real data-integrity incident (026/004/012 FTS5 corruption)",
     "created_at": "2026-05-29T13:33:41.028Z",
-    "last_save_at": "2026-06-23T03:49:56.446Z",
+    "last_save_at": "2026-07-02T05:31:12.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

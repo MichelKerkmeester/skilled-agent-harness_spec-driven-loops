@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise `fallbackDecision` end-to-end — pre-flight recovery left the live graph healthy before each cell ran",
     "created_at": "2026-04-27T19:58:00Z",
-    "last_save_at": "2026-06-23T03:49:52.628Z",
+    "last_save_at": "2026-07-02T05:31:10.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

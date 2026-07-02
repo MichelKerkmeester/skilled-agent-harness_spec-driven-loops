@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -54,7 +54,6 @@
       "checklist.md",
       "resource-map.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -111,12 +110,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:53.164Z",
+    "last_save_at": "2026-07-02T05:31:11.059Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

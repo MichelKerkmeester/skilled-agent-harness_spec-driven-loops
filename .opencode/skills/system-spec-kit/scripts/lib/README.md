@@ -20,6 +20,7 @@ Current state:
 - TypeScript modules cover rendering, semantic extraction, frontmatter, memory quality and activity signals.
 - Shell helpers centralize branch detection, template operations and shared validation utilities.
 - Runtime JavaScript output is generated from TypeScript sources and should not be edited by hand.
+- `dist-freshness.cjs` is the one exception to the compile-from-TS rule: a standalone, directly-executable CommonJS module (no build step) that four independent consumers share — the three `.opencode/bin/*.cjs` CLI shims, `validate.sh`'s hard staleness backstop, the `sk-code` `claude-posttooluse.sh` hook, and the `mk-dist-freshness-guard` OpenCode plugin.
 
 ---
 
@@ -72,6 +73,7 @@ scripts/lib/
 +-- topic-keywords.ts             # Lexical topic extraction
 +-- trigger-extractor.ts          # Trigger phrase extraction
 +-- validate-memory-quality.ts    # Generated memory quality checks
++-- dist-freshness.cjs            # Standalone (not compiled) source-vs-dist staleness checker, 7 watched packages
 +-- git-branch.sh                 # Git branch helper
 +-- shell-common.sh               # Shared shell utility functions
 +-- template-utils.sh             # Template rendering shell helpers
@@ -101,6 +103,7 @@ Disallowed direction:
 | `semantic-signal-extractor.ts` | Extracts semantic signals for routing and scoring. |
 | `trigger-extractor.ts` | Extracts trigger phrases from document text. |
 | `validate-memory-quality.ts` | Checks generated memory content before save or index. |
+| `dist-freshness.cjs` | Compares each watched package's source mtimes (hash-cached) against its built dist entrypoint. `checkPackageFreshness()`/`checkAllFreshness()`/`checkFileFreshness()` are called directly by the 3 CLI shims and the `mk-dist-freshness-guard` plugin; `validate.sh` and `check-dist-staleness.sh` shell out to its CLI (`check` / `check-file` / `check-all`, exit `69` on stale). |
 | `shell-common.sh` | Provides common shell functions for spec and rule scripts. |
 | `template-utils.sh` | Provides shell helpers for template-based writes. |
 

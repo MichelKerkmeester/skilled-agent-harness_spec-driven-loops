@@ -43,24 +43,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "a_nobel_en_zn/1_css/slider/slider_timeline.css",
       "a_nobel_en_zn/2_javascript/slider_testimonial.js",
       "a_nobel_en_zn/2_javascript/slider_timeline.js",
       "a_nobel_en_zn/2_javascript/z_minified/slider_testimonial.min.js",
       "a_nobel_en_zn/2_javascript/z_minified/slider_timeline.min.js",
+      "a_nobel_en_zn/1_css/slider/slider_timeline.css",
+      "specs/anobel.com/003-slider-refactor/webflow-update-guide.md",
+      "specs/anobel.com/003-slider-refactor/testimonial-tab-update-guide.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md",
+      "tasks.md",
       "handover.md"
     ],
     "entities": [
-      {
-        "name": "slider_timeline.css",
-        "kind": "file",
-        "path": "a_nobel_en_zn/1_css/slider/slider_timeline.css",
-        "source": "derived"
-      },
       {
         "name": "slider_testimonial.js",
         "kind": "code",
@@ -86,6 +82,24 @@
         "source": "derived"
       },
       {
+        "name": "slider_timeline.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/slider/slider_timeline.css",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-update-guide.md",
+        "kind": "doc",
+        "path": "specs/anobel.com/003-slider-refactor/webflow-update-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "testimonial-tab-update-guide.md",
+        "kind": "doc",
+        "path": "specs/anobel.com/003-slider-refactor/testimonial-tab-update-guide.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -98,15 +112,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -128,7 +142,7 @@
         "source": "derived"
       },
       {
-        "name": "Webflow Designer",
+        "name": "Apply Webflow",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,7 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Direct Webflow Designer",
+        "name": "Webflow Designer",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -158,51 +172,39 @@
         "source": "derived"
       },
       {
-        "name": "Steps Executed",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Create Webflow Designer",
+        "name": "Runtime Libraries",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context Both",
+        "name": "Source Layout",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task List",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Evidence",
+        "name": "Task Format",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "generic",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "header",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `testimonialSliderCdnInit`, etc.)",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.290Z",
+    "last_save_at": "2026-07-02T05:53:01.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +214,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:504cb2c67706646b9771ced7efd1370917be811ea1ab0869b14b6aac6d1ea1bb",
+    "source_fingerprint": "sha256:f2ecb9b43a4a4c179fd90682860a3e1c1c7e6e11e6097af2fe4cf14fba63bcd3",
     "source_doc_hashes": {
-      "spec.md": "dc67caabc79e16cfae9ec6764e697300e47627da65a7d423d8057880d5353913",
-      "plan.md": "3f941df97d30db52f58ba120612f617398ae7ed48cb5a0d291e1ddfb2b9cbe20",
-      "tasks.md": "5e53856bd03f359da7a44b6d53cdc0f63ccfff14b9e3a70959d258986398519c",
-      "implementation-summary.md": "5a4fc58eb668cd2427ea6c5cb31ced281ac5ae424b4ed3873326ac69ee2dc630",
+      "spec.md": "c004e968a4e061cdcd9da31c6106928e691ba8011b04683de0791ea9708a1a82",
+      "plan.md": "6f204f683779d8f731e39db3e6bdd06413aeeb2562493103d0bdad976d4481cd",
+      "tasks.md": "f18228cd715e25d16a9900e4dc87a44f0c03535cee9da269bff8acc69ea7880d",
+      "implementation-summary.md": "d4bdfdbed5964298589b45a826b5b8e4b19a2dab09072a6424075d301199aa6b",
       "handover.md": "f3909fe15b43a8859000b6f45afad4ab553eeedc08fabfa03a2e5cb0301a56b4"
     },
     "last_active_child_id": null,

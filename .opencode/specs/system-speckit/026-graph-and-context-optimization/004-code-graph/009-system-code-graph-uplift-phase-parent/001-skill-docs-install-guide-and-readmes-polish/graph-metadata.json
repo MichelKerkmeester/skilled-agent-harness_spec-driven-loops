@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -37,6 +37,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "feature_catalog/feature_catalog.md",
       "mcp_server/README.md",
       "mcp_server/plugin_bridges/README.md",
@@ -47,13 +51,33 @@
       ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       ".opencode/skills/system-code-graph/mcp_server/README.md",
       ".opencode/skills/system-code-graph/mcp_server/tests/handlers/README.md",
-      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "feature_catalog.md",
         "kind": "doc",
@@ -82,30 +106,6 @@
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver READMEs",
     "created_at": "2026-05-16T10:35:00Z",
-    "last_save_at": "2026-06-23T03:49:56.059Z",
+    "last_save_at": "2026-07-02T05:31:12.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

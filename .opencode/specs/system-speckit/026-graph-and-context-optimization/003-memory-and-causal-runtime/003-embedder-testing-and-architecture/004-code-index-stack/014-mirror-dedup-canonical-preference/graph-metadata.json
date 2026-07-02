@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Hardens CocoIndex's _dedup_and_rank_hybrid_rows() so the 4 runtime mirrors (.opencode/.codex/.gemini/.claude) collapse to ONE canonical representative before the rerank window is selected. Operator-configurable canonical mirror via COCOINDEX_CANONICAL_MIRROR (default .opencode). Eliminates redundant rerank slots, gives every embedder + reranker a cleaner candidate set, addresses the mirror-pollution failure mode documented in 011/research iter 2 + iter 5. Embedder-agnostic, reranker-agnostic, future-proof for any new mirror that gets added.",
     "created_at": "2026-05-19T13:10:00.000Z",
-    "last_save_at": "2026-06-23T03:49:54.638Z",
+    "last_save_at": "2026-07-02T05:31:11.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

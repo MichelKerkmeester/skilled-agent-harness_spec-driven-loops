@@ -96,15 +96,15 @@
     ],
     "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI",
     "created_at": "2026-06-14T12:30:00Z",
-    "last_save_at": "2026-06-23T03:49:48.534Z",
+    "last_save_at": "2026-07-02T05:31:06.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e08db4edf230cb0d5f0daf66c5f67425cfddb30f6d169970f0a38c2b5ffd72b3",
+    "source_fingerprint": "sha256:c95a968414131634d0a523804f65d7ede6d04897d53a527652417ed0051fde35",
     "source_doc_hashes": {
-      "spec.md": "2bc93c273ed99ac17e9920a300c30d75403185b18d5b695b41c30e1a674bc464"
+      "spec.md": "e9b8d8685a87cc8b178f608651a102b5e8fa45fd43905ad21150543aecad35fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

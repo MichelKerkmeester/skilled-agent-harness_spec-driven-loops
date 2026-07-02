@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,27 +41,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".claude/settings.local.json",
-      "mcp_server/package.json",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      ".claude/settings.local.json",
+      "mcp_server/package.json",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,21 +63,33 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
     "created_at": "2026-04-25T10:48:08.547Z",
-    "last_save_at": "2026-06-23T03:49:56.188Z",
+    "last_save_at": "2026-07-02T05:31:12.724Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

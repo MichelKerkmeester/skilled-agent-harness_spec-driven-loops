@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -33,16 +33,40 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "process-sweep.ts",
         "kind": "code",
@@ -65,30 +89,6 @@
         "name": "process-memory-harness.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Both packets warn that broad kill commands can either miss detached helpers or terminate legitimate warm services",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-23T03:49:55.111Z",
+    "last_save_at": "2026-07-02T05:31:12.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

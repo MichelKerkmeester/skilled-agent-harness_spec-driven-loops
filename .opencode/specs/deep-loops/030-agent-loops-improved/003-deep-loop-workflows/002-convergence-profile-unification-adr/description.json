@@ -13,7 +13,7 @@
     "coverage-graph-signals",
     "shared"
   ],
-  "lastUpdated": "2026-07-01T15:48:15.588Z",
+  "lastUpdated": "2026-07-01T22:26:47.620Z",
   "specId": "002",
   "folderSlug": "convergence-profile-unification-adr",
   "parentChain": [
@@ -24,5 +24,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "3"
 }

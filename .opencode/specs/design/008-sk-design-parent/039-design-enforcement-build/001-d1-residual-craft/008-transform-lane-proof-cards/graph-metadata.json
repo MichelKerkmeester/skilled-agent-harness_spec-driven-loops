@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The interface transform lane already named the proof fields (the Shared Application Contract) and gave per-verb guidance for bolder, quieter, distill, clarify, and delight, but nothing in `transformapplication.md` was the fillable artifact an applied transform must hand back",
     "created_at": "2026-06-28T12:40:03.742Z",
-    "last_save_at": "2026-06-29T11:35:42.355Z",
+    "last_save_at": "2026-07-02T05:31:07.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22bf6eaa1e471ef7da23b127e18dfebf1759e39f403bd048c088f48d7a5de33c",
+    "source_fingerprint": "sha256:0d2abefdb043b88ca29161e18c6192e9351b7f74493ff0209c221346e41775a5",
     "source_doc_hashes": {
-      "spec.md": "69f07bc30f504d7fd9566d50714c4c9356e4d5556d463d87a1bb053e1da2ee53",
-      "plan.md": "4bbe97df84f65a20cf966126a063783ab049d710059db265302d2f685d796796",
-      "tasks.md": "b7947a9d38b9730a01d6056fa3cf62b94dc2832796d69443f864426641c11377",
-      "checklist.md": "26504769d36a75dec8d4e3f7e80c2aa21a7bd20d5264145a9c7d86cbe1b5f93d",
-      "implementation-summary.md": "a773231efa57acc20b65b8a970f21e30e269f3f2cc3934a36fa868d36ffb9fc1"
+      "spec.md": "e62066b3ad78325e9d6a06bfa9da7ee4aab0de16b26bf68371ef1a7e16f11218",
+      "plan.md": "837bbc14771a4ba813df2058a0ffd7d35fee49f735d8abb8062f3a350bff56d3",
+      "tasks.md": "d25216bda0a205db7d8e9be1f3a51ab91f1cdf088a56e2c570ff1319464c1fd0",
+      "checklist.md": "fc902c672a26ada124cb840566d1cbc994a338ad642bc892a06a105d1f263ae8",
+      "implementation-summary.md": "7a67a0a9d372fa2edc5eaed39c97f7db3490a073df0b1df357c386f7cdd10fb7"
     },
     "last_active_child_id": null,
     "last_active_at": null

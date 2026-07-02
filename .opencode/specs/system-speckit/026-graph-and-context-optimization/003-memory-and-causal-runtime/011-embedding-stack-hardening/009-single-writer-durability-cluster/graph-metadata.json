@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,12 +34,14 @@
       "test"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "plan.md",
-      "tasks.md",
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/bin/hf-model-server.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "plan.md",
+      "tasks.md",
       "mcp_server/lib/search/vector-index-store.ts",
       "mcp_server/lib/embedders/reindex.ts",
       "scripts/core/workflow.ts",
@@ -49,18 +51,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "model-server-supervision.cjs",
         "kind": "file",
@@ -76,13 +66,25 @@
       {
         "name": "vector-index-store.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-store.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
         "source": "derived"
       },
       {
         "name": "reindex.ts",
         "kind": "code",
-        "path": "mcp_server/lib/embedders/reindex.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -196,7 +198,7 @@
     ],
     "causal_summary": "The deep review found a cluster of single-writer / durability defects across the embedding-stack launcher + supervision + WAL surfaces",
     "created_at": "2026-05-29T21:10:00.586Z",
-    "last_save_at": "2026-06-23T03:49:55.523Z",
+    "last_save_at": "2026-07-02T05:31:12.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

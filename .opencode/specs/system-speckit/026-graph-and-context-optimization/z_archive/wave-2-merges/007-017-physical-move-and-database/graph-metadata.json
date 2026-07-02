@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -38,34 +38,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
-      "mcp_server/core/config.ts",
-      "implementation-summary.md",
-      ".opencode/plugins/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+      "mcp_server/core/config.ts",
+      ".opencode/plugins/README.md"
     ],
     "entities": [
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,6 +70,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-06-23T03:49:56.656Z",
+    "last_save_at": "2026-07-02T05:31:12.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [

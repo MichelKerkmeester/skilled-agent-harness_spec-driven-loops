@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The hardening matrix in `hardeningedgecases.md` proved each edge case three ways: a probe to run, the symptom an unhardened surface shows, and the finding to file when the symptom appears",
     "created_at": "2026-06-28T12:40:04.234Z",
-    "last_save_at": "2026-06-29T11:44:03.855Z",
+    "last_save_at": "2026-07-02T05:31:07.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e137ba7cf2f3dd994e5c1f1923dce92241de67efd6a1390fce91e338e65713f4",
+    "source_fingerprint": "sha256:bd828f3ad4f103a9c699aa88cdfc0a2ae5b717a61659086107e26d8a10628cbc",
     "source_doc_hashes": {
-      "spec.md": "46bf58d19958176baae539d50088bf0eb2aa930816098a1dedcf25a0ad1ddc4a",
-      "plan.md": "0239d9f46b1b85cf779f0c34c474616c4a7d0116aacc73d9c06ecef7d454e708",
-      "tasks.md": "a0b45fbb1edfc14c3b35b48e73d044955f8d332473c9f7671cbc1e595124a8a8",
-      "checklist.md": "3e67e07760281ce39de68c302ce8323a9f32c67ee7a3f7ba8169ea300c0ebc1e",
-      "implementation-summary.md": "5999af1cf1a8229be050e6d62cd0c90c0744ce256ea87e46ced3f045e820293c"
+      "spec.md": "a807629e62477713c0882ea7f0306865ba163588ebaf02d4acdc59cc89e11549",
+      "plan.md": "259161dbd057e0a33941ab4e2048a9e3660b142e158fd7e2cc5642637679dd6f",
+      "tasks.md": "7ca49e4458eb561e124357643fabbbefc80f4ea174444ac2eb2699fe95e055c4",
+      "checklist.md": "6ddf5a163dc12134a6f39d1bb9120ac32e8f3b30caa7ba2c3e8c51480d1ab1c1",
+      "implementation-summary.md": "8b0306a19f88676db27194a26b8a0bbd4844bb96790de594c9d6a33d0f182db7"
     },
     "last_active_child_id": null,
     "last_active_at": null

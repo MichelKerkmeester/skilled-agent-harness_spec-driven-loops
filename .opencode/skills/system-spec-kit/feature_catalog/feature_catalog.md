@@ -4435,6 +4435,26 @@ See [`16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md`]
 
 ---
 
+### Dist-freshness enforcement
+
+#### Description
+
+A shared module compares each dist-producing package's newest watched source mtime against its compiled dist entry and reports whether the build output is stale, so nothing in the repo has to reinvent that check. Four independent classes of caller consume it: the three daemon-backed CLI shims, `validate.sh`'s compiled-orchestrator backstop, a Claude Code hook, and an OpenCode plugin — six concrete integration points across four response tiers.
+
+#### How It Works
+
+`checkPackageFreshness()` in `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` tracks 7 watched packages in its `DIST_PACKAGES` registry and decides staleness by a pure mtime comparison (newest watched source mtime versus the compiled dist entry's mtime), with a lazily-written same-session SHA256 hash cache as a performance short-circuit only — never a build-time pre-warm. `spec-memory.cjs`, `code-index.cjs`, and `skill-advisor.cjs` were migrated onto this module from their own prior inline freshness logic and fail closed with exit 69 on a stale or missing dist entry. `validate.sh`'s `run_node_orchestrator()` adds a new hard backstop: it refuses to fall through to a stale compiled validation orchestrator, exiting 3 with a rebuild instruction rather than grading a spec folder against outdated rules. The Claude Code PostToolUse hook (`check-dist-staleness.sh`, wired into `claude-posttooluse.sh`) and the OpenCode plugin (`mk-dist-freshness-guard.js`) are deliberately warn-only — they observe general editing and Bash activity across the whole repo and always exit 0 or use `console.warn`, never blocking.
+
+No consumer auto-rebuilds on detecting staleness. This is deliberate: a freshness check often runs concurrently with other active sessions writing into the same shared, gitignored `dist/` output, and an automatic rebuild risks compiling another session's unrelated uncommitted changes into that shared artifact — a failure mode that occurred once already in this repository's history. Failing closed (CLI shims, `validate.sh`) or warning (hook, plugin) and asking the operator to rebuild explicitly avoids that cross-session contamination.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/dist-freshness-enforcement.md`](16--tooling-and-scripts/dist-freshness-enforcement.md) for full implementation and test file listings.
+
+> **Playbook:** [429](../manual_testing_playbook/16--tooling-and-scripts/cli-dist-freshness-guard.md), [455](../manual_testing_playbook/16--tooling-and-scripts/validate-sh-dist-freshness-backstop.md)
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance

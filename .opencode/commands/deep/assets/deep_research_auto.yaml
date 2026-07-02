@@ -283,6 +283,16 @@ workflow:
         on_fresh:
           action: "Proceed with a new session"
 
+      step_resolve_session_id:
+        action: "Resolve init session id from caller when supplied, else preserve the auto-generated fallback"
+        branch_on: "session_id"
+        if_present:
+          bind:
+            session_id_init: "{session_id}"
+        if_absent:
+          bind:
+            session_id_init: "{AUTO_SESSION_ID}"
+
       step_create_config:
         action: "Create deep-research-config.json from template"
         template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json
@@ -304,7 +314,7 @@ workflow:
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
           executionMode: "auto"
-          lineage.sessionId: "{AUTO_SESSION_ID}"
+          lineage.sessionId: "{session_id_init}"
           lineage.parentSessionId: null
           lineage.lineageMode: "new"
           lineage.generation: 1

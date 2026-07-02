@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/011-followup-remediation/001-fanout-session-id-propagation",
+  "spec_folder": "deep-loops/030-agent-loops-improved/011-followup-remediation/001-fanout-session-id-propagation",
+  "parent_id": "deep-loops/030-agent-loops-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout session id propagation",
+      "F002 session id fix"
+    ],
+    "key_topics": [
+      "fanout",
+      "session",
+      "propagation",
+      "f002",
+      "fix",
+      "fanout-run",
+      "cjs",
+      "1500",
+      "generates",
+      "concrete",
+      "sessionid",
+      "lineage"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/commands/deep/assets/deep_review_confirm.yaml",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fanout Session",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Thread",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "inline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`fanout-run.cjs:1500` generates a concrete `sessionId` (`fanout-${lineage.label}-${runId}`) and threads it into the CLI subprocess prompt as a free-text `sessionid: ${sessionId}` line (`fanout-run.cjs:894`)",
+    "created_at": "2026-07-01T19:38:04.132Z",
+    "last_save_at": "2026-07-02T14:03:07.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9991a6d60d6bee1f74b6a9330024c919279eaf3670a80f2ab7c7248ed6ac937",
+    "source_doc_hashes": {
+      "spec.md": "5da0f63ac608f82542ea2ea80675a6de7e02edfd38f257c38e39cc0db1dddd66",
+      "plan.md": "ae60d5d71b2c826cd272e71b7e88c609756c3f526143ad47fcb784782e795b1d",
+      "tasks.md": "6b65d462183b6a71a4832f0813c5f791d2076538c2702a2f5383ba865d1611bf",
+      "implementation-summary.md": "8f17f7c000b5e19c33572b56ea92237adb8d30b356adc25db1212821c69d84ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

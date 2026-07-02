@@ -120,17 +120,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, collapsed accept/ship promotion steps, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain",
+    "causal_summary": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, merged accept/ship promotion steps with no separate gate, no Lane D self-improvement packaging, and a FIFO fan-out with no",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-07-01T15:47:37.118Z",
+    "last_save_at": "2026-07-02T11:45:18.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3c4a03a0a05c5ed646447739f94b9df71385d14aace2a2713b3fb6b275785520",
+    "source_fingerprint": "sha256:86ff601beb1d0362a3e124a52430e17d499dca86485543410f56cb0cb98bc654",
     "source_doc_hashes": {
-      "spec.md": "334fd33d95bc8a721c66c29899670c69e6eb674a9cfa8ad6e1788deb4043206c"
+      "spec.md": "4ecb760752312a441bcb5b529a2d9cea49c87d43001dc9bab8822a115ae4e42a"
     },
     "last_active_child_id": null,
     "last_active_at": null

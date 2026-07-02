@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,20 +42,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +78,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Child 001 wires the cosine lane shadow-only",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-06-23T03:49:53.444Z",
+    "last_save_at": "2026-07-02T05:31:11.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [

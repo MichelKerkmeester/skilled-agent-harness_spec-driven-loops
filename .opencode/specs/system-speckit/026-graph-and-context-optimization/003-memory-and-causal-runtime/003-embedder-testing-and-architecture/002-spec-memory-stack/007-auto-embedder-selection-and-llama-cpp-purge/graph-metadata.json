@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,13 @@
       "auto-select"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "handover.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "shared/embeddings/auto-select.ts",
       "mcp_server/tests/embedder-auto-selection.vitest.ts",
       "mcp_server/lib/embedders/schema.ts",
@@ -48,14 +53,39 @@
       "mcp_server/lib/embedders/registry.ts",
       "references/memory/embedder_architecture.md",
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-      "scratch/llama-cpp-surface-inventory.md",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "handover.md"
+      "scratch/llama-cpp-surface-inventory.md"
     ],
     "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "auto-select.ts",
         "kind": "code",
@@ -96,36 +126,6 @@
         "name": "llama-cpp-surface-inventory.md",
         "kind": "doc",
         "path": "scratch/llama-cpp-surface-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API key → OpenAI API key → Ollama daemon+jina-v3 → hf-local — and persist the choice to vec_metadata. Purge all llama-cpp / embeddinggemma in-process loader code (Metal GGUF, node-llama-cpp deps, the 750 MB legacy DB), replacing the legacy fallback path. Ollama becomes the always-available local fallback when cloud APIs aren't configured.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-06-23T03:49:54.308Z",
+    "last_save_at": "2026-07-02T05:31:11.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

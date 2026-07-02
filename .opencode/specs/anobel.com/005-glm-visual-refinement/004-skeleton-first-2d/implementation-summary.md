@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | anobel.com/005-glm-visual-refinement/004-skeleton-first-2d |
+| **Spec Folder** | 004-skeleton-first-2d |
 | **Completed** | Not started (planning only) |
 | **Level** | 3 |
 | **Status** | Pending — awaiting 001 gate + 002 primitive routing |

@@ -44,9 +44,9 @@ _memory:
 | **Created** | 2026-06-29 |
 | **Branch** | current workspace |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 7 |
 | **Predecessor** | 005-tighten-playbook-pass-criteria |
-| **Successor** | None |
+| **Successor** | 007-fan-out-hardening |
 | **Handoff Criteria** | The JSONL append concurrency test races two child processes through the real append fn and the deep-loop-runtime suite stays green. |
 <!-- /ANCHOR:metadata -->
 

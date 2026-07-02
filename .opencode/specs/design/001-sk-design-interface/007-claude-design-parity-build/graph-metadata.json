@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 005 (hardened) and 006 research converged on a keystone: wire `sk-design-interface` (judgment) and `mcp-magicpath` (canvas/CLI) into the loop Claude Design has, grounded in a real design system, without cloning a hosted product or adding a style chooser",
     "created_at": "2026-06-14T09:35:00Z",
-    "last_save_at": "2026-06-23T03:49:48.425Z",
+    "last_save_at": "2026-07-02T05:31:06.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c08b153318cd68170d85d1972a126d7e996d1b6b340bed569023eb16f697eea",
+    "source_fingerprint": "sha256:27ca4bdce9e1e09b4177003f58afe19b2056a509f5b633ceb71bdec196615858",
     "source_doc_hashes": {
-      "spec.md": "a2b0719ad0f5840fcbf14dd4e1fc5a3f439ce6c3d1e387a81a6d360d5b65097b",
-      "plan.md": "2b0e41fece648db1fc7bb58a480888f4359cc6d418b601b2e393c4702e0cad4b",
-      "tasks.md": "d6433a5001ddae015410b922f2ce8808e72b5e4d3be35df66e2cf7d1a6eb0ff0",
-      "checklist.md": "3301c14044467c1f9fcd8c999639b243e5923fc3330db7b708d51588139fce29",
-      "implementation-summary.md": "a830ad176eeb268c4fc894677222144605e4a8239d6dc9f383e16194f6af91e1"
+      "spec.md": "8b319483d8220fd4c5f678a541980d2336f183c2c6dbcbd645a572648f48887e",
+      "plan.md": "8e6fc39778fc94a1080d5a96ac8ae9dc95303475538ed98a4344b1cfa095fefb",
+      "tasks.md": "5f41921ca1dcc90c125fb66d8b7cd8b6869478c9f94c11dff85e06d1ccfb6de4",
+      "checklist.md": "138aba800641620fc1c5288c4393ea32253fcdc7da4c9f4df0f7694e3c57a02f",
+      "implementation-summary.md": "564b3f8f3dbac9d2036894f809f46e8db07a4427ff52d434206c417194939d92"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/030-agent-loops-improved",
   "description": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in",
   "keywords": [
@@ -15,12 +16,10 @@
     "known",
     "gaps"
   ],
-  "lastUpdated": "2026-07-01T18:45:10.737Z",
+  "lastUpdated": "2026-07-02T14:12:41.428Z",
   "specId": "030",
   "folderSlug": "agent-loops-improved",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops"
   ],
   "memorySequence": 0,

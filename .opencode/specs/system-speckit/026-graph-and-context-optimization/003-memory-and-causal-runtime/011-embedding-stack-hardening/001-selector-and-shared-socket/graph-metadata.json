@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,10 +36,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".claude/mcp.json",
-      ".codex/config.toml",
       "shared/embeddings/auto-select.ts",
       "shared/embeddings/providers/hf-local.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
       "references/memory/embedder_architecture.md",
       "tests/embedder-auto-selection.vitest.ts",
       "tests/embedders/hf-local-client.vitest.ts",
@@ -50,18 +50,6 @@
     ],
     "entities": [
       {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
         "name": "auto-select.ts",
         "kind": "code",
         "path": "shared/embeddings/auto-select.ts",
@@ -71,6 +59,18 @@
         "name": "hf-local.ts",
         "kind": "code",
         "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The zero-install fallback is silently broken: `probeHfLocal` (`auto-select.ts:435-449`) still gates hf-local selection on a Python `import sentencetransformers` probe, but the post-029 server is pure-Node with zero Python, so a normal Node-only machine fails the probe, rejects hf-local, and falls through to an error or silent cloud egress",
     "created_at": "2026-05-29T11:22:57.372Z",
-    "last_save_at": "2026-06-23T03:49:55.475Z",
+    "last_save_at": "2026-07-02T05:31:12.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

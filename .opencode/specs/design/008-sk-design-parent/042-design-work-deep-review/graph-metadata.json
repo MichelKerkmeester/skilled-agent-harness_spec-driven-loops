@@ -37,10 +37,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "review/review-report.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "review/review-report.md",
       "review/deep-review-config.json",
       "review/orchestration-summary.json"
     ],
@@ -49,6 +49,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -67,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The sk-design work needed a review packet that collected the review artifacts, verdict, and handoff into the phase-parent track",
     "created_at": "2026-06-30T09:11:45.758Z",
-    "last_save_at": "2026-06-30T09:11:45.758Z",
+    "last_save_at": "2026-07-02T05:31:08.242Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dc07c9f60d81cc9d38e36d663497a179fbe29908ebbcc04aa9bb48ee1d06884",
+    "source_fingerprint": "sha256:e679f4ebf9175671b9e5724bb8348a6a0bc55f55785db5c62b50b4163b1eda53",
     "source_doc_hashes": {
-      "spec.md": "2c27b938549fdaaf51b59d920ad8fa1705086db82fb2fd94b16cf5e0899db1b7",
-      "plan.md": "819cdd49fe9b1d3a060dac61d6959f68b939268b60f1b457e8bab26363c4533e",
-      "tasks.md": "b719be972adf3739998a94e86d9b7f4037a7dd2dc16f8773d60b85c494747d3c",
-      "implementation-summary.md": "9ce86d715f7463351a8b810ba87a09ba6016e18eaae9328300a3a4b981b78153"
+      "spec.md": "68f2b92f7f02e0c9d2a941a33c1e7012a4ee0214aa3209733f5fe460f0cd9ddd",
+      "plan.md": "7e7a4786c063ebf7ea20ac8d97d888591c3f928db3f867f064327b4b108f5cc5",
+      "tasks.md": "05eced419363db7332027c543ae6c07bf4ea50b0ade978778a4107c06a141fb6",
+      "implementation-summary.md": "0345c3e1cbdeb15ca479b165fc54b02c1da36ad6a0c7d52bd0559a60e7041d8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

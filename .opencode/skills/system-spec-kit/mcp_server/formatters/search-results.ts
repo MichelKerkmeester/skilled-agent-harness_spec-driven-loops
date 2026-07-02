@@ -178,6 +178,13 @@ export interface MemoryResultTrace {
     appliedBonus?: number;
     capApplied?: boolean;
     rolloutState?: string | null;
+    maxDepth?: number;
+    depth?: number;
+    path?: Array<number | string>;
+    paths?: Array<Array<number | string>>;
+    seedIds?: number[];
+    reachedIds?: number[];
+    bounded?: boolean;
   };
   adaptiveMode?: string | null;
   sessionTransition?: SessionTransitionTrace;
@@ -798,6 +805,28 @@ function extractAttributedChannels(rawResult: RawSearchResult): string[] {
   return Array.from(channels);
 }
 
+function sanitizeGraphWalkPath(candidate: unknown): Array<number | string> | undefined {
+  if (!Array.isArray(candidate)) return undefined;
+  const path = candidate.filter((value): value is number | string => (
+    (typeof value === 'number' && Number.isFinite(value)) || typeof value === 'string'
+  ));
+  return path.length > 0 ? path : undefined;
+}
+
+function sanitizeGraphWalkPaths(candidate: unknown): Array<Array<number | string>> | undefined {
+  if (!Array.isArray(candidate)) return undefined;
+  const paths = candidate
+    .map((value) => sanitizeGraphWalkPath(value))
+    .filter((value): value is Array<number | string> => value !== undefined);
+  return paths.length > 0 ? paths : undefined;
+}
+
+function sanitizeGraphWalkIds(candidate: unknown): number[] | undefined {
+  if (!Array.isArray(candidate)) return undefined;
+  const ids = candidate.filter((value): value is number => typeof value === 'number' && Number.isFinite(value));
+  return ids.length > 0 ? ids : undefined;
+}
+
 function extractTrace(rawResult: RawSearchResult, extraData?: Record<string, unknown>): MemoryResultTrace {
   const rootTrace = extraData?.retrievalTrace as { stages?: Array<{ stage?: string; metadata?: Record<string, unknown> }> } | undefined;
   const retrievalTrace = (rawResult.retrievalTrace as { stages?: Array<{ stage?: string; metadata?: Record<string, unknown> }> } | undefined) ?? rootTrace;
@@ -885,6 +914,13 @@ function extractTrace(rawResult: RawSearchResult, extraData?: Record<string, unk
       appliedBonus: typeof contribution.appliedBonus === 'number' ? contribution.appliedBonus : undefined,
       capApplied: contribution.capApplied === true,
       rolloutState: typeof contribution.rolloutState === 'string' ? contribution.rolloutState : null,
+      maxDepth: typeof contribution.maxDepth === 'number' ? contribution.maxDepth : undefined,
+      depth: typeof contribution.depth === 'number' ? contribution.depth : undefined,
+      path: sanitizeGraphWalkPath(contribution.path),
+      paths: sanitizeGraphWalkPaths(contribution.paths),
+      seedIds: sanitizeGraphWalkIds(contribution.seedIds),
+      reachedIds: sanitizeGraphWalkIds(contribution.reachedIds),
+      bounded: typeof contribution.bounded === 'boolean' ? contribution.bounded : undefined,
     };
   }
 

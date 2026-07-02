@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The guarded proxy binds the FIRST outgoing Open Design request to the proof token, but generation is multi-turn",
     "created_at": "2026-06-28T12:39:54.441Z",
-    "last_save_at": "2026-06-28T19:45:46.155Z",
+    "last_save_at": "2026-07-02T05:31:08.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de67d89975cb6591328f517a70a5595d6b2d6eaa1a5aba2624175cb48f0e467f",
+    "source_fingerprint": "sha256:821c8a204f5918fbe996a28b778a1d7bbf826d0609f15d38ad617edda6c2cafc",
     "source_doc_hashes": {
-      "spec.md": "3f45f700507252a3abb5c6234d2de14b66dd56e4f4294793fbdecee5b69c8b13",
-      "plan.md": "cc08e376ecb7e9a6c552dd03be0cf353b52a0ff9d1d211b6540a98c847cf8497",
-      "tasks.md": "661d974f79797ad82f38cf224febf5bd2fd05184a62408165346a688ded3dad5",
-      "checklist.md": "e703175f89094423562e69db86852cdfda61765d32612a1292ad83f7757b92bc",
-      "implementation-summary.md": "db56362bd1770dd54add52319eadcfc0a31306296c2e080156ff366feba1611d"
+      "spec.md": "f717ba74b0a5ffd969ca00d2e77f0be700b0e1f280b7d8f6c11176d8ec15973c",
+      "plan.md": "73e63747acaac534836498ff0427aeecb77bce7358ae567f7bfdfffbec6ab855",
+      "tasks.md": "1dbf9f400e92cffcc06fe9bf5e62da46ded12cac229dcde8501eca454552c844",
+      "checklist.md": "c4ec6dc15bd3320f6f20baf4e5262c87386ac6427dd57ac491e9524d8eec9a58",
+      "implementation-summary.md": "2dba9a0d900a334f1f83493aa47f535b5af82fd36c9cce785424ff16519c1377"
     },
     "last_active_child_id": null,
     "last_active_at": null

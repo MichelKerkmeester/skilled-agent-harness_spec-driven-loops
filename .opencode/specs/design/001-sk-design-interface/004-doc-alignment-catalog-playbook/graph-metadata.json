@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After the ui-ux-pro-max merge, `sk-design-interface` has new references, data assets, and scripts, but it lacks a feature catalog and a manual testing playbook, and its references and assets are not yet fully aligned to the sk-doc templates",
     "created_at": "2026-06-13T19:15:00Z",
-    "last_save_at": "2026-06-23T03:49:48.407Z",
+    "last_save_at": "2026-07-02T05:31:06.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a3b4f1eeec34146a0c3503962b1f7cbd143d64fa203029558e6f14fc2fb478d",
+    "source_fingerprint": "sha256:55a106f76481a903002652eeb21b5c7dc40d2470ee4b4d94e41ffce41e4739e8",
     "source_doc_hashes": {
-      "spec.md": "4edc4e140bf73dd0a8e4fcd62681e3ae5453dc9a4e5a9dc326ebe552850e6016",
-      "plan.md": "deb350cdd8acc1b551a9bdd9b62899afa716e46680ad99642e8f2443cfd3b682",
-      "tasks.md": "04f48beef591bccfb863a5cb7c0f402ba2e5e4e8704b539609f85bd41bca8ddd",
-      "implementation-summary.md": "6513ee559c3f3617131713e58bbb46e798aaea99df1302770af3bff259aabfe9"
+      "spec.md": "a16fd2a8d87d5b3b889a849de4290cc79cf204eba012c836c56c1b915cb4deab",
+      "plan.md": "88236ba883662d46f6283a99ca0180eb0ae40663b6651c8be599f30e2e0ba043",
+      "tasks.md": "9c42d14af66ec799f2392a3b3bc53c11b0307bfbcf908ba593407d262e597219",
+      "implementation-summary.md": "c26eba552e544cc1f02f737dd616808b22fe9b793048c9314cb87517966da321"
     },
     "last_active_child_id": null,
     "last_active_at": null

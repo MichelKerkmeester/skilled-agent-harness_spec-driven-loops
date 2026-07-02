@@ -41,6 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,10 +52,21 @@
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment/plan.md",
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment/tasks.md",
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment/decision-record.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,12 +95,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Records",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
     "created_at": "2026-06-26T11:31:27.588Z",
-    "last_save_at": "2026-06-30T06:12:45.696Z",
+    "last_save_at": "2026-07-02T05:31:09.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2cde9696970d46129635acd271a6b8195381c232b66d311110833a92960e9543",
+    "source_fingerprint": "sha256:2e86f924faef1201b086348375d1a43d336ca8eac13a0fad196d4ff0f63a5844",
     "source_doc_hashes": {
-      "spec.md": "8cc1fd418845d02e84b0a0e75852f9348a7667fd18ac653457a048195563a29f",
-      "plan.md": "0c4a1fb35159157bb8458e4a9e6ad2e25bad498445e82de86ee16bb91ae8a1b8",
-      "tasks.md": "e9493e65582bff48d3c7e188c225b597282c0bf55e10087a6a23798f71dfd061",
-      "checklist.md": "f9b01ab9c2fe04fdc06485f7b6814277858b96b69ed682a37e95e58a485cc381",
-      "decision-record.md": "51c8dbea47c66483fcb8f5cfcb74a601fd50888b45e5e13eb36077097cb1575b",
-      "implementation-summary.md": "0b7f2902d6741724c0e9a01dba0914a5e62c1de88d52439af8dce123220c0b1f"
+      "spec.md": "2b3b8eca7207e6883201cde62e7098ba3202bc619feb228c5c8c044b328685f8",
+      "plan.md": "f84b4bb2119770a092435956bb51287d9ab6aa227d530808760c6e71397db8d2",
+      "tasks.md": "a9fc06f1cfc3ee2c1cd19a3cf0b5272b57d2c59719cd536e5fe716d3361ffd0a",
+      "checklist.md": "44d71fe22d329228e84d22cc98b7fa7752d52af82e850b187f1b035c617b624c",
+      "decision-record.md": "d6e65ab54b1cfed52893f1bf798d17b48fc4f0e95bae2614f6e33bc85a18436c",
+      "implementation-summary.md": "fb7b50c905f74e2dddbb23c68fbff594dce10b036dde8333f0f8c2f8aae5aa07"
     },
     "last_active_child_id": null,
     "last_active_at": null

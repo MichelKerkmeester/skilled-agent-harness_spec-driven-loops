@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\")",
     "created_at": "2026-05-25T16:46:14Z",
-    "last_save_at": "2026-06-23T03:49:55.817Z",
+    "last_save_at": "2026-07-02T05:31:12.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

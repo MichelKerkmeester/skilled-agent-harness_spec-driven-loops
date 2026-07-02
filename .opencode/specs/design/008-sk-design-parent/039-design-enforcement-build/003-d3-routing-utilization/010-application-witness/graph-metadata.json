@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Loading a file proves nothing about use",
     "created_at": "2026-06-28T12:39:57.564Z",
-    "last_save_at": "2026-06-28T19:25:34.492Z",
+    "last_save_at": "2026-07-02T05:31:08.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51976bddd6404887c5ed6032abfb7db283470a2a1e9567be8212a9bbc80e0a27",
+    "source_fingerprint": "sha256:0336ea5f7608b1fac064e506c17a166fefc2d8ea3579ef54f8b5890d8e666115",
     "source_doc_hashes": {
-      "spec.md": "881d2a1d7c1595c586277baa666d8d5cf60fcf1a160df2b59a4846ad49c27bf9",
-      "plan.md": "ed579adc4e1541469bbb2881a5abdb4c93b634380f2c02190dfc092af23453ad",
-      "tasks.md": "72a7538b71c2c4f890f5be871d1c60bef6484d0b54adb765bb5b9f634711b00a",
-      "checklist.md": "6915b5499a29c3a46ea397339d85e0c80564c66cd2730fd6e869be52f63e5a36",
-      "implementation-summary.md": "7c53bb0e34924d4c18e5655d56d0b2a26bac4fcbdc33661c5bf01a06db112137"
+      "spec.md": "e6513dc1777e36426fe9c6cb2915c6ed2499eae3b8cef563ec7415f54c3ecbfc",
+      "plan.md": "2a1e0fa1492f11b368a662686a8d08ea74615ab1a03ce76fc3c43d7b292e0ea2",
+      "tasks.md": "b73a1f4614c90c0c92f062a2c707fc6f5825e69c85a007738afc5637423c5080",
+      "checklist.md": "1aeb6fe64861a76664a2d4dcb362b0e183353c07b463e5411989a38d13e1a8c6",
+      "implementation-summary.md": "3ad50b631b120c3a02e8f178baafdc806a60e52412a70b85418ab6fd34af5050"
     },
     "last_active_child_id": null,
     "last_active_at": null

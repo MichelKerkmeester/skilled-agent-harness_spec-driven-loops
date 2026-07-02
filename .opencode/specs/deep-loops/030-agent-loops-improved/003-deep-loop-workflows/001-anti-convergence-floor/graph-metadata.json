@@ -15,14 +15,8 @@
       "min iterations guard",
       "convergence mode off",
       "research floor deep loop",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "001-anti-convergence-floor summary"
+      "001-anti-convergence-floor summary",
+      "001-anti-convergence-floor"
     ],
     "key_topics": [
       "anti-convergence",
@@ -35,10 +29,10 @@
       "research",
       "deep",
       "loop",
-      "implementation",
-      "plan"
+      "001-anti-convergence-floor",
+      "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
@@ -141,37 +135,25 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Config",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -183,21 +165,33 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop's `stepcheckconvergence` step can trigger a STOP after a single candidate forms, with no minimum iteration floor enforced",
     "created_at": "2026-06-28T14:02:06Z",
-    "last_save_at": "2026-07-01T15:47:37.120Z",
+    "last_save_at": "2026-07-01T22:26:49.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a41b5c493caab5106b58c8c70fa40a2207d08f62ab93979302b2a4084d7109f",
+    "source_fingerprint": "sha256:535e0f581e183728956c8fb902effae042b9082bafee644268f5e7cd51c083a2",
     "source_doc_hashes": {
       "spec.md": "55a9eb0d20965c679c29daafd8149d421dc422b59cd76d2b98c7de8b5c83c920",
-      "plan.md": "22463033ad7b0a617887a04d4a0cc20155a65bf79d6387310515dbcc8ce9adc5",
-      "tasks.md": "498e2e1c22a0b6fdfb47572cbf2af02167ca6f613665c808bf8022f9b8fd59ff",
+      "plan.md": "4ccc99523e058bb46118408a81f56cde529b84974707beaae1a17db19a5f2688",
+      "tasks.md": "c6cadc8c83c7d51667fdfa823ed42c9a4e55eb3ca33b63f3fa5ed9ddb67aae05",
       "implementation-summary.md": "ad2fa05b08163c6164a30e70af8244b1c97482fb2333a6ab2782d299aef53a29"
     },
     "last_active_child_id": null,

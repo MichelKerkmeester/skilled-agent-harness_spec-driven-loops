@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 3.5.0.15
+version: 3.5.0.16
 ---
 
 # sk-code: Manual Testing Playbook
@@ -24,12 +24,13 @@ Canonical package artifacts:
 - `06--cross-browser-and-performance-gates/`
 - `07--cross-stack-routing/`
 - `08--design-restraint/`
+- `09--tooling-and-hooks/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 28 deterministic scenarios across 8 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 29 deterministic scenarios across 9 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -42,6 +43,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
 - Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
+- Tooling and hooks (added 2026-07-02, v3.5.0.16): the shared `claude-posttooluse.sh` PostToolUse hook's dist-staleness banner wiring (`check-dist-staleness.sh`), a deterministic warn-only check independent of skill routing.
 
 ### Realistic Test Model
 
@@ -287,7 +289,19 @@ Per-feature files: see `08--design-restraint/`.
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. TOOLING AND HOOKS (`TH-001`)
+
+This category validates shared tooling hooks that sk-code ships or wires into, independent of skill-advisor routing or surface detection. Scenarios here are deterministic checks against a script's real stdout/exit-code contract, not routing decisions.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `TH-001` | Dist-Staleness Hook Wiring | Verify `claude-posttooluse.sh` prints a STALE DIST WARNING banner for a stale watched package and always exits 0 | `Edit .opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.` | make dist stale → invoke checker directly → invoke full hook via stdin JSON → restore | banner: `STALE DIST WARNING: @spec-kit/mcp-server -- run: ...`; hook exit 0 in all cases | `/tmp/th001-hook-stdout.txt`, `/tmp/th001-hook-stderr.txt` | PASS iff banner reaches hook stdout AND hook exits 0 | If banner is missing but hook still exits 0, check the checker's executable bit (`ls -la check-dist-staleness.sh`) — see per-feature file for the incident this scenario originally caught and how it was fixed |
+
+Per-feature file: see `09--tooling-and-hooks/check-dist-staleness-hook.md`.
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
@@ -305,10 +319,13 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Cross-browser, Core Web Vitals, and GPU/compositing checks (CB-001, CB-002, CB-003).
 - Cross-stack Motion.dev smart-routing checks (CS-001, CS-002, CS-003, CS-004, CS-005, CS-006, CS-007).
 - Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
+- Dist-staleness hook wiring (TH-001): no automated test covers `claude-posttooluse.sh`'s dist-checker branch; this manual scenario is the only coverage.
+
+**Known pre-existing gap (not covered by this or any playbook scenario)**: `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4) has no dedicated automated test and no manual playbook scenario in this package. It predates the TH-001 addition and is out of scope for it — flagged here for visibility, not fixed.
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -340,7 +357,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Design Restraint | DR-002 | `08--design-restraint/implementer-anti-stall.md` | No |
 | Design Restraint | DR-003 | `08--design-restraint/ceiling-comment-convention.md` | No |
 | Design Restraint | DR-004 | `08--design-restraint/stack-folders-validator.md` | No |
+| Tooling And Hooks | TH-001 | `09--tooling-and-hooks/check-dist-staleness-hook.md` | No |
 
-**Total scenarios**: 28
+**Total scenarios**: 29
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
-**Categories**: 8
+**Categories**: 9

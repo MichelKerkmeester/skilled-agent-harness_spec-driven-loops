@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,25 +38,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/audit-report.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "research/audit-report.md"
     ],
     "entities": [
-      {
-        "name": "audit-report.md",
-        "kind": "doc",
-        "path": "research/audit-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,6 +61,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-report.md",
+        "kind": "doc",
+        "path": "research/audit-report.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30)",
     "created_at": "2026-05-14T00:30:00Z",
-    "last_save_at": "2026-06-23T03:49:53.203Z",
+    "last_save_at": "2026-07-02T05:31:11.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:30:00Z",
     "source_docs": [

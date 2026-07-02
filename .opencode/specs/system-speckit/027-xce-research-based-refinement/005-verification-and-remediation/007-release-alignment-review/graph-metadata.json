@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation"
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -39,13 +43,23 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-readmes-vs-027/review/findings-all.json",
+      "002-code-vs-sk-code-opencode/review/findings-all.json",
+      "003-readme-remediation/plan.md",
+      "004-code-remediation/plan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-all.json",
+        "kind": "config",
+        "path": "001-readmes-vs-027/review/findings-all.json",
         "source": "derived"
       },
       {
@@ -87,7 +101,7 @@
     ],
     "causal_summary": "Phase-parent for the 027 release-alignment program: a 36-seat gpt-5.5-fast review of every README vs current reality and all OpenCode-surface code vs sk-code standards, followed by a fixer-fleet remediation of the confirmed findings.",
     "created_at": "2026-06-18T12:37:50.443Z",
-    "last_save_at": "2026-06-23T03:49:58.023Z",
+    "last_save_at": "2026-07-02T05:31:14.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

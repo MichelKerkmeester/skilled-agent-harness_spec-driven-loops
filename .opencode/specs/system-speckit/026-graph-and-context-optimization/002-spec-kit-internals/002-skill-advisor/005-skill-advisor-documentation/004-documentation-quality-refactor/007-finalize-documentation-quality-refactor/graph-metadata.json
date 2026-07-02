@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After 006 closed Tier A + Tier B + bulk Oxford comma sweep, the remaining deferred backlog covers: 135 semicolons (context-aware HVR sweep), F34 playbook TEST EXECUTION structure across 20 files, F4/F6/F35/F36/F37 architectural decisions, plus 4 net new reference docs",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.613Z",
+    "last_save_at": "2026-07-02T05:31:11.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

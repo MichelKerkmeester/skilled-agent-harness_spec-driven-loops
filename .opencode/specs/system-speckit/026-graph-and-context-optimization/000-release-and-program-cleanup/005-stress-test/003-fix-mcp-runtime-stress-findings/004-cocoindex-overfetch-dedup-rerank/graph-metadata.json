@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "005/REQ-018 documented that CocoIndex returned the SAME research-06 markdown chunk 10 times under different mirror paths (`.gemini/specs/`, `.agents/specs/`, `.claude/specs/`, `.codex/specs/`, `specs/`, `.opencode/specs/`) — all with identical scores",
     "created_at": "2026-04-27T07:48:04.774Z",
-    "last_save_at": "2026-06-23T03:49:52.563Z",
+    "last_save_at": "2026-07-02T05:31:10.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

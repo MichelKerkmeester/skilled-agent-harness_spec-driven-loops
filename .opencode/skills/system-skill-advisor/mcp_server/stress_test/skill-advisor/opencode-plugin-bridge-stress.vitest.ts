@@ -17,7 +17,7 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import SpecKitSkillAdvisorPlugin from '../../../../../plugins/spec-kit-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../../plugins/mk-skill-advisor.js';
 
 function bridgeResponse(brief: string | null = 'Advisor: live; use system-spec-kit 0.91/0.18 pass.') {
   return JSON.stringify({
@@ -51,7 +51,7 @@ function makeChild(stdout: string, closeCode = 0) {
 }
 
 async function makePlugin(options: Record<string, unknown> = {}) {
-  return SpecKitSkillAdvisorPlugin({ directory: process.cwd() }, options);
+  return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
 }
 
 async function runTransform(hooks: Awaited<ReturnType<typeof makePlugin>>, prompt: string, sessionID = 'sa-034') {

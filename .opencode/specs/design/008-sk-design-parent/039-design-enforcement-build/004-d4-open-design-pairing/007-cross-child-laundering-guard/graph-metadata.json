@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The proof-token contract names a \"cross-delegation laundering guard\" as a consumer but never builds it",
     "created_at": "2026-06-28T12:39:55.429Z",
-    "last_save_at": "2026-06-28T19:59:33.751Z",
+    "last_save_at": "2026-07-02T05:31:08.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:132def13b30d8602d8c0f823cf115476b50ed1c5d1bbd399c85b3b2375034705",
+    "source_fingerprint": "sha256:c4dd97a90e66e5d907a2176cd8053cf9d2201943a60742310732f9b745e14faa",
     "source_doc_hashes": {
-      "spec.md": "e6952cb7a12531c6655fb1c91bd755220826245bbdd1734437c2ba92095f1161",
-      "plan.md": "4f197cad81da55a987ab963464c68ad0ebd473a34913d233892a6c70ce5e982e",
-      "tasks.md": "a4aee61b0ef74e602f4a2d44e5c961f48e8792baae3664e71fa872b42a476db5",
-      "checklist.md": "bc43bf93319bc69f2094439201b80b8a9eda9deaff728b9285a0d2ffc3a75312",
-      "implementation-summary.md": "ce34fd9ec19c74957992d92539b2815bbe7e1919391bf93411931a04b99047ac"
+      "spec.md": "8bcf0c97f638a57f0fb537e2e4288288c66f668dc36fab45d2d2c99b49302ef5",
+      "plan.md": "15d541ea01c20554f494310508a20075f7408dbfbccc4b7b95a842a3c27d67e6",
+      "tasks.md": "7994007e69e8970699f079d9ef9bfb71f15b6acd172cc7f248fc060491ef0428",
+      "checklist.md": "ae3057b456828fd6d4fce2f7dfaa5c6d3d705d7210be74231a91f2f3bab5ff30",
+      "implementation-summary.md": "326b19ecd7b0b0aedd8af39353692795d83f3ee495ca79f1185edf88e2165dc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

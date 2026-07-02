@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,11 +38,11 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
       "mcp_server/lib/search/bm25-index.ts",
       "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
       "tests/bm25-packed-inmemory.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
       "lib/search/bm25-index.ts",
       "tests/hybrid-search.vitest.ts",
       "spec.md",
@@ -54,13 +54,13 @@
       {
         "name": "bm25-index.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/bm25-index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
         "source": "derived"
       },
       {
         "name": "bm25-packed-inmemory.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105MB",
     "created_at": "2026-06-11T05:11:29Z",
-    "last_save_at": "2026-06-23T03:49:57.295Z",
+    "last_save_at": "2026-07-02T05:31:13.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

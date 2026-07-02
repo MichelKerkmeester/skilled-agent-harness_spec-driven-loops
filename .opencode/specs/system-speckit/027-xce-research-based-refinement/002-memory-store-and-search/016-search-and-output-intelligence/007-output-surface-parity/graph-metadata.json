@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The same retrieval result rendered differently per model: DeepSeek showed `confidence 0.36` while Kimi showed `similarity 0.68` for the identical row, so two surfaces could not be compared or diffed",
     "created_at": "2026-06-17T19:57:25.108Z",
-    "last_save_at": "2026-06-23T03:49:57.375Z",
+    "last_save_at": "2026-07-02T05:31:13.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

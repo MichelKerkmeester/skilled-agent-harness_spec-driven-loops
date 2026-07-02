@@ -1,6 +1,6 @@
 # What Changed in Agent Loops Improved: The Full 156 Program
 
-> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation, a remediation track, a phase that turned a deep-research fan-out on the packet itself, and a final documentation-truth audit that checked the public README against everything the packet had shipped. Every phase in this record shipped and the packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs, safer around state mutation, more honest about its own claimed-versus-actual state and more resilient in its own research and fan-out tooling, with public documentation that matches what actually shipped.
+> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation, a remediation track, a phase that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything the packet had shipped, and a follow-up remediation phase that closes the items those passes deferred. Phases 001 through 010 shipped in full and the follow-up remediation phase has 6 of 7 children complete, with only the sliding-window convergence mode still open. The packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs, safer around state mutation, more honest about its own claimed-versus-actual state and more resilient in its own research and fan-out tooling, with public documentation that matches what actually shipped.
 
 ---
 
@@ -203,3 +203,25 @@ The public-facing documentation now matches what the packet actually shipped, no
 **Why**
 
 The prior remediation phase fixed the packet's internal tooling and internal docs. This phase closed the same kind of gap on the surface a real user or operator actually reads first, verified by an independently dispatched review rather than a single manual pass, since a packet that fixes its own internals but leaves its public face stale has only solved half the problem.
+
+---
+
+## 11. FOLLOW-UP REMEDIATION
+
+Phase 010 closed the packet's documentation drift. Phase 011 closes the 4 items phase 009's own changelog explicitly deferred rather than declared out of scope. Children 001-006 are shipped; child 007 (sliding-window convergence mode) has not started.
+
+**Before**
+
+Two review findings from a prior codex deep-review lineage were still live: the fan-out session-id propagation bug (downstream state log, findings registry, convergence events and claim adjudication all inherited a raw timestamp instead of the real session id) and the LEAF-identity conflation bug (the shared fan-out prompt builder told dispatched subprocesses to run the full multi-iteration loop, contradicting the one-iteration LEAF-agent contract). ~40 leaf children across phases 002-007 had genuinely-authored `spec.md` files sitting next to scaffold-template `plan.md`/`tasks.md` placeholder text. The default `validate.sh` invocation never ran registry-backed shell rules at all — and, once traced, the actual cause was worse than a missing bridge: the compiled validation orchestrator `validate.sh` depends on had been silently stale for roughly two weeks, with no freshness check anywhere in the repo able to catch it.
+
+**After**
+
+Both fan-out findings are fixed at the shared-function layer, and the workflow-config layer now matches: the review, context and research YAMLs all honor a caller-supplied detached session id. All ~40 originally-scoped leaves, plus `001-reference-research` (a standalone phase outside that count, found while closing this out), now carry real content grounded in their own already-correct `spec.md` files. `validate.sh`'s default path bridges every eligible registry rule automatically. A permanent, repo-wide dist-freshness enforcement layer now exists — a shared checker consumed by the 3 CLI shims, a hard `validate.sh` backstop, a Claude Code hook, and an OpenCode plugin — so a compiled artifact silently drifting from its source for weeks, unnoticed, cannot happen again without at least one of four independent layers catching it. On 2026-07-02 a 10-iteration deep-review lineage audited the finished state at forced depth and returned CONDITIONAL: 0 P0, 5 P1, 1 P2. Every finding was independently verified and remediated the same day — stale continuity reconciled, the first direct recursive validation of the 011 subtree run (exposing and fixing 8 masked errors, including a validator heuristic that read the task-notation legend as completed work), and the session-id fix extended to the context and research workflow configs. Two code-level findings are deferred as one documented orchestrator seam pending a safe shared-dist rebuild.
+
+**Impact**
+
+Packet 030 passes `validate.sh --strict --recursive` with 0 errors across all 12 folders. Tracing the registry-bridge fix to its actual root cause also surfaced a repo-wide validation debt spanning all 43 packet roots in the monorepo — not something this phase's own work created, but something it was first to make visible after a silent two-week gap. That repo-wide remediation was deliberately spun into its own packet (`system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`) rather than folded into this phase, to keep "close packet 030's follow-ups" from quietly becoming "fix every packet in the repo."
+
+**Why**
+
+A packet whose own changelog names 4 deferred items and then never revisits them has a documentation-truth problem of exactly the kind phase 010 just finished fixing on the README. Leaving these open after packet 030 was otherwise "done" would have meant the packet's own follow-up list stayed permanently stale — the same failure mode phase 010 closed, one level down.

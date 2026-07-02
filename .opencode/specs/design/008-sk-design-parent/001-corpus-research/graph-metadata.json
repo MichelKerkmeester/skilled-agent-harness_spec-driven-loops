@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `sk-design` family's composition is undecided",
     "created_at": "2026-06-25T10:04:31Z",
-    "last_save_at": "2026-06-30T09:11:10.556Z",
+    "last_save_at": "2026-07-02T05:31:07.782Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a64a76b8fd1b5709d305656c589f5bae6158a61f1ae42fa363867b805a6fa466",
+    "source_fingerprint": "sha256:8234163ec3e396865434ebb0cc9ad9e53e94a4f76d11373af8f609d3a998dd7c",
     "source_doc_hashes": {
-      "spec.md": "07373c3780e009ce435f80493e38faa52ce2fa8628418038f1511e9d18216e69",
-      "plan.md": "899c528092ea41696876308ae08b4be793a8307867ec0205997c57de5481a36f",
-      "tasks.md": "9973cb0461c2c47a22f93937fcea3f68fcd5732ee67a8fc980a01b06c77d251c",
-      "implementation-summary.md": "7ed444e098994c99d452a318eb428868be0b8b7e0a72a87066a5d5ced581fb05",
-      "research/research.md": "60bb5ba5cda306789ea3a5b2bad323e59677856bf39dbfe4e952320b2bfb3272"
+      "spec.md": "1d6fb0aa25446d4c85c3e175ba8e193699451bb504f4da797a9902fc86d16d0e",
+      "plan.md": "644cbf2e295e36ebeab6575d60ff4999f93b0ddcdadc1c0294d26b749e79b3c8",
+      "tasks.md": "bd3f678c4b295599dc3ff25a221db20606347bced4ba65e31172a50c0a028009",
+      "implementation-summary.md": "87fafdfcee50e315f7a4ca540d0c0cfc0d862eeb29452c4332332987e02b782d",
+      "research/research.md": "dc721a0331c33f8e650e65f973d744a4f10c2b156b505002c7d431b8b47af6d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

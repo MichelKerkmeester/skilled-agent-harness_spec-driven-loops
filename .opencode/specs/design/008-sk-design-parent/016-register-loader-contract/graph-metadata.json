@@ -40,30 +40,18 @@
     "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/design-motion/SKILL.md",
       ".opencode/skills/sk-design/design-audit/SKILL.md",
       ".opencode/skills/sk-design/design-interface/SKILL.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,6 +68,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-design mode packets declare the shared register `../shared/register.md` mandatory on every task, but the router path-guard cannot load it because it lives outside each mode's skill root",
     "created_at": "2026-06-27T05:27:21.844Z",
-    "last_save_at": "2026-06-27T06:39:23.213Z",
+    "last_save_at": "2026-07-02T05:31:07.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5797b646111aae9368445e0fa5e687d0f0e746a328278bfc80cd78318a75989a",
+    "source_fingerprint": "sha256:03ff728c25ff06d5ebb98dffe6be680c70bb2ac04f3ad51140416d3ef45311ed",
     "source_doc_hashes": {
-      "spec.md": "a785f09f7ea42bd3103994266e987a25afddfec41587f4c4aa9125ebf79802f7",
-      "plan.md": "fa9400010692c8ac2264fe2fa2efa29c324f819a5a8656c0e345416bc7047548",
-      "tasks.md": "d44da8a16680235cb459f011506b47ac8e9529a57f74c4a072564c8e725f30ab",
-      "checklist.md": "77edc9f9405969e6de5c8215a3e3b35a979753ed1fab9fcdea1c25ff7538ced2",
-      "implementation-summary.md": "6da6b5c10027be3df844d6ed3776aa5f22fabd5d8d07b221187ef4373c31df52"
+      "spec.md": "0c67a5044f01d825c2c4cf3338abba39db63049ce4447481448a111a3b628d18",
+      "plan.md": "5feb5a034e4ff53a72d1443c5ec10750182fb171031eb2c23e86c64fafe8be39",
+      "tasks.md": "70f3d1e28bc37a477254d57dc8885d9daff38e85cac51c7574970d455d4bb344",
+      "checklist.md": "da96b4bce81d5054ac26f308299964aee7ad0c1932cdd4f936e1dbbda93a9a9d",
+      "implementation-summary.md": "e43a0b43544702d066c98d4a366f6c5a8aca6ae8fff01cfe9db7df281ca991a1"
     },
     "last_active_child_id": null,
     "last_active_at": null

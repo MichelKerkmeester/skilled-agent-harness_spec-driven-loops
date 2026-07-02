@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design-interface/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Mode Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-design-interface resists templated defaults, but its only concrete window onto a \"default\" was a design system read via `mcp-open-design` or its built-in calibration of the AI-default looks",
     "created_at": "2026-06-15T11:07:39Z",
-    "last_save_at": "2026-06-23T03:49:48.438Z",
+    "last_save_at": "2026-07-02T05:31:06.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a55b328797002b8297bb75b36c30072f6a85e69db4dea23e44fb83bddd7f6bc",
+    "source_fingerprint": "sha256:a82e3a38078bfecfd631c3a02f6f7287cd676f10d5f5a2f91a427b7c81948a6b",
     "source_doc_hashes": {
-      "spec.md": "af0e85617a6ddf1018ae54b91b93c9336fdc4be66efee3bd262b9b4eb6f12f8c",
-      "plan.md": "c8728f8549e470e2c35295f587637d1165cc351e63c966f6fdaffcd3a6f0335f",
-      "tasks.md": "b084c277e4aab3989a95bfef9aa299c5cb7b41adcc77c0c8cff1b7a9dcb6978f",
-      "implementation-summary.md": "2a1ef2ab84fa32f287763fb47a0100ea18cef6d4a476c53c1ad969e07c636619"
+      "spec.md": "5961284fcd16aa81e0a6a2af37e936aaf035ad30388e046505e302dabcf975f7",
+      "plan.md": "462f6dc9c686eacb0bca7bc5f3980d999cf36e08bc9e8e128dfab85b6040d7c7",
+      "tasks.md": "d6e4fbe1e6552a0f399923a0f2bd57a31bb78f552bc45d65fde15895709a7ffb",
+      "implementation-summary.md": "c0a3dd25b38d4074a0eb9f7c3aeb8f90cf3e456616da99adc7085fde2ef336f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

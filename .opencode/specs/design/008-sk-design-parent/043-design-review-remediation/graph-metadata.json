@@ -41,6 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      ".codex/agents/design.md",
       ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
       ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts",
       ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
@@ -56,13 +60,33 @@
       ".opencode/agents/design.md",
       ".opencode/skills/sk-design/mode-registry.json",
       ".claude/agents/design.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".codex/agents/design.md",
+        "source": "derived"
+      },
       {
         "name": "guided-run.ts",
         "kind": "code",
@@ -136,45 +160,15 @@
         "source": "derived"
       },
       {
-        "name": "design.md",
-        "kind": "doc",
-        "path": ".opencode/agents/design.md",
-        "source": "derived"
-      },
-      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sibling deep review `042-design-work-deep-review` returned a CONDITIONAL verdict with 14 findings: 0 P0, 1 P1, and 13 P2",
     "created_at": "2026-06-30T04:50:27.652Z",
-    "last_save_at": "2026-06-30T04:50:27.652Z",
+    "last_save_at": "2026-07-02T05:31:08.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34734268ea60ff129e03cff97f3c9d4aee5f3e1020190d80c7becc511b122783",
+    "source_fingerprint": "sha256:572835951fbe3a187f800afc4f0c974efe86b1a7734ad3b4aca58c1cfc1ce257",
     "source_doc_hashes": {
-      "spec.md": "8649dfea8e1ad5e7fd5b01a331c922155bef21e656859a9e861bac4650f7987f",
-      "plan.md": "39c37afec5adbb7a95a45729a297c2bae6c7349ef7bfcebc49527160f4adbec6",
-      "tasks.md": "5f7b78a5f7f1811a9b0524cdb47a57df624ba10cc46640633fff546a35dd083a",
-      "checklist.md": "605de43ed08b2b99ef19777f65f9dfd0e7afa858ebf007dab45c0fab1b31ce82",
-      "implementation-summary.md": "1258ea6ebd55db03e1e5e5dc581c6b40c0bea1b63e47c7f9521850ff39096249"
+      "spec.md": "107b6c50b261ac9346badea6753c2fd40cadee9c727e8676e8db8369eeb92ee0",
+      "plan.md": "14f4212a9f40f93e43ca1d08999fc1e733f70bc82035980125a0afd77bf6c659",
+      "tasks.md": "9ba508fc82c0472a04bd0a6316da45371ba270887c71164a5c53303e7c6cfcd1",
+      "checklist.md": "78a910e341a95667c1d5c8ac9c57ab71b1e44ac26587fb7ae82e251db6ca65ae",
+      "implementation-summary.md": "e495575677f47d54e7af69d37d02ca194c06f16ed9ed9e1e8109bba726998587"
     },
     "last_active_child_id": null,
     "last_active_at": null

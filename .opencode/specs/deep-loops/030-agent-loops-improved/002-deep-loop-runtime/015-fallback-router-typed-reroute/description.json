@@ -17,7 +17,7 @@
     "producing",
     "trace"
   ],
-  "lastUpdated": "2026-07-01T15:48:19.298Z",
+  "lastUpdated": "2026-07-01T21:52:50.170Z",
   "specId": "015",
   "folderSlug": "fallback-router-typed-reroute",
   "parentChain": [
@@ -28,5 +28,6 @@
     "002-deep-loop-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

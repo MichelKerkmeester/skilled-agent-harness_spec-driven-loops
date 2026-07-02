@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/003-mcp-figma-with-direct-cli-support/001-figma-cli-and-mcp-research |
+| **Spec Folder** | 001-figma-cli-and-mcp-research |
 | **Completed** | 2026-06-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

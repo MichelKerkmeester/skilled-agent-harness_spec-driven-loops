@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/018-routing-wiring |
+| **Spec Folder** | 018-routing-wiring |
 | **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

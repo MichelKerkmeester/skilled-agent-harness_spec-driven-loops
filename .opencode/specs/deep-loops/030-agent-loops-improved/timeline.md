@@ -27,12 +27,12 @@ _memory:
 # 156 Agent-Loops-Improved Chronological Timeline
 
 > **Sort key.** Git commit order, oldest first, for every commit that touched the `123-agent-loops-improved` packet. Epochs three and four's entries are pending commit at the time of writing and are ordered by real work sequence, not by commit hash, until they are committed.
-> **What this packet did.** It mined two reference loop codebases for improvement seams and then shipped them as a phased deep-loop program: deep-loop-runtime resilience and convergence hardening, deep-loop-workflows guardrails, a speckit autopilot lifecycle, an advisor routing projection, UX and observability surfaces, hermetic test isolation, a remediation track that audited and fixed the shipped state, a research-backlog remediation track that turned a deep-research fan-out on the packet itself, and a final documentation-truth audit that checked the public README against everything shipped.
+> **What this packet did.** It mined two reference loop codebases for improvement seams and then shipped them as a phased deep-loop program: deep-loop-runtime resilience and convergence hardening, deep-loop-workflows guardrails, a speckit autopilot lifecycle, an advisor routing projection, UX and observability surfaces, hermetic test isolation, a remediation track that audited and fixed the shipped state, a research-backlog remediation track that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything shipped, and a follow-up remediation phase, still in progress, that closes the items those passes deferred.
 > **Where the truth lives.** Each commit's detail is in the matching phase changelog under `changelog/`. The before-and-after framing is in `before-vs-after.md`.
 
 ---
 
-## 0. The four epochs
+## 0. The five epochs
 
 Epoch one runs on 2026-06-28, the implementation wave. The roadmap scaffold landed first, then forty commits shipped the deep-loop-runtime, deep-loop-workflows, deep-improvement, speckit-autopilot and advisor-projection work in dependency order.
 
@@ -41,6 +41,8 @@ Epoch two runs on 2026-06-29, completion and remediation. The phase docs were fi
 Epoch three runs on 2026-07-01, research-backlog remediation. A deep-research fan-out mined the packet's own state for remaining gaps, a deeper forced-depth generation-2 pass found two more critical bugs in the research runtime itself, and 11 children closed every finding, from tooling bug fixes through claimed-versus-actual drift closure to a final fix for the two most severe bugs the research process surfaced in its own completion and hang-handling logic.
 
 Epoch four runs on 2026-07-01, the documentation truth audit. A genuine 10-iteration deep-review dispatched to GPT-5.5-fast checked the public root README against everything the packet had shipped, found four real documentation gaps plus one artifact-integrity defect in its own iteration 5, and this phase fixed all five.
+
+Epoch five runs on 2026-07-02, follow-up remediation, and is still in progress. The two active fan-out review findings were fixed with regression tests, roughly forty scaffold leaves across phases 002 through 007 received real plan and task content, and the validate.sh registry bridge landed after surfacing a two-week-stale compiled orchestrator, a discovery that spun off a repo-wide dist-freshness enforcement packet of its own. The sliding-window convergence mode remains open.
 
 ---
 
@@ -174,3 +176,53 @@ A genuine 10-iteration `/deep:review`-shaped dispatch to `openai/gpt-5.5-fast --
  (pending) docs(README): disclose Deep Loop fan-out permission boundary and shipped guardrails (010: 003)
  (pending) fix(030-agent-loops-improved/010-documentation-truth-audit): correct stale graph-metadata entity, regenerate (010: 004)
  (pending) fix(030-agent-loops-improved/010-documentation-truth-audit): correct review iteration-5 verdict/final-line mismatch (010: 005)
+
+---
+
+## 5. Epoch five: follow-up remediation (2026-07-02, pending commit)
+
+> Closes the 4 items phase 009's own changelog explicitly deferred. Children 001-006 shipped; child 007 (sliding-window convergence) has not started. These entries are ordered by real work sequence. Commit hashes will be added once this work is committed, per this file's own frontmatter `next_safe_action`.
+
+### Fan-out review-finding fixes
+
+ (pending) fix(deep-loop-workflows): bind real session id into fan-out config/state-log/findings-registry, native-executor parity (011: 001)
+ (pending) fix(deep-loop-runtime): reword fan-out prompt identity line so dispatched subprocesses stop claiming LEAF-agent identity (011: 002)
+
+### Scaffold-content authoring (~40 leaves, phases 002-007)
+
+ (pending) docs(030-agent-loops-improved/002-deep-loop-runtime): author real plan.md/tasks.md content for 18 leaves, grounded in each leaf's spec.md (011: 003)
+ (pending) docs(030-agent-loops-improved/003-deep-loop-workflows): author real plan.md/tasks.md content for 12 leaves (011: 004)
+ (pending) docs(030-agent-loops-improved/{004,005,006,007}): author real plan.md/tasks.md content for the remaining 10 leaves (011: 005)
+
+### validate.sh registry bridge and the dist-freshness discovery
+
+ (pending) feat(system-spec-kit): validate.sh default-path registry bridge for all eligible shell rules, self-healing skip-set (011: 006)
+ (pending) fix(030-agent-loops-improved/001-reference-research): author real content for 9 scaffold markers, outside siblings' original leaf-only scope (011: 006)
+ (pending) fix(030-agent-loops-improved/{008,010}): correct Spec Folder metadata literal-string-compare bug found during the same gate investigation (011: 006)
+
+### Dist-freshness enforcement (spun into `system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`)
+
+A previously undetected root cause forced a scope decision mid-phase: the compiled validation orchestrator `validate.sh` depends on had been silently stale for roughly two weeks, and once dist caught up, `validate.sh --strict --recursive` began failing across all 43 packet roots in the monorepo, not just packet 030. Rather than absorb repo-wide remediation into this phase, it shipped as its own packet.
+
+ (pending) feat(system-spec-kit): shared dist-freshness checker (7 watched packages), validate.sh hard backstop (exit 3, no auto-rebuild) (system-speckit/030: 001)
+ (pending) feat(sk-code): Claude Code PostToolUse dist-staleness warning banner (system-speckit/030: 001)
+ (pending) feat(opencode-plugins): mk-dist-freshness-guard warn-only Bash/session guard (system-speckit/030: 001)
+ (pending) refactor(bin): migrate 3 CLI shims onto the shared dist-freshness module, remove now-dead build-time hash write (system-speckit/030: 001)
+ (pending) docs(system-speckit/030): repo-wide remediation sweep across 41 packets (excl. 028, 031); 106 mechanical fixes, 7 grounded-content fixes, 54-folder bucket-3 report (system-speckit/030: 002)
+ (pending) fix(sk-code): chmod +x on check-dist-staleness.sh, closing a gap where the STALE DIST WARNING banner never reached a real session (system-speckit/030: 002)
+ (pending) fix(system-spec-kit): sk-code-review P2 findings on the dist-freshness code — silent fail-open on checker error, symlink-cycle guard, atomic cache write (system-speckit/030: 002)
+
+### Deep review and finding remediation (2026-07-02)
+
+A 10-iteration GPT-5.5-fast xhigh deep-review lineage was dispatched against the packet through the hardened fan-out runner, ran to forced depth under stop-policy max-iterations, and returned CONDITIONAL with 0 P0, 5 P1 and 1 P2. Every finding was independently verified against the real files before any fix.
+
+ (pending) docs(030-agent-loops-improved): reconcile the stale phase 011 continuity block and phase-map statuses the review flagged (review: GPT-F001)
+ (pending) fix(030-agent-loops-improved/011): run the first direct recursive validation of the 011 subtree and repair the 8 masked errors it exposed, stale Spec Folder metadata in children 001-005 and a false In Progress status on child 007 (review: GPT-F002)
+ (pending) fix(system-spec-kit): anchor the started-work heuristic in check-files.sh and check-level-match.sh to real task lines so the task-notation legend can no longer read as completed work (review: GPT-F002)
+ (pending) fix(deep-loop-workflows): port the review workflow's session-id resolve step to the context and research YAMLs so a caller-supplied detached session id is honored in all 3 loop types (review: GPT-F004)
+
+GPT-F003 (strict-only rules skipped by the Node validation path) and GPT-F006 (no direct vitest coverage of the registry bridge), plus a native FILE_EXISTS parity gap found during remediation, are deferred as one documented orchestrator seam pending a safe shared-dist rebuild. GPT-F005 is child 007 itself.
+
+### Not yet started
+
+Child 007 (sliding-window convergence mode, per ADR-001 in `009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) remains pending.

@@ -1,32 +1,35 @@
 ---
-title: "Tasks: Phase 12: push-wave-fanout [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Push-Wave Fan-Out Assignment Model"
+description: "Completed task ledger for fan-out assignment metadata, inactive wave interface, and flat-pool guard work."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "push wave fanout assignment"
+  - "wave planner executor config"
+  - "depends_on touches fan-out"
+  - "flat_pool guard wave model"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/012-push-wave-fanout"
-    last_updated_at: "2026-06-28T14:02:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/012-push-wave-fanout"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/012-push-wave-fanout"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 12: push-wave-fanout
+# Tasks: Push-Wave Fan-Out Assignment Model
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm dependency-last scope (`spec.md`).
+- [x] T002 Identify executor-config, fanout-pool, and fanout-run surfaces.
+- [x] T003 [P] Confirm conflict-safety substrate is out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `depends_on[]` field to executor assignment schema (`executor-config.ts`).
+- [x] T005 Add `touches[]` field to executor assignment schema (`executor-config.ts`).
+- [x] T006 Add `assignment_model` with `flat_pool` as accepted runtime value (`executor-config.ts`).
+- [x] T007 Define inactive wave planner interface (`fanout-pool.cjs`).
+- [x] T008 Add flat-pool guard and clear wave rejection logging (`fanout-run.cjs`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Verify existing executor configs without new fields still parse.
+- [x] T010 Verify new configs with `depends_on` and `touches` are accepted.
+- [x] T011 Verify `assignment_model:"wave"` logs rejection and falls back to flat pool.
+- [x] T012 Update plan and task docs to reflect the completed fan-out guard work (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +86,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +99,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

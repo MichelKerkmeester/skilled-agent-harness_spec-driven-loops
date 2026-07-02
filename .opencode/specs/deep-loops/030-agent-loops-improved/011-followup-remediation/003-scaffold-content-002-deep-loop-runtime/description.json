@@ -1,0 +1,25 @@
+{
+  "specFolder": "deep-loops/030-agent-loops-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
+  "description": "All 18 leaf children under `.opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/` (`001-atomic-state-serialize-diff` through",
+  "keywords": [
+    "leaf",
+    "children",
+    "opencode",
+    "specs",
+    "deep-loops",
+    "030-agent-loops-improved",
+    "002-deep-loop-runtime",
+    "001-atomic-state-serialize-diff"
+  ],
+  "lastUpdated": "2026-07-01T21:46:27.418Z",
+  "specId": "003",
+  "folderSlug": "scaffold-content-002-deep-loop-runtime",
+  "parentChain": [
+    "deep-loops",
+    "030-agent-loops-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

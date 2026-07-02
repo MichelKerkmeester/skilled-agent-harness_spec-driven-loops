@@ -42,12 +42,12 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-prompt-models/assets/model_profiles.json",
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
       ".opencode/skills/sk-prompt-models/references/models/_index.md",
       ".opencode/skills/sk-prompt-models/SKILL.md",
       ".opencode/skills/sk-prompt-models/references/pattern_index.md",
       ".opencode/skills/sk-prompt-models/graph-metadata.json",
-      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/graph-metadata.json",
@@ -64,6 +64,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "glm-5.2.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md",
@@ -73,12 +79,6 @@
         "name": "_index.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as \"Z.AI Coding Plan (api)\") is available to the operator but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
     "created_at": "2026-06-28T10:15:17.145Z",
-    "last_save_at": "2026-06-28T11:54:03.915Z",
+    "last_save_at": "2026-07-02T05:31:09.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a5f5a77517ed82641ff0bcc7e92af4f3c01300a01b45ef9f30a561dc0ed8f26",
+    "source_fingerprint": "sha256:dda8ee16390d771e202e99b9143f571f306cbf1ad085a97d67859310e1666e90",
     "source_doc_hashes": {
-      "spec.md": "891690af809730fbe868a0b1f838484c4156e7fe97766d6c3b0bd6d0f83f4c15",
-      "plan.md": "8715bc3d05e29d7a9e2e97f19b7aaa7aea2be4295864200b6623960ffb9d0b94",
-      "tasks.md": "b7b41422f3cf92d0f0adfcfed974acab20accdb91fda7ebc6bd32d4c29b7e662",
-      "implementation-summary.md": "f971ff14b7fe1516c8369957ec979e6d7ba8faba950c13e2735e9a93c2aab4fb"
+      "spec.md": "383514b6d70c7a73e5da430aaad2cf85c713ca289987001f8e0b0a8501b8ff40",
+      "plan.md": "b1e344ceb9b1e91c28f4b5aefc47a7dfd09f9d7d030aaea3802957be3e2e5344",
+      "tasks.md": "8b9e6867c2f383696db660fec035ccc8f104496580ca28ae09a53a792ad066c0",
+      "implementation-summary.md": "526ff4603bd5a4d12e530edb173aa6242cb29e335b562c086f3ce18a4061758e"
     },
     "last_active_child_id": null,
     "last_active_at": null

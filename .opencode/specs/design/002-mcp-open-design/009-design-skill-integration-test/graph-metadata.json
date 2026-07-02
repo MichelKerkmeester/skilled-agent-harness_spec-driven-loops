@@ -38,12 +38,20 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/design/002-mcp-open-design/009-design-skill-integration-test/designs/mimo/NOTES.md",
+      ".opencode/specs/design/002-mcp-open-design/009-design-skill-integration-test/designs/deepseek/NOTES.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "NOTES.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/002-mcp-open-design/009-design-skill-integration-test/designs/mimo/NOTES.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 153 standardized the design skills' install and doctor surface, but sk-design-interface had not been exercised end to end with a real model, and the two design skills had never been run together to produce actual designs",
     "created_at": "2026-06-15T07:10:36Z",
-    "last_save_at": "2026-06-23T03:49:48.606Z",
+    "last_save_at": "2026-07-02T05:31:06.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f6bd7135d01331072dff8d43794880d1283d80cf2be66cda92622e3b71c7c46",
+    "source_fingerprint": "sha256:578e6bf24a5979dbdce53d8937cc5fee8a054ba0ab78fd0072b8687e94bd6e7f",
     "source_doc_hashes": {
-      "spec.md": "68cb4117b0338730ffbe40c6fddc58a102755c8e16358a2f8a7fd0dc9e5cfe1d",
-      "plan.md": "193c98363c8a4479b756b540ebed5c67120d62f86fee6a8c6d5debe9f917d897",
-      "tasks.md": "30868590fb96659c53ab77fc1061b26d5fcdfa9aa8abef19f103aea3794941c0",
-      "implementation-summary.md": "1abe373e07c63f0e5fdbb228b970b6f7fc56fdd41bfd2cafa9518584192aa453"
+      "spec.md": "c6eea367ae8ef0ff333180dbc3e8625c8d71a5592e505d2c4881d9bb38ce8d97",
+      "plan.md": "4369970ded31141452a82c13a1f5160614d1f468b761802ba6ee5b4a2b9928f0",
+      "tasks.md": "8c6d0ec53ae629238bd7605d89423f7129e432e3e256330c2c5783eab6939251",
+      "implementation-summary.md": "eb04d8ca80dfe1c7d033cac15144a5cc415b1d58cc372d2ac14e0d5d4312b8d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

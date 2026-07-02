@@ -1,32 +1,37 @@
 ---
-title: "Tasks: Phase 1: versioning-standard [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 1 - Versioning Standard"
+description: "Completed tasks for the frontmatter versioning standard, sk-doc template updates, create-command generator output, and validator format checks."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "versioning standard tasks"
+  - "phase 1 version tasks"
+  - "sk-doc version field tasks"
+  - "frontmatter validator tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-versioning-standard"
-    last_updated_at: "2026-06-23T07:33:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/001-versioning-standard"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with completed phase tasks"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/references/frontmatter_versioning.md"
+      - ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/skills/sk-doc/scripts/package_skill.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-versioning-standard"
+      session_id: "remediated-001-versioning-standard-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Version is 4-part X.Y.Z.W; missing-version enforcement is deferred to phase 5."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: versioning-standard
+# Tasks: Phase 1 - Versioning Standard
 
 <!-- SPECKIT_LEVEL: 1 -->
 

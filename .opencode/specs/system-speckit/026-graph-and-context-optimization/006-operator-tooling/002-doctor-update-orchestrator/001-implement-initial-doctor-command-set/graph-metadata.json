@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,8 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
+      ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/database/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,15 +56,25 @@
       ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
       ".opencode/commands/doctor/update.md",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
       "ai-council/council-report.md",
       ".opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json",
-      ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
       ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml"
     ],
     "entities": [
+      {
+        "name": "doctor_code-graph.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/README.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -142,12 +154,6 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -163,12 +169,6 @@
         "name": "council-report.md",
         "kind": "doc",
         "path": "ai-council/council-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_code-graph.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase: `context-index.sqlite` (memory FTS+vector, 134M+362M), `code-graph.sqlite` (51M structural index), `skill-graph.sqlite` (148K), `deep-loop-graph.sqlite` (84K coverage graphs), `speckit-eval.db` (16M ablation results), and `causaledges` table (in context-index, lazy-init)",
     "created_at": "2026-05-09T12:15:31.296Z",
-    "last_save_at": "2026-06-23T03:49:56.265Z",
+    "last_save_at": "2026-07-02T05:31:12.776Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

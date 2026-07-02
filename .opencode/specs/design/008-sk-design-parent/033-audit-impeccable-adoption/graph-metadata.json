@@ -41,24 +41,36 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "plan.md",
       "spec.md",
-      "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -71,18 +83,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 028 research froze an adoption backlog but applied nothing",
     "created_at": "2026-06-27T16:04:19.666Z",
-    "last_save_at": "2026-06-27T16:04:19.666Z",
+    "last_save_at": "2026-07-02T05:31:07.928Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:deba3d4b59e4de425367b3bb6266058019f99469b788135fb94c6829dcb805f2",
+    "source_fingerprint": "sha256:5fc0ed05362f78aded30b1d0c5e9fdac92434d36f1f3067f5f6a42fe05e8c113",
     "source_doc_hashes": {
-      "spec.md": "8764127488723c3989c6fdb738978e7d5f6b34198f9f7d1ba3ab79d5e6fe8779",
-      "plan.md": "2e6eb88011798e165ef610a8a3b2022f1b6cf1bf9dbe8deaa48835556ed2acd7",
-      "tasks.md": "6a527ef3e1362ccdc80b679e47b54c1b9edb7ae48390df0a62276219be745dc2",
-      "checklist.md": "4cd57e866e6e70be926e2190a70cab55e41ecf54b3888cf877c377f4ef49fd75",
-      "decision-record.md": "6f9fb8fe870eb15d8da69455d206535e734053e38644aae08ca38b87a3ccc596",
-      "implementation-summary.md": "aef6b30d4dff8db5a1b76a146b75d66f3f9a5a6335fa0f49a34c9f40e13fe801"
+      "spec.md": "693558edeb9ce50f632de9a6c4bf7a54c5e000eaff942e047b7940d9d70c880d",
+      "plan.md": "e6b51c9db70c72520bca7c438c0d667f028333032d9c1e2b69220957f53df458",
+      "tasks.md": "f3480f4d3e32a527fe3461ee11c7e5402168a0a9e122f120b0fc6d50dfac6c88",
+      "checklist.md": "c262bf27670aaa2adad36c2e6287c6e71aa4038c44368e3a35fa77ef71ca2a2f",
+      "decision-record.md": "ae67eda196e111a3d7f3bb83ab3164b3542df23ea2b12f66c4f768397c1f6cd9",
+      "implementation-summary.md": "5907706693092ed5301c86aeb967797e330fcdd7e670e3e0efc8641a047000bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

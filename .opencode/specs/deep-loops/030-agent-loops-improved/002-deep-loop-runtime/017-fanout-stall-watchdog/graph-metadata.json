@@ -15,14 +15,8 @@
       "lag-ceiling abort-requeue",
       "hung lineage abort",
       "pool slot stall detection",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "017-fanout-stall-watchdog summary"
+      "017-fanout-stall-watchdog summary",
+      "017-fanout-stall-watchdog"
     ],
     "key_topics": [
       "fanout",
@@ -36,7 +30,7 @@
       "pool",
       "slot",
       "detection",
-      "implementation"
+      "017-fanout-stall-watchdog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Fanout Stall Watchdog",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Opt",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A hung lineage blocks all queued work until the child timeout expires; no mechanism exists to detect a stall and free the slot sooner than the hard child timeout",
     "created_at": "2026-06-28T14:02:04Z",
-    "last_save_at": "2026-07-01T15:47:37.113Z",
+    "last_save_at": "2026-07-01T21:52:50.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:426a371381e1c2762afaed10fdd9d5c1688e1038c1f4d33d96924af9d25916bd",
+    "source_fingerprint": "sha256:49cda6279de9e4a09df1423fe08bff48a286ca99d9d4c4149b7725df211c323d",
     "source_doc_hashes": {
       "spec.md": "091a38f4ecbf2e7736f053b603189868de864bfc83249ee700a8f17829e6041d",
-      "plan.md": "ced1e5913292ef3150fb57379fcd8a90c7cd4ac7cf712d0cbf498a55a38cd27e",
-      "tasks.md": "0843ff03a88e0efc27e53bb3dd3b7bd0e92189147b4aee25e4d69174e54fdf16",
+      "plan.md": "f82c8995826d2a3d3d13e11f768022fc898e6bbe85b87cd2efe428f6c0106243",
+      "tasks.md": "48c309e5d0c4198eb214b8fcf601d776d47a9501653ec2732af11b19d18108d9",
       "implementation-summary.md": "998da4207c75b9738a0e18b128a00667b5b729a38b919847c12718b225223fb7"
     },
     "last_active_child_id": null,

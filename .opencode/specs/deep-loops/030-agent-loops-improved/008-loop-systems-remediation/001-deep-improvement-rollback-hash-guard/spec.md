@@ -47,7 +47,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 1 |
 | **Predecessor** | None |
-| **Successor** | None |
+| **Successor** | 002-deep-improvement-promotion-safety |
 | **Handoff Criteria** | Full deep-improvement Vitest suite passes with the rollback guard regression included. |
 <!-- /ANCHOR:metadata -->
 

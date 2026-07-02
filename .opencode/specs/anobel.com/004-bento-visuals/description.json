@@ -1,13 +1,4 @@
 {
-  "level": "2",
-  "triggerPhrases": [
-    "bento visuals",
-    "design tokens",
-    "open design",
-    "prototyping",
-    "feature-visuals",
-    "anobel"
-  ],
   "specFolder": "anobel.com/004-bento-visuals",
   "description": "Four Anobel bento feature-visual prototypes exist as Design Component `.dc.html` files with inline styles and `<sc-for>` templating loops",
   "keywords": [
@@ -27,17 +18,15 @@
     "templating",
     "loops"
   ],
-  "lastUpdated": "2026-06-28T09:56:30.090Z",
+  "lastUpdated": "2026-07-02T05:50:04.756Z",
   "specId": "004",
   "folderSlug": "bento-visuals",
   "parentChain": [
+    ".opencode",
+    "specs",
     "anobel.com"
   ],
-  "memorySequence": 4,
-  "memoryNameHistory": [
-    "21-06-26_14-51__completed-speckit-planning-level-2-for-anobel.md",
-    "22-06-26_14-26__anobel-bento-visuals-live-in-open-design-project.md",
-    "28-06-26_10-49__next-steps.md",
-    "28-06-26_10-56__next-steps.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
 }

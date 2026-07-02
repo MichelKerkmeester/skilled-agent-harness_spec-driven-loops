@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
     "created_at": "2026-07-01T10:56:27.409Z",
-    "last_save_at": "2026-07-01T13:13:24.183Z",
+    "last_save_at": "2026-07-02T05:31:05.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7678fec12e7fd4eac08e2ee451827de0f0981d35a010bbaecf291a505c48d2de",
+    "source_fingerprint": "sha256:141ad661f2de8e825991bd88b3fce82e601943a1a547daf1e8476fad1c561299",
     "source_doc_hashes": {
       "spec.md": "6003bfb122607b0d99852164d5d79259482fe67bd988c902315b3a187b50b965",
       "plan.md": "15e1ea795c6bddd10f81f04dfd8b8a230b47bc6126581d76f701efb812fb7608",
       "tasks.md": "3dd3e60686baffcfa411c6e14b5a8981589bca7b497be8982ae0004e0213ce67",
-      "implementation-summary.md": "02619f2bdd0c05d3d7e2472ec7ef00208a52f1506dc9348ea4f9c3206a26ef46"
+      "implementation-summary.md": "e8dcde33913f8c7d93f51427598f40e2379e7005a8df08b40efe8c5623cf8f39"
     },
     "last_active_child_id": null,
     "last_active_at": null

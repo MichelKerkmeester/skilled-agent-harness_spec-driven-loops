@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "mcp-chrome-devtools reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 3 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:30Z",
-    "last_save_at": "2026-06-23T03:49:56.978Z",
+    "last_save_at": "2026-07-02T05:31:13.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

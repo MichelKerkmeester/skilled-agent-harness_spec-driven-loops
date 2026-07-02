@@ -15,7 +15,7 @@
     "system",
     "unresolved"
   ],
-  "lastUpdated": "2026-07-01T15:48:16.057Z",
+  "lastUpdated": "2026-07-01T22:26:48.035Z",
   "specId": "005",
   "folderSlug": "anchor-ownership-conflict-adr",
   "parentChain": [
@@ -26,5 +26,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

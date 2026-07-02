@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,6 +49,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "15 of the 22 code-graph playbook scenarios require the live `mk-code-index` MCP runtime (scan, query, verify, status, context, detectchanges), the deep-loop coverage-graph runtime, or the doctor-code-graph slash surface",
     "created_at": "2026-05-26T19:43:14.032Z",
-    "last_save_at": "2026-06-23T03:49:56.077Z",
+    "last_save_at": "2026-07-02T05:31:12.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/020-benchmark-fixtures |
+| **Spec Folder** | 020-benchmark-fixtures |
 | **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

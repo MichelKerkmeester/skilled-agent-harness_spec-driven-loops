@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.opencode/skills` sentinel that can match nested mock dirs and self-perpetuate (proven live: `mcpserver/.opencode/skills/.advisor-state/` was rewritten 6 minutes after restart on 2026-05-08); (2) `memoryhealth` reports a persistent FTS/vector consistency gap (50 mismatched IDs across 6857 rows) that `autoRepair` does not fix; (3) the indexed-continuity DB carries 2,751 deprecated-tier records (~33% of total) bloating retrieval and search",
     "created_at": "2026-05-08T08:36:13Z",
-    "last_save_at": "2026-06-23T03:49:52.496Z",
+    "last_save_at": "2026-07-02T05:31:10.702Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

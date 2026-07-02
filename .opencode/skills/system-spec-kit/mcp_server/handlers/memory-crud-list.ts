@@ -24,6 +24,42 @@ import type { ListArgs } from './memory-crud-types.js';
 
 
 /* ───────────────────────────────────────────────────────────────
+   HELPERS
+──────────────────────────────────────────────────────────────── */
+
+function addUniqueSpecFolderCandidate(candidates: string[], candidate: string): void {
+  if (candidate.length > 0 && !candidates.includes(candidate)) {
+    candidates.push(candidate);
+  }
+}
+
+function buildSpecFolderCandidates(specFolder: string): string[] {
+  const normalized = specFolder.replace(/\\/g, '/').replace(/\/+$/u, '').replace(/^\.\//u, '');
+  const candidates: string[] = [];
+  addUniqueSpecFolderCandidate(candidates, normalized);
+
+  const canonicalMarker = '.opencode/specs/';
+  const canonicalMarkerIndex = normalized.lastIndexOf(canonicalMarker);
+  if (canonicalMarkerIndex >= 0) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice(canonicalMarkerIndex + canonicalMarker.length));
+  }
+
+  const legacyMarker = '/specs/';
+  const legacyMarkerIndex = normalized.lastIndexOf(legacyMarker);
+  if (legacyMarkerIndex >= 0) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice(legacyMarkerIndex + legacyMarker.length));
+  }
+
+  if (normalized.startsWith('specs/')) {
+    addUniqueSpecFolderCandidate(candidates, normalized.slice('specs/'.length));
+  } else {
+    addUniqueSpecFolderCandidate(candidates, `specs/${normalized}`);
+  }
+
+  return candidates;
+}
+
+/* ───────────────────────────────────────────────────────────────
    CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
 
@@ -120,8 +156,12 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     }
 
     if (specFolder) {
-      whereParts.push('spec_folder = ?');
-      baseParams.push(specFolder);
+      const specFolderCandidates = buildSpecFolderCandidates(specFolder);
+      const specFolderPredicates = specFolderCandidates.map(() => '(spec_folder = ? OR spec_folder LIKE ?)');
+      whereParts.push(`(${specFolderPredicates.join(' OR ')})`);
+      for (const candidate of specFolderCandidates) {
+        baseParams.push(candidate, `${candidate}/%`);
+      }
     }
 
     const whereClause = whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';

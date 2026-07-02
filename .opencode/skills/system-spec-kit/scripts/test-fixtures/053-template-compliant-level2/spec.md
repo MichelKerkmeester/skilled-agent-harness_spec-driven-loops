@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Template Compliant Level 2 Fixture [template:examples/level_2/spec.md]"
+title: "Feature Specification: Template Compliant Level 2 Fixture"
 description: "Current-template Level 2 validator fixture for clean strict validation coverage."
 trigger_phrases:
   - "fixture"
@@ -89,6 +89,7 @@ Provide a clean Level 2 packet that strict validation can use to prove current t
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Summary sufficiency checks pass | `implementation-summary.md` cites fixture files and a concrete validation command |
+| REQ-005 | Generated metadata remains fresh | `description.json` and `graph-metadata.json` match the current fixture docs |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -99,6 +100,13 @@ Provide a clean Level 2 packet that strict validation can use to prove current t
 - **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` exits 0.
 - **SC-002**: The fixture remains a clean valid example for Level 2 template compliance tests.
 - **SC-003**: Summary and checklist evidence cite this fixture's own files.
+
+### Acceptance Scenarios
+
+- **Scenario 1**: **Given** the fixture folder is validated, **when** `validate.sh` runs, **then** required Level 2 files are found.
+- **Scenario 2**: **Given** current template anchors are present, **when** anchor validation runs, **then** every required anchor is ordered correctly.
+- **Scenario 3**: **Given** checklist items include same-line evidence markers, **when** evidence validation runs, **then** completed P0/P1 items pass.
+- **Scenario 4**: **Given** generated metadata hashes match the fixture docs, **when** metadata integrity runs, **then** no stale metadata error is emitted.
 
 <!-- /ANCHOR:success-criteria -->
 ---

@@ -18,13 +18,8 @@
       "004 run now control",
       "deep-research-run-now",
       "run now sentinel",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "004-run-now-control summary",
+      "004-run-now-control"
     ],
     "key_topics": [
       "run",
@@ -34,11 +29,11 @@
       "sentinel",
       "004",
       "deep-research-run-now",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "core"
+      "004-run-now-control",
+      "summary",
+      "only",
+      "way",
+      "trigger"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -136,37 +131,25 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Consume",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -178,27 +161,39 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
     "created_at": "2026-06-28T16:59:37.521Z",
-    "last_save_at": "2026-07-01T15:47:37.166Z",
+    "last_save_at": "2026-07-01T23:09:12.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49d04ede32fcf4a90abdf7a6286632c0b530b7d3f75788240850250e5e43e18f",
+    "source_fingerprint": "sha256:9c7fdc451e9f88d3fdc4b1eeb382dbde616f700c20d004db1598b518d1163d7d",
     "source_doc_hashes": {
       "spec.md": "6a6c20f0925345f3aec04cc0b9574694d4a30ce4645c5ebfb75b1dc4051f8c9b",
-      "plan.md": "ab023a485aabb32c1f0ac33104f6055ba8c70155b2b193245dd07404a33e3a68",
-      "tasks.md": "c376c660b650b827a8f5190b32f7a29150fae882778f2cb4f662634d3f8316e4",
+      "plan.md": "fe2816d6ca4423e0915e800067cd0477b172f6568b1a527023f0ca7355627933",
+      "tasks.md": "2db9abb587ee4d05cf24603a1319059271541571ae9b446a1255faa53d89bff3",
       "implementation-summary.md": "f8668ac3d3fb537b9c1898d87ff095be42d3a158a46c55feaa0b15f0917d1224"
     },
     "last_active_child_id": null,

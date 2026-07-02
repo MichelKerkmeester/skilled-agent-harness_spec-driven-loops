@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-ollama.vitest.ts",
       "shared/embeddings/providers/ollama.ts",
       "mcp_server/tests/embedder-ollama.vitest.ts",
       "references/memory/embedder_architecture.md",
@@ -58,15 +61,21 @@
     ],
     "entities": [
       {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
         "name": "ollama.ts",
         "kind": "code",
-        "path": "shared/embeddings/providers/ollama.ts",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
         "source": "derived"
       },
       {
         "name": "embedder-ollama.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/embedder-ollama.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-ollama.vitest.ts",
         "source": "derived"
       },
       {
@@ -85,12 +94,6 @@
         "name": "registry.ts",
         "kind": "code",
         "path": "mcp_server/lib/embedders/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -204,7 +207,7 @@
     ],
     "causal_summary": "Wire the shared embeddings factory to Ollama-backed active embedders so query-time encoding matches the re-indexed vec_<dim> table.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-06-23T03:49:54.302Z",
+    "last_save_at": "2026-07-02T05:31:11.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

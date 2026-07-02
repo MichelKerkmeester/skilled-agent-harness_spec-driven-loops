@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,26 +41,29 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
       ".opencode/plugins/mk-spec-memory.js",
       ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
-      ".codex/settings.json",
       ".claude/settings.local.json",
-      ".codex/hooks.json",
       ".codex/config.toml",
       ".claude/mcp.json",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "spec-memory-cli-fallback.ts",
         "kind": "code",
@@ -86,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "session-start.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
-        "source": "derived"
-      },
-      {
         "name": "mk-spec-memory.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-spec-memory.js",
@@ -104,21 +101,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".codex/settings.json",
-        "source": "derived"
-      },
-      {
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -131,12 +116,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -204,11 +183,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A working CLI that no runtime is permitted to call does not close the incident class that motivated this program: when the MCP transport dies mid-session, agents need a pre-authorized, documented shell path to the daemon — otherwise they are still locked out until restart",
     "created_at": "2026-06-06T14:09:11.248Z",
-    "last_save_at": "2026-06-23T03:49:57.561Z",
+    "last_save_at": "2026-07-02T05:31:13.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

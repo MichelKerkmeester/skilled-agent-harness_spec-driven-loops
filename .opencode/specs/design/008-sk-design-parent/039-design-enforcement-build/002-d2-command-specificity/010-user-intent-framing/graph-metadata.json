@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -48,13 +52,33 @@
       ".opencode/commands/design/md-generator.md",
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-      "spec.md",
-      "implementation-summary.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -101,30 +125,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Every `/design:` wrapper opened with implementation framing — a \"Thin bridge into the `sk-design` parent skill's `<mode>` mode\" lead, then a `## 1",
     "created_at": "2026-06-28T12:40:02.738Z",
-    "last_save_at": "2026-06-29T06:30:25.425Z",
+    "last_save_at": "2026-07-02T05:31:08.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e414353ed8be06c7c95432a775a35d1ae960f6367c76edf35a875f5fa9a2c7a2",
+    "source_fingerprint": "sha256:6b48291c35b9735ce5d79d4dad545444a869372476f64bb110eed6b6e547608a",
     "source_doc_hashes": {
-      "spec.md": "27ec109f07ca41e60e9776e8dac30ce33516acbc3a1004132327182986fe194a",
-      "plan.md": "0f090fa25440af2539086ab25f86b0f5f6eb96c5a5931cbef81a0f65547d3cea",
-      "tasks.md": "d0dc90fbe3af19f46dcf88ab44ef1118f5961994b36307529589a965ed639934",
-      "checklist.md": "826fc355ada7052572c9258e8bf262e2085e31945797718ee8fe32e36d2ecfa6",
-      "implementation-summary.md": "29a52030d633e6983d737fc6a275945296110b66e10c8a936badc8e4707b5562"
+      "spec.md": "17097ef447c62bee4c2efe8cdef64c7ff195590c67ee49248514b85a6009666e",
+      "plan.md": "669c5233d4e5086445acdb4b43abebd08a7c4477e33b2fc2c234276f61cb0b69",
+      "tasks.md": "23313ffde95948d37c8650949b4543447eeca337f7364ff033c275a4e1b132d8",
+      "checklist.md": "dd28fdf07e6fa4b6a14e39bf4468e188ad7dd31d985e09799fd07f2d99956e61",
+      "implementation-summary.md": "ee2d9dd08a8d17467f7e333ecff00248f5c48d5ff4a9a1c477b0a8b219db561e"
     },
     "last_active_child_id": null,
     "last_active_at": null

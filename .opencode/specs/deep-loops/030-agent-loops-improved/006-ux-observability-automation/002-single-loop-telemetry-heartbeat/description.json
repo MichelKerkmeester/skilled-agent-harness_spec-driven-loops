@@ -14,7 +14,7 @@
     "fan-out",
     "runs"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.384Z",
+  "lastUpdated": "2026-07-01T23:08:58.794Z",
   "specId": "002",
   "folderSlug": "single-loop-telemetry-heartbeat",
   "parentChain": [
@@ -25,5 +25,6 @@
     "006-ux-observability-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

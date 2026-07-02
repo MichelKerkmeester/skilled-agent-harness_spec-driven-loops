@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,20 +43,20 @@
       "checklist.md",
       "tests/matrix-adapter-test-utils.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -96,12 +96,6 @@
         "source": "derived"
       },
       {
-        "name": "freshness-smoke-check.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-        "source": "derived"
-      },
-      {
         "name": "scope-governance.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
@@ -117,12 +111,6 @@
         "name": "adapter-cli-claude-code.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapter-cli-codex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
         "source": "derived"
       },
       {
@@ -150,27 +138,33 @@
         "source": "derived"
       },
       {
-        "name": "hooks-codex-freshness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "matrix-adapter-claude-code.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "matrix-adapter-codex.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "matrix-adapter-opencode.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-06-23T03:49:52.458Z",
+    "last_save_at": "2026-07-02T05:31:10.676Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

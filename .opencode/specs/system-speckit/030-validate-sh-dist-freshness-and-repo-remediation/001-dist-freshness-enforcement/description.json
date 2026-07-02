@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/030-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "description": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence",
+  "keywords": [
+    "validate",
+    "default",
+    "path",
+    "runnodeorchestrator",
+    "scripts",
+    "spec",
+    "975-989",
+    "only",
+    "checks",
+    "orchestratorjs",
+    "file",
+    "existence"
+  ],
+  "lastUpdated": "2026-07-02T04:46:03.524Z",
+  "specId": "001",
+  "folderSlug": "dist-freshness-enforcement",
+  "parentChain": [
+    "system-speckit",
+    "030-validate-sh-dist-freshness-and-repo-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

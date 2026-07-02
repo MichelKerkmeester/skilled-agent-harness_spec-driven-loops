@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `001-route-proof-validation` |
+| **Spec Folder** | 002-route-proof-validation |
 | **Completed** | 2026-06-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

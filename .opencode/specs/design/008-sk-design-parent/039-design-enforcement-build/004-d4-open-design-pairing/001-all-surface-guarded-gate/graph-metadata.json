@@ -199,7 +199,7 @@
     ],
     "causal_summary": "One Open Design daemon backs four interchangeable surfaces (stdio MCP, HTTP API, the `od` CLI, in-app Skills)",
     "created_at": "2026-06-28T12:39:56.757Z",
-    "last_save_at": "2026-06-28T14:23:46.864Z",
+    "last_save_at": "2026-07-02T05:31:08.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b260c80606262a2eb6823be874ec55e09052c9b3ee9e39c3cd0d27a917231cf8",
+    "source_fingerprint": "sha256:be85818f30df19da25396faa637dd135bd5c9734c5ba4a566c79fe60bcdb605f",
     "source_doc_hashes": {
-      "spec.md": "4562a17278f40b4691365338f7d391d1f9c5a02e287d42382dc0378f59b7aa08",
-      "plan.md": "7e80eb4059afeb6330f538971eff5ad751b17df19705e1eb5abe2fc4d6c8627c",
-      "tasks.md": "154bbcb46ce12d63c59a3dfd6358f34d72329d4f00bbc05a2b5164d442bb2062",
-      "checklist.md": "df34d34dc5aa3c0848b3c54596321035cceb92462eb84b883300353e2df49fc7",
-      "implementation-summary.md": "5d1f1aaef92ed96c5110f3e82d8f276e5e2d67f7ad50b0e5375ace57e6c3ed05"
+      "spec.md": "b216998965b45f2f2fc5443dfee241a87f99da6c8b696893e89603f894b1623b",
+      "plan.md": "edf990998237975cba0f53aa1b69f3fd04356dc0a1ced53246152f3bed1b8b7c",
+      "tasks.md": "0b329a3bea3352706f934d5a0ebcebbd4cf32971e373ad5bd7e8af0c0ff8ecb8",
+      "checklist.md": "16eb7404adcaf63b5b94465023c476f390a1c13a3b5bcc45772f83b5895aca4b",
+      "implementation-summary.md": "7118eb78bdb128ceefa0d9439814fae604e4602e1993a00f2cd3af664d4f1cad"
     },
     "last_active_child_id": null,
     "last_active_at": null

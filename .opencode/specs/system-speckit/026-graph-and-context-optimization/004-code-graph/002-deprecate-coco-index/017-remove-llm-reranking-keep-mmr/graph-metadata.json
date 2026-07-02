@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,11 +41,13 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "references/memory/embedder_pluggability.md",
-      "scripts/tests/memory-pipeline-regressions.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md",
+      "references/memory/embedder_pluggability.md",
+      "scripts/tests/memory-pipeline-regressions.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md",
@@ -58,23 +60,9 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-opt-in.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "embedder_pluggability.md",
-        "kind": "doc",
-        "path": "references/memory/embedder_pluggability.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-pipeline-regressions.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/memory-pipeline-regressions.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "confidence-scoring.ts",
         "kind": "code",
@@ -91,6 +79,24 @@
         "name": "decision-audit.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_pluggability.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/memory-pipeline-regressions.vitest.ts",
         "source": "derived"
       },
       {
@@ -154,18 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "mcp-response-envelope.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditional rerank gate, Stage 3 Step 1 cross-encoder reranking, and related tests",
     "created_at": "2026-05-25T17:30:45Z",
-    "last_save_at": "2026-06-23T03:49:55.824Z",
+    "last_save_at": "2026-07-02T05:31:12.536Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

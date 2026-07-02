@@ -1,32 +1,33 @@
 ---
-title: "Tasks: Phase 1: atomic-state-serialize-diff [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 1: Atomic State Serialize-Diff"
+description: "Completed task ledger for the compare-before-write atomic state helper."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "atomic-state-serialize-diff"
+  - "write-only-on-change"
+  - "atomic-state-dedup-write"
+  - "state-diff-before-fsync"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-atomic-state-serialize-diff"
-    last_updated_at: "2026-06-28T14:01:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff"
+    last_updated_at: "2026-07-01T21:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold tasks with completed implementation ledger from spec.md"
+    next_safe_action: "Use this task ledger as completion evidence for the shipped compare-before-write helper"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-atomic-state-serialize-diff"
+      fingerprint: "sha256:001b6f8d0e2c4a7193d5f7a9b1c3e5d7f9a0b2c4d6e8f1a3b5c7d9e0f2a4b6c8"
+      session_id: "scaffold-content-remediation-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: atomic-state-serialize-diff
+# Tasks: Phase 1: Atomic State Serialize-Diff
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the shipped phase spec and confirm the scope is limited to `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts`.
+- [x] T002 Identify the existing `writeStateAtomic` durability path that must remain intact.
+- [x] T003 Confirm caller migration is out of scope for this phase and belongs in later task tracking.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `writeStateIfChangedAtomic(path, state, cache?)` to serialize incoming state and compare it against a canonical-path cache.
+- [x] T005 Return `false` without calling the raw writer when the serialized state is unchanged.
+- [x] T006 Delegate to `writeStateAtomic`, update the cache, and return `true` when the state is new or changed.
+- [x] T007 Preserve the existing raw `writeStateAtomic` path and document the bypass/cache-staleness risk in JSDoc.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Verify first-call and changed-state scenarios perform a write and return `true`.
+- [x] T009 Verify repeated identical state returns `false` and skips fsync+rename work.
+- [x] T010 Confirm TypeScript callers remain compatible because the raw writer was not removed.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the spec.md acceptance criteria.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +104,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

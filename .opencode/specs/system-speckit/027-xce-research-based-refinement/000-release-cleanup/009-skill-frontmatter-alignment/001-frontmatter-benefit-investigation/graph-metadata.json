@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Some skill reference and asset docs carry a detailed memory-style frontmatter block (`triggerphrases`, `importancetier`, `contextType`) while most carry only `title` + `description`, and nobody has established whether the detailed block does anything",
     "created_at": "2026-06-11T05:47:21Z",
-    "last_save_at": "2026-06-23T03:49:56.918Z",
+    "last_save_at": "2026-07-02T05:31:13.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:6b690faf5170ba0cf70b3fe55ef0c78dfe8632bcddf60a7799917d45e631d1d7",
+    "source_fingerprint": "sha256:ae91773b3af5326d925181410dd933d08ae336ecc44b80cf96603640b96bcdf9",
     "source_doc_hashes": {
       "spec.md": "5bda05f0c8d40b9dfb7413d1a4d5deaed86f9e8ad4e79b1c7a3bcd0e34024a32",
       "plan.md": "d18764ad10025ca427fe1bf960ad3e538e35f89b64922da4815f079c6e7ed782",
       "tasks.md": "b939bce646543175972317a69f6fbf76f6ec44dd643e40198e2d0c65c1b68ac2",
       "implementation-summary.md": "51eab1a338e8f79926284ce94a8d23128fb327d81e9c9989dedaae4dfe525983",
-      "research.md": "3812762b4e78a39483d89086a44476d1a2548ddc0203ba4adb0c5cabceff2cf2"
+      "research.md": "8ae73dcb084648780825d965b61d6b1882197e4221beaf88e4722a1bbec262f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

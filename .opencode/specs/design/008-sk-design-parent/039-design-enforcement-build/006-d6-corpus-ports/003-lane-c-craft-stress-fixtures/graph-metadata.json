@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/design-token-lint.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -49,6 +50,12 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "design-token-lint.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/design-token-lint.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design route-gold corpus scored 28 route rows with 23 passing, and it never stressed the harder real-world craft surfaces",
     "created_at": "2026-06-28T12:40:11.630Z",
-    "last_save_at": "2026-06-29T13:04:31.139Z",
+    "last_save_at": "2026-07-02T05:31:08.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50284edf2479d90d93309b35de895d6df2a5eb31afe9cc9ecd59270a2204b38e",
+    "source_fingerprint": "sha256:6e47dc99742781725cd478aa103546d3fc439c0a7b9224e82a9df1654d51992a",
     "source_doc_hashes": {
-      "spec.md": "278cded25aff1eac28d8d633e561691c272e795fbbdd8034278a3cfce810bd73",
-      "plan.md": "6bb9294bad02870f2933f058a00d650b806fcbd2c3d132fac50ecb75d1b16635",
-      "tasks.md": "70ab617ca137962caa379b709879ab2b2d66f8e0b67f478b6d2f9b7b3c3a213f",
-      "checklist.md": "d7bb1c665862b11fa09b4e2d9a7c16fdfb3e92622caafc923151b56d1a191914",
-      "implementation-summary.md": "d2d707f155e92c1f13750a94a81b9c950227f14d636cb6aad15e46f381d511fb"
+      "spec.md": "70143176c075967f3d30034379efc263e06b9738cfc82cea4d860f5152967318",
+      "plan.md": "56fe582c109319adb48d2070b96d4fc1b36ca77b744a247d5472a339001c202a",
+      "tasks.md": "12944f8ffc6b952e46fa17c718294f27cce06185c3186c5133d5ff64be27580a",
+      "checklist.md": "787ae0ca7d4bf5e1f70bc55659ffbae53a79ccde075ffb17b622182483f25d27",
+      "implementation-summary.md": "61d64c05a43a25211f45c3d3a0e3d5af24ac8cda6769bd8310482ba7b27031ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

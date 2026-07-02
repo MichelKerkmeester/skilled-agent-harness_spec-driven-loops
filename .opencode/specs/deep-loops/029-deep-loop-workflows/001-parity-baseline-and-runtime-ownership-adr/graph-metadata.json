@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A structure-only merge can silently change behavior",
     "created_at": "2026-06-14T20:16:09.677Z",
-    "last_save_at": "2026-06-23T03:49:48.670Z",
+    "last_save_at": "2026-07-02T05:31:05.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70d117b439d08105670cbc54b2ccb36fad274c078d957e56272f7242abedd5d7",
+    "source_fingerprint": "sha256:5df81f40cfcef2bd86962b2b141c2f91fbc60d9f158a610383de4fa28a1e1405",
     "source_doc_hashes": {
-      "spec.md": "058414772259803e6c11dbc71d2ce961c70eac70fe6c2148cac9419383dfc468",
-      "plan.md": "62c8961ebc237b747afbd0c2b34e7ec7e9fb1f523c946e915e52428846a2e905",
-      "tasks.md": "5d19c2a7e8a7ed6741c1717c794a9dc073f7fe34afc59b56d5223434b644c090",
-      "checklist.md": "a02087256b0c5a8db27e6e48cf6276852a75c98ad1f92fa8753157a3cb3d916e",
-      "decision-record.md": "9bf9bd23f7cc4af29512be894f5a89147033945616b3476674fb5db34d29ef07",
-      "implementation-summary.md": "bb3c8bdcaba31ac5a1150e9d8497349ffe71c0ffeabef061f1d1df84612e6faa"
+      "spec.md": "9e768277ef64ca271e00a38d8b2d2c01196e69a9ba5f7679d97f7f2803b99477",
+      "plan.md": "dc7105067f3860507f353068e9bc7cb1cb969b407ae38e5583643e76dacec841",
+      "tasks.md": "eccda85e55e1926a913b55ffd6b9727c1e205acf1578d1fd020af7fb9b0ab19e",
+      "checklist.md": "08b8bc39d08455a0277c3ccbd2d3a16723bb07a971d7626c93076b7a03267b33",
+      "decision-record.md": "8c1e6602a25c6a14e854e37662acd6db2a3d16588bff3e31e990e66a89cee414",
+      "implementation-summary.md": "2ab66b0df1c5606348a116eb12211f7173490439c68e8e1bd96c48bc080d867c"
     },
     "last_active_child_id": null,
     "last_active_at": null

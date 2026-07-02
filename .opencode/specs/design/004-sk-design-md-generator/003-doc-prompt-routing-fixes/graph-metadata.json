@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`designmdformat.md` requires a named depth principle (§9) and motion philosophy (§10) even with zero data; §3.4/style-guide §15 require a comparison to other systems the tool knows nothing about; the validator demands 15 sections while gold-standard docs use ~9-10",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-25T09:22:06.597Z",
+    "last_save_at": "2026-07-02T05:31:07.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:820f0ce2e90525943c1267ef92be017a66867cba641558a5489921c9ca11f2a8",
+    "source_fingerprint": "sha256:5badd549cd9c3724b86cc60f0ba99ecff8668108fff8160e24a91cb1d2a78458",
     "source_doc_hashes": {
-      "spec.md": "78f7a6a538ecde75fe096dcd0c1b194d874e94e58a6585c746ff0356405b359c",
-      "plan.md": "0f299e5be90a16eaf4cb42b4471719599cf5c0be72b895313073a5ea6888217d",
-      "tasks.md": "91cececf3f1dc61bd138895455178858834ff4944b1d8970d038960cf6a1ee26",
-      "checklist.md": "831923aafadfbea50ef0120cabfed2c4e103f8e24575a5d96b812f4124381711",
-      "implementation-summary.md": "2072ed7c7876994fc731be4e23f83a931376d3dcf6cf456413b60ed6261e29bb"
+      "spec.md": "bd55d230170d834278a979ab2671d923158c328396f56515f4751e5db38f8575",
+      "plan.md": "d480d8adde3886ef30628fa4f2e0f68146ce486812dd68fb520edcc7df88434e",
+      "tasks.md": "e0a137505564d249007b279226f384ed3abe6838053232afdc79eb2f406496ae",
+      "checklist.md": "238cd87f1429746baf72af97c0884f41d8f5a6d6e6954d0e0b56d1208e839bed",
+      "implementation-summary.md": "010824556da30a0619bc74babd476576602766423e791a7fab2f288807e4961f"
     },
     "last_active_child_id": null,
     "last_active_at": null

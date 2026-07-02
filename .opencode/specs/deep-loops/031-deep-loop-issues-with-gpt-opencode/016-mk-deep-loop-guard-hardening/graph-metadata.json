@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), but never re-implement the loop itself",
     "created_at": "2026-07-01T17:22:22.549Z",
-    "last_save_at": "2026-07-01T17:22:22.549Z",
+    "last_save_at": "2026-07-02T05:31:05.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45fdbb8e9f7eec8a4bbc1eb3975e8a448161aa7699d24d68cb81fd73c73b8700",
+    "source_fingerprint": "sha256:d9c246ec484d277640288d97c13f0fbcefdb35c60fc77b06ae3ddc4e83fe7f34",
     "source_doc_hashes": {
       "spec.md": "7c6674283a9ddd6e5106e834a5d0df54761a95aab47863596621b6ea5d51eb5b",
       "plan.md": "16b6696eb0fdc88487d70ce7bf233176165094275799f6dc41a7afd5e2a55675",
       "tasks.md": "02d14475090b40fec429dbac66f0d1ebe78ae39026260523f501d296d6549797",
-      "implementation-summary.md": "e0952b03ee4439da58bde147b3094e17070c9ff03aff5d23fb39fe378d2dd786"
+      "implementation-summary.md": "d5af7cddd6035b98e5817b5e440eebb99c2b85bfa004d24733d2a4be604f9e3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

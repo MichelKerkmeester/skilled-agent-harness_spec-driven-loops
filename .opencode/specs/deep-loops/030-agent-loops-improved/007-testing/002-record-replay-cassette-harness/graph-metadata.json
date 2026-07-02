@@ -18,13 +18,8 @@
       "002 record replay",
       "convergence regression",
       "recordScriptRun replayScriptRun",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "002-record-replay-cassette-harness summary",
+      "002-record-replay-cassette-harness"
     ],
     "key_topics": [
       "record",
@@ -36,9 +31,9 @@
       "regression",
       "recordscriptrun",
       "replayscriptrun",
-      "implementation",
-      "plan",
-      "name"
+      "002-record-replay-cassette-harness",
+      "summary",
+      "math"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -143,37 +138,25 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Hermetic",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -185,21 +168,33 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Convergence math in `convergence.cjs` is modified frequently (score-delta, observation-threshold, time-decay, fuzzy-merge) but there is no way to verify that a change does not regress existing convergence behavior without re-running a full live deep-loop session",
     "created_at": "2026-06-28T20:20:49.706Z",
-    "last_save_at": "2026-07-01T15:47:37.174Z",
+    "last_save_at": "2026-07-01T23:09:12.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:984014819ac357ceaf133b2d7015af1512ade93106d8de4fe87ce73c9e31b18d",
+    "source_fingerprint": "sha256:58b5f1f34389506299dea0857f3edf0fb2169875dd32ff748ff8e4cb11bf97ad",
     "source_doc_hashes": {
       "spec.md": "f2694fdb40b070fdca216fbf0188246cb1704bf7a03e79332e952096cdb46e3e",
-      "plan.md": "a134ee2e7f59fda32e46094855ce186d3baa921ffd817ff2e53a8ddece074f38",
-      "tasks.md": "4e9e0d40a6e67931553e6fb89d3db5822dfd036509d8c41a019f395d91d3df70",
+      "plan.md": "5434f93e9c4f2a75232cc308b00aa0e1d4d44f0b35cc232f2bca3c4667ce32e3",
+      "tasks.md": "7fc04bcc3382b2c564b92e9db53f399e749534280807d15e6fef45bb6163c7e6",
       "implementation-summary.md": "5adcc81706c5efa277722ab4fad42f0fcef5ccacc069c004fe479513833d8db0"
     },
     "last_active_child_id": null,

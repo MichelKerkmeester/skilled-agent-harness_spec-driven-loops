@@ -16,7 +16,7 @@
     "floor",
     "enforced"
   ],
-  "lastUpdated": "2026-07-01T15:48:14.921Z",
+  "lastUpdated": "2026-07-01T22:26:47.490Z",
   "specId": "001",
   "folderSlug": "anti-convergence-floor",
   "parentChain": [
@@ -27,5 +27,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

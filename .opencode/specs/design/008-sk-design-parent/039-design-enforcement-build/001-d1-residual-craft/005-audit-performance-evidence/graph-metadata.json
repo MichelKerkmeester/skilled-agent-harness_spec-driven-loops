@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The audit report template scores Performance 0 to 4 in its Section 5 five-dimension table but gives the Performance dimension no field for a number",
     "created_at": "2026-06-28T12:40:05.490Z",
-    "last_save_at": "2026-06-29T11:17:28.102Z",
+    "last_save_at": "2026-07-02T05:31:07.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45d2f4da2b489441c54a66c8ddfe919e96de79985f696fdb8f99d5bb3dfee96a",
+    "source_fingerprint": "sha256:a0fba5c9b43a525954ff46f114ddbbdb4193e8d5df4965ed85eafddebf8d95e0",
     "source_doc_hashes": {
-      "spec.md": "1f784230bbe410a4973d7a64156f87e84b703d109846cbba0b896e6fb43fa287",
-      "plan.md": "d547cc1db00ab1e49aa41159609a917dad89527187fa8d0a3f2da4a3dfe3652e",
-      "tasks.md": "7a9b779c6fe1ed9d017a017e029a5a7ee9c9417e7f1a6ef98e7ee0e6b7985e07",
-      "checklist.md": "66e300749eb81add139ff5e98dd18f356c8fed584f85358ece738c7f15ccddcc",
-      "implementation-summary.md": "595c30c4811372219d16e05f5dceeed85519ba34442293adb9d9604ff81d07b0"
+      "spec.md": "f4737fe8ed991f371fdbb0516983e17ea73ae3567661f2b40b6989f050bbbd8d",
+      "plan.md": "9efceb3b4d3973bff05b434db514beef6f9303c48a880e9678e8598c87b95b74",
+      "tasks.md": "73098d7c41cacb660634aadb9f9cdb5726277af340dd7d9fad6a6759c6c00b39",
+      "checklist.md": "2206b668963f806a1850c406b76b90e6517bf404a695f9c2a2bfa397f1f1a7f0",
+      "implementation-summary.md": "fd7a9f6d331e6b3d9ede1f1bfb5751d344040449c46b16d0013203f110f39132"
     },
     "last_active_child_id": null,
     "last_active_at": null

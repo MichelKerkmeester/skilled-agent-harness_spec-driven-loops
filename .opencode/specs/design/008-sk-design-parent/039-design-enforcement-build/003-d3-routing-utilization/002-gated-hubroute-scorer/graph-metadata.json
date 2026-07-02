@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The scorer judged hub routing only through the advisory `modePrecision` signal, which never sets `firstFailingStage`, never enters the weighted aggregate, and never moves the verdict",
     "created_at": "2026-06-28T12:39:59.912Z",
-    "last_save_at": "2026-06-28T15:22:47.239Z",
+    "last_save_at": "2026-07-02T05:31:08.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:014ed1e9774e1cbebb74085f71f6f7d1f475f58dd8e9b53db4016ddc1a78df43",
+    "source_fingerprint": "sha256:78faf131f833fe49327525b6754f2ab5cf034f354082a941a0f82290a3c22b45",
     "source_doc_hashes": {
-      "spec.md": "afdcc3596c53780abce1f7bbb6e1b7eaefe6035be4c24269ad255eea7cc88fa7",
-      "plan.md": "9cab9ba23e290043ca4a134254c09919614bbdac6144c0cf4259f09c87e7614b",
-      "tasks.md": "812b7449e9bab43e6e6bbd2f2379d89a0718ab6aaccb63fbf8cebae64938f977",
-      "checklist.md": "829a4f69ea09f2bb9897c8d48408c9451e196e004e1e1d3526f72cc5a4cc4586",
-      "implementation-summary.md": "a42b198d86571599c23d2200bef261bf612c7fcab426192e77054c4e76e76706"
+      "spec.md": "648ed4180d84814a25281b5426e7e41c0feddccb70d06babfb2caeee2b8c58cc",
+      "plan.md": "2578d11229fb74f2ee377b0ecbfd47ff0711e523852006d3df03669f90795d1f",
+      "tasks.md": "92518860c15b7a268635154586090b0ce175b2477b195cb84d0d9125083faa7a",
+      "checklist.md": "428158c9d92f63d171c8a11e3e1bf289f347f8550dcb3b1da707a55e68d7ca0f",
+      "implementation-summary.md": "ca7fbefb4fbbc3b3a5eb0665a28334c689a7d3206febfc055821a9293113f8f4"
     },
     "last_active_child_id": null,
     "last_active_at": null

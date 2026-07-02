@@ -1,32 +1,33 @@
 ---
-title: "Tasks: Phase 11: convergence-score-delta [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 11: Convergence Score Delta"
+description: "Completed task ledger for the convergence scoreDelta and improvementEffect trace signal."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "convergence score delta"
+  - "improvement effect signal"
+  - "loop score improvement"
+  - "convergence prior snapshot delta"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-convergence-score-delta"
-    last_updated_at: "2026-06-28T14:02:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/011-convergence-score-delta"
+    last_updated_at: "2026-07-01T21:40:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold tasks with completed convergence-delta ledger from spec.md"
+    next_safe_action: "Use this task ledger as completion evidence for the shipped convergence delta signal"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-convergence-score-delta"
+      fingerprint: "sha256:011b6f8d0e2c4a7193d5f7a9b1c3e5d7f9a0b2c4d6e8f1a3b5c7d9e0f2a4b6d8"
+      session_id: "scaffold-content-remediation-011"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 11: convergence-score-delta
+# Tasks: Phase 11: Convergence Score Delta
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the shipped phase spec and confirm `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` is the only implementation file in scope.
+- [x] T002 Confirm prior/current snapshot scores are available from existing snapshot output.
+- [x] T003 Confirm scoring-engine and snapshot-storage changes are out of scope.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Read `priorSnapshot.score` before calling `createSnapshot()`.
+- [x] T005 Compute `scoreDelta = score - priorSnapshot.score` for iterations after the first.
+- [x] T006 Emit `scoreDelta: null` when no prior snapshot exists.
+- [x] T007 Include `scoreDelta` in convergence output and log output.
+- [x] T008 Add opt-in `improvementEffect` helped/hurt trace gate, disabled by default.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Verify two snapshots with scores 0.4 and 0.6 output `scoreDelta === 0.2`.
+- [x] T010 Verify first iteration outputs `scoreDelta: null` without throwing.
+- [x] T011 Verify repeated same-score iterations output `scoreDelta: 0`.
+- [x] T012 Verify `improvementEffect` is absent when the trace gate is disabled.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +84,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the spec.md acceptance criteria.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +106,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

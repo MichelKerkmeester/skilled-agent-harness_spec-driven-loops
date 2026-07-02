@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -45,21 +45,13 @@
     "key_files": [
       "scratch/audit-findings.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
       "tasks.md",
       "lib/context/shared-payload.ts",
-      "lib/codex-hook-policy.ts",
       "hooks/claude/user-prompt-submit.ts",
-      "hooks/codex/user-prompt-submit.ts",
-      "hooks/codex/pre-tool-use.ts",
-      "hooks/codex/prompt-wrapper.ts",
-      "mcp_server/hooks/codex/pre-tool-use.ts",
-      "mcp_server/lib/codex-hook-policy.ts",
       "mcp_server/lib/context/shared-payload.ts"
     ],
     "entities": [
@@ -73,18 +65,6 @@
         "name": "shared-payload.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "codex-hook-policy.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-wrapper.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
         "source": "derived"
       },
       {
@@ -121,12 +101,6 @@
         "name": "user-prompt-submit.ts",
         "kind": "code",
         "path": "hooks/claude/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pre-tool-use.ts",
-        "kind": "code",
-        "path": "hooks/codex/pre-tool-use.ts",
         "source": "derived"
       },
       {
@@ -206,11 +180,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Hook Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skills/system-spec-kit/references/hooks/`",
     "created_at": "2026-04-19T18:10:00Z",
-    "last_save_at": "2026-06-23T03:49:53.552Z",
+    "last_save_at": "2026-07-02T05:31:11.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

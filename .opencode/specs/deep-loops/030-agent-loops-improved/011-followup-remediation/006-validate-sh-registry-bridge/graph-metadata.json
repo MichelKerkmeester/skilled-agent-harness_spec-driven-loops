@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/011-followup-remediation/006-validate-sh-registry-bridge",
+  "spec_folder": "deep-loops/030-agent-loops-improved/011-followup-remediation/006-validate-sh-registry-bridge",
+  "parent_id": "deep-loops/030-agent-loops-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate sh registry bridge",
+      "orchestrator ts registry rules",
+      "validate sh registry bridge summary"
+    ],
+    "key_topics": [
+      "validate",
+      "registry",
+      "bridge",
+      "orchestrator",
+      "rules",
+      "summary",
+      "default",
+      "invocation",
+      "path",
+      "uses",
+      "opencode",
+      "skills"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registry Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Self",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The default `validate.sh` invocation path uses `.opencode/skills/system-spec-kit/mcpserver/lib/validation/orchestrator.ts` (a hand-written TypeScript file, ~530 lines) whose `validateFolder()` function (lines roughly 420-455) calls a flat, hardcoded sequence of validator functions (`validateFileExists`, `validatePlaceholders`, `validateTemplateSource`, `validateTemplateShape`, `validatePriorityTags`, `validateFrontmatterBasics`, `validateSpecDocRule`, `validateGeneratedMetadataIntegrity`, `validateGeneratedMetadataDrift`) and pushes results into an `entries[]` array",
+    "created_at": "2026-07-01T19:38:04.143Z",
+    "last_save_at": "2026-07-02T09:51:26.008Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a3b1aca922ec793c104feaa51b61cc5ede94df47e0225c5e729cd79caf05c11",
+    "source_doc_hashes": {
+      "spec.md": "c7b226471d230b353bab6d9a020d589f29c53d7d107695b19dd889d27bf405f7",
+      "plan.md": "6f4b8aabbe913402d2aacd383ed467942a380bf7ac59ffa881e1454f5c2b7524",
+      "tasks.md": "e5c86989ae0972e6bf2fef6e363bc52dbf836609581c70b2d05db58722ce4135",
+      "implementation-summary.md": "ab6c1565fe0a5ed5a0e3a65e7f654d06845828990eb3df729629601264188262"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

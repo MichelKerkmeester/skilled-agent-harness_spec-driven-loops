@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "7 of the 22 playbook scenarios are static/source-inspection or build-verification checks (MCP manifest post-rename, launcher startup prefix, mcp.json server key, database path, TypeScript build/entry point, unicode-normalization fix) plus the Devin CLI SessionStart hook scenario",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-06-23T03:49:56.082Z",
+    "last_save_at": "2026-07-02T05:31:12.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

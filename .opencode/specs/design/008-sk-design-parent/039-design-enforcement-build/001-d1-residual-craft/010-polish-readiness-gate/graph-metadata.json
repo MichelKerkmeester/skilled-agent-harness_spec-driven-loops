@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`critiquehardening.md` §6 Polish Checks narrated polish: \"Polish Checks\", a \"Visual-Critique Crosswalk\" of lenses, and \"Polish As Trust\" prose",
     "created_at": "2026-06-28T12:40:06.283Z",
-    "last_save_at": "2026-06-29T11:50:49.790Z",
+    "last_save_at": "2026-07-02T05:31:07.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7af7056a9ddf097feb4041819ec30a7fa90b853998259f2b18b67e44435c9944",
+    "source_fingerprint": "sha256:31ba6562889b6d3fd7b2455393757647e90683760fe09c44b06134b59f156f3e",
     "source_doc_hashes": {
-      "spec.md": "fbd837071af54363eabd3b35b34a86bf9202aa92eb68ce00b833b1ad07371355",
-      "plan.md": "7347afa94a9dbba7ea08bf08d4f54e39dab85b7f698297be0227e58142ce5fc5",
-      "tasks.md": "645e39335866b56e4af627dd4e74f24dcbcfe48880cbf23568fd60df606d97b4",
-      "checklist.md": "26930b22a605e91d7435429ddbd7689a8573e2d8f38fd6d787f64f1ce0f3d9d8",
-      "implementation-summary.md": "33c66b7d20127a721172e16deaaceaffec2b2191b73a0c1b568f2c776101ed5b"
+      "spec.md": "70f46d9af28937f708492574073be1bc39218997f3192806ce063897f98716f9",
+      "plan.md": "ba6a6dbca26c0065a108f3a84b7257aa555a6b7969c8f9366ac600bf764b7a81",
+      "tasks.md": "cb7e23c1db8e6013030c62fd711d9cab4bcd6121b823c2e4d1148df5c579be72",
+      "checklist.md": "f8e380b51a982443702aa7effd14cdb0d063fd781ad797c5906e0035861f0bcd",
+      "implementation-summary.md": "d86d5aaec0cfc077bde11b1a6e172c724c41261365e33f86406a1f933bae380c"
     },
     "last_active_child_id": null,
     "last_active_at": null

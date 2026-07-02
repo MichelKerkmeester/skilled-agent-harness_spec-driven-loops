@@ -13,12 +13,10 @@
     "user",
     "objective"
   ],
-  "lastUpdated": "2026-07-01T13:40:03.737Z",
+  "lastUpdated": "2026-07-02T03:38:03.245Z",
   "specId": "007",
   "folderSlug": "sk-prompt-goal-enhancement",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

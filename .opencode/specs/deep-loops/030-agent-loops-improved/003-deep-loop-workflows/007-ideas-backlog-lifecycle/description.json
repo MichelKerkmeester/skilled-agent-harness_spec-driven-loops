@@ -17,7 +17,7 @@
     "canonical",
     "lifecycle"
   ],
-  "lastUpdated": "2026-07-01T15:48:15.227Z",
+  "lastUpdated": "2026-07-01T22:26:48.316Z",
   "specId": "007",
   "folderSlug": "ideas-backlog-lifecycle",
   "parentChain": [
@@ -28,5 +28,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

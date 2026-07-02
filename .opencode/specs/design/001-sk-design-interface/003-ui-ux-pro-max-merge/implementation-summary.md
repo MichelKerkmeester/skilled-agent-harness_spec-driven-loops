@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/001-sk-design-interface/003-ui-ux-pro-max-merge |
+| **Spec Folder** | 003-ui-ux-pro-max-merge |
 | **Completed** | 2026-06-13 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

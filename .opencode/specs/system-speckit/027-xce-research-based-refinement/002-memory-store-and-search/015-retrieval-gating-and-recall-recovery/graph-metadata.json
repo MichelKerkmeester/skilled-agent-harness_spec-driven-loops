@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,13 +44,13 @@
     "status": "in_progress",
     "key_files": [
       "mcp_server/lib/search/pipeline/types.ts",
+      "mcp_server/lib/search/confidence-scoring.ts",
+      "mcp_server/lib/search/search-flags.ts",
       "formatters/search-results.ts",
       "mcp_server/lib/response/profile-formatters.ts",
       ".opencode/commands/memory/assets/search_presentation.txt",
       "mcp_server/lib/search/sqlite-fts.ts",
       "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/lib/search/confidence-scoring.ts",
-      "mcp_server/lib/search/search-flags.ts",
       "mcp_server/tests/absolute-relevance-calibration.vitest.ts",
       "mcp_server/lib/search/vector-index-mutations.ts",
       "lib/storage/lineage-state.ts",
@@ -67,6 +67,18 @@
         "name": "types.ts",
         "kind": "code",
         "path": "mcp_server/lib/search/pipeline/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -97,18 +109,6 @@
         "name": "hybrid-search.ts",
         "kind": "code",
         "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "On-topic memory searches return `requestQuality: weak`, `citationPolicy: donotciteresults`, and a \"Retrieval quality is weak\" response policy even when the exactly-right specs are indexed and surfaced",
     "created_at": "2026-06-17T19:57:25.095Z",
-    "last_save_at": "2026-06-23T03:49:57.326Z",
+    "last_save_at": "2026-07-02T05:31:13.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

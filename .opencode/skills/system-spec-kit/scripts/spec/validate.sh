@@ -974,11 +974,25 @@ run_node_orchestrator() {
 
     local orchestrator_js="$SCRIPT_DIR/../../mcp_server/dist/lib/validation/orchestrator.js"
     local orchestrator_ts="$SCRIPT_DIR/../../mcp_server/lib/validation/orchestrator.ts"
+    local freshness_checker="$SCRIPT_DIR/../lib/dist-freshness.cjs"
     # Resolve the orchestrator invocation base once (compiled JS preferred, tsx
     # fallback for source-only checkouts). Return 1 when neither is available so
     # main() falls through to the shell validators (which recurse on their own).
     local base=()
     if [[ -f "$orchestrator_js" ]]; then
+        if [[ -f "$freshness_checker" ]]; then
+            local freshness_output=""
+            local freshness_rc=0
+            freshness_output=$(node "$freshness_checker" check --package system-spec-kit/mcp_server --entry validation-orchestrator 2>&1) || freshness_rc=$?
+            if [[ "$freshness_rc" -eq 69 ]]; then
+                echo "ERROR: validate.sh compiled validation orchestrator is stale." >&2
+                [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
+                echo "Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build" >&2
+                exit 3
+            elif [[ "$freshness_rc" -ne 0 ]]; then
+                echo "WARNING: dist freshness check could not run (exit $freshness_rc): $freshness_output" >&2
+            fi
+        fi
         base=(node "$orchestrator_js")
     elif [[ -f "$orchestrator_ts" ]]; then
         local tsx_loader="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"

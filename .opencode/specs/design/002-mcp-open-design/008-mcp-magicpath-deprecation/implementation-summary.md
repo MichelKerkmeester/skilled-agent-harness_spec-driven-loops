@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/008-mcp-magicpath-deprecation |
+| **Spec Folder** | 008-mcp-magicpath-deprecation |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

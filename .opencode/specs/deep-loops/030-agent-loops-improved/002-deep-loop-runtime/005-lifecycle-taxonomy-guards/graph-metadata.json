@@ -15,30 +15,24 @@
       "loop-state-machine-taxonomy",
       "lifecycle-transition-guards",
       "loop-status-contract",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "005-lifecycle-taxonomy-guards summary"
+      "005-lifecycle-taxonomy-guards summary",
+      "005-lifecycle-taxonomy-guards"
     ],
     "key_topics": [
       "lifecycle-taxonomy-guards",
       "loop-state-machine-taxonomy",
       "lifecycle-transition-guards",
       "loop-status-contract",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "core",
-      "tasks",
       "005-lifecycle-taxonomy-guards",
-      "summary"
+      "summary",
+      "active",
+      "loop",
+      "statuses",
+      "running",
+      "waiting",
+      "paused"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Lifecycle Taxonomy Guards",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Centralized",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across multiple files with no single authoritative source",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-07-01T15:47:37.082Z",
+    "last_save_at": "2026-07-01T21:52:50.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aac67669022ef679802a5391570585a2fabb54ac51c9930caff6eb7997b00461",
+    "source_fingerprint": "sha256:30d1bf078ee0841ba1c73e02e6f329823d3ed3e47ee2ed72d580ddac1eda9731",
     "source_doc_hashes": {
       "spec.md": "541399af069601d68eaf64e9856f19c9c298f9a81af590613ae62ba8148ecdf1",
-      "plan.md": "3e5a9fdddae758d5fc0dfed3b6f107d166e59bb181635eb5c844f647a0e54b37",
-      "tasks.md": "d3c361b30162daaf1b83e67c2275b274a1f2d0480a08cb1be7f4d45b2fdf7428",
+      "plan.md": "afcabb88c91cf0e0d71ca70e0ab44a1596839736ff27e85e04b453ad2883aa7e",
+      "tasks.md": "72751afb746083db88f0dcd07ec637a70d0ef6a71a7a666984889feef66de438",
       "implementation-summary.md": "79e1886ac4b7650c7a7cbf8f5d58896318849ec9ea573a44f2d6cd50f98493d6"
     },
     "last_active_child_id": null,

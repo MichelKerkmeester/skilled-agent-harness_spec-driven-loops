@@ -54,9 +54,9 @@ FAILURE MODES:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 of 11 |
 | **Predecessor** | 006-ux-observability-automation |
-| **Successor** | None |
+| **Successor** | 008-loop-systems-remediation |
 | **Handoff Criteria** | Both child phases pass `validate.sh --strict`; hermetic isolation (001) must pass before record-replay (002) is planned |
 <!-- /ANCHOR:metadata -->
 

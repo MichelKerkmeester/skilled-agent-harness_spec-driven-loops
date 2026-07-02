@@ -16,7 +16,7 @@
     "remaining",
     "delay"
   ],
-  "lastUpdated": "2026-07-01T15:48:19.641Z",
+  "lastUpdated": "2026-07-01T21:52:50.595Z",
   "specId": "018",
   "folderSlug": "persisted-wait-crash-resume",
   "parentChain": [
@@ -27,5 +27,6 @@
     "002-deep-loop-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

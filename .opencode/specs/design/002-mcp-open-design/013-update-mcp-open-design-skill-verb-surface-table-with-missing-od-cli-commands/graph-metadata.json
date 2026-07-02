@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `odclireference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete",
     "created_at": "2026-06-21T13:29:37Z",
-    "last_save_at": "2026-06-23T03:49:48.640Z",
+    "last_save_at": "2026-07-02T05:31:06.497Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d846d3767304dc7e8f6afc1bff59fae94753774267a7d67643cfd4e5c850494",
+    "source_fingerprint": "sha256:0eaa1cd54c42322916472279c59193f1744f80f75c2d637f0ef78774ab1abe19",
     "source_doc_hashes": {
-      "spec.md": "0b0d164fd324f7e60a20d226b4b5f4ca087564851304982172c4a9f0e3380e33",
-      "plan.md": "1204f5f2a8e61dbe3e14493b5aef37e3891bac4099e19c2f69eea683fcf0263e",
-      "tasks.md": "8ba31611632c94f5501fd111d5424db65b168516826879f0967c44955f78e587",
-      "implementation-summary.md": "e09846f718bcfc1904b3bcae25ff4098720a0e5357206e73c8395c047d77ca8b"
+      "spec.md": "c889e7bc360b3bda5b74dcfd5946d2adaba8352667cb704e5d12c6c2f8892108",
+      "plan.md": "6823bd3079c027cad959763a3cb7c9f1472ae0a32e5c0c71136d632976e4faab",
+      "tasks.md": "9cc7c500e868a4e4a7c9406fd9ae719b22e3a92cbb807e9bf0e5ec9a92bc447f",
+      "implementation-summary.md": "ba787bb79c643933a43943f51b61571b926c24c1266c2a95051c0b6b5bf3c3c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

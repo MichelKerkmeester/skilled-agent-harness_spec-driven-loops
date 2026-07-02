@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is `default-unverified` (chosen from Z.AI prompting guidance, not a benchmark)",
     "created_at": "2026-06-28T10:15:17.430Z",
-    "last_save_at": "2026-06-28T13:04:38.727Z",
+    "last_save_at": "2026-07-02T05:31:09.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9df8efa5f9ddf4bad22657c143bf1fd603e62c93f704fc105d549464209fe65",
+    "source_fingerprint": "sha256:1024f0bcf6875087de939e8c9c5f80d22aba0d4cb539d31a26663d9d4b49ba47",
     "source_doc_hashes": {
-      "spec.md": "c273d30fd6338d0e01d48abf42c5bf211460847569b962cf43890759356f66aa",
-      "plan.md": "afa31941b47dd76da752e4ef0769fcc128a5e2dee1bf6164892dc2de41335295",
-      "tasks.md": "ed55030a99515e24fd7df475eb1f355a678cf1e76631cc7940cdf9a0eed817cf",
-      "implementation-summary.md": "5347f7e7ec05ef3059414b02fab4d856fbd262946d29a02f92187411ff8b025f"
+      "spec.md": "e781fded9e53e1b8e13ca42ab9f8daa1347b7662a3ceea4169bb8a6f2eb4f619",
+      "plan.md": "78aacef9e6959185daf62845aae337db1dc1d35dd25a0ee4f570cddaa2955c6b",
+      "tasks.md": "75834ef075ad0c90bc3c4ff9e8d4ed0787f8fde81a930dcf403d53a679dcbc3f",
+      "implementation-summary.md": "75393a413eda543838e5252de55799c634916f78b9a9230f1bf87498f4aaa941"
     },
     "last_active_child_id": null,
     "last_active_at": null

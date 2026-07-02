@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `deep-loops/030-agent-loops-improved/010-documentation-truth-audit` |
+| **Spec Folder** | 010-documentation-truth-audit |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 | **Reviewed by** | `openai/gpt-5.5-fast` (`--variant high`) via `cli-opencode`, 10 forced iterations |

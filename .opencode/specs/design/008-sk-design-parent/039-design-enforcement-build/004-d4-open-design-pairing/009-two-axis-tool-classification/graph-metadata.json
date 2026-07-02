@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The tool surface was classified on ONE axis — read-only / mutating / destructive — and every read-only tool was stamped \"surface freely.\" That mislabels a read whose OUTPUT is the design itself as harmless transport: `getrun` returns the generated design, `getartifact` returns the artifact, `getactivecontext`/`getproject` return design-bearing state",
     "created_at": "2026-06-28T12:39:55.187Z",
-    "last_save_at": "2026-06-28T20:39:01.681Z",
+    "last_save_at": "2026-07-02T05:31:08.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b76bd5f04d15f14e68e2270b2b2bba9cccfce3854742bb4a5d29fa4f94a77a80",
+    "source_fingerprint": "sha256:c1383e7aa3e6ce58f9c348536d575b2a35b3fb5fa5ef44cc77c30bdb795f0401",
     "source_doc_hashes": {
-      "spec.md": "a363e1be87c70bf0e083f53bc3c14352b1eae8d70fbf8768e59691a9d76d1bf9",
-      "plan.md": "fd05ba263987c0eed57bec152583131d90f824d09c03de2c4b81178546316fa4",
-      "tasks.md": "6b47e1baa7a0e802e02ebe5e3bdddfaf83d9df6411449781b4f935126809425d",
-      "checklist.md": "8dc70f20da1049c369fb64112f41242282c62775aa22232bace3ca05df94fba2",
-      "implementation-summary.md": "938c52a85735157720e5bd8acfc49f12c65feefa58abf33fd70efe666b832646"
+      "spec.md": "a4b4673fd4a1ffb21ff3dc9521036b5fe13ea0141a4a9ff401beeeda90390b1f",
+      "plan.md": "c6e458160d5578114e66933916cac05528a5823c5f504e0f03a49f27b5ede806",
+      "tasks.md": "85a82c90d490ab9e69b8f912a5cd4efd605c144e4392076f86cff670430acd46",
+      "checklist.md": "f936bb7d34bebc45b9e5d2104aa6909030a5d55683065a525c1634dcb8c44cca",
+      "implementation-summary.md": "6b8c59f5ade1e4e1d296266bedd9d14409e25a230768ca495bff217ad019fd32"
     },
     "last_active_child_id": null,
     "last_active_at": null

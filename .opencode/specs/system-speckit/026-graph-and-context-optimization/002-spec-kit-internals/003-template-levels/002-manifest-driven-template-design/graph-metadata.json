@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T09:15:39Z",
-    "last_save_at": "2026-06-23T03:49:53.738Z",
+    "last_save_at": "2026-07-02T05:31:11.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

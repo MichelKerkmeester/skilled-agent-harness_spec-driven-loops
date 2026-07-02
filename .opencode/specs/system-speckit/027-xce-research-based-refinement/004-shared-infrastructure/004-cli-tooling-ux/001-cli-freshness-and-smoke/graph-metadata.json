@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
       ".opencode/bin/spec-memory.cjs",
       ".opencode/bin/code-index.cjs",
       ".opencode/bin/skill-advisor.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
       ".opencode/bin/cli-offline-smoke.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
       ".opencode/bin/cli-offline-smoke.test.cjs",
       ".opencode/bin/worktree-guard.sh",
       "mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
@@ -70,15 +70,15 @@
         "source": "derived"
       },
       {
-        "name": "finalize-dist.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
-        "source": "derived"
-      },
-      {
         "name": "cli-offline-smoke.cjs",
         "kind": "file",
         "path": ".opencode/bin/cli-offline-smoke.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist entrypoint is stale...\") and blocks dispatch even when dist content is current",
     "created_at": "2026-06-10T20:38:53.995Z",
-    "last_save_at": "2026-06-23T03:49:57.804Z",
+    "last_save_at": "2026-07-02T05:31:13.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

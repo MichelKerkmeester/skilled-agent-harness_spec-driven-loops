@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 155-parent-skill-native-invocability/003-deep-loop-alignment |
+| **Spec Folder** | 003-deep-loop-alignment |
 | **Completed** | Effectively complete (~95%): R1-R5 done; all static and fixture gates green; reachability confirmed by runtime registration; full live-loop e2e optional/not run |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

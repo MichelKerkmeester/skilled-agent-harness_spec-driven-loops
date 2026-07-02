@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Several improvements are real but were deferred to avoid blocking the anti-fabrication fixes: DTCG migration is high-disruption and does NOT itself fix prose fabrication; some sections (§0/§1/§7/§8) need semantic data the tokens don't carry; and several borrow-list techniques are medium-cost niceties",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.855Z",
+    "last_save_at": "2026-07-02T05:31:07.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de450e125e554b6695f7fd93a7604e3c7cf21cd0547d992bceb57f68eaeaf77c",
+    "source_fingerprint": "sha256:500368a83611725e31f97c58ac0059893c62f9e8f6591fe5fb799178d39eb132",
     "source_doc_hashes": {
-      "spec.md": "9d568de60188338c1a8bf146820106257b6a24e70c44e9acc17ebdf7814ae03b",
-      "plan.md": "7506e8736aace56086f78541fa5b37d88b86495a6649f23de5eaeb73b5382ef1",
-      "tasks.md": "4a53cd2d8de42b964b5ccde9116ee51905032700a3acec1b0419454cf1eef973",
-      "checklist.md": "9b0c2f6704197e9a8dfec69ff795172191142ffe42c072c3228bbbb48184fdb8",
-      "implementation-summary.md": "4f8675f4d46d43d74c2dba7b4c02e20c34e2e7c8b3e69b35d6279974b4cf828f"
+      "spec.md": "8fea6a019d56e77eaa94fb2342f871b2865ffbe825c70d148d10cbabede3c8ed",
+      "plan.md": "e15a81e5db0bd382a13a8e511547f1acbc06a5e48e4034e740df41c999bec4df",
+      "tasks.md": "4a767ee7d41b1858cc4bde750d5b732d21539320336830464ba6fba57e9e2fa5",
+      "checklist.md": "a219ea6443cdaab074a30e472ea90e2e4cbadf8cd463303e58f0ac3c6956eb75",
+      "implementation-summary.md": "21fdca74a055a67150b6731ce6b54778ce3e63fa73abbd89e06819de64cc5cf4"
     },
     "last_active_child_id": null,
     "last_active_at": null

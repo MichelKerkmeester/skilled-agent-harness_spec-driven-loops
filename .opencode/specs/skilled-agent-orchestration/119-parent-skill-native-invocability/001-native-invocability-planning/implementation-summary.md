@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 155-parent-skill-native-invocability |
+| **Spec Folder** | 001-native-invocability-planning |
 | **Completed** | Not implemented (plan-only) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

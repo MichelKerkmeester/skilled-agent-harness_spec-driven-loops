@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/004-gpt-verification-smoke` |
+| **Spec Folder** | 005-gpt-verification-smoke |
 | **Completed** | Failed/blocked, not accepted |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

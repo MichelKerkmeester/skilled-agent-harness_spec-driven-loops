@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,16 +41,22 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,12 +75,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with `requiredAction: codegraphscan` — they never build the index themselves",
     "created_at": "2026-05-29T10:44:34.652Z",
-    "last_save_at": "2026-06-23T03:49:56.152Z",
+    "last_save_at": "2026-07-02T05:31:12.707Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

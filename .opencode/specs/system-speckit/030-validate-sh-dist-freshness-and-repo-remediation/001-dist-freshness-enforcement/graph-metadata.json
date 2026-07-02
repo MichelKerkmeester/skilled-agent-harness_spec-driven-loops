@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/030-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "spec_folder": "system-speckit/030-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "parent_id": "system-speckit/030-validate-sh-dist-freshness-and-repo-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist freshness enforcement",
+      "validate.sh stale dist backstop",
+      "stale dist hook plugin",
+      "dist freshness enforcement plan",
+      "dist freshness enforcement tasks",
+      "dist freshness enforcement summary",
+      "stale dist validation backstop"
+    ],
+    "key_topics": [
+      "dist",
+      "freshness",
+      "enforcement",
+      "validate",
+      "stale",
+      "backstop",
+      "hook",
+      "plugin",
+      "plan",
+      "tasks",
+      "summary",
+      "validation"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+      ".opencode/skills/sk-code/scripts/check-dist-staleness.sh",
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
+      ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "mcp_server/dist/lib/validation/orchestrator.js",
+      "scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/validation/orchestrator.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Freshness Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence -- before trusting the compiled `mcpserver/dist/lib/validation/orchestrator.js`",
+    "created_at": "2026-07-02T03:37:12.940Z",
+    "last_save_at": "2026-07-02T04:50:51.509Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1eaa1aa27107bb2921e2fed31c795704694f79cfd6dd11ba8e821e7151bf5782",
+    "source_doc_hashes": {
+      "spec.md": "9f71698e6c844d0949cd1c815db029578ea7736ebad8a5f9d6a5c30ff3be3731",
+      "plan.md": "3e5a29f83ca5e0a0c53719c7e4cdbc5f275815280a8ef6f9359e19cc8fd0c36d",
+      "tasks.md": "080ae65b3e2a945c7b6d8ac52bf09e44393f79804eb6a3fa360edb6c574e3e7f",
+      "implementation-summary.md": "a62b4a5d5f0640c995c453b084c15a5bdb1cb93c1af34e51b487ace44a7b3cee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Even with phases 002-004, the AI still hand-assembles value tables (colors, type, shadows) from raw JSON — the assembly step where fabrication enters and which the validator can only partially catch",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-25T09:22:07.035Z",
+    "last_save_at": "2026-07-02T05:31:07.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:543d587b82e294cd465acb78619a3ce2334be40913c35ca7e7a24636cf340f40",
+    "source_fingerprint": "sha256:cdcbc0f8243742ed61147b7de6282517d0c8f1c29ba56aec7e3f4f6553b88c0f",
     "source_doc_hashes": {
-      "spec.md": "522d312d80c930588f7f3f25074d3e117ca0cf9a6df7b446a9c6237d9de6f2a1",
-      "plan.md": "47bd199b5d68627cd6b049e1aff1d26f965836dd7ee24d0c6be0f78790125ad6",
-      "tasks.md": "f3822011a8b3184d719ae83384e805b0a0c397c0fad1b7f64b7241a32c26f767",
-      "checklist.md": "ca41e81d680d3ecdb83cbb5f2509d3cc05b95b2a4cd528d6a26aa00965d3010d",
-      "implementation-summary.md": "28e9307c99198cce97d809642fa340db558acc1df89891492268c6d67e82cc0a"
+      "spec.md": "e036f9a8779eac2655e104b094d16b1a3edd19b9c420c1a73154d8ed78ae7872",
+      "plan.md": "6973ae7215601760ba8c4c09290eb57ef3ee77ccb8442ce0d6c68ea2ceeadf96",
+      "tasks.md": "6180bd137ec7f723bd50ab8a896abf8b80c801afc53ffa20bd10a339ce6ed016",
+      "checklist.md": "e6e4dd2c280d0c72c1a3509db95f7d3a9d7e823642fa6153efa734f46f612fb5",
+      "implementation-summary.md": "c63b0093838a4dafddc0422cd61f0aedd29b3423ca24f02cb3078883144a5961"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `013-fix5-checkpoint` |
+| **Spec Folder** | 013-fix5-checkpoint |
 | **Completed** | 2026-07-01 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

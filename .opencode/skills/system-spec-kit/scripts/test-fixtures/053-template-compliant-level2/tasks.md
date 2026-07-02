@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Template Compliant Level 2 Fixture [template:examples/level_2/tasks.md]"
+title: "Tasks: Template Compliant Level 2 Fixture"
 description: "Current-template Level 2 task list fixture."
 trigger_phrases:
   - "fixture"

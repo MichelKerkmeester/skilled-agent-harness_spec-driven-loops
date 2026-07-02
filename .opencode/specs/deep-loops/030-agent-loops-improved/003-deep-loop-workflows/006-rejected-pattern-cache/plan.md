@@ -1,42 +1,38 @@
 ---
-title: "Implementation Plan: Phase 6: rejected-pattern-cache [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Rejected-Pattern Cache for Research State"
+description: "Documents the completed rejected idea event cache and bounded suppression index work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "rejected pattern cache"
+  - "ideaRejected event deep research"
+  - "pattern suppression bounded index"
+  - "rejected ideas loop"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-rejected-pattern-cache"
-    last_updated_at: "2026-06-28T14:02:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/006-rejected-pattern-cache"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md"
+      - ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md"
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-rejected-pattern-cache"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: rejected-pattern-cache
+# Implementation Plan: Rejected-Pattern Cache for Research State
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
 ---
 
@@ -47,13 +43,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode deep-research JSONL protocol docs, reducer JavaScript, YAML workflow |
+| **Framework** | `deep-loop-workflows` research event-sourced reducer |
+| **Storage** | JSONL `ideaRejected`, `ideaRejectedRemoved`, and `ideaRejectedReset` events |
+| **Testing** | Candidate suppression checks, bounded-index checks, remove/reset lifecycle checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed work added a durable rejected-pattern cache to prevent previously rejected ideas from re-entering next-focus, recovery, or ideas candidates. The reducer derives a bounded active index from JSONL events and supports explicit remove and reset operations.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +58,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Rejected ideas were confirmed to lack durable suppression.
+- [x] Scope is limited to idea-level suppression, with backlog promotion left to leaf 007.
+- [x] Bounded index behavior and reversibility are specified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] JSONL protocol documents `ideaRejected`, `ideaRejectedRemoved`, and `ideaRejectedReset`.
+- [x] Reducer derives a bounded rejected index with max 100 entries.
+- [x] Exact and fuzzy/category-guarded checks run before candidate selection.
+- [x] Overflow evicts the oldest entry and logs a warning.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +75,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Event-sourced suppression index: durable JSONL events are reduced into an active bounded cache that candidate generation consults before surfacing ideas.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`state_jsonl.md`**: Defines rejected-pattern event types.
+- **`loop_protocol.md`**: Documents rejected-cache lifecycle and overflow behavior.
+- **`reduce-state.cjs`**: Builds the active rejected index and applies exact/fuzzy checks.
+- **`deep_research_auto.yaml`**: Adds the rejected-cache check before candidate selection.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Rejected events enter JSONL, the reducer builds the active index up to `MAX_REJECTED_PATTERNS=100`, and candidate generation checks that index before proposing next-focus, recovery, or idea candidates. Remove and reset events update the active index without editing historical events.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +92,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| JSONL protocol | Defines durable events | Add rejected-cache lifecycle events | Event docs include add/remove/reset |
+| Reducer | Derives active state from events | Build bounded rejected index | Index never exceeds 100 entries |
+| Candidate generation | Selects next focus and ideas | Check exact and fuzzy rejected patterns | Rejected candidate is absent |
+| Workflow YAML | Orders candidate checks | Run rejected-cache check before selection | YAML step precedes selection |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +106,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the completed spec and isolate rejected-pattern scope from idea backlog work.
+- [x] Identify JSONL protocol, loop protocol, reducer, and YAML workflow surfaces.
+- [x] Capture bounded-index and reversibility requirements.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add rejected-cache event types to `state_jsonl.md`.
+- [x] Document lifecycle and overflow policy in `loop_protocol.md`.
+- [x] Derive a bounded rejected index in `reduce-state.cjs`.
+- [x] Add exact plus fuzzy/category-guarded candidate checks.
+- [x] Add remove and reset event handling.
+- [x] Add rejected-cache workflow step before candidate selection.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify a rejected pattern is absent from later candidates.
+- [x] Verify the active rejected index never exceeds 100 entries.
+- [x] Verify `ideaRejectedRemoved` re-admits a pattern on the next reduce step.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +131,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Event reduction | Add/remove/reset rejected events | Reducer fixture |
+| Candidate suppression | Exact and fuzzy rejected matches | Candidate-generation fixture |
+| Bound enforcement | More than 100 rejected entries | Reducer overflow fixture |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +143,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| No hard predecessor | Internal | Complete | Rejected-pattern cache can run independently |
+| `007-ideas-backlog-lifecycle` | Successor | Complete | `idea_rejected` lifecycle should integrate with this index |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +152,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Candidate generation suppresses valid ideas, remove/reset fails, or index overflow removes active suppressions incorrectly.
+- **Procedure**: Revert event docs, reducer cache derivation, and YAML check ordering, then disable rejected-pattern suppression while retaining historical JSONL records for diagnosis.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

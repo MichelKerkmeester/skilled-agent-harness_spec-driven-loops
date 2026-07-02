@@ -58,6 +58,7 @@ import { handleCodeGraphContext } from '../handlers/context.js';
 
 describe('code-graph-context handler', () => {
   beforeEach(() => {
+    vi.unstubAllEnvs();
     vi.clearAllMocks();
     mocks.resolveSeeds.mockReturnValue([]);
     mocks.getCodeGraphGeneration.mockReturnValue(0);
@@ -237,7 +238,7 @@ describe('code-graph-context handler', () => {
       .mockReturnValue(6_000_000n);
 
     try {
-      const result = actualBuildContext({
+      const result = await actualBuildContext({
         queryMode: 'neighborhood',
         seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
         deadlineMs: 5,
@@ -296,7 +297,7 @@ describe('code-graph-context handler', () => {
       },
     ]);
 
-    const result = actualBuildContext({
+    const result = await actualBuildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -362,7 +363,7 @@ describe('code-graph-context handler', () => {
     ));
     mocks.queryEdgesTo.mockReturnValue([]);
 
-    const result = actualBuildContext({
+    const result = await actualBuildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'docs/readme.md', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -414,14 +415,14 @@ describe('code-graph-context handler', () => {
     ));
     mocks.queryEdgesTo.mockReturnValue([]);
 
-    const compact = actualBuildContext({
+    const compact = await actualBuildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
     });
     expect(compact.graphContext[0]).not.toHaveProperty('why_included');
 
-    const traced = actualBuildContext({
+    const traced = await actualBuildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -553,6 +554,7 @@ describe('code-graph-context handler', () => {
 
 describe('context why_included breadcrumb accuracy', () => {
   beforeEach(() => {
+    vi.unstubAllEnvs();
     vi.clearAllMocks();
     mocks.resolveSeeds.mockReturnValue([
       {
@@ -577,6 +579,7 @@ describe('context why_included breadcrumb accuracy', () => {
   }
 
   it('marks a neighbor reached via an INFERRED edge as ambiguous and a STRUCTURED one as not', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     const buildContext = await importBuildContext();
     mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
       symbolId === 'symbol-alpha' && edgeType === 'CALLS'
@@ -599,7 +602,7 @@ describe('context why_included breadcrumb accuracy', () => {
         : []
     ));
 
-    const result = buildContext({
+    const result = await buildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -612,7 +615,111 @@ describe('context why_included breadcrumb accuracy', () => {
     expect(structured?.ambiguous).toBe(false);
   });
 
+  it('marks a neighbor reached via an AMBIGUOUS edge as ambiguous', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'ambiguous-callee', edgeType: 'CALLS', weight: 0.3,
+              metadata: { confidence: 0.3, detectorProvenance: 'heuristic', evidenceClass: 'AMBIGUOUS' },
+            },
+            targetNode: { fqName: 'ambiguous.callee', kind: 'function', filePath: 'src/ambiguous.ts', startLine: 3 },
+          },
+        ]
+        : []
+    ));
+
+    const result = await buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+    const why = result.graphContext[0].why_included ?? [];
+    const ambiguous = why.find((entry) => entry.filePath === 'src/ambiguous.ts');
+    expect(ambiguous?.ambiguous).toBe(true);
+  });
+
+  it('reflects the differentiation flag toggled mid-session, not just at process start', async () => {
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'mixed-state-callee', edgeType: 'CALLS', weight: 0.9,
+              metadata: { confidence: 0.9, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+            },
+            targetNode: { fqName: 'mixed.state.callee', kind: 'function', filePath: 'src/mixed-state.ts', startLine: 7 },
+          },
+        ]
+        : []
+    ));
+    const seeds = [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }];
+
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    const flagOff = await buildContext({ queryMode: 'neighborhood', seeds, deadlineMs: 400, includeTrace: true });
+    const offEntry = (flagOff.graphContext[0].why_included ?? []).find((entry) => entry.filePath === 'src/mixed-state.ts');
+    // Legacy tier is 0.8/INFERRED -- INFERRED counts as ambiguous by design.
+    expect(offEntry?.confidence).toBe(0.8);
+    expect(offEntry?.ambiguous).toBe(true);
+
+    process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION = 'true';
+    const flagOn = await buildContext({ queryMode: 'neighborhood', seeds, deadlineMs: 400, includeTrace: true });
+    const onEntry = (flagOn.graphContext[0].why_included ?? []).find((entry) => entry.filePath === 'src/mixed-state.ts');
+    expect(onEntry?.confidence).toBe(0.9);
+    expect(onEntry?.ambiguous).toBe(false);
+
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+  });
+
+  it('leaves IMPORTS-edge confidence and evidence metadata unaffected by the CALLS-only differentiation flag', async () => {
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'IMPORTS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'imported-module', edgeType: 'IMPORTS', weight: 0.95,
+              metadata: { confidence: 0.95, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+            },
+            targetNode: { fqName: 'imported.module', kind: 'file', filePath: 'src/imported.ts', startLine: 1 },
+          },
+        ]
+        : []
+    ));
+    const seeds = [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }];
+
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    const flagOff = await buildContext({ queryMode: 'neighborhood', seeds, deadlineMs: 400, includeTrace: true });
+    expect(flagOff.graphContext[0].edges[0]).toMatchObject({
+      confidence: 0.95,
+      detectorProvenance: 'structured',
+      evidenceClass: 'EXTRACTED',
+    });
+    const offEntry = (flagOff.graphContext[0].why_included ?? []).find((entry) => entry.filePath === 'src/imported.ts');
+    expect(offEntry?.confidence).toBe(0.95);
+    expect(offEntry?.ambiguous).toBe(false);
+
+    process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION = 'true';
+    const flagOn = await buildContext({ queryMode: 'neighborhood', seeds, deadlineMs: 400, includeTrace: true });
+    expect(flagOn.graphContext[0].edges[0]).toMatchObject({
+      confidence: 0.95,
+      detectorProvenance: 'structured',
+      evidenceClass: 'EXTRACTED',
+    });
+    const onEntry = (flagOn.graphContext[0].why_included ?? []).find((entry) => entry.filePath === 'src/imported.ts');
+    expect(onEntry?.confidence).toBe(0.95);
+    expect(onEntry?.ambiguous).toBe(false);
+
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+  });
+
   it('keeps every same-depth edge in edgeChain when a file is reachable via multiple edges', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     const buildContext = await importBuildContext();
     // Two distinct depth-1 edges to the SAME file (CALLS to two symbols both
     // living in src/dependency.ts) — the breadcrumb must retain both reasons.
@@ -637,7 +744,7 @@ describe('context why_included breadcrumb accuracy', () => {
         : []
     ));
 
-    const result = buildContext({
+    const result = await buildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -672,7 +779,7 @@ describe('context why_included breadcrumb accuracy', () => {
     // start, then exceed budget so the expansion section is marked partial.
     hrtimeSpy.mockReturnValueOnce(0n).mockReturnValue(401_000_000n);
     try {
-      const result = buildContext({
+      const result = await buildContext({
         queryMode: 'neighborhood',
         seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
         deadlineMs: 400,
@@ -708,7 +815,7 @@ describe('context why_included breadcrumb accuracy', () => {
         : []
     ));
 
-    const result = buildContext({
+    const result = await buildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -725,6 +832,7 @@ describe('context why_included breadcrumb accuracy', () => {
 
 describe('code graph context rank-time trust', () => {
   beforeEach(() => {
+    vi.unstubAllEnvs();
     vi.clearAllMocks();
     mocks.resolveSeeds.mockReturnValue([
       {
@@ -788,7 +896,7 @@ describe('code graph context rank-time trust', () => {
         : []
     ));
 
-    const result = buildContext({
+    const result = await buildContext({
       queryMode: 'neighborhood',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -806,7 +914,48 @@ describe('code graph context rank-time trust', () => {
     expect(result.metadata.freshness.generation).toBe(7);
   });
 
+  it('normalizes persisted edge confidence metadata to the legacy tier when differentiation is off', async () => {
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha',
+              targetId: 'low-confidence-callee',
+              edgeType: 'CALLS',
+              weight: 0.1,
+              metadata: { confidence: 0.1, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+            },
+            targetNode: { fqName: 'low.confidence', kind: 'function', filePath: 'src/low.ts', startLine: 5 },
+          },
+        ]
+        : []
+    ));
+
+    const result = await buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+
+    expect(result.graphContext[0].edges[0]).toMatchObject({
+      confidence: 0.8,
+      detectorProvenance: 'heuristic',
+      evidenceClass: 'INFERRED',
+    });
+    const calleeTrace = result.graphContext[0].why_included?.find((entry) => entry.filePath === 'src/low.ts');
+    expect(calleeTrace).toMatchObject({
+      confidence: 0.8,
+      ambiguous: true,
+      edgeChain: [expect.objectContaining({ confidence: 0.8, evidenceClass: 'INFERRED' })],
+    });
+  });
+
   it('boosts trusted impact callers while preserving neutral peer order', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     const buildContext = await importBuildContext();
     mocks.queryEdgesTo.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
       symbolId === 'symbol-alpha' && edgeType === 'CALLS'
@@ -833,7 +982,7 @@ describe('code graph context rank-time trust', () => {
         : []
     ));
 
-    const result = buildContext({
+    const result = await buildContext({
       queryMode: 'impact',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
@@ -872,12 +1021,12 @@ describe('code graph context rank-time trust', () => {
       return order;
     });
 
-    const first = buildContext({
+    const first = await buildContext({
       queryMode: 'impact',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,
     });
-    const second = buildContext({
+    const second = await buildContext({
       queryMode: 'impact',
       seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
       deadlineMs: 400,

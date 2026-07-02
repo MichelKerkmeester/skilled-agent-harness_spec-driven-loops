@@ -16,8 +16,8 @@ _memory:
     packet_pointer: "anobel.com/003-slider-refactor"
     last_updated_at: "2026-06-06T10:20:00Z"
     last_updated_by: "opencode"
-    recent_action: "Closed slider refactor as complete after variant-safe section selectors, timeline-only tab underline scoping, mobile pagination handling, minification, runtime verification, and Webflow guide updates"
-    next_safe_action: "No repo follow-on required; use webflow-update-guide.md when applying the documented external Webflow Designer changes"
+    recent_action: "Closed slider variants"
+    next_safe_action: "Apply Webflow update guides"
     blockers: []
     key_files:
       - "a_nobel_en_zn/2_javascript/slider_testimonial.js"

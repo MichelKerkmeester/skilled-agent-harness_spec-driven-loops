@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/005-sk-design-interface-variation-diversity |
+| **Spec Folder** | 005-sk-design-interface-variation-diversity |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 | **Actual Effort** | ~2.5 hours |

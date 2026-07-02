@@ -309,7 +309,7 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
       includeTrace: args.includeTrace,
     };
 
-    const result = buildContext(contextArgs);
+    const result = await buildContext(contextArgs);
     // trustState is now derived canonically by buildReadinessBlock() through
     // the widened freshness union ('error' → trustState 'unavailable'). No
     // manual injection needed.

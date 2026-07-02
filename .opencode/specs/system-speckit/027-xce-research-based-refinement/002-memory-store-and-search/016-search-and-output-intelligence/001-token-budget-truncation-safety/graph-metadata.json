@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-skip-and-floor.vitest.ts",
       "mcp_server/lib/search/hybrid-search.ts",
       "mcp_server/lib/search/dynamic-token-budget.ts",
       "mcp_server/tests/token-budget-skip-and-floor.vitest.ts",
@@ -55,19 +58,19 @@
       {
         "name": "hybrid-search.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
         "source": "derived"
       },
       {
         "name": "dynamic-token-budget.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/dynamic-token-budget.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts",
         "source": "derived"
       },
       {
         "name": "token-budget-skip-and-floor.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/token-budget-skip-and-floor.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-skip-and-floor.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,7 +202,7 @@
     ],
     "causal_summary": "The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved every smaller fitting result and collapsed a populated search to a single result (5→1)",
     "created_at": "2026-06-17T19:57:25.101Z",
-    "last_save_at": "2026-06-23T03:49:57.339Z",
+    "last_save_at": "2026-07-02T05:31:13.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

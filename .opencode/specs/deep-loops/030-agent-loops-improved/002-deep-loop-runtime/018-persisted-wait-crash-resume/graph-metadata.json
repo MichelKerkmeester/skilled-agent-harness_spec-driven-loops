@@ -15,14 +15,8 @@
       "resume-waiting classifier",
       "wait-checkpoint schema",
       "nextRunAt crash recovery",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "018-persisted-wait-crash-resume summary"
+      "018-persisted-wait-crash-resume summary",
+      "018-persisted-wait-crash-resume"
     ],
     "key_topics": [
       "persisted-wait",
@@ -34,9 +28,9 @@
       "nextrunat",
       "crash",
       "recovery",
-      "implementation",
-      "plan",
-      "name"
+      "018-persisted-wait-crash-resume",
+      "summary",
+      "loop"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -135,13 +129,25 @@
         "source": "derived"
       },
       {
+        "name": "Wait Crash Resume",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Nullable",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,25 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -183,21 +177,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "no",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed lineages cannot distinguish \"killed mid-wait\" from \"killed mid-dispatch.\" This causes duplicate dispatch and incorrect lineage attribution on restart",
     "created_at": "2026-06-28T14:02:05Z",
-    "last_save_at": "2026-07-01T15:47:37.115Z",
+    "last_save_at": "2026-07-01T21:52:50.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d19ce0a62df4f1466bbb9ee86d2290b30460115b58381c52395df1d23ba59f9",
+    "source_fingerprint": "sha256:6e7ec5e3adf85b53520e6e703d527efd6bf44ec410a73f41edd54291a3722f37",
     "source_doc_hashes": {
       "spec.md": "26d3bd669a2bb851ed7a9727801416b7a67590ad8f7b6daa4c400bda00410945",
-      "plan.md": "0bc415ca269666ceee26ef1a669a5bc27dfe339fea9290caaf6070a0c1d8afbf",
-      "tasks.md": "4a32aa8a29733ec5ba8753c28ff84d4af9bb257171f74f14186cdb4dd2266ecd",
+      "plan.md": "10f136a8f4ef6a1ef51ffe2dfa252f752be346dd0d7c0b17a0fa3a3e16755cf1",
+      "tasks.md": "7da38c247724da19bebcb065e3cbdb35bfa76313d94c3138b096437a29770535",
       "implementation-summary.md": "0ac18f33f7660b9d14b96dd806252a690734bf5f520c2a4bdb4a1714656cdcb0"
     },
     "last_active_child_id": null,

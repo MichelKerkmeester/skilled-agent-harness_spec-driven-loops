@@ -15,14 +15,8 @@
       "single-flight lock decision",
       "host-local single flight",
       "durable packet lock adr",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "008-loop-lock-single-flight-decision summary"
+      "008-loop-lock-single-flight-decision summary",
+      "008-loop-lock-single-flight-decision"
     ],
     "key_topics": [
       "loop-lock",
@@ -36,7 +30,7 @@
       "durable",
       "packet",
       "adr",
-      "implementation"
+      "008-loop-lock-single-flight-decision"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -128,43 +122,43 @@
         "source": "derived"
       },
       {
+        "name": "Lock Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flight Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Layered",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before either acquires it",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-07-01T15:47:37.091Z",
+    "last_save_at": "2026-07-01T21:52:50.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bab6b71e3648547117d4e379f4e6a1471ed75ff17f5eb161b53e7d03c5ae52a0",
+    "source_fingerprint": "sha256:d850758985387afcef181989c99a5f8a15d97fa251ef71150c8d7553406f6d9f",
     "source_doc_hashes": {
       "spec.md": "050bca9c255ad6a10fbfc7d822bdb6d9a710bebd2d41fb1e90a0c8e0514e6d3f",
-      "plan.md": "15a1676ddd506bfb2ee7c0a9d6aa1a17705c5e65fa3901ccd904e347da958e0f",
-      "tasks.md": "33992538e4e51e9eb8286c1ef174557dd7e6b902d5b5292f0620cc355862fd01",
+      "plan.md": "fe5333e947e1cbb8d2dd3edea60f2718631204d2ac820a585562fb79bc103f0d",
+      "tasks.md": "a33aab2c2ee3ca73d0d65dfbf62b51705349e53faee97a52cd723654ae867460",
       "implementation-summary.md": "214e7ccf80ef5b0a1c10c9f9da6cf6582ee264f26b06cf70adf215dd220f6926"
     },
     "last_active_child_id": null,

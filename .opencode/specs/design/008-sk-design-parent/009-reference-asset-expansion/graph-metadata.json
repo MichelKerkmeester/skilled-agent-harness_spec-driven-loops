@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The corpus research already settled the taxonomy: the five `sk-design` modes (`design-interface`, `design-foundations`, `design-motion`, `design-audit`, `design-md-generator`) exist",
     "created_at": "2026-06-26T16:14:41.581Z",
-    "last_save_at": "2026-06-26T16:23:27.199Z",
+    "last_save_at": "2026-07-02T05:31:07.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e7a9ad571bbe3ef993efc58083e3cb2bc5c800797dd16cbb23470aa3a14a38ee",
+    "source_fingerprint": "sha256:aacad5d3b2c7ef0117b5ac49be7689eb985e6b4d1fca30bca6d6b8fcff1c8402",
     "source_doc_hashes": {
-      "spec.md": "ffcd326152d03c91a073f0791bcf6a1b5cf8466b89eadd6c963f222e3c02091a",
-      "plan.md": "7c15870e5c9bc91e4444a92a030054cb99369f59004a037989dc3904bfe4006d",
-      "tasks.md": "b213ea543f70728aeff07d45fc308136d70b4fe36d7fd78ec7b2cd2b780b2a98",
-      "implementation-summary.md": "18234dd0e87420d7ade9a173942487b83281313f9920eff490305bad246ef22a",
+      "spec.md": "f6eecbb24baf3f89ce45d2a2dcad49eb9b724d7da61ec0670c577db1f22e6037",
+      "plan.md": "cc7dbadb37b9cda3cb33f70e65f57ed0afc929533c5808afcccfe872be83b977",
+      "tasks.md": "0b87b60d792f19135811b5f48fc02bec6f2e0bbaca2bec29caaf10de5f035d9a",
+      "implementation-summary.md": "6424047c351119a9b2993b1cf13afa42a06fcd2b6cf43cd004ee7299c2d2fd4e",
       "research/research.md": "58b4c75d629f16e53efd0da425bd2b16031cd4f24bb959693391d9acbaaefbf1"
     },
     "last_active_child_id": null,

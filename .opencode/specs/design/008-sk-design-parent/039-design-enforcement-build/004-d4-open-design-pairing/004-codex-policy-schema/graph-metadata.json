@@ -38,22 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".codex/policy.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "dist/hooks/codex/pre-tool-use.js",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "policy.json",
-        "kind": "config",
-        "path": ".codex/policy.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,18 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "pre-tool-use.js",
-        "kind": "code",
-        "path": "dist/hooks/codex/pre-tool-use.js",
-        "source": "derived"
-      },
-      {
-        "name": "pre-tool-use.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
         "source": "derived"
       },
       {
@@ -191,11 +170,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Codex PreToolUse hook already carries the executable Open Design precondition branch and its policy types, but the branch is inert",
     "created_at": "2026-06-28T12:39:54.940Z",
-    "last_save_at": "2026-06-28T17:16:05.713Z",
+    "last_save_at": "2026-07-02T05:31:08.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:677e230ec974bb7c5383e3a6eaadd55356f4ca756fe21e26eb64a83193df7887",
+    "source_fingerprint": "sha256:844b2252b322a9d231b054d98bf783fb2275edc8210b40635208c6d29d75f484",
     "source_doc_hashes": {
-      "spec.md": "54e6aed2b80271a98c1dfdc944136f7ab61f020902166bbcac385f69ed24d7c8",
-      "plan.md": "18eae1f55912991c0ebe8997ac1628c56613f66699c94f450d2ed9c652ac1d2c",
-      "tasks.md": "2b59d66d8480933b2390e8049cba92b53458cb0ad0ced01774b573aece1f4331",
-      "checklist.md": "3c2a3705c163c3afa288f74a1a60ff2a9892ccf0f3b865311634d7a2aff47891",
-      "implementation-summary.md": "1e34cb2fdf077f5a07b6fb2ebdabe4527fc104ba4c01af151244fba252d30dd7"
+      "spec.md": "9068fe487ddb040a03e829d62193d91db48ed073d36e3e120bb093f46adffd24",
+      "plan.md": "1e7c59dbc877c52eed9bd1a5a6d59d5396abc2ffbf03cae8dab5c56ab7106d50",
+      "tasks.md": "431a77615c4c611e6fcef3d64b11e6ad8d4d67871f9a5d7aa6a9389b3149657f",
+      "checklist.md": "7ac5a5bb53841a5e61e2a7d9078dd067f047834d727afb50d89f0d4dfb3d44f8",
+      "implementation-summary.md": "07dfd447bbfef9b1d8d3bddaede3696131ef7c0a6e893b9ca996a4d03434ff3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

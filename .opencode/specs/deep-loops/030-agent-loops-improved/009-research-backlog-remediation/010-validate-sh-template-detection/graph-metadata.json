@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical, untouched scaffold templates — confirmed directly for `008-loop-systems-remediation/tasks.md` and `implementation-summary.md` (title literally `\"[template:level1/tasks.md]\"`, `packetpointer: \"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"`), and for 3 other folders per `research/researcharchive/20260701T071133Z-gen1/research.md` §4.2 (F-010)",
     "created_at": "2026-07-01T07:28:44.272Z",
-    "last_save_at": "2026-07-01T14:57:20.895Z",
+    "last_save_at": "2026-07-02T11:45:19.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +202,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:013901c76a51eba35ed612f767a1a062f0b92701aacecec65c173f79958f4df7",
+    "source_fingerprint": "sha256:a9320bf17c0e8a08b1343928442ed6d5fec6f814d199cae28b157482ddaa336a",
     "source_doc_hashes": {
-      "spec.md": "9f819dec0adb88336737f3c8ae8b87bbf3d99f34ab914858d4801973dc3d230f",
+      "spec.md": "426e27851e2640a4e620f5072251cebe45b1b7dc6aeb66f7d6d964689876490a",
       "plan.md": "bd31631fad8673ac9b83fe23aaf71fb5584c65e3729f15f3bfe84ff82d9dd961",
       "tasks.md": "05a38a2e797f2c5038018a1d52cfbbd80022405e0b9fa01540dfd6802f013277",
       "implementation-summary.md": "c2552a21eaaf13948a37660f4cdd27a8cbde24156a3056edc5207316ce2fcfe7"

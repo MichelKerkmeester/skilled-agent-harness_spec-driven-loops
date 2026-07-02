@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/030-agent-loops-improved/010-documentation-truth-audit",
   "description": "Packet 030 shipped nine phases of loop-system work, most recently an 11-child research-backlog remediation phase that changed fan-out merge behavior,",
   "keywords": [
@@ -19,12 +20,10 @@
     "merge",
     "behavior"
   ],
-  "lastUpdated": "2026-07-01T18:43:32.678Z",
+  "lastUpdated": "2026-07-02T11:47:24.476Z",
   "specId": "010",
   "folderSlug": "documentation-truth-audit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "030-agent-loops-improved"
   ],

@@ -1,33 +1,37 @@
 ---
-title: "Implementation Plan: Phase 5: verify-and-enforce [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 5 - Verify and Enforce"
+description: "Phase 5 planned the final required-version enforcement, corpus-wide gate, changelog update, and completion reconciliation. The phase is complete with validators requiring versions and the full corpus gate passing."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "verify enforce plan"
+  - "version CI gate plan"
+  - "required version enforcement plan"
+  - "frontmatter version gate plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-verify-and-enforce"
-    last_updated_at: "2026-06-23T07:33:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/005-verify-and-enforce"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with authored phase plan"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/check-frontmatter-versions.sh"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/skills/sk-doc/scripts/package_skill.py"
+      - ".opencode/skills/sk-doc/changelog/v1.8.0.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-verify-and-enforce"
+      session_id: "remediated-005-verify-and-enforce-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The gate skips frontmatter-less docs and only enforces in-scope classes."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: verify-and-enforce
+# Implementation Plan: Phase 5 - Verify and Enforce
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--

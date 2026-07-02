@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -33,17 +33,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "mcp_server/core/config.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
       "lib/ipc/socket-server.ts",
       "mcp_server/tests/launcher-lease.vitest.ts",
       "core/config.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "config.ts",
         "kind": "code",
@@ -66,12 +72,6 @@
         "name": "launcher-lease.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`",
     "created_at": "2026-05-29T09:55:00.000Z",
-    "last_save_at": "2026-06-23T03:49:56.146Z",
+    "last_save_at": "2026-07-02T05:31:12.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06edb085ffb17a543518f30fc8cb611a0e3b873dfa1f9ed6d729f63d2a4d4e88",
+    "source_fingerprint": "sha256:b1fd7803f40c80ab23a4f7c8b4981b5d27d28f19efc9a75b7b604fbcf2201f8b",
     "source_doc_hashes": {
       "spec.md": "869b43b5381da34127f27785bbbedf284fc3c306294b3f35dfff1313bca2edb2",
       "plan.md": "6d50512968d8d3615c4e1d34dc9b0360585c9f0f32d2deae13b2cd3281919f35",
-      "tasks.md": "de7994beaa5bc54f7aa7939afb815ac9561d68c0875d3e5f35685e2118e234ab",
+      "tasks.md": "4db1f5b22250100da3e323af88d65ec52b41c098c329e6753f557d85649068a0",
       "implementation-summary.md": "9f940cf3557fe4de38396ac5aedf0222da819f3a1df1c62138297613ddcff50a"
     },
     "last_active_child_id": null,

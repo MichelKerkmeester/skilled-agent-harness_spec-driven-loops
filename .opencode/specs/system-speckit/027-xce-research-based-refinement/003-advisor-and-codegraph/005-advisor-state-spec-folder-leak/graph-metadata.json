@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/utils/workspace-root.vitest.ts",
       ".opencode/skills/.advisor-state/skill-graph-generation.json",
       ".opencode/skills/system-spec-kit/SKILL.md",
       "plan.md",
@@ -51,6 +54,24 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "workspace-root.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workspace-root.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/utils/workspace-root.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "skill-graph-generation.json",
         "kind": "config",
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Resolver Fix",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up parent directories looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md`",
     "created_at": "2026-06-18T18:41:11.390Z",
-    "last_save_at": "2026-06-23T03:49:57.518Z",
+    "last_save_at": "2026-07-02T05:31:13.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

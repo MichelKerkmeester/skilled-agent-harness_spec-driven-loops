@@ -41,13 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
+      "research/research.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
       "research/resource-map.md",
       "research/iterations/iteration-010.md",
       "research/iterations/iteration-001.md",
@@ -55,15 +55,21 @@
     ],
     "entities": [
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,12 +94,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-design` is a taste-led build/visual skill with five modes",
     "created_at": "2026-06-27T11:19:40.876Z",
-    "last_save_at": "2026-06-27T11:38:34.509Z",
+    "last_save_at": "2026-07-02T05:31:07.890Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,15 +213,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:deac719fe13c7f3685f66e3007a1d8a15c278777553c9f47544c0360f3bdd953",
+    "source_fingerprint": "sha256:d5da5780d45cefc57356d78e7fa9eb40cebf56e327c856a0a8d26d3bf2f4d3ee",
     "source_doc_hashes": {
-      "spec.md": "6422f2bdebbbc96d4403521f270c386587868eb7730367f0ceeaf24d7977d562",
-      "plan.md": "ae66734ddc257d523ffd3e85a7581c3b27d6df01bc96d95b623c8c9b8a7bdc0c",
-      "tasks.md": "b2ffab76929cf1b6d9ee490a1c265dd95dc4b03df69a5153348aa402bbfb9ebb",
-      "checklist.md": "7d22f9aed52d3a26a2b34c9b0112364bc9200ccc44a85e43a2ee2ab19ec7b70e",
-      "decision-record.md": "f8ad8cb33c0140a4c2918e0269ef9d30841b5fdbd35edca2b86c931073d6e0e4",
-      "implementation-summary.md": "092c0b7989bcba232214a0debce99e23db418884e73203d09ce745e16b299e62",
-      "research/research.md": "46e68ba4ea1762078bb4ead8c1f396bdac78dfc1e01312ec65ee9d36d5a5258e"
+      "spec.md": "3d3d1d099d1b7767298f317e026eb144638353e7ac06df14cf2ab3b5f1135fa0",
+      "plan.md": "0b3a30c723c8763873abc7df85e05a928a2f40209c88e526bbc568505be7f8b5",
+      "tasks.md": "996a9e460da969b08afb05e3fd1e0cdb6a64b81b353e54a123b1128536276386",
+      "checklist.md": "9ccbe2befadf9f09a14837ebdea5bb1c6067f0c0dff8f053a194fa146635d5c6",
+      "decision-record.md": "a966e1de2408f7ec53a0b4ff01522bc516d6f19653b897c2725fc408f65866cc",
+      "implementation-summary.md": "ec5318f726d9f60102a20c46e5743f4324ef906674f0b72bfcde23c7b06cce0e",
+      "research/research.md": "17b81de52d6299bf6838c56e554cea6863abae494ced9a6adf9589f0ab3c1ee9"
     },
     "last_active_child_id": null,
     "last_active_at": null

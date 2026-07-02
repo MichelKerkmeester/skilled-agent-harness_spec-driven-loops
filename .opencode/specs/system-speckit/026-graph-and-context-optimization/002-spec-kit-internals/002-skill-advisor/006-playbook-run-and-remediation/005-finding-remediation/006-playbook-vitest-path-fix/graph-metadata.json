@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcpserver` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcpserver/tests/` during the skill extraction)",
     "created_at": "2026-05-26T21:20:49.841Z",
-    "last_save_at": "2026-06-23T03:49:53.706Z",
+    "last_save_at": "2026-07-02T05:31:11.383Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

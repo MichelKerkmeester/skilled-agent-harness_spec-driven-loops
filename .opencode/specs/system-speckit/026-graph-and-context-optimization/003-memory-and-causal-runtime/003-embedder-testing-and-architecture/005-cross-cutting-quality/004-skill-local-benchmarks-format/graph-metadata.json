@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,34 +35,16 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      "benchmarks/README.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/references/benchmark_creation.md",
+      "benchmarks/README.md"
     ],
     "entities": [
-      {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmarks/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,6 +61,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmarks/README.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Cross-cutting introduction of a new `mcp_server/benchmarks/` convention for any MCP server in this repo (our own + forks). Promotes spec-packet bake-off evidence + curated headline docs from `specs/` into skill-local discoverable locations. First two adopters: mk-spec-memory (May 17, 2026 text-embedder bake-off) and mcp-coco-index (May 18, 2026 code-embedder bake-off). Includes historical FORMAT.md convention doc + per-skill READMEs + per-bench dated subfolders with structured benchmark_report.md per sk-doc standards.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-06-23T03:49:54.799Z",
+    "last_save_at": "2026-07-02T05:31:12.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

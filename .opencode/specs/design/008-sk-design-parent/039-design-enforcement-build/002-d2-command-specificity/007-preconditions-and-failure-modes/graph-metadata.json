@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -48,13 +52,33 @@
       ".opencode/commands/design/md-generator.md",
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-      "plan.md",
-      "implementation-summary.md",
-      "checklist.md",
-      "spec.md",
-      "tasks.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -98,33 +122,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Each `/design:` wrapper declared no required input kind, no tool-readiness condition, and no named failure route (evidence: `commands/design/md-generator.md:26`)",
     "created_at": "2026-06-28T12:40:00.657Z",
-    "last_save_at": "2026-06-29T05:40:48.570Z",
+    "last_save_at": "2026-07-02T05:31:08.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dc614ded0dc24991243967831be9b050daa8497a02383d1c2b9534d013eeb1f",
+    "source_fingerprint": "sha256:609679ad154cee0e0a1c7e819a2e95251209620c63ca67ea1c7b186f97fe204a",
     "source_doc_hashes": {
-      "spec.md": "b563fe31d82846184dd60a9a04809a773a5b1668426316a52ab04edd4e876c02",
-      "plan.md": "2644e54f2c8e3441c432bd09dcd6354bc270d6d7c9d0b590351776cbfac86b58",
-      "tasks.md": "d361e76ec437b8bb0a3002ff04b433eb31cf96a194b400437bb6aecd6da27925",
-      "checklist.md": "98914538db8ac42b386cf471795aab72b81a780901152d09e712fa4ce720056c",
-      "implementation-summary.md": "b446b98f48b3e0e21b5219acc9bb2d1e062a3e4260fa9ba6c55d25da66e27f6a"
+      "spec.md": "968fdb88154c18b0495a66b6925c6c3c23357e5bef6ae35de9d4d3ad3ab102f1",
+      "plan.md": "b3eaa6ca3892fc26442eef2806f04ed17535187c84812cf987ceb016d7f2563b",
+      "tasks.md": "a0876a080532311954bf4ae0dabbdbd8e97ff6dc1a32ebbd0311190c331338ac",
+      "checklist.md": "ddb8b800fbb3959eafeb2545151c6da9d4eb6db648b547f175652a211d601020",
+      "implementation-summary.md": "1bbc1b823711062d73418001d6b4103d60860872d9ab6619e4f1ca1abc42cd79"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,9 +41,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
       ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py"
     ],
     "entities": [
@@ -51,6 +51,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -63,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 031 evaluation proved the contract works but found a safety defect (F-005), a cross-reference robustness gap (F-003), inventory drift (F-006), and an empirical soft spot: a weak model (Kimi) ran the contrast inventory but mislabeled two failing pairs as pass",
     "created_at": "2026-06-27T16:46:38.954Z",
-    "last_save_at": "2026-06-27T16:46:38.954Z",
+    "last_save_at": "2026-07-02T05:31:07.938Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8237e3ea3dfd7b8e3d70b35854ea816387fa27a6e1e1e304da658f242ebda548",
+    "source_fingerprint": "sha256:502a2c2db35a9d48a40743a684299571c312aa699ee7c008926bf7d18a62c40d",
     "source_doc_hashes": {
-      "spec.md": "2acc16f75ad829ed003aff9479320235f224d83f9cb0d6b67e6bf105f1ec799f",
-      "plan.md": "ee3abf809c9ed6ca92c9d1bf90c5d4b16eba874ca7f8c25ad65f85a6e00259ab",
-      "tasks.md": "e3a8c15b377f2478c13c26f9ca370252894012f324358ce953d9e2d139363030",
-      "implementation-summary.md": "48847e976b110c4846ac8426d961c69ccae331ace4df7d5fd041a5e8fd41d9fa"
+      "spec.md": "5e9aa00ba68319156bfe0f5dbfe28fe535635c3818bf90a040bc32d6e9042bc2",
+      "plan.md": "420fa01f82246b6b63d6fa0e537fef15ac1e5442001e3a91cc2ae2577eda203a",
+      "tasks.md": "daba17289f3f232faf41391736d0ad0ef7e42b479e6d28b507536b29b66461f1",
+      "implementation-summary.md": "8a329fbc1d015dde2a64387875640f3c052ed1ade34e3610997aeb62f2ff22ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

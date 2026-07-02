@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | anobel.com/005-glm-visual-refinement/002-primitive-routing |
+| **Spec Folder** | 002-primitive-routing |
 | **Completed** | Not yet (planning baseline) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

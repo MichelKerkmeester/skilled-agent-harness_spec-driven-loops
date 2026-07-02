@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/001-sk-design-interface/004-doc-alignment-catalog-playbook |
+| **Spec Folder** | 004-doc-alignment-catalog-playbook |
 | **Completed** | 2026-06-13 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

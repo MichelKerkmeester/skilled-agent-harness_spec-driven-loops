@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The design family's routing vocabulary lives in five places — `graph-metadata.json` trigger phrases, the `SKILL.md` keyword block, `mode-registry.json` aliases, each `design-/SKILL.md` `INTENTSIGNALS`, and the typed `hub-router.json` `vocabularyClasses` — with no gate keeping them in sync",
     "created_at": "2026-06-28T12:39:58.653Z",
-    "last_save_at": "2026-06-28T18:13:46.733Z",
+    "last_save_at": "2026-07-02T05:31:08.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ebf1ec12469b5caa85dde78aeee2693afdda012eb62068390c5a48b91d5988d",
+    "source_fingerprint": "sha256:d26ab56911c757d0df799ea8ad8baa734968978ca2c59313ddc5eec79e24de1b",
     "source_doc_hashes": {
-      "spec.md": "445e17655a0feb8ac46b9ffb03daec4fb458561e476809714b4f268b76a3fe40",
-      "plan.md": "2af7b436e22e3bada6f313a42a032d82b66ae2779ad5d4bf24086b8fa78f4385",
-      "tasks.md": "4a59841e192e42a571254f047484cd2cd91f29177a4a383387a0e815010e33e4",
-      "checklist.md": "c00a8ba0894a06bf3c6ea9eeb868334c1a2c41f9b567d77b7ea6c89503943318",
-      "implementation-summary.md": "5c2d1de67a5cf3e6a2a3b4e471f21618a04c7f29fd4a996b680182d78afda6d0"
+      "spec.md": "76c43b1b434c8d75703dd7a3c55f708cadea9c8b330f1e6d24f2bd46c44386ad",
+      "plan.md": "35158895ef35f9f461d5f42e0d71d453258c5c3c11395a7e36e23b6163d75304",
+      "tasks.md": "7819e04a3884c09e490cb5e42ed3cfc43cc25456fca40e3b1c1b42716256cc42",
+      "checklist.md": "de8eaf828e282bb6c9794b15af7aab4b8c9a1918971bfc4dd848660c8e82f99c",
+      "implementation-summary.md": "b350af2e53a4b3f25c755d3070cb28b1dee5a37194af85c46bfd699386c7e642"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `deep-loops/030-agent-loops-improved/008-loop-systems-remediation` |
+| **Spec Folder** | 008-loop-systems-remediation |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

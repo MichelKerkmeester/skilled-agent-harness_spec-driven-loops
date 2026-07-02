@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,29 +42,41 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/remediation-map.md",
-      "research/source-evidence-index.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "checklist.md",
       "decision-record.md",
       "resource-map.md",
+      "research/remediation-map.md",
+      "research/source-evidence-index.md",
       "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
-      "research/source-research/024-cli-deep-research-memory-leak-audit/research/iterations/iteration-001.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      "research/source-research/024-cli-deep-research-memory-leak-audit/research/iterations/iteration-001.md"
     ],
     "entities": [
       {
-        "name": "remediation-map.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "research/remediation-map.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "source-evidence-index.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "research/source-evidence-index.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -86,33 +98,21 @@
         "source": "derived"
       },
       {
+        "name": "remediation-map.md",
+        "kind": "doc",
+        "path": "research/remediation-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-evidence-index.md",
+        "kind": "doc",
+        "path": "research/source-evidence-index.md",
+        "source": "derived"
+      },
+      {
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-23T03:49:55.074Z",
+    "last_save_at": "2026-07-02T05:31:12.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

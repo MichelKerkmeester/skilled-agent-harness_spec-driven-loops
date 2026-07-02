@@ -1,12 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -156,7 +159,7 @@
     ],
     "causal_summary": "Reviewers and successor phases had no quick way to answer \"what files did this packet touch\" without reading `implementation-summary.md` end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.151Z",
+    "last_save_at": "2026-07-02T05:31:11.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

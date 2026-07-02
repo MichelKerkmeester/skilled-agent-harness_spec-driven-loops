@@ -1,32 +1,37 @@
 ---
-title: "Tasks: Phase 5: verify-and-enforce [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 5 - Verify and Enforce"
+description: "Completed tasks for flipping validators to require versions, adding the corpus-wide gate, recording the sk-doc changelog, dogfooding the standard, and validating enforcement."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "verify enforce tasks"
+  - "version CI gate tasks"
+  - "required version enforcement tasks"
+  - "frontmatter version gate tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-verify-and-enforce"
-    last_updated_at: "2026-06-23T07:33:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/005-verify-and-enforce"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with completed phase tasks"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/check-frontmatter-versions.sh"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/skills/sk-doc/scripts/package_skill.py"
+      - ".opencode/skills/sk-doc/changelog/v1.8.0.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-verify-and-enforce"
+      session_id: "remediated-005-verify-and-enforce-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The gate skips frontmatter-less docs and only enforces in-scope classes."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 5: verify-and-enforce
+# Tasks: Phase 5 - Verify and Enforce
 
 <!-- SPECKIT_LEVEL: 1 -->
 

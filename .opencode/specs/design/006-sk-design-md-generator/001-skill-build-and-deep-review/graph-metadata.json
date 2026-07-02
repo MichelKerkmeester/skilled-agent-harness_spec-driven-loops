@@ -41,8 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design-md-generator/SKILL.md",
-      ".opencode/skills/sk-design-md-generator/graph-metadata.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,18 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-md-generator/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design-md-generator/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -194,11 +180,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "DeepSeek-v4-pro",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The framework can reason about distinctive design direction (`sk-design-interface`) and drive design transports (`mcp-open-design`, `mcp-figma`), but it has no way to capture an EXISTING site's real design system into a structured, agent-consumable reference",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.823Z",
+    "last_save_at": "2026-07-02T05:31:07.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06c175148029e6a4f6854cbaa902ff7c583f2099adcaf4cce4e20ed6d495548c",
+    "source_fingerprint": "sha256:2f3557a4a61b80d7accbf9111464bc2b65fc94991d7da59df414e455eaf8ed27",
     "source_doc_hashes": {
-      "spec.md": "b5033c3c45d50a3ce0e46044b07d0bd5a1bc0ddaf261f9eb166cd3ea36ac58e0",
-      "plan.md": "1e659031b7727aa570a050d166614ec60ad2696b51f9d183fbd7ac9927e073fa",
-      "tasks.md": "cb22bd9428caf077dfc9039c6c91cdce8ddbac91bb7085aa57d159be2abd84d2",
-      "checklist.md": "b302b6fa39994e50974060816ed9999a33bb29127053f18e08098f111046ffa5",
-      "decision-record.md": "b846106f114b2f9f49cd808e79983a3a435f8a86f1e43a4055d507c1e8322f16",
-      "implementation-summary.md": "9d80d9a3e21863f6236d05949eea31bc948f3f9468fadad2f9d5375239cadb5c"
+      "spec.md": "6f0b6c297790e33d83fe88ba4819cf75147138dc28241190144f77ef003b49a2",
+      "plan.md": "e9f8c424d41f4a370e8340fa0a253702579675b291d115adb4ed293039dd6a6c",
+      "tasks.md": "b71316a0dc7694cf64ee8349aaaa04b8eda084e10d7b5204dbbd374f79c2df5d",
+      "checklist.md": "da2a55a1f4c13d5d2b06373380edb8c66f7d694412f2c4dafd8bfcb8c1a5bec1",
+      "decision-record.md": "c71026db7536e09bf6c0fbf537aaf03a1c8c9ebd2e08bda18a0970e2c7d49ca2",
+      "implementation-summary.md": "11a0408b21562878af1f18ca0bcaab7785a938c0ddd0050523cacfcdf5990d3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

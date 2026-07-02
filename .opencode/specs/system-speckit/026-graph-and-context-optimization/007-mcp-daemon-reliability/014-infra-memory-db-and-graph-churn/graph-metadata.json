@@ -1,11 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
+    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing"
   ],
   "manual": {
     "depends_on": [],
@@ -83,7 +85,7 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-05-30T08:17:54.064Z",
-    "last_save_at": "2026-06-23T03:49:56.464Z",
+    "last_save_at": "2026-07-02T05:31:12.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/013-mdgen-boundary-cleanup |
+| **Spec Folder** | 013-mdgen-boundary-cleanup |
 | **Completed** | Executed: two md-generator docs built and wired, changelog pointer fixed, family closeout passes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

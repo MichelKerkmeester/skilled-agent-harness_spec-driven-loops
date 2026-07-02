@@ -1,44 +1,32 @@
 ---
-title: "Implementation Plan: Phase 1: reference-research [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Reference Research — Loop-Systems Improvement"
+description: "Plan for a 51-iteration deep-research run mining vendored loop-cli-main + kasper into a ranked, deduplicated backlog of 40 loop-system improvements."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "loop reference research plan"
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-reference-research"
-    last_updated_at: "2026-06-28T14:00:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/001-reference-research"
+    last_updated_at: "2026-07-02T00:00:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Authored real plan content from research.md evidence"
+    next_safe_action: "No implementation action remaining"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/specs/deep-loops/030-agent-loops-improved/001-reference-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-reference-research"
+      session_id: "scaffold-content-remediation-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Reference Research — Loop-Systems Improvement
+
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: reference-research
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -47,13 +35,12 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (reference repos), Markdown (synthesis) |
+| **Framework** | `/deep:research` loop, executor `cli-codex gpt-5.5 xhigh fast` |
+| **Testing** | N/A -- this is a research packet, not a code change |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Ran a 51-iteration deep-research loop over two vendored reference codebases, `external/loop-cli-main` (TS daemon+CLI cadence runner) and `external/kasper` (opencode observe-evaluate-improve-measure loop), consolidating ~221 raw findings (476 registry rows incl. graph nodes) into 40 ranked, deduplicated, evidence-cited backlog items synthesized into `research/research.md` and `research/resource-map.md`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +49,13 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Two vendored reference codebases confirmed available under `external/`.
+- [x] Deep-research loop config authored (`research/deep-research-config.json`), anti-convergence strategy defined.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] >=50 proper iterations completed with zero early-stop events. Evidence: 51 iteration files under `research/iterations/`, final `convergenceScore` 0.66, terminated on the `proper_count >= 50` gate, not convergence.
+- [x] Ranked, deduplicated, actionable backlog synthesized. Evidence: `research/research.md` (40 items, each with reference `file:line`, OUR target file, difficulty tag).
+- [x] Coverage map recorded. Evidence: `research/resource-map.md`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,34 +64,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Standard `/deep:research` loop: iteration cycle with externalized state (`deep-research-state.jsonl`, `findings-registry.json`, `deltas/`), convergence-gated but anti-convergence-hardened.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Segment progression (S1-S6)**: mine loop-cli -> mine kasper -> map to runtime -> map to workflows/speckit -> cross-cutting -> synthesis.
+- **Dimension rotation (D1-D4)**: source-mining / target-mapping / cross-cutting / synthesis, rotated per iteration to prevent premature convergence.
+- **Novelty monitor + wildcards**: injected fresh angles (W-06 record-replay, W-10 meta-loop) to keep late iterations genuinely novel rather than restating earlier findings.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Iteration N reads prior findings-registry state -> mines a segment/dimension of the reference repos -> writes new findings + a delta -> convergence signal computed (recorded, not acted on early) -> iteration 51 gate reached -> synthesis pass consolidates all registry rows into the ranked `research.md` backlog.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -113,19 +81,16 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Vendor `external/loop-cli-main` and `external/kasper` into the packet.
+- [x] Author `research/deep-research-config.json` and `research/deep-research-strategy.md` (segment progression, dimension rotation, wildcards).
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Run 51 proper iterations (S1-S2: mine loop-cli-main and kasper; S3-S4: map mechanisms to OUR runtime/workflows/speckit surfaces; S5: cross-cutting themes; S6: synthesis).
+- [x] Maintain `findings-registry.json` and per-iteration delta files throughout.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Confirm zero early-stop events across all 51 iterations (anti-convergence strategy held).
+- [x] Synthesize and rank the final 40-item backlog with evidence citations in `research/research.md`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +100,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Evidence citation check | Every backlog item cites a reference `file:line` and an OUR target file | Manual review during synthesis |
+| Convergence audit | Confirm no early stop across 51 iterations | `research/deep-research-state.jsonl` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +111,10 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Vendored `external/loop-cli-main` + `external/kasper` | Internal (packet-local) | Green | Reference evidence citations would not resolve without them |
+
+### Downstream
+The 40-item backlog is the direct source for `deep-loops/030-agent-loops-improved`'s own phase 002-010 tree (each backlog item became its own follow-up implementation spec).
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +122,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Not applicable -- this is a completed, read-only research packet with no runtime behavior to roll back.
+- **Procedure**: N/A.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

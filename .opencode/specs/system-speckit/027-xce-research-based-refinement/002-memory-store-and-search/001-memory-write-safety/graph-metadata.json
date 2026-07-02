@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -37,6 +37,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "mcp_server/lib/storage/causal-edges.ts",
       "mcp_server/lib/storage/consolidation.ts",
       "mcp_server/lib/governance/memory-retention-sweep.ts",
@@ -51,14 +56,39 @@
       "mcp_server/tests/secret-scrubber.vitest.ts",
       "tests/secret-scrubber.vitest.ts",
       "tests/causal-edges-unit.vitest.ts",
-      "tests/memory-retention-sweep.vitest.ts",
-      "tests/fixtures/memory-index-db.ts",
-      "tests/causal-edges-write-safety.vitest.ts",
-      "spec.md",
-      "plan.md",
-      "checklist.md"
+      "tests/memory-retention-sweep.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "causal-edges.ts",
         "kind": "code",
@@ -132,24 +162,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Memory Write Safety",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Focused Vitest",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:57.137Z",
+    "last_save_at": "2026-07-02T05:31:13.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [

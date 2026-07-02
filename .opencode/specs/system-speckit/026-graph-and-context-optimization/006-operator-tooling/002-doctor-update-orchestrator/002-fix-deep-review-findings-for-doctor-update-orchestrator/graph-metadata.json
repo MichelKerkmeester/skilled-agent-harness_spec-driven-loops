@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries claim 95% complete; `lastactivechildid` null despite handover claiming it is set; resource-maps say \"PLANNED\" while files are on disk)",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-06-23T03:49:56.273Z",
+    "last_save_at": "2026-07-02T05:31:12.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

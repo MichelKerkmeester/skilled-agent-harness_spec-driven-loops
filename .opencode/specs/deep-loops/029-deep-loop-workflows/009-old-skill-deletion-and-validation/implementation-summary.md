@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 147-deep-loop-workflows/009-old-skill-deletion-and-validation |
+| **Spec Folder** | 009-old-skill-deletion-and-validation |
 | **Completed** | 2026-06-16 (B1 probe + gate sign-off to 13/18 P0; CHK-060 closed, CHK-065 descoped; remediation under packet 156 deep-review) |
 | **Level** | 2 |
 | **Actual Effort** | B1 probe + 6-gate verification (scoped remediation slice) |

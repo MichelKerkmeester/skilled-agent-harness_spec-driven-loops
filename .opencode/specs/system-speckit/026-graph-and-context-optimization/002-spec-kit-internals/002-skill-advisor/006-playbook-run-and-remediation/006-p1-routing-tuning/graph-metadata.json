@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -49,12 +49,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,7 +204,7 @@
     ],
     "causal_summary": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS harness (the extra TS failures are mostly TS abstaining where Python routes)",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.717Z",
+    "last_save_at": "2026-07-02T05:31:11.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

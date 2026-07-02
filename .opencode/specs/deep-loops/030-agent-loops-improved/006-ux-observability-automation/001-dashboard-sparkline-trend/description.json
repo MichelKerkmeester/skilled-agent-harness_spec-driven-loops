@@ -15,7 +15,7 @@
     "trend",
     "summary"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.512Z",
+  "lastUpdated": "2026-07-01T23:08:58.673Z",
   "specId": "001",
   "folderSlug": "dashboard-sparkline-trend",
   "parentChain": [
@@ -26,5 +26,6 @@
     "006-ux-observability-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

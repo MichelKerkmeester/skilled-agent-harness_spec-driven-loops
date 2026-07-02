@@ -41,12 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "research/research.md",
       "research/deep-research-state.jsonl",
       "research/angle-bank.json",
-      "spec.md",
       "plan.md",
-      ".codex/policy.json",
       "research/iterations/iteration-001.md",
       "research/deep-research-strategy.md",
       "research/deep-research-dashboard.md",
@@ -57,6 +56,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -76,21 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "policy.json",
-        "kind": "config",
-        "path": ".codex/policy.json",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-design has absorbed several external corpora into craft, but it cannot today prove that the right mode was selected, the right context was loaded, the pairing fired, or that the contract survived a CLI dispatch",
     "created_at": "2026-06-28T11:06:37.722Z",
-    "last_save_at": "2026-06-30T09:11:49.324Z",
+    "last_save_at": "2026-07-02T05:31:08.247Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,15 +215,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ffeeb28af0d859800b50ae948252e03f0521fd2893536e640c42b0af3f96129c",
+    "source_fingerprint": "sha256:dbafc3ac4062d3bcbeda11c815d119fd24632cc5f1fe243dc2d42d12850b9014",
     "source_doc_hashes": {
-      "spec.md": "38cbdf8a699fb0ac771b4a2765562c7b63d034325f85b8c219a8f375fb01152f",
-      "plan.md": "8a6d8c85bb499c4c07306aef64e0d0b43d20da0e27a7de28103da731714424c1",
-      "tasks.md": "ff1b79b5ff5ab10a9208fededac54146bd6b0c4728d828c12849599dc92ff5df",
-      "checklist.md": "81110e843a4b0d4263695e8b85cc3db6d058afa55e79bc912c289adcd568bd56",
-      "decision-record.md": "c6fa75a63c2b9565cf5dd57b0ae79d54ba5cce20fae4ef2d72eb847e687465cc",
-      "implementation-summary.md": "839fed137ed6a08ba4088fe23fd5eaa7b4b3472122c6cd4b726406e7a8c2c529",
-      "research/research.md": "433eaa725a05972217775fa8b7bd44a6dac100447764f64b9cb89aaa0382ef56"
+      "spec.md": "3844b16b2420366c0f9dc0ec607fc98320e7bbe9d7774a91b954391c65900146",
+      "plan.md": "5a3be3cec2aad88215458228e71c70f09c9f3a10661a183aa6155e3511879fa2",
+      "tasks.md": "dc7bf260bb9f2b53a848dddd67e9ff29912cf697c5a7d49d0e932c1596f1f1c4",
+      "checklist.md": "77922de6e423d51516fc07abde46912b133fa1dc1001984308c9b7a1dbe04fa2",
+      "decision-record.md": "992f872034ac77e63c4b91ef18e142b8d5cb213ff5a99a9bfafd517180c5b71b",
+      "implementation-summary.md": "554613d80a4a4fd3ba64eb61ada3a2318ab061f4aa46d69582d81caf10c52d86",
+      "research/research.md": "8e657f50fe3dbb12f6ffecbe96b2b53916a402238016f593e7b572cb9560ee47"
     },
     "last_active_child_id": null,
     "last_active_at": null

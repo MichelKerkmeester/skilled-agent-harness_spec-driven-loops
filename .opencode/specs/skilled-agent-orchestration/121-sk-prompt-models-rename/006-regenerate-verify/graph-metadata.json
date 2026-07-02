@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After the text rename, the derived indexes (advisor skill-graph + SQLite, spec-memory index, packet metadata `derived` blocks) still hold the old `skillid`/path",
     "created_at": "2026-06-28T13:47:22.400Z",
-    "last_save_at": "2026-06-28T14:29:59.248Z",
+    "last_save_at": "2026-07-02T05:31:09.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:beeaec5d27e0e01b1b1da2f9cb382186f727243568d9d5072880528bda41ee72",
+    "source_fingerprint": "sha256:b2a769373732fb7f2d8a5a4da7b8be7b585cadc86e1c4b1a9976964cb3109264",
     "source_doc_hashes": {
-      "spec.md": "a01963e7fc466806ff936696a6c7c49ab7a3907c4e314e526ad522bbea898cb8",
-      "plan.md": "05e174158dfb80c78c4539860afebd9b7a62c1256dab65119fc14bf20d3a8b8d",
-      "tasks.md": "cc416d1873ddb0e4eb27680de5b03fbff35c6433b48ac0f29a61f20f853de844",
-      "implementation-summary.md": "ac160e898d7ac4c2e66b81494dd4dd8d91805d4009e352446a5795a998b26712"
+      "spec.md": "8d2f9d1e3df65375f272bf9825ca5e00d8501e32f5d492b10e0afbda8edc5d3c",
+      "plan.md": "2d430360758f259d6fefa945ff82c69ae210637846803e6eeca5564f8e871eb0",
+      "tasks.md": "1fbab4e94d61a5c2c9c4c1e29e98020d18ae25fc9edce4a7071253d87fb8c6fc",
+      "implementation-summary.md": "2ff07b4e729b8fe6f76342480a901c7cd2556034ca6ac122830df24831303362"
     },
     "last_active_child_id": null,
     "last_active_at": null

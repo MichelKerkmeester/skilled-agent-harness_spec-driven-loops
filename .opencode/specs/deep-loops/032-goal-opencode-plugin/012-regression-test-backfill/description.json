@@ -20,12 +20,10 @@
     "every",
     "turn"
   ],
-  "lastUpdated": "2026-07-01T13:40:04.749Z",
+  "lastUpdated": "2026-07-02T03:38:03.251Z",
   "specId": "012",
   "folderSlug": "regression-test-backfill",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

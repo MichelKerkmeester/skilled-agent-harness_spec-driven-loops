@@ -63,8 +63,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "decision-record.md",
       "checklist.md",
@@ -74,15 +74,15 @@
     ],
     "entities": [
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The `sk-design` family currently ships as one umbrella router skill plus five independent top-level sibling skills, each with its own `graph-metadata.json`",
     "created_at": "2026-06-26T06:12:26.180Z",
-    "last_save_at": "2026-06-26T06:26:24.928Z",
+    "last_save_at": "2026-07-02T05:31:07.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,14 +231,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b5f35e9e554a18cadba086c18f64927879cec738b34bc67af1212cf73d421d4",
+    "source_fingerprint": "sha256:c01831cb4030c97e9463a5d7f5c79008dfc452ecba65e4d16ebf28d3659e6c0c",
     "source_doc_hashes": {
-      "spec.md": "edcd93b42a80a60c4c01a8ba756df1a6773d34bbd79afcec7f92aa9e6e482ba1",
-      "plan.md": "b4da599aab1a26843c6c4e160826698add7d9c8edda1a40587791f3e0c65e363",
-      "tasks.md": "dc1ff4ca60f53a67bd16218168444402ed7675bea56f08d58f57d8da3025e0cc",
-      "checklist.md": "56d58e66059e6fca2ea87db33a8a580a976dc101c7d91715c921638fe0199f93",
-      "decision-record.md": "6a6eb9f5be599a252cabb435e7f5f60ec441bb6db4818b3e0c05ac8ddc8b1fcb",
-      "implementation-summary.md": "04d4b2f9e7b82647027b79430fa943f50d672c7a693e9650d6973dd99d8b5889"
+      "spec.md": "45156cf067e43dbff357b8aae28e1f4c927567d7c38fd741c8851fb89807b46a",
+      "plan.md": "44bdbca899ce1b5b74df985d9f6f7a365f0ddf3fc7f342d2b3cc07a2ed9bafec",
+      "tasks.md": "96486fae13995d2de47ba89f84c710feee1a2fb0f8052940098013f39b798b1f",
+      "checklist.md": "fb525f5ca67b098608f5824b9564eb8e0c748b44fb5a59e091747f2d2344f862",
+      "decision-record.md": "8950c657df1d29807c86eb69c86e10226e451a8ffe2e584cb901f546aba418fc",
+      "implementation-summary.md": "4bbd95e98e3b44b6430a8cb4d77618a6aed5c1be88b4b284af84a09038da59fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

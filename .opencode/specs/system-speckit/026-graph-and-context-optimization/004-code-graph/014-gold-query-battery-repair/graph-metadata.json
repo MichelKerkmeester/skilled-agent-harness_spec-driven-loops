@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,32 +43,41 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/exclude-rule-confidence.json",
-      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
-      "specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
       "implementation-summary.md",
       ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
       "handover.md"
     ],
     "entities": [
       {
-        "name": "code-graph-gold-queries.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "exclude-rule-confidence.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/exclude-rule-confidence.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -93,36 +102,6 @@
         "name": "code-graph-verify.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "timeline.md",
-        "kind": "doc",
-        "path": "specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,11 +181,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
     "created_at": "2026-06-07T09:30:00Z",
-    "last_save_at": "2026-06-23T03:49:56.165Z",
+    "last_save_at": "2026-07-02T05:31:12.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

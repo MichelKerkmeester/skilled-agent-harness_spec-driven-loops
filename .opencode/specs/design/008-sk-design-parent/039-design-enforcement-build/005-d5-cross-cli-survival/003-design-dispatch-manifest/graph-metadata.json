@@ -42,7 +42,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/shared/context_loading_contract.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
@@ -62,7 +61,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "A dispatched child CLI cannot know which register, mode bundle, or design-context files the parent resolved before handing off design or UI work",
     "created_at": "2026-06-28T12:40:07.797Z",
-    "last_save_at": "2026-06-29T07:57:31.523Z",
+    "last_save_at": "2026-07-02T05:31:08.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b69b28861b9f1ff329b824d720f7b725ced335c728e2b78943233ffb04e23f7a",
+    "source_fingerprint": "sha256:f92c8408b63461b6c8d584e352c5cc249d5e2df8582a3c582d1ef0c620b3f41b",
     "source_doc_hashes": {
-      "spec.md": "b3831b8e8a59bb9468aa6fb244fbf12847145be92ea43fcba89700757cee1397",
-      "plan.md": "bd5e65e2a5a440998cae1424b388f8ea83f3054172bb1e9698fae1ccf9687662",
-      "tasks.md": "34f4d1b151f724c464fbba3ca596c51f9172e19e1ea8992072f395af33d4a3ea",
-      "checklist.md": "4e495105332f27297b0435d893ce3da45581f176bbd6b3d47b67361c6ea233dd",
-      "implementation-summary.md": "ad673ad12af876023090504e9900bad4a61e23112f65056365cc23f478a837c5"
+      "spec.md": "05a741f4e528a024dcd6e1ec68ae60e705f95c40370d89b727f9659109b7a117",
+      "plan.md": "f6bd21e9320b4cf3e03a91edc37aa49889b77eb910004c38eef177bf0385d864",
+      "tasks.md": "0bfc59aa396093efba12976722cf565c77aa9ec65b9e340427d7e5c1d18b03d7",
+      "checklist.md": "afde427a8c2620ff6adb0e03abb7dc0f4d4c3b90a7f0ebbf66a239904ac682bd",
+      "implementation-summary.md": "c660e2cd976a01dadadf0fce24cfd60ac7f8392a6a1267be4e0b7a1105401ad9"
     },
     "last_active_child_id": null,
     "last_active_at": null

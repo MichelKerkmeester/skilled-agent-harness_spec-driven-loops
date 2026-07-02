@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`, but `sk-design` lacks the reciprocal `prerequisitefor` + `sibling` edges; and `sk-design` declares `sibling sk-code-review` without the reciprocal",
     "created_at": "2026-06-28T15:46:01.946Z",
-    "last_save_at": "2026-06-28T16:32:22.198Z",
+    "last_save_at": "2026-07-02T05:31:09.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c75aae9831af31d4360f6bc6a8a316cbe8f89c25c07d29756b1d5984bbc8e25",
+    "source_fingerprint": "sha256:b5e65919fbff42d85324c3289d68520f6b670ece807460669599d01d8fad6ef5",
     "source_doc_hashes": {
-      "spec.md": "e61c22637afa49fde2d4c3976aff2667efa0bee3cc719d76af5c44fe10c84105",
-      "plan.md": "141730c3cf3d17f1237e6839d79aba914928a39893f5840c0963d4a99543aa8a",
-      "tasks.md": "d522c34a519045e81107a04e404e2b159469bbbfe3c6df1caa31177eae8c6373",
-      "implementation-summary.md": "8c0d717981d251c876a491d9dcb335732c0571ea58598ea62a6ea25a14d58003"
+      "spec.md": "7234cc50a85ef36b8e098caaf05b69344aefdc979b63e5484dc0dc01164816b2",
+      "plan.md": "485efdb5eeecb29f80c4c61c0eeb564f584ac2d6302f8d90da684849e2f86c25",
+      "tasks.md": "8999c5d3123a0f292dd7cd05941dd30f0638bf50b5b2cb030fae2d632417b3dc",
+      "implementation-summary.md": "6fedf522fbb6cbc5ed38ce6d8513d1227860946956bcfd9f9c704f3370b96bff"
     },
     "last_active_child_id": null,
     "last_active_at": null

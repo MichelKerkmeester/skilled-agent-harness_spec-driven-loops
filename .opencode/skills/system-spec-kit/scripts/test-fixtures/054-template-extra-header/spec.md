@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Extra Header Warning Fixture [template:level_2/spec.md]"
+title: "Feature Specification: Extra Header Warning Fixture"
 description: "Validator fixture for non-blocking warning coverage with an accepted extra section."
 trigger_phrases:
   - "fixture"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The default-off idempotency path had correctness defects that only matter when `SPECKITMEMORYIDEMPOTENCY` is explicitly enabled:",
     "created_at": "2026-06-11T12:35:00Z",
-    "last_save_at": "2026-06-23T03:49:57.321Z",
+    "last_save_at": "2026-07-02T05:31:13.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

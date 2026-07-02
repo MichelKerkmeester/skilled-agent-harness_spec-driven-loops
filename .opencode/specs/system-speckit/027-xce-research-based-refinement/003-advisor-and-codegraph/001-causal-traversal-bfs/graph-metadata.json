@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
     "created_at": "2026-06-10T17:48:32Z",
-    "last_save_at": "2026-06-23T03:49:57.433Z",
+    "last_save_at": "2026-07-02T05:31:13.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

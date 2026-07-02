@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
+      ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
       "mcp_server/lib/spec/is-phase-parent.ts",
       "scripts/spec/is-phase-parent.ts",
       "scripts/rules/check-phase-parent-content.sh",
@@ -51,7 +55,6 @@
       "mcp_server/dist/lib/spec/is-phase-parent.js",
       "scripts/dist/spec/is-phase-parent.js",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -62,19 +65,19 @@
       {
         "name": "is-phase-parent.ts",
         "kind": "code",
-        "path": "mcp_server/lib/spec/is-phase-parent.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
         "source": "derived"
       },
       {
         "name": "check-phase-parent-content.sh",
         "kind": "script",
-        "path": "scripts/rules/check-phase-parent-content.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
         "source": "derived"
       },
       {
         "name": "check-source-dist-alignment.ts",
         "kind": "code",
-        "path": "scripts/evals/check-source-dist-alignment.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
         "source": "derived"
       },
       {
@@ -206,7 +209,7 @@
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-06-23T03:49:52.863Z",
+    "last_save_at": "2026-07-02T05:31:10.901Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

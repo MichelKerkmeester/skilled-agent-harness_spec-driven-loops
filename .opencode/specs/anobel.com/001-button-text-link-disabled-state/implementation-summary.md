@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `anobel.com/001-button-text-link-disabled-state` |
+| **Spec Folder** | 001-button-text-link-disabled-state |
 | **Completed** | 2026-05-23 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

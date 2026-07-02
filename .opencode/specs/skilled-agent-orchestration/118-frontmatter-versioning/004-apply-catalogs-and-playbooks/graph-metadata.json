@@ -16,13 +16,13 @@
       "feature catalog version",
       "full corpus versioning",
       "per-feature leaf version",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "apply catalogs playbooks plan",
+      "testing playbook version plan",
+      "feature catalog version plan",
+      "full corpus versioning plan",
+      "apply catalogs playbooks tasks",
+      "testing playbook version tasks",
+      "feature catalog version tasks"
     ],
     "key_topics": [
       "apply",
@@ -138,19 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,20 +156,14 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -190,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "With Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The bulk of the corpus is per-feature catalog and playbook leaves (~1,700+ files) with frontmatter that varies (often only `title` + `description`) and no version",
     "created_at": "2026-06-23T07:33:11Z",
-    "last_save_at": "2026-06-25T09:22:08.094Z",
+    "last_save_at": "2026-07-02T05:43:32.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2730ff742deb2c48860d051ec1bc121926501a4b365043cd2355aa186095ff8",
+    "source_fingerprint": "sha256:34e289edf59d003df9eefe7cf723ef902de63f0600a2b64ddf7caa46c9d4894b",
     "source_doc_hashes": {
-      "spec.md": "8ba7381197a5a1841d14cb4920287c94d3293041813686275ce39e996ce3f6fd",
-      "plan.md": "35e3b117c3ac1f40f4519446ceed6532c079ada772599d10a9ee11315bceaffe",
-      "tasks.md": "7242f2c2a5a039c3cf061046dd1aa360a2122ed2ce107421b5ccec4ea5bc8d3f",
-      "implementation-summary.md": "750e07768f09f3ffb41c80c2e3679507a9cf090e5b26a5c63526a7b11a2a4edf"
+      "spec.md": "741b558f67e89126ffec1105e294d075ba0b8b3e9c22a90d5aded4170d34d2ff",
+      "plan.md": "e461be0c3f1bb015ce0acdb0e77c018e945b76b5616a47cdb86a4d6e94832987",
+      "tasks.md": "818ce77a61985cf0c46d83df1797389a0308b7c12d949cbdf548aaa50e9b23e5",
+      "implementation-summary.md": "134ea9befa1de10051eaff73581f8771a882d9794a1adf32f8638d6cb7141c6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

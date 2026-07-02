@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`validate.ts` runs 6 mechanical checks; none reads a prose sentence",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-25T09:22:06.830Z",
+    "last_save_at": "2026-07-02T05:31:07.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4882496670191b253d17bbd301f429a838e70ca52db119e8817bfa2d384c1386",
+    "source_fingerprint": "sha256:7820bcada5d4ebb6623d20781d0f082ecc88bc1bcd730ee4924981c136346725",
     "source_doc_hashes": {
-      "spec.md": "1d64026d0f76073755e067c198a64ded90e3ea38b44304d40215dc2cebad9b8c",
-      "plan.md": "c6b9aa678ae499ef777fb3fbc95ce516644afbafdf2260dacc2d0501627a6b56",
-      "tasks.md": "0d978cddaed6d9431f35de9160f5d98d097371875272b28dab50be5e9d05bb4f",
-      "checklist.md": "ce91b8e2ac82bd324d860558b3caefb80f4ba0acbda32472fa5982965f6e8c60",
-      "implementation-summary.md": "ef2dd206e49b2a9350b1a543e543c7b50f7e3d9a7c4137c2950366c7d8c71acb"
+      "spec.md": "22ff393188d4f551e03cf982227069202229777c70c2f7377c77981696e12ae8",
+      "plan.md": "71bd08796266172e9ddda826fb0f1bdcf52bc217a8ad542db6b4d03f3ae9d3b4",
+      "tasks.md": "189af338f2b7ba65429ad33d2ce08fb6338b8828a77cc6aa7b918116af5a80c6",
+      "checklist.md": "c72e6ac9c3ac1876a4cfb0c69e0324d1cd45e755e4d066935a14f6acc716a964",
+      "implementation-summary.md": "b2b028551ce971e362554c1caae4b1378abcec5f5c33e7a088f4d273addd5ba5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The card-sync guard hardcodes `H = f\"{ROOT}/.opencode/skills/sk-prompt-small-model\"` — after the folder moves, that gate fails immediately",
     "created_at": "2026-06-28T13:47:21.604Z",
-    "last_save_at": "2026-06-28T14:29:58.302Z",
+    "last_save_at": "2026-07-02T05:31:09.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c37a641e75b6d4856679ba4795dd287e39d54b4198a63965af8197c721919fb",
+    "source_fingerprint": "sha256:2b0581f78c86d8da645c84d660c4fd6c841c9aefe1bac88cbf2e82a2d366ed01",
     "source_doc_hashes": {
-      "spec.md": "c14182a88f8e415cdfbe25aef3c599c2da9d11005eb27ffaefbf28a1341f029d",
-      "plan.md": "e0bddf81593885ec1b1dcaad9887694ff63c89eb51524c23be6e2e7cb0cfbc2f",
-      "tasks.md": "39b2d99625f2670084f0dab7b87fa1e8dcab09fd3256d94ba5c50ce9d5442eac",
-      "implementation-summary.md": "b5d8229784dfda4e869a541fa8a6f26a5e57764b0870b1c9b0b17ba34a46181d"
+      "spec.md": "8e35ae5f40324717ec4fca3691c7fd0923c781db94f2da79eb42d6e185cdcf05",
+      "plan.md": "fc5bb4b0963f81fdc0f87f76f74688c17362c044d00643af85282deb60303b31",
+      "tasks.md": "ce1b813237335d1b95eaf0653348be01dbaf4a61246e42f614d341335a88115d",
+      "implementation-summary.md": "661c5d3f1e3f218ae04390fa64af8ac3bd0595efecc40af8bb334ae619152e7c"
     },
     "last_active_child_id": null,
     "last_active_at": null

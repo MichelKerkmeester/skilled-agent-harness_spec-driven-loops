@@ -121,11 +121,13 @@ _level_should_have() {
 }
 
 _level_has_implementation_started() {
+    # Anchored to list items so the task-notation legend table (a literal
+    # backticked [x] explaining the symbol) cannot read as started work.
     local folder="$1"
-    if [[ -f "$folder/checklist.md" ]] && grep -qE '\[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
+    if [[ -f "$folder/checklist.md" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
         return 0
     fi
-    if [[ -f "$folder/tasks.md" ]] && grep -qE '\[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
+    if [[ -f "$folder/tasks.md" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
         return 0
     fi
     return 1

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-06-23T03:49:57.289Z",
+    "last_save_at": "2026-07-02T05:31:13.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

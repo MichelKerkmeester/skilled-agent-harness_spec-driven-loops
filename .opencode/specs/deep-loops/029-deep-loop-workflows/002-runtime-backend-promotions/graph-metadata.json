@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The five skills duplicate generic plumbing — a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter only in deep-context, re-inlined atomic-write/jsonl-repair mirrors across four reducers, and resolveArtifactRoot/emitResourceMap imported from system-spec-kit/shared (so the two-skill architecture is not self-contained)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-06-23T03:49:48.676Z",
+    "last_save_at": "2026-07-02T05:31:05.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:504e81058969d7f37de8e78acc5a251c7fa565145d67adb1721bdd9275865f56",
+    "source_fingerprint": "sha256:571bf11b8c71946108f0a813b4aba85a81945b15eb4006574b7beb4365b11cd3",
     "source_doc_hashes": {
-      "spec.md": "1481113419efaa6d9ce5ecbb4c50abd3802dc6875b3feb4776e901c93f11ccc5",
-      "plan.md": "58d9aee5ea4108d1a51eb804637f74fbd6cf3bb6b39856c19668c77852f6ddb9",
-      "tasks.md": "c18cb713398f9c2044a4965a642ab94b540069bf5fca9d4704a82a9b9d9db76c",
-      "checklist.md": "7dbc24ddb1d1f4a53e62d6c9bf70a77f43586a774f0e32f687a0dc290bdaf8ed",
-      "implementation-summary.md": "f43fcac46dd5e61be44fc78e3ffc22debf431aa7473e04b323c4851182848e8e"
+      "spec.md": "bfa6d15cd42815d1ba0508cb07f8f346ad2b0e0c71f855082f32251b71bc9396",
+      "plan.md": "5937867b1bfff2e363502073ce3b806126c37a3332927613f483c16496e20aae",
+      "tasks.md": "867b6b3f284e0b402ce8a54b4b1f70286bdce330e2fa3a8926a8402bd7c9c743",
+      "checklist.md": "6b0f63a1e9bcf323852dafc26abc0dcd8a958441d7230defc45b97b3207f40f9",
+      "implementation-summary.md": "b0afccd142d6d5670bf2cc7529fae393deeae300ca5a4511f02d187d77507862"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,61 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-codex/references/cli_reference.md",
-      ".opencode/skills/cli-codex/references/hook_contract.md",
-      ".opencode/skills/cli-codex/references/agent_delegation.md",
-      ".opencode/skills/cli-codex/references/codex_tools.md",
-      ".opencode/skills/cli-codex/references/integration_patterns.md",
-      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-codex/assets/prompt_templates.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "cli_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/cli_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/hook_contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent_delegation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/agent_delegation.md",
-        "source": "derived"
-      },
-      {
-        "name": "codex_tools.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/codex_tools.md",
-        "source": "derived"
-      },
-      {
-        "name": "integration_patterns.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/references/integration_patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -197,11 +148,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-codex reference/asset frontmatter is inconsistent with the repo-wide contract: 1 of 5 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:23Z",
-    "last_save_at": "2026-06-23T03:49:56.930Z",
+    "last_save_at": "2026-07-02T05:31:13.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

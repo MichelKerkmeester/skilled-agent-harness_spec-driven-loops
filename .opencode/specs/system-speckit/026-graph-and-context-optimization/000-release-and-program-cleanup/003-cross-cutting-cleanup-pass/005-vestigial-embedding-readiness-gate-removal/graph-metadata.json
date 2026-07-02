@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H) failed to capture full live-handler envelopes because the direct `handleMemorySearch` probe hit `Embedding model not ready after 30s timeout` at `memory-search.ts:930`",
     "created_at": "2026-04-29T08:30:00.000Z",
-    "last_save_at": "2026-06-23T03:49:52.235Z",
+    "last_save_at": "2026-07-02T05:31:10.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

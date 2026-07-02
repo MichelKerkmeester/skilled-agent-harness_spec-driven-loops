@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The `mcp-open-design` skill (v1.0.0) was built from a reverse-engineering pass and a deep review that validated it against that reverse-engineering",
     "created_at": "2026-06-14T16:30:00Z",
-    "last_save_at": "2026-06-23T03:49:48.579Z",
+    "last_save_at": "2026-07-02T05:31:06.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:958c3af1080fb7e3567aa6d9ed91f1c9dfca24047c6c7bfc50612a3a379e975c",
+    "source_fingerprint": "sha256:b7cf9ad300c527a783adcc04610f1eff2c9f6a03dceff1e2c9d677911152f7c8",
     "source_doc_hashes": {
-      "spec.md": "0dad31e32c64ea1dab64ba4ca13c0e16aefea789c8a8a622cf9ccf91b0c1afd8",
-      "plan.md": "da7468d39df45012d4bd8d8f4acf69d4d7ab594f3fc7b271d6e3fdff67fc69f0",
-      "tasks.md": "64715198f3923857cb8be0fcfa2a02d66c0dd9f17047f46626859d1e9238b064",
-      "checklist.md": "45eed49d889673fe9fe0f9c94b3f28a076ca7de63f53c3dc6ab9f50cf132f55f",
-      "implementation-summary.md": "1ac88698f66188bf08a22df5c9c300205c4c7b6163b60160bd9d085d6c2c3472"
+      "spec.md": "ddfb192379ca6326ce1fad362b72b13c7bf9bc89a4c8a91eee15cf41688357bb",
+      "plan.md": "fada2df076b462b64de43c5d1e45699239ef19f0fc0a761b190321b01623a5f7",
+      "tasks.md": "8bf637e3504c8c3196f6b4857279c9ec1de66047e5131b7fe63650221227391b",
+      "checklist.md": "6323f94ceb6e25ec374c784ff1882fb29efc4dad2f6c2674183918fd38e8a109",
+      "implementation-summary.md": "3d9368e3d6d065bea8ed989c37327bec9c65b9351d2c64af68704ef5d8e8e8fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

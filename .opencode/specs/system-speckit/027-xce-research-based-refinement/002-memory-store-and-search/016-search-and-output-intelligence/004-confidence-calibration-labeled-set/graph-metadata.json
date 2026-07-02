@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration.vitest.ts",
       "tests/absolute-relevance-calibration.vitest.ts",
       "mcp_server/lib/search/confidence-scoring.ts",
       "mcp_server/lib/search/confidence-calibration.ts",
@@ -56,33 +60,33 @@
     ],
     "entities": [
       {
-        "name": "absolute-relevance-calibration.vitest.ts",
-        "kind": "test",
-        "path": "tests/absolute-relevance-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "confidence-scoring.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/confidence-scoring.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
         "source": "derived"
       },
       {
         "name": "confidence-calibration.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/confidence-calibration.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
         "source": "derived"
       },
       {
         "name": "search-flags.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
         "name": "confidence-calibration.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/confidence-calibration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "absolute-relevance-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/absolute-relevance-calibration.vitest.ts",
         "source": "derived"
       },
       {
@@ -202,7 +206,7 @@
     ],
     "causal_summary": "Per-result `confidence.value` was only ~40% absolute relevance, so a strong-but-isolated high-cosine hit could be capped at \"medium\" - dragged down by weak heuristic signals (the 0.6/0.4 blend favoured the heuristic)",
     "created_at": "2026-06-17T19:57:25.104Z",
-    "last_save_at": "2026-06-23T03:49:57.357Z",
+    "last_save_at": "2026-07-02T05:31:13.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -237,6 +237,16 @@ workflow:
           - frontier_source: "code_graph | glob_grep_fallback"
         append_to_jsonl: '{"type":"event","event":"frontier_seeded","mode":"context","source":"{frontier_source}","sliceCount":"{frontier_slice_count}","timestamp":"{ISO_8601_NOW}"}'
 
+      step_resolve_session_id:
+        action: "Resolve init session id from caller when supplied, else preserve the auto-generated fallback"
+        branch_on: "session_id"
+        if_present:
+          bind:
+            session_id_init: "{session_id}"
+        if_absent:
+          bind:
+            session_id_init: "{AUTO_SESSION_ID}"
+
       step_create_config:
         action: "Create deep-context-config.json from template (carry the resolved pool + thresholds)"
         template: .opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json
@@ -262,7 +272,7 @@ workflow:
           reducer.dashboardFile: "context/deep-context-dashboard.md"
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
-          lineage.sessionId: "{AUTO_SESSION_ID}"
+          lineage.sessionId: "{session_id_init}"
           lineage.parentSessionId: null
           lineage.lineageMode: "new"
           lineage.generation: 1

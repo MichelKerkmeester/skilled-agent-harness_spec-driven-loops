@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/010-shared-register |
+| **Spec Folder** | 010-shared-register |
 | **Completed** | Executed: register + card built under sk-design/shared/; hub check passes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

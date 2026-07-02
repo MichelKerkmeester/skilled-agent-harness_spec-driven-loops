@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,11 @@
       "002"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
       "handlers/memory-index.ts",
       "utils/batch-processor.ts",
       "lib/ops/job-store.ts",
@@ -59,19 +62,19 @@
       {
         "name": "memory-index.ts",
         "kind": "code",
-        "path": "handlers/memory-index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
         "source": "derived"
       },
       {
         "name": "batch-processor.ts",
         "kind": "code",
-        "path": "utils/batch-processor.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
         "source": "derived"
       },
       {
         "name": "job-store.ts",
         "kind": "code",
-        "path": "lib/ops/job-store.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
         "source": "derived"
       },
       {
@@ -203,7 +206,7 @@
     ],
     "causal_summary": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
     "created_at": "2026-06-17T12:03:13.967Z",
-    "last_save_at": "2026-06-23T03:49:57.400Z",
+    "last_save_at": "2026-07-02T05:31:13.748Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -15,30 +15,24 @@
       "sha256-snapshot-integrity",
       "integrity-stamp-verify",
       "registry-json-integrity",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "002-atomic-state-integrity-helpers summary"
+      "002-atomic-state-integrity-helpers summary",
+      "002-atomic-state-integrity-helpers"
     ],
     "key_topics": [
       "atomic-state-integrity-helpers",
       "sha256-snapshot-integrity",
       "integrity-stamp-verify",
       "registry-json-integrity",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "core",
-      "tasks",
       "002-atomic-state-integrity-helpers",
-      "summary"
+      "summary",
+      "integrity",
+      "check",
+      "loaded",
+      "registry",
+      "config",
+      "json"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Atomic State Integrity Helpers",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Snapshot",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "canonical",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistinguishable from a clean one and silently corrupts the loop session on resume",
     "created_at": "2026-06-28T14:01:52Z",
-    "last_save_at": "2026-07-01T15:47:37.074Z",
+    "last_save_at": "2026-07-01T21:52:50.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef0cb914928f47135d87e167a995d668299a8aab375461576a59b9667cbf0449",
+    "source_fingerprint": "sha256:ca687c175da8094a322626155e39cbf636e5c4552cab69530836fcfd40d715d6",
     "source_doc_hashes": {
       "spec.md": "00e9dbe01e04890530e92e9398a65c580a79d4b0baf3baff510b509e46243906",
-      "plan.md": "8089f3de26e206058413fd126a5a0a725cf1dd51c53c9e6c30246f34deb6da9f",
-      "tasks.md": "95f56d2f84988bf76c574236c8ad780bcbacd06e457414a121b6786fccdda746",
+      "plan.md": "6c8a6367e77d7d72e0d92e3640c0cfb9690ad26ced82449169e38addb3905c40",
+      "tasks.md": "3a34968ffd60568ef9371b6197592bb128438ceeb32afe16c91c2d4b85062188",
       "implementation-summary.md": "f27e81141ceb12c3c926edb628205118304c6038c6c01782a633f7b1a3767ef6"
     },
     "last_active_child_id": null,

@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -49,13 +53,33 @@
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
       "spec.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -108,30 +132,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Each `/design:` wrapper declared only a `STATUS=OK|FAIL` tail (evidence: `commands/design/audit.md:26`), so the concrete deliverable each command produces had no named shape",
     "created_at": "2026-06-28T12:40:01.730Z",
-    "last_save_at": "2026-06-29T04:52:13.009Z",
+    "last_save_at": "2026-07-02T05:31:08.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bde51d064b0113d264cacec7ec7024847d0a446465e6802207da3813fcdfc70",
+    "source_fingerprint": "sha256:bc671aef3b20dbe4c95a1cd42ac90e621afb14a855c35c8d76740f9eabea4208",
     "source_doc_hashes": {
-      "spec.md": "79981015ecba12016b89523f66f26833c09aed52320956e7535aa37d4396f40c",
-      "plan.md": "40421ab88758cefd0464296a7a840e321f5e463e6b08b38c8e97cb2698c72201",
-      "tasks.md": "21896ea4843531c3de9d3f7f4d855e8d3af9123c08df632a10a761b92590f5b1",
-      "checklist.md": "1d4af5802c18b4f07a7588a3447e62c13d99faa962ebf2783dc4c643a56ff717",
-      "implementation-summary.md": "f5421668edee0b2a236314c646625c1c03da02fcf30cf8643a974fc97976c758"
+      "spec.md": "134936f017a0e505d66763c982290983b65148ad179811e4dd4d8fc5f610be2f",
+      "plan.md": "291f9a9ac8c2253c070434ad881e99e4314266eb535e54c5597f1df23391fcbe",
+      "tasks.md": "c2600c86b61e1bef2cde66765316a7e8b081777ac8d5d46822e8f6eedaebeb63",
+      "checklist.md": "49a0f5a06503401b2bc6b1f147486a41f99a6746aab757456e37b7d1985fd304",
+      "implementation-summary.md": "b3c22079d0024b5c5fe8df363c7b5187434321956bbde33a074d67678a2b07c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

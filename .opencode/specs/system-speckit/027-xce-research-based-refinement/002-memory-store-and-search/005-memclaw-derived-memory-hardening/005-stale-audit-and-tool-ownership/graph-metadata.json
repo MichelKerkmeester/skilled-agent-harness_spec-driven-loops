@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Default `memorysearch` hard-excludes some rows: it forces `includeArchived=false` and the FTS path filters `importancetier != 'deprecated'`, so a deprecated-but-still-relevant memory can be silently dropped from recall with no signal to the caller",
     "created_at": "2026-06-06T10:10:49Z",
-    "last_save_at": "2026-06-23T03:49:57.265Z",
+    "last_save_at": "2026-07-02T05:31:13.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

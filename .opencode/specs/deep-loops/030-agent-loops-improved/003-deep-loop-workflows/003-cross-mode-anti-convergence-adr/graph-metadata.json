@@ -15,14 +15,11 @@
       "antiConvergence contract ADR",
       "optimizer invariant groups",
       "stopPolicy fail-closed",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "cross-mode anti-convergence ADR"
+      "cross-mode anti-convergence ADR",
+      "antiConvergence contract",
+      "optimizer invariant group",
+      "003-cross-mode-anti-convergence-adr summary",
+      "003-cross-mode-anti-convergence-adr"
     ],
     "key_topics": [
       "cross-mode",
@@ -35,8 +32,8 @@
       "groups",
       "stoppolicy",
       "fail-closed",
-      "implementation",
-      "plan"
+      "group",
+      "003-cross-mode-anti-convergence-adr"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -208,7 +205,7 @@
     ],
     "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
     "created_at": "2026-06-28T14:02:08Z",
-    "last_save_at": "2026-07-01T13:22:18.629Z",
+    "last_save_at": "2026-07-01T22:26:49.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +215,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4b32cdb540c2e5d6231482537076983817056e4ee1790baee0c379bd97b8e48",
+    "source_fingerprint": "sha256:6027aae330757317af7845c920a22cb17edb60c46af1d4906e835ec1452b27ad",
     "source_doc_hashes": {
       "spec.md": "e13b06ec9fa83f87a73027fa37782f6fffa7ff4ead07ab12150c7c2ef84272c1",
-      "plan.md": "eb8b78028ff0134e6e53b9cc9dcb4f3e39cc061e77dbac69ad326a541418f9b8",
-      "tasks.md": "3b2c98ea773d368a43fc88e41b3daa359e9ceb1f25bf9bd6f382a85b8c57b0ff",
+      "plan.md": "e0467d75655e5ddd2a26a5d574d55a48f68bdfcba331d67f6b4f724935397175",
+      "tasks.md": "923de4ca46a12b611b415201ee41e902564d013f4bcd21367ca78d3696a88f61",
       "decision-record.md": "728aa272ab42ac6274f7bec71b2b8818326c8389d2e88f2fb25769cfff6c285a",
       "implementation-summary.md": "00daa94c19684774af332b266a733d19654b8d259252480b46f10030bab6a906"
     },

@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `010-deep-loop-skill-system-review` |
+| **Spec Folder** | 010-deep-loop-skill-system-review |
 | **Completed** | 2026-06-15 |
 | **Level** | 2 |
 | **Type** | Read-only deep review (delivers a report + remediation plan) |

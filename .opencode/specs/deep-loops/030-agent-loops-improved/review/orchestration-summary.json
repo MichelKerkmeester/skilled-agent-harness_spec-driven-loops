@@ -1,0 +1,33 @@
+{
+  "run_id": "1782998103426-5a2g5w",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/deep-loops/030-agent-loops-improved",
+  "base_artifact_dir": ".opencode/specs/deep-loops/030-agent-loops-improved/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "native",
+      "index": 0,
+      "started_at_iso": "2026-06-30T07:52:28.786Z"
+    },
+    {
+      "label": "glm",
+      "index": 2,
+      "started_at_iso": "2026-06-30T08:03:34.585Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The rename touches ~799 files",
     "created_at": "2026-06-28T13:47:21.024Z",
-    "last_save_at": "2026-06-28T14:32:50.701Z",
+    "last_save_at": "2026-07-02T05:31:09.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48567854680ab241e6c8ed6a5abc8ee1f25b8822ec44991ec338eba7f42c6028",
+    "source_fingerprint": "sha256:ff73346a1f7b442d187a9b18d53c388e1b54089df8bee63fa47c2c0afc8c4803",
     "source_doc_hashes": {
-      "spec.md": "bf326d540d9fc7c52f448dfd962c259eaa717fbd94b04a6e97bd55d39cccc7ef",
-      "plan.md": "c4e3777c5eb4331a1145c359f316c6437c687def64490476d17a0340b4c3fce3",
-      "tasks.md": "a703171e8397e0e9310cc4a4064c94f40c8ecb1fed10838164328e4cb7f95d99",
-      "implementation-summary.md": "baae9801bd21e8fe4dc8a838fb555a3aad3df4e49ff25609143de08746778f7f"
+      "spec.md": "ed38a5c84611ff2ec8d2f3cec2eece68244e9185c045cd91bd58456ea3414495",
+      "plan.md": "60d64945904f95a821502e5c0b2bb194a5baa1e707eb8b1de3fdac0ebb3d8839",
+      "tasks.md": "fa22a3b7d361fb2d11081236792af9bf74641867facbf27c1aa3d0fc9db6bdd3",
+      "implementation-summary.md": "bddb50bab552d3aa14c9b302cc2ff4ab174aec78278b8ac152d71446a668a97d"
     },
     "last_active_child_id": null,
     "last_active_at": null

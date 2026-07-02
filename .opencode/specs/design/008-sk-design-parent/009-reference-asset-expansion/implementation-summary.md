@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/009-reference-asset-expansion |
+| **Spec Folder** | 009-reference-asset-expansion |
 | **Completed** | Research executed: 2-lineage fan-out, 16 iterations, consolidated matrix delivered |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

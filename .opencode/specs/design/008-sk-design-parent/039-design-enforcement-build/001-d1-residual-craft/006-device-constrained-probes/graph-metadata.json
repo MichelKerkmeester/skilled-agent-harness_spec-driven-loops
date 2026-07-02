@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The hardening edge-case matrix (`hardeningedgecases.md`) proves a surface survives long text, network errors, permission states, concurrency, RTL, text expansion, CJK and emoji, and trapped overlays — but it has no row for the device the surface actually runs on",
     "created_at": "2026-06-28T12:40:05.766Z",
-    "last_save_at": "2026-06-29T11:23:58.928Z",
+    "last_save_at": "2026-07-02T05:31:07.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1a9b12b78d98cfb85c736b7b09d542011be97154371e4a38485d0303b74d893",
+    "source_fingerprint": "sha256:39326902c67d66da3a5b75e6781fb6678ea58965a76b0a69f4a5c0528772b92b",
     "source_doc_hashes": {
-      "spec.md": "9ef676fda77233f53bb0e36d30521c2623549b144e4ab2a0e545a9e5457f837d",
-      "plan.md": "060edea5a5e680d12e12a895491e814e22d1c2fd97039fe5cd92ba665428514d",
-      "tasks.md": "d8d42eced6f4872483dec02133b21b8571ae97f412303d4eb81fec69c77cac88",
-      "checklist.md": "f5df208da6f46a27e3e6d5c76e44f201e9d5e4cebd7035bb47fb26591671da37",
-      "implementation-summary.md": "d463d905ad70e2eeb5c185b82fe4326046a2c563497ae99c018f09d1f2edb982"
+      "spec.md": "d2c23fb76c7f1bc1fe201f0c99d7c506aa335f85a18619227bedac2eddea0cce",
+      "plan.md": "53ce0dac78392fd7465f38a2a6843266f7abcdd341eab119a873150960576792",
+      "tasks.md": "2e50ec84b43a9f0d9ee3b9301d6a9351855c3f03bca7aca48ab0ad9b903e3881",
+      "checklist.md": "b4715488bcb8919cf61d31dd38b770fc28d1c3b5c3835999dccca93d0127e03d",
+      "implementation-summary.md": "a0748a2f8d43cfbe07ba96b08f752740d15326940857c26214c78f47281970ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

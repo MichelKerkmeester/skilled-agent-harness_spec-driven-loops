@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The installed Open Design desktop app (nexu-io/open-design, Electron plus Next.js) holds rich local-first design systems and a generation engine, but the framework could only reach them through the in-app chat UI",
     "created_at": "2026-06-14T16:30:00Z",
-    "last_save_at": "2026-06-23T03:49:48.548Z",
+    "last_save_at": "2026-07-02T05:31:06.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3717a56881fd1f31f8fc0f3b2115997c9071dc302c33886488ebaf05e8352ee5",
+    "source_fingerprint": "sha256:7d708016874c94febc3a1b7016ea5175d09ba0f46df5c0e7a66b9dad31f0f11b",
     "source_doc_hashes": {
-      "spec.md": "77c1eac5a0bddaa2fdea00793b85772475a2e1785a5a598734a36ad75181b4c2",
-      "plan.md": "deec1703271aefb023ec80f3a7e8f2456e384dbf188f1bc9ffb35aa1d1048eb0",
-      "tasks.md": "a679abce34a3cd170c3ff0619a750201f9f8401620fa09c299fa45acfed493fd",
-      "checklist.md": "31795e13a0bc9dfc15187f7ae7c04176d274f4823885719b8e57d4bf4d2a386c",
-      "implementation-summary.md": "a8634743434afa8dc9bf9c9c5243cd060ca8229d259ed891f4e1456726882946"
+      "spec.md": "5c8ed67a7b6bff8ca5e811ae2ee3a8c45df4994af8cc3ad6c180afb066d293a3",
+      "plan.md": "d3d162d5a99f09c58b1c60a3d0e075580bdcc6ae65381bd40c914a5c95befa40",
+      "tasks.md": "0ff98ca26d291759f18cbe7ccd614b3d09ce740c30eccbcc4d0cbcf03751e207",
+      "checklist.md": "02cc26ccc742327a8a574e615287161a6b19d18e13faa9cc62440e3ad3a2a626",
+      "implementation-summary.md": "cbdcd3ea1059eb528a25d6bd7279eb7cbc0f83419a0c055532692bac9574afc6"
     },
     "last_active_child_id": null,
     "last_active_at": null

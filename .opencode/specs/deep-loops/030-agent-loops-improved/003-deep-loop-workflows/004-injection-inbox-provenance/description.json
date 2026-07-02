@@ -17,7 +17,7 @@
     "bypasses",
     "state"
   ],
-  "lastUpdated": "2026-07-01T15:48:16.471Z",
+  "lastUpdated": "2026-07-01T22:26:47.881Z",
   "specId": "004",
   "folderSlug": "injection-inbox-provenance",
   "parentChain": [
@@ -28,5 +28,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

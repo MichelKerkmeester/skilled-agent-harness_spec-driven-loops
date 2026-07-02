@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,6 +39,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md",
       ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/trigger-embedding-backfill.md",
       ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md",
@@ -54,13 +58,33 @@
       ".opencode/skills/system-spec-kit/feature_catalog/17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md",
       ".opencode/skills/system-spec-kit/feature_catalog/17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md",
       ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/openltm-continuity-resilience.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "semantic-trigger-shadow-matcher-and-hybrid-handler.md",
         "kind": "doc",
@@ -158,30 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Add one featurecatalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:56.875Z",
+    "last_save_at": "2026-07-02T05:31:13.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

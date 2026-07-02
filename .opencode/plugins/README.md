@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Plugin Entrypoints"
-description: "Six plugin entrypoint files OpenCode auto-loads at startup. Helper bridge modules live with their owning skills, not in this folder."
+description: "Seven plugin entrypoint files OpenCode auto-loads at startup. Helper bridge modules live with their owning skills, not in this folder."
 ---
 
 # OpenCode Plugin Entrypoints
@@ -48,6 +48,7 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 | `mk-spec-memory.js` | Prompt-time Spec Kit Memory continuity plugin. Injects a continuity brief via `experimental.chat.system.transform` and exposes `mk_spec_memory_status`. Routes via the spec-kit warm CLI bridge. |
 | `mk-goal.js` | The `/goal` plugin. Owns per-session goal state (atomic, hex(sessionID)-keyed, fail-closed), injects the active goal each turn via `experimental.chat.system.transform`, exposes `mk_goal`/`mk_goal_status` tools, accounts usage over the `event()` lifecycle, and (default-off) can drive guarded autonomous continuation. Default-export only; test surface on `MkGoalPlugin.__test`. |
 | `mk-deep-loop-guard.js` | Detection-layer `tool.execute.before` plugin for Task-tool dispatches targeting deep-loop sub-agents, with two independent checks. Resolves the real target agent from `Deep Route: ... target_agent=@X` / `Agent: @X` prompt text (since `orchestrate` always dispatches with `subagent_type: "general"`), then: (1) flags (default) or blocks (`MK_DEEP_LOOP_GUARD_REJECT=1`) a mismatch against `mode-registry.json`'s entry for that resolved agent; (2) flags (default) or blocks (`MK_DEEP_LOOP_GUARD_REJECT_LOOP=1`) a session-scoped loop-like repeated hand-off to a command-owned loop executor lacking a command-driven iteration marker. Fails open on registry read errors or loop-state write errors. |
+| `mk-dist-freshness-guard.js` | Warn-only `tool.execute.before` + `event` plugin preventing silent stale-`dist/` bugs. On a `bash` call whose command matches `opencode run` or `validate\.sh`, checks all 7 watched dist-producing packages via the shared `checkAllFreshness()` (`system-spec-kit/scripts/lib/dist-freshness.cjs`) and `console.warn`s any that are stale before the risky dispatch runs. Also fires once per session on `session.created` (deduped by session ID) for an early heads-up even if no matching Bash call happens. Never throws — always fails open; the hard backstop lives in `validate.sh` itself, not here. |
 | `session-cleanup.js` | Session-end MCP cleanup plugin. OpenCode has no JSON SessionEnd hook, so this listens for the `server.instance.disposed` / `global.disposed` dispose lifecycle events and runs `.opencode/scripts/session-cleanup.sh` to reclaim the session's MCP helper descendants. Best-effort and bounded; never blocks teardown. |
 
 ---
@@ -59,6 +60,7 @@ Helper bridge modules are co-located with their owning skill, not in this folder
 - **mk-skill-advisor** bridge: `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`
 - **mk-code-graph** bridge: `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`
 - **opencode message schema**: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs`
+- **mk-dist-freshness-guard** shared checker: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — the same module also backs `validate.sh`'s hard staleness backstop and the `sk-code` `claude-posttooluse.sh` PostToolUse hook, so freshness logic has one source of truth across all three consumers.
 
 This keeps plugin entrypoints minimal and lets owning skills own their bridge contracts.
 
@@ -148,3 +150,6 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 - `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/` — advisor bridge home
 - `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — spec-kit bridge modules
 - `.opencode/skills/system-skill-advisor/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)
+- `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — shared dist-staleness checker used by `mk-dist-freshness-guard.js`, `validate.sh`, and the `sk-code` PostToolUse hook
+- `.opencode/bin/README.md` §6 "Dist freshness" — the full watched-package table and CLI-shim consumer detail
+- `.opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh` — the Claude Code PostToolUse hook counterpart (warn-only, sibling to this plugin's `tool.execute.before`)

@@ -92,15 +92,15 @@
     ],
     "causal_summary": "Make every design-feeding/mutating Open Design op deny-by-default behind a content-bound proof token — one phase per recommendation, D4-R1..R11.",
     "created_at": "2026-06-28T12:39:52.958Z",
-    "last_save_at": "2026-06-30T09:11:33.649Z",
+    "last_save_at": "2026-07-02T05:31:08.116Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:05bf790379658e28330b811a093a3e8c84493e0c760ac5e68ea256d58aea1397",
+    "source_fingerprint": "sha256:b6c56c6363ae702af2b42c346168c7ae968c9ca29327b378ffe9240d36340aaf",
     "source_doc_hashes": {
-      "spec.md": "05f1d09636238c0952adea7e1f11982a2109dee34d0a692394879812f0a187ec"
+      "spec.md": "0674db5c756ad2b825308415d82cb9f8fd71756cb7a3ce7151dc609ed229d9a0"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-30T09:11:33.649Z"

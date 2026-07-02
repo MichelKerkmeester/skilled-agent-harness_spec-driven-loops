@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override",
     "created_at": "2026-05-23T17:23:24Z",
-    "last_save_at": "2026-06-23T03:49:48.276Z",
+    "last_save_at": "2026-07-02T05:31:03.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86f5455be7e8922d62f814f576ab44d9bf7bec9bdc04b2dd873095c0e63d6137",
+    "source_fingerprint": "sha256:48eb7bef78c8d82503f29d8a3d57d2de775c63ea3d1fa6af4d7767ece9723c7d",
     "source_doc_hashes": {
       "spec.md": "e87ce41c09cc73f84da16a76956037a7133add607c9eaa80edb0b92468c2de13",
       "plan.md": "013980836647b97ced61e16498e88ad29e5d8a4de6f963c7b4066a140c5e0549",
       "tasks.md": "5f0b7ae16e0e3f8cdcbe2b0c441ee1def9a6ed5f8c3b8265534a93150c5703c8",
-      "implementation-summary.md": "e98c7a593492328c6c5d985be7dfec3bc138d4f062f7fb08c731f0ecd97feca5"
+      "implementation-summary.md": "19aa7df3dd385842308c3eadca7e10ef070808b440b450687be6cb8ccb135d56"
     },
     "last_active_child_id": null,
     "last_active_at": null

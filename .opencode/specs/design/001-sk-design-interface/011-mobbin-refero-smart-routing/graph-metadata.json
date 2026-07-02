@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Mobbin/Refero integration (phase 009) was purely passive: ONDEMAND, user-driven, with no agent initiative and no explicit decision procedure for when a reference helps or which source to use",
     "created_at": "2026-06-17T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.452Z",
+    "last_save_at": "2026-07-02T05:31:06.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a66c9d994505c40f853f42a0fe66b0aa8cf5d165ceda5e9f0460256a095de17e",
+    "source_fingerprint": "sha256:6b6306c77be9f0d120136480716dca453183e4077d5a6aa8f1af8ae57509a794",
     "source_doc_hashes": {
-      "spec.md": "57b76277b4446cdf6670dfe60a823bdd0acdc5018f3cadae040b5d757a5dd3d9",
-      "plan.md": "ae1de5c3b8d50d96b450623d9b67fb43a49e043bfe1dca5728c1dd4483bda6d4",
-      "tasks.md": "773b32f01ac962a383f38c6ce29807dfdd34c7d3d66e87495213338f60496cc2",
-      "implementation-summary.md": "d3cac77fa65162bfc7dec6c5c9f347fb087886bcc159c490de2db17a42377369"
+      "spec.md": "2bbc91c74e29f19e95ef2648dd71f940766cef8305e4e53b8c946f2c489cc293",
+      "plan.md": "8a71983bcd580a21974b5401ff3fecd55a33f3464fe1691b1c71d6c9a481a7d0",
+      "tasks.md": "3bc99d6b3e3c3d2c773ce21ea0dce818a36ebeebd7b85980cb79f2f3b1b737f8",
+      "implementation-summary.md": "328ccd79538587f16d0be48e4ad33ab23bd2983a5d05717a2a3a9ee617c3c3e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

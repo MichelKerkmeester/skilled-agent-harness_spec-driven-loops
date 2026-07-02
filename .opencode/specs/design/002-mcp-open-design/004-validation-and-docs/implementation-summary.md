@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/004-validation-and-docs |
+| **Spec Folder** | 004-validation-and-docs |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 | **Residual** | Optional formal `od mcp install opencode` live-wire (operator-gated) |

@@ -1312,6 +1312,7 @@ function resolveEffectiveMode(
     }
 
     const hasResumeKeywords = /\b(resume|continue|pick up|where was i|what(?:'s| is) next)\b/i.test(normalizedInput);
+    const canInferResumeMode = !explicitIntent && (!detectedIntent || detectedIntent === 'understand');
     const hasResumeContext =
       session.resumed ||
       session.priorMode === 'resume' ||
@@ -1321,7 +1322,7 @@ function resolveEffectiveMode(
         /\b(next(?:\s+steps?)?|status|state|blockers|where\b|left off|what changed)\b/i.test(normalizedInput)
       );
 
-    if (hasResumeKeywords || hasResumeContext) {
+    if ((!explicitIntent && hasResumeKeywords) || (canInferResumeMode && hasResumeContext)) {
       effectiveMode = 'resume';
       resumeHeuristicApplied = true;
     }

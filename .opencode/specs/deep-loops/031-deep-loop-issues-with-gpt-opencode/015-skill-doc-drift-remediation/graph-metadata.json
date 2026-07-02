@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift clusters across skill documentation and one scanner script, all caused by packet 031's real behavior changes (ai-council `mode: subagent`, orchestrate routing, the mk-deep-loop-guard rename, `.opencode/agents/.toml` mirror removal)",
     "created_at": "2026-07-01T16:44:05.130Z",
-    "last_save_at": "2026-07-01T17:19:14.981Z",
+    "last_save_at": "2026-07-02T05:31:05.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e04ab3a0317d8c83163ca762ca01c6b33d5518234083af97cc9fff9e55eae56e",
+    "source_fingerprint": "sha256:a8955d9aa5591057b10337125fe3ad0119173ed47a1e3eb2dc911e05ab9753f9",
     "source_doc_hashes": {
       "spec.md": "4e66bf6f14ad505fdd6e685f1bdfc8ff721ee9891feb69ab1f129292515b47de",
       "plan.md": "009337fa5d089a76c9ff30bc96dde665430dd53e8dfd58da40c2a78d54c65e68",
       "tasks.md": "3ab36fea3275f1a1533e2071e00467112ac8667c35077bdc8ab92c53320e5e16",
       "checklist.md": "4237a52961f728888256d42e7c37c8459ba860b512847535dd6558db246e4eca",
-      "implementation-summary.md": "1005f8c8ed9b50e7857577021ca18d5cabab54be475d5a7943013358db292a5b"
+      "implementation-summary.md": "7d9423764da56453f5270efefeb07847315716c01e8cee28f4fb0765cb9faf2b"
     },
     "last_active_child_id": null,
     "last_active_at": null

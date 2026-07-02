@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI or a remote-API workflow",
     "created_at": "2026-06-14T17:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.653Z",
+    "last_save_at": "2026-07-02T05:31:06.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ed5d5cbd32c09ec36d4876548f37922ae8b2dc04cfaec32bf93d7f634cd85610",
+    "source_fingerprint": "sha256:536adc6df97dd2b122c4074b254e987263c77aab871d401e9026d5af554077d5",
     "source_doc_hashes": {
-      "spec.md": "25676555d39b1f761e6e315924ea2d7d8a79ac2c2588992442d303baeb82c6f9",
-      "plan.md": "3b8c88663f784ad85dd510f5500dc60851361c77bfb38e222f73c0efc97c4f2c",
-      "tasks.md": "12ffcbb8dd54f6833c7413b8b468a4ef77a2f653a71bf959783ea6c80e3e1eef",
-      "implementation-summary.md": "d5ae6d4ba18fa3d6031d9a0c77aef3c3b0be55b167164b0bf7280626b48163cb",
+      "spec.md": "7b452cbb2f904902786e94e878dd2616904cc1d7b69d01c81160dbb3a9bf8318",
+      "plan.md": "a4e25d6caf4ea3473d60a3a14193e2827f63b1d091fe4493f5e89981de427e4a",
+      "tasks.md": "8a42d73ba7e89ab8f324b2243eb9a2ad10892411c2e24041d756419d21c42987",
+      "implementation-summary.md": "6e49a3bef6f952c72f4b70ce41d073f8c1d54c3f0a3b1f8986e158deca892a1e",
       "research/research.md": "1c0181d92af078e29c473c6a01e3e20aab33f6f4a5676b415252d4c05714b17c"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,11 +39,11 @@
     "key_files": [
       "shared/embeddings/registry.ts",
       "shared/embeddings/factory.ts",
+      "shared/embeddings/providers/hf-local.ts",
       "shared/embeddings/providers/README.md",
       "mcp_server/database/vectors/README.md",
       "tests/local-llm-features/prefix-system.vitest.ts",
       "shared/embeddings/providers/ollama.ts",
-      "shared/embeddings/providers/hf-local.ts",
       "shared/embeddings/profile.ts",
       "shared/types.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -69,6 +69,12 @@
         "source": "derived"
       },
       {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "shared/embeddings/providers/README.md",
@@ -84,12 +90,6 @@
         "name": "ollama.ts",
         "kind": "code",
         "path": "shared/embeddings/providers/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The local embedding model menu is scattered and inconsistent: `registry.ts` MANIFESTS list seven models; `factory.ts` keeps separate hardcoded `VALIDPROVIDERDIMENSIONS` maps for `hf-local` and `ollama`; provider/profile/type files mention multiple local choices; docs still name older alternatives such as `embeddinggemma-300m`",
     "created_at": "2026-05-29T05:06:24.627Z",
-    "last_save_at": "2026-06-23T03:49:55.424Z",
+    "last_save_at": "2026-07-02T05:31:12.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

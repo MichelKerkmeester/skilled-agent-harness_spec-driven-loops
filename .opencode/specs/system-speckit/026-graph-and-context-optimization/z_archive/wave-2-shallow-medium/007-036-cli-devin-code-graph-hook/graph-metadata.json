@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,28 +41,70 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "handover.md",
+      "resource-map.md",
       ".opencode/plugins/README.md",
       "feature_catalog/feature_catalog.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       "plugin_bridges/README.md",
       "research/research.md",
       ".claude/settings.local.json",
-      "decision-record.md",
       ".opencode/plugins/mk-code-graph.js",
       "implementation-summary.md",
-      "checklist.md",
-      "plan.md",
-      "tasks.md",
-      "resource-map.md",
       "research/findings.json",
-      "spec.md",
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
       ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md"
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -94,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "mk-code-graph.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-code-graph.js",
@@ -112,39 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
         "name": "findings.json",
         "kind": "config",
         "path": "research/findings.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Devin Code Graph Hook",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`system-code-graph` is extracted as a skill and MCP surface, but its runtime startup hooks still live in `system-spec-kit/mcpserver/hooks/`",
     "created_at": "2026-05-15T13:06:00.454Z",
-    "last_save_at": "2026-06-23T03:49:56.738Z",
+    "last_save_at": "2026-07-02T05:31:13.002Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

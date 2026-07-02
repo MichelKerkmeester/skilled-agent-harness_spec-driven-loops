@@ -40,6 +40,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/specs/design/002-mcp-open-design/010-design-playbook-live-run-and-refinement/scratch/results-matrix.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,6 +49,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/002-mcp-open-design/010-design-playbook-live-run-and-refinement/scratch/results-matrix.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -178,23 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-open-design (4 scenarios) and sk-design-interface (9 scenarios) manual testing playbooks had never been executed end to end against the real tooling, so it was unknown whether the scenarios were accurate, runnable, or complete",
     "created_at": "2026-06-15T09:24:28Z",
-    "last_save_at": "2026-06-23T03:49:48.617Z",
+    "last_save_at": "2026-07-02T05:31:06.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bea23e7efe04617a92c549ac51d02e6acb986492adc1e7609a8cd39432e971d4",
+    "source_fingerprint": "sha256:4d864982fe62b94a0b0ee13bd35d232a605ec40458a434a83ec20962aa317f97",
     "source_doc_hashes": {
-      "spec.md": "e730fb20c25c4374b77765af102a48712c15242a78ea3c736762b974739d42ce",
-      "plan.md": "d9fc11d8d60b62c2e30b2c7d72ca40e4e015e27d413356097b10cd28466788d8",
-      "tasks.md": "63ee09eb318dab73ba5e06cf6d71937e2375529370962c8c9197410dfff7deea",
-      "checklist.md": "fe3d5f2193bccd2f9aa8507fc8fdf77f02e28c9e66520ccfc5b131c976f1aece",
-      "implementation-summary.md": "6a5dc5d34e78f5a9b14cf86e83d5536f94ad9fe7fdedd768d03461650348d216"
+      "spec.md": "23db6ccc6948cbdc68e219b8e8ab564dd6d8b32a8e60fcf6e5440a0f95091123",
+      "plan.md": "c9dcbece71a9aaa14c18cdb8a1cda8e9f578db72ac7f12029ee2e9cebd87f8f3",
+      "tasks.md": "b94548929aa1a7a809c727c56ff9fcf6d9db10ab7e2dfcfa22039db7dc9c0b49",
+      "checklist.md": "90e9ecc029ab56a73a6b5848633be353ad3212cbadb5da5b16c5a7c59baba73f",
+      "implementation-summary.md": "1c4baafebda7711195ed7bde8547050d2d18dcd890175ba86cf226299f7eb407"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-design manual testing playbooks use globally-numbered per-feature filenames (`001-live-extraction.md`, `007-report-generation.md`)",
     "created_at": "2026-06-29T06:09:27.048Z",
-    "last_save_at": "2026-06-30T09:11:43.184Z",
+    "last_save_at": "2026-07-02T05:31:08.235Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd1272219ba772c51c3eb903d7fb4b5d0b92ebf562b17313a553bd2627562531",
+    "source_fingerprint": "sha256:82c977c1adacb94699fe756f2fe2142251709fb2529056cc7333957a2502182a",
     "source_doc_hashes": {
-      "spec.md": "ebccc95b55374813a793c62bd6054765f7c93fc63bc2593198e3404e8e61dcd8",
-      "plan.md": "5154d7ea386f6984f3e37a313493e2b5657ce7bbbf4b7cbe41a6cf47679e44b7",
-      "tasks.md": "eae38cbc8c52bf73321260dd7739a92f2bc31eaa309553428661ab97529f5ad3",
-      "implementation-summary.md": "5edfd012c0481b33cb95d51139eadd044bc059ecede09ef2861943789b6c9800"
+      "spec.md": "a33ee487e2bcb2a642391f3b50d1034e8aeca440ad4f4737aa74c256e9e5b306",
+      "plan.md": "c838a332311ad768a1e424b811b8778be003e2bbc95316ec280dea883edd77e4",
+      "tasks.md": "bf9b5913fd2d72d619103208b0541dc1d765f872162eea64fd8836e8606efcc6",
+      "implementation-summary.md": "ce680fa88859f86b42cb60ed7db87336f96faa1c9effc14a3f572b1a110e8495"
     },
     "last_active_child_id": null,
     "last_active_at": null

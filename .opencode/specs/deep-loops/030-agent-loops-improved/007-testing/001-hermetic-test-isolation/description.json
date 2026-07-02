@@ -16,7 +16,7 @@
     "directories",
     "because"
   ],
-  "lastUpdated": "2026-07-01T15:48:11.838Z",
+  "lastUpdated": "2026-07-01T23:08:59.433Z",
   "specId": "001",
   "folderSlug": "hermetic-test-isolation",
   "parentChain": [
@@ -27,5 +27,6 @@
     "007-testing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

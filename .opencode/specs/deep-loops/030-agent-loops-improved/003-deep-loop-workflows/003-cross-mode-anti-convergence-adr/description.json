@@ -15,7 +15,7 @@
     "miniterations",
     "maxiterations"
   ],
-  "lastUpdated": "2026-07-01T15:48:14.764Z",
+  "lastUpdated": "2026-07-01T22:26:47.755Z",
   "specId": "003",
   "folderSlug": "cross-mode-anti-convergence-adr",
   "parentChain": [
@@ -26,5 +26,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

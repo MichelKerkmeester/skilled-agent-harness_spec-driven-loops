@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The design corpus treats a command as a workflow recipe — a verb carrying a typed argument grammar and an ordered, named-skill choreography that runs underneath it (\"commands are workflows; the skills run underneath them\")",
     "created_at": "2026-06-28T12:40:10.060Z",
-    "last_save_at": "2026-06-29T12:30:38.432Z",
+    "last_save_at": "2026-07-02T05:31:08.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01eb21d88dde088e5a09496cf1d21e9d1ec9cc05b989952bec4306eefaa6c8ed",
+    "source_fingerprint": "sha256:f3831e4de48e1b46c918c4e391888e5883cc5ec928f496d07c8ee93f4aacf6f1",
     "source_doc_hashes": {
-      "spec.md": "d36b1c19a2469bf633cab96852a74832433186c16d79808c766d1aac4c667f26",
-      "plan.md": "fc674d67075efe23b8d3852c4b2a0abcae110f4d3ecceb0cbd82447c55d9550b",
-      "tasks.md": "a452a471869678bbe4141b4273e50a00774d1c9ade4ea85963f9cb9cc4302de9",
-      "checklist.md": "9e17e0c702859a32d01e41f876bf5359f263f4c9b3308bdac140763b5c10a51a",
-      "implementation-summary.md": "1fcf3923c372faf29e635dc772a6b30f368d86d35cd707f98d93ae90695119c4"
+      "spec.md": "044642050dd65b72d8aa992cedc2d2c494d519150100c6319e79134a8058fd78",
+      "plan.md": "1d506735c6bc22a64d4c046f86918580b309acf78ae8e7b276bd42017d28c168",
+      "tasks.md": "650cff4242d2abb3a2ffdcbba923b894d3d4ba15c8e0255a24f332f95daf66a5",
+      "checklist.md": "0504bc067d33ba494ad12227f226cab6dce46ee82efd6e9728a4b4d42a119fff",
+      "implementation-summary.md": "133f2cd2534125f8e09c94d2b8e4b2c3e4493bb18da1541be34bcbc42366d5de"
     },
     "last_active_child_id": null,
     "last_active_at": null

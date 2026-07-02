@@ -89,15 +89,15 @@
     ],
     "causal_summary": "Make the design contract survive CLI dispatch into codex/claude-code/opencode children — one phase per recommendation, D5-R1..R8.",
     "created_at": "2026-06-28T12:39:53.949Z",
-    "last_save_at": "2026-06-30T09:11:38.023Z",
+    "last_save_at": "2026-07-02T05:31:08.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:39b4315f1429cb412bb5d92a28429c972af8b262666e9afb46b6a252ecdedf70",
+    "source_fingerprint": "sha256:8f0fd1efa31c5f840222b01eb09a4b3e13607c0c8aaa53f915cd61b11d01d336",
     "source_doc_hashes": {
-      "spec.md": "dbf235b495efa84c785f36ce3b926cb813ee7583b4aa63c8c35522de3628d560"
+      "spec.md": "b72869ce43124f5bdf7eff35ff5f7f2cc1d5a47e347658ab34dbb0b10a8a89f5"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-30T09:11:38.023Z"

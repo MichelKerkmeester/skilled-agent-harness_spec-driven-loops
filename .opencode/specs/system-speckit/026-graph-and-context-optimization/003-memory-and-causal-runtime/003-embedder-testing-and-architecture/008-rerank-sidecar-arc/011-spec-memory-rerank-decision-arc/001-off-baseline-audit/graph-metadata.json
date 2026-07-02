@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,7 +41,6 @@
       "dist/handlers/memory-search.js",
       "evidence/off-baseline-2026-05-21.json",
       "lib/search/search-flags.ts",
-      ".opencode/skills/cli-codex/SKILL.md",
       "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
       "spec.md",
       "plan.md",
@@ -71,12 +70,6 @@
         "name": "search-flags.ts",
         "kind": "code",
         "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-06-23T03:49:55.037Z",
+    "last_save_at": "2026-07-02T05:31:12.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

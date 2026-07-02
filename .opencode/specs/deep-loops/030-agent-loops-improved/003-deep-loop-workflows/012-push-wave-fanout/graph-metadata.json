@@ -15,14 +15,8 @@
       "wave planner executor config",
       "depends_on touches fan-out",
       "flat_pool guard wave model",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "012-push-wave-fanout summary"
+      "012-push-wave-fanout summary",
+      "012-push-wave-fanout"
     ],
     "key_topics": [
       "push",
@@ -36,9 +30,9 @@
       "fan-out",
       "guard",
       "model",
-      "implementation"
+      "012-push-wave-fanout"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
@@ -162,27 +156,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Schema",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,15 +180,21 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage) and overlapping slots (both writing to the same path) consume concurrency slots without making progress and risk file conflicts",
     "created_at": "2026-06-28T14:02:15Z",
-    "last_save_at": "2026-07-01T15:47:37.147Z",
+    "last_save_at": "2026-07-01T22:26:49.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c6a8901fda483b9c257f1818515cf896426ab5d8d86757ba8b97574c1d16cac",
+    "source_fingerprint": "sha256:1d54b41caf95600026f4c8f4e91493462ad1f70757becb0a0056a3bbe0667c56",
     "source_doc_hashes": {
       "spec.md": "ca3328a06601b082313bbbbd827e6bd3e370ded4db48978ec90becc3232651a0",
-      "plan.md": "c98d0cb5259dffe9aa19f8880e264b92497a5c745290e656ecc5a53d9d162477",
-      "tasks.md": "c21f10e8694035e1bbc9f34326382eb47a5b22eec5c5e84493ae7e63f3e51e1a",
+      "plan.md": "2e8975256e715ec9ceeea6f7f922911ccaac1a8fb23481adca8c988aa9795c50",
+      "tasks.md": "49b246fc60496321548dfa0bb4154e522c1bf7814900d442113d9722ebe40505",
       "implementation-summary.md": "a58059bc9cf556cd4236933860521f98a440ab5dc82b0b02a5e030ac86280231"
     },
     "last_active_child_id": null,

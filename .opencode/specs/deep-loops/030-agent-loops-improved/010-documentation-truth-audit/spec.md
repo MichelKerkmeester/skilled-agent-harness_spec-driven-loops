@@ -46,7 +46,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 10 |
 | **Predecessor** | 009-research-backlog-remediation |
-| **Successor** | None |
+| **Successor** | 011-followup-remediation |
 | **Handoff Criteria** | A dispatched 10-iteration deep-review confirms (or rules out) documentation drift in README.md/AGENTS.md/AGENTS_Barter.md caused by packet 030's shipped work, and confirmed fixes are applied |
 <!-- /ANCHOR:metadata -->
 

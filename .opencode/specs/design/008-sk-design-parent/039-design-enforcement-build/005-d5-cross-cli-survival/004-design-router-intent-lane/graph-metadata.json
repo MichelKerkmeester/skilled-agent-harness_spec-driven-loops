@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       "spec.md",
@@ -54,7 +53,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The deterministic cli- router lowercases a prompt, boundary-matches keywords, scores intents, and conditional-loads `RESOURCEMAP[intent]`",
     "created_at": "2026-06-28T12:40:07.543Z",
-    "last_save_at": "2026-06-29T08:13:29.056Z",
+    "last_save_at": "2026-07-02T05:31:08.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:284528433af9a5f5d31500e4490a980414d970623d9afaf2568dde586a4954ce",
+    "source_fingerprint": "sha256:8d21aeaba7d9548f131cc479e931d2d7b3f6ff3eb2d40a09e40c21eb5e77e735",
     "source_doc_hashes": {
-      "spec.md": "3ffa90a52319b568ab5bd3408f567fb82b06bc950ab6ddbf2f56bfd1c48aed5d",
-      "plan.md": "485feec218c0867a6de17b760cf6d4f2f35cb78b3464fa779cfbefd75fceb6b6",
-      "tasks.md": "dd3aac4dd17c66c5ce23c5b6dbd4a348d142ca776efb0d5dde13865ebe6d21cc",
-      "checklist.md": "959572dd5f8b749a402ffd567497d9bcbe53971313456ae33096adac87911f7b",
-      "implementation-summary.md": "94cee172a2e6eb477b7dad6f2913009138402a847ef1e40a78768f7736554dd3"
+      "spec.md": "0271320e7a1b2f09af7b3d23a7035cd1f14d821a1f7a965f5972c3aa4d5aec44",
+      "plan.md": "59f0dc9cb6de8023eaa75fd67d8f9d336a184cc942be539578dc650a45f021af",
+      "tasks.md": "c054c948ee1647a24089ecda3272887687d18437c46bf21163b4731c6f3d3d7e",
+      "checklist.md": "48c3f64db46ddb593fcea9921ee26d396cdf586b2a459334ccc33cf0f28031fc",
+      "implementation-summary.md": "31242d9cb660d5d391db95a47904f8d79feb2a90de70c673c132eb1adbb87e05"
     },
     "last_active_child_id": null,
     "last_active_at": null

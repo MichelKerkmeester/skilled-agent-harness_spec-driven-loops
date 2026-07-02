@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The line-height-to-spacing relationship is stated as a requirement nowhere, so vertical rhythm is incidental: a spacing scale can say \"use the scale\" while a one-off value slips through and nothing notices",
     "created_at": "2026-06-28T12:40:04.484Z",
-    "last_save_at": "2026-06-29T11:29:37.225Z",
+    "last_save_at": "2026-07-02T05:31:07.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcdfb17472d0349eec05d4f6dfacf096f8bc1ce1ec0892a1df0d229da21acc71",
+    "source_fingerprint": "sha256:ef4d24b6753d3d1a282a76cb6f9d162d4c1134033c94d62d0eb586e6523dba6c",
     "source_doc_hashes": {
-      "spec.md": "25d21f2982e9b07413fa06901b441027ccaba3753f5473ab39aad1e6a6d993de",
-      "plan.md": "1354f60864238d5869d7d332225aed75f560dedc113f60fbb0046d51a0cffc29",
-      "tasks.md": "2246d0e4bbdbaabebab2f79d62c114eafdab0154e0b34aca4151d7a02a08cf2f",
-      "checklist.md": "727d03f70aef5961307de011f6acba5a7e3bcb26a43b7479e3bacbba0725ff3e",
-      "implementation-summary.md": "7b20947fa9ac68fe6b150ba91c4e7388a10133de4c706d6a8fd6d75e8004ce85"
+      "spec.md": "ec8570b906ee1343e7f0542ac308e21481e8afc2614086256f63823fe0a871c4",
+      "plan.md": "5ff758d531a337109d7a12dfaf48ba6effaf2bbb3f77bfe6af5eed648580787b",
+      "tasks.md": "593c17526eef2a58da5f19f28242f578fd0d4280e401fc05fc46837ef296bc02",
+      "checklist.md": "d180b02acbb9e9f7ccd72416e4e507a39d5e9378a4f85d52d7229f38b42969d4",
+      "implementation-summary.md": "8ba5d1a69b497f9ce8465d4ee541a779400e5aa696d930c9be75dc965fd1f535"
     },
     "last_active_child_id": null,
     "last_active_at": null

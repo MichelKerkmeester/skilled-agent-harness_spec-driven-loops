@@ -15,14 +15,12 @@
       "injected question conflict ADR",
       "question conflict event",
       "reduce state sole renderer",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "anchor ownership conflict ADR"
+      "anchor ownership conflict ADR",
+      "injected question conflict",
+      "question_conflict event",
+      "key-questions generated projection",
+      "005-anchor-ownership-conflict-adr summary",
+      "005-anchor-ownership-conflict-adr"
     ],
     "key_topics": [
       "anchor",
@@ -36,7 +34,7 @@
       "state",
       "sole",
       "renderer",
-      "implementation"
+      "key-questions"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -162,7 +160,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,15 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved markdown overwrite race: whichever writer runs last wins, with no event emitted, no conflict record stored, and no declared owner",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-07-01T13:22:18.953Z",
+    "last_save_at": "2026-07-01T22:26:49.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +208,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba9feb0dcb28d9fa75bae132709c22cc2b5f82684bf8fc42a85269ccc5c240d4",
+    "source_fingerprint": "sha256:7a7ca6ae5ea6f2cbd905225d4f30f16258eaa010726d7956cde104855f9ae29a",
     "source_doc_hashes": {
       "spec.md": "c73b87ca83525b45c8d818ec78e6381c56f46cc3959386bcc5e401639386cbde",
-      "plan.md": "56360b800a53059237bf4f78d8e181792e8d2686a4361dc146d00e1526f54b4d",
-      "tasks.md": "89b64b537a8ef6e0982407ab94983f101296e87e28bcef871145b6417d47d87f",
+      "plan.md": "691d7934eeed18afa87af0590a7786231a0bde50edf60b685162f529eba18d73",
+      "tasks.md": "f6bb4335b5efb821981181b07c8eeb6bc4b6b39556dcb9f5d74c99ca372fdb0a",
       "decision-record.md": "3c22ae98e856f6553d0b27f6d468f660c8b2d61114e59fe8c23bfa0368100d9d",
       "implementation-summary.md": "95d8dd9e820cce0c34459cd9c0be6495ee05d3aa92596472fbc83c08b5aba279"
     },

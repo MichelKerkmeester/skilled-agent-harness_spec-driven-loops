@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre-review sweep confirmed 4 more misses",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:55.797Z",
+    "last_save_at": "2026-07-02T05:31:12.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

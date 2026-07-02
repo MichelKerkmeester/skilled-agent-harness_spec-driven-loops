@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,11 +39,11 @@
     "status": "complete",
     "key_files": [
       ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/claude-session-cleanup.sh",
       ".claude/settings.local.json",
       ".opencode/plugins/session-cleanup.js",
       ".opencode/scripts/README.md",
-      ".opencode/scripts/session-cleanup.sh",
       ".claude/settings.json",
       "spec.md",
       "plan.md",
@@ -56,6 +56,12 @@
         "name": "orphan-mcp-sweeper.sh",
         "kind": "script",
         "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
         "source": "derived"
       },
       {
@@ -80,12 +86,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-cleanup.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/session-cleanup.sh",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-06-23T03:49:56.323Z",
+    "last_save_at": "2026-07-02T05:31:12.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

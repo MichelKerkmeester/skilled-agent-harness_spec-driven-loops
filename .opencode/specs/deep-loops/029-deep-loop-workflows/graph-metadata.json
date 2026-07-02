@@ -148,17 +148,17 @@
     ],
     "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULLISOLATENOMCP consolidation)",
     "created_at": "2026-06-14T20:16:09.672Z",
-    "last_save_at": "2026-06-23T03:49:48.664Z",
+    "last_save_at": "2026-07-02T05:31:05.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:91ee84c71ae8d7ff3031c9052ceaee75708f22a74854ea84f0318037b3cde101",
+    "source_fingerprint": "sha256:1f9884e5a3e9b786dca9014e0148d1aa4d6e75eaa5e7311409eaa0829023480d",
     "source_doc_hashes": {
-      "spec.md": "71a547f8bc370ad0de2b3066bf741f3bcf97d95a1ef552ec758f0b92abc587df",
-      "research/research.md": "8e0563ba7fe4ccaaf3f3148a7ed33caa2762876a6096b33fb58a0376455fef41"
+      "spec.md": "f6164a757a73bbe897d62daceef1e053c5b1a8cff99acadb9022216c2a960bac",
+      "research/research.md": "356e9b7b968c43474435fdc95c7127b0c588e27fc24817b3b556f658b35ac225"
     },
     "last_active_child_id": null,
     "last_active_at": null

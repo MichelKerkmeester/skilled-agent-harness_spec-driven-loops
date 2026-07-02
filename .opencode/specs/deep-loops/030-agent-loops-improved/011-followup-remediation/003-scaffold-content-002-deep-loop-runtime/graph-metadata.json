@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-agent-loops-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
+  "spec_folder": "deep-loops/030-agent-loops-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
+  "parent_id": "deep-loops/030-agent-loops-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold content remediation deep-loop-runtime",
+      "002-deep-loop-runtime scaffold cleanup",
+      "SCAFFOLD_NEVER_TOUCHED deep-loop-runtime",
+      "002-deep-loop-runtime scaffold cleanup complete"
+    ],
+    "key_topics": [
+      "scaffold",
+      "content",
+      "remediation",
+      "deep-loop-runtime",
+      "002-deep-loop-runtime",
+      "cleanup",
+      "complete",
+      "leaf",
+      "children",
+      "opencode",
+      "specs",
+      "deep-loops"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff/plan.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume/tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime/implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Content Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Replaced",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All 18 leaf children under `.opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/` (`001-atomic-state-serialize-diff` through `018-persisted-wait-crash-resume`) have a `plan.md` and `tasks.md` whose body content is still unmodified scaffold-template placeholder prose — literal text such as `[Component 1]: [Purpose]` (e.g",
+    "created_at": "2026-07-01T19:38:04.138Z",
+    "last_save_at": "2026-07-02T14:03:07.605Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6dcb2b231982065b347457c19b19317b50bfbf4267d0bf9c4c7a58f821afc5c",
+    "source_doc_hashes": {
+      "spec.md": "c60cb802e290041010a12bc4aaed15be532824bc4d0d51037e7148163d11025b",
+      "plan.md": "3fb5288897bf66a86eb4c2d18cac45faa64901a3e95905e4b75fd9255e89cf22",
+      "tasks.md": "333c4e1bce3b9dc45285b6137770da48bc3705487d026f51b6af34a65c793a02",
+      "implementation-summary.md": "56ce241d769ce706791d50052187abda624cc6df3371403e7b03231da03417d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

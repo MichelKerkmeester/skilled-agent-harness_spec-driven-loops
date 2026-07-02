@@ -210,6 +210,9 @@ const TRIGGER_CACHE_LOADER_SQL = `
   SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, document_type, anchor_id, content_text
   FROM memory_index
   WHERE embedding_status = 'success'
+    AND trigger_phrases IS NOT NULL
+    AND trigger_phrases != '[]'
+    AND trigger_phrases != ''
     AND (
       (document_type IN ('spec', 'plan', 'tasks', 'checklist', 'decision_record', 'implementation_summary', 'research', 'handover')
         AND (anchor_id IS NULL OR anchor_id = ''))

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,10 +55,8 @@
       "research/findings-registry.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".claude/settings.local.json",
-      ".codex/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".codex/hooks.json",
       "resource-map.md"
     ],
     "entities": [
@@ -135,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".codex/settings.json",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
@@ -150,12 +142,6 @@
         "name": "hook_system.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -205,11 +191,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Automation Reality Supplemental Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterations` with newInfoRatio=0.18 — STILL ABOVE the 0.10 convergence threshold",
     "created_at": "2026-04-29T14:35:00.000Z",
-    "last_save_at": "2026-06-23T03:49:52.800Z",
+    "last_save_at": "2026-07-02T05:31:10.860Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

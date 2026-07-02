@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/001-sk-design-interface/007-claude-design-parity-build |
+| **Spec Folder** | 007-claude-design-parity-build |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The command surface checker already enforces every field-level invariant the spec names — no surviving `<design request>` placeholder, mutation-free modes carry no Write/Edit/Bash, `ownerMode ∈ workflowMode`, aliases unique — by iterating a hardcoded five-command roster and drift-checking each wrapper against `command-metadata.json`",
     "created_at": "2026-06-28T12:40:10.580Z",
-    "last_save_at": "2026-06-29T13:12:38.111Z",
+    "last_save_at": "2026-07-02T05:31:08.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4508a4fc1f7aeeaf7928e4c229ab6842312f9a465d57c24904b763e39c8237d8",
+    "source_fingerprint": "sha256:8401bde29b00d56bf1ae7feba8006de8068537c0157f0f4d2449a9d2ca2c6ad7",
     "source_doc_hashes": {
-      "spec.md": "ccaca68a1564f8e99eef4129a221162c77bd02f68a257fe0637bb76943d159b4",
-      "plan.md": "ef42d868e2cef737c14727413dbc6ed52f19648d6ff367ee20ad387b011b8353",
-      "tasks.md": "83d0d33f90b337f29e366aeed08d5e535d5f82d3736322aeb9f79e0fc63fe150",
-      "checklist.md": "66f128ef039226e9582832402b5a545652aef480ffbeac8bf8c4d603a88f21a2",
-      "implementation-summary.md": "58ff44e503c886ba25e3a7c1411637f563b4840d51821446107e9e4807c2a3bf"
+      "spec.md": "d9812b01a41dbedb16735f8cc2cc1bee57fbb164879e094d86039bee6d0beef0",
+      "plan.md": "196d1414711108061bab7b1cf3e77ea8b0bd71a596859f42d071e77f1b646a63",
+      "tasks.md": "79e12c24088fa60c9e137276c4e05369bd52930d836f34bb091b270c8d9b8bcc",
+      "checklist.md": "64665d2e4884b419609b26c2861bb6fadd927b8029ddc3061ce9e4d64aee18dc",
+      "implementation-summary.md": "e5afe2c19805e87e7f97e826c13b671de277afac62b37b33692898aa44e90deb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,13 +18,8 @@
       "speckit complete autopilot",
       "branch preserved failure",
       "terminal reason codes speckit",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "001-speckit-autopilot-lifecycle summary",
+      "001-speckit-autopilot-lifecycle"
     ],
     "key_topics": [
       "speckit",
@@ -38,9 +33,9 @@
       "terminal",
       "reason",
       "codes",
-      "implementation"
+      "001-speckit-autopilot-lifecycle"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/commands/speckit/complete.md",
@@ -151,37 +146,25 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "System Spec Kit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -193,15 +176,27 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
     "created_at": "2026-06-28T20:06:47.253Z",
-    "last_save_at": "2026-07-01T15:47:37.151Z",
+    "last_save_at": "2026-07-01T23:09:12.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +205,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:059608aa08ae585fb9a15226586ab0a69e4ce7ba5453825c67f916a2ee3d4f9e",
+    "source_fingerprint": "sha256:adde0599584ed52f9188233b57cdb980286ff94635210bffeda0c2c85c946662",
     "source_doc_hashes": {
       "spec.md": "346ee28790face057dd2eb610daa4a201396077cf4383846362c7ac15807835e",
-      "plan.md": "00f41f9ab76c0bb15ea33dde3d921923bc0284cc6afc231e89a36984d19fb41d",
-      "tasks.md": "a7f3832c5cef34ff617c54884405047f775990ef832472ed60b91ce1c08e98f2",
+      "plan.md": "db354f6e200b97ef4ab4e49ccdbcb5067c96ebd903331f5b801d6e314f71be6b",
+      "tasks.md": "031912ec6f4a5fc78c3b786e74297755fb81a0f544c747dc589a144538d3941c",
       "implementation-summary.md": "165b7c80388801cf511bd2643ae55a2b6a75b62d05f860793051cc9b9da60f99"
     },
     "last_active_child_id": null,

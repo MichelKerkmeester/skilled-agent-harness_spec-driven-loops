@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Current-template Level 2 implementation summary fixture with concrete evidence."
 trigger_phrases:
   - "fixture"
@@ -14,6 +14,7 @@ _memory:
     last_updated_by: "validator-fixture"
     recent_action: "Completed Level 2 fixture regeneration"
     next_safe_action: "Use fixture 053 for clean strict validation regression coverage"
+    completion_pct: 100
 ---
 # Implementation Summary
 
@@ -27,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `053-template-compliant-level2` |
+| **Spec Folder** | 053-template-compliant-level2 |
 | **Completed** | 2026-06-11 |
 | **Level** | 2 |
 | **Actual Effort** | 45 minutes (estimated: 45 minutes) |

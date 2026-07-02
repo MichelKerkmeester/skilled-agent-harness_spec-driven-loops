@@ -18,13 +18,8 @@
       "006 loop wide dry run",
       "deep research dry run",
       "no dispatch dry run",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "006-loop-wide-dry-run summary",
+      "006-loop-wide-dry-run"
     ],
     "key_topics": [
       "loop",
@@ -36,9 +31,9 @@
       "deep",
       "research",
       "dispatch",
-      "implementation",
-      "plan",
-      "name"
+      "006-loop-wide-dry-run",
+      "summary",
+      "safe"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -130,37 +125,25 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Read",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -172,20 +155,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -194,11 +165,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built First",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "There is no safe way for an operator to inspect what a deep-loop run would do without executing it: setup, focus selection, and convergence reads cannot be validated without risking executor dispatch, state mutations, reducer rewrites, or child spawns",
     "created_at": "2026-06-28T20:20:45.392Z",
-    "last_save_at": "2026-07-01T15:47:37.170Z",
+    "last_save_at": "2026-07-01T23:09:12.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aacb8f72299cb9fcedecf596a66840663fe0183d283c01cd2885e13912bdf767",
+    "source_fingerprint": "sha256:2c12e4ca5b9b0e5b66d793eda38540f264413525f4bb72340ea10015f13ba136",
     "source_doc_hashes": {
       "spec.md": "86dcee8b096d1bc3fa725a874fc836cf2691a692f9dda31e81c1e19f71add50c",
-      "plan.md": "573cff8a25ec5289c2f27334985364cbb59a62769fbdccd0196a01585078db08",
-      "tasks.md": "9e25f71d9582864b56c4f57d52c3cb68f6c2e01523866c08c45ddb367b86dbfa",
+      "plan.md": "c1d4175d7e6e9ac9041f44b4ab40382fc98f12378a3a8e65842cc1c4d89008ed",
+      "tasks.md": "ae622b80ce3937d858aa29a4ceae953e3f8efa2cbd3e47157df5e7947b8563f9",
       "implementation-summary.md": "f1081b8f8cba2ed80e4298cef539a6ef01d4ae416f62c9779021e9c7feeb93ae"
     },
     "last_active_child_id": null,

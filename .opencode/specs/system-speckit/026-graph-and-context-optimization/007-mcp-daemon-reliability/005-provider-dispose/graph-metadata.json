@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,11 +35,11 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "shared/types.ts",
       "shared/embeddings/providers/hf-local.ts",
       "shared/embeddings.ts",
+      "shared/types.ts",
       "mcp_server/lib/embedders/execution-router.ts",
       "mcp_server/lib/embedders/reindex.ts",
       "mcp_server/tests/embeddings.vitest.ts",
@@ -50,12 +50,6 @@
     ],
     "entities": [
       {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "shared/types.ts",
-        "source": "derived"
-      },
-      {
         "name": "hf-local.ts",
         "kind": "code",
         "path": "shared/embeddings/providers/hf-local.ts",
@@ -65,6 +59,12 @@
         "name": "embeddings.ts",
         "kind": "code",
         "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s native ONNX/ORT session (held transitively via `extractor.model.sessions[].handler`) is orphaned on every provider swap — the native memory the GC cannot reclaim and `--max-old-space-size` cannot bound (RC-1)",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-06-23T03:49:56.410Z",
+    "last_save_at": "2026-07-02T05:31:12.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,6 +40,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "mcp_server/tests/fixtures/trigger-goldens.json",
       "mcp_server/tests/trigger-golden-fixture.ts",
       "mcp_server/tests/trigger-shadow-db-fixture.ts",
@@ -50,13 +54,33 @@
       "mcp_server/tests/trigger-backfill-resume.vitest.ts",
       "mcp_server/lib/triggers/semantic-trigger-matcher.ts",
       "mcp_server/ENV_REFERENCE.md",
-      "tests/trigger-goldens.vitest.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tests/trigger-goldens.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "trigger-goldens.json",
         "kind": "config",
@@ -115,30 +139,6 @@
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union",
     "created_at": "2026-06-06T13:35:46Z",
-    "last_save_at": "2026-06-23T03:49:57.200Z",
+    "last_save_at": "2026-07-02T05:31:13.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

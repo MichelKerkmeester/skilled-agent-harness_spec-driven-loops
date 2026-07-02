@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 13: coverage-graph-time-decay [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 13: Coverage Graph Time Decay"
+description: "Plan for the shipped time-decay weighting in coverage graph signal ranking."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "coverage-graph time-decay"
+  - "signal decay weighting"
+  - "stale convergence signal"
+  - "decay-days configuration"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-coverage-graph-time-decay"
-    last_updated_at: "2026-06-28T14:02:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/013-coverage-graph-time-decay"
+    last_updated_at: "2026-07-01T21:44:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped coverage graph time-decay content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed coverage signal decay weighting"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/013-coverage-graph-time-decay"
+      fingerprint: "sha256:013a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5e0e"
+      session_id: "scaffold-content-remediation-013"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 13: coverage-graph-time-decay
+# Implementation Plan: Phase 13: Coverage Graph Time Decay
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript coverage graph signal ranking |
+| **Framework** | Deep-loop coverage graph actionability scoring |
+| **Storage** | Existing coverage graph raw counts remain unchanged |
+| **Testing** | Spec acceptance requires decay math at 0/30/60 days, ranking integration, default no-regression with `decayDays=0`, and raw-count preservation; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped `timeDecayWeight(createdAt, decayDays, now)` in `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` and wired it into existing signal ranking math. The default `decayDays=0` preserves pre-patch rankings, while enabled decay reduces stale evidence actionability without deleting historical coverage counts.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: stale FINDING/SOURCE nodes retained full convergence force indefinitely.
+- [x] Success criteria measurable: `decayDays=30` halves a 30-day-old node and quarters a 60-day-old node.
+- [x] Dependencies identified: coverage graph signal-ranking path must be readable before implementation.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `timeDecayWeight(createdAt, decayDays, now)` returns `0.5^(ageDays/decayDays)`.
+- [x] `decayDays=0` returns `1.0` and preserves default ranking output.
+- [x] Decay weight is applied in existing signal ranking math.
+- [x] Historical/raw coverage counts are not mutated by decay.
+- [x] Config validation enforces a safe minimum when decay is enabled.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Derived time-decay multiplier applied at ranking time, not a persisted-data rewrite.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`timeDecayWeight`**: Computes exponential half-life weighting from node age and configured decay days.
+- **Signal ranking integration**: Multiplies actionability/ranking contribution by the decay weight.
+- **No-decay default**: `decayDays=0` returns `1.0` to keep existing behavior unchanged.
+- **Raw count preservation**: Historical coverage fields remain intact for audit/history.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Signal ranking reads a node's `createdAt`, computes age relative to `now`, derives a decay multiplier from `decayDays`, and applies it to the node's actionability contribution. Stored raw counts and historical graph data are left unchanged so the graph keeps its full audit trail.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +101,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Computes coverage graph signal ranking | Add `timeDecayWeight` and ranking multiplier | Spec acceptance covers math and call-site integration |
+| Persisted coverage graph counts | Historical evidence storage | Unchanged | Raw counts unchanged before/after decay-enabled run |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect signal ranking call-site before adding the helper.
+- Consumers of changed symbols: ranking consumers receive decayed actionability when enabled; storage consumers still see raw counts.
+- Matrix axes: `decayDays=0`, 30-day age at 30-day half-life, 60-day age at 30-day half-life, same-day nodes, invalid/too-short decay config, and raw-count preservation.
+- Algorithm invariant: decay can change actionability/ranking weight, but must never erase or mutate historical coverage records.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm implementation scope is only `coverage-graph-signals.ts`.
+- [x] Read the existing signal-ranking path before adding decay.
+- [x] Confirm no persisted state schema changes are required.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `timeDecayWeight(createdAt, decayDays, now)` with exponential half-life math.
+- [x] Return `1.0` when `decayDays=0` to preserve default behavior.
+- [x] Wire the decay multiplier into signal ranking math.
+- [x] Keep raw coverage count fields unchanged.
+- [x] Enforce a minimum decay window when decay is enabled.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify `decayDays=0` returns `1.0` and default ranking output is unchanged.
+- [x] Verify `decayDays=30`, age 30 days returns `0.5`.
+- [x] Verify `decayDays=30`, age 60 days returns `0.25`.
+- [x] Verify ranking call-site references `timeDecayWeight` and raw counts remain untouched.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +142,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/math | `timeDecayWeight` for no-decay, 30-day, and 60-day cases | Spec acceptance criteria; no dedicated test file named |
+| Regression | `decayDays=0` produces identical rankings to pre-patch behavior | Ranking output comparison |
+| Integration/code review | Ranking call-site uses `timeDecayWeight` | Review `coverage-graph-signals.ts` |
+| Persistence | Raw coverage counts unchanged before/after decay-enabled run | State comparison |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +155,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing coverage graph signal ranking path | Internal | Available | Decay must be wired into ranking, not left as unused helper |
+| Config validation for decay window | Internal | Complete | Prevents overly short decay windows from suppressing convergence evidence too quickly |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +164,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Default rankings change when `decayDays=0`, raw counts mutate, or enabled decay suppresses actionability incorrectly.
+- **Procedure**: Remove the decay multiplier from `coverage-graph-signals.ts` and revert to raw actionability ranking; keep historical coverage data unchanged.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +176,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

@@ -87,15 +87,15 @@
     ],
     "causal_summary": "Phase-parent for the buildable backlog from the 037 routing-and-integration research. Holds six dimension sub-parents (D1 residual craft, D2 command specificity, D3 routing/utilization guarantee, D4 mcp-open-design pairing guarantee, D5 cross-CLI survival, D6 corpus ports), each with one phase per recommendation. Children are planned scaffolds: each carries a spec describing what to build, the target file, the acceptance gate, and the research evidence; plan/tasks/checklist are authored when a phase is executed.",
     "created_at": "2026-06-28T12:39:16.400Z",
-    "last_save_at": "2026-06-30T09:11:21.643Z",
+    "last_save_at": "2026-07-02T05:31:07.946Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4336658beb459b0999f8866648bfddccbfe510ee8cff899404b9eaecffbfe85d",
+    "source_fingerprint": "sha256:8cf315d83ede267feef38d5b6e4247b9bd79052548d1072cb5a21f7eae115ddd",
     "source_doc_hashes": {
-      "spec.md": "b4fc95ea8247ce37186af4fccf4e5e71d6f62a18a61a74b75c7f447e04b688fe"
+      "spec.md": "6f3abfca26f0d7ef9060872537cd0d2f71e306f0b77ceb668e6e6a3390aa247d"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-30T09:11:21.643Z"

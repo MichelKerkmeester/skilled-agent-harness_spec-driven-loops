@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/006-sk-prompt-design-tool-usecases |
+| **Spec Folder** | 006-sk-prompt-design-tool-usecases |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

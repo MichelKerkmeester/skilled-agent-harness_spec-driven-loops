@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/017-real-bugs |
+| **Spec Folder** | 017-real-bugs |
 | **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

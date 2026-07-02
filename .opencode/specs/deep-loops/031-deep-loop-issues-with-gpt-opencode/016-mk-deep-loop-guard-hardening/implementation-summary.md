@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `016-mk-deep-loop-guard-hardening` |
+| **Spec Folder** | 016-mk-deep-loop-guard-hardening |
 | **Completed** | 2026-07-01 |
 | **Level** | 1 (research-only) |
 <!-- /ANCHOR:metadata -->

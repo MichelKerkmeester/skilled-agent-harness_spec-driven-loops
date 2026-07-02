@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
   ],
   "manual": {
     "depends_on": [],
@@ -41,6 +45,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "decision-record.md",
       "resource-map.md",
       "lib/triggers/semantic-trigger-matcher.ts",
@@ -59,10 +64,15 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/triggers/semantic-trigger-matcher.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts"
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -136,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "tier-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts",
-        "source": "derived"
-      },
-      {
         "name": "Semantic Trigger Fallback",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +214,7 @@
     ],
     "causal_summary": "Phase-parent control packet for the hybrid lexical+semantic trigger fallback: schema + backfill, semantic matcher, hybrid handler integration, and tests/goldens/shadow eval. Lexical stays primary; semantic is a feature-flagged UNION fallback, default-off and shadow-first.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:57.174Z",
+    "last_save_at": "2026-07-02T05:31:13.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

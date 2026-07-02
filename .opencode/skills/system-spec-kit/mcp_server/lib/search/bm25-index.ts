@@ -452,6 +452,7 @@ class BM25Index {
   private k1: number;
   private b: number;
   private engine: InMemoryBm25Engine;
+  private engineConfiguredExplicitly: boolean;
   private documents: Map<string, LegacyDocumentRecord>;
   private packedDocuments: Map<string, PackedDocumentRecord>;
   private packedDocIds: Array<string | undefined>;
@@ -478,11 +479,12 @@ class BM25Index {
   constructor(
     k1: number = DEFAULT_K1,
     b: number = DEFAULT_B,
-    engine: InMemoryBm25Engine = resolveInMemoryBm25Engine()
+    engine?: InMemoryBm25Engine
   ) {
     this.k1 = k1;
     this.b = b;
-    this.engine = engine;
+    this.engine = engine ?? resolveInMemoryBm25Engine();
+    this.engineConfiguredExplicitly = engine !== undefined;
     this.documents = new Map();
     this.packedDocuments = new Map();
     this.packedDocIds = [];
@@ -715,6 +717,10 @@ class BM25Index {
       return 0;
     }
 
+    if (!this.shouldSyncChangedRows(database)) {
+      return 0;
+    }
+
     try {
       const placeholders = normalizedIds.map(() => '?').join(', ');
       const rows = (database.prepare(
@@ -755,6 +761,14 @@ class BM25Index {
       console.warn(`[bm25-index] Failed to sync BM25 rows: ${msg}`);
       return 0;
     }
+  }
+
+  private shouldSyncChangedRows(database: Database.Database): boolean {
+    if (this.engineConfiguredExplicitly) {
+      return isBm25Enabled();
+    }
+
+    return getBm25EngineStatus(database).warms_in_memory_bm25;
   }
 
   /**

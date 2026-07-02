@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
@@ -50,6 +56,42 @@
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "consumption-logger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-analytics-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -157,47 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verify Fix",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:52.964Z",
+    "last_save_at": "2026-07-02T05:31:10.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

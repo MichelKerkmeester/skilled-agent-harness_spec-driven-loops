@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-reap.vitest.ts",
+      "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -57,7 +57,7 @@
       {
         "name": "launcher-clean-close-reap.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-reap.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon",
     "created_at": "2026-05-30T19:47:42.617Z",
-    "last_save_at": "2026-06-23T03:49:56.487Z",
+    "last_save_at": "2026-07-02T05:31:12.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

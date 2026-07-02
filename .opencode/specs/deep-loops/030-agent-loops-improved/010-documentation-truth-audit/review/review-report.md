@@ -72,14 +72,3 @@ Implementation is a single edit pass against `README.md` (per the Remediation Wo
 
 - `spec_code`: PASS — every active finding traces directly to an explicit requirement in this phase's own `spec.md` (P1-001: spec.md:78,113; P1-002: spec.md:78,135; P1-004 confirmed in-scope via the Deep Loop FEATURES cross-check).
 - `checklist_evidence`: CONDITIONAL — `checklist.md` correctly marks these items pending; will flip to PASS once the fixes land with cited evidence.
-- `feature_catalog_code`: PASS — `.opencode/plugins/README.md:49` and comparable FEATURES subsections (`README.md:366/557/678/778`) both directly support the P1-002 recommendation.
-
-## Deferred Items
-
-- None. All 5 active findings are in-scope for this phase's own remediation pass; nothing was pushed to a future phase.
-
-## Audit Appendix
-
-- Lineage: `gpt-5.5-fast` (docaudit-gpt-1782923481736-742711), executor `cli-opencode`, `--variant high`, `stopPolicy=max-iterations`, 10/10 iterations completed and independently verified (3 required artifacts checked per iteration before the next was dispatched; never accepted on self-report).
-- Mid-run context change: a separate, concurrently-running Claude Code session committed unrelated work to this branch during iterations 6-9, including a commit that already fixed the Goal section's Claude-Code-vs-OpenCode wording accuracy (packet 032 scope). Iteration 9 confirmed this did not invalidate P1-002, only narrowed its remaining scope to structural promotion.
-- Full per-iteration narratives: `review/iterations/iteration-{1..10}.md`. Full JSONL state: `review/deep-review-state.jsonl`. Strategy trace: `review/deep-review-strategy.md`.

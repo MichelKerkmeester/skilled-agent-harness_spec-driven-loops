@@ -43,12 +43,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design-interface/SKILL.md",
-      ".opencode/skills/sk-design-interface/LICENSE.txt",
-      ".opencode/skills/sk-design-interface/README.md",
-      ".opencode/skills/sk-design-interface/graph-metadata.json",
-      ".opencode/skills/sk-code/graph-metadata.json",
       ".opencode/skills/README.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -57,27 +53,15 @@
     ],
     "entities": [
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "LICENSE.txt",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design-interface/LICENSE.txt",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design-interface/graph-metadata.json",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -199,11 +183,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The framework produced templated, generic UI when asked for design work (a MagicPath sector variation that did not read as on-brand)",
     "created_at": "2026-06-13T15:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.386Z",
+    "last_save_at": "2026-07-02T05:31:06.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68a9741657e5568e09f8c04026f7cf6c1be11f69a85ac8b0d8cc41ee648e7b1a",
+    "source_fingerprint": "sha256:ef8baefb9f52f518d400bd2d70fccbd4deb798aff7c02cca8716dc60e11929eb",
     "source_doc_hashes": {
-      "spec.md": "0d6a28e917257fc2e2f22c9a5f4cc494c871739a2f985e2ea8a35758875958e8",
-      "plan.md": "c833d349edb2cc4bd3167ee45cd90b4e19c0c05c152d4cb55715b9c088fb18eb",
-      "tasks.md": "a6bc20a0f4180ddcd1b6f1679717eae1d331567fed353f5008336fedaf33f289",
-      "checklist.md": "cb810e21c5caef1eb5950db4a02a389ad89126bd523fd445320e4d53a1b62351",
-      "implementation-summary.md": "58bbb4710f1083a3d622a1ff8d3d1514adfc7716f7b11083714d918276f3df98"
+      "spec.md": "08dae48984999d71ad477939bdbeed3ea599b29de8ad835413c2172e9fa15076",
+      "plan.md": "a430000640419a2eb67138dc64f36da204a63fd6408889b99547f29e965dd060",
+      "tasks.md": "94ac5fd3cc3e4c8989f8b160a2cf7147f7fc726bb674b9dbb79eb53a470af73b",
+      "checklist.md": "6e2664cff6f966b02a5a5aa2b65bbc431168d820d86613869753941e58eb7106",
+      "implementation-summary.md": "e20336eb8dc961a4038f5432ac625689dfbc1694803410e0a434c5799f3a5563"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
       "references/memory/embedder_architecture.md",
       ".codex/config.toml",
       "implementation-summary.md",
@@ -49,12 +49,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "benchmark_report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
-        "source": "derived"
-      },
       {
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
@@ -65,6 +59,12 @@
         "name": "embedder_architecture.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After phases 001-003 ship, spec-memory has a working cross-encoder rerank pipeline plumbed to a shared Qwen sidecar",
     "created_at": "2026-05-23T11:55:15.613Z",
-    "last_save_at": "2026-06-23T03:49:54.996Z",
+    "last_save_at": "2026-07-02T05:31:12.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

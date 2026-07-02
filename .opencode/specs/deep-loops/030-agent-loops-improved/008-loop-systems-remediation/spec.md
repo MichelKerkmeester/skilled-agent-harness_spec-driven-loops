@@ -43,9 +43,9 @@ _memory:
 | **Status** | Complete (children 001-007 shipped) |
 | **Created** | 2026-06-29 |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 11 |
 | **Predecessor** | 007-testing |
-| **Successor** | None |
+| **Successor** | 009-research-backlog-remediation |
 | **Handoff Criteria** | Each child phase validates independently under `validate.sh` |
 <!-- /ANCHOR:metadata -->
 

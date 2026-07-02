@@ -43,9 +43,9 @@
     "key_files": [
       ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
       ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_registry.json",
+      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
       ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/tell.html",
       ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/clean.html",
-      ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
       ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_self_defect_card.md",
       ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
       "implementation-summary.md",
@@ -68,6 +68,12 @@
         "source": "derived"
       },
       {
+        "name": "ai-fingerprint-fixture-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
+        "source": "derived"
+      },
+      {
         "name": "tell.html",
         "kind": "file",
         "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/tell.html",
@@ -77,12 +83,6 @@
         "name": "clean.html",
         "kind": "file",
         "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/ai-fingerprint-theater-meta-criticism-copy/clean.html",
-        "source": "derived"
-      },
-      {
-        "name": "ai-fingerprint-fixture-check.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The AI-fingerprint catalog at `aifingerprinttells.md` carried nine tells but not the Codex \"theater / meta-criticism copy\" tell — the slop habit of copy that narrates its own importance by calling a surface a kind of theater (\"design theater\", \"engagement theater\") instead of naming concrete user harm",
     "created_at": "2026-06-28T12:40:03.990Z",
-    "last_save_at": "2026-06-29T12:07:39.935Z",
+    "last_save_at": "2026-07-02T05:31:07.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8c6506bd81da1e148031228be450d98876971409872942a8d799dc8d73559a9",
+    "source_fingerprint": "sha256:6f68b2da90edd53d1c0e7e303a8967753eec31dec6e92c830713f12cb4e0ae45",
     "source_doc_hashes": {
-      "spec.md": "0ef3679fe7d402d573579a7e1c7d13fd344b1fda3053bf859ed97c4b551f3dd2",
-      "plan.md": "053b221b5058ca61a15e4470beb6ad588904b78648530cb20107dd216500a9bb",
-      "tasks.md": "7cbff9b1c2530193efe26bf1e7b4410469326585c800d9431ca210462908a7b1",
-      "checklist.md": "36a004eeab42e653724f5e2bb7918885b7a2aff776c3103f028ff32b6afed10d",
-      "implementation-summary.md": "19467e3dddac8085ca346bde2e86da279141414cdf14a0a84c2c69f3ed729d6b"
+      "spec.md": "6cd409991a01408ac6a82eec4dc35525654c91b03a1deed1070d71cc6dd9d500",
+      "plan.md": "f01f0df8aab29b6a3094284d232ba3be72f924540b6771dad40e3e2d5ac0d540",
+      "tasks.md": "a5377bf2e9ac3d1f145c10cbdd8a4f2cbcf31169a590d38e7922109edb8c2230",
+      "checklist.md": "180b2c2eb777b7696ed72477008623ef439f09ccc822cb156042a7d729648eae",
+      "implementation-summary.md": "40e435c3acc8b57e3760bb7261ea0c6cfc46f7d8bdf68bd82bce19ab0c2bbf61"
     },
     "last_active_child_id": null,
     "last_active_at": null

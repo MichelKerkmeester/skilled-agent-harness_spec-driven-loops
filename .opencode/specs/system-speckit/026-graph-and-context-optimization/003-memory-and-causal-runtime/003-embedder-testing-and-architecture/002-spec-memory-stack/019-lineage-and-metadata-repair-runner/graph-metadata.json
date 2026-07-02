@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,25 +42,13 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-graph-metadata.mjs",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/048-cli-testing-playbooks/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/049-mcp-testing-playbooks/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/051-cli-opencode-providers/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-code-merger/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/056-sk-code-fullstack-branch/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/059-agent-implement-code/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/003-followup-research/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/002-agent-debug/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/004-agent-review/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/z_archive/061-agent-optimization/005-agent-orchestrate/graph-metadata.json"
+      "mcp_server/lib/graph/graph-metadata-schema.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -70,9 +58,45 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/graph-metadata.json",
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,47 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`memoryindexscan` reported 503 failures",
     "created_at": "2026-05-19T19:41:49Z",
-    "last_save_at": "2026-06-23T03:49:54.378Z",
+    "last_save_at": "2026-07-02T05:31:11.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

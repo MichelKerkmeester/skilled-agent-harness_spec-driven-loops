@@ -1,32 +1,33 @@
 ---
-title: "Tasks: Phase 1: dashboard-sparkline-trend [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Dashboard Sparkline and Trend Rendering"
+description: "Completed task ledger for reduce-state dashboard sparkline and trend rendering."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "dashboard sparkline"
+  - "sparkline trend"
+  - "newInfoRatio trend"
+  - "reduce-state trend section"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-dashboard-sparkline-trend"
-    last_updated_at: "2026-06-28T14:02:19Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/006-ux-observability-automation/001-dashboard-sparkline-trend"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-dashboard-sparkline-trend"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: dashboard-sparkline-trend
+# Tasks: Dashboard Sparkline and Trend Rendering
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm the dashboard trend problem (`spec.md`).
+- [x] T002 Identify `reduce-state.cjs` as the only changed implementation surface (`reduce-state.cjs`).
+- [x] T003 [P] Separate static trend rendering from running-iteration banner work (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `renderSparkline()` with safe handling for bounded numeric history (`reduce-state.cjs`).
+- [x] T005 Render `newInfoRatio` history in the dashboard trend section (`reduce-state.cjs`).
+- [x] T006 Render score history in the dashboard trend section (`reduce-state.cjs`).
+- [x] T007 Emit `trend_flatline` when repeated flat values indicate no progress (`reduce-state.cjs`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Verify sparkline output for decay, growth, and flat histories.
+- [x] T009 Verify dashboard markdown includes `## 5. TREND` with at least two data points.
+- [x] T010 Verify flat history emits the expected advisory.
+- [x] T011 Update plan and task docs to reflect completed implementation (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +83,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +96,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

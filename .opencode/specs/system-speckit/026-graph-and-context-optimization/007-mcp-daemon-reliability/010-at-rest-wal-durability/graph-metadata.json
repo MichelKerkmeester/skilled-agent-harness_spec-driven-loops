@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,21 +41,50 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability/scratch/wal-durability-benchmark.mjs",
       "database/context-index.sqlite",
       "scratch/wal-durability-benchmark-results.json",
-      "lib/search/vector-index.ts",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "lib/search/vector-index.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "vector-index-store.ts",
         "kind": "code",
@@ -81,12 +110,6 @@
         "source": "derived"
       },
       {
-        "name": "wal-durability-benchmark.mjs",
-        "kind": "file",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability/scratch/wal-durability-benchmark.mjs",
-        "source": "derived"
-      },
-      {
         "name": "context-index.sqlite",
         "kind": "file",
         "path": "database/context-index.sqlite",
@@ -96,36 +119,6 @@
         "name": "wal-durability-benchmark-results.json",
         "kind": "config",
         "path": "scratch/wal-durability-benchmark-results.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 008 added a close-time `walcheckpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUNCATE checkpoint in the close path",
     "created_at": "2026-05-29T13:15:08.290Z",
-    "last_save_at": "2026-06-23T03:49:56.440Z",
+    "last_save_at": "2026-07-02T05:31:12.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

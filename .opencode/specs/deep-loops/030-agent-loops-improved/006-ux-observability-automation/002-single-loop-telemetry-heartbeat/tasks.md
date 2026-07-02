@@ -1,32 +1,34 @@
 ---
-title: "Tasks: Phase 2: single-loop-telemetry-heartbeat [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Single-Loop Telemetry Heartbeat"
+description: "Completed task ledger for single-executor telemetry heartbeat and serialized-diff gating."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "single loop telemetry"
+  - "telemetry heartbeat"
+  - "single executor telemetry"
+  - "orchestration status parity"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-single-loop-telemetry-heartbeat"
-    last_updated_at: "2026-06-28T14:02:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-single-loop-telemetry-heartbeat"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: single-loop-telemetry-heartbeat
+# Tasks: Single-Loop Telemetry Heartbeat
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +52,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm the single-loop telemetry gap (`spec.md`).
+- [x] T002 Identify YAML producer and atomic-state diff surfaces (`deep_research_auto.yaml`, `atomic-state.ts`).
+- [x] T003 [P] Preserve fan-out ledger format and dashboard reader changes as out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +62,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `step_telemetry_heartbeat` for started lifecycle rows (`deep_research_auto.yaml`).
+- [x] T005 Add progress telemetry rows with fan-out-shaped gauges (`deep_research_auto.yaml`).
+- [x] T006 Add terminal rows for completed, failed, and stopped states (`deep_research_auto.yaml`).
+- [x] T007 Tag single-executor rows with `label:"single"` (`deep_research_auto.yaml`).
+- [x] T008 Add serialized-diff suppression for no-change telemetry writes (`atomic-state.ts`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +74,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Verify started row appears before first iteration dispatch.
+- [x] T010 Verify single-loop rows parse with the same schema as fan-out rows.
+- [x] T011 Verify unchanged serialized state does not produce duplicate telemetry.
+- [x] T012 Update plan and task docs to reflect completed implementation (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +98,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

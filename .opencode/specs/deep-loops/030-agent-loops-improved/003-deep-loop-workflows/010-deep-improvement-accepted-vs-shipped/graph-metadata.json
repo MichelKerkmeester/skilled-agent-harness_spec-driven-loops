@@ -15,14 +15,8 @@
       "promotion_blocked_branch_preserved",
       "rollback candidate deep improvement",
       "two-step promotion gate",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "010-deep-improvement-accepted-vs-shipped summary"
+      "010-deep-improvement-accepted-vs-shipped summary",
+      "010-deep-improvement-accepted-vs-shipped"
     ],
     "key_topics": [
       "accepted",
@@ -34,11 +28,11 @@
       "two-step",
       "promotion",
       "gate",
-      "implementation",
-      "plan",
-      "name"
+      "010-deep-improvement-accepted-vs-shipped",
+      "summary",
+      "deep-improvement"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
@@ -162,27 +156,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,15 +180,21 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
     "created_at": "2026-06-28T14:02:13Z",
-    "last_save_at": "2026-07-01T15:47:37.142Z",
+    "last_save_at": "2026-07-01T22:26:49.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a44a77e251e8641867c9cf42631542677aee9aefe3268a708674f9d44c64ff1",
+    "source_fingerprint": "sha256:efae528a49acf1ebcd0d189b9bdf728922fac2214ffaba6f7b57d965c68fbad6",
     "source_doc_hashes": {
       "spec.md": "965cbb68a5660abb00a915bbe19ef42af2fe05b3d440885c70bde0a6068a8bde",
-      "plan.md": "cb4f9e92efc21fb79908bbd5da49f04cd43325365b058400c2d70afe32e0c15f",
-      "tasks.md": "4d79dc1e388051c5d83b2d496bd62155da014fd021c61d9676c68d14ed793add",
+      "plan.md": "648336d9866c6179d496983eb287459196b3fe47ba44fe8a297fe2cdf4b8aab5",
+      "tasks.md": "eb34ddf6defb1863961f1929ca2f2f8114fd261c122aed9eab7e08bbc5eed647",
       "implementation-summary.md": "09ae1ad621b71930f0df09930bac8cbee6c8ce7089cde1d7ba0ae76e5d4f145e"
     },
     "last_active_child_id": null,

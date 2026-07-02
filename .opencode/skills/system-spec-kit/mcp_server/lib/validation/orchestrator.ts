@@ -4,6 +4,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
@@ -63,10 +64,78 @@ function findSkillRoot(startDir: string): string {
 
 const SKILL_ROOT = findSkillRoot(MODULE_DIR);
 const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates', 'manifest');
+const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'scripts', 'lib', 'validator-registry.json');
+const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'scripts', 'rules');
+const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces']);
+
+type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
+
+interface ValidatorRegistryEntry {
+  rule_id: string;
+  script_path: string;
+  severity: RegistrySeverity;
+  strict_only?: boolean;
+}
+
+interface ShellRuleOutput {
+  rule: string;
+  status: string;
+  message: string;
+  details: string[];
+}
+
+const REGISTRY_SHELL_RULE_WRAPPER = String.raw`set -euo pipefail
+folder="$1"
+level="$2"
+rule_script="$3"
+rule_id="$4"
+STRICT_MODE="$5"
+validate_script_dir="$6"
+
+RULES_DIR="$validate_script_dir/../rules"
+VALIDATOR_REGISTRY_JSON="$validate_script_dir/../lib/validator-registry.json"
+JSON_MODE=false
+QUIET_MODE=false
+VERBOSE=false
+LEVEL_METHOD="inferred"
+DETECTED_LEVEL="$level"
+RULE_NAME=""
+RULE_STATUS="pass"
+RULE_MESSAGE=""
+RULE_DETAILS=()
+RULE_REMEDIATION=""
+
+source "$validate_script_dir/../lib/shell-common.sh"
+source "$rule_script"
+
+if ! type run_check >/dev/null 2>&1; then
+  printf 'rule\t%s\n' "$rule_id"
+  printf 'status\tfail\n'
+  printf 'message\tRule script has no run_check function\n'
+  exit 0
+fi
+
+if [[ "$(basename "$rule_script")" == "check-canonical-save.sh" ]]; then
+  SPECKIT_CANONICAL_SAVE_RULE="$rule_id"
+  run_check "$folder" "$level" "$rule_id"
+  unset SPECKIT_CANONICAL_SAVE_RULE
+else
+  run_check "$folder" "$level"
+fi
+
+printf 'rule\t%s\n' "${'${'}RULE_NAME:-$rule_id}"
+printf 'status\t%s\n' "${'${'}RULE_STATUS:-pass}"
+printf 'message\t%s\n' "${'${'}RULE_MESSAGE:-OK}"
+if [[ -n "${'${'}RULE_DETAILS[*]-}" ]]; then
+  for detail in "${'${'}RULE_DETAILS[@]}"; do
+    printf 'detail\t%s\n' "$detail"
+  done
+fi
+`;
 
 function normalizeLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
@@ -95,6 +164,115 @@ function detectLevel(folder: string): SpecKitLevel {
 
 function entry(rule: string, status: ValidationEntry['status'], message: string, details: string[] = []): ValidationEntry {
   return { rule, status, message, details };
+}
+
+function isRegistryEntry(value: unknown): value is ValidatorRegistryEntry {
+  if (!value || typeof value !== 'object') return false;
+  const candidate = value as Record<string, unknown>;
+  const severity = candidate.severity;
+  return typeof candidate.rule_id === 'string'
+    && typeof candidate.script_path === 'string'
+    && (severity === 'error' || severity === 'warn' || severity === 'info' || severity === 'skip');
+}
+
+function readValidatorRegistry(): ValidatorRegistryEntry[] {
+  if (!fs.existsSync(VALIDATOR_REGISTRY_PATH)) return [];
+  const parsed = JSON.parse(fs.readFileSync(VALIDATOR_REGISTRY_PATH, 'utf8')) as unknown;
+  return Array.isArray(parsed) ? parsed.filter(isRegistryEntry) : [];
+}
+
+function resolveRegistryRuleScript(scriptPath: string): string | null {
+  if (!scriptPath.startsWith('rules/') || !scriptPath.endsWith('.sh')) return null;
+  const resolved = path.resolve(SKILL_ROOT, 'scripts', scriptPath);
+  const rulesRoot = path.resolve(VALIDATOR_RULES_ROOT);
+  if (resolved !== rulesRoot && !resolved.startsWith(`${rulesRoot}${path.sep}`)) return null;
+  return fs.existsSync(resolved) && fs.statSync(resolved).isFile() ? resolved : null;
+}
+
+function parseShellRuleOutput(ruleId: string, output: string): ShellRuleOutput {
+  const parsed: ShellRuleOutput = {
+    rule: ruleId,
+    status: 'pass',
+    message: '',
+    details: [],
+  };
+  for (const line of output.replace(/\r\n/gu, '\n').split('\n')) {
+    if (!line) continue;
+    const separatorIndex = line.indexOf('\t');
+    if (separatorIndex === -1) continue;
+    const kind = line.slice(0, separatorIndex);
+    const value = line.slice(separatorIndex + 1);
+    if (kind === 'rule') parsed.rule = value || parsed.rule;
+    else if (kind === 'status') parsed.status = value || parsed.status;
+    else if (kind === 'message') parsed.message = value;
+    else if (kind === 'detail') parsed.details.push(value);
+  }
+  return parsed;
+}
+
+function mapShellRuleStatus(status: string, severity: RegistrySeverity): ValidationEntry['status'] {
+  if (status === 'pass') return 'pass';
+  if (status === 'skip') return 'pass';
+  if (status === 'warn') return 'warn';
+  if (status === 'info') return 'info';
+  if (status === 'fail') {
+    if (severity === 'warn') return 'warn';
+    if (severity === 'info') return 'info';
+    return 'error';
+  }
+  return 'error';
+}
+
+function runRegistryShellRule(
+  folder: string,
+  level: SpecKitLevel,
+  rule: ValidatorRegistryEntry,
+  scriptPath: string,
+  strict: boolean,
+): ValidationEntry {
+  const result = spawnSync('bash', [
+    '-c',
+    REGISTRY_SHELL_RULE_WRAPPER,
+    'registry-shell-rule-wrapper',
+    folder,
+    level,
+    scriptPath,
+    rule.rule_id,
+    strict ? 'true' : 'false',
+    VALIDATE_SCRIPT_DIR,
+  ], {
+    cwd: SKILL_ROOT,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+
+  if (result.error || result.status !== 0) {
+    const details = [result.stdout, result.stderr, result.error?.message].filter((item): item is string => Boolean(item));
+    return entry(rule.rule_id, 'error', `Registry shell rule bridge failed for ${rule.rule_id}`, details);
+  }
+
+  const parsed = parseShellRuleOutput(rule.rule_id, result.stdout ?? '');
+  if (!parsed.message) {
+    return entry(rule.rule_id, 'error', 'Registry shell rule returned no parseable output', [result.stdout ?? '']);
+  }
+
+  return entry(parsed.rule, mapShellRuleStatus(parsed.status, rule.severity), parsed.message, parsed.details);
+}
+
+function runRegistryShellRules(
+  folder: string,
+  level: SpecKitLevel,
+  nativeRuleIds: Set<string>,
+  opts: ValidateOpts,
+): ValidationEntry[] {
+  return readValidatorRegistry()
+    .filter((rule) => rule.strict_only !== true && rule.severity !== 'skip')
+    .filter((rule) => !nativeRuleIds.has(rule.rule_id))
+    .flatMap((rule) => {
+      const scriptPath = resolveRegistryRuleScript(rule.script_path);
+      if (!scriptPath) return [];
+      return [runRegistryShellRule(folder, level, rule, scriptPath, opts.strict === true)];
+    });
 }
 
 function docsForLevel(level: SpecKitLevel): string[] {
@@ -439,6 +617,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(entry('GRAPH_METADATA_PRESENT', fs.existsSync(path.join(folder, 'graph-metadata.json')) ? 'pass' : 'warn', 'Graph metadata checked'));
   entries.push(validateGeneratedMetadataIntegrity(folder));
   entries.push(validateGeneratedMetadataDrift(folder));
+  entries.push(...runRegistryShellRules(folder, level, new Set(entries.map((item) => item.rule)), opts));
 
   const summary = {
     errors: entries.filter((item) => item.status === 'error').length,

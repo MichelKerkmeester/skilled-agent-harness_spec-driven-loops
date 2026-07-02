@@ -1,32 +1,38 @@
 ---
-title: "Tasks: Phase 1: advisor-routing-projection [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Advisor Routing Projection Generator and workflowMode Publication"
+description: "Completed task ledger for advisor routing projection and workflowMode response publication."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "advisor routing projection"
+  - "workflowMode publication"
+  - "mode registry drift guard"
+  - "advisor alias table"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-advisor-routing-projection"
-    last_updated_at: "2026-06-28T14:02:18Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/005-skill-interconnection/001-advisor-routing-projection"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+      - ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts"
+      - ".opencode/commands/create/assets/create_parent_skill_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-advisor-routing-projection"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: advisor-routing-projection
+# Tasks: Advisor Routing Projection Generator and workflowMode Publication
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and capture the projection and response-publication scope (`spec.md`).
+- [x] T002 Identify drift guard, aliases, CLI, schema, handler, and scaffolder surfaces (`spec.md`).
+- [x] T003 [P] Confirm scoring math and runtime daemon restart logic are out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +66,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Generate advisor aliases from `mode-registry.json` into `aliases.ts`.
+- [x] T005 Replace static content comparison with projection hash freshness (`routing-registry-drift-guard.vitest.ts`).
+- [x] T006 Publish `workflowMode` from the Python advisor response path (`skill_advisor.py`).
+- [x] T007 Add optional `workflowMode` to advisor response schema and handler pass-through (`advisor-tool-schemas.ts`, `advisor-recommend.ts`).
+- [x] T008 Include projection hash in the advisor cache signature (`aliases.ts`).
+- [x] T009 Emit projection during parent-skill creation (`create_parent_skill_auto.yaml`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +79,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Verify the drift guard passes when projection is fresh and fails when registry changes without regeneration.
+- [x] T011 Verify a deep-loop recommendation includes a non-null `workflowMode`.
+- [x] T012 Verify no runtime advisor path reads `mode-registry.json` directly.
+- [x] T013 Update plan and task docs to reflect completed implementation (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +90,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +103,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

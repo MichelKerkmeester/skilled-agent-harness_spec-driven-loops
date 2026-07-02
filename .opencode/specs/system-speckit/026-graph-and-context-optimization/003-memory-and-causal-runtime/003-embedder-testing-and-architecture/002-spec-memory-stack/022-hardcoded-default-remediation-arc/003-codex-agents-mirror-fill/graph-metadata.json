@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -37,9 +37,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
+      ".codex/config.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,12 +47,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
       {
         "name": "deep-research.md",
         "kind": "doc",
@@ -63,6 +57,12 @@
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Investigation revealed .codex/agents/ is NOT empty (11 .toml files mirror .opencode/agents/) AND [agents.ai-council] IS declared in .codex/config.toml at line 139. Audit P0 was stale. Phase 003 reduces to JUST 2 P1 (proposed) qualifier removals from deep-research.md:51 + deep-review.md:45 since deep-ai-council rename arc has shipped.",
     "created_at": "2026-05-23T17:05:00.000000Z",
-    "last_save_at": "2026-06-23T03:49:54.425Z",
+    "last_save_at": "2026-07-02T05:31:11.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

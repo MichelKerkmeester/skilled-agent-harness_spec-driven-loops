@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,12 +43,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "research/research.md",
       "research/lineages/gpt/research.md",
       "research/orchestration-summary.json",
       "research/gap-audit/lineages/gpt-gap/research.md",
       "research/orchestration-status.log",
-      "spec.md",
       "plan.md",
       "mcp_server/tool-schemas.ts",
       "lib/ipc/socket-server.ts",
@@ -57,6 +57,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -73,12 +79,6 @@
         "name": "orchestration-status.log",
         "kind": "file",
         "path": "research/orchestration-status.log",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-06-23T03:49:57.575Z",
+    "last_save_at": "2026-07-02T05:31:13.851Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Eight /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-06-23T03:49:48.689Z",
+    "last_save_at": "2026-07-02T05:31:05.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fbf24c14320cc7ee60bdb0542e85fcce7ebb9293062c5a9448d42cde4366fda",
+    "source_fingerprint": "sha256:455cf0238aa24176c64aaaff7533c99be6dbd8c527c13256620de185d6337b65",
     "source_doc_hashes": {
-      "spec.md": "b53a8bbd06c39eff30ec61712be931d67f3846398cfc69b09cd9e1326e7185ef",
-      "plan.md": "d36a35e367eaebf1103a131fcbedc9652e043cfb14c029afffd03b8e10c1a7a8",
-      "tasks.md": "28bf69a7d5286bd061a05cdd9ed0671f0d185475c8474f9cfacd7ab6ceec35d9",
-      "checklist.md": "531fa0e25d5c8d70cb5c24b7df6f6f0273c66d483819f71c0024da8a20c9823b",
-      "implementation-summary.md": "e7ba29094ef19e0a3c7efbcb6e7019bca7564d4bd492a23297d67b7f68238f1b"
+      "spec.md": "0c3ee168da5b3955903611d5ba884fe999e9636677744aa57fabd2838b25bdd8",
+      "plan.md": "07ebd4982e741cbcadcb74f7a5e9629fe6e1bc7c6b976c72a7311abca1e900ab",
+      "tasks.md": "855a40a5bc8bf8701348bed9b160c00889d176a36da758ea2e384b894b01cee4",
+      "checklist.md": "b1cc71962c40588fb5ca731daa2683f516cf6c828b0e2e5093117b612adffee6",
+      "implementation-summary.md": "7d6e96b80cb40e929ccc47c10f270a51b26e268b6180dd6e004e1e838e62f6ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/012-foundations-motion-audit |
+| **Spec Folder** | 012-foundations-motion-audit |
 | **Completed** | Executed: ten foundations, motion, and audit files built and wired, family check passes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

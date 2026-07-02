@@ -1,32 +1,38 @@
 ---
-title: "Tasks: Phase 3: apply-core-skill-docs [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 3 - Apply Core Skill Docs"
+description: "Completed tasks for applying computed versions to core skill docs, normalizing SKILL.md files, fixing the normalization regression, and verifying the core slice."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "apply core skill docs tasks"
+  - "SKILL.md version normalize tasks"
+  - "core docs verify tasks"
+  - "manifest core apply tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-apply-core-skill-docs"
-    last_updated_at: "2026-06-23T07:33:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/118-frontmatter-versioning/003-apply-core-skill-docs"
+    last_updated_at: "2026-07-02T05:45:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold frontmatter with completed phase tasks"
+    next_safe_action: "Run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/frontmatter-version.mjs"
+      - ".opencode/skills/*/SKILL.md"
+      - ".opencode/skills/*/README.md"
+      - ".opencode/skills/*/references"
+      - ".opencode/skills/*/assets"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-apply-core-skill-docs"
+      session_id: "remediated-003-apply-core-skill-docs-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "MiMo audits read-only; the deterministic engine writes and verifies every result."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: apply-core-skill-docs
+# Tasks: Phase 3 - Apply Core Skill Docs
 
 <!-- SPECKIT_LEVEL: 1 -->
 

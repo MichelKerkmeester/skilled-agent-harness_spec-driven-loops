@@ -8,6 +8,7 @@ import { performance } from 'node:perf_hooks';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import * as graphDb from './code-graph-db.js';
+import { isCodeGraphEdgeConfidenceDifferentiationEnabled } from './edge-confidence-flags.js';
 import { resolveSeeds, type AnySeed, type ArtifactRef } from './seed-resolver.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 import type {
@@ -17,7 +18,10 @@ import type {
 
 type MemoryWeightedWalkModule = typeof import('../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js');
 
-function resolveMemoryWeightedWalkModuleUrl(): URL {
+let memoryWeightedWalkModulePromise: Promise<MemoryWeightedWalkModule> | null = null;
+
+/** Exported for direct unit testing of the two-candidate fallback resolution order. */
+export function resolveMemoryWeightedWalkModuleUrl(): URL {
   const candidates = [
     new URL('../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js', import.meta.url),
     new URL('../../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js', import.meta.url),
@@ -29,10 +33,12 @@ function resolveMemoryWeightedWalkModuleUrl(): URL {
   return resolved;
 }
 
-const memoryWeightedWalkModule = await import(
-  resolveMemoryWeightedWalkModuleUrl().href
-) as MemoryWeightedWalkModule;
-const collectMemoryWeightedWalk = memoryWeightedWalkModule.collectWeightedWalk;
+function loadMemoryWeightedWalkModule(): Promise<MemoryWeightedWalkModule> {
+  if (!memoryWeightedWalkModulePromise) {
+    memoryWeightedWalkModulePromise = import(resolveMemoryWeightedWalkModuleUrl().href) as Promise<MemoryWeightedWalkModule>;
+  }
+  return memoryWeightedWalkModulePromise;
+}
 
 /** Map internal QueryMode → canonical spec_kit metric `mode` label value. */
 function speckitQueryModeLabel(mode: QueryMode): 'outline' | 'blast_radius' | 'relationship' {
@@ -135,6 +141,9 @@ const CONTEXT_EDGE_EVIDENCE_RANK_FACTORS: Readonly<Record<string, number>> = {
   INFERRED: 0.004,
   AMBIGUOUS: 0.002,
 };
+const LEGACY_EDGE_CONFIDENCE = 0.8;
+const LEGACY_EDGE_EVIDENCE_CLASS = 'INFERRED';
+const LEGACY_EDGE_DETECTOR_PROVENANCE = 'heuristic';
 const SEEDED_PPR_ENABLED_ENV = 'SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING';
 const SEEDED_PPR_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'experimental']);
 const SEEDED_PPR_IMPACT_EDGE_TYPES = ['CALLS', 'IMPORTS'] as const;
@@ -194,6 +203,7 @@ interface SeededPprImpactCandidate {
   readonly result: graphDb.CodeEdgeSourceResult;
   readonly targetLabel: string;
   readonly targetFile: string | null;
+  readonly edgeChain: ContextWhyIncludedEdgeChainStep[];
   readonly pprScore: number;
   readonly minHop: number;
   readonly tieKey: readonly string[];
@@ -218,7 +228,7 @@ function defaultDeadlineMsForProfile(profile: ContextArgs['profile']): number {
 }
 
 /** Build context from resolved anchors using specified query mode */
-export function buildContext(args: ContextArgs): ContextResult {
+export async function buildContext(args: ContextArgs): Promise<ContextResult> {
   const queryMode = args.queryMode ?? 'neighborhood';
   const budgetTokens = args.budgetTokens ?? 1200;
   const seeds = args.seeds ?? [];
@@ -288,7 +298,7 @@ export function buildContext(args: ContextArgs): ContextResult {
       continue;
     }
 
-    const expansion = expandAnchor(
+    const expansion = await expandAnchor(
       anchor,
       queryMode,
       Math.max(0, deadlineMs - (performance.now() - contextStart)),
@@ -440,13 +450,44 @@ function clampConfidence(value: unknown): number {
 }
 
 function contextEdgeReliability(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): number {
-  const evidenceClass = typeof edge.metadata?.evidenceClass === 'string'
-    ? edge.metadata.evidenceClass
-    : null;
+  const edgeMetadata = normalizedContextEdgeMetadata(edge);
+  const evidenceClass = edgeMetadata.evidenceClass;
   const evidenceClassFactor = evidenceClass === null
     ? 0
     : CONTEXT_EDGE_EVIDENCE_RANK_FACTORS[evidenceClass] ?? 0;
-  return clampConfidence(edge.metadata?.confidence) * evidenceClassFactor;
+  return clampConfidence(edgeMetadata.confidence) * evidenceClassFactor;
+}
+
+function normalizedContextEdgeMetadata(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): {
+  confidence: number | null;
+  detectorProvenance: string | null;
+  evidenceClass: string | null;
+  reason: string | null;
+  step: string | null;
+} {
+  // Only CALLS edges ever carried the legacy uniform tier -- every other edge
+  // type (IMPORTS, CONTAINS, EXTENDS, etc.) resolves its own constant
+  // confidence by construction, unrelated to this flag either way.
+  if (edge.edgeType === 'CALLS' && !isCodeGraphEdgeConfidenceDifferentiationEnabled()) {
+    return {
+      confidence: LEGACY_EDGE_CONFIDENCE,
+      detectorProvenance: LEGACY_EDGE_DETECTOR_PROVENANCE,
+      evidenceClass: LEGACY_EDGE_EVIDENCE_CLASS,
+      reason: sanitizeContextEdgeString(edge.metadata?.reason),
+      step: sanitizeContextEdgeString(edge.metadata?.step),
+    };
+  }
+
+  const confidence = edge.metadata?.confidence ?? edge.weight;
+  return {
+    confidence: typeof confidence === 'number' && Number.isFinite(confidence) ? confidence : null,
+    detectorProvenance: typeof edge.metadata?.detectorProvenance === 'string'
+      ? edge.metadata.detectorProvenance
+      : null,
+    evidenceClass: typeof edge.metadata?.evidenceClass === 'string' ? edge.metadata.evidenceClass : null,
+    reason: sanitizeContextEdgeString(edge.metadata?.reason),
+    step: sanitizeContextEdgeString(edge.metadata?.step),
+  };
 }
 
 function seededPprRankingEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
@@ -468,8 +509,9 @@ function contextEdgeTransitionWeight(edge: graphDb.CodeEdgeTargetResult['edge'] 
     return positiveFinite(edge.weight, 1) * reliability;
   }
 
-  const confidence = typeof edge.metadata?.confidence === 'number'
-    ? Math.max(clampConfidence(edge.metadata.confidence), 0.001)
+  const edgeMetadata = normalizedContextEdgeMetadata(edge);
+  const confidence = typeof edgeMetadata.confidence === 'number'
+    ? Math.max(clampConfidence(edgeMetadata.confidence), 0.001)
     : 1;
   return positiveFinite(edge.weight, 1) * confidence;
 }
@@ -512,9 +554,9 @@ function weightedAdjacency<TNode extends PprNodeId>(
   return adjacency;
 }
 
-export function computeBoundedPersonalizedPageRank<TNode extends PprNodeId>(
+export async function computeBoundedPersonalizedPageRank<TNode extends PprNodeId>(
   options: BoundedPersonalizedPageRankOptions<TNode>,
-): BoundedPersonalizedPageRankResult<TNode> {
+): Promise<BoundedPersonalizedPageRankResult<TNode>> {
   const seeds = uniquePprNodes(options.seeds);
   const teleport = normalizeTeleport(seeds);
   if (seeds.length === 0) {
@@ -525,7 +567,8 @@ export function computeBoundedPersonalizedPageRank<TNode extends PprNodeId>(
   const maxIterations = Math.max(1, Math.trunc(options.maxIterations));
   const damping = Math.max(0, Math.min(1, options.damping));
   const epsilon = options.convergenceEpsilon ?? SEEDED_PPR_EPSILON;
-  const reached = collectMemoryWeightedWalk({
+  const memoryWeightedWalkModule = await loadMemoryWeightedWalkModule();
+  const reached = memoryWeightedWalkModule.collectWeightedWalk({
     seeds,
     maxHops,
     readEdges: options.readEdges,
@@ -681,6 +724,10 @@ function seededPprEdgeKey(edge: graphDb.CodeEdgeSourceResult['edge']): string {
   return `${edge.sourceId}\u0000${edge.targetId}\u0000${edge.edgeType}`;
 }
 
+function seededPprPairKey(from: string, to: string): string {
+  return `${from}\u0000${to}`;
+}
+
 function compareSeededPprImpactCandidates(
   left: SeededPprImpactCandidate,
   right: SeededPprImpactCandidate,
@@ -698,11 +745,11 @@ function compareSeededPprImpactCandidates(
   return compareStrings(left.targetLabel, right.targetLabel);
 }
 
-function collectSeededPprImpactRanking(
+async function collectSeededPprImpactRanking(
   anchor: ArtifactRef,
   anchorLabel: string,
   budgetExpired: () => boolean,
-): SeededPprImpactRanking {
+): Promise<SeededPprImpactRanking> {
   const anchorId = anchor.symbolId;
   if (!anchorId) {
     return { candidates: [], deadlineExceeded: false };
@@ -710,6 +757,7 @@ function collectSeededPprImpactRanking(
 
   let deadlineExceeded = false;
   const edgesByNode = new Map<string, WeightedTraversalEdge<string>[]>();
+  const rawEdgeByPair = new Map<string, graphDb.CodeEdgeSourceResult['edge'] | graphDb.CodeEdgeTargetResult['edge']>();
   const nodeSummaries = new Map<string, ContextNodeSummary>([
     [anchorId, { name: anchorLabel, kind: anchor.kind ?? 'unknown', file: anchor.filePath, line: anchor.startLine }],
   ]);
@@ -750,6 +798,7 @@ function collectSeededPprImpactRanking(
           to: result.edge.sourceId,
           weight: contextEdgeTransitionWeight(result.edge),
         });
+        rawEdgeByPair.set(seededPprPairKey(nodeId, result.edge.sourceId), result.edge);
       }
 
       const outgoing = graphDb.queryEdgesFrom(nodeId, edgeType);
@@ -763,6 +812,7 @@ function collectSeededPprImpactRanking(
           to: result.edge.targetId,
           weight: contextEdgeTransitionWeight(result.edge),
         });
+        rawEdgeByPair.set(seededPprPairKey(nodeId, result.edge.targetId), result.edge);
       }
     }
 
@@ -774,7 +824,7 @@ function collectSeededPprImpactRanking(
     uniquePprNodes(nodeIds).flatMap((nodeId) => ensureNodeEdges(nodeId))
   );
 
-  const ppr = computeBoundedPersonalizedPageRank({
+  const ppr = await computeBoundedPersonalizedPageRank({
     seeds: [anchorId],
     maxHops: SEEDED_PPR_MAX_HOPS,
     maxIterations: SEEDED_PPR_MAX_ITERATIONS,
@@ -789,6 +839,36 @@ function collectSeededPprImpactRanking(
 
   readEdges([anchorId, ...ppr.reached.keys()]);
 
+  const buildPprEdgeChain = (nodeId: string): ContextWhyIncludedEdgeChainStep[] => {
+    const edgeChain: ContextWhyIncludedEdgeChainStep[] = [];
+    const seen = new Set<string>();
+    let currentNodeId = nodeId;
+    while (currentNodeId !== anchorId && !seen.has(currentNodeId)) {
+      seen.add(currentNodeId);
+      const predecessor = ppr.reached.get(currentNodeId)?.predecessor;
+      if (!predecessor) break;
+      const rawEdge = rawEdgeByPair.get(seededPprPairKey(predecessor, currentNodeId));
+      if (!rawEdge) break;
+      const currentSummary = nodeSummaries.get(currentNodeId);
+      const predecessorSummary = nodeSummaries.get(predecessor);
+      const formattedEdge = formatContextEdge(rawEdge);
+      edgeChain.push({
+        from: currentSummary?.name ?? rawEdge.sourceId,
+        to: predecessorSummary?.name ?? rawEdge.targetId,
+        fromFile: currentSummary?.file ?? null,
+        toFile: predecessorSummary?.file ?? null,
+        edgeType: rawEdge.edgeType,
+        confidence: formattedEdge.confidence,
+        detectorProvenance: formattedEdge.detectorProvenance,
+        evidenceClass: formattedEdge.evidenceClass,
+        reason: formattedEdge.reason,
+        step: formattedEdge.step,
+      });
+      currentNodeId = predecessor;
+    }
+    return edgeChain;
+  };
+
   const candidates = [...candidatesByEdge.values()]
     .map((candidate): SeededPprImpactCandidate | null => {
       const sourceId = candidate.result.edge.sourceId;
@@ -801,6 +881,7 @@ function collectSeededPprImpactRanking(
         ...candidate,
         pprScore,
         minHop: reached?.minHop ?? 1,
+        edgeChain: buildPprEdgeChain(sourceId),
         tieKey: contextEdgeTieKey(candidate.result),
       };
     })
@@ -817,16 +898,7 @@ function formatContextEdge(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.
   reason: string | null;
   step: string | null;
 } {
-  const confidence = edge.metadata?.confidence ?? edge.weight;
-  return {
-    confidence: typeof confidence === 'number' && Number.isFinite(confidence) ? confidence : null,
-    detectorProvenance: typeof edge.metadata?.detectorProvenance === 'string'
-      ? edge.metadata.detectorProvenance
-      : null,
-    evidenceClass: typeof edge.metadata?.evidenceClass === 'string' ? edge.metadata.evidenceClass : null,
-    reason: sanitizeContextEdgeString(edge.metadata?.reason),
-    step: sanitizeContextEdgeString(edge.metadata?.step),
-  };
+  return normalizedContextEdgeMetadata(edge);
 }
 
 function formatContextNodeKind(kind: string): string {
@@ -839,12 +911,12 @@ function formatContextNode(node: ContextNodeSummary): string {
 }
 
 /** Expand a single anchor into a context section */
-function expandAnchor(
+async function expandAnchor(
   anchor: ArtifactRef,
   mode: QueryMode,
   remainingMs?: number,
   includeTrace = false,
-): ExpansionResult {
+): Promise<ExpansionResult> {
   const startTime = performance.now();
   const budgetMs = remainingMs ?? 400; // 400ms default latency budget
   const nodes: { name: string; kind: string; file: string; line: number }[] = [];
@@ -922,6 +994,7 @@ function expandAnchor(
     filePath: string | null | undefined;
     depth: number;
     edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge'];
+    edgeChain?: ContextWhyIncludedEdgeChainStep[];
     from: string;
     to: string;
     fromFile: string | null;
@@ -931,7 +1004,14 @@ function expandAnchor(
       return;
     }
     const formattedEdge = formatContextEdge(input.edge);
-    const confidence = formattedEdge.confidence;
+    const inputEdgeChain = input.edgeChain;
+    const confidence = inputEdgeChain
+      ? inputEdgeChain.reduce<number | null>((minimum, step) => {
+        if (step.confidence === null) return minimum;
+        if (minimum === null) return step.confidence;
+        return Math.min(minimum, step.confidence);
+      }, null)
+      : formattedEdge.confidence;
     const previous = whyIncludedByFile.get(input.filePath);
     // A strictly-shallower existing entry wins (shortest provenance path);
     // ignore deeper re-discoveries of the same file.
@@ -950,17 +1030,18 @@ function expandAnchor(
       reason: formattedEdge.reason,
       step: formattedEdge.step,
     };
+    const edgeChain = inputEdgeChain ?? [edge];
     // A neighbor pulled in via a heuristic/inferred edge is an uncertain
     // inclusion; flag it so consumers can distinguish it from a resolved edge.
     // (Anchor entries instead derive ambiguous from anchor-resolution identity.)
-    const edgeAmbiguous = formattedEdge.evidenceClass === 'INFERRED';
+    const edgeAmbiguous = edgeChain.some((step) => step.evidenceClass === 'INFERRED' || step.evidenceClass === 'AMBIGUOUS');
     // Same-depth re-discovery: a file reachable via multiple edges at the same
     // depth was included for more than one reason — append the edge instead of
     // dropping it so edgeChain reflects every distinct inclusion path. Track
     // the minimum confidence as the entry's overall confidence and OR the
     // ambiguity so any inferred path keeps the entry flagged.
     if (previous && previous.depth === input.depth) {
-      previous.edgeChain = [...previous.edgeChain, edge];
+      previous.edgeChain = [...previous.edgeChain, ...edgeChain];
       previous.confidence = previous.edgeChain.reduce<number | null>((minimum, step) => {
         if (step.confidence === null) return minimum;
         if (minimum === null) return step.confidence;
@@ -976,7 +1057,7 @@ function expandAnchor(
     whyIncludedByFile.set(input.filePath, {
       filePath: input.filePath,
       depth: input.depth,
-      edgeChain: [edge],
+      edgeChain,
       confidence,
       ambiguous: edgeAmbiguous,
       truncationReason: null,
@@ -1110,7 +1191,7 @@ function expandAnchor(
     }
     case 'impact': {
       if (shouldUseSeededPprRanking(mode)) {
-        const seededRanking = collectSeededPprImpactRanking(anchor, anchorLabel, budgetExpired);
+        const seededRanking = await collectSeededPprImpactRanking(anchor, anchorLabel, budgetExpired);
         deadlineExceeded = seededRanking.deadlineExceeded;
         let processedIncoming = 0;
         for (const candidate of seededRanking.candidates) {
@@ -1130,6 +1211,7 @@ function expandAnchor(
             filePath: sourceNode?.filePath,
             depth: candidate.minHop,
             edge,
+            edgeChain: candidate.edgeChain.length > 0 ? candidate.edgeChain : undefined,
             from: sourceNode?.fqName ?? edge.sourceId,
             to: candidate.targetLabel,
             fromFile: sourceNode?.filePath ?? null,

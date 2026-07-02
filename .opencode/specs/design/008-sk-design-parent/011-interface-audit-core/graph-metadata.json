@@ -40,6 +40,9 @@
     "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
       ".opencode/skills/sk-design/design-interface/references/design-process/mechanical_defaults.md",
       ".opencode/skills/sk-design/design-interface/references/design-process/copy_and_mock_data.md",
@@ -47,12 +50,27 @@
       ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
       ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
       ".opencode/skills/sk-design/design-audit/references/transform_remediation.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "interface_preflight_card.md",
         "kind": "doc",
@@ -93,24 +111,6 @@
         "name": "transform_remediation.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-audit/references/transform_remediation.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 009 expansion research (`../009-reference-asset-expansion/research/research.md`) settled which references and assets each sk-design mode should gain, but produced findings only",
     "created_at": "2026-06-26T17:40:50.538Z",
-    "last_save_at": "2026-06-26T18:47:53.244Z",
+    "last_save_at": "2026-07-02T05:31:07.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da0d66c94e2d476f402e3d5ee79969fa1458f99eb32075285b01a406643c1202",
+    "source_fingerprint": "sha256:e62277c4c8779a5cf345961e3001447cda6ca8f50c91296e35b310c005d7ab6c",
     "source_doc_hashes": {
-      "spec.md": "c155e325911bda9f31aeb314b3b0c62216b53d575e7de1a9e021244f92777e28",
-      "plan.md": "b49238f3642f40e342ab5d27cccd91246c9f8c47475b1984cec983b9552888f5",
-      "tasks.md": "7022c85b957f3f50b77aedc22cbe38b360601f53d0fbb656c1ffb592d1bda720",
-      "implementation-summary.md": "c5252c8ca82d75bff6475b168dd0874979a06eef21d4c13f8a2a6f3973d1e5fd"
+      "spec.md": "932d231992f05a13a451a93f5d7110914d9432460762d1674648d61797e46d5c",
+      "plan.md": "7d125d013d7aec1fd1a74f4dfa4bc6858b316f60c428e1be9c039b4f14291cdc",
+      "tasks.md": "518a72a2befed95aa8597b996b1cb04e8b36ece3cb08b5b86a5138b2a2b3eb7a",
+      "implementation-summary.md": "f156e131a874f7b50e5decb9acc6023c1f11a316fec86d884db65408b4ae927c"
     },
     "last_active_child_id": null,
     "last_active_at": null

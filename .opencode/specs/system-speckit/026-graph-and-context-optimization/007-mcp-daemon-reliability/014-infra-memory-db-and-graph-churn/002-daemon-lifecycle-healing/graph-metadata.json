@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,13 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      "mcp_server/context-server.ts",
       "mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
       "mcp_server/tests/context-server.vitest.ts",
       "mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
       "dist/context-server.js",
@@ -61,7 +61,7 @@
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": "mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -73,7 +73,7 @@
       {
         "name": "substrate-runner-harness.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal)",
     "created_at": "2026-05-30T16:25:17.710Z",
-    "last_save_at": "2026-06-23T03:49:56.475Z",
+    "last_save_at": "2026-07-02T05:31:12.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

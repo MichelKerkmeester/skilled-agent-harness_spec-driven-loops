@@ -18,7 +18,7 @@
     "drift-guard",
     "test"
   ],
-  "lastUpdated": "2026-07-01T15:48:17.672Z",
+  "lastUpdated": "2026-07-01T23:08:58.550Z",
   "specId": "001",
   "folderSlug": "advisor-routing-projection",
   "parentChain": [
@@ -29,5 +29,6 @@
     "005-skill-interconnection"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

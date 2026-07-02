@@ -39,9 +39,10 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "gen-tile.mjs",
+        "kind": "file",
+        "path": ".opencode/specs/anobel.com/004-bento-visuals/research/inputs/gen-tile.mjs",
         "source": "derived"
       },
       {
@@ -189,7 +196,7 @@
     ],
     "causal_summary": "The deterministic geometry skeleton (phase 004) recovers many 2D-positioned tiles, but the hardest ones — dense matrix / node-diagram / branch / connector-map / popover tiles — may still fail the phase-001 spatial gate (RC-1 overflow, RC-2 node collisions, RC-3 title-zone break) after the deterministic recompute",
     "created_at": "2026-06-29T10:48:48.909Z",
-    "last_save_at": "2026-06-29T10:48:48.909Z",
+    "last_save_at": "2026-07-02T05:31:03.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d1efd5b6569058730fe2636dd07a6b3dd63f54fc77769c077518b1bb16763bf",
+    "source_fingerprint": "sha256:8c312b4ecd69b9524026c800f182509eb718cc46039a2debab72157acc4d4752",
     "source_doc_hashes": {
       "spec.md": "4f4267da6b3681f8c845c7d7ed88c02139555b0852f6d697840e19b78fefc567",
       "plan.md": "4c85cecebd39b31018546ad150b93705ad612876c062bbeaddb61e0a90c2ad61",
       "tasks.md": "8bfed8075c1e48c917b2ef241bd3a0fd7f6cb8433702f72dba33d38181e107d3",
-      "implementation-summary.md": "354243209ae8bb5c124c6d657c1658eae9b2791cf654a157d9b3efe965fe4f58"
+      "implementation-summary.md": "071b6f91403729b6b0e61ec59aac520c76a8834ff6843e40c3468812ced98aa6"
     },
     "last_active_child_id": null,
     "last_active_at": null

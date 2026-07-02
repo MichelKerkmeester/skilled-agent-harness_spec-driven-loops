@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
       "mcp_server/handlers/README.md",
       "feature_catalog/feature_catalog.md",
       "manual_testing_playbook/manual_testing_playbook.md",
@@ -52,9 +55,6 @@
       ".opencode/bin/lib/sidecar-env-allowlist.cjs",
       "mcp_server/tool-schemas.ts",
       ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
-      ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
       ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/system-code-graph/mcp_server/tools/README.md",
@@ -66,15 +66,21 @@
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "feature_catalog.md",
         "kind": "doc",
-        "path": "mcp_server/handlers/README.md",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
-        "name": "feature_catalog.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
         "source": "derived"
       },
       {
@@ -93,12 +99,6 @@
         "name": "tool-schemas.ts",
         "kind": "code",
         "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/SKILL.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `query.ts`, `context.ts`, `apply.ts`, `detect-changes.ts`, `index.ts`), tools are `codegraph`, the engine is tree-sitter, and `lib/` is `{ipc,shared,utils}/`",
     "created_at": "2026-05-25T14:58:18Z",
-    "last_save_at": "2026-06-23T03:49:55.803Z",
+    "last_save_at": "2026-07-02T05:31:12.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,6 +42,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
       "shared/embeddings/registry.ts",
       "shared/embeddings.ts",
       "shared/embeddings/providers/hf-local.ts",
@@ -50,8 +56,6 @@
       "shared/embeddings/registry.test.ts",
       "shared/predicates/boolean-expr.test.ts",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts",
       "tasks.md",
       "spec.md",
       "shared/parsing/quality-extractors.test.ts",
@@ -63,37 +67,37 @@
       {
         "name": "registry.ts",
         "kind": "code",
-        "path": "shared/embeddings/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
         "source": "derived"
       },
       {
         "name": "registry.test.ts",
         "kind": "test",
-        "path": "shared/embeddings/registry.test.ts",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
         "source": "derived"
       },
       {
@@ -207,7 +211,7 @@
     ],
     "causal_summary": "ADR-013/014 migrated the canonical spec-memory embedder to nomic-ai/nomic-embed-text-v1.5 but 5 hardcoded TS defaults survived (4 BAAI + 1 jina). When the resolution chain fell through to those stale strings the runtime loaded a model not in the registry — triggering circuit-breaker flapping, 1978 failed records, 786 null-embedding errors, 754 stuck pending. This packet adds getCanonicalFallback(provider) in registry.ts as the single source of truth, refactors all 5 sites, and locks the contract with 23 invariant assertions in registry.test.ts.",
     "created_at": "2026-05-23T11:24:22.644243Z",
-    "last_save_at": "2026-06-23T03:49:54.389Z",
+    "last_save_at": "2026-07-02T05:31:11.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

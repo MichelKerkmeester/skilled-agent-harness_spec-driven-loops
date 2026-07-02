@@ -30,7 +30,7 @@ afterEach(() => {
 });
 
 describe('F-004-A4-02: subject resolution distinguishes unresolved vs unavailable', () => {
-  it('does NOT log a warning when subject is simply absent from the DB', () => {
+  it('does NOT log a warning when subject is simply absent from the DB', async () => {
     const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-resolve-absent-'));
     try {
       initDb(tempDir);
@@ -38,7 +38,7 @@ describe('F-004-A4-02: subject resolution distinguishes unresolved vs unavailabl
 
       // buildContext with a subject that doesn't exist; DB is healthy.
       // Internal resolveSubjectToRef returns kind='unresolved' → no warn.
-      buildContext({ subject: 'definitely-not-in-db' });
+      await buildContext({ subject: 'definitely-not-in-db' });
 
       const resolveWarnings = warnSpy.mock.calls.filter((call) =>
         typeof call[0] === 'string' && call[0].includes('resolveSubjectToRef'),
@@ -51,7 +51,7 @@ describe('F-004-A4-02: subject resolution distinguishes unresolved vs unavailabl
     }
   });
 
-  it('returns the resolved ref via buildContext when subject exists', () => {
+  it('returns the resolved ref via buildContext when subject exists', async () => {
     const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-resolve-found-'));
     try {
       initDb(tempDir);
@@ -64,7 +64,7 @@ describe('F-004-A4-02: subject resolution distinguishes unresolved vs unavailabl
       upsertFile(fakeFilePath, 'typescript', generateContentHash(content), 0, 0, 'clean', 1);
 
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-      const result = buildContext({ subject: 'bar' });
+      const result = await buildContext({ subject: 'bar' });
 
       // No nodes exist for 'bar', so resolution returns unresolved → no warn
       expect(result).toBeDefined();

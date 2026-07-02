@@ -15,14 +15,8 @@
       "deep-loop-runtime self improvement profile",
       "allowed_diff_relpaths self target",
       "Lane D packaging deep loop",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "011-meta-loop-lane-d-packaging summary"
+      "011-meta-loop-lane-d-packaging summary",
+      "011-meta-loop-lane-d-packaging"
     ],
     "key_topics": [
       "meta",
@@ -35,10 +29,10 @@
       "profile",
       "target",
       "deep",
-      "implementation",
-      "plan"
+      "011-meta-loop-lane-d-packaging",
+      "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
@@ -162,27 +156,15 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,15 +174,27 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
     "created_at": "2026-06-28T14:02:14Z",
-    "last_save_at": "2026-07-01T15:47:37.145Z",
+    "last_save_at": "2026-07-01T22:26:49.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:334481eb14693e0b01445121002bbbc89049c46300944f0718057687ca0989ae",
+    "source_fingerprint": "sha256:8b77a107da5f61de54cf2021edc784420c3ee1d90e8c2d9376c1e3e548455746",
     "source_doc_hashes": {
       "spec.md": "ef786084cbe9caf6260e51c9ada7d663072999731fb73b2f2f9dea1f113e64a1",
-      "plan.md": "56f3491355529708581511ae394639e59972d985cad2b7feae9220e11a7f4b4c",
-      "tasks.md": "f8876ff89f59135c70de090a61703c5121a897d04e0649c3845f4c9c689d1f5a",
+      "plan.md": "a25ba25ae9b05be85eec60970b8c369ca79590ebff85378be724c362898b4736",
+      "tasks.md": "e90820fa38d6ca68086319a23eb1d8f9a6e93c66fcc1c03c6825842a6c411989",
       "implementation-summary.md": "0a2e1d00b7ccd6180970451eaac27627f8d04a58cf3a2ce20a1b81c58aa195d3"
     },
     "last_active_child_id": null,

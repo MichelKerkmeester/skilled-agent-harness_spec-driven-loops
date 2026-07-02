@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,9 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+      ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
       ".opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json",
       "lib/code-graph-boundary.ts",
       "decision-record.md",
@@ -54,15 +57,27 @@
     ],
     "entities": [
       {
-        "name": ".code-graph-readiness.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json",
+        "name": "code-graph-boundary.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
         "source": "derived"
       },
       {
-        "name": "code-graph-boundary.ts",
+        "name": "readiness-marker.ts",
         "kind": "code",
-        "path": "lib/code-graph-boundary.ts",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-contracts.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+        "source": "derived"
+      },
+      {
+        "name": ".code-graph-readiness.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json",
         "source": "derived"
       },
       {
@@ -184,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Readiness Marker",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Commit And Push",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Remove system-spec-kit MCP server source imports from system-code-graph and lock a process-boundary integration pattern.",
     "created_at": "2026-05-15T08:24:07Z",
-    "last_save_at": "2026-06-23T03:49:53.347Z",
+    "last_save_at": "2026-07-02T05:31:11.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:35:00Z",
     "source_docs": [

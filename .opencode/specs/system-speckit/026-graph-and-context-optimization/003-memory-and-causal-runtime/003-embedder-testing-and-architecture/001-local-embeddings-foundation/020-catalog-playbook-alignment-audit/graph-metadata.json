@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,29 +43,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
       "scratch/.gitkeep"
     ],
     "entities": [
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -100,6 +88,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Local embedding defaults changed, but catalog/playbook documentation can still imply API-first, Voyage-only, or stale `all-MiniLM-L6-v2` expectations",
     "created_at": "2026-05-13T14:20:00Z",
-    "last_save_at": "2026-06-23T03:49:54.045Z",
+    "last_save_at": "2026-07-02T05:31:11.599Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:45:00Z",
     "source_docs": [

@@ -15,30 +15,24 @@
       "jsonl-set-union-merge",
       "fanout-lock-read-merge",
       "jsonl-repair-dedup",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "006-jsonl-lock-held-merge summary"
+      "006-jsonl-lock-held-merge summary",
+      "006-jsonl-lock-held-merge"
     ],
     "key_topics": [
       "jsonl-lock-held-merge",
       "jsonl-set-union-merge",
       "fanout-lock-read-merge",
       "jsonl-repair-dedup",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "core",
-      "tasks",
       "006-jsonl-lock-held-merge",
-      "summary"
+      "summary",
+      "concurrent",
+      "fan-out",
+      "writers",
+      "salvage",
+      "callers",
+      "append"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
@@ -135,13 +129,25 @@
         "source": "derived"
       },
       {
+        "name": "Held Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lock",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,25 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -183,21 +177,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed JSONL",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "downstream",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the same file, some records are written twice and others are lost depending on who wins the append race",
     "created_at": "2026-06-28T14:01:55Z",
-    "last_save_at": "2026-07-01T15:47:37.084Z",
+    "last_save_at": "2026-07-01T21:52:50.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62d1f4ddbd8895326d7abfd9c767decbd274c0f42b1cf6ff7dd695d93449cc6c",
+    "source_fingerprint": "sha256:c60e21f1ab5a973a4e924034b09f5958dae3b8955fa431d97ed143f2d943c76f",
     "source_doc_hashes": {
       "spec.md": "9965ba4b61d9879a86b1c3a7cf48753e4451169c1cd0425c1d22160c335921a1",
-      "plan.md": "078b63aca7665a02b5da5668c38fcbb8a853d176f18cf133c0a65526d6c1cc36",
-      "tasks.md": "f10b59d86b0ef1d29274c2ba30290da7bc511829fc2b310053a5aec205baf076",
+      "plan.md": "5bd0015cf1663ea1dc7395085a36701db555ae40670523edcdf5d5523bf7dad1",
+      "tasks.md": "25f8fb9291218cce643e53ba87b8f86c01a7f09f045a2008fdbeb98fe43cdafe",
       "implementation-summary.md": "9b2dd4a64a23a89baefe26220004e9d53dfbec449939d86ea497bd576838d2dd"
     },
     "last_active_child_id": null,

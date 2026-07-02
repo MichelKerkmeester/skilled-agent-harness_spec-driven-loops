@@ -44,9 +44,9 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 1 of 2 |
+| **Phase** | 1 of 11 |
 | **Predecessor** | None |
-| **Successor** | `deep-loops/030-agent-loops-improved` |
+| **Successor** | 002-deep-loop-runtime |
 | **Handoff Criteria** | Ranked recommendation backlog synthesized in `research/research.md` |
 <!-- /ANCHOR:metadata -->
 

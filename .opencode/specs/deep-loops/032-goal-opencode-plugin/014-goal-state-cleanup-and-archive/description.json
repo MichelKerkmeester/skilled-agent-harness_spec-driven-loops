@@ -19,12 +19,10 @@
     "lifecycle",
     "handling"
   ],
-  "lastUpdated": "2026-07-01T12:49:13.070Z",
+  "lastUpdated": "2026-07-02T03:38:03.257Z",
   "specId": "014",
   "folderSlug": "goal-state-cleanup-and-archive",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

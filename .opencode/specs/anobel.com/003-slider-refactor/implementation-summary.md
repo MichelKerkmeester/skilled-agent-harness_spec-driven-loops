@@ -49,19 +49,21 @@ _memory:
 |-------|-------|
 | **Status** | Complete |
 | **Completed** | 2026-06-06 |
+| **Level** | 1 |
 | **Files modified** | 9 current repo artifacts plus stale artifact cleanup |
 <!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
-### 1. Generic rebrand
-All `testimonial`-specific identifiers stripped from the source. Every data attribute, CSS custom property, style ID, flag name, and console log prefix updated to generic `slider`-prefixed equivalents. The Webflow Designer attribute contract changed from `data-testimonial-slider="*"` to `data-slider="*"`.
+### Generic rebrand
+All `testimonial`-specific identifiers were stripped from the source. Every data attribute, CSS custom property, style ID, flag name, and console log prefix was updated to generic `slider`-prefixed equivalents. The Webflow Designer child-attribute contract changed from `data-testimonial-slider="*"` to `data-slider="*"`.
 
-### 2. Two named variants
+### Two named variants
 
-**`slider_testimonial.js`** — full variant with image colour states
+**`slider_testimonial.js`** - full variant with image colour states
 
 Scoped constants:
 - `STYLE_ID = 'slider-testimonial-styles'`
@@ -70,73 +72,94 @@ Scoped constants:
 
 `ensureStyles()` injects image filter CSS: greyscale by default, full colour on active/hover/focus tab. This is appropriate for logo-based tab navigation where colour signals the active state. The section selector is `data-target="slider-testimonial"` so it does not decorate timeline sections.
 
-**`slider_timeline.js`** — timeline variant, no image colour states
+**`slider_timeline.js`** - timeline variant, no image colour states
 
 Scoped constants:
 - `STYLE_ID = 'slider-timeline-styles'`
 - `DECORATED_FLAG = 'sliderTimelineDecorated'`
 - `INIT_FLAG = '__sliderTimelineCdnInit'`
 
-`ensureStyles()` contains only layout/cursor/transform rules. The section selector is `data-target="slider-timeline"`. Timeline tab visual differentiation comes from `slider_timeline.css`, scoped under that wrapper.
+`ensureStyles()` contains only layout, cursor, and transform rules. The section selector is `data-target="slider-timeline"`. Timeline tab visual differentiation comes from `slider_timeline.css`, scoped under that wrapper.
 
-### 3. Same-page coexistence and mobile controls
-
+### Same-page coexistence and mobile controls
 Both variants can be loaded on the same page when Webflow wrappers use `data-target="slider-testimonial"` and `data-target="slider-timeline"`. Previous and next click handlers now prevent default link behavior and stop propagation before advancing the loop, which prevents mobile pagination taps from being hijacked by link defaults or parent slide handlers.
 
-### 4. Timeline-only underline styling
-
+### Timeline-only underline styling
 `slider_timeline.css` scopes tab underline, hover, focus, active text colour, and active font weight under `data-target="slider-timeline"`. Testimonial tabs using `data-target="slider-testimonial"` no longer receive timeline underline styling.
 
-### 5. Minification results
+### Minified bundles
 
 | File | Source | Output | Reduction |
 |------|--------|--------|-----------|
 | `slider_testimonial.min.js` | 32,757 B | 14,173 B | -56.7% |
 | `slider_timeline.min.js` | 31,988 B | 13,390 B | -58.1% |
 
-All three verification stages passed for both files:
-- `verify-minification.mjs` — selectors, events, Webflow.push, Motion.animate preserved
-- `test-minified-runtime.mjs` — executes without errors, correct `INIT_FLAG` per variant
-
-### 6. Webflow guides
-
+### Webflow guides
 Created `webflow-update-guide.md` and `testimonial-tab-update-guide.md` with the required external Webflow Designer actions: script embeds, variant section wrappers, shared child attributes, timeline-only underline placement, testimonial tab image setup, and mobile pagination validation.
 
-### 7. Stale artifact cleanup
-Deleted: `z_minified/carousel/testimonial.min.js`, `z_minified/carousel/slider.min.js`
+### Stale artifact cleanup
+Deleted `z_minified/carousel/testimonial.min.js` and `z_minified/carousel/slider.min.js`.
+<!-- /ANCHOR:what-built -->
 
 ---
 
-## Tab Styling Architecture (Discovered)
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
 
-Tab active states are split across two layers — unchanged by this work, documented for future reference:
+| Phase | Delivery |
+|-------|----------|
+| Genericization | Replaced testimonial-branded identifiers with the generic `slider` contract while preserving the existing Motion.dev loop behavior. |
+| Variant split | Produced `slider_testimonial.js` and `slider_timeline.js` with separate style IDs, decoration flags, init flags, and section selectors. |
+| Timeline styling | Scoped timeline-only visual behavior in `slider_timeline.css` under the timeline wrapper. |
+| Mobile control fix | Updated previous/next click handling to prevent default link behavior and stop propagation before advancing the loop. |
+| Build output | Regenerated minified bundles through the Webflow minification pipeline. |
+| External handoff | Documented Webflow Designer updates in packet-local guides instead of applying live Designer changes from the repository. |
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Split into `slider_testimonial.js` and `slider_timeline.js` | Keeps the embed contract explicit and lets each variant own collision-prone constants. |
+| Use variant-specific section wrappers | Prevents both scripts from decorating the same section when loaded on one page. |
+| Keep image colour states in testimonial only | Testimonial tabs use images/logos as active-state signals; timeline tabs do not. |
+| Scope timeline underline CSS under `data-target="slider-timeline"` | Prevents timeline visual treatment from leaking into testimonial tabs. |
+| Document Webflow Designer changes instead of applying them | Direct Webflow Designer publishing is outside this repository packet. |
+
+### Tab Styling Architecture
+
+Tab active states are split across two layers and remain documented for future reference:
 
 | Layer | File | What it controls |
 |-------|------|-----------------|
 | Static CSS | `a_nobel_en_zn/1_css/slider/slider_timeline.css` | Timeline-only font weight, brand colour, hover/focus state, and underline under `data-target="slider-timeline"` |
 | Runtime CSS (testimonial only) | `ensureStyles()` in `slider_testimonial.js` | Image greyscale default; `filter: none` on active/hover/focus; `opacity: 1` on active tab element |
 
-`slider_timeline.js` relies on the timeline static CSS layer — no runtime image filter is injected.
+`slider_timeline.js` relies on the timeline static CSS layer and injects no runtime image filter.
+<!-- /ANCHOR:decisions -->
 
 ---
 
-## Known Open Issues (Pre-existing, Not Addressed)
+<!-- ANCHOR:verification -->
+## Verification
 
-| Issue | Location | Severity |
-|-------|----------|----------|
-| `START_INDEX !== 0` branch is dead — `START_INDEX` is always `0` | `horizontalLoop()` init block | Low |
-| `wrapValue` and `wrapIndex` are identical implementations | §2 Utilities | Low |
-| `state.cleanup` array is never iterated | `decorateComponent()`, `initComponent()` | Low |
-| `offsets[idx] \|\| 0` should be `?? 0` | `onResize` handler | Low |
-| Single-slide sections silently return `null` with no warning | `decorateComponent()` guard | Low |
+| Check | Status | Evidence |
+|-------|--------|----------|
+| Minification | Pass | `slider_testimonial.min.js` 32,757 B -> 14,173 B; `slider_timeline.min.js` 31,988 B -> 13,390 B |
+| Static minification guard | Pass | `verify-minification.mjs` preserved selectors, DOM events, `Webflow.push`, and `Motion.animate` for both variants |
+| Runtime simulation | Pass | `test-minified-runtime.mjs` set `__sliderTestimonialCdnInit` and `__sliderTimelineCdnInit` |
+| Timeline image-state removal | Pass | `slider_timeline.js` `ensureStyles()` contains no image filter state rules |
+| Timeline style scoping | Pass | `slider_timeline.css` scopes underline and active text styles under `data-target="slider-timeline"` |
+| Packet validation | Pass | Strict validation has no blocking errors after this documentation-completeness pass; `SECTION_COUNTS` remains a known warning |
 
----
-
-## Follow-up Fix (2026-06-13): native image-drag blocked swipe over images
+### Follow-up Fix (2026-06-13): native image-drag blocked swipe over images
 
 **Symptom:** On `/nl/drafts`, both sliders dragged from empty viewport area but not when the press started on a slide image.
 
-**Root cause:** Slide images are bare `<img class="image is--dynamic">` (not anchor-wrapped, no `draggable="false"`). A mouse press on one starts the browser's native HTML5 image drag, which dispatches `pointercancel` to the viewport. The viewport's `pointercancel → handle_pointer_release` listener then aborts the in-progress swipe, so `pointermove` never drives `position.set()`.
+**Root cause:** Slide images are bare `<img class="image is--dynamic">` (not anchor-wrapped, no `draggable="false"`). A mouse press on one starts the browser's native HTML5 image drag, which dispatches `pointercancel` to the viewport. The viewport's `pointercancel -> handle_pointer_release` listener then aborts the in-progress swipe, so `pointermove` never drives `position.set()`.
 
 **Fix:** Added one viewport-scoped listener in both `slider_testimonial.js` and `slider_timeline.js`, reusing the existing AbortController `signal`:
 
@@ -147,10 +170,25 @@ viewport.addEventListener('dragstart', (e) => e.preventDefault(), { signal });
 This suppresses native drag for any descendant (images, etc.) so pointer-drag works uniformly over images and empty space. It does not affect clicks/taps (`dragstart` only fires on a drag gesture) and is torn down by `controller.abort()` in `destroy()`. Touch was never affected (`touch-action: pan-y`); this was a desktop/mouse-only bug.
 
 **Verification (re-run):** comment hygiene clean; `verify-minification.mjs` 58/58 PASS; `test-minified-runtime.mjs` 58/58 PASS with `__sliderTestimonialCdnInit` / `__sliderTimelineCdnInit` set; `dragstart` present in both minified bundles.
+<!-- /ANCHOR:verification -->
 
 ---
 
-## Follow-on Work Required
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+### Pre-existing open issues
+
+| Issue | Location | Severity |
+|-------|----------|----------|
+| `START_INDEX !== 0` branch is dead; `START_INDEX` is always `0` | `horizontalLoop()` init block | Low |
+| `wrapValue` and `wrapIndex` are identical implementations | Utilities | Low |
+| `state.cleanup` array is never iterated | `decorateComponent()`, `initComponent()` | Low |
+| `offsets[idx] \|\| 0` should be `?? 0` | `onResize` handler | Low |
+| Single-slide sections silently return `null` with no warning | `decorateComponent()` guard | Low |
+
+### Follow-on work required
 
 - **Deploy the drag fix:** upload the regenerated `z_minified/slider_testimonial.min.js` and `z_minified/slider_timeline.min.js` to R2 (`pub-53729c3289024c618f90a09ec4c63bf9.r2.dev`) and bump the `?v=` cache-buster on both `<script>` embeds (currently `?v=1.0.7`). The fix is not live until this is done.
 - External Webflow Designer edits may still be needed on live pages; follow `webflow-update-guide.md` and `testimonial-tab-update-guide.md` when applying those page-level changes.
+<!-- /ANCHOR:limitations -->

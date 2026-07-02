@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
   "description": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical,",
   "keywords": [
@@ -15,12 +16,10 @@
     "still",
     "byte-identical"
   ],
-  "lastUpdated": "2026-07-01T15:48:14.592Z",
+  "lastUpdated": "2026-07-02T11:47:24.471Z",
   "specId": "010",
   "folderSlug": "validate-sh-template-detection",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "009-research-backlog-remediation"

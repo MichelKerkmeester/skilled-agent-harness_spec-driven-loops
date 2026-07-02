@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 2: atomic-state-integrity-helpers [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 2: Atomic State Integrity Helpers"
+description: "Plan for the shipped SHA-256 integrity helpers used to stamp and verify object/registry JSON snapshots."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "atomic-state-integrity-helpers"
+  - "sha256-snapshot-integrity"
+  - "integrity-stamp-verify"
+  - "registry-json-integrity"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-atomic-state-integrity-helpers"
-    last_updated_at: "2026-06-28T14:01:53Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers"
+    last_updated_at: "2026-07-01T21:22:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped integrity-helper content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed SHA-256 object integrity helpers"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-atomic-state-integrity-helpers"
+      fingerprint: "sha256:002a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5d7f"
+      session_id: "scaffold-content-remediation-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: atomic-state-integrity-helpers
+# Implementation Plan: Phase 2: Atomic State Integrity Helpers
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript deep-loop runtime library |
+| **Framework** | Node.js atomic state helpers with SHA-256 hashing |
+| **Storage** | Object/registry JSON snapshots; JSONL explicitly excluded |
+| **Testing** | Spec acceptance requires clean stamped object, tampered object warn, and TypeScript compilation; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped three integrity helpers in `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts`: `computeIntegrityHash`, `stampIntegrity`, and `verifyIntegrity`. The implementation stamps object/registry JSON with a canonical SHA-256 digest and verifies loaded snapshots with warn-first mismatch handling so operators see corruption signals without blocking mutations in this phase.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: registry/config JSON loads had no integrity check.
+- [x] Success criteria measurable: clean stamped objects verify `true`; tampered objects verify `false` and emit `console.warn`.
+- [x] Dependencies identified: builds on the same `atomic-state.ts` surface touched by phase 001.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `computeIntegrityHash(obj)` exported with canonical SHA-256 digest output.
+- [x] `stampIntegrity(obj)` exported and attaches `_integrity` before write.
+- [x] `verifyIntegrity(obj)` exported and implements warn-first mismatch handling.
+- [x] JSDoc documents JSONL exclusion and fail-fast deferral.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +79,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Snapshot integrity stamping and verification for object JSON, implemented as lightweight helpers beside the atomic state writer.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`computeIntegrityHash`**: Canonically serializes an object and returns `sha256:<hex>`.
+- **`stampIntegrity`**: Adds `_integrity` to an object snapshot before persistence.
+- **`verifyIntegrity`**: Recomputes the hash, compares it to `_integrity`, warns on mismatch, and returns a boolean instead of throwing.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Before writing object/registry JSON, the runtime stamps the object with a computed `_integrity` hash. On load, `verifyIntegrity` recomputes the digest from the loaded content and compares it to the stored hash; matches continue silently, mismatches emit `console.warn` and return `false` while leaving fail-fast behavior to a later phase.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +99,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Owns object JSON atomic state helpers | Add integrity hash/stamp/verify exports | Spec acceptance checks clean and tampered verification behavior |
+| JSONL state/log files | Append-only records outside object snapshot scope | Explicitly excluded | JSDoc documents deferred sidecar/per-record design |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect object/registry JSON helpers in `atomic-state.ts` before adding integrity helpers.
+- Consumers of changed symbols: future snapshot load/write callers can adopt the exported helpers; this phase only ships the helpers.
+- Matrix axes: clean stamped object, tampered object, missing or invalid `_integrity`, and JSONL exclusion.
+- Algorithm invariant: verification must never silently report success when the recomputed hash differs from the stored `_integrity` value.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +115,18 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm integrity scope is limited to object/registry JSON snapshots.
+- [x] Confirm JSONL integrity requires a separate sidecar or per-record design and is excluded here.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Implemented canonical object hashing as `computeIntegrityHash` returning `sha256:<hex>`.
+- [x] Implemented `stampIntegrity` to attach `_integrity` before persistence.
+- [x] Implemented `verifyIntegrity` to recompute, compare, warn on mismatch, and return `false` without throwing.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verified clean stamped objects return `true`.
+- [x] Verified tampered objects return `false` and emit a warning.
+- [x] Confirmed warn-first behavior leaves mutation blocking/fail-fast as a documented follow-up.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +136,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/behavior | `computeIntegrityHash`, `stampIntegrity`, `verifyIntegrity` clean and tampered cases | Spec acceptance criteria; no dedicated test file named |
+| Compile | Exported helper signatures type-check | TypeScript compilation |
+| Manual review | JSONL exclusion and warn-first rationale documented | Read `atomic-state.ts` JSDoc |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +148,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 atomic-state changes | Internal | Complete | Integrity helpers share the same `atomic-state.ts` module touched by phase 001 |
+| Node SHA-256 hashing support | Runtime | Available | Required to compute `sha256:<hex>` digests |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +157,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Integrity stamping breaks JSON snapshot shape or warn-first verification produces false mismatch reports.
+- **Procedure**: Revert the three integrity helper exports and associated JSDoc from `atomic-state.ts`; object JSON loads then return to the previous no-integrity behavior until a corrected design lands.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +169,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

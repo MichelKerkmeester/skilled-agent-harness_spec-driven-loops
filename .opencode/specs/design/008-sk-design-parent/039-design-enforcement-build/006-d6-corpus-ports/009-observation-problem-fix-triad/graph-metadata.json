@@ -200,7 +200,7 @@
     ],
     "causal_summary": "An audit finding used to jump straight to the diagnosis and the fix",
     "created_at": "2026-06-28T12:40:10.316Z",
-    "last_save_at": "2026-06-29T15:20:44.177Z",
+    "last_save_at": "2026-07-02T05:31:08.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27f767f946ad35e7a73290d464a9264cfcca61483edd9067d5dc2c624b47efce",
+    "source_fingerprint": "sha256:5b6e5d6ff1630eebb42b45e499db686fd6c6019435d86808b7fbb376643390c3",
     "source_doc_hashes": {
-      "spec.md": "c9b84b24ba778b5bb272ff045393ea36b53c3aae37558d1c5ca6146dd31840fe",
-      "plan.md": "6cc5b765b0cba0c28182a64186f82fdf7ad92c787fd80e74c6f8514a18f64db5",
-      "tasks.md": "743479b84645316de44a2c489e729c8387e1ac9641732493640e04f52df53cab",
-      "checklist.md": "a82c7944cf6e18eff34312074d4ff784dca26ce1652e931376de216d632cad17",
-      "implementation-summary.md": "4790b7d9f2c6c3e7364c6556cd19f50fdc8db5693ba50a9568280270b68dc703"
+      "spec.md": "cc391b7e2c522b3d3e1617cbc29bbe362f3bbf547866c7e7a86d3941d95a3ee5",
+      "plan.md": "4f74fc4e89dfa704c7b76c6fefb5ae1b834a85c03ba9bcb39d32689931fbc7ec",
+      "tasks.md": "94e7663483e2192872b9319319c22a241811c6eda4ee6fa752a3473767b4728b",
+      "checklist.md": "393d635cab9d1cd4fa78e2843efcc2438a8e8b5f79e367fb396a78cbb4f5ca36",
+      "implementation-summary.md": "fec7d747a159b3cada2e6aa38590694f9f142d87ed287f9a06c73cc432d95d95"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The cross-CLI design dispatch path has no boundary that rejects a design dispatch whose register is unresolved",
     "created_at": "2026-06-28T12:40:07.287Z",
-    "last_save_at": "2026-06-29T08:40:40.987Z",
+    "last_save_at": "2026-07-02T05:31:08.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c58ac7e03632cbfe319cae06e83791647466e53d721f3608389bf82e48be750",
+    "source_fingerprint": "sha256:ef5ad9d2b6bee534e45b6c0955a47b6ca075fded7c9b33bf67ac24e825e08837",
     "source_doc_hashes": {
-      "spec.md": "70daf9feda48fca57b50cbf7d7cfa665191c0959d4fc1700d13183ff30fd3fe6",
-      "plan.md": "a7a32b8115ade0a565c8711efc0fa0f5992e050b4a4503b938abbbbf346a94bd",
-      "tasks.md": "f235eee09920b90ecb07aa8822bc5d892d6454d0226e2bf59a320d2fae199c41",
-      "checklist.md": "ea930dacbf5421ca783793da1bbd5b8af83c783b0cc35a0cda8ae897a428a1bd",
-      "implementation-summary.md": "26049402e468bb8b6fefb9432b95b5f15c71d2e6f7fad96bf0d5d07af81f789b"
+      "spec.md": "82a238d1aec267191dfdea9b4f5996ae5d9635289f90fe40305a752e56c2b255",
+      "plan.md": "ac2a4cb97a78bab5a159cef949ceeda2be0539b7f960e676e4d10c117d580e6b",
+      "tasks.md": "cf3f17744723faaa3a3220531617614532007a02e67e1fd152069a0a2c946347",
+      "checklist.md": "efc999ddb35aa1bc6124c6c2fe6d1c48e88048f3a5162b85080e767e80a8dc31",
+      "implementation-summary.md": "677b46a0e57f257e94219bdd82faabee24c94f9b8430fd0c8635824866e25010"
     },
     "last_active_child_id": null,
     "last_active_at": null

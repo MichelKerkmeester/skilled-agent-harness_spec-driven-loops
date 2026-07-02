@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,6 +49,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "skill_advisor_regression.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI), lifecycle routing (LC), scorer fusion (SC) and python compat (PC)",
     "created_at": "2026-05-26T20:10:30.278Z",
-    "last_save_at": "2026-06-23T03:49:53.666Z",
+    "last_save_at": "2026-07-02T05:31:11.362Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35c19c04a9078d76eb712ab7778a91affa076b5714b9113711827acc10ace3a6",
+    "source_fingerprint": "sha256:877c08ebfe4c0a365afef302e9a173c52ea7cacf9d40d8176fe144b92651a64a",
     "source_doc_hashes": {
       "spec.md": "6827aeebf22e5a8265ef4270060cf20c9e1c62a4ffaac0c4c1f0b7bab9407751",
-      "plan.md": "0fd77fb8d023838a95f465404d9a4707836d19e22ab2de00ead3beb138ea7cd5",
-      "tasks.md": "325870f14bf544ac4c8889b91c43519b0348dd0c6a10a0b6975af28ecbbfc635",
+      "plan.md": "a49add5e4b373e5c6df5b7be504dc0ed43c3d2ecd4de35651687c331e7022656",
+      "tasks.md": "cad7292c565c2b05b6a9847abdd5396eebe95c057e37f769d2bf53b0fa7b901e",
       "checklist.md": "d7ccf317c1921d4787e62bc3f8ac24758bddd9c55d6b3115a8629221cb7c781d",
-      "implementation-summary.md": "2faf30d05c38014d33c0b16bd4c7ba2042a5029a8d1012a1a556d99511f75fd6"
+      "implementation-summary.md": "4d8664cf544bb5b32a160d248255cf9eafa2e80dac946ad7a3be790103818fb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

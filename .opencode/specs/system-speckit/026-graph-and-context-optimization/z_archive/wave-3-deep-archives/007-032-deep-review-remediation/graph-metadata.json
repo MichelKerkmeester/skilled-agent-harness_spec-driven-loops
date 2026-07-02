@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-032-deep-review-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-032-deep-review-remediation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-032-deep-review-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-032-deep-review-remediation",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -40,6 +40,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
@@ -47,13 +51,33 @@
       ".opencode/skills/system-code-graph/README.md",
       ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -88,30 +112,6 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph remediation campaign. 3 findings deferred per reviewer recommendation.",
     "created_at": "2026-05-14T21:10:00Z",
-    "last_save_at": "2026-06-23T03:49:56.799Z",
+    "last_save_at": "2026-07-02T05:31:13.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

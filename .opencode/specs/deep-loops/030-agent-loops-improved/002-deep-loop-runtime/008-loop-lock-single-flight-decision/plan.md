@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 8: loop-lock-single-flight-decision [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 8: Loop-Lock Single-Flight Decision"
+description: "Plan for the completed ADR and opt-in host-local socket-bind single-flight guard."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "loop-lock socket-bind"
+  - "single-flight lock decision"
+  - "host-local single flight"
+  - "durable packet lock adr"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-loop-lock-single-flight-decision"
-    last_updated_at: "2026-06-28T14:01:57Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision"
+    last_updated_at: "2026-07-01T21:34:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped single-flight ADR content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed opt-in socket-bind decision"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-loop-lock-single-flight-decision"
+      fingerprint: "sha256:008a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5d9f"
+      session_id: "scaffold-content-remediation-008"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: loop-lock-single-flight-decision
+# Implementation Plan: Phase 8: Loop-Lock Single-Flight Decision
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript deep-loop runtime lock helper plus ADR documentation |
+| **Framework** | Advisory file-lock baseline with optional UNIX socket-bind guard |
+| **Storage** | Lock metadata plus optional host-local socket path; no multi-host store |
+| **Testing** | Spec acceptance requires live-holder protection with `hostLocalSingleFlight: true`, unchanged behavior when false, and stale-socket connect-before-unlink review; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This completed ADR records that `durablePacketLock` advisory file-lock remains the default and `hostLocalSingleFlight` socket-bind is an opt-in host-local hard guard. The corresponding `loop-lock.ts` implementation probes stale sockets by attempting a connection before unlinking, and explicitly leaves multi-host distributed locking out of scope.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: advisory file locks can be raced in tight same-host windows, while socket-bind has stale-socket complexity.
+- [x] Success criteria measurable: opt-in socket guard rejects a second live same-host holder; disabled flag preserves advisory-only behavior.
+- [x] Dependencies identified: phase 007 heartbeat hardening should precede this optional layer.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] ADR records `durablePacketLock` as always-on baseline.
+- [x] ADR records `hostLocalSingleFlight` as opt-in and default false.
+- [x] Multi-host distributed locking explicitly remains unsolved/out of scope.
+- [x] `loop-lock.ts` implements stale-socket probing with connect-before-unlink behavior.
+- [x] Unconditional startup socket unlink is prohibited by design and review criteria.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Layered lock strategy: durable advisory file-lock baseline plus opt-in host-local socket single-flight guard.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`durablePacketLock`**: Default advisory file-lock behavior that remains unchanged for baseline deployments.
+- **`hostLocalSingleFlight`**: Optional socket-bind guard that relies on the OS preventing two live processes from binding the same socket path.
+- **Stale socket probe**: Connection attempt that distinguishes a live holder from a stale socket file before any unlink.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+When `hostLocalSingleFlight` is false or absent, lock acquisition stays advisory-file-only and creates no socket. When enabled, the lock path additionally attempts to bind a host-local socket; on existing socket paths, it first tries to connect. A successful connection means a live holder exists and acquisition is rejected; a failed connection indicates a stale socket that may be unlinked before retry.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +100,15 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts` | Owns lock acquisition | Add opt-in socket-bind probe and stale-socket detection | Spec acceptance checks enabled/disabled behavior and connect-before-unlink |
+| Same-host socket holder | Optional hard single-flight guard | Reject second live acquisition | Integration-style acceptance with two process instances |
+| Multi-host locking | Cross-machine coordination | Explicitly unchanged/out of scope | ADR states distributed locking is unsolved |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect lock acquisition paths before layering socket-bind behavior.
+- Consumers of changed symbols: no other modules change; the config flag controls behavior in `loop-lock.ts`.
+- Matrix axes: flag absent/false, flag true with no socket, flag true with live holder, flag true with stale socket, and multi-host non-guarantee.
+- Algorithm invariant: never unlink a socket path until a connection attempt proves no live holder is listening there.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,20 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm phase 007 heartbeat hardening is the baseline prerequisite.
+- [x] Capture the ADR decision: advisory file-lock default, socket-bind opt-in.
+- [x] Explicitly scope out multi-host distributed locking.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add `hostLocalSingleFlight` opt-in branch in `loop-lock.ts`.
+- [x] Implement socket bind as a same-host single-flight guard.
+- [x] Implement stale socket detection with connection attempt before unlink.
+- [x] Preserve advisory-only behavior when `hostLocalSingleFlight` is absent or false.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify a second same-host holder is rejected when the socket guard is enabled.
+- [x] Verify a live holder's socket is not unlinked during stale-socket probing.
+- [x] Verify disabled/default behavior creates no socket and matches pre-phase advisory locking.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +140,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Integration | Two same-host processes with `hostLocalSingleFlight: true`; second acquisition rejected without unlinking live holder | Spec acceptance criteria; no dedicated test file named |
+| Regression | `hostLocalSingleFlight` absent/false keeps advisory-only behavior and creates no socket | Spec acceptance criteria |
+| Code review | No `fs.unlink(socketPath)` path runs without prior `net.connect` probe | Manual review of `loop-lock.ts` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +152,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 007 heartbeat hardening | Internal | Complete | Baseline advisory lock should be robust before layering socket-bind guard |
+| Host-local socket support | Runtime | Available where UNIX socket binding is supported | Required only when `hostLocalSingleFlight` is enabled |
+| Multi-host distributed lock service | External/future | Out of scope | No cross-machine lock guarantee is provided by this phase |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +162,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Socket-bind probing unlinks a live holder socket, rejects valid baseline locks, or introduces startup failures.
+- **Procedure**: Disable or remove the `hostLocalSingleFlight` branch in `loop-lock.ts`; keep `durablePacketLock` advisory file-lock as the default baseline while the socket probe is corrected.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +174,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

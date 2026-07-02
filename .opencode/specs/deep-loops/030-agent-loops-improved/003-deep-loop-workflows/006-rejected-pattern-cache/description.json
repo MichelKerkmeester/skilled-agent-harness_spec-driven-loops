@@ -14,7 +14,7 @@
     "surfaced",
     "re-emerge"
   ],
-  "lastUpdated": "2026-07-01T15:48:16.334Z",
+  "lastUpdated": "2026-07-01T22:26:48.167Z",
   "specId": "006",
   "folderSlug": "rejected-pattern-cache",
   "parentChain": [
@@ -25,5 +25,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

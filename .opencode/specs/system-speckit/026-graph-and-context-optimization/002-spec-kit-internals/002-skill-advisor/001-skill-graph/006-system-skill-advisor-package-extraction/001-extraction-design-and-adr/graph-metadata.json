@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,21 +42,51 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "decision-record.md",
       "research/extraction-survey.md",
-      "spec.md",
       "research/standalone-mcp-discussion.md",
       ".codex/config.toml",
       ".claude/mcp.json",
-      "implementation-summary.md",
       "mcp_server/tool-schemas.ts",
       "mcp_server/context-server.ts",
-      "tools/index.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tools/index.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -67,12 +97,6 @@
         "name": "extraction-survey.md",
         "kind": "doc",
         "path": "research/extraction-survey.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tool-schemas.ts",
         "kind": "code",
         "path": "mcp_server/tool-schemas.ts",
@@ -115,24 +133,6 @@
         "name": "index.ts",
         "kind": "code",
         "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.227Z",
+    "last_save_at": "2026-07-02T05:31:11.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [

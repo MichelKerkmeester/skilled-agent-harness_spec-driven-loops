@@ -49,17 +49,13 @@
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-context.md",
-      ".codex/agents/deep-context.toml",
       ".claude/agents/deep-research.md",
-      ".codex/agents/deep-research.toml",
       ".claude/agents/deep-review.md",
-      ".codex/agents/deep-review.toml",
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
-      ".codex/agents/deep-improvement.toml",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
-      ".codex/agents/ai-council.toml"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -111,33 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "deep-context.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-context.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
         "name": "deep-improvement.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-improvement.toml",
         "source": "derived"
       },
       {
@@ -147,9 +119,9 @@
         "source": "derived"
       },
       {
-        "name": "ai-council.toml",
-        "kind": "file",
-        "path": ".codex/agents/ai-council.toml",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -205,11 +177,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-06-23T03:49:48.696Z",
+    "last_save_at": "2026-07-02T05:31:05.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2936ed01d5961918a345b65fdcea44b0b164ddd41d2bdbf5a43b3466cbd17177",
+    "source_fingerprint": "sha256:7acfed0c80ddd29e1cf907d24719cd49ee0404b0afcd2b0b4fb2a077e55f4e64",
     "source_doc_hashes": {
-      "spec.md": "39708d68f7633252444bae9f5b35ed89feecbd0e86a4bb1b83dd453d0fe13475",
-      "plan.md": "8a7cd2e45736caaa34902eaa4f69c2be34b3f9af7c7524cee8be53017ddf7151",
-      "tasks.md": "232942f6c902ae5e01bc82a65ad42fc3825a8261a698561073a9eb6309ebdf69",
-      "checklist.md": "25057112d59ee0164a1fc3dd9b75fdcf91cb41d8631a49d3b348eae8ca394e6b",
-      "implementation-summary.md": "cab3407f419527cf31389b71e89ad752e0f451b48be474ed562a0f88624b391d"
+      "spec.md": "e6fb4cc40d26166c52f4874c183cf97f11530905db912cf8d07e413cb2a26856",
+      "plan.md": "677c7ccbfeb5f938a15596deadd5a58ccabcc45101095043d98b14deb976728b",
+      "tasks.md": "4d96961c29fbe436a640f75a7def3d9cf6a4ad4c57bd2ddb721e5243f7247f89",
+      "checklist.md": "3f8cfb5cee2b1d92b847c5eb08ef2030ca3d4a39afce1b7e4d797be443b7ed46",
+      "implementation-summary.md": "3b053a214e5f891f7ae484095897e4d662ad6cd9a4eaa123aca75026d135af48"
     },
     "last_active_child_id": null,
     "last_active_at": null

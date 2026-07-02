@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism |
+| **Spec Folder** | 002-invocability-mechanism |
 | **Completed** | Decision-complete / phase scope done: ADR-001 Accepted (Option E); no source build in 002; NFR-S01 resolved in 003; packet remains in progress pending optional live-loop e2e |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

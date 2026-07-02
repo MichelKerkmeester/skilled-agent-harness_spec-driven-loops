@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,20 +43,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "tests/file-watcher.vitest.ts",
       "spec.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/file-watcher.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "file-watcher.vitest.ts",
-        "kind": "test",
-        "path": "tests/file-watcher.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,15 +58,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,6 +79,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-watcher.vitest.ts",
+        "kind": "test",
+        "path": "tests/file-watcher.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
     "created_at": "2026-04-27T19:54:00.000Z",
-    "last_save_at": "2026-06-23T03:49:52.640Z",
+    "last_save_at": "2026-07-02T05:31:10.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

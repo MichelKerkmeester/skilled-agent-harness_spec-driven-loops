@@ -60,6 +60,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -69,11 +71,21 @@
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism/plan.md",
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism/tasks.md",
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism/decision-record.md",
-      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "parent_skills_nested_packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -102,18 +114,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skills_nested_packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
         "source": "derived"
       },
       {
@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Parent skills route to nested mode packets, but those packets are not invocable through the runtime `Skill` tool",
     "created_at": "2026-06-26T05:52:39.211Z",
-    "last_save_at": "2026-06-30T06:12:45.691Z",
+    "last_save_at": "2026-07-02T05:31:09.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,14 +232,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:404ba19cfe3b1f53f45a1faf58700e856453552138c576195ca82757169a4322",
+    "source_fingerprint": "sha256:923c0145479588663ae3f22c0271757990d992be1760484f95a7a5c1a1acd88c",
     "source_doc_hashes": {
-      "spec.md": "6ac9eb802a5d42f6d137a54cb7407f70a8fa395381e8c2a4454e9267bbe81b46",
-      "plan.md": "adfef4932fe8056789db721ebaf191294b00930360f1742a62287eb251fdccf6",
-      "tasks.md": "e4cf51dd22519e0a7abed0c34348a09e00b22a39cf3471c41cf68d368436689c",
-      "checklist.md": "9bfaf1aae9ec9f5ae6dfeb12b4a76086083f960cbf08ede38994ed19755f1a6b",
-      "decision-record.md": "2d381c3c730f47472e6ede7b7a43a9d7a5d88852fd568ae869c4a73d2122812d",
-      "implementation-summary.md": "505cce64c14aa79b7986403b0d981ee2d903c4de5e4cdc211eb22d8c7bd532ce"
+      "spec.md": "9634f33cb0bd82df4276f6d31664f45ef66c35f50ab9bb0f0262af0fa9efb214",
+      "plan.md": "987375ba92acbeba2d77d3ab6b188c1c1d709993af2c54342c8e33717b27b5cd",
+      "tasks.md": "b9f6aa941c6538c4956d3aff2e796a5214853075835ca6b0fa9370d978cc906b",
+      "checklist.md": "76005fc65b40f34fda5afa506f0f06c37d5f04c955112f90c54029133ece01d0",
+      "decision-record.md": "5b6f79949f2fa2d20df646aeb717e53c7921c67506e3f71c0461ac4e49896a55",
+      "implementation-summary.md": "0fdadc929e76a8a2261992a99cc578303526250c7bbee223d3a9f04010b6481e"
     },
     "last_active_child_id": null,
     "last_active_at": null

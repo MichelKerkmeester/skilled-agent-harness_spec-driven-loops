@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -48,13 +52,33 @@
       ".opencode/commands/design/md-generator.md",
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-      "spec.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md",
-      "tasks.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -101,30 +125,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A command `description` is treated as if it were auto-trigger text for that one command, yet natural-language prompts collapse to the `sk-design` hub rather than auto-selecting a single `/design:` command",
     "created_at": "2026-06-28T12:40:00.407Z",
-    "last_save_at": "2026-06-29T07:26:08.882Z",
+    "last_save_at": "2026-07-02T05:31:08.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7eed56f08b2f9398ccd953809053b17f88d29b4b43ae7a3aea85d39ec4421b67",
+    "source_fingerprint": "sha256:78ab0a59ff4d4a8ca239999be3df0d0d75f51b74e4ef81e2d6762e01d020dc96",
     "source_doc_hashes": {
-      "spec.md": "a93e14299322111ece1f86a19181ee6d0d7960a43f2c2ef71b571551182a4f90",
-      "plan.md": "5c82c035218f53a02259d0920cf0d1d739c407285c8c8ee1ab56c37a3e3fcd7e",
-      "tasks.md": "8e9b3eead219c2f366cfeaf3a0ae8932199cefc9564f1f9d9b201d53622ef882",
-      "checklist.md": "f8f2ff68900d55e31b405f57715252e938d17718fc2d15df3a6f0f022519d0dc",
-      "implementation-summary.md": "ee881b94dd4b63a6495ffb56811b920c17813ac0cf34a20384a32a9b6f9f54a9"
+      "spec.md": "8a98295118c263dfb7d88132e7ec28e1ccea2bac1a689a659803ee12e3936355",
+      "plan.md": "8b9df8cc597ba1c83f0d3ceb4aea9d13620f82b03564181e6056cbbbab040fa3",
+      "tasks.md": "7eb87b874a7eb6694ad45ae5e382ae60c07d2a98fc710175629938d741e55d32",
+      "checklist.md": "c00f411f3c8a4dc46b3198797ed82782bc035e07bd7a292b487b19400f8140e5",
+      "implementation-summary.md": "f47efdcb15bf177139e253de868ff190d9e92a43a66ed755889d902ed79c96b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

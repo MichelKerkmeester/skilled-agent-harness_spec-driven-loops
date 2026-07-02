@@ -191,6 +191,7 @@ describe('handleCodeGraphScan', () => {
   let originalIndexScopeEnv: Partial<Record<(typeof indexScopeEnvKeys)[number], string | undefined>> = {};
 
   beforeEach(() => {
+    vi.unstubAllEnvs();
     originalIndexScopeEnv = Object.fromEntries(
       indexScopeEnvKeys.map((key) => [key, process.env[key]]),
     );
@@ -956,6 +957,7 @@ describe('handleCodeGraphScan', () => {
   });
 
   it('clears the persisted edge-enrichment summary when a later scan reports no summary', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.execSyncMock.mockReturnValue('same-head\n');
     mocks.getLastGitHeadMock.mockReturnValue('same-head');
     mocks.isFileStaleMock.mockReturnValue(true);
@@ -1009,6 +1011,115 @@ describe('handleCodeGraphScan', () => {
       numericConfidence: 0.95,
     });
     expect(mocks.clearLastGraphEdgeEnrichmentSummaryMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports legacy edge-enrichment summary when confidence differentiation is off', async () => {
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.isFileStaleMock.mockReturnValue(true);
+    mocks.indexFilesMock.mockResolvedValueOnce(withPreParseSkippedCount([{
+      filePath: '/workspace/current.ts',
+      language: 'typescript',
+      contentHash: 'hash-legacy-edge',
+      nodes: [{ symbolId: 'current::symbol' }],
+      edges: [{
+        sourceId: 'current::symbol',
+        targetId: 'dep::symbol',
+        edgeType: 'CALLS',
+        weight: 1,
+        metadata: { confidence: 0.99, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+      }],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: true,
+    });
+    const payload = JSON.parse(response.content[0].text);
+
+    expect(payload.data.graphEdgeEnrichmentSummary).toEqual({
+      edgeEvidenceClass: 'inferred_heuristic',
+      numericConfidence: 0.8,
+    });
+    expect(mocks.setLastGraphEdgeEnrichmentSummaryMock).toHaveBeenCalledWith({
+      edgeEvidenceClass: 'inferred_heuristic',
+      numericConfidence: 0.8,
+    });
+  });
+
+  it('keeps real IMPORTS confidence in edge-enrichment summary when confidence differentiation is off', async () => {
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.isFileStaleMock.mockReturnValue(true);
+    mocks.indexFilesMock.mockResolvedValueOnce(withPreParseSkippedCount([{
+      filePath: '/workspace/current.ts',
+      language: 'typescript',
+      contentHash: 'hash-imports-edge',
+      nodes: [{ symbolId: 'current::symbol' }],
+      edges: [{
+        sourceId: 'current::symbol',
+        targetId: 'dep::symbol',
+        edgeType: 'IMPORTS',
+        weight: 1,
+        metadata: { confidence: 1, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+      }],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: true,
+    });
+    const payload = JSON.parse(response.content[0].text);
+
+    expect(payload.data.graphEdgeEnrichmentSummary).toEqual({
+      edgeEvidenceClass: 'import',
+      numericConfidence: 1,
+    });
+  });
+
+  it('classifies an AMBIGUOUS CALLS edge as inferred_heuristic in edge-enrichment summary', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.isFileStaleMock.mockReturnValue(true);
+    mocks.indexFilesMock.mockResolvedValueOnce(withPreParseSkippedCount([{
+      filePath: '/workspace/current.ts',
+      language: 'typescript',
+      contentHash: 'hash-ambiguous-edge',
+      nodes: [{ symbolId: 'current::symbol' }],
+      edges: [{
+        sourceId: 'current::symbol',
+        targetId: 'dep::symbol',
+        edgeType: 'CALLS',
+        weight: 1,
+        metadata: { confidence: 0.3, detectorProvenance: 'heuristic', evidenceClass: 'AMBIGUOUS' },
+      }],
+      detectorProvenance: 'heuristic',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: true,
+    });
+    const payload = JSON.parse(response.content[0].text);
+
+    expect(payload.data.graphEdgeEnrichmentSummary).toEqual({
+      edgeEvidenceClass: 'inferred_heuristic',
+      numericConfidence: 0.3,
+    });
   });
 
   it('preserves persisted summaries for no-op incremental scans that skip fresh files before parse', async () => {

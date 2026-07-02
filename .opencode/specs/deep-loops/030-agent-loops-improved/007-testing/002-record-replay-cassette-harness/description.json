@@ -13,7 +13,7 @@
     "fuzzy-merge",
     "way"
   ],
-  "lastUpdated": "2026-07-01T15:48:11.987Z",
+  "lastUpdated": "2026-07-01T23:08:59.560Z",
   "specId": "002",
   "folderSlug": "record-replay-cassette-harness",
   "parentChain": [
@@ -24,5 +24,6 @@
     "007-testing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

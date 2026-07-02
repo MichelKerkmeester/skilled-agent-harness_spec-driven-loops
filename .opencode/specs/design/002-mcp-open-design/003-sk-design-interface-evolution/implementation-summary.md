@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | design/002-mcp-open-design/003-sk-design-interface-evolution |
+| **Spec Folder** | 003-sk-design-interface-evolution |
 | **Completed** | 2026-06-14 |
 | **Level** | 2 |
 | **Commit** | `b12ffd3d76` |

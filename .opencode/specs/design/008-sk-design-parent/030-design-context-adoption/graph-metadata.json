@@ -41,15 +41,21 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -62,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Research `029` proved the recurring design misses (skipped register, late contrast → a WCAG-AA P1, ad-hoc audit instead of the pre-flight card, thinnest context to a small model) come from missing proof fields, not from agents needing to \"read more.\" The strong context lived in always-load and conditional resources but nothing forced it to be loaded and proven, especially under delegation",
     "created_at": "2026-06-27T15:28:11.173Z",
-    "last_save_at": "2026-06-30T09:11:16.272Z",
+    "last_save_at": "2026-07-02T05:31:07.918Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f91b965311507b1b60498ce7e06c89839fd8ae141b8831eca67f69e8eff57d31",
+    "source_fingerprint": "sha256:84ca4bee9ecff0843c47dd03a370fa483a74d23016e97e7fe2a43f720666d0c2",
     "source_doc_hashes": {
-      "spec.md": "073275e3bc7e9db487577efa3f2283d2ac36cc6bea26c71e87eb27000fe6a26b",
-      "plan.md": "19a15b96d59220c42e9a1254af4490949cd8c291b22a62c10f393661886d8d29",
-      "tasks.md": "30e137e762ddd3d1e153c93c313b924fd527a3aa945cf79fd2237a04744424d1",
-      "implementation-summary.md": "6d4c0fa9f92c661722db154135ff9a7d44efed1c7a9e71b3e0ecc72bad787e65"
+      "spec.md": "ce623be2a4d2e4b198fbdf9b9983bdda0c5b459116fe8b614ffd4585d0eacd0f",
+      "plan.md": "aba4d8c92fe79f5241f260edc8b3f04cb7b024755716ecb963bb7d3ea1646eb1",
+      "tasks.md": "318c6917b8f72ac7dc20fceee1dd3394855b57488ecb1138b166f1d0a7a6d574",
+      "implementation-summary.md": "15387579e66cf0a4b8b7f15b7d089dca59e23f4a4293026fa9450afa41a74703"
     },
     "last_active_child_id": null,
     "last_active_at": null

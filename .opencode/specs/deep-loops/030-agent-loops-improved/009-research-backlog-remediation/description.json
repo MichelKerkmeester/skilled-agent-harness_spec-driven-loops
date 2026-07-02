@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "deep-loops/030-agent-loops-improved/009-research-backlog-remediation",
   "description": "The deep-research fan-out against this packet found: (1) a critical, silent data-loss bug in the fan-out merge tool itself (`fanout-merge.cjs` drops",
   "keywords": [
@@ -18,12 +19,10 @@
     "cjs",
     "drops"
   ],
-  "lastUpdated": "2026-07-01T15:48:10.998Z",
+  "lastUpdated": "2026-07-02T11:47:24.467Z",
   "specId": "009",
   "folderSlug": "research-backlog-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "030-agent-loops-improved"
   ],

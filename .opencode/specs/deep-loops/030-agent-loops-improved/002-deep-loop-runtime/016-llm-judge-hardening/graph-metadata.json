@@ -15,14 +15,8 @@
       "neutral fallback card",
       "judge quarantine",
       "post-dispatch validate",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "016-llm-judge-hardening summary"
+      "016-llm-judge-hardening summary",
+      "016-llm-judge-hardening"
     ],
     "key_topics": [
       "llm-judge",
@@ -34,11 +28,11 @@
       "quarantine",
       "post-dispatch",
       "validate",
-      "implementation",
-      "plan",
-      "name"
+      "016-llm-judge-hardening",
+      "summary",
+      "single"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Judge Hardening",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
+        "name": "completed LLM",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral fallback card or quarantine boundary",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-07-01T15:47:37.111Z",
+    "last_save_at": "2026-07-01T21:52:50.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bcc4290a69aba97184458fcc1bdcb623072584f9476b133faa7c9187762276c",
+    "source_fingerprint": "sha256:3a0385bb588d4244b1d94d9e91a6162a9f04c531669eb2ecfb445f2f612064df",
     "source_doc_hashes": {
       "spec.md": "91d12ac2c165da083e4221a2ebd42b4f406f50dd83c3b750c2d823e9c4d3965c",
-      "plan.md": "54c0572d4881fad31da5623e178f3b1b34d821cf8e11f00eac345bac0999c683",
-      "tasks.md": "8d77558f22e1f12c8d2a7876d74bd31f417b45d3bd7cb5518e7ce60efcb8329f",
+      "plan.md": "e9f2ed6552bf508d21245ae15e205765295f098f658b1c42b610787359e7c9f4",
+      "tasks.md": "7ce432b89da527b5a7ef3bb2b8ebc3d97b7cd2f8b6c0bf96f39b703b2d8f987f",
       "implementation-summary.md": "e50efe07cb465af8b63ffc71a2ee97c5dd7c6118ed8fdd0be7759e9eb3fbc68c"
     },
     "last_active_child_id": null,

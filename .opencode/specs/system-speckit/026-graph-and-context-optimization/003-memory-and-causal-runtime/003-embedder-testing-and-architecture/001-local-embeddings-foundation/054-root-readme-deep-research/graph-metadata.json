@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -40,6 +40,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "research/delta-verified.md",
       "research/deep-research-state.jsonl",
       "research/research.md",
@@ -50,7 +51,6 @@
       "resource-map.md",
       "assets/iter-template.md",
       "research/track-seeds.md",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "README.md",
       "implementation-summary.md",
       "spec.md",
@@ -62,6 +62,12 @@
       ".claude/mcp.json"
     ],
     "entities": [
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
       {
         "name": "delta-verified.md",
         "kind": "doc",
@@ -120,12 +126,6 @@
         "name": "track-seeds.md",
         "kind": "doc",
         "path": "research/track-seeds.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Catch the depth Phase D missed",
     "created_at": "2026-05-15T13:35:00Z",
-    "last_save_at": "2026-06-23T03:49:54.259Z",
+    "last_save_at": "2026-07-02T05:31:11.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

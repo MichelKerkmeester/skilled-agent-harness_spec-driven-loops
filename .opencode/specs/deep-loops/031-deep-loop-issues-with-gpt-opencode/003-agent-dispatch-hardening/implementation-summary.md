@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `002-agent-dispatch-hardening` |
+| **Spec Folder** | 003-agent-dispatch-hardening |
 | **Completed** | 2026-06-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

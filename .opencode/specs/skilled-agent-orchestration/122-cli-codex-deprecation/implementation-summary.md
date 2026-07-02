@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation` |
+| **Spec Folder** | 122-cli-codex-deprecation |
 | **Completed** | 2026-06-30 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

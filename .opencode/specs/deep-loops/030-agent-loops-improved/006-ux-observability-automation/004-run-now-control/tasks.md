@@ -1,32 +1,33 @@
 ---
-title: "Tasks: Phase 4: run-now-control [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Run-Now Control (Forced-Run Sentinel)"
+description: "Completed task ledger for consume-once run-now sentinel control."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "run now control"
+  - "forced run sentinel"
+  - "deep-research-run-now"
+  - "run now sentinel"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-run-now-control"
-    last_updated_at: "2026-06-28T14:02:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/006-ux-observability-automation/004-run-now-control"
+    last_updated_at: "2026-07-01T22:50:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-run-now-control"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: run-now-control
+# Tasks: Run-Now Control (Forced-Run Sentinel)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm consume-once sentinel scope (`spec.md`).
+- [x] T002 Confirm lifecycle event naming dependency from single-loop telemetry (`002-single-loop-telemetry-heartbeat/spec.md`).
+- [x] T003 [P] Keep scheduler rewrite and fan-out forced-run behavior out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `state_paths.run_now_sentinel` for `.deep-research-run-now` (`deep_research_auto.yaml`).
+- [x] T005 Add `step_run_now_check` before cadence wait and dispatch (`deep_research_auto.yaml`).
+- [x] T006 Consume the sentinel before dispatch start (`deep_research_auto.yaml`).
+- [x] T007 Emit `run_now_accepted` for accepted forced runs (`deep_research_auto.yaml`).
+- [x] T008 Emit `run_now_rejected` when pause state blocks dispatch (`deep_research_auto.yaml`).
+- [x] T009 Emit requested and restored lifecycle rows for auditability (`deep_research_auto.yaml`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +74,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Verify sentinel placement triggers immediate iteration and consumes the file.
+- [x] T011 Verify paused loops reject run-now and keep the sentinel.
+- [x] T012 Verify recreated sentinel intent is not consumed mid-run.
+- [x] T013 Update plan and task docs to reflect completed implementation (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +98,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

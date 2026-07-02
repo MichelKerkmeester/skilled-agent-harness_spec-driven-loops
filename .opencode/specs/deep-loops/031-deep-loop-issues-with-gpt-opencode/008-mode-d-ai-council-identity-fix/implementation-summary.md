@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `008-mode-d-ai-council-identity-fix` |
+| **Spec Folder** | 008-mode-d-ai-council-identity-fix |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

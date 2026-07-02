@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -45,7 +45,6 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
-      ".opencode/skills/cli-codex/assets/prompt_templates.md",
       ".opencode/skills/cli-claude-code/assets/prompt_templates.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
@@ -70,7 +69,7 @@
       {
         "name": "prompt_templates.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
+        "path": ".opencode/skills/cli-claude-code/assets/prompt_templates.md",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-06-23T03:49:52.884Z",
+    "last_save_at": "2026-07-02T05:31:10.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

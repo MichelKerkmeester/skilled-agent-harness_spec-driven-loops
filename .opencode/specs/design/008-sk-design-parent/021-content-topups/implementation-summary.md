@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/021-content-topups |
+| **Spec Folder** | 021-content-topups |
 | **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

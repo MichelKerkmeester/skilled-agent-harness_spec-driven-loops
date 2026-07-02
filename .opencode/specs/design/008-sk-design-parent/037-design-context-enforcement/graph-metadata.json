@@ -41,9 +41,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
       ".opencode/skills/sk-design/shared/scripts/proof_check.py",
       ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py"
     ],
@@ -52,6 +52,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -64,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The contract works when handed to a delegate (035 benchmark) but is not enforced for the orchestrator's own path, and a weak model's contrast arithmetic can mislabel a fail as a pass",
     "created_at": "2026-06-28T06:49:47.589Z",
-    "last_save_at": "2026-06-28T06:49:47.589Z",
+    "last_save_at": "2026-07-02T05:31:07.941Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ea063b4a323a3437f34c5d4aa94c36260fe474ba152f4cf3a05a018c797a77c",
+    "source_fingerprint": "sha256:53e8fb74f1d7c82941fe88475c4b7b765b17272ab5b040ffffba747ba5ea04b8",
     "source_doc_hashes": {
-      "spec.md": "a81e12f6b301456c37703cfeb5e4ead541d68a529e3afef1c93154093664417f",
-      "plan.md": "2ea39dd0874b16105fb0f898190872b84f624e92fab7c174dfe0016ae1a89b7b",
-      "tasks.md": "c0c4320b44b95367d9e43f99425c9e0c7ad1136c4caf41a7ed94e5d47e330a6f",
-      "implementation-summary.md": "75f9835c863ead396f1c3fe0a39a70cf221b4fe8a822e79d104fe9e91c2854df"
+      "spec.md": "3b3dd38e3a4afa661e147a902cca1cb9d0a34753735b94acd7fe443e00fe1bd1",
+      "plan.md": "ee4d249aa1b2a306b65aa928da5a481909344cfb9893161f3c31016e42cf11a1",
+      "tasks.md": "61f064e85f3cb1f18d58577764fdc85fa0b0497ade26881b6cce8a964502f705",
+      "implementation-summary.md": "4dbdc29b0d3604cc0d7c155bc5c9bb6c7089e86d22cf8bf161236169f453a075"
     },
     "last_active_child_id": null,
     "last_active_at": null

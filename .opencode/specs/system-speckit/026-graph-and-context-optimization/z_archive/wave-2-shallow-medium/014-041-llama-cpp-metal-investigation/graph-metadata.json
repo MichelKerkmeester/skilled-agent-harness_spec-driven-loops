@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,18 +41,36 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "research.md",
+      "decision-record.md",
+      "scratch/system-probes.txt",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research.md",
-      "decision-record.md",
-      "scratch/system-probes.txt",
       "scratch/probe-gpulayers-zero.mjs",
       "scratch/probe-gpulayers-zero-auto.txt",
       "scratch/probe-gpulayers-zero-cpu.txt"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-probes.txt",
+        "kind": "file",
+        "path": "scratch/system-probes.txt",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,24 +93,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "system-probes.txt",
-        "kind": "file",
-        "path": "scratch/system-probes.txt",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Every observed llama-cpp embedding call emits Metal-related stderr before falling back to CPU behavior",
     "created_at": "2026-05-14T15:18:02Z",
-    "last_save_at": "2026-06-23T03:49:56.746Z",
+    "last_save_at": "2026-07-02T05:31:13.008Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

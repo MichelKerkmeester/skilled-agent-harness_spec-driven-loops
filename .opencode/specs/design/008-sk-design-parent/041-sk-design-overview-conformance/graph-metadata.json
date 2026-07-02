@@ -41,6 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -48,6 +51,24 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "token_starter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/assets/token_starter.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface_preflight_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "22 sk-design reference and asset files (13 references, 9 assets) predate the sk-doc Section-1 OVERVIEW convention, so they open straight into body content instead of the standardized `## 1",
     "created_at": "2026-06-29T16:03:06.357Z",
-    "last_save_at": "2026-06-29T16:03:06.357Z",
+    "last_save_at": "2026-07-02T05:31:08.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcd24e8cc4be285c0b28fe48ade8f67f6ca23cc7533457101b72a17ad4205312",
+    "source_fingerprint": "sha256:6f07d34bdd9d9ce3f5568bc7a44826d36a6b20cc7e765b8b94061a750093679f",
     "source_doc_hashes": {
-      "spec.md": "b8039216e4c0183954c0dd9ab6519367c2ce9e538d287bea5abc790ce26f650c",
-      "plan.md": "06f82f39a028c897dfac34cc3897235563cebf12273ca37cd1087bc6cfb0974a",
-      "tasks.md": "b87f1d9dd492debd41a82a70905fa8919c33af28c8aaa8d4224a8e15585c649e",
-      "checklist.md": "4d2eb0b8ed36e1c724d076389e09007a5b72bd93bd5ad5549e7c2a5ffb21f3f0",
-      "implementation-summary.md": "25edea667f316e09ef98c7d0caf4cdd1ab43c5e4545f802d6e827f55b62de20d"
+      "spec.md": "3ddbc18a43c5cd032a647a9d3ddc56898f4c2d54beaa5b56388b70547d39c40a",
+      "plan.md": "b41aa32ca9992d800b555e6f2d9c24bc373701f6d9ce085d255fb51f9ba0eb4a",
+      "tasks.md": "a36bcfb97e8632b3297c00d550634527a453f60667928c0b005d027b15ed0b51",
+      "checklist.md": "492a8bd730bba93a51f98acfd4814dfca5e8a38cd1795211c32dd10443a1ed23",
+      "implementation-summary.md": "c954608c7cad678111a2dc2c3f3e6ddd7c3fb4bcd46485fd137dd247671d64df"
     },
     "last_active_child_id": null,
     "last_active_at": null

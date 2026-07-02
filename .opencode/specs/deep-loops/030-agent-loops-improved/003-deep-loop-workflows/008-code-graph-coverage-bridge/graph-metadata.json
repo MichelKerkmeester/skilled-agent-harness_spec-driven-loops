@@ -15,14 +15,8 @@
       "coverage graph seed",
       "empty coverage graph convergence",
       "seed source coverage init",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "008-code-graph-coverage-bridge summary"
+      "008-code-graph-coverage-bridge summary",
+      "008-code-graph-coverage-bridge"
     ],
     "key_topics": [
       "code",
@@ -34,11 +28,11 @@
       "convergence",
       "source",
       "init",
-      "implementation",
-      "plan",
-      "name"
+      "008-code-graph-coverage-bridge",
+      "summary",
+      "deep-context"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_context_auto.yaml",
@@ -162,7 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Initialization",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,15 +174,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,7 +186,7 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -200,7 +194,7 @@
     ],
     "causal_summary": "The deep-context and deep-review loops start with an empty coverage graph",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-07-01T15:47:37.138Z",
+    "last_save_at": "2026-07-01T22:26:49.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0617bf386b8cc233196b6bccb560eb0e47d5eaf7f8c67182b0f55c424bb08bca",
+    "source_fingerprint": "sha256:6ee33ca6a292e0deba169525784dc2747d5fadc691f6bc321051cdef365af0b7",
     "source_doc_hashes": {
       "spec.md": "b4c16ecc0bbcc029c63be32945f77704f90b6d03699eb908d20c308d2839093c",
-      "plan.md": "98bb957487eef79ad26e8d5b13beb0bcc1486ce4fbe523de74e22327f2b3ace2",
-      "tasks.md": "11f9a07a94a3eeff941a905c2dbdc5c2a65579cee552b1d5f3c5438b2e75ced7",
+      "plan.md": "aeddd7a20f751a1035f125eb0a74f80ff580ea89127e59927c40b658c4b8ed5d",
+      "tasks.md": "9195c8f804d6d9e229d3dd5635dd7ad3a18308ca564e54674f6cfb740aec1690",
       "implementation-summary.md": "b24969645f3e711bdadbbca68ac5a59920120046ef4b0ccc399470e8054fc018"
     },
     "last_active_child_id": null,

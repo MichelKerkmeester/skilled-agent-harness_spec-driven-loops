@@ -43,21 +43,15 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
+      "spec.md",
       "checklist.md",
       ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -74,6 +68,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Parent skills can route operator requests to nested mode packets, but the nested packets are not independently invocable by the runtime `Skill` tool",
     "created_at": "2026-06-30T00:00:00.000Z",
-    "last_save_at": "2026-06-30T06:12:45.681Z",
+    "last_save_at": "2026-07-02T05:31:09.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7d033044f9ef1364c50c64f8586b24f74d6793ed88c42a37f7dcced8eeb9f8f",
+    "source_fingerprint": "sha256:bdf5b942806ea16d30affa6e914c361e150f7219874b5e552f33d1a97ab6a634",
     "source_doc_hashes": {
-      "spec.md": "33fb74b9be32801196f0ba0e6eaf10dc0ff50517d6a525fd838c2f4d39aaff7b",
-      "plan.md": "62d75e66b7bbc8fe7ffd2da4a15084f28f06e95bfe0d3543994b1dc384b3bba6",
-      "tasks.md": "09dc63b975a100679755241c2fe69f72987b6c1b80cac4f70566be82a1845cd1",
-      "checklist.md": "6026f4b743ce7deb7de2fc04293d36ae911cb2dad400971002af3a1a4f5e2f1c",
-      "decision-record.md": "58f167ad694562dd36c4d7eabcd67d07c14139d3b48d3adfe77c05fa3b529db0",
-      "implementation-summary.md": "5822ff5237e09ad1623ff0bb9a1859538e1d07ec0f3417d3a0034a1d6ba350c7"
+      "spec.md": "6a639a54ec594c69ac6180862aaaae297c0e7a959644fe046a506d41374d6c46",
+      "plan.md": "04fd769313fbca70a342b57deaa1159782ac5a435beaa518df082548bd5527c2",
+      "tasks.md": "1ddbec1bfdac18b61f4d490b372d19406b3b3ee0a8ef0915741b9cad4563616a",
+      "checklist.md": "63a0b07733be264bc07b3bc6742284cee6665c33b1c81a505c430e2df005b523",
+      "decision-record.md": "b59e329550a67c742d239b99f80589aa52f2258d2e9689e9a7972761a4b320e7",
+      "implementation-summary.md": "a4cb85580f2e32522ac6ef2a1ed0f51fad6030b895c3bd25f1d069356f44bb01"
     },
     "last_active_child_id": null,
     "last_active_at": null

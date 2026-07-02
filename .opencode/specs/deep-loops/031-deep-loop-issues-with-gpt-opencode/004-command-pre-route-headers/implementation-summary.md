@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration/003-command-pre-route-headers` |
+| **Spec Folder** | 004-command-pre-route-headers |
 | **Completed** | 2026-06-30 |
 | **Level** | 2 |
 | **Actual Effort** | Medium; prompt/YAML edits plus council script propagation and validation |

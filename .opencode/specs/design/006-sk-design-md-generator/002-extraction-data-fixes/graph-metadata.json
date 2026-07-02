@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The empirical check (iter-043) showed the two known hallucinations occur exactly where extraction left data empty/fake: `a11y-extract.ts:101-103` returns `{consistent:true}` on empty focus data; interaction capture is OFF by default (`extract.ts:81`); `extractA11yAsync` (`a11y-extract.ts:361`) is dead code; the OKLCH clustering can split brand colors and the L4 gate leaks one-off colors",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.830Z",
+    "last_save_at": "2026-07-02T05:31:07.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15415902334bce86059c88648cf9be49c1e38e0d2d4c0416d2302b9faba65d2d",
+    "source_fingerprint": "sha256:f0444d578f0050b5e7b86e7eee0677d6750c7d102a4914818402d90f5bbddc9b",
     "source_doc_hashes": {
-      "spec.md": "ff645e83894f7de19a82bcd8badaf76554283ad979e27db06adc22a9a7c41b2b",
-      "plan.md": "a7bf08a8085115cdc2f1d910900dd7e720b6f7e4e2f28c51add2b610fba322fb",
-      "tasks.md": "c3a9fc85fa546966933e23b255d31d480619f02105c06e1559917d200b1cfd61",
-      "checklist.md": "cd9778d6575b04f23ed1c15be49a4de5cb98ff50ff79239fa7dc22db86e91aa9",
-      "implementation-summary.md": "f73b8bf49e354d0ce4b17df14ef03f8d298ea7169b409cc617579786ee2e079d"
+      "spec.md": "8cfb5d06ee6142d33610c65c64ad468c41c9b304ed4a9d6747ade3c4ec8fb747",
+      "plan.md": "354e9d5964fc9df205f63f0a1c6bd6d26f0b8b689cfa4b9b1a91b9db96cf793b",
+      "tasks.md": "e0ac48b815924bd568927f7be797f22811049afe7a0304f3d5965490a893ede1",
+      "checklist.md": "9cb8c4986be969482769d0f51ac61a08993a598c8049a06acccd09f70023db13",
+      "implementation-summary.md": "c3279e6ca74f8ff6bab745e1b7d648520c7264be4d478be868bf627410779950"
     },
     "last_active_child_id": null,
     "last_active_at": null

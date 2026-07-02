@@ -178,6 +178,7 @@ A: Verification before completion is the gate that separates confident code from
 | OPENCODE alignment | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code/` exits 0 |
 | STACK_FOLDERS surfaces | `python3 .opencode/skills/sk-code/assets/scripts/verify_stack_folders.py` exits 0 (every declared surface resolves to on-disk references and assets folders) |
 | Comment hygiene | `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` reports zero violations |
+| Dist freshness (warn-only) | `.opencode/skills/sk-code/scripts/check-dist-staleness.sh <file>` always exits 0; prints `STALE DIST WARNING: <package>` only when the file's dist-producing package is stale |
 | WEBFLOW minification | `node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs` exits 0 |
 
 ---
@@ -198,3 +199,5 @@ A: Verification before completion is the gate that separates confident code from
 | [`assets/webflow/scripts/verify-minification.mjs`](./assets/webflow/scripts/verify-minification.mjs) | WEBFLOW minification verification |
 | [`assets/scripts/verify_alignment_drift.py`](./assets/scripts/verify_alignment_drift.py) | OPENCODE alignment-drift verifier |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Phase 1.5 comment-hygiene enforcement |
+| [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Warn-only dist-freshness check dispatched from `hooks/claude-posttooluse.sh` on every `Write`/`Edit`; prints a `STALE DIST WARNING` banner when the edited file lands in a watched `dist/`-producing source tree and that package's dist is stale. Delegates to the shared `system-spec-kit/scripts/lib/dist-freshness.cjs` checker; always exits 0. |
+| [`scripts/hooks/claude-posttooluse.sh`](./scripts/hooks/claude-posttooluse.sh) | Claude Code `PostToolUse` hook entrypoint (wired via `.claude/settings.json`). Runs comment-hygiene and dist-staleness checks on every `Write`/`Edit`, plus an agent mirror-sync gate; always exits 0 (warn-only). |

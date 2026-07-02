@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deterministic advisor already returns sk-design at rank #1 with figma / open-design transports at ranks 3 and 5, but nothing in the benchmark machinery guards that ordering",
     "created_at": "2026-06-28T12:39:59.661Z",
-    "last_save_at": "2026-06-29T09:24:36.315Z",
+    "last_save_at": "2026-07-02T05:31:08.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d96d37b646cde53f0844c03d73e91cfebb2fbecaf5a5f92511f1453cbd90b90c",
+    "source_fingerprint": "sha256:aa98056346658ac03e135c125230865c83134557363a471e150752f1bb2a37f1",
     "source_doc_hashes": {
-      "spec.md": "eab308b06be16f9df59e6fbe971ec70f2a13298b6fbf6ef4850a468bcdb79d7f",
-      "plan.md": "9456dcbeab85905fc883a3fb32cc15b7083e45a53d76de3fe3417d0b5fdd028c",
-      "tasks.md": "15318b6f9956f8b757fc76931e028d9f7eff46f9b02c64c9636f0d0d04c6f41e",
-      "checklist.md": "7505bc20b4ba645ef80f12df0b776c739d08d68fec31919a425ce3c49f164db8",
-      "implementation-summary.md": "7641db067af4731e90baea84d9ba9a76311d849707531bd9f29c1eccc8881842"
+      "spec.md": "e7c6f718fb5c9e2239c14fe9f6684e33917999344b082ec5c69ed7c864d970f9",
+      "plan.md": "2b273413fa58ee358bde1db6d0c3fbbbce2f2b6d5351b2ecdaa4ebb993e6cc27",
+      "tasks.md": "5a42cb3e67023bbb530d7b5c2f0d6c17a2e6e8b0439bd13ff6acf0f53952192d",
+      "checklist.md": "925d8a29f9fbc4b48f76eb90d111abb6a4cb00e8e33b1ccac56953d681432b7e",
+      "implementation-summary.md": "a9e1e3327a4d79ad9a74b0f0087d7caa6de38d1655bdc80cb174ae73aab83881"
     },
     "last_active_child_id": null,
     "last_active_at": null

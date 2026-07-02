@@ -30,6 +30,7 @@ user_inputs:
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
   review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
+  session_id: "[SESSION_ID] - Optional caller-supplied session id for fan-out lineages. Default: timestamp."
   lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop_protocol.md §Lifecycle Branches."
   max_iterations: 7
   convergence_threshold: 0.10
@@ -364,13 +365,23 @@ workflow:
             - ["correctness"] → ["correctness"]
           Every element MUST be one of the four canonical dimension names.
 
+      step_resolve_session_id:
+        action: "Resolve init session id from caller when supplied, else preserve timestamp fallback"
+        branch_on: "session_id"
+        if_present:
+          bind:
+            session_id_init: "{session_id}"
+        if_absent:
+          bind:
+            session_id_init: "{ISO_8601_NOW}"
+
       step_create_config:
         action: "Create deep-review-config.json from template with review-specific fields"
         template: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json
         populate:
           topic: "Review: {review_target}"
           mode: "review"
-          sessionId: "{ISO_8601_NOW}"
+          sessionId: "{session_id_init}"
           parentSessionId: null
           lineageMode: "new"
           generation: 1
@@ -405,12 +416,12 @@ workflow:
         action: "Initialize JSONL state log with config record including review fields and lineage metadata"
         note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_create_findings_registry:
         action: "Initialize reducer-owned review findings registry"
-        content: '{"sessionId":"{ISO_8601_NOW}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
+        content: '{"sessionId":"{session_id_init}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
         output: "{state_paths.findings_registry}"
 
       step_create_strategy:

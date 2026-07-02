@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packet 030 shipped nine phases of loop-system work, most recently an 11-child research-backlog remediation phase that changed fan-out merge behavior, per-lineage timeout handling, convergence-threshold defaults, a new `SCAFFOLDNEVERTOUCHED` validate.sh rule, and fan-out safety hardening (stall watchdog, cost cap)",
     "created_at": "2026-07-01T16:29:13.826Z",
-    "last_save_at": "2026-07-01T18:43:32.813Z",
+    "last_save_at": "2026-07-02T11:45:19.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bddaa07904820577d88020723629aef7593c40fa20ea4314257687176ff26d74",
+    "source_fingerprint": "sha256:b2b7372404adde79f5f95fa09555b8def4962b50ec43d9c86386c66684229a5d",
     "source_doc_hashes": {
-      "spec.md": "86524e95f779601a7fe5951d20538d677ff1b1ca22163bf50d8817fb73ac6ed0",
+      "spec.md": "195db601036bfc4e702cb11b5f8ec50f0a4a45076f85892d33cbcc5dad81b7d8",
       "plan.md": "30c5572b98b4c7bc5997a0264cd48f9a6409c2bcad193d3fb28bb04b87af2ec4",
       "tasks.md": "7e044e34dace8a269b6e98724ebdacc76cac96babdb2ef6214f48314dde6d387",
       "checklist.md": "9d839210ca6b24ad302de3c7860ea17732126297d2e38ed0fd1ed4e7825518fc",
-      "implementation-summary.md": "9d3222df4b8a5f4a9b4e4d183ec6737fb257c31a066c99033b90242702479c5f"
+      "implementation-summary.md": "754c89e3593caec18ac58676a6f3b8083818c4055194a5bfbf4bb562cdbd775d"
     },
     "last_active_child_id": null,
     "last_active_at": null

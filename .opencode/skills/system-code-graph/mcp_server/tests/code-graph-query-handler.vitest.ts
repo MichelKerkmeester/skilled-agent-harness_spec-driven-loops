@@ -117,6 +117,7 @@ function createDb({
 
 describe('code-graph-query handler', () => {
   beforeEach(() => {
+    vi.unstubAllEnvs();
     vi.clearAllMocks();
     mocks.getDb.mockReturnValue(createDb());
     mocks.queryEdgesFrom.mockReturnValue([]);
@@ -871,6 +872,7 @@ describe('code-graph-query handler', () => {
   });
 
   it('aggregates payload-level edge trust from the weakest returned edge', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.queryEdgesFrom.mockReturnValue([
       {
         edge: {
@@ -918,6 +920,73 @@ describe('code-graph-query handler', () => {
     expect(parsed.data.numericConfidence).toBe(0.2);
   });
 
+  it('classifies an AMBIGUOUS CALLS edge as inferred_heuristic', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
+    mocks.queryEdgesFrom.mockReturnValue([
+      {
+        edge: {
+          edgeType: 'CALLS',
+          targetId: 'symbol-4',
+          metadata: {
+            confidence: 0.3,
+            detectorProvenance: 'heuristic',
+            evidenceClass: 'AMBIGUOUS',
+          },
+        },
+        targetNode: { fqName: 'AmbiguousTarget', filePath: 'src/ambiguous.ts', startLine: 4 },
+      },
+    ]);
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.data.edges[0]).toMatchObject({
+      target: 'AmbiguousTarget',
+      evidenceClass: 'AMBIGUOUS',
+      edgeEvidenceClass: 'inferred_heuristic',
+    });
+  });
+
+  it('forces a CALLS edge to the legacy confidence tier when differentiation is off despite differing real metadata', async () => {
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    mocks.queryEdgesFrom.mockReturnValue([
+      {
+        edge: {
+          edgeType: 'CALLS',
+          targetId: 'symbol-5',
+          metadata: {
+            confidence: 0.95,
+            detectorProvenance: 'structured',
+            evidenceClass: 'EXTRACTED',
+          },
+        },
+        targetNode: { fqName: 'RealTarget', filePath: 'src/real.ts', startLine: 7 },
+      },
+    ]);
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    // Despite the mocked edge carrying real, differing metadata (0.95 /
+    // structured / EXTRACTED), the flag being off must forcibly normalize the
+    // CALLS edge to the legacy uniform tier -- proving useLegacyTier actually
+    // overrides rather than coincidentally matching the legacy constants.
+    expect(parsed.data.edges[0]).toMatchObject({
+      target: 'RealTarget',
+      confidence: 0.8,
+      numericConfidence: 0.8,
+      detectorProvenance: 'heuristic',
+      evidenceClass: 'INFERRED',
+      edgeEvidenceClass: 'inferred_heuristic',
+    });
+  });
+
   it('keeps outline payloads parseable for the gold-query verifier adapter', async () => {
     mocks.queryOutline.mockReturnValue([
       {
@@ -954,6 +1023,7 @@ describe('code-graph-query handler', () => {
   });
 
   it('keeps relationship payloads parseable for the shared query adapter', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.queryEdgesFrom.mockReturnValue([
       {
         edge: {
@@ -991,6 +1061,7 @@ describe('code-graph-query handler', () => {
   });
 
   it('accepts documented file-path subjects for relationship queries', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.resolveSubjectFilePath.mockReturnValueOnce('src/source.ts');
     mocks.queryOutline.mockReturnValueOnce([
       {
@@ -1045,6 +1116,7 @@ describe('code-graph-query handler', () => {
   });
 
   it('excludes dangling edges and reports corruption warnings instead of returning raw symbol IDs', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.queryEdgesFrom.mockReturnValue([
       {
         edge: {
@@ -1432,6 +1504,7 @@ describe('code-graph-query handler', () => {
   });
 
   it('filters blast-radius traversal by minConfidence', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.getDb.mockReturnValue({
       // Identity transaction mock so snapshot-stable wraps don't trip
       transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
@@ -1483,7 +1556,57 @@ describe('code-graph-query handler', () => {
     expect(parsed.data.affectedFiles).not.toContainEqual({ filePath: 'src/low.ts', depth: 1 });
   });
 
+  it('reads real persisted IMPORTS confidence for blast-radius filtering regardless of the CALLS-only differentiation flag', async () => {
+    delete process.env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    mocks.getDb.mockReturnValue({
+      transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
+      prepare: vi.fn((sql: string) => ({
+        all: vi.fn(() => {
+          if (sql.includes('FROM code_edges edge')) {
+            return [
+              {
+                imported_file_path: 'src/a.ts',
+                importer_file_path: 'src/low-persisted.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.1 }),
+              },
+              {
+                imported_file_path: 'src/a.ts',
+                importer_file_path: 'src/high-persisted.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.99 }),
+              },
+            ];
+          }
+          return [];
+        }),
+        get: vi.fn(() => undefined),
+      })),
+    });
+
+    const included = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      minConfidence: 0.75,
+    });
+    const includedParsed = JSON.parse(included.content[0].text);
+
+    expect(includedParsed.data.affectedFiles).toEqual([
+      { filePath: 'src/high-persisted.ts', depth: 1 },
+    ]);
+
+    const excluded = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      minConfidence: 0.995,
+    });
+    const excludedParsed = JSON.parse(excluded.content[0].text);
+
+    expect(excludedParsed.data.affectedFiles).toEqual([]);
+  });
+
   it('emits blast-radius why_included chains only when includeTrace is true', async () => {
+    vi.stubEnv('SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION', 'true');
     mocks.resolveSubjectFilePath.mockReturnValue('src/a.ts');
     mocks.getDb.mockReturnValue({
       transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),

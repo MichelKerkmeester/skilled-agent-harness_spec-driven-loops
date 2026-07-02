@@ -14,7 +14,7 @@
     "unattended",
     "execution"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.130Z",
+  "lastUpdated": "2026-07-01T23:08:58.429Z",
   "specId": "001",
   "folderSlug": "speckit-autopilot-lifecycle",
   "parentChain": [
@@ -25,5 +25,6 @@
     "004-system-spec-kit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

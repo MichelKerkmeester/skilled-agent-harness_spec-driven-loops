@@ -85,26 +85,29 @@ const TOPOLOGIES = {
 
 function runChild(topology, flagOn) {
   const workDir = mkdtempSync(join(SCRATCH, 'ppr-eval-'));
-  copyFileSync(LIVE_DB, join(workDir, 'code-graph.sqlite'));
-  const env = { ...process.env };
-  delete env.SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING;
-  delete env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
-  delete env.SPECKIT_CODE_GRAPH_DB_DIR;
-  if (flagOn) {
-    env.SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING = 'true';
-    env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION = 'true';
-  }
+  try {
+    copyFileSync(LIVE_DB, join(workDir, 'code-graph.sqlite'));
+    const env = { ...process.env };
+    delete env.SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING;
+    delete env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION;
+    delete env.SPECKIT_CODE_GRAPH_DB_DIR;
+    if (flagOn) {
+      env.SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING = 'true';
+      env.SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION = 'true';
+    }
 
-  const proc = spawnSync(process.execPath, [CHILD, workDir, topology], {
-    env,
-    encoding: 'utf8',
-    timeout: 60_000,
-  });
-  rmSync(workDir, { recursive: true, force: true });
-  if (proc.status !== 0) {
-    throw new Error(`child failed (${topology}, flagOn=${flagOn}): ${proc.stderr || proc.stdout}`);
+    const proc = spawnSync(process.execPath, [CHILD, workDir, topology], {
+      env,
+      encoding: 'utf8',
+      timeout: 60_000,
+    });
+    if (proc.status !== 0) {
+      throw new Error(`child failed (${topology}, flagOn=${flagOn}): ${proc.stderr || proc.stdout}`);
+    }
+    return JSON.parse(proc.stdout).callers;
+  } finally {
+    rmSync(workDir, { recursive: true, force: true });
   }
-  return JSON.parse(proc.stdout).callers;
 }
 
 function rankOf(callers, fq) {
@@ -115,22 +118,26 @@ function main() {
   mkdirSync(SCRATCH, { recursive: true });
   writeFileSync(CHILD, CHILD_SOURCE, 'utf8');
 
-  const results = {};
-  for (const [topology, meta] of Object.entries(TOPOLOGIES)) {
-    const offCallers = runChild(topology, false);
-    const onCallers = runChild(topology, true);
-    const offRank = rankOf(offCallers, meta.known_target);
-    const onRank = rankOf(onCallers, meta.known_target);
-    results[topology] = {
-      known_target: meta.known_target,
-      flag_off: { callers: offCallers, target_rank: offRank, target_surfaced: offRank >= 0 },
-      flag_on: { callers: onCallers, target_rank: onRank, target_surfaced: onRank >= 0 },
-      ranking_changed: JSON.stringify(offCallers) !== JSON.stringify(onCallers),
-      target_rank_improved:
-        onRank >= 0 && (offRank < 0 || onRank < offRank),
-    };
+  let results;
+  try {
+    results = {};
+    for (const [topology, meta] of Object.entries(TOPOLOGIES)) {
+      const offCallers = runChild(topology, false);
+      const onCallers = runChild(topology, true);
+      const offRank = rankOf(offCallers, meta.known_target);
+      const onRank = rankOf(onCallers, meta.known_target);
+      results[topology] = {
+        known_target: meta.known_target,
+        flag_off: { callers: offCallers, target_rank: offRank, target_surfaced: offRank >= 0 },
+        flag_on: { callers: onCallers, target_rank: onRank, target_surfaced: onRank >= 0 },
+        ranking_changed: JSON.stringify(offCallers) !== JSON.stringify(onCallers),
+        target_rank_improved:
+          onRank >= 0 && (offRank < 0 || onRank < offRank),
+      };
+    }
+  } finally {
+    rmSync(CHILD, { force: true });
   }
-  rmSync(CHILD, { force: true });
 
   const report = {
     flag: 'SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING',

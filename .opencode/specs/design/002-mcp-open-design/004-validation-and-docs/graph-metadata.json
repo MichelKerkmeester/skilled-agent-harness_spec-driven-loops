@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-design-interface` de-vendor (phase 003) shipped without an independent audit",
     "created_at": "2026-06-14T16:30:00Z",
-    "last_save_at": "2026-06-23T03:49:48.561Z",
+    "last_save_at": "2026-07-02T05:31:06.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:434fad364aad731d73f36b2b67a2201d19e8c8f535eafef9dcc36a2890d9432b",
+    "source_fingerprint": "sha256:17296b9aad2b26ab0ec23dba8a2a48cd2748e485460c6fff2d506d76b455ae8a",
     "source_doc_hashes": {
-      "spec.md": "7f4abf40d2800bad7057728655dd8bdcc580e82cebbdbe654d1653598d278d91",
-      "plan.md": "d35504fd063b694d59782d9a8cc231c636ae76fb9a20cc896ee49ed24f698e7d",
-      "tasks.md": "63710e5700b1b98ab9b7f0c7a5c6e803d02fb9fef2132d2b957e8d08c5fa26ec",
-      "checklist.md": "0eb67180c67662143bf9e174210ac37a2ab5921f0daaaa358263ca995e1d08e5",
-      "implementation-summary.md": "91a5e8def832965c122bb038474d3bf833dfd2052a7fbf4579e1be164c89dafb"
+      "spec.md": "90406e83af588ace8143abbdfb2dc4918c31a18ae6aa643131b317847501ac23",
+      "plan.md": "961e8af95133deea41b245f9d3e2969ae3fa6a6babd2cfd3c2476e3cc650503c",
+      "tasks.md": "d8251687995cdcc6569d5065195b9e22f262ae75a7370f74bcd1c6dc0c468c11",
+      "checklist.md": "c5052ec4e220db30ea57b37d794efd410863289b2d0135d67371aa2e0fff0800",
+      "implementation-summary.md": "d1e07dfc80fcfb8891dc7b4be0d86dac8227ce680f3588f068d1086824af84c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

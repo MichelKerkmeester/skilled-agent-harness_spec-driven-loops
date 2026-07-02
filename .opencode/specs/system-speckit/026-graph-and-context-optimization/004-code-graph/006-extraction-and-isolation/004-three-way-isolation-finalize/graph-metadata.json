@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -30,13 +30,19 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".github/workflows/isolation-check.yml",
       "smoke-test/delete-spec-kit-smoke.sh",
       "mcp_server/package.json",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "isolation-check.yml",
         "kind": "config",
@@ -53,12 +59,6 @@
         "name": "package.json",
         "kind": "config",
         "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -142,7 +142,7 @@
     ],
     "causal_summary": "Close the last 1 production import in system-code-graph + the 6 in system-skill-advisor by duplicating symbols into each skill's lib/shared/, then drop @spec-kit/shared as a dependency. After this, system-spec-kit can be deleted without breaking either of the other two system skills.",
     "created_at": "2026-06-18T12:37:49.857Z",
-    "last_save_at": "2026-06-23T03:49:55.949Z",
+    "last_save_at": "2026-07-02T05:31:12.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

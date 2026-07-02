@@ -177,17 +177,17 @@
     ],
     "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
     "created_at": "2026-06-25T10:04:30Z",
-    "last_save_at": "2026-06-30T09:16:33.282Z",
+    "last_save_at": "2026-07-02T05:31:07.771Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:8fb852f2f67e0cf4caa003714289a45dc68b053899f82e109dbe4bf2996977ea",
+    "source_fingerprint": "sha256:aa8b1550d9992b2082dcc68d53efe8fbc5797421fbc4e69e67d80e4d24199c50",
     "source_doc_hashes": {
-      "spec.md": "c10f2011a7aaf0bd8fbe3aeb9969120009cfc9620eb988cf07f0228a4e1b3137",
-      "resource-map.md": "89412f62b9baefeff8b355815ccd57e57ee1418440fac5f23ba89b7a30ec9f06"
+      "spec.md": "009d311010396165744d0724724a4df1d6b3f22a622ef0cb882993f2de6f660a",
+      "resource-map.md": "9123eac8cd6c4a9a749a05c020f4ba38a0a361907cc5cbf2cccd0cfa3b716129"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-30T09:16:33.282Z"

@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation"
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,6 +46,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "lib/storage/incremental-index.ts",
       "lib/parsing/memory-parser.ts",
       "handlers/memory-index.ts",
@@ -50,10 +55,15 @@
       "lib/storage/causal-edges.ts",
       "lib/causal/frontmatter-promoter.ts",
       "lib/storage/statediff.ts",
-      "handlers/memory-save.ts",
-      "spec.md"
+      "handlers/memory-save.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "incremental-index.ts",
         "kind": "code",
@@ -109,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Memory Index",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,7 +157,7 @@
     ],
     "causal_summary": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge tombstones, deterministic metadata-edge promotion, and desired/prior write-path reconciliation.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:57.143Z",
+    "last_save_at": "2026-07-02T05:31:13.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

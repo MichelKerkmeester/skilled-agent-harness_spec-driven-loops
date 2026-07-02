@@ -41,13 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
+      "research/research.md",
+      "implementation-summary.md",
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
       "research/resource-map.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-002.md",
@@ -59,15 +59,27 @@
     ],
     "entities": [
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -86,18 +98,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The sk-design family has a strong internally-grown content baseline (phases 009 and 012)",
     "created_at": "2026-06-27T08:57:22.920Z",
-    "last_save_at": "2026-06-27T09:03:44.774Z",
+    "last_save_at": "2026-07-02T05:31:07.879Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,15 +217,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:49e40b74e8ac77d0eda4f67e360a9ea4cf0b8c997a87534772c80b2447ebfa71",
+    "source_fingerprint": "sha256:d17d58828dd7f00fcc8bb9d74debd0b949d59e932f693e91625b190015802c81",
     "source_doc_hashes": {
-      "spec.md": "8baf1a7c692dd35ec561f260f0fcdc991d45035e1f97ece6d02a19b3dcea8516",
-      "plan.md": "de2970a5c9828d649ae9c0a63acbca3b999543aa16a047eabbf2942b38fc55f6",
-      "tasks.md": "ec43154892c836f61b5e55809c35ae345027bd46887d3afe3099ac34e82b2b23",
-      "checklist.md": "2ca1b09d572c1f4df2035714d791b1937ac26a7cf5bd465f7fea4cdb640b2e3a",
-      "decision-record.md": "c9bbf85ba917ec842bcb6d1bed92ecf52c7e3a1fac2bbbdeca72584f4978803d",
-      "implementation-summary.md": "c6df711c800b0f8b7dd6fc1095b44089ddd887beef2fc1cfd2e016ef193975e0",
-      "research/research.md": "44ba6c3f3c153c9562b0fbdc7da06e6fba7f586b494c1124f27354eeec222c5b"
+      "spec.md": "b4b65834760da585620d37ca1a24fab39df8c8a5c479af6192ba05e2c4e42408",
+      "plan.md": "6abd1862178d797362d601d090fcfb71c8d6d75f27cfc088cb07ba3f30f6334f",
+      "tasks.md": "7219e25d248cca0507e2ec99ee198528ffed2059315ff076d6fcf2a4e3370ff1",
+      "checklist.md": "b63b79998461002976ba3aafd529f8527ba157307b612e227c8b8283f3c6fd2a",
+      "decision-record.md": "5f380882070b812a90c6f00a11e295193b43eacd3a8321b061726445af470826",
+      "implementation-summary.md": "1db1cb7f5e11849991c766119be493d4d15f4adbab7735eb91d93d90cd4a7117",
+      "research/research.md": "f30eebbd774fc091633b50dc8d698086e603c76118e267ecddf3bbb6c0fabfb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,9 +41,9 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 9 of 9 |
+| **Phase** | 9 of 11 |
 | **Predecessor** | 008-loop-systems-remediation |
-| **Successor** | None |
+| **Successor** | 010-documentation-truth-audit |
 | **Handoff Criteria** | Each child phase validates independently under `validate.sh`; Tier 0 children must land before Tier 1/2 children are trusted (Tier 0 fixes the very tooling the backlog itself came from) |
 <!-- /ANCHOR:metadata -->
 

@@ -1,32 +1,36 @@
 ---
-title: "Tasks: Phase 5: anchor-ownership-conflict-adr [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Anchor-Ownership and Injected-Question Conflict Merge ADR"
+description: "Completed task ledger for reducer-owned question conflict resolution and event attribution."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "anchor ownership conflict"
+  - "injected question conflict ADR"
+  - "question conflict event"
+  - "reduce state sole renderer"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-anchor-ownership-conflict-adr"
-    last_updated_at: "2026-06-28T14:02:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/003-deep-loop-workflows/005-anchor-ownership-conflict-adr"
+    last_updated_at: "2026-07-01T22:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold content with spec-grounded complete info"
+    next_safe_action: "Regenerate metadata and run recursive strict validation"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
+      - ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md"
+      - ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_reducer_registry.md"
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-anchor-ownership-conflict-adr"
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "scaffold-content-remediation-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 5: anchor-ownership-conflict-adr
+# Tasks: Anchor-Ownership and Injected-Question Conflict Merge ADR
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +54,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the completed spec and confirm leaf 004 dependency (`spec.md`).
+- [x] T002 Identify the reducer, registry, strategy, and YAML surfaces.
+- [x] T003 [P] Confirm inbox schema changes are out of scope (`spec.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +64,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Implement `resolveQuestionConflicts()` (`reduce-state.cjs`).
+- [x] T005 Render `key-questions` from canonical registry state (`reduce-state.cjs`).
+- [x] T006 Record operator decisions as `accepted`, `rejected`, `superseded`, or `needs_decision`.
+- [x] T007 Emit `question_conflict` event records with inbox and registry values.
+- [x] T008 Document ownership in the state reducer registry (`state_reducer_registry.md`).
+- [x] T009 Mark `key-questions` as generated in the strategy doc (`deep_research_strategy.md`).
+- [x] T010 Add conflict-event workflow wiring (`deep_research_auto.yaml`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +78,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T011 Verify disagreement emits `question_conflict` instead of silent overwrite.
+- [x] T012 Verify the generated projection is rendered from registry state.
+- [x] T013 Verify direct manual edits follow the leaf 004 legacy import path.
+- [x] T014 Update plan and task docs to reflect the completed conflict work (`plan.md`, `tasks.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +89,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the completed specification.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,13 +102,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

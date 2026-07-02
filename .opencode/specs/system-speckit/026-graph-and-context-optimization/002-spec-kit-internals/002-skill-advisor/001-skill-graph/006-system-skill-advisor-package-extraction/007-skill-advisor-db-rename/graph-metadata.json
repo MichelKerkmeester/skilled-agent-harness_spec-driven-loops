@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`",
     "created_at": "2026-05-14T13:02:30Z",
-    "last_save_at": "2026-06-23T03:49:53.267Z",
+    "last_save_at": "2026-07-02T05:31:11.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T13:20:00Z",
     "source_docs": [

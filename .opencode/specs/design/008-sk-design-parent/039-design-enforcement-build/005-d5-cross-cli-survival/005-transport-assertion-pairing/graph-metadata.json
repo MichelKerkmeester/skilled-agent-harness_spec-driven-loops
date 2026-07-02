@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The return path into Open Design already has a receipt: `OPENDESIGNTRANSPORTRESULT v1` lets the parent replay what a CLI child did and fail closed when Open Design was used but no result returns",
     "created_at": "2026-06-28T12:40:08.047Z",
-    "last_save_at": "2026-06-29T08:28:12.279Z",
+    "last_save_at": "2026-07-02T05:31:08.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6561c0e310700e9f70d79a41e37abad4731e0a7baff6547341345aa9324c2f68",
+    "source_fingerprint": "sha256:6fe52b73fa273f50e5fce7c5a233401aa8beafbd144118cdf148ec311cd76949",
     "source_doc_hashes": {
-      "spec.md": "9d26d2d5212eb27a610ce92eb8a3cc4ac5d200ce8070b4512f6b84da18e356d3",
-      "plan.md": "296852d3c42eb0bd481b9e31aed938abf890df583905a300c5abeee6f4f2a9bf",
-      "tasks.md": "f27aa0d261c8dcdffed26eaf93bc4b3e06616f03c727a1f0726a7fce73b1fdea",
-      "checklist.md": "7a26262d582080cb697123fd07d9fae76cd6508b6a55e7dbbd5f23193b61a076",
-      "implementation-summary.md": "398df84ae90f1608ce1307841d5ad0db9dc5ac28e74b805f62e2aa69534b1d39"
+      "spec.md": "bbd53c95f41a4c1ffc23afa62ad6978a85334ad7ac2b5fbcc522e1a43d9fe4cd",
+      "plan.md": "84a03f8c945c2a9c4bb0628202e5325f1ed35ea9b3c67070e9844b79c6f1af29",
+      "tasks.md": "214fb775b11ed94415a70583ae4c2db79cfd61a604d421329de6ab9c6355781a",
+      "checklist.md": "a5da81c7a34502e9d0fbdf26bc0e65462eb7725ca504082fcf9b36652881e214",
+      "implementation-summary.md": "81097246d3a01efc0fd0306b64856927a05d326795a3b3be140871de8394c7d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

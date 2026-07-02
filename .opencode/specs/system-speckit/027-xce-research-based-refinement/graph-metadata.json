@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
+  "packet_id": "system-speckit/027-xce-research-based-refinement",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement",
   "parent_id": "null",
   "parent_id_review_required": true,
   "children_ids": [
@@ -10,7 +10,13 @@
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation"
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
+    "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine",
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -51,22 +57,22 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "changelog/before-vs-after.md",
       "spec.md",
+      "changelog/before-vs-after.md",
       "changelog/README.md",
       "research/research.md"
     ],
     "entities": [
       {
-        "name": "before-vs-after.md",
-        "kind": "doc",
-        "path": "changelog/before-vs-after.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-vs-after.md",
+        "kind": "doc",
+        "path": "changelog/before-vs-after.md",
         "source": "derived"
       },
       {
@@ -150,7 +156,7 @@
     ],
     "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:56.847Z",
+    "last_save_at": "2026-07-02T05:31:13.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [

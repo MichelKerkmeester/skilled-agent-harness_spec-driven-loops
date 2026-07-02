@@ -15,14 +15,8 @@
       "finding consolidation candidates",
       "near-duplicate nodes",
       "namespace alias memo",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "014-coverage-graph-fuzzy-merge summary"
+      "014-coverage-graph-fuzzy-merge summary",
+      "014-coverage-graph-fuzzy-merge"
     ],
     "key_topics": [
       "coverage-graph",
@@ -36,9 +30,9 @@
       "namespace",
       "alias",
       "memo",
-      "implementation"
+      "014-coverage-graph-fuzzy-merge"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Coverage Graph Fuzzy Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "completed",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "no DB",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts coverage and under-reports actual convergence",
     "created_at": "2026-06-28T14:02:02Z",
-    "last_save_at": "2026-07-01T15:47:37.106Z",
+    "last_save_at": "2026-07-01T21:52:50.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa5df185ff4e9dc312ba03e38892fcf3169e9c4f2e1c2a20f9acf97dde6b83e8",
+    "source_fingerprint": "sha256:bcaa65a405e6db8ebfdbfcc9505925731b69d82f3d90387893bcd2e95ce33611",
     "source_doc_hashes": {
       "spec.md": "4f40ffe24189beba5b3d08f139edd487504c536fd49749d185ed4ecd506cc739",
-      "plan.md": "6b2a1b562557e2422f99f583391c49a45a6deed1d57b1410d4934ed902938e33",
-      "tasks.md": "5e11e6b9e78e67f8508799fab321ecda7f98d2cdfe93b36954c5c6e150e544fb",
+      "plan.md": "1272db76066e5dbdc8c3eb6f713ad4d3fd9c5a378e46020b9924430766b6ea38",
+      "tasks.md": "f021ce2abd468f91b78056047698a39ee3d516bbdd763e9030de534b6f129278",
       "implementation-summary.md": "b016fb26b18fd6eae52dd5b01ca29ffe667eda60519f49591637b419ae3b957e"
     },
     "last_active_child_id": null,

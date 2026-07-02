@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 11: convergence-score-delta [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 11: Convergence Score Delta"
+description: "Plan for the shipped convergence scoreDelta signal and opt-in improvementEffect trace."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "convergence score delta"
+  - "improvement effect signal"
+  - "loop score improvement"
+  - "convergence prior snapshot delta"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-convergence-score-delta"
-    last_updated_at: "2026-06-28T14:02:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/011-convergence-score-delta"
+    last_updated_at: "2026-07-01T21:40:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped convergence score-delta content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed convergence delta signal"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-convergence-score-delta"
+      fingerprint: "sha256:011a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5e0c"
+      session_id: "scaffold-content-remediation-011"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 11: convergence-score-delta
+# Implementation Plan: Phase 11: Convergence Score Delta
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS convergence script |
+| **Framework** | Deep-loop convergence snapshot scoring |
+| **Storage** | Existing convergence snapshot output; no upstream state format rewrite |
+| **Testing** | Spec acceptance requires two-snapshot delta, first-iteration null guard, plateau detection, and trace gate off by default; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped `scoreDelta` in `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`. The script reads the prior snapshot score before creating the new snapshot, emits `scoreDelta` for iterations after the first, emits `null` when no prior snapshot exists, and optionally includes an `improvementEffect` helped/hurt trace behind an opt-in gate.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,16 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: convergence showed novelty but not improvement across iterations.
+- [x] Success criteria measurable: two snapshots with scores 0.4 and 0.6 produce `scoreDelta === 0.2`; first iteration produces `null`.
+- [x] Dependencies identified: existing `createSnapshot()` returns a numeric `score` field.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `convergence.cjs` computes `scoreDelta = score - priorSnapshot.score` for post-first iterations.
+- [x] First iteration is null-guarded and emits `scoreDelta: null`.
+- [x] `scoreDelta` appears in convergence output and log lines.
+- [x] `improvementEffect` trace is opt-in and disabled by default.
+- [x] Bayesian scoring engine and upstream state storage remain unchanged.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +80,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Derived convergence telemetry computed from adjacent snapshot scores.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Prior snapshot read**: Captures `priorSnapshot.score` before the current snapshot is created.
+- **`scoreDelta`**: Numeric difference between current score and prior score, or `null` when no prior snapshot exists.
+- **`improvementEffect` trace gate**: Optional helped/hurt summary that only appears when explicitly enabled.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+`convergence.cjs` loads the prior snapshot, computes or receives the current score for the new snapshot, calculates `scoreDelta` before output, and writes/logs the convergence result. On the first iteration, the prior snapshot is absent, so output contains `scoreDelta: null` and a no-prior-snapshot note instead of throwing.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +100,15 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Computes convergence output | Add `scoreDelta` and opt-in trace gate | Spec acceptance covers delta, null guard, and trace default |
+| Snapshot schema/source | Provides current and prior scores | Read-only in this phase | Spec explicitly excludes snapshot storage changes |
+| Bayesian scoring engine | Produces scores | Unchanged | Spec explicitly excludes scoring-engine changes |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect current convergence output and snapshot creation order before adding delta.
+- Consumers of changed symbols: downstream stop conditions can read `scoreDelta`; no storage rewrite required.
+- Matrix axes: first iteration, positive delta, zero plateau, negative delta, trace flag off, and trace flag on.
+- Algorithm invariant: absence of a prior snapshot must produce `scoreDelta: null`, never a runtime subtraction error.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +117,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm implementation scope is limited to `convergence.cjs`.
+- [x] Confirm `createSnapshot()` already returns numeric `score`.
+- [x] Confirm causal per-target outcome attribution is out of scope.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Read `priorSnapshot.score` before creating the current snapshot.
+- [x] Compute `scoreDelta` for iterations with a prior snapshot.
+- [x] Emit `scoreDelta: null` and no-prior messaging for the first iteration.
+- [x] Include `scoreDelta` in convergence output and log line.
+- [x] Add opt-in `improvementEffect` trace gate, off by default.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verify two consecutive snapshots with scores 0.4 and 0.6 output `scoreDelta === 0.2`.
+- [x] Verify first iteration emits `scoreDelta: null` without throwing.
+- [x] Verify plateau iterations output `scoreDelta: 0`.
+- [x] Verify `improvementEffect` is absent when the trace gate is disabled.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +142,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/behavior | Two consecutive snapshots compute numeric delta | Spec acceptance criteria; no dedicated test file named |
+| Null guard | No prior snapshot produces `scoreDelta: null` | Spec acceptance criteria |
+| Plateau | Stable score across iterations produces `scoreDelta: 0` | Simulated convergence output |
+| Trace gate | `improvementEffect` absent by default and present only when enabled | Integration/flag check |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +155,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Existing snapshot score field | Internal | Available | Delta cannot be computed without numeric prior/current scores |
+| Target-level attribution model | Future design | Deferred | Needed only for causal per-target `outcome_score_delta`, which is out of scope |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +164,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Delta computation throws on first iteration, reports incorrect values, or leaks opt-in trace output by default.
+- **Procedure**: Revert `scoreDelta` and `improvementEffect` additions from `convergence.cjs`; convergence output returns to current-score-only behavior until the null guard and trace gate are corrected.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +176,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

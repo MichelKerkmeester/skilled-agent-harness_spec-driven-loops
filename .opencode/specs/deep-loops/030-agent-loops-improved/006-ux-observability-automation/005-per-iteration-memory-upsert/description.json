@@ -15,7 +15,7 @@
     "run",
     "completes"
   ],
-  "lastUpdated": "2026-07-01T15:48:12.259Z",
+  "lastUpdated": "2026-07-01T23:08:59.160Z",
   "specId": "005",
   "folderSlug": "per-iteration-memory-upsert",
   "parentChain": [
@@ -26,5 +26,6 @@
     "006-ux-observability-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

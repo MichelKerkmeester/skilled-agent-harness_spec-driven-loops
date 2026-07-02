@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 001 corpus research recommends restructuring `sk-design-interface` into an `sk-design` family but explicitly leaves the call to a decision gate: it surfaces a structural-model split (3 lineages favor umbrella-router, kimi27 dissents toward a hub) and a grain spread (5-7 children) without binding either",
     "created_at": "2026-06-25T12:41:13Z",
-    "last_save_at": "2026-06-25T15:01:53.815Z",
+    "last_save_at": "2026-07-02T05:31:07.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a36a47775cdb45345d8e40c88a438f6866a85ec5d7499bc017e565942f184d5",
+    "source_fingerprint": "sha256:0aff76dd1b3fe76015da2f732aa17b1299e8a433bbe87e85f77986d74827867f",
     "source_doc_hashes": {
-      "spec.md": "6c70b57014603a606e033c646942bd16bb85a6b97bede4d8773bfbaf030879ef",
-      "plan.md": "32251de2a3d9cccd92451ce81541aeecc3d980e539d66a465e5c4637a9ed6f12",
-      "tasks.md": "ddf449fadc6e7df15eb5e162fe40aff7187c4a1f5e92206a7d932f559193ddfb",
-      "implementation-summary.md": "4f3cd7453b2f2110314f9c52c213e4c4131a58392d1500dc5958d02a84390df8"
+      "spec.md": "c076818a7667cbaef792992d74b1056bf5bd51976f7e0348c5b6bef64467e9aa",
+      "plan.md": "095c59afa9c04d14124cc1ce31b7ef1246474c220af8fd281255aa3a32d7f82c",
+      "tasks.md": "011d61aa024b41c948c9f6f8679de64eb35fcc183d3eda7a9bace7b94fce853f",
+      "implementation-summary.md": "02f24db361d1faa421a17d53963dd94930ff5918cda8f770bc6de67b3eaca8d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

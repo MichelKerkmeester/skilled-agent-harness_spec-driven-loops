@@ -15,30 +15,24 @@
       "write-only-on-change",
       "atomic-state-dedup-write",
       "state-diff-before-fsync",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "001-atomic-state-serialize-diff summary"
+      "001-atomic-state-serialize-diff summary",
+      "001-atomic-state-serialize-diff"
     ],
     "key_topics": [
       "atomic-state-serialize-diff",
       "write-only-on-change",
       "atomic-state-dedup-write",
       "state-diff-before-fsync",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "core",
-      "tasks",
       "001-atomic-state-serialize-diff",
-      "summary"
+      "summary",
+      "reducers",
+      "fan-out",
+      "callers",
+      "invoke",
+      "atomic",
+      "write"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
@@ -128,13 +122,25 @@
         "source": "derived"
       },
       {
+        "name": "Atomic State Serialize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Write",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,27 +170,27 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "All reducers and fan-out callers invoke the atomic write unconditionally, producing redundant whole-snapshot rewrites even when state has not changed — amplifying I/O across every iteration",
     "created_at": "2026-06-28T14:01:51Z",
-    "last_save_at": "2026-07-01T15:47:37.071Z",
+    "last_save_at": "2026-07-01T21:52:50.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ab42530d49bf93fb6ee02290ed95dd2b60344079d68518070c99fe8a9bb922e",
+    "source_fingerprint": "sha256:574514038d215c830ea21de238abb4a9d8c463706c122c5e5352e07bcef927e0",
     "source_doc_hashes": {
       "spec.md": "ec1b21941bcdc019c10e4423d37819f77d0941f4f033c9c4312203a8250067a9",
-      "plan.md": "d373cea7ede3232b8ed6808a771796df5a32d8bbc06bbf81dd02b2b0ea104303",
-      "tasks.md": "09835286d5c209617a181f322073b8c4927a93ee4ae2acd43137211e50d43ae6",
+      "plan.md": "68a3d8a6a21cc56a2617e0f7691235899b0c4621b9937fb8a44acf5c7ee169fb",
+      "tasks.md": "ac7069a8b96c861122fd0e708da5c22ebddcf3914357a4d5e8c0a992b06b898d",
       "implementation-summary.md": "d36fc91f11a235cde1700515efb1775dd77f36890083305740fe6db97454261a"
     },
     "last_active_child_id": null,

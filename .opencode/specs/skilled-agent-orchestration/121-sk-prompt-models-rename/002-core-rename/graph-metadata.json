@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After `git mv`, the skill's own internal references still name the old folder: `references/models/.md` link `../../../sk-prompt-small-model/...` (now a dead path), `modelprofiles.json` carries `profileref: \"sk-prompt-small-model/references/models/...\"`, and the `name:`/`skillid` still say the old name",
     "created_at": "2026-06-28T13:47:21.316Z",
-    "last_save_at": "2026-06-28T14:29:58.026Z",
+    "last_save_at": "2026-07-02T05:31:09.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50fa6018564416bc786327650fa89dfa03c62016f1e85bbd006c9022a8af8574",
+    "source_fingerprint": "sha256:7a1aa53ed075bbf84b7b80fcc5aafbbbb93ba416daaf2ed218af49327a14639e",
     "source_doc_hashes": {
-      "spec.md": "5a97d3ce68ec35fb20f1c6e208045c97d0c9e2699cef471020114ac3d08e9f49",
-      "plan.md": "8df8f1395555f10066a53a79deff7faf274e119366b985509787b89139e05956",
-      "tasks.md": "3a4b91f1e31e8fdec9e64f922c96d4716522b1e7fbefdec5a6abdb96fe75a0ec",
-      "implementation-summary.md": "acd61dbf2726ca254569060a1550335f371292267d1c7a00e3b2183ea77490f1"
+      "spec.md": "a6d23c0203ff78c7e8e7c036d5426e9aa573d62fc427e2b6b8ef9c2309fb3615",
+      "plan.md": "815c3f691338b71b58713a300696a18f68dd2b2a68bbae5cf7a4582e3fa39640",
+      "tasks.md": "bb0acace27cebbf237c9579e27a7e6bfb696a47aa13001f037767f206d9a4eb2",
+      "implementation-summary.md": "1c07d9ffe89ba288ae5af27f7eca204db8bdfa43acd2ea157562fe5089be0353"
     },
     "last_active_child_id": null,
     "last_active_at": null

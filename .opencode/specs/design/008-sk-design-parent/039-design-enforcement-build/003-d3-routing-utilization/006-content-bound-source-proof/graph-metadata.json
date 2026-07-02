@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Utilization is self-attested today",
     "created_at": "2026-06-28T12:39:58.373Z",
-    "last_save_at": "2026-06-28T14:12:50.350Z",
+    "last_save_at": "2026-07-02T05:31:08.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2b2110392db3b126e952475c70b3871efe3bd998787a54028d47b4cba9c8acf",
+    "source_fingerprint": "sha256:e5225f7667d6d93f916427dff4fc2e544fa588306c59400bf452101b29b5f695",
     "source_doc_hashes": {
-      "spec.md": "38ee06ae9745960264b39acbc7fcf48d58489575c6a7336f45f180c2adb04a61",
-      "plan.md": "5df8eb180653b40923ce84a25bae1d38637b062119738cd0cf2deb19cd4780ba",
-      "tasks.md": "3808fc4e05d21e81e3f1a76618b562a913697cc2db36f1eb73469a32414e217d",
-      "checklist.md": "a2beb9b3d363d80107c77ef66ad786d68b3a74f3c7215d8f0a33b015c9fffffd",
-      "implementation-summary.md": "fc60c6659216d67975a8d30d55b1c99f4857b17fb96c8ea01ef7a73e13ed008a"
+      "spec.md": "ba78aa429c009b8a1664eebe178cf9e6c2563037c1dc5d53129d95b9ca08c95c",
+      "plan.md": "fcb831b6eafb8ad4897a23516fc00cc04b119bfdd650f904dfa43a67169994ad",
+      "tasks.md": "e9bb0b5a23f0e93ca4f5705cfee09e98a63a7e1f872874e253b10ef3c1bc6e72",
+      "checklist.md": "3d3f5117d6c09a870902898696a43f637e5f7dc7eb907d64d751daa05b5dbcc7",
+      "implementation-summary.md": "96898fb695690f7d7803f500c0517507bb6168a8ebc2b3efa83136e906370838"
     },
     "last_active_child_id": null,
     "last_active_at": null

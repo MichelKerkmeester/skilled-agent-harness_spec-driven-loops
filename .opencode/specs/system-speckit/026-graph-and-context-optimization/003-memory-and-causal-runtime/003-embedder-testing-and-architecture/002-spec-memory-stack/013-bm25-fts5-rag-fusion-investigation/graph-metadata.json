@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,9 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       "research/research.md",
       "spec.md",
       "plan.md",
@@ -54,15 +57,30 @@
       "research/iterations/iteration-003.md",
       "research/iterations/iteration-004.md",
       "research/iterations/iteration-005.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -142,24 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "bm25-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sqlite-fts.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
         "name": "vector-index-schema.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Deep-research-005 ranked the JS in-memory BM25 index as the top resident-memory target, but its recommendation noted that SQLite FTS5 tokenization and weights may not be identical",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-06-23T03:49:54.342Z",
+    "last_save_at": "2026-07-02T05:31:11.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,7 +38,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/bin/README.md",
       "spec.md",
@@ -52,7 +51,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Packet 035 built `worktree-session.sh`, which isolates each top-level AI session in its own git worktree but exec's in place for orchestrated children",
     "created_at": "2026-05-30T20:56:41.887Z",
-    "last_save_at": "2026-06-23T03:49:56.499Z",
+    "last_save_at": "2026-07-02T05:31:12.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
     "created_at": "2026-04-12T09:02:53.476Z",
-    "last_save_at": "2026-06-23T03:49:53.836Z",
+    "last_save_at": "2026-07-02T05:31:11.458Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

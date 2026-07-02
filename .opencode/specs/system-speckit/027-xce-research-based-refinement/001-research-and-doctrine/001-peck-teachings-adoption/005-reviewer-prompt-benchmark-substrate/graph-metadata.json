@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,6 +34,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json",
@@ -47,13 +51,33 @@
       ".opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml",
       ".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
       ".github/workflows/prompt-card-sync.yml",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "reviewer-schema.md",
         "kind": "doc",
@@ -127,30 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is routing/us",
+    "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-06-23T03:49:57.084Z",
+    "last_save_at": "2026-07-02T05:31:13.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

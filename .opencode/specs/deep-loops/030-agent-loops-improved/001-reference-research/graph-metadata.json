@@ -17,14 +17,9 @@
       "loop-cli kasper mining",
       "loop improvement recommendations",
       "agent loops research",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary"
+      "loop reference research plan",
+      "loop reference research tasks",
+      "loop reference research summary"
     ],
     "key_topics": [
       "loop",
@@ -37,14 +32,21 @@
       "recommendations",
       "agent",
       "loops",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "research/research.md",
       "research/resource-map.md",
+      "research/iterations/iteration-001.md",
+      "research/findings-registry.json",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-026.md",
+      "research/iterations/iteration-046.md",
       "spec.md",
       "plan.md",
       ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
@@ -55,16 +57,55 @@
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
       ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/commands/deep/assets/deep_research_auto.yaml"
     ],
     "entities": [
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-026.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-026.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-046.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-046.md",
         "source": "derived"
       },
       {
@@ -134,24 +175,6 @@
         "source": "derived"
       },
       {
-        "name": "fallback-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -180,35 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Our",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:30:35.956Z",
-    "last_save_at": "2026-07-01T11:50:20.992Z",
+    "last_save_at": "2026-07-02T12:01:43.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +217,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2ded1e1d9730e0de1a0f47a1b2be8ccfc47724edf9736bb9278406fad320e843",
+    "source_fingerprint": "sha256:eb2ba334268e05cc0f0fc8a7698d2108db62ca88f8450814488e5b603cbcd467",
     "source_doc_hashes": {
-      "spec.md": "4731f5b7d56d896e4ae90144bbf6b27c162e45f881dfde34ec2aa50e598f942e",
-      "plan.md": "5fbf3386dae8daf17f412e1c6ec8c14d909da872bc2dd5bce2ac3d2597a58849",
-      "tasks.md": "d769a240f531f8e35b4459049dfe0fd00e8a7ebdadb3c742e33b73437139d846",
-      "implementation-summary.md": "d23d34ca398e7c70aaec37bf529ab2572c3a8b958d50b63b183adceeed3688ba",
+      "spec.md": "252f9a523a0ebbb8fd97bd40d3815b6af814c75578ce8d0bdc30c362335563b3",
+      "plan.md": "85edace966626c22e2121f8ed228525a9299b76b9db2b28b1c6f6e083f49657c",
+      "tasks.md": "9e66058a8b22321b4310d768f5a2de477ac90f9f100441929817358b1570b17a",
+      "implementation-summary.md": "a5c1ebd0c14c80e848c0e555caea3d4d13824011570e1284c1d9d0b1b7539fbd",
       "research/research.md": "4966c7b5e68ed7a63034bdaffdf4acd440806f14ad5a219585a762a8dcc3b10d"
     },
     "last_active_child_id": null,

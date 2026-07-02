@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `design/002-mcp-open-design/013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands` |
+| **Spec Folder** | 013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands |
 | **Status** | Planned — ready for implementation |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

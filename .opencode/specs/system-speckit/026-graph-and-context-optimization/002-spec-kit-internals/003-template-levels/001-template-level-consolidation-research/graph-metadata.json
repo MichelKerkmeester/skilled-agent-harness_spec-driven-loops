@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,13 +41,13 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
       "research/research.md",
       "research/deep-research-state.jsonl",
       "research/resource-map.md",
       "research/iterations/iteration-001.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
       "decision-record.md",
       "plan.md",
       "spec.md",
@@ -64,24 +64,6 @@
     ],
     "entities": [
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
         "name": "create.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
@@ -97,6 +79,24 @@
         "name": "check-files.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level1/`, `level2/`, `level3/`, `level3+/`)",
     "created_at": "2026-05-01T07:40:58Z",
-    "last_save_at": "2026-06-23T03:49:53.730Z",
+    "last_save_at": "2026-07-02T05:31:11.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

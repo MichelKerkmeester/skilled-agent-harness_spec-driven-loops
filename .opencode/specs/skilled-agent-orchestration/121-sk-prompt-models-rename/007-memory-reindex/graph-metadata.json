@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The spec-memory index was built before the rename, so the live packets' rows (157 GLM-5.2, 158 rename) still carry pre-rename content / paths referencing `sk-prompt-small-model`",
     "created_at": "2026-06-28T15:46:01.616Z",
-    "last_save_at": "2026-06-29T08:52:12.943Z",
+    "last_save_at": "2026-07-02T05:31:09.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:216d8717c6f7c4b647fcb69d98f15f87762804e28a72870c7167371b73457b83",
+    "source_fingerprint": "sha256:c364cd9f45548655f4a9dbaa9745f5edb2dc690dd99746a146d001eb1cc164cd",
     "source_doc_hashes": {
-      "spec.md": "ebd835076ad83bb8098efe53f096a6e4a31cbb6cf7749d05bcf7b2c3dbc25953",
-      "plan.md": "6b69b31557f0c9471445ca9b920b1e1584005e3d344c77514dba1242b8aa4103",
-      "tasks.md": "d90800e4b838dfba95aa08e34dee9ae8c32fef745ffb3be5545d3f44d2007dcc",
-      "implementation-summary.md": "cf53f72f546077e945beb6750fb6619a9ecd98d7402c3ef708808ce0cf0200b0"
+      "spec.md": "198ba7dd17faadca90b7e29f927ecbea2850f7a50000834e907a3fad9cd26070",
+      "plan.md": "efb75da12399decfeb3a73e67049f0e5ca76a70bcdb5c77a5d591b8dd1b3fc7e",
+      "tasks.md": "259fea7bb48fea087eeb9b229a33092542b3f35ee506f995e05a6c567f84abdc",
+      "implementation-summary.md": "12cc9e7a3b7b4573c61890782f9b825b6c5a54612638914a3bc4b42bcfbb7fdc"
     },
     "last_active_child_id": null,
     "last_active_at": null

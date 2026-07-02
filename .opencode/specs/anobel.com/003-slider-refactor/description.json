@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "anobel.com/003-slider-refactor",
-  "description": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `tes",
+  "description": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`,",
   "keywords": [
     "carousel",
     "slider",
@@ -11,10 +11,9 @@
     "testimonials",
     "testimonial",
     "data-testimonial-slider",
-    "testimonial-slide-x",
-    "tes"
+    "testimonial-slide-x"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.292Z",
+  "lastUpdated": "2026-07-02T06:50:00.821Z",
   "specId": "003",
   "folderSlug": "slider-refactor",
   "parentChain": [

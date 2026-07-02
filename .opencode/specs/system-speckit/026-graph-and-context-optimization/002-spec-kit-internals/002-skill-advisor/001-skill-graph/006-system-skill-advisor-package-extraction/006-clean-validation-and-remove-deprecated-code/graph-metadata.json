@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,40 +43,22 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "tools/index.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      "dist/context-server.js",
-      ".claude/mcp.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      "tools/index.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      "dist/context-server.js",
+      ".claude/mcp.json"
     ],
     "entities": [
       {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -110,9 +92,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "index.ts",
+        "kind": "code",
+        "path": "tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-06-23T03:49:53.260Z",
+    "last_save_at": "2026-07-02T05:31:11.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,13 +44,13 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "research/research.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-002.md",
       "research/iterations/iteration-004.md",
       "implementation-summary.md",
-      "plan.md",
-      "tasks.md",
       "checklist.md",
       "scratch/fixtures/iter-003-isolation-test.mjs",
       "scratch/fixtures/iter-004-cohort-replay.mjs",
@@ -65,6 +65,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -95,18 +107,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Live testing of the code-graph (after F-002/F-003/F-018/F-019 remediation landed) showed that broad-scope scans (`agents+commands+specs+plugins=all`) crash the tree-sitter parser with `memory access out of bounds` on roughly 1,640 of 9,349 candidate files (~17.5%)",
     "created_at": "2026-05-06T13:34:53Z",
-    "last_save_at": "2026-06-23T03:49:56.046Z",
+    "last_save_at": "2026-07-02T05:31:12.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

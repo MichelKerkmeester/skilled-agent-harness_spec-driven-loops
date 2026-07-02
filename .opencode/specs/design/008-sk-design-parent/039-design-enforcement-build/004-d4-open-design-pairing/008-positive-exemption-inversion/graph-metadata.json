@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
       ".opencode/skills/mcp-open-design/SKILL.md",
-      ".codex/policy.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -62,12 +61,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-open-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "policy.json",
-        "kind": "config",
-        "path": ".codex/policy.json",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The design-influence axis of the Open Design guarded proxy was driven by a caller-supplied boolean, `feedsdesigndecision` in the skill gate and the normalized `feedsDesignDecision` at the proxy, that defaulted to `False`",
     "created_at": "2026-06-28T12:39:56.491Z",
-    "last_save_at": "2026-06-28T20:52:40.735Z",
+    "last_save_at": "2026-07-02T05:31:08.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f23d8676d10b634f9d29deedaed7af96d95deef12391b56b147d07e17267f788",
+    "source_fingerprint": "sha256:aa8c12d25ef9421f859200b2c40b950963f8b8ef090e2a55758bdf476a3b56dc",
     "source_doc_hashes": {
-      "spec.md": "6883d6fa48e86a52beb37e41a8308bbcd3aa5b26b3a84aa3f337a6e55e11e983",
-      "plan.md": "812e41244a2c8762cc152067ca4db5efbdff48e559593f8c72ba3c509ef649de",
-      "tasks.md": "9a76f4772b97c39b2828d139267fbaea558ac5a94021c66f71abb62949151a8a",
-      "checklist.md": "c0d0fe68521680a8fb8910edd2162a8209657138fd7218240360eb005a9a5002",
-      "implementation-summary.md": "a4191436782e5a4d900c85b899f359cd097bf07947f4ba920a20a3dc12c56216"
+      "spec.md": "3e5cd8d8c8643fb4863925552c7d30c895132d59778cfe3914b281deaa39c0fa",
+      "plan.md": "b87ade0ffd578da1b38964b449d3536fcb2ee614c59cd1c9d34e4f0a8e6b3f4c",
+      "tasks.md": "0b7dec161f49fd43e09eb5f130c446e950fe3b28a84c782842d68d5ab49fef34",
+      "checklist.md": "2a2758107f1ed075e51fe20dcf9edbcdb77080d39951fa28cbe32219e33a661d",
+      "implementation-summary.md": "9cd7111e04ce006fb74579ac43deec5f913c601a69ef566baf09846d919f8ebe"
     },
     "last_active_child_id": null,
     "last_active_at": null

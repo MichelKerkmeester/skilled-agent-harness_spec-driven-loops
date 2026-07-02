@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Design-context loading is self-attested today",
     "created_at": "2026-06-28T12:39:56.228Z",
-    "last_save_at": "2026-06-28T13:35:40.090Z",
+    "last_save_at": "2026-07-02T05:31:08.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abdda545f90536c84adb5469afbd5a02d8ab40f54a71a686494336d9fc3c788e",
+    "source_fingerprint": "sha256:7ea83eed2a6543a2c87bc2e567c361efa890e8a0640145feaf794edc1309fee8",
     "source_doc_hashes": {
-      "spec.md": "b3c46f4ca9c2909e1a2e40d488769f3daa2d8bd0e7a0ef71ed42b08b30b1ee90",
-      "plan.md": "07fa87ea0a2050d345d7076b7abf511c476468dc22035c7c1518491bb2c84a04",
-      "tasks.md": "30ceb1ae8a4cb651ad9e0125f806728ce358c71eaabbfb8ae2d862d78fed300e",
-      "checklist.md": "60741724438588cd852cd8d04cade21747eb28963e433306aec05901ef075a47",
-      "implementation-summary.md": "1319e69766cfd166487a91733b8aeadf3a7fbc5925063812cecc826db0e0b5aa"
+      "spec.md": "dd64741aa3c6ea5cb6022a93de806290bcde2dfd98409ca4e64a9f68c213cf74",
+      "plan.md": "f418f889479d22d168236fb3a7d335e2556f9516fa7225f929c148bbf67a85ce",
+      "tasks.md": "0b1f587f879aaa5848bea928c47b66b4107ee3edc77801949bf999910dc322c6",
+      "checklist.md": "f1a8705c4e4b98ec1eecab3753073c4d3b8d99b77ceca0c49d936185899a4e82",
+      "implementation-summary.md": "1742f5a422a25c8d12dd426bab9d4debb322fad94ba08d38a7b9f1cdc1dadebb"
     },
     "last_active_child_id": null,
     "last_active_at": null

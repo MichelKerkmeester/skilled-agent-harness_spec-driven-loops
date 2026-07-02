@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 154-sk-design-parent/014-routing-benchmark |
+| **Spec Folder** | 014-routing-benchmark |
 | **Completed** | Executed: two-mode benchmark run across five modes, ten report files captured, verdict table recorded |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

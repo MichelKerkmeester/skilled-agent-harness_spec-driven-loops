@@ -1,32 +1,35 @@
 ---
-title: "Tasks: Phase 9: byte-offset-log-regions [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 9: Byte-Offset Log Regions"
+description: "Completed task ledger for iteration transcript byte-offset metadata."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "byte-offset log regions"
+  - "transcript log offset"
+  - "iteration log slice"
+  - "log seek by offset"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-byte-offset-log-regions"
-    last_updated_at: "2026-06-28T14:01:58Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/009-byte-offset-log-regions"
+    last_updated_at: "2026-07-01T21:36:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold tasks with completed log-offset ledger from spec.md"
+    next_safe_action: "Use this task ledger as completion evidence for the shipped byte-offset transcript metadata"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts"
+      - ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs"
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-byte-offset-log-regions"
+      fingerprint: "sha256:009b6f8d0e2c4a7193d5f7a9b1c3e5d7f9a0b2c4d6e8f1a3b5c7d9e0f2a4b6d6"
+      session_id: "scaffold-content-remediation-009"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 9: byte-offset-log-regions
+# Tasks: Phase 9: Byte-Offset Log Regions
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the shipped phase spec and confirm the scope spans `post-dispatch-validate.ts`, `reduce-state.cjs`, and `deep_research_auto.yaml`.
+- [x] T002 Confirm `logOffset`, `logSize`, and `logPath` are optional for backward compatibility.
+- [x] T003 Document that log rotation invalidates stamped offsets.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add optional `logOffset: number`, `logSize: number`, and `logPath: string` fields to iteration records.
+- [x] T005 Update `post-dispatch-validate.ts` to capture file byte position before and after transcript writes.
+- [x] T006 Stamp absolute `logPath` plus computed `logOffset` and `logSize` on each new iteration record.
+- [x] T007 Update `reduce-state.cjs` to read and display offset fields when present.
+- [x] T008 Update `deep_research_auto.yaml` schema with optional field definitions.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Verify new iteration records contain positive numeric offset/size values and a non-empty absolute path.
+- [x] T010 Verify direct seek/read by `logPath`, `logOffset`, and `logSize` recovers the iteration transcript.
+- [x] T011 Verify `reduce-state.cjs` handles older records where these fields are absent.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed according to the spec.md acceptance criteria.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +107,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

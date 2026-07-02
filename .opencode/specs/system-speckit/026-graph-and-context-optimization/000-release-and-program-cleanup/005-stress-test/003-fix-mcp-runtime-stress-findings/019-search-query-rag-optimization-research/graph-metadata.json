@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,20 +43,38 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "research/research-report.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "research/deep-research-config.json",
-      "research/deep-research-state.jsonl",
-      "research/deep-research-strategy.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-010.md",
       "research/deltas/iter-001.jsonl",
-      "research/research-report.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research-report.md",
+        "kind": "doc",
+        "path": "research/research-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,18 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
@@ -115,12 +121,6 @@
         "name": "iter-001.jsonl",
         "kind": "file",
         "path": "research/deltas/iter-001.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "research-report.md",
-        "kind": "doc",
-        "path": "research/research-report.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The v1.0.2 stress rerun showed strong remediation progress, but the next optimization frontier is cross-system search quality rather than single-cell closure",
     "created_at": "2026-04-28T20:42:26Z",
-    "last_save_at": "2026-06-23T03:49:52.678Z",
+    "last_save_at": "2026-07-02T05:31:10.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

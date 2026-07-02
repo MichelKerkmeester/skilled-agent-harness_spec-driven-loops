@@ -15,7 +15,7 @@
     "overwrite",
     "merge"
   ],
-  "lastUpdated": "2026-07-01T15:48:16.196Z",
+  "lastUpdated": "2026-07-01T22:26:48.696Z",
   "specId": "010",
   "folderSlug": "deep-improvement-accepted-vs-shipped",
   "parentChain": [
@@ -26,5 +26,6 @@
     "003-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

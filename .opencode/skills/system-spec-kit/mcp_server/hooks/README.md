@@ -137,7 +137,7 @@ Main flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `claude/session-prime.ts` | Hook script | Claude startup context injection. |
-| `opencode/session-start.ts` | Hook script | OpenCode native session-start injection. |
+| OpenCode plugins | Plugin bridge | OpenCode startup/session integration. |
 | `*/user-prompt-submit.ts` | Hook script | Prompt-time skill advisor delivery for supported runtimes. |
 | `index.ts` | Module | Public exports for in-process helper functions. |
 

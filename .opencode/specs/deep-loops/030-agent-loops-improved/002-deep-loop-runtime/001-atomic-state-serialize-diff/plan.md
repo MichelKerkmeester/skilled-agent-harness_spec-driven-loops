@@ -1,33 +1,33 @@
 ---
-title: "Implementation Plan: Phase 1: atomic-state-serialize-diff [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 1: Atomic State Serialize-Diff"
+description: "Plan for the shipped compare-before-write atomic state helper that skips redundant fsync+rename cycles when serialized state is unchanged."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "atomic-state-serialize-diff"
+  - "write-only-on-change"
+  - "atomic-state-dedup-write"
+  - "state-diff-before-fsync"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-atomic-state-serialize-diff"
-    last_updated_at: "2026-06-28T14:01:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "deep-loops/030-agent-loops-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff"
+    last_updated_at: "2026-07-01T21:20:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Replaced scaffold plan with shipped implementation content from spec.md"
+    next_safe_action: "Use this plan as documentation for the completed atomic state compare-before-write helper"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-atomic-state-serialize-diff"
+      fingerprint: "sha256:001a5e7c9d2b4f6081c3e5a7890b2d4f6a8c0e2d4f6b8a0c2e4d6f8a1b3c5d7e"
+      session_id: "scaffold-content-remediation-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: atomic-state-serialize-diff
+# Implementation Plan: Phase 1: Atomic State Serialize-Diff
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!--
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript deep-loop runtime library |
+| **Framework** | Node.js filesystem-backed atomic state helpers |
+| **Storage** | JSON state snapshots written through temp-file + fsync + rename |
+| **Testing** | Spec acceptance requires first-write, unchanged-skip, changed-write behavior plus TypeScript compilation; no dedicated test file is named in spec.md |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase shipped `writeStateIfChangedAtomic` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts`. The helper serializes incoming state, compares it to a canonical-path cache, and only invokes the durable `writeStateAtomic` temp-file/fsync/rename path when the serialized content changed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,15 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented: reducers and fan-out callers were doing unconditional whole-snapshot rewrites.
+- [x] Success criteria measurable: first call and changed state return `true`; unchanged repeat call returns `false`.
+- [x] Dependencies identified: no upstream phase dependency; this phase only extends `atomic-state.ts`.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `writeStateIfChangedAtomic(path, state, cache?)` exported with compare-before-write semantics.
+- [x] Existing `writeStateAtomic` raw write path preserved for callers that require unconditional durability.
+- [x] JSDoc documents the production-caller preference for the diffing helper and the bypass/cache-staleness risk.
+- [x] Docs updated in this packet's spec, plan, and tasks.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +79,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Write-through atomic persistence with a serialized-state diff gate in front of the existing durable write primitive.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`writeStateIfChangedAtomic`**: Public helper that canonicalizes the path, serializes the state, checks a per-path cache, and returns whether a disk write happened.
+- **Serialized state cache**: Module-level or injected `Map<string, string>` keyed by canonical path so tests can control cache state and production calls can skip unchanged snapshots.
+- **`writeStateAtomic`**: Existing raw temp-file + fsync + rename writer kept intact for callers that must force a write.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+A caller passes a target path and state object to `writeStateIfChangedAtomic`; the helper serializes the object and compares it to the cached serialized value for the canonical path. Equal content returns `false` without touching disk; changed or unseen content delegates to `writeStateAtomic`, updates the cache, and returns `true`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,14 +99,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Owns atomic JSON state writes | Add `writeStateIfChangedAtomic` while preserving `writeStateAtomic` | Spec acceptance criteria cover return values and unchanged-state skip behavior |
+| Existing production callers of `writeStateAtomic` | Continue using raw write path until migrated separately | Unchanged in this phase | TypeScript compilation required by spec success criteria |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: inspect `atomic-state.ts` for existing atomic state write helpers before changing the file.
+- Consumers of changed symbols: list existing callers of `writeStateAtomic`; migration is explicitly out of scope for this phase.
+- Matrix axes: first write, repeated identical write, changed write, and raw-path bypass.
+- Algorithm invariant: unchanged serialized snapshots must not create a temp file, fsync, or rename cycle through this helper.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +115,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read the atomic-state write path and confirm `writeStateAtomic` owns the durable temp-file/fsync/rename sequence.
+- [x] Confirm the new helper can be added without changing existing raw writer behavior.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Added serialized equality checking before durable writes.
+- [x] Added canonical-path cache support with an injectable/overridable map for tests.
+- [x] Exported `writeStateIfChangedAtomic` with boolean write-result semantics.
+- [x] Added documentation warning that bypassing the diffing helper through the raw writer can make cache state stale.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Verified expected behavior for first write, unchanged repeat write, and changed write as required by spec.md.
+- [x] Confirmed existing raw-write callers are not part of this phase's migration scope.
+- [x] Updated spec documentation for the completed phase.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +137,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit/behavior | `writeStateIfChangedAtomic` returns `true` for first/changed writes and `false` for unchanged state | Spec acceptance criteria; no dedicated test file named |
+| Compile | Existing callers of `writeStateAtomic` remain valid | TypeScript compilation |
+| Manual review | JSDoc and cache-bypass risk documented | Read `atomic-state.ts` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +149,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Internal | Complete | The helper must live beside the raw atomic write implementation to reuse durability semantics |
+| Existing callers of `writeStateAtomic` | Internal | Unchanged | Caller migration is tracked separately, so this phase does not depend on updating them |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +158,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The diff gate incorrectly skips a write for mutated state or breaks existing atomic write callers.
+- **Procedure**: Revert the `writeStateIfChangedAtomic` addition and cache wiring in `atomic-state.ts`, leaving the existing `writeStateAtomic` raw path as the only supported writer.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -167,4 +170,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

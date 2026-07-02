@@ -62,10 +62,12 @@ run_check() {
         return 0
     fi
 
-    # Implementation-summary.md required after implementation starts
+    # Implementation-summary.md required after implementation starts.
+    # Anchored to list items so the task-notation legend table (a literal
+    # backticked [x] explaining the symbol) cannot read as started work.
     local has_implementation=false
     if [[ -f "$folder/checklist.md" ]]; then
-        if grep -qE '\[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
+        if grep -qE '^\s*[-*] \[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
             has_implementation=true
         fi
     fi
@@ -79,7 +81,7 @@ run_check() {
     # implementation-completion heuristic, which only applies to numbered levels.
     if [[ "$numeric_level" == "1" ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
         if [[ -f "$folder/tasks.md" ]]; then
-            if grep -qE '\[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
+            if grep -qE '^\s*[-*] \[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
                 missing+=("implementation-summary.md (required: tasks show completion)")
             fi
         fi

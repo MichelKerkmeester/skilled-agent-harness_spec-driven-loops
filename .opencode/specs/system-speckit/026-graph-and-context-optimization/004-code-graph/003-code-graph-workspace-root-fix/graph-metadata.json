@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,9 +41,9 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "dist/core/config.js",
       ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      "dist/core/config.js",
       "core/config.ts",
       "lib/ipc/socket-server.ts",
       "spec.md",
@@ -54,12 +54,6 @@
     ],
     "entities": [
       {
-        "name": "config.js",
-        "kind": "code",
-        "path": "dist/core/config.js",
-        "source": "derived"
-      },
-      {
         "name": "config.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
@@ -69,6 +63,12 @@
         "name": "socket-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.js",
+        "kind": "code",
+        "path": "dist/core/config.js",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`/mcp` reported `Failed to reconnect to mkcodeindex: -32000`",
     "created_at": "2026-05-26T08:34:36.085Z",
-    "last_save_at": "2026-06-23T03:49:55.830Z",
+    "last_save_at": "2026-07-02T05:31:12.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

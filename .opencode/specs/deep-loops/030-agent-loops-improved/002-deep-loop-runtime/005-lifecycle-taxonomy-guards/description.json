@@ -19,7 +19,7 @@
     "literals",
     "across"
   ],
-  "lastUpdated": "2026-07-01T15:48:20.103Z",
+  "lastUpdated": "2026-07-01T21:52:48.822Z",
   "specId": "005",
   "folderSlug": "lifecycle-taxonomy-guards",
   "parentChain": [
@@ -30,5 +30,6 @@
     "002-deep-loop-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

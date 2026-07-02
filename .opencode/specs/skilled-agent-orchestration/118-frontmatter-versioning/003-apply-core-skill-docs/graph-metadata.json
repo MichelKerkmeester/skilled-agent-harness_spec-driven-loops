@@ -16,13 +16,13 @@
       "MiMo batch apply versions",
       "reference asset versioning",
       "core docs verify",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "apply core skill docs plan",
+      "SKILL.md version normalize plan",
+      "core docs verify plan",
+      "manifest core apply plan",
+      "apply core skill docs tasks",
+      "SKILL.md version normalize tasks",
+      "core docs verify tasks"
     ],
     "key_topics": [
       "apply",
@@ -138,19 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,20 +156,14 @@
         "source": "derived"
       },
       {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -190,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Every",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The well-structured core docs carry no consistent version: 21 SKILL.md exist but four are 3-part and several are stale versus their changelog; 22 READMEs, ~308 references and ~105 assets have none",
     "created_at": "2026-06-23T07:33:10Z",
-    "last_save_at": "2026-06-25T09:22:07.876Z",
+    "last_save_at": "2026-07-02T05:43:32.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2fbd8f5a5e8617ab54cc6b92800a232f4e2afdb17c9d2a990b92428362d10627",
+    "source_fingerprint": "sha256:c26b2ff2a7d9bd4cb8fe714de1ca1f049d939ae67348ecd9959ee4da154dd306",
     "source_doc_hashes": {
-      "spec.md": "b7870e05602b846d5beba4574c93f3eebb13f796eb2aa170766270e85a339c84",
-      "plan.md": "dab8bde031bb2986ccfc29423017e85a2b9e3484f155bdf2668cb54510ef7f1d",
-      "tasks.md": "0b7690129256877d1197fd026d2b512835789e17eccfd0e0d8a13187afc7cec2",
-      "implementation-summary.md": "4a246de81ff8b05850dc9001d859987e6f3b7ee6b556dc106056bdc9b031c1e0"
+      "spec.md": "a26b36c15f41f7368794551545108aec7db440223da70d1d6314f0cd39032727",
+      "plan.md": "cade0307105e04776b2f757a1a2bac86692dc17d2616fd19fcb4e753c8620203",
+      "tasks.md": "eb516eef2f4f531755c70cf52563e32fd674f282d1a22ede42cf88aa8f4f7771",
+      "implementation-summary.md": "7ae4341316a5e5771837c764664f12188510a9ae0e81797bd38814a0a1557335"
     },
     "last_active_child_id": null,
     "last_active_at": null

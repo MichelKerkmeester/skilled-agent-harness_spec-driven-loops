@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`sk-design-interface` (phase 001, vendored from Anthropic's frontend-design) gives the framework an advisor-routable point of view on distinctive UI design, but it is largely prose guidance",
     "created_at": "2026-06-13T16:30:00Z",
-    "last_save_at": "2026-06-23T03:49:48.392Z",
+    "last_save_at": "2026-07-02T05:31:06.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d60c9226ba0066c1141b8b2cf3bb64095d8bed6439577a040882383afa93b61e",
+    "source_fingerprint": "sha256:85ed9d089dc43d4f2780ad3a3df367f8f769e69d1bb23dbf9bee6f4401702b95",
     "source_doc_hashes": {
-      "spec.md": "4be60c1c709630155214712a1187ef8f5e34df18c42c25f10103e66d34048252",
-      "plan.md": "020d4c0c14299f1ec02fe74b157d242a1847c8ede1d042f43eae829b4f1d16e7",
-      "tasks.md": "1f8a350ce77f96d1b2c76c3d73516a6e69ff3da7590bb21a20c44f339cc248b3",
-      "implementation-summary.md": "863efe5469567dc4ae1fee63c0e1ad60a4272258f18834206834496758350381",
-      "research/research.md": "7611961f6b2ca37313c0774cb99ce29e3ed6974dfdaff2db9608b44231ebf6cd"
+      "spec.md": "a9c37681a5e165b07c61f81bdbdde2f4986fb4cde1691b2c865ea463f24f96dd",
+      "plan.md": "ec46f094314a579045d32bd5fe7cb28637cd0ceb76402f24fa7aef171072f72a",
+      "tasks.md": "e17e442c3229e2ebaecd35f4bc2649d19a81a6be3469690f6517006e3957761f",
+      "implementation-summary.md": "d51b625ec9e4ceea04abe0299f1591ad43750fd7fe3ba8bb4f42143d69ab8e77",
+      "research/research.md": "72b0dbc9b245d0228623dd81142c7ec07a8d2a38b6ec0ee7b3d22d476063afa6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/<run-label>/`",
     "created_at": "2026-06-28T10:15:17.709Z",
-    "last_save_at": "2026-06-28T13:04:39.096Z",
+    "last_save_at": "2026-07-02T05:31:09.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18ebf80922cb255a41e16f0526687c12a5a754a832615871effc7928974b5f80",
+    "source_fingerprint": "sha256:ca00a5c5b394459dcc747ab2303f894bc3817805ce19219f21e7cca058aaf542",
     "source_doc_hashes": {
-      "spec.md": "e6edbd52512f952ba6aff999e45bd7afe3631ce61aa90d1ff756eeaee64692f1",
-      "plan.md": "2be63bbe5b08e07ce72cd2b8891e4d9cdb18fc1fb7d2e8e416502f8cbc14785f",
-      "tasks.md": "023ef2ccf8bdb3ccdfe1ac9a8dbaf5c22723a892a9dda487afe772cdf77a35d1",
-      "implementation-summary.md": "2dd519367d35db63ad5d899b03fbc590c61891c6069f32c1b539b343638f9558"
+      "spec.md": "e7f401fb59869f52eecffe4e891a8e2a4de31f1507219ae1b134e6144a07c5b3",
+      "plan.md": "c0dbb8202460ed5f01c6fcc06c5ce2006bb8547d743465c9919d1fdddeeb5892",
+      "tasks.md": "de922bf73cd0706501b2badf727cc8cdbd2416e69266bc2d93a0d90873f53b59",
+      "implementation-summary.md": "f61c37abf2280436423812b73b5d41e93ca2aced477d44d1ab8f95dd22addd9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

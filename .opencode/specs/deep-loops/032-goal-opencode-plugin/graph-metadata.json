@@ -17,7 +17,8 @@
     "deep-loops/032-goal-opencode-plugin/011-command-surface-normalization",
     "deep-loops/032-goal-opencode-plugin/012-regression-test-backfill",
     "deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish",
-    "deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive"
+    "deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+    "deep-loops/032-goal-opencode-plugin/009-diagnostic-review"
   ],
   "manual": {
     "depends_on": [],
@@ -221,7 +222,7 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-01T17:58:30.422Z",
+    "last_save_at": "2026-07-02T05:31:05.770Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

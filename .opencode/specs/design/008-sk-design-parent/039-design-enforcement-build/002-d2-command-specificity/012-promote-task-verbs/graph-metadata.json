@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/commands/design/audit.md",
       ".opencode/commands/design/foundations.md",
@@ -49,13 +53,33 @@
       ".opencode/commands/design/motion.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
       ".opencode/skills/sk-design/mode-registry.json",
-      "implementation-summary.md",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "command-metadata.json",
         "kind": "config",
@@ -105,33 +129,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Eight high-value transform verbs — `typeset`, `colorize`, `bolder`, `quieter`, `distill`, `delight`, `harden`, `polish` — are the action words a user actually types, yet they live buried in the design modes' `references/` and alias surfaces, invisible at the `/design:` command surface",
     "created_at": "2026-06-28T12:40:01.470Z",
-    "last_save_at": "2026-06-29T07:10:50.129Z",
+    "last_save_at": "2026-07-02T05:31:08.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0acf2da9f9258f39bcf0faa4cb997dc5bc14ad405b0642b1b29a495b6e086e01",
+    "source_fingerprint": "sha256:70510a70d736e6e79f3f39a7827e0687ee7b1175a7e0736a920a17c263090e42",
     "source_doc_hashes": {
-      "spec.md": "3e5d864472384a47c73ac425902f6b40746749c545d258f6ffe0217aa2993407",
-      "plan.md": "68c3dc559dc003010e77c5498acde259fc0c3713abeb63442a9c902c28089b06",
-      "tasks.md": "0d8cf73135c4dbaad84c7024f45a17e01d1044603d865d8c40c6bf97545f9907",
-      "checklist.md": "6b2b7b9a6a64d166cc91b29861cd0733537e2eb0028a74dc4eadfa3d14ca5268",
-      "implementation-summary.md": "fb51d5bb1ccc00c4eaf12914e2b8b0d4e38761f916ef67b0ba2d424e58aa08b2"
+      "spec.md": "9f25a64a9285725c8ab1c09b6e8c12de75b998e6b6b4ec6503e938a0b460e5e8",
+      "plan.md": "03670bc3b9477c34128afc9c745db3d22b34a42cd9e530869eaccb1fe3e07b8c",
+      "tasks.md": "09c75f6f67b3dd1e489fa1f3fc126664c7b33e0845f191bca5a81441cdaf9103",
+      "checklist.md": "11f7ca03898f1e8bae621347b47f004a6b05918b2c629ae9454fa8227d48e6f3",
+      "implementation-summary.md": "217d25fc8fcdb32f987c282e773abcdfc3e63886a6ab32b9c0c0992df598663f"
     },
     "last_active_child_id": null,
     "last_active_at": null

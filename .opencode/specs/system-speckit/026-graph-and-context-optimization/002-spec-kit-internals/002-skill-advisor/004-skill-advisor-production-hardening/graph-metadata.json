@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening",
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -87,7 +91,7 @@
     ],
     "causal_summary": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.516Z",
+    "last_save_at": "2026-07-02T05:31:11.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

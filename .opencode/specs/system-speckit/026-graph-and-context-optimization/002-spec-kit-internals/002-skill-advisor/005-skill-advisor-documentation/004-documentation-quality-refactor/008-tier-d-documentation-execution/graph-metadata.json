@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,7 +38,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "007 deferred-decisions.md documented 5 Tier D items (F4, F6, F35, F36, F37) with rationale",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:53.619Z",
+    "last_save_at": "2026-07-02T05:31:11.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

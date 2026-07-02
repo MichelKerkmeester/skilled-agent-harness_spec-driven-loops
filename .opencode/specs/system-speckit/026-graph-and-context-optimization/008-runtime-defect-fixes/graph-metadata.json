@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes",
+  "parent_id": "system-speckit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,30 +42,29 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
-      ".codex/hooks.json",
       "spec.md",
+      "implementation-summary.md",
+      ".codex/config.toml",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -78,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 028 CLI-transition research and gap audits surfaced four live defects in the three MCP systems' integration surfaces: the OpenCode code-graph plugin bridge crashed on import (three paths pointing at files that moved during skill extraction), Codex sessions ran Claude's hook scripts instead of the purpose-built Codex adapters, the Codex config carried a backwards DB-path note (calling the real default \"legacy\"), and the Gemini hook catalog pointed at the shim instead of the active implementation",
     "created_at": "2026-06-06T16:45:00Z",
-    "last_save_at": "2026-06-23T03:49:56.610Z",
+    "last_save_at": "2026-07-02T05:31:12.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d97ed1204c1534c769d18004088fb1bea64be92cbd6b902b58f0fe191364f821",
+    "source_fingerprint": "sha256:3a8abc4c68e135bc540179119a0f78ca4bd813d2a42ae96ed0a077e54d8069bd",
     "source_doc_hashes": {
       "spec.md": "b4b1876706d381a82b4206c69256fc74b6406da1dac793717b4e06569f7624a8",
       "plan.md": "9d44f4363b5ce8bbcc5f1b7012c4695fdcc59ac4a36902027e419147c6a280a0",
       "tasks.md": "33fae6ce12c84591a6da9c7f0d92262a3e0cd297f02c2ee74d571f156a211bd9",
-      "implementation-summary.md": "4dd2005ac4f767ad85972d93dbaeee9289b4ccf0774314f23cda083f1eb68135"
+      "implementation-summary.md": "a01a26b8f24f2f52d30192a0e22649701707fcaf7e4a5545a02fb62b0b9a8134"
     },
     "last_active_child_id": null,
     "last_active_at": null

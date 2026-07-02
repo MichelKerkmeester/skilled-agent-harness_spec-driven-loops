@@ -41,9 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
       ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs",
       ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+      ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
       ".opencode/skills/sk-design/design-audit/manual_testing_playbook/03--slop-hardening/ai-fingerprint-tells.md",
       "implementation-summary.md",
       "spec.md",
@@ -52,12 +52,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
-        "source": "derived"
-      },
       {
         "name": "ai-fingerprint-fixture-check.mjs",
         "kind": "file",
@@ -68,6 +62,12 @@
         "name": "ai-fingerprint-registry-check.mjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/README.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The just-landed AI-tell registry (`design-audit/assets/aifingerprintregistry.json`, D1-R3) carries one `fixtureid` slug per tell, but the fixture files those slugs name do not exist",
     "created_at": "2026-06-28T12:40:05.236Z",
-    "last_save_at": "2026-06-29T11:12:05.419Z",
+    "last_save_at": "2026-07-02T05:31:07.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b553495cf019feed24887dfcdaf8c6c84e6a1f675fb82a496ae53eb531ac14b5",
+    "source_fingerprint": "sha256:d36e5218b4ae3976899f86353ec4e05639e08ead2daaec8a3b8355c3848d670d",
     "source_doc_hashes": {
-      "spec.md": "1a35ac5153603b77b8459178e4562c59b0507d832781df57b8804b1764dd6f77",
-      "plan.md": "6c25b4683530cdb15f301a05a697017e25d2ebd2761e38eaa63875bb10154b09",
-      "tasks.md": "f712eeadd8991b7046e69c76a1383c392716b7d2369a01d5e990a93865112f45",
-      "checklist.md": "ebffcda3c094657e9c0881934d7f354a80bb4b479f21a32333d5b78b1f0a4fed",
-      "implementation-summary.md": "adc466e38ef3eef581d7944dc817f44d01c5cb501545d4976f139462349bc807"
+      "spec.md": "1ea74c37a5775a3a565f8a46b0990fe8144d0bcf3a83d23863768942b826b9bc",
+      "plan.md": "a1468e2820c7db0795bca4903fa754e10b432b543dc9a3e82e9af0f18171e2cd",
+      "tasks.md": "bf7b7a382027f7bc3840e8f0cc18484c190d0c9416ba1b1daaed4754838d170a",
+      "checklist.md": "b9891b9dd9baf7407592b9e88bcb289a0cf64a16f35cfd1433fe42107d0ed58d",
+      "implementation-summary.md": "282c417a983acd8b07a147b3b60c1b27dd6f0d311c8c8b5fd9e0f415fbc5d99f"
     },
     "last_active_child_id": null,
     "last_active_at": null

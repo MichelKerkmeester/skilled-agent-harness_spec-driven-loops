@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
       ".opencode/plugins/mk-code-graph.js",
+      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULTMAXSECONDARYCLIENTS`) and refuses excess connections by accepting then immediately closing them",
     "created_at": "2026-06-11T17:40:00Z",
-    "last_save_at": "2026-06-23T03:49:57.848Z",
+    "last_save_at": "2026-07-02T05:31:13.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

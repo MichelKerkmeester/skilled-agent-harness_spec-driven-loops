@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "deep-loops/030-agent-loops-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard",
   "description": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored",
   "keywords": [
@@ -17,12 +18,10 @@
     "matched",
     "stored"
   ],
-  "lastUpdated": "2026-07-01T15:48:16.617Z",
+  "lastUpdated": "2026-07-02T11:47:24.458Z",
   "specId": "001",
   "folderSlug": "deep-improvement-rollback-hash-guard",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "030-agent-loops-improved",
     "008-loop-systems-remediation"
