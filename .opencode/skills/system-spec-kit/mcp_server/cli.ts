@@ -12,6 +12,8 @@
 //   Node .opencode/skills/system-spec-kit/mcp_server/dist/cli.js reindex [--force] [--eager-warmup]
 //   Node .opencode/skills/system-spec-kit/mcp_server/dist/cli.js schema-downgrade --to 15 --confirm
 import { createRequire } from 'node:module';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname } from 'node:path';
 
 const require = createRequire(import.meta.url);
 const { version: CLI_VERSION } = require('../package.json') as { version: string };
@@ -80,6 +82,12 @@ async function getSchemaDowngrade() {
 
 async function getDatabasePath(): Promise<string> {
   return (await getCoreIndex()).DATABASE_PATH;
+}
+
+async function notifyDatabaseUpdated(): Promise<void> {
+  const { DB_UPDATED_FILE } = await getCoreIndex();
+  mkdirSync(dirname(DB_UPDATED_FILE), { recursive: true });
+  writeFileSync(DB_UPDATED_FILE, String(Date.now()), 'utf8');
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -431,6 +439,9 @@ async function runBulkDelete(): Promise<void> {
 
   // Invalidate trigger cache
   triggerMatcher.clearCache();
+  if (deletedCount > 0) {
+    await notifyDatabaseUpdated();
+  }
 
   console.log(`\n  Deleted:     ${deletedCount} memories`);
   if (checkpointName) {

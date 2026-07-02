@@ -1,0 +1,93 @@
+{
+  "scope": "slugify — URL slug utility (fx-001-review-target fixture, src/slugify.js)",
+  "specFolder": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "sessionId": "ctx-2026-07-02-1535-r2wqtt",
+  "executorPool": ["native-a", "native-b"],
+  "fanoutMode": "by-model-shared-scope",
+  "iterations": 1,
+  "stop": { "reason": "maxIterationsReached", "graphDecision": "STOP_ALLOWED", "cap": 1 },
+  "reuseCandidates": [
+    {
+      "id": "reuse-001",
+      "symbol": "slugify",
+      "path": "src/slugify.js",
+      "line": 9,
+      "signature": "slugify(input, maxLen = 60) -> string",
+      "reuse": "import",
+      "confidence": 0.98,
+      "agreement": 2,
+      "agreementOf": 2,
+      "freshness": "verified",
+      "notes": "Pure, dependency-free: lowercases, trims, collapses non-alphanumeric runs to a single hyphen, strips edge hyphens, caps length (default 60). No I/O, no global state."
+    }
+  ],
+  "integrationPoints": [
+    {
+      "required": "HARD",
+      "symbol": "module.exports = slugify",
+      "path": "src/slugify.js",
+      "line": 31,
+      "agreement": 2,
+      "notes": "Sole export; consumers require('./slugify') and receive the bare function value (no named/default namespace)."
+    }
+  ],
+  "touchList": [
+    {
+      "path": "src/slugify.js",
+      "order": 1,
+      "reason": "Entire feature surface is one file; any extension is an in-place edit to slugify.",
+      "caveat": "FROZEN benchmark fixture with intentional seeded imperfections — do not modify the fixture itself."
+    }
+  ],
+  "conventions": [
+    { "kind": "module-style", "path": "src/slugify.js", "line": 1, "exemplar": "'use strict'; + CommonJS module.exports" },
+    { "kind": "language-level", "path": "src/slugify.js", "line": 9, "exemplar": "ES5 idioms: var, function declaration, chained .replace(); no const/let/arrow" },
+    { "kind": "optional-arg-default", "path": "src/slugify.js", "line": 10, "exemplar": "maxLen = maxLen || 60 (not an ES6 default parameter)" },
+    { "kind": "doc-style", "path": "src/slugify.js", "line": 3, "exemplar": "JSDoc block above the function" }
+  ],
+  "dependencySubgraph": {
+    "edges": [],
+    "note": "Zero require/import statements (src/slugify.js:1); dependency subgraph is empty. dependencyCompleteness vacuous-passes at 1.0."
+  },
+  "priorArt": [
+    { "date": "2026-07-02", "ref": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/FIXTURE.md", "note": "Frozen deep-loop behavior-benchmark fixture; src/slugify.js carries intentional seeded imperfections that must never be fixed." },
+    { "date": "2026-07-02", "ref": "fx-001-review-target/spec.md,plan.md,tasks.md", "note": "Toy intent docs; tasks.md claims 'Input validation complete' — contradicted by the code (see gaps)." }
+  ],
+  "gaps": [
+    { "id": "gap-truncation", "path": "src/slugify.js", "line": "24-26", "relevance": 0.90, "agreement": 2, "summary": "Length cap slices AFTER edge-hyphen strip (line 21), so a cut on a hyphen boundary leaves a trailing '-' — violates spec.md requirements 4 & 5." },
+    { "id": "gap-input-validation", "path": "src/slugify.js", "line": 13, "relevance": 0.85, "agreement": 2, "summary": "Only number is stringified; null/undefined/object/boolean throw TypeError at toLowerCase (line 15). Contradicts tasks.md 'Input validation complete'." },
+    { "id": "gap-maxlen-coercion", "path": "src/slugify.js", "line": 10, "relevance": 0.60, "agreement": 2, "summary": "maxLen || 60 coerces falsy 0 to 60 and does not guard a negative maxLen." },
+    { "id": "gap-unicode", "path": "src/slugify.js", "line": 18, "relevance": 0.60, "agreement": 2, "summary": "Non-ASCII/accented chars dropped, not transliterated ('Café' -> 'caf'); limits multilingual reuse." },
+    { "id": "gap-empty-result", "path": "src/slugify.js", "line": "18,28", "relevance": 0.55, "agreement": 2, "summary": "All-non-alphanumeric input returns ''; spec defines no empty-slug behavior — open contract question." }
+  ],
+  "contradictions": [
+    {
+      "field": "signature",
+      "kind": "artifact",
+      "explanation": "4 signature-field divergences flagged by the reducer are phrasing/collapse artifacts of coarse (path,symbol,kind) unit identity on a single-function file, NOT semantic contract conflicts. Both seats agreed on substance.",
+      "units": [
+        { "unit": "reuse_candidate", "native-a": "slugify(input, maxLen = 60) -> string", "native-b": "slugify(input, maxLen=60) -> string" },
+        { "unit": "dependency", "native-a": "no require()/import statements", "native-b": "no require/import statements" },
+        { "unit": "convention", "native-a": "maxLen = maxLen || 60", "native-b": "JSDoc block above function" },
+        { "unit": "gap", "native-a": "returns '' for all-non-alphanumeric input", "native-b": "no Unicode transliteration" }
+      ]
+    }
+  ],
+  "convergenceSignals": {
+    "sliceCoverage": 1.0,
+    "reuseCatalogCoverage": 1.0,
+    "agreementRate": 1.0,
+    "relevanceFloor": 1.0,
+    "dependencyCompleteness": 1.0,
+    "score": 1.0
+  },
+  "methodology": {
+    "unitIdentity": "sha256(path:symbol:kind)",
+    "rawFindings": 20,
+    "mergedUnits": 5,
+    "relevanceGate": 0.55,
+    "agreementMin": 2,
+    "citationVerification": "grep/read fallback (code graph unavailable)",
+    "frontierSource": "glob_grep_fallback"
+  }
+}

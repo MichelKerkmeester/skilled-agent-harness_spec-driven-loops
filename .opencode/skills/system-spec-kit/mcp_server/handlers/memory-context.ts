@@ -1698,13 +1698,15 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       userId: args.userId,
       agentId: args.agentId,
       limit,
-      sessionId: effectiveSessionId,
       enableDedup: enableDedup,
       includeContent: include_content,
       includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       anchors,
       profile: args.profile,
     };
+    if (requestedSessionId) {
+      options.sessionId = effectiveSessionId;
+    }
 
     const {
       effectiveMode,

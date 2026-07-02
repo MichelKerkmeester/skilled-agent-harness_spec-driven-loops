@@ -1,0 +1,17 @@
+{
+  "specFolder": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "sessionSummary": "Deep context (max-iterations=1) mapped the slugify URL-slug utility fixture. One parallel sweep by 2 native @deep-context seats over the shared src/slugify.js:slugify slice; 20 raw findings merged to 5 agreement-confirmed units (1 reuse, 1 integration, 1 dependency=none, 1 convention cluster, 1 gap cluster). Graph convergence STOP_ALLOWED (all signals 1.0); host stopped at the iteration cap. See context/context-report.md.",
+  "observations": [
+    "REUSE: slugify(input, maxLen=60)->string at src/slugify.js:9 — pure, dependency-free, import as-is (confidence 0.98, agreement 2/2).",
+    "INTEGRATION [HARD]: module.exports = slugify at src/slugify.js:31 — bare function export, no namespace.",
+    "GAPS (seeded, do-not-fix): truncation-after-edge-strip (24-26), missing null/undefined/object input validation (13) contradicting tasks.md, maxLen falsy coercion (10), no Unicode transliteration (18), undefined empty-result behavior.",
+    "The 4 reducer 'contradictions' are signature phrasing/collapse artifacts on a single-symbol file, not semantic conflicts.",
+    "CANONICAL SAVE DEVIATION: generate-context.js was NOT run against the fixture root to avoid reclassifying the frozen benchmark fixture as a production spec-kit packet (FIXTURE.md hard contract); memory MCP was also unavailable. This scratch backup is the fallback."
+  ],
+  "recent_context": [
+    "Artifacts: context/context-report.md (+.json), iterations/iteration-001.md, findings-registry.json, deep-context-dashboard.md, coverage-graph (loop_type=context, session ctx-2026-07-02-1535-r2wqtt).",
+    "Next action for a real consumer: /speckit:plan from the reuse catalog + touch list; resolve the empty-slug and input-type contracts flagged in Gaps."
+  ],
+  "exchanges": [],
+  "toolCalls": []
+}

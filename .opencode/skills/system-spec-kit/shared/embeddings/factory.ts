@@ -16,7 +16,7 @@ import {
   resolveOllamaBaseUrl,
   resolveOllamaCanonicalModel,
 } from './providers/ollama.js';
-import { EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
+import { createProfileSlug, EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
 import { getCanonicalFallback } from './registry.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
 import type {
@@ -455,7 +455,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
     const shardPath = path.join(
       path.dirname(sqlitePath),
       'vectors',
-      `context-vectors__${provider}__${name}__${dim}.sqlite`,
+      `context-vectors__${createProfileSlug(provider, manifest.name, dim)}.sqlite`,
     );
     if (existsSync(shardPath) && tableExistsInSqlite(shardPath, expectedTable)) {
       tableSource = shardPath;

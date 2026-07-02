@@ -46,6 +46,7 @@ describe('Memory Context Session State Persistence', () => {
           { intent: 'understand', confidence: 0.18, score: 0.18 },
         ],
       })),
+      emitIntentTelemetry: vi.fn(() => null),
     }));
     vi.doMock('../handlers/memory-search', () => ({
       handleMemorySearch,
@@ -161,5 +162,6 @@ describe('Memory Context Session State Persistence', () => {
         }),
       }),
     );
+    expect((handleMemorySearch.mock.calls[0]?.[0] as { sessionId?: string }).sessionId).toBeUndefined();
   });
 });

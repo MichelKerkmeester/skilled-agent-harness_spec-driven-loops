@@ -484,13 +484,13 @@ describe('runQualityLoop', () => {
     expect(result.score.total).toBeLessThan(0.6);
   });
 
-  it('reports actual attempts when early break stops further retries', () => {
+  it('honors maxRetries even when auto-fix applies no changes', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
     const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 5, mode: 'full-auto' });
     expect(result.passed).toBe(false);
     expect(result.rejected).toBe(true);
-    expect(result.attempts).toBe(2);
-    expect(result.rejectionReason).toContain('after 1 auto-fix attempt(s)');
+    expect(result.attempts).toBe(6);
+    expect(result.rejectionReason).toContain('after 5 auto-fix attempt(s)');
   });
 
   it('stays advisory by default when content remains below threshold', () => {
@@ -591,10 +591,10 @@ describe('runQualityLoop', () => {
 
   it('respects custom maxRetries', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
-    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 1, mode: 'full-auto' });
+    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 2, mode: 'full-auto' });
     expect(result.rejected).toBe(true);
-    // With maxRetries=1, attempts should be at most 2 (1 initial + 1 retry)
-    expect(result.attempts).toBeLessThanOrEqual(2);
+    expect(result.attempts).toBe(3);
+    expect(result.rejectionReason).toContain('after 2 auto-fix attempt(s)');
   });
 
   it('includes all fix descriptions in result', () => {

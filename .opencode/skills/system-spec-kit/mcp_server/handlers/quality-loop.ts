@@ -673,10 +673,6 @@ function runQualityLoop(
       };
     }
 
-    // If no fixes were applied, further retries won't help
-    if (fixResult.fixed.length === 0) {
-      break;
-    }
   }
 
   // Rejected after all retries

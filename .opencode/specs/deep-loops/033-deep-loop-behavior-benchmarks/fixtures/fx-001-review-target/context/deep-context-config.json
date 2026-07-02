@@ -1,0 +1,43 @@
+{
+  "scope": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "specFolder": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "loopType": "context",
+  "executionMode": "auto",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxToolCallsPerIteration": 12,
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "fanout": {
+    "mode": "by-model-shared-scope",
+    "concurrency": 4,
+    "executors": [
+      { "kind": "native", "label": "native-a" },
+      { "kind": "native", "label": "native-b" }
+    ]
+  },
+  "report": {
+    "path": "context/context-report.md",
+    "jsonPath": "context/context-report.json"
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "context/findings-registry.json",
+    "dashboardFile": "context/deep-context-dashboard.md"
+  },
+  "createdAt": "2026-07-02T15:36:36.609Z",
+  "status": "complete",
+  "lineage": {
+    "sessionId": "ctx-2026-07-02-1535-r2wqtt",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

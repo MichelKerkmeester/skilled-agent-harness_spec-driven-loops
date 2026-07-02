@@ -402,18 +402,32 @@ function requireDatabaseDir(db: Database.Database, operation: string): string {
   return databaseDir;
 }
 
-function writeVectorsToKnn(
+function writeVectorsToShardTables(
   db: Database.Database,
+  tableName: string,
   rows: MemoryRow[],
   embeddings: Float32Array[],
+  includeKnn: boolean,
 ): void {
   const writeBatch = db.transaction(() => {
-    const del = db.prepare('DELETE FROM vec_memories WHERE rowid = ?');
-    const ins = db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)');
+    const vectorInsert = db.prepare(`
+      INSERT OR REPLACE INTO ${tableName} (id, vec)
+      VALUES (?, ?)
+    `);
+    const knnDelete = includeKnn ? db.prepare('DELETE FROM vec_memories WHERE rowid = ?') : null;
+    const knnInsert = includeKnn
+      ? db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)')
+      : null;
+
     for (let i = 0; i < rows.length; i += 1) {
       const { row, embedding } = getBatchPair(rows, embeddings, i);
-      del.run(BigInt(row.id));
-      ins.run(BigInt(row.id), to_embedding_buffer(embedding));
+      const vectorBuffer = to_embedding_buffer(embedding);
+      vectorInsert.run(row.id, vectorBuffer);
+      if (knnDelete && knnInsert) {
+        const rowid = BigInt(row.id);
+        knnDelete.run(rowid);
+        knnInsert.run(rowid, vectorBuffer);
+      }
     }
   });
 
@@ -506,10 +520,7 @@ function writeVectorsToShard(
       `);
     }
 
-    writeVectors(shard, tableName, rows, embeddings);
-    if (vecAvailable) {
-      writeVectorsToKnn(shard, rows, embeddings);
-    }
+    writeVectorsToShardTables(shard, tableName, rows, embeddings, vecAvailable);
   } finally {
     // WAL-durability: flush + TRUNCATE the shard WAL before close so the shard file is
     // consistent at rest with an empty WAL — mirrors close_db's corruption-prevention.

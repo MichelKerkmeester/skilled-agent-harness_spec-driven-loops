@@ -38,7 +38,7 @@ Validate cross-process DB hot rebinding against memory_save(filePath) and return
 
 1. start MCP server
 2. create a test memory via MCP: `memory_save(filePath)` and note its title
-3. from a separate terminal, run `node cli.js bulk-delete --tier scratch --folder specs/test-sandbox` (non-dry-run — this mutates the DB and writes the `DB_UPDATED_FILE` marker)
+3. from a separate terminal, run `node cli.js bulk-delete --tier temporary --folder specs/test-sandbox` (non-dry-run — this mutates the DB and writes the `DB_UPDATED_FILE` marker)
 4. immediately call `memory_stats()` via MCP → verify server detects marker and reinitializes DB
 5. verify no stale data from pre-rebind state
 6. run `memory_health()` → verify healthy status post-rebind
