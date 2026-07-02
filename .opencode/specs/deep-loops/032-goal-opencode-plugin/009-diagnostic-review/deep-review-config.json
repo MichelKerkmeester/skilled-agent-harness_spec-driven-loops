@@ -1,0 +1,77 @@
+{
+  "topic": "Diagnostic audit: phase 009 (009-speckit-command-goal-prompt-offer) metadata integrity, ownership traceability, plan completeness, and metadata-repair blast radius",
+  "sessionId": "rv-phase009-audit-20260701-184748",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 13,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+  "createdAt": "2026-07-01T18:47:48Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "DIAGNOSTIC (read-only, do NOT implement/fix/complete phase 009's own /speckit:* integration work): audit the real current state of .opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/ across 4 custom dimensions -- D1 correctness of the metadata-generation tooling (is the malformed graph-metadata.json an isolated one-off or a systemic create.sh/scaffolding-tool defect), D2 traceability of the 'owned by a separate concurrent session' ownership claim (independently verify with lock files, git reflog, stash, cross-doc references), D3 completeness of the phase's own plan (spec.md/plan.md/tasks.md/implementation-summary.md/handover.md coherence, stale references), D4 blast radius of a metadata repair (would regenerating graph-metadata.json touch/lose any real authored content).",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "stopPolicy": "max-iterations",
+  "customDimensionMap": {
+    "D1_metadata_tooling_correctness": "correctness",
+    "D2_ownership_traceability": "traceability",
+    "D3_plan_completeness": "maintainability",
+    "D4_repair_blast_radius": "security"
+  },
+  "reviewOnly": true,
+  "doNotModifyPaths": [
+    ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/"
+  ]
+}

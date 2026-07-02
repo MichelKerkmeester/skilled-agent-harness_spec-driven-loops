@@ -2,8 +2,8 @@
 title: "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"
 importanceTier: constitutional
 contextType: decision
-last_confirmed: "2026-07-01"
-last_confirmed_source: "deep-review-finding-DR-002/007/008"
+last_confirmed: "2026-07-02"
+last_confirmed_source: "deep-review-finding-D2-P2-003"
 triggerPhrases:
   - /goal
   - /opencode_goal
@@ -35,20 +35,23 @@ impossible to reach Claude Code's own native `/goal` in this repo — invoking "
 Claude Code always resolved to the OpenCode markdown and instructed a call to `mk_goal()`,
 a tool that does not exist in Claude Code (confirmed dead end 2026-07-01, `ToolSearch`
 found no matching tool; no `plugin_bridges/*.mjs` exists for `mk-goal`, unlike
-`mk-spec-memory`/`mk-skill-advisor`/`mk-code-graph`). **First fix (2026-07-01)**: renamed
-to `.opencode/commands/opencode_goal.md`. **Second rename (same day, same session)**:
-a separate in-flight OpenCode session (working on packet 032 phase 009, the
-`/speckit:*` goal-prompt-offer integration) renamed it again to
-`.opencode/commands/goal_opencode.md` — content unchanged, filename only, confirmed via
-a concurrent deep-review pass (finding DR-002/DR-007/DR-008: "the command surface has
+`mk-spec-memory`/`mk-skill-advisor`/`mk-code-graph`). The file's real committed history
+(verified via `git log --follow -- .opencode/commands/goal_opencode.md`), corrected
+2026-07-02 after a diagnostic review found an earlier draft of this note wrongly claimed
+an intermediate `opencode_goal.md` committed state that never existed: created as
+`.opencode/commands/goal.md` (2026-06-28); **first rename** to
+`.opencode/commands/goal_opencode.md`, by a separate in-flight OpenCode session working on
+packet 032 phase 009 (the `/speckit:*` goal-prompt-offer integration), confirmed via a
+concurrent deep-review pass (finding DR-002/DR-007/DR-008: "the command surface has
 fractured into multiple names across code, phase docs, graph metadata, and overlay
-catalogs/playbooks"). **Third rename**: an audit-driven remediation phase (032 phase 011)
-renamed it back to `.opencode/commands/goal.md`, reasoning from a `strings` search of the
-opencode binary confirming no built-in `/goal` command exists. The concurrent phase-009
-session renamed it back to `.opencode/commands/goal_opencode.md` again shortly after. The
-operator confirmed on 2026-07-01 that `goal_opencode.md` is the correct, final name —
-this file and its referencing surfaces were swept to match. Do not hardcode past names,
-but this is no longer expected to move again absent a new operator decision.
+catalogs/playbooks"); **second rename** back to `.opencode/commands/goal.md`, by an
+audit-driven remediation phase (032 phase 011) reasoning from a `strings` search of the
+opencode binary confirming no built-in `/goal` command exists; **third rename**, the
+concurrent phase-009 session renamed it back to `.opencode/commands/goal_opencode.md`
+again shortly after. The operator confirmed on 2026-07-01 that `goal_opencode.md` is the
+correct, final name — this file and its referencing surfaces were swept to match. Do not
+hardcode past names, but this is no longer expected to move again absent a new operator
+decision.
 
 ## How to apply
 

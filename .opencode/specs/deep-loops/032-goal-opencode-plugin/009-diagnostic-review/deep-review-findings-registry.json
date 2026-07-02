@@ -1,0 +1,223 @@
+{
+  "sessionId": "rv-phase009-audit-20260701-184748",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "status": "complete",
+  "openFindings": [
+    {
+      "id": "D4-P0-001",
+      "severity": "P0",
+      "title": "deriveStatus false-complete is a systemic repo-wide tooling defect: 363 actually-incomplete folders mislabeled 'complete' by a file-presence-only heuristic; 213 already live-corrupted on-disk today",
+      "dimension": "D4",
+      "schemaDimension": "security",
+      "iteration": 5,
+      "escalatedFrom": "D4-P1-001 (iteration 4)",
+      "status": "active",
+      "confidence": 0.93,
+      "evidenceRefs": [
+        "graph-metadata-parser.ts:1215-1218 (deriveStatus: implementation-summary.md present + no checklist.md => 'complete', unconditional)",
+        "repo-wide sweep: 363 folders would be mislabeled; 213 already carry a false derived.status:'complete' on disk today",
+        "iteration 6: exhaustive consumer grep shows resume ladder / phase-map sync / completion verification all read other fields (last_active_child_id, canonical-doc frontmatter), not derived.status -- currently inert, not a live functional failure",
+        "iteration 9: no validator in the validate.sh --strict chain cross-checks status vs completion_pct/open-tasks (sibling finding D1-P1-001)"
+      ],
+      "counterevidenceSought": "Searched for any consumer that branches on derived.status (iter 6); searched for a cross-field validator that would already catch this (iter 9); both searches came back empty, strengthening rather than refuting the finding",
+      "alternativeExplanation": "The 213 on-disk rows could be genuinely complete with stale/missing completion_pct rather than falsely derived -- ruled out as the dominant case: iteration 5/9 cross-checked against completion_pct/open-tasks and found the false-complete population, though a null-completion_pct subset (296 folders) has residual ambiguity requiring per-folder review before an automated fix executes broadly",
+      "finalSeverity": "P0",
+      "downgradeTrigger": "A deriveStatus patch ships gating on completion_pct/open-tasks, OR a per-folder authoring audit shows the 213 rows are genuinely complete with stale pct -- neither has happened; adjudication (iteration 10) HELD P0",
+      "claimAdjudicationPassed": true
+    },
+    {
+      "id": "D1-P1-001",
+      "severity": "P1",
+      "title": "Validation layer has no cross-field consistency check between derived.status and canonical completion signals (completion_pct, open tasks, checklist content); validate.sh --strict is structurally blind to false-complete",
+      "dimension": "D1",
+      "schemaDimension": "correctness",
+      "iteration": 9,
+      "status": "active",
+      "confidence": 0.93,
+      "evidenceRefs": [
+        "generated-metadata-integrity.ts:~99 (enum-membership check on derived.status only, no cross-field check)",
+        "generated-metadata-drift.ts:224-242 (re-derives description/causal_summary, never re-derives or checks status; additionally tautological since it would reuse the same buggy deriveStatus)",
+        "continuity-freshness validator: within-canonical-doc only, does not cross into graph-metadata.json",
+        "5 validators in the validate.sh --strict chain reviewed; none joins derived.status to completion_pct/open-tasks/checklist.md content"
+      ],
+      "counterevidenceSought": "Checked whether the grandfather rollout mechanism (isGeneratedMetadataGrandfatherEnabled) could cover this gap by design -- confirmed it applies uniformly to schema-level violations only, not a documented substitute for a cross-field status check",
+      "alternativeExplanation": "This could be an intentional design choice (status is a derived/advisory field never meant to be strictly validated) rather than a gap -- weighed and rejected in iteration 9: nothing in the codebase documents this as an intentional non-contractual field, and it is the structural reason a confirmed P0-magnitude defect (D4-P0-001) passes --strict undetected",
+      "finalSeverity": "P1",
+      "downgradeTrigger": "Documentation surfaces establishing derived.status as explicitly non-contractual/advisory-only, OR the defect stops mattering because D4-P0-001 is fixed at the producer -- neither has happened; adjudication (iteration 10) HELD P1 (structural enabler of a latent P0, not itself producing wrong data)",
+      "claimAdjudicationPassed": true
+    },
+    {
+      "id": "D1-P2-001",
+      "severity": "P2",
+      "title": "Loader/validator read-path inconsistency: the runtime graph-metadata loader tolerates and auto-migrates legacy plain-text scaffold content; the strict validator does a raw JSON.parse with no such tolerance",
+      "dimension": "D1",
+      "schemaDimension": "correctness",
+      "iteration": 1,
+      "status": "active",
+      "confidence": 0.82,
+      "evidenceRefs": [
+        "graph-metadata-parser.ts:356-433 (validateGraphMetadataContent -> parseLegacyGraphMetadataContent tolerant fallback, migrated:true)",
+        "generated-metadata-integrity.ts:69-92 (readJsonFile does a raw JSON.parse with no legacy fallback)",
+        "backfill-graph-metadata.js --dry-run against phase-009 returns existing:1, refreshed:1, failed:[] (loader succeeds); tsx generated-metadata-integrity.ts --strict on the same folder returns FILE_UNPARSEABLE (validator fails)"
+      ],
+      "counterevidenceSought": "Checked whether the grandfather flag selectively carves out FILE_UNPARSEABLE -- confirmed it does not (uniform), so this is a genuine, not incidental, split",
+      "alternativeExplanation": "Could be an intentional one-way migration gate (legacy files load at runtime but must be regenerated to pass strict validation) rather than a defect -- plausible reading, recorded as the leading interpretation alongside the inconsistency framing",
+      "finalSeverity": "P2",
+      "downgradeTrigger": "A second unparseable file is found elsewhere (would escalate), or the runtime acts on stale derived fields of migrated metadata in a way that causes real harm"
+    },
+    {
+      "id": "D1-P2-002",
+      "severity": "P2",
+      "title": "create_graph_metadata_file()'s early-return guard prevents any scaffolding re-run from self-healing a malformed legacy graph-metadata.json",
+      "dimension": "D1",
+      "schemaDimension": "correctness",
+      "iteration": 1,
+      "status": "active",
+      "confidence": 0.78,
+      "evidenceRefs": [
+        "create.sh:408-410 (if [[ -f \"$graph_path\" ]]; then return 0; fi)",
+        "create.sh:452-479 (current heredoc emits valid schema-conformant JSON when no file exists)",
+        "sibling 010-security-and-correctness-fixes/graph-metadata.json is valid, confirming the current tool is not itself buggy in normal operation"
+      ],
+      "counterevidenceSought": "n/a -- structural guard behavior confirmed by direct code read, not in dispute",
+      "alternativeExplanation": "The guard is deliberate (never clobber operator/manual edits) -- reasonable design intent, but it means there is no automated self-heal path for this class of legacy file; an explicit repair script/flag is required",
+      "finalSeverity": "P2",
+      "downgradeTrigger": "n/a"
+    },
+    {
+      "id": "D1-P2-003",
+      "severity": "P2",
+      "title": "Seeded Known Context arithmetic error self-corrected: the mtime-delta claim of '~53 minutes' between phase-009 scaffold files was actually ~4 hours 53 minutes",
+      "dimension": "D1",
+      "schemaDimension": "correctness",
+      "iteration": 1,
+      "status": "active",
+      "confidence": 0.95,
+      "scope": "Review-process accuracy correction, not a phase-009/tooling defect",
+      "evidenceRefs": [
+        "stat mtimes: spec/plan/tasks/impl-summary = 06:47:26; graph-metadata.json = 11:40:36 (+0200)",
+        "commit 540fac01e4 = 2026-07-01 16:35:25 +0200"
+      ],
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D2-P2-001",
+      "severity": "P2",
+      "title": "Seeded Known Context count error self-corrected: git stash list has 6 entries, not the 5 originally cited",
+      "dimension": "D2",
+      "schemaDimension": "traceability",
+      "iteration": 2,
+      "status": "active",
+      "confidence": 0.9,
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D2-P2-002",
+      "severity": "P2",
+      "title": "The 'owned by a separate, concurrently in-flight OpenCode session' ownership claim is asserted across ~35 packet-032 docs with no cited verification method; refined across iterations 2/7/8 into a split verdict (past-tense session existence substantiated on commit prose at ~0.80 confidence after correcting an over-read of a commit trailer; present-tense active editing and phase-009-specific attribution remain unverified)",
+      "dimension": "D2",
+      "schemaDimension": "traceability",
+      "iteration": 2,
+      "status": "active",
+      "confidence": 0.8,
+      "evidenceRefs": [
+        "packet-root spec.md, changelog-032-root.md, and ~33 other packet-032 docs repeat the claim without citing a verification method (iteration 2)",
+        "commit 8405ba4f57 author-message prose: 'already renamed in the shared working tree, uncommitted ... matching what a concurrent session had independently converged on' (iteration 7)",
+        "iteration 8: the commit's Claude-Session trailer is the authoring/committing session's own stamp, not corroboration of a distinct concurrent session -- downgrades iteration 7's 0.90 to 0.80",
+        "base-rate comparator (design-039 packet) shows this repo's genuine concurrent-session claims carry named files + line-count fingerprints + captured concurrency-state; phase 009's claim carries none of these"
+      ],
+      "counterevidenceSought": "Repo-wide git reflog/stash/lock-file sweep (iterations 2, 5, 7) found zero local corroboration; explicitly weighed the counter-consideration that a remote/detached session would be invisible to local git/lock state",
+      "alternativeExplanation": "The claim is an operator reservation/label for future work rather than a statement about an active peer session right now -- consistent with handover.md's own future-tense framing ('to next OpenCode implementation session')",
+      "finalSeverity": "P2",
+      "downgradeTrigger": "n/a -- already the settled, refined verdict as of iteration 8"
+    },
+    {
+      "id": "D2-P2-003",
+      "severity": "P2",
+      "title": "Rename-citation inaccuracy: packet docs cite the concurrent-session rename as 'opencode_goal.md -> goal_opencode.md', but 'opencode_goal.md' was never a committed git path -- the actual prior committed name was 'goal.md'",
+      "dimension": "D2",
+      "schemaDimension": "traceability",
+      "iteration": 7,
+      "status": "active",
+      "confidence": 0.85,
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D2-P2-004",
+      "severity": "P2",
+      "title": "Claude-Session / Co-Authored-By commit trailers are committer/model attribution only; they cannot corroborate a distinct concurrent session because a working-tree-only (never-committed) session leaves no trailer by definition -- corrects iteration 7's treatment of the trailer as 'a concrete handle'",
+      "dimension": "D2",
+      "schemaDimension": "traceability",
+      "iteration": 8,
+      "status": "active",
+      "confidence": 0.9,
+      "evidenceRefs": [
+        "git log --all -S 'session_01MaduKvU39V7TZ4qrdB8b5k' --pickaxe-regex: 16 of 588 commits, one coherent time-bounded burst -- a real per-session id, not fixed template text (refutes the reviewer's own alternative 'fixed template' hypothesis too)",
+        "Co-Authored-By: Claude Sonnet 5 appears on 26 commits repo-wide -- model-level, not session-level, attribution"
+      ],
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D3-P2-001",
+      "severity": "P2",
+      "title": "Phase-count contradiction: phase 009's own spec.md says 'Phase 9 of 9' while the packet-root phase map enumerates 14 phases with 010-014 already Complete",
+      "dimension": "D3",
+      "schemaDimension": "maintainability",
+      "iteration": 3,
+      "status": "active",
+      "confidence": 0.95,
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D3-P2-002",
+      "severity": "P2",
+      "title": "No concrete scope statement exists in any canonical doc for phase 009 -- both its own spec.md ('[To be defined during planning]') and the packet-root phase map ('[Phase 9 scope]') are placeholders; handover.md is the sole real source of scope",
+      "dimension": "D3",
+      "schemaDimension": "maintainability",
+      "iteration": 3,
+      "status": "active",
+      "confidence": 0.9,
+      "finalSeverity": "P2"
+    },
+    {
+      "id": "D4-P2-001",
+      "severity": "P2",
+      "title": "A live graph-metadata regeneration would also regress derived synopsis/importance_tier (important -> normal) and replace the synopsis with spec.md placeholder text, because the source docs are unauthored scaffolds -- an accuracy regression distinct from the P0 status defect",
+      "dimension": "D4",
+      "schemaDimension": "security",
+      "iteration": 4,
+      "status": "active",
+      "confidence": 0.85,
+      "finalSeverity": "P2"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 10
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "claimAdjudication": {
+    "gate": "claimAdjudicationGate",
+    "passed": true,
+    "iteration": 10,
+    "findings": [
+      { "id": "D4-P0-001", "held": true, "finalSeverity": "P0", "confidence": 0.93 },
+      { "id": "D1-P1-001", "held": true, "finalSeverity": "P1", "confidence": 0.93 }
+    ]
+  },
+  "note": "Regenerated 2026-07-02 after the shared reduce-state.cjs reducer degraded this file (a findingsNew shape mismatch produced 3 generic 'SUMMARY-P2-*' placeholders and dropped the P0/P1 and 9 of 10 P2 findings). Restored from deep-review-state.jsonl (12 lines, intact) and deep-review-strategy.md (intact) plus all 10 iteration-NNN.md files. The reduce-state.cjs schema mismatch is a process-tooling observation for this orchestration run, not a phase-009 finding."
+}
