@@ -177,7 +177,7 @@ them (e.g. a `crash` run should also score D4 = 0).
 | `refused` | Declined a legitimate invocation citing policy or convention, with no dispatch. |
 | `missing_artifact` | Claimed or implied completion, but expected artifacts absent. |
 | `crash` | Spawn failure, or nonzero exit with no meaningful output. |
-| `env_error` | Provider quota/rate-limit rejection (with zero dispatches and zero fixture writes): the model never saw the prompt. Checked FIRST; dimensions are nulled, the runner exits `75` (retryable), and the cell MUST be re-run after the quota resets — an `env_error` result is never quotable as behavior. |
+| `env_error` | Provider quota/rate-limit rejection: the model never saw the prompt. Checked FIRST; dimensions are nulled, the runner exits `75` (retryable), and the cell MUST be re-run after the quota resets — an `env_error` result is never quotable as behavior. Guarded against false positives from a run that merely READ a file quoting a rejection: the rejection must be UNESCAPED top-level stream text (a backslash-escaped match inside a tool result is rejected, the same discriminator dispatch detection uses), the run must terminate within `ENV_ERROR_MAX_TERMINAL_MS` (15 s — genuine rejections die in seconds), and it must show zero dispatches and zero fixture writes. |
 
 ---
 
@@ -218,6 +218,32 @@ marked `3-sample` and the per-sample buckets and scores are all recorded, not
 just a majority. **Never silently rerun a cell to obtain a better result.** A
 rerun exists to resolve doubt, not to improve optics, and every rerun is logged
 with the reason it was triggered.
+
+---
+
+## FIXTURE ISOLATION
+
+Fixtures are frozen reference inputs: only `FIXTURE.md`, `spec.md`, `plan.md`,
+`tasks.md`, and `src/` are legitimate. Deep-loop runs write output packets INTO
+the fixture (`context/`, `review/`, `research/`), so the orchestration restores
+the fixture git-clean between cells.
+
+The restore MUST purge run-output directories with an explicit `rm -rf`, not git
+alone. `git clean` cannot remove a run-output dir once a concurrent session has
+committed it to the shared index — and that has happened (a `deep-context`
+packet was swept into `fx-001` by an unrelated commit, which `git checkout` then
+kept restoring). The durable recipe, per fixture, in a verify loop:
+
+```
+rm -rf "$FIX/context" "$FIX/review" "$FIX/research"   # tracked-or-not
+git reset -q HEAD -- "$FIX"; git checkout -q -- "$FIX"; git clean -fdq "$FIX"
+rm -rf "$FIX/context" "$FIX/review" "$FIX/research"   # again, post-checkout
+# repeat until `git status --porcelain "$FIX"` is empty (staged deletions excluded)
+```
+
+A working-tree-local `.gitignore` entry for these dirs is a second guard against
+re-tracking, but the `rm -rf` is the load-bearing one — never rely on git state
+alone to keep a fixture frozen.
 
 ---
 

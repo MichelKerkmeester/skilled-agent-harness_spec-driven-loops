@@ -33,10 +33,16 @@ const SETUP_RE = /PRE-BOUND SETUP|execution_mode|consolidated setup|Setup Phase/
 const DISPATCH_RE = /"name"\s*:\s*"(Agent|Task)"|"tool"\s*:\s*"task"/;
 const REFUSAL_RE = /refus|declin|cannot comply|not permitted|not allowed/i;
 // Provider-side quota rejections: the model never saw the prompt, so nothing
-// about the run is behavioral evidence. Matched only when the run also shows
-// zero dispatches and zero fixture writes, so a real run that merely MENTIONS
-// rate limits in its report cannot be relabeled.
-const ENV_ERROR_RE = /You.{0,3}ve hit your (session|usage) limit|rate_limit_exceeded|429 Too Many Requests|exceeded your current quota/i;
+// about the run is behavioral evidence. Two structural guards stop a run that
+// merely READ a file quoting a rejection (e.g. a prior quarantined transcript)
+// from being relabeled: (1) a genuine rejection is UNESCAPED top-level stream
+// text, whereas file content inside a tool result is backslash-escaped — the
+// same escaped-vs-unescaped discriminator dispatch detection relies on; the
+// negative lookbehind rejects the escaped form. (2) A genuine rejection
+// terminates in seconds having done no work, so classify additionally requires
+// a fast terminal alongside zero dispatch and zero fixture writes.
+const ENV_ERROR_RE = /(?<!\\)"You've hit your (?:session|usage) limit|(?<!\\)rate_limit_exceeded|(?<!\\)429 Too Many Requests|(?<!\\)exceeded your current quota/i;
+const ENV_ERROR_MAX_TERMINAL_MS = 15000;
 
 // ── Leg spawn table (command parts WITHOUT the trailing prompt argument) ─────
 // Every leg skips permission prompts: a permission stall in a non-interactive
@@ -235,7 +241,9 @@ function classify(contract, obs) {
   const stdoutText = obs.stdoutText || '';
   const nonzeroNoOutput = obs.exitCode != null && obs.exitCode !== 0 && (obs.stdoutNonEmptyLines || 0) === 0;
 
-  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained) return 'env_error';
+  const envFast = obs.checkpoints && obs.checkpoints.tTerminalMs != null
+    && obs.checkpoints.tTerminalMs <= ENV_ERROR_MAX_TERMINAL_MS;
+  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained && envFast) return 'env_error';
   if (obs.spawnError || nonzeroNoOutput) return 'crash';
   if (obs.killedBy === 'watchdog') return 'stuck_no_progress';
   if (obs.killedBy === 'hard_timeout') return 'timeout_latency';

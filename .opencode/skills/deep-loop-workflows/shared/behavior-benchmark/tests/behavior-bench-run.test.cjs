@@ -77,18 +77,33 @@ async function main() {
   const stuckObs = { spawnError: null, exitCode: null, killedBy: 'watchdog', stdoutNonEmptyLines: 1, stdoutText: '', taskEvents: [], routeProofRecords: [], fixtureGained: false };
   assert.equal(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, stuckObs), 'stuck_no_progress');
 
-  // env_error: a provider quota rejection is never scored as behavior, even
-  // when its text would otherwise satisfy markers or refusal patterns.
+  // env_error: a genuine provider quota rejection is never scored as behavior.
+  // The rejection is unescaped top-level stream text and the run dies fast having
+  // done nothing.
+  const envAuto = { expected_interaction: 'autonomous', expected_delegation: {} };
   const envObs = {
     spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 2,
-    stdoutText: "You've hit your session limit · resets 3pm (Europe/Amsterdam)",
+    stdoutText: '{"type":"result","result":"You\'ve hit your session limit · resets 3pm"}',
     taskEvents: [], routeProofRecords: [], fixtureGained: false,
+    checkpoints: { tTerminalMs: 3200 },
   };
-  assert.equal(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, envObs), 'env_error');
+  assert.equal(bench.classify(envAuto, envObs), 'env_error');
   // A real run that merely mentions rate limits in its report keeps its bucket:
   // fixture writes prove the model actually ran.
   const envMentionObs = { ...envObs, fixtureGained: true, taskEvents: [{ t: 1, line: 'x' }] };
-  assert.notEqual(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, envMentionObs), 'env_error');
+  assert.notEqual(bench.classify(envAuto, envMentionObs), 'env_error');
+  // A long run that READ a file quoting the rejection is NOT env_error: the phrase
+  // is backslash-escaped inside the tool result, and the run did real work.
+  const envReadFileObs = {
+    ...envObs,
+    stdoutText: 'tool output: \\"You\'ve hit your session limit\\" (quoted from a prior transcript)',
+    checkpoints: { tTerminalMs: 149000 },
+  };
+  assert.notEqual(bench.classify(envAuto, envReadFileObs), 'env_error');
+  // Even with the unescaped phrase, a slow terminal blocks env_error — a genuine
+  // rejection never runs for minutes.
+  const envSlowObs = { ...envObs, checkpoints: { tTerminalMs: 149000 } };
+  assert.notEqual(bench.classify(envAuto, envSlowObs), 'env_error');
 
   // ── score d5 baseline ratio cutoffs ──────────────────────────────────────
   const baseContract = { expected_interaction: 'autonomous', expected_delegation: { min_task_events: 1 }, expected_presentation_markers: [] };
