@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "SMOKE-001",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T06:41:28.537Z",
+  "endedAt": "2026-07-02T06:41:40.467Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1525,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 11930
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/runs/SMOKE-001-claude-cli.transcript.jsonl"
+}

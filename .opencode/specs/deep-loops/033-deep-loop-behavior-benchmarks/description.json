@@ -1,0 +1,27 @@
+{
+  "specFolder": "deep-loops/033-deep-loop-behavior-benchmarks",
+  "description": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually",
+  "keywords": [
+    "parent",
+    "packet",
+    "giving",
+    "five",
+    "deep-loop-workflows",
+    "sub-skills",
+    "own",
+    "durable",
+    "package",
+    "executor",
+    "model",
+    "actually"
+  ],
+  "lastUpdated": "2026-07-02T05:53:06.791Z",
+  "specId": "033",
+  "folderSlug": "deep-loop-behavior-benchmarks",
+  "parentChain": [
+    "deep-loops"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

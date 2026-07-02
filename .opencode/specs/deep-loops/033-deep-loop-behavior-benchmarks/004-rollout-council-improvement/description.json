@@ -1,0 +1,29 @@
+{
+  "specFolder": "deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement",
+  "description": "Extend the calibrated framework to the two non-runtime-loop dispatch shapes: deep-ai-council (multi-seat orchestration; delegation evidence = seat",
+  "keywords": [
+    "extend",
+    "calibrated",
+    "framework",
+    "two",
+    "non-runtime-loop",
+    "dispatch",
+    "shapes",
+    "deep-ai-council",
+    "multi-seat",
+    "orchestration",
+    "delegation",
+    "evidence",
+    "seat"
+  ],
+  "lastUpdated": "2026-07-02T05:53:06.233Z",
+  "specId": "004",
+  "folderSlug": "rollout-council-improvement",
+  "parentChain": [
+    "deep-loops",
+    "033-deep-loop-behavior-benchmarks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

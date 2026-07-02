@@ -1,0 +1,266 @@
+---
+title: Deep-Loop Behavior Benchmark Framework
+description: >-
+  Single-source measurement contract for the five behavior_benchmark packages
+  that measure executor-model behavior at the deep-loop command surface under
+  realistic prompting. All scenario packages link here; this file defines the
+  schema, scoring rubric, classification taxonomy, budget, rerun, and package
+  conventions they share.
+trigger_phrases:
+  - behavior benchmark framework
+  - executor behavior scoring contract
+  - deep-loop scenario contract
+  - command surface benchmark methodology
+importance_tier: high
+contextType: implementation
+---
+
+## PURPOSE
+
+This document is the single-source measurement contract for the five
+`behavior_benchmark` packages carried by the deep-loop workflow sub-skills
+(`deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`,
+`deep-review`). Each package measures what an executor **model** actually does
+when its command surface is triggered with a realistic user prompt. The unit of
+measurement is a single run of one scenario against one executor, scored on a
+fixed rubric and classified into exactly one terminal bucket. This file is
+normative: where a package's own notes diverge, this framework prevails.
+
+The behavior_benchmark charter is deliberately distinct from its sibling
+efforts, and authors must keep them from colliding:
+
+| Effort | Charter (one line) |
+| --- | --- |
+| `manual_testing_playbook` | Does the **system** match documented behavior when driven by a competent executor? Human-verifies the workflow itself. |
+| `feature_catalog` | What **exists** in this skill (commands, surfaces, artifacts)? Inventory, not measurement. |
+| `/deep:skill-benchmark` | **Skill** structure and routing quality. Scores the skill, not a live executor run. |
+| `/deep:model-benchmark` | **Model** scoring against static fixtures. Fixed inputs, reproducible targets, no live command surface. |
+| `behavior_benchmark` | **Live executor behavior at the real command surface** under realistic prompting. |
+
+Only behavior_benchmark observes a model running through the genuine dispatch
+path with a genuine prompt. Everything else either inspects artifacts, drives the
+system by hand, or scores against fixtures.
+
+---
+
+## SCENARIO CONTRACT SCHEMA
+
+Each scenario is one markdown file. Its **first fenced ```` ```json ```` block is
+the machine contract**; everything below it is human context for the author and
+reviewer. The runner parses only the first JSON block. Additional JSON blocks in
+the same file are ignored by the runner and treated as prose illustrations.
+
+### Machine-contract fields
+
+| Field | Type | Value |
+| --- | --- | --- |
+| `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
+| `title` | string | Short human title. |
+| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement`. |
+| `entry_surface` | enum | `E1` \| `E2` \| `E3` \| `E4` (see below). |
+| `clarity` | enum | `C1` \| `C2` \| `C3` (see below). |
+| `prompt` | string | The verbatim user-style text fed to the executor. |
+| `invocation` | object | `{ "kind": "command" \| "natural", "command": string \| null }`. `command` is null for natural-language entries. |
+| `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
+| `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
+| `expected_presentation_markers` | array | Literal strings or `/regex/` the visible output must contain. |
+| `expected_delegation` | object | `{ "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool }`. |
+| `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
+| `notes` | string | Free text for the scorer. |
+
+### Entry-surface codes
+
+| Code | Meaning |
+| --- | --- |
+| `E1` | Direct command with mode suffix, e.g. `/deep:review <target> :auto`. |
+| `E2` | Direct command bare, no suffix. The presentation contract requires **one consolidated setup question, then halt**. |
+| `E3` | Natural-language ask that never names a command, routed by the default agent. |
+| `E4` | Orchestrate-routed dispatch. |
+
+### Clarity codes
+
+| Code | Meaning |
+| --- | --- |
+| `C1` | Vague. |
+| `C2` | Concise but scoped. |
+| `C3` | Fully specified. |
+
+### Human body below the JSON block
+
+The markdown body carries the context a scorer needs: **rationale** for why the
+scenario exists, **what a pass looks like** in concrete terms, and **failure
+modes to watch** specific to this scenario. This body is never parsed by the
+runner; it exists to disambiguate close calls during scoring.
+
+---
+
+## SCORING RUBRIC
+
+Every run is scored on five dimensions. Each dimension yields `0`, `1`, `2`, or
+`null` (where the dimension does not apply). Scores are assigned by the scorer
+against captured evidence, not by the executor's own claims.
+
+### D1 — invocation-and-setup
+
+| Score | Rule |
+| --- | --- |
+| `2` | `expected_interaction` matched exactly. |
+| `1` | The right workflow started, but setup was partially misbound. |
+| `0` | Wrong workflow, or no recognizable start. |
+
+### D2 — presentation-fidelity
+
+| Score | Rule |
+| --- | --- |
+| `2` | All `expected_presentation_markers` observed. |
+| `1` | At least half observed. |
+| `0` | Fewer than half observed. |
+
+### D3 — delegation-correctness
+
+| Score | Rule |
+| --- | --- |
+| `2` | Task events `>= min_task_events`, route-proof fields match `leaf_agent`, and no role absorption. |
+| `1` | Dispatch happened but with a gap (missing route proof, or fewer events than required). |
+| `0` | Required delegation absent, or required delegation absorbed in-house. |
+| `null` | The scenario expects no delegation. |
+
+### D4 — completion-integrity
+
+| Score | Rule |
+| --- | --- |
+| `2` | Natural terminal state; when the scenario expects delegated work (`min_task_events > 0`), expected artifacts are also present. A no-delegation scenario completes by terminating cleanly. |
+| `1` | Natural terminal state, but expected artifacts partial or absent. |
+| `0` | Killed (watchdog or timeout) or crash. |
+
+### D5 — latency-vs-baseline
+
+Scored only when a baseline result exists for the same scenario cell.
+
+| Score | Rule |
+| --- | --- |
+| `2` | `tTerminal` ratio `<= 1.5x` the baseline. |
+| `1` | Ratio `<= 3x`. |
+| `0` | Ratio `> 3x`. |
+| `null` | No baseline for this cell. |
+
+> **Standing confound — stated wherever ratios are reported.** The Claude
+> baseline leg runs the `claude` CLI, which is a **different host binary** from
+> every other executor under test. Host overhead is therefore folded into every
+> D5 ratio. A D5 result compares executor-plus-host against
+> claude-plus-host, not executor against executor in a common shell. Any report,
+> table, or chart that cites a D5 ratio must restate this confound inline.
+
+---
+
+## CLASSIFICATION TAXONOMY
+
+Each run is assigned **exactly one** terminal bucket. Buckets are mutually
+exclusive; the scorer picks the one whose detection rule is satisfied. The
+bucket is independent of the dimensional scores but is expected to agree with
+them (e.g. a `crash` run should also score D4 = 0).
+
+| Bucket | Detection rule |
+| --- | --- |
+| `pass` | All applicable dimensions scored `2`. |
+| `partial` | Every applicable dimension scored `>= 1`, but not all `2`. |
+| `setup_misbind` | Ran autonomously when `question_halt` or `fail_fast` was expected, or bound visibly wrong setup values. |
+| `phase0_block` | Halted at a Phase-0 / dispatch-context gate that should have passed. |
+| `route_mismatch` | Dispatched a different mode or agent than the contract's `leaf_agent`, or route-proof identity disagrees with the contract. |
+| `role_absorption` | Delegation was forbidden to absorb, yet expected artifacts or iteration content were produced with **zero** task-dispatch evidence. |
+| `stuck_no_progress` | Killed by the no-progress watchdog: no new output event **and** no artifact `mtime` change for the watchdog window. |
+| `timeout_latency` | Killed by the hard budget while still visibly progressing. |
+| `refused` | Declined a legitimate invocation citing policy or convention, with no dispatch. |
+| `missing_artifact` | Claimed or implied completion, but expected artifacts absent. |
+| `crash` | Spawn failure, or nonzero exit with no meaningful output. |
+
+---
+
+## BUDGET POLICY
+
+The per-scenario hard budget `budget_ms` is derived from the Claude baseline:
+
+```
+budget_ms = max(3 * claude_baseline_tTerminal, 180000)
+```
+
+Capped at `900000` ms (15 minutes) for `context`, `research`, and `review`
+scenarios. `ai-council` and `improvement` scenarios cap at `1500000` ms
+(25 minutes), reflecting their multi-seat and evaluator-loop cost.
+
+### Watchdog (no-progress kill)
+
+A run is killed and classified `stuck_no_progress` when, for a window of
+`120000` ms, **both** of the following hold:
+
+- no new output event, **and**
+- no artifact `mtime` change inside the run's `fixture`.
+
+Either signal alone resets the watchdog. A run that hits the hard budget while
+still producing events or writing artifacts is instead classified
+`timeout_latency`.
+
+---
+
+## RERUN POLICY
+
+The default is **one sample per scenario x executor cell**, with provenance
+marked `single-sample`. A cell is "contested" when its result is surprising
+relative to expectations or to a sibling cell, or when a single dimensional
+score is ambiguous on the evidence. A contested cell receives a **manual
+3-sample rerun** before any conclusion is drawn from it; the rerun provenance is
+marked `3-sample` and the per-sample buckets and scores are all recorded, not
+just a majority. **Never silently rerun a cell to obtain a better result.** A
+rerun exists to resolve doubt, not to improve optics, and every rerun is logged
+with the reason it was triggered.
+
+---
+
+## PACKAGE CONVENTIONS
+
+Each deep-loop sub-skill carries a `behavior_benchmark/` directory with this
+fixed layout:
+
+```
+<sub-skill>/behavior_benchmark/
+  behavior_benchmark.md     # index: scenario table, link here, baseline table
+  scenarios/<PREFIX>-NNN-<slug>.md
+  baselines/claude-baseline.md
+```
+
+### ID prefixes (fixed per package)
+
+| Prefix | Package |
+| --- | --- |
+| `ACB` | `deep-ai-council` |
+| `CXB` | `deep-context` |
+| `IMB` | `deep-improvement` |
+| `RSB` | `deep-research` |
+| `RVB` | `deep-review` |
+
+`behavior_benchmark.md` is the index for the package: it lists the scenario
+table, links back to this framework as the normative contract, and reproduces
+the per-scenario baseline table. `baselines/claude-baseline.md` records each
+scenario's checkpoint values plus **capture provenance**: the date, the host and
+CLI versions on the baseline leg, and which executor leg produced the values.
+
+### Evidence location
+
+Run evidence — transcripts, result JSONs, scorecards — **lives in the spec
+packet phase that executed the round**, never inside the skill package. The
+package holds the contract and the baseline; the packet holds the proof. A
+result cited from a package index must point to its evidence in the executing
+packet phase.
+
+---
+
+## RUNNER
+
+The reference implementation of this contract is
+`./behavior-bench-run.cjs`, sibling to this file. It owns process spawn, the
+no-progress watchdog, checkpoint extraction (`tFirstOutput`, `tSetup`,
+`tFirstDispatch`, `tTerminal`), delegation-evidence extraction from the
+captured transcript, isolation reporting for the run's `fixture`, and scoring
+against the rubric above. Results are emitted as result JSON with
+`schemaVersion: 1`; any consumer that does not recognize `schemaVersion: 1`
+must reject the document rather than guess its shape.
