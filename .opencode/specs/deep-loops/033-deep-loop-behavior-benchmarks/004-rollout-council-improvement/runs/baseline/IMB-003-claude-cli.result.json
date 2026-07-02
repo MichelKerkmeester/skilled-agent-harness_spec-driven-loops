@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-003",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T19:17:48.808Z",
+  "endedAt": "2026-07-02T19:19:23.976Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1764,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 95168
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-003-claude-cli.transcript.jsonl"
+}

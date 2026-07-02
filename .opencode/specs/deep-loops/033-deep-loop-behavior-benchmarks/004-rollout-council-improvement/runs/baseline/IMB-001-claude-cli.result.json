@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-001",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T19:02:41.597Z",
+  "endedAt": "2026-07-02T19:16:40.278Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1356,
+    "tSetupMs": 24463,
+    "tFirstDispatchMs": 426751,
+    "tTerminalMs": 838681
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 426751,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-8\",\"id\":\"msg_0132xEAG3WgbGZEUXwtsneNF\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01GiUmtntPeEq7CruQdUV9e9\",\"name\":\"Agent\",\"input\":{\"subagent_type\":\"deep-improvement\",\"description\":\"Write iteration-1 candidate rewrite\",\"run_in_background\":false,\"prompt\":\"You are the proposal-only mutator in a `/deep:agent-improvement` loop (Lane A, iteration 1). Write ONE bounded candidate rewrite of a deliberately-weak toy reviewer agent. You are the MUTATOR only — do NOT score, do NOT promote, do NOT touch canonical/baseline files.\\n\\n## HARD CONSTRAINTS (violations fail the run)\\n1. Write EXACTLY ONE new file at this absolute path (create it; it does not exist yet):\\n   `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target/improvement/candidates/cand-iter1.md`\\n2. DO NOT modify, edit, or overwrite ANY other file. In particular NEVER edit the baseline `toy-agent.md` or `FIXTURE.md` — the seeded weaknesses in the fixture are intentional and must remain. This is proposal-only.\\n3. Output is a single Markdown agent definition file. No JSON envelope.\\n\\n## CONTEXT — read these first\\n- Baseline (weak) agent: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target/toy-agent.md`\\n- Fixture intent: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target/FIXTURE.md`\\n- The baseline's seeded weaknesses you must FIX in your candidate (in the new file, not in place):\\n  - Vague non-actionable rules (\\\"Be helpful\\\", \\\"Do a good job\\\", \\\"Always check everything important\\\")\\n  - A self-contradictory rule (\\\"thorough but also concise and fast\\\")\\n  - An unstructured Output section with no format contract\\n  - No frontmatter, no tools/capability section, no verification, no failure modes, no numbered structure\\n\\n## SCORING RUBRIC you are optimizing (deterministic 5-dimension scorer; the profile is derived from YOUR candidate's own structure, so structure it deliberately)\\nThe candidate keeps its identity as the SAME agent: frontmatter `name:` MUST be exactly `toy-agent`.\\n\\n1. Structural Integrity (0.20): You earn full credit by including NUMBERED H2 sections `## N. NAME` whose names contain these tokens: CORE WORKFLOW, RULES, OUTPUT VERIFICATION, ANTI-PATTERNS, CAPABILITY SCAN, RELATED RESOURCES. Use the literal `## 1. ...`, `## 2. ...` numbering.\\n2. Rule Coherence (0.25): In the `## N. RULES` section include `### ALWAYS` and `### NEVER` subsections, each a bullet list `- ...`. Make every rule SPECIFIC and ACTIONABLE (replace the vague/contradictory baseline rules with concrete, testable behavior). Resolve the thorough-vs-fast contradiction explicitly (e.g. bound scope: review only the diff, cap depth, state a time/size ceiling).\\n3. Integration Consistency (0.25): This is measured by an external integration scan of runtime mirrors/commands/skills that reference this agent. Because this is an isolated fixture, this dimension is STRUCTURALLY CAPPED low (~24) and you cannot raise it — do not invent fake integration or fake `/command` references to game it. Leave it honest.\\n4. Output Quality (0.15): Include a `## N. OUTPUT VERIFICATION` section containing a checklist where each item begins with the `□` box character (U+25A1), e.g. `□ Every finding cites file:line`. Give the agent a concrete OUTPUT FORMAT contract (severity levels, required fields per finding). No placeholder tokens like [TODO]/[TBD]/[PLACEHOLDER].\\n5. System Fitness (0.15): Include YAML frontmatter with `name: toy-agent`, `mode: subagent`, `temperature:`, and a `permission:` block (map of tool: allow|deny). The `## N. CAPABILITY SCAN` section must be a small table of tools that is CONSISTENT with the permission block — never list a tool as needed while denying it in permissions (a mismatch is penalized). In `## N. RELATED RESOURCES`, use plain prose only — do NOT embed `/command` code spans or a `### Skills` table (orphaned resource refs that don't resolve on disk are penalized; prose avoids that).\\n\\n## DELIVERABLE\\nWrite the candidate file to the exact path above. It must be a genuinely strong, coherent code-review agent — real, usable content, not filler. Then return to me (as your final text, which is consumed programmatically — no preamble):\\n- The candidate file path.\\n- A 3-5 bullet rationale mapping each fixed weakness → the section that fixes it.\\n- A \\\"CRITIC PASS\\\" block listing these 6 challenge labels verbatim, each with a one-line self-critique answer: `Overfit to scorer?`, `Vague rule reintroduced?`, `Contradiction resolved?`, `Output contract testable?`, `Capability/permission mismatch?`, `Orphaned resource refs?`.\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":3086,\"cache_read_input_tokens\":150051,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":3086},\"output_tokens\":3,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"cc5fdcec-855e-4c6b-9c39-4b37bfaf78cb\",\"uuid\":\"cf904b02-b866-49d9-a3c9-41dc99eaa945\",\"request_id\":\"req_011CcdkrAvGY2pvXUquVx19F\"}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "agent-improvement"
+      },
+      {
+        "mode": "model-benchmark"
+      },
+      {
+        "mode": "agent-improvement"
+      }
+    ],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 4,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-001-claude-cli.transcript.jsonl"
+}

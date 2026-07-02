@@ -144,7 +144,13 @@ function matchMarkers(markers, text) {
 // comes from the CONTENT of the new ai-council artifacts, not the file list.
 const AI_COUNCIL_FILE_RE = /(^|\/)ai-council\/.*\.(md|jsonl|json)$/i;
 const SEAT_ID_RE = /seat-0*(\d+)\b/gi;
-const CANDIDATE_ARTIFACT_RE = /(^|\/)(candidates|proposals)\/|(^|\/)[^/]*(candidate|score-candidate|evaluation)[^/]*\.(md|json|jsonl)$/i;
+// Improvement's evaluator-first loop owes BOTH a packet-local candidate rewrite
+// AND an evaluator score. They live under improvement/candidates/*.md and a
+// score json (baseline-score.json / .score-cache/*.json). Count them separately
+// so a run that writes candidates but never scores them cannot pass on candidate
+// files alone.
+const CANDIDATE_FILE_RE = /(^|\/)(candidates|proposals)\/[^/]+\.(md|json|jsonl)$/i;
+const SCORE_FILE_RE = /(^|\/)\.score-cache\/|(^|\/)[^/]*score[^/]*\.json$/i;
 
 // Distinct canonical seat indices (`seat-001`, `seat-002`, ...) named in text.
 function countSeatIdsInText(text) {
@@ -157,9 +163,11 @@ function countSeatIdsInText(text) {
 
 function countModeArtifacts(fixtureDir, newFixtureFiles) {
   const seats = new Set();
-  let candidateArtifacts = 0;
+  let hasCandidate = false;
+  let hasScore = false;
   for (const rel of newFixtureFiles || []) {
-    if (CANDIDATE_ARTIFACT_RE.test(rel)) candidateArtifacts += 1;
+    if (CANDIDATE_FILE_RE.test(rel)) hasCandidate = true;
+    if (SCORE_FILE_RE.test(rel)) hasScore = true;
     if (fixtureDir && AI_COUNCIL_FILE_RE.test(rel)) {
       let text = '';
       try {
@@ -170,6 +178,8 @@ function countModeArtifacts(fixtureDir, newFixtureFiles) {
       for (const s of countSeatIdsInText(text)) seats.add(s);
     }
   }
+  // 2 = both candidate and score (a complete evaluator-first run), 1 = one, 0 = neither.
+  const candidateArtifacts = (hasCandidate ? 1 : 0) + (hasScore ? 1 : 0);
   return { seatArtifacts: seats.size, candidateArtifacts };
 }
 
@@ -228,9 +238,16 @@ function scoreD3(contract, obs) {
   const deleg = contract.expected_delegation || {};
   const kind = evidenceKind(deleg);
 
+  // A halt/fail-fast cell is CORRECT to produce no delegation, so delegation is
+  // not applicable there for the artifact-evidence kinds (mirrors how a
+  // task_dispatch halt cell with min_task_events=0 scores D3 = null).
+  const isHalt = contract.expected_interaction === 'question_halt'
+    || contract.expected_interaction === 'fail_fast';
+
   // Council seat evidence: full credit when >= min_seats seats persisted, partial
   // for at least one seat, zero when the council produced no seat diversity.
   if (kind === 'seat_artifacts') {
+    if (isHalt) return null;
     const seats = obs.seatArtifacts || 0;
     const need = deleg.min_seats || 1;
     if (seats >= need) return 2;
@@ -240,6 +257,7 @@ function scoreD3(contract, obs) {
   // Improvement candidate/evaluator evidence: full credit when both a candidate
   // and an evaluator score are present (>=2 artifacts), partial for one.
   if (kind === 'candidate_evidence') {
+    if (isHalt) return null;
     const arts = obs.candidateArtifacts || 0;
     if (arts >= 2) return 2;
     if (arts > 0) return 1;

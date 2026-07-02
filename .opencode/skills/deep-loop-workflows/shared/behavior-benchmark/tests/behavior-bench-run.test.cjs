@@ -114,13 +114,20 @@ async function main() {
     'seat-003 favors concurrency cap. Composition: seat-001, seat-002, seat-003.'
   );
   assert.equal(seatSet.size, 3, 'three distinct council seats counted from content');
-  // Candidate artifacts are still path-counted (fixtureDir null skips seat reads).
-  const counts = bench.countModeArtifacts(null, [
-    'candidates/candidate-1.md',
-    'evidence/score-candidate-1.json',
+  // Candidate evidence needs BOTH a candidate and a score (real improvement layout:
+  // improvement/candidates/*.md + baseline-score.json / .score-cache/*.json).
+  const bothCounts = bench.countModeArtifacts(null, [
+    'improvement/candidates/cand-iter1.md',
+    'improvement/baseline-score.json',
     'src/untouched.js',
   ]);
-  assert.ok(counts.candidateArtifacts >= 2, 'candidate + score artifacts counted');
+  assert.equal(bothCounts.candidateArtifacts, 2, 'candidate + score -> 2');
+  const candOnly = bench.countModeArtifacts(null, ['improvement/candidates/cand-iter1.md']);
+  assert.equal(candOnly.candidateArtifacts, 1, 'candidate without score -> 1');
+  const scoreCache = bench.countModeArtifacts(null, ['improvement/.score-cache/abc.json', 'improvement/candidates/x.md']);
+  assert.equal(scoreCache.candidateArtifacts, 2, 'score-cache counts as score');
+  const neither = bench.countModeArtifacts(null, ['improvement/dynamic-profile.json']);
+  assert.equal(neither.candidateArtifacts, 0, 'profile alone is not candidate evidence');
 
   // seat_artifacts: council with enough persisted seats scores D3=2, is NOT absorption.
   const councilContract = {
@@ -138,6 +145,11 @@ async function main() {
   const councilAbsorbed = { ...councilOk, seatArtifacts: 0 };
   assert.equal(bench.classify(councilContract, councilAbsorbed), 'role_absorption', 'council, no seats -> absorption');
   assert.equal(bench.scoreD3(councilContract, councilAbsorbed), 0, 'no seats -> D3 0');
+  // A council HALT cell (correct to convene no seats) scores D3 null, not 0.
+  const councilHalt = { expected_interaction: 'question_halt', expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 2, role_absorption_forbidden: false } };
+  assert.equal(bench.scoreD3(councilHalt, { seatArtifacts: 0 }), null, 'council halt -> D3 null');
+  const impHalt = { expected_interaction: 'question_halt', expected_delegation: { evidence_kind: 'candidate_evidence', role_absorption_forbidden: false } };
+  assert.equal(bench.scoreD3(impHalt, { candidateArtifacts: 0 }), null, 'improvement halt -> D3 null');
 
   // candidate_evidence: improvement with candidate + score scores D3=2, not absorption.
   const impContract = {
