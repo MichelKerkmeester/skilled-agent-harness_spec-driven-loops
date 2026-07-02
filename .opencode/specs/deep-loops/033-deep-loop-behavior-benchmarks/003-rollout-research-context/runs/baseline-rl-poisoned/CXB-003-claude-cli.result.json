@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "CXB-003",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T12:15:01.344Z",
+  "endedAt": "2026-07-02T12:15:05.922Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2058,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 4578
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 1,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/CXB-003-claude-cli.transcript.jsonl"
+}

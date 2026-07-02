@@ -16,6 +16,7 @@ const { spawn, execFileSync } = require('node:child_process');
 const EXIT_OK = 0; // result JSON written (even for failed/killed runs)
 const EXIT_CONTRACT = 2; // bad flags, unparseable scenario, unknown leg
 const EXIT_INTERNAL = 3; // runner blew up
+const EXIT_ENV = 75; // provider quota/rate-limit rejection -- the cell never ran; retry after reset
 
 const DEFAULT_WATCHDOG_MS = 120000;
 const DEFAULT_BUDGET_MS = 900000;
@@ -31,6 +32,11 @@ const SETUP_RE = /PRE-BOUND SETUP|execution_mode|consolidated setup|Setup Phase/
 // false-positives on them while this form cannot.
 const DISPATCH_RE = /"name"\s*:\s*"(Agent|Task)"|"tool"\s*:\s*"task"/;
 const REFUSAL_RE = /refus|declin|cannot comply|not permitted|not allowed/i;
+// Provider-side quota rejections: the model never saw the prompt, so nothing
+// about the run is behavioral evidence. Matched only when the run also shows
+// zero dispatches and zero fixture writes, so a real run that merely MENTIONS
+// rate limits in its report cannot be relabeled.
+const ENV_ERROR_RE = /You.{0,3}ve hit your (session|usage) limit|rate_limit_exceeded|429 Too Many Requests|exceeded your current quota/i;
 
 // ── Leg spawn table (command parts WITHOUT the trailing prompt argument) ─────
 // Every leg skips permission prompts: a permission stall in a non-interactive
@@ -177,10 +183,13 @@ function scoreD4(contract, obs) {
   const naturalTerminal = obs.killedBy === 'none' && !obs.spawnError;
   if (!naturalTerminal) return 0;
   if (ei === 'autonomous') {
-    // Artifacts are only owed when the scenario expects delegated work; a
-    // no-delegation autonomous scenario completes by terminating cleanly.
+    // Artifacts are owed when the contract declares them (artifacts_required),
+    // defaulting to whether delegated work is expected; an inline-reporting
+    // hand-off can legitimately produce no files.
     const deleg = contract.expected_delegation || {};
-    const artifactsExpected = (deleg.min_task_events || 0) > 0;
+    const artifactsExpected = contract.artifacts_required != null
+      ? !!contract.artifacts_required
+      : (deleg.min_task_events || 0) > 0;
     if (!artifactsExpected) return 2;
     return obs.fixtureGained ? 2 : 1;
   }
@@ -226,20 +235,27 @@ function classify(contract, obs) {
   const stdoutText = obs.stdoutText || '';
   const nonzeroNoOutput = obs.exitCode != null && obs.exitCode !== 0 && (obs.stdoutNonEmptyLines || 0) === 0;
 
+  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained) return 'env_error';
   if (obs.spawnError || nonzeroNoOutput) return 'crash';
   if (obs.killedBy === 'watchdog') return 'stuck_no_progress';
   if (obs.killedBy === 'hard_timeout') return 'timeout_latency';
-  if (REFUSAL_RE.test(stdoutText) && taskEvents.length === 0 && ei === 'autonomous') return 'refused';
-  if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) return 'setup_misbind';
+  // Absorption is checked BEFORE refusal: a run that produced the expected
+  // artifacts without any dispatch did the work inline, and refusal-shaped
+  // words inside its own report text must not relabel it.
   if (deleg.role_absorption_forbidden && (deleg.min_task_events || 0) > 0 && taskEvents.length === 0 && obs.fixtureGained) {
     return 'role_absorption';
   }
+  if (REFUSAL_RE.test(stdoutText) && taskEvents.length === 0 && ei === 'autonomous' && !obs.fixtureGained) return 'refused';
+  if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) return 'setup_misbind';
   if (deleg.route_proof_required && (obs.routeProofRecords || []).length > 0) {
     const leaf = deleg.leaf_agent;
     const noneMatch = !obs.routeProofRecords.some((r) => r && r.target_agent === leaf);
     if (noneMatch) return 'route_mismatch';
   }
-  if (ei === 'autonomous' && obs.killedBy === 'none' && !obs.fixtureGained && (deleg.min_task_events || 0) > 0) {
+  const artifactsOwed = contract.artifacts_required != null
+    ? !!contract.artifacts_required
+    : (deleg.min_task_events || 0) > 0;
+  if (ei === 'autonomous' && obs.killedBy === 'none' && !obs.fixtureGained && artifactsOwed) {
     return 'missing_artifact';
   }
   if (applicableAllTwo(score(contract, obs, null))) return 'pass';
@@ -640,8 +656,12 @@ async function runOnce(args) {
     checkpoints,
   };
 
-  const dimensions = score(contract, obs, baseline);
   const bucket = classify(contract, obs);
+  // A quota-rejected cell has no behavior to score; nulled dimensions keep the
+  // rejection text from ever entering marker or completion scoring.
+  const dimensions = bucket === 'env_error'
+    ? { d1: null, d2: null, d3: null, d4: null, d5: null }
+    : score(contract, obs, baseline);
 
   const result = {
     schemaVersion: 1,
@@ -663,7 +683,7 @@ async function runOnce(args) {
   fs.writeFileSync(resultPath, JSON.stringify(result, null, 2) + '\n');
 
   console.log('behavior-bench-run: ' + contract.id + ' / ' + args.leg + ' -> ' + bucket);
-  return EXIT_OK;
+  return bucket === 'env_error' ? EXIT_ENV : EXIT_OK;
 }
 
 async function main() {

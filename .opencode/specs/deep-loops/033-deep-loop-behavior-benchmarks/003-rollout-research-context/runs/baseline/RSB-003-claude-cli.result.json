@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-003",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T12:02:41.196Z",
+  "endedAt": "2026-07-02T12:08:44.041Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2297,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 362845
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/4-stage-pipeline-refactor-r6.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/7-layer-tool-architecture-metadata.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-003-claude-cli.transcript.jsonl"
+}

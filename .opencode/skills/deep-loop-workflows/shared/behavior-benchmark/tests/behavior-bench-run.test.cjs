@@ -77,6 +77,19 @@ async function main() {
   const stuckObs = { spawnError: null, exitCode: null, killedBy: 'watchdog', stdoutNonEmptyLines: 1, stdoutText: '', taskEvents: [], routeProofRecords: [], fixtureGained: false };
   assert.equal(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, stuckObs), 'stuck_no_progress');
 
+  // env_error: a provider quota rejection is never scored as behavior, even
+  // when its text would otherwise satisfy markers or refusal patterns.
+  const envObs = {
+    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 2,
+    stdoutText: "You've hit your session limit · resets 3pm (Europe/Amsterdam)",
+    taskEvents: [], routeProofRecords: [], fixtureGained: false,
+  };
+  assert.equal(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, envObs), 'env_error');
+  // A real run that merely mentions rate limits in its report keeps its bucket:
+  // fixture writes prove the model actually ran.
+  const envMentionObs = { ...envObs, fixtureGained: true, taskEvents: [{ t: 1, line: 'x' }] };
+  assert.notEqual(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, envMentionObs), 'env_error');
+
   // ── score d5 baseline ratio cutoffs ──────────────────────────────────────
   const baseContract = { expected_interaction: 'autonomous', expected_delegation: { min_task_events: 1 }, expected_presentation_markers: [] };
   const makeObs = (terminalMs) => ({

@@ -66,6 +66,7 @@ the same file are ignored by the runner and treated as prose illustrations.
 | `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
 | `expected_delegation` | object | `{ "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool }`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
+| `artifacts_required` | bool (optional) | Declares whether the run owes new fixture artifacts. Defaults to `min_task_events > 0`; set `false` on inline-reporting hand-off cells. |
 | `watchdog_ms` | int (optional) | Overrides the default 120000 ms no-progress window. Cells that delegate to subagents legitimately go quiet for minutes while the LEAF works; calibrated to 480000 ms for autonomous deep-review cells. |
 | `notes` | string | Free text for the scorer. |
 
@@ -156,6 +157,8 @@ Scored only when a baseline result exists for the same scenario cell.
 
 ## CLASSIFICATION TAXONOMY
 
+> Ordering note: role_absorption is checked before refused — a run that produced the expected artifacts with zero dispatches did the work inline, and refusal-shaped words inside its own report must not relabel it (absorption is checked before refusal).
+
 Each run is assigned **exactly one** terminal bucket. Buckets are mutually
 exclusive; the scorer picks the one whose detection rule is satisfied. The
 bucket is independent of the dimensional scores but is expected to agree with
@@ -174,6 +177,7 @@ them (e.g. a `crash` run should also score D4 = 0).
 | `refused` | Declined a legitimate invocation citing policy or convention, with no dispatch. |
 | `missing_artifact` | Claimed or implied completion, but expected artifacts absent. |
 | `crash` | Spawn failure, or nonzero exit with no meaningful output. |
+| `env_error` | Provider quota/rate-limit rejection (with zero dispatches and zero fixture writes): the model never saw the prompt. Checked FIRST; dimensions are nulled, the runner exits `75` (retryable), and the cell MUST be re-run after the quota resets — an `env_error` result is never quotable as behavior. |
 
 ---
 

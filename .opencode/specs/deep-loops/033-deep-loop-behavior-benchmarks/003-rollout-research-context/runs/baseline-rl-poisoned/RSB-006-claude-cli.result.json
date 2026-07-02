@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-006",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T12:14:38.778Z",
+  "endedAt": "2026-07-02T12:14:42.705Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1995,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 3927
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 1,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 0,
+    "d2": 0,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-006-claude-cli.transcript.jsonl"
+}

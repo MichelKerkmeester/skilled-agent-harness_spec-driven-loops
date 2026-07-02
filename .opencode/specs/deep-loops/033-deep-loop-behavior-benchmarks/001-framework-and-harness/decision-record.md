@@ -72,4 +72,8 @@ Probe result: `opencode models` lists NO Anthropic provider (providers present: 
 - `tests/behavior-bench-run.test.cjs` + `tests/fixtures/` — hermetic runner tests and canned event streams
 
 deep-loop-runtime/scripts/ was rejected: the runner is a workflow-layer measurement concern spanning all five modes, not a convergence-loop runtime concern, and parent-skill ownership matches how `mode-registry.json` already works.
+
+### D-009 — Writer fallback: GLM-5.2-max primary, MiMo-V2.5-Pro fallback WITH mandatory review (RESOLVED 2026-07-02, operator-directed)
+
+The GLM quota pool (`zai-coding-plan`) is near exhaustion. Operator direction: fall back to **MiMo-V2.5-Pro** (`xiaomi-token-plan-ams/mimo-v2.5-pro`, `--variant high` — forwarding confirmed for this provider) for authoring/implementation dispatches, **with mandatory orchestrator review of every MiMo deliverable before use**. Rationale for the strengthened review gate: MiMo's benchmarked weakness is format adherence and instruction restraint rather than correctness (it optimizes output shape and has been observed ignoring restraint constraints), so each MiMo-authored artifact gets contract-by-contract machine verification plus a prose read-through before anything consumes it. Same COSTAR framework as GLM; prompts add the MiMo-specific `Style: precise, no preamble` / `Audience: automated pipeline` levers. Writer legs are unchanged in the benchmark itself — this decision covers the authoring executor only.
 <!-- /ANCHOR:decision -->

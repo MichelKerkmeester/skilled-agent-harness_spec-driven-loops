@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-001",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T11:55:01.630Z",
+  "endedAt": "2026-07-02T12:00:45.666Z",
+  "checkpoints": {
+    "tFirstOutputMs": 2390,
+    "tSetupMs": 26965,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 344036
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md",
+      ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "role_absorption",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-001-claude-cli.transcript.jsonl"
+}
