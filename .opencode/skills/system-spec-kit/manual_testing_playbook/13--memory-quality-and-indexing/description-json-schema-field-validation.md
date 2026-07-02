@@ -48,12 +48,51 @@ description.json generated on folder creation with all 9 required fields; field 
 
 ### Evidence
 
-description.json content showing all required fields + full 9-field type-matrix verification + post-save update evidence + regeneration repair evidence
+BLOCKED before executing the scenario commands: the scenario requires writes outside this file, but the run instructions allowed writes only to this file.
+
+Scenario commands that require out-of-scope writes:
+
+```text
+1. Create sandbox spec folder via create.sh → verify description.json generated
+4. Save memory → verify `memorySequence` and `memoryNameHistory` update
+5. Corrupt a field → verify regeneration repairs it
+```
+
+Observed `create.sh` read output confirming it is a real write workflow:
+
+```text
+5: # Creates spec folder with templates based on documentation level.
+20: # Also creates scratch/ directories.
+```
+
+Observed search output confirming write operations and description generation in `create.sh`:
+
+```text
+Found 27 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/create.sh:
+  Line 386:     mkdir -p "$subfolder_path/scratch"
+  Line 641:     mkdir -p "$child_path" "$child_path/scratch"
+  Line 665:     desc_script="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
+  Line 819: mkdir -p "$SPECS_DIR"
+  Line 1079:         mkdir -p "$FEATURE_DIR"
+  Line 1310:     # ── Generate description.json for parent ──
+  Line 1313:     _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
+  Line 1317:         CREATED_FILES+=("description.json")
+  Line 1333:         mkdir -p "$_child_path" "$_child_path/scratch"
+  Line 1351:         # Generate description.json for child phase
+  Line 1357:             _child_created_files+=("description.json")
+  Line 1546: mkdir -p "$FEATURE_DIR" "$FEATURE_DIR/scratch"
+  Line 1573: # 6.5. GENERATE PER-FOLDER description.json
+  Line 1576: _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
+  Line 1580:     CREATED_FILES+=("description.json")
+  Line 1596:     mkdir -p "$FEATURE_DIR/spec-sections"
+```
+
+Because the scenario's required create/save/corrupt/regenerate steps would create or modify files outside `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-schema-field-validation.md`, the expected schema/update/repair signals were not observed in this constrained run.
 
 ### Pass / Fail
 
-- **Pass**: all 9 fields are present with the exact string / array-of-strings / number matrix, save updates sequence/history, and regeneration repairs corrupted fields
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: The scenario could not be executed under the allowed write-path constraint because its commands require creating a sandbox spec folder, saving memory, corrupting a field, and regenerating metadata outside the single permitted file.
 
 ### Failure Triage
 

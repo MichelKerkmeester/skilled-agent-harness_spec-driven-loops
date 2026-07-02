@@ -48,12 +48,34 @@ Structural checks evaluate content presence, minimum length, and headings; futur
 
 ### Evidence
 
-Quality-loop transcript, coherence score breakdown, control-vs-variant results, and retry timing evidence
+Command: `npx vitest run tests/quality-loop.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  53 passed (53)
+   Start at  11:25:53
+   Duration  489ms (transform 306ms, setup 14ms, import 396ms, tests 12ms, environment 0ms)
+```
+
+Direct quality-loop probe using the real `handlers/quality-loop.ts` function bodies with eval metrics disabled:
+
+```text
+SCORES
+{"name":"control","score":{"total":1,"breakdown":{"triggers":1,"anchors":1,"budget":1,"coherence":1},"issues":[]},"loop":{"passed":true,"rejected":false,"attempts":1,"fixes":[],"rejectionReason":null}}
+{"name":"headingless","score":{"total":0.788,"breakdown":{"triggers":1,"anchors":0.5,"budget":1,"coherence":0.75},"issues":["No section headings found"]},"loop":{"passed":true,"rejected":false,"attempts":1,"fixes":[],"rejectionReason":null}}
+{"name":"future-dated","score":{"total":0.819,"breakdown":{"triggers":1,"anchors":0.5,"budget":1,"coherence":0.875},"issues":["Future-dated completion claims found: 2099-01-01"]},"loop":{"passed":true,"rejected":false,"attempts":1,"fixes":[],"rejectionReason":null}}
+{"name":"causal-broken","score":{"total":0.788,"breakdown":{"triggers":1,"anchors":0.5,"budget":1,"coherence":0.75},"issues":["Self-referential causal links found: Causal Variant","Unresolved causal link references: missing-memory"]},"loop":{"passed":true,"rejected":false,"attempts":1,"fixes":[],"rejectionReason":null}}
+{"name":"low-quality","score":{"total":0.413,"breakdown":{"triggers":0,"anchors":0.5,"budget":1,"coherence":0.25},"issues":["No trigger phrases found","Content is very short (<50 chars)","No section headings found","Content lacks substance (<200 chars)"]},"loop":{"passed":false,"rejected":true,"attempts":2,"fixes":[],"rejectionReason":"Quality score 0.413 below threshold 0.6 after 1 auto-fix attempt(s). Issues: No trigger phrases found; Content is very short (<50 chars); No section headings found; Content lacks substance (<200 chars)"}}
+RETRY
+{"elapsedMs":0.162,"result":{"passed":true,"rejected":false,"attempts":2,"fixes":["Re-extracted 4 trigger phrases from content"],"fixedTriggerPhrases":["important sprint documentation","overview of the sprint","implementation details","quality metrics"],"score":{"total":0.85,"breakdown":{"triggers":1,"anchors":0.5,"budget":1,"coherence":1},"issues":[]}}}
+```
 
 ### Pass / Fail
 
-- **Pass**: coherence penalties appear for the flawed variants, low-quality cases are blocked or downgraded, and retry timing stays immediate and bounded
-- **Fail**: penalties are missing, weak content passes without explanation, or retries show unexpected backoff or unbounded looping
+- **PASS**: coherence penalties appeared for heading-less, future-dated, self-referential, and unresolved-causal-link variants; the low-quality case was rejected at score `0.413` after `2` attempts; the auto-fix retry completed in `0.162ms` with `2` attempts and no observed backoff or unbounded looping.
 
 ### Failure Triage
 

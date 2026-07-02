@@ -46,12 +46,89 @@ Intent labels (doc/code/structured) persisted in metadata; labels read-only afte
 
 ### Evidence
 
-Metadata output showing intent labels per content type + read-only verification
+Command: `npx vitest run tests/encoding-intent.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:28393) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  12:55:51
+   Duration  770ms (transform 395ms, setup 23ms, import 22ms, tests 622ms, environment 0ms)
+```
+
+Command: inline Node metadata probe from `.opencode/skills/system-spec-kit/mcp_server` using `dist/lib/search/encoding-intent.js` and `dist/lib/search/vector-index.js`; the probe saved document/code/structured examples with `indexMemoryDeferred`, inspected `memory_index.encoding_intent`, then re-saved the same code file path with `encodingIntent: "document"`.
+
+```json
+{
+  "tempDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/r16-playbook-ItwAi9/context-index.sqlite",
+  "saved": [
+    {
+      "kind": "document",
+      "id": 1,
+      "filePath": "document.md",
+      "classifiedIntent": "document"
+    },
+    {
+      "kind": "code",
+      "id": 2,
+      "filePath": "code.md",
+      "classifiedIntent": "code"
+    },
+    {
+      "kind": "structured_data",
+      "id": 3,
+      "filePath": "structured.md",
+      "classifiedIntent": "structured_data"
+    }
+  ],
+  "initialRows": [
+    {
+      "id": 1,
+      "title": "document",
+      "encoding_intent": "document",
+      "embedding_status": "pending",
+      "content_text": "# Decision note\n\nThe team chose a simple indexing approach after evaluating alternatives. The rationale is documented in prose."
+    },
+    {
+      "id": 2,
+      "title": "code",
+      "encoding_intent": "code",
+      "embedding_status": "pending",
+      "content_text": "import { readFileSync } from \"node:fs\";\n\nexport function loadConfig(filePath) {\n  return readFileSync(filePath, \"utf8\");\n}\n\nconst config = loadConfig(\"config.json\");\nconsole.log(config);"
+    },
+    {
+      "id": 3,
+      "title": "structured_data",
+      "encoding_intent": "structured_data",
+      "embedding_status": "pending",
+      "content_text": "| key | value |\n| --- | ----- |\n| status | active |\n| priority | high |\n| owner | memory |"
+    }
+  ],
+  "readOnlyProbe": {
+    "method": "indexMemoryDeferred same spec_folder + file_path with encodingIntent=document",
+    "codeBefore": {
+      "id": 2,
+      "encoding_intent": "code"
+    },
+    "updateId": 2,
+    "codeAfter": {
+      "id": 2,
+      "title": "code-update-attempt",
+      "encoding_intent": "document",
+      "content_text": "This prose update attempts to change a previously saved code row to document."
+    }
+  },
+  "schemaEncodingColumn": "encoding_intent TEXT DEFAULT 'document'"
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: Correct intent label assigned per content type; labels immutable after save
-- **Fail**: Wrong label or label modified post-save
+- **FAIL**: Correct intent labels were assigned and persisted for document/code/structured examples, but the read-only expectation failed because the normal `indexMemoryDeferred` same-path update changed row `id: 2` from `encoding_intent: "code"` to `encoding_intent: "document"`.
 
 ### Failure Triage
 

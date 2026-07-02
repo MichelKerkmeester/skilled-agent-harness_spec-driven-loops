@@ -51,12 +51,32 @@ Second save produces filename with `-1` suffix; both files exist with distinct n
 
 ### Evidence
 
-Saved filenames + collision-run outputs + `description.json` state before and after the fallback-save path.
+BLOCKED before executing the scenario commands because the current run's write scope allows only this scenario file, while the scenario's Commands require memory-save writes outside that path.
+
+Observed scenario commands that require out-of-scope writes:
+
+```text
+1. Save memory to a folder
+2. Save again with same slug within same minute
+4. Exhaust `-1` through `-100` collisions and save again
+5. Persist the first random fallback filename, repeat the save, and verify a second distinct random fallback is reserved
+7. Verify `description.json` increments `memorySequence` via `Number(existing.memorySequence) | 0` before incrementing
+8. Verify `memoryNameHistory` updated
+```
+
+Active write constraint from the user request:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+ALLOWED WRITE PATHS
+.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md (this file only)
+```
+
+No memory-save command was run because it would necessarily create or modify memory/spec files outside the allowed path, so the expected filename collision and `description.json` signals could not be observed in this constrained run.
 
 ### Pass / Fail
 
-- **Pass**: duplicate saves reserve distinct names across the `-1` and random-fallback paths, the fallback suffix uses the `crypto.randomBytes(6).toString('hex')` shape, `memorySequence` increments via `Number(existing.memorySequence) | 0`, and `memoryNameHistory` updates
-- **Fail**: collisions overwrite files, fallback naming reuses SHA1 or duplicates, or `description.json` state is not updated.
+- **BLOCKED**: scenario execution requires creating or modifying memory/spec files outside the single allowed write path, so the save/collision/fallback and `description.json` update paths could not be exercised without violating the task constraints.
 
 ### Failure Triage
 

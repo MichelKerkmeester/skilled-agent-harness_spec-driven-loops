@@ -52,10 +52,29 @@ contentRouter chooses the correct category and tier; routeAs preserves the natur
 
 ### Evidence
 
-Save output, override audit fields, saved doc contents, refusal output for drop, `description.json` plus `graph-metadata.json` contents, continuity-freshness output, and the continuity block readback
+BLOCKED on 2026-07-02 before executing the canonical writer.
+
+Observed scenario command text:
+
+```text
+1. Save a progress, delivery, handover, metadata, and drop-like chunk through the canonical writer
+2. Confirm `contentRouter` picks the intended category and destination for the merged cases
+3. Re-run an ambiguous chunk and confirm the live Tier 3 path participates automatically when the LLM endpoint is available
+4. Force a `routeAs` override and confirm the returned decision preserves the natural route for audit
+5. Confirm `anchorMergeOperation` uses the correct merge mode and preserves the target anchor
+6. Confirm `atomicIndexMemory` writes the canonical output or safely refuses the drop case
+7. Read the saved file and confirm `_memory.continuity` is present and thin
+8. Read `description.json` and `graph-metadata.json` and confirm both were refreshed by the save
+9. Read `graph-metadata.json` and confirm lowercase checklist-aware `status`, sanitized `key_files`, deduplicated entities, and a 12-item trigger cap
+10. Run the continuity-freshness validator or fixture and confirm it does not flag the freshly saved packet
+11. Confirm the resume ladder can read the saved continuity state
+```
+
+The first command requires a real canonical writer save, and commands 7-9 require reading files produced or refreshed by that save. The invocation constraints for this run allowed writes only to `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/canonical-continuity-save-substrate.md`, so executing the save would modify files outside the allowed write path. No `memory_save`, canonical writer CLI, continuity-freshness validator, or resume ladder command was run because the playbook cannot be executed under the allowed write-path constraint.
 
 ### Pass / Fail
 
+- **BLOCKED**: the scenario requires real canonical writer saves that would write canonical packet files and refreshed metadata outside the single allowed write path for this run.
 - **Pass**: the routed save lands in the correct anchor or safe refusal target, the continuity block is preserved, the override audit fields stay intact, refreshed graph metadata matches the current parser contract, and continuity freshness stays aligned
 - **Fail**: the route is wrong, the merge mode is wrong, the override loses the natural decision, the continuity block is missing or bloated, metadata refresh is skipped, or continuity freshness still lags
 

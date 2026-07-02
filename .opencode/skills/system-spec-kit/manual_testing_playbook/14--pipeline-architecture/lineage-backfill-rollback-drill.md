@@ -46,12 +46,34 @@ Targeted suite passes; transcript shows dry-run plan counts, successful backfill
 
 ### Evidence
 
-Test transcript + suite summary
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npm test -- --run tests/memory-lineage-backfill.vitest.ts
+```
+
+Observed transcript:
+
+```text
+> @spec-kit/mcp-server@1.8.0 test
+> node scripts/run-tests.mjs --run tests/memory-lineage-backfill.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  15:01:00
+   Duration  481ms (transform 272ms, setup 14ms, import 353ms, tests 50ms, environment 0ms)
+```
+
+The transcript shows the targeted suite passed, but it does not show dry-run plan counts, successful backfill application, idempotent rerun/zero-change rerun, or checkpoint restore rollback/post-restore empty lineage tables.
 
 ### Pass / Fail
 
-- **Pass**: `memory-lineage-backfill.vitest.ts` completes with all tests passing and shows both execution and rollback evidence
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **Verdict**: FAIL
+- **Reason**: `memory-lineage-backfill.vitest.ts` completed with all tests passing, but the observed transcript did not show the required execution and rollback evidence.
 
 ### Failure Triage
 

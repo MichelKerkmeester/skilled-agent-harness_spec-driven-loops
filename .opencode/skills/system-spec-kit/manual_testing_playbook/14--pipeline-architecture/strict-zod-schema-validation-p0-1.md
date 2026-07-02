@@ -47,12 +47,117 @@ Zod strict error returned for unknown params in strict mode; extra params pass t
 
 ### Evidence
 
-Tool outputs + Zod error messages
+Command: `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test","bogus":1}' --format json --timeout-ms 3000`
+
+Output:
+
+```text
+[schema-validation] memory_search: Invalid arguments for "memory_search". Unknown parameter(s): bogus. Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_search\". Unknown parameter(s): bogus. Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+(node:9529) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+Command: `SPECKIT_STRICT_SCHEMAS=false node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test","bogus":1}' --format json --timeout-ms 3000`
+
+Output:
+
+```text
+(node:10152) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_search",
+      "issues": [],
+      "unknownParameters": [
+        "bogus"
+      ],
+      "expectedParameters": [
+        "cursor",
+        "query",
+        "concepts",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "sessionId",
+        "enableDedup",
+        "tier",
+        "contextType",
+        "useDecay",
+        "includeContiguity",
+        "includeConstitutional",
+        "enableSessionBoost",
+        "enableCausalBoost",
+        "includeContent",
+        "anchors",
+        "min_quality_score",
+        "minQualityScore",
+        "bypassCache",
+        "rerank",
+        "applyLengthPenalty",
+        "applyStateLimits",
+        "minState",
+        "intent",
+        "autoDetectIntent",
+        "trackAccess",
+        "includeArchived",
+        "mode",
+        "retrievalLevel",
+        "includeTrace",
+        "profile"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_search",
+    "isError": true,
+    "severity": "low"
+  }
+}
+```
+
+Source read evidence:
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:28: export const getSchema = <T extends z.ZodRawShape>(shape: T): z.ZodObject<T> => {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:29:   const strict = process.env.SPECKIT_STRICT_SCHEMAS !== 'false';
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:30:   const base = z.object(shape);
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:31:   return strict ? base.strict() : base.passthrough();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1243:     // Validate at the server boundary before metrics, session priming, and
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1244:     // auto-surface logic can observe malformed raw tool arguments.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1245:     const validatedArgs: Record<string, unknown> = KNOWN_TOOL_NAMES.has(name)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1246:       ? validateToolArgs(name, args) as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:65: export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:66:   switch (name) {
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:67:     case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
+.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:515:   return {
+.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:516:     tool,
+.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:517:     args: validateToolArgs(tool.name, args) as Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:461:   it('runtime rejects unknown memory_search parameters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:462:     expect(() => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:463:       validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:464:     }).toThrow(/Unknown parameter/);
+```
 
 ### Pass / Fail
 
-- **Pass**: strict mode rejects unknown params and passthrough mode allows them
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: strict mode rejects unknown params, but `SPECKIT_STRICT_SCHEMAS=false` did not allow the extra `bogus` parameter and validation is present both in CLI/server-boundary paths and per-tool dispatch.
 
 ### Failure Triage
 

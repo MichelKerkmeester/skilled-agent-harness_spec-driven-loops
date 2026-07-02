@@ -70,12 +70,61 @@ Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against 
 
 ### Evidence
 
-Saved row-count output, KNN top-5 output, daemon startup log excerpt for the factory line plus a grep showing zero cascade-warning matches.
+Active embedder lookup via `mk-spec-memory_embedder_list`:
+
+```json
+{
+  "name": "nomic-embed-text-v1.5",
+  "dim": 768,
+  "backend": "ollama",
+  "active": true,
+  "ready": true,
+  "notes": "Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens. Local-first cascade default per ADR-014."
+}
+```
+
+Active shard used: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`
+
+Block A row-count output:
+
+```text
+{ vec_dim: 18464, vec_memories: 17, missing_from_vec_memories: 18456 }
+```
+
+Block B KNN top-5 output:
+
+```text
+{
+  seed_id: 1,
+  knn: [
+    { rowid: 1, distance: 1.369869589805603 },
+    { rowid: 2, distance: 1.3783988952636719 },
+    { rowid: 3, distance: 1.3940675258636475 },
+    { rowid: 10, distance: 1.6755623817443848 },
+    { rowid: 11, distance: 1.7352088689804077 }
+  ]
+}
+```
+
+Block C daemon launcher output:
+
+```text
+[mk-spec-memory-launcher] loaded 1 env(s) from .env.local
+[mk-spec-memory-launcher] loaded 5 env(s) from .env
+[mk-spec-memory-launcher] staleReclaimed: true
+[mk-spec-memory-launcher] stale-reclaim adopting live daemon pid 58287 via bridge instead of reaping
+[mk-spec-memory-launcher] bridging to lease holder pid=54495 socket=/tmp/mk-spec-memory/daemon-ipc.sock
+```
+
+Block C grep output:
+
+```text
+grep: /tmp/mk-spec-memory-daemon.log: No such file or directory
+```
 
 ### Pass / Fail
 
-- **Pass**: row counts match, KNN self-probe returns rank-1 distance 0, factory log shows positive provider resolution with no cascade warning.
-- **Fail**: vec_memories row count differs from vec_<dim>, or KNN returns a non-self row at rank 1, or factory cascade warning appears in the log.
+- **FAIL**: Block A failed because `vec_memories` had 17 rows while `vec_768` had 18464 rows with 18456 missing from `vec_memories`; Block B failed because rank 1 returned the seed row but distance was `1.369869589805603` instead of `0`; Block C could not confirm the expected factory log because `/tmp/mk-spec-memory-daemon.log` did not exist.
 
 ### Failure Triage
 

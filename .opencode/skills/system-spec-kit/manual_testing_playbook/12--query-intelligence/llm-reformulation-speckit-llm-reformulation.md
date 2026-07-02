@@ -47,12 +47,181 @@ cheapSeedRetrieve() returns FTS5/BM25 seeds; abstract >= 5 chars; variants array
 
 ### Evidence
 
-ReformulationResult output + cache hit log + test transcript
+Test transcript and observed output:
+
+```bash
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"complex multi-faceted query","mode":"deep"}' --format json --timeout-ms 10000
+(node:15412) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "featureFlags": {
+      "trmEnabled": true,
+      "multiQueryEnabled": true,
+      "stateLimitsApplied": false
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 3,
+        "activeChannels": 2,
+        "candidateCount": 26,
+        "constitutionalInjected": 5,
+        "durationMs": 611
+      },
+      "timing": {
+        "stage1": 611,
+        "stage2": 1108,
+        "stage3": 0,
+        "stage4": 1,
+        "total": 1720
+      }
+    },
+    "lexicalPath": "fts5",
+    "searchDecisionEnvelope": {
+      "requestId": "memory_search-1782986320334",
+      "queryPlan": {
+        "selectedChannels": [
+          "vector",
+          "fts"
+        ],
+        "skippedChannels": [
+          {
+            "channel": "bm25",
+            "reason": "Skipped by simple complexity route"
+          },
+          {
+            "channel": "graph",
+            "reason": "Skipped by simple complexity route"
+          },
+          {
+            "channel": "degree",
+            "reason": "Skipped by simple complexity route"
+          }
+        ]
+      }
+    }
+  },
+  "meta": {
+    "tool": "memory_search",
+    "latencyMs": 1762,
+    "cacheHit": false,
+    "responseProfile": "research",
+    "tokenBudgetTruncated": true,
+    "originalResultCount": 5,
+    "returnedResultCount": 5
+  }
+}
+```
+
+```bash
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"complex multi-faceted query","mode":"deep"}' --format json --timeout-ms 10000
+(node:15609) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "featureFlags": {
+      "trmEnabled": true,
+      "multiQueryEnabled": true,
+      "stateLimitsApplied": false
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 3,
+        "activeChannels": 2,
+        "candidateCount": 26,
+        "constitutionalInjected": 5,
+        "durationMs": 611
+      },
+      "timing": {
+        "stage1": 611,
+        "stage2": 1108,
+        "stage3": 0,
+        "stage4": 1,
+        "total": 1720
+      }
+    },
+    "lexicalPath": "fts5",
+    "searchDecisionEnvelope": {
+      "requestId": "memory_search-1782986320334"
+    }
+  },
+  "meta": {
+    "tool": "memory_search",
+    "latencyMs": 1,
+    "cacheHit": true,
+    "responseProfile": "research",
+    "tokenBudgetTruncated": true,
+    "originalResultCount": 5,
+    "returnedResultCount": 5
+  }
+}
+```
+
+```bash
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"complex multi-faceted query","mode":"deep","includeTrace":true,"profile":"debug"}' --format json --timeout-ms 10000
+(node:16615) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "status": "error",
+  "error": "tools/call timed out",
+  "exitCode": 75
+}
+```
+
+```bash
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"complex multi-faceted query","mode":"deep","includeTrace":true,"profile":"debug"}' --format json --timeout-ms 30000
+(node:16884) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "status": "error",
+  "error": "backend unavailable: connect ECONNREFUSED /tmp/mk-spec-memory/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+```bash
+$ printenv LLM_REFORMULATION_ENDPOINT
+
+$ printenv SPECKIT_LLM_REFORMULATION
+
+```
+
+Read-only implementation evidence:
+
+```ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts
+const endpoint = process.env.LLM_REFORMULATION_ENDPOINT?.trim();
+if (!endpoint) {
+  // No LLM provider configured — caller falls back to non-LLM path.
+  return null;
+}
+```
+
+```ts
+const fallback: ReformulationResult = { abstract: q, variants: [] };
+
+if (!isLlmReformulationEnabled()) {
+  return fallback;
+}
+```
+
+```md
+| `LLM_REFORMULATION_ENDPOINT` | (unset) | string | OpenAI-compatible base URL used for query reformulation; unset disables the provider call and falls back locally. | `lib/search/llm-reformulation.ts` |
+```
+
+Observed result: the repeated `memory_search({ query: "complex multi-faceted query", mode: "deep" })` call returned a top-level `meta.cacheHit: true`, but no `ReformulationResult`, `abstract`, `variants`, or LLM-specific cache hit log was exposed in the returned payload. `LLM_REFORMULATION_ENDPOINT` is unset in the current shell, and the implementation returns `null` from the provider call when the endpoint is missing, so the required LLM reformulation output cannot be verified in this repo state.
 
 ### Pass / Fail
 
-- **Pass**: reformulation produces valid abstract + variants in deep mode and skips in non-deep
-- **Fail**: abstract empty, variants > 2, or runs outside deep mode
+- **BLOCKED**: `LLM_REFORMULATION_ENDPOINT` is unset; the provider call is disabled and falls back locally, so the scenario cannot verify a real LLM-produced `ReformulationResult`, LLM cache population, or the expected LLM-specific cache hit behavior.
 
 ### Failure Triage
 

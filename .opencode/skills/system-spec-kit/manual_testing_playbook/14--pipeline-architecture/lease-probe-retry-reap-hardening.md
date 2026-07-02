@@ -44,12 +44,44 @@ Validate the launcher lease-probe retry hardening and confirm reap only fires af
 
 ### Evidence
 
-Shell transcript for all commands: the `node --check` exit status, the vitest pass summary for `tests/launcher-reap-hardening.vitest.ts`, and the grep output showing the retrying probe, the attempt-count resolver, and the reap-path call site that wires them together.
+Command 1:
+
+```text
+$ node --check .opencode/bin/lib/launcher-ipc-bridge.cjs
+(no output)
+Exit status: 0
+```
+
+Command 2:
+
+```text
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-reap-hardening.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  14:57:20
+   Duration  90ms (transform 15ms, setup 15ms, import 8ms, tests 2ms, environment 0ms)
+```
+
+Command 3:
+
+```text
+$ rg -n "probeLeaseHolderWithRetries|resolveLeaseProbeAttempts" .opencode/bin/lib/launcher-ipc-bridge.cjs
+52:function resolveLeaseProbeAttempts(env = process.env) {
+357:async function probeLeaseHolderWithRetries(socketPath, options = {}) {
+363:    attempts = resolveLeaseProbeAttempts(),
+434:  const probeAttempts = resolveLeaseProbeAttempts();
+435:  const probe = await probeLeaseHolderWithRetries(socketPath, {
+469:  probeLeaseHolderWithRetries,
+471:  resolveLeaseProbeAttempts,
+```
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, the reap-hardening suite passes, and both the retrying probe and the attempt-count resolver are defined and drive the reap decision.
-- **Fail**: the syntax check fails, any retry-then-succeed or retry-then-reap case fails, or either helper is missing from the grep output or is not wired into the reap path.
+- **PASS**: the syntax check passed with exit status 0, the reap-hardening suite passed with 1 test file and 6 tests passing, and the grep output shows both helper definitions plus the reap-path call site resolving `probeAttempts` and passing it to `probeLeaseHolderWithRetries`.
 
 ### Failure Triage
 

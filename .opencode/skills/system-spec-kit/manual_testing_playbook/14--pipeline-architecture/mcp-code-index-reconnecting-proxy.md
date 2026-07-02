@@ -44,12 +44,43 @@ Validate the mk-code-index reconnecting proxy and confirm stdio is bridged throu
 
 ### Evidence
 
-Shell transcript for all commands: the `node --check` exit status, the vitest pass summary for `tests/launcher-code-index-proxy.vitest.ts`, and the grep output showing the session-proxy bridge, the frame classifier, and the transport call site that wires them together.
+Shell transcript for all commands:
+
+```text
+$ node --check .opencode/bin/mk-code-index-launcher.cjs
+(no output)
+Exit status: 0
+```
+
+```text
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-code-index-proxy.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  15:04:41
+   Duration  81ms (transform 13ms, setup 12ms, import 9ms, tests 2ms, environment 0ms)
+
+Exit status: 0
+```
+
+```text
+$ rg -n "bridgeStdioThroughSessionProxy|classifyCodeIndexFrame" .opencode/bin/mk-code-index-launcher.cjs
+233:const classifyCodeIndexFrame = createClassifyFrame({
+241:function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
+248:    classify: classifyCodeIndexFrame,
+897:  await Promise.resolve(bridgeStdioThroughSessionProxy(socketPath));
+1162:    bridge: bridgeStdioThroughSessionProxy,
+1769:  classifyCodeIndexFrame,
+1770:  bridgeStdioThroughSessionProxy,
+Exit status: 0
+```
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, the code-index proxy suite passes, and both the session-proxy bridge and the frame classifier are defined and wired into the transport path.
-- **Fail**: the syntax check fails, any bridge or frame-classification case fails, or either helper is missing from the grep output or is not wired into the transport path.
+- **PASS**: the syntax check passed, the code-index proxy suite passed, and both the session-proxy bridge and the frame classifier are defined and wired into the transport path.
 
 ### Failure Triage
 

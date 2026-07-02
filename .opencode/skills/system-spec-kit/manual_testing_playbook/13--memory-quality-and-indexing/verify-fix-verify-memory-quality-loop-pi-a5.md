@@ -46,12 +46,72 @@ Low-quality memory triggers retry cycle; final reject after max retries; rejecti
 
 ### Evidence
 
-Retry attempt log + final reject output + rejection reason message
+Command run:
+
+```bash
+node --input-type=module -e 'import fs from "node:fs"; import { stripTypeScriptTypes } from "node:module"; const sourcePath=".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts"; let source=fs.readFileSync(sourcePath,"utf8"); source=source.replace(/import \{ initEvalDb \} from '\''\.\.\/lib\/eval\/eval-db\.js'\'';\n/, "function initEvalDb() { throw new Error(\"eval db unavailable in manual in-memory run\"); }\n"); source=source.replace(/import \{ isQualityAutoFixEnabled, isQualityLoopEnabled \} from '\''\.\.\/lib\/search\/search-flags\.js'\'';\n/, "function isQualityAutoFixEnabled() { return true; }\nfunction isQualityLoopEnabled() { return true; }\n"); source += `\nconst input = { content: "no headings no anchors no structure", metadata: { triggerPhrases: [] }, options: { threshold: 0.6, maxRetries: 2, mode: "full-auto", emitEvalMetrics: false } };\nconst result = runQualityLoop(input.content, input.metadata, input.options);\nconsole.log(JSON.stringify({ input, result }, null, 2));\n`; const js=stripTypeScriptTypes(source,{mode:"strip"}); const url="data:text/javascript;base64,"+Buffer.from(js).toString("base64"); await import(url);'
+```
+
+Observed output:
+
+```text
+{
+  "input": {
+    "content": "no headings no anchors no structure",
+    "metadata": {
+      "triggerPhrases": []
+    },
+    "options": {
+      "threshold": 0.6,
+      "maxRetries": 2,
+      "mode": "full-auto",
+      "emitEvalMetrics": false
+    }
+  },
+  "result": {
+    "passed": false,
+    "score": {
+      "total": 0.413,
+      "breakdown": {
+        "triggers": 0,
+        "anchors": 0.5,
+        "budget": 1,
+        "coherence": 0.25
+      },
+      "issues": [
+        "No trigger phrases found",
+        "Content is very short (<50 chars)",
+        "No section headings found",
+        "Content lacks substance (<200 chars)"
+      ]
+    },
+    "attempts": 2,
+    "fixes": [],
+    "rejected": true,
+    "rejectionReason": "Quality score 0.413 below threshold 0.6 after 1 auto-fix attempt(s). Issues: No trigger phrases found; Content is very short (<50 chars); No section headings found; Content lacks substance (<200 chars)"
+  }
+}
+(node:79107) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+Additional production MCP dry-run observations before the direct in-memory quality-loop run:
+
+```text
+Error: Governed ingest rejected: tenantId is required for governed ingest; sessionId is required for governed ingest; userId or agentId is required for governed ingest; provenanceSource is required for governed ingest; provenanceActor is required for governed ingest
+```
+
+```text
+qualityLoop: {
+  passed: true,
+  rejected: false,
+  fixes: []
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: Quality loop retries up to max attempts then rejects with reason
-- **Fail**: No retry attempted or infinite retry loop
+- **FAIL**: Low-quality content retried once and rejected with a reason, but the observed rejection reason said `after 1 auto-fix attempt(s)` while the submitted options used `maxRetries: 2`, so the scenario's expected `final reject after max retries` signal did not hold.
 
 ### Failure Triage
 

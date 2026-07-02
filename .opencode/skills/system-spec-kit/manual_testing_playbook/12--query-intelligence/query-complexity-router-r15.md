@@ -46,12 +46,61 @@ Simple queries route to fewer channels; complex queries activate all channels; d
 
 ### Evidence
 
-Channel selection trace for simple/moderate/complex queries + flag-disabled fallback behavior
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```bash
+npx vitest run tests/query-classifier.vitest.ts tests/query-router.vitest.ts tests/query-router-channel-interaction.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:15234) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15252) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  3 passed (3)
+      Tests  173 passed (173)
+   Start at  11:58:24
+   Duration  978ms (transform 425ms, setup 29ms, import 648ms, tests 106ms, environment 0ms)
+```
+
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```bash
+npx vitest run tests/query-router.vitest.ts --reporter verbose
+```
+
+Observed output excerpts for selected channels and disabled flag fallback:
+
+```text
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-01: Default Routing Config > T1: simple tier maps to exactly 2 channels (vector + fts) 2ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-01: Default Routing Config > T2: moderate tier maps to 3 channels (vector + fts + bm25) 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-01: Default Routing Config > T3: complex tier maps to all 5 channels 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-01: Default Routing Config > T4: ALL_CHANNELS constant contains all 5 channel names 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-02: getChannelSubset > T7: simple tier returns 2 channels with default config 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-02: getChannelSubset > T8: moderate tier returns 3 channels with default config 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-02: getChannelSubset > T9: complex tier returns all 5 channels with default config 1ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-04: routeQuery Convenience Function > T18: routes simple query to 2 channels 38ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-04: routeQuery Convenience Function > T19: routes complex query to all 5 channels 2ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-04: routeQuery Convenience Function > T22: routes moderate query to 3 channels 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-05: Feature Flag Disabled > T23: routeQuery returns all 5 channels when flag is disabled 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-05: Feature Flag Disabled > T24: routeQuery returns complex tier when flag is disabled (classifier fallback) 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-05: Feature Flag Disabled > T25: routeQuery returns all 5 channels for any query when flag is disabled 0ms
+ ✓ mcp_server/tests/query-router.vitest.ts > T026-05: Feature Flag Disabled > T26: routeQuery with flag set to "false" returns all 5 channels 0ms
+
+ Test Files  1 passed (1)
+      Tests  85 passed (85)
+   Start at  12:00:02
+   Duration  716ms (transform 418ms, setup 21ms, import 555ms, tests 64ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: Channel count increases with complexity class; disabled flag uses default routing
-- **Fail**: All queries use same channels or flag-disabled produces error
+- **PASS**: Channel count increases with complexity class (`simple` 2 channels, `moderate` 3 channels, `complex` all 5 channels), and `SPECKIT_COMPLEXITY_ROUTER=false` returns all 5 channels with complex-tier classifier fallback.
 
 ### Failure Triage
 

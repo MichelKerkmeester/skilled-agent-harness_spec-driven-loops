@@ -48,12 +48,97 @@ CRUD mutations are atomic (all-or-nothing); error handling cleans up partial sta
 
 ### Evidence
 
-Mutation output + finalize failure trace + chunk-tree cleanup evidence + old-child linkage snapshot + BM25 parent verification after forced rollback
+Executed from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit`.
+
+Command: `npx vitest run mcp_server/tests/handler-memory-save.vitest.ts -t "cleans up a newly created chunk tree when chunked PE supersede finalize fails" --reporter verbose`
+
+```text
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:89440) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ↓ mcp_server/tests/handler-memory-save.vitest.ts > Handler Memory Save (T518) [deferred - requires DB test fixtures] > atomic-save failure injection > cleans up a newly created chunk tree when chunked PE supersede finalize fails
+
+ Test Files  1 skipped (1)
+      Tests  66 skipped (66)
+   Start at  15:22:12
+   Duration  1.43s (transform 956ms, setup 0ms, import 1.34s, tests 0ms, environment 0ms)
+```
+
+Command: `npx vitest run mcp_server/tests/chunking-orchestrator-swap.vitest.ts --reporter verbose`
+
+```text
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:89246) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > successful swap deletes old children and links new children atomically
+[memory-save] Chunking /tmp/specs/test-safe-swap/memory.md: anchor strategy, 2 chunks
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > swap failure rolls back: old children remain and staged children are cleaned
+[memory-save] Chunking /tmp/specs/test-safe-swap/memory-fail.md: anchor strategy, 2 chunks
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > swap failure rolls back: old children remain and staged children are cleaned
+[memory-save] Re-chunk swap failed for parent 1: forced finalize swap failure
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > fails safe-swap finalization when old-child bulk delete fails and keeps old children linked
+[memory-save] Chunking /tmp/specs/test-safe-swap/memory-delete-fail.md: anchor strategy, 2 chunks
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > fails safe-swap finalization when old-child bulk delete fails and keeps old children linked
+[memory-save] Re-chunk swap failed for parent 1: Failed to delete old chunk rows: 2, 3
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > does not mutate parent BM25 document when all chunk inserts fail for an existing parent
+[memory-save] Chunking /tmp/specs/test-safe-swap/memory-bm25-rollback.md: anchor strategy, 2 chunks
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > does not mutate parent BM25 document when all chunk inserts fail for an existing parent
+[memory-save] Failed to index chunk 1: forced metadata failure for all chunks
+
+stderr | mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > does not mutate parent BM25 document when all chunk inserts fail for an existing parent
+[memory-save] Failed to index chunk 2: forced metadata failure for all chunks
+[memory-save] Chunked indexing aborted: all 2 chunks failed (existing parent retained) for /tmp/specs/test-safe-swap/memory-bm25-rollback.md
+
+ ✓ mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > successful swap deletes old children and links new children atomically 4ms
+ ✓ mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > swap failure rolls back: old children remain and staged children are cleaned 2ms
+ ✓ mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > fails safe-swap finalization when old-child bulk delete fails and keeps old children linked 2ms
+ ✓ mcp_server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged swap regressions > does not mutate parent BM25 document when all chunk inserts fail for an existing parent 2ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  15:22:03
+   Duration  568ms (transform 328ms, setup 0ms, import 485ms, tests 19ms, environment 0ms)
+```
+
+Command: `npx vitest run mcp_server/tests/memory-crud-extended.vitest.ts mcp_server/tests/deferred-features-integration.vitest.ts mcp_server/tests/transaction-manager.vitest.ts mcp_server/tests/preflight.vitest.ts --reporter verbose`
+
+```text
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+stderr | mcp_server/tests/transaction-manager.vitest.ts
+[factory] Failed to read active-embedder metadata from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite: database is locked; continuing provider cascade.
+
+ ✓ mcp_server/tests/transaction-manager.vitest.ts > Transaction Manager Unit Tests > Execute atomic save with rollback 1ms
+ ✓ mcp_server/tests/transaction-manager.vitest.ts > Transaction Manager Unit Tests > Execute atomic save with pending file cleanup on failure 0ms
+ ✓ mcp_server/tests/transaction-manager.vitest.ts > Transaction Atomicity Tests (T192-T200) > T192: execute_atomic_save() wraps file + DB op in transaction 1ms
+ ✓ mcp_server/tests/transaction-manager.vitest.ts > Transaction Atomicity Tests (T192-T200) > T194: file cleanup on DB operation failure 0ms
+stderr | mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryDelete - Causal Edge Cleanup > EXT-CE2: Causal edge cleanup failure aborts delete transaction
+stderr | mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryUpdate - Embedding Regeneration > EXT-ER1: Embedding failure without partial rolls back
+[memory-update] Embedding regeneration failed, rolling back update [requestId=f2013cf2-762b-46d5-81af-3c42f77a2797]: Mock embedding failure
+
+ ✓ mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryDelete - Causal Edge Cleanup > EXT-CE1: Causal edges cleaned up on single delete 0ms
+ ✓ mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryDelete - Causal Edge Cleanup > EXT-CE2: Causal edge cleanup failure aborts delete transaction 1ms
+ ✓ mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryDelete - Causal Edge Cleanup > EXT-CE3: No edge cleanup when delete fails 0ms
+ ✓ mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryDelete - Bulk Delete Transaction > EXT-BD5: Bulk delete cleans causal edges for each memory 0ms
+ ✓ mcp_server/tests/memory-crud-extended.vitest.ts > handleMemoryUpdate - Embedding Regeneration > EXT-ER1: Embedding failure without partial rolls back 0ms
+
+ Test Files  4 passed (4)
+      Tests  141 passed | 23 skipped (164)
+   Start at  15:22:22
+   Duration  1.12s (transform 1.26s, setup 0ms, import 905ms, tests 1.01s, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: all mutation paths are atomic, error handling leaves no partial state, and the chunked-save rollback paths preserve old state while cleaning staged replacements
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: The executable safe-swap/BM25 rollback and CRUD/transaction cleanup surfaces passed, but the required chunked PE finalize cleanup scenario is currently inside `describe.skip('atomic-save failure injection', ...)`; Vitest reported `Test Files  1 skipped (1)` and `Tests  66 skipped (66)`, so the staged chunk-tree cleanup expectation could not be executed in the current repo state.
 
 ### Failure Triage
 

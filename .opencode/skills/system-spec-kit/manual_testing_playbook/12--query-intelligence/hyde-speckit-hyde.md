@@ -49,12 +49,236 @@ HyDEResult with pseudoDocument and Float32Array embedding; low-confidence thresh
 
 ### Evidence
 
-HyDEResult output + merge verification + shadow log + cache key verification
+Command 1 (`SPECKIT_HYDE=true`) was applied to the CLI invocation environment for the active-mode run:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "requestQuality": {
+      "label": "gap"
+    },
+    "recovery": {
+      "status": "partial",
+      "reason": "knowledge_gap",
+      "suggestedQueries": [
+        "obscure topic with"
+      ],
+      "recommendedAction": "broaden_or_ask"
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 3,
+        "activeChannels": 2,
+        "candidateCount": 33,
+        "constitutionalInjected": 5,
+        "durationMs": 446
+      }
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr3bspsa_3i9h4d",
+      "query": "obscure topic with few matches",
+      "stages": [
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "d2-llm-reformulation",
+            "abstract": "obscure topic with few matches",
+            "variantCount": 0,
+            "fanoutCount": 1
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "r8-summary-embeddings",
+            "summaryHits": 10,
+            "preFilterCount": 10
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "d2-query-surrogates",
+            "surrogatesLoaded": 1,
+            "boostedCount": 1
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "searchType": "hybrid",
+            "mode": "deep",
+            "channelCount": 3,
+            "deepExpansion": true,
+            "r12EmbeddingExpansion": true
+          }
+        }
+      ],
+      "finalResultCount": 5
+    },
+    "results": [
+      {
+        "id": 5822,
+        "score": 0.34080799999999994,
+        "scores": {
+          "fusion": 0.34080799999999994,
+          "intentAdjusted": 0.34080799999999994,
+          "composite": 0.34080799999999994
+        },
+        "confidence": {
+          "label": "low",
+          "value": 0.087,
+          "drivers": [
+            "anchor_density"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+Observed active-mode command:
+
+```bash
+SPECKIT_HYDE=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"obscure topic with few matches","mode":"deep","includeTrace":true,"profile":"debug","limit":10,"bypassCache":true}' --format json --timeout-ms 3000
+```
+
+Observed shadow-mode command, first attempt:
+
+```json
+{
+  "status": "error",
+  "error": "tools/call timed out",
+  "exitCode": 75
+}
+```
+
+Observed shadow-mode command, retry with longer CLI timeout:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "requestQuality": {
+      "label": "gap"
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 3,
+        "activeChannels": 2,
+        "candidateCount": 33,
+        "constitutionalInjected": 5,
+        "durationMs": 345
+      }
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr3btaqq_55748v",
+      "query": "obscure topic with few matches",
+      "stages": [
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "d2-llm-reformulation",
+            "abstract": "obscure topic with few matches",
+            "variantCount": 0,
+            "fanoutCount": 1
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "r8-summary-embeddings",
+            "summaryHits": 10,
+            "preFilterCount": 10
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "channel": "d2-query-surrogates",
+            "surrogatesLoaded": 1,
+            "boostedCount": 1
+          }
+        },
+        {
+          "stage": "candidate",
+          "metadata": {
+            "searchType": "hybrid",
+            "mode": "deep",
+            "channelCount": 3,
+            "deepExpansion": true,
+            "r12EmbeddingExpansion": true
+          }
+        }
+      ],
+      "finalResultCount": 5
+    },
+    "results": [
+      {
+        "id": 5822,
+        "score": 0.34080799999999994,
+        "confidence": {
+          "label": "low",
+          "value": 0.087,
+          "drivers": [
+            "anchor_density"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+Observed environment prerequisite check:
+
+```json
+{"LLM_REFORMULATION_ENDPOINT_present":false,"LLM_REFORMULATION_API_KEY_present":false,"SPECKIT_HYDE":null,"SPECKIT_HYDE_ACTIVE":null}
+```
+
+Observed source contract for the missing prerequisite:
+
+```text
+mcp_server/lib/search/hyde.ts:226-228
+const endpoint = process.env.LLM_REFORMULATION_ENDPOINT?.trim();
+if (!endpoint) {
+  return null;
+}
+```
+
+Observed source contract for expected low-confidence threshold and cache behavior:
+
+```text
+mcp_server/lib/search/hyde.ts:88
+const LOW_CONFIDENCE_THRESHOLD = 0.45;
+
+mcp_server/lib/search/hyde.ts:311-315
+const cache = getLlmCache();
+const cacheKey: LlmCacheKey = {
+  query: normalizeQuery(query),
+  mode: 'hyde',
+};
+
+mcp_server/lib/search/llm-cache.ts:6-9
+// CONSUMERS: llm-reformulation.ts, hyde.ts
+//
+// Cache key: { query (normalised), mode } → serialised string key.
+// TTL-based expiry (default 1 hour).  In-process Map — no DB, no disk.
+```
+
+Observed result: no `HyDEResult`, no `pseudoDocument`, no `Float32Array` embedding, no `d2-hyde` trace stage, no shadow log line, and no cache population could be observed. The run is blocked because `LLM_REFORMULATION_ENDPOINT_present` is `false`, and `generateHyDE()` returns `null` before pseudo-document generation when that endpoint is absent.
 
 ### Pass / Fail
 
-- **Pass**: pseudo-document generated for low-confidence query, merged by default, and shadow-only with SPECKIT_HYDE_ACTIVE=false
-- **Fail**: no generation or merge behavior mismatches flag state
+- **BLOCKED**: `LLM_REFORMULATION_ENDPOINT_present` is `false`; HyDE generation cannot produce `HyDEResult.pseudoDocument` or `HyDEResult.embedding`, so active merge, shadow-only logging, and cache population cannot be verified in this repo state.
 
 ### Failure Triage
 

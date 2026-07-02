@@ -48,12 +48,60 @@ Rename failure returns {success:false, dbCommitted:true}; pending file preserved
 
 ### Evidence
 
-Function return value + pending file existence check + recovery function output
+Executed from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+[transaction-manager] rename failed after DB commit; pending file kept for recovery: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic_pending.md (EACCES: permission denied, rename '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic_pending.md' -> '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic.md')
+{
+  "root": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d",
+  "afterFailure": {
+    "result": {
+      "success": false,
+      "filePath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic.md",
+      "error": "Rename failed after DB commit: EACCES: permission denied, rename '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic_pending.md' -> '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic.md'",
+      "dbCommitted": true
+    },
+    "dbOperationCalled": true,
+    "dbOperationCompleted": true,
+    "filePath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic.md",
+    "pendingPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic_pending.md",
+    "pendingExistsAfterFailure": true,
+    "finalExistsAfterFailure": false,
+    "pendingContentAfterFailure": "# Atomic rename failure\n",
+    "metricsAfterFailure": {
+      "totalAtomicWrites": 0,
+      "totalDeletes": 0,
+      "totalRecoveries": 0,
+      "totalErrors": 1,
+      "lastOperationTime": null
+    }
+  },
+  "afterRecovery": {
+    "recovery": [
+      {
+        "path": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/txn-atomic-rename-failure-Nvgr7d/memory/atomic_pending.md",
+        "recovered": true
+      }
+    ],
+    "pendingExistsAfterRecovery": false,
+    "finalExistsAfterRecovery": true,
+    "finalContentAfterRecovery": "# Atomic rename failure\n",
+    "metricsAfterRecovery": {
+      "totalAtomicWrites": 0,
+      "totalDeletes": 0,
+      "totalRecoveries": 1,
+      "totalErrors": 1,
+      "lastOperationTime": "2026-07-02T13:41:37.535Z"
+    }
+  }
+}
+(node:18652) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
 
 ### Pass / Fail
 
-- **Pass**: pending file survives rename failure and recovery function can find and process it
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: pending file survived rename failure and `recoverAllPendingFiles()` found and recovered it.
 
 ### Failure Triage
 

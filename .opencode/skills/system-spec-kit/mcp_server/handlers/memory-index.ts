@@ -130,6 +130,7 @@ interface ScanFileEntry {
   status?: string;
   specFolder?: string;
   id?: number;
+  isSpecDoc?: boolean;
   isConstitutional?: boolean;
   error?: string;
   errorDetail?: string;
@@ -563,7 +564,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   };
 
   const mergedFiles = [...constitutionalFiles, ...specDocFiles, ...graphMetadataFiles];
-  const specDocKeySet = new Set(specDocFiles.map((f) => getCachedKey(f)));
+  const specDocKeySet = new Set(
+    [...specDocFiles, ...graphMetadataFiles].map((f) => getCachedKey(f)),
+  );
   const seenCanonicalFiles = new Set<string>();
   const files: string[] = [];
 
@@ -964,6 +967,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     capExceeded: walkerCapExceeded,
   };
   const scanAppliedActions: StatediffAction[] = [];
+  const returnedUnchangedSpecDocs: ScanFileEntry[] = [];
 
   let filesToIndex: string[] = files;
   let filesToDelete: string[] = [];
@@ -981,6 +985,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     results.incremental.mtime_changed = categorized.toUpdate.length;
 
     for (const unchangedPath of categorized.toSkip) {
+      if (specDocKeySet.has(getCachedKey(unchangedPath))) {
+        returnedUnchangedSpecDocs.push({
+          file: path.basename(unchangedPath),
+          filePath: unchangedPath,
+          status: 'unchanged',
+          isSpecDoc: true,
+        });
+      }
       if (constitutionalSet.has(getCachedKey(unchangedPath))) {
         results.constitutional.alreadyIndexed++;
       }
@@ -1068,6 +1080,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     for (let i = 0; i < batchResults.length; i++) {
       const result = batchResults[i];
       const filePath = filesToIndex[i];
+      const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
       const isConstitutional = constitutionalSet.has(getCachedKey(filePath));
 
       if (result.error) {
@@ -1116,6 +1129,17 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         } else if (result.status === 'unchanged') {
           results.unchanged++;
           successfullyIndexedFiles.push(filePath);
+          if (isSpecDoc) {
+            returnedUnchangedSpecDocs.push({
+              file: path.basename(filePath),
+              filePath,
+              specFolder: result.specFolder,
+              status: result.status,
+              id: result.id,
+              isSpecDoc,
+              isConstitutional,
+            });
+          }
         } else if (result.status === 'reinforced') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
@@ -1171,6 +1195,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
             specFolder: result.specFolder,
             status: result.status,
             id: result.id,
+            isSpecDoc,
             isConstitutional,
             ...rejectionDetail,
           });
@@ -1449,6 +1474,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
 
   await releaseScanLease();
+  const returnedFiles = returnedUnchangedSpecDocs.length > 0
+    ? [...results.files, ...returnedUnchangedSpecDocs]
+    : results.files;
 
   recordMaintenanceRun('memory_index_scan', {
     status: 'success',
@@ -1474,6 +1502,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       scanKey,
       batchSize: scanBatchSize,
       ...results,
+      files: returnedFiles,
       ...(process.env.SPECKIT_DEBUG_INDEX_SCAN === 'true'
         ? {
             _debug_fileCounts: {

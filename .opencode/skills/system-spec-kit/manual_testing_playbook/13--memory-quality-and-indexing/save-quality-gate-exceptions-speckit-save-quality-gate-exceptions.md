@@ -49,12 +49,80 @@ isSaveQualityGateExceptionsEnabled() returns true; decision + >= 2 structural si
 
 ### Evidence
 
-Save result (pass/warn/reject) + structural signal count + quality gate layer outputs + test transcript
+Command 1:
+
+```bash
+printenv SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS
+```
+
+Output:
+
+```text
+(no output)
+```
+
+Command 2:
+
+```bash
+node .opencode/bin/spec-memory.cjs memory_save --json '{"title":"Chose SQLite over PostgreSQL","content":"Embedded deployment decision","context_type":"decision","anchors":["architecture","database"]}' --format json --timeout-ms 3000
+```
+
+Output:
+
+```text
+[schema-validation] memory_save: Invalid arguments for "memory_save". Parameter "filePath" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_save\". Parameter \"filePath\" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+(node:1018) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+Command 4:
+
+```bash
+node .opencode/bin/spec-memory.cjs memory_save --json '{"title":"Chose SQLite over PostgreSQL","content":"Embedded deployment decision","context_type":"general","anchors":["architecture","database"]}' --format json --timeout-ms 3000
+```
+
+Output:
+
+```text
+[schema-validation] memory_save: Invalid arguments for "memory_save". Parameter "filePath" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_save\". Parameter \"filePath\" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+(node:1533) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+Command 5:
+
+```bash
+node .opencode/bin/spec-memory.cjs memory_save --json '{"title":"Chose SQLite over PostgreSQL","content":"Embedded deployment decision","context_type":"decision","anchors":["architecture"]}' --format json --timeout-ms 3000
+```
+
+Output:
+
+```text
+[schema-validation] memory_save: Invalid arguments for "memory_save". Parameter "filePath" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_save\". Parameter \"filePath\" has invalid type. Expected string, received undefined. Unknown parameter(s): title, content, context_type, anchors. Expected parameter names: filePath, force, dryRun, skipPreflight, asyncEmbedding, routeAs, mergeModeHint, plannerMode, targetAnchorId, tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy, deleteAfter. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+(node:1539) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+The documented save-quality-gate outputs were not observable because the current `memory_save` command schema rejects the scenario's documented object-form payload before validation layers run.
 
 ### Pass / Fail
 
-- **Pass**: short decision with >= 2 structural signals bypasses length check
-- **Fail**: decision rejected despite signals, non-decision bypasses, or < 2 signals allow bypass
+- **BLOCKED**: `memory_save` currently requires `filePath` and rejects the documented `title`, `content`, `context_type`, and `anchors` arguments with exitCode 64, so the short-critical quality-gate exception cannot be exercised through the scenario command.
 
 ### Failure Triage
 

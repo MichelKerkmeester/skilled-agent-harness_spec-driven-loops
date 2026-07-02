@@ -46,12 +46,41 @@ Targeted suite passes; transcript shows active projection selection, determinist
 
 ### Evidence
 
-Test transcript + suite summary
+Command 1:
+
+```console
+$ cd .opencode/skills/system-spec-kit/mcp_server
+```
+
+Output:
+
+```console
+(no output)
+```
+
+Command 2:
+
+```console
+$ npm test -- --run tests/memory-lineage-state.vitest.ts
+
+> @spec-kit/mcp-server@1.8.0 test
+> node scripts/run-tests.mjs --run tests/memory-lineage-state.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  15:01:27
+   Duration  611ms (transform 310ms, setup 13ms, import 387ms, tests 153ms, environment 0ms)
+```
+
+Observed comparison against Expected: the targeted suite passed with `1 passed (1)` test file and `16 passed (16)` tests, but the transcript did not show active projection selection, deterministic `asOf` resolution, malformed-chain detection, or timestamp-order coverage for non-ISO or timezone variants.
 
 ### Pass / Fail
 
-- **Pass**: `memory-lineage-state.vitest.ts` completes with all tests passing and the transcript shows both valid and malformed lineage cases plus timestamp-order coverage that depends on parsed epoch comparisons
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: `memory-lineage-state.vitest.ts` completed with all tests passing, but the actual transcript did not show both valid and malformed lineage cases plus timestamp-order coverage that depends on parsed epoch comparisons.
 
 ### Failure Triage
 

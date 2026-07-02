@@ -46,12 +46,29 @@ Similarity >=0.88 triggers merge; 0.75-0.88 triggers supersede/deprecate; below 
 
 ### Evidence
 
-Save output with similarity scores + merge/supersede/independent action taken
+BLOCKED: No save output with similarity scores was produced. The repository's Vitest discovery did not load the documented reconsolidation test file because the configured include pattern excludes `*.vitest.ts` files.
+
+Command run for threshold verification:
+
+```bash
+npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts -t "Action Determination|Constants|RO1|RO2|RO3"
+```
+
+Actual output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+No test files found, exiting with code 1
+
+filter: .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+```
 
 ### Pass / Fail
 
-- **Pass**: Merge at >=0.88, supersede at 0.75-0.88, independent below 0.75
-- **Fail**: Wrong action for similarity range or threshold miscalibrated
+- **BLOCKED**: Threshold behavior could not be verified because the documented reconsolidation test file was not discovered by Vitest in the current repo configuration.
 
 ### Failure Triage
 
@@ -80,12 +97,29 @@ Merge returns `action: complement` with `status: predecessor_changed` or `status
 
 ### Evidence
 
-Targeted vitest output plus `memory_index` row dump showing the predecessor remained active and no new merged row was created
+BLOCKED: The targeted command from the playbook did not execute any test, so no `memory_index` row dump or stale-predecessor assertion evidence was produced.
+
+Command run exactly as documented:
+
+```bash
+npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts -t "Aborts merge when predecessor changes during embedding generation"
+```
+
+Actual output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+No test files found, exiting with code 1
+
+filter: .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+```
 
 ### Pass / Fail
 
-- **Pass**: Stale predecessor detection blocks the merge and preserves the current predecessor state
-- **Fail**: Merge still archives/inserts despite predecessor mutation or deletion
+- **BLOCKED**: Stale predecessor behavior could not be verified because the documented targeted test command found no test files.
 
 ### Failure Triage
 
@@ -114,12 +148,29 @@ Merge commits, warning is emitted, and the merged row persists `bm25_repair_need
 
 ### Evidence
 
-Targeted vitest output plus SQL evidence for merged row `bm25_repair_needed=1` and warning text
+BLOCKED: The targeted command from the playbook did not execute any test, so no SQL evidence for `bm25_repair_needed=1` or warning text was produced.
+
+Command run exactly as documented:
+
+```bash
+npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts -t "Persists bm25_repair_needed after BM25 repair fails post-merge"
+```
+
+Actual output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+No test files found, exiting with code 1
+
+filter: .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+```
 
 ### Pass / Fail
 
-- **Pass**: Merge completes and records `bm25_repair_needed=1` for later retry
-- **Fail**: Merge rolls back unnecessarily or the repair debt flag is missing
+- **BLOCKED**: BM25 repair-debt behavior could not be verified because the documented targeted test command found no test files.
 
 ### Failure Triage
 

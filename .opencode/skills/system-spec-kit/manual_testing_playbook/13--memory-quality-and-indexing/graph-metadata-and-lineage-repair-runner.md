@@ -86,12 +86,16 @@ Validate the graph-metadata and lineage repair runner: dry-run, real run, idempo
 
 ### Evidence
 
-Saved baseline + follow-up scan responses, dry-run + real-run + idempotency-check JSON reports, listing of the backup dir contents, and a diff sample showing that one healthy active packet (e.g. an arbitrary 016/002/* graph-metadata.json that was NOT in the scan failure list) remains byte-equal between before and after the real run.
+- 2026-07-02: BLOCKED before command execution by the task-level allowed-write constraint. The scenario Commands require writes outside the single permitted scenario file:
+  - Block A step 1 requires saving a JSON-RPC response to `/tmp/scan-before.log`.
+  - Block C step 6 runs `node .opencode/skills/system-spec-kit/mcp_server/scripts/repair-graph-metadata.mjs --scan-log /tmp/scan-before.log`, which the scenario contract expects to perform real mutations.
+  - Block C step 7 expects `backupDir: /tmp/repair-graph-metadata-<timestamp>` containing mutated files plus SQLite database copies.
+- User-level constraint for this run was: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.` and `ALLOWED WRITE PATHS - .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md (this file only)`.
+- Because the required scenario commands cannot be executed without creating or modifying files outside the only allowed write path, no baseline scan, repair runner, backup listing, idempotency check, or follow-up scan was run.
 
 ### Pass / Fail
 
-- **Pass**: Block A through E all succeed, with Block C demonstrating scope-strict mutation (healthy packets untouched) and Block D demonstrating idempotency.
-- **Fail**: Block C mutates a healthy packet's `manual.*` fields, OR Block D reports non-zero changes (idempotency broken), OR Block E shows residual failures in the 4 targeted classes.
+- **BLOCKED**: The playbook requires out-of-scope writes (`/tmp/scan-before.log`, `/tmp/repair-graph-metadata-*`, and real repair-run mutations/backups), but this execution was constrained to modify only this scenario file.
 
 ### Failure Triage
 

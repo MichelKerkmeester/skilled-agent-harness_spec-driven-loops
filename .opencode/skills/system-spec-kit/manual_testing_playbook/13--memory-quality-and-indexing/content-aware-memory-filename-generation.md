@@ -48,10 +48,36 @@ Preferred slug source order is task -> spec title -> session candidates -> folde
 
 ### Evidence
 
-Saved filenames + opened file headings + batch/pathless save output + normalization example
+BLOCKED before executing the scenario commands because the scenario requires memory-save writes outside the single allowed write path.
+
+User constraint supplied for this run:
+
+```text
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md (this file only)
+```
+
+Scenario commands requiring additional writes:
+
+```text
+1. Use one spec folder and perform two memory-save flows with clearly different task/session summaries
+2. Confirm the saved filenames are different and reflect the task/session wording rather than repeating the folder slug
+3. Open each saved file and verify the H1 heading matches the derived filename title
+4. Exercise a batch/pathless save case with multiple inputs lacking file paths and verify each item gets a unique synthetic key and distinct slug decision
+5. Capture one long task name and confirm the slug is lowercased, hyphenated, and truncated at a word boundary
+```
+
+Observed file state:
+
+```text
+No Preconditions section is present in this scenario file.
+```
+
+No memory-save command was run, because running the scenario as written would create or modify saved memory files outside the only allowed write path.
 
 ### Pass / Fail
 
+- **BLOCKED**: scenario commands require actual memory-save flows and opened saved files, but this run only permits edits to this scenario file.
 - **Pass**: same-folder saves produce distinct content-aware filenames and matching headings without falling back to the folder slug unnecessarily
 - **Fail**: filenames collapse to the folder slug, headings diverge from filenames, or pathless batch items overwrite one another
 

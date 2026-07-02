@@ -44,12 +44,36 @@ Validate the mk-spec-memory launcher persistent log path and confirm log lines p
 
 ### Evidence
 
-Shell transcript for all commands: the `node --check` exit status, the vitest pass summary for `tests/launcher-persistent-log.vitest.ts`, and the grep output showing the persist helper, the rotation predicate, and the call site that wires them together.
+Shell transcript for all commands:
+
+```text
+$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+[no stdout or stderr]
+$ node --check .opencode/bin/mk-spec-memory-launcher.cjs; exit_code=$?; printf 'exit status: %s\n' "$exit_code"
+exit status: 0
+
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-persistent-log.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  15:06:38
+   Duration  101ms (transform 17ms, setup 16ms, import 12ms, tests 4ms, environment 0ms)
+
+$ rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/mk-spec-memory-launcher.cjs
+129:  persistLauncherLogLine(`${new Date().toISOString()} [pid ${process.pid}] ${message}\n`);
+163:function shouldRotateLauncherLog(currentSizeBytes, maxBytes) {
+166:function persistLauncherLogLine(line) {
+173:      if (shouldRotateLauncherLog(size, launcherLogMaxBytes())) {
+1851:  persistLauncherLogLine,
+1853:  shouldRotateLauncherLog,
+```
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, the persistent-log suite passes, and both helpers are defined and called on the logging path.
-- **Fail**: the syntax check fails, any append or rotation case fails, or either helper is missing from the grep output or is never called on the logging path.
+- **PASS**: the syntax check exited 0, the persistent-log suite passed with 9 tests, and the grep output shows both helpers at definitions plus the logging call path.
 
 ### Failure Triage
 

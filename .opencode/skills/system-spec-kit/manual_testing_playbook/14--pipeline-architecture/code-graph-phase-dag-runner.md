@@ -47,12 +47,66 @@ Targeted phase-runner tests pass; existing code-graph indexer + scan suites pass
 
 ### Evidence
 
-Vitest output for the three suites plus a paired `code_graph_scan` payload showing identical `filesScanned`/`filesIndexed`/`totalNodes`/`totalEdges` counts before and after.
+BLOCKED: the documented commands could not reach the required verification surfaces in the current repo/session state.
+
+Command 1: `vitest run .opencode/skills/system-code-graph/mcp_server/tests/phase-runner.test.ts`
+
+```text
+zsh:1: command not found: vitest
+```
+
+Command 2: `vitest run .opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts .opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts`
+
+```text
+zsh:1: command not found: vitest
+```
+
+Code Graph CLI tool discovery: `node .opencode/bin/code-index.cjs list-tools --format text`
+
+```text
+code_graph_scan
+code_graph_query
+code_graph_status
+code_graph_context
+code_graph_classify_query_intent
+code_graph_verify
+code_graph_apply
+detect_changes
+```
+
+Command 3 scan attempt: `node .opencode/bin/code-index.cjs code_graph_scan --json '{"rootDir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"}' --format json --timeout-ms 120000`
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+Code Graph native status:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+No `filesScanned`, `filesIndexed`, `totalNodes`, or `totalEdges` values were produced, and no pre-wrap baseline comparison or log-line inspection could be completed because the required scan surface was unavailable.
 
 ### Pass / Fail
 
-- **Pass**: all three test suites green; manual scan counts match baseline; expected log lines still emitted.
-- **Fail**: any regression in existing indexer/scan tests; scan counts diverge from baseline; or `PhaseRunnerError` lacks the offending phase name in `phaseName`.
+- **BLOCKED**: `vitest` is not available on PATH for the documented test commands, and `code_graph_scan` is unavailable because the Code Graph daemon socket `/tmp/mk-code-index/daemon-ipc.sock` is absent.
 
 ### Failure Triage
 

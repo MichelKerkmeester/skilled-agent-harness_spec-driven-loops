@@ -1,0 +1,486 @@
+id	subsystem	category	path	status	verdict
+0001	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md	done	BLOCKED
+0002	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/ast-level-section-retrieval-tool.md	done	PASS
+0003	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/bm25-trigger-phrase-re-index-gate.md	done	FAIL
+0004	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/bounded-graph-walk-rollout-and-diagnostics.md	done	FAIL
+0005	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/context-recovery-and-continuation.md	done	PASS
+0006	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md	done	BLOCKED
+0007	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/memory-search-command-routing.md	done	BLOCKED
+0008	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/quality-aware-3-tier-search-fallback.md	done	PASS
+0009	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/quick-search-memory-quick-search.md	done	BLOCKED
+0010	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/semantic-and-lexical-search-memory-search.md	done	BLOCKED
+0011	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/session-recovery-spec-kit-resume.md	done	BLOCKED
+0012	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/session-transition-trace-contract.md	done	BLOCKED
+0013	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/targeted-memory-lookup.md	done	BLOCKED
+0014	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/tool-result-extraction-to-working-memory.md	done	BLOCKED
+0015	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/trigger-phrase-matching-memory-match-triggers.md	done	FAIL
+0016	spec-kit	01--retrieval	.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md	done	FAIL
+0017	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/correction-tracking-with-undo.md	done	PASS
+0018	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md	done	BLOCKED
+0019	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-delete-confirm-schema-tightening.md	done	BLOCKED
+0020	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-indexing-memory-save.md	done	BLOCKED
+0021	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-metadata-update-memory-update.md	done	BLOCKED
+0022	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/prediction-error-save-arbitration.md	done	BLOCKED
+0023	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/reconsolidation-conflict-transaction-helper.md	done	PASS
+0024	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/single-and-folder-delete-memory-delete.md	done	BLOCKED
+0025	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/tier-based-bulk-deletion-memory-bulk-delete.md	done	PASS
+0026	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/transaction-wrappers-on-mutation-handlers.md	done	PASS
+0027	spec-kit	02--mutation	.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/validation-feedback-memory-validate.md	done	BLOCKED
+0028	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/detect-changes-preflight.md	done	BLOCKED
+0029	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/health-diagnostics-memory-health.md	done	PASS
+0030	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/memory-browser-memory-list.md	done	FAIL
+0031	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md	done	PASS
+0032	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-health-shared-payload.md	done	FAIL
+0033	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-resume-continuity-ladder.md	done	FAIL
+0034	spec-kit	03--discovery	.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/system-statistics-memory-stats.md	done	BLOCKED
+0035	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md	done	BLOCKED
+0036	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/memory-retention-sweep-basic-flow.md	done	BLOCKED
+0037	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md	done	BLOCKED
+0038	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/retention-sweep-dry-run-no-op.md	done	PASS
+0039	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md	done	FAIL
+0040	spec-kit	04--maintenance	.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/workspace-scanning-and-indexing-memory-index-scan.md	done	FAIL
+0041	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/advisory-ingest-lifecycle-forecast.md	done	BLOCKED
+0042	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/async-ingestion-job-lifecycle-p0-3.md	done	BLOCKED
+0043	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-creation-checkpoint-create.md	done	PASS
+0044	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-deletion-checkpoint-delete.md	done	BLOCKED
+0045	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-listing-checkpoint-list.md	done	BLOCKED
+0046	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-restore-checkpoint-restore.md	done	BLOCKED
+0047	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md	done	BLOCKED
+0048	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md	done	FAIL
+0049	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/path-traversal-validation-p0-4.md	done	BLOCKED
+0050	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/post-insert-retry-budget.md	done	BLOCKED
+0051	spec-kit	05--lifecycle	.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md	done	BLOCKED
+0052	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-chain-tracing-memory-drift-why.md	done	PASS
+0053	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-edge-creation-memory-causal-link.md	done	BLOCKED
+0054	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-edge-deletion-memory-causal-unlink.md	done	BLOCKED
+0055	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-graph-statistics-memory-causal-stats.md	done	BLOCKED
+0056	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-stats-empty-graph-edge.md	done	FAIL
+0057	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/code-graph-edge-explanation-blast-radius-uplift.md	done	BLOCKED
+0058	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/epistemic-baseline-capture-task-preflight.md	done	BLOCKED
+0059	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/learning-history-memory-get-learning-history.md	done	FAIL
+0060	spec-kit	06--analysis	.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/post-task-learning-measurement-task-postflight.md	done	BLOCKED
+0061	spec-kit	07--evaluation	.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/ablation-studies-eval-run-ablation.md	done	BLOCKED
+0062	spec-kit	07--evaluation	.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/eval-ablation-edge-empty-dataset.md	done	FAIL
+0063	spec-kit	07--evaluation	.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/eval-dashboard-health-and-empty-state.md	done	PASS
+0064	spec-kit	07--evaluation	.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/reporting-dashboard-eval-reporting-dashboard.md	done	FAIL
+0065	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md	done	PASS
+0066	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md	done	PASS
+0067	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md	done	BLOCKED
+0068	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md	done	PASS
+0069	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/database-and-schema-safety.md	done	PASS
+0070	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/error-response-credential-sanitization.md	done	BLOCKED
+0071	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md	done	BLOCKED
+0072	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md	done	PASS
+0073	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/guards-and-edge-cases.md	done	PASS
+0074	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md	done	FAIL
+0075	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md	done	BLOCKED
+0076	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md	done	PASS
+0077	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md	done	FAIL
+0078	spec-kit	08--bug-fixes-and-data-integrity	.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md	done	PASS
+0079	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md	done	FAIL
+0080	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/bm25-only-baseline-g-new-1.md	done	BLOCKED
+0081	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/core-metric-computation-r13-s1.md	done	PASS
+0082	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md	done	PASS
+0083	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md	done	PASS
+0084	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-api-surface.md	done	PASS
+0085	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md	done	FAIL
+0086	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md	done	BLOCKED
+0087	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/int8-quantization-evaluation-r5.md	done	FAIL
+0088	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md	done	PASS
+0089	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/observer-effect-mitigation-d4.md	done	BLOCKED
+0090	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/quality-proxy-formula-b7.md	done	BLOCKED
+0091	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/scoring-observability-t010.md	done	PASS
+0092	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md	done	PASS
+0093	spec-kit	09--evaluation-and-measurement	.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/test-quality-improvements.md	done	PASS
+0094	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/causal-depth-signal-n2b.md	done	PASS
+0095	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/causal-neighbor-boost-and-injection.md	done	BLOCKED
+0096	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/co-activation-boost-strength-increase-a7.md	done	PASS
+0097	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/community-detection-n2c.md	done	PASS
+0098	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/edge-density-measurement.md	done	PASS
+0099	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-and-cognitive-memory-fixes.md	done	PASS
+0100	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md	done	BLOCKED
+0101	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md	done	BLOCKED
+0102	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-momentum-scoring-n2a.md	done	PASS
+0103	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md	done	BLOCKED
+0104	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md	done	BLOCKED
+0105	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md	done	PASS
+0106	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/temporal-contiguity-layer.md	done	BLOCKED
+0107	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/temporal-edges.md	done	PASS
+0108	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/typed-traversal-speckit-typed-traversal.md	done	PASS
+0109	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/typed-weighted-degree-channel-r4.md	done	PASS
+0110	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md	done	FAIL
+0111	spec-kit	10--graph-signal-activation	.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/weight-history-audit-tracking.md	done	BLOCKED
+0112	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/access-driven-popularity-scoring.md	done	BLOCKED
+0113	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md	done	FAIL
+0114	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/auto-promotion-on-validation-t002a.md	done	BLOCKED
+0115	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md	done	BLOCKED
+0116	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/classification-based-decay-tm-03.md	done	PASS
+0117	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/double-intent-weighting-investigation-g2.md	done	PASS
+0118	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/embedding-cache-r18.md	done	PASS
+0119	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md	done	BLOCKED
+0120	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/interference-scoring-tm-01.md	done	BLOCKED
+0121	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md	done	PASS
+0122	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/negative-feedback-confidence-signal-a4.md	done	PASS
+0123	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md	done	PASS
+0124	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md	done	BLOCKED
+0125	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/score-normalization.md	done	PASS
+0126	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/scoring-and-fusion-corrections.md	done	FAIL
+0127	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/scoring-and-ranking-corrections.md	done	PASS
+0128	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md	done	BLOCKED
+0129	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md	done	FAIL
+0130	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md	done	PASS
+0131	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/temporal-structural-coherence-scoring.md	done	PASS
+0132	spec-kit	11--scoring-and-calibration	.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/tool-level-ttl-cache.md	done	PASS
+0133	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/channel-min-representation-r2.md	done	FAIL
+0134	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/confidence-based-result-truncation-r15-ext.md	done	FAIL
+0135	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/dynamic-token-budget-allocation-fut-7.md	done	PASS
+0136	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/graph-channel-preservation.md	done	BLOCKED
+0137	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/graph-concept-routing.md	done	BLOCKED
+0138	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/hyde-speckit-hyde.md	done	BLOCKED
+0139	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/llm-reformulation-speckit-llm-reformulation.md	done	BLOCKED
+0140	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-complexity-router-r15.md	done	PASS
+0141	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-decomposition-speckit-query-decomposition.md	done	PASS
+0142	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-expansion-r12.md	done	BLOCKED
+0143	spec-kit	12--query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-surrogates-speckit-query-surrogates.md	done	BLOCKED
+0144	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md	done	PASS
+0145	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md	done	BLOCKED
+0146	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/auto-entity-extraction-r10.md	done	PASS
+0147	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md	done	PASS
+0148	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/canonical-continuity-save-substrate.md	done	BLOCKED
+0149	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md	done	BLOCKED
+0150	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md	done	BLOCKED
+0151	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/context-save-index-update.md	done	BLOCKED
+0152	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/deferred-lexical-only-indexing.md	done	BLOCKED
+0153	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md	done	BLOCKED
+0154	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-schema-field-validation.md	done	BLOCKED
+0155	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md	done	BLOCKED
+0156	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md	done	FAIL
+0157	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/entity-normalization-consolidation.md	done	PASS
+0158	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md	done	BLOCKED
+0159	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md	done	PASS
+0160	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md	done	PASS
+0161	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-causal-trust-display.md	done	BLOCKED
+0162	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md	done	BLOCKED
+0163	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md	done	BLOCKED
+0164	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/post-save-quality-review.md	done	BLOCKED
+0165	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md	done	PASS
+0166	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md	done	PASS
+0167	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/quality-gate-timer-persistence.md	done	BLOCKED
+0168	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/reconsolidation-on-save-tm-06.md	done	BLOCKED
+0169	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md	done	BLOCKED
+0170	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md	done	BLOCKED
+0171	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md	done	PASS
+0172	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/smarter-memory-content-generation-s1.md	done	PASS
+0173	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md	done	BLOCKED
+0174	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md	done	FAIL
+0175	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md	done	FAIL
+0176	spec-kit	13--memory-quality-and-indexing	.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md	done	FAIL
+0177	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/4-stage-pipeline-refactor-r6.md	done	BLOCKED
+0178	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/7-layer-tool-architecture-metadata.md	done	PASS
+0179	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/atomic-write-then-index-api.md	done	PASS
+0180	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/backend-storage-adapter-abstraction.md	done	PASS
+0181	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/chunk-ordering-preservation-b2.md	done	PASS
+0182	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/code-graph-phase-dag-runner.md	done	BLOCKED
+0183	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/cross-process-db-hot-rebinding.md	done	FAIL
+0184	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/daemon-ownership-reelection.md	done	PASS
+0185	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/db-path-extraction-and-import-standardization.md	done	FAIL
+0186	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/dynamic-server-instructions-p1-6.md	done	BLOCKED
+0187	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/embedding-retry-orchestrator.md	done	BLOCKED
+0188	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/embeddings-and-retry-api.md	done	FAIL
+0189	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md	done	BLOCKED
+0190	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/learned-relevance-feedback-r11.md	done	FAIL
+0191	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/lease-probe-retry-reap-hardening.md	done	PASS
+0192	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/legacy-v1-pipeline-removal.md	done	FAIL
+0193	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/lineage-backfill-rollback-drill.md	done	FAIL
+0194	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md	done	FAIL
+0195	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md	done	PASS
+0196	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md	done	PASS
+0197	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mcp-launcher-persistent-log.md	done	PASS
+0198	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mcp-server-public-api-barrel.md	done	PASS
+0199	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md	done	PASS
+0200	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/performance-improvements.md	done	FAIL
+0201	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/phase-017-maintainability-extracts.md	done	PASS
+0202	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/pipeline-and-mutation-hardening.md	done	BLOCKED
+0203	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/routing-telemetry-and-graph-channel-invocation.md	done	BLOCKED
+0204	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/search-pipeline-safety.md	done	BLOCKED
+0205	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/strict-zod-schema-validation-p0-1.md	done	FAIL
+0206	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/template-anchor-optimization-s2.md	done	BLOCKED
+0207	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md	done	PASS
+0208	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/tri-daemon-spawn-drill.md	done	FAIL
+0209	spec-kit	14--pipeline-architecture	.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md	done	PASS
+0210	spec-kit	14--stress-testing	.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md	done	BLOCKED
+0211	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/causal-boost-graduated.md	done	FAIL
+0212	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/community-search-fallback.md	done	FAIL
+0213	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md	done	PASS
+0214	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/contextual-tree-injection-p1-4.md	done	FAIL
+0215	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/cross-document-entity-linking-s5.md	pending	
+0216	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-level-retrieval.md	pending	
+0217	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md	pending	
+0218	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-cross-document-entity-linking-s5.md	pending	
+0219	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-memory-summary-generation-r8.md	pending	
+0220	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/lightweight-consolidation-n3-lite.md	pending	
+0221	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/memory-summary-search-channel-r8.md	pending	
+0222	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md	pending	
+0223	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md	pending	
+0224	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/session-boost-graduated.md	pending	
+0225	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md	pending	
+0226	spec-kit	15--retrieval-enhancements	.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md	pending	
+0227	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/architecture-boundary-enforcement.md	pending	
+0228	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-blocked-read-rendering.md	pending	
+0229	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-compact-and-completion.md	pending	
+0230	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-dist-freshness-guard.md	pending	
+0231	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md	pending	
+0232	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md	pending	
+0233	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-concurrent-dual-client-load.md	pending	
+0234	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md	pending	
+0235	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md	pending	
+0236	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-trust-gate-fuzz.md	pending	
+0237	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-warm-only-probe-churn.md	pending	
+0238	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-trusted-gate-refusal.md	pending	
+0239	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-warm-only-no-spawn.md	pending	
+0240	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/code-standards-alignment.md	pending	
+0241	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/completion-verification-workflow.md	pending	
+0242	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/constitutional-memory-manager-command.md	pending	
+0243	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/core-workflow-infrastructure.md	pending	
+0244	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/dead-code-removal.md	pending	
+0245	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/debug-delegation-scaffold-generator.md	pending	
+0246	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-list-registry-inventory.md	pending	
+0247	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-set-dry-run-and-validation.md	pending	
+0248	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-status-job-and-active-pointer.md	pending	
+0249	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/eval-runner-cli.md	pending	
+0250	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md	pending	
+0251	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md	pending	
+0252	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md	pending	
+0253	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md	pending	
+0254	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-mode-hybrid-enrichment.md	pending	
+0255	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-primary-deprecation-posture.md	pending	
+0256	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/main-agent-review-and-verdict-handoff.md	pending	
+0257	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/markdown-link-integrity-guard.md	pending	
+0258	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md	pending	
+0259	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-maintenance-and-migration-clis.md	pending	
+0260	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-manage-command-routing.md	pending	
+0261	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-quality-kpi-reporting.md	pending	
+0262	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/migration-checkpoint-scripts.md	pending	
+0263	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md	pending	
+0264	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-map-accuracy.md	pending	
+0265	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md	pending	
+0266	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/no-symlinks-in-lib-tree.md	pending	
+0267	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/ops-self-healing-runbooks.md	pending	
+0268	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md	pending	
+0269	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md	pending	
+0270	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-command-workflow.md	pending	
+0271	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-detection-scoring.md	pending	
+0272	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-folder-creation.md	pending	
+0273	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-link-validation.md	pending	
+0274	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-system-knowledge-node.md	pending	
+0275	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md	pending	
+0276	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md	pending	
+0277	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/recursive-phase-validation.md	pending	
+0278	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/rendered-memory-template-contract.md	pending	
+0279	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/research-metadata-backfill.md	pending	
+0280	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/review-packet-type-marker-gated-validation.md	pending	
+0281	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-family-count-census.md	pending	
+0282	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-lineage-naming-parity.md	pending	
+0283	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/schema-compatibility-validation.md	pending	
+0284	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/session-capturing-pipeline-quality-coverage.md	pending	
+0285	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/session-capturing-pipeline-quality.md	pending	
+0286	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/session-extraction-and-enrichment.md	pending	
+0287	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/setup-native-module-health-and-mcp-installation.md	pending	
+0288	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md	pending	
+0289	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/source-dist-alignment-validation.md	pending	
+0290	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md	pending	
+0291	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-detection-and-description.md	pending	
+0292	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md	pending	
+0293	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md	pending	
+0294	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md	pending	
+0295	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-lifecycle-automation.md	pending	
+0296	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-validation-rule-engine.md	pending	
+0297	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md	pending	
+0298	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md	pending	
+0299	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md	pending	
+0300	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/template-composition-system.md	pending	
+0301	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md	pending	
+0302	spec-kit	16--tooling-and-scripts	.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/watcher-delete-rename-cleanup.md	pending	
+0303	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/constitutional-gate-enforcement-rule-pack.md	pending	
+0304	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/constitutional-self-edit-and-cas-guard.md	pending	
+0305	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/feature-flag-governance.md	pending	
+0306	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-and-scope-isolation-phase-5.md	pending	
+0307	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-cancel-lifecycle.md	pending	
+0308	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/session-resume-caller-binding-and-unicode-sanitization.md	pending	
+0309	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md	pending	
+0310	spec-kit	17--governance	.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/stale-exclusion-audit-and-tool-ownership-lint.md	pending	
+0311	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/A--comment-hygiene-checker-baseline.md	pending	
+0312	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/B--comment-hygiene-claude-code-hook.md	pending	
+0313	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/C--comment-hygiene-opencode-plugin.md	pending	
+0314	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md	pending	
+0315	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/checkpoint-confirmname-and-schema-enforcement.md	pending	
+0316	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/cli-hook-transport-down-fail-open.md	pending	
+0317	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/context-server-success-envelope-finalization.md	pending	
+0318	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md	pending	
+0319	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/end-to-end-success-envelope-verification.md	pending	
+0320	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/final-token-metadata-recomputation.md	pending	
+0321	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md	pending	
+0322	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/hooks-barrel-readme-synchronization.md	pending	
+0323	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/memory-health-autorepair-metadata.md	pending	
+0324	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-hook-result-contract-expansion.md	pending	
+0325	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-response-ux-payload-exposure.md	pending	
+0326	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md	pending	
+0327	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md	pending	
+0328	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md	pending	
+0329	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-confidence-speckit-result-confidence-v1.md	pending	
+0330	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md	pending	
+0331	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-provenance.md	pending	
+0332	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/schema-and-type-contract-synchronization.md	pending	
+0333	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md	pending	
+0334	spec-kit	18--ux-hooks	.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md	pending	
+0335	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/1-search-pipeline-features-speckit.md	pending	
+0336	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/2-session-and-cache.md	pending	
+0337	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/3-mcp-configuration.md	pending	
+0338	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/4-memory-and-storage.md	pending	
+0339	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/5-embedding-and-api.md	pending	
+0340	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/6-debug-and-telemetry.md	pending	
+0341	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/7-ci-and-build-informational.md	pending	
+0342	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/authored-continuity-snapshot.md	pending	
+0343	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/completion-freshness-validator.md	pending	
+0344	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/feedback-retention-learning-modes.md	pending	
+0345	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/filter-config-contract.md	pending	
+0346	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-idempotency-replay-and-conflict.md	pending	
+0347	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-roadmap-capability-flags.md	pending	
+0348	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/runtime-config-contract.md	pending	
+0349	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/semantic-trigger-shadow-and-union.md	pending	
+0350	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/session-trace-causal-inference.md	pending	
+0351	spec-kit	19--feature-flag-reference	.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/soft-delete-tombstones.md	pending	
+0352	spec-kit	20--remediation-revalidation	.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/feedback-driven-revalidation.md	pending	
+0353	spec-kit	20--remediation-revalidation	.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/memory-health-auto-repair.md	pending	
+0354	spec-kit	20--remediation-revalidation	.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/remediation-runtime-surface.md	pending	
+0355	spec-kit	21--implement-and-remove-deprecated-features	.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md	pending	
+0356	spec-kit	21--implement-and-remove-deprecated-features	.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/inert-scoring-flags.md	pending	
+0357	spec-kit	21--implement-and-remove-deprecated-features	.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/lazy-loading-migration.md	pending	
+0358	spec-kit	21--implement-and-remove-deprecated-features	.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/retired-runtime-shims.md	pending	
+0359	spec-kit	21--implement-and-remove-deprecated-features	.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/shadow-scoring-retirement.md	pending	
+0360	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/budget-allocator.md	pending	
+0361	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/compact-merger-assembly.md	pending	
+0362	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/context-preservation-metrics.md	pending	
+0363	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/cross-runtime-fallback.md	pending	
+0364	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/mcp-auto-priming.md	pending	
+0365	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/passive-context-enrichment.md	pending	
+0366	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/precompact-hook.md	pending	
+0367	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/query-intent-classifier.md	pending	
+0368	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/query-intent-routing.md	pending	
+0369	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/resource-map-template.md	pending	
+0370	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/runtime-detection.md	pending	
+0371	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-health.md	pending	
+0372	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md	pending	
+0373	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-start-compact.md	pending	
+0374	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-start-startup.md	pending	
+0375	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/stop-hook-saves.md	pending	
+0376	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/tool-routing-enforcement.md	pending	
+0377	spec-kit	22--context-preservation	.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/working-set-compaction.md	pending	
+0378	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-add-only.md	pending	
+0379	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-confidence-threshold.md	pending	
+0380	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-low-coverage.md	pending	
+0381	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-convergence.md	pending	
+0382	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-empty-no-source.md	pending	
+0383	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-lazy-init.md	pending	
+0384	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-disk-pressure.md	pending	
+0385	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-drift-detection.md	pending	
+0386	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-fresh-install.md	pending	
+0387	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-long-pole-rebuild.md	pending	
+0388	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-sigint-cancellation.md	pending	
+0389	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G5-confirm-failure-injection.md	pending	
+0390	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G6-concurrent.md	pending	
+0391	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G7-sigint.md	pending	
+0392	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G8-migration-gap.md	pending	
+0393	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G9-dashboard.md	pending	
+0394	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-tier-aware-default.md	pending	
+0395	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md	pending	
+0396	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-cleanup-legacy.md	pending	
+0397	spec-kit	23--doctor-commands	.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-no-op.md	pending	
+0398	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/adversarial-near-miss.md	pending	
+0399	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-coverage-under-bulk-save.md	pending	
+0400	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-graph-link-quality.md	pending	
+0401	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/code-intent-matching.md	pending	
+0402	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/compound-concept-synthesis.md	pending	
+0403	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/concurrent-multi-ai-safety.md	pending	
+0404	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/cross-ai-memory-handoff.md	pending	
+0405	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/disambiguation-under-context.md	pending	
+0406	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/drift-detection-quality.md	pending	
+0407	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/llm-made-memory-recall.md	pending	
+0408	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/multi-aspect-query-synthesis.md	pending	
+0409	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/paraphrase-recall.md	pending	
+0410	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/query-latency-and-throughput.md	pending	
+0411	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/specificity-ladder.md	pending	
+0412	spec-kit	24--local-llm-query-intelligence	.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/synonymy-across-vocabularies.md	pending	
+0413	code-graph	01--read-path-freshness	.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md	pending	
+0414	code-graph	01--read-path-freshness	.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md	pending	
+0415	code-graph	02--manual-scan-verify-status	.opencode/skills/system-code-graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-full.md	pending	
+0416	code-graph	02--manual-scan-verify-status	.opencode/skills/system-code-graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-incremental.md	pending	
+0417	code-graph	02--manual-scan-verify-status	.opencode/skills/system-code-graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-status-readonly.md	pending	
+0418	code-graph	02--manual-scan-verify-status	.opencode/skills/system-code-graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md	pending	
+0419	code-graph	03--detect-changes	.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md	pending	
+0420	code-graph	03--detect-changes	.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-no-inline-index.md	pending	
+0421	code-graph	04--context-retrieval	.opencode/skills/system-code-graph/manual_testing_playbook/04--context-retrieval/code-graph-context-edge-confidence-differentiation.md	pending	
+0422	code-graph	04--context-retrieval	.opencode/skills/system-code-graph/manual_testing_playbook/04--context-retrieval/code-graph-context-readiness-block.md	pending	
+0423	code-graph	04--context-retrieval	.opencode/skills/system-code-graph/manual_testing_playbook/04--context-retrieval/code-graph-context-seeded-ppr-ranking.md	pending	
+0424	code-graph	05--coverage-graph	.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md	pending	
+0425	code-graph	05--coverage-graph	.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-upsert-conditional.md	pending	
+0426	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-asof-time-travel.md	pending	
+0427	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md	pending	
+0428	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-bm25-symbol-resolver.md	pending	
+0429	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-index-cli-fallback-surface.md	pending	
+0430	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md	pending	
+0431	code-graph	06--mcp-tool-surface	.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/tool-call-shape-validation.md	pending	
+0432	code-graph	08--doctor-code-graph	.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md	pending	
+0433	code-graph	08--doctor-code-graph	.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/doctor-apply-mode-policy.md	pending	
+0434	code-graph	09--post-rename-infrastructure	.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/database-path-verification.md	pending	
+0435	code-graph	09--post-rename-infrastructure	.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/launcher-startup-prefix.md	pending	
+0436	code-graph	09--post-rename-infrastructure	.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/mcp-json-server-key-rename.md	pending	
+0437	code-graph	09--post-rename-infrastructure	.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/typescript-build-and-entry-point.md	pending	
+0438	code-graph	09--post-rename-infrastructure	.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/unicode-normalization-fix-from-009.md	pending	
+0439	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md	pending	
+0440	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md	pending	
+0441	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md	pending	
+0442	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md	pending	
+0443	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-status-transitions.md	pending	
+0444	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-validate-slices.md	pending	
+0445	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/shadow-delta-sink.md	pending	
+0446	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md	pending	
+0447	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md	pending	
+0448	skill-advisor	01--native-mcp-tools	.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md	pending	
+0449	skill-advisor	02--cli-hooks-and-plugin	.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/claude-user-prompt-submit.md	pending	
+0450	skill-advisor	02--cli-hooks-and-plugin	.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md	pending	
+0451	skill-advisor	02--cli-hooks-and-plugin	.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/opencode-plugin-bridge.md	pending	
+0452	skill-advisor	02--cli-hooks-and-plugin	.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/skill-advisor-cli-fallback.md	pending	
+0453	skill-advisor	03--compat-and-disable	.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/daemon-absent-fallback.md	pending	
+0454	skill-advisor	03--compat-and-disable	.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/force-local-force-native.md	pending	
+0455	skill-advisor	03--compat-and-disable	.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/global-disable-flag.md	pending	
+0456	skill-advisor	03--compat-and-disable	.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/python-shim-stdin.md	pending	
+0457	skill-advisor	04--operator-h5	.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/degraded-daemon.md	pending	
+0458	skill-advisor	04--operator-h5	.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/quarantined-daemon.md	pending	
+0459	skill-advisor	04--operator-h5	.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/unavailable-daemon.md	pending	
+0460	skill-advisor	05--auto-update-daemon	.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/daemon-lifecycle-shutdown.md	pending	
+0461	skill-advisor	05--auto-update-daemon	.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/generation-publication.md	pending	
+0462	skill-advisor	05--auto-update-daemon	.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/lease-single-writer.md	pending	
+0463	skill-advisor	05--auto-update-daemon	.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/rebuild-from-source.md	pending	
+0464	skill-advisor	05--auto-update-daemon	.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/watcher-narrow-scope.md	pending	
+0465	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/anti-stuffing.md	pending	
+0466	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/corpus-df-idf.md	pending	
+0467	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/derived-extraction.md	pending	
+0468	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/doc-frontmatter-harvest.md	pending	
+0469	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/provenance-and-trust-lanes.md	pending	
+0470	skill-advisor	06--auto-indexing	.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/sanitizer-boundaries.md	pending	
+0471	skill-advisor	07--lifecycle-routing	.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/age-haircut.md	pending	
+0472	skill-advisor	07--lifecycle-routing	.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/archive-handling.md	pending	
+0473	skill-advisor	07--lifecycle-routing	.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/rollback-lifecycle.md	pending	
+0474	skill-advisor	07--lifecycle-routing	.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/schema-migration.md	pending	
+0475	skill-advisor	07--lifecycle-routing	.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/supersession.md	pending	
+0476	skill-advisor	08--scorer-fusion	.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/ablation.md	pending	
+0477	skill-advisor	08--scorer-fusion	.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/ambiguity.md	pending	
+0478	skill-advisor	08--scorer-fusion	.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/five-lane-fusion.md	pending	
+0479	skill-advisor	08--scorer-fusion	.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/lane-attribution.md	pending	
+0480	skill-advisor	08--scorer-fusion	.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/projection.md	pending	
+0481	skill-advisor	10--python-compat	.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/bench-runner.md	pending	
+0482	skill-advisor	10--python-compat	.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/force-native-force-local.md	pending	
+0483	skill-advisor	10--python-compat	.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/regression-suite.md	pending	
+0484	skill-advisor	10--python-compat	.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/stdin-mode.md	pending	
+0485	skill-advisor	10--python-compat	.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/threshold-flag.md	pending	

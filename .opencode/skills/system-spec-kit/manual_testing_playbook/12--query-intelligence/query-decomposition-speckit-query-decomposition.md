@@ -48,12 +48,255 @@ isQueryDecompositionEnabled() returns true; conjunction splitting on coordinatin
 
 ### Evidence
 
-Decomposed sub-query list + retrieval results per facet + test transcript
+Test transcript excerpts from 2026-07-02:
+
+1. Confirm `SPECKIT_QUERY_DECOMPOSITION` is unset or `true`:
+
+```text
+$ printenv SPECKIT_QUERY_DECOMPOSITION
+(no output)
+```
+
+2. Deep mode command:
+
+```text
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"What is the spec-doc record save workflow and how does query expansion work?","mode":"deep","includeTrace":true}' --format json --timeout-ms 10000
+(node:23459) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "requestQuality": {
+      "label": "good"
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 4,
+        "activeChannels": 2,
+        "candidateCount": 44,
+        "constitutionalInjected": 5,
+        "durationMs": 911
+      }
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr3c9udu_kedscw",
+      "query": "What is the spec-doc record save workflow and how does query expansion work?",
+      "intent": "understand",
+      "stages": [
+        {
+          "stage": "candidate",
+          "timestamp": 1782986747231,
+          "inputCount": 3,
+          "outputCount": 29,
+          "durationMs": 0,
+          "metadata": {
+            "channel": "d2-query-decomposition",
+            "originalQuery": "What is the spec-doc record save workflow and how does query expansion work?",
+            "facets": [
+              "What is the spec-doc record save workflow",
+              "how does query expansion work"
+            ],
+            "facetCount": 2
+          }
+        },
+        {
+          "stage": "candidate",
+          "timestamp": 1782986747290,
+          "inputCount": 0,
+          "outputCount": 0,
+          "durationMs": 0,
+          "metadata": {
+            "channel": "d2-llm-reformulation",
+            "abstract": "What is the spec-doc record save workflow and how does query expansion work?",
+            "variantCount": 0,
+            "fanoutCount": 1
+          }
+        },
+        {
+          "stage": "candidate",
+          "timestamp": 1782986747297,
+          "inputCount": 4,
+          "outputCount": 44,
+          "durationMs": 911,
+          "metadata": {
+            "searchType": "hybrid",
+            "mode": "deep",
+            "channelCount": 4,
+            "deepExpansion": true,
+            "r12EmbeddingExpansion": true
+          }
+        }
+      ],
+      "totalDurationMs": 1995,
+      "finalResultCount": 5
+    },
+    "results": [
+      {
+        "id": 4400,
+        "title": "Feature Specification: 034 Query Expansion Context Size",
+        "score": 0.632178432,
+        "trace": {
+          "channelsUsed": [
+            "d2-concept-expansion",
+            "d2-concept-routing",
+            "d2-query-decomposition",
+            "d2-llm-reformulation",
+            "r8-summary-embeddings",
+            "d2-query-surrogates",
+            "vector",
+            "degree"
+          ]
+        }
+      },
+      {
+        "id": 4851,
+        "title": "Spec: 016/004/016 Query Expansion — Identifier Bridging (camelCase / snake_case / synonyms)",
+        "score": 0.5678588341378905
+      },
+      {
+        "id": 4396,
+        "title": "Implementation Summary: 034 Query Expansion Context Size",
+        "score": 0.5308463999999999
+      },
+      {
+        "id": 4852,
+        "title": "Tasks: 016 Query Expansion Identifier Bridging",
+        "score": 0.5115402517273423
+      },
+      {
+        "id": 4843,
+        "title": "Verification Checklist: 016 Query Expansion Identifier Bridging",
+        "score": 0.47513440000000007
+      }
+    ],
+    "evidenceDigest": "5 results retrieved; avg score 0.78."
+  }
+}
+```
+
+3. Non-deep mode command. `mode: "normal"` is not accepted by the live tool schema, so the accepted non-deep mode is `mode: "auto"`:
+
+```text
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"What is the spec-doc record save workflow and how does query expansion work?","mode":"normal"}' --format json --timeout-ms 3000
+[schema-validation] memory_search: Invalid arguments for "memory_search". Parameter "mode" is invalid: Invalid option: expected one of "auto"|"deep" Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_search\". Parameter \"mode\" is invalid: Invalid option: expected one of \"auto\"|\"deep\" Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+```
+
+```text
+$ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"What is the spec-doc record save workflow and how does query expansion work?","mode":"auto","includeTrace":true}' --format json --timeout-ms 10000
+(node:23655) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "requestQuality": {
+      "label": "gap"
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 3,
+        "activeChannels": 2,
+        "candidateCount": 31,
+        "constitutionalInjected": 5,
+        "durationMs": 962
+      }
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr3ca2wq_pilppu",
+      "query": "What is the spec-doc record save workflow and how does query expansion work?",
+      "intent": "understand",
+      "stages": [
+        {
+          "stage": "candidate",
+          "timestamp": 1782986758389,
+          "inputCount": 2,
+          "outputCount": 16,
+          "durationMs": 0,
+          "metadata": {
+            "channel": "r12-embedding-expansion",
+            "expandedTerms": [
+              "spec",
+              "anchor",
+              "indexing",
+              "description",
+              "scope",
+              "document",
+              "folder",
+              "docs"
+            ],
+            "combinedQuery": "What is the spec-doc record save workflow and how does query expansion work? spec anchor indexing description scope document folder docs"
+          }
+        },
+        {
+          "stage": "candidate",
+          "timestamp": 1782986758396,
+          "inputCount": 3,
+          "outputCount": 31,
+          "durationMs": 962,
+          "metadata": {
+            "searchType": "hybrid",
+            "mode": "auto",
+            "channelCount": 3,
+            "deepExpansion": false,
+            "r12EmbeddingExpansion": true
+          }
+        }
+      ],
+      "totalDurationMs": 1980,
+      "finalResultCount": 5
+    },
+    "results": [
+      {
+        "id": 3268,
+        "title": "Decision Record: 052 Stress Test Expansion and Alignment",
+        "score": 0.4178616,
+        "trace": {
+          "channelsUsed": [
+            "d2-concept-expansion",
+            "d2-concept-routing",
+            "r12-embedding-expansion",
+            "r8-summary-embeddings"
+          ]
+        }
+      }
+    ],
+    "evidenceDigest": "5 results retrieved; avg score 0.41."
+  }
+}
+```
+
+4. Source inspection for rule-based splitting, cap, default-on flag, and fallback:
+
+```text
+mcp_server/lib/search/query-decomposer.ts:21: export const MAX_FACETS = 3;
+mcp_server/lib/search/query-decomposer.ts:30: const CONJUNCTION_PATTERN_SOURCE = '\\b(?:and|or|also|plus|as well as|along with)\\b';
+mcp_server/lib/search/query-decomposer.ts:47: const QUESTION_WORD_PATTERN_SOURCE = '\\b(?:what|where|when|why|how|who|which)\\b';
+mcp_server/lib/search/query-decomposer.ts:177:     return unique.slice(0, MAX_FACETS);
+mcp_server/lib/search/query-decomposer.ts:184:     return unique.slice(0, MAX_FACETS);
+mcp_server/lib/search/search-flags.ts:406:  * Default: TRUE (graduated). Set SPECKIT_QUERY_DECOMPOSITION=false to disable.
+mcp_server/lib/search/search-flags.ts:408: export function isQueryDecompositionEnabled(): boolean {
+mcp_server/lib/search/search-flags.ts:409:   return isFeatureEnabled('SPECKIT_QUERY_DECOMPOSITION');
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:898:     if (mode === 'deep' && isMultiQueryEnabled()) {
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:932:           facets = [...new Set(facets)].slice(0, MAX_QUERY_DECOMPOSITION_FACETS);
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:979:             // Skip the standard deep-mode expansion path below
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:987:           // Fall through to standard deep expansion path below (candidates is empty)
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:508:       `[stage1-candidate-gen] buildDeepQueryVariants failed, using original query: ${msg}`
+mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:510:     return [query];
+```
 
 ### Pass / Fail
 
-- **Pass**: multi-faceted query decomposes into <= 3 focused sub-queries in deep mode using rule-based heuristics
-- **Fail**: > 3 sub-queries, runs outside deep mode, uses LLM, or fails without fallback
+- **PASS**: Deep mode produced `d2-query-decomposition` with `facetCount: 2` and facets `["What is the spec-doc record save workflow", "how does query expansion work"]`; non-deep `auto` mode produced no `d2-query-decomposition` stage and reported `deepExpansion: false`; implementation evidence shows default-on flag, rule-based conjunction/wh-question detection, `MAX_FACETS = 3`, skip of standard deep expansion after decomposition, and fallback to the original query on variant-build failure.
 
 ### Failure Triage
 

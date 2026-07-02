@@ -46,12 +46,60 @@ Source grep returns matches for the flag gate, no-decay set, classifier, multipl
 
 ### Evidence
 
-Saved `rg` output plus the final Vitest summary showing both files passed
+Command 1: `rg -n "SPECKIT_HYBRID_DECAY_POLICY|SPECKIT_CLASSIFICATION_DECAY|HYBRID_NO_DECAY_CONTEXT_TYPES|classifyHybridDecay|getHybridDecayMultiplier|applyHybridDecayPolicy|calculateRetrievability|isHybridDecayPolicyEnabled" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:20:// Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:80:function calculateRetrievability(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:202:  const retrievability = calculateRetrievability(params.stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:248: *     (stability adjustment, activated via SPECKIT_CLASSIFICATION_DECAY env var)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:260:   Gated by SPECKIT_CLASSIFICATION_DECAY env var.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:290: * SPECKIT_CLASSIFICATION_DECAY is enabled. Do NOT combine with TIER_MULTIPLIER.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:336: * Gated by SPECKIT_CLASSIFICATION_DECAY env var (must be "true" or "1").
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:351:  if (isHybridDecayPolicyEnabled() && HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:355:  // Graduated: default-ON. Set SPECKIT_CLASSIFICATION_DECAY=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:356:  const flag = process.env.SPECKIT_CLASSIFICATION_DECAY?.toLowerCase();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:370:   Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default OFF).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:383:   SPECKIT_HYBRID_DECAY_POLICY is default-OFF and must be opted into explicitly.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:390:const HYBRID_NO_DECAY_CONTEXT_TYPES: ReadonlySet<string> = new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:409: * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:411:function isHybridDecayPolicyEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:412:  const val = process.env.SPECKIT_HYBRID_DECAY_POLICY?.toLowerCase().trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:425:function classifyHybridDecay(contextType: string): HybridDecayClass {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:426:  if (HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:432:function getHybridDecayMultiplier(contextType: string, _importanceTier?: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:433:  if (!isHybridDecayPolicyEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:436:  return HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType) ? NO_DECAY : 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:442: * When SPECKIT_HYBRID_DECAY_POLICY is OFF (default), returns stability unchanged.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:452:  const multiplier = getHybridDecayMultiplier(contextType, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:482:  HYBRID_NO_DECAY_CONTEXT_TYPES,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:483:  isHybridDecayPolicyEnabled,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:484:  classifyHybridDecay,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:485:  getHybridDecayMultiplier,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:486:  applyHybridDecayPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:489:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:478: * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:482:export function isHybridDecayPolicyEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:483:  return isFeatureEnabled('SPECKIT_HYBRID_DECAY_POLICY');
+```
+
+Command 2: `cd .opencode/skills/system-spec-kit/mcp_server && node ./node_modules/vitest/vitest.mjs run tests/hybrid-decay-policy.vitest.ts tests/fsrs-hybrid-decay.vitest.ts`
+
+```text
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+   Start at  13:05:00
+   Duration  194ms (transform 34ms, setup 21ms, import 30ms, tests 6ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: the `rg` command returns all expected symbols and the Vitest command exits 0 with zero failed files/tests
-- **Fail**: any symbol is missing, the no-decay mapping is absent, or either target test file fails.
+- **PASS**: the `rg` command returned all expected symbols and the Vitest command exited 0 with `Test Files  2 passed (2)` and `Tests  30 passed (30)`.
 
 ### Failure Triage
 

@@ -46,12 +46,88 @@ Helper-based code paths are active; tests for the extracted helpers pass; routin
 
 ### Evidence
 
-Vitest output for the helper suites plus routing metadata evidence showing `advisoryPreset`
+Exhaustiveness suite:
+
+```text
+RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  15:20:58
+   Duration  96ms (transform 16ms, setup 13ms, import 9ms, tests 2ms, environment 0ms)
+```
+
+`runEnrichmentStep()` suite:
+
+```text
+RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  15:21:05
+   Duration  585ms (transform 381ms, setup 15ms, import 492ms, tests 4ms, environment 0ms)
+```
+
+Reconsolidation suite:
+
+```text
+RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  54 passed (54)
+   Start at  15:21:13
+   Duration  735ms (transform 441ms, setup 14ms, import 590ms, tests 52ms, environment 0ms)
+```
+
+Routing nudge suite:
+
+```text
+RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:88250) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  15:21:28
+   Duration  8.88s (transform 1.17s, setup 14ms, import 19ms, tests 8.77s, environment 0ms)
+```
+
+Routing metadata source inspection:
+
+```text
+mcp_server/handlers/memory-context.ts:231-237
+interface StructuralRoutingNudgeMeta {
+  advisory: true;
+  advisoryPreset: 'ready';
+  preferredTool: 'code_graph_query';
+  message: string;
+  preservesAuthority: 'session_bootstrap';
+}
+
+mcp_server/handlers/memory-context.ts:565-571
+return {
+  advisory: true,
+  advisoryPreset: 'ready',
+  preferredTool: 'code_graph_query',
+  message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+  preservesAuthority: 'session_bootstrap',
+};
+
+mcp_server/tests/graph-first-routing-nudge.vitest.ts:155-159
+expect(parsed.meta.structuralRoutingNudge).toMatchObject({
+  advisory: true,
+  advisoryPreset: 'ready',
+  preferredTool: 'code_graph_query',
+});
+```
 
 ### Pass / Fail
 
-- **Pass**: the extracted helper surfaces are the live path and no old inline contract is still active
-- **Fail**: the runtime still depends on an old inline branch or the renamed routing field is inconsistent
+- **PASS**: the extracted helper suites all passed, the routing nudge suite passed, and source/test inspection shows the live structural routing metadata field is `advisoryPreset: 'ready'`.
 
 ### Failure Triage
 

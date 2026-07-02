@@ -46,12 +46,193 @@ Signal categories (correction, preference, reinforcement) detected from prompt a
 
 ### Evidence
 
-Trigger match output showing detected signal categories + prompt-to-category mapping
+No `Preconditions` section is present in this scenario file.
+
+Executed `memory_match_triggers` with varied correction, preference, and reinforcement prompts.
+
+Correction prompt:
+
+```text
+Correction signal test: Actually, that is wrong; please correct the previous memory because the documented behavior should say trigger matching reflects expanded vocabulary.
+```
+
+Correction observed output:
+
+```json
+{
+  "summary": "Matched 5 memories via trigger phrases",
+  "data": {
+    "matchType": "trigger-phrase",
+    "count": 5,
+    "results": [
+      {
+        "memoryId": 7924,
+        "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+        "matchedPhrases": ["signal"],
+        "importanceWeight": 1
+      },
+      {
+        "memoryId": 7179,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 1
+      },
+      {
+        "memoryId": 7120,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-speckit-reimagined-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 1
+      },
+      {
+        "memoryId": 7114,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-speckit-reimagined-test-suite",
+        "matchedPhrases": ["memory"],
+        "importanceWeight": 1
+      },
+      {
+        "memoryId": 7102,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-memory-command-consolidation",
+        "matchedPhrases": ["memory"],
+        "importanceWeight": 1
+      }
+    ]
+  },
+  "hints": ["Signal vocabulary applied (1 category matches)"],
+  "meta": {
+    "triggerSignals": [
+      {
+        "category": "correction",
+        "keywords": ["actually", "correction"],
+        "boost": 0.2
+      }
+    ]
+  }
+}
+```
+
+Preference prompt:
+
+```text
+Preference signal test: I prefer that future summaries keep the pass/fail verdict concise and include cited evidence from the trigger matching output.
+```
+
+Preference observed output:
+
+```json
+{
+  "summary": "Matched 5 memories via trigger phrases",
+  "data": {
+    "matchType": "trigger-phrase",
+    "count": 5,
+    "results": [
+      {
+        "memoryId": 7924,
+        "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+        "matchedPhrases": ["signal"],
+        "importanceWeight": 0.9
+      },
+      {
+        "memoryId": 7179,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 0.9
+      },
+      {
+        "memoryId": 7120,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-speckit-reimagined-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 0.9
+      },
+      {
+        "memoryId": 6835,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 0.9
+      },
+      {
+        "memoryId": 6829,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
+        "matchedPhrases": ["test"],
+        "importanceWeight": 0.9
+      }
+    ]
+  },
+  "hints": ["Signal vocabulary applied (1 category matches)"],
+  "meta": {
+    "triggerSignals": [
+      {
+        "category": "preference",
+        "keywords": ["prefer"],
+        "boost": 0.1
+      }
+    ]
+  }
+}
+```
+
+Reinforcement prompt:
+
+```text
+Reinforcement signal test: This is correct and useful; keep using this validation approach because the signal categories are being detected as expected.
+```
+
+Reinforcement observed output:
+
+```json
+{
+  "summary": "Matched 5 memories via trigger phrases",
+  "data": {
+    "matchType": "trigger-phrase",
+    "count": 5,
+    "results": [
+      {
+        "memoryId": 8582,
+        "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/007-testing-validation",
+        "matchedPhrases": ["validation"],
+        "importanceWeight": 0.9500000000000001
+      },
+      {
+        "memoryId": 7924,
+        "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+        "matchedPhrases": ["signal"],
+        "importanceWeight": 0.9500000000000001
+      },
+      {
+        "memoryId": 7427,
+        "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag",
+        "matchedPhrases": ["validation"],
+        "importanceWeight": 0.9500000000000001
+      },
+      {
+        "memoryId": 7415,
+        "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/007-documentation-alignment",
+        "matchedPhrases": ["validation"],
+        "importanceWeight": 0.9500000000000001
+      },
+      {
+        "memoryId": 7408,
+        "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation",
+        "matchedPhrases": ["validation"],
+        "importanceWeight": 0.9500000000000001
+      }
+    ]
+  },
+  "hints": ["Signal vocabulary applied (1 category matches)"],
+  "meta": {
+    "triggerSignals": [
+      {
+        "category": "reinforcement",
+        "keywords": ["this is correct"],
+        "boost": 0.15
+      }
+    ]
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: >=3 signal categories correctly classified from varied prompts
-- **Fail**: Categories missing or misclassified
+PASS: `correction`, `preference`, and `reinforcement` were each detected from varied prompts, and each trigger matching call returned `matchType: "trigger-phrase"` with `count: 5`.
 
 ### Failure Triage
 

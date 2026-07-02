@@ -65,12 +65,30 @@ Validate constitutional sufficiency-gate exemption against memory_index_scan and
 
 ### Evidence
 
-Saved scan output excerpt showing zero constitutional rejections, ripgrep output showing the patched gate selector, and the rejection envelope for the control probe.
+BLOCKED before command execution due an instruction conflict in the current run constraints.
+
+The scenario commands require writes outside the single allowed scenario file:
+
+```text
+47:      sleep 300; } | node .opencode/bin/mk-spec-memory-launcher.cjs > /tmp/scan-out.log
+57: 5. Author a temporary markdown file at `/tmp/sufficiency-probe.md` with no ANCHOR tags, no primary-evidence section, and trivial body content.
+```
+
+The user-provided run constraints prohibit those writes:
+
+```text
+BANNED OPERATIONS
+- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md (this file only)
+```
+
+No `memory_index_scan`, `rg`, or `memory_save` command was run because following Block A and Block C exactly would create `/tmp/scan-out.log` and `/tmp/sufficiency-probe.md`, violating the allowed write path constraint.
 
 ### Pass / Fail
 
-- **Pass**: Block A constitutional rejection count is 0, Block B source patch is present, Block C control probe is rejected strictly.
-- **Fail**: Block A still shows constitutional rejections, OR Block B source does not contain the OR-chain, OR Block C control probe is accepted (gate weakened beyond exemption).
+- **BLOCKED**: The scenario cannot be executed exactly as written under the current allowed-write constraints because Block A and Block C require creating `/tmp/scan-out.log` and `/tmp/sufficiency-probe.md`, while only this scenario file is writable.
 
 ### Failure Triage
 

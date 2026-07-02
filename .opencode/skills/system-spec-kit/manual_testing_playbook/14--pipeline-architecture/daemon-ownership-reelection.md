@@ -48,12 +48,68 @@ Validate the default-on daemon-ownership reelection path: release on disposal fo
 
 ### Evidence
 
-Shell transcript for all commands: the `node --check` exit status, the vitest pass summaries for both suites, and the grep output showing the flag resolver, the spawn-io selector, the release predicate, and the call sites that wire them together.
+Shell transcript for all commands:
+
+Command 1:
+
+```sh
+$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+```
+
+Observed output: no stdout/stderr. Exit status: 0.
+
+Command 2:
+
+```sh
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-daemon-reelection.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  14:23:45
+   Duration  113ms (transform 17ms, setup 16ms, import 14ms, tests 2ms, environment 0ms)
+```
+
+Exit status: 0.
+
+Command 3:
+
+```sh
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run --config vitest.stress.config.ts mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  14:23:45
+   Duration  43.88s (transform 32ms, setup 20ms, import 22ms, tests 43.74s, environment 0ms)
+```
+
+Exit status: 0.
+
+Command 4:
+
+```sh
+$ rg -n "daemonReelectionEnabled|shouldReleaseDaemonForReelection|contextServerSpawnIo" .opencode/bin/mk-spec-memory-launcher.cjs
+206:function daemonReelectionEnabled(env = process.env) {
+209:function contextServerSpawnIo(reelectionEnabled) {
+214:function shouldReleaseDaemonForReelection({ enabled, hasLiveDaemon } = {}) {
+1386:  const reelectionEnabled = daemonReelectionEnabled();
+1387:  const spawnIo = contextServerSpawnIo(reelectionEnabled);
+1527:  if (shouldReleaseDaemonForReelection({ enabled: daemonReelectionEnabled(), hasLiveDaemon: isChildRunning(childProcess) })) {
+1837:  contextServerSpawnIo,
+1839:  daemonReelectionEnabled,
+1868:  shouldReleaseDaemonForReelection,
+```
+
+Exit status: 0.
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, both test suites pass, the flag resolves on by default, and a fresh session after disposal leaves a single writer.
-- **Fail**: the syntax check fails, either suite fails, the live single-writer case shows two daemons on the database, or the release predicate releases the daemon while reelection is off.
+- **PASS**: the syntax check exited 0 with no output, both vitest suites passed, and grep showed the flag resolver, spawn-io selector, release predicate, and their call/export sites.
 
 ### Failure Triage
 

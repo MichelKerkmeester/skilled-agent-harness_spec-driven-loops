@@ -58,12 +58,100 @@ Validate memory causal trust badges through response profiles.
 
 ### Evidence
 
-Saved `rg` output, static diff output for the protected files, the final Vitest summary for trust-badge + response-profile-formatter suites, the four cache fingerprints (H1, H1', H2, plus the two non-causal-boost fingerprints), and the `memory_causal_link` / `memory_causal_unlink` response payloads.
+- Block A command 1, `rg -n "trustBadges|MemoryTrustBadges|weightHistoryChanged|extractionAge|lastAccessAge|orphan" .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`, returned:
+  ```text
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:213:export interface MemoryTrustBadges {
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:215:  extractionAge: string;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:216:  lastAccessAge: string;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:217:  orphan: boolean;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:218:  weightHistoryChanged: boolean;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:226:  trustBadges?: MemoryTrustBadges;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:262:  orphan: boolean;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:263:  weightHistoryChanged: boolean;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:477: * Allowlisted grammar for explicit `extractionAge`
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:478: * `lastAccessAge` strings. Mirrors the output of `formatAgeString`:
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:506: * Normalize a caller-supplied `trustBadges` payload into
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:507: * a strict `MemoryTrustBadges` shape. Each field is sanitized
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:518:  const extractionAge = sanitizeAgeLabel(candidate.extractionAge, candidate.extractedAt);
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:519:  const lastAccessAge = sanitizeAgeLabel(candidate.lastAccessAge, candidate.lastAccessed);
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:523:  const orphan = typeof candidate.orphan === 'boolean' ? candidate.orphan : null;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:524:  const weightHistoryChanged = typeof candidate.weightHistoryChanged === 'boolean'
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:525:    ? candidate.weightHistoryChanged
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:530:    extractionAge,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:531:    lastAccessAge,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:532:    orphan,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:533:    weightHistoryChanged,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:539:  extractionAge: string;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:540:  lastAccessAge: string;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:541:  orphan: boolean | null;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:542:  weightHistoryChanged: boolean | null;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:545:export function toTrustBadges(snapshot: TrustBadgeSnapshot | null): MemoryTrustBadges | undefined {
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:549:    extractionAge: formatAgeString(snapshot.extractedAt),
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:550:    lastAccessAge: formatAgeString(snapshot.lastAccessed),
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:551:    orphan: snapshot.orphan,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:552:    weightHistoryChanged: snapshot.weightHistoryChanged,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:567:  derived: MemoryTrustBadges | undefined,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:568:): MemoryTrustBadges | undefined {
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:572:  const extractionAge = explicit.extractionAge !== 'never' && explicit.extractionAge.length > 0
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:573:    ? explicit.extractionAge
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:574:    : (derived?.extractionAge ?? explicit.extractionAge);
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:575:  const lastAccessAge = explicit.lastAccessAge !== 'never' && explicit.lastAccessAge.length > 0
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:576:    ? explicit.lastAccessAge
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:577:    : (derived?.lastAccessAge ?? explicit.lastAccessAge);
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:578:  const orphan = explicit.orphan ?? derived?.orphan;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:579:  const weightHistoryChanged = explicit.weightHistoryChanged ?? derived?.weightHistoryChanged;
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:581:  if (orphan === undefined || weightHistoryChanged === undefined) {
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:587:    extractionAge,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:588:    lastAccessAge,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:589:    orphan,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:590:    weightHistoryChanged,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:716:        orphan: (toNullableNumber(row.incoming_edges) ?? 0) === 0,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:717:        weightHistoryChanged: (toNullableNumber(row.weight_history_changed) ?? 0) > 0,
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1014:    // Explicit `trustBadges` payloads are
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1020:    const explicitTrustBadgePartial = normalizeExplicitTrustBadges(rawResult.trustBadges);
+  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1024:    formattedResult.trustBadges = mergeTrustBadges(explicitTrustBadgePartial, derivedTrustBadges);
+  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:55:  trustBadges?: {
+  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:57:    extractionAge?: string;
+  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:58:    lastAccessAge?: string;
+  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:59:    orphan?: boolean;
+  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:60:    weightHistoryChanged?: boolean;
+  ```
+- Block A command 2, `git diff -- .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts`, returned no output.
+- Block A command 3, `cd .opencode/skills/system-spec-kit/mcp_server && npm exec -- vitest run tests/memory/trust-badges.test.ts tests/response-profile-formatters.vitest.ts`, returned:
+  ```text
+   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+  (node:49957) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+
+   Test Files  2 passed (2)
+        Tests  7 passed (7)
+     Start at  13:12:14
+     Duration  743ms (transform 398ms, setup 20ms, import 522ms, tests 51ms, environment 0ms)
+  ```
+- Block B setup: native `memory_search` rejected an omitted cursor as `cursor: Too small: expected string to have >=1 characters`; daemon CLI `--json` returned retryable `exitCode: 75` errors (`tools/call timed out`, then `socket closed before response`). The CLI argument form succeeded.
+- Block B H1 from `node .opencode/bin/spec-memory.cjs memory_search --query "Memory causal trust display" --limit 5 --enableCausalBoost true --includeConstitutional false --profile debug --includeTrace true --specFolder system-spec-kit --format json --timeout-ms 20000`: ordered result IDs `6044,6050,20928,6045,6048`; top result `trustBadges: { "confidence": null, "extractionAge": "never", "lastAccessAge": "never", "orphan": true, "weightHistoryChanged": false }`; `meta.cacheHit: false`; selected `<M>=6044`, `<other-id>=6050`.
+- Block B H1' from identical `enableCausalBoost=true` query: ordered result IDs `6044,6050,20928,6045,6048`; top result `trustBadges: { "confidence": null, "extractionAge": "never", "lastAccessAge": "never", "orphan": true, "weightHistoryChanged": false }`; `meta.cacheHit: false`. One retry was needed after `exitCode: 75` / `socket closed before response`.
+- Block B mutation response for `memory_causal_link({ sourceId: "6044", targetId: "6050", relation: "supports", strength: 0.7 })`:
+  ```json
+  { "summary": "Created causal link: 6044 --[supports]--> 6050", "data": { "success": true, "edge": 46647 } }
+  ```
+- Block B H2 from identical `enableCausalBoost=true` query after edge `46647`: ordered result IDs `6044,6050,20928,6045,6048`; top result `trustBadges: { "confidence": 0.7, "extractionAge": "today", "lastAccessAge": "never", "orphan": true, "weightHistoryChanged": false }`; `trace.graphContribution.raw: 1`; `trace.graphContribution.appliedBonus: 0.002307692307692308`; `why_ranked.channels.graph: 0.003181336161187699`; `meta.cacheHit: false`. H2 differed from H1 by trust-badge and graph-contribution payload.
+- Block B negative-control N1 from `enableCausalBoost=false` after edge `46647`: ordered result IDs `6044,6050,20928,6045,6048`; `pipelineMetadata.stage2.causalBoostApplied: "off"`; `pipelineMetadata.stage2.graphContribution.coActivationBoosted: 0`; top result `trustBadges: { "confidence": 0.7, "extractionAge": "today", "lastAccessAge": "never", "orphan": true, "weightHistoryChanged": false }`; scores included `20928: 0.6966218619483957`, `6045: 0.6417395940680966`, `6048: 0.5977263579174295`.
+- Block B negative-control mutation response for `memory_causal_link({ sourceId: "6045", targetId: "6048", relation: "supports", strength: 0.7 })`:
+  ```json
+  { "summary": "Created causal link: 6045 --[supports]--> 6048", "data": { "success": true, "edge": 46648 } }
+  ```
+- Block B negative-control N2 from identical `enableCausalBoost=false` query after edge `46648`: ordered result IDs `6044,6050,20928,6045,6048`; `pipelineMetadata.stage2.causalBoostApplied: "off"`; `pipelineMetadata.stage2.graphContribution.coActivationBoosted: 1`; result `6045` gained `graphEvidence: { "edges": [{ "sourceId": 6045, "targetId": 6048, "relation": "supports", "strength": 0.7 }], "communities": [], "boostFactors": [{ "type": "co-activation", "delta": 0.04733425299780436 }] }`; scores changed to `20928: 0.6954490220751478`, `6045: 0.6527400000000001`, `6048: 0.6063499200000001`. N2 differed from N1 even though `enableCausalBoost=false`.
+- Teardown used the available `memory_causal_unlink({ edgeId })` API because the playbook's documented `memory_causal_unlink({ sourceId, targetId, relation })` shape is not the current tool schema. Teardown responses:
+  ```json
+  { "summary": "Deleted causal edge 46647", "data": { "deleted": true } }
+  { "summary": "Deleted causal edge 46648", "data": { "deleted": true } }
+  ```
 
 ### Pass / Fail
 
-- **Pass**: Block A — formatter/profile layer contain expected badge wiring, protected-file diffs show no forbidden changes, targeted Vitest exits 0. Block B — H2 !== H1 after causal mutation (cache invalidated), AND non-causal-boost fingerprints stable across the same mutation (targeted not wholesale).
-- **Fail**: Block A — any badge field missing, protected files changed in forbidden ways, or Vitest fails. Block B — H2 === H1 (R-007-12 regression: stale cache after causal mutation), OR non-causal-boost fingerprint changed across mutation (over-aggressive invalidation, contradicting the gated-by-`enableCausalBoost` design).
+- **FAIL**: Block A passed, and Block B's causal-boost query changed after mutation (`H2 !== H1` by trust-badge/graph payload), but the negative control failed because an identical `enableCausalBoost=false` query changed after a causal mutation (`coActivationBoosted: 0` to `1`, graph evidence added for edge `6045 -> 6048`, and scores changed), contradicting the expected targeted invalidation behavior.
 
 ### Failure Triage
 

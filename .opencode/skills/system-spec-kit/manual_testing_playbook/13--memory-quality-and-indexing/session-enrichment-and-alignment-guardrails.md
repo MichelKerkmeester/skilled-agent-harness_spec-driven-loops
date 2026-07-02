@@ -39,10 +39,129 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 the save resolves through `handover.md` first, then `_memory.continuity`, then spec docs; spec-folder and git enrichment remain supporting-only; and it does not raise `ALIGNMENT_BLOCK` when captured files match the spec's files-to-change table.
 ### Evidence
 
-save stdout showing the continuity ladder, absence of false alignment aborts for matching code files, and saved memory content/search hits reflecting handover/continuity/spec-derived context.
+Command run exactly as documented, preserving the unresolved target placeholder via the daemon-backed CLI front door after native MCP wrapper validation rejected empty optional fields:
+
+`node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"handover continuity alignment","specFolder":"specs/<target-spec>"}' --format json --timeout-ms 3000`
+
+Actual stdout/stderr excerpt:
+
+```text
+(node:2723) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "constitutionalCount": 0,
+    "requestQuality": {
+      "label": "weak"
+    },
+    "recovery": {
+      "status": "low_confidence",
+      "reason": "knowledge_gap",
+      "suggestedQueries": [
+        "handover continuity alignment"
+      ],
+      "recommendedAction": "ask_user"
+    },
+    "citationPolicy": "cite_with_caveat",
+    "envelopeRender": "requestQuality weak\ncitationPolicy cite_with_caveat",
+    "responsePolicy": {
+      "requiredAction": "broaden_or_ask",
+      "noCanonicalPathClaims": true,
+      "citationRequiredForPaths": true,
+      "safeResponse": "Retrieval quality is weak. Broaden the query or ask the user for disambiguation before citing any path."
+    },
+    "pipelineMetadata": {
+      "stage1": {
+        "searchType": "hybrid",
+        "channelCount": 1,
+        "activeChannels": 2,
+        "candidateCount": 6,
+        "constitutionalInjected": 0,
+        "durationMs": 397
+      },
+      "stage2": {
+        "sessionBoostApplied": "off",
+        "causalBoostApplied": "applied",
+        "intentWeightsApplied": "off",
+        "artifactRoutingApplied": "applied",
+        "qualityFiltered": 0,
+        "durationMs": 580,
+        "coActivationApplied": true,
+        "communityBoostApplied": true,
+        "graphSignalsApplied": true
+      },
+      "timing": {
+        "stage1": 397,
+        "stage2": 580,
+        "stage3": 0,
+        "stage4": 0,
+        "total": 977
+      }
+    },
+    "sourceContract": {
+      "version": "gate-d-reader-ready-v1",
+      "archivedTierEnabled": false,
+      "legacyFallbackEnabled": false,
+      "includeArchivedCompatibility": "not_requested",
+      "preferredDocumentTypes": [
+        "spec_doc",
+        "continuity"
+      ],
+      "retainedResults": 5,
+      "droppedNonCanonicalResults": 0,
+      "countsBySourceKind": {
+        "spec_doc": 5,
+        "continuity": 0,
+        "constitutional": 0
+      }
+    },
+    "progressiveDisclosure": {
+      "summaryLayer": {
+        "count": 5,
+        "digest": "5 weak"
+      }
+    },
+    "results": [
+      {
+        "id": 4498,
+        "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep/tasks.md",
+        "title": "Tasks: All Skills Alignment Sweep",
+        "score": 0.58484168,
+        "importanceTier": "critical",
+        "sourceKind": "system"
+      },
+      {
+        "id": 4481,
+        "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming/tasks.md",
+        "title": "4481 -> 3540",
+        "score": 0.5729837435452942,
+        "importanceTier": "important",
+        "sourceKind": "system"
+      },
+      {
+        "id": 4577,
+        "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/handover.md",
+        "title": "Handover: 016/002/007 — pre-compaction state snapshot 2026-05-18 21:50 PM",
+        "score": 0.45359999999999995,
+        "importanceTier": "important",
+        "sourceKind": "system"
+      }
+    ],
+    "evidenceDigest": "5 results retrieved; avg score 0.46."
+  }
+}
+```
+
+The observed output did not include save stdout, did not show a continuity ladder resolving through `handover.md` then `_memory.continuity` then spec docs, did not demonstrate absence of `ALIGNMENT_BLOCK` for matching code files, and returned `requestQuality.label: "weak"` with `responsePolicy.requiredAction: "broaden_or_ask"`. The scenario command contains `specs/<target-spec>` but no concrete target spec or setup data is provided in this file.
 ### Pass/Fail
 
-captured-session save succeeds for matching files, emits provenance-backed context, and still blocks unrelated captures when overlap is genuinely low.
+BLOCKED - the command's unresolved `specs/<target-spec>` placeholder prevents validating the expected continuity ladder and alignment-guard behavior against a real target spec.
 ### Failure Triage
 
 inspect `input-normalizer.ts` relevance filtering, compare captured file paths to the spec's files-to-change table, verify handover/continuity precedence, then rerun.

@@ -43,10 +43,58 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 Agent output contains structured memory section; saved context is discoverable via search.
 ### Evidence
 
-agent stdout with memory section + generate-context output + search result showing saved memory.
+BLOCKED before dispatch by the required `cli-opencode` self-invocation guard. The scenario requires dispatching through `cli-opencode` (or a `cli-*` skill), but the loaded `cli-opencode` contract refuses self-dispatch from an active OpenCode runtime unless this is an explicitly requested parallel detached session. This scenario prompt did not request a parallel detached session.
+
+Command: `command -v opencode && opencode --version`
+
+```text
+/opt/homebrew/bin/opencode
+1.17.11
+```
+
+Command: `env | grep '^OPENCODE_' || true`
+
+```text
+OPENCODE_PID=61522
+```
+
+Command: `ps -o command= -p "$PPID"`
+
+```text
+opencode run --model openai/gpt-5.5-fast --variant medium --format json --dangerously-skip-permissions --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public Spec folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep (pre-approved, skip Gate 3)\012\012You are executing exactly ONE manual testing playbook scenario. This is real production verification work, not a simulation.\012\012## BANNED OPERATIONS\012- Do NOT run git commit, git push, git reset --hard, or any destructive git command.\012- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.\012- Do NOT touch any other manual testing playbook scenario file.\012\012## ALLOWED WRITE PATHS\012- .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md (this file only)\012\012## TASK\012\0121. Read .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md in full.\0122. Follow its own Preconditions and Commands sections EXACTLY as written, using real tool calls (MCP tools, CLI commands, file reads) as the scenario specifies. Do not skip steps. Do not simulate -- actually run the commands and observe real output.\0123. Compare what you actually observed against the scenario's own Expected section.\0124. Edit ONLY .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md: fill in its Evidence section with the real, specific output you observed (not a paraphrase -- actual command output, actual values), and set its Pass/Fail section to PASS, FAIL, or BLOCKED based on whether the Expected outcome held. If a precondition is missing or broken in the current repo state, mark BLOCKED and say exactly what's missing, do not silently mark PASS or skip.\0125. Preserve the file's existing frontmatter and section structure -- only fill in the Evidence and Pass/Fail content, do not restructure the file.\012\012## OUTPUT CONTRACT\012\012End your response with EXACTLY one line in this format (used for automated parsing, must be the literal last line):\012VERDICT: PASS|FAIL|BLOCKED — <one sentence reason>\012
+```
+
+Command: `opencode providers list 2>&1`
+
+```text
+[0m
+┌  Credentials [90m~/.local/share/opencode/auth.json
+│
+●  DeepSeek [90mapi
+│
+●  OpenAI [90moauth
+│
+●  Xiaomi [90mapi
+│
+●  Kimi For Coding [90mapi
+│
+●  MiniMax (minimax.io) [90mapi
+│
+●  Z.AI Coding Plan [90mapi
+│
+└  6 credentials
+```
+
+Command: `ls "$HOME/.opencode/state"/*/lock 2>/dev/null || true`
+
+```text
+zsh:1: no matches found: /Users/michelkerkmeester/.opencode/state/*/lock
+```
+
+No agent stdout with a memory section was produced, so no `/tmp/save-context-data-<session-id>.json`, `generate-context.js` run, `memory_index_scan`, or `memory_search` could validly follow without skipping the blocked dispatch step.
 ### Pass/Fail
 
-Saved memory from outsourced agent session is searchable and contains session summary, files modified, decisions.
+BLOCKED — `cli-opencode` self-invocation guard detected the current process is already inside OpenCode (`OPENCODE_PID=61522`, parent process `opencode run`), and the scenario did not authorize an explicit parallel detached session.
 ### Failure Triage
 
 Check memory epilogue in prompt template → Verify generate-context.js JSON mode input → Inspect agent stdout for structured section → Verify index scan ran post-save.

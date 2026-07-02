@@ -47,12 +47,51 @@ Validate the mk-spec-memory launcher owner-disposal relaunch gate and confirm cr
 
 ### Evidence
 
-Shell transcript for all commands: the two `node --check` exit statuses, the vitest pass summary for `tests/launcher-watchdog.vitest.ts`, and the grep output showing the predicate wiring plus the recovery-path lines.
+Shell transcript for all commands:
+
+```text
+$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+(no output; command exited 0)
+
+$ node --check .opencode/bin/lib/model-server-supervision.cjs
+(no output; command exited 0)
+
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-watchdog.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  15:03:53
+   Duration  96ms (transform 18ms, setup 14ms, import 15ms, tests 6ms, environment 0ms)
+
+$ rg -n "shouldAbortRelaunchOnFire" .opencode/bin/mk-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs
+.opencode/bin/lib/model-server-supervision.cjs:319:function shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid } = {}) {
+.opencode/bin/lib/model-server-supervision.cjs:1464:  shouldAbortRelaunchOnFire,
+.opencode/bin/mk-spec-memory-launcher.cjs:39:  shouldAbortRelaunchOnFire,
+.opencode/bin/mk-spec-memory-launcher.cjs:1432:            if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) {
+.opencode/bin/mk-spec-memory-launcher.cjs:1499:      if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) return;
+.opencode/bin/mk-spec-memory-launcher.cjs:1867:  shouldAbortRelaunchOnFire,
+
+$ rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/mk-spec-memory-launcher.cjs
+878:    launchServer();
+994:  onRssBreach: (cfg) => recycleDaemonInPlace(cfg.graceMs),
+1187:async function recycleDaemonInPlace(graceMs, deps = {}) {
+1233:  // exit handler's scheduleRelaunch backoff. Clearing the lease here would open a window — until
+1253:    onBreach: options.onBreach || ((breachConfig) => recycleDaemonInPlace(breachConfig.graceMs)),
+1265:    onRssBreach: (cfg) => recycleDaemonInPlace(cfg.graceMs),
+1370:function launchServer() {
+1424:        scheduleRelaunch: (backoffMs) => {
+1438:            launchServer();
+1500:      launchServer();
+1765:    const launched = launchServer();
+1864:  recycleDaemonInPlace,
+```
 
 ### Pass / Fail
 
-- **Pass**: both syntax checks pass, the watchdog suite passes, the predicate is defined/exported/called, and the live-owner recovery paths still reach `launchServer`.
-- **Fail**: any syntax check fails, any `shouldAbortRelaunchOnFire` case fails, the predicate is missing from grep output, the timer callback does not call it, or the crash/recycle relaunch paths no longer reach `launchServer`.
+- **PASS**: both syntax checks passed, the watchdog suite passed, the predicate is defined/exported/called, and the live-owner recovery paths still reach `launchServer`.
 
 ### Failure Triage
 

@@ -158,3 +158,45 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 - Playbook ID: 01
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `14--stress-testing/run-stress-cycle.md`
+
+## 7. EVIDENCE
+
+Read output for this scenario showed the required preconditions but no concrete target cycle inputs:
+
+```text
+14: Preconditions:
+15: 
+16: - Target system has a stable baseline or explicitly declared first-run baseline.
+17: - Prior cycle's `findings-rubric.json` is accessible when the run claims a comparison.
+18: - Scope, target packets, corpus, dimensions, and scoring owner are declared before scoring starts.
+19: - Runtime and measurement paths are stable enough that another operator can rerun or inspect the evidence.
+```
+
+The scenario's command section requires an unresolved placeholder path:
+
+```text
+118: ### Step 9: Run Strict Validator
+119: 
+120: Run:
+121: 
+122: ```bash
+123: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict
+124: ```
+125: 
+126: Use the packet that owns the cycle artifacts as `<path>`. If the validator reports warnings, document whether they are pre-existing or caused by the cycle docs and fix in scope before claiming completion.
+```
+
+The scenario also requires writes outside the only allowed write path for this manual execution request:
+
+```text
+54: ### Step 3: Author `findings.md`
+78: ### Step 5: Emit `findings-rubric.json`
+107: ### Step 8: Capture Telemetry Samples
+128: ### Step 10: Update Parent Packet's PHASE MAP
+```
+
+No strict validator command was run because `<path>` is unspecified and the owning cycle artifact packet is not declared in this scenario file or the user request.
+
+## 8. PASS/FAIL
+
+BLOCKED - Required stress-cycle preconditions are missing: no target system baseline or first-run declaration, no declared target packets/corpus/dimensions/scoring owner, no prior sidecar path for any comparison claim, no runtime/measurement paths, and no concrete validator `<path>`.

@@ -46,12 +46,55 @@ Anchor chunks retained; filler chunks thinned; retained set is non-empty; anchor
 
 ### Evidence
 
-Thinning output showing retained vs removed chunks + anchor identification
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```bash
+npx vitest run tests/chunk-thinning.vitest.ts --reporter verbose
+```
+
+Actual output observed:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+stderr | mcp_server/tests/chunk-thinning.vitest.ts > R7 integration wiring > uses thinChunks retained set in indexChunkedMemoryFile active path
+[memory-save] Chunking /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/s6-r7-integration-w80M0o/chunked-memory.md: structure strategy, 5 chunks
+[memory-save] Chunk thinning retained 3/5 chunks
+INFO  [VectorIndex] Deferred indexing: Memory 1 saved without embedding (BM25/FTS5 searchable)
+
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > scoreChunk — anchor presence > should give anchorScore 1.0 for chunks with anchors 1ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > scoreChunk — anchor presence > should give anchorScore 0.0 for chunks without anchors 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > scoreChunk — anchor presence > should give anchorScore 1.0 for chunks with multiple anchors 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > scoreChunk — anchor presence > should produce higher composite score for anchored chunks than non-anchored 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > thinChunks — basic filtering > should retain high-quality chunks and drop low-quality ones 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > thinChunks — safety > should never return empty retained array when given chunks 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > thinChunks — safety > should keep the highest-scoring chunk when all are below threshold 0ms
+ ✓ mcp_server/tests/chunk-thinning.vitest.ts > R7 integration wiring > uses thinChunks retained set in indexChunkedMemoryFile active path 960ms
+
+ Test Files  1 passed (1)
+      Tests  25 passed (25)
+   Start at  12:16:16
+   Duration  1.08s (transform 635ms, setup 13ms, import 29ms, tests 965ms, environment 0ms)
+```
+
+Initial targeted run also passed:
+
+```text
+ Test Files  1 passed (1)
+      Tests  25 passed (25)
+   Start at  12:14:21
+   Duration  1.29s (transform 786ms, setup 17ms, import 31ms, tests 1.16s, environment 0ms)
+```
+
+Attempted additional inline retained/dropped detail using `npx tsx --eval ...`, but the repo did not expose `tsx` on PATH:
+
+```text
+sh: tsx: command not found
+```
 
 ### Pass / Fail
 
-- **Pass**: All anchor chunks retained; filler removed; retained set non-empty
-- **Fail**: Anchor chunks removed or empty retained set
+- **PASS**: Targeted documented validation passed: anchor scoring tests passed, high-quality chunks were retained while low-quality chunks were dropped, the retained set was non-empty, and the integration path reported `Chunk thinning retained 3/5 chunks` with `25 passed (25)`.
 
 ### Failure Triage
 

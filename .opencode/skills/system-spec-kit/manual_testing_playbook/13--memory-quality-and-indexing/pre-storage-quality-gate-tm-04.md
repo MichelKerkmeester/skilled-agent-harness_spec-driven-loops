@@ -46,12 +46,71 @@ Structural, semantic, and duplication checks all run; blocking failures stop the
 
 ### Evidence
 
-Tool output per failure class plus warnings/save outcome
+Commands executed from `.opencode/skills/system-spec-kit/mcp_server`.
+
+Attempted direct pure-function import first to avoid fixture writes; this did not execute the gate because the local TS runtime resolution failed before import completion:
+
+```text
+$ node --import ../scripts/node_modules/tsx/dist/loader.mjs --input-type=module -e 'import { validateStructural, scoreContentQuality, checkSemanticDedup, SIGNAL_DENSITY_THRESHOLD, SEMANTIC_DEDUP_THRESHOLD } from "./lib/validation/save-quality-gate.ts"; const makeContent = (length) => "x".repeat(length); const structural = validateStructural({ title: null, content: makeContent(100), specFolder: "003-memory" }); const contentQuality = scoreContentQuality({ title: "x", content: makeContent(60), triggerPhrases: [], anchors: [] }); const semanticDedup = checkSemanticDedup([1,1,1], "003-memory", () => [{ id: 99, file_path: "/test/dup.md", similarity: 0.95 }]); const observed = { structuralFailure: { stage: "Layer 1: structural", result: structural, saveOutcome: structural.pass ? "allow" : "block" }, semanticQualityFailure: { stage: "Layer 2: content quality", threshold: SIGNAL_DENSITY_THRESHOLD, result: contentQuality, saveOutcome: contentQuality.pass ? "allow" : "advisory-warn-only" }, duplicateContentCase: { stage: "Layer 3: semantic dedup", threshold: SEMANTIC_DEDUP_THRESHOLD, result: semanticDedup, saveOutcome: semanticDedup.pass ? "allow" : "advisory-warn-only" } }; console.log(JSON.stringify(observed, null, 2));'
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+export = Database;
+         ^
+
+ReferenceError: Database is not defined
+```
+
+Second direct import attempt with Node's TS stripping also failed before executing the gate because the source imports `.js` siblings that are not present without a build:
+
+```text
+$ node --experimental-strip-types --input-type=module -e 'import { validateStructural, scoreContentQuality, checkSemanticDedup, SIGNAL_DENSITY_THRESHOLD, SEMANTIC_DEDUP_THRESHOLD } from "./lib/validation/save-quality-gate.ts"; const makeContent = (length) => "x".repeat(length); const structural = validateStructural({ title: null, content: makeContent(100), specFolder: "003-memory" }); const contentQuality = scoreContentQuality({ title: "x", content: makeContent(60), triggerPhrases: [], anchors: [] }); const semanticDedup = checkSemanticDedup([1,1,1], "003-memory", () => [{ id: 99, file_path: "/test/dup.md", similarity: 0.95 }]); const observed = { structuralFailure: { stage: "Layer 1: structural", result: structural, saveOutcome: structural.pass ? "allow" : "block" }, semanticQualityFailure: { stage: "Layer 2: content quality", threshold: SIGNAL_DENSITY_THRESHOLD, result: contentQuality, saveOutcome: contentQuality.pass ? "allow" : "advisory-warn-only" }, duplicateContentCase: { stage: "Layer 3: semantic dedup", threshold: SEMANTIC_DEDUP_THRESHOLD, result: semanticDedup, saveOutcome: semanticDedup.pass ? "allow" : "advisory-warn-only" } }; console.log(JSON.stringify(observed, null, 2));'
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.js' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+```
+
+Supported project harness execution of the documented TM-04 failure classes:
+
+```text
+$ npx vitest run tests/save-quality-gate.vitest.ts -t "WO4|UG3|UG4|UG5" --reporter verbose
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+ ✓ mcp_server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Warn-Only Mode (MR12) > WO4: Would-reject logged but save allowed in warn-only mode 37ms
+ ✓ mcp_server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Unified Quality Gate > UG3: Gate ON, structural failure rejects 0ms
+ ✓ mcp_server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Unified Quality Gate > UG4: Gate ON, low quality content rejects 0ms
+ ✓ mcp_server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Unified Quality Gate > UG5: Gate ON, semantic duplicate rejects 1ms
+ ✓ mcp_server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Unified Quality Gate > UG5b: legacy mode still blocks semantic and score-heavy failures 0ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed | 78 skipped (83)
+   Start at  13:29:06
+   Duration  613ms (transform 365ms, setup 18ms, import 477ms, tests 39ms, environment 0ms)
+```
+
+Observed stage/save outcomes from the passing focused cases:
+
+```text
+WO4: Would-reject logged but save allowed in warn-only mode
+UG3: Gate ON, structural failure rejects
+UG4: Gate ON, low quality content rejects
+UG5: Gate ON, semantic duplicate rejects
+UG5b: legacy mode still blocks semantic and score-heavy failures
+```
+
+Decision-log claim check:
+
+```text
+$ grep pattern: decision[- ]log|persisted decision|decision log under mcp_server/**/*.ts
+Found 4 matches
+mcp_server/lib/storage/incremental-index.ts: Line 189:  * 6-path decision logic for whether a file needs re-indexing.
+mcp_server/tests/memory-parser-stable-chunks.vitest.ts: Line 9: <!-- ANCHOR:decision-log -->
+mcp_server/tests/memory-parser-stable-chunks.vitest.ts: Line 13: <!-- /ANCHOR:decision-log -->
+mcp_server/tests/memory-parser-stable-chunks.vitest.ts: Line 20:       chunkId: 'anchor:decision-log',
+```
+
+No `persisted decision log` runtime claim was observed in the TM-04 quality-gate output.
 
 ### Pass / Fail
 
-- **Pass**: Each failure class triggers the correct gate stage with accurate blocking vs advisory behavior
-- **Fail**: A stage is skipped, severity is wrong, or the scenario claims a persisted decision log that runtime does not emit
+- **PASS**: Focused TM-04 harness output passed `WO4`, `UG3`, `UG4`, `UG5`, and `UG5b`, showing warn-only would-reject remains advisory, structural failures reject, content-quality and semantic-duplicate cases are surfaced, legacy mode still blocks advisory failures, and no persisted decision-log claim appeared in the observed output.
 
 ### Failure Triage
 

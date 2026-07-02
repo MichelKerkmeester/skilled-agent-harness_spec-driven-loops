@@ -51,14 +51,138 @@ Validate concept routing and confirm the d2-concept-routing trace entry appears 
 
 ### Evidence
 
-- Two `memory_search` trace envelopes (alias-hit, alias-miss)
-- One additional trace envelope from the flag-off run
-- Targeted Vitest summary
+- Native MCP `memory_search` call with empty optional transport fields failed schema validation before execution:
+
+  ```json
+  {
+    "summary": "Error: An unexpected error occurred. Please check logs for details.",
+    "data": {
+      "error": "An unexpected error occurred. Please check logs for details.",
+      "code": "E030",
+      "details": {
+        "tool": "memory_search",
+        "issues": [
+          "cursor: Too small: expected string to have >=1 characters",
+          "concepts: Too small: expected array to have >=2 items"
+        ]
+      }
+    }
+  }
+  ```
+
+- Alias-hit run used the documented CLI surface: `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"memory retrieval pipeline","includeTrace":true,"limit":5,"bypassCache":true,"profile":"debug"}' --format json --timeout-ms 10000`.
+
+  ```json
+  {
+    "summary": "Found 5 memories",
+    "data": {
+      "retrievalTrace": {
+        "traceId": "tr_mr3bt4tk_e3hmoc",
+        "query": "memory retrieval pipeline",
+        "stages": [
+          {
+            "stage": "candidate",
+            "metadata": {
+              "channel": "d2-concept-expansion",
+              "originalQuery": "memory retrieval pipeline",
+              "expandedQuery": "memory retrieval pipeline memories knowledge context search query",
+              "expansionTerms": ["memories", "knowledge", "context", "search", "query"],
+              "matchedConcepts": ["memory", "search", "pipeline"]
+            }
+          },
+          {
+            "stage": "candidate",
+            "metadata": {
+              "channel": "d2-concept-routing",
+              "matchedConcepts": ["memory", "search", "pipeline"],
+              "graphActivated": true
+            }
+          }
+        ],
+        "totalDurationMs": 1146,
+        "finalResultCount": 5
+      }
+    }
+  }
+  ```
+
+- Alias-miss run used: `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"zebra unicorn dragon","includeTrace":true,"limit":5,"bypassCache":true,"profile":"debug"}' --format json --timeout-ms 10000`.
+
+  ```json
+  {
+    "summary": "Found 5 memories (4 constitutional)",
+    "data": {
+      "retrievalTrace": {
+        "traceId": "tr_mr3btk14_hx538r",
+        "query": "zebra unicorn dragon",
+        "stages": [
+          {
+            "stage": "candidate",
+            "metadata": {
+              "channel": "r8-summary-embeddings",
+              "summaryHits": 5,
+              "preFilterCount": 5
+            }
+          },
+          {
+            "stage": "candidate",
+            "metadata": {
+              "searchType": "hybrid",
+              "mode": null,
+              "channelCount": 2,
+              "deepExpansion": false,
+              "r12EmbeddingExpansion": true
+            }
+          }
+        ],
+        "totalDurationMs": 945,
+        "finalResultCount": 5
+      }
+    }
+  }
+  ```
+
+- Client-env-only flag-off attempt used: `SPECKIT_GRAPH_CONCEPT_ROUTING=false node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"memory retrieval pipeline","includeTrace":true,"limit":5,"bypassCache":true,"profile":"debug"}' --format json --timeout-ms 10000`. Because the live daemon was not restarted under that environment, the trace still contained the routing entry:
+
+  ```json
+  {
+    "summary": "Found 5 memories",
+    "data": {
+      "retrievalTrace": {
+        "traceId": "tr_mr3bud9y_o0ecvj",
+        "query": "memory retrieval pipeline",
+        "stages": [
+          {
+            "stage": "candidate",
+            "metadata": {
+              "channel": "d2-concept-routing",
+              "matchedConcepts": ["memory", "search", "pipeline"],
+              "graphActivated": true
+            }
+          }
+        ],
+        "totalDurationMs": 1159,
+        "finalResultCount": 5
+      }
+    }
+  }
+  ```
+
+- Targeted Vitest command: `npm exec -- vitest run tests/concept-routing.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`.
+
+  ```text
+   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+   Test Files  1 passed (1)
+        Tests  33 passed (33)
+     Start at  11:54:15
+     Duration  153ms (transform 51ms, setup 21ms, import 47ms, tests 7ms, environment 0ms)
+  ```
 
 ### Pass / Fail
 
-- **Pass**: alias-hit trace contains matchedConcepts and graphActivated=true, alias-miss trace does not, flag-off suppresses the entry, Vitest exits 0.
-- **Fail**: alias-hit trace missing matchedConcepts, alias-miss trace shows false matches, flag-off still emits the entry, or Vitest fails.
+- **Blocked**: alias-hit trace contains `matchedConcepts` and `graphActivated=true`, alias-miss trace does not show false concept matches, and targeted Vitest exits 0; however, the required MCP restart under `SPECKIT_GRAPH_CONCEPT_ROUTING=false` was not performed within the single-file write constraint, and the client-env-only attempt did not suppress the live daemon trace.
 
 ### Failure Triage
 

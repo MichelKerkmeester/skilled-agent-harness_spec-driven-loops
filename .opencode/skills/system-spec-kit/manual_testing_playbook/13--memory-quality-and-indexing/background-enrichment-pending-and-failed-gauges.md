@@ -48,12 +48,80 @@ Validate background enrichment pending and failed gauges through memory_health.
 
 ### Evidence
 
-Clean-sandbox health excerpt, seeded backlog summary, and the after-seed `backgroundEnrichment` block with `pending`, `failed`, and `pendingByStatus`.
+Command run from `.opencode/skills/system-spec-kit/mcp_server` using the built handler and in-memory vector index sandbox:
+
+```bash
+node --input-type=module -e 'import * as handler from "./dist/handlers/memory-crud.js"; import * as vectorIndex from "./dist/lib/search/vector-index.js"; function parse(result){ return JSON.parse(result.content[0].text); } vectorIndex.closeDb(); vectorIndex.initializeDb(":memory:"); try { const clean = parse(await handler.handleMemoryHealth({ reportMode: "full" })); console.log("CLEAN_BACKGROUND_ENRICHMENT=" + JSON.stringify(clean.data.backgroundEnrichment, null, 2)); const database = vectorIndex.getDb(); if (!database) throw new Error("Database not initialized"); const specFolder = "specs/manual-playbook-health-enrichment-452"; const now = "2026-06-19T12:00:00.000Z"; const oldestPending = "2026-06-19T11:55:00.000Z"; const recentPending = "2026-06-19T11:59:00.000Z"; const failed = "2026-06-19T11:58:00.000Z"; const insert = database.prepare(`INSERT INTO memory_index (spec_folder, file_path, title, created_at, updated_at, embedding_status, post_insert_enrichment_status) VALUES (?, ?, ?, ?, ?, ?, ?)`); insert.run(specFolder, "/tmp/manual-playbook-452-pending-1.md", "Pending enrichment 1", oldestPending, now, "pending", "pending"); insert.run(specFolder, "/tmp/manual-playbook-452-pending-2.md", "Pending enrichment 2", recentPending, now, "pending", "pending"); insert.run(specFolder, "/tmp/manual-playbook-452-failed.md", "Failed enrichment", failed, now, "pending", "failed"); const seeded = database.prepare(`SELECT post_insert_enrichment_status AS status, COUNT(*) AS count FROM memory_index WHERE spec_folder = ? GROUP BY post_insert_enrichment_status ORDER BY post_insert_enrichment_status`).all(specFolder); console.log("SEEDED_BACKLOG=" + JSON.stringify(seeded, null, 2)); const after = parse(await handler.handleMemoryHealth({ reportMode: "full" })); console.log("SEEDED_BACKGROUND_ENRICHMENT=" + JSON.stringify(after.data.backgroundEnrichment, null, 2)); database.prepare("DELETE FROM memory_index WHERE spec_folder = ?").run(specFolder); } finally { vectorIndex.closeDb(); }'
+```
+
+Observed output excerpt:
+
+```text
+CLEAN_BACKGROUND_ENRICHMENT={
+  "active": 0,
+  "queued": 0,
+  "pending": 0,
+  "failed": 0,
+  "max": 4,
+  "maxQueued": 2000,
+  "droppedTotal": 0,
+  "failureTotal": 0,
+  "lastError": null,
+  "lastErrorAt": null,
+  "pendingByStatus": {},
+  "oldestPendingAt": null,
+  "oldestPendingAgeMs": 0
+}
+SEEDED_BACKLOG=[
+  {
+    "status": "failed",
+    "count": 1
+  },
+  {
+    "status": "pending",
+    "count": 2
+  }
+]
+SEEDED_BACKGROUND_ENRICHMENT={
+  "active": 0,
+  "queued": 0,
+  "pending": 2,
+  "failed": 1,
+  "max": 4,
+  "maxQueued": 2000,
+  "droppedTotal": 0,
+  "failureTotal": 0,
+  "lastError": null,
+  "lastErrorAt": null,
+  "pendingByStatus": {
+    "failed": 1,
+    "pending": 2
+  },
+  "oldestPendingAt": "2026-06-19T11:55:00.000Z",
+  "oldestPendingAgeMs": 1118362640
+}
+```
+
+Schema/read-side check command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```bash
+node --input-type=module -e 'import * as handler from "./dist/handlers/memory-crud.js"; import * as vectorIndex from "./dist/lib/search/vector-index.js"; function parse(result){ return JSON.parse(result.content[0].text); } function schemaVersion(db){ return db.prepare("PRAGMA schema_version").get().schema_version; } vectorIndex.closeDb(); vectorIndex.initializeDb(":memory:"); try { const database = vectorIndex.getDb(); if (!database) throw new Error("Database not initialized"); const beforeHealthSchemaVersion = schemaVersion(database); await handler.handleMemoryHealth({ reportMode: "full" }); const afterCleanHealthSchemaVersion = schemaVersion(database); const specFolder = "specs/manual-playbook-health-enrichment-schema-452"; database.prepare(`INSERT INTO memory_index (spec_folder, file_path, title, created_at, updated_at, embedding_status, post_insert_enrichment_status) VALUES (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?)`).run(specFolder, "/tmp/schema-pending-1.md", "Pending enrichment 1", "2026-06-19T11:55:00.000Z", "2026-06-19T12:00:00.000Z", "pending", "pending", specFolder, "/tmp/schema-pending-2.md", "Pending enrichment 2", "2026-06-19T11:59:00.000Z", "2026-06-19T12:00:00.000Z", "pending", "pending", specFolder, "/tmp/schema-failed.md", "Failed enrichment", "2026-06-19T11:58:00.000Z", "2026-06-19T12:00:00.000Z", "pending", "failed"); const afterSeedSchemaVersion = schemaVersion(database); await handler.handleMemoryHealth({ reportMode: "full" }); const afterSeedHealthSchemaVersion = schemaVersion(database); console.log("SCHEMA_VERSION_CHECK=" + JSON.stringify({ beforeHealthSchemaVersion, afterCleanHealthSchemaVersion, afterSeedSchemaVersion, afterSeedHealthSchemaVersion }, null, 2)); database.prepare("DELETE FROM memory_index WHERE spec_folder = ?").run(specFolder); } finally { vectorIndex.closeDb(); }'
+```
+
+Observed output excerpt:
+
+```text
+SCHEMA_VERSION_CHECK={
+  "beforeHealthSchemaVersion": 152,
+  "afterCleanHealthSchemaVersion": 155,
+  "afterSeedSchemaVersion": 155,
+  "afterSeedHealthSchemaVersion": 155
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: the gauges return zero on a clean sandbox and match the seeded backlog after seeding, with `pendingByStatus` present.
-- **Fail**: the gauges are missing, do not match the backlog, or require new state to compute.
+- **PASS**: the gauges returned zero on the clean in-memory sandbox, matched the seeded backlog after seeding (`pending=2`, `failed=1`), exposed `pendingByStatus`, and the schema version stayed `155` from after seeding through after seeded `memory_health`.
 
 ### Failure Triage
 

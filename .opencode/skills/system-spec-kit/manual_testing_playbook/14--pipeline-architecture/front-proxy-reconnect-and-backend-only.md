@@ -53,12 +53,30 @@ The backend recycle is transparent: the reattach loop reconnects, the proxy retu
 
 ### Evidence
 
-Proxy log showing the reattach (`REATTACHING` -> `CONNECTED`) and the `-32001` retryable-recycle contract.
+Source contract review output:
+
+```text
+27: const RETRYABLE_RECYCLE_ERROR = Object.freeze({
+28:   code: -32001,
+29:   message: 'backend recycled; retry',
+30:   data: { retryable: true },
+31: });
+```
+
+Sandbox front-proxy transcript:
+
+```text
+CASE recycle start
+RECYCLE_OUTPUT {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"recycle-gen1","version":"1"},"capabilities":{}}}
+RECYCLE_PROXY_LOG backend socket close; reattaching
+RECYCLE_OUTPUT {"jsonrpc":"2.0","id":2,"error":{"code":-32001,"message":"backend recycled; retry","data":{"retryable":true}}}
+RECYCLE_OUTPUT {"jsonrpc":"2.0","id":3,"result":{"backend":"recycle-gen2","method":"ping","tool":null}}
+RECYCLE_OBSERVED transition=REATTACHING->CONNECTED retryableCode=-32001 retryable=true replayBackend=recycle-gen2 logs=["backend socket close; reattaching"]
+```
 
 ### Pass / Fail
 
-- **Pass**: the recycle reattaches transparently and `-32001` carries `retryable:true`
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the recycle reattached transparently and `-32001` carried `retryable:true`.
 
 ### Failure Triage
 
@@ -84,12 +102,30 @@ With `SPECKIT_BACKEND_ONLY=1`, `backendOnly` is true and the server does NOT con
 
 ### Evidence
 
-Startup transcript / behavior showing the backend-only branch is taken with the flag set.
+Source contract review output:
+
+```text
+2457:   const backendOnly = process.env.SPECKIT_BACKEND_ONLY === '1';
+2458:   if (!backendOnly) {
+2459:     transportConnectedAt = new Date().toISOString();
+2460:     transport = new StdioServerTransport();
+2461:     await server.connect(transport);
+2462:   }
+2470:     stdin: backendOnly ? null : undefined,
+2484:   console.error(backendOnly
+2485:     ? '[context-server] Context MCP server running on IPC socket only'
+2486:     : '[context-server] Context MCP server running on stdio and IPC socket');
+```
+
+Blocked startup step:
+
+```text
+The command "Start the memory server with `SPECKIT_BACKEND_ONLY=1` in a sandbox" was not run because this task's BANNED OPERATIONS say: "Do NOT modify, create, or delete any file OTHER than the single scenario file named below." Starting the full memory server can create runtime database, lock, socket, and/or log artifacts, so the backend-only startup transcript precondition is missing under the current run constraints.
+```
 
 ### Pass / Fail
 
-- **Pass**: `SPECKIT_BACKEND_ONLY=1` skips the server's own stdio transport
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: the full backend-only startup command could not be run without violating the single-file write constraint; source inspection confirms the branch but no startup transcript was produced.
 
 ### Failure Triage
 
@@ -115,12 +151,37 @@ A protocol-version mismatch surfaces `-32002` with `retryable:false` ("client re
 
 ### Evidence
 
-Proxy log showing the `-32002` protocol-mismatch error and the terminal `CLOSED` transition.
+Source contract review output:
+
+```text
+32: const PROTOCOL_MISMATCH_ERROR = Object.freeze({
+33:   code: -32002,
+34:   message: 'backend protocol version changed; client reconnect required',
+35:   data: { retryable: false },
+36: });
+679:     const expectedProtocolVersion = tracker.getNegotiatedProtocolVersion();
+680:     if (handshake.handshakeObserved
+681:         && expectedProtocolVersion !== null
+682:         && (handshake.protocolVersion ?? null) !== expectedProtocolVersion) {
+687:       log(`backend protocol version drift: expected ${expectedProtocolVersion}, got ${handshake.protocolVersion ?? 'none'}; failing closed`);
+689:       state = 'CLOSED';
+690:       failPendingAndEndProtocolMismatch();
+```
+
+Sandbox front-proxy transcript:
+
+```text
+CASE protocol-mismatch start
+MISMATCH_OUTPUT {"jsonrpc":"2.0","id":10,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"mismatch-gen1","version":"1"},"capabilities":{}}}
+MISMATCH_PROXY_LOG backend socket close; reattaching
+MISMATCH_PROXY_LOG backend protocol version drift: expected 2025-06-18, got 2099-01-01; failing closed
+MISMATCH_OUTPUT {"jsonrpc":"2.0","id":11,"error":{"code":-32002,"message":"backend protocol version changed; client reconnect required","data":{"retryable":false}}}
+MISMATCH_OBSERVED terminal=CLOSED code=-32002 retryable=false logs=["backend socket close; reattaching","backend protocol version drift: expected 2025-06-18, got 2099-01-01; failing closed"]
+```
 
 ### Pass / Fail
 
-- **Pass**: a protocol mismatch surfaces `-32002` (`retryable:false`) and the proxy goes terminal `CLOSED`
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: a protocol mismatch surfaced `-32002` (`retryable:false`) and the proxy went terminal `CLOSED`.
 
 ### Failure Triage
 

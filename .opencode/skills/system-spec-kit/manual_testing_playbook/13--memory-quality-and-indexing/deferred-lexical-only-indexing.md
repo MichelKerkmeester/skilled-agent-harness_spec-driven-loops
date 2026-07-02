@@ -49,12 +49,60 @@ Memory saved with embedding_status='pending' on embedding failure; BM25/FTS5 lex
 
 ### Evidence
 
-Save output showing pending status + lexical search result + reindex output + post-reindex semantic search result
+Precondition check for `OPENAI_API_KEY`:
+
+```text
+OPENAI_API_KEY=missing
+```
+
+Active embedder check via `embedder_list`:
+
+```json
+{
+  "summary": "Listed 1 embedders",
+  "data": [
+    {
+      "name": "nomic-embed-text-v1.5",
+      "dim": 768,
+      "backend": "ollama",
+      "active": true,
+      "ready": true,
+      "notes": "Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens. Local-first cascade default per ADR-014."
+    }
+  ]
+}
+```
+
+Expected built CLI artifact check for `.opencode/skills/system-spec-kit/mcp_server/dist/cli.js`:
+
+```text
+No files found
+```
+
+Memory status baseline via `memory_stats`:
+
+```json
+{
+  "summary": "Memory system: 32457 memories across 3810 folders",
+  "data": {
+    "byStatus": {
+      "pending": 8993,
+      "success": 14331,
+      "failed": 1359,
+      "retry": 1041,
+      "partial": 0
+    },
+    "vectorSearchEnabled": true,
+    "lastIndexedAt": "2026-07-02T10:42:12.159Z"
+  }
+}
+```
+
+The required sequence could not be completed: command 4 requires restoring a valid API key, but `OPENAI_API_KEY` is missing; the active embedder is `backend: "ollama"` rather than OpenAI; command 5 requires `node cli.js reindex`, but the expected built CLI artifact `.opencode/skills/system-spec-kit/mcp_server/dist/cli.js` is absent.
 
 ### Pass / Fail
 
-- **Pass**: embedding failure falls back to lexical-only indexing, BM25 search works, and reindex recovers full embedding
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: `OPENAI_API_KEY` is missing, the active embedder is Ollama rather than OpenAI, and `.opencode/skills/system-spec-kit/mcp_server/dist/cli.js` is absent, so the required invalid-key save, valid-key restore, and `node cli.js reindex` recovery sequence cannot be executed as written.
 
 ### Failure Triage
 

@@ -47,12 +47,75 @@ Run the env-gated tri-daemon spawn drill and report lease ownership, respawn-loc
 
 ### Evidence
 
-Both vitest summaries: the gated pass and the ungated skip.
+Gated run command:
+
+```bash
+(cd .opencode/skills/system-skill-advisor/mcp_server && SPECKIT_RUN_TRI_DAEMON_DRILL=1 npx vitest run tests/tri-daemon-drill.vitest.ts)
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+ ❯ tests/tri-daemon-drill.vitest.ts (1 test | 1 failed) 297ms
+     × spawns all three CLI shims with isolated owners and divergent SIGTERM behavior 296ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/tri-daemon-drill.vitest.ts > tri-daemon-drill program gate > spawns all three CLI shims with isolated owners and divergent SIGTERM behavior
+AssertionError: expected [ 1, 1, 1 ] to deeply equal [ +0, +0, +0 ]
+
+- Expected
++ Received
+
+  [
+-   0,
+-   0,
+-   0,
++   1,
++   1,
++   1,
+  ]
+
+ ❯ tests/tri-daemon-drill.vitest.ts:385:44
+    383|       waitForRun(advisorRun, 5000),
+    384|     ]);
+    385|     expect(exits.map((exit) => exit.code)).toEqual([0, 0, 0]);
+       |                                            ^
+    386|     await waitFor(() => existsSync(specOwnerLeasePath(sandbox)), 5000,…
+    387|     await waitFor(() => existsSync(codeOwnerLeasePath(sandbox)), 5000,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  15:40:00
+   Duration  491ms (transform 56ms, setup 40ms, import 33ms, tests 297ms, environment 0ms)
+```
+
+Ungated control command:
+
+```bash
+(cd .opencode/skills/system-skill-advisor/mcp_server && npx vitest run tests/tri-daemon-drill.vitest.ts)
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+
+ Test Files  1 skipped (1)
+      Tests  1 skipped (1)
+   Start at  15:40:14
+   Duration  100ms (transform 25ms, setup 13ms, import 21ms, tests 0ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: gated run green, ungated run skipped.
-- **Fail**: the drill fails any lease/serialization/reap/orphan assertion, or runs without the gate env.
+- **Fail**: gated run failed at `tests/tri-daemon-drill.vitest.ts:385:44` with `AssertionError: expected [ 1, 1, 1 ] to deeply equal [ +0, +0, +0 ]`; ungated run skipped as expected.
 
 ### Failure Triage
 

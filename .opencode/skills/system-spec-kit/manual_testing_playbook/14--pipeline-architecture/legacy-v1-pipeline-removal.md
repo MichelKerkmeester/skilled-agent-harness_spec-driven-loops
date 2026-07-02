@@ -46,12 +46,88 @@ V1 pipeline symbols absent from codebase; all queries route through V2 pipeline;
 
 ### Evidence
 
-Symbol search output (no V1 references) + query execution trace showing V2 pipeline
+Symbol search output:
+
+```text
+Found 2 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:
+  Line 856: // ShouldApplyPostSearchIntentWeighting, postSearchPipeline) removed in
+
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:
+  Line 292:   // isPipelineV2Enabled() was always true and has been deleted, along with its tests.
+```
+
+Validation test command output:
+
+```text
+> @spec-kit/mcp-server@1.8.0 test:core
+> vitest run tests/hybrid-search.vitest.ts tests/search-flags.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:57401) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  121 passed (121)
+   Start at  14:58:03
+   Duration  1.02s (transform 368ms, setup 14ms, import 476ms, tests 419ms, environment 0ms)
+```
+
+Spec Kit memory runtime status:
+
+```text
+plugin_id=mk-spec-memory
+enabled=true
+disabled_reason=none
+cache_ttl_ms=5000
+max_brief_chars=2400
+max_cache_entries=200
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=3000
+cli_timeout_ms=2500
+bridge_path=[spec-memory-bridge]
+last_bridge_status=skipped
+last_error_code=TIMEOUT
+last_duration_ms=2537
+bridge_invocations=10
+continuity_lookups=9
+cache_entries=0
+cache_hits=0
+cache_misses=9
+cache_hit_rate=0
+warm_status=skipped
+warm_error=TIMEOUT
+warm_route=cli
+warm_retryable=true
+warm_exit_code=none
+```
+
+V2 pipeline source evidence:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
+16: // 4-stage pipeline architecture
+17: import { executePipeline } from '../lib/search/pipeline/index.js';
+1226:     // V2 pipeline is the only path (legacy V1 removed from the runtime pipeline)
+1266:     const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts
+4: // 4-stage pipeline execution with per-stage error handling and timeouts.
+30: import { executeStage1 } from './stage1-candidate-gen.js';
+31: import { executeStage2 } from './stage2-fusion.js';
+32: import { executeStage3 } from './stage3-rerank.js';
+33: import { executeStage4 } from './stage4-filter.js';
+```
 
 ### Pass / Fail
 
-- **Pass**: zero V1 pipeline references exist and all queries execute via V2 pipeline exclusively
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+FAIL
+
+The scenario expected zero V1 pipeline references, but the symbol search found `postSearchPipeline` in `mcp_server/handlers/memory-search.ts` and `isPipelineV2Enabled()` in `mcp_server/tests/pipeline-v2.vitest.ts`; targeted validation tests passed, and source evidence shows `memory-search.ts` calls `executePipeline()`, but the zero-reference pass condition is not met.
 
 ### Failure Triage
 
