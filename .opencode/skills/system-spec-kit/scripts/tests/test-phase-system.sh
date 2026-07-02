@@ -63,6 +63,30 @@ make_temp_repo() {
   echo "$temp_repo"
 }
 
+# Installs a stub in place of the real (workspace-linked, not copyable into a
+# throwaway sandbox) description generator. The stub only records each
+# invocation's target path and --level to DESC_STUB_LOG so tests can assert on
+# WHICH paths create.sh attempted to write to, independent of the real
+# generator's own output correctness.
+install_desc_generator_stub() {
+  local temp_repo="$1"
+  local stub_dir="$temp_repo/.opencode/skills/system-spec-kit/scripts/dist/spec-folder"
+  mkdir -p "$stub_dir"
+  cat > "$stub_dir/generate-description.js" <<'STUB_EOF'
+const fs = require('fs');
+const logPath = process.env.DESC_STUB_LOG;
+const targetPath = process.argv[2];
+const level = (() => {
+  const idx = process.argv.indexOf('--level');
+  return idx >= 0 ? process.argv[idx + 1] : '';
+})();
+if (logPath) {
+  fs.appendFileSync(logPath, `${targetPath}\t${level}\n`);
+}
+process.exit(0);
+STUB_EOF
+}
+
 json_field() {
   local field_name="$1"
   python3 -c "import json, sys; print(json.load(sys.stdin)[\"${field_name}\"])"
@@ -137,6 +161,53 @@ if grep -q "001-foundation" "$repo2/$parent_rel/002-implementation/spec.md" \
   pass "Appended phase child headers link predecessor and successor correctly"
 else
   fail "Appended phase child headers do not contain expected predecessor/successor links"
+fi
+
+# ───────────────────────────────────────────────────────────────
+# Test 3: Append mode never regenerates the existing parent's description.json
+# ───────────────────────────────────────────────────────────────
+# The real description generator is workspace-linked (@spec-kit/mcp-server/api)
+# and cannot be copied into this throwaway sandbox, so a recording stub stands
+# in for it; the assertion is on WHICH paths create.sh attempted to write to.
+echo ""
+echo "-- Parent description.json regeneration guard --"
+
+repo3=$(make_temp_repo)
+install_desc_generator_stub "$repo3"
+create3="$repo3/.opencode/skills/system-spec-kit/scripts/spec/create.sh"
+desc_log="$repo3/desc-invocations.log"
+
+base_json=$(cd "$repo3" && DESC_STUB_LOG="$desc_log" bash "$create3" --json --phase --skip-branch --number 3 --phases 1 --phase-names "foundation" "Stability base parent")
+base_branch=$(echo "$base_json" | json_field "BRANCH_NAME")
+parent_rel="specs/$base_branch"
+# Canonicalize: create.sh resolves FEATURE_DIR to a normalized absolute path
+# internally, which can differ textually from naive concatenation when TMPDIR
+# itself carries a trailing slash (common on macOS). Use logical (non-symlink-
+# resolving) pwd to match create.sh's own resolution, since -P would resolve
+# macOS's /var -> /private/var symlink and create a new mismatch.
+parent_abs="$(cd "$repo3/$parent_rel" && pwd)"
+
+if [[ -f "$desc_log" ]] && grep -qF "$(printf '%s\t%s' "$parent_abs" "phase")" "$desc_log"; then
+  pass "New-parent creation still invokes the description generator for the parent"
+else
+  fail "Expected a phase-level description-generator invocation for $parent_abs on new-parent creation"
+fi
+
+: > "$desc_log"
+
+cd "$repo3" && DESC_STUB_LOG="$desc_log" bash "$create3" --json --phase --parent "$parent_rel" \
+  --phases 1 --phase-names "extra" "Append should not touch parent description" >/dev/null
+
+if grep -qF "$(printf '%s\t%s' "$parent_abs" "phase")" "$desc_log"; then
+  fail "Append mode invoked the description generator against the existing parent's own path"
+else
+  pass "Append mode never invokes the description generator against the existing parent's path"
+fi
+
+if grep -q "	1$" "$desc_log"; then
+  pass "Append mode still generates description.json for the newly created child phase"
+else
+  fail "Expected a level-1 description-generator invocation for the new child phase"
 fi
 
 echo ""

@@ -1310,8 +1310,12 @@ EOF
     # ── Generate description.json for parent ──
     # NOTE: Description generation is manually tested. Automated coverage tracked as known gap (F10).
     # Key invariants: parent and child both use $(dirname FEATURE_DIR) as base. Failure is non-fatal.
+    # Append mode (APPEND_TO_EXISTING_PARENT=true) MUST NOT reach this call: FEATURE_DIR
+    # is bound to the EXISTING parent's own folder, so regenerating here would overwrite
+    # that parent's real specFolder/description/keywords/parentChain with this append
+    # request's own child-phase text. Only genuine new-parent creation writes here.
     _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
-    if [[ -f "$_DESC_SCRIPT" ]]; then
+    if [[ "$APPEND_TO_EXISTING_PARENT" != true && -f "$_DESC_SCRIPT" ]]; then
       if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
         --description "$FEATURE_DESCRIPTION" --level "phase"; then
         CREATED_FILES+=("description.json")
