@@ -127,6 +127,45 @@ function matchMarkers(markers, text) {
 // ║ SCORING -- pure functions, exported for direct unit testing.              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
+// Delegation evidence has three shapes across the deep-loop modes (see D-010):
+//   task_dispatch    -- a LEAF sub-agent dispatch (research/review/context).
+//   seat_artifacts   -- ai-council seat outputs; the common council case is
+//                       IN-CLI (seats are the runtime's own models, zero task
+//                       dispatch), so its evidence is persisted seat files, not
+//                       dispatch events.
+//   candidate_evidence -- improvement's packet-local candidate + evaluator score.
+// A council/improvement run that produces its work product WITHOUT the mode's
+// evidence is the real "absorption" for that mode; a legit in-CLI council that
+// DID persist seats has evidence and must not be flagged.
+const SEAT_ARTIFACT_RE = /(^|\/)ai-council\/seats\//;
+const CANDIDATE_ARTIFACT_RE = /(^|\/)(candidates|proposals)\/|(^|\/)[^/]*(candidate|score-candidate|evaluation)[^/]*\.(md|json|jsonl)$/i;
+
+function countModeArtifacts(newFixtureFiles) {
+  let seatArtifacts = 0;
+  let candidateArtifacts = 0;
+  for (const rel of newFixtureFiles || []) {
+    if (SEAT_ARTIFACT_RE.test(rel) && /\.md$/i.test(rel)) seatArtifacts += 1;
+    if (CANDIDATE_ARTIFACT_RE.test(rel)) candidateArtifacts += 1;
+  }
+  return { seatArtifacts, candidateArtifacts };
+}
+
+function evidenceKind(deleg) {
+  return (deleg && deleg.evidence_kind) || 'task_dispatch';
+}
+
+// True when the run shows the delegation evidence its mode requires.
+function hasDelegationEvidence(deleg, obs) {
+  const kind = evidenceKind(deleg);
+  if (kind === 'seat_artifacts') {
+    return (obs.seatArtifacts || 0) >= (deleg.min_seats || 1);
+  }
+  if (kind === 'candidate_evidence') {
+    return (obs.candidateArtifacts || 0) > 0;
+  }
+  return (obs.taskEvents || []).length > 0;
+}
+
 function scoreD1(contract, obs) {
   const ei = contract.expected_interaction;
   const deleg = contract.expected_delegation || {};
@@ -164,6 +203,27 @@ function scoreD2(contract, obs) {
 
 function scoreD3(contract, obs) {
   const deleg = contract.expected_delegation || {};
+  const kind = evidenceKind(deleg);
+
+  // Council seat evidence: full credit when >= min_seats seats persisted, partial
+  // for at least one seat, zero when the council produced no seat diversity.
+  if (kind === 'seat_artifacts') {
+    const seats = obs.seatArtifacts || 0;
+    const need = deleg.min_seats || 1;
+    if (seats >= need) return 2;
+    if (seats > 0) return 1;
+    return 0;
+  }
+  // Improvement candidate/evaluator evidence: full credit when both a candidate
+  // and an evaluator score are present (>=2 artifacts), partial for one.
+  if (kind === 'candidate_evidence') {
+    const arts = obs.candidateArtifacts || 0;
+    if (arts >= 2) return 2;
+    if (arts > 0) return 1;
+    return 0;
+  }
+
+  // task_dispatch (default) -- unchanged.
   const routeRequired = !!deleg.route_proof_required;
   const minTask = deleg.min_task_events || 0;
   // No delegation expectations at all -> dimension is not applicable.
@@ -248,12 +308,23 @@ function classify(contract, obs) {
   if (obs.killedBy === 'watchdog') return 'stuck_no_progress';
   if (obs.killedBy === 'hard_timeout') return 'timeout_latency';
   // Absorption is checked BEFORE refusal: a run that produced the expected
-  // artifacts without any dispatch did the work inline, and refusal-shaped
-  // words inside its own report text must not relabel it.
-  if (deleg.role_absorption_forbidden && (deleg.min_task_events || 0) > 0 && taskEvents.length === 0 && obs.fixtureGained) {
+  // artifacts without the mode's delegation evidence did the work inline, and
+  // refusal-shaped words inside its own report text must not relabel it. The
+  // evidence check is mode-aware (D-010): task_dispatch wants task events,
+  // seat_artifacts wants persisted seats, candidate_evidence wants a candidate
+  // + score. A legit in-CLI council persists seats, so it has evidence and is
+  // NOT flagged; a council that produced a plan with no seat diversity is.
+  // task_dispatch keeps its original min_task_events precondition so the
+  // research/review/context legs are behavior-identical.
+  const kind = evidenceKind(deleg);
+  const expectsDelegation = kind === 'task_dispatch'
+    ? (deleg.min_task_events || 0) > 0
+    : true;
+  if (deleg.role_absorption_forbidden && expectsDelegation && obs.fixtureGained
+      && !hasDelegationEvidence(deleg, obs)) {
     return 'role_absorption';
   }
-  if (REFUSAL_RE.test(stdoutText) && taskEvents.length === 0 && ei === 'autonomous' && !obs.fixtureGained) return 'refused';
+  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs) && ei === 'autonomous' && !obs.fixtureGained) return 'refused';
   if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) return 'setup_misbind';
   if (deleg.route_proof_required && (obs.routeProofRecords || []).length > 0) {
     const leaf = deleg.leaf_agent;
@@ -644,6 +715,7 @@ async function runOnce(args) {
   const fixtureGained = newFixtureFiles.length > 0;
 
   const routeProofRecords = collectRouteProof(fixtureDir);
+  const { seatArtifacts, candidateArtifacts } = countModeArtifacts(newFixtureFiles);
 
   const gitAfter = gitStatusPaths(repoRoot);
   const violations = isolationViolations(gitBefore, gitAfter, fixtureDir, outDir, repoRoot);
@@ -659,6 +731,8 @@ async function runOnce(args) {
     stdoutText,
     taskEvents,
     routeProofRecords,
+    seatArtifacts,
+    candidateArtifacts,
     markerHits,
     fixtureGained,
     checkpoints,
@@ -678,7 +752,7 @@ async function runOnce(args) {
     startedAt: startedAt.toISOString(),
     endedAt: endedAt.toISOString(),
     checkpoints,
-    delegation: { taskEvents, routeProofRecords, guardWarnings },
+    delegation: { taskEvents, routeProofRecords, seatArtifacts, candidateArtifacts, guardWarnings },
     isolation: { clean: violations.length === 0, violations },
     terminal: { exitCode, killedBy },
     classification: bucket,
@@ -722,6 +796,9 @@ module.exports = {
   scoreD3,
   scoreD4,
   scoreD5,
+  countModeArtifacts,
+  hasDelegationEvidence,
+  evidenceKind,
   buildSpawnArgs,
   parseScenario,
   matchMarkers,

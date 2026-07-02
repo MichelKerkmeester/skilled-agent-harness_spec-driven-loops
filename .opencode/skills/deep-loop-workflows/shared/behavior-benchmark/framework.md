@@ -64,7 +64,7 @@ the same file are ignored by the runner and treated as prose illustrations.
 | `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
 | `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
 | `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
-| `expected_delegation` | object | `{ "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool }`. |
+| `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "min_seats": int }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured — see DELEGATION EVIDENCE KINDS. `min_seats` applies only to `seat_artifacts`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
 | `artifacts_required` | bool (optional) | Declares whether the run owes new fixture artifacts. Defaults to `min_task_events > 0`; set `false` on inline-reporting hand-off cells. |
 | `watchdog_ms` | int (optional) | Overrides the default 120000 ms no-progress window. Cells that delegate to subagents legitimately go quiet for minutes while the LEAF works; calibrated to 480000 ms for autonomous deep-review cells. |
@@ -218,6 +218,26 @@ marked `3-sample` and the per-sample buckets and scores are all recorded, not
 just a majority. **Never silently rerun a cell to obtain a better result.** A
 rerun exists to resolve doubt, not to improve optics, and every rerun is logged
 with the reason it was triggered.
+
+---
+
+## DELEGATION EVIDENCE KINDS
+
+Not every mode delegates by dispatching a LEAF sub-agent. `expected_delegation.evidence_kind`
+selects how D3 (delegation) is measured and what counts as `role_absorption`:
+
+| Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
+| --- | --- | --- | --- | --- |
+| `task_dispatch` (default) | research, review, context | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
+| `seat_artifacts` | ai-council | Persisted seat files under `ai-council/seats/round-NNN/*.md` | seat artifacts ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced with ZERO seat artifacts |
+| `candidate_evidence` | improvement | Packet-local candidate + evaluator-score artifacts (`candidates/`, `proposals/`, or `*(candidate\|score-candidate\|evaluation)*.{md,json,jsonl}`) | ≥ 2 artifacts (candidate + score) | `role_absorption_forbidden` and a work product was produced with ZERO candidate/score artifacts |
+
+The critical property: the **common ai-council case is IN-CLI** — its seats are the active
+runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
+delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
+the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
+seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
+`task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
 
 ---
 

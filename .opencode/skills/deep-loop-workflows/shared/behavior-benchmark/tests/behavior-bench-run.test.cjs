@@ -105,6 +105,58 @@ async function main() {
   const envSlowObs = { ...envObs, checkpoints: { tTerminalMs: 149000 } };
   assert.notEqual(bench.classify(envAuto, envSlowObs), 'env_error');
 
+  // ── D-010 delegation evidence kinds ──────────────────────────────────────
+  // Artifact counter classifies fixture-relative paths by mode.
+  const counts = bench.countModeArtifacts([
+    'ai-council/seats/round-001/seat-a.md',
+    'ai-council/seats/round-001/seat-b.md',
+    'ai-council/council-report.md',
+    'candidates/candidate-1.md',
+    'evidence/score-candidate-1.json',
+    'src/untouched.js',
+  ]);
+  assert.equal(counts.seatArtifacts, 2, 'two seat .md files counted');
+  assert.ok(counts.candidateArtifacts >= 2, 'candidate + score artifacts counted');
+
+  // seat_artifacts: council with enough persisted seats scores D3=2, is NOT absorption.
+  const councilContract = {
+    expected_interaction: 'autonomous',
+    expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 2, role_absorption_forbidden: true },
+  };
+  const councilOk = {
+    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 5, stdoutText: 'council',
+    taskEvents: [], routeProofRecords: [], seatArtifacts: 3, candidateArtifacts: 0,
+    fixtureGained: true, checkpoints: { tTerminalMs: 500000 },
+  };
+  assert.equal(bench.scoreD3(councilContract, councilOk), 2, 'in-CLI council with seats -> D3 2');
+  assert.notEqual(bench.classify(councilContract, councilOk), 'role_absorption', 'in-CLI council NOT absorption');
+  // A council that produced a plan (fixtureGained) with zero seats IS absorption.
+  const councilAbsorbed = { ...councilOk, seatArtifacts: 0 };
+  assert.equal(bench.classify(councilContract, councilAbsorbed), 'role_absorption', 'council, no seats -> absorption');
+  assert.equal(bench.scoreD3(councilContract, councilAbsorbed), 0, 'no seats -> D3 0');
+
+  // candidate_evidence: improvement with candidate + score scores D3=2, not absorption.
+  const impContract = {
+    expected_interaction: 'autonomous',
+    expected_delegation: { evidence_kind: 'candidate_evidence', role_absorption_forbidden: true },
+  };
+  const impOk = { ...councilOk, seatArtifacts: 0, candidateArtifacts: 2 };
+  assert.equal(bench.scoreD3(impContract, impOk), 2, 'improvement candidate+score -> D3 2');
+  assert.notEqual(bench.classify(impContract, impOk), 'role_absorption', 'improvement with evidence NOT absorption');
+
+  // task_dispatch stays byte-identical: same absorption gate as before D-010.
+  const tdContract = {
+    expected_interaction: 'autonomous',
+    expected_delegation: { min_task_events: 1, role_absorption_forbidden: true },
+  };
+  const tdAbsorbed = {
+    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 3, stdoutText: 'x',
+    taskEvents: [], routeProofRecords: [], fixtureGained: true, checkpoints: { tTerminalMs: 60000 },
+  };
+  assert.equal(bench.classify(tdContract, tdAbsorbed), 'role_absorption', 'task_dispatch absorption unchanged');
+  const tdOk = { ...tdAbsorbed, taskEvents: [{ t: 1, line: 'x' }] };
+  assert.notEqual(bench.classify(tdContract, tdOk), 'role_absorption', 'task_dispatch with dispatch not absorption');
+
   // ── score d5 baseline ratio cutoffs ──────────────────────────────────────
   const baseContract = { expected_interaction: 'autonomous', expected_delegation: { min_task_events: 1 }, expected_presentation_markers: [] };
   const makeObs = (terminalMs) => ({
