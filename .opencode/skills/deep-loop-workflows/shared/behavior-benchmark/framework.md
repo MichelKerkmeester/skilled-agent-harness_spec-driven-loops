@@ -229,7 +229,7 @@ selects how D3 (delegation) is measured and what counts as `role_absorption`:
 | Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
 | --- | --- | --- | --- | --- |
 | `task_dispatch` (default) | research, review, context | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
-| `seat_artifacts` | ai-council | Persisted seat files under `ai-council/seats/round-NNN/*.md` | seat artifacts ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced with ZERO seat artifacts |
+| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
 | `candidate_evidence` | improvement | Packet-local candidate + evaluator-score artifacts (`candidates/`, `proposals/`, or `*(candidate\|score-candidate\|evaluation)*.{md,json,jsonl}`) | ≥ 2 artifacts (candidate + score) | `role_absorption_forbidden` and a work product was produced with ZERO candidate/score artifacts |
 
 The critical property: the **common ai-council case is IN-CLI** — its seats are the active

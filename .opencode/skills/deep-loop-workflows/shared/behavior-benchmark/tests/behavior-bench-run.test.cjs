@@ -106,16 +106,20 @@ async function main() {
   assert.notEqual(bench.classify(envAuto, envSlowObs), 'env_error');
 
   // ── D-010 delegation evidence kinds ──────────────────────────────────────
-  // Artifact counter classifies fixture-relative paths by mode.
-  const counts = bench.countModeArtifacts([
-    'ai-council/seats/round-001/seat-a.md',
-    'ai-council/seats/round-001/seat-b.md',
-    'ai-council/council-report.md',
+  // Seats are distinct canonical ids in the council's artifact CONTENT, not
+  // separate files (the real council writes one deliberation.md per round with
+  // per-seat sections plus a state JSONL naming each seat by canonical id).
+  const seatSet = bench.countSeatIdsInText(
+    'Round 1 deliberation. seat-001 favors token bucket. seat-002 favors sliding window. ' +
+    'seat-003 favors concurrency cap. Composition: seat-001, seat-002, seat-003.'
+  );
+  assert.equal(seatSet.size, 3, 'three distinct council seats counted from content');
+  // Candidate artifacts are still path-counted (fixtureDir null skips seat reads).
+  const counts = bench.countModeArtifacts(null, [
     'candidates/candidate-1.md',
     'evidence/score-candidate-1.json',
     'src/untouched.js',
   ]);
-  assert.equal(counts.seatArtifacts, 2, 'two seat .md files counted');
   assert.ok(counts.candidateArtifacts >= 2, 'candidate + score artifacts counted');
 
   // seat_artifacts: council with enough persisted seats scores D3=2, is NOT absorption.

@@ -137,17 +137,40 @@ function matchMarkers(markers, text) {
 // A council/improvement run that produces its work product WITHOUT the mode's
 // evidence is the real "absorption" for that mode; a legit in-CLI council that
 // DID persist seats has evidence and must not be flagged.
-const SEAT_ARTIFACT_RE = /(^|\/)ai-council\/seats\//;
+// Council persists its deliberation tree under ai-council/ (session state,
+// per-topic council-report.md, per-round deliberation.md). Seats are NOT
+// separate files -- they are sections/identifiers WITHIN those artifacts and
+// the state JSONL (canonical form `seat-001`, `seat-002`, ...). So seat count
+// comes from the CONTENT of the new ai-council artifacts, not the file list.
+const AI_COUNCIL_FILE_RE = /(^|\/)ai-council\/.*\.(md|jsonl|json)$/i;
+const SEAT_ID_RE = /seat-0*(\d+)\b/gi;
 const CANDIDATE_ARTIFACT_RE = /(^|\/)(candidates|proposals)\/|(^|\/)[^/]*(candidate|score-candidate|evaluation)[^/]*\.(md|json|jsonl)$/i;
 
-function countModeArtifacts(newFixtureFiles) {
-  let seatArtifacts = 0;
+// Distinct canonical seat indices (`seat-001`, `seat-002`, ...) named in text.
+function countSeatIdsInText(text) {
+  const seats = new Set();
+  let m;
+  SEAT_ID_RE.lastIndex = 0;
+  while ((m = SEAT_ID_RE.exec(text || '')) !== null) seats.add(parseInt(m[1], 10));
+  return seats;
+}
+
+function countModeArtifacts(fixtureDir, newFixtureFiles) {
+  const seats = new Set();
   let candidateArtifacts = 0;
   for (const rel of newFixtureFiles || []) {
-    if (SEAT_ARTIFACT_RE.test(rel) && /\.md$/i.test(rel)) seatArtifacts += 1;
     if (CANDIDATE_ARTIFACT_RE.test(rel)) candidateArtifacts += 1;
+    if (fixtureDir && AI_COUNCIL_FILE_RE.test(rel)) {
+      let text = '';
+      try {
+        text = fs.readFileSync(path.join(fixtureDir, rel), 'utf8');
+      } catch {
+        text = '';
+      }
+      for (const s of countSeatIdsInText(text)) seats.add(s);
+    }
   }
-  return { seatArtifacts, candidateArtifacts };
+  return { seatArtifacts: seats.size, candidateArtifacts };
 }
 
 function evidenceKind(deleg) {
@@ -715,7 +738,7 @@ async function runOnce(args) {
   const fixtureGained = newFixtureFiles.length > 0;
 
   const routeProofRecords = collectRouteProof(fixtureDir);
-  const { seatArtifacts, candidateArtifacts } = countModeArtifacts(newFixtureFiles);
+  const { seatArtifacts, candidateArtifacts } = countModeArtifacts(fixtureDir, newFixtureFiles);
 
   const gitAfter = gitStatusPaths(repoRoot);
   const violations = isolationViolations(gitBefore, gitAfter, fixtureDir, outDir, repoRoot);
@@ -797,6 +820,7 @@ module.exports = {
   scoreD4,
   scoreD5,
   countModeArtifacts,
+  countSeatIdsInText,
   hasDelegationEvidence,
   evidenceKind,
   buildSpawnArgs,
