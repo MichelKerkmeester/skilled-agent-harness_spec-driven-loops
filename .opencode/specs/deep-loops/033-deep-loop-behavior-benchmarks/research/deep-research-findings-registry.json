@@ -1,0 +1,18 @@
+{
+  "openQuestions": [
+    "What transformation path does slugify apply before character filtering?",
+    "Which character class is retained by the replacement regex?",
+    "What happens to Unicode letters or symbols that are outside ASCII a-z and 0-9?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 3,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

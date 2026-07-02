@@ -12,7 +12,12 @@
   "derived": {
     "trigger_phrases": [
       "sliding window convergence mode",
-      "denominator drag fix"
+      "denominator drag fix",
+      "sliding window convergence checklist",
+      "verification checklist",
+      "sliding window convergence decisions",
+      "convergence mode architecture",
+      "decision record"
     ],
     "key_topics": [
       "sliding",
@@ -22,11 +27,11 @@
       "denominator",
       "drag",
       "fix",
-      "adr-001",
-      "sliding-window",
-      "long",
-      "loops",
-      "opencode"
+      "checklist",
+      "verification",
+      "decisions",
+      "architecture",
+      "decision"
     ],
     "importance_tier": "medium",
     "status": "in_progress",
@@ -35,9 +40,11 @@
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
       ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
       ".opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md",
-      "spec.md",
+      "decision-record.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -59,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -74,6 +81,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -175,19 +194,23 @@
     ],
     "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
     "created_at": "2026-07-01T19:38:04.144Z",
-    "last_save_at": "2026-07-02T13:57:39.866Z",
+    "last_save_at": "2026-07-02T14:57:38.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:65bee5c24cdff6e57c28c7011fb04afe41f4cf773dccaa030530991558411ffd",
+    "source_fingerprint": "sha256:d143e2caeed8a9ea888821ba892f50e1b6bcb35fc25a58272579b03b36693b60",
     "source_doc_hashes": {
-      "spec.md": "86cd2f902c844fb02c80d60be75c2f7d0c36357804e0e75e0aa6a3f4f1f27b57",
-      "plan.md": "ce5d200523b6491aa402901ebb02f25fc92bab0f9c7cb115a94dee5625fa69ad",
-      "tasks.md": "441d628de8180103878ea6e4ebd91586321ab9530c937b381d6bad8fed0a3e90"
+      "spec.md": "7192ab099fddf0c8ef9a7776590b81fdc1da01f7dcfc6ba27b016125e1e3051c",
+      "plan.md": "f18da440f81e484a2d20c9754b1cec58bd0240b8f3b0c5c599ab8cce6f77d812",
+      "tasks.md": "cd0bdf3d00443c322a363949b4719209a33c1de1b569aa11f9f3ae2fb9f84715",
+      "checklist.md": "801a3a4ad389d170d6c57d4782e1dd3116903edfdd7d7f6a3dd8599c08dbef7f",
+      "decision-record.md": "d845d5648bb445e51d29c5e52bc907fe587dabad81459942b7d12e77cb461e6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

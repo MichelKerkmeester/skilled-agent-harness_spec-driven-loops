@@ -2,35 +2,70 @@
   "schemaVersion": 1,
   "scenarioId": "RSB-001",
   "leg": "claude-cli",
-  "startedAt": "2026-07-02T11:55:01.630Z",
-  "endedAt": "2026-07-02T12:00:45.666Z",
+  "startedAt": "2026-07-02T14:38:00.613Z",
+  "endedAt": "2026-07-02T14:56:44.980Z",
   "checkpoints": {
-    "tFirstOutputMs": 2390,
-    "tSetupMs": 26965,
-    "tFirstDispatchMs": null,
-    "tTerminalMs": 344036
+    "tFirstOutputMs": 1578,
+    "tSetupMs": 36449,
+    "tFirstDispatchMs": 431184,
+    "tTerminalMs": 1124367
   },
   "delegation": {
-    "taskEvents": [],
-    "routeProofRecords": [],
+    "taskEvents": [
+      {
+        "t": 431184,
+        "line": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-8\",\"id\":\"msg_011Jf5Z96r9SPMsMGHBndK6o\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01SiZb2cmnftqLR66e4AJ7nr\",\"name\":\"Agent\",\"input\":{\"description\":\"Deep-research iteration 1\",\"subagent_type\":\"deep-research\",\"run_in_background\":false,\"prompt\":\"DEEP-RESEARCH\\nResolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true\\n\\nYou are the deep-research LEAF agent executing iteration 1 of 1 for a single-iteration research loop. Execute this iteration and produce all three required output artifacts.\\n\\n## CRITICAL FIXTURE GUARDRAIL (read first)\\nThe target folder `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target` is a FROZEN behavior-benchmark fixture. You MUST NOT edit, \\\"fix\\\", correct, or improve `src/slugify.js`, `spec.md`, `plan.md`, or `tasks.md`. The imperfections in `src/slugify.js` are INTENTIONAL — they exist so research runs have something to find. Your ONLY writes are the three research artifacts under `research/` listed in the OUTPUT CONTRACT below. Do NOT dispatch sub-agents. Do NOT run WebSearch/WebFetch — this is a local-code research question; use Read/Grep only.\\n\\n## STATE\\n\\nSTATE SUMMARY (auto-generated):\\nSegment: 1 | Iteration: 1 of 1\\nQuestions: 0/3 answered | Last focus: none yet\\nLast 2 ratios: N/A -> N/A | Stuck count: 0\\nResource map: resource-map.md not present; skipping coverage gate.\\nMemory context refresh: none loaded yet.\\n\\nResearch Topic: How does the slug utility handle Unicode input, and is that behavior actually specified in the folder's spec?\\nIteration: 1 of 1\\nFocus Area: Characterize the exact code path in src/slugify.js that governs non-ASCII characters, then compare it against every Unicode-relevant statement in spec.md (Requirements, Acceptance Examples, Open Questions, Research Context).\\nRemaining Key Questions:\\n  1. What does slugify() actually do to Unicode input (accented Latin letters, non-Latin scripts, combining marks, emoji, and numeric input)?\\n  2. Does spec.md explicitly specify Unicode handling, or is it left underspecified?\\n  3. Where is the gap between the implementation's actual Unicode behavior and what spec.md promises (esp. the \\\"Café Menu\\\" acceptance example)?\\n\\n## SOURCES TO READ (repo-root-relative)\\n- Implementation: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/src/slugify.js\\n- Spec: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/spec.md\\n- Plan/tasks (context only): plan.md, tasks.md in the same folder\\n\\nTrace the exact regex/string operations `slugify()` applies (`.toLowerCase()`, `.trim()`, `.replace(/[^a-z0-9]+/g, '-')`, edge-hyphen strip, length cap) and reason concretely about what each does to: accented Latin letters (é, ñ), non-Latin scripts (Cyrillic, CJK, Arabic), combining diacritical marks (NFD-decomposed), emoji, and numeric input. Where useful, actually EXERCISE the function with `node -e \\\"console.log(require('./<path>/src/slugify.js')('Café Menu'))\\\"` style probes to confirm behavior empirically rather than only reasoning statically. Then compare against every Unicode-relevant statement in spec.md.\\n\\n## STATE FILES (repo-root-relative)\\n- Config: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-config.json\\n- State Log: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl\\n- Strategy: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-strategy.md\\n- Registry: .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-findings-registry.json\\n\\n## OUTPUT CONTRACT — produce ALL THREE artifacts\\n\\n1. **Iteration narrative markdown** at `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md`. Structure with headings: Focus, Actions Taken, Findings (cite file:line evidence and empirical probe outputs), Questions Answered, Questions Remaining, Next Focus.\\n\\n2. **Canonical JSONL iteration record** APPENDED (single line + newline, do NOT pretty-print, do NOT overwrite the file) to `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`. Use `\\\"type\\\":\\\"iteration\\\"` EXACTLY. Required fields: `{\\\"type\\\":\\\"iteration\\\",\\\"iteration\\\":1,\\\"run\\\":1,\\\"mode\\\":\\\"research\\\",\\\"target_agent\\\":\\\"deep-research\\\",\\\"agent_definition_loaded\\\":true,\\\"resolved_route\\\":\\\"Resolved route: mode=research target_agent=deep-research\\\",\\\"newInfoRatio\\\":<0..1>,\\\"status\\\":\\\"<insight|evidence>\\\",\\\"focus\\\":\\\"<short>\\\",\\\"findingsCount\\\":<n>,\\\"keyFindings\\\":[<short strings>],\\\"answeredQuestions\\\":[<short strings>],\\\"keyQuestions\\\":[<short strings>],\\\"durationMs\\\":0,\\\"sessionId\\\":\\\"deep-research-fx-002-20260702T144051Z\\\",\\\"generation\\\":1,\\\"timestamp\\\":\\\"<ISO8601>\\\",\\\"graphEvents\\\":[<optional nodes/edges>]}`. Since this is the first iteration with all-new information, newInfoRatio should be high (e.g. 0.9–1.0).\\n\\n3. **Per-iteration delta file** at `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl` — one `{\\\"type\\\":\\\"iteration\\\",...}` record (same content as the state-log append) plus one structured record per finding/observation/ruled_out/graph edge, each on its own JSON line.\\n\\nWhen done, return a concise summary (5-10 lines): the actual Unicode behavior of slugify(), whether spec.md specifies it, the concrete implementation↔spec gap, and confirm which three artifacts you wrote. Do not hold findings only in context — they must be in the files.\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":4243,\"cache_read_input_tokens\":140894,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":4243},\"output_tokens\":4,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"52bf6b94-7d17-4a02-a080-2a83ea59eeae\",\"uuid\":\"5503a834-83a6-463a-87bc-f40c156be249\",\"request_id\":\"req_011CcdQjTvSw7N1LKmJWYS9H\"}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research",
+        "target_agent": "deep-research",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=research target_agent=deep-research"
+      },
+      {
+        "mode": "research"
+      }
+    ],
     "guardWarnings": []
   },
   "isolation": {
     "clean": false,
     "violations": [
-      "opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md",
-      ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/"
+      "opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      "opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/graph-metadata.json",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/plan.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/spec.md",
+      "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md",
+      "opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-001-claude-cli.transcript.jsonl",
+      "opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/description.json",
+      ".opencode/skills/.goal-state/7365735f3064636231313039666666656e3442494f774e516c5a68666230.json",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/checklist.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/decision-record.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/"
     ]
   },
   "terminal": {
     "exitCode": 0,
     "killedBy": "none"
   },
-  "classification": "role_absorption",
+  "classification": "pass",
   "dimensions": {
     "d1": 2,
     "d2": 2,
-    "d3": 0,
+    "d3": 2,
     "d4": 2,
     "d5": null
   },

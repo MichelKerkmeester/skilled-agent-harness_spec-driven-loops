@@ -25,7 +25,7 @@ _memory:
 # Tasks: Sliding-Window Convergence Mode
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 3 -->
 
 <!-- ANCHOR:notation -->
 ## Task Notation

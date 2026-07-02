@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "createdAt": "2026-07-01T12:32:14.692Z",
+  "createdAt": "2026-07-02T03:38:37.501Z",
   "specFolder": null,
   "gitBranch": null,
   "embedderSlug": "hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8",
@@ -28,8 +28,8 @@
     "vec_metadata"
   ],
   "schemaVersion": 41,
-  "memoryCount": 0,
+  "memoryCount": 1,
   "vectorCount": 0,
-  "mainBytes": 577536,
+  "mainBytes": 622592,
   "vecBytes": 53248
 }

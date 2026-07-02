@@ -29,14 +29,20 @@ _memory:
 # Feature Specification: Sliding-Window Convergence Mode
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 3 -->
+
+## EXECUTIVE SUMMARY
+
+Long deep-loop runs judge "am I done?" against their entire accumulated history, so genuinely new late-iteration discoveries get statistically drowned out and loops stop early. This child implements the packet ADR's opt-in fix: a `sliding-window` convergence mode that measures novelty against only the last N iterations, with a validated window size, dual telemetry so operators can compare both signals, and fixtures that prove late novelty stays visible. Existing `default` and `off` modes remain byte-identical.
+
+---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 3 |
 | **Priority** | P1 |
 | **Status** | Not Started |
 | **Created** | 2026-07-01 |
@@ -129,7 +135,57 @@ Implement the ADR's own proposed follow-up build target: add an explicit, OPT-IN
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
 
-- None. Scope bounded by ADR-001's own follow-up build target (`decision-record.md` Implementation section), independently re-verified against current code before this phase was scaffolded.
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+| ID | Category | Requirement | Target |
+|----|----------|-------------|--------|
+| NFR-001 | Compatibility | `default`/`off` modes produce identical results and identical telemetry shape to today | Full existing vitest suite, 0 new failures |
+| NFR-002 | Performance | Windowed calculation adds no meaningful cost per iteration | Same order of work as the existing single-snapshot diff |
+| NFR-003 | Observability | Sliding-window runs expose both the deciding and the comparison ratio every iteration | Both fields present in telemetry assertions |
+
+## 8. EDGE CASES
+
+| # | Edge Case | Expected Behavior |
+|---|-----------|-------------------|
+| 1 | Fewer than N prior snapshots exist (early iterations) | Window clamps to available history; result matches the full-history calculation until N snapshots exist |
+| 2 | `slidingWindowSize` of 0, negative, or non-integer | Clear validation error; the loop does not start with silently coerced config |
+| 3 | Unknown `convergenceMode` string | Clear error, not a silent fall-through to `default` |
+| 4 | Empty graph (no nodes/edges yet) | Same guard behavior as the existing calculation; no division by zero |
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Factor | Assessment | Notes |
+|--------|------------|-------|
+| Blast radius | Contained | New parallel path; existing paths untouched by construction |
+| Novel algorithm | Low | Same ratio computation, different anchor snapshot |
+| Config surface | Small | Two new optional fields with validation |
+| Test surface | Moderate | New fixtures must prove both suppression and visibility sides |
+
+## 10. RISK MATRIX
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| Regression in shared scoring path | Low | High | Parallel-path design (decision-record ADR-001); full-suite gate |
+| Window edge effects on sparse loops | Medium | Medium | Documented default 5; opt-in; dual telemetry for comparison |
+| Early-clamp inconsistency | Low | Medium | Clamp rule fixture-tested (decision-record ADR-002) |
+
+## 11. USER STORIES
+
+- **US-001**: As a deep-loop operator running 30+ iteration research loops, I can set `convergenceMode: "sliding-window"` so the loop keeps going while late findings are still arriving, instead of stopping on denominator drag. Acceptance: the drag fixture shows the windowed signal staying above threshold where full-history dips below.
+- **US-002**: As an operator evaluating the new mode, I can read both the windowed and full-history ratio from each iteration's telemetry and decide which signal to trust. Acceptance: both fields recorded in sliding-window mode.
+- **US-003**: As an operator of existing loops, I change nothing and my loops behave exactly as before. Acceptance: full existing vitest suite passes untouched.
+
+## 12. OPEN QUESTIONS
+
+- None. Scope bounded by the packet ADR's follow-up build target (`decision-record.md` Implementation section), independently re-verified against current code before this phase was scaffolded.
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Parent design ADR**: `../../009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md` (sliding-window mode decision and evidence)
+- **Local decisions**: `decision-record.md` (parallel path, window anchoring, dual telemetry)
+- **Plan**: `plan.md` — **Tasks**: `tasks.md` — **Checklist**: `checklist.md`
+- **Parent phase**: `../spec.md`

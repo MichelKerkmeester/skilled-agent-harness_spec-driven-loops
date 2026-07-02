@@ -20,6 +20,7 @@ import {
 import {
   isGeneratedMetadataDriftGateEnabled,
   isGeneratedMetadataGrandfatherEnabled,
+  isStatusCompletionConsistencyGateEnabled,
 } from '../config/capability-flags.js';
 
 export interface ValidateOpts {
@@ -564,6 +565,7 @@ function validateGeneratedMetadataIntegrity(folder: string): ValidationEntry {
   const report = checkGeneratedMetadataIntegrity(folder);
   const resolved = resolveGeneratedMetadataIntegrity(report, {
     grandfather: isGeneratedMetadataGrandfatherEnabled(),
+    statusCompletionConsistencyEnforced: isStatusCompletionConsistencyGateEnabled(),
   });
   return entry(resolved.rule, resolved.status, resolved.message, resolved.details);
 }

@@ -1,0 +1,69 @@
+{
+  "sessionId": "ses_0de08cfabffev02oj8XrwO6aL5",
+  "goalId": "goal-a7a00d05-9cff-4150-8d6b-18a9842d3c6b",
+  "objective": "Execute one manual testing playbook scenario and update only .opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/embedding-cache-r18.md with observed Evidence and Pass/Fail.",
+  "goalPrompt": "Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Execute one manual testing playbook scenario and update only .opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/embedding-cache-r18.md with observed Evidence and Pass/Fail.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Find the root cause before changing code; verify the fix against the failing symptom.\n- Run the relevant verification commands and report exact pass/fail evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.",
+  "promptEnhancement": {
+    "version": "sk-prompt-goal-v1",
+    "methodology": "DEPTH",
+    "mode": "standard",
+    "framework": "CRAFT+TIDD-EC",
+    "ricce": {
+      "name": "RICCE",
+      "structure": [
+        "Role",
+        "Objective",
+        "Context",
+        "Method",
+        "Success Criteria",
+        "Stop Conditions"
+      ]
+    },
+    "perspectives": [
+      "prompt_engineering",
+      "ai_interpretation",
+      "user_clarity",
+      "framework_fit",
+      "token_efficiency"
+    ],
+    "clearScore": 44,
+    "clearBreakdown": {
+      "correctness": 9,
+      "logic": 9,
+      "expression": 13,
+      "arrangement": 9,
+      "reusability": 4
+    },
+    "maxChars": 4000,
+    "charCount": 1364
+  },
+  "status": "complete",
+  "tokenBudget": null,
+  "tokensUsed": 0,
+  "timeUsedSeconds": 0,
+  "createdAtMs": 1782981315641,
+  "updatedAtMs": 1782981733283,
+  "createdAt": "2026-07-02T08:35:15.641Z",
+  "updatedAt": "2026-07-02T08:42:13.283Z",
+  "continuationSuppressed": true,
+  "autoTurnsUsed": 0,
+  "maxAutoTurns": 8,
+  "startedAtMs": 1782981315641,
+  "lastActivityAtMs": 1782981733283,
+  "lastActivityMessageID": "evt_f21fe2b6a001jIP51qrzi6sjyE",
+  "lastContinuationAtMs": 0,
+  "lastContinuationMessageId": null,
+  "lastContinuationError": null,
+  "continuationSuppressedReason": null,
+  "blockedByPrompt": false,
+  "iterations": 0,
+  "lastCheckAtMs": 0,
+  "lastVerifierVerdict": "not_evaluated",
+  "lastVerifierReason": null,
+  "lastVerifierConfidence": null,
+  "lastEvidence": null,
+  "completionSource": "manual",
+  "verifierRunID": null,
+  "lastAccountedMessageID": null,
+  "usageSource": "unavailable"
+}

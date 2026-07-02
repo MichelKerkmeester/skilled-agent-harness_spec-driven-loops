@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "001-speckit-memory",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "description": "Spec-Kit Memory MCP phase parent: 30 child phases covering corpus reindex, determinism, retrieval routing, retention, ranking, summary fusion, and dark-flag graduation research for packet 028.",
   "keywords": [
     "speckit",
@@ -14,10 +14,13 @@
     "retention",
     "graduation"
   ],
-  "lastUpdated": "2026-06-30T07:44:28.302Z",
-  "specId": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
+  "lastUpdated": "2026-07-02T00:00:00.000Z",
+  "specId": "001",
   "folderSlug": "speckit-memory",
-  "parentChain": [],
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }
