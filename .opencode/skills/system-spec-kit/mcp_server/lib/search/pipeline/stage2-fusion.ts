@@ -320,9 +320,11 @@ function withSyncedScoreAliases(row: PipelineRow, score: number): PipelineRow {
 
 function syncScoreAliasesInPlace(rows: PipelineRow[]): void {
   for (const row of rows) {
-    if (typeof row.score !== 'number' || !Number.isFinite(row.score)) continue;
+    const sourceScore = typeof row.score === 'number' && Number.isFinite(row.score)
+      ? row.score
+      : resolveBaseScore(row);
     // Clamp to [0,1] during in-place sync.
-    const clamped = Math.max(0, Math.min(1, row.score));
+    const clamped = Math.max(0, Math.min(1, sourceScore));
     row.score = clamped;
     row.rrfScore = clamped;
     row.intentAdjustedScore = clamped;

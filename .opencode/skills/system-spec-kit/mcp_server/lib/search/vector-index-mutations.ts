@@ -459,7 +459,7 @@ export function index_memory_deferred(
             embedding_status = 'pending',
             failure_reason = ?,
             updated_at = ?,
-            encoding_intent = COALESCE(?, encoding_intent),
+            encoding_intent = COALESCE(encoding_intent, ?),
             document_type = ?,
             spec_level = ?,
             content_text = ?,

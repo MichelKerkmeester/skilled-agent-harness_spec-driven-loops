@@ -176,6 +176,19 @@ export interface Stage4ReadonlyRow extends Readonly<Pick<PipelineRow,
   // Annotation fields (Stage 4 may add these)
   channelAttribution?: string[];
   evidenceGap?: { gapDetected: boolean; warning?: string };
+  traceMetadata?: Record<string, unknown>;
+}
+
+export interface ConfidenceTruncationMetadata {
+  truncated: boolean;
+  originalCount: number;
+  truncatedCount: number;
+  medianGap: number;
+  cutoffGap: number;
+  cutoffIndex: number;
+  thresholdMultiplier: number;
+  minResultsGuaranteed: number;
+  featureFlagEnabled: boolean;
 }
 
 // -- Pipeline Configuration --
@@ -435,6 +448,7 @@ export interface PipelineResult {
       triggerCandidateCount: number;
       targetCount: number;
     };
+    confidenceTruncation?: ConfidenceTruncationMetadata;
   };
   annotations: Stage4Output['annotations'];
   trace?: RetrievalTrace;

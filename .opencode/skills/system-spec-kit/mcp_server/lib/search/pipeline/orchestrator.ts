@@ -19,8 +19,15 @@
 // Side effects:
 //     - Delegates to each stage; see individual stage modules for their side effects
 
+import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 import { MemoryError, withTimeout } from '../../errors/core.js';
 import { requireDb } from '../../../utils/db-helpers.js';
+import {
+  DEFAULT_MIN_RESULTS,
+  GAP_THRESHOLD_MULTIPLIER,
+  isConfidenceTruncationEnabled,
+  truncateByConfidence,
+} from '../confidence-truncation.js';
 import {
   isDeterministicMultihopEnabled,
   isLaneChampionBackfillEnabled,
@@ -31,9 +38,10 @@ import { executeStage1 } from './stage1-candidate-gen.js';
 import { executeStage2 } from './stage2-fusion.js';
 import { executeStage3 } from './stage3-rerank.js';
 import { executeStage4 } from './stage4-filter.js';
-import { readLaneLists } from './types.js';
+import { readLaneLists, resolveEffectiveScore } from './types.js';
 
 import type {
+  ConfidenceTruncationMetadata,
   LaneCandidateList,
   PipelineConfig,
   PipelineResult,
@@ -57,6 +65,38 @@ const TRIGGER_PROMOTION_FLOOR = 10;
 interface TriggerPromotionResult {
   results: Stage4ReadonlyRow[];
   metadata?: NonNullable<PipelineResult['metadata']['triggerPromotion']>;
+}
+
+function buildConfidenceTruncationMetadata(
+  result: ReturnType<typeof truncateByConfidence>,
+): ConfidenceTruncationMetadata {
+  return {
+    truncated: result.truncated,
+    originalCount: result.originalCount,
+    truncatedCount: result.truncatedCount,
+    medianGap: result.medianGap,
+    cutoffGap: result.cutoffGap,
+    cutoffIndex: result.cutoffIndex,
+    thresholdMultiplier: GAP_THRESHOLD_MULTIPLIER,
+    minResultsGuaranteed: DEFAULT_MIN_RESULTS,
+    featureFlagEnabled: isConfidenceTruncationEnabled(),
+  };
+}
+
+function attachConfidenceTruncationMetadata(
+  row: Stage4ReadonlyRow,
+  metadata: ConfidenceTruncationMetadata,
+): Stage4ReadonlyRow {
+  const traceMetadata = row.traceMetadata && typeof row.traceMetadata === 'object' && !Array.isArray(row.traceMetadata)
+    ? row.traceMetadata
+    : {};
+  return {
+    ...row,
+    traceMetadata: {
+      ...traceMetadata,
+      confidenceTruncation: metadata,
+    },
+  };
 }
 
 function findTriggerLaneRows(laneLists: LaneCandidateList[] | undefined): PipelineRow[] {
@@ -264,6 +304,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
   );
   let finalResults: Stage4ReadonlyRow[] = triggerPromotion.results;
   let tailAppendsMeta: PipelineResult['metadata']['tailAppends'];
+  let confidenceTruncationMeta: PipelineResult['metadata']['confidenceTruncation'];
   const multihopOn = isDeterministicMultihopEnabled();
   const laneChampionOn = isLaneChampionBackfillEnabled();
   if (multihopOn || laneChampionOn) {
@@ -329,6 +370,36 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
     }
   }
 
+  if (isConfidenceTruncationEnabled()) {
+    const truncationStart = Date.now();
+    try {
+      const truncationResult = truncateByConfidence(
+        finalResults.map((row) => ({ ...row, score: resolveEffectiveScore(row as PipelineRow) })),
+      );
+      const metadata = buildConfidenceTruncationMetadata(truncationResult);
+      confidenceTruncationMeta = metadata;
+      finalResults = truncationResult.results.map((row) =>
+        attachConfidenceTruncationMetadata(row as Stage4ReadonlyRow, metadata),
+      );
+      if (config.trace) {
+        addTraceEntry(
+          config.trace,
+          'final-rank',
+          metadata.originalCount,
+          metadata.truncatedCount,
+          Date.now() - truncationStart,
+          { confidenceTruncation: metadata },
+        );
+      }
+      timing.confidenceTruncation = Date.now() - truncationStart;
+    } catch (err: unknown) {
+      console.warn(
+        '[pipeline] confidence truncation failed:',
+        err instanceof Error ? err.message : String(err),
+      );
+    }
+  }
+
   timing.total = Date.now() - pipelineStart;
 
   return {
@@ -342,6 +413,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       degraded: degraded || undefined,
       tailAppends: tailAppendsMeta,
       triggerPromotion: triggerPromotion.metadata,
+      confidenceTruncation: confidenceTruncationMeta,
     },
     annotations: stage4Result.annotations,
     trace: config.trace,

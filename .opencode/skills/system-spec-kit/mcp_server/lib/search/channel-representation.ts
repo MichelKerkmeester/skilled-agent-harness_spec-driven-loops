@@ -3,13 +3,9 @@
 // ───────────────────────────────────────────────────────────────
 /* --- 1. CONSTANTS --- */
 
-/** Calibration reference for raw-RRF-scale relevance scores (~0.01-0.03), retained
- * from when promotion was floor-gated: the threshold was lowered 0.2 -> 0.005 because
- * the original 0.2 assumed normalized [0,1] scores and silently rejected ALL raw RRF
- * results. NOTE: channel-min-representation promotion no longer gates on this value —
- * to guarantee representation it promotes each under-represented channel's best result
- * even below the floor (see the `analyzeChannelRepresentation` rules below). The constant
- * is kept as the documented calibration anchor, not an active promotion gate. */
+/** Quality floor for raw-RRF-scale relevance scores (~0.01-0.03).
+ * Channels below this floor are treated as noise and cannot force a
+ * min-representation slot. */
 
 // Feature catalog: Channel min-representation
 import { isChannelMinRepEnabled } from './search-flags.js';
@@ -49,7 +45,7 @@ interface ChannelResult {
  *
  * - `topK`                   — original top-k plus any promoted items appended at the end
  * - `promoted`               — items that were promoted from under-represented channels
- * - `underRepresentedChannels` — channel names that had 0 results in topK but did return results
+ * - `underRepresentedChannels` — channel names that had 0 results in topK but did return eligible results
  * - `channelCounts`          — per-channel result counts in the final (enhanced) topK
  */
 export interface ChannelRepresentationResult {
@@ -64,12 +60,12 @@ export interface ChannelRepresentationResult {
 /**
  * Analyse a post-fusion top-k result set and, when the feature flag is
  * enabled, promote the best-scoring result from every channel that
- * contributed results but has zero representation in top-k.
+ * contributed eligible results but has zero representation in top-k.
  *
  * Rules:
- *  - Only checks channels that actually returned results (no phantom penalties).
+ *  - Only checks channels with results at or above QUALITY_FLOOR.
  *  - A channel is under-represented when it has 0 results in topK.
- *  - Missing channels promote their best result, even below QUALITY_FLOOR.
+ *  - Missing channels promote their best eligible result.
  *  - When the flag is disabled the function returns topK unchanged (no-op).
  *  - The `source` field of each topK item is the authoritative channel label.
  *    Items that carry a `sources` array (multi-channel convergence) are counted
@@ -103,6 +99,14 @@ export function analyzeChannelRepresentation(
     };
   }
 
+  const eligibleChannelResults = new Map<string, Array<ChannelResult>>();
+  for (const [channelName, channelResults] of allChannelResults) {
+    const eligibleResults = channelResults.filter(result => result.score >= QUALITY_FLOOR);
+    if (eligibleResults.length > 0) {
+      eligibleChannelResults.set(channelName, eligibleResults);
+    }
+  }
+
   // Compute which channels are represented in the current top-k.
   const representedChannels = new Set<string>();
   for (const item of topK) {
@@ -116,10 +120,9 @@ export function analyzeChannelRepresentation(
     }
   }
 
-  // Identify which channels that returned results are missing from top-k.
+  // Identify which eligible channels are missing from top-k.
   const underRepresentedChannels: string[] = [];
-  for (const [channelName, channelResults] of allChannelResults) {
-    if (channelResults.length === 0) continue; // channel returned nothing — not penalised
+  for (const [channelName] of eligibleChannelResults) {
     if (!representedChannels.has(channelName)) {
       underRepresentedChannels.push(channelName);
     }
@@ -140,7 +143,7 @@ export function analyzeChannelRepresentation(
   const enhancedTopK: Array<TopKItem> = [...topK];
 
   for (const channelName of underRepresentedChannels) {
-    const results = allChannelResults.get(channelName) ?? [];
+    const results = eligibleChannelResults.get(channelName) ?? [];
 
     let best: ChannelResult | null = null;
     for (const r of results) {

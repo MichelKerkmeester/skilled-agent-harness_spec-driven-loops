@@ -72,8 +72,7 @@ export interface EnforcementResult {
  *    from any channel that returned results but is absent from that window.
  *  - Promoted items are normalized into the existing fused score range, then
  *    reserved inside the inspected top-k window when capacity allows.
- *  - Missing channels promote their best result even below QUALITY_FLOOR;
- *    the floor still governs non-representation quality filtering elsewhere.
+ *  - Missing channels promote their best result at or above QUALITY_FLOOR.
  *
  * @param fusedResults      - Post-fusion results, ordered by score descending.
  * @param channelResultSets - Map of channel name → raw results from that channel.

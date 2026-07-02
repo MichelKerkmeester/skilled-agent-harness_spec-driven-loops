@@ -457,4 +457,44 @@ describe('encoding_intent persistence integration', () => {
     expect(row?.encoding_intent).toBe('structured_data');
     vectorIndex.closeDb();
   });
+
+  it('preserves existing encoding_intent on same-path deferred updates', async () => {
+    vi.resetModules();
+    const tempDir = makeTempDir('s6-r16-preserve-');
+    const dbPath = path.join(tempDir, 'context-index.sqlite');
+
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    const vectorIndex = await import('../lib/search/vector-index');
+    vectorIndex.initializeDb(dbPath);
+
+    const filePath = path.join(tempDir, 'same-path.md');
+    const memoryId = vectorIndex.indexMemoryDeferred({
+      specFolder: 'specs/system-spec-kit/test-r16',
+      filePath,
+      title: 'Deferred code row',
+      triggerPhrases: [],
+      importanceWeight: 0.5,
+      encodingIntent: 'code',
+      contentText: 'const answer = 42;',
+    });
+
+    const updatedId = vectorIndex.indexMemoryDeferred({
+      specFolder: 'specs/system-spec-kit/test-r16',
+      filePath,
+      title: 'Deferred document row',
+      triggerPhrases: [],
+      importanceWeight: 0.5,
+      encodingIntent: 'document',
+      contentText: 'A prose-only update for the same file.',
+    });
+
+    const db = vectorIndex.getDb();
+    expect(updatedId).toBe(memoryId);
+    const row = db.prepare('SELECT encoding_intent FROM memory_index WHERE id = ?').get(memoryId) as { encoding_intent: string } | undefined;
+
+    expect(row?.encoding_intent).toBe('code');
+    vectorIndex.closeDb();
+  });
 });
