@@ -19,7 +19,7 @@ _memory:
       - "spec.md"
       - "tasks.md"
       - "005-seeded-ppr-ranking/spec.md"
-      - "../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md"
+      - "../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-01-010-edge-confidence-ppr-revisit"
@@ -55,7 +55,7 @@ Seeded-PPR code-graph ranking was built, shadow-shipped, and cut after tying a f
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
@@ -109,7 +109,7 @@ Build real per-edge confidence differentiation (reusing existing signals and sch
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Confidence differentiation ships behind a default-off flag | Existing test suite green with flag OFF, proving zero behavior change |
+| REQ-001 | Confidence differentiation ships behind a default-off flag | Existing test suite shows no new failures against the pre-existing baseline with flag OFF, proving zero behavior change |
 | REQ-002 | Deleted PPR module recovered from git, not rewritten from scratch | Recovered functions match `277c35344c^` content, re-wired to consume new weights |
 | REQ-003 | Re-benchmark uses the same queries/metrics/methodology as the original cut verdict | Same 20 labeled queries, same precision/recall/nDCG@3/5/8, same damping sweep 0.5-0.95 |
 
@@ -216,7 +216,7 @@ Build real per-edge confidence differentiation (reusing existing signals and sch
 
 ## RELATED DOCUMENTS
 
-- **Original cut record**: `../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`
+- **Original cut record**: `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`
 - **Original spec (being revisited)**: `../005-seeded-ppr-ranking/spec.md`
 - **Doc-correction pass**: `../../009-drift-audit-deep-history-correction/`
 - **Implementation Plan**: See `plan.md`

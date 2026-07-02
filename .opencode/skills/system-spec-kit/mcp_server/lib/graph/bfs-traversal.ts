@@ -21,6 +21,7 @@ export interface WeightedWalkResult<TNode extends TraversalNode> {
   readonly nodeId: TNode;
   readonly minHop: number;
   readonly maxWalkScore: number;
+  readonly predecessor?: TNode;
 }
 
 /** Options for hop-capped weighted graph traversal. */
@@ -47,6 +48,7 @@ interface WeightedWalkState<TNode extends TraversalNode> {
   readonly nodeId: TNode;
   readonly hop: number;
   readonly walkScore: number;
+  readonly predecessorNodeId: TNode | null;
 }
 
 interface CausalEdgeRow {
@@ -134,6 +136,7 @@ export function collectWeightedWalk<TNode extends TraversalNode>(
     nodeId: seed,
     hop: 0,
     walkScore: 1.0,
+    predecessorNodeId: null,
   }));
   const seenStates = new Set<string>();
 
@@ -157,6 +160,7 @@ export function collectWeightedWalk<TNode extends TraversalNode>(
           nodeId: edge.to,
           hop: state.hop + 1,
           walkScore: nextWalkScore(state, edge),
+          predecessorNodeId: state.nodeId,
         };
         const key = stateKey(nextState);
         if (seenStates.has(key)) {
@@ -175,12 +179,22 @@ export function collectWeightedWalk<TNode extends TraversalNode>(
             nodeId: nextState.nodeId,
             minHop: nextState.hop,
             maxWalkScore: nextState.walkScore,
+            predecessor: nextState.predecessorNodeId ?? undefined,
           });
         } else {
+          // nextState.hop can never be < current.minHop here: the outer
+          // while-loop processes exactly one BFS hop-layer per iteration (by
+          // induction from the seed-hop-0 base case, every state in a given
+          // iteration's `expandable` array shares the same hop value), so a
+          // node's minHop is fixed the first time results.set() runs for it
+          // and every later rediscovery only ever arrives at an equal or
+          // deeper hop. The predecessor therefore always stays the one
+          // recorded at first discovery.
           results.set(nextState.nodeId, {
             nodeId: nextState.nodeId,
             minHop: Math.min(current.minHop, nextState.hop),
             maxWalkScore: Math.max(current.maxWalkScore, nextState.walkScore),
+            predecessor: current.predecessor,
           });
         }
       }

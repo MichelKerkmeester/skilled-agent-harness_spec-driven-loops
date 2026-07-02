@@ -186,7 +186,9 @@ force any flag off with `SPECKIT_<FLAG>=false`.
 
 Ten default-off switches and their code were removed after the fair real-world simulation showed each one
 was not worthwhile. The deciding evidence is one line per flag. The code removal is already committed, so
-the tree no longer carries these switches.
+the tree no longer carries these switches -- except SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, recovered from
+git history in `002-code-graph/010-edge-confidence-and-ppr-revisit/` for a second, fairer benchmark pass
+(see that row below); the CUT verdict stands and the flag remains default-off.
 
 | Flag | Deciding evidence | Verdict |
 |------|-------------------|---------|
@@ -194,7 +196,7 @@ the tree no longer carries these switches.
 | SPECKIT_SUMMARY_FUSION_LANE | displacement-only, Recall@20 -0.036, the lane only pushes a real channel hit out of the list, structural at K=20 | DELETE |
 | SPECKIT_CARDINALITY_PENALTY | Recall@20 movement 0.0000, the degree-lane cap is too small to be decisive at K=20, flat even with hub distractors present | DELETE |
 | SPECKIT_SLEEPTIME_CONSOLIDATION | net -1.67pp, the dedup pass hurts recall rather than helping it | DELETE |
-| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | negative on the real forward-CALLS graph, uniform edges make PPR equal to the prior ranking | DELETE |
+| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | negative on the real forward-CALLS graph, uniform edges make PPR equal to the prior ranking. Revisited in `002-code-graph/010-edge-confidence-and-ppr-revisit/` after edge confidence stopped being uniform: PPR now loses on every metric instead of tying, so the code was recovered from git history to run that test. Present in the tree again (default-off), not currently deleted | CUT (reconfirmed) |
 | SPECKIT_SEMANTIC_EDGE_LAYER + edge family (SPECKIT_EDGE_VECTOR_INDEX, SPECKIT_EDGE_TRIPLET_SEARCH, SPECKIT_EDGE_SEMANTIC_DEDUP, SPECKIT_EDGE_SEMANTIC_INVALIDATION) | generic relation-template edges carry no pair identity, recall-inert at K=20 with a single-item +0.083 that does not generalize | DELETE |
 | SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK | MRR within noise on an empty ledger, every skill resolves to neutral so the order never moves | DELETE |
 | SPECKIT_BITEMPORAL_RECALL | zero callers, no point-in-time consumer reads the validity window | DELETE |

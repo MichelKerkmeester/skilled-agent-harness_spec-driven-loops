@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-code-graph",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-code-graph",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness",
@@ -13,7 +13,19 @@
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit"
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/011-edge-confidence-review-remediation",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/003-generation-watermark",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit",
+    "system-speckit/028-memory-search-intelligence/002-code-graph/011-edge-confidence-review-remediation"
   ],
   "migrated": true,
   "manual": {
@@ -47,7 +59,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research/research.md"
+      "research/research.md",
+      "001-determinism-walk-order/spec.md",
+      "008-doc-symbol-lane/spec.md",
+      "009-daemon-reclaim-hardening/spec.md"
     ],
     "entities": [
       {
@@ -137,16 +152,16 @@
     ],
     "causal_summary": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-29T12:45:43.165Z",
+    "last_save_at": "2026-07-01T17:17:46.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:660b82d24fa76a581d91e67261fe4c5da968ec2dbf3d3bbc9fd1947bf08c1fe7",
+    "source_fingerprint": "sha256:121b367a7a0760287b34eecbaa8d348bbb020082718fecd6cc726f3f1568a2bf",
     "source_doc_hashes": {
-      "spec.md": "6ae1c985cd50f8493ebfea66885bf21c6b99929cfb5544d854ef8a7fe73c41f2",
+      "spec.md": "78479530541e811700fb1727c004f95a6337e16aeaad68b8b8f4d050449f9266",
       "research/research.md": "39ee81cc0db963256d67b725dccb3b2f5b3cead87c2744874403be71636830e8"
     },
     "last_active_child_id": "system-spec-kit/028-memory-search-intelligence/002-code-graph/009-daemon-reclaim-hardening",

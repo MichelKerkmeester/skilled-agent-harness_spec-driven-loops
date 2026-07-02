@@ -58,9 +58,9 @@ Give CALLS edges a real confidence gradient by writing an already-computed but c
 - [x] Original benchmark harness confirmed self-contained and reusable unmodified
 
 ### Definition of Done
-- [ ] Existing test suite green with new flag OFF (regression proof)
-- [ ] New tests for the confidence-differentiation logic
-- [ ] Re-benchmark run to completion, verdict recorded
+- [x] Existing test suite shows no new failures against the pre-existing baseline with new flag OFF (regression proof)
+- [x] New tests for the confidence-differentiation logic
+- [x] Re-benchmark run to completion, verdict recorded
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -87,7 +87,7 @@ CALLS/IMPORTS edge creation -> confidence/evidenceClass written to metadata (gat
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|---------------|
-| `code-graph-context.ts` `contextEdgeReliability` | Already live, unconditional, blends confidence x evidenceClassFactor | No change to the blend itself; its INPUT stops being a constant once the flag is on | Existing test suite green with flag OFF proves zero change to current behavior |
+| `code-graph-context.ts` `contextEdgeReliability` | Already live, unconditional, blends confidence x evidenceClassFactor | No change to the blend itself; its INPUT stops being a constant once the flag is on | Existing test suite shows no new failures against the pre-existing baseline with flag OFF, proving zero change to current behavior |
 | `cross-file-edge-resolver.ts` `resolveCrossFileCallEdges` | Computes resolution quality, only writes `target_id` today | Add a metadata write for `resolved`/`ambiguousSkipped` cases, gated | Re-run resolver with flag on, confirm metadata reflects real classification |
 | `structural-indexer.ts` CALLS edge creation | Hardcodes `confidence 0.8, INFERRED` for every edge | Add same-file candidate-cardinality check | New unit test: single-candidate vs multi-candidate same-file calls get different confidence |
 
@@ -108,15 +108,15 @@ Required inventories:
 - [x] This spec folder scaffolded
 
 ### Phase 2: Core Implementation
-- [ ] Implement confidence differentiation behind new flag
-- [ ] Regression check: existing suite green with flag off
-- [ ] Recover and re-wire deleted PPR module
-- [ ] Re-run re-benchmark, record verdict
+- [x] Implement confidence differentiation behind new flag
+- [x] Regression check: existing suite shows no new failures against the pre-existing baseline with flag off
+- [x] Recover and re-wire deleted PPR module
+- [x] Re-run re-benchmark, record verdict
 
 ### Phase 3: Verification
-- [ ] Sync to live tree
-- [ ] Finalize PPR doc entries in `../005-seeded-ppr-ranking/` and `009-drift-audit-deep-history-correction/` with the real verdict
-- [ ] `validate.sh --strict`
+- [x] Sync to live tree
+- [x] Finalize PPR doc entries in `../005-seeded-ppr-ranking/` and `009-drift-audit-deep-history-correction/` with the real verdict
+- [x] `validate.sh --strict`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -208,7 +208,8 @@ Phase 1 (Setup) --> Phase 2 (Differentiate -> Regress -> Recover PPR -> Benchmar
 ```
 ┌──────────────┐     ┌───────────────────┐     ┌─────────────────┐     ┌──────────┐
 │ Confidence   │────►│ Regression check  │────►│ Recover + rewire │────►│ Re-bench │
-│ differentiation│    │ (flag off, green) │     │ PPR module       │     │ + verdict│
+│ differentiation│    │ (flag off, no new │     │ PPR module       │     │ + verdict│
+│              │     │  vs. baseline)    │     │                  │     │          │
 └──────────────┘     └───────────────────┘     └─────────────────┘     └──────────┘
 ```
 
@@ -244,7 +245,7 @@ Phase 1 (Setup) --> Phase 2 (Differentiate -> Regress -> Recover PPR -> Benchmar
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|-------------------|--------|
-| M1 | Confidence differentiation shipped, gated | Regression suite green, flag off | Phase 2 start |
+| M1 | Confidence differentiation shipped, gated | Regression suite shows no new failures vs. baseline, flag off | Phase 2 start |
 | M2 | PPR module recovered and re-wired | Compiles clean, unit tests pass | Phase 2 mid |
 | M3 | Re-benchmark complete | Real metrics produced, verdict written | Phase 2 end |
 <!-- /ANCHOR:milestones -->

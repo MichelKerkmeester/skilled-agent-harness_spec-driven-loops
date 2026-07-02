@@ -62,7 +62,7 @@ Seeded-PPR code-graph ranking was cut once already because every CALLS edge carr
 
 The seeded-PPR module (`computeBoundedPersonalizedPageRank` and its supporting code) was deleted at commit `277c35344c` after its first cut. Rather than rebuild it from scratch, this phase recovered the original implementation from git history and re-wired its transition weights to consume the new differentiated confidence via the existing `contextEdgeReliability` blend, which was already live for other consumers but had never had a real gradient to work with before.
 
-One deviation caught and fixed during recovery: the first pass at restoring the module replaced its original cross-subsystem dependency (a dynamic import of the Memory MCP's compiled `collectWeightedWalk`) with a local copy of the same algorithm, because the compiled output wasn't present in this worktree. That's exactly the "second walker" this packet's own architecture decision record warned against. The fix was to build the missing compiled output and restore the real shared-substrate import - not to keep the local copy.
+One deviation caught and fixed during recovery: the first pass at restoring the module replaced its original cross-subsystem dependency (a dynamic import of the Memory MCP's compiled `collectWeightedWalk`) with a local copy of the same algorithm, because the compiled output wasn't present in this worktree. That's exactly the "second walker" `../005-seeded-ppr-ranking/decision-record.md`'s ADR-001 warned against -- not this packet's own ADR-001, which covers a different decision (reusing the discarded resolution-quality signal). The fix was to build the missing compiled output and restore the real shared-substrate import - not to keep the local copy.
 
 ### Re-benchmark: CUT stands, and the gap widened
 
@@ -98,12 +98,12 @@ Two GPT-5.5-fast (high) implementation dispatches plus one targeted fix dispatch
 | Check | Result |
 |-------|--------|
 | `tsc --noEmit` (confidence differentiation) | PASS: 0 errors |
-| Existing code-graph suite, flag off (regression proof) | PASS: same 6 failed/9 failed pre-existing baseline confirmed via stash/pop comparison, 0 new failures |
+| Existing code-graph suite, flag off (regression proof) | PASS: same 6 failed/9 failed pre-existing baseline confirmed via stash/pop comparison at implementation time, 0 new failures. Baseline has since shifted twice more from unrelated commits; current reproducible baseline, confirmed by two consecutive fresh runs, is 5 failed files / 8 failed tests / 767 passed / 1 pending / 776 total via `npx vitest run --config .opencode/skills/system-code-graph/vitest.config.ts` (all 5 failing files are known-flaky daemon/IPC-liveness tests) |
 | New confidence-differentiation unit tests | PASS |
 | `tsc --noEmit` (PPR recovery + ADR-001 fix) | PASS: 0 errors |
 | PPR module's own recovered unit tests, both flags on | PASS: 2 files / 9 tests |
-| Full suite after ADR-001 fix | PASS: 5 failed/8 failed (one fewer than baseline, unrelated flaky test), 0 new failures |
-| Fresh reindex confirms differentiated confidence in DB | PASS: 4 distinct values found (0.3, 0.35, 0.75, 0.9) replacing the uniform 0.8 |
+| Full suite after ADR-001 fix | PASS at implementation time: 5 failed/8 failed (one fewer than baseline, unrelated flaky test), 0 new failures. See current reproducible baseline above. |
+| Fresh reindex confirms differentiated confidence in DB | PASS: 4 distinct values observed (0.3, 0.35, 0.75, 0.9) replacing the uniform 0.8. The specific edge counts per tier (892/2267/16198/2838) were observed once in a since-removed implementation worktree and are not independently reproducible from checked-in evidence -- only the qualitative finding (a real, non-uniform gradient was achieved) is durable. |
 | Re-benchmark, both flags on | PASS: completed, real metrics.json produced, compared against flat walk in the same run |
 <!-- /ANCHOR:verification -->
 

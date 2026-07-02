@@ -60,7 +60,7 @@ Genuine sequential dependency chain -- each task blocks the next.
 
 - [x] T003 Implement CALLS edge confidence differentiation in `structural-indexer.ts` (same-file candidate cardinality) and `cross-file-edge-resolver.ts` (write resolution-quality signal to metadata), gated behind new default-off flag `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`. Registered in `system-spec-kit/mcp_server/ENV_REFERENCE.md`.
 - [x] T004 Ran existing code-graph test suite with the new flag OFF: same pre-existing baseline (6 failed test files / 9 failed tests, all unrelated to CALLS/PPR), zero new regressions. Confirmed via real `tsc --noEmit` + `vitest run`, including a stash/pop sanity check against a clean pre-change baseline.
-- [x] T005 Recovered deleted seeded-PPR module via `git show 277c35344c^:<path>` for `code-graph-context.ts`, the eval script, and both vitest files; re-wired behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`, consuming the new differentiated weights via the existing `contextEdgeReliability` blend. Caught and fixed one deviation: the recovery initially replaced the original cross-subsystem dynamic import of the Memory MCP's `collectWeightedWalk` with a local reimplementation (violating this packet's own ADR-001, which forbids a second walker) - fixed by building the missing `dist/` output and restoring the real shared-substrate import.
+- [x] T005 Recovered deleted seeded-PPR module via `git show 277c35344c^:<path>` for `code-graph-context.ts`, the eval script, and both vitest files; re-wired behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`, consuming the new differentiated weights via the existing `contextEdgeReliability` blend. Caught and fixed one deviation: the recovery initially replaced the original cross-subsystem dynamic import of the Memory MCP's `collectWeightedWalk` with a local reimplementation (violating `../005-seeded-ppr-ranking/decision-record.md`'s ADR-001, which forbids a second walker -- not this packet's own ADR-001, which is unrelated) - fixed by building the missing `dist/` output and restoring the real shared-substrate import.
 - [x] T006 Re-ran `seeded-ppr-impact-benchmark.mjs` unmodified with both flags ON, after a fresh full-repo reindex confirmed real differentiated confidence values in the database (0.3/0.35/0.75/0.9 instead of a uniform 0.8). Compared against the flat walk in the same run.
 - [x] T007 Verdict: **CUT stands.** With a real confidence gradient, PPR no longer ties the flat walk - it loses on every metric (precision@3 -0.10, recall -0.01 to -0.05, nDCG -0.03 to -0.06). Full numbers in `../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`.
 <!-- /ANCHOR:phase-2 -->
@@ -70,10 +70,10 @@ Genuine sequential dependency chain -- each task blocks the next.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Sync implementation to live tree as uncommitted diffs
+- [x] T008 Sync implementation to live tree as uncommitted diffs -- confirmed via `git status --short` showing the code-graph mcp_server changes and review artifacts present in the live tree, not just the worktree
 - [x] T009 Finalized PPR doc entries in `../005-seeded-ppr-ranking/`, `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`, and `../../009-drift-audit-deep-history-correction/` with the real CUT-confirmed verdict, replacing the "in progress" forward-pointers
-- [ ] T010 Update this folder's checklist.md, implementation-summary.md, decision-record.md
-- [ ] T011 Run `validate.sh 002-code-graph/010-edge-confidence-and-ppr-revisit --strict`
+- [x] T010 Update this folder's checklist.md, implementation-summary.md, decision-record.md -- all three carry the final CUT verdict and verification evidence
+- [x] T011 Run `validate.sh 002-code-graph/010-edge-confidence-and-ppr-revisit --strict` -- PASSED, 0 errors, 0 warnings
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ Genuine sequential dependency chain -- each task blocks the next.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All 11 tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Live-tree diff and benchmark verdict reviewed by operator
+- [x] All 11 tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Live-tree diff and benchmark verdict reviewed by operator
 <!-- /ANCHOR:completion -->
 
 ---

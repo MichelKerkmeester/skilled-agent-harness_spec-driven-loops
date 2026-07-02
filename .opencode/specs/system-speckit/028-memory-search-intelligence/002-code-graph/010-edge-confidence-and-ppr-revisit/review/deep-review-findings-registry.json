@@ -1,1 +1,668 @@
-{"sessionId":"2026-07-01T13:37:25.000Z","generation":1,"lineageMode":"new","openFindings":[{"id":"P1-001","severity":"P1","title":"Seeded-PPR recovery adds an unconditional missing compiled-module dependency","file":".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:20","iteration":1,"status":"open","finding_class":"cross-consumer","category":"correctness","content_hash":"review-p1-001-code-graph-context-dist-import-v1"}],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":true,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":1,"P2":0},"openFindingsCount":1,"resolvedFindingsCount":0,"convergenceScore":0.25}
+{
+  "sessionId": "2026-07-01T13:37:25.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Seeded-PPR recovery adds an unconditional missing compiled-module dependency",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      "line": 20,
+      "description": "code-graph-context.ts resolves and imports a compiled Memory MCP dist module at top level before the seeded-PPR flag is checked; the referenced compiled artifact is absent in this checkout.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "code_graph_context module load",
+        "seeded-PPR recovery path",
+        "default-off regression contract",
+        "CI/test environments without built Memory MCP dist"
+      ],
+      "contentHash": "review-p1-001-code-graph-context-dist-import-v1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Seeded-PPR trace output loses the multi-hop provenance chain",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "Read .opencode/skills/system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts:19 and confirmed WeightedWalkResult has nodeId/minHop/maxWalkScore only; read recovered PPR tests and found multi-hop ranking coverage but no includeTrace assertion.",
+      "affectedSurfaceHints": [
+        "code_graph_context impact mode",
+        "seeded-PPR experimental flag",
+        "includeTrace why_included provenance",
+        "LLM context trace consumers"
+      ],
+      "contentHash": "review-p1-002-ppr-trace-loses-hop-chain-v1",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Checklist completion evidence conflicts with the packet's own task state",
+      "file": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Compared checklist completion rows to tasks.md unchecked T008/T010/T011 and plan.md unchecked validate item; replayed validate.sh --strict, npm run typecheck, and targeted PPR vitest commands to separate runnable command evidence from stale packet state.",
+      "affectedSurfaceHints": [
+        "spec packet completion metadata",
+        "checklist evidence",
+        "tasks completion state",
+        "release-readiness handoff"
+      ],
+      "contentHash": "review-p1-003-checklist-completion-conflicts-tasks-v1",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Name-only cross-file resolution is promoted to extracted confidence",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cross-file-edge-resolver.ts:133-150:name-only-extracted-confidence:v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-013",
+      "severity": "P1",
+      "title": "Full-suite verification count no longer matches the packet's claimed baseline",
+      "file": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Ran the full code-graph vitest suite from .opencode/skills/system-code-graph with SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION unset; output was Test Files 9 failed | 80 passed (89), Tests 23 failed | 733 passed | 1 skipped (757), not the documented 6/9 or 5/8 baseline counts.",
+      "affectedSurfaceHints": [
+        "code-graph verification docs",
+        "full vitest suite baseline",
+        "release-readiness evidence"
+      ],
+      "contentHash": "sha256:2c2983ea23aa9a4429d83e4c85f9289a637c2a96a50a491d489ed412e160a87c",
+      "dimension": "correctness",
+      "firstSeen": 13,
+      "lastSeen": 13,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 13,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-014-001",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 14,
+      "lastSeen": 14,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 14,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-018-001",
+      "severity": "P1",
+      "title": "AMBIGUOUS evidence no longer sets why_included.ambiguous",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Scoped grep across mcp_server/lib for EdgeEvidenceClass|evidenceClass|contextEdgeReliability|\\.confidence\\b|confidence: found the rank-blend consumer, the trace consumer, the adapter pass-through, and producer sites; no other in-scope consumer reinterprets AMBIGUOUS as non-ambiguous.",
+      "affectedSurfaceHints": [
+        "code_graph_context includeTrace",
+        "why_included trace consumers",
+        "edge-confidence differentiation flag",
+        "CALLS edge metadata"
+      ],
+      "contentHash": "code-graph-context.ts:953-956:ambiguous-evidenceclass-not-flagged:v1",
+      "dimension": "correctness",
+      "firstSeen": 18,
+      "lastSeen": 18,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 18,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-019-001",
+      "severity": "P1",
+      "title": "Flag-off impact queries still consume differentiated confidence persisted while the flag was on",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "p1-019-001-flag-off-consumes-stale-differentiated-confidence-v1",
+      "dimension": "correctness",
+      "firstSeen": 19,
+      "lastSeen": 19,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 19,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Eval harness cleanup is not failure-safe",
+      "file": ".opencode/skills/system-code-graph/mcp_server/scripts/eval/score-seeded-ppr-retrieval.mjs",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "review-p2-004-eval-child-cleanup-not-finally-v1",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "Catalog and playbook omit the new gated code_graph_context capability",
+      "file": ".opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/code-graph-context.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Scoped grep for SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING|SEEDED_PPR|seeded PPR|seeded-PPR|edge confidence|confidence differentiation returned no matches under .opencode/skills/system-code-graph/feature_catalog/, .opencode/skills/system-code-graph/manual_testing_playbook/, or .opencode/agents/.",
+      "affectedSurfaceHints": [
+        "system-code-graph feature catalog",
+        "manual testing playbook",
+        "code_graph_context impact mode",
+        "default-off seeded-PPR flag",
+        "edge-confidence differentiation flag"
+      ],
+      "contentHash": "review-p2-005-code-graph-context-gated-capability-catalog-playbook-gap-v1",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "Focused PPR regression tests miss the two active P1 failure modes",
+      "file": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-seeded-ppr-ranking.vitest.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "Targeted search for includeTrace, why_included, edgeChain, dist/lib/graph, bfs-traversal, deadline, duplicate, malformed, and SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING across mcp_server/tests/*.vitest.ts found includeTrace coverage in code-graph-context-handler.vitest.ts, but not on the flagged seeded-PPR impact branch.",
+      "affectedSurfaceHints": [
+        "seeded-PPR tests",
+        "includeTrace provenance",
+        "missing dist artifact regression",
+        "deadline and duplicate PPR edge cases"
+      ],
+      "contentHash": "review-p2-006-ppr-test-coverage-gaps-v1",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "Stale deleted-flag inventories still describe recovered seeded-PPR as removed",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "title": "Spec references the benchmark record with a different relative path than the completion docs",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "sha256:398f97e5fe166244c8896228da2def50431b7673b1e04312d7b5741efc14ecde",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-009",
+      "severity": "P2",
+      "title": "ADR-001 near-miss attribution points to the wrong packet in several docs",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "sha256:e0947ae0c9a1ec59f4067beeb91964acd597fd1fe589cfbdd5835e4bf40dc236",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Name-only cross-file resolution is promoted to extracted confidence",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cross-file-edge-resolver.ts:133-150:name-only-extracted-confidence:v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Name-only cross-file resolution is promoted to extracted confidence",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cross-file-edge-resolver.ts:133-150:name-only-extracted-confidence:v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 8,
+    "P2": 6
+  },
+  "openFindingsCount": 14,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 2,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 7,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 8,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 11,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 12,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 13,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 14,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 15,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 17,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 18,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 19,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 20,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 22,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 23,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 24,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 25,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

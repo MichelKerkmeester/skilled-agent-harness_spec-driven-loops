@@ -55,7 +55,7 @@ The reckoning deleted ten default-off switches and their code after a fair real-
 | `SPECKIT_SUMMARY_FUSION_LANE` | Displacement-only, Recall@20 delta -0.036, the lane only pushes a real channel hit out of the result list. | 001 |
 | `SPECKIT_CARDINALITY_PENALTY` | Recall@20 movement 0.0000, the degree-lane cap is too small to be decisive at K=20. | 001 |
 | `SPECKIT_SLEEPTIME_CONSOLIDATION` | Net -1.67pp, the dedup pass hurts recall rather than helping it. | 001 |
-| `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` | Negative on the real forward-CALLS graph, the uniform edges make PPR equal to the prior ranking. | 002 |
+| `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` | Negative on the real forward-CALLS graph, the uniform edges make PPR equal to the prior ranking. Revisited in `002-code-graph/010-edge-confidence-and-ppr-revisit/` after edge confidence stopped being uniform: PPR now loses on every metric instead of tying, so the code was recovered from git history to run that test but the CUT verdict stands and got stronger -- the flag remains default-off and the code is not intended to ship enabled. | 002 |
 | `SPECKIT_SEMANTIC_EDGE_LAYER` (the edge family: `SPECKIT_EDGE_VECTOR_INDEX`, `SPECKIT_EDGE_TRIPLET_SEARCH`, `SPECKIT_EDGE_SEMANTIC_DEDUP`, `SPECKIT_EDGE_SEMANTIC_INVALIDATION`) | The fact-text is generic relation-template boilerplate carrying no pair identity, recall-inert at K=20 with a single-item +0.083 that does not generalize. | 001 |
 | `SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK` | MRR within noise on an empty ledger, every skill resolves to neutral so the order never moves. | 003 |
 | `SPECKIT_BITEMPORAL_RECALL` | Zero callers, no point-in-time consumer reads the validity window. | 001 |

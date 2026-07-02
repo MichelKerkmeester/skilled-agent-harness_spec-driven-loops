@@ -1,27 +1,29 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit",
   "description": "Seeded-PPR ranking was cut because uniform CALLS-edge confidence (all edges: INFERRED, 0.8, 0.8) gave it nothing to differentiate on",
   "keywords": [
-    "edge-confidence",
-    "differentiation",
     "seeded-ppr",
-    "revisit",
-    "code-graph",
-    "benchmark",
+    "ranking",
     "cut",
-    "git-recovery"
+    "because",
+    "uniform",
+    "calls-edge",
+    "confidence",
+    "edges",
+    "inferred",
+    "gave",
+    "nothing",
+    "differentiate"
   ],
-  "lastUpdated": "2026-07-01T00:00:00.000Z",
+  "lastUpdated": "2026-07-01T18:25:02.245Z",
   "specId": "010",
   "folderSlug": "edge-confidence-and-ppr-revisit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "002-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

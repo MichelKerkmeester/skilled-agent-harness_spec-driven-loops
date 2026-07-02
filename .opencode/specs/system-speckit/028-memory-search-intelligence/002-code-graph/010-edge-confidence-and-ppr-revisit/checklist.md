@@ -67,7 +67,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met - REQ-001 through REQ-005 all satisfied
-- [x] CHK-021 [P0] Existing code-graph test suite green with new flag OFF - real `vitest run`, confirmed against a genuine pre-change baseline via git stash/pop comparison: same 6 failed/9 failed pre-existing files, 0 new failures
+- [x] CHK-021 [P0] Existing code-graph test suite shows no new failures against the pre-existing baseline with new flag OFF - real `vitest run`, confirmed against a genuine pre-change baseline via git stash/pop comparison at implementation time: same 6 failed/9 failed pre-existing files, 0 new failures. The pre-existing baseline has since shifted twice more (unrelated commits landed on this branch); the current, independently reproducible baseline, confirmed by two consecutive fresh runs, is 5 failed test files / 8 failed tests / 767 passed / 1 pending / 776 total, via `npx vitest run --config .opencode/skills/system-code-graph/vitest.config.ts` from the repo root -- all 5 failing files (code-graph-verify, ensure-ready, launcher-lease, ipc-socket-drift, security-hardening) are known-flaky daemon/IPC-liveness tests (see `../011-edge-confidence-review-remediation/`)
 - [x] CHK-022 [P1] New unit tests for confidence-differentiation logic - added, passing
 - [x] CHK-023 [P1] Re-benchmark produces real metrics from the actual harness - fresh full-repo reindex + unmodified `seeded-ppr-impact-benchmark.mjs` run, real `results/metrics.json` produced
 <!-- /ANCHOR:testing -->
@@ -91,7 +91,7 @@ _memory:
 
 - [x] CHK-030 [P0] No hardcoded secrets
 - [x] CHK-031 [P0] All dispatches scoped to the isolated worktree via `--dir`
-- [x] CHK-032 [P1] Recovered git-history code reviewed for anything that shouldn't ship as-is - caught one real issue: the first recovery pass replaced the original cross-subsystem dynamic import (Memory MCP's compiled `collectWeightedWalk`) with a local reimplementation, violating this packet's ADR-001 (no second walker). Fixed by building the missing compiled output and restoring the real shared-substrate import.
+- [x] CHK-032 [P1] Recovered git-history code reviewed for anything that shouldn't ship as-is - caught one real issue: the first recovery pass replaced the original cross-subsystem dynamic import (Memory MCP's compiled `collectWeightedWalk`) with a local reimplementation, violating `../005-seeded-ppr-ranking/decision-record.md`'s ADR-001 (no second walker -- not this packet's own ADR-001, which is unrelated). Fixed by building the missing compiled output and restoring the real shared-substrate import.
 <!-- /ANCHOR:security -->
 
 ---
