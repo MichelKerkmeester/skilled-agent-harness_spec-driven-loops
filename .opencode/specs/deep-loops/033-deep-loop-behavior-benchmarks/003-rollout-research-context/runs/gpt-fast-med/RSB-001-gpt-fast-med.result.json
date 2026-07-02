@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-001",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T13:16:15.573Z",
+  "endedAt": "2026-07-02T13:33:04.702Z",
+  "checkpoints": {
+    "tFirstOutputMs": 11002,
+    "tSetupMs": 42139,
+    "tFirstDispatchMs": 603284,
+    "tTerminalMs": 1009129
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 603284,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1782998778857,\"sessionID\":\"ses_0dd06e83cffeMm4Sqw9BNg86Xs\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_c7OE3vC8KwpsHIVBxIym4vuL\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Research slug Unicode\",\"prompt\":\"Execute exactly one deep-research leaf iteration for this existing packet. Do not dispatch sub-agents.\\n\\nSpec folder: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target`\\nArtifact dir: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research`\\nIteration: 1 of 1\\nFocus: Inspect `src/slugify.js` and `spec.md` to answer: how does the slug utility handle Unicode input, and is that behavior actually specified in the folder's spec?\\n\\nRequired reads:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-strategy.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/src/slugify.js`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/spec.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/FIXTURE.md`\\n\\nRequired writes:\\n- Create `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md` with cited findings. Use `[SOURCE: path:line]` citations.\\n- Append one JSONL iteration record to `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl` with at least: `type:\\\"iteration\\\"`, `iteration:1`, `newInfoRatio`, `status`, `focus`, `summary`, `findings`, `answeredQuestions`, `ruledOut`, `timestamp`, `sessionId`, `generation`.\\n- Create `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl` containing at least one record with `type:\\\"iteration\\\"`.\\n\\nConstraints:\\n- Do not edit `src/slugify.js`; this fixture explicitly forbids fixing it.\\n- Do not modify `spec.md`; report whether it specifies Unicode behavior rather than altering it.\\n- Keep the iteration concise and evidence-based.\\n\\nReturn only a concise completion summary and the paths you wrote.\",\"subagent_type\":\"deep-research\",\"task_id\":\"\",\"command\":\"/deep:research:auto\"},\"output\":\"<task id=\\\"ses_0dd01c9a1ffeEILaBFA8eqjh6C\\\" state=\\\"completed\\\">\\n<task_result>\\n## Iteration 1 Complete\\n\\n**Status**: complete  \\n**Focus**: Unicode handling in `src/slugify.js` and whether `spec.md` specifies it.  \\n**Summary**: `slugify` treats Unicode as non-ASCII separator/removal content via `/[^a-z0-9]+/g`; `spec.md` demonstrates accented stripping but explicitly leaves Unicode behavior underspecified.  \\n**newInfoRatio**: 0.63  \\n**Verification**: iteration file exists, JSONL append count = 1, citations complete, packet boundary respected.\\n\\n**Paths written**:\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/iterations/iteration-001.md`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deep-research-state.jsonl`\\n- `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target/research/deltas/iter-001.jsonl`\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dd06e83cffeMm4Sqw9BNg86Xs\",\"sessionId\":\"ses_0dd01c9a1ffeEILaBFA8eqjh6C\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Research slug Unicode\",\"time\":{\"start\":1782998513370,\"end\":1782998778851}},\"metadata\":{\"openai\":{\"itemId\":\"fc_03734b8069332688016a4665d969cc8191b807439cd0273a36\"}},\"id\":\"prt_f22fdd957001exUuhwmor2Rxdd\",\"sessionID\":\"ses_0dd06e83cffeMm4Sqw9BNg86Xs\",\"messageID\":\"msg_f22fdbd60001au5QcZASivBtGr\"}}"
+      }
+    ],
+    "routeProofRecords": [
+      {
+        "mode": "research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/performance-improvements.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/phase-017-maintainability-extracts.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/pipeline-and-mutation-hardening.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/search-pipeline-safety.md",
+      ".opencode/skills/system-spec-kit/mcp_server/database/.maintenance-active.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-001-gpt-fast-med.transcript.jsonl"
+}

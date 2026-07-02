@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "CXB-002",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T14:27:06.168Z",
+  "endedAt": "2026-07-02T14:27:47.574Z",
+  "checkpoints": {
+    "tFirstOutputMs": 11509,
+    "tSetupMs": 40092,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 41406
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 2,
+    "d2": 1,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/CXB-002-gpt-fast-med.transcript.jsonl"
+}

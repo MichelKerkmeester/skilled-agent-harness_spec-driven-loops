@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-007",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T13:56:01.192Z",
+  "endedAt": "2026-07-02T14:11:48.393Z",
+  "checkpoints": {
+    "tFirstOutputMs": 17991,
+    "tSetupMs": 41278,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 947201
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research",
+        "target_agent": "deep-research",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=research target_agent=deep-research"
+      },
+      {
+        "mode": "research"
+      },
+      {
+        "mode": "research"
+      }
+    ],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/causal-boost-graduated.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/community-search-fallback.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/contextual-tree-injection-p1-4.md",
+      "opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      "opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      "opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "role_absorption",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 1,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-007-gpt-fast-med.transcript.jsonl"
+}

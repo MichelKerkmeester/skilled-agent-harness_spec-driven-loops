@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RSB-005",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T13:39:56.570Z",
+  "endedAt": "2026-07-02T13:54:57.508Z",
+  "checkpoints": {
+    "tFirstOutputMs": 12612,
+    "tSetupMs": 78445,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 900938
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/commands/deep/assets/deep_context_auto.yaml",
+      "opencode/commands/deep/assets/deep_research_auto.yaml",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/tri-daemon-spawn-drill.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md",
+      ".opencode/skills/.goal-state/7365735f30646365633761663366666573334967796f65523932475a5246.json",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/review/orchestration-summary.json",
+      ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/research/"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "hard_timeout"
+  },
+  "classification": "timeout_latency",
+  "dimensions": {
+    "d1": 0,
+    "d2": 2,
+    "d3": 0,
+    "d4": 0,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-005-gpt-fast-med.transcript.jsonl"
+}

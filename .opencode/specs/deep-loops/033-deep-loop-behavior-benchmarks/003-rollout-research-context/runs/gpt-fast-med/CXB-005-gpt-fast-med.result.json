@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "CXB-005",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T14:34:18.021Z",
+  "endedAt": "2026-07-02T14:36:55.041Z",
+  "checkpoints": {
+    "tFirstOutputMs": 9000,
+    "tSetupMs": null,
+    "tFirstDispatchMs": 145916,
+    "tTerminalMs": 157020
+  },
+  "delegation": {
+    "taskEvents": [
+      {
+        "t": 145916,
+        "line": "{\"type\":\"tool_use\",\"timestamp\":1783003003937,\"sessionID\":\"ses_0dcbf7925ffeNKB4OWUdHkoLuX\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_CJydDeejgNpL88ULTPweMHAC\",\"state\":{\"status\":\"completed\",\"input\":{\"description\":\"Deep context fixture sweep\",\"prompt\":\"Run one bounded deep-context sweep of this target only:\\n\\n`.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target`\\n\\nConstraints:\\n- You are the specialist context-gathering seat. Do not modify files.\\n- Keep the sweep bounded to the provided fixture path and its directly necessary local references only.\\n- Do not sweep the whole repo.\\n- Perform exactly one pass/iteration, then stop.\\n- Produce a concise Context Report-style result in your final message, prioritizing a REUSE catalog / existing code map / integration points / conventions / gaps.\\n- Cite concrete file paths and symbols when found.\\n- Label anything unverified if you cannot confirm it from files you read.\\n- Do not write a packet report or state files; return the findings to the host only.\\n\\nReturn only the final findings, with enough detail for the host to relay the result.\",\"subagent_type\":\"deep-context\",\"task_id\":\"\",\"command\":\"agent routing: bounded deep context sweep\"},\"output\":\"<task id=\\\"ses_0dcbea74effeGLpccipzpoqIfD\\\" state=\\\"completed\\\">\\n<task_result>\\n## Context Findings: fx-001-review-target\\n\\n### Reuse Candidates\\n- id: reuse-001  \\n  file:symbol: `slugify` (`.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target/src/slugify.js:9`)  \\n  signature: `slugify(input, maxLen)`  \\n  reuseStrategy: import  \\n  relevance: 0.95  \\n  freshness: verified by direct read  \\n  evidence: [SOURCE: `src/slugify.js:9`, `src/slugify.js:31`] Single CommonJS-exported URL slug utility; standalone/no dependencies per docs. Limitation: fixture says imperfections are intentional and must not be fixed.\\n\\n### Existing Code Map\\n- `src/slugify.js` — one-function CommonJS module, strict mode, no imports. [SOURCE: `src/slugify.js:1`, `src/slugify.js:9`, `src/slugify.js:31`]\\n- `spec.md` — defines slug requirements: lowercase, trim, separator collapse, no edge separators, max 60 with valid truncation. [SOURCE: `spec.md:11-20`]\\n- `plan.md` — confirms standalone utility, no build step/integration/configuration. [SOURCE: `plan.md:7-15`]\\n- `tasks.md` — checklist claims implementation complete. [SOURCE: `tasks.md:5-8`]\\n- `FIXTURE.md` — declares this as a frozen benchmark fixture with intentional seeded imperfections; do not edit. [SOURCE: `FIXTURE.md:3-13`]\\n\\n### Integration Points\\n- [HARD] `module.exports = slugify` (`src/slugify.js:31`) — consumers import the utility through the CommonJS default export. [SOURCE: `src/slugify.js:31`]\\n- [HARD] `slugify(input, maxLen)` (`src/slugify.js:9`) — second argument overrides default maximum length according to spec notes. [SOURCE: `src/slugify.js:9`, `spec.md:30-32`]\\n- [soft] Benchmark fixture contract (`FIXTURE.md:11-13`) — review/context hosts should report issues but never patch them. [SOURCE: `FIXTURE.md:11-13`]\\n\\n### Conventions\\n- Standalone fixture utility: one function, no dependencies, no I/O. [SOURCE: `spec.md:9`, `plan.md:15`]\\n- CommonJS export style, not ESM. [SOURCE: `plan.md:11`, `src/slugify.js:31`]\\n- Small legacy JS style: `'use strict'`, `var`, function declaration. [SOURCE: `src/slugify.js:1`, `src/slugify.js:9`, `src/slugify.js:13`]\\n\\n### Dependencies\\n- None within the fixture touch radius: no imports/requires found; docs require no external dependencies. [SOURCE: `src/slugify.js:1-31`, `plan.md:11`]\\n\\n### Gaps & Unknowns\\n- No test file exists in the bounded fixture path; acceptance examples live only in `spec.md`. [SOURCE: glob result; `spec.md:22-27`]\\n- Code graph unavailable in startup context, so symbol verification used direct file reads, not graph lookup.\\n- Review-relevant intentional imperfections observed but not patched:\\n  - Truncation happens after edge-hyphen stripping, so slicing may leave a trailing hyphen despite the “must not start or end with hyphen” requirement. [SOURCE: `spec.md:18-20`, `src/slugify.js:23-26`]\\n  - `maxLen = maxLen || 60` treats `0` and other falsy override values as default 60; whether that is acceptable is unspecified. [SOURCE: `src/slugify.js:10`, `spec.md:31-32`]\\n  - Non-string/non-number input is not guarded before `toLowerCase`; spec says inputs are expected title strings, so this may be out of scope. [SOURCE: `src/slugify.js:12-15`, `spec.md:30`]\\n\\n### Slice Coverage\\n- Slice analyzed: `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target`\\n- Files read: `src/slugify.js`, `spec.md`, `plan.md`, `tasks.md`, `FIXTURE.md`\\n- Anchor method: glob+grep fallback + direct reads\\n- Relevance floor applied: 0.55\\n\\n### Status\\ncomplete — one bounded read-only pass completed; no files modified.\\n</task_result>\\n</task>\",\"metadata\":{\"parentSessionId\":\"ses_0dcbf7925ffeNKB4OWUdHkoLuX\",\"sessionId\":\"ses_0dcbea74effeGLpccipzpoqIfD\",\"model\":{\"modelID\":\"gpt-5.5-fast\",\"providerID\":\"openai\"},\"truncated\":false},\"title\":\"Deep context fixture sweep\",\"time\":{\"start\":1783002913027,\"end\":1783003003929}},\"metadata\":{\"openai\":{\"itemId\":\"fc_00b4c07c1b6cc536016a4677157c488191bc2d6fb236c2c6d8\"}},\"id\":\"prt_f23412c000014itr72K0j8z3tk\",\"sessionID\":\"ses_0dcbf7925ffeNKB4OWUdHkoLuX\",\"messageID\":\"msg_f2340ff45001lfG1Cl9E8zSu4s\"}}"
+      }
+    ],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/CXB-005-gpt-fast-med.transcript.jsonl"
+}
