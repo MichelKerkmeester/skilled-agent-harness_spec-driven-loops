@@ -11,18 +11,18 @@ import * as fs from 'fs';
 // External packages
 import Database from 'better-sqlite3';
 
+import { resolveDatabasePaths } from '../../core/config.js';
 import { BetterSqliteContentionPolicy } from '../storage/ports/index.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-// Follow same env-var precedence as main DB (vector-index-impl.ts)
-// SPEC_KIT_DB_DIR (canonical) > MEMORY_DB_DIR (legacy) > default
-const DEFAULT_DB_DIR: string =
-  process.env.SPEC_KIT_DB_DIR ||
-  process.env.MEMORY_DB_DIR ||
-  path.resolve(import.meta.dirname, '../../database');
+function resolveDefaultEvalDbDir(): string {
+  return path.dirname(resolveDatabasePaths().databasePath);
+}
+
+const DEFAULT_DB_DIR: string = resolveDefaultEvalDbDir();
 
 const EVAL_DB_FILENAME = 'speckit-eval.db';
 
@@ -123,7 +123,7 @@ const EVAL_SCHEMA_SQL = `
  *                  Defaults to same dir as main DB.
  */
 function initEvalDb(dataDir?: string): Database.Database {
-  const resolvedDir = dataDir || DEFAULT_DB_DIR;
+  const resolvedDir = dataDir || resolveDefaultEvalDbDir();
   const dbPath = path.join(resolvedDir, EVAL_DB_FILENAME);
 
   // Return singleton if already initialized to the same path

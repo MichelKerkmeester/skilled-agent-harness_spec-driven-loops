@@ -11,6 +11,10 @@ import * as os from 'os';
 import * as fs from 'fs';
 import { initEvalDb, getEvalDb, getEvalDbPath, closeEvalDb, EVAL_DB_FILENAME } from '../lib/eval/eval-db';
 
+const originalSpecKitDbDir = process.env.SPEC_KIT_DB_DIR;
+const originalSpeckitDbDir = process.env.SPECKIT_DB_DIR;
+const originalMemoryDbPath = process.env.MEMORY_DB_PATH;
+
 /* ───────────────────────────────────────────────────────────────
    SETUP / TEARDOWN
 ──────────────────────────────────────────────────────────────── */
@@ -38,6 +42,13 @@ afterAll(() => {
       // Ignore cleanup errors
     }
   }
+
+  if (originalSpecKitDbDir === undefined) delete process.env.SPEC_KIT_DB_DIR;
+  else process.env.SPEC_KIT_DB_DIR = originalSpecKitDbDir;
+  if (originalSpeckitDbDir === undefined) delete process.env.SPECKIT_DB_DIR;
+  else process.env.SPECKIT_DB_DIR = originalSpeckitDbDir;
+  if (originalMemoryDbPath === undefined) delete process.env.MEMORY_DB_PATH;
+  else process.env.MEMORY_DB_PATH = originalMemoryDbPath;
 });
 
 /* ───────────────────────────────────────────────────────────────
@@ -103,6 +114,36 @@ describe('T004: Eval DB Schema (R13-S1)', () => {
         closeEvalDb();
         fs.rmSync(dirA, { recursive: true, force: true });
         fs.rmSync(dirB, { recursive: true, force: true });
+        initEvalDb(testDataDir);
+      }
+    });
+
+    it('initEvalDb default follows the shared DB path resolver after env changes', () => {
+      const unique = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      const primaryDir = path.join(os.tmpdir(), `eval-db-resolver-primary-${unique}`);
+      const secondaryDir = path.join(os.tmpdir(), `eval-db-resolver-secondary-${unique}`);
+      const memoryDbPath = path.join(os.tmpdir(), `eval-db-resolver-memory-${unique}`, 'custom.sqlite');
+      fs.mkdirSync(primaryDir, { recursive: true });
+      fs.mkdirSync(secondaryDir, { recursive: true });
+
+      closeEvalDb();
+      process.env.SPEC_KIT_DB_DIR = primaryDir;
+      process.env.SPECKIT_DB_DIR = secondaryDir;
+      process.env.MEMORY_DB_PATH = memoryDbPath;
+
+      try {
+        initEvalDb();
+        expect(getEvalDbPath()).toBe(path.join(fs.realpathSync(primaryDir), EVAL_DB_FILENAME));
+      } finally {
+        closeEvalDb();
+        fs.rmSync(primaryDir, { recursive: true, force: true });
+        fs.rmSync(secondaryDir, { recursive: true, force: true });
+        if (originalSpecKitDbDir === undefined) delete process.env.SPEC_KIT_DB_DIR;
+        else process.env.SPEC_KIT_DB_DIR = originalSpecKitDbDir;
+        if (originalSpeckitDbDir === undefined) delete process.env.SPECKIT_DB_DIR;
+        else process.env.SPECKIT_DB_DIR = originalSpeckitDbDir;
+        if (originalMemoryDbPath === undefined) delete process.env.MEMORY_DB_PATH;
+        else process.env.MEMORY_DB_PATH = originalMemoryDbPath;
         initEvalDb(testDataDir);
       }
     });

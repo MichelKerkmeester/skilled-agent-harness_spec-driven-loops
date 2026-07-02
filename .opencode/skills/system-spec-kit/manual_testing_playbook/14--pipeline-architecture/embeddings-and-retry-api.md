@@ -20,7 +20,7 @@ This scenario validates Embeddings and Retry API for `219`. It focuses on verify
 - Real user request: `` Please validate Embeddings and Retry API against mcp_server/api/providers.ts and tell me whether the expected signals are present: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, and current `ollama`/`hf-local` model IDs; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state. ``
 - Prompt: `Validate Embeddings and Retry API against mcp_server/api/providers.ts and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/bge-base-en-v1.5-GGUF`, and `onnx-community/bge-base-en-v1.5-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
+- Expected signals: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `nomic-embed-text-v1.5`, and `nomic-ai/nomic-embed-text-v1.5`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if the stable API surface, shared embedding substrate, and retry orchestration layers align with the documented contract; FAIL if public exports are incomplete, shared embedding lifecycle helpers are missing, or retry recovery behavior is not present
 
@@ -44,7 +44,7 @@ Validate Embeddings and Retry API against mcp_server/api/providers.ts and return
 
 ### Expected
 
-`mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/bge-base-en-v1.5-GGUF`, and `onnx-community/bge-base-en-v1.5-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
+`mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `nomic-embed-text-v1.5`, and `nomic-ai/nomic-embed-text-v1.5`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
 
 ### Evidence
 
@@ -82,7 +82,7 @@ Public export capture from `mcp_server/api/providers.ts`:
 915: export const DEFAULT_MODEL_NAME: string = getCanonicalFallback('hf-local');
 ```
 
-Provider cascade and current local model IDs observed in imported shared registry/factory, not as the expected literal IDs in `shared/embeddings.ts`:
+Provider cascade and current local model IDs observed in imported shared registry/factory:
 
 ```text
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:
@@ -93,7 +93,7 @@ Provider cascade and current local model IDs observed in imported shared registr
   Line 164:     'nomic-ai/nomic-embed-text-v1.5': 768,
 ```
 
-Exact grep output for expected IDs under `shared` showed no `unsloth/bge-base-en-v1.5-GGUF` or `onnx-community/bge-base-en-v1.5-ONNX` matches; the output contained only `nomic` matches:
+Exact grep output for legacy `unsloth/bge-base-en-v1.5-GGUF` or `onnx-community/bge-base-en-v1.5-ONNX` IDs under `shared` showed no matches; the output contained only `nomic` matches:
 
 ```text
 Found 19 matches
@@ -214,7 +214,7 @@ Import smoke-test equivalent script output consuming only `mcp_server/api/provid
 
 ### Pass / Fail
 
-- **FAIL**: public exports, shared embedding lifecycle helpers, provider cascade, and retry recovery behavior are present, but the Expected section requires `unsloth/bge-base-en-v1.5-GGUF` and `onnx-community/bge-base-en-v1.5-ONNX`; actual observed local defaults are `nomic-embed-text-v1.5` and `nomic-ai/nomic-embed-text-v1.5`.
+- **PASS**: public exports, shared embedding lifecycle helpers, provider cascade, retry recovery behavior, and the documented current local defaults `nomic-embed-text-v1.5` and `nomic-ai/nomic-embed-text-v1.5` are present.
 
 ### Failure Triage
 

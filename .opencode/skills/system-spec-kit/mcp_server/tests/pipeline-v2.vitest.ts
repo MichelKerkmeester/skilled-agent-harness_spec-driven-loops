@@ -289,8 +289,6 @@ describe('R6: Feature Flags', () => {
     process.env = originalEnv;
   });
 
-  // isPipelineV2Enabled() was always true and has been deleted, along with its tests.
-
   it('R6-T21: SPECKIT_EMBEDDING_EXPANSION defaults to true (graduated)', () => {
     delete process.env.SPECKIT_EMBEDDING_EXPANSION;
     expect(isEmbeddingExpansionEnabled()).toBe(true);

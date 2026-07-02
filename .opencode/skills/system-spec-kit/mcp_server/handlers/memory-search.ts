@@ -9,7 +9,6 @@ import * as toolCache from '../lib/cache/tool-cache.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
-// TierClassifier, crossEncoder imports removed — only used by legacy V1 pipeline.
 import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
 import { isRetrievalProfileWeightsEnabled } from '../lib/search/retrieval-profile.js';
 import { searchCommunities } from '../lib/search/community-search.js';
@@ -671,12 +670,6 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
    3. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-// Sections 3–5 (STATE_PRIORITY, MAX_DEEP_QUERY_VARIANTS, buildDeepQueryVariants,
-// StrengthenOnAccess, applyTestingEffect, filterByMemoryState) removed in
-// These were only used by the legacy V1 pipeline.
-// The V2 4-stage pipeline handles state filtering (Stage 4), testing effect, and
-// Query expansion through its own stages.
-
 /* ───────────────────────────────────────────────────────────────
    6. SESSION DEDUPLICATION UTILITIES
 ──────────────────────────────────────────────────────────────── */
@@ -851,11 +844,6 @@ function applySessionDedup(results: MemorySearchRow[], sessionId: string, enable
     }
   };
 }
-
-// Sections 7–9 (applyCrossEncoderReranking, applyIntentWeightsToResults,
-// ShouldApplyPostSearchIntentWeighting, postSearchPipeline) removed in
-// These were only used by the legacy V1 pipeline
-// Path. The V2 4-stage pipeline handles all equivalent functionality.
 
 /* ───────────────────────────────────────────────────────────────
    10. MAIN HANDLER
@@ -1223,7 +1211,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   if (cachedPayload) {
     responseToReturn = buildSearchResponseFromPayload(cachedPayload, _searchStartTime, true);
   } else {
-    // V2 pipeline is the only path (legacy V1 removed from the runtime pipeline)
     const pipelineConfig: PipelineConfig = {
       query: effectiveQuery,
       concepts: hasValidConcepts ? concepts : undefined,
