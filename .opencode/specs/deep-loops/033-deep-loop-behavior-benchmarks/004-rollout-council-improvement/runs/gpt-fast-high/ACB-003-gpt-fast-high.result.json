@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-003",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T20:28:59.983Z",
+  "endedAt": "2026-07-02T20:30:38.908Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8157,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 98925
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation/tasks.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/ACB-003-gpt-fast-high.transcript.jsonl"
+}

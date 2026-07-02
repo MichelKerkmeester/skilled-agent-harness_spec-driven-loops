@@ -191,8 +191,8 @@
     ],
     "causal_summary": "Extend the calibrated framework to the two non-runtime-loop dispatch shapes: deep-ai-council (multi-seat orchestration; delegation evidence = seat dispatches + round records rather than iteration LEAF dispatches) and deep-improvement (improvement-host backend; loop owned by loop-host.cjs)",
     "created_at": "2026-07-02T05:53:06.374Z",
-    "last_save_at": "2026-07-02T05:58:39.565Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-02T21:28:35.854Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2e4c954fea27790b4dc3e0ffbf762d33ecc296dbfcfad8dff5bef8544ef8c75",
+    "source_fingerprint": "sha256:c324d0f6621d501ead1bf45aa292debf35ff02942c84475e96e9dcfa1a976afc",
     "source_doc_hashes": {
       "spec.md": "104bd02df2eacc7c55f7fefe0573c32c2b3049438f43bdcea85fa0f8f70a2a60",
       "plan.md": "d28cf5c51ed224643fca5cb073c8cbe5592057f355f1469dcb13e3ebec38351e",
-      "tasks.md": "72b67e769a07079cba7ac81c1d727976d4fb0bc0b90bca47ada9e1d32da0aa15",
-      "checklist.md": "0cf67339fe5d355b3daee9acbe929440625485e02af5e639cbba14a9e377084e",
-      "implementation-summary.md": "9649a2f6ceea25e1837c070a192afcbf30cfa091af81eb97d1cb8c1c2daf53ce"
+      "tasks.md": "9bb8d50600c40cb5521a0c4bdfe5ce7f1b6ac695f1bef6c9e5d6e422615a3638",
+      "checklist.md": "d0165954a190f7f22b60ddb072097cb5a62a7eff236a9128a1bb11de70632a0e",
+      "implementation-summary.md": "243ae29c06ad0f10d38a0c34937fbdd936f008586c40bec186d7d1e9a0ffd074"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-001",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T19:37:33.606Z",
+  "endedAt": "2026-07-02T19:45:09.937Z",
+  "checkpoints": {
+    "tFirstOutputMs": 7723,
+    "tSetupMs": 61582,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 456331
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "ai-council",
+        "target_agent": "ai-council",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=ai-council target_agent=ai-council"
+      }
+    ],
+    "seatArtifacts": 3,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-med/ACB-001-gpt-fast-med.transcript.jsonl"
+}

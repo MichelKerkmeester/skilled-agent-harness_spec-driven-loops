@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-005",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T20:44:04.209Z",
+  "endedAt": "2026-07-02T20:57:50.364Z",
+  "checkpoints": {
+    "tFirstOutputMs": 16509,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 826155
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-concurrent-dual-client-load.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-trust-gate-fuzz.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-warm-only-probe-churn.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-trusted-gate-refusal.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-warm-only-no-spawn.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/completion-verification-workflow.md",
+      ".opencode/skills/.goal-state/7365735f306462366365633533666665794231634b65676f4748656c7936.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "watchdog"
+  },
+  "classification": "stuck_no_progress",
+  "dimensions": {
+    "d1": 0,
+    "d2": 2,
+    "d3": 0,
+    "d4": 0,
+    "d5": 1
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/ACB-005-gpt-fast-high.transcript.jsonl"
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-001",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T20:16:48.090Z",
+  "endedAt": "2026-07-02T20:28:17.839Z",
+  "checkpoints": {
+    "tFirstOutputMs": 10367,
+    "tSetupMs": 117428,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 689749
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "ai-council",
+        "target_agent": "ai-council"
+      },
+      {
+        "mode": "ai-council",
+        "target_agent": "ai-council",
+        "agent_definition_loaded": true,
+        "resolved_route": "Resolved route: mode=ai-council target_agent=ai-council"
+      }
+    ],
+    "seatArtifacts": 3,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-level-retrieval.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-cross-document-entity-linking-s5.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-memory-summary-generation-r8.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/memory-summary-search-channel-r8.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md",
+      "opencode/specs/system-speckit/031-manual-playbook-execution-sweep/manifest.tsv"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/ACB-001-gpt-fast-high.transcript.jsonl"
+}

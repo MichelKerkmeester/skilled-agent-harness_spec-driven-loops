@@ -126,19 +126,19 @@
     ],
     "causal_summary": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode.",
     "created_at": "2026-07-02T05:41:36.143Z",
-    "last_save_at": "2026-07-02T17:48:51.404Z",
+    "last_save_at": "2026-07-02T21:28:40.680Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5a5ecb54402b29c92131650c9ec51d365b62f5d81fa832ae0c6dc035ad155519",
+    "source_fingerprint": "sha256:0414a02319bd6440cf8eb928c27ac377723d35dec19c3aa367e9f8d85555eb5b",
     "source_doc_hashes": {
-      "spec.md": "bfd32e62fbc131de5b38aaa0c046b496e8de5454108911a6ae7d42accb4f62aa",
+      "spec.md": "161679f290901864e7c7b699e6e9b5df1f5aee0526bd0713cd4b4baa8115e563",
       "research/research.md": "54cc2a2b0fd07e117308b646559f37ac068b65e3b17c25ab6168d4e73336b85b"
     },
-    "last_active_child_id": "deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
-    "last_active_at": "2026-07-02T17:48:51.404Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-02T21:28:40.680Z"
   }
 }

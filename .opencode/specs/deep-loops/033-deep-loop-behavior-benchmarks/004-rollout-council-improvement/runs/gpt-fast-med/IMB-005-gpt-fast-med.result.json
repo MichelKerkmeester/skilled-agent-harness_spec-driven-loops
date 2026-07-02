@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-005",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T20:15:35.556Z",
+  "endedAt": "2026-07-02T20:16:01.334Z",
+  "checkpoints": {
+    "tFirstOutputMs": 16293,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 25778
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "missing_artifact",
+  "dimensions": {
+    "d1": 2,
+    "d2": 0,
+    "d3": 0,
+    "d4": 1,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-med/IMB-005-gpt-fast-med.transcript.jsonl"
+}

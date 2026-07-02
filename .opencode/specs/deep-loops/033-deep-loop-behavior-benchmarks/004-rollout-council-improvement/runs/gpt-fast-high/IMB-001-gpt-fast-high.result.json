@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-001",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T20:57:51.516Z",
+  "endedAt": "2026-07-02T21:12:52.254Z",
+  "checkpoints": {
+    "tFirstOutputMs": 10082,
+    "tSetupMs": 111943,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 900738
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [
+      {
+        "mode": "agent-improvement"
+      },
+      {
+        "mode": "agent-improvement"
+      },
+      {
+        "mode": "agent-improvement"
+      },
+      {
+        "mode": "model-benchmark"
+      }
+    ],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 2,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/code-standards-alignment.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/constitutional-memory-manager-command.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/core-workflow-infrastructure.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/dead-code-removal.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/debug-delegation-scaffold-generator.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-list-registry-inventory.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-set-dry-run-and-validation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-status-job-and-active-pointer.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/eval-runner-cli.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md",
+      ".opencode/skills/.goal-state/7365735f30646235336135666266666539326664474b65613778534d546e.json",
+      ".opencode/skills/.goal-state/7365735f306462363034666634666665396a49687375395047356f6b7a44.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "hard_timeout"
+  },
+  "classification": "timeout_latency",
+  "dimensions": {
+    "d1": 1,
+    "d2": 2,
+    "d3": 2,
+    "d4": 0,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/IMB-001-gpt-fast-high.transcript.jsonl"
+}

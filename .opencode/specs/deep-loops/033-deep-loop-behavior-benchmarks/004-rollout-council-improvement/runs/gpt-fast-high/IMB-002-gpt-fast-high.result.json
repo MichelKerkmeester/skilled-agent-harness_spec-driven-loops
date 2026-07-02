@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-002",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T21:12:53.505Z",
+  "endedAt": "2026-07-02T21:15:05.276Z",
+  "checkpoints": {
+    "tFirstOutputMs": 12815,
+    "tSetupMs": 62443,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 131771
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-mode-hybrid-enrichment.md"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": 1
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/IMB-002-gpt-fast-high.transcript.jsonl"
+}

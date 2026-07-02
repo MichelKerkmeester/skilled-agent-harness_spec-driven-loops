@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-004",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-02T19:47:14.250Z",
+  "endedAt": "2026-07-02T19:47:33.338Z",
+  "checkpoints": {
+    "tFirstOutputMs": 7490,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 19088
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "missing_artifact",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 1,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-med/ACB-004-gpt-fast-med.transcript.jsonl"
+}

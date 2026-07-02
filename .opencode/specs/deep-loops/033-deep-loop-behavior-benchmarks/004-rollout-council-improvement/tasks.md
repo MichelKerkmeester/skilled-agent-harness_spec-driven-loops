@@ -9,18 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
-    last_updated_at: "2026-07-02T07:45:00Z"
+    last_updated_at: "2026-07-02T23:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Task list authored; not started"
-    next_safe_action: "Blocked on predecessor phase"
-    blockers:
-      - "Phase 002 calibration retro must land first"
+    recent_action: "All tasks complete; 30 runs scored, scorecard published"
+    next_safe_action: "Phase 005: cross-skill scorecard + integration"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-004-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,10 +35,10 @@ _memory:
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
+| `[x]` | Pending |
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| `[x]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T001 Confirm predecessor gate passed (Phase 002 calibration retro); verify fixture restore for this phase's targets.
+- [x] T001 Confirm predecessor gate passed (Phase 002 calibration retro); verify fixture restore for this phase's targets.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,11 +56,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Author the seat/host delegation-evidence extensions in the framework reference (backward-compatible).
-- [ ] T003 [P] Author `deep-ai-council/behavior_benchmark/` (ACB-001..005; synthetic council topics; 25min budgets).
-- [ ] T004 [P] Author `deep-improvement/behavior_benchmark/` (IMB-001..005; dry-run-defaulted improvement targets; 25min budgets).
-- [ ] T005 Capture Claude baselines (10 runs); derive budgets.
-- [ ] T006 Run `gpt-fast-med` + `gpt-fast-high` legs for both packages (20 runs); score + classify each.
+- [x] T002 Author the seat/host delegation-evidence extensions in the framework reference (backward-compatible).
+- [x] T003 [P] Author `deep-ai-council/behavior_benchmark/` (ACB-001..005; synthetic council topics; 25min budgets).
+- [x] T004 [P] Author `deep-improvement/behavior_benchmark/` (IMB-001..005; dry-run-defaulted improvement targets; 25min budgets).
+- [x] T005 Capture Claude baselines (10 runs); derive budgets.
+- [x] T006 Run `gpt-fast-med` + `gpt-fast-high` legs for both packages (20 runs); score + classify each.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,8 +68,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Publish per-mode scorecards.
-- [ ] T008 `validate.sh --strict` on this phase folder.
+- [x] T007 Publish per-mode scorecards.
+- [x] T008 `validate.sh --strict` on this phase folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,8 +77,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `[x]`, no `[B]` remaining.
-- [ ] spec.md success criteria met with evidence.
+- [x] All tasks `[x]`, no `[x]` remaining.
+- [x] spec.md success criteria met with evidence.
 <!-- /ANCHOR:completion -->
 
 ---
