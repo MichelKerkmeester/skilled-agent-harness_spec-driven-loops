@@ -52,9 +52,9 @@ FAILURE MODES:
 | **Created** | 2026-07-02 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 10 |
+| **Phase** | 10 of 12 |
 | **Predecessor** | 009-drift-audit-deep-history-correction |
-| **Successor** | None |
+| **Successor** | 011-create-sh-parent-corruption-fix |
 | **Handoff Criteria** | `deriveStatus` gates `complete` on real completion evidence; new validator rule ships in non-blocking report mode; 6-file test suite green |
 <!-- /ANCHOR:metadata -->
 
@@ -133,6 +133,8 @@ This is **Phase 10** of packet 028, closing an unrelated defect a 10-iteration G
 |----|-------------|---------------------|
 | REQ-001 | `deriveStatus`'s `!checklistDoc` branch no longer returns `complete` from file-presence alone | A folder with an unfilled `implementation-summary.md` scaffold (no `completion_pct`, or `completion_pct` under 100, or open `tasks.md` items) and no `checklist.md` derives a non-`complete` status |
 | REQ-002 | The null-`completion_pct` edge case (296 folders repo-wide) does not silently resolve to `complete` | A folder with no parseable `completion_pct` field derives a non-`complete` status with `reviewRequired: true` (or preserves a pre-existing valid status), never a fresh false-positive `complete` |
+
+> **Amendment (2026-07-02, phase 012):** REQ-001/REQ-002/REQ-005 apply to explicit frontmatter/table `complete`-style status claims too, not only the no-checklist fallback. The originally shipped fix (this phase) left a second bypass open at `deriveStatus`'s explicit-status branch (`graph-metadata-parser.ts:1185-1195`), which ran ahead of the completion-evidence gate below and let any doc's own `status: complete`/`Status: Done` claim return immediately without evidence — the same defect class, a different code path. Phase 012 closed that gap; an explicit `complete` claim now requires the same `completion_pct >= 100 && !openTasks` evidence (or a genuine checklist-complete result) as every other path. Non-`complete` explicit statuses (`in_progress`, `planned`, `blocked`) are unaffected and still return immediately, since they carry no equivalent false-positive risk. See `010-generated-metadata-status-integrity/review/review-report.md` (T2-P1-001) and `../012-derive-status-explicit-bypass-fix/`.
 
 ### P1 - Required (complete OR user-approved deferral)
 

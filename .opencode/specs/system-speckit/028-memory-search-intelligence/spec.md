@@ -128,6 +128,8 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 008 | `008-drift-audit-remediation/` | Fixed all 75 findings from a GPT-5.5-fast drift audit spanning this packet's other seven children (24 confirmed + 51 unverified, 42 directories corrected) | Complete |
 | 009 | `009-drift-audit-deep-history-correction/` | Second-pass doc correction: git history shows the 4 code-gap findings from 008 were built, shadow-shipped, benchmarked and deliberately deleted for cause, not abandoned | Complete |
 | 010 | `010-generated-metadata-status-integrity/` | Fixes a real deriveStatus defect (213 folders repo-wide already mislabeled `complete` from a doc's mere presence, not its content) and adds a report-mode-default `validate.sh --strict` rule catching the same class going forward | Complete |
+| 011 | `011-create-sh-parent-corruption-fix/` | Fixes a deterministic create.sh bug where append-mode phase scaffolding overwrote an existing parent packet's `description.json` with the appended child's own metadata, and repairs the one confirmed already-corrupted packet | Complete |
+| 012 | `012-derive-status-explicit-bypass-fix/` | Closes a second deriveStatus bypass an independent adversarial follow-up review found in phase 010's own shipped fix: an explicit `status: complete` claim returned immediately, ahead of the completion-evidence gate; also wires the MCP validation orchestrator's enforcement flag | Complete |
 
 ### Phase Transition Rules
 
@@ -148,6 +150,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | release cleanup parent | cleanup child | Inspect one executed cleanup or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
 | 009-drift-audit-deep-history-correction | 010-generated-metadata-status-integrity | Independent, not a continuation of 009's own scope; surfaced by an unrelated diagnostic review | Targeted 9-file suite green (108/108); full repo-wide suite deliberately stopped after root cause (unrelated serial-execution config) confirmed |
+| 010-generated-metadata-status-integrity | 011-create-sh-parent-corruption-fix, 012-derive-status-explicit-bypass-fix | Independent findings, not continuations of 010's own scope; both surfaced by an unrelated adversarial follow-up review auditing 010's shipped fix and the create.sh scaffolding tool concurrently | Both phases: targeted suite green (test-phase-system.sh 8/8 for 011; 9-file/119-test suite for 012), zero new errors under `validate.sh --strict` (one pre-existing, cross-verified-unrelated `SECTION_COUNTS` warning documented in each phase's implementation-summary.md) |
 <!-- /ANCHOR:phase-map -->
 
 ---

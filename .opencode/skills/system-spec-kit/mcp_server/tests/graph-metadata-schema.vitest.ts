@@ -439,6 +439,59 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.status).toBe('in_progress');
   });
 
+  // T2-P2-001 (advisory): these 4 edge cases were verified correct by direct code reading
+  // during the gpt-followup-audit review but had no direct parser-level test pinning them.
+  it('treats a malformed completion_pct as absent rather than a false-positive number', () => {
+    const content = ['---', 'title: "Fixture"', '_memory:', '  continuity:', '    completion_pct: not-a-number', '---', ''].join('\n');
+    expect(graphMetadataParserTestables.parseCompletionPct(content)).toBeNull();
+  });
+
+  it('parses a quoted completion_pct value the same as an unquoted one', () => {
+    const quoted = ['---', 'title: "Fixture"', '_memory:', '  continuity:', '    completion_pct: "100"', '---', ''].join('\n');
+    const unquoted = ['---', 'title: "Fixture"', '_memory:', '  continuity:', '    completion_pct: 100', '---', ''].join('\n');
+    expect(graphMetadataParserTestables.parseCompletionPct(quoted)).toBe(100);
+    expect(graphMetadataParserTestables.parseCompletionPct(unquoted)).toBe(100);
+  });
+
+  it('treats a tasks.md with only prose/comment lines (no checkbox syntax) as having no open items', () => {
+    const content = ['# Tasks', '', '<!-- All work tracked externally -->', '', 'See the linked tracker for status.'].join('\n');
+    expect(graphMetadataParserTestables.hasOpenTaskItems(content)).toBe(false);
+  });
+
+  it('treats a whitespace-only implementation-summary.md as having no parseable completion_pct', () => {
+    expect(graphMetadataParserTestables.parseCompletionPct('   \n\n\t\n  ')).toBeNull();
+    expect(graphMetadataParserTestables.parseCompletionPct('')).toBeNull();
+  });
+
+  it('derives independent, non-interfering results across interleaved deriveStatus calls', () => {
+    const completeFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      implementationSummaryCompletionPct: 100,
+      includeChecklist: false,
+    });
+    const incompleteFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      implementationSummaryCompletionPct: 40,
+      includeChecklist: false,
+    });
+
+    // Interleave calls against two different folders rather than running each fully to
+    // completion before starting the next, to catch any accidental shared mutable state.
+    const completeFirst = deriveGraphMetadata(completeFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    const incompleteFirst = deriveGraphMetadata(incompleteFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    const completeSecond = deriveGraphMetadata(completeFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    const incompleteSecond = deriveGraphMetadata(incompleteFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(completeFirst.derived.status).toBe('complete');
+    expect(incompleteFirst.derived.status).toBe('in_progress');
+    expect(completeSecond.derived.status).toBe('complete');
+    expect(incompleteSecond.derived.status).toBe('in_progress');
+  });
+
   it('honors a spec.md metadata-table Draft status over implementation-summary presence', () => {
     const specFolder = createSpecFolder({
       specStatus: null,

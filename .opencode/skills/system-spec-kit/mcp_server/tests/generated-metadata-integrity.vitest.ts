@@ -15,6 +15,7 @@ import {
   isStatusCompletionConsistencyGateEnabled,
   resolveGeneratedMetadataIntegrity,
   serializeGraphMetadata,
+  validateFolder,
   type GraphMetadata,
 } from '../api';
 import { __testables as parserTestables } from '../lib/graph/graph-metadata-parser.js';
@@ -262,6 +263,37 @@ describe('status-completion consistency check (D4-P0-001 regression)', () => {
 
     const report = checkGeneratedMetadataIntegrity(folder);
     expect(report.violations.map((violation) => violation.code)).not.toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+  });
+
+  // Regression for T2-P1-002/T2-P1-003: the MCP validation orchestrator (validateFolder,
+  // the entrypoint the MCP server actually calls) never passed the flag through to
+  // resolveGeneratedMetadataIntegrity, so SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE had
+  // no effect via that path even though the CLI bridge (validate.sh) wired it correctly.
+  it('enforces the gate at the orchestrator entrypoint (validateFolder) when explicitly enabled', () => {
+    const folder = makeSpecFolder('911-orchestrator-status-mismatch-enforced');
+    writeFixtureWithForcedStatus(folder, null, [], 'complete');
+
+    delete process.env[GENERATED_METADATA_GRANDFATHER_ENV];
+    process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = 'true';
+    try {
+      const report = validateFolder(folder, { strict: true });
+      const integrityEntry = report.entries.find((item) => item.rule === 'GENERATED_METADATA_INTEGRITY');
+      expect(integrityEntry?.status).toBe('error');
+      expect(integrityEntry?.details.join(' ')).toContain('STATUS_COMPLETE_EVIDENCE_MISMATCH');
+    } finally {
+      delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
+    }
+  });
+
+  it('leaves the orchestrator entrypoint in report mode by default (flag unset)', () => {
+    const folder = makeSpecFolder('912-orchestrator-status-mismatch-default');
+    writeFixtureWithForcedStatus(folder, null, [], 'complete');
+
+    delete process.env[GENERATED_METADATA_GRANDFATHER_ENV];
+    delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
+    const report = validateFolder(folder, { strict: true });
+    const integrityEntry = report.entries.find((item) => item.rule === 'GENERATED_METADATA_INTEGRITY');
+    expect(integrityEntry?.status).not.toBe('error');
   });
 });
 

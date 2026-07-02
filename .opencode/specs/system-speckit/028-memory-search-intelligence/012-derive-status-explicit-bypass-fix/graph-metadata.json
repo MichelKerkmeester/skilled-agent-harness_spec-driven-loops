@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity",
+  "packet_id": "system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix",
   "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [],
   "manual": {
@@ -11,44 +11,42 @@
   },
   "derived": {
     "trigger_phrases": [
-      "generated metadata status integrity",
-      "deriveStatus false complete",
-      "graph metadata status defect",
-      "generated metadata status integrity plan",
-      "deriveStatus fix plan",
-      "generated metadata status integrity tasks",
-      "deriveStatus false complete fix"
+      "deriveStatus explicit status bypass fix",
+      "orchestrator status completion consistency wiring",
+      "gpt followup audit T2 remediation",
+      "derive status explicit bypass fix plan",
+      "derive status explicit bypass fix tasks",
+      "derive status explicit bypass fix summary"
     ],
     "key_topics": [
-      "generated",
-      "metadata",
-      "status",
-      "integrity",
       "derivestatus",
-      "false",
-      "complete",
-      "graph",
-      "defect",
-      "plan",
+      "explicit",
+      "status",
+      "bypass",
       "fix",
-      "tasks"
+      "orchestrator",
+      "completion",
+      "consistency",
+      "wiring",
+      "gpt",
+      "followup",
+      "audit"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      "spec.md",
       "implementation-summary.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      "plan.md",
+      "scripts/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "mcp_server/vitest.config.ts",
-      "spec.md",
-      "plan.md"
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity/spec.md",
+      "tests/feature-flag-reference-docs.vitest.ts",
+      "mcp_server/lib/validation/orchestrator.ts"
     ],
     "entities": [
       {
@@ -58,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "generated-metadata-integrity.ts",
+        "name": "orchestrator.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -82,9 +80,15 @@
         "source": "derived"
       },
       {
-        "name": "index.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "path": "scripts/validation/generated-metadata-integrity.ts",
         "source": "derived"
       },
       {
@@ -100,27 +104,9 @@
         "source": "derived"
       },
       {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "feature-flag-reference-docs.vitest.ts",
+        "kind": "test",
+        "path": "tests/feature-flag-reference-docs.vitest.ts",
         "source": "derived"
       },
       {
@@ -178,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Pure",
+        "name": "Pattern Narrow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -190,15 +176,27 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does not, regardless of whether the doc is a real completed summary or an unfilled Level-1 scaffold",
-    "created_at": "2026-07-02T03:22:45Z",
-    "last_save_at": "2026-07-02T15:15:54.060Z",
+    "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
+    "created_at": "2026-07-02T15:04:28.309Z",
+    "last_save_at": "2026-07-02T15:11:08.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1fdb81b7c1227244ee89532e6ed28dd028a850fa15710b3b5d473339b6fb46b",
+    "source_fingerprint": "sha256:dffce669519f724e17e202a08d11cbc8eabf29e6bca3544627457e9cb78e5f88",
     "source_doc_hashes": {
-      "spec.md": "31db3a0c3ff9988d4efa1493d8dce8e290ea1ce4901ec9389d28deaf5f176c92",
-      "plan.md": "4b18db3629e01b086c53a191656dc240cd7883475167b5eaff61964be43f6a45",
-      "tasks.md": "70e618c76450a6641807691e7f32b2109d0ffba30201c7bdeff498d78777a9ed",
-      "implementation-summary.md": "36750d36b0e5121ba1e4aaaeddad84e5b3d2b060eaa6bad8dad461bed15d2e29"
+      "spec.md": "24d4f1c3741399c8a1e9e15157321a2347743ef188945e66cd5b3097fe38e872",
+      "plan.md": "9e0dc64bd0244bf1f452c044993a4e58ce55da11782b6fb7ffc1dc2c1d665075",
+      "tasks.md": "62114bc0e7d18f97ec047508aab0189fbd1736705c3cb61af7416b17ad38dc47",
+      "implementation-summary.md": "b320cd5710e05ee06135d38ce86c9c6fc79f2c24459cec814aec1c17ebd483a6"
     },
     "last_active_child_id": null,
     "last_active_at": null
