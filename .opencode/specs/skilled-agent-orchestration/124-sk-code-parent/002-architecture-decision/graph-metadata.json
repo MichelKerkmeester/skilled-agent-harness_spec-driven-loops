@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-code-parent/001-research-and-context"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code architecture decision",
+      "sk-code 5-mode taxonomy",
+      "sk-code parent decision record"
+    ],
+    "key_topics": [
+      "sk-code",
+      "architecture",
+      "decision",
+      "5-mode",
+      "taxonomy",
+      "shared",
+      "surface",
+      "router",
+      "code-review",
+      "advisor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Records the operator-approved sk-code parent architecture: 5 phase-mode packets (code-implement/quality/debug/verify/review) over one shared surface router, sk-code-review folded in as a clean code-review mode with a legacy alias, one hub advisor identity, and a regression-first build sequence for phases 003-009.",
+    "created_at": "2026-07-03T00:00:00Z",
+    "last_save_at": "2026-07-03T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "decision-record.md",
+      "spec.md"
+    ],
+    "source_fingerprint": null,
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

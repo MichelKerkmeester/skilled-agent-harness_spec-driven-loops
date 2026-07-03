@@ -1,0 +1,22 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent",
+  "description": "Code capability is split across two mature-but-uncoordinated skills",
+  "keywords": [
+    "code",
+    "capability",
+    "split",
+    "across",
+    "two",
+    "mature-but-uncoordinated",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-03T17:03:06.063Z",
+  "specId": "124",
+  "folderSlug": "sk-code-parent",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

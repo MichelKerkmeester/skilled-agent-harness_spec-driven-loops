@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+  "description": "Capture the operator-approved sk-code parent architecture (5 phase-modes over one shared surface router, sk-code-review folded as code-review) as the binding decision record that governs the build.",
+  "keywords": [
+    "sk-code",
+    "architecture",
+    "decision",
+    "5-mode",
+    "taxonomy",
+    "shared",
+    "surface",
+    "router",
+    "code-review",
+    "fold-in"
+  ],
+  "lastUpdated": "2026-07-03T00:00:00.000Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
