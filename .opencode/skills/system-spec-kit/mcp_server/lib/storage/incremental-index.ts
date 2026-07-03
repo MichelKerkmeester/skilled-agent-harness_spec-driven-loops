@@ -16,6 +16,7 @@ import { getCanonicalPathKey } from '../utils/canonical-path.js';
 import { extractSpecFolder, extractDocumentType } from '../parsing/memory-parser.js';
 import { canonicalFingerprint } from './canonical-fingerprint.js';
 import { createMemoStore } from './memo.js';
+import { buildMemoryLogicalKey } from './lineage-state.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -64,6 +65,7 @@ interface IndexedRecordRow extends IndexedPathRow {
 interface OrphanSweepOptions {
   limit?: number;
   cursor?: number;
+  basePath?: string;
 }
 
 interface OrphanSweepResult {
@@ -429,15 +431,42 @@ function normalizeOrphanSweepLimit(limit?: number): number {
   return Math.max(1, Math.floor(limit));
 }
 
-function indexedRecordIsAbsent(row: IndexedRecordRow): boolean {
-  const rowFileExists = typeof row.file_path === 'string' && row.file_path.length > 0
-    ? getFileMetadata(row.file_path).exists
-    : false;
-  const rowCanonicalExists = typeof row.canonical_file_path === 'string' && row.canonical_file_path.length > 0
-    ? getFileMetadata(row.canonical_file_path).exists
-    : false;
+function pathIsWithinBase(candidatePath: string, basePath: string): boolean {
+  const relative = path.relative(basePath, candidatePath);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
 
-  return !rowFileExists && !rowCanonicalExists;
+function resolveIndexedPath(candidatePath: string | null | undefined, basePath: string): string | null {
+  if (typeof candidatePath !== 'string' || candidatePath.length === 0) {
+    return null;
+  }
+  const resolved = path.resolve(basePath, candidatePath);
+  return pathIsWithinBase(resolved, basePath) ? resolved : null;
+}
+
+function legacyTrackPath(candidatePath: string | null | undefined): string | null {
+  if (typeof candidatePath !== 'string' || candidatePath.length === 0) {
+    return null;
+  }
+  if (candidatePath.includes(`${path.sep}system-spec-kit${path.sep}`)) {
+    return candidatePath.replaceAll(`${path.sep}system-spec-kit${path.sep}`, `${path.sep}system-speckit${path.sep}`);
+  }
+  if (candidatePath.includes('/system-spec-kit/')) {
+    return candidatePath.replaceAll('/system-spec-kit/', '/system-speckit/');
+  }
+  return null;
+}
+
+function indexedPathExists(candidatePath: string | null | undefined, basePath: string): boolean {
+  const candidates = [candidatePath, legacyTrackPath(candidatePath)];
+  return candidates.some((candidate) => {
+    const resolved = resolveIndexedPath(candidate, basePath);
+    return resolved ? getFileMetadata(resolved).exists : false;
+  });
+}
+
+function indexedRecordIsAbsentWithinBase(row: IndexedRecordRow, basePath: string): boolean {
+  return !indexedPathExists(row.file_path, basePath) && !indexedPathExists(row.canonical_file_path, basePath);
 }
 
 function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResult {
@@ -449,6 +478,7 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
   const cursor = typeof options.cursor === 'number' && Number.isFinite(options.cursor) && options.cursor > 0
     ? Math.floor(options.cursor)
     : 0;
+  const basePath = path.resolve(options.basePath ?? process.cwd());
 
   try {
     const rows = hasCanonicalPathColumn()
@@ -476,14 +506,14 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
       if (!row || typeof row.id !== 'number') {
         continue;
       }
-      if (indexedRecordIsAbsent(row)) {
+      if (indexedRecordIsAbsentWithinBase(row, basePath)) {
         orphanRecordIds.push(row.id);
       }
     }
 
     return {
       swept: orphanRecordIds.length,
-      nextCursor: rows.length === limit ? rows[rows.length - 1]?.id ?? null : null,
+      nextCursor: rows.length === limit ? rows[rows.length - 1]?.id ?? 0 : 0,
       scannedRows: rows.length,
       orphanRecordIds,
     };
@@ -503,6 +533,16 @@ interface MoveReconcileCandidate {
   newPath: string;
   rowId: number;
   docType: string;
+}
+
+interface MoveReconcileRow {
+  id: number;
+  document_type?: string | null;
+  anchor_id?: string | null;
+  tenant_id?: string | null;
+  user_id?: string | null;
+  agent_id?: string | null;
+  session_id?: string | null;
 }
 
 interface ReconcileMovesResult {
@@ -542,6 +582,65 @@ interface MemoizedPlanningResult {
  * so a re-parented + renumbered packet (012-foo → 005-foo) keeps a stable logical key. */
 function stripNumericPrefix(folderName: string): string {
   return folderName.replace(/^\d{3}-/, '');
+}
+
+function tableExists(database: Database.Database, tableName: string): boolean {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type IN ('table', 'view') AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function upsertMovedActiveProjection(
+  database: Database.Database,
+  row: MoveReconcileRow,
+  specFolder: string,
+  canonicalFilePath: string,
+): void {
+  if (!tableExists(database, 'active_memory_projection')) {
+    return;
+  }
+  const logicalKey = buildMemoryLogicalKey({
+    specFolder,
+    filePath: canonicalFilePath,
+    canonicalFilePath,
+    anchorId: row.anchor_id ?? null,
+    tenant_id: row.tenant_id ?? null,
+    user_id: row.user_id ?? null,
+    agent_id: row.agent_id ?? null,
+    session_id: row.session_id ?? null,
+  });
+  database.prepare(
+    'DELETE FROM active_memory_projection WHERE active_memory_id = ? AND logical_key != ?',
+  ).run(row.id, logicalKey);
+  database.prepare(`
+    INSERT INTO active_memory_projection (logical_key, root_memory_id, active_memory_id, updated_at)
+    VALUES (?, ?, ?, datetime('now'))
+    ON CONFLICT(logical_key) DO UPDATE SET
+      root_memory_id = excluded.root_memory_id,
+      active_memory_id = excluded.active_memory_id,
+      updated_at = excluded.updated_at
+  `).run(logicalKey, row.id, row.id);
+}
+
+function isLegacyTrackRename(oldPath: string, newPath: string): boolean {
+  const oldParts = oldPath.split(path.sep);
+  const newParts = newPath.split(path.sep);
+  if (oldParts.length !== newParts.length) {
+    return false;
+  }
+  const oldTrackIndex = oldParts.findIndex((part) => part === 'system-spec-kit');
+  if (oldTrackIndex < 0 || newParts[oldTrackIndex] !== 'system-speckit') {
+    return false;
+  }
+  return oldParts.every((part, index) => index === oldTrackIndex || part === newParts[index]);
 }
 
 function reconcileMoves(
@@ -596,13 +695,16 @@ function reconcileMoves(
   // against the doc type derived from the new path before the in-place update.
   const docTypeAvailable = hasDocumentTypeColumn();
   const selectSql = docTypeAvailable
-    ? `SELECT id, document_type FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`
-    : `SELECT id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`;
+    ? `SELECT id, document_type, anchor_id, tenant_id, user_id, agent_id, session_id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?)`
+    : `SELECT id, anchor_id, tenant_id, user_id, agent_id, session_id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?)`;
   for (const [, newCandidates] of newByPacketId) {
     for (const { newPath, docType, newGrandparent } of newCandidates) {
       if (reconciledNewPaths.has(newPath)) continue;
 
       const newBasename = path.basename(newPath);
+      const trackRenameDeleted = toDelete.filter(oldPath =>
+        !reconciledOldPaths.has(oldPath) && isLegacyTrackRename(oldPath, newPath)
+      );
 
       // Pair the old path. Prefer a sibling rename (same grandparent + basename, where only
       // the immediate folder's numeric prefix changed). When there is none, fall back to a
@@ -618,9 +720,11 @@ function reconcileMoves(
         path.dirname(path.dirname(oldPath)) === newGrandparent
       );
       const newSlug = stripNumericPrefix(path.basename(path.dirname(newPath)));
-      const candidates = siblingDeleted.length > 0
-        ? siblingDeleted
-        : toDelete.filter(oldPath =>
+      const candidates = trackRenameDeleted.length > 0
+        ? trackRenameDeleted
+        : siblingDeleted.length > 0
+          ? siblingDeleted
+          : toDelete.filter(oldPath =>
             !reconciledOldPaths.has(oldPath) &&
             path.basename(oldPath) === newBasename &&
             stripNumericPrefix(path.basename(path.dirname(oldPath))) === newSlug
@@ -631,46 +735,48 @@ function reconcileMoves(
       const oldPath = candidates[0];
       const canonicalOld = getCanonicalPathKey(oldPath);
 
-      // Verify in DB: exactly one live row for this old path (uniqueness guard).
-      const rows = database.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
-      if (rows.length !== 1) continue;
+      const rows = database.prepare(selectSql).all(oldPath, canonicalOld) as MoveReconcileRow[];
+      if (rows.length === 0) continue;
 
       // Cross-verify document kind: the stored document_type must agree with the doc type
       // derived from the new path. Skip rows whose stored type diverged from the new file
       // (e.g. a generic 'memory' row that happens to share a basename), preventing a
       // mismatched repoint. Tolerant when the column is absent (legacy/test schemas).
-      if (docTypeAvailable) {
-        const storedDocType = rows[0].document_type ?? null;
-        if (storedDocType !== null && storedDocType !== extractDocumentType(newPath)) continue;
-      }
+      const extractedDocType = extractDocumentType(newPath);
+      const matchingRows = docTypeAvailable
+        ? rows.filter((row) => (row.document_type ?? null) === null || row.document_type === extractedDocType)
+        : rows;
+      if (matchingRows.length === 0) continue;
 
-      const rowId = rows[0].id;
       const newCanonical = getCanonicalPathKey(newPath);
       const newSpecFolder = extractSpecFolder(newPath);
       const newMtime = (() => {
         try { return fs.statSync(newPath).mtimeMs; } catch { return null; }
       })();
 
-      // Update the row's path in place (preserves embedding, id, history). A reconciled
-      // move is a folder rename, so spec_folder is repointed with the same canonicalization
-      // indexMemoryFile/migration 23 use — otherwise WHERE spec_folder=? grouping goes stale.
-      const updated = database.prepare(`
-        UPDATE memory_index
-        SET file_path = ?,
-            canonical_file_path = ?,
-            spec_folder = ?,
-            file_mtime_ms = ?,
-            updated_at = datetime('now')
-        WHERE id = ?
-          AND embedding_status != 'failed'
-      `).run(newPath, newCanonical, newSpecFolder, newMtime, rowId);
+      let updatedRows = 0;
+      for (const row of matchingRows) {
+        const updated = database.prepare(`
+          UPDATE memory_index
+          SET file_path = ?,
+              canonical_file_path = ?,
+              spec_folder = ?,
+              file_mtime_ms = ?,
+              updated_at = datetime('now')
+          WHERE id = ?
+        `).run(newPath, newCanonical, newSpecFolder, newMtime, row.id);
 
-      if ((updated as { changes: number }).changes !== 1) continue;
+        if ((updated as { changes: number }).changes !== 1) continue;
+        upsertMovedActiveProjection(database, row, newSpecFolder, newCanonical);
+        updatedRows++;
+        reconciled.push({ oldPath, newPath, rowId: row.id, docType });
+      }
+
+      if (updatedRows === 0) continue;
 
       reconciledOldPaths.add(oldPath);
       reconciledNewPaths.add(newPath);
-      reconciled.push({ oldPath, newPath, rowId, docType });
-      console.error(`[incremental-index] Move reconciled: ${newBasename} ${oldPath} → ${newPath} (row ${rowId}, embedding preserved)`);
+      console.error(`[incremental-index] Move reconciled: ${newBasename} ${oldPath} → ${newPath} (${updatedRows} row(s), embedding preserved)`);
     }
   }
 

@@ -11,7 +11,7 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
-    last_updated_at: "2026-07-03T12:00:00Z"
+    last_updated_at: "2026-07-03T15:04:09Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored ADR-001 through ADR-004 from deep-dive evidence"
     next_safe_action: "Ratify ADR-001 and ADR-002 after T013 dry-run and T020 winner validation"

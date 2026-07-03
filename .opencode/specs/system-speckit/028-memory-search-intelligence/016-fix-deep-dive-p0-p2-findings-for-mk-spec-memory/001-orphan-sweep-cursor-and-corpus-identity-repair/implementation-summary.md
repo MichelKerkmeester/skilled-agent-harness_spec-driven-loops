@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/001-orphan-sweep-cursor-and-corpus-identity-repair"
-    last_updated_at: "2026-07-03T09:44:18Z"
+    last_updated_at: "2026-07-03T15:04:09Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
     next_safe_action: "Replace template defaults on first save"

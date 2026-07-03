@@ -51,6 +51,9 @@
       "checklist.md",
       "decision-record.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tests/orphan-sweep-corpus-repair.vitest.ts",
+      "scripts/migrations/heal-system-speckit-track-identity.mjs",
+      "scripts/migrations/collapse-duplicate-content-rows.mjs",
       "spec.md",
       "implementation-summary.md"
     ],
@@ -113,6 +116,24 @@
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-sweep-corpus-repair.vitest.ts",
+        "kind": "test",
+        "path": "tests/orphan-sweep-corpus-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "heal-system-speckit-track-identity.mjs",
+        "kind": "file",
+        "path": "scripts/migrations/heal-system-speckit-track-identity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "collapse-duplicate-content-rows.mjs",
+        "kind": "file",
+        "path": "scripts/migrations/collapse-duplicate-content-rows.mjs",
         "source": "derived"
       },
       {
@@ -180,29 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Sweep Cursor Persistence",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-07-03T12:12:56.715Z",
+    "last_save_at": "2026-07-03T15:04:09.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ae450324a89afacf4ed6b2ba1311af7a2718ac0f16cdcd7a17bc75bb3dd8ee3",
+    "source_fingerprint": "sha256:9aaac766b6652350fcff5fec76eaff93406b231255d855fd25996a5e574de8a0",
     "source_doc_hashes": {
-      "spec.md": "bcd944e0ce6b3838acb8b606b18227c362d78812ba8c640e6af3f53958da807d",
-      "plan.md": "c23ccec9821159595419f6a2c49fe7d4cfc5f35d66c90df3b5b9594623e21bd8",
-      "tasks.md": "63b177f97d6ff46084929eaec3d0c62490f72bb9f15ea21538c7bdce756482d1",
-      "checklist.md": "52ca3a7975f1fb3528262ba3f3419ee0e9b08b845d298f79310b236124f6f66a",
-      "decision-record.md": "162b3057e8c63ac15cd5aba1ac94cdbeb3ba932e378b233bd43649cfce91d558",
-      "implementation-summary.md": "9339fe04d10929cff81d9722fad1f75b3fe9550a4a2db4b4eaabecfd4cdcb8d2"
+      "spec.md": "7e77605ec4cfa703055c911c547b7fdc2b381301ffd8b9136f9df78f7eb3f626",
+      "plan.md": "665494d4d6ddd001492724688788bf7e4e65befe04a80c6d974ad22c73bf4ac9",
+      "tasks.md": "de89b45bf04f533ab92cef2c1a39dd8dad15c935522f19fb37d2c269886064a8",
+      "checklist.md": "81cf070e3c19bb2f248c9388f7dcae10c265f77bf9004517eb404073f1d63c10",
+      "decision-record.md": "46b578a222142ec86b2655a6ae140596837401ef4fdc3e9ec86640fd32dcaa48",
+      "implementation-summary.md": "14edadd9d2223c6d91a5192a0682231b5e80f8a0f72dc30faff6e14e8cf9bf79"
     },
     "last_active_child_id": null,
     "last_active_at": null

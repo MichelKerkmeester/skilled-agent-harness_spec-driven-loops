@@ -57,6 +57,14 @@ export function parseNearDuplicateHint(raw: unknown): NearDuplicateHint | null {
   return null;
 }
 
+export function stringifyNearDuplicateHint(hint: NearDuplicateHint): string {
+  return JSON.stringify({
+    id: hint.id,
+    similarity: hint.similarity,
+    threshold: hint.threshold,
+  });
+}
+
 export function shouldSkipNearDuplicateCheck(database: BetterSqlite3.Database, memoryId: number): boolean {
   const row = database.prepare(`
     SELECT updated_at, last_dedup_checked_at
@@ -143,6 +151,6 @@ export function recordNearDuplicateCheck(args: {
     SET near_duplicate_of = ?,
         last_dedup_checked_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
     WHERE id = ?
-  `).run(hint ? JSON.stringify(hint) : null, args.memoryId);
+  `).run(hint ? stringifyNearDuplicateHint(hint) : null, args.memoryId);
   return hint;
 }

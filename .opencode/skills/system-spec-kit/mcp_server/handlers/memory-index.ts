@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import path from 'path';
 import { createHash } from 'node:crypto';
+import type Database from 'better-sqlite3';
 
 /* ───────────────────────────────────────────────────────────────
    1. CORE AND UTILS IMPORTS
@@ -234,6 +235,36 @@ interface OrphanSweepCandidates {
 }
 
 const ORPHAN_SWEEP_LIMIT = 200;
+const ORPHAN_SWEEP_CURSOR_KEY = 'memory_index.orphan_sweep.cursor';
+
+function ensureConfigTable(database: Database.Database): void {
+  database.exec('CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT)');
+}
+
+function readOrphanSweepCursor(database: Database.Database): number {
+  try {
+    ensureConfigTable(database);
+    const row = database.prepare('SELECT value FROM config WHERE key = ?').get(ORPHAN_SWEEP_CURSOR_KEY) as { value?: unknown } | undefined;
+    const cursor = typeof row?.value === 'string' ? Number.parseInt(row.value, 10) : Number(row?.value);
+    return Number.isFinite(cursor) && cursor > 0 ? Math.floor(cursor) : 0;
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function writeOrphanSweepCursor(database: Database.Database, cursor: number | null): void {
+  try {
+    ensureConfigTable(database);
+    const nextCursor = Number.isFinite(cursor) && (cursor ?? 0) > 0 ? Math.floor(cursor ?? 0) : 0;
+    database.prepare(`
+      INSERT INTO config (key, value)
+      VALUES (?, ?)
+      ON CONFLICT(key) DO UPDATE SET value = excluded.value
+    `).run(ORPHAN_SWEEP_CURSOR_KEY, String(nextCursor));
+  } catch (error: unknown) {
+    console.warn('[memory-index-scan] Failed to persist orphan sweep cursor:', toErrorMessage(error));
+  }
+}
 
 // Scan responsiveness diagnostics. A blocked event loop is the failure mode that
 // breaks daemon re-election: it cannot answer a competing launcher's probe, so the
@@ -674,15 +705,20 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
 
     const sweepOrphanIndexRows = (incrementalIndex as {
-      sweepOrphanIndexRows?: (options?: { limit?: number; cursor?: number }) => OrphanSweepCandidates;
+      sweepOrphanIndexRows?: (options?: { limit?: number; cursor?: number; basePath?: string }) => OrphanSweepCandidates;
     }).sweepOrphanIndexRows;
 
     if (typeof sweepOrphanIndexRows !== 'function') {
       return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
-    const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT });
+    const database = vectorIndex.getDb();
+    const cursor = database ? readOrphanSweepCursor(database) : 0;
+    const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT, cursor, basePath: workspacePath });
     const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? []);
+    if (database) {
+      writeOrphanSweepCursor(database, sweep.nextCursor);
+    }
     return {
       swept: deleteResult.deleted,
       failed: deleteResult.failed,
@@ -1615,6 +1651,8 @@ export {
   detectSpecLevel,
   summarizeAliasConflicts,
   runDivergenceReconcileHooks,
+  readOrphanSweepCursor,
+  writeOrphanSweepCursor,
 };
 
 // Backward-compatible aliases (snake_case)
