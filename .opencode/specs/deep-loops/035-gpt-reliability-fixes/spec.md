@@ -1,32 +1,34 @@
 ---
-title: "Phase Parent: GPT Reliability Fixes — Implement the 034 Recommendations"
-description: "Implementation packet for the packet-034 research synthesis: land the ranked fix packages that make GPT executors use our commands, gates, workflows, agents, and routing correctly (like Claude does). Ten phases in dependency order — harness hardening, then the P0 Gate-3 precedence package (which unmasks the rest), then the P1 quick wins (render contract, dispatch receipts, progress records, routing offer), then the P2 structural work. Each phase names the 033 behavior-benchmark cells that must flip to accept it."
+title: "Phase Parent: GPT Reliability Fixes — Unified Command-Contract Architecture"
+description: "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion. Each phase names the 033 behavior-benchmark cells that must flip to accept it, ships behind a per-command feature flag, and carries its plan-review gap-IDs in its risks."
 trigger_phrases:
   - "gpt reliability fixes"
   - "implement 034 recommendations"
   - "035 fixes"
+  - "command contract architecture"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/035-gpt-reliability-fixes"
-    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase-parent scaffolded with 10 phases mapped from the 034 synthesis"
-    next_safe_action: "Execute phase 001 (benchmark harness hardening), then 002 (Gate-3 package)"
+    recent_action: "Restructured to unified command-contract architecture"
+    next_safe_action: "Execute phase 001 (acceptance + rollout foundation), then 002 (Gate-3 + validator)"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "035-parent-init"
+      session_id: "035-parent-restructure"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "Where does implementation live? A new packet (035), not 034 — 034 is research/closed and its synthesis explicitly hands off to an implementation packet."
-      - "What order? Harness hardening first (trustworthy acceptance tests), then the P0 Gate-3 package (unmasks every other failure on shared cells), then P1 quick wins, then P2 structural — from the 034 independent ranking pass."
+      - "Where does implementation live? A new packet (035), not 034 — 034 is research/closed and its synthesis hands off to an implementation packet."
+      - "Ten phases or the unified contract? The plan-review (GAP-58) found the plan fixed one defect in five fragments; the user approved collapsing them into one build-time compiled contract per command. Old→new mapping + full 58-gap absorption in context-index.md."
+      - "What order? Foundation first (trustworthy harness + rollout kill-switch, both prerequisites for safe rewrites), then the P0 Gate-3 package with a real validator, then the compiled contract, then receipts + progress, then retrofit + pacing."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Phase Parent: GPT Reliability Fixes — Implement the 034 Recommendations
+# Phase Parent: GPT Reliability Fixes — Unified Command-Contract Architecture
 
 <!-- SPECKIT_LEVEL: phase -->
 
@@ -49,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use our systems where Claude succeeds: the systems are Claude-shaped — GPT executes the contract letter where Claude follows intent. This packet IMPLEMENTS the ranked fix packages from `../034-gpt-reliability-research/research/synthesis.md`. The 44 verified findings collapse into 13 fix packages, organized here into 10 phases in the synthesis's dependency order. Every phase closes a named set of findings and is accepted only when its 033 behavior-benchmark cells flip. Phase 001 hardens that acceptance harness first; phase 002 (the P0 Gate-3 package) lands next because the Gate-3 halts otherwise mask the failures the P1 phases fix on the same cells.
+Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use our systems where Claude succeeds: the systems are Claude-shaped — GPT executes the contract letter where Claude follows intent. This packet IMPLEMENTS those fixes. A 10-iteration plan-review (58 verified gaps, `plan-review/gap-synthesis.md`) found the original 10-phase plan fixed a single root defect — GPT can't reliably see a command's contract because it's distributed across ~14 files and weighted by file position — in five separate fragments, and shipped two blocker-class design holes plus a dropped rollout safety-belt. This packet therefore adopts the unified **command-contract architecture**: every command emits one build-time, self-contained, typed contract the executor reads first, with maintainers keeping the layered sources behind a drift guard. Five phases in dependency order close every actionable 034 finding; each is accepted only when its 033 behavior-benchmark cells flip and ships behind a per-command feature flag. Old→new phase mapping and the full 58-gap absorption table are in `context-index.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -57,9 +59,9 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-**In scope:** implementing the fix packages across the executor-facing surfaces named per phase (root policy gates, command presentation/setup contracts, deep-loop workflow protocols + runtime, agent files, skill-advisor routing, hooks/injection, prompt-pack templates, mode registry, and the 033 benchmark instrument itself).
+**In scope:** implementing the fixes across the executor-facing surfaces (033 acceptance harness + rollout mechanism, root-policy Gate-3 + classifier + validator, the build-time command-contract compiler and its drift guard, dispatch-receipt + progress-record contracts, and the retrofit of the remaining commands + routing + pacing).
 
-**Out of scope:** re-diagnosing (034 is closed); non-executor surfaces; landing all phases in one session — each phase ships and verifies independently.
+**Out of scope:** re-diagnosing (034 is closed); non-executor surfaces except where a phase names them; landing all phases in one session — each phase ships behind its feature flag and verifies independently against its named cells.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -67,10 +69,13 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **REQ-001**: Each phase implements exactly the findings named in its row of the PHASE DOCUMENTATION MAP; requirements live in each child `spec.md`.
-- **REQ-002**: Dependency order is honored — 001 (harness) before any cell-flip claim; 002 (Gate-3) before the P1 phases are verified.
-- **REQ-003**: The 033 behavior benchmark is the acceptance harness; each phase re-runs its cells (gpt-fast-med + gpt-fast-high) and keeps the Claude-native baseline leg green.
-- **REQ-004**: Context/constraint findings F-003 and F-008, and the ranking-adjudication F-044, carry no code change and are recorded here, not phased.
+- **REQ-001**: Each phase implements exactly the findings and plan-review gaps named in its child `spec.md`; the packet-wide gap→phase mapping is authoritative in `context-index.md`.
+- **REQ-002**: Dependency order is honored — 001 (foundation: trustworthy harness + rollout mechanism) before any cell-flip claim or risky rewrite; 002 (Gate-3 + validator) before the contract phases are verified.
+- **REQ-003**: The 033 behavior benchmark is the acceptance harness. Each phase re-runs its cells (gpt-fast-med + gpt-fast-high) with N≥3 for contested stall cells, records `primary_cause`/`secondary_cause` for any multi-cause cell, and keeps the Claude-native baseline leg green **except** for the documented non-green cells below. Latency claims compare the GPT leg against itself pre/post (D-007 host confound), never against the Claude host baseline.
+- **REQ-004**: Every rewrite ships behind the phase-001 per-command feature flag with a byte-identical pre-035 fallback; a CI comparator gates promotion.
+- **REQ-005**: Multi-cause cell ownership is fixed: ACB-004 med-halt → phase 002; ACB-004 high-stall → phase 004. The locked multi-cause list the runner may not collapse is {ACB-004, ACB-005, CXB-004}.
+- **REQ-006**: Documented non-green baseline exceptions (GAP-05): ACB-005's council baseline includes a pre-existing confirm-halt/partial dimension — "baseline green" applies only to non-confirm cells.
+- **REQ-007**: Non-actionable findings F-008 (constraint, addressed via the contract's confirm-render block) and F-044 (ranking process) carry no standalone phase. F-003 is reclassified actionable (phase 002).
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -78,9 +83,10 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-1. All 10 phases complete with their acceptance cells moved to the expected verdict and the baseline leg not regressed.
-2. Every actionable 034 finding (41 of 44) is closed by exactly one phase; the 3 non-actionable findings are documented.
-3. Full-packet strict validation clean at closeout.
+1. All 5 phases complete with their acceptance cells at the expected verdict (N≥3 for contested stalls) and the baseline leg not regressed beyond the REQ-006 exceptions.
+2. Every actionable 034 finding (42, incl. reclassified F-003) is closed by exactly one phase; all 58 plan-review gaps are resolved per `context-index.md`.
+3. Reliability improvements are scoped to the 32-scenario behavior-benchmark suite; no claim is made for prompts outside that set (GAP-40).
+4. Full-packet strict validation clean at closeout.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -90,9 +96,11 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 
 | Risk / Dependency | Handling |
 |---|---|
-| Regressing the Claude-native path | Baseline benchmark leg re-run and kept green after every phase |
-| Ordering violated → masked failures | Gate-3 phase (002) gates verification of the P1 phases |
-| Design drift from the 034 designs | The 034 iter-011/012/013/014 designs are the reference; verify quoted current-text before applying |
+| Regressing the Claude-native path | Per-command feature flag + byte-identical fallback (phase 001); CI comparator; baseline leg re-run each phase |
+| Highest-blast-radius rewrites (Gate-3, contract compiler) with no kill switch | Rollout mechanism lands in phase 001 BEFORE 002 (GAP-47) |
+| Source/compiled drift from the contract compiler | Drift-guard contract specified in phase 003 (GAP-55) |
+| Two research-sized designs (contract compiler, pacing/resume) | Design-first REQs in phases 003 and 005; may spin into a 036 packet if they grow (GAP-53/54) |
+| Per-phase concrete regression surfaces | Each child `spec.md` Risks table names its plan-review gap-IDs (GAP-50) |
 | Depends on 034 synthesis + designs | Committed and pushed (034 complete) |
 <!-- /ANCHOR:risks -->
 
@@ -101,7 +109,7 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Exact file targets per phase are fixed by the closed findings + the 034 design iterations; each phase's plan.md/tasks.md are authored at execution.
+- Phases 003 (contract compiler) and 005 (pacing/resume) have no 034 design iteration; their first REQ is design. If either exceeds an implementation phase's scope at design time, carve it into a sibling 036 design packet (GAP-53/54).
 <!-- /ANCHOR:questions -->
 
 ---
@@ -109,18 +117,23 @@ Packet 034 measured, diagnosed, and designed fixes for why GPT executors mis-use
 <!-- ANCHOR:phases -->
 ## 8. PHASE DOCUMENTATION MAP
 
-Dependency-ordered. Effort and acceptance cells (033 behavior-benchmark ids) per phase.
+Dependency-ordered. Effort and acceptance cells (033 behavior-benchmark ids) per phase. Full old→new mapping and the 58-gap absorption table are in `context-index.md`.
 
 | Phase | Status | Closes | Effort | Purpose · acceptance cells |
 |-------|--------|--------|--------|----------------------------|
-| [`001-benchmark-harness-hardening`](./001-benchmark-harness-hardening/spec.md) | Planned | F-014, F-025 | S | Make the 033 acceptance harness trustworthy BEFORE verifying fixes: detect rewritten fixture files (not just new ones), and remove the fixture-path token leak from the vague-ask prompts. Enables every later phase's cell-flip claims. |
-| [`002-gate3-precedence`](./002-gate3-precedence/spec.md) | Planned | F-001, F-002, F-004, F-005, F-028, F-030, F-040 | M | **P0 — land first.** Autonomous-precedence bridge in the root gate + classifier `satisfiedBy`/`requiresGate3Prompt` API + 8-rule autonomous execution profile. Cells: RVB-008, RSB-008, ACB-004, IMB-004, IMB-005. |
-| [`003-presentation-render`](./003-presentation-render/spec.md) | Planned | F-006, F-007, F-042 | S | Verbatim setup-render contract: START/END markers + "render only the marked block" + halt-render rule, mirrored across five commands. Cells: RVB-002, CXB-002, IMB-003 (D2). |
-| [`004-dispatch-receipts`](./004-dispatch-receipts/spec.md) | Planned | F-010, F-011, F-012, F-013, F-041 | M | Unforgeable HMAC dispatch receipts written by the launch mechanism; validator requires them; route-proof fields become workflow-owned; CLI branches routed through the audited wrapper. Cells: RVB-007, RSB-005, RSB-007 (at medium effort). |
-| [`005-progress-records`](./005-progress-records/spec.md) | Planned | F-015, F-016, F-017, F-018, F-031, F-043 | M | One shared additive `progress_record` JSONL type on real step transitions; council persists seats stepwise; context sweep settles as it goes. Cells: ACB-004, ACB-005, CXB-004; IMB-001-high partial credit. |
-| [`006-routing-offer`](./006-routing-offer/spec.md) | Planned | F-023, F-024, F-026 | S-M | Sub-threshold "offer the workflow" path in Gate 2 + noun-gated phrase boosters for the natural phrasings + down-weight path-derived tokens. Cells: ACB-003, IMB-003, RSB-004. |
-| [`007-agent-executor-contracts`](./007-agent-executor-contracts/spec.md) | Planned | F-019, F-020, F-021, F-022, F-039 | M | Top-of-file EXECUTOR CONTRACT block in the agent files; hoist Gate 3 + output templates out of the buried lower sections; codify the 7-rule GPT-safe authoring profile as a reference. Cross-class; prevents recurrence. |
-| [`008-compiled-contract`](./008-compiled-contract/spec.md) | Planned | F-035, F-036, F-037, F-038, F-009 | L | Build-time compiled per-command execution contract (flatten the 14-file chain + 3-way setup authority into one artifact with a drift guard + typed refs) and a deterministic setup loader emitting one hydrated packet. Cross-class structural fix. |
-| [`009-pacing-and-resume`](./009-pacing-and-resume/spec.md) | Planned | F-032, F-033, F-034 | L | Split the heaviest command into resumable sub-invocations; cache repeated prep; add a pacing contract and a conditional budget policy (extend visible-progress runs only, never stalls). Cell: IMB-001-high natural completion. |
-| [`010-injection-slimming`](./010-injection-slimming/spec.md) | Planned | F-027, F-029 | S-M | Dedupe the double-injected root policy (symlinked, byte-identical); keep plugin briefs terse; defer command-irrelevant sections for autonomous runs. Reduces prompt salience competition across all GPT cells. |
+| [`001-acceptance-and-rollout-foundation`](./001-acceptance-and-rollout-foundation/spec.md) | Planned | F-014, F-025 + rollout mechanism | M | **Land first.** Make the 033 harness trustworthy (content-hash rewrite detection, path-free prompts, missing instrumentation, N≥3 for contested cells, full 32×3 re-score, stall-rate deltas, one non-GPT executor leg, CI baseline gate) AND build the rollout kill-switch (feature flag + byte-identical fallback + CI comparator + promotion rule). Enables every later cell-flip and makes the rewrites reversible. Cells: harness-internal + rollout smoke. |
+| [`002-gate3-precedence-and-validator`](./002-gate3-precedence-and-validator/spec.md) | Planned | F-001, F-002, F-003, F-004, F-005, F-028, F-030, F-040 | L | **P0.** Autonomous-precedence bridge + a concrete `validateSpecFolderBinding()` the rule calls (GAP-16 blocker), enforced writeBoundary, prior_answer mode-gate, phase-parent resolution, `/doctor` precedence, `:confirm` vocab, child-agent propagation, and the 34-caller migration. High effort mandated + enforced. Cells: RVB-008, RSB-008, ACB-004-med, IMB-004, IMB-005. |
+| [`003-command-contract-compiler`](./003-command-contract-compiler/spec.md) | Planned | F-006, F-007, F-009, F-019, F-020, F-021, F-022, F-027, F-029, F-035, F-036, F-037, F-038, F-039, F-042 | L | **Design-first.** One build-time self-contained typed contract per command (Gate-3 line, verbatim render block for :auto+:confirm, output template, write boundary, receipts + progress contract refs, tool list, absorption-abort rule), a drift-guard contract (fail/warn UX, resolve order, recovery), and a deterministic setup loader. Subsumes old render/agent-contracts/compiled/injection. Cells: RVB-002, CXB-002, IMB-003 (D2) + structural assertions (contract-present, drift-guard CI, token-budget). |
+| [`004-dispatch-receipts-and-progress`](./004-dispatch-receipts-and-progress/spec.md) | Planned | F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043 | L | Engine-held HMAC receipts (key never leaves the engine process — GAP-23 blocker), pre-dispatch intent + post-dispatch completion countersign, atomic writes, route-field migration across 4 YAMLs, resumable key lifecycle, parent-owned receipt path; step-transition progress records with a work-anchored schema field, reducer allowlist, council stepwise writer. Embedded in the compiled contract. Cells: RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004; IMB-001-high partial. |
+| [`005-retrofit-pacing-and-rollout-completion`](./005-retrofit-pacing-and-rollout-completion/spec.md) | Planned | F-018, F-023, F-024, F-026, F-032, F-033, F-034 | L | Retrofit the remaining commands + 3 sibling improvement lanes + non-deep-loop surfaces to the compiled contract; the Gate-2 sub-threshold routing offer + phrase boosters; pacing/resume (design-first: resumable sub-invocations, cache, budget policy, per-sub-invocation cells); the council convergence rule (F-018); flip feature flags on per the promotion rule. Cells: ACB-003, IMB-003, RSB-004, IMB-001-high natural completion. |
 <!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:related -->
+## 9. RELATED DOCUMENTS
+
+- `context-index.md` — restructure narration, old→new phase mapping, and the full 58-gap absorption table.
+- `plan-review/gap-synthesis.md` + `plan-review/gap-registry.md` — the red-team that produced the restructure (58 verified gaps).
+- `../034-gpt-reliability-research/research/` — the research packet (synthesis, findings-registry, design iterations 011-014) this packet implements.
+<!-- /ANCHOR:related -->

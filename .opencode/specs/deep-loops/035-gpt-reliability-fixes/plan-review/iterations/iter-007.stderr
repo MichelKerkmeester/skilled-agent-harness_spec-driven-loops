@@ -1,0 +1,247 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/
+total 40
+drwxr-xr-x@ 16 michelkerkmeester  staff   512 Jul  3 14:18 .
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul  3 13:52 ..
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:04 001-benchmark-harness-hardening
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 002-gate3-precedence
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 003-presentation-render
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 004-dispatch-receipts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 005-progress-records
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 006-routing-offer
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 007-agent-executor-contracts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 008-compiled-contract
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 009-pacing-and-resume
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 010-injection-slimming
+-rw-r--r--@  1 michelkerkmeester  staff   732 Jul  3 14:12 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  3384 Jul  3 14:12 graph-metadata.json
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 15:11 plan-review
+-rw-r--r--@  1 michelkerkmeester  staff  9031 Jul  3 14:12 spec.md
+[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/035-gpt-reliability-fixes/*/spec.md"[90m 10 matches[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/*.md"[90m 15 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/006-routing-offer/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/010-injection-slimming/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/spec.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/ 2>/dev/null; echo "---"; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.claude/agents/ 2>/dev/null; echo "---"; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/ 2>/dev/null
+README.txt
+ai-council.md
+code.md
+context.md
+debug.md
+deep-context.md
+deep-improvement.md
+deep-research.md
+deep-review.md
+deep.md
+design.md
+markdown.md
+orchestrate.md
+prompt-improver.md
+review.md
+---
+README.txt
+ai-council.md
+code.md
+context.md
+debug.md
+deep-context.md
+deep-improvement.md
+deep-research.md
+deep-review.md
+deep.md
+design.md
+markdown.md
+orchestrate.md
+prompt-improver.md
+review.md
+---
+README.txt
+ai-council.md
+code.md
+context.md
+debug.md
+deep-context.md
+deep-improvement.md
+deep-research.md
+deep-review.md
+deep.md
+design.md
+markdown.md
+orchestrate.md
+prompt-improver.md
+review.md
+[0m
+[0m✱ [0mGlob ".opencode/commands/**/*.md"[90m 34 matches[0m
+[0m✱ [0mGlob ".agents/commands/**/*.md"[90m 0 matches[0m
+[0m✱ [0mGlob ".claude/commands/**/*.md"[90m 0 matches[0m
+[0m
+[0m$ [0mwc -l /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/*.md
+798 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/ai-council.md
+     545 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/code.md
+     469 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/context.md
+     652 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/debug.md
+     392 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-context.md
+     253 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-improvement.md
+     584 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md
+     564 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md
+     104 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep.md
+     121 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/design.md
+     317 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/markdown.md
+     817 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/orchestrate.md
+     371 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/prompt-improver.md
+     499 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/review.md
+    6486 total
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/ 2>/dev/null; echo "---"; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/ 2>/dev/null | head -50
+:memory:
+:memory:.lock
+ARCHITECTURE.md
+README.md
+SKILL.md
+assets
+changelog
+checkpoints
+config
+constitutional
+feature_catalog
+graph-metadata.json
+manual_testing_playbook
+mcp_s
+mcp_server
+node_modules
+package-lock.json
+package.json
+references
+scripts
+shared
+sqlite-vec.d.ts
+templates
+tmp-test-fixtures
+tsconfig.json
+tsconfig.tsbuildinfo
+vectors
+vitest-tmp
+vitest.config.ts
+---
+README.md
+cli-claude-code
+cli-opencode
+deep-loop-runtime
+deep-loop-workflows
+mcp-chrome-devtools
+mcp-click-up
+mcp-code-mode
+mcp-figma
+mcp-open-design
+sk-code
+sk-code-review
+sk-design
+sk-doc
+sk-git
+sk-prompt
+sk-prompt-models
+system-code-graph
+system-skill-advisor
+system-spec-kit
+z_archive
+[0m
+[0m✱ [0mGrep "agent_router|goal_opencode"[90m in .opencode/commands · 8 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/iter-015.md
+[0m✱ [0mGrep "deep:ai-council|deep:context|:confirm"[90m in .opencode/commands/deep · 100 matches[0m
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/ 2>/dev/null; echo "---"; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/ 2>/dev/null
+README.md
+SKILL.md
+changelog
+deep-ai-council
+deep-context
+deep-improvement
+deep-research
+deep-review
+graph-metadata.json
+mode-registry.json
+node_modules
+shared
+---
+README.md
+SKILL.md
+changelog
+database
+feature_catalog
+graph-metadata.json
+lib
+manual_testing_playbook
+node_modules
+package-lock.json
+package.json
+references
+scripts
+tests
+tsconfig.json
+vitest.config.ts
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/ 2>/dev/null
+029-deep-loop-workflows
+030-agent-loops-improved
+031-deep-loop-issues-with-gpt-opencode
+032-goal-opencode-plugin
+033-deep-loop-behavior-benchmarks
+034-gpt-reliability-research
+035-gpt-reliability-fixes
+description.json
+graph-metadata.json
+z_archive
+[0m
+[0m✱ [0mGrep "model-benchmark|skill-benchmark|agent-improvement|ai-system-improvement"[90m in .opencode/specs/deep-loops/034-gpt-reliability-research · 25 matches[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/033*/**/*.md"[90m 57 matches[0m
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/ 2>/dev/null
+deep_agent-improvement_auto.yaml
+deep_agent-improvement_confirm.yaml
+deep_agent-improvement_presentation.txt
+deep_ai-council_auto.yaml
+deep_ai-council_confirm.yaml
+deep_ai-council_presentation.txt
+deep_context_auto.yaml
+deep_context_confirm.yaml
+deep_context_presentation.txt
+deep_model-benchmark_auto.yaml
+deep_model-benchmark_confirm.yaml
+deep_model-benchmark_presentation.txt
+deep_research_auto.yaml
+deep_research_confirm.yaml
+deep_research_presentation.txt
+deep_review_auto.yaml
+deep_review_confirm.yaml
+deep_review_presentation.txt
+[0m
+[0m✱ [0mGrep "model-benchmark|skill-benchmark|ai-system-improvement|model_benchmark|skill_benchmark"[90m in .opencode/skills/deep-loop-workflows · 100 matches[0m
+[0m✱ [0mGrep "doctor|update|speckit|mcp"[90m in .opencode/commands · 100 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration/scorecard.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/034-gpt-reliability-research/research/briefs/ 2>/dev/null
+A1-gate3.md
+A10-claude-vs-gpt-tolerance.md
+A2-presentation-contracts.md
+A3-leaf-dispatch.md
+A4-structured-loops.md
+A5-agent-parseability.md
+A6-skill-routing.md
+A7-context-volume.md
+A8-templates-budgets.md
+A9-registry-indirection.md
+R1-p0-design.md
+R2-receipt-design.md
+R3-render-contract.md
+R4-heartbeat-schema.md
+R5-ranking-crosscheck.md
+[0m

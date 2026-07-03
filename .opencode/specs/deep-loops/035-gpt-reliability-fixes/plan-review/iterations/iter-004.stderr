@@ -1,0 +1,128 @@
+[0m
+> build · glm-5.2
+[0m
+[0m$ [0mls -la .opencode/specs/deep-loops/035-gpt-reliability-fixes/ 2>/dev/null && echo "---034---" && ls -la .opencode/specs/deep-loops/034-gpt-reliability-research/research/ 2>/dev/null
+total 40
+drwxr-xr-x@ 16 michelkerkmeester  staff   512 Jul  3 14:18 .
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul  3 13:52 ..
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:04 001-benchmark-harness-hardening
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 002-gate3-precedence
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 003-presentation-render
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 004-dispatch-receipts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 005-progress-records
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 006-routing-offer
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 007-agent-executor-contracts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 008-compiled-contract
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 009-pacing-and-resume
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 010-injection-slimming
+-rw-r--r--@  1 michelkerkmeester  staff   732 Jul  3 14:12 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  3384 Jul  3 14:12 graph-metadata.json
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 14:51 plan-review
+-rw-r--r--@  1 michelkerkmeester  staff  9031 Jul  3 14:12 spec.md
+---034---
+total 80
+drwxr-xr-x@  7 michelkerkmeester  staff    224 Jul  3 11:58 .
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Jul  3 11:59 ..
+drwxr-xr-x@ 17 michelkerkmeester  staff    544 Jul  3 09:40 briefs
+-rw-r--r--@  1 michelkerkmeester  staff  23061 Jul  3 11:55 findings-registry.md
+-rw-r--r--@  1 michelkerkmeester  staff   3466 Jul  3 11:55 iteration-log.md
+drwxr-xr-x@ 32 michelkerkmeester  staff   1024 Jul  3 11:52 iterations
+-rw-r--r--@  1 michelkerkmeester  staff   9337 Jul  3 11:58 synthesis.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/ | grep -i 012; echo "---plan-review---"; ls .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/
+iter-012.md
+iter-012.stderr
+---plan-review---
+briefs
+gap-registry.md
+iteration-log.md
+iterations
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/gap-registry.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/iter-012.md
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=460, limit=200][0m
+[0m
+[0m$ [0mrg -n "buildExecutorDispatchEnv|runAuditedExecutorCommand|writeDispatchReceipt|requireSignedDispatchReceipt|hmac|HMAC|crypto\.|createHmac|receiptKey|dispatch_receipt" .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts 2>/dev/null | head -60
+.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:537:export function buildExecutorDispatchEnv(
+.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:657:export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput): number {
+.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:671:    env: buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env),
+.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:761:export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCommandInput): Promise<number> {
+.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:782:      env: buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env),
+[0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [limit=140, offset=657][0m
+[0m
+[0m$ [0mrg -n "if_cli_opencode|opencode run|runAuditedExecutorCommand|dispatch|native_task|child\.pid|\.pid\b|spawnSync|spawn\(|execSync" .opencode/commands/deep/assets/deep_review_auto.yaml 2>/dev/null | head -40
+163:      first-level detached lineage and still blocks recursive same-kind dispatch from inside it.
+568:             Operator stop reasons (`maxIterationsReached`, `manualStop`, `userPaused`, unrecoverable `error`) are terminal ceilings. They do not hide failed gates; they record them in synthesis and stop dispatch.
+735:        action: "Generate compact state summary for dispatch context (~200 tokens)"
+763:          starts with a deep-loop marker, indicating a nested review-of-review dispatch.
+765:      step_dispatch_iteration:
+770:        pre_dispatch:
+803:        pre_dispatch_audit:
+812:          dispatch:
+821:            import { spawnSync } from 'node:child_process';
+863:            const result = spawnSync('copilot', built.argv, {
+878:            - "If spec_folder is missing/malformed/unresolved on a write-intent dispatch, the helper enforces plan-only by replacing the prompt with a Gate-3 question and stripping --allow-all-tools"
+904:        if_cli_opencode:
+906:            opencode run \
+923:            - "opencode run takes a positional message; prompt is fed via command substitution"
+926:            - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+928:        post_dispatch_validate:
+929:          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+952:            - dispatch_failure_logged
+966:            note: "Warnings do not fail dispatch. Hard failures still emit schema_mismatch through on_failure."
+1541:  agent_dispatch_timeout: "Retry once with reduced scope (fewer files per iteration). If second timeout, mark as 'timeout' and continue."
+1552:    - dispatch_deep_review_agent_per_iteration
+1562:    - dispatch_non_leaf_agents
+[0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [limit=170, offset=765][0m
+[0m
+[0m$ [0mrg -n "target_agent|resolved_route|agent_definition_loaded|route_proof|routeProof" .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts 2>/dev/null | head -30; echo "---consumers---"; rg -rln "resolved_route|agent_definition_loaded" .opencode/ 2>/dev/null | head -20
+37:  routeProof?: RouteProofExpectation;
+190:  | 'route_proof_missing'
+191:  | 'route_proof_mismatch'
+621:  routeProof: RouteProofExpectation | undefined,
+624:  if (!routeProof) return null;
+626:  const requiredFields = ['mode', 'target_agent', 'agent_definition_loaded', 'resolved_route'];
+631:      reason: 'route_proof_missing',
+636:  if (record.mode !== routeProof.mode) {
+639:      reason: 'route_proof_mismatch',
+640:      details: `${source}.mode='${String(record.mode)}' expected '${routeProof.mode}'`,
+643:  if (record.target_agent !== routeProof.targetAgent) {
+646:      reason: 'route_proof_mismatch',
+647:      details: `${source}.target_agent='${String(record.target_agent)}' expected '${routeProof.targetAgent}'`,
+650:  if (routeProof.requireAgentDefinitionLoaded !== false && record.agent_definition_loaded !== true) {
+653:      reason: 'route_proof_mismatch',
+654:      details: `${source}.agent_definition_loaded must be true`,
+657:  if (record.resolved_route !== routeProof.resolvedRoute) {
+660:      reason: 'route_proof_mismatch',
+661:      details: `${source}.resolved_route='${String(record.resolved_route)}' expected '${routeProof.resolvedRoute}'`,
+1384:    const stateRouteProofFailure = validateRouteProofRecord(parsedRecord, input.routeProof, 'state_log');
+1390:      const deltaRouteProofFailure = validateRouteProofRecord(deltaIterationRecord, input.routeProof, 'delta');
+---consumers---
+.opencode/agents/code.md:3. **INVOKE sk-code** → Read `.opencode/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(ln, top-1/top-2 intents, conditional resource paths, verification command)`. **HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+.opencode/agents/deep.md:Dispatch Identity: subagent_type="general"; ln=.opencode/agents/<agent>.md; do_not_infer_or_switch_deep_mode=true
+.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:  const requiredFields = ['mode', 'target_agent', 'ln', 'ln'];
+.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:  if (routeProof.requireAgentDefinitionLoaded !== false && record.ln !== true) {
+.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:      details: `${source}.ln must be true`,
+.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:  if (record.ln !== routeProof.resolvedRoute) {
+.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts:      details: `${source}.ln='${String(record.ln)}' expected '${routeProof.resolvedRoute}'`,
+.opencode/commands/deep/assets/deep_context_auto.yaml:          record: '{"type":"iteration","run":{current_iteration},"mode":"context","target_agent":"deep-context","ln":true,"ln":"Resolved route: mode=context target_agent=deep-context","status":"evidence","focus":"{current_focus_label}","findingsCount":{merged_findings_count},"newAgreementEligible":{new_agreement_eligible_count},"agreementEligible":{cumulative_agreement_eligible_count},"sliceCoverage":{slice_coverage},"reuseCatalogCoverage":{reuse_catalog_coverage},"agreementRate":{agreement_rate},"relevanceFloor":{relevance_floor},"dependencyCompleteness":{dependency_completeness},"contradictions":{contradictions_count},"seatsSucceeded":{seats_succeeded_count},"durationMs":{sweep_duration_ms},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_context_auto.yaml:          assert_jsonl_fields: [type, run, mode, status, focus, target_agent, ln, ln]
+.opencode/commands/deep/assets/deep_context_auto.yaml:            ln: true
+.opencode/commands/deep/assets/deep_context_auto.yaml:            ln: "Resolved route: mode=context target_agent=deep-context"
+.opencode/commands/deep/assets/deep_ai-council_auto.yaml:          - executor_config: "Executor config with seats, cost guards, dispatch/adjudication functions, ln_header, and route_fields"
+.opencode/commands/deep/assets/deep_ai-council_auto.yaml:          - ln_header: "Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true"
+.opencode/commands/deep/assets/deep_ai-council_auto.yaml:          assert_jsonl_fields: [type, topic_id, round_id, round_number, mode, target_agent, ln, ln]
+.opencode/commands/deep/assets/deep_ai-council_auto.yaml:            ln: true
+.opencode/commands/deep/assets/deep_ai-council_auto.yaml:            ln: "Resolved route: mode=ai-council target_agent=ai-council"
+.opencode/commands/deep/assets/deep_research_auto.yaml:          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode, target_agent, ln, ln]
+.opencode/commands/deep/assets/deep_research_auto.yaml:            ln: true
+.opencode/commands/deep/assets/deep_research_auto.yaml:            ln: "Resolved route: mode=research target_agent=deep-research"
+.opencode/commands/deep/assets/deep_review_auto.yaml:          assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs, target_agent, ln, ln]
+[0m

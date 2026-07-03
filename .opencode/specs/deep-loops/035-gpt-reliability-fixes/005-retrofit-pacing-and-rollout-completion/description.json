@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/005-retrofit-pacing-and-rollout-completion",
+  "description": "Phase 005 of packet 035 (unified command-contract architecture). Retrofit the remaining commands, the 3 sibling improvement lanes, and non-deep-loop",
+  "keywords": [
+    "phase",
+    "005",
+    "packet",
+    "035",
+    "unified",
+    "command-contract",
+    "architecture",
+    "retrofit",
+    "remaining",
+    "commands",
+    "sibling",
+    "improvement",
+    "lanes",
+    "non-deep-loop"
+  ],
+  "lastUpdated": "2026-07-03T14:23:25.789Z",
+  "specId": "005",
+  "folderSlug": "retrofit-pacing-and-rollout-completion",
+  "parentChain": [
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

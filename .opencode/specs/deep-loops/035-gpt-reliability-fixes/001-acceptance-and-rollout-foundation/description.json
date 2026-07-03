@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/001-acceptance-and-rollout-foundation",
+  "description": "Phase 001 of packet 035 (unified command-contract architecture). Closes F-014, F-025 and builds the rollout mechanism (plan-review GAP-47). Two jobs,",
+  "keywords": [
+    "phase",
+    "001",
+    "packet",
+    "035",
+    "unified",
+    "command-contract",
+    "architecture",
+    "closes",
+    "f-014",
+    "f-025",
+    "builds",
+    "rollout",
+    "mechanism",
+    "plan-review",
+    "gap-47",
+    "two",
+    "jobs"
+  ],
+  "lastUpdated": "2026-07-03T14:23:25.765Z",
+  "specId": "001",
+  "folderSlug": "acceptance-and-rollout-foundation",
+  "parentChain": [
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

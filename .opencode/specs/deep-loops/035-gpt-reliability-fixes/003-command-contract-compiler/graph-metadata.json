@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
+  "spec_folder": "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
+  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 003",
+      "command contract compiler",
+      "compiled execution contract",
+      "plan",
+      "035 003 plan",
+      "tasks",
+      "035 003 tasks",
+      "implementation",
+      "summary",
+      "035 003"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "003",
+      "command",
+      "contract",
+      "compiler",
+      "compiled",
+      "execution",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Contract Compiler",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "maintainers",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "START",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 of packet 035 (unified command-contract architecture). Design-first. The central restructure (plan-review GAP-58): every command emits ONE build-time self-contained typed contract the executor reads first — Gate-3 line, verbatim render block, output template, write boundary, receipts + progress contract refs, tool list, absorption-abort rule — with maintainers keeping layered sources behind a drift guard. Subsumes old render/agent-contracts/compiled/injection phases. Closes F-006/007/009/019/020/021/022/027/029/035/036/037/038/039/042. Absorbs GAP-02/09/10/42/43/46/52/53/55/56/57/58.",
+    "created_at": "2026-07-03T14:05:28.379Z",
+    "last_save_at": "2026-07-03T14:11:35.593Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7f8d576371672b98ea3d7cf3b794d3a8b1e60efdf8183f3992ca220e458fe9b0",
+    "source_doc_hashes": {
+      "spec.md": "da748cbfebb332de98e58d6e18c297c0260874ad683cbe2263e9c627edc66009",
+      "plan.md": "bb35d6a2ed08640c0e1221838de999593352937a42bd3052315c3d8988a4ebde",
+      "tasks.md": "46647fe735625254886e9539a52e684caa6976a75d1f9413a9d240b3871f97f3",
+      "implementation-summary.md": "a391ec420d1552dedcb22196a9f6bb2e3f8ca108cbb20d39ba51a5fd86a13ddf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

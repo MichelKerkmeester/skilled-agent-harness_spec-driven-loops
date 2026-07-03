@@ -13,7 +13,12 @@
     "deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts",
     "deep-loops/035-gpt-reliability-fixes/008-compiled-contract",
     "deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume",
-    "deep-loops/035-gpt-reliability-fixes/010-injection-slimming"
+    "deep-loops/035-gpt-reliability-fixes/010-injection-slimming",
+    "deep-loops/035-gpt-reliability-fixes/001-acceptance-and-rollout-foundation",
+    "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence-and-validator",
+    "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
+    "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts-and-progress",
+    "deep-loops/035-gpt-reliability-fixes/005-retrofit-pacing-and-rollout-completion"
   ],
   "manual": {
     "depends_on": [],
@@ -24,7 +29,8 @@
     "trigger_phrases": [
       "gpt reliability fixes",
       "implement 034 recommendations",
-      "035 fixes"
+      "035 fixes",
+      "command contract architecture"
     ],
     "key_topics": [
       "gpt",
@@ -34,22 +40,36 @@
       "034",
       "recommendations",
       "035",
+      "command",
+      "contract",
+      "architecture",
       "implementation",
-      "packet",
-      "packet-034",
-      "research",
-      "synthesis"
+      "packet"
     ],
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "plan-review/gap-synthesis.md",
+      "spec.md",
+      "plan-review/gap-registry.md"
     ],
     "entities": [
+      {
+        "name": "gap-synthesis.md",
+        "kind": "doc",
+        "path": "plan-review/gap-synthesis.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "gap-registry.md",
+        "kind": "doc",
+        "path": "plan-review/gap-registry.md",
         "source": "derived"
       },
       {
@@ -65,20 +85,20 @@
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "Unified Command",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "exactly",
-        "kind": "key_phrase",
+        "name": "Contract Architecture",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "their",
-        "kind": "key_phrase",
+        "name": "Parent Packet",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -89,17 +109,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implementation packet for the packet-034 research synthesis: land the ranked fix packages that make GPT executors use our commands, gates, workflows, agents, and routing correctly (like Claude does). Ten phases in dependency order — harness hardening, then the P0 Gate-3 precedence package (which unmasks the rest), then the P1 quick wins (render contract, dispatch receipts, progress records, routing offer), then the P2 structural work. Each phase names the 033 behavior-benchmark cells that must flip to accept it.",
+    "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion. Each phase names the 033 behavior-benchmark cells that must flip to accept it, ships behind a per-command feature flag, and",
     "created_at": "2026-07-03T11:54:51.159Z",
-    "last_save_at": "2026-07-03T12:12:46.434Z",
+    "last_save_at": "2026-07-03T14:14:00.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2743f4c74600f69ae578494e6e493637d8287732e3e16be360b1fca80837282b",
+    "source_fingerprint": "sha256:d67666f7be0009c271e51cd33010bc2860ba31d06c4bb73571e4263433c3977c",
     "source_doc_hashes": {
-      "spec.md": "84cf3099345d7255ed08b9408a062f76c8a7be77de6df0ab0563ad4f65a61177"
+      "spec.md": "5a82170726b8ca9c2e742107459f3f1d2ebb80dce93a80c09b669e4393286701"
     },
     "last_active_child_id": null,
     "last_active_at": null

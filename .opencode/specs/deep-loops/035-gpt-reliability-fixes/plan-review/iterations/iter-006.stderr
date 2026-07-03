@@ -1,0 +1,53 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/035-gpt-reliability-fixes/**/*.md"[90m 59 matches[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/034-gpt-reliability-research/**/*"[90m 55 matches[0m
+[0m✱ [0mGlob ".opencode/specs/deep-loops/033-*/**/*"[90m 100 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/001-benchmark-harness-hardening/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/002-gate3-precedence/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/010-injection-slimming/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration/scorecard.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/decision-record.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/briefs/G6-verification-methodology.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/iterations/iter-006.md
+[0m✱ [0mGrep "role_absorption|fixtureGained|te=="[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness · 7 matches[0m
+[0m✱ [0mGlob ".opencode/skills/deep-loop-workflows/shared/behavior-benchmark/**/*"[90m 5 matches[0m
+[0m✱ [0mGrep "primary/secondary|multi-cause|primary_cause|secondary_cause"[90m in .opencode/specs/deep-loops · 20 matches[0m
+[0m✱ [0mGrep "3-sample|three-sample|n_sample|n-samples|multi-sample"[90m in .opencode/specs/deep-loops · 23 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md
+[0m
+[0m$ [0mgrep -n "fixtureGained\|rewrit\|content.hash\|mtime" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs | head -50
+147:// Improvement's evaluator-first loop owes BOTH a packet-local candidate rewrite
+222:  const enoughWork = taskEvents.length >= minTask || obs.fixtureGained;
+224:  if (dispatched || obs.fixtureGained) return 1;
+301:    return obs.fixtureGained ? 2 : 1;
+347:  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained && envFast) return 'env_error';
+364:  if (deleg.role_absorption_forbidden && expectsDelegation && obs.fixtureGained
+368:  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs) && ei === 'autonomous' && !obs.fixtureGained) return 'refused';
+378:  if (ei === 'autonomous' && obs.killedBy === 'none' && !obs.fixtureGained && artifactsOwed) {
+409:    } else if (st.isFile() && st.mtimeMs > newest) {
+410:      newest = st.mtimeMs;
+732:  // Watchdog: every 5s, stale-on-activity (data or fixture mtime) -> kill the tree.
+756:  const fixtureGained = newFixtureFiles.length > 0;
+778:    fixtureGained,
+[0m
+[0m$ [0mgrep -n "watchdog\|120\|nooprogress\|no_progress\|no progress" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs | head -30
+21:const DEFAULT_WATCHDOG_MS = 120000;
+349:  if (obs.killedBy === 'watchdog') return 'stuck_no_progress';
+547:  const out = { timeoutMs: undefined, watchdogMs: undefined };
+555:    else if (a === '--watchdog-ms') { const n = parseInt(next, 10); out.watchdogMs = Number.isNaN(n) ? undefined : n; i += 1; }
+614:  const watchdogMs = args.watchdogMs != null
+615:    ? args.watchdogMs
+616:    : (contract.watchdog_ms != null ? contract.watchdog_ms : DEFAULT_WATCHDOG_MS);
+733:  const watchdogTimer = setInterval(() => {
+736:    if (Date.now() - activity > watchdogMs) terminate('watchdog');
+744:  clearInterval(watchdogTimer);
+[0m

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts-and-progress",
+  "description": "Phase 004 of packet 035 (unified command-contract architecture). Two dispatch-integrity contracts referenced by the phase-003 compiled contract:",
+  "keywords": [
+    "phase",
+    "004",
+    "packet",
+    "035",
+    "unified",
+    "command-contract",
+    "architecture",
+    "two",
+    "dispatch-integrity",
+    "contracts",
+    "referenced",
+    "phase-003",
+    "compiled",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-03T14:23:25.783Z",
+  "specId": "004",
+  "folderSlug": "dispatch-receipts-and-progress",
+  "parentChain": [
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

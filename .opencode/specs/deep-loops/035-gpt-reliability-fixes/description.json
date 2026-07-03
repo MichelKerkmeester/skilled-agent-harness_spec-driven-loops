@@ -1,33 +1,27 @@
 {
+  "level": "phase",
   "specFolder": "deep-loops/035-gpt-reliability-fixes",
-  "description": "Implementation packet for the packet-034 research synthesis: land the ranked fix packages that make GPT executors use our commands, gates, workflows,",
+  "description": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract",
   "keywords": [
     "implementation",
     "packet",
     "packet-034",
     "research",
     "synthesis",
-    "land",
-    "ranked",
-    "fix",
-    "packages",
-    "make",
-    "gpt",
-    "executors",
-    "use",
-    "commands",
-    "gates",
-    "workflows"
+    "restructured",
+    "per",
+    "plan-review",
+    "verified",
+    "gaps",
+    "unified",
+    "command-contract"
   ],
-  "lastUpdated": "2026-07-03T11:54:50.982Z",
+  "lastUpdated": "2026-07-03T14:23:25.757Z",
   "specId": "035",
   "folderSlug": "gpt-reliability-fixes",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

@@ -1,0 +1,41 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/
+001-benchmark-harness-hardening
+002-gate3-precedence
+003-presentation-render
+004-dispatch-receipts
+005-progress-records
+006-routing-offer
+007-agent-executor-contracts
+008-compiled-contract
+009-pacing-and-resume
+010-injection-slimming
+description.json
+graph-metadata.json
+plan-review
+spec.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/008-compiled-contract/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/010-injection-slimming/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/002-gate3-precedence/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/001-benchmark-harness-hardening/spec.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-behavior-benchmark/ 2>&1 | head -40
+ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-behavior-benchmark/: No such file or directory
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/:
+briefs
+gap-registry.md
+iteration-log.md
+iterations
+[0m
+[0m✱ [0mGlob "**/033*/**/*.md"[90m in .opencode · 96 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/gap-registry.md
+[0m✱ [0mGlob "**/IMB*"[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks · 30 matches[0m

@@ -1,0 +1,155 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/035-gpt-reliability-fixes/ 2>&1 | head -50
+001-benchmark-harness-hardening
+002-gate3-precedence
+003-presentation-render
+004-dispatch-receipts
+005-progress-records
+006-routing-offer
+007-agent-executor-contracts
+008-compiled-contract
+009-pacing-and-resume
+010-injection-slimming
+description.json
+graph-metadata.json
+plan-review
+spec.md
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/034-gpt-reliability-research/research/ 2>&1 | head -30
+briefs
+findings-registry.md
+iteration-log.md
+iterations
+synthesis.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/ 2>&1
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+spec.md
+tasks.md
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/ 2>&1 | tail -20
+iter-006.md
+iter-006.stderr
+iter-007.md
+iter-007.stderr
+iter-008.md
+iter-008.stderr
+iter-009.md
+iter-009.stderr
+iter-010.md
+iter-010.stderr
+iter-011.md
+iter-011.stderr
+iter-012.md
+iter-012.stderr
+iter-013.md
+iter-013.stderr
+iter-014.md
+iter-014.stderr
+iter-015.md
+iter-015.stderr
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume/ 2>&1
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+spec.md
+tasks.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/iter-014.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/plan.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/tasks.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume/spec.md
+[0m
+[0m$ [0mls .opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/ 2>&1; ls .opencode/commands/deep/assets/ 2>&1 | head -20
+graph_support.md
+loop_protocol.md
+quick_reference.md
+deep_agent-improvement_auto.yaml
+deep_agent-improvement_confirm.yaml
+deep_agent-improvement_presentation.txt
+deep_ai-council_auto.yaml
+deep_ai-council_confirm.yaml
+deep_ai-council_presentation.txt
+deep_context_auto.yaml
+deep_context_confirm.yaml
+deep_context_presentation.txt
+deep_model-benchmark_auto.yaml
+deep_model-benchmark_confirm.yaml
+deep_model-benchmark_presentation.txt
+deep_research_auto.yaml
+deep_research_confirm.yaml
+deep_research_presentation.txt
+deep_review_auto.yaml
+deep_review_confirm.yaml
+deep_review_presentation.txt
+[0m
+[0m$ [0mls .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/ 2>&1; ls .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/ 2>&1
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+runs
+scorecard.md
+spec.md
+tasks.md
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+runs
+scorecard.md
+spec.md
+tasks.md
+[0m
+[0m$ [0mfind .opencode -name "persist-artifacts.cjs" 2>&1 | head -5
+.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/persist-artifacts.cjs
+.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/scorecard.md
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/scorecard.md
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/persist-artifacts.cjs
+[0m
+[0m$ [0mfind .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness -type f 2>&1 | head -10
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/graph-metadata.json
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/implementation-summary.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/description.json
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/tasks.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/checklist.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/plan.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/spec.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/decision-record.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/runs/SMOKE-001-claude-cli.transcript.jsonl
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/runs/SMOKE-001-baseline.md
+[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/loop_protocol.md
+[0m
+[0m$ [0mgrep -n "480s\|watchdog\|no.progress\|no_progress" .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/spec.md 2>&1 | head -20
+3:description: "Build the shared foundation every behavior_benchmark package runs on: scenario schema, 5-dimension scoring rubric, 11-bucket classification taxonomy, budget + rerun policy, the shared scenario runner over opencode run --format json (timeout, no-progress watchdog, checkpoint + delegation-evidence extraction, fixture-isolation assertion), frozen fixture packets, and the two de-risking probes (baseline executor availability; end-to-end smoke)."
+7:  - "benchmark runner watchdog"
+58:The five per-skill benchmark packages (phases 002-004) need one shared, trustworthy measurement substrate. Without it, each package would fork its own scoring rules and spawn mechanics, making cross-mode comparison meaningless — and without fixture isolation and a watchdog built FIRST, live LLM runs could contaminate production spec folders or hang unattended. Two environmental facts are also unverified and gate everything downstream: whether a Claude baseline can run through the same opencode host (OPEN-001), and where the shared runner should live (OPEN-002).
+73:- OPEN-002 resolution and runner scaffold: spawn `opencode run --format json --dir <repo-root>` per scenario (command-form or natural-language prompt per entry surface), hard timeout, 120s no-progress watchdog (no new event AND no artifact mtime change), checkpoint extraction (t_first_output / t_setup / t_first_dispatch / t_terminal), delegation-evidence extraction (task events with subagent identity + `Agent:`/`Deep Route:` prompt lines, route-proof JSONL fields, mk-deep-loop-guard warnings), fixture-isolation pre/post assertion, per-run result JSON + transcript.
+103:| REQ-002 | Runner never hangs and never contaminates | Every spawn carries hard timeout + no-progress watchdog; pre/post isolation assertion fails the run loudly if any path outside fixtures + results changed. |
+114:- **SC-002**: Hermetic runner unit checks pass (checkpoint extraction, watchdog trigger, isolation assertion).
+157:- Event stream ends without a terminal message (watchdog kill): partial evidence still scores D1-D3; D4=0 with the watchdog bucket.
+174:| Risk | 12/25 | Isolation/watchdog engineering removes the scary failure modes |
+[0m
+[0m$ [0mfind .opencode -path '*033-deep-loop-behavior-benchmarks*spec.md' -name spec.md 2>&1 | xargs grep -l "watchdog" 2>&1 | head -3
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/spec.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/spec.md
+.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/spec.md
+[0m

@@ -1,0 +1,76 @@
+[0m
+> build · glm-5.2
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/synthesis.md
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/
+total 40
+drwxr-xr-x@ 16 michelkerkmeester  staff   512 Jul  3 14:18 .
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul  3 13:52 ..
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:04 001-benchmark-harness-hardening
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 002-gate3-precedence
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 003-presentation-render
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 004-dispatch-receipts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 005-progress-records
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 006-routing-offer
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 007-agent-executor-contracts
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 008-compiled-contract
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 009-pacing-and-resume
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul  3 14:20 010-injection-slimming
+-rw-r--r--@  1 michelkerkmeester  staff   732 Jul  3 14:12 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  3384 Jul  3 14:12 graph-metadata.json
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 14:30 plan-review
+-rw-r--r--@  1 michelkerkmeester  staff  9031 Jul  3 14:12 spec.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/001-benchmark-harness-hardening/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/003-presentation-render/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/002-gate3-precedence/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/006-routing-offer/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/005-progress-records/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/008-compiled-contract/spec.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/010-injection-slimming/spec.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/
+total 24
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 14:30 .
+drwxr-xr-x@ 16 michelkerkmeester  staff   512 Jul  3 14:18 ..
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul  3 14:20 briefs
+-rw-r--r--@  1 michelkerkmeester  staff  5356 Jul  3 14:30 gap-registry.md
+-rw-r--r--@  1 michelkerkmeester  staff   563 Jul  3 14:30 iteration-log.md
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 14:30 iterations
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/gap-registry.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/briefs/
+total 80
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul  3 14:20 .
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Jul  3 14:30 ..
+-rw-r--r--@  1 michelkerkmeester  staff  2250 Jul  3 14:18 G1-coverage.md
+-rw-r--r--@  1 michelkerkmeester  staff  2075 Jul  3 14:20 G10-second-order.md
+-rw-r--r--@  1 michelkerkmeester  staff  1744 Jul  3 14:20 G2-dependencies.md
+-rw-r--r--@  1 michelkerkmeester  staff  1866 Jul  3 14:20 G3-gate3-safety.md
+-rw-r--r--@  1 michelkerkmeester  staff  1861 Jul  3 14:20 G4-receipts-threat.md
+-rw-r--r--@  1 michelkerkmeester  staff  1928 Jul  3 14:20 G5-progress-rootcause.md
+-rw-r--r--@  1 michelkerkmeester  staff  2009 Jul  3 14:20 G6-verification-methodology.md
+-rw-r--r--@  1 michelkerkmeester  staff  1883 Jul  3 14:20 G7-unaddressed-surfaces.md
+-rw-r--r--@  1 michelkerkmeester  staff  2020 Jul  3 14:20 G8-regression-rollback.md
+-rw-r--r--@  1 michelkerkmeester  staff  1960 Jul  3 14:20 G9-effort-realism.md
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/briefs/G2-dependencies.md
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/briefs/G1-coverage.md
+[0m
+[0m$ [0mls -la /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/iterations/
+total 48
+drwxr-xr-x@ 6 michelkerkmeester  staff    192 Jul  3 14:30 .
+drwxr-xr-x@ 6 michelkerkmeester  staff    192 Jul  3 14:30 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  10197 Jul  3 14:27 iter-001.md
+-rw-r--r--@ 1 michelkerkmeester  staff    426 Jul  3 14:19 iter-001.stderr
+-rw-r--r--@ 1 michelkerkmeester  staff      0 Jul  3 14:30 iter-002.md
+-rw-r--r--@ 1 michelkerkmeester  staff   4504 Jul  3 14:35 iter-002.stderr
+[0m
+[0m→ [0mRead .opencode/specs/deep-loops/035-gpt-reliability-fixes/plan-review/iterations/iter-001.md
