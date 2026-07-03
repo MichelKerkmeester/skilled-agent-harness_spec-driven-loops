@@ -19,6 +19,19 @@ const MIN_CLI_TIMEOUT_MS = 25;
 const MAX_STDIO_BYTES = 1024 * 1024;
 const EXIT_SETTLE_GRACE_MS = 25;
 
+export interface LastSpecMemoryCliFallbackStatus {
+  readonly observedAt: string;
+  readonly status: WarmCliFallbackEnvelope['status'];
+  readonly outcome: WarmCliFallbackEnvelope['status'];
+  readonly reason: string | null;
+  readonly exitCode: number | null;
+  readonly retryable: boolean;
+  readonly timedOut: boolean;
+  readonly durationMs: number;
+}
+
+let lastSpecMemoryCliFallbackStatus: LastSpecMemoryCliFallbackStatus | null = null;
+
 interface RepoPaths {
   readonly repoRoot: string;
   readonly cliShim: string;
@@ -47,6 +60,43 @@ export interface WarmSpecMemoryCliOptions {
 }
 
 type WarmSpecMemoryCliObserver = (result: WarmSpecMemoryCliResult) => void;
+
+function sanitizeFallbackReason(reason: string | null | undefined): string {
+  return (reason ?? 'unknown')
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/[^a-zA-Z0-9_.:/ -]+/g, '_')
+    .trim()
+    .slice(0, 120) || 'unknown';
+}
+
+function nodeWarningArgs(): string[] {
+  return process.allowedNodeEnvironmentFlags?.has('--disable-warning')
+    ? ['--disable-warning=ExperimentalWarning']
+    : ['--no-warnings'];
+}
+
+function recordLastSpecMemoryCliFallbackStatus(result: WarmSpecMemoryCliResult): WarmSpecMemoryCliResult {
+  lastSpecMemoryCliFallbackStatus = {
+    observedAt: new Date().toISOString(),
+    status: result.status,
+    outcome: result.status,
+    reason: result.reason ? sanitizeFallbackReason(result.reason) : null,
+    exitCode: result.exitCode,
+    retryable: result.retryable,
+    timedOut: result.timedOut,
+    durationMs: result.durationMs,
+  };
+  return result;
+}
+
+function fallbackSkipLine(result: WarmSpecMemoryCliResult): string {
+  const reason = sanitizeFallbackReason(result.reason ?? result.stderr ?? 'unknown');
+  return `Memory: CLI fallback skipped (${reason})`;
+}
+
+export function getLastSpecMemoryCliFallbackStatus(): LastSpecMemoryCliFallbackStatus | null {
+  return lastSpecMemoryCliFallbackStatus ? { ...lastSpecMemoryCliFallbackStatus } : null;
+}
 
 function currentFilePath(): string {
   return fileURLToPath(import.meta.url);
@@ -153,13 +203,13 @@ export async function runWarmSpecMemoryCliTool(
   const paths = findRepoPaths();
   if (!paths) {
     const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: 'repo_paths_unavailable', exitCode: null });
-    return {
+    return recordLastSpecMemoryCliFallbackStatus({
       ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
       durationMs: Date.now() - startedAt,
-    };
+    });
   }
 
   const probeTimeoutMs = Math.min(
@@ -170,28 +220,29 @@ export async function runWarmSpecMemoryCliTool(
   const afterProbeMs = Date.now() - startedAt;
   if (!warm.warm) {
     const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: warm.reason, exitCode: 75 });
-    return {
+    return recordLastSpecMemoryCliFallbackStatus({
       ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
       durationMs: afterProbeMs,
-    };
+    });
   }
 
   const remainingMs = Math.max(0, timeoutMs - afterProbeMs);
   if (remainingMs < MIN_CLI_TIMEOUT_MS) {
     const envelope = warmCliFallbackEnvelope({ status: 'skipped', reason: 'budget_exhausted_before_cli', exitCode: 75 });
-    return {
+    return recordLastSpecMemoryCliFallbackStatus({
       ...envelope,
       payload: null,
       stdout: '',
       stderr: '',
       durationMs: Date.now() - startedAt,
-    };
+    });
   }
 
   const cliArgs = [
+    ...nodeWarningArgs(),
     '.opencode/bin/spec-memory.cjs',
     options.toolName,
     '--json',
@@ -257,13 +308,13 @@ export async function runWarmSpecMemoryCliTool(
         ? 'ok'
         : 'fail_open';
       const envelope = warmCliFallbackEnvelope({ status, reason, exitCode, timedOut });
-      resolveResult({
+      resolveResult(recordLastSpecMemoryCliFallbackStatus({
         ...envelope,
         payload,
         stdout,
         stderr,
         durationMs: Date.now() - startedAt,
-      });
+      }));
     };
     const timer = setTimeout(() => {
       timedOut = true;
@@ -417,7 +468,7 @@ export async function buildWarmSessionResumeSection(options: {
   });
   options.onResult?.(result);
   if (result.status !== 'ok') {
-    return null;
+    return { title: options.title, content: fallbackSkipLine(result) };
   }
   const brief = renderSpecMemoryCliBrief(result.payload);
   return brief ? { title: options.title, content: brief } : null;

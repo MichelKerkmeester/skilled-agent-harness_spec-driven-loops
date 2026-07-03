@@ -147,7 +147,11 @@ interface IndexHealthBlock {
   retryVectors: number;
   failedVectors: number;
   orphanFiles: number | null;
+  orphanFilesLabel: 'sampled' | 'unavailable';
+  orphanFilesSampleLimit: number;
+  orphanFilesScannedRows: number | null;
   lastScanAgeMs: number | null;
+  lastScanAt: string | null;
   activeScanJob: boolean;
   activeEmbedderJob: boolean;
   note?: string;
@@ -264,6 +268,7 @@ const DEFAULT_INTENDED_EXCLUSION_POLICY: IntendedExclusionPolicy = Object.freeze
   intendedSources: ['archived-tier'] as HardExclusionSource[],
   silentRiskSources: ['deprecated-tier'] as HardExclusionSource[],
 });
+const CONSISTENCY_MISMATCHED_IDS_LIMIT = 20;
 
 function toNormalizedPath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -470,7 +475,7 @@ function countExclusionCandidates(
           title IS NOT NULL OR
           trigger_phrases IS NOT NULL OR
           file_path IS NOT NULL OR
-          content IS NOT NULL
+          content_text IS NOT NULL
         )
     `).get(tier) as { count?: number } | undefined;
     return row?.count ?? 0;
@@ -747,10 +752,20 @@ async function getIndexHealthBlock(
   let retryVectors = 0;
   let failedVectors = 0;
   let orphanFiles: number | null = null;
+  let orphanFilesScannedRows: number | null = null;
   let lastScanAgeMs: number | null = null;
+  let lastScanAt: string | null = null;
   let activeScanJob = false;
   let activeEmbedderJob = false;
   const notes: string[] = [];
+
+  try {
+    const lastScanTime = await getLastScanTime();
+    lastScanAgeMs = lastScanTime > 0 ? Math.max(0, now - lastScanTime) : null;
+    lastScanAt = lastScanTime > 0 ? new Date(lastScanTime).toISOString() : null;
+  } catch (error: unknown) {
+    notes.push(`Last scan timestamp unavailable: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+  }
 
   if (!database || !vectorSearchAvailable) {
     return {
@@ -760,10 +775,14 @@ async function getIndexHealthBlock(
       retryVectors,
       failedVectors,
       orphanFiles,
+      orphanFilesLabel: 'unavailable',
+      orphanFilesSampleLimit: INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT,
+      orphanFilesScannedRows,
       lastScanAgeMs,
+      lastScanAt,
       activeScanJob,
       activeEmbedderJob,
-      note: 'Database or vector index is unavailable.',
+      note: ['Database or vector index is unavailable.', ...notes].join(' '),
     };
   }
 
@@ -780,13 +799,6 @@ async function getIndexHealthBlock(
     notes.push(`Embedding retry counts fell back to in-memory telemetry: ${sanitizeErrorForHint(toErrorMessage(error))}`);
   }
 
-  try {
-    const lastScanTime = await getLastScanTime();
-    lastScanAgeMs = lastScanTime > 0 ? Math.max(0, now - lastScanTime) : null;
-  } catch (error: unknown) {
-    notes.push(`Last scan timestamp unavailable: ${sanitizeErrorForHint(toErrorMessage(error))}`);
-  }
-
   activeScanJob = hasActiveScanJob(database, now);
   activeEmbedderJob = hasActiveEmbedderJob(database);
 
@@ -794,9 +806,8 @@ async function getIndexHealthBlock(
     incrementalIndex.init(database);
     const orphanSweep = incrementalIndex.sweepOrphanIndexRows({ limit: INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT });
     orphanFiles = orphanSweep.swept;
-    if (orphanSweep.nextCursor !== null) {
-      notes.push(`orphanFiles is a bounded count over ${orphanSweep.scannedRows} sampled row(s); more rows may exist.`);
-    }
+    orphanFilesScannedRows = orphanSweep.scannedRows;
+    notes.push(`orphanFiles is sampled over ${orphanSweep.scannedRows} row(s), capped at ${INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT}; it is not a total.`);
   } catch (error: unknown) {
     orphanFiles = null;
     notes.push(`Orphan file count unavailable: ${sanitizeErrorForHint(toErrorMessage(error))}`);
@@ -820,7 +831,11 @@ async function getIndexHealthBlock(
     retryVectors,
     failedVectors,
     orphanFiles,
+    orphanFilesLabel: 'sampled',
+    orphanFilesSampleLimit: INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT,
+    orphanFilesScannedRows,
     lastScanAgeMs,
+    lastScanAt,
     activeScanJob,
     activeEmbedderJob,
     ...(notes.length > 0 ? { note: notes.join(' ') } : {}),
@@ -1005,6 +1020,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   );
   const vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
   const maintenance = getMaintenanceObservabilitySnapshot();
+  const maintenanceWithLastRun = Object.fromEntries(
+    Object.entries(maintenance).map(([tool, snapshot]) => [
+      tool,
+      { ...snapshot, lastRun: snapshot.lastRunAt },
+    ]),
+  );
   const exclusionAudit = auditHardExclusions(database);
   // Per-predicate entries are a near-static enumeration; the actionable signal
   // lives in diagnostics (also surfaced as hints). Keep entries in the opt-in
@@ -1042,7 +1063,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         process: processHealth,
         index: indexHealth,
         recallDegradation: vectorDegradation,
-        maintenance,
+        maintenance: maintenanceWithLastRun,
         exclusionAudit: exclusionAuditOut,
         embeddingRetry,
         specFolder: specFolder ?? null,
@@ -1149,8 +1170,11 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       if (integrityReport.orphanedChunks > 0) {
         consistency.mismatchedIds.push(`orphaned_chunks:${integrityReport.orphanedChunks}`);
       }
-      for (const file of integrityReport.orphanedFiles.slice(0, 50)) {
+      for (const file of integrityReport.orphanedFiles.slice(0, CONSISTENCY_MISMATCHED_IDS_LIMIT)) {
         consistency.mismatchedIds.push(file.id);
+      }
+      if (integrityReport.orphanedFiles.length > CONSISTENCY_MISMATCHED_IDS_LIMIT) {
+        consistency.mismatchedIds.push(`orphaned_files_more:${integrityReport.orphanedFiles.length - CONSISTENCY_MISMATCHED_IDS_LIMIT}`);
       }
       consistency.status = consistency.mismatchedIds.length > 0 ? 'degraded' : 'healthy';
     } catch (error: unknown) {
@@ -1206,7 +1230,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         process: processHealth,
         index: indexHealth,
         recallDegradation: vectorDegradation,
-        maintenance,
+        maintenance: maintenanceWithLastRun,
         exclusionAudit: exclusionAuditOut,
         embeddingRetry,
         backgroundEnrichment,
@@ -1437,7 +1461,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       uptime: process.uptime(),
       process: processHealth,
       index: indexHealth,
-      maintenance,
+      maintenance: maintenanceWithLastRun,
       exclusionAudit: exclusionAuditOut,
       version: SERVER_VERSION,
       reportMode: 'full',

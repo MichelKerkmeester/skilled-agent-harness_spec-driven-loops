@@ -19,6 +19,7 @@ const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
+const FRESHNESS_EXEMPT_COMMANDS = new Set(['completion']);
 
 function requestedFormat(argv) {
   for (let index = 0; index < argv.length; index += 1) {
@@ -46,6 +47,54 @@ function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
   process.exit(exitCode);
 }
 
+function nodeWarningArgs() {
+  return process.allowedNodeEnvironmentFlags?.has('--disable-warning')
+    ? ['--disable-warning=ExperimentalWarning']
+    : ['--no-warnings'];
+}
+
+function isFreshnessExemptArgv(argv) {
+  const command = argv[0];
+  return command === '--help'
+    || command === '-h'
+    || command === '--version'
+    || command === '-v'
+    || FRESHNESS_EXEMPT_COMMANDS.has(command);
+}
+
+function readShimVersion() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(mcpServerDir, 'package.json'), 'utf8'));
+    return typeof parsed.version === 'string' ? parsed.version : '0.0.0';
+  } catch (_) {
+    return '0.0.0';
+  }
+}
+
+function handleShimMetaArgv(argv) {
+  const command = argv[0];
+  if (command === '--version' || command === '-v') {
+    process.stdout.write(`${readShimVersion()}\n`);
+    process.exit(0);
+  }
+  if (command === '--help' || command === '-h') {
+    process.stdout.write([
+      'spec-memory — daemon-backed Spec Kit Memory CLI',
+      '',
+      'Usage:',
+      '  spec-memory <tool-name> --json <payload> [--format json|jsonl|text] [--warm-only]',
+      '  spec-memory list-tools [--format json|text]',
+      '  spec-memory completion bash|zsh',
+      '  spec-memory --version',
+      '',
+      'Stale dist handling:',
+      '  Tool calls refuse stale dist with exit 75; stale-dist is a non-retryable subcase.',
+    ].join('\n'));
+    process.stdout.write('\n');
+    process.exit(0);
+  }
+}
+
 function ensureFreshDist() {
   const result = checkPackageFreshness('system-spec-kit/mcp_server', {
     workspaceRoot: path.dirname(opencodeDir),
@@ -53,7 +102,8 @@ function ensureFreshDist() {
     allowStale,
   });
   if (result.status === 'missing' || result.stale) {
-    fail(result.message, EXIT_RETRYABLE, { staleDistWarning: result.message });
+    const message = `${result.message}\nExit 75 subcase: stale-dist is non-retryable; rebuild before retrying this CLI call.`;
+    fail(message, EXIT_RETRYABLE, { staleDistWarning: message, retryable: false, retryableSubcase: 'stale_dist' });
   }
   if (result.status === 'error') {
     process.stderr.write(`WARNING: ${result.message}\n`);
@@ -73,10 +123,14 @@ function ensureSocketDir() {
   }
 }
 
+const shimArgv = process.argv.slice(2);
+handleShimMetaArgv(shimArgv);
 ensureSocketDir();
-ensureFreshDist();
+if (!isFreshnessExemptArgv(shimArgv)) {
+  ensureFreshDist();
+}
 
-const result = spawnSync(process.execPath, [cliDist, ...process.argv.slice(2)], {
+const result = spawnSync(process.execPath, [...nodeWarningArgs(), cliDist, ...shimArgv], {
   cwd: path.dirname(opencodeDir),
   env: process.env,
   stdio: 'inherit',

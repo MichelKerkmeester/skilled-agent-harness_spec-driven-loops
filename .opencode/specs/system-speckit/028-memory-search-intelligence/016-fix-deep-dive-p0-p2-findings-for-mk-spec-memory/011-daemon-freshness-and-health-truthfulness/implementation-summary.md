@@ -1,35 +1,39 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Daemon Freshness and Health Truthfulness"
+description: "Broke the dist-freshness deadlock that falsely reported a fresh build as stale, exempted --help/--version from the freshness gate, and made the health exclusion-audit fire again."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "daemon freshness deadlock fixed"
+  - "dist freshness cache prime"
+  - "health content_text exclusion audit"
+  - "spec-memory cli argv exempt"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-daemon-freshness-and-health-truthfulness"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness"
+    last_updated_at: "2026-07-03T14:02:21Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented and verified phase 011; deadlock broken, build clean, 20/20 freshness tests pass"
+    next_safe_action: "Proceed to phase 001 (corpus identity repair)"
     blockers: []
-    key_files: []
+    key_files:
+      - "scripts/lib/dist-freshness.cjs"
+      - "mcp_server/scripts/finalize-dist.mjs"
+      - "bin/spec-memory.cjs"
+      - "mcp_server/handlers/memory-crud-health.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-daemon-freshness-and-health-truthfulness"
+      session_id: "2026-07-03-016-011-implementation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Exit-75 taxonomy: stale-dist stays inside 75 as a documented non-retryable sub-case (live consumer contract preserved)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -48,28 +52,29 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The dist-freshness checker no longer deadlocks. A successful build now pre-warms the per-entry source-hash cache, so the very next freshness check short-circuits to "fresh" instead of falling through to the mtime comparison that could never write the cache. This removes the false-stale state that blocked the compiled validator and the memory CLI for an entire working session.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Freshness deadlock fix
 
-### [Feature Name]
+`finalize-dist.mjs` now calls a new `writePackageSourceHashCache` helper after `tsc --build` succeeds. The helper is exported from the checker itself and reuses the checker's own `collectSourceFiles` enumeration plus `hashSourceFiles`/`cachePathFor`, so the finalizer hashes exactly the file set the checker will later compare against. If those two ever diverged the cache would never match and the deadlock would return, so keeping the enumeration single-sourced is the load-bearing invariant.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### CLI argv exemption and health truthfulness
+
+`spec-memory.cjs` now exempts `--help`, `--version`, and `completion` from the freshness gate, so usage and version output work even when a rebuild is genuinely pending. Stale-dist stays on exit 75 as a documented non-retryable sub-case rather than moving to a new code, preserving the live "75 = retryable" consumer contract while flagging the sub-case in the recovery text. The health exclusion-audit now queries `content_text` instead of the nonexistent `content` column, so the audit's prepared statement no longer throws and the silent-risk diagnostic can actually fire.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `scripts/lib/dist-freshness.cjs` | Modified | Export `writePackageSourceHashCache` reusing `collectSourceFiles`; unify recovery texts |
+| `mcp_server/scripts/finalize-dist.mjs` | Modified | Pre-warm the per-entry hash cache after a successful build |
+| `bin/spec-memory.cjs` | Modified | Exempt `--help`/`--version`/`completion` from the gate; stale-dist sub-case; suppress ExperimentalWarning |
+| `mcp_server/handlers/memory-crud-health.ts` | Modified | `content` → `content_text`; sampled-orphan label; mismatchedIds cap; last-scan without runtime |
+| `mcp_server/handlers/session-health.ts` | Modified | Expose last CLI-fallback status |
+| `mcp_server/hooks/spec-memory-cli-fallback.ts` | Modified | Record and surface the fallback skip reason |
+| `mcp_server/hooks/warm-cli-fallback-envelope.ts` | Modified | Carry `timedOut` on the envelope so fallback status can read it (final-verify correction) |
+| `mcp_server/tests/dist-freshness.vitest.ts` | Modified | Deadlock-bootstrap regression coverage |
+| `feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md` | Modified | Corrected exit taxonomy and hash-cache paragraph |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +82,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+GPT-5.5-fast (high) implemented the changes in an isolated git worktree; Opus 4.8 final-verified in the main build environment. Verification exercised the fixes end to end: `tsc --build` clean, the freshness check returns fresh immediately after a build (deadlock broken), `spec-memory.cjs --help`/`--version` exit 0 (previously exit 75), `memory_health` returns JSON instead of the stale-dist error, and the dist-freshness vitest suite passes 20/20. Final-verify also caught and corrected one type-threading gap: the fallback envelope did not carry `timedOut`, which the new status recorder reads.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +90,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Pre-warm the cache in the finalizer rather than change the mtime gate | The mtime gate is correct; the bug was that a stale entry never reached the cache write, so priming it after a known-good build is the minimal fix |
+| Reuse `collectSourceFiles` in the finalizer | If the finalizer hashed a different file set than the checker enumerates, the cache would never match and the deadlock would silently return |
+| Keep stale-dist on exit 75 | Downstream hooks and doctor routes treat 75 as retryable; documenting a non-retryable sub-case avoids breaking that contract |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +102,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `tsc --build` (main tree) | PASS (exit 0, clean) |
+| Freshness fresh after build (deadlock) | PASS (validation-orchestrator stale:false) |
+| `spec-memory.cjs --help` / `--version` | PASS (exit 0; was 75) |
+| `memory_health` returns JSON | PASS (no stale-dist error) |
+| dist-freshness vitest | PASS (20/20) |
+| `validate.sh --strict` | PASS (0 errors) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +117,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Full dist×argv×cache matrix deferred.** The regression test covers the deadlock-bootstrap path (20 cases). The exhaustive 4×4×3 state matrix and the hostile-env variant (CHK-FIX-005/006) are approved deferrals — low-risk since the core deadlock is regression-covered.
+2. **CONTINUITY_FRESHNESS on `spec-memory.cjs` git-clean and the CONTINUITY_FRESHNESS import were not reproduced.** Both closed as not-a-bug against current code during verify-first.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

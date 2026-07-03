@@ -9,6 +9,7 @@ export interface WarmCliFallbackEnvelope {
   readonly reason: string;
   readonly exitCode: number | null;
   readonly retryable: boolean;
+  readonly timedOut: boolean;
 }
 
 export interface WarmCliFallbackEnvelopeInput {
@@ -48,5 +49,6 @@ export function warmCliFallbackEnvelope(input: WarmCliFallbackEnvelopeInput): Wa
     reason,
     exitCode,
     retryable: input.status !== 'ok' && (input.timedOut === true || exitCode === 75 || RETRYABLE_REASONS.has(reason)),
+    timedOut: input.timedOut === true,
   };
 }

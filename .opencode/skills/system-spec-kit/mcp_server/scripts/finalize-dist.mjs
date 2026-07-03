@@ -3,11 +3,15 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const require = createRequire(import.meta.url);
 const serverDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(serverDir, 'dist');
+const workspaceRoot = path.resolve(serverDir, '..', '..', '..', '..');
+const { writePackageSourceHashCache } = require(path.join(serverDir, '..', 'scripts', 'lib', 'dist-freshness.cjs'));
 const staleDistRoots = [
   'system-spec-kit',
   'system-skill-advisor',
@@ -19,6 +23,7 @@ const requiredArtifacts = [
   'context-server.js',
   'api/index.js',
 ];
+const freshnessEntries = ['default', 'spec-memory-cli', 'validation-orchestrator'];
 
 function copyJsonFiles(sourceDir, targetDir) {
   if (!fs.existsSync(sourceDir)) {
@@ -57,9 +62,22 @@ function assertNoStaleDistRoots() {
   }
 }
 
+function writeFreshnessCaches() {
+  for (const entry of freshnessEntries) {
+    const result = writePackageSourceHashCache('system-spec-kit/mcp_server', {
+      workspaceRoot,
+      entry,
+    });
+    if (result.status !== 'cached') {
+      throw new Error(result.message || `Failed to write freshness cache for ${entry}`);
+    }
+  }
+}
+
 copyJsonFiles(path.join(serverDir, 'lib', 'eval', 'data'), path.join(distDir, 'lib', 'eval', 'data'));
 copyJsonFiles(path.join(serverDir, 'lib', 'routing'), path.join(distDir, 'lib', 'routing'));
 
 removeStaleDistRoots();
 assertRequiredArtifacts();
 assertNoStaleDistRoots();
+writeFreshnessCaches();

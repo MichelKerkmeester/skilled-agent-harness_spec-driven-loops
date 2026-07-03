@@ -272,6 +272,85 @@ function writeStoredSourceHash(cachePath, sourceHash) {
   }
 }
 
+function rebuildMessage(pkg, state, detail = null) {
+  const suffix = detail ? ` (${detail})` : '';
+  return `${pkg.name} dist is ${state}${suffix}. Rebuild with: ${pkg.rebuildCommand}`;
+}
+
+function writePackageSourceHashCache(packageId, options = {}) {
+  const workspaceRoot = workspaceRootFromOptions(options);
+  const pkg = packageById(packageId);
+  if (!pkg) return freshnessError(null, `Unknown dist package: ${packageId}`);
+
+  const root = packageRoot(workspaceRoot, pkg);
+  if (!fs.existsSync(root)) {
+    return freshnessError(pkg, `Watched package root is missing: ${root}`, { packageRoot: root });
+  }
+
+  const entryName = options.entry || 'default';
+  const normalizedEntry = normalizeEntryName(pkg, entryName);
+  if (!normalizedEntry) {
+    return freshnessError(pkg, `Unknown dist entry "${entryName}" for ${pkg.id}`, { packageRoot: root });
+  }
+
+  const distEntry = distEntryFor(pkg, root, normalizedEntry);
+  if (!distEntry || !fs.existsSync(distEntry)) {
+    return {
+      packageId: pkg.id,
+      packageName: pkg.name,
+      status: 'missing',
+      stale: true,
+      packageRoot: root,
+      distEntry,
+      entry: normalizedEntry,
+      rebuildCommand: pkg.rebuildCommand,
+      message: rebuildMessage(pkg, 'missing', distEntry),
+    };
+  }
+
+  try {
+    const { files, missing } = collectSourceFiles(pkg, root, normalizedEntry);
+    if (missing.length > 0) {
+      return freshnessError(
+        pkg,
+        `Watched source path is missing for ${pkg.id}: ${missing.map((item) => path.relative(workspaceRoot, item)).join(', ')}`,
+        { packageRoot: root, distEntry, entry: normalizedEntry, missingSourcePaths: missing },
+      );
+    }
+    if (files.length === 0) {
+      return freshnessError(pkg, `No watched source files found for ${pkg.id}`, {
+        packageRoot: root,
+        distEntry,
+        entry: normalizedEntry,
+      });
+    }
+
+    const sourceHash = hashSourceFiles(root, files);
+    const cachePath = cachePathFor(root, distEntry, pkg, normalizedEntry);
+    writeStoredSourceHash(cachePath, sourceHash);
+    return {
+      packageId: pkg.id,
+      packageName: pkg.name,
+      status: 'cached',
+      stale: false,
+      packageRoot: root,
+      distEntry,
+      entry: normalizedEntry,
+      rebuildCommand: pkg.rebuildCommand,
+      sourceCount: files.length,
+      cachePath,
+      sourceHash,
+      message: `${pkg.name} dist freshness cache written`,
+    };
+  } catch (error) {
+    return freshnessError(pkg, `Dist freshness cache write failed for ${pkg.id}: ${error.message}`, {
+      packageRoot: root,
+      distEntry,
+      entry: normalizedEntry,
+    });
+  }
+}
+
 function freshnessError(pkg, message, extra = {}) {
   return {
     packageId: pkg?.id || null,
@@ -311,7 +390,7 @@ function checkPackageFreshness(packageId, options = {}) {
       distEntry,
       entry: normalizedEntry,
       rebuildCommand: pkg.rebuildCommand,
-      message: `${pkg.name} dist entry is missing: ${distEntry}. Run: ${pkg.rebuildCommand}`,
+      message: rebuildMessage(pkg, 'missing', distEntry),
     };
   }
 
@@ -387,7 +466,7 @@ function checkPackageFreshness(packageId, options = {}) {
         newestSourceMtime,
         newestSourceFile,
         distMtime,
-        message: `${pkg.name} dist is stale. Run: ${pkg.rebuildCommand}`,
+        message: rebuildMessage(pkg, 'stale'),
       };
     }
 
@@ -529,8 +608,12 @@ module.exports = {
   DIST_PACKAGES,
   STALE_EXIT_CODE,
   checkAllFreshness,
+  cachePathFor,
   checkFileFreshness,
   checkPackageFreshness,
+  collectSourceFiles,
   formatWarning,
+  hashSourceFiles,
   packageForSourceFile,
+  writePackageSourceHashCache,
 };

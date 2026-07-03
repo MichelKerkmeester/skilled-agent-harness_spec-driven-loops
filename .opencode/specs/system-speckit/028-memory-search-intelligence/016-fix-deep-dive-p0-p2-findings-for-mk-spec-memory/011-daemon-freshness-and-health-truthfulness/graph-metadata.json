@@ -19,10 +19,10 @@
       "finalize-dist hash cache",
       "daemon freshness tasks",
       "daemon freshness checklist",
-      "implementation",
-      "summary",
-      "template",
-      "impl summary core"
+      "daemon freshness deadlock fixed",
+      "dist freshness cache prime",
+      "health content_text exclusion audit",
+      "spec-memory cli argv exempt"
     ],
     "key_topics": [
       "dist",
@@ -46,21 +46,21 @@
       ".opencode/bin/spec-memory.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
-      "mcp_server/tests/dist-freshness.vitest.ts",
-      "scripts/tests/test-dist-freshness.sh",
       "scripts/lib/dist-freshness.cjs",
       "mcp_server/scripts/finalize-dist.mjs",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/handlers/session-health.ts",
+      "mcp_server/hooks/spec-memory-cli-fallback.ts",
+      "mcp_server/hooks/warm-cli-fallback-envelope.ts",
+      "mcp_server/tests/dist-freshness.vitest.ts",
+      "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
+      "scripts/tests/test-dist-freshness.sh",
       ".opencode/bin/code-index.cjs",
       ".opencode/bin/skill-advisor.cjs",
-      "mcp_server/hooks/spec-memory-cli-fallback.ts",
-      "mcp_server/handlers/session-health.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
-      "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
       "scripts/spec/validate.sh",
       "scripts/validation/continuity-freshness.ts",
-      "mcp_server/dist/lib/validation/spec-doc-structure.js",
-      "spec.md",
-      "plan.md"
+      "tests/session-health.vitest.ts",
+      "spec.md"
     ],
     "entities": [
       {
@@ -94,9 +94,27 @@
         "source": "derived"
       },
       {
+        "name": "session-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "warm-cli-fallback-envelope.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/warm-cli-fallback-envelope.ts",
+        "source": "derived"
+      },
+      {
         "name": "dist-freshness.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/dist-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness-enforcement.md",
+        "kind": "doc",
+        "path": "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
         "source": "derived"
       },
       {
@@ -118,18 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "session-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/session-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness-enforcement.md",
-        "kind": "doc",
-        "path": "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": "scripts/spec/validate.sh",
@@ -142,21 +148,15 @@
         "source": "derived"
       },
       {
-        "name": "spec-doc-structure.js",
-        "kind": "code",
-        "path": "mcp_server/dist/lib/validation/spec-doc-structure.js",
+        "name": "session-health.vitest.ts",
+        "kind": "test",
+        "path": "tests/session-health.vitest.ts",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
     "created_at": "2026-07-03T09:44:25Z",
-    "last_save_at": "2026-07-03T11:58:32.872Z",
+    "last_save_at": "2026-07-03T14:02:21.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7a8f1a8f12d1ec1dd05d6eb7e36ef0ba517e708153b5bf1b98ebcaa8bf5eca2",
+    "source_fingerprint": "sha256:bc1f326b1783157e3247daaa8de0f82729866bd22ce906a155883840c63e3af9",
     "source_doc_hashes": {
-      "spec.md": "a1eda35a87cc1e648a27c1a4dcd00e69c183209ae4fc479892b6d8b0a5082aa0",
-      "plan.md": "e88a47daa80ba4efd8d2242387555a3316ec079caa16b6e12a791b644dcba27d",
-      "tasks.md": "397298f901d5de9a0f112d537583e5613634a1f31d21f33c5b04cbf03b0d2a01",
-      "checklist.md": "e4e3631c91b659db6e244467660b1e69db354ae6f301d8a0a4cfb3f9e7de4a8c",
-      "implementation-summary.md": "54011820440908a317df96449153b8cddfefdf3db00bc00af44c6ea4d7ac905b"
+      "spec.md": "4e3168abfd2f1126c4419580084e29bae3531b10b68127baa6a183edbbc12c17",
+      "plan.md": "66f0f95bc23484a042117be14a7a23509751eb5e1d0e05016222cba5e82d12ef",
+      "tasks.md": "c6fd0379c1b993912e0b09fc057cc8cf80517aa169f3ba3ce92e08a8d74a984c",
+      "checklist.md": "f547725fafb5c8e60f9e7789b9f79c4ad7ac9711d35282a136e6032936a0ea84",
+      "implementation-summary.md": "decc71e08a408358c3642fe2db0f4f6aaaa6f3c897883c5e0e81f2a6e54ec30b"
     },
     "last_active_child_id": null,
     "last_active_at": null

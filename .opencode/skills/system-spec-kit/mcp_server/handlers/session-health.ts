@@ -27,6 +27,7 @@ import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
 } from '@spec-kit/shared/code-graph-contracts';
+import { getLastSpecMemoryCliFallbackStatus, type LastSpecMemoryCliFallbackStatus } from '../hooks/spec-memory-cli-fallback.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 
 /* ───────────────────────────────────────────────────────────────
@@ -49,6 +50,7 @@ interface SessionHealthDetails {
   graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
   specFolder: string | null;
   primingStatus: 'primed' | 'not_primed';
+  specMemoryCliFallback: LastSpecMemoryCliFallbackStatus | null;
 }
 
 interface SessionHealthSectionStructuralTrust {
@@ -159,6 +161,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
   const sessionAgeMs = now - serverStartedAt;
   const lastToolCallAgoMs = now - lastToolCallAt;
   const observedAt = new Date(now).toISOString();
+  const specMemoryCliFallback = getLastSpecMemoryCliFallbackStatus();
 
   // Status determination logic
   let status: SessionStatus;
@@ -190,6 +193,9 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
   const qualityScore = computeQualityScore();
   const payloadStructuralTrust = buildStructuralContextTrust(structuralContext);
   const sessionHealthContent = `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; graph=${graphFreshness}; specFolder=${specFolder ?? 'none'}`;
+  const fallbackContent = specMemoryCliFallback
+    ? `status=${specMemoryCliFallback.status}; reason=${specMemoryCliFallback.reason ?? 'none'}; exit=${specMemoryCliFallback.exitCode ?? 'none'}; retryable=${specMemoryCliFallback.retryable}`
+    : 'status=none';
   const qualityScoreContent = `level=${qualityScore.level}; score=${qualityScore.score}`;
 
   const payloadContract = createSharedPayloadEnvelope({
@@ -205,6 +211,12 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
         key: 'quality-score',
         title: 'Quality Score',
         content: qualityScoreContent,
+        source: 'operational',
+      },
+      {
+        key: 'spec-memory-cli-fallback',
+        title: 'Spec Memory CLI Fallback',
+        content: fallbackContent,
         source: 'operational',
       },
       {
@@ -252,6 +264,17 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
       structuralTrust: createSectionStructuralTrust('live', observedAt, observedAt),
     },
     {
+      key: 'spec-memory-cli-fallback',
+      title: 'Spec Memory CLI Fallback',
+      content: fallbackContent,
+      source: 'operational',
+      structuralTrust: createSectionStructuralTrust(
+        specMemoryCliFallback ? 'live' : 'absent',
+        specMemoryCliFallback?.observedAt ?? observedAt,
+        observedAt,
+      ),
+    },
+    {
       key: 'structural-context',
       title: 'Structural Context',
       content: structuralContext.summary,
@@ -283,6 +306,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
       graphFreshness,
       specFolder,
       primingStatus: primed ? 'primed' : 'not_primed',
+      specMemoryCliFallback,
     },
     qualityScore,
     sections,
