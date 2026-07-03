@@ -1,0 +1,167 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Research Brief A7 — Hook/session-start context volume vs GPT context discipline. READ-ONLY RESEARCH TASK. Inventory fresh opencode/GPT session injected context volume before first real work: CLAUDE.md sections/hard blocks/gates ordering, hook scripts under .opencode/skills/*/scripts/hooks, AGENTS.md. Estimate token volume and distinct imperative rules; rank top 5 override-likelihood; classify load-bearing/Claude-specific/deferrable; propose minimal autonomous execution profile. No writes, no questions.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Research Brief A7 — read-only analysis of opencode/GPT session-start injected context volume, CLAUDE.md, AGENTS.md, hook scripts under .opencode/skills/*/scripts/hooks, no writes, output findings/proposals.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "sk-code"
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGlob "CLAUDE.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "AGENTS.md"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/skills/*/scripts/hooks/*"[90m in . · 1 match[0m
+[0m→ [0mRead CLAUDE.md[90m [offset=261, limit=260][0m
+[0m→ [0mRead AGENTS.md[90m [offset=261, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-code/scripts/hooks[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "SessionStart|session-start|session_start|PostToolUse|PreToolUse|hook|hooks"[90m in .opencode/skills · 100 matches[0m
+[0m✱ [0mGrep "SessionStart|session-start|sessionStart|UserPromptSubmit|additionalContext|hookSpecificOutput"[90m in .opencode · 100 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/*session*start*"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/hooks/**/*"[90m in . · 35 matches[0m
+[0m✱ [0mGlob ".opencode/**/hooks/**/*"[90m in . · 38 matches[0m
+[0m✱ [0mGlob "opencode.json*"[90m in . · 3 matches[0m
+[0m→ [0mRead opencode.json[90m [offset=1, limit=260][0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/**/*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code/references/opencode/shared/hooks.md[90m [offset=1, limit=240][0m
+[0m✱ [0mGlob ".opencode/skills/system-skill-advisor/mcp_server/dist/hooks/**/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/hooks/opencode/*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts[90m [offset=1, limit=260][0m
+[0m✱ [0mGlob ".opencode/settings.json"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".claude/settings.local.json"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts[90m [offset=261, limit=220][0m
+[0m→ [0mRead .opencode/bin/worktree-guard.sh[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-start-priming.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/hooks/claude/README.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts[90m [offset=241, limit=80][0m
+[0m✱ [0mGrep "^#{2,5} "[90m in . · 100 matches[0m
+[0m✱ [0mGrep "^#{2,5} "[90m in . · 2 matches[0m
+[0m✱ [0mGrep "SESSION_PRIME_TOKEN_BUDGET|COMPACTION_TOKEN_BUDGET|truncateToTokenBudget|formatHookOutput|additionalContext|SPECKIT_OPENCODE_HOOK_TIMEOUT_MS|DEFAULT_CLAUDE_HOOK_TIMEOUT_MS|SPECKIT_CLAUDE_HOOK_TIMEOUT_MS"[90m in .opencode/skills · 100 matches[0m
+[0m✱ [0mGrep "HARD|BLOCK|MUST|NEVER|NO |STOP|HALT|ask|Ask|Run|Call|Use|Do not|Do NOT|Before|If "[90m in . · 2 matches[0m
+[0m✱ [0mGrep "session-start|SessionStart|user-prompt-submit|UserPromptSubmit|additionalContext|advisor|mk-skill-advisor|spec-memory"[90m in .opencode/plugins · 60 matches[0m
+[0m✱ [0mGlob ".opencode/**/*.json"[90m in . · 100 matches[0m
+[0m✱ [0mGlob ".opencode/plugins/**/*"[90m in . · 16 matches[0m
+[0m→ [0mRead .opencode/plugins/README.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/plugins/mk-spec-memory.js[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/plugins/mk-spec-memory.js[90m [offset=360, limit=160][0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=395, limit=260][0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=655, limit=120][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "max.*token|MAX|limit|brief|memory_context|session_bootstrap|session_resume|profile|resume|quick|Context|System|Gate|constitutional|additionalContext"[90m in .opencode/skills/system-spec-kit/mcp_server/plugin_bridges · 20 matches[0m
+[0m✱ [0mGrep "maxTokens|maxBrief|HYGIENE_DIRECTIVE|Advisor:|Comment hygiene|brief"[90m in .opencode/plugins/mk-skill-advisor.js · 32 matches[0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=24, limit=130][0m
+[0m
+[0m$ [0mwc -l -w -c "CLAUDE.md" "AGENTS.md" ".opencode/plugins/README.md" ".opencode/plugins/mk-spec-memory.js" ".opencode/plugins/mk-skill-advisor.js" ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts" ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh" ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-start-priming.md"
+461    4354   40528 CLAUDE.md
+     461    4354   40528 AGENTS.md
+     155    1234   10124 .opencode/plugins/README.md
+     477    1579   20560 .opencode/plugins/mk-spec-memory.js
+     747    2451   28578 .opencode/plugins/mk-skill-advisor.js
+     447    1737   17971 .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts
+     112     376    4172 .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh
+      56     359    2962 .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-start-priming.md
+    2916   16444  165423 total
+[0m
+[0m$ [0mrg -n '^#{1,5} ' "CLAUDE.md" && rg -n 'HARD|BLOCK|GATE [0-9]|MUST|NEVER|STOP|HALT' "CLAUDE.md"
+1:# AI Assistant Framework (Universal Template)
+7:### Multi-Repository Architecture
+15:## 1. 🚨 CRITICAL RULES
+17:### Safety Constraints
+19:#### The Four Laws — HARD BLOCKERS (cannot be overridden)
+26:#### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
+37:#### Halt Conditions — Stop and Report
+46:#### Operational Mandates
+48:##### Documentation & Honesty
+55:##### Code Quality
+58:##### Dispatch Rules
+69:#### Operating Discipline — Claim Legibility & Blast-Radius
+73:##### Core Principles
+83:##### Verification Standards
+91:##### Blast-Radius Management
+97:##### Communication
+105:## 2. ⛔ MANDATORY GATES - STOP BEFORE ACTING
+109:### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
+111:#### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
+118:####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
+126:#### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK - PRIORITY GATE
+140:#### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
+145:#### CONSOLIDATED QUESTION PROTOCOL
+150:### 🔒 POST-EXECUTION GATES
+152:#### MEMORY SAVE RULE [HARD] BLOCK
+166:#### COMPLETION VERIFICATION RULE [HARD] BLOCK
+178:#### VIOLATION RECOVERY [SELF-CORRECTION]
+182:#### Self-Check (before ANY tool-using response):
+191:## 3. 📝 SPEC FOLDER DOCUMENTATION
+195:#### Documentation Levels
+205:#### Optional Cross-Cutting Docs
+211:### Phase Parent Mode
+215:#### Mandatory Metadata
+223:#### Rules & Paths
+232:#### Naming Conventions
+241:## 4. 🛠️ EXECUTION & QUALITY
+243:### Request Analysis & Execution
+247:#### Execution Behavior
+265:### Quality & Anti-Patterns
+267:#### Quality Principles
+274:#### Anti-Patterns (Detect Silently)
+285:#### Analysis Lenses
+298:## 5. 🧭 TOOLS, SEARCH & MCP ROUTING
+300:### Required Tools & Search Routing
+302:#### Mandatory Tools
+310:#### Daemon-Backed CLI Fallbacks
+314:#### Code Search Decision Tree
+326:### MCP Tool Routing
+346:## 6. 🔄 STARTUP & RESUME RECOVERY
+352:#### Recovery Flow (hooks unavailable or fail)
+361:#### Daemon CLI Transport Fallback
+373:## 7. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
+375:#### Confidence Thresholds
+384:#### Logic-Sync Protocol
+390:#### Escalation
+396:## 8. 🤖 AGENT & SKILL ROUTING
+398:### Agent Routing
+402:#### Runtime Agent Directory Resolution
+414:#### Template & Validation Requirements
+426:### Skill Routing Reference
+432:## 9. 📋 QUICK REFERENCE
+434:### Quick Reference: Common Workflows
+19:#### The Four Laws — HARD BLOCKERS (cannot be overridden)
+23:3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
+24:4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail.
+26:#### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
+33:3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
+35:> Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
+56:- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY. See `constitutional/comment-hygiene.md`.
+62:| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. See `constitutional/cli-dispatch-skill-preload.md`. |
+63:| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt-models`. |
+65:| **Open Design dispatch** | UI or design work through `mcp-open-design` MUST co-load `sk-design` first (the transport never decides taste). Pure transport is exempt. `mcp-figma` is the sibling Figma transport. |
+105:## 2. ⛔ MANDATORY GATES - STOP BEFORE ACTING
+107:**⚠️ BEFORE using ANY tool (except Gate Actions: memory_match_triggers, skill_advisor.py), you MUST pass all applicable gates below.**
+111:#### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
+118:####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
+122:- Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
+126:#### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK - PRIORITY GATE
+140:#### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
+152:#### MEMORY SAVE RULE [HARD] BLOCK
+155:- If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
+162:  - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
+166:#### COMPLETION VERIFICATION RULE [HARD] BLOCK
+179:Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
+193:Every conversation that modifies files MUST have a spec folder. **Full details:** system-spec-kit SKILL.md (§1 When to Use, §3 How it Works, §4 Rules)
+217:Every spec folder (Level 1+) MUST contain:
+363:Use a daemon's CLI only when MCP tools are missing, fail to initialize, or return transport errors while the daemon is expected warm. Prompt-time hooks MUST probe socket first and skip if absent — cold spawn only from SessionStart, explicit prewarm, or cron. Exit `75` = retryable daemon/IPC unavailability. Maintenance/mutation commands never run from prompt-time hooks; advisor mutations require `--trusted`.
+386:On contradiction (Spec vs Code, conflicting requirements) → HALT → Report "LOGIC-SYNC REQUIRED: [Fact A] contradicts [Fact B]" → Ask "Which truth prevails?"
+416:Any agent writing authored spec-folder docs MUST:
+428:Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading `.opencode/skills/<skill-name>/SKILL.md` plus its bundled `references/`, `scripts/`, and `assets/` resources, then following its instructions to completion. A skill already in context is not re-invoked.
+[0m
+[0m$ [0mprintf 'CLAUDE headings: '; rg -c '^#{1,5} ' "CLAUDE.md"; printf 'CLAUDE h2 sections: '; rg -c '^## ' "CLAUDE.md"; printf 'CLAUDE gate headings: '; rg -c '^#### .*GATE|^#### .*RULE \[HARD\]|^#### .*BLOCK|^#### VIOLATION RECOVERY' "CLAUDE.md"; printf 'CLAUDE hard-block headings: '; rg -c 'HARD\] BLOCK|HARD BLOCKER|HARD\] BLOCK|\[HARD\] BLOCK' "CLAUDE.md"; printf 'AGENTS identical check: '; cmp -s "CLAUDE.md" "AGENTS.md" && printf 'identical\n' || printf 'different\n'
+CLAUDE headings: 62
+CLAUDE h2 sections: 9
+CLAUDE gate headings: 9
+CLAUDE hard-block headings: 6
+AGENTS identical check: identical
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/config/hook_system.md[90m [offset=88, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/config/hook_system.md[90m [offset=131, limit=50][0m

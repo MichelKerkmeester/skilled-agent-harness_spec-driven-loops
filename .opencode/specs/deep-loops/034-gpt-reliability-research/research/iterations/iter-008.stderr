@@ -1,0 +1,18 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Analyze prompt-pack templates, budgets, watchdogs vs GPT pacing for packet 033. Read .opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl, .opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md, .opencode/commands/deep/assets/deep_agent-improvement_auto.yaml. Diagnose mandated work per dispatch/budget, checkpointability, incremental write behavior, split/resume effects, pacing/checkpoint changes vs budget increases. Markdown findings/proposals only.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY RESEARCH TASK. Analyze prompt-pack templates, budgets, watchdogs vs GPT pacing for packet 033. Need inspect deep-loop prompt templates and YAML, produce findings and proposals only. No writes.","options":{"topK":3,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mSkill "sk-code-review"
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_agent-improvement_auto.yaml[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md[90m [offset=501, limit=120][0m
+[0m✱ [0mGrep "watchdog|no-progress|no_progress|max.*480|480s|progress"[90m in .opencode/skills/deep-loop-workflows · 100 matches[0m
+[0m✱ [0mGrep "IMB-001-high|CXB-004|ACB-004|ACB-005|no-progress|watchdog"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md[90m [offset=168, limit=45][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-context/behavior_benchmark/scenarios/CXB-004-concise-natural-ask.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/behavior_benchmark/scenarios/ACB-004-concise-natural-ask.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/behavior_benchmark/scenarios/ACB-005-orchestrate-handoff.md[90m [offset=1, limit=80][0m

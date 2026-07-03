@@ -1,0 +1,56 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"# Research Brief A9 — Mode-registry / command-router indirection depth\n\nREAD-ONLY RESEARCH TASK. No file writes are requested. Do not ask about spec\nfolders or documentation scope. Do not ask any questions; produce the analysis.\n\n## Measured problem (packet 033, indirect)\n\nBefore a deep-loop command executes, an executor must traverse several layers\nof indirection: user prompt → command doc → presentation contract →\nsetup-resolution contract → auto/confirm YAML → skill SKILL.md → references →\nagent definition → runtime scripts. GPT executors lose fidelity across hops\n(Gate-3 priority inversion, partial template rendering, absorbed dispatch\nsteps). Each hop is a chance for a literal executor to drop or reweight an\ninstruction.\n\n## Your task\n\nTrace the FULL resolution chain for one command, `/deep:review :auto`, counting\nfiles and instruction hand-offs. Read (repo-root relative):\n1. `.opencode/commands/deep/review.md` (entry doc — where does it send you?)\n2. `.opencode/commands/deep/assets/deep_review_presentation.txt`\n3. `.opencode/commands/deep/assets/deep_review_auto.yaml` (skim: count the\n   steps that REFERENCE OTHER FILES the executor must open)\n4. `.opencode/skills/deep-loop-workflows/mode-registry.json` (what routes here)\n\nProduce the chain as an explicit list: file → what it instructs → what it\ndefers elsewhere. Count total files an executor must correctly ingest before\nits first productive action. Identify which hops exist for maintainer\nconvenience (DRY, shared includes) vs executor necessity, and which could be\nFLATTENED at invocation time (e.g. a build step that compiles command doc +\npresentation + YAML into ONE self-contained execution contract per command —\nexecutors read the compiled artifact, maintainers keep the layered sources).\n\n## Output contract (strict)\n\nMarkdown, no preamble, no questions. Sections:\n\n### FINDINGS — numbered, each citing `file:line`; include the traced chain.\n\n### PROPOSALS — numbered. Each: **Tag** (simplify|optimize|re-approach),\n**Change**, **Expected effect** (failure classes: gate inversion, partial\nrendering, absorbed steps — cells RVB-008/RVB-002/RVB-007 class), **Effort**\n(S|M|L), **Risk** (source/compiled drift).\n\n3-6 findings, 3-5 proposals.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mRead .opencode/commands/deep/review.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/mode-registry.json[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=401, limit=80][0m
+[0m✱ [0mGrep "\.opencode/[^\s"'`,)]+|deep-loop-workflows/[^\s"'`,)]+|deep-loop-runtime/[^\s"'`,)]+|system-spec-kit/[^\s"'`,)]+|\.md|\.json|\.jsonl|\.cjs|\.ts|\.yaml"[90m in .opencode/commands/deep/assets/deep_review_auto.yaml · 100 matches[0m
+[0m✱ [0mGrep "\.opencode/[^\s"'`,)]+|deep-loop-workflows/[^\s"'`,)]+|deep-loop-runtime/[^\s"'`,)]+|system-spec-kit/[^\s"'`,)]+"[90m in .opencode/commands/deep/assets · 35 matches[0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=501, limit=470][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=971, limit=300][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=1271, limit=360][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/SKILL.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead .opencode/agents/deep-review.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/SKILL.md[90m [offset=301, limit=280][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/SKILL.md[90m [offset=1, limit=220][0m
+[0m
+[0m$ [0mrg -n "\.opencode/(skills|agents|commands)|template: \.opencode|loader: \"\.opencode|renderer: \"\.opencode|validator: \"\.opencode|command: \"node \.opencode|bash: \"node \.opencode|node \.opencode" ".opencode/commands/deep/assets/deep_review_auto.yaml"
+60:  skill_md: .opencode/skills/deep-loop-workflows/deep-review/SKILL.md
+62:    loop_protocol: .opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md
+63:    state_format: .opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md
+64:    convergence: .opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md
+66:    config: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json
+67:    strategy: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md
+74:  agent_file: ".opencode/agents/deep-review.md"
+130:      command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'review')));\""
+176:          node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
+253:        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+261:          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
+264:          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
+267:          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
+318:            1. Read SKILL.md from .opencode/skills/{skill_name}/
+324:            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .agents/)
+380:        template: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json
+429:        template: .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md
+451:        bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{config.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
+542:        bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'
+769:          loader: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+784:            template_path: ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl"
+785:            renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+805:          call: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+823:            import { buildCopilotPromptArg } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
+877:            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)"
+929:          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+1021:        command: "node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs {spec_folder}"
+1051:        bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
+1138:          node .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs \
+1234:        command: "node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+1495:        command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+1511:        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+[0m

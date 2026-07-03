@@ -1,0 +1,28 @@
+`CLAUDE.md` is not present under the repo root; the active Gate 2 text is in `AGENTS.md`, so I’m using that file for the threshold/fallback citations while keeping the research read-only.
+I’m checking the advisor’s own scoring output for the three benchmark-style vague prompts with local scoring and a zero display threshold, so the result shows sub-threshold candidates instead of only pass/fail.
+The local scorer returns `[]` at the default `--threshold 0.8` for all three tested vague prompt forms, so the remaining question is why the phrase surfaces don’t create a passing recommendation.
+The exact benchmark scenario files confirm the three prompt strings; I’m reading those now to avoid inferring RSB-004 from the brief examples.
+The exact scenario prompts contain `.opencode/specs/deep-loops/...`, which itself creates strong `deep-loop-workflows` matches; that differs materially from the shortened vague examples.
+For the shortened natural-language variants without benchmark fixture paths, the same scorer stays well below 0.8; the exact scenario strings pass mainly because the fixture path contains `deep-loops`, `council-target`, `improvement-target`, or `review-target` tokens.
+The mode-specific deep router also explains RSB-004: plain `research how...` gets generic parent-skill evidence, but the Python deep-mode overlay only activates on explicit deep-loop markers like `deep research`, `/autoresearch`, `deep review`, `ai-council`, `architecture decision`, or `investigation`, not plain `research`.
+### FINDINGS
+
+1. Gate 2 is binary: confidence `>= 0.8` invokes a skill, `< 0.8` falls back to general approach; there is no sub-threshold “offer the workflow” instruction. `AGENTS.md:118-124`
+
+2. The Python scorer requires strong inventory hits to cross Gate 2: with an intent boost, score `>= 2.0` reaches `0.8`; without one, score `>= 4.0` is needed, and uncertainty must also be `<= 0.35`. `skill_advisor.py:1539-1546`, `skill_advisor.py:2835-2859`, `skill_advisor.py:2933-2958`
+
+3. ACB-003’s natural tokens do not match the council trigger surface. The scenario prompt is “best way to handle rate limiting...”, but council triggers are explicit `ai council`, `council deliberation`, `multi-seat planning`, `planning council`, etc.; `best way`, `handle`, and `rate limiting` are absent. The exact benchmark path can incidentally add `deep`, `loop`, and `council-target`, but that is path evidence, not natural-language routing. `ACB-003-vague-natural-ask.md:10`, `deep-ai-council/SKILL.md:73-84`, `deep-ai-council/SKILL.md:91-98`, `skill_advisor.py:3642-3652`
+
+4. IMB-003 has the same inventory gap. Existing improvement phrases include `agent improvement` and `improve agent`, but the prompt says “make the agent ... better”; that wording is not a phrase booster. Exact benchmark scoring can pass because the fixture path contains `deep-loops` and `improvement-target`, not because “make agent better” is understood. `IMB-003-vague-natural-ask.md:10`, `skill_advisor.py:1853-1883`, `skill_advisor.py:2274-2284`
+
+5. RSB-004’s plain `research how...` can match generic research evidence, but the deep-mode overlay only activates on explicit deep markers like `deep research`, `/autoresearch`, `deep review`, `ai-council`, `architecture decision`, `deliberat`, or `investigation`; plain `research how` is not in that activation regex, so the setup-question path is not guaranteed. `RSB-004-concise-natural-ask.md:10`, `RSB-004-concise-natural-ask.md:32-34`, `skill_advisor.py:2772-2773`, `skill_advisor.py:2787-2792`
+
+### PROPOSALS
+
+1. **Tag:** simplify. **Change:** In `AGENTS.md:122`, add: “If a deep-loop candidate is sub-threshold but has a deep-loop offer/clarifying question, explicitly offer the workflow instead of answering inline.” Mirror this in any runtime `CLAUDE.md` that carries Gate 2. **Expected effect:** ACB-003 explicit offer, IMB-003 explicit offer, RSB-004 explicit setup offer. **Effort:** S. **Risk:** Low; it offers rather than auto-runs heavy workflows.
+
+2. **Tag:** simplify. **Change:** In `skill_advisor.py` `PHRASE_INTENT_BOOSTERS`, add targeted phrases: `best way to handle`, `best approach for`, `which approach`, `make the agent better`, `make this agent better`, `research how`. Route council/research phrases to `deep-loop-workflows`; route agent-better phrases to `deep-improvement` plus `deep-loop-workflows`. **Expected effect:** ACB-003 explicit offer or full council routing, IMB-003 full improvement routing, RSB-004 full research/setup routing. **Effort:** S. **Risk:** Medium; broad `best way` can over-route casual advice unless paired with design/API/architecture nouns.
+
+3. **Tag:** optimize. **Change:** In `skill_advisor.py`, extend `DEEP_ROUTING_LEXICAL_PATTERNS` and the `_apply_deep_skill_routing_layer` `has_deep_signal` regex to include `best way|best approach|which approach` for `ai-council` and `research how|research whether|investigate how` for `research`. **Expected effect:** ACB-003 gets `workflowMode=ai-council`; RSB-004 gets research setup question; IMB-003 unaffected unless paired with proposal 2. **Effort:** S. **Risk:** Medium; council may be offered for simple advice questions.
+
+4. **Tag:** re-approach. **Change:** In `skill_advisor.py` before token scoring, downweight or strip repo fixture/spec paths like `.opencode/specs/...` from intent scoring while retaining them as context. Then rely on semantic phrases from proposals 2-3. **Expected effect:** ACB-003 no longer gets sk-code/cli-opencode ahead of council from `opencode`/`api`; IMB-003 and RSB-004 route by request semantics, not fixture path words. **Effort:** M. **Risk:** Medium; some legitimate opencode-configuration requests currently depend on path tokens.

@@ -1,0 +1,1534 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Analyze skill-advisor routing and trigger phrases for vague prompts; read skill_advisor.py, deep-ai-council SKILL.md trigger sections, and CLAUDE.md Gate 2. No file writes, no questions; produce findings/proposals.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":0,"include_cognitive":false} failed
+[91m[1mError: [0m{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_match_triggers",
+      "issues": [
+        "turnNumber: Too small: expected number to be >=1"
+      ],
+      "unknownParameters": [],
+      "expectedParameters": [
+        "prompt",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "session_id",
+        "turnNumber",
+        "include_cognitive"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_match_triggers",
+    "isError": true,
+    "severity": "low"
+  }
+}
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY RESEARCH TASK. Analyze skill-advisor routing and trigger phrases for vague prompts; read skill_advisor.py, deep-ai-council SKILL.md trigger sections, and CLAUDE.md Gate 2. No file writes, no questions; produce findings/proposals.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Analyze skill-advisor routing and trigger phrases for vague prompts; read skill_advisor.py, deep-ai-council SKILL.md trigger sections, and CLAUDE.md Gate 2. No file writes, no questions; produce findings/proposals.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "**/CLAUDE.md"[90m in . · 0 matches[0m
+[0m→ [0mRead /Users/michelkerkmeester/.claude/CLAUDE.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "def (analyze_request|score|recommend|filter_recommendations|_apply_deep_skill_routing_layer|_apply_deep_research_disambiguation)|trigger_phrases|keyword|confidence|threshold|DEEP_ROUTING|deep-ai-council|rate limiting|agent better|best way"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 100 matches[0m
+[0m✱ [0mGrep "GATE 2|SKILL ROUTING|threshold|0\.8|offer|sub-threshold|MUST invoke|fallback"[90m in /Users/michelkerkmeester/.claude · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=1530, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=2470, limit=390][0m
+[0m→ [0mRead AGENTS.md[90m [offset=70, limit=45][0m
+[0m→ [0mRead AGENTS.md[90m [offset=115, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=1780, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=2835, limit=250][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=1909, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=2038, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=3190, limit=280][0m
+[0m✱ [0mGrep "council|rate limit|best way|agent better|make this agent better|agent improvement|improve agent|strateg"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 29 matches[0m
+[0m✱ [0mGrep "show_rejections|show-rejections|confidence-only|deep-skill-routing-json|threshold|def main|argparse|add_argument"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=3670, limit=120][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=3447, limit=225][0m
+[0m✱ [0mGrep "def _apply_signal_boosts|signal_boost|derived|get_skills|keyword_variants|variants"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 43 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=1300, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=2210, limit=110][0m
+[0m✱ [0mGlob ".opencode/skills/deep-loop-workflows/**/graph-metadata.json"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/graph-metadata.json[90m [offset=1, limit=220][0m
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to handle rate limiting in this system?" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.45,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.38,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: rate~, system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-skill-advisor",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-open-design",
+    "kind": "skill",
+    "confidence": 0.31,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "can you make this agent better?" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.57,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !agent(signal)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.53,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: build, make",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:testing-playbook",
+    "kind": "skill",
+    "confidence": 0.42,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: create, implement~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-folder-readme",
+    "kind": "command",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-prompt-improver",
+    "kind": "command",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-implement",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, implement(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-agent",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-changelog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-sk-skill",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-feature-catalog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-testing-playbook",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to improve this agent?" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.59,
+    "uncertainty": 0.38,
+    "passes_threshold": true,
+    "reason": "Matched: !agent(signal), !improve(multi)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-prompt",
+    "kind": "skill",
+    "confidence": 0.39,
+    "uncertainty": 0.38,
+    "passes_threshold": true,
+    "reason": "Matched: !improve(multi)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-improvement",
+    "kind": "skill",
+    "confidence": 0.31,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: improve~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: improve~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-prompt-improver",
+    "kind": "command",
+    "confidence": 0.24,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, improve",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-deep-agent-improvement",
+    "kind": "command",
+    "confidence": 0.23,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, improve",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to handle rate limiting in this system?" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "can you make this agent better?" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to improve this agent?" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[]
+[0m
+[0m✗ [0mGrep "ACB-003|IMB-003|RSB-004|rate limiting|make this agent better" failed[90m in .[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m✱ [0mGrep "ACB-003|IMB-003|RSB-004|rate limiting|make this agent better"[90m in . · 100 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/behavior_benchmark/scenarios/ACB-003-vague-natural-ask.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/behavior_benchmark/scenarios/IMB-003-vague-natural-ask.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/behavior_benchmark/scenarios/RSB-004-concise-natural-ask.md[90m [offset=1, limit=140][0m
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to handle rate limiting for the slug api in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target?" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !api(multi), !opencode, !opencode(keyword), !opencode(signal), opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), opencode(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.87,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: council, deep(name), loop(name), loops~, opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-runtime",
+    "kind": "skill",
+    "confidence": 0.78,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), loop(name), loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-improvement",
+    "kind": "skill",
+    "confidence": 0.45,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.44,
+    "uncertainty": 0.38,
+    "passes_threshold": true,
+    "reason": "Matched: !api(multi), opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~, rate~, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-prompt-models",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: deep~, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.34,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-open-design",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-claude-code",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-chrome-devtools",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-figma",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code-review",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-deep-agent-improvement",
+    "kind": "command",
+    "confidence": 0.57,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-research",
+    "kind": "command",
+    "confidence": 0.54,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-review",
+    "kind": "command",
+    "confidence": 0.54,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-sk-skill",
+    "kind": "command",
+    "confidence": 0.26,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-agent",
+    "kind": "command",
+    "confidence": 0.23,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-resume",
+    "kind": "command",
+    "confidence": 0.18,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "can you make the agent in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target better?" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), improvement, loop(name), loops~, opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !agent(signal), !opencode, !opencode(keyword), !opencode(signal), opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-improvement",
+    "kind": "skill",
+    "confidence": 0.83,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: candidate, deep(name), improvement(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-runtime",
+    "kind": "skill",
+    "confidence": 0.78,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), loop(name), loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.76,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), opencode(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.57,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: create(name), opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.53,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: build, make",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.51,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: create, implement~, opencode~, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:testing-playbook",
+    "kind": "skill",
+    "confidence": 0.42,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.38,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-prompt-models",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: deep~, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-open-design",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-claude-code",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-chrome-devtools",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-figma",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code-review",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-deep-agent-improvement",
+    "kind": "command",
+    "confidence": 0.8,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), improvement(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-review",
+    "kind": "command",
+    "confidence": 0.57,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-research",
+    "kind": "command",
+    "confidence": 0.54,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-sk-skill",
+    "kind": "command",
+    "confidence": 0.48,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name), opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-agent",
+    "kind": "command",
+    "confidence": 0.45,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name), opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-folder-readme",
+    "kind": "command",
+    "confidence": 0.33,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-implement",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, implement(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-prompt-improver",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create, improvement~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-changelog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-feature-catalog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-testing-playbook",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-resume",
+    "kind": "command",
+    "confidence": 0.18,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "research how the slug utility in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target handles edge cases" --threshold 0 --uncertainty 1.0
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), loop(name), loops~, opencode~, research",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-review,0.4), !opencode, !opencode(keyword), !opencode(signal)",
+    "_graph_boost_count": 2,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code-review",
+    "kind": "skill",
+    "confidence": 0.89,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !graph:enhances(sk-code,0.4), !graph:sibling(sk-code,0.4), !intent:review, !review, !review(multi)",
+    "_graph_boost_count": 2,
+    "source": "local"
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), opencode(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-runtime",
+    "kind": "skill",
+    "confidence": 0.78,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), loop(name), loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-improvement",
+    "kind": "skill",
+    "confidence": 0.45,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-prompt-models",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: deep~, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-claude-code",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~, review~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-open-design",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-chrome-devtools",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-figma",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.21,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-review",
+    "kind": "command",
+    "confidence": 0.89,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~, review(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-research",
+    "kind": "command",
+    "confidence": 0.77,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~, research(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-deep-agent-improvement",
+    "kind": "command",
+    "confidence": 0.57,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-sk-skill",
+    "kind": "command",
+    "confidence": 0.26,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-agent",
+    "kind": "command",
+    "confidence": 0.23,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, opencode",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-resume",
+    "kind": "command",
+    "confidence": 0.18,
+    "uncertainty": 0.45,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, specs~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to handle rate limiting for the slug api in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target?" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !api(multi), !opencode, !opencode(keyword), !opencode(signal), opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), opencode(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.87,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: council, deep(name), loop(name), loops~, opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "can you make the agent in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target better?" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), improvement, loop(name), loops~, opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !agent(signal), !opencode, !opencode(keyword), !opencode(signal), opencode~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-improvement",
+    "kind": "skill",
+    "confidence": 0.83,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: candidate, deep(name), improvement(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-deep-agent-improvement",
+    "kind": "command",
+    "confidence": 0.8,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), improvement(name), loop, loops~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "research how the slug utility in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target handles edge cases" --threshold 0.8
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: deep(name), loop(name), loops~, opencode~, research",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-review,0.4), !opencode, !opencode(keyword), !opencode(signal)",
+    "_graph_boost_count": 2,
+    "source": "local"
+  },
+  {
+    "skill": "sk-code-review",
+    "kind": "skill",
+    "confidence": 0.89,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !graph:enhances(sk-code,0.4), !graph:sibling(sk-code,0.4), !intent:review, !review, !review(multi)",
+    "_graph_boost_count": 2,
+    "source": "local"
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), opencode(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-review",
+    "kind": "command",
+    "confidence": 0.89,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), loop, loops~, review(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py[90m [offset=3997, limit=120][0m
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "what's the best way to handle rate limiting in this system?" --threshold 0.8 --show-rejections
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.45,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.38,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: rate~, system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-code-graph",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-skill-advisor",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "mcp-open-design",
+    "kind": "skill",
+    "confidence": 0.31,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.28,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: system",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "can you make this agent better?" --threshold 0.8 --show-rejections
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.57,
+    "uncertainty": 0.3,
+    "passes_threshold": false,
+    "reason": "Matched: !agent(signal)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.53,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: build, make",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:testing-playbook",
+    "kind": "skill",
+    "confidence": 0.42,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: create, implement~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-folder-readme",
+    "kind": "command",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-prompt-improver",
+    "kind": "command",
+    "confidence": 0.35,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-implement",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, implement(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-agent",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-changelog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-sk-skill",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-feature-catalog",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-create-testing-playbook",
+    "kind": "command",
+    "confidence": 0.3,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, create(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m$ [0mSPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "research how the slug utility handles edge cases" --threshold 0.8 --show-rejections
+Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "deep-loop-workflows",
+    "kind": "skill",
+    "confidence": 0.4,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: research",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-research",
+    "kind": "command",
+    "confidence": 0.33,
+    "uncertainty": 0.45,
+    "passes_threshold": false,
+    "reason": "Matched: command_penalty, research(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
