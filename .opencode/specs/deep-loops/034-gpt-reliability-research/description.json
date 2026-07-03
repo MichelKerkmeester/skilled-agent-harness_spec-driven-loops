@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/034-gpt-reliability-research",
+  "description": "30-iteration orchestrator-hosted deep-research campaign using GPT-5.5-fast xhigh as the researcher: identify which parts of our commands, gates,",
+  "keywords": [
+    "30-iteration",
+    "orchestrator-hosted",
+    "deep-research",
+    "campaign",
+    "using",
+    "gpt-5",
+    "5-fast",
+    "xhigh",
+    "researcher",
+    "identify",
+    "parts",
+    "commands",
+    "gates"
+  ],
+  "lastUpdated": "2026-07-03T05:57:54.563Z",
+  "specId": "034",
+  "folderSlug": "gpt-reliability-research",
+  "parentChain": [
+    "deep-loops"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-07-26_06-53__packet-034-scaffolded-orchestrator-hosted-30.md"
+  ],
+  "level": 2
+}

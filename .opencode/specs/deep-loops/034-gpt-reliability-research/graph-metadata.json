@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/034-gpt-reliability-research",
+  "spec_folder": "deep-loops/034-gpt-reliability-research",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt reliability research",
+      "simplify systems for gpt",
+      "034 research",
+      "plan",
+      "gpt reliability research plan",
+      "tasks",
+      "gpt reliability research tasks",
+      "verification",
+      "checklist",
+      "gpt reliability research checklist",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "gpt",
+      "reliability",
+      "research",
+      "simplify",
+      "systems",
+      "034",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optimize Our Systems",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "GPT-5.5-fast",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Research Campaign",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "30-iteration orchestrator-hosted deep-research campaign using GPT-5.5-fast xhigh as the researcher: identify which parts of our commands, gates, deep-loop workflows, agents, skills, and hooks can be simplified, optimized, or re-approached so GPT-backed executors in opencode use them correctly as intended, like Claude does. Seeded by packet 033's measured failure modes (Gate-3 halts every mode/both efforts; structured-mode stalls; dispatch-mode absorption; presentation gaps).",
+    "created_at": "2026-07-03T05:53:51.876Z",
+    "last_save_at": "2026-07-03T05:59:16.292Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c895da95c6b7e9d63fdb4d290902856a77c26038cad9eec6c8999d9c2cadc1c",
+    "source_doc_hashes": {
+      "spec.md": "d1dbe934a5fbe003fe3df8d7a71c9f768f3ca4754dd501f7bc04d012e7ee491c",
+      "plan.md": "034074acc3c89504fe9961012ae77b32b90533d0e3302595c4a0daf02da63465",
+      "tasks.md": "7d49802e879e9064eda07a99480f85ba67e3b077257c7fb789a64903e92a0f6e",
+      "checklist.md": "3f3a2a6a448f5d8199302c7e1f441d029eff9725ad201eac94f5d79fc39588a2",
+      "implementation-summary.md": "33f4e5d2d3a225ab1c326cb0515aa0d564a3668c6026102302d3f22b0466ffb4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
