@@ -76,12 +76,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,6 +89,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -138,16 +138,16 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-02T14:08:03.739Z",
+    "last_save_at": "2026-07-02T15:47:01.192Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:709aa64c6a79ff953df3bacd1ea2b5025c047f34e32444c5e5364c975519d935",
+    "source_fingerprint": "sha256:dee11e2c5a7997f31d31b7784795f1dfc93179db6bd80ccee3c260da4630784d",
     "source_doc_hashes": {
-      "spec.md": "452af341c6a37cbca7516c681ed05ca3ead9daf60ed5fcc885dea63c39d3c2ec",
+      "spec.md": "0947cabb1b9bab2d3a030628e3a7b5d35f1e9705e1c621b0c6349fde2308dbd8",
       "research/research.md": "30526c8e7f59d82378678a8dd69576f025ea25c894888897192bf344ad8a3bc5"
     },
     "last_active_child_id": null,

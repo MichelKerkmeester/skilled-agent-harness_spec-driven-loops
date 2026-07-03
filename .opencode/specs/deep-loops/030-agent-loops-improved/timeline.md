@@ -27,7 +27,7 @@ _memory:
 # 156 Agent-Loops-Improved Chronological Timeline
 
 > **Sort key.** Git commit order, oldest first, for every commit that touched the `123-agent-loops-improved` packet. Epochs three and four's entries are pending commit at the time of writing and are ordered by real work sequence, not by commit hash, until they are committed.
-> **What this packet did.** It mined two reference loop codebases for improvement seams and then shipped them as a phased deep-loop program: deep-loop-runtime resilience and convergence hardening, deep-loop-workflows guardrails, a speckit autopilot lifecycle, an advisor routing projection, UX and observability surfaces, hermetic test isolation, a remediation track that audited and fixed the shipped state, a research-backlog remediation track that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything shipped, and a follow-up remediation phase, still in progress, that closes the items those passes deferred.
+> **What this packet did.** It mined two reference loop codebases for improvement seams and then shipped them as a phased deep-loop program: deep-loop-runtime resilience and convergence hardening, deep-loop-workflows guardrails, a speckit autopilot lifecycle, an advisor routing projection, UX and observability surfaces, hermetic test isolation, a remediation track that audited and fixed the shipped state, a research-backlog remediation track that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything shipped, and a follow-up remediation phase that closed every item those passes deferred.
 > **Where the truth lives.** Each commit's detail is in the matching phase changelog under `changelog/`. The before-and-after framing is in `before-vs-after.md`.
 
 ---
@@ -42,7 +42,7 @@ Epoch three runs on 2026-07-01, research-backlog remediation. A deep-research fa
 
 Epoch four runs on 2026-07-01, the documentation truth audit. A genuine 10-iteration deep-review dispatched to GPT-5.5-fast checked the public root README against everything the packet had shipped, found four real documentation gaps plus one artifact-integrity defect in its own iteration 5, and this phase fixed all five.
 
-Epoch five runs on 2026-07-02, follow-up remediation, and is still in progress. The two active fan-out review findings were fixed with regression tests, roughly forty scaffold leaves across phases 002 through 007 received real plan and task content, and the validate.sh registry bridge landed after surfacing a two-week-stale compiled orchestrator, a discovery that spun off a repo-wide dist-freshness enforcement packet of its own. The sliding-window convergence mode remains open.
+Epoch five runs on 2026-07-02, follow-up remediation. The two active fan-out review findings were fixed with regression tests, roughly forty scaffold leaves across phases 002 through 007 received real plan and task content, and the validate.sh registry bridge landed after surfacing a two-week-stale compiled orchestrator, a discovery that spun off a repo-wide dist-freshness enforcement packet of its own. The sliding-window convergence mode landed the same day, closing the phase.
 
 ---
 
@@ -223,6 +223,8 @@ A 10-iteration GPT-5.5-fast xhigh deep-review lineage was dispatched against the
 
 GPT-F003 (strict-only rules skipped by the Node validation path) and GPT-F006 (no direct vitest coverage of the registry bridge), plus a native FILE_EXISTS parity gap found during remediation, are deferred as one documented orchestrator seam pending a safe shared-dist rebuild. GPT-F005 is child 007 itself.
 
-### Not yet started
+### Sliding-window convergence lands (2026-07-02)
 
-Child 007 (sliding-window convergence mode, per ADR-001 in `009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) remains pending.
+ (pending) feat(deep-loop-runtime): opt-in sliding-window convergence mode, validated window size, dual full-history/windowed telemetry, denominator-drag proof fixture (011: 007)
+
+Child 007 was implemented by a GPT-5.5-fast xhigh dispatch against orchestrator-authored Level 3 docs and independently verified (578/580 suite, 2 failures proven pre-existing, dual mutation checks agreeing). With it, all 7 children and all five epochs of the packet are closed.

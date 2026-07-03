@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/002-lineage-timestamp-guard"
-    last_updated_at: "2026-07-02T16:08:01Z"
+    last_updated_at: "2026-07-03T10:01:10Z"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Implemented timestamp guard"
     next_safe_action: "Review final verification evidence"
@@ -49,8 +49,8 @@ On 2026-07-02, a real 10-iteration deep-review lineage (gpt-5.5-fast xhigh) wrot
 | **Created** | 2026-07-02 |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 2 |
-| **Predecessor** | None |
-| **Successor** | None |
+| **Predecessor** | 001-orchestrator-validation-parity |
+| **Successor** | 003-session-id-parity-tests |
 | **Handoff Criteria** | The checker flags every record outside the lineage window on a replay of the real 2026-07-02 fabricated-timestamp lineage data shape, emits ledger/summary events, never alters exit codes, and the full deep-loop-runtime vitest suite has 0 new failures against the known baseline |
 <!-- /ANCHOR:metadata -->
 

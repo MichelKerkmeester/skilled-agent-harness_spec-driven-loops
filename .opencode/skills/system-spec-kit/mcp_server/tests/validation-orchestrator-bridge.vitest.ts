@@ -2,10 +2,18 @@ import { afterEach, describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { __testables } from '../lib/validation/orchestrator.js';
 import type { RegistrySeverity, ValidationEntry, ValidatorRegistryEntry } from '../lib/validation/orchestrator.js';
 
 const tempDirs: string[] = [];
+const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const EVIDENCE_MARKER_LINT_RULE: ValidatorRegistryEntry = {
+  rule_id: 'EVIDENCE_MARKER_LINT',
+  script_path: 'validation/evidence-marker-lint.ts',
+  severity: 'warn',
+  strict_only: true,
+};
 
 function createTempFolder(files: Record<string, string>): string {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'validation-orchestrator-'));
@@ -42,6 +50,7 @@ describe('registry rule filtering', () => {
     const rules: ValidatorRegistryEntry[] = [
       { rule_id: 'BASE_RULE', script_path: 'rules/check-files.sh', severity: 'error' },
       { rule_id: 'STRICT_RULE', script_path: 'rules/check-files.sh', severity: 'warn', strict_only: true },
+      EVIDENCE_MARKER_LINT_RULE,
       { rule_id: 'SKIPPED_RULE', script_path: 'rules/check-files.sh', severity: 'skip', strict_only: true },
     ];
 
@@ -53,7 +62,7 @@ describe('registry rule filtering', () => {
       .map((rule) => rule.rule_id);
 
     expect(nonStrictRules).toEqual(['BASE_RULE']);
-    expect(strictRules).toEqual(['BASE_RULE', 'STRICT_RULE']);
+    expect(strictRules).toEqual(['BASE_RULE', 'STRICT_RULE', 'EVIDENCE_MARKER_LINT']);
   });
 });
 
@@ -80,6 +89,29 @@ describe('registry rule script resolution', () => {
   it('rejects path traversal payloads', () => {
     expect(__testables.resolveRegistryRuleScript('rules/../lib/validator-registry.json')).toBeNull();
     expect(__testables.resolveRegistryRuleScript('rules/../spec/validate.sh')).toBeNull();
+    expect(__testables.resolveRegistryRuleScript('validation/../validation/evidence-marker-lint.ts')).toBeNull();
+    expect(__testables.resolveRegistryRuleScript('validation/nested/evidence-marker-lint.ts')).toBeNull();
+  });
+
+  it('resolves validation TypeScript rules to compiled validation scripts', () => {
+    expect(__testables.resolveRegistryRuleScript('validation/evidence-marker-lint.ts')).toBe(
+      path.join(SKILL_ROOT, 'scripts', 'dist', 'validation', 'evidence-marker-lint.js'),
+    );
+  });
+});
+
+describe('registry node rule execution', () => {
+  it('runs the real evidence marker lint rule through the compiled bridge', () => {
+    const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n');
+    const scriptPath = __testables.resolveRegistryRuleScript(EVIDENCE_MARKER_LINT_RULE.script_path);
+    if (!scriptPath) throw new Error('Expected evidence marker lint script to resolve');
+
+    const result = __testables.runRegistryNodeRule(folder, EVIDENCE_MARKER_LINT_RULE, scriptPath, true);
+
+    expect(result.rule).toBe('EVIDENCE_MARKER_LINT');
+    expect(result.status).toBe('pass');
+    expect(result.message).toContain('Evidence marker lint passed');
+    expect(result.details.some((detail) => detail.startsWith('filesScanned='))).toBe(true);
   });
 });
 

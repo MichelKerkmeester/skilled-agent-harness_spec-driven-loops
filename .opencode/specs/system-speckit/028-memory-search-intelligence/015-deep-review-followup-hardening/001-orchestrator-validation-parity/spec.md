@@ -10,19 +10,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/001-orchestrator-validation-parity"
-    last_updated_at: "2026-07-03T06:00:44Z"
+    last_updated_at: "2026-07-03T10:40:24Z"
     last_updated_by: "gpt-5.5-opencode"
-    recent_action: "Implemented source fixes and focused vitest coverage"
-    next_safe_action: "Run orchestrator-owned full-suite, rebuild, bash validation, and live proofs"
-    blockers:
-      - "Orchestrator verification pending for full suite, rebuild, bash suite, and live proofs"
+    recent_action: "Both parity fixes plus the node-rule bridge shipped, rebuilt, and live-proven"
+    next_safe_action: "None; child complete"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "fable-032-001-orchestrator-parity"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,12 +43,12 @@ The compiled Node orchestrator that `validate.sh` runs by default disagrees with
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-02 |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 1 |
-| **Predecessor** | None (sequenced last operationally; see parent Phase Transition Rules) |
-| **Successor** | None |
+| **Predecessor** | None |
+| **Successor** | 002-lineage-timestamp-guard |
 | **Handoff Criteria** | Strict runs execute strict-only registry rules; Not Started Level 1-3 folders no longer require implementation-summary.md; registry bridge has direct vitest coverage; one dist rebuild ships all three; `test-validation-extended.sh` fully green; packet 030 child 007's known FILE_EXISTS error clears |
 <!-- /ANCHOR:metadata -->
 
@@ -120,6 +119,15 @@ Make the Node path's strictness equal to the shell path's in both directions and
 - **SC-002**: `deep-loops/030-agent-loops-improved/011-followup-remediation` validates recursively with 0 errors.
 - **SC-003**: New vitest file passes; full mcp_server vitest suite shows 0 new failures.
 - **SC-004**: `test-validation-extended.sh` fully green post-rebuild.
+
+### Acceptance Scenarios
+
+- **Scenario 1**: **Given** a registry rule flagged strict_only, **when** validate.sh runs with --strict, **then** the rule executes through the Node path and its result line appears in output.
+- **Scenario 2**: **Given** the same strict_only rule, **when** validate.sh runs without --strict, **then** the rule does not execute and no result line appears.
+- **Scenario 3**: **Given** a strict_only rule whose script_path is a TypeScript validation script, **when** the bridge resolves it, **then** the compiled dist sibling executes and its tab-protocol output parses into a well-formed entry.
+- **Scenario 4**: **Given** a Not Started Level 1 folder whose tasks.md contains only the notation-legend backticked [x] row, **when** FILE_EXISTS runs, **then** the folder passes without implementation-summary.md.
+- **Scenario 5**: **Given** the same folder after one real completed task line is added, **when** FILE_EXISTS runs, **then** implementation-summary.md is required again.
+- **Scenario 6**: **Given** a script_path containing a traversal attempt, **when** either resolver runs, **then** resolution returns null and no script executes.
 <!-- /ANCHOR:success-criteria -->
 
 ---

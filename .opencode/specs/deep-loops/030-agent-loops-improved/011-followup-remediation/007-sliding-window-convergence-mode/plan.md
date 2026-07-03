@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode"
-    last_updated_at: "2026-07-01T21:00:00Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored plan"
-    next_safe_action: "Author tasks.md, then begin Phase 1 setup reads"
+    last_updated_at: "2026-07-02T15:45:24Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Plan executed in full; completion verified by the orchestrator"
+    next_safe_action: "None for this child"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sonnet-011-followup-remediation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,11 +53,11 @@ Add an opt-in `convergenceMode: "sliding-window"` value with a validated `slidin
 - [x] Fix scoped to the opt-in mode only; `default`/`off` behavior must not change (ADR Constraints).
 
 ### Definition of Done
-- [ ] Windowed `computeGraphNoveltyDelta` variant added, anchored to an N-iterations-back snapshot.
-- [ ] `convergenceMode`/`slidingWindowSize` threaded through `convergence.cjs`'s `main()`/`computeCompositeScore`.
-- [ ] `slidingWindowSize` validation added (positive integer, documented default/range).
-- [ ] Dual telemetry (full-history + windowed `newInfoRatio`) recorded.
-- [ ] New denominator-drag fixture passes; full `deep-loop-runtime` vitest suite shows 0 new failures.
+- [x] Windowed `computeGraphNoveltyDelta` variant added, anchored to an N-iterations-back snapshot.
+- [x] `convergenceMode`/`slidingWindowSize` threaded through `convergence.cjs`'s `main()`/`computeCompositeScore`.
+- [x] `slidingWindowSize` validation added (positive integer, documented default/range).
+- [x] Dual telemetry (full-history + windowed `newInfoRatio`) recorded.
+- [x] New denominator-drag fixture passes and the full `deep-loop-runtime` vitest suite shows 0 new failures (578/580 final vs 574/576 baseline; the 2 failures proven pre-existing by stash re-run).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,19 +84,19 @@ Loop config supplies `convergenceMode`/`slidingWindowSize` -> `main()` validates
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read `convergence.cjs`'s `main()`/`computeCompositeScore` and `coverage-graph-signals.ts`'s `computeGraphNoveltyDelta`/`latestPriorSnapshot` in full.
-- [ ] Read existing `coverage-graph-signals.vitest.ts` fixture conventions for the novelty-delta tests.
+- [x] Read `convergence.cjs`'s `main()`/`computeCompositeScore` and `coverage-graph-signals.ts`'s `computeGraphNoveltyDelta`/`latestPriorSnapshot` in full.
+- [x] Read existing `coverage-graph-signals.vitest.ts` fixture conventions for the novelty-delta tests.
 
 ### Phase 2: Implementation
-- [ ] Add the windowed novelty-delta function in `coverage-graph-signals.ts`, anchored to an N-iterations-back snapshot.
-- [ ] Add `convergenceMode`/`slidingWindowSize` param handling and validation in `convergence.cjs`.
-- [ ] Thread mode selection through `main()`/`computeCompositeScore` without changing the `default`/`off` code paths.
-- [ ] Record full-history and windowed `newInfoRatio` in telemetry output.
+- [x] Add the windowed novelty-delta function in `coverage-graph-signals.ts`, anchored to an N-iterations-back snapshot.
+- [x] Add `convergenceMode`/`slidingWindowSize` param handling and validation in `convergence.cjs`.
+- [x] Thread mode selection through `main()`/`computeCompositeScore` without changing the `default`/`off` code paths.
+- [x] Record full-history and windowed `newInfoRatio` in telemetry output.
 
 ### Phase 3: Verification
-- [ ] Add the new denominator-drag fixture (late novelty suppressed by the full-history denominator, visible under the windowed calc).
-- [ ] Add `slidingWindowSize` validation tests (0, negative, non-integer -> clear error).
-- [ ] Run the full `deep-loop-runtime` vitest suite; confirm 0 new failures.
+- [x] Add the new denominator-drag fixture (late novelty suppressed by the full-history denominator, visible under the windowed calc).
+- [x] Add `slidingWindowSize` validation tests (0, negative, non-integer -> clear error).
+- [x] Run the full `deep-loop-runtime` vitest suite; confirm 0 new failures. Baseline: 574/576 tests passed, 2 failed. Final: 578/580 tests passed, 2 failed.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -212,3 +212,11 @@ Telemetry fields and the early-clamp fixture can land in parallel with 3.
 | M3: Proof lands | Drag fixture demonstrates suppression under full-history AND visibility under the window |
 | M4: Regression-clean | Full deep-loop-runtime suite passes with 0 new failures; mutation check recorded |
 <!-- /ANCHOR:milestones -->
+
+<!-- SCAFFOLD_AI_PROTOCOL_MARKERS:
+AI EXECUTION
+Pre-Task Checklist
+Execution Rules
+Status Reporting Format
+Blocked Task Protocol
+-->

@@ -330,6 +330,11 @@ const FLAT_POOL_ASSIGNMENT_MODEL = 'flat_pool';
 const WAVE_ASSIGNMENT_MODEL = 'wave';
 const WAVE_ASSIGNMENT_MODEL_REJECTION = 'REJECTED: wave assignment_model requires conflict-safety substrate';
 const WAVE_ASSIGNMENT_METADATA_REJECTION = 'REJECTED: wave assignment metadata requires conflict-safety substrate';
+const STATE_LOG_BY_LOOP_TYPE = {
+  context: 'deep-context-state.jsonl',
+  research: 'deep-research-state.jsonl',
+  review: 'deep-review-state.jsonl',
+};
 
 function hasNonEmptyArrayField(value) {
   return Array.isArray(value) && value.length > 0;
@@ -558,24 +563,45 @@ function parseJsonlRecords(filePath) {
     .map((line) => JSON.parse(line));
 }
 
-function findMaxIterationsPolicyViolation({ loopType, lineageDir, lineage, stopPolicy }) {
+function lineageStateLogName(loopType) {
+  return STATE_LOG_BY_LOOP_TYPE[loopType] || null;
+}
+
+function readLineageStateRecords(loopType, lineageDir) {
+  const stateLogName = lineageStateLogName(loopType);
+  if (!stateLogName) {
+    return { statePath: null, records: [], missing: true, parseError: null };
+  }
+  const statePath = path.join(lineageDir, stateLogName);
+  if (!hasNonEmptyFile(statePath)) {
+    return { statePath, records: [], missing: true, parseError: null };
+  }
+  try {
+    return { statePath, records: parseJsonlRecords(statePath), missing: false, parseError: null };
+  } catch (error) {
+    return {
+      statePath,
+      records: [],
+      missing: false,
+      parseError: error instanceof Error ? error.message : String(error),
+    };
+  }
+}
+
+function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy }) {
   if (loopType !== 'review' || stopPolicy !== 'max-iterations') return null;
   if (typeof lineage.iterations !== 'number' || lineage.iterations <= 0) {
     return 'stopPolicy=max-iterations requires a positive lineage iteration cap';
   }
 
-  const statePath = path.join(lineageDir, 'deep-review-state.jsonl');
-  if (!hasNonEmptyFile(statePath)) {
+  if (!stateRead || stateRead.missing) {
     return 'missing deep-review-state.jsonl for max-iterations stop-policy validation';
   }
-
-  let records;
-  try {
-    records = parseJsonlRecords(statePath);
-  } catch (error) {
-    return `could not parse deep-review-state.jsonl: ${error.message}`;
+  if (stateRead.parseError) {
+    return `could not parse deep-review-state.jsonl: ${stateRead.parseError}`;
   }
 
+  const records = stateRead.records;
   const iterationCount = records.filter((record) => record && record.type === 'iteration').length;
   const synthesis = [...records]
     .reverse()
@@ -652,6 +678,35 @@ function evaluateLineageBudgetCap(input = {}) {
     stop_reasons: exceeded ? ['max_cost_units_per_lineage'] : [],
     upper_bound: upperBound,
   };
+}
+
+function buildTimestampAnomalyCounts(check) {
+  return {
+    anomalous: check.anomalous,
+    untimestamped: check.untimestamped,
+    unparseable: check.unparseable,
+    total: check.total,
+  };
+}
+
+function buildTimestampAnomalyPayload({ lineage, statePath, check }) {
+  return {
+    label: lineage.label,
+    state_log: statePath,
+    window: {
+      start_at_iso: check.windowStart,
+      end_at_iso: check.windowEnd,
+      tolerance_ms: check.toleranceMs,
+    },
+    counts: buildTimestampAnomalyCounts(check),
+    sample: check.sample,
+  };
+}
+
+function collectTimestampAnomalies(results) {
+  return results
+    .filter((result) => result && result.status === 'fulfilled' && result.output && result.output.timestamp_anomaly)
+    .map((result) => result.output.timestamp_anomaly);
 }
 
 function normalizeNonNegativeDelayMs(value) {
@@ -1332,6 +1387,10 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
+  const {
+    DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
+    checkLineageTimestampWindow,
+  } = await import('../lib/deep-loop/lineage-timestamp-window.ts');
 
   maybeThrowTestFault();
 
@@ -1469,6 +1528,7 @@ async function main() {
       appendFanoutStatusLedger(ledgerPath, enrichedEvent);
     },
     worker: async (lineage, context) => {
+      const slotWindowStartIso = new Date().toISOString();
       const hrStart = process.hrtime();
       const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
       const livenessKey = `${lineage.label}:${attempt}`;
@@ -1627,9 +1687,10 @@ async function main() {
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
       const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
+      const stateRead = readLineageStateRecords(loopType, lineageDir);
       const stopPolicyViolation = findMaxIterationsPolicyViolation({
         loopType,
-        lineageDir,
+        stateRead,
         lineage,
         stopPolicy,
       });
@@ -1691,9 +1752,44 @@ async function main() {
         throw failure;
       }
 
-      return { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
+      const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
+      if (stateRead.statePath && !stateRead.missing && !stateRead.parseError) {
+        const slotWindowEndIso = new Date().toISOString();
+        try {
+          const timestampCheck = checkLineageTimestampWindow(stateRead.records, {
+            windowStart: slotWindowStartIso,
+            windowEnd: slotWindowEndIso,
+            toleranceMs: DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
+          });
+          if (timestampCheck.anomalous > 0) {
+            const timestampAnomaly = buildTimestampAnomalyPayload({
+              lineage,
+              statePath: stateRead.statePath,
+              check: timestampCheck,
+            });
+            appendFanoutStatusLedger(ledgerPath, {
+              event: 'timestamp_anomaly',
+              status: 'warning',
+              severity: 'warning',
+              label: lineage.label,
+              at: new Date().toISOString(),
+              ...timestampAnomaly,
+            });
+            output.timestamp_anomaly = timestampAnomaly;
+          }
+        } catch {
+          // Timestamp telemetry is advisory and cannot affect lineage fulfillment.
+        }
+      }
+
+      return output;
     },
   });
+
+  const timestampAnomalies = collectTimestampAnomalies(results);
+  const finalSummary = timestampAnomalies.length > 0
+    ? { ...summary, timestamp_anomalies: timestampAnomalies }
+    : summary;
 
   writeOrchestrationSummary(summaryPath, {
     run_id: runId,
@@ -1702,11 +1798,11 @@ async function main() {
     base_artifact_dir: baseArtifactDir,
     total_cli_lineages: cliLineages.length,
     orphaned_lineages: orphanedLineages,
-    ...summary,
+    ...finalSummary,
   });
 
-  const exitCode = summary.all_failed ? 3 : summary.failed > 0 ? 2 : 0;
-  jsonOut({ status: exitCode === 0 ? 'ok' : 'partial', run_id: runId, results, summary });
+  const exitCode = finalSummary.all_failed ? 3 : finalSummary.failed > 0 ? 2 : 0;
+  jsonOut({ status: exitCode === 0 ? 'ok' : 'partial', run_id: runId, results, summary: finalSummary });
   process.exit(exitCode);
 }
 

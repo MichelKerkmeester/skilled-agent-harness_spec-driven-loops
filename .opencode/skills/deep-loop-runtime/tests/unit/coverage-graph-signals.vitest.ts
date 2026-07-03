@@ -6,11 +6,28 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 
+import {
+  namespaceArgs,
+  runScript,
+  uniqueNamespace,
+  type ScriptNamespace,
+} from '../helpers/spawn-cjs';
+
 type DbModule = typeof import('../../lib/coverage-graph/coverage-graph-db.js');
 type SignalsModule = typeof import('../../lib/coverage-graph/coverage-graph-signals.js');
+
+const requireCjs = createRequire(import.meta.url);
+
+const { readConvergenceModeConfig } = requireCjs('../../scripts/convergence.cjs') as {
+  readConvergenceModeConfig: (args: Record<string, unknown>) => {
+    mode: 'default' | 'off' | 'sliding-window';
+    slidingWindowSize: number;
+  };
+};
 
 let originalDbDir: string | undefined;
 let tempDir: string;
@@ -28,6 +45,37 @@ const reviewNs = {
   loopType: 'review',
   sessionId: 'coverage-graph-signals-fixture-review',
 } as const;
+
+function snapshotsThrough(iteration: number): Array<{ iteration: number; createdAt: string }> {
+  return Array.from({ length: iteration }, (_, index) => {
+    const current = index + 1;
+    return {
+      iteration: current,
+      createdAt: `2026-06-${String(current).padStart(2, '0')}T00:00:00.000Z`,
+    };
+  });
+}
+
+function seedConvergedResearchGraph(namespace: ScriptNamespace) {
+  return runScript('upsert', [
+    ...namespaceArgs(namespace),
+    '--nodes',
+    JSON.stringify([
+      { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
+      { id: 'finding-1', kind: 'FINDING', name: 'First answer' },
+      { id: 'finding-2', kind: 'FINDING', name: 'Second answer' },
+      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', metadata: { quality_class: 'primary' } },
+      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', metadata: { quality_class: 'secondary' } },
+    ]),
+    '--edges',
+    JSON.stringify([
+      { id: 'answer-1', sourceId: 'finding-1', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'answer-2', sourceId: 'finding-2', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'cite-1', sourceId: 'finding-1', targetId: 'source-1', relation: 'CITES' },
+      { id: 'cite-2', sourceId: 'finding-2', targetId: 'source-2', relation: 'CITES' },
+    ]),
+  ]);
+}
 
 beforeEach(async () => {
   originalDbDir = process.env.SPEC_KIT_DB_DIR;
@@ -211,6 +259,116 @@ describe('coverage-graph-signals', () => {
     const nodes = [{ id: 'finding-new', kind: 'FINDING', createdAt: '2026-06-19T10:01:00.000Z' }];
 
     expect(signalsModule.computeGraphNoveltyDelta(nodes, [], [])).toBe(0);
+  });
+
+  it('computeWindowedGraphNoveltyDelta keeps late novelty visible when full history suppresses it', () => {
+    const oldNodes = Array.from({ length: 40 }, (_, index) => ({
+      id: `old-finding-${index}`,
+      kind: 'FINDING',
+      iteration: 1,
+    }));
+    const recentNodes = [4, 5, 6].map((iteration) => ({
+      id: `recent-finding-${iteration}`,
+      kind: 'FINDING',
+      iteration,
+    }));
+    const lateNode = { id: 'late-finding', kind: 'FINDING', iteration: 7 };
+    const nodes = [...oldNodes, ...recentNodes, lateNode];
+    const snapshots = snapshotsThrough(6);
+
+    const fullHistory = signalsModule.computeGraphNoveltyDelta(nodes, [], snapshots);
+    const windowed = signalsModule.computeWindowedGraphNoveltyDelta(nodes, [], snapshots, 3);
+
+    expect(fullHistory).toBeCloseTo(1 / 44, 5);
+    expect(fullHistory).toBeLessThan(0.05);
+    expect(windowed).toBeCloseTo(1 / 4, 5);
+    expect(windowed).toBeGreaterThan(0.20);
+  });
+
+  it('computeWindowedGraphNoveltyDelta clamps early history to the full-history result', () => {
+    const nodes = [
+      { id: 'old-finding-1', kind: 'FINDING', iteration: 1 },
+      { id: 'old-finding-2', kind: 'FINDING', iteration: 1 },
+      { id: 'late-finding', kind: 'FINDING', iteration: 3 },
+    ];
+    const snapshots = snapshotsThrough(2);
+
+    expect(signalsModule.computeWindowedGraphNoveltyDelta(nodes, [], snapshots, 5)).toBe(
+      signalsModule.computeGraphNoveltyDelta(nodes, [], snapshots),
+    );
+  });
+
+  it('readConvergenceModeConfig validates slidingWindowSize and unknown modes', () => {
+    expect(readConvergenceModeConfig({ convergenceMode: 'sliding-window' })).toEqual({
+      mode: 'sliding-window',
+      slidingWindowSize: 5,
+    });
+    expect(readConvergenceModeConfig({
+      configJson: JSON.stringify({
+        antiConvergence: { convergenceMode: 'sliding-window', slidingWindowSize: 7 },
+      }),
+    })).toEqual({ mode: 'sliding-window', slidingWindowSize: 7 });
+    expect(() => readConvergenceModeConfig({
+      convergenceMode: 'sliding-window',
+      slidingWindowSize: 0,
+    })).toThrow(/slidingWindowSize must be a positive integer/);
+    expect(() => readConvergenceModeConfig({
+      convergenceMode: 'sliding-window',
+      slidingWindowSize: -1,
+    })).toThrow(/slidingWindowSize must be a positive integer/);
+    expect(() => readConvergenceModeConfig({
+      convergenceMode: 'sliding-window',
+      slidingWindowSize: 1.5,
+    })).toThrow(/slidingWindowSize must be a positive integer/);
+    expect(() => readConvergenceModeConfig({ convergenceMode: 'unknown' })).toThrow(
+      /convergenceMode must be "default", "off", or "sliding-window"/,
+    );
+  });
+
+  it('convergence telemetry records both novelty ratios only in sliding-window mode', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+    expect(runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--persist-snapshot',
+      '--iteration',
+      '1',
+    ]).exitCode).toBe(0);
+
+    const defaultResult = runScript('convergence', namespaceArgs(namespace));
+    const offResult = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--convergence-mode',
+      'off',
+    ]);
+    const slidingResult = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--convergence-mode',
+      'sliding-window',
+    ]);
+
+    const defaultSignals = (defaultResult.json.data as { signals: Record<string, unknown> }).signals;
+    const offSignals = (offResult.json.data as { signals: Record<string, unknown> }).signals;
+    const slidingSignals = (slidingResult.json.data as { signals: Record<string, unknown> }).signals;
+
+    expect(defaultResult.exitCode).toBe(0);
+    expect(offResult.exitCode).toBe(0);
+    expect(slidingResult.exitCode).toBe(0);
+    expect(defaultSignals).not.toHaveProperty('fullHistoryNewInfoRatio');
+    expect(defaultSignals).not.toHaveProperty('windowedNewInfoRatio');
+    expect(offSignals).not.toHaveProperty('fullHistoryNewInfoRatio');
+    expect(offSignals).not.toHaveProperty('windowedNewInfoRatio');
+    expect(slidingSignals).toMatchObject({
+      convergenceMode: 'sliding-window',
+      slidingWindowSize: 5,
+      fullHistoryNewInfoRatio: expect.any(Number),
+      windowedNewInfoRatio: expect.any(Number),
+    });
+    expect(slidingSignals.graphNoveltyDelta).toBe(slidingSignals.windowedNewInfoRatio);
+    expect(slidingResult.json.graph_signals_json).toMatchObject({
+      fullHistoryNewInfoRatio: slidingSignals.fullHistoryNewInfoRatio,
+      windowedNewInfoRatio: slidingSignals.windowedNewInfoRatio,
+    });
   });
 
   it('computeFindingObservationSignalsFromData marks findings below the observation threshold', () => {

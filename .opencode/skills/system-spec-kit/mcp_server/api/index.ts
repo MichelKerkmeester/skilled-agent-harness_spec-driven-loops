@@ -88,6 +88,10 @@ export {
   type ValidationEntry,
   type ValidationReport,
 } from '../lib/validation/orchestrator.js';
+export {
+  buildContinuityFingerprint,
+  ZERO_CONTINUITY_FINGERPRINT,
+} from '../lib/validation/spec-doc-structure.js';
 export type {
   GovernanceAuditAction,
   GovernanceAuditEntry,

@@ -38,7 +38,7 @@
       "exemption"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
       "implementation-summary.md",
@@ -145,19 +145,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
     "created_at": "2026-07-02T15:14:06.540Z",
-    "last_save_at": "2026-07-03T07:52:17.422Z",
+    "last_save_at": "2026-07-03T10:40:24.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f04fcb6703e004528e3e3c5dc6e2db88038c7b420f3879c8affaf1d7385cc3bd",
+    "source_fingerprint": "sha256:80d8ab9c353eca4175f46de0738e52ac51dcb06de7733af72847b685dc474e5a",
     "source_doc_hashes": {
-      "spec.md": "c08f72d5e4e9de171e8cba82af1f2905f277aabfc5aa3e652e79deb7f2d16173",
-      "plan.md": "4f1334617fd36e9f54fc3f01928d03037049ffa3ce3957dce41c7ee84f620e4a",
-      "tasks.md": "eab4a8aaf9e01e078850c8f7dde77bc82652b55dd9826eebe4a5235baa6f4928",
-      "checklist.md": "ab7c4e9ee35cb56f67fca179038d697e0faffa658878e02d2aea04ca8c803ce4",
-      "decision-record.md": "5625bed9f8a5288bcec1d45e3bb17b07744bfc05d94a52f76cd8586568071fc3",
-      "implementation-summary.md": "ec6251e85c6b760e28458240cc90b23696acc4b2c3a6075dd4352ec72bf8d808"
+      "spec.md": "480bb0054d9b0a71c725fe71f11dbb532d203177c10c52bbb64e519e42cdfb25",
+      "plan.md": "dc2770d68c931ae743539b4170a262665c108833c3e02101950269239d87787d",
+      "tasks.md": "27af04cb2bbb23c570fc593d42975648ba681738290f737500a8fd1d0cc3dc7b",
+      "checklist.md": "c364d6fce6112ff03b35d240aa7910b4de9a5503ec31332b08b40d724791cd2d",
+      "decision-record.md": "30af1fa77a3ed9d65486c7ba9d0e8184cec15c87fa49be68287f710dec3599b1",
+      "implementation-summary.md": "6fe70cb8dd6e4259a5d61c00340798836da1fe34d999dcdd480df4ee5e029e63"
     },
     "last_active_child_id": null,
     "last_active_at": null

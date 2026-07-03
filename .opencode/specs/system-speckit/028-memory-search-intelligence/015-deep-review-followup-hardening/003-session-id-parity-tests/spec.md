@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/003-session-id-parity-tests"
-    last_updated_at: "2026-07-02T17:16:50Z"
+    last_updated_at: "2026-07-03T10:01:10Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Implemented parity tests"
     next_safe_action: "Use parity suite during future YAML edits"
@@ -49,8 +49,8 @@ The fan-out session-id propagation bug was fixed twice: once for review (packet 
 | **Created** | 2026-07-02 |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 3 |
-| **Predecessor** | None |
-| **Successor** | None |
+| **Predecessor** | 002-lineage-timestamp-guard |
+| **Successor** | 004-section-counts-manifest-fix |
 | **Handoff Criteria** | A parity vitest suite fails when any of the three YAMLs loses the resolve step, the if_present bind, the if_absent fallback, or the session_id_init consumption, and passes on the current aligned state; fan-out prompt emission covered for all three loop types; full deep-loop-runtime suite has 0 new failures over the known two-failure baseline |
 <!-- /ANCHOR:metadata -->
 

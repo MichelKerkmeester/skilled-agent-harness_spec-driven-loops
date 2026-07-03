@@ -1,6 +1,6 @@
 # What Changed in Agent Loops Improved: The Full 156 Program
 
-> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation, a remediation track, a phase that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything the packet had shipped, and a follow-up remediation phase that closes the items those passes deferred. Phases 001 through 010 shipped in full and the follow-up remediation phase has 6 of 7 children complete, with only the sliding-window convergence mode still open. The packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs, safer around state mutation, more honest about its own claimed-versus-actual state and more resilient in its own research and fan-out tooling, with public documentation that matches what actually shipped.
+> Packet 156 turned loop-systems research into shipped resilience, convergence-quality, observability, safety and interconnection improvements across the deep-loop system. It mined two reference codebases into a ranked backlog, then built that backlog in phases: deep-loop-runtime hardening, deep-loop-workflows upgrades, Spec Kit autopilot support, advisor routing projection, UX and observability controls, test isolation, a remediation track, a phase that turned a deep-research fan-out on the packet itself, a documentation-truth audit that checked the public README against everything the packet had shipped, and a follow-up remediation phase that closes the items those passes deferred. All eleven phases shipped in full, the follow-up remediation phase closing on 2026-07-02 with the sliding-window convergence mode. The packet now leaves the loop stack more durable under interruption, more explicit about convergence, more observable during long runs, safer around state mutation, more honest about its own claimed-versus-actual state and more resilient in its own research and fan-out tooling, with public documentation that matches what actually shipped.
 
 ---
 
@@ -208,7 +208,7 @@ The prior remediation phase fixed the packet's internal tooling and internal doc
 
 ## 11. FOLLOW-UP REMEDIATION
 
-Phase 010 closed the packet's documentation drift. Phase 011 closes the 4 items phase 009's own changelog explicitly deferred rather than declared out of scope. Children 001-006 are shipped; child 007 (sliding-window convergence mode) has not started.
+Phase 010 closed the packet's documentation drift. Phase 011 closes the 4 items phase 009's own changelog explicitly deferred rather than declared out of scope. All 7 children are shipped; child 007 (sliding-window convergence mode) landed 2026-07-02.
 
 **Before**
 

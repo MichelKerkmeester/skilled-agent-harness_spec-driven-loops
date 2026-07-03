@@ -282,6 +282,21 @@ function latestPriorSnapshot(snapshots: ReadonlyArray<GraphNoveltySnapshotLike>)
   }).at(-1) ?? null;
 }
 
+function nBackSnapshot(
+  snapshots: ReadonlyArray<GraphNoveltySnapshotLike>,
+  windowSize: number,
+): GraphNoveltySnapshotLike | null {
+  if (snapshots.length === 0) return null;
+  const ordered = [...snapshots].sort((left, right) => {
+    const leftIteration = Number(left.iteration ?? 0);
+    const rightIteration = Number(right.iteration ?? 0);
+    if (leftIteration !== rightIteration) return leftIteration - rightIteration;
+    return (parseTimestampMs(left.createdAt) ?? 0) - (parseTimestampMs(right.createdAt) ?? 0);
+  });
+  const anchorIndex = Math.max(0, ordered.length - 1 - windowSize);
+  return ordered[anchorIndex] ?? null;
+}
+
 function isAfterSnapshot(
   item: { createdAt?: string | null; iteration?: number | null },
   snapshot: GraphNoveltySnapshotLike,
@@ -719,6 +734,48 @@ export function computeGraphNoveltyDelta(
   const eligibleNodes = nodes.filter(isNoveltyNode);
   const eligibleEdges = edges.filter(isNoveltyEdge);
   const denominator = eligibleNodes.length + eligibleEdges.length;
+  if (denominator === 0) return 0;
+
+  const newNodes = eligibleNodes.filter((node) => isAfterSnapshot(node, priorSnapshot)).length;
+  const newEdges = eligibleEdges.filter((edge) => isAfterSnapshot(edge, priorSnapshot)).length;
+  return (newNodes + newEdges) / denominator;
+}
+
+/**
+ * Compute graph-observed novelty using a recent history denominator.
+ *
+ * The numerator remains the latest post-snapshot growth, while the denominator
+ * is limited to evidence accumulated after the N-back snapshot so old history
+ * cannot drown out a late discovery.
+ *
+ * @param nodes - Coverage nodes currently in the namespace.
+ * @param edges - Coverage edges currently in the namespace.
+ * @param snapshots - Persisted convergence snapshots for the namespace.
+ * @param slidingWindowSize - Number of prior iterations in the denominator window.
+ * @returns Fraction of eligible recent-window evidence created after the latest snapshot.
+ */
+export function computeWindowedGraphNoveltyDelta(
+  nodes: ReadonlyArray<GraphNoveltyNodeLike>,
+  edges: ReadonlyArray<GraphNoveltyEdgeLike>,
+  snapshots: ReadonlyArray<GraphNoveltySnapshotLike>,
+  slidingWindowSize: number,
+): number {
+  if (!Number.isInteger(slidingWindowSize) || slidingWindowSize <= 0) {
+    throw new RangeError('slidingWindowSize must be a positive integer');
+  }
+  if (snapshots.length < slidingWindowSize) {
+    return computeGraphNoveltyDelta(nodes, edges, snapshots);
+  }
+
+  const priorSnapshot = latestPriorSnapshot(snapshots);
+  const windowAnchor = nBackSnapshot(snapshots, slidingWindowSize);
+  if (!priorSnapshot || !windowAnchor) return 0;
+
+  const eligibleNodes = nodes.filter(isNoveltyNode);
+  const eligibleEdges = edges.filter(isNoveltyEdge);
+  const windowNodes = eligibleNodes.filter((node) => isAfterSnapshot(node, windowAnchor));
+  const windowEdges = eligibleEdges.filter((edge) => isAfterSnapshot(edge, windowAnchor));
+  const denominator = windowNodes.length + windowEdges.length;
   if (denominator === 0) return 0;
 
   const newNodes = eligibleNodes.filter((node) => isAfterSnapshot(node, priorSnapshot)).length;

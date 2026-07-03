@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -111,19 +105,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-07-02 10-iteration deep-review of packet `deep-loops/030-agent-loops-improved` (verdict CONDITIONAL, 0 P0 / 5 P1 / 1 P2) and its same-day remediation left four verified, unowned defects open: the Node validation path silently skips strict-only shell rules and unconditionally requires completion docs from unstarted folders (two native-vs-shell parity gaps in the same orchestrator, plus a missing vitest harness for its registry bridge); deep-loop LEAF executors can fabricate JSONL timestamps with nothing detecting it (observed live: a tidy invented 12:01-12:10 sequence predating the",
     "created_at": "2026-07-02T15:14:06.396Z",
-    "last_save_at": "2026-07-03T07:44:09.836Z",
+    "last_save_at": "2026-07-03T09:46:56.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4629b35bd9c4b365cd12521fca6b4009c736d64d3dc6782cd532d5fddcea1fe6",
+    "source_fingerprint": "sha256:ccf2dec9bdc4f9598e8291d8e7d98f17194871d1abf03bfcf929a36743848169",
     "source_doc_hashes": {
-      "spec.md": "4198a13513ba7cdf4d6e2d27b6e5950e1f826143f23952dceabcc2b3fa5d3cbc"
+      "spec.md": "d4446bc098643dfae6bfc9917c9f8581a094f969430f6eaf8b6846ef3ad4f7c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -773,10 +773,11 @@ if begin_category "Individual Rule: LEVEL_MATCH (check-level-match.sh)"; then
 fi
 
 if begin_category "Individual Rule: SECTION_COUNTS (check-section-counts.sh)"; then
-    # Note: Minimal fixtures have insufficient sections for expected counts
-    run_isolated_rule_test "L1 section counts (warn)" "check-section-counts.sh" "002-valid-level1" "warn" 1
-    run_isolated_rule_test "L2 section counts (warn)" "check-section-counts.sh" "003-valid-level2" "warn" 2
-    run_isolated_rule_test "L3 section counts (warn)" "check-section-counts.sh" "004-valid-level3" "warn" 3
+    # Note: Minimal fixtures still warn for requirement/H2 floors; `**Given**` markers are not a required floor.
+    run_isolated_rule_test "L1 section counts (thin requirements warn)" "check-section-counts.sh" "002-valid-level1" "warn" 1
+    run_isolated_rule_test "L2 section counts (thin requirements warn)" "check-section-counts.sh" "003-valid-level2" "warn" 2
+    run_isolated_rule_test "L3 section counts (thin requirements warn)" "check-section-counts.sh" "004-valid-level3" "warn" 3
+    run_isolated_rule_test "L2 template-compliant section counts pass" "check-section-counts.sh" "053-template-compliant-level2" "pass" 2
 fi
 
 if begin_category "Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)"; then

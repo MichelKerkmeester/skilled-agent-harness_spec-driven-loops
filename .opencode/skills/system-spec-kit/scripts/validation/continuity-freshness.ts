@@ -11,7 +11,7 @@ import { isMainModule } from '../lib/esm-entry.js';
 import {
   buildContinuityFingerprint,
   ZERO_CONTINUITY_FINGERPRINT,
-} from '../../mcp_server/lib/validation/spec-doc-structure.js';
+} from '@spec-kit/mcp-server/api';
 
 const CONTINUITY_STALENESS_THRESHOLD_MS = 10 * 60 * 1000;
 const FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---(?:\s*\r?\n|$)/;

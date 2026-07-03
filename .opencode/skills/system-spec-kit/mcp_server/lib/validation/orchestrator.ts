@@ -67,6 +67,7 @@ const SKILL_ROOT = findSkillRoot(MODULE_DIR);
 const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates', 'manifest');
 const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'scripts', 'lib', 'validator-registry.json');
 const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'scripts', 'rules');
+const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'scripts', 'dist', 'validation');
 const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
@@ -183,11 +184,30 @@ function readValidatorRegistry(): ValidatorRegistryEntry[] {
 }
 
 function resolveRegistryRuleScript(scriptPath: string): string | null {
-  if (!scriptPath.startsWith('rules/') || !scriptPath.endsWith('.sh')) return null;
-  const resolved = path.resolve(SKILL_ROOT, 'scripts', scriptPath);
-  const rulesRoot = path.resolve(VALIDATOR_RULES_ROOT);
-  if (resolved !== rulesRoot && !resolved.startsWith(`${rulesRoot}${path.sep}`)) return null;
-  return fs.existsSync(resolved) && fs.statSync(resolved).isFile() ? resolved : null;
+  if (scriptPath.startsWith('rules/') && scriptPath.endsWith('.sh')) {
+    const resolved = path.resolve(SKILL_ROOT, 'scripts', scriptPath);
+    const rulesRoot = path.resolve(VALIDATOR_RULES_ROOT);
+    if (resolved !== rulesRoot && !resolved.startsWith(`${rulesRoot}${path.sep}`)) return null;
+    return fs.existsSync(resolved) && fs.statSync(resolved).isFile() ? resolved : null;
+  }
+
+  if (/^validation\/[^/]+\.ts$/u.test(scriptPath)) {
+    const compiledName = `${path.basename(scriptPath, '.ts')}.js`;
+    const resolved = path.resolve(VALIDATOR_DIST_VALIDATION_ROOT, compiledName);
+    const validationRoot = path.resolve(VALIDATOR_DIST_VALIDATION_ROOT);
+    if (resolved !== validationRoot && !resolved.startsWith(`${validationRoot}${path.sep}`)) return null;
+    return fs.existsSync(resolved) && fs.statSync(resolved).isFile() ? resolved : null;
+  }
+
+  return null;
+}
+
+function isRegistryShellRulePath(scriptPath: string): boolean {
+  return scriptPath.startsWith('rules/') && scriptPath.endsWith('.sh');
+}
+
+function isRegistryNodeRulePath(scriptPath: string): boolean {
+  return /^validation\/[^/]+\.ts$/u.test(scriptPath);
 }
 
 function parseShellRuleOutput(ruleId: string, output: string): ShellRuleOutput {
@@ -224,6 +244,40 @@ function mapShellRuleStatus(status: string, severity: RegistrySeverity): Validat
   return 'error';
 }
 
+function registryExecutionErrorDetails(result: ReturnType<typeof spawnSync>): string[] {
+  return [result.stdout, result.stderr, result.error?.message].filter((item): item is string => Boolean(item));
+}
+
+function runRegistryNodeRule(
+  folder: string,
+  rule: ValidatorRegistryEntry,
+  scriptPath: string,
+  strict: boolean,
+): ValidationEntry {
+  const result = spawnSync('node', [
+    scriptPath,
+    '--folder',
+    folder,
+    ...(strict ? ['--strict'] : []),
+  ], {
+    cwd: SKILL_ROOT,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+
+  const stdout = result.stdout ?? '';
+  if (result.error || stdout.length === 0) {
+    return entry(rule.rule_id, 'error', `Registry node rule bridge failed for ${rule.rule_id}`, registryExecutionErrorDetails(result));
+  }
+
+  const parsed = parseShellRuleOutput(rule.rule_id, stdout);
+  if (!parsed.message) {
+    return entry(rule.rule_id, 'error', 'Registry node rule returned no parseable output', [stdout]);
+  }
+
+  return entry(rule.rule_id, mapShellRuleStatus(parsed.status, rule.severity), parsed.message, parsed.details);
+}
+
 function runRegistryShellRule(
   folder: string,
   level: SpecKitLevel,
@@ -248,8 +302,7 @@ function runRegistryShellRule(
   });
 
   if (result.error || result.status !== 0) {
-    const details = [result.stdout, result.stderr, result.error?.message].filter((item): item is string => Boolean(item));
-    return entry(rule.rule_id, 'error', `Registry shell rule bridge failed for ${rule.rule_id}`, details);
+    return entry(rule.rule_id, 'error', `Registry shell rule bridge failed for ${rule.rule_id}`, registryExecutionErrorDetails(result));
   }
 
   const parsed = parseShellRuleOutput(rule.rule_id, result.stdout ?? '');
@@ -272,7 +325,13 @@ function runRegistryShellRules(
     .flatMap((rule) => {
       const scriptPath = resolveRegistryRuleScript(rule.script_path);
       if (!scriptPath) return [];
-      return [runRegistryShellRule(folder, level, rule, scriptPath, strict)];
+      if (isRegistryShellRulePath(rule.script_path)) {
+        return [runRegistryShellRule(folder, level, rule, scriptPath, strict)];
+      }
+      if (isRegistryNodeRulePath(rule.script_path)) {
+        return [runRegistryNodeRule(folder, rule, scriptPath, strict)];
+      }
+      return [];
     });
 }
 
@@ -660,6 +719,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
 export const __testables = {
   mapShellRuleStatus,
   resolveRegistryRuleScript,
+  runRegistryNodeRule,
   shouldRunRegistryShellRule,
   hasStartedWork,
   validateFileExists,

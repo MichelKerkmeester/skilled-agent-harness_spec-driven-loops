@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/004-section-counts-manifest-fix"
-    last_updated_at: "2026-07-02T17:59:45Z"
+    last_updated_at: "2026-07-03T10:01:10Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Implemented and verified the section-count derivation fix"
     next_safe_action: "No follow-up required; packet is complete"
@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-07-02 |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 4 |
-| **Predecessor** | None |
+| **Predecessor** | 003-session-id-parity-tests |
 | **Successor** | None |
 | **Handoff Criteria** | Template-conforming specs at every level stop producing the false h2-count warning; a genuinely thin spec still warns; the validation fixture suite stays fully green |
 <!-- /ANCHOR:metadata -->

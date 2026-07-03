@@ -39,9 +39,11 @@ const TSX_LOADER = require.resolve('tsx');
 const DEFAULT_REPORTED_NOVELTY_THRESHOLD = 0.05;
 const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
 const DEFAULT_MIN_OBSERVATIONS = 2;
+const DEFAULT_SLIDING_WINDOW_SIZE = 5;
 const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
+const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window']);
 
 /**
  * Shared convergence profile schema:
@@ -170,6 +172,68 @@ function parseMinObservationsValue(value, key = 'minObservations') {
     throw inputError(`${key} must be a finite number`);
   }
   return Math.max(MIN_OBSERVATIONS_FLOOR, Math.min(MIN_OBSERVATIONS_CEILING, Math.trunc(parsed)));
+}
+
+function parseConvergenceModeValue(value, key = 'convergenceMode') {
+  if (value === undefined || value === null || value === '') return 'default';
+  if (typeof value !== 'string') {
+    throw inputError(`${key} must be "default", "off", or "sliding-window"`);
+  }
+  const mode = value.trim();
+  if (!VALID_CONVERGENCE_MODES.has(mode)) {
+    throw inputError(`${key} must be "default", "off", or "sliding-window"`);
+  }
+  return mode;
+}
+
+function parseSlidingWindowSizeValue(value, key = 'slidingWindowSize') {
+  if (value === undefined || value === null || value === '') return DEFAULT_SLIDING_WINDOW_SIZE;
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    throw inputError(`${key} must be a positive integer`);
+  }
+  return parsed;
+}
+
+function configSection(config, key) {
+  const section = config[key];
+  return section && typeof section === 'object' && !Array.isArray(section) ? section : {};
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined) return value;
+  }
+  return undefined;
+}
+
+function readConvergenceModeConfig(args) {
+  const config = parseOptionalJsonObject(args.configJson, 'configJson');
+  const antiConvergence = configSection(config, 'antiConvergence');
+  const mode = parseConvergenceModeValue(firstDefined(
+    args.convergenceMode,
+    args.convergence_mode,
+    config.convergenceMode,
+    config.convergence_mode,
+    antiConvergence.convergenceMode,
+    antiConvergence.convergence_mode,
+  ));
+
+  if (mode !== 'sliding-window') {
+    return { mode, slidingWindowSize: DEFAULT_SLIDING_WINDOW_SIZE };
+  }
+
+  return {
+    mode,
+    slidingWindowSize: parseSlidingWindowSizeValue(firstDefined(
+      args.slidingWindowSize,
+      args.sliding_window_size,
+      config.slidingWindowSize,
+      config.sliding_window_size,
+      antiConvergence.slidingWindowSize,
+      antiConvergence.sliding_window_size,
+    )),
+  };
 }
 
 function resolveMinObservationsInput(args) {
@@ -421,7 +485,25 @@ function decisionReason(decision, blockingBlockers, trace) {
   return `Convergence signals not yet met: ${trace.filter((entry) => !entry.passed).map((entry) => entry.signal).join(', ')}. Continue iterating.`;
 }
 
-function buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args) {
+function buildGraphNoveltyTelemetry(signalsLib, nodes, edges, snapshots, convergenceModeConfig) {
+  if (convergenceModeConfig.mode !== 'sliding-window') return null;
+  const fullHistoryNewInfoRatio = signalsLib.computeGraphNoveltyDelta(nodes, edges, snapshots);
+  const windowedNewInfoRatio = signalsLib.computeWindowedGraphNoveltyDelta(
+    nodes,
+    edges,
+    snapshots,
+    convergenceModeConfig.slidingWindowSize,
+  );
+  return {
+    convergenceMode: 'sliding-window',
+    slidingWindowSize: convergenceModeConfig.slidingWindowSize,
+    graphNoveltyDelta: windowedNewInfoRatio,
+    fullHistoryNewInfoRatio,
+    windowedNewInfoRatio,
+  };
+}
+
+function buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args, graphNoveltyTelemetry = null) {
   const reportedNovelty = parseOptionalRatio(args.reportedNovelty, 'reportedNovelty');
   if (reportedNovelty === null) return null;
 
@@ -435,7 +517,8 @@ function buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args) {
     'graphNoveltyFloor',
     DEFAULT_GRAPH_NOVELTY_FLOOR,
   );
-  const graphNoveltyDelta = signalsLib.computeGraphNoveltyDelta(nodes, edges, snapshots);
+  const graphNoveltyDelta = graphNoveltyTelemetry?.windowedNewInfoRatio
+    ?? signalsLib.computeGraphNoveltyDelta(nodes, edges, snapshots);
   const effectiveNovelty = Math.max(reportedNovelty, graphNoveltyDelta);
   const shouldBlock = reportedNovelty < reportedThreshold && graphNoveltyDelta > graphNoveltyFloor;
 
@@ -607,6 +690,7 @@ async function main() {
     const nodes = db.getNodes(ns);
     const edges = db.getEdges(ns);
     const snapshots = db.getSnapshots(specFolder, loopType, sessionId);
+    const convergenceModeConfig = readConvergenceModeConfig(args);
     const stats = {
       totalNodes: nodes.length,
       totalEdges: edges.length,
@@ -653,22 +737,28 @@ async function main() {
       ? 'no prior snapshot'
       : scoreDelta === null ? 'prior snapshot has no score' : 'prior snapshot compared';
     const improvementEffect = shouldTraceImprovementEffect(args) ? buildImprovementEffect(snapshots, scoreDelta) : null;
+    const graphNoveltyTelemetry = loopType === 'research'
+      ? buildGraphNoveltyTelemetry(signalsLib, nodes, edges, snapshots, convergenceModeConfig)
+      : null;
     const noveltyCorroboration = loopType === 'research'
-      ? buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args)
+      ? buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args, graphNoveltyTelemetry)
       : null;
     const observationThresholdConfig = readObservationThresholdConfig(args);
     const observationThreshold = observationThresholdConfig.enabled && loopType === 'research'
       ? signalsLib.computeFindingObservationSignalsFromData(nodes, edges, observationThresholdConfig.minObservations)
       : null;
-    const baseSignalsWithScore = noveltyCorroboration
-      ? {
-          ...signals,
-          score,
-          graphNoveltyDelta: noveltyCorroboration.graphNoveltyDelta,
-          reportedNovelty: noveltyCorroboration.reportedNovelty,
-          effectiveNovelty: noveltyCorroboration.effectiveNovelty,
-        }
-      : { ...signals, score };
+    let baseSignalsWithScore = { ...signals, score };
+    if (graphNoveltyTelemetry) {
+      baseSignalsWithScore = { ...baseSignalsWithScore, ...graphNoveltyTelemetry };
+    }
+    if (noveltyCorroboration) {
+      baseSignalsWithScore = {
+        ...baseSignalsWithScore,
+        graphNoveltyDelta: noveltyCorroboration.graphNoveltyDelta,
+        reportedNovelty: noveltyCorroboration.reportedNovelty,
+        effectiveNovelty: noveltyCorroboration.effectiveNovelty,
+      };
+    }
     const signalsWithScore = observationThreshold
       ? {
           ...baseSignalsWithScore,
@@ -780,7 +870,10 @@ module.exports = {
   applyObservationThresholdGuard,
   buildImprovementEffect,
   computeScoreDelta,
+  parseConvergenceModeValue,
   parseMinObservationsValue,
+  parseSlidingWindowSizeValue,
+  readConvergenceModeConfig,
   readObservationThresholdConfig,
   shouldTraceImprovementEffect,
 };

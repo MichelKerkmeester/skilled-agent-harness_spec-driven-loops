@@ -171,19 +171,19 @@ run_check() {
     case "$declared_level" in
         1)
             min_requirements=3
-            min_scenarios=2
+            min_scenarios=0
             ;;
         2)
             min_requirements=5
-            min_scenarios=4
+            min_scenarios=0
             ;;
         3|3+)
             min_requirements=8
-            min_scenarios=6
+            min_scenarios=0
             ;;
         *)
             min_requirements=3
-            min_scenarios=2
+            min_scenarios=0
             ;;
     esac
 

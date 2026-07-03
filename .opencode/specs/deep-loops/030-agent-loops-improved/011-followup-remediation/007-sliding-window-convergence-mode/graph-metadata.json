@@ -39,12 +39,14 @@
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
       ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
-      ".opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md",
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -66,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -90,9 +92,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -103,12 +117,6 @@
       },
       {
         "name": "Window Convergence Mode",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,6 +135,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Convergence Mode For Long Loops",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -162,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -184,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/deep-loops/030-agent-loops-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
     "created_at": "2026-07-01T19:38:04.144Z",
-    "last_save_at": "2026-07-02T14:57:38.444Z",
+    "last_save_at": "2026-07-02T15:47:01.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d143e2caeed8a9ea888821ba892f50e1b6bcb35fc25a58272579b03b36693b60",
+    "source_fingerprint": "sha256:b5e90b19ef9a6ff792a2495c6b62577ea670c606387fa0a70af0d6c551c9e776",
     "source_doc_hashes": {
-      "spec.md": "7192ab099fddf0c8ef9a7776590b81fdc1da01f7dcfc6ba27b016125e1e3051c",
-      "plan.md": "f18da440f81e484a2d20c9754b1cec58bd0240b8f3b0c5c599ab8cce6f77d812",
-      "tasks.md": "cd0bdf3d00443c322a363949b4719209a33c1de1b569aa11f9f3ae2fb9f84715",
-      "checklist.md": "801a3a4ad389d170d6c57d4782e1dd3116903edfdd7d7f6a3dd8599c08dbef7f",
-      "decision-record.md": "d845d5648bb445e51d29c5e52bc907fe587dabad81459942b7d12e77cb461e6b"
+      "spec.md": "3a3545d97d0620e647fecbd0f289da98f3c1274c7eb094a51d977c9ea8f0862f",
+      "plan.md": "0bccb9eeb9a883bf3755a594f9fce1b4286e5037f9e5e413b41f6cf5827e9174",
+      "tasks.md": "f25ea7f925b1f5210d1e7667d0f2c4ddd6971cd522a7065a4f2f25ec5eced693",
+      "checklist.md": "b1adef2523a2f31f3e83822b78a5f0edf28f6976821f87bb2a20471c3ec3a36d",
+      "decision-record.md": "d845d5648bb445e51d29c5e52bc907fe587dabad81459942b7d12e77cb461e6b",
+      "implementation-summary.md": "a0f0f184d51a3491fbc863a306fe238d39be9f59c4dcd3309cb61c56a102efd7"
     },
     "last_active_child_id": null,
     "last_active_at": null

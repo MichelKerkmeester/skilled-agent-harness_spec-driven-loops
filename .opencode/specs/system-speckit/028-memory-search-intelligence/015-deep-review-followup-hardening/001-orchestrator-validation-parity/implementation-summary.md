@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/001-orchestrator-validation-parity"
-    last_updated_at: "2026-07-03T07:34:06Z"
+    last_updated_at: "2026-07-03T10:40:24Z"
     last_updated_by: "gpt-5.5-opencode"
     recent_action: "Implemented node-rule bridge follow-up"
     next_safe_action: "Orchestrator runs rebuild, bash validation, and live proofs"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "gpt-5.5-032-001-orchestrator-parity-impl"
       parent_session_id: null
-    completion_pct: 65
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-orchestrator-validation-parity |
-| **Completed** | Not complete; orchestrator verification pending |
+| **Completed** | Complete; orchestrator verification recorded 2026-07-03 |
 | **Level** | 3 |
 | **Focused Implementation Timestamp** | 2026-07-03T07:34:06Z |
 <!-- /ANCHOR:metadata -->
@@ -116,7 +116,7 @@ The implementation touched only `orchestrator.ts`, the focused vitest file, and 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Runtime proof pending** The focused vitest file proves the TypeScript source behavior, but validate.sh still needs the orchestrator-owned rebuild and live checks before the packet can move to Complete.
+1. **Runtime proof delivered** Orchestrator rebuilt the dist behind verified gates and proved both fixes live: strict runs execute both real strict-only rules (CONTINUITY_FRESHNESS produced a genuine staleness warn on its first-ever execution; EVIDENCE_MARKER_LINT passed), non-strict runs never execute them, and the started-work exemption behaves correctly in both directions through the compiled orchestrator against a scratch Not-Started fixture. A verification-discovered latent defect was also repaired: continuity-freshness.ts carried a cross-package relative import that broke its compiled form entirely, fixed via the mcp-server api barrel export; same-class latent imports in the two generated-* rules are documented follow-ups.
 2. **Dist untouched** The implementer did not run `npm run build` and did not modify any `dist/` directory.
-3. **Full-suite comparison pending** The full mcp_server vitest suite was not run because it is explicitly outside this implementer scope.
+3. **Full-suite comparison substituted** The full mcp_server vitest suite has a pre-existing hang (fork worker spun 8+ CPU-hours without totals in an overnight baseline attempt) and cannot serve as a gate. Substituted with focused bridge tests (9/9, three runs), scripts rule tests, and the 113-fixture bash integration suite (PASSED). The hang is unowned repo debt.
 <!-- /ANCHOR:limitations -->

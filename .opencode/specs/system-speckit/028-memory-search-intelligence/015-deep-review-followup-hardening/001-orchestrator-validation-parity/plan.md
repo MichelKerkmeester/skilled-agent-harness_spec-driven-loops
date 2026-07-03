@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/001-orchestrator-validation-parity"
-    last_updated_at: "2026-07-03T06:00:44Z"
+    last_updated_at: "2026-07-03T10:40:24Z"
     last_updated_by: "gpt-5.5-opencode"
     recent_action: "Completed focused source/test implementation"
     next_safe_action: "Orchestrator runs full-suite, rebuild, bash suite, and live proofs"
@@ -130,6 +130,33 @@ validate.sh -> compiled orchestrator (`--strict` flag) -> registry filter (stric
 - **Trigger**: Suite regression, strict runs failing on rule-execution errors (not genuine findings), or exemption misclassifying started work.
 - **Procedure**: Revert `orchestrator.ts` + delete the new test file, rebuild dist once more, re-run the bash suite.
 <!-- /ANCHOR:rollback -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+| Check | Status |
+|-------|--------|
+| Required docs read (spec, plan, tasks, decisions, checklist) | Complete |
+| Rebuild gate protocol understood | Complete |
+| Target files read before edit | Complete |
+
+### Execution Rules
+
+| Rule | Application |
+|------|-------------|
+| TASK-SEQ | Read docs, verify gate, edit source, focused tests, orchestrator rebuild, live proofs, document |
+| TASK-SCOPE | Behavior limited to the registry filter, the started-work exemption, and the node-rule bridge |
+
+### Status Reporting Format
+
+Report gate state, focused test counts, mutation-check observations, rebuild and freshness results, and both live proofs (strict-only execution, exemption both directions).
+
+### Blocked Task Protocol
+
+If the gate is closed, the suite cannot produce totals, or live proofs contradict unit results, report BLOCKED with exact command output and stop; no partial rebuilds.
 
 ---
 

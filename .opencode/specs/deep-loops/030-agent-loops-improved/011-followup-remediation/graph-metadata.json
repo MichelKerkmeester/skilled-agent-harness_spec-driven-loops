@@ -84,12 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -106,19 +100,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009's own changelog (`changelog-009-root.md` Follow-Ups) documented 4 deliberately-deferred items: 2 review findings that remained genuinely active in the prior codex deep-review lineage, a sliding-window convergence mode a decision record recommends building next, a validate.sh architectural gap where the default invocation path never runs 2 rules shipped this packet, and scaffold-marker content debt across phases 002-007 that becomes blocking (not cosmetic) the moment the validate.sh gap is fixed",
     "created_at": "2026-07-01T19:38:04.125Z",
-    "last_save_at": "2026-07-02T13:57:38.963Z",
+    "last_save_at": "2026-07-02T15:47:01.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7b50a22563f4d3bcd9a85033f7751202ceb4332f014b6abcdcbd64e5b6f077c5",
+    "source_fingerprint": "sha256:832b4533eb92d86689128ad26d5ca23e7a835e525d45f109dab12d16c8ebdfba",
     "source_doc_hashes": {
-      "spec.md": "aede4ba4fac421208d7c4344982efac4db2b6fcb49c46dbb25126ddc8107f076"
+      "spec.md": "48fe41c208c7bd6087e9dbcb19535b0d5926ffa1792ff4a715667401cd913755"
     },
     "last_active_child_id": null,
     "last_active_at": null
