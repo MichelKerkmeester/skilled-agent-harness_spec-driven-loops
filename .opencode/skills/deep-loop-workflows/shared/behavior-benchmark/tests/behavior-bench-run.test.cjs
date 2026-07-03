@@ -45,7 +45,11 @@ async function main() {
   assert.equal(typeof bench.extractRenderedBlock, 'function');
   assert.equal(typeof bench.buildBudgetEdgeSignals, 'function');
   assert.equal(typeof bench.classifyVagueAsk, 'function');
-  assert.deepEqual(Object.keys(bench.LEG_TABLE).sort(), ['claude-cli', 'glm-max', 'gpt-fast-high', 'gpt-fast-med']);
+  assert.deepEqual(Object.keys(bench.LEG_TABLE).sort(), ['claude-cli', 'deepseek', 'glm-max', 'gpt-fast-high', 'gpt-fast-med']);
+  assert.deepEqual(bench.LOCKED_MULTI_CAUSE_CELL_IDS, ['ACB-004', 'ACB-005', 'CXB-004']);
+  const deepseekArgs = bench.buildSpawnArgs('deepseek', loadSmokeContract());
+  assert.deepEqual(deepseekArgs.slice(0, 4), ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro']);
+  assert.ok(deepseekArgs.includes('--format'), 'deepseek leg uses opencode JSON format');
 
   // ── measurement helpers ─────────────────────────────────────────────────
   assert.equal(
@@ -105,6 +109,15 @@ async function main() {
   // stuck_no_progress: watchdog kill wins over everything but crash.
   const stuckObs = { spawnError: null, exitCode: null, killedBy: 'watchdog', stdoutNonEmptyLines: 1, stdoutText: '', taskEvents: [], routeProofRecords: [], fixtureGained: false };
   assert.equal(bench.classify({ expected_interaction: 'autonomous', expected_delegation: {} }, stuckObs), 'stuck_no_progress');
+  const multiCauseContract = { id: 'CXB-004', expected_interaction: 'question_halt', expected_delegation: {} };
+  const multiCauseObs = { ...stuckObs, taskEvents: [{ t: 1, line: '{"tool":"task"}' }] };
+  const multiCauses = bench.classificationCauses(multiCauseContract, multiCauseObs);
+  assert.deepEqual(multiCauses.slice(0, 2), ['stuck_no_progress', 'setup_misbind']);
+  assert.deepEqual(bench.selectResultCauses(multiCauseContract, multiCauses), {
+    primaryCause: 'stuck_no_progress',
+    secondaryCause: 'setup_misbind',
+    multiCauseLocked: true,
+  });
 
   // env_error: a genuine provider quota rejection is never scored as behavior.
   // The rejection is unescaped top-level stream text and the run dies fast having
@@ -242,6 +255,10 @@ async function main() {
   assert.equal(normalResult.terminal.killedBy, 'none');
   assert.equal(normalResult.delegation.taskEvents.length, 1);
   assert.equal(normalResult.classification, 'pass');
+  assert.equal(normalResult.primaryCause, 'pass');
+  assert.equal(normalResult.secondaryCause, null);
+  assert.equal(normalResult.stuckNoProgressRate.mode, contract.mode);
+  assert.equal(normalResult.stuckNoProgressRate.value, 0);
   assert.equal(normalResult.renderedBlock, 'BENCH-SMOKE-MARKER\n');
   assert.equal(normalResult.vagueAskOutcome, null);
   assert.equal(normalResult.budgetEdge.budgetMs, contract.budget_ms);
@@ -302,6 +319,43 @@ async function main() {
   const hangResult = JSON.parse(fs.readFileSync(path.join(hangOut, contract.id + '-smoke.result.json'), 'utf8'));
   assert.equal(hangResult.terminal.killedBy, 'watchdog');
   assert.equal(hangResult.classification, 'stuck_no_progress');
+  assert.equal(hangResult.primaryCause, 'stuck_no_progress');
+  assert.equal(hangResult.secondaryCause, null);
+  assert.equal(hangResult.stuckNoProgressRate.value, 1);
+
+  // ── integration: sample mode writes per-sample verdicts and stability ─────
+  const sampleFixtureDir = path.join(rootTmp, 'fixture-samples');
+  fs.mkdirSync(sampleFixtureDir, { recursive: true });
+  const sampleContract = loadSmokeContract();
+  sampleContract.id = 'SMOKE-SAMPLES';
+  sampleContract.fixture = sampleFixtureDir;
+  const sampleScenarioPath = writeScenario(rootTmp, sampleContract);
+  const sampleLeg = path.join(rootTmp, 'sample-leg.cjs');
+  fs.writeFileSync(sampleLeg, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const path = require('node:path');",
+    "process.stdout.write('BENCH-SMOKE-MARKER\\n');",
+    "process.stdout.write('{\"tool\":\"task\",\"subagent_type\":\"deep-research\"}\\n');",
+    "fs.mkdirSync(process.env.FAKE_LEG_FIXTURE, { recursive: true });",
+    "fs.writeFileSync(path.join(process.env.FAKE_LEG_FIXTURE, 'artifact.txt'), process.hrtime.bigint().toString() + '\\n');",
+  ].join('\n'));
+  const sampleOut = path.join(rootTmp, 'out-samples');
+  const sampled = runBench(
+    ['--scenario', sampleScenarioPath, '--leg', 'smoke', '--out-dir', sampleOut, '--repo-root', rootTmp, '--watchdog-ms', '60000', '--samples', '3'],
+    { BEHAVIOR_BENCH_SPAWN_JSON: JSON.stringify([process.execPath, sampleLeg]), FAKE_LEG_FIXTURE: sampleFixtureDir },
+  );
+  assert.equal(sampled.status, 0, 'sample runner must exit 0; stderr: ' + sampled.stderr);
+  const sampledResult = JSON.parse(fs.readFileSync(path.join(sampleOut, sampleContract.id + '-smoke.result.json'), 'utf8'));
+  assert.equal(sampledResult.singleSample, false);
+  assert.equal(sampledResult.samplesRequested, 3);
+  assert.equal(sampledResult.samplesCompleted, 3);
+  assert.equal(sampledResult.samples.length, 3);
+  assert.deepEqual(sampledResult.samples.map((sample) => sample.verdict), ['pass', 'pass', 'pass']);
+  assert.equal(sampledResult.stability.stable, true);
+  assert.equal(sampledResult.stability.classificationCounts.pass, 3);
+  assert.equal(sampledResult.stability.stuckNoProgressRate.value, 0);
+  assert.ok(fs.existsSync(path.join(sampleOut, sampleContract.id + '-smoke.sample-001.result.json')));
 
   fs.rmSync(rootTmp, { recursive: true, force: true });
   console.log('behavior-bench-run.test.cjs: all assertions passed');

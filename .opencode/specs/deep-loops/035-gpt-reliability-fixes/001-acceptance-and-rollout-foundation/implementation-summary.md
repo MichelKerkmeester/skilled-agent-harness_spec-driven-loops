@@ -51,9 +51,12 @@ Partial — 5 of 8 REQs implemented and independently Sonnet-verified (GPT-5.5-f
 - **REQ-002 (F-025) ✅** — the three vague-ask prompts (ACB-003, IMB-003, RSB-004) rewritten path-free; fixture linkage unaffected (runner resolves from `contract.fixture`, not the prompt).
 - **REQ-003 ✅** — harness instrumentation: `renderedBlock` snapshot, `budgetEdge` timing, `vagueAskOutcome` telemetry added to the result JSON + tests.
 - **REQ-007 (core) ✅ / wiring deferred** — new `shared/rollout/` module: `command-injection-rollout.json`, `resolve-injection-mode.cjs` (+ tests), `promotion-rule.md`. Manifest-capture + comparator + plugin emitter-wiring are DEFERRED (they must edit the injection plugins, which a concurrent session is actively modifying).
+- **REQ-004 ✅** — `primaryCause`/`secondaryCause` result fields from the real classification chain; locked multi-cause list `['ACB-004','ACB-005','CXB-004']` → `multiCauseLocked` field; `stuckNoProgressRate` signal; `--samples N` flag (default 1 unchanged) with a stability summary for N≥3 runs on contested cells.
+- **REQ-006 ✅** — `deepseek/deepseek-v4-pro` executor leg added (verified real), selectable via `--leg`, existing legs untouched.
 - **REQ-008 ✅** — `fx-002-research-target` made valid in place against deep-research's ACTUAL scoped pre-init rule set (not plain `--strict`; REQ-008 corrected accordingly). RSB-001/006/007/008 now validate deterministically; Unicode probe preserved.
 
-Still owed: **REQ-004** (N≥3 methodology + `primary_cause`/`secondary_cause` fields + stall-rate), **REQ-006** (non-GPT executor leg), **REQ-005** (full 32×3 re-score — an acceptance *run*, ~96 legs), and REQ-007's deferred wiring.
+**Phase-001 code is complete (7/8 REQs, all Sonnet-verified).** Remaining, both deferred with cause: **REQ-005** — the full 32×3 re-score is an acceptance *run* of ~96 benchmark legs (hours of compute), scheduled for acceptance time, not implementation; **REQ-007 wiring** (manifest capture + comparator + plugin emitter integration) is blocked until the concurrently-churning injection plugins settle.
+<!-- /ANCHOR:what-built -->
 <!-- /ANCHOR:what-built -->
 
 ---

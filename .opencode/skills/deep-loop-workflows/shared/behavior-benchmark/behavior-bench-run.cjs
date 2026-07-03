@@ -22,6 +22,8 @@ const EXIT_ENV = 75; // provider quota/rate-limit rejection -- the cell never ra
 const DEFAULT_WATCHDOG_MS = 120000;
 const DEFAULT_BUDGET_MS = 900000;
 const WATCHDOG_TICK_MS = 5000;
+const LOCKED_MULTI_CAUSE_CELL_IDS = ['ACB-004', 'ACB-005', 'CXB-004'];
+const LOCKED_MULTI_CAUSE_CELLS = new Set(LOCKED_MULTI_CAUSE_CELL_IDS);
 
 // Checkpoint / evidence regexes. Case-insensitive across observed streams.
 const SETUP_RE = /PRE-BOUND SETUP|execution_mode|consolidated setup|Setup Phase/i;
@@ -50,6 +52,7 @@ const ENV_ERROR_MAX_TERMINAL_MS = 15000;
 // run would misclassify as stuck and corrupt the cell — permission UX is not
 // what this benchmark measures.
 const LEG_TABLE = {
+  'deepseek': ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro', '--dangerously-skip-permissions'],
   'glm-max': ['opencode', 'run', '--model', 'zai-coding-plan/glm-5.2', '--variant', 'max', '--dangerously-skip-permissions'],
   'gpt-fast-med': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'medium', '--dangerously-skip-permissions'],
   'gpt-fast-high': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'high', '--dangerously-skip-permissions'],
@@ -354,19 +357,20 @@ function applicableAllTwo(dims) {
 }
 
 // First matching bucket wins, in this exact order.
-function classify(contract, obs) {
+function classificationCauses(contract, obs) {
   const ei = contract.expected_interaction;
   const deleg = contract.expected_delegation || {};
   const taskEvents = obs.taskEvents || [];
   const stdoutText = obs.stdoutText || '';
   const nonzeroNoOutput = obs.exitCode != null && obs.exitCode !== 0 && (obs.stdoutNonEmptyLines || 0) === 0;
+  const causes = [];
 
   const envFast = obs.checkpoints && obs.checkpoints.tTerminalMs != null
     && obs.checkpoints.tTerminalMs <= ENV_ERROR_MAX_TERMINAL_MS;
-  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained && envFast) return 'env_error';
-  if (obs.spawnError || nonzeroNoOutput) return 'crash';
-  if (obs.killedBy === 'watchdog') return 'stuck_no_progress';
-  if (obs.killedBy === 'hard_timeout') return 'timeout_latency';
+  if (ENV_ERROR_RE.test(stdoutText) && taskEvents.length === 0 && !obs.fixtureGained && envFast) return ['env_error'];
+  if (obs.spawnError || nonzeroNoOutput) return ['crash'];
+  if (obs.killedBy === 'watchdog') causes.push('stuck_no_progress');
+  if (obs.killedBy === 'hard_timeout') causes.push('timeout_latency');
   // Absorption is checked BEFORE refusal: a run that produced the expected
   // artifacts without the mode's delegation evidence did the work inline, and
   // refusal-shaped words inside its own report text must not relabel it. The
@@ -382,23 +386,38 @@ function classify(contract, obs) {
     : true;
   if (deleg.role_absorption_forbidden && expectsDelegation && obs.fixtureGained
       && !hasDelegationEvidence(deleg, obs)) {
-    return 'role_absorption';
+    causes.push('role_absorption');
   }
-  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs) && ei === 'autonomous' && !obs.fixtureGained) return 'refused';
-  if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) return 'setup_misbind';
+  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs) && ei === 'autonomous' && !obs.fixtureGained) causes.push('refused');
+  if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) causes.push('setup_misbind');
   if (deleg.route_proof_required && (obs.routeProofRecords || []).length > 0) {
     const leaf = deleg.leaf_agent;
     const noneMatch = !obs.routeProofRecords.some((r) => r && r.target_agent === leaf);
-    if (noneMatch) return 'route_mismatch';
+    if (noneMatch) causes.push('route_mismatch');
   }
   const artifactsOwed = contract.artifacts_required != null
     ? !!contract.artifacts_required
     : (deleg.min_task_events || 0) > 0;
   if (ei === 'autonomous' && obs.killedBy === 'none' && !obs.fixtureGained && artifactsOwed) {
-    return 'missing_artifact';
+    causes.push('missing_artifact');
   }
-  if (applicableAllTwo(score(contract, obs, null))) return 'pass';
-  return 'partial';
+  if (causes.length > 0) return causes;
+  if (applicableAllTwo(score(contract, obs, null))) return ['pass'];
+  return ['partial'];
+}
+
+function classify(contract, obs) {
+  return classificationCauses(contract, obs)[0];
+}
+
+function selectResultCauses(contract, causes) {
+  const primaryCause = causes[0] || 'partial';
+  const secondaryCause = causes.length > 1 ? causes[1] : null;
+  return {
+    primaryCause,
+    secondaryCause,
+    multiCauseLocked: LOCKED_MULTI_CAUSE_CELLS.has(contract.id),
+  };
 }
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -684,8 +703,95 @@ function killTree(child) {
 // ║ CLI parsing + main.                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
+function parsePositiveInteger(raw) {
+  if (!/^\d+$/.test(String(raw || ''))) return null;
+  const n = Number.parseInt(raw, 10);
+  return n > 0 ? n : null;
+}
+
+function sampleSuffix(sampleIndex, sampleCount) {
+  if (!sampleIndex || sampleCount <= 1) return '';
+  return '.sample-' + String(sampleIndex).padStart(3, '0');
+}
+
+function transcriptFilePath(outDir, scenarioId, leg, sampleIndex, sampleCount) {
+  return path.join(outDir, scenarioId + '-' + leg + sampleSuffix(sampleIndex, sampleCount) + '.transcript.jsonl');
+}
+
+function resultFilePath(outDir, scenarioId, leg, sampleIndex, sampleCount) {
+  return path.join(outDir, scenarioId + '-' + leg + sampleSuffix(sampleIndex, sampleCount) + '.result.json');
+}
+
+function buildStuckNoProgressRate(contract, obs) {
+  const stalled = obs.killedBy === 'watchdog';
+  return {
+    mode: contract.mode || null,
+    stalled,
+    numerator: stalled ? 1 : 0,
+    denominator: 1,
+    value: stalled ? 1 : 0,
+  };
+}
+
+function countValues(values) {
+  const counts = {};
+  for (const value of values) {
+    if (value == null) continue;
+    counts[value] = (counts[value] || 0) + 1;
+  }
+  return counts;
+}
+
+function singleStableValue(values) {
+  const unique = [...new Set(values)];
+  return unique.length === 1 ? unique[0] : null;
+}
+
+function summarizeSampleStability(samples, mode) {
+  const classifications = samples.map((sample) => sample.classification);
+  const primaryCauses = samples.map((sample) => sample.primaryCause);
+  const secondaryCauses = samples.map((sample) => sample.secondaryCause || null);
+  const stalledCount = samples.filter((sample) => sample.stuckNoProgressRate.stalled).length;
+  const sampleCount = samples.length;
+  const stable = sampleCount > 0
+    && new Set(classifications).size === 1
+    && new Set(primaryCauses).size === 1
+    && new Set(secondaryCauses).size === 1;
+
+  return {
+    sampleCount,
+    stable,
+    classificationCounts: countValues(classifications),
+    primaryCauseCounts: countValues(primaryCauses),
+    secondaryCauseCounts: countValues(secondaryCauses),
+    stuckNoProgressRate: {
+      mode: mode || null,
+      numerator: stalledCount,
+      denominator: sampleCount,
+      value: sampleCount > 0 ? stalledCount / sampleCount : null,
+    },
+  };
+}
+
+function summarizeSampleResult(result, resultPath) {
+  return {
+    sampleIndex: result.sampleIndex,
+    verdict: result.classification,
+    classification: result.classification,
+    primaryCause: result.primaryCause,
+    secondaryCause: result.secondaryCause,
+    startedAt: result.startedAt,
+    endedAt: result.endedAt,
+    stuckNoProgressRate: result.stuckNoProgressRate,
+    dimensions: result.dimensions,
+    terminal: result.terminal,
+    resultPath,
+    transcriptPath: result.transcriptPath,
+  };
+}
+
 function parseArgs(argv) {
-  const out = { timeoutMs: undefined, watchdogMs: undefined };
+  const out = { timeoutMs: undefined, watchdogMs: undefined, samples: 1 };
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i];
     const next = argv[i + 1];
@@ -694,6 +800,12 @@ function parseArgs(argv) {
     else if (a === '--out-dir') { out.outDir = next; i += 1; }
     else if (a === '--timeout-ms') { const n = parseInt(next, 10); out.timeoutMs = Number.isNaN(n) ? undefined : n; i += 1; }
     else if (a === '--watchdog-ms') { const n = parseInt(next, 10); out.watchdogMs = Number.isNaN(n) ? undefined : n; i += 1; }
+    else if (a === '--samples') {
+      const n = parsePositiveInteger(next);
+      if (n == null) return { error: '--samples must be a positive integer' };
+      out.samples = n;
+      i += 1;
+    }
     else if (a === '--baseline') { out.baseline = next; i += 1; }
     else if (a === '--repo-root') { out.repoRoot = next; i += 1; }
     else { return { error: 'unknown flag: ' + a }; }
@@ -782,7 +894,9 @@ async function runOnce(args) {
   let spawnError = null;
   let terminated = false;
 
-  const transcriptPath = path.join(outDir, contract.id + '-' + args.leg + '.transcript.jsonl');
+  const sampleIndex = args.sampleIndex || 1;
+  const sampleCount = args.sampleCount || 1;
+  const transcriptPath = transcriptFilePath(outDir, contract.id, args.leg, sampleIndex, sampleCount);
   const stream = fs.createWriteStream(transcriptPath);
 
   const beforeFixture = snapshotFixtureFiles(fixtureDir);
@@ -935,17 +1049,21 @@ async function runOnce(args) {
     checkpoints,
   };
 
-  const bucket = classify(contract, obs);
+  const causes = classificationCauses(contract, obs);
+  const bucket = causes[0];
+  const { primaryCause, secondaryCause, multiCauseLocked } = selectResultCauses(contract, causes);
   // A quota-rejected cell has no behavior to score; nulled dimensions keep the
   // rejection text from ever entering marker or completion scoring.
   const dimensions = bucket === 'env_error'
     ? { d1: null, d2: null, d3: null, d4: null, d5: null }
     : score(contract, obs, baseline);
+  const stuckNoProgressRate = buildStuckNoProgressRate(contract, obs);
 
   const result = {
     schemaVersion: 1,
     scenarioId: contract.id,
     leg: args.leg,
+    ...(sampleCount > 1 ? { sampleIndex, sampleCount } : {}),
     startedAt: startedAt.toISOString(),
     endedAt: endedAt.toISOString(),
     checkpoints,
@@ -956,16 +1074,92 @@ async function runOnce(args) {
     isolation: { clean: violations.length === 0, violations },
     terminal: { exitCode, killedBy },
     classification: bucket,
+    primaryCause,
+    secondaryCause,
+    multiCauseLocked,
+    stuckNoProgressRate,
     dimensions,
-    singleSample: true,
+    singleSample: sampleCount === 1,
     transcriptPath,
   };
 
-  const resultPath = path.join(outDir, contract.id + '-' + args.leg + '.result.json');
+  const resultPath = resultFilePath(outDir, contract.id, args.leg, sampleIndex, sampleCount);
   fs.writeFileSync(resultPath, JSON.stringify(result, null, 2) + '\n');
 
   console.log('behavior-bench-run: ' + contract.id + ' / ' + args.leg + ' -> ' + bucket);
   return bucket === 'env_error' ? EXIT_ENV : EXIT_OK;
+}
+
+async function runSamples(args) {
+  if ((args.samples || 1) <= 1) return runOnce(args);
+
+  const contract = parseScenario(args.scenario);
+  if (!contract) {
+    console.error('behavior-bench-run: unparseable scenario: ' + args.scenario);
+    return EXIT_CONTRACT;
+  }
+
+  const outDir = path.resolve(args.outDir);
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const samples = [];
+  let exitCode = EXIT_OK;
+  for (let sampleIndex = 1; sampleIndex <= args.samples; sampleIndex += 1) {
+    const code = await runOnce({ ...args, sampleIndex, sampleCount: args.samples });
+    const sampleResultPath = resultFilePath(outDir, contract.id, args.leg, sampleIndex, args.samples);
+    let sampleResult;
+    try {
+      sampleResult = JSON.parse(fs.readFileSync(sampleResultPath, 'utf8'));
+    } catch {
+      console.error('behavior-bench-run: missing sample result: ' + sampleResultPath);
+      return EXIT_INTERNAL;
+    }
+    samples.push(summarizeSampleResult(sampleResult, sampleResultPath));
+    if (code === EXIT_ENV) {
+      exitCode = EXIT_ENV;
+      break;
+    }
+    if (code !== EXIT_OK) return code;
+  }
+
+  const stability = summarizeSampleStability(samples, contract.mode || null);
+  const stableClassification = stability.stable
+    ? singleStableValue(samples.map((sample) => sample.classification))
+    : null;
+  const stablePrimaryCause = stability.stable
+    ? singleStableValue(samples.map((sample) => sample.primaryCause))
+    : null;
+  const stableSecondaryCause = stability.stable
+    ? singleStableValue(samples.map((sample) => sample.secondaryCause || null))
+    : null;
+  const startedAt = samples.length > 0 ? samples[0].startedAt : new Date().toISOString();
+  const endedAt = samples.length > 0 ? samples[samples.length - 1].endedAt : startedAt;
+  const aggregate = {
+    schemaVersion: 1,
+    scenarioId: contract.id,
+    leg: args.leg,
+    startedAt,
+    endedAt,
+    classification: stableClassification || 'mixed',
+    primaryCause: stablePrimaryCause || 'mixed',
+    secondaryCause: stableSecondaryCause,
+    multiCauseLocked: LOCKED_MULTI_CAUSE_CELLS.has(contract.id),
+    stuckNoProgressRate: stability.stuckNoProgressRate,
+    singleSample: false,
+    samplesRequested: args.samples,
+    samplesCompleted: samples.length,
+    samples,
+    stability,
+  };
+
+  const aggregatePath = resultFilePath(outDir, contract.id, args.leg, null, 1);
+  fs.writeFileSync(aggregatePath, JSON.stringify(aggregate, null, 2) + '\n');
+  console.log(
+    'behavior-bench-run: ' + contract.id + ' / ' + args.leg +
+    ' -> samples ' + samples.length + '/' + args.samples +
+    ' stable=' + String(stability.stable)
+  );
+  return exitCode;
 }
 
 async function main() {
@@ -980,7 +1174,7 @@ async function main() {
     process.exit(EXIT_CONTRACT);
   }
   try {
-    const code = await runOnce(args);
+    const code = await runSamples(args);
     process.exit(code);
   } catch (err) {
     console.error('behavior-bench-run: internal failure:', err);
@@ -990,6 +1184,8 @@ async function main() {
 
 module.exports = {
   classify,
+  classificationCauses,
+  selectResultCauses,
   score,
   scoreD1,
   scoreD2,
@@ -1006,8 +1202,11 @@ module.exports = {
   extractRenderedBlock,
   buildBudgetEdgeSignals,
   summarizeProgressCadence,
+  buildStuckNoProgressRate,
+  summarizeSampleStability,
   classifyVagueAsk,
   isVagueAskCell,
+  LOCKED_MULTI_CAUSE_CELL_IDS,
   LEG_TABLE,
 };
 
