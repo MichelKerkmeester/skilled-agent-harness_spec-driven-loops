@@ -1,0 +1,35 @@
+{
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/001-benchmark-harness-hardening",
+  "description": "Phase 001 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-014, F-025 (effort S). Make the 033 behavior-benchmark trustworthy as",
+  "keywords": [
+    "phase",
+    "001",
+    "packet",
+    "035",
+    "implement",
+    "034",
+    "gpt-reliability",
+    "fixes",
+    "closes",
+    "findings",
+    "f-014",
+    "f-025",
+    "effort",
+    "make",
+    "033",
+    "behavior-benchmark",
+    "trustworthy"
+  ],
+  "lastUpdated": "2026-07-03T11:54:51.307Z",
+  "specId": "001",
+  "folderSlug": "benchmark-harness-hardening",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

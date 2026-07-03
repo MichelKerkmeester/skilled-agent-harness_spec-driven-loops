@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-gpt-reliability-fixes/010-injection-slimming",
+  "spec_folder": "deep-loops/035-gpt-reliability-fixes/010-injection-slimming",
+  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 010",
+      "injection-slimming",
+      "plan",
+      "035 010 plan",
+      "tasks",
+      "035 010 tasks",
+      "implementation",
+      "summary",
+      "035 010"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "010",
+      "injection-slimming",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "implement",
+      "034",
+      "gpt-reliability"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Injection Slimming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 010 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-027, F-029 (effort S-M). Cut the dominant per-session load: the root policy file is ~40KB (six hard-block families) and byte-identical to its symlink, so it can be double-injected. Reduce salience competit",
+    "created_at": "2026-07-03T11:54:54.830Z",
+    "last_save_at": "2026-07-03T12:12:47.678Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c4072744e1b261b60acebd8a0a2733c207997533c7f067a72f97ea92f63dab1",
+    "source_doc_hashes": {
+      "spec.md": "752ab25a8394264cb3d88c5793d0e0d63ed0ff59edb8489b960520c2b6dbef89",
+      "plan.md": "53959415d494cf82488dec0c849d65327bac791deb369a50561d518db9216dc2",
+      "tasks.md": "3cf50395569c31b099f5f659dea5d905495c582a987c417a5285c56d4c682a73",
+      "implementation-summary.md": "26d706dd4e858a091a7d07f07af05c166f5456e051ea61e3107324341bf5b465"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume",
+  "description": "Phase 009 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-032, F-033, F-034 (effort L). Fix budget-edge deaths on the heaviest",
+  "keywords": [
+    "phase",
+    "009",
+    "packet",
+    "035",
+    "implement",
+    "034",
+    "gpt-reliability",
+    "fixes",
+    "closes",
+    "findings",
+    "f-032",
+    "f-033",
+    "f-034",
+    "effort",
+    "fix",
+    "budget-edge",
+    "deaths",
+    "heaviest"
+  ],
+  "lastUpdated": "2026-07-03T11:54:54.148Z",
+  "specId": "009",
+  "folderSlug": "pacing-and-resume",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

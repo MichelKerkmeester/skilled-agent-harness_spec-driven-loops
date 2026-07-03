@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence",
+  "spec_folder": "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence",
+  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 002",
+      "gate3-precedence",
+      "plan",
+      "035 002 plan",
+      "tasks",
+      "035 002 tasks",
+      "implementation",
+      "summary",
+      "035 002"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "002",
+      "gate3-precedence",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "implement",
+      "034",
+      "gpt-reliability"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Precedence Package",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-001, F-002, F-004, F-005, F-028, F-030, F-040 (effort M). Kill the most replicated GPT failure: the Gate-3 spec-folder halt on autonomous command runs, every mode, both efforts. Land FIRST — the halts otherwise mask the failures the P1 ph",
+    "created_at": "2026-07-03T11:54:51.816Z",
+    "last_save_at": "2026-07-03T12:12:46.679Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:731cd134645729606330862142b11b3cecec13c6ff6fbd3aad89fb65852d6d33",
+    "source_doc_hashes": {
+      "spec.md": "78af2aa4b27bb5fbd5a727ee7ba2ab98c69193bff6990c5b3b8785a40335ce94",
+      "plan.md": "a07221e48b1a2e768fecf14ac0745eabad36f83e6a31c724389096237ea14c54",
+      "tasks.md": "720ec5277c5e3039b5412104324bcbd3105c41398d4355c875b5fc9a70a0738c",
+      "implementation-summary.md": "c910f3834303043d01d7e62ff18f144395d0fe786b6d22ee7d6505c6aedb4764"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

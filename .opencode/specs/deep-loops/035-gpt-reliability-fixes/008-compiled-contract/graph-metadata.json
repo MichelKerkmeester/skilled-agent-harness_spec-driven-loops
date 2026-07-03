@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-gpt-reliability-fixes/008-compiled-contract",
+  "spec_folder": "deep-loops/035-gpt-reliability-fixes/008-compiled-contract",
+  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 008",
+      "compiled-contract",
+      "plan",
+      "035 008 plan",
+      "tasks",
+      "035 008 tasks",
+      "implementation",
+      "summary",
+      "035 008"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "008",
+      "compiled-contract",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "implement",
+      "034",
+      "gpt-reliability"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Loader",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checksum",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-035, F-036, F-037, F-038, F-009 (effort L). Collapse the 14-file resolution chain (and the 3-way setup authority split) into one self-contained execution contract per command, and move model-side setup parsing into a determi",
+    "created_at": "2026-07-03T11:54:53.960Z",
+    "last_save_at": "2026-07-03T12:12:47.425Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:138f7239641e913fe6a2289d3c53a57cfd4dcbfd6a92b505f66caf785b2ff174",
+    "source_doc_hashes": {
+      "spec.md": "62b72134217cfed3f50ae70a2c042d3f4d6cdd38dab82afec8f752b8ce7385a4",
+      "plan.md": "3a438a547927533ce980f8f9be616985bec9408059a8beaa04a569bbfedad9b7",
+      "tasks.md": "a6328a2b03fe4e234fbd1b23fd47d96169fae26f82e16e890a6ff478600ae910",
+      "implementation-summary.md": "7d7518deef78b4a1e3f3d4a9f379d42f54dd4ac358946869e6307abd5e71ca9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

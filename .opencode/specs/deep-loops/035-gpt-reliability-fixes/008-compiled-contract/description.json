@@ -1,0 +1,36 @@
+{
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/008-compiled-contract",
+  "description": "Phase 008 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-035, F-036, F-037, F-038, F-009 (effort L). Collapse the 14-file",
+  "keywords": [
+    "phase",
+    "008",
+    "packet",
+    "035",
+    "implement",
+    "034",
+    "gpt-reliability",
+    "fixes",
+    "closes",
+    "findings",
+    "f-035",
+    "f-036",
+    "f-037",
+    "f-038",
+    "f-009",
+    "effort",
+    "collapse",
+    "14-file"
+  ],
+  "lastUpdated": "2026-07-03T11:54:53.763Z",
+  "specId": "008",
+  "folderSlug": "compiled-contract",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

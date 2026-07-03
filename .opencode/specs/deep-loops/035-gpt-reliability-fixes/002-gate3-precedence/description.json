@@ -1,0 +1,37 @@
+{
+  "specFolder": "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence",
+  "description": "Phase 002 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-001, F-002, F-004, F-005, F-028, F-030, F-040 (effort M). Kill the",
+  "keywords": [
+    "phase",
+    "002",
+    "packet",
+    "035",
+    "implement",
+    "034",
+    "gpt-reliability",
+    "fixes",
+    "closes",
+    "findings",
+    "f-001",
+    "f-002",
+    "f-004",
+    "f-005",
+    "f-028",
+    "f-030",
+    "f-040",
+    "effort",
+    "kill"
+  ],
+  "lastUpdated": "2026-07-03T11:54:51.624Z",
+  "specId": "002",
+  "folderSlug": "gate3-precedence",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "035-gpt-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

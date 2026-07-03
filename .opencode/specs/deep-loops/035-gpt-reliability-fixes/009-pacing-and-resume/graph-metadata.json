@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume",
+  "spec_folder": "deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume",
+  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 009",
+      "pacing-and-resume",
+      "plan",
+      "035 009 plan",
+      "tasks",
+      "035 009 tasks",
+      "implementation",
+      "summary",
+      "035 009"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "009",
+      "pacing-and-resume",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "implement",
+      "034",
+      "gpt-reliability"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resumable Runs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Budget Policy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 of packet 035 (implement 034 GPT-reliability fixes). Closes findings F-032, F-033, F-034 (effort L). Fix budget-edge deaths on the heaviest command: it does init + up to 5 loops + synthesis in one uncheckpointable invocation. Make it resumable, cache repeated prep, and add a pacin",
+    "created_at": "2026-07-03T11:54:54.357Z",
+    "last_save_at": "2026-07-03T12:12:47.552Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4a422a394899225dc7c79693f4f363806c7cd84d0d990e9681a7009174ba833",
+    "source_doc_hashes": {
+      "spec.md": "9aa9876119f76df1bb7614dab4147610e521e28bacb58fe4549dcf9cd186c92e",
+      "plan.md": "d8c5a187ca213307495db4816470fa47c4b0202d8e5839863b09e8431f2c006e",
+      "tasks.md": "950bfc709c2c0dd59b1dd5dc56b47a2eee30245c27b24e2d739e9537bfb28393",
+      "implementation-summary.md": "50f46020cf1c7f71bd1308536e64baff97cc5aa25a5c6e85095e0aeadf759a5b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
