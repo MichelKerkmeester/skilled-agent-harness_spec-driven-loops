@@ -16,7 +16,7 @@
     "bugs",
     "across"
   ],
-  "lastUpdated": "2026-07-03T07:43:38.913Z",
+  "lastUpdated": "2026-07-03T13:39:41.806Z",
   "specId": "001",
   "folderSlug": "findings-remediation",
   "parentChain": [
@@ -24,6 +24,8 @@
     "028-memory-search-intelligence",
     "014-manual-playbook-execution-sweep"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-07-26_14-39__closed-out-the-two-remaining-b-blocked-findings.md"
+  ]
 }

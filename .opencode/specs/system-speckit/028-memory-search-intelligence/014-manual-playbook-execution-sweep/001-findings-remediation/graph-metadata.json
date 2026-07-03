@@ -15,7 +15,10 @@
       "031 findings fixes",
       "playbook sweep findings remediation plan",
       "playbook sweep findings remediation tasks",
-      "playbook sweep findings remediation checklist"
+      "playbook sweep findings remediation checklist",
+      "playbook sweep findings remediation summary",
+      "findings remediation implementation summary",
+      "T-0381 convergence graph fix"
     ],
     "key_topics": [
       "playbook",
@@ -27,17 +30,20 @@
       "plan",
       "tasks",
       "checklist",
-      "485-scenario",
-      "manual",
-      "testing"
+      "summary",
+      "implementation",
+      "t-0381"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      "implementation-summary.md",
       "formatters/search-results.ts",
       "lib/search/hybrid-search.ts",
       "handlers/memory-index.ts",
@@ -50,10 +56,7 @@
       "mcp_server/lib/embedders/reindex.ts",
       "mcp_server/api/providers.ts",
       "shared/embeddings.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/tests/pipeline-v2.vitest.ts",
-      "lib/storage/lineage-state.ts",
-      "mcp_server/lib/search/causal-boost.ts"
+      "mcp_server/handlers/memory-search.ts"
     ],
     "entities": [
       {
@@ -78,6 +81,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -147,24 +162,6 @@
         "source": "derived"
       },
       {
-        "name": "pipeline-v2.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/pipeline-v2.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-boost.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/causal-boost.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -199,25 +196,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-07-03T07:44:09.374Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-03T13:39:41.806Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a17a0fa52292f65ffc02a713db3959db44554e81012efcb44f4a7c4641919dd5",
+    "source_fingerprint": "sha256:7ece9b9cd1226543d286f4cbfd3046d9b2e4c1450ae7102782590cb0e04e5bdc",
     "source_doc_hashes": {
       "spec.md": "a437f84eeadc495fd8cac3eb575ab1066469c388d8bf4514feab47766ab7cf62",
       "plan.md": "e5b1686eafae921bc1f8e2181ee2d7c46fc02b970d1597e6bd91f806dbbb64d9",
-      "tasks.md": "08fe1766de17eeb5a2e142ebe61ae544dc5ee6be1edee060dc985cef0777d5d8",
-      "checklist.md": "71e0a8318ca4066e9460efd02bb826456beced26c4a8420e1e277c2caad17490"
+      "tasks.md": "378e93c922afee3fbc60393d9a39d871997a7ce7f04559f9f2fb522d9bed7302",
+      "checklist.md": "71e0a8318ca4066e9460efd02bb826456beced26c4a8420e1e277c2caad17490",
+      "implementation-summary.md": "eb470e8e0b0187ee029bc61c912231ae0d57cc8d92be9e0d8e78ef5eba42aa16"
     },
     "last_active_child_id": null,
     "last_active_at": null
