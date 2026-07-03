@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
+  "description": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any",
+  "keywords": [
+    "phase",
+    "content-hash-normalization-and-save-dedup-lanes"
+  ],
+  "lastUpdated": "2026-07-03T09:44:20.066Z",
+  "specId": "003",
+  "folderSlug": "content-hash-normalization-and-save-dedup-lanes",
+  "parentChain": [
+    "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

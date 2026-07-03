@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+  "description": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied",
+  "keywords": [
+    "retrieval-rescue",
+    "default",
+    "overwrites",
+    "final",
+    "score",
+    "every",
+    "candidate",
+    "03base",
+    "78lexicaloverlap",
+    "210",
+    "applied"
+  ],
+  "lastUpdated": "2026-07-03T10:13:15.249Z",
+  "specId": "006",
+  "folderSlug": "rescue-layer-ranking-authority-decision",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -133,6 +133,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 013 | `013-validate-sh-dist-freshness-and-repo-remediation/` | validate.sh dist-freshness enforcement and repo remediation, adopted from standalone packet 030 | In Progress |
 | 014 | `014-manual-playbook-execution-sweep/` | Manual playbook execution sweep; findings-remediation waves 1-7 shipped with Phase-2 appendix items open, adopted from standalone packet 031 | In Progress |
 | 015 | `015-deep-review-followup-hardening/` | Deep-review follow-up hardening; children 002-004 complete and 001 not started, adopted from standalone packet 032 | In Progress |
+| 016 | `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase remediation program for every P0/P1/P2 finding from the 2026-07-03 memory search deep dive; absorbs the Group-A flag cluster and the 006/002 + 006/004 pending scopes | Planned |
 
 ### Phase Transition Rules
 

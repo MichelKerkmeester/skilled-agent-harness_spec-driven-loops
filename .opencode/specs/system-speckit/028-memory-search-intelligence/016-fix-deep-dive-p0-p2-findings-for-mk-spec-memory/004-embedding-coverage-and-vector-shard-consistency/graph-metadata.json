@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding coverage repair",
+      "vector shard consistency",
+      "pending vectors drain",
+      "memory embedding reconcile",
+      "chunking safe-swap fix"
+    ],
+    "key_topics": [
+      "embedding coverage",
+      "vector shard consistency",
+      "retry drain",
+      "embedding model provenance",
+      "chunking decision"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"],
+    "entities": [],
+    "causal_summary": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report embedding success with no stored vector",
+    "created_at": "2026-07-03T09:44:20Z",
+    "last_save_at": "2026-07-03T10:15:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"],
+    "source_fingerprint": "sha256:355b99b7125b1190fe6af516705ab3d15cbe36fe7754747623daa14e98ecca89"
+  }
+}

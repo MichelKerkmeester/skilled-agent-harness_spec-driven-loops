@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
+  "description": "The memory learning loop cannot learn because only 65 of 33,101 index rows have ever recorded an access",
+  "keywords": [
+    "phase",
+    "learning-feedback-loop-repair"
+  ],
+  "lastUpdated": "2026-07-03T09:44:24.498Z",
+  "specId": "009",
+  "folderSlug": "learning-feedback-loop-repair",
+  "parentChain": [
+    "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

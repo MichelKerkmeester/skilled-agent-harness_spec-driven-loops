@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout",
+  "description": "The operator absorbed three open trackers into this program, but the tracker docs still advertise their pre-absorption state:",
+  "keywords": [
+    "phase",
+    "absorb-028-006-review-remediation-closeout"
+  ],
+  "lastUpdated": "2026-07-03T09:44:27.478Z",
+  "specId": "013",
+  "folderSlug": "absorb-028-006-review-remediation-closeout",
+  "parentChain": [
+    "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

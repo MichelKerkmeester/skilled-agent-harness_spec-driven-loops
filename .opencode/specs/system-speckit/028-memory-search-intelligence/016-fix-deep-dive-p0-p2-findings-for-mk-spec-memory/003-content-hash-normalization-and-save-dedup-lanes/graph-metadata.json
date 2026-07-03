@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `memory.continuity.lastupdatedat` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3)",
+    "created_at": "2026-07-03T09:44:19Z",
+    "last_save_at": "2026-07-03T09:44:19Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:40e0d683429a241ab23ca9cb3b046f7c1e2b090bc1d1375f3848a1ce550dee9d",
+    "source_doc_hashes": {
+      "spec.md": "b23975d9f2fe3c3247d798ab96bb4721a25b56f7efd6b064be6966c4ff07849a",
+      "plan.md": "1289a0fc0b04a4199db16dcff2ffd0d656d414732dd1f7c4ee8f46109a8c2109",
+      "tasks.md": "f6267f65338888e48792faeb703571f56590a1cee8f43ad3a4b2265364a845a9",
+      "checklist.md": "218f94dc73a247a51b1943c8d241186ddb7da050edcd9e68c176ef9b33e0f59e",
+      "decision-record.md": "9909189ae7c1d7086ec8e0b85e4ccb153d790221cff6087e73e63d47ea107cf2",
+      "implementation-summary.md": "30b5c45270f8cbbe0d465116d06e97861de6dec387469dafb5339f4b156c118c"
+    }
+  }
+}

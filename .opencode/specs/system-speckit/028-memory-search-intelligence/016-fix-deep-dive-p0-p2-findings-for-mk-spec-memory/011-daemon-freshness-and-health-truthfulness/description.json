@@ -1,0 +1,21 @@
+{
+  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
+  "description": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build`",
+  "keywords": [
+    "phase",
+    "daemon-freshness-and-health-truthfulness",
+    "dist-freshness-deadlock",
+    "stale-dist-exit-75",
+    "memory-health-truthfulness",
+    "sigbus-crash-loop"
+  ],
+  "lastUpdated": "2026-07-03T09:59:39.000Z",
+  "specId": "011",
+  "folderSlug": "daemon-freshness-and-health-truthfulness",
+  "parentChain": [
+    "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

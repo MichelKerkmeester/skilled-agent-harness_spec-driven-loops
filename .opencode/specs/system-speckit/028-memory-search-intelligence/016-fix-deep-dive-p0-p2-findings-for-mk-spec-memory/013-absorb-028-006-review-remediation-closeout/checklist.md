@@ -1,0 +1,151 @@
+---
+title: "Verification Checklist: Phase 13: absorb-028-006-review-remediation-closeout"
+description: "Verification gates for the program closeout: absorption pointers, mapping completeness, parent status accuracy, tooling-finding records, and the final recursive validation."
+trigger_phrases:
+  - "review remediation closeout checklist"
+  - "absorbed tracker pointers verification"
+  - "p2 triage mapping checklist"
+  - "program closeout verification"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout"
+    last_updated_at: "2026-07-03T09:57:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Authored phase planning docs (spec, plan, tasks, checklist)"
+    next_safe_action: "Execute LAST in program order, after phase 012 closes"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-03-016-013-closeout-planning"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Verification Checklist: Phase 13: absorb-028-006-review-remediation-closeout
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+<!--
+SELF-CHECK:
+- Confirm every required item has concrete evidence before marking it complete.
+- Keep optional deferrals explicit, owned, and separate from blockers.
+FAILURE MODES:
+- Rubber-stamping the checklist, vague tested-claims, and hidden blocker deferrals.
+-->
+
+---
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001 through REQ-008 with acceptance criteria)
+- [ ] CHK-002 [P0] Technical approach defined in plan.md (docs-surfaces table covers every tracker and rollup)
+- [ ] CHK-003 [P1] Final statuses of phases 001-012 read from their child folders before any covered-by disposition is written (tasks T001)
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Every edited spec doc passes the placeholder audit (check-placeholders.sh clean; no stale open-state strings left in absorbed trackers)
+- [ ] CHK-011 [P0] Regenerated JSON metadata parses (006, 028, and 016 graph-metadata.json plus description.json) and derived statuses match the edited spec rows
+- [ ] CHK-012 [P1] Tracker edits are row-scoped and preserve the target docs' frontmatter, anchors, and section order
+- [ ] CHK-013 [P1] Disposition pointers follow one consistent format (absorbed → phase folder path) across all three trackers
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [ ] CHK-020 [P0] All acceptance criteria met: REQ-001 through REQ-006 verified with recorded evidence; REQ-007/REQ-008 complete or user-approved deferral
+- [ ] CHK-021 [P0] Final program validation green: `validate.sh --strict` exit 0 for the 016 parent and each of the 13 children
+- [ ] CHK-022 [P1] Grep audits recorded: zero hits for stale open-state strings; absorbed-row inventory shows one disposition per row
+- [ ] CHK-023 [P1] Scoped `memory_index_scan` completed over the program parent and edited tracker folders; updated docs visible to a scoped search
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Every absorbed tracker row carries exactly one disposition: covered by phase NNN, stays in its packet, or obsolete — none double-mapped, none silent
+- [ ] CHK-FIX-002 [P0] The 91-item P2 mapping table is complete: row count reconciles to 91 against the frozen review report; every phase pointer names an existing child folder
+- [ ] CHK-FIX-003 [P0] The ledger completeness table in tasks.md has zero Pending rows, including the Agent B gap handled via report §3/§4 citations
+- [ ] CHK-FIX-004 [P0] Both tooling findings (TOOL-1 create.sh child level, TOOL-2 upgrade-level.sh addendum paths) are recorded with script-line anchors and a reproducing command, and carry a routing decision
+- [ ] CHK-FIX-005 [P1] Mapping dispositions distinguish owned-by-phase from shipped — no completion overclaim for any phase that closed differently than planned
+- [ ] CHK-FIX-006 [P1] Concurrent-session guard executed: `git status` checked on every target file before editing, collisions halted and reported
+- [ ] CHK-FIX-007 [P1] Closeout evidence pinned to a commit SHA or explicit diff range, not a moving branch-relative range
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No secrets, tokens, or credentials introduced into any edited doc
+- [ ] CHK-031 [P0] No machine-local absolute paths or /tmp paths written into tracker docs — repo-relative paths only
+- [ ] CHK-032 [P1] Edits stay inside the files named in the spec's Files-to-Change table (scope lock; no adjacent doc cleanup)
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] spec.md, plan.md, tasks.md, and this checklist synchronized — statuses, counts, and pointers agree
+- [ ] CHK-041 [P1] This phase's changelog entry refreshed under the parent changelog convention at close
+- [ ] CHK-042 [P2] 028-level rollup docs (timeline, before-vs-after) refreshed if the closeout changes their claims — defer with reason if untouched
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files (baseline validation output, sweep scratch notes) in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 12 | 0/12 |
+| P1 Items | 13 | 0/13 |
+| P2 Items | 1 | 0/1 |
+
+**Verification Date**: Pending — set when the phase executes
+<!-- /ANCHOR:summary -->
+
+---
+
+<!--
+Level 2 checklist - Verification focus
+Mark [x] with evidence when verified
+P0 must complete, P1 need approval to defer
+-->

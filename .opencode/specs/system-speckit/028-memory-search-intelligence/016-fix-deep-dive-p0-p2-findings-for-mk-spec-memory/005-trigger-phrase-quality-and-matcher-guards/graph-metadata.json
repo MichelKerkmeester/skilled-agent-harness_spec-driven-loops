@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034, \"system-spec-kit\" x1,922, even \"zarchive\" x848), and a live resume-style prompt returned 5/5 zarchive hits via single-word matches at weight 0.8 (deep-dive report §1; findings ledger L4)",
+    "created_at": "2026-07-03T09:44:20Z",
+    "last_save_at": "2026-07-03T09:44:20Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:b703cbdcbb4cdf45954adc0827dc3211ca797e1327fcbc4dcebe0acfd3cb7367"
+  }
+}

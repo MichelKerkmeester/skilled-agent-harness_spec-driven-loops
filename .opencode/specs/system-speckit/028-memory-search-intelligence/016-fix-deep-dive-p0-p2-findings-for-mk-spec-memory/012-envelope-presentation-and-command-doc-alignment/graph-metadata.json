@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
+    "created_at": "2026-07-03T09:44:26Z",
+    "last_save_at": "2026-07-03T09:44:26Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:6efa5470928a564623428afcf088821243e6a1d9621c7985cb9bfda33e60d382",
+    "source_doc_hashes": {
+      "spec.md": "26565058b9e6e6dbd763025d45e6f486fbadf2ba36890d9dcab53dad01cd6498",
+      "plan.md": "1e597b2383e7462281b584947cb2396fd6fb914288c94478f75d48e3fd7ad7e1",
+      "tasks.md": "a291bd7e7df7c05267501ec0e9d6019e251b72b589724211a88b10312fe8ca71",
+      "checklist.md": "0d5f97badf3702094f700e8c4944ecdfe21d68bad0b44c3180523a33e48c9b00",
+      "implementation-summary.md": "482f91f65970dadc122395181976f5fa8145efc70ab32acd110e48934a6d11c4"
+    }
+  }
+}

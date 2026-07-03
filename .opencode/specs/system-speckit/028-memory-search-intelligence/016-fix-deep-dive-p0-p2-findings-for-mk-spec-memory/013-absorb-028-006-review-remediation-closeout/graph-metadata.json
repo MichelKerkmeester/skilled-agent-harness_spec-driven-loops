@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout",
+  "parent_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation closeout",
+      "absorbed tracker pointers",
+      "p2 triage mapping",
+      "findings completeness sweep",
+      "016 program closeout phase",
+      "review remediation closeout plan",
+      "absorbed tracker pointers plan",
+      "p2 triage mapping plan",
+      "program closeout validation plan",
+      "review remediation closeout tasks",
+      "absorbed tracker pointers tasks",
+      "p2 triage mapping table"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "closeout",
+      "absorbed",
+      "tracker",
+      "pointers",
+      "triage",
+      "mapping",
+      "findings",
+      "completeness",
+      "sweep",
+      "016"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Tracker",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Ledger",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mark Group",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completeness Mapping Table",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ledger Section",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Expected Owners",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator absorbed three open trackers into this program, but the tracker docs still advertise their pre-absorption state: `028/006/002-memory-schema-and-concurrency` and `028/006/004-p2-triage` read \"PENDING, scaffold only\" with no pointer to the phases that now own their items, and the ex-031 tracker (`028/014/001-findings-remediation`) still lists T-0211/T-0212 as \"queued for next fix-dispatch round\"",
+    "created_at": "2026-07-03T09:44:26Z",
+    "last_save_at": "2026-07-03T10:07:36.652Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:09b900f62a002c2eb5d625c22700124f306c058c25e319dac9d8bf21c1f11c41",
+    "source_doc_hashes": {
+      "spec.md": "ff9e39b77075c0799fa11dcdfc43c8f030303eda850f8ce508c716a03d9e4af9",
+      "plan.md": "99db0e33140f3bacdbb328daebc3c273a840552af2f093f4b280a68b09bbf40f",
+      "tasks.md": "ff80e48f78e1bead43262d91ac98e589ccd4bec7023f578d18569f82646dcfe9",
+      "checklist.md": "209e3cf9ceb3ccd0b9c7fa778e57a54990a5359692c3530d5ff168c5ecfd4905",
+      "implementation-summary.md": "dbda1d791007d91af984abe139ddadacf3cf354ed4e4c7a0ea3d15f8ea845893"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
