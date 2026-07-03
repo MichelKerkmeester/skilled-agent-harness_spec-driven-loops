@@ -403,7 +403,9 @@ function pickString(value: unknown): string | null {
 // hypothetical secret-named var could not transit to a child. The primary
 // guarantee is structural — the secret simply never exists in a child-reachable
 // location. The per-dispatch signing key (deriveReceiptKey) is recomputed in
-// memory from the secret + dispatchId and is likewise never passed to the child.
+// memory from the secret + dispatchId and is likewise never passed to the
+// child; same-process verifiers obtain that derived key via
+// deriveReceiptKeyForDispatch(), which never returns the raw secret.
 
 let runMasterSecret: string | undefined;
 
@@ -412,6 +414,16 @@ function getRunMasterSecret(): string {
     runMasterSecret = randomBytes(32).toString('hex');
   }
   return runMasterSecret;
+}
+
+/**
+ * Same-process accessor for receipt verification: returns the per-dispatch
+ * signing key derived from the run-master secret. It never returns or exposes
+ * the raw secret, so an in-process validator can verify receipts with the
+ * derived key alone — keeping the secret encapsulated in this module.
+ */
+export function deriveReceiptKeyForDispatch(dispatchId: string): string {
+  return deriveReceiptKey(getRunMasterSecret(), dispatchId);
 }
 
 /**

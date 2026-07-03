@@ -3,10 +3,12 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, renameSync, rmSync, statSync, truncateSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { validateEvidenceContract } from './evidence-contract.js';
 import { appendJsonlRecord } from './jsonl-repair.js';
+import { deriveReceiptKeyForDispatch } from './executor-audit.js';
+import { canonicalReceiptJson, verifyReceipt } from './receipt-crypto.js';
 import type { ExecutorKind } from './executor-config.js';
 
 // ───── 1. TYPE DEFINITIONS ─────
@@ -27,6 +29,11 @@ export type RouteProofExpectation = {
   requireAgentDefinitionLoaded?: boolean;
 };
 
+export type DispatchReceiptExpectation = {
+  receiptDir: string;
+  dispatchId: string;
+};
+
 export type PostDispatchValidateInput = {
   iterationFile: string;
   stateLogPath: string;
@@ -36,6 +43,10 @@ export type PostDispatchValidateInput = {
   deltaFilePath?: string;
   routeProof?: RouteProofExpectation;
   recipeConfig?: PostDispatchRecipeConfig;
+  // When set, the validator requires a valid engine-signed dispatch receipt
+  // (intent + completion) before accepting the state-log append. Dispatches
+  // that did not opt into receipts omit it and keep legacy behavior.
+  dispatchReceipt?: DispatchReceiptExpectation;
 };
 
 /** Failure class recorded for a hardened judge attempt. */
@@ -189,6 +200,9 @@ type PostDispatchFailureReason =
   | 'verification_degraded'
   | 'route_proof_missing'
   | 'route_proof_mismatch'
+  | 'dispatch_receipt_missing'
+  | 'dispatch_receipt_invalid_mac'
+  | 'dispatch_receipt_intent_mismatch'
   | 'v2_missing_ledger'
   | 'v2_uncited_ledger_row'
   | 'v2_broken_linked_finding'
@@ -659,6 +673,193 @@ function validateRouteProofRecord(
       ok: false,
       reason: 'route_proof_mismatch',
       details: `${source}.resolved_route='${String(record.resolved_route)}' expected '${routeProof.resolvedRoute}'`,
+    };
+  }
+
+  return null;
+}
+
+// ───── DISPATCH RECEIPT VALIDATION ─────
+
+// Facts shared by the pre-dispatch INTENT and the post-dispatch COMPLETION:
+// both cover exactly what the engine intended, so they must agree. The
+// completion-only facts (child pid/exit/signal/session) are excluded from the
+// intent binding comparison, so the binding is over the agreed-upon intent.
+const RECEIPT_BOUND_FACT_KEYS = ['command', 'args', 'cwd', 'executor', 'iteration'] as const;
+
+function receiptFilePath(receiptDir: string, dispatchId: string, phase: 'intent' | 'completion'): string {
+  return join(receiptDir, `dispatch-${dispatchId}.${phase}.json`);
+}
+
+type LoadedReceipt =
+  | { ok: true; record: Record<string, unknown> }
+  | { ok: false; result: Extract<PostDispatchValidateResult, { ok: false }> };
+
+// Load one receipt file, assert it is a structurally well-formed dispatch
+// receipt for this dispatch/phase, and verify its MAC under the derived key. A
+// receipt that exists but is unparseable, structurally wrong, or carries a bad
+// MAC is rejected as invalid — distinct from a receipt that simply was never
+// written (missing).
+function loadAndVerifyReceipt(
+  receiptPath: string,
+  phase: 'intent' | 'completion',
+  expectedDispatchId: string,
+  key: string,
+): LoadedReceipt {
+  if (!existsSync(receiptPath)) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_missing',
+        details: `${phase} receipt missing: ${receiptPath}`,
+      },
+    };
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(receiptPath, 'utf8'));
+  } catch (error) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt is not valid JSON: ${error instanceof Error ? error.message : String(error)}`,
+      },
+    };
+  }
+
+  if (!isObjectRecord(parsed)) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt is not a JSON object`,
+      },
+    };
+  }
+
+  if (parsed.type !== 'dispatch_receipt' || parsed.version !== 1) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt is not a dispatch_receipt (type/version)`,
+      },
+    };
+  }
+  if (parsed.phase !== phase) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt has phase='${String(parsed.phase)}' expected '${phase}'`,
+      },
+    };
+  }
+  if (parsed.dispatchId !== expectedDispatchId) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt dispatchId='${String(parsed.dispatchId)}' expected '${expectedDispatchId}'`,
+      },
+    };
+  }
+  if (!isObjectRecord(parsed.facts)) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt missing facts object`,
+      },
+    };
+  }
+
+  const mac = parsed.mac;
+  if (typeof mac !== 'string' || mac === '') {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt missing mac`,
+      },
+    };
+  }
+
+  if (!verifyReceipt(parsed, mac, key)) {
+    return {
+      ok: false,
+      result: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: `${phase} receipt MAC verification failed`,
+      },
+    };
+  }
+
+  return { ok: true, record: parsed };
+}
+
+function canonicalBoundFacts(facts: Record<string, unknown>): string {
+  const bound: Record<string, unknown> = {};
+  for (const factKey of RECEIPT_BOUND_FACT_KEYS) {
+    if (factKey in facts) {
+      bound[factKey] = facts[factKey];
+    }
+  }
+  return canonicalReceiptJson(bound);
+}
+
+/**
+ * Validate an engine-signed dispatch receipt pair when the dispatch opted into
+ * receipts. Returns null when the receipt pair is valid; a failure result
+ * otherwise. The signing key is re-derived from the in-process run-master
+ * secret — the validator runs in the same engine process that wrote the
+ * receipt, so the secret never leaves the process, and the derivation
+ * re-verifies identically on resume.
+ */
+function validateDispatchReceipt(expectation: DispatchReceiptExpectation): PostDispatchValidateResult | null {
+  const key = deriveReceiptKeyForDispatch(expectation.dispatchId);
+
+  const intentPath = receiptFilePath(expectation.receiptDir, expectation.dispatchId, 'intent');
+  const intent = loadAndVerifyReceipt(intentPath, 'intent', expectation.dispatchId, key);
+  if (!intent.ok) {
+    return intent.result;
+  }
+
+  const completionPath = receiptFilePath(expectation.receiptDir, expectation.dispatchId, 'completion');
+  const completion = loadAndVerifyReceipt(completionPath, 'completion', expectation.dispatchId, key);
+  if (!completion.ok) {
+    return completion.result;
+  }
+
+  const intentFacts = intent.record.facts;
+  const completionFacts = completion.record.facts;
+  if (!isObjectRecord(intentFacts) || !isObjectRecord(completionFacts)) {
+    return {
+      ok: false,
+      reason: 'dispatch_receipt_invalid_mac',
+      details: 'receipt facts object missing',
+    };
+  }
+
+  // Bind the INTENT to its COMPLETION: the completion must countersign the same
+  // dispatch the engine intended. A completion whose base intent facts diverge
+  // is a countersign of a different dispatch and must be rejected.
+  if (canonicalBoundFacts(intentFacts) !== canonicalBoundFacts(completionFacts)) {
+    return {
+      ok: false,
+      reason: 'dispatch_receipt_intent_mismatch',
+      details: 'completion does not bind to intent: base facts (command/args/cwd/executor/iteration) diverge',
     };
   }
 
@@ -1390,6 +1591,13 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       const deltaRouteProofFailure = validateRouteProofRecord(deltaIterationRecord, input.routeProof, 'delta');
       if (deltaRouteProofFailure) {
         return deltaRouteProofFailure;
+      }
+    }
+
+    if (input.dispatchReceipt) {
+      const receiptFailure = validateDispatchReceipt(input.dispatchReceipt);
+      if (receiptFailure) {
+        return receiptFailure;
       }
     }
 
