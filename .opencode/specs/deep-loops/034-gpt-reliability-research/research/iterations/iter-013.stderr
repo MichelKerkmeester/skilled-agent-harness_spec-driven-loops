@@ -1,0 +1,61 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"# Research Brief R3 — Render-contract design: exact edits for verbatim setup prompts\n\nREAD-ONLY RESEARCH TASK. No file writes are requested. Do not ask about spec\nfolders or documentation scope. Do not ask any questions; produce the design.\n\n## Context (verified by prior research)\n\nGPT halts correctly on bare commands but renders PARTIAL setup presentation:\nthe consolidated prompt is a fenced human-instruction block in a referenced\nasset (\\\"EXECUTE THIS SINGLE CONSOLIDATED PROMPT\\\", review presentation ~94-99,\nquestion text ~163-202); the command doc instructs loading it (review.md:15)\nbut nothing enforces verbatim rendering. Claude copies by convention.\n\n## Your task — produce the exact minimal edits\n\nRead (repo-root relative):\n1. `.opencode/commands/deep/assets/deep_review_presentation.txt` lines 80-210\n2. `.opencode/commands/deep/review.md` lines 1-100\n3. For mirror scope: list which sibling presentation assets exist under\n   `.opencode/commands/deep/assets/` (ls) — do not read them all.\n\nDeliverables (before/after fenced blocks, exact file targets):\n1. The SETUP_PROMPT_START/END marker wrapping + \"render only the marked block\n   verbatim after applying the stated omissions; do not paraphrase, summarize,\n   or reorder\" instruction for deep_review_presentation.txt — minimal diff.\n2. The one-paragraph halt-render rule insertion for review.md's mode-routing\n   section (\"If halting for setup: output the marked block from the\n   presentation asset verbatim; do not summarize; stop.\") — minimal diff.\n3. The mirror checklist: file list + the same two edits named per file, so the\n   change can be applied mechanically across all five command surfaces.\n4. A verification note: which 033 cells prove it (RVB-002, CXB-002 presentation\n   2/2; the IMB-003 D2 gap), and what marker text the benchmark should assert.\n\n## Output contract (strict)\nMarkdown, no preamble, sections DELIVERABLE 1-4, cite file:line. Minimal\ndiffs; no rewrite of surrounding prose.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":0,"include_cognitive":false} failed
+[91m[1mError: [0m{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_match_triggers",
+      "issues": [
+        "turnNumber: Too small: expected number to be >=1"
+      ],
+      "unknownParameters": [],
+      "expectedParameters": [
+        "prompt",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "session_id",
+        "turnNumber",
+        "include_cognitive"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_match_triggers",
+    "isError": true,
+    "severity": "low"
+  }
+}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"# Research Brief R3 — Render-contract design: exact edits for verbatim setup prompts\n\nREAD-ONLY RESEARCH TASK. No file writes are requested. Do not ask about spec\nfolders or documentation scope. Do not ask any questions; produce the design.\n\n## Context (verified by prior research)\n\nGPT halts correctly on bare commands but renders PARTIAL setup presentation:\nthe consolidated prompt is a fenced human-instruction block in a referenced\nasset (\\\"EXECUTE THIS SINGLE CONSOLIDATED PROMPT\\\", review presentation ~94-99,\nquestion text ~163-202); the command doc instructs loading it (review.md:15)\nbut nothing enforces verbatim rendering. Claude copies by convention.\n\n## Your task — produce the exact minimal edits\n\nRead (repo-root relative):\n1. `.opencode/commands/deep/assets/deep_review_presentation.txt` lines 80-210\n2. `.opencode/commands/deep/review.md` lines 1-100\n3. For mirror scope: list which sibling presentation assets exist under\n   `.opencode/commands/deep/assets/` (ls) — do not read them all.\n\nDeliverables (before/after fenced blocks, exact file targets):\n1. The SETUP_PROMPT_START/END marker wrapping + \"render only the marked block\n   verbatim after applying the stated omissions; do not paraphrase, summarize,\n   or reorder\" instruction for deep_review_presentation.txt — minimal diff.\n2. The one-paragraph halt-render rule insertion for review.md's mode-routing\n   section (\"If halting for setup: output the marked block from the\n   presentation asset verbatim; do not summarize; stop.\") — minimal diff.\n3. The mirror checklist: file list + the same two edits named per file, so the\n   change can be applied mechanically across all five command surfaces.\n4. A verification note: which 033 cells prove it (RVB-002, CXB-002 presentation\n   2/2; the IMB-003 D2 gap), and what marker text the benchmark should assert.\n\n## Output contract (strict)\nMarkdown, no preamble, sections DELIVERABLE 1-4, cite file:line. Minimal\ndiffs; no rewrite of surrounding prose.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mRead .opencode/commands/deep/assets[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/commands/deep/review.md[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=80, limit=131][0m
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY RESEARCH TASK. Produce exact minimal edits for render-contract design for deep review setup prompts. No file writes. Read .opencode/commands/deep/assets/deep_review_presentation.txt lines 80-210, .opencode/commands/deep/review.md lines 1-100, list sibling presentation assets under .opencode/commands/deep/assets/, and deliver before/after fenced blocks plus mirror checklist and verification note.","options":{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mRead .opencode/commands/deep[90m [offset=1, limit=200][0m
+[0m✱ [0mGrep "RVB-002|CXB-002|IMB-003|presentation 2/2|D2"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "SETUP_PROMPT_START|SETUP_PROMPT_END|EXECUTE THIS SINGLE CONSOLIDATED PROMPT"[90m in . · 37 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/iterations/iter-002.md[90m [offset=1, limit=30][0m
+[0m✱ [0mGrep "RVB-002|IMB-003"[90m in .opencode/skills/deep-loop-workflows · 11 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/034-gpt-reliability-research/research/findings-registry.md[90m [offset=1, limit=25][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-context/behavior_benchmark/scenarios/CXB-002-bare-command-halt.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/behavior_benchmark/scenarios/RVB-002-bare-command-halt.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/behavior_benchmark/scenarios/IMB-003-vague-natural-ask.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/behavior_benchmark/baselines/claude-baseline.md[90m [offset=1, limit=60][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/behavior_benchmark/baselines/claude-baseline.md[90m [offset=1, limit=40][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-context/behavior_benchmark/baselines/claude-baseline.md[90m [offset=1, limit=35][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=211, limit=60][0m
+[0m✱ [0mGrep "D2|presentation|Completion|completion|Dimension"[90m in .opencode/skills/deep-loop-workflows/shared/behavior-benchmark · 7 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md[90m [offset=60, limit=70][0m

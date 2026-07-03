@@ -14,3 +14,8 @@ Provenance: openai/gpt-5.5-fast --variant xhigh via opencode CLI; orchestrator-h
 | 008 | A8 budgets/pacing | ~7m | productive | 4 (F-031..F-034) | Atomic-unit weight + no-resume + zero-credit-on-kill mechanism verified; conditional budget policy proposed. Rotate to A9. |
 | 009 | A9 indirection | ~6m | productive | 4 (F-035..F-038) | Chain traced: 14 pre-dispatch instruction files + 21 YAML refs + 3-way setup authority. Compiled-contract proposal = re-approach flagship. Rotate to A10. |
 | 010 | A10 authoring profile | ~8m | productive | 1 profile finding (F-039; constituent mechanisms already F-001..F-038) | All 10 angles covered (10/10 > success criterion 8/10). Checkpoint commit; begin sharpened design revisits R1-R5. |
+| 011 | R1 P0 design | ~6m | productive | 1 design package (F-040) | Before-blocks diff-verified. P0 implementation-ready. Dispatch R2 receipt design. |
+| 012 | R2 receipt design | ~7m | productive | 1 design package (F-041) | HMAC-receipt design anchors verified. Dispatch R3 render contract. |
+| 013 | R3 render contract | ~7m | productive | 1 design package (F-042) | Boundaries verified; S-effort package. Dispatch R4 heartbeat schema. |
+| 014 | R4 heartbeat schema | ~17m (longest; stderr showed continuous tool activity — orchestrator lesson: judge liveness by activity, not stdout) | productive | 1 design package (F-043) | Dispatch R5 ranking cross-check. |
+| 015 | R5 ranking cross-check | ~8m | productive | 1 adjudication (F-044) | EARLY STOP invoked: 15/15 productive, 10/10 angles, 5/5 design packages; R5 found no unexplored mechanisms (gaps are verification-process items → synthesis §Verification). Further iterations = re-tread; proceed to synthesis. |

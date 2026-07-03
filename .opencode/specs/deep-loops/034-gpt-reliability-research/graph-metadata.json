@@ -39,8 +39,11 @@
       "summary"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "research/findings-registry.md",
+      "research/iteration-log.md",
+      "research/synthesis.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,6 +51,24 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "findings-registry.md",
+        "kind": "doc",
+        "path": "research/findings-registry.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-log.md",
+        "kind": "doc",
+        "path": "research/iteration-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "research/synthesis.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "30-iteration orchestrator-hosted deep-research campaign using GPT-5.5-fast xhigh as the researcher: identify which parts of our commands, gates, deep-loop workflows, agents, skills, and hooks can be simplified, optimized, or re-approached so GPT-backed executors in opencode use them correctly as intended, like Claude does. Seeded by packet 033's measured failure modes (Gate-3 halts every mode/both efforts; structured-mode stalls; dispatch-mode absorption; presentation gaps).",
     "created_at": "2026-07-03T05:53:51.876Z",
-    "last_save_at": "2026-07-03T05:59:16.292Z",
+    "last_save_at": "2026-07-03T09:59:49.810Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c895da95c6b7e9d63fdb4d290902856a77c26038cad9eec6c8999d9c2cadc1c",
+    "source_fingerprint": "sha256:710a14e754fcba7d4685dcb622e691a4bc3752c26acbe8019299fda9836f9fef",
     "source_doc_hashes": {
-      "spec.md": "d1dbe934a5fbe003fe3df8d7a71c9f768f3ca4754dd501f7bc04d012e7ee491c",
+      "spec.md": "ad24cd49a5d7184c6640360a8b1d3297caf9a8d45915384f52943367e957cbd4",
       "plan.md": "034074acc3c89504fe9961012ae77b32b90533d0e3302595c4a0daf02da63465",
-      "tasks.md": "7d49802e879e9064eda07a99480f85ba67e3b077257c7fb789a64903e92a0f6e",
-      "checklist.md": "3f3a2a6a448f5d8199302c7e1f441d029eff9725ad201eac94f5d79fc39588a2",
-      "implementation-summary.md": "33f4e5d2d3a225ab1c326cb0515aa0d564a3668c6026102302d3f22b0466ffb4"
+      "tasks.md": "5cb78aab731e4fea5d4320265a70359e3f8dcb17b6afca99f00ee3e55379bf28",
+      "checklist.md": "8761bcfccdf222efe4aa4db92a5370d8d8ed469b412aac9b0ef95b4d539ad16e",
+      "implementation-summary.md": "6f14c97e0dbf7741f4ad08499c43f9aa6cfbcc84c7ba8efbf724d68d9dd39044"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,11 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Produce ready-to-apply design text for Gate-3 autonomous-precedence bridge, classifier triggered-but-satisfied API sketch, and autonomous execution profile prelude. Read AGENTS.md Gate 3 and violation recovery, gate-3-classifier.ts exported API/resume triggers, deep_review_presentation.txt :auto setup. No file writes, no questions.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code"
+[0m→ [0mRead AGENTS.md[90m [offset=110, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=1, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts[90m [offset=241, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=71, limit=80][0m

@@ -1,0 +1,22 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Design dispatch-receipt mechanism for deep-loop runtime to kill forgery path. Read executor-audit.ts, post-dispatch-validate.ts, deep_review_auto.yaml lines 760-960. Produce deliverables only; no file writes; no questions.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mSkill "deep-loop-runtime"
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1, limit=320][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=760, limit=220][0m
+[0m✱ [0mGrep "writeFirstRecordExecutor|runAuditedExecutorCommand|appendJsonlRecord|executor_result|dispatch"[90m in .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts · 46 matches[0m
+[0m✱ [0mGrep "routeProof|RouteProof|validateIterationOutputs|previousStateLogSize|requiredJsonlFields|findLatestJsonlRecord|target_agent|resolved_route"[90m in .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts · 31 matches[0m
+[0m✱ [0mGrep "writeFirstRecordExecutor|runAuditedExecutorCommand|executor-audit|post-dispatch-validate"[90m in .opencode/commands/deep/assets/deep_review_auto.yaml · 13 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=528, limit=330][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=560, limit=130][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1207, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=858, limit=60][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1427, limit=90][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_research_auto.yaml[90m [offset=854, limit=100][0m
+[0m✱ [0mGrep "state_paths:|state_dir|prompt_dir|receipt|state_log"[90m in .opencode/commands/deep/assets/deep_review_auto.yaml · 100 matches[0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=86, limit=25][0m

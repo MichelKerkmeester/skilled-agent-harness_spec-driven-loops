@@ -1,0 +1,30 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"Research Brief R4 — Heartbeat/checkpoint record schema for structured modes. READ-ONLY RESEARCH TASK. No file writes. Design one shared progress-record convention for deep-loop structured modes using specified files and output deliverables.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false} failed
+[91m[1mError: [0mMCP error -32001: Request timed out
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY research: design shared progress-record schema for deep-loop structured modes using council/context/review files.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false} failed
+[91m[1mError: [0mNot connected
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Research Brief R4 — Heartbeat/checkpoint record schema for structured deep-loop modes. Read-only design one shared progress-record convention for council/context/review/improvement; no writes.","options":{"topK":3,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md[90m [offset=1, limit=250][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_context_auto.yaml[90m [offset=400, limit=151][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl[90m [offset=70, limit=51][0m
+[0m✱ [0mGrep "step_.*(seat|critique|adjud|deliber|round)|critique|adjudication|seat"[90m in .opencode/skills/deep-loop-workflows/deep-ai-council · 100 matches[0m
+[0m✱ [0mGrep "step_.*(seat|critique|adjud|deliber|round)|critique|adjudication|seat"[90m in .opencode/skills/deep-loop-workflows/deep-ai-council · 0 matches[0m
+[0m✱ [0mGlob "**/*council*.{md,yaml,json}"[90m in .opencode/skills/deep-loop-workflows/deep-ai-council · 27 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md[90m [offset=95, limit=240][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/loop_protocol.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/behavior_benchmark/scenarios/ACB-004-concise-natural-ask.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-ai-council/behavior_benchmark/scenarios/ACB-005-orchestrate-handoff.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-context/behavior_benchmark/scenarios/CXB-004-concise-natural-ask.md[90m [offset=1, limit=80][0m
+[0m✱ [0mGlob "**/*IMB-001*"[90m in .opencode/skills/deep-loop-workflows/deep-improvement · 1 match[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-improvement/behavior_benchmark/scenarios/IMB-001-auto-run-specified.md[90m [offset=1, limit=120][0m
+[0m✱ [0mGrep "IMB-001-high|partial credit|partial"[90m in .opencode/skills/deep-loop-workflows · 100 matches[0m
+[0m✱ [0mGrep "IMB-001|high|partial credit|watchdog|liveness"[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks · 100 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/001-framework-and-harness/spec.md[90m [offset=68, limit=95][0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration/scorecard.md[90m [offset=21, limit=35][0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/scorecard.md[90m [offset=13, limit=45][0m
+[0m✱ [0mGrep "CXB-004|stuck_no_progress|High is NOT stall-free|context.*stall"[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context · 10 matches[0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/scorecard.md[90m [offset=22, limit=48][0m

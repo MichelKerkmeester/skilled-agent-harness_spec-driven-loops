@@ -1,3 +1,19 @@
+# Research Brief R5 — Ranking cross-check: impact/effort adjudication of the full registry
+
+READ-ONLY RESEARCH TASK. No file writes are requested. Do not ask about spec
+folders or documentation scope. Do not ask any questions; produce the analysis.
+
+## Context
+
+A 14-iteration research campaign produced the findings registry below. Before
+final synthesis, we want an INDEPENDENT ranking pass: score the proposals,
+surface conflicts between them, and name anything the registry MISSES relative
+to the measured failure classes (Gate-3 halts; structured-mode stalls;
+dispatch-mode absorption; partial presentation; vague-ask non-routing; budget-
+edge deaths).
+
+## The registry (verbatim)
+
 # Findings Registry — 034 GPT Reliability Research
 
 Deduped on (surface, proposal). Every entry requires file:line evidence, a tag
@@ -46,7 +62,23 @@ and the iteration(s) that produced it. Orchestrator-verified before entry.
 | F-038 | A9 | setup resolution locus | Setup (arg parse, default binding, placeholder validation) is executed BY THE MODEL rather than by a deterministic loader — unresolved placeholders reach model execution instead of failing before it | Deterministic setup loader emitting one hydrated execution packet before the model sees the workflow (re-approach, L) | All three classes; strongest single structural fix | L | 009 |
 | F-039 | A10 | cross-cutting authoring profile | The discriminator between GPT-reliable and GPT-unreliable contract styles, each rule tied to a measured 033 outcome: step-list YAML with artifact assertions executes reliably (review-high 5/8) while prose hard-blocks claiming priority (Gate-3), "should produce" imperatives without artifact targets (council seats), deep conditional ladders, position-buried contracts, and 14-file indirection chains all mis-execute | Codify a 7-rule GPT-safe authoring profile (authority-first, artifact-bound imperatives, stepwise liveness, compiled contract, low conditional depth, top-loaded executor contract, mode-scoped GPT guidance) as a contract-authoring reference + retrofit order: Gate 3 → council protocol → review chain (simplify/re-approach, M) | The profile addresses every measured failure class; retrofits verified per-class by their cells | M | 010 |
 | F-040 | R1 | P0 design (ready-to-apply) | iter-011 contains the full P0 design: (a) surgical AGENTS.md Gate-3 diff adding the autonomous-precedence bridge (Before block verified verbatim against the real file, 16/16 lines), (b) backward-compatible classifier API (satisfiedBy/requiresGate3Prompt + 6 tests incl. interactive-confirm-still-asks), (c) 8-rule autonomous-execution-profile prelude (~90 words) at a new spec-kit workflows reference path | Apply as the P0 implementation package; verify via RVB-008/RSB-008/ACB-004/IMB-004/IMB-005 flips (design, M total) | The five Gate-3 cells | M | 011 |
-| F-041 | R2 | receipt design (ready-to-implement) | iter-012: dispatch_receipt JSONL schema written by the dispatch MECHANISM (native task or runAuditedExecutorCommand) with per-dispatch HMAC never exposed to the child — unforgeable by construction; state_paths.dispatch_receipts wiring, validator requires receipt + compares receipt-derived route fields (model-written fields demoted to advisory), migration note keeps Claude-native green | Apply as the P1 absorption-kill package; verify via RVB-007/RSB-005/RSB-007 flips at medium effort (design, M) | The three absorption cells | M | 012 |
-| F-042 | R3 | render-contract design (ready-to-apply) | iter-013: minimal marker-wrap diffs (SETUP_PROMPT_START/END at verified block boundaries in deep_review_presentation.txt) + "render only the marked block verbatim; do not paraphrase/summarize/reorder" + one-paragraph halt-render rule for review.md mode routing + mechanical mirror checklist for all five command surfaces + benchmark marker assertions phrased in the framework's D2 vocabulary | Apply as the P1 presentation package; verify via RVB-002/CXB-002 D2 2/2 + IMB-003 D2 gap (design, S) | Presentation cells | S | 013 |
-| F-043 | R4 | heartbeat design (ready-to-apply) | iter-014: single shared progress_record JSONL schema (additive per state_format's evolution policy — old readers ignore new types), step-transition-only semantics (no timer heartbeats), started/completed pairs required for any step expected >60s without another write, insertion points + before/after excerpts for council seats/critique/adjudication and context sweep per-seat settle | Apply as the P1 liveness package; verify via ACB-004/005 + CXB-004 liveness and IMB-001-high partial credit (design, M) | Structured-mode stall cells | M | 014 |
-| F-044 | R5 | ranking adjudication | Independent cross-check over the full registry: explicit impact×effort×risk scoring, 5-item P0 set, 10 dependency orderings (Gate-3 package FIRST — other fixes stay masked behind halts; receipt before validator hardening; stepwise persistence before strict liveness validation), 5 gaps — all verification-process items (multi-cause cell adjudication metadata, presentation snapshot tests, budget-edge integration tests, routing-outcome telemetry, feature-flagged rollout) folded into synthesis §Verification | Synthesis input; quick-win set = Gate-3 package + render markers + routing offer + council stepwise persistence + prompt-pack abort line | Ordering + verification plan for the whole program | n/a | 015 |
+
+## Your task
+
+1. **Ranking table**: every distinct proposal (dedupe overlapping ones, name
+   merges), scored: reliability impact (how many benchmark cells/classes it
+   flips, weighted by how replicated the failure is) × effort (S/M/L) ×
+   regression risk. Produce a single ordered list P0 → P2 with one-line
+   justification each.
+2. **Conflicts/dependencies**: proposals that overlap, conflict, or must land
+   in a specific order (e.g. classifier API before prose bridge? profile
+   before injection dedupe?). Name the ordering.
+3. **Gaps**: measured failure classes or benchmark cells NOT addressed by any
+   registry proposal. Name what is missing and sketch the missing proposal in
+   one sentence each.
+4. **Quick wins**: the 3-5 changes with the highest impact-per-effort you
+   would land THIS week.
+
+## Output contract (strict)
+Markdown, no preamble, sections RANKING / CONFLICTS / GAPS / QUICK WINS.
+Justify with F-ids and benchmark cell ids, no new file reading required.
