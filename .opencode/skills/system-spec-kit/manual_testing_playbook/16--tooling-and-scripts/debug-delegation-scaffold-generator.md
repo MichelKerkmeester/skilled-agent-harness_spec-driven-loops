@@ -42,7 +42,6 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 1. Create a throwaway spec folder under `/tmp` matching the approved-root pattern:
    ```bash
    mkdir -p /tmp/scaf-test/<spec-folder>
-   touch /tmp/scaf-test/<spec-folder>
    ```
 2. Run the scaffold generator with synthetic data:
    ```bash
@@ -57,14 +56,14 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 3. Verify the produced file:
    ```bash
-   test -f /tmp/scaf-test/<spec-folder>
-   grep -c "^## [0-9]\." /tmp/scaf-test/<spec-folder>  # expect 5
-   grep -E "Clear cache and retry|Hardcode value|Add wait" /tmp/scaf-test/<spec-folder>  # expect 3 hits
+   test -f /tmp/scaf-test/<spec-folder>/debug-delegation.md
+   grep -c "^## [0-9]\." /tmp/scaf-test/<spec-folder>/debug-delegation.md  # expect 5
+   grep -E "Clear cache and retry|Hardcode value|Add wait" /tmp/scaf-test/<spec-folder>/debug-delegation.md  # expect 3 hits
    ```
 4. Run the generator a second time with the same args and confirm versioned output:
    ```bash
    bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh --spec-folder /tmp/scaf-test/<spec-folder> --task-id "T999" --errors-json '[{"approach":"x","result":"x"},{},{}]'
-   test -f /tmp/scaf-test/<spec-folder>
+   test -f /tmp/scaf-test/<spec-folder>/debug-delegation-002.md
    ```
 5. Confirm no @debug autonomous dispatch (the script is plain Bash; verify by reading the script):
    ```bash
@@ -72,7 +71,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 6. Confirm the YAML configs surface a y/n/skip prompt rather than auto-dispatch:
    ```bash
-   grep -A 5 "debug_delegation:\|debug_escalation:" .opencode/commands/speckit/assets/speckit_implement_auto.yaml .opencode/commands/speckit/assets/speckit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
+   grep -A 8 "debug_delegation:\|debug_escalation:" .opencode/commands/speckit/assets/speckit_implement_auto.yaml .opencode/commands/speckit/assets/speckit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
    ```
 7. Cleanup:
    ```bash
