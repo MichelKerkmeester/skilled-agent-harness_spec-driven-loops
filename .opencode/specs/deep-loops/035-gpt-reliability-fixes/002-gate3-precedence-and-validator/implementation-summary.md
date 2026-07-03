@@ -45,7 +45,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — planning state. This phase closes F-001, F-002, F-003, F-004, F-005, F-028, F-030, F-040; requirements are fixed in `spec.md`, the packet-wide gap mapping in `../context-index.md`.
+Partial — the classifier + validator (the P0 blocker) done and independently Sonnet-verified; the root-policy bridge deferred.
+
+- **GAP-16 blocker CLOSED ✅** — `validateSpecFolderBinding()` is concrete (fs existence, path-under-specs-root with traversal rejection, mandatory metadata files, `spec.md` Status ≠ Deprecated/Superseded, leaf-vs-phase-parent resolving `last_active_child_id`) and the satisfaction rule calls IT, never the caller-supplied `validated` boolean. Sonnet proved the loophole closed at runtime: `validated:true` on an out-of-tree `../` → `requiresGate3Prompt:true, satisfiedBy:null`.
+- **Classifier API ✅** — `satisfiedBy`/`requiresGate3Prompt` + `ClassificationOptions{executionMode,boundSpecFolder,commandContract}`, fully backward-compatible (`classifyPrompt(prompt)` unchanged; ctx-absent → re-halt).
+- **Safety fixes ✅** — writeBoundary enforced (GAP-17), `prior_answer` gated interactive-only (GAP-20), `:confirm` vocabulary + test (GAP-22), child-agent reclassify (GAP-18). 62/62 vitest pass, typecheck clean.
+- **Caller migration (GAP-48) — no-op ✅** — verified only two real consumers exist (the vitest suite + `gate3-corpus-runner.mjs`, which calls with no options); the two `speckit_implement_*` `machine_contract` refs are file-path declarations, not calls. Backward-compat covers all; the "34" was the vitest case count.
+
+Deferred / owed:
+- **`AGENTS.md` autonomous-precedence bridge (REQ-001, deliverables 1 & 3)** — the root-policy prose change is deferred behind the feature flag (landing it unconditionally is a forced rewrite; same gate as REQ-007's wiring).
+- **P2 test-coverage note** — add a dedicated test for the autonomous + `prior_answer` adversarial combo (the property is verified correct at runtime; the shipped suite lacks that exact case).
 <!-- /ANCHOR:what-built -->
 
 ---

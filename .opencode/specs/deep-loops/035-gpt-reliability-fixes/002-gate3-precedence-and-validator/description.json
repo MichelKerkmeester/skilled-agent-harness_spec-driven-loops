@@ -19,10 +19,12 @@
     "spec-folder",
     "halt"
   ],
-  "lastUpdated": "2026-07-03T14:23:25.771Z",
+  "lastUpdated": "2026-07-03T16:48:50.614Z",
   "specId": "002",
   "folderSlug": "gate3-precedence-and-validator",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "035-gpt-reliability-fixes"
   ],
