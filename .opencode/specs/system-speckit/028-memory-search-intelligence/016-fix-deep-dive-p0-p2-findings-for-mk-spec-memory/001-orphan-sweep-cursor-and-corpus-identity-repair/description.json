@@ -16,10 +16,12 @@
     "returns",
     "nextcursor"
   ],
-  "lastUpdated": "2026-07-03T12:12:56.595Z",
+  "lastUpdated": "2026-07-03T15:54:24.032Z",
   "specId": "001",
   "folderSlug": "orphan-sweep-cursor-and-corpus-identity-repair",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

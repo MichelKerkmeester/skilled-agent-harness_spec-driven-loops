@@ -166,6 +166,50 @@ describe('orphan sweep cursor and corpus repair', () => {
     expect(parseNearDuplicateHint('42')).toBeNull();
   });
 
+  it('resolves symlinked bases and case-variant paths without escaping the workspace', () => {
+    const root = tempRoot('orphan-symlink-');
+    const realBase = path.join(root, 'real');
+    fs.mkdirSync(path.join(realBase, 'docs'), { recursive: true });
+    fs.writeFileSync(path.join(realBase, 'docs', 'live.md'), 'live');
+
+    let base = realBase;
+    const linkedBase = path.join(root, 'linked');
+    try {
+      fs.symlinkSync(realBase, linkedBase, 'dir');
+      base = linkedBase;
+    } catch (_error: unknown) {
+      // Platforms that deny symlink creation fall back to the real base directory.
+    }
+
+    // The filesystem's own case rule decides whether a case-variant path exists,
+    // so probe it once to keep the assertion deterministic per platform.
+    const caseInsensitive = fs.existsSync(path.join(realBase, 'docs', 'LIVE.md'));
+
+    const db = new Database(':memory:');
+    try {
+      createIndexSchema(db);
+      const insert = db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, embedding_status)
+        VALUES (?, ?, ?, ?, 'success')
+      `);
+      insert.run(1, 'system-speckit/linked', 'docs/live.md', null);
+      insert.run(2, 'system-speckit/variant', 'docs/LIVE.md', null);
+      insert.run(3, 'system-speckit/absent', 'docs/NoSuchFile.md', null);
+      init(db);
+
+      const swept = sweepOrphanIndexRows({ limit: 5, cursor: 0, basePath: base });
+      expect(swept.orphanRecordIds).not.toContain(1);
+      expect(swept.orphanRecordIds).toContain(3);
+      if (caseInsensitive) {
+        expect(swept.orphanRecordIds).not.toContain(2);
+      } else {
+        expect(swept.orphanRecordIds).toContain(2);
+      }
+    } finally {
+      db.close();
+    }
+  });
+
   it('runs corpus repair migration scripts in dry-run mode against a fixture DB', () => {
     const root = tempRoot('corpus-migrations-');
     const dbPath = path.join(root, 'fixture.sqlite');

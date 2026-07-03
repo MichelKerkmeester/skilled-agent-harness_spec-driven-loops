@@ -45,6 +45,13 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/storage/incremental-index.ts",
+      "mcp_server/lib/storage/near-duplicate.ts",
+      "mcp_server/scripts/migrations/drain-file-absent-dead-path-rows.mjs",
+      "mcp_server/scripts/migrations/heal-system-speckit-track-identity.mjs",
+      "mcp_server/scripts/migrations/collapse-duplicate-content-rows.mjs",
+      "mcp_server/tests/orphan-sweep-corpus-repair.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts",
       "plan.md",
       "tasks.md",
@@ -53,9 +60,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "tests/orphan-sweep-corpus-repair.vitest.ts",
       "scripts/migrations/heal-system-speckit-track-identity.mjs",
-      "scripts/migrations/collapse-duplicate-content-rows.mjs",
-      "spec.md",
-      "implementation-summary.md"
+      "scripts/migrations/collapse-duplicate-content-rows.mjs"
     ],
     "entities": [
       {
@@ -80,6 +85,30 @@
         "name": "near-duplicate.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "drain-file-absent-dead-path-rows.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/drain-file-absent-dead-path-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "heal-system-speckit-track-identity.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/heal-system-speckit-track-identity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "collapse-duplicate-content-rows.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/collapse-duplicate-content-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-sweep-corpus-repair.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/orphan-sweep-corpus-repair.vitest.ts",
         "source": "derived"
       },
       {
@@ -116,36 +145,6 @@
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "orphan-sweep-corpus-repair.vitest.ts",
-        "kind": "test",
-        "path": "tests/orphan-sweep-corpus-repair.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "heal-system-speckit-track-identity.mjs",
-        "kind": "file",
-        "path": "scripts/migrations/heal-system-speckit-track-identity.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "collapse-duplicate-content-rows.mjs",
-        "kind": "file",
-        "path": "scripts/migrations/collapse-duplicate-content-rows.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-07-03T15:04:09.635Z",
+    "last_save_at": "2026-07-03T15:59:48.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9aaac766b6652350fcff5fec76eaff93406b231255d855fd25996a5e574de8a0",
+    "source_fingerprint": "sha256:e6cc87e04b99bbfa09e0fbd4d40d07b0c45d5dcc21bec07bf36f81b2240711be",
     "source_doc_hashes": {
-      "spec.md": "7e77605ec4cfa703055c911c547b7fdc2b381301ffd8b9136f9df78f7eb3f626",
-      "plan.md": "665494d4d6ddd001492724688788bf7e4e65befe04a80c6d974ad22c73bf4ac9",
-      "tasks.md": "de89b45bf04f533ab92cef2c1a39dd8dad15c935522f19fb37d2c269886064a8",
-      "checklist.md": "81cf070e3c19bb2f248c9388f7dcae10c265f77bf9004517eb404073f1d63c10",
-      "decision-record.md": "46b578a222142ec86b2655a6ae140596837401ef4fdc3e9ec86640fd32dcaa48",
-      "implementation-summary.md": "14edadd9d2223c6d91a5192a0682231b5e80f8a0f72dc30faff6e14e8cf9bf79"
+      "spec.md": "00c7137fc12ee76f0da846a83620441154f72954cd37d3df802b983bb30e3195",
+      "plan.md": "d529f6264ad7c21138b8c5032d43a9cfddd909d199f3db368d2e4a6b833ba334",
+      "tasks.md": "8595d3b2039962d487cf2a609d3fe86edec061b5b90c6d0aa18d10c4534e9ee5",
+      "checklist.md": "a7b6e50d387b2a737d53b34e768fc61847e8f26fc4c0626307675f7ab7d72e53",
+      "decision-record.md": "3aa67cf4fa2710d5a838ce211f2adcddef0f42ad8f381561ee6c09d032bdf74d",
+      "implementation-summary.md": "c6935a5919d55be1717e1a0255fa410c46a574cb66287dc1d8bb9098a598ecea"
     },
     "last_active_child_id": null,
     "last_active_at": null
