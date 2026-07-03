@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub",
+  "description": "The flat sk-code skill needed an additive nested parent-hub scaffold before content relocation",
+  "keywords": [
+    "sk-code",
+    "parent",
+    "hub",
+    "scaffold",
+    "mode",
+    "registry",
+    "router",
+    "graph",
+    "identity"
+  ],
+  "lastUpdated": "2026-07-03T00:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": []
+}

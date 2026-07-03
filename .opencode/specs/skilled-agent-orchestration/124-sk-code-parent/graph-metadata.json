@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/124-sk-code-parent/001-research-and-context",
-    "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision"
+    "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+    "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub"
   ],
   "manual": {
     "depends_on": [
@@ -80,7 +81,7 @@
     ],
     "source_fingerprint": null,
     "source_doc_hashes": {},
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub",
     "last_active_at": "2026-07-03T00:00:00Z"
   }
 }

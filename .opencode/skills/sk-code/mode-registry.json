@@ -1,0 +1,106 @@
+{
+  "skill": "sk-code",
+  "version": "1.0.0",
+  "description": "Declarative mode registry: the discriminator (workflowMode/backendKind) plus the advisorRouting contract for sk-code. The hub reads this file to resolve a mode; the advisor routes code queries to the single identity sk-code and the hub picks the mode.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "backendKind": "Which backend runs the mode: surface-router for surface-aware code workflows or review-cache for review output caching."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. For sk-code every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-code and the hub picks the mode.",
+    "packetSkillName": "The packet's SKILL.md name. Folder equals packetSkillName for every code mode.",
+    "grandfatheredFolderMismatch": "false for every mode because folder equals packetSkillName."
+  },
+  "modes": [
+    {
+      "workflowMode": "implement",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "code-implement",
+      "packetSkillName": "code-implement",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["implement feature", "refactor function", "webflow implementation", "opencode system code", "motion.dev animation", "implement code", "add a flag", "add a fallback", "add a parameter", "build a script", "frontend implementation standards"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "code-implement"
+      }
+    },
+    {
+      "workflowMode": "quality",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": ["Read", "Edit", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Task"],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "code-quality",
+      "packetSkillName": "code-quality",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "code-quality"
+      }
+    },
+    {
+      "workflowMode": "debug",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": ["Read", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": ["Write"],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "code-debug",
+      "packetSkillName": "code-debug",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["debug", "root cause", "fix bug", "error recovery", "test failure", "build failure", "handle empty", "handle null", "console.error fallback", "debugging workflow"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "code-debug"
+      }
+    },
+    {
+      "workflowMode": "verify",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "code-verify",
+      "packetSkillName": "code-verify",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["verify", "verification commands", "iron law", "mutation test", "language-specific verification commands", "browser test", "vitest covering", "alignment verifier workflow", "verify after change"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "code-verify"
+      }
+    },
+    {
+      "workflowMode": "review",
+      "backendKind": "review-cache",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob", "Write"],
+        "forbidden": ["Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "code-review",
+      "packetSkillName": "code-review",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["code review", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "code-review"
+      }
+    }
+  ]
+}

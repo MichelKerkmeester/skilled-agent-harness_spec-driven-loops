@@ -140,7 +140,11 @@
       "opencode system code workflow",
       "alignment verifier workflow",
       "code quality gate",
-      "verification commands"
+      "verification commands",
+      "sk-code hub",
+      "code mode router",
+      "implement mode",
+      "review mode"
     ],
     "key_topics": [
       "code",
@@ -151,7 +155,16 @@
       "opencode",
       "language-sub-detection",
       "code-quality",
-      "verification"
+      "verification",
+      "mode-registry",
+      "workflowMode",
+      "backendKind",
+      "surface-router",
+      "implement-mode",
+      "quality-mode",
+      "debug-mode",
+      "verify-mode",
+      "review-mode"
     ],
     "intent_signals": [
       "implement code",
@@ -163,6 +176,8 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
+      "mode-registry.json",
+      "hub-router.json",
       "references/stack_detection.md",
       "references/smart_routing.md",
       "references/smart_routing.md",
@@ -177,6 +192,13 @@
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/code-implement/SKILL.md",
+      ".opencode/skills/sk-code/code-quality/SKILL.md",
+      ".opencode/skills/sk-code/code-debug/SKILL.md",
+      ".opencode/skills/sk-code/code-verify/SKILL.md",
+      ".opencode/skills/sk-code/code-review/SKILL.md",
       ".opencode/skills/sk-code/references/stack_detection.md",
       ".opencode/skills/sk-code/references/smart_routing.md",
       ".opencode/skills/sk-code/references/smart_routing.md",
@@ -218,9 +240,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend, cross-stack motion.dev animation guidance, and OpenCode system code. Smart-routing internals choose WEBFLOW, OPENCODE, or UNKNOWN first; motion_dev is a peer resource category loaded for Motion API, performance, snippets, integration, and decision_matrix context.",
+    "causal_summary": "sk-code is the single public code skill that routes a request to one of five code modes (implement, quality, debug, verify, review) by workflowMode through mode-registry.json over a shared surface-detection router. The shared router centralizes WEBFLOW, OPENCODE, and MOTION_DEV identity and precedence, while each mode packet owns its own workflow contract and tool surface so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_updated_at": "2026-05-05T08:30:00Z",
+    "last_updated_at": "2026-07-03T00:00:00Z",
     "merger_packet": "internal design notes",
     "motion_dev_packet": "internal design notes",
     "supported_surfaces": [
